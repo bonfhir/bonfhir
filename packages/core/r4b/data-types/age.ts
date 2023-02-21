@@ -76,7 +76,7 @@ export function fhirAgeTypeAdapter(
         [
           formattedComparator,
           formattedValue,
-          formattedCode ? formattedCode : formattedUnit,
+          formattedCode ?? formattedUnit,
           formattedSystem ? `(${formattedSystem})` : "",
         ].join(" ")
       );

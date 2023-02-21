@@ -79,7 +79,7 @@ export function fhirDurationTypeAdapter(
         [
           formattedComparator,
           formattedValue,
-          formattedCode ? formattedCode : formattedUnit,
+          formattedCode ?? formattedUnit,
           formattedSystem ? `(${formattedSystem})` : "",
         ].join(" ")
       );

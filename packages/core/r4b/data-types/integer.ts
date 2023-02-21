@@ -37,7 +37,7 @@ export interface FhirIntegerTypeAdapter {
   ): string;
 }
 
-const fhirIntegerRegexp = new RegExp("^([0]|[-+]?[1-9][0-9]*)$");
+const fhirIntegerRegexp = new RegExp("^([0]|[-+]?[1-9]\\d*)$");
 
 /**
  * Return a {@link FhirIntegerTypeAdapter} that uses the [`Intl` API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)
@@ -57,16 +57,16 @@ export function fhirIntegerTypeAdapter(
         if (Number.isInteger(value)) return value;
         else {
           // is a float
-          throw new Error(
+          throw new TypeError(
             "Value is a float. It does not match the fhir integer format as described in `https://hl7.org/fhir/datatypes.html#number'"
           );
         }
 
       if (!value?.trim()) {
-        return undefined;
+        return;
       }
 
-      if (!value.trim().match(fhirIntegerRegexp))
+      if (!fhirIntegerRegexp.test(value.trim()))
         throw new Error(
           "Value does not match the fhir integer format as described in `https://hl7.org/fhir/datatypes.html#integer'"
         );

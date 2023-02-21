@@ -26,10 +26,10 @@ describe("fhirIntegerTypeAdapter", () => {
           >
         >[
           ["123", undefined, "123"],
-          [987654321, { notation: "compact-short" }, "988M"],
-          [987654321, { notation: "compact-long" }, "988 million"],
-          [987654321, { notation: "scientific" }, "9.877E8"],
-          [987654321, { notation: "engineering" }, "987.654E6"],
+          [987_654_321, { notation: "compact-short" }, "988M"],
+          [987_654_321, { notation: "compact-long" }, "988 million"],
+          [987_654_321, { notation: "scientific" }, "9.877E8"],
+          [987_654_321, { notation: "engineering" }, "987.654E6"],
           [123, undefined, "123"],
           [undefined, undefined, ""],
         ])("format %p", (value, options, expected) => {

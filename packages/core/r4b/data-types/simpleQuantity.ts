@@ -77,7 +77,7 @@ export function fhirSimpleQuantityTypeAdapter(
       return removeDoubleSpaces(
         [
           formattedValue,
-          formattedCode ? formattedCode : formattedUnit,
+          formattedCode ?? formattedUnit,
           formattedSystem ? `(${formattedSystem})` : "",
         ].join(" ")
       );

@@ -43,13 +43,13 @@ export function fhirURITypeAdapter(
     locale,
     parse(value) {
       if (!value?.trim()) {
-        return undefined;
+        return;
       }
 
       return new URL(value);
     },
 
-    format(value, _options) {
+    format(value) {
       const fhirURI = value instanceof URL ? value : this.parse(value);
 
       return fhirURI?.toString() || "";

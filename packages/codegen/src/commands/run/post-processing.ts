@@ -40,7 +40,7 @@ export const PostProcessingTask: ListrTask<Context> = {
       return new Listr<Context>(
         ctx.writtenFiles
           .filter((x) => x.includes("%file%"))
-          .map(CreatePostProcessingAFileTask)
+          .map((element) => CreatePostProcessingAFileTask(element))
       );
     }
   },

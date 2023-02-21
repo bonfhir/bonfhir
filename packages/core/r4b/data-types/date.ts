@@ -80,7 +80,7 @@ export function fhirDateTypeAdapter(
     locale,
     parse(value) {
       if (!value?.trim()) {
-        return undefined;
+        return;
       }
 
       const matchingData = value.trim().match(fhirDateRegexp)?.groups;

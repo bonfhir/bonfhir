@@ -46,7 +46,7 @@ class ResourceSearchBuilder{{type}} {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(parameters: SortOrder{{type}} | SortOrder{{type}}[]): ResourceSearchBuilder{{type}} {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -56,7 +56,7 @@ class ResourceSearchBuilder{{type}} {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilder{{type}} {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -106,7 +106,7 @@ class ResourceSearchBuilder{{type}} {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilder{{type}} {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -117,7 +117,7 @@ class ResourceSearchBuilder{{type}} {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilder{{type}} {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 

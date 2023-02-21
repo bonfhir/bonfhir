@@ -331,7 +331,7 @@ class ResourceSearchBuilderAccount {
   _sort(
     parameters: SortOrderAccount | SortOrderAccount[]
   ): ResourceSearchBuilderAccount {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -341,7 +341,7 @@ class ResourceSearchBuilderAccount {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderAccount {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -395,7 +395,7 @@ class ResourceSearchBuilderAccount {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderAccount {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -408,7 +408,7 @@ class ResourceSearchBuilderAccount {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderAccount {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -909,7 +909,7 @@ class ResourceSearchBuilderActivityDefinition {
   _sort(
     parameters: SortOrderActivityDefinition | SortOrderActivityDefinition[]
   ): ResourceSearchBuilderActivityDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -919,7 +919,7 @@ class ResourceSearchBuilderActivityDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderActivityDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -973,7 +973,7 @@ class ResourceSearchBuilderActivityDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderActivityDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -986,7 +986,7 @@ class ResourceSearchBuilderActivityDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderActivityDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -1763,7 +1763,7 @@ class ResourceSearchBuilderAdministrableProductDefinition {
       | SortOrderAdministrableProductDefinition
       | SortOrderAdministrableProductDefinition[]
   ): ResourceSearchBuilderAdministrableProductDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -1773,7 +1773,7 @@ class ResourceSearchBuilderAdministrableProductDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderAdministrableProductDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -1829,7 +1829,7 @@ class ResourceSearchBuilderAdministrableProductDefinition {
   _summary(
     value: SummaryValue
   ): ResourceSearchBuilderAdministrableProductDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -1842,7 +1842,7 @@ class ResourceSearchBuilderAdministrableProductDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderAdministrableProductDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -2375,7 +2375,7 @@ class ResourceSearchBuilderAdverseEvent {
   _sort(
     parameters: SortOrderAdverseEvent | SortOrderAdverseEvent[]
   ): ResourceSearchBuilderAdverseEvent {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -2385,7 +2385,7 @@ class ResourceSearchBuilderAdverseEvent {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderAdverseEvent {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -2439,7 +2439,7 @@ class ResourceSearchBuilderAdverseEvent {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderAdverseEvent {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -2452,7 +2452,7 @@ class ResourceSearchBuilderAdverseEvent {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderAdverseEvent {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -3091,7 +3091,7 @@ class ResourceSearchBuilderAllergyIntolerance {
   _sort(
     parameters: SortOrderAllergyIntolerance | SortOrderAllergyIntolerance[]
   ): ResourceSearchBuilderAllergyIntolerance {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -3101,7 +3101,7 @@ class ResourceSearchBuilderAllergyIntolerance {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderAllergyIntolerance {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -3155,7 +3155,7 @@ class ResourceSearchBuilderAllergyIntolerance {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderAllergyIntolerance {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -3168,7 +3168,7 @@ class ResourceSearchBuilderAllergyIntolerance {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderAllergyIntolerance {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -3754,7 +3754,7 @@ class ResourceSearchBuilderAppointment {
   _sort(
     parameters: SortOrderAppointment | SortOrderAppointment[]
   ): ResourceSearchBuilderAppointment {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -3764,7 +3764,7 @@ class ResourceSearchBuilderAppointment {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderAppointment {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -3818,7 +3818,7 @@ class ResourceSearchBuilderAppointment {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderAppointment {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -3831,7 +3831,7 @@ class ResourceSearchBuilderAppointment {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderAppointment {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -4619,7 +4619,7 @@ class ResourceSearchBuilderAppointmentResponse {
   _sort(
     parameters: SortOrderAppointmentResponse | SortOrderAppointmentResponse[]
   ): ResourceSearchBuilderAppointmentResponse {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -4629,7 +4629,7 @@ class ResourceSearchBuilderAppointmentResponse {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderAppointmentResponse {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -4683,7 +4683,7 @@ class ResourceSearchBuilderAppointmentResponse {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderAppointmentResponse {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -4696,7 +4696,7 @@ class ResourceSearchBuilderAppointmentResponse {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderAppointmentResponse {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -5204,7 +5204,7 @@ class ResourceSearchBuilderAuditEvent {
   _sort(
     parameters: SortOrderAuditEvent | SortOrderAuditEvent[]
   ): ResourceSearchBuilderAuditEvent {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -5214,7 +5214,7 @@ class ResourceSearchBuilderAuditEvent {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderAuditEvent {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -5268,7 +5268,7 @@ class ResourceSearchBuilderAuditEvent {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderAuditEvent {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -5281,7 +5281,7 @@ class ResourceSearchBuilderAuditEvent {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderAuditEvent {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -6026,7 +6026,7 @@ class ResourceSearchBuilderBasic {
   _sort(
     parameters: SortOrderBasic | SortOrderBasic[]
   ): ResourceSearchBuilderBasic {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -6036,7 +6036,7 @@ class ResourceSearchBuilderBasic {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderBasic {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -6090,7 +6090,7 @@ class ResourceSearchBuilderBasic {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderBasic {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -6101,7 +6101,7 @@ class ResourceSearchBuilderBasic {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilderBasic {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -6562,7 +6562,7 @@ class ResourceSearchBuilderBiologicallyDerivedProduct {
       | SortOrderBiologicallyDerivedProduct
       | SortOrderBiologicallyDerivedProduct[]
   ): ResourceSearchBuilderBiologicallyDerivedProduct {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -6572,7 +6572,7 @@ class ResourceSearchBuilderBiologicallyDerivedProduct {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderBiologicallyDerivedProduct {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -6628,7 +6628,7 @@ class ResourceSearchBuilderBiologicallyDerivedProduct {
   _summary(
     value: SummaryValue
   ): ResourceSearchBuilderBiologicallyDerivedProduct {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -6641,7 +6641,7 @@ class ResourceSearchBuilderBiologicallyDerivedProduct {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderBiologicallyDerivedProduct {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -6936,7 +6936,7 @@ class ResourceSearchBuilderBodyStructure {
   _sort(
     parameters: SortOrderBodyStructure | SortOrderBodyStructure[]
   ): ResourceSearchBuilderBodyStructure {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -6946,7 +6946,7 @@ class ResourceSearchBuilderBodyStructure {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderBodyStructure {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -7000,7 +7000,7 @@ class ResourceSearchBuilderBodyStructure {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderBodyStructure {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -7013,7 +7013,7 @@ class ResourceSearchBuilderBodyStructure {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderBodyStructure {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -7426,7 +7426,7 @@ class ResourceSearchBuilderCapabilityStatement {
   _sort(
     parameters: SortOrderCapabilityStatement | SortOrderCapabilityStatement[]
   ): ResourceSearchBuilderCapabilityStatement {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -7436,7 +7436,7 @@ class ResourceSearchBuilderCapabilityStatement {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCapabilityStatement {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -7490,7 +7490,7 @@ class ResourceSearchBuilderCapabilityStatement {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderCapabilityStatement {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -7503,7 +7503,7 @@ class ResourceSearchBuilderCapabilityStatement {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCapabilityStatement {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -8049,7 +8049,7 @@ class ResourceSearchBuilderCarePlan {
   _sort(
     parameters: SortOrderCarePlan | SortOrderCarePlan[]
   ): ResourceSearchBuilderCarePlan {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -8059,7 +8059,7 @@ class ResourceSearchBuilderCarePlan {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCarePlan {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -8113,7 +8113,7 @@ class ResourceSearchBuilderCarePlan {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderCarePlan {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -8126,7 +8126,7 @@ class ResourceSearchBuilderCarePlan {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCarePlan {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -8904,7 +8904,7 @@ class ResourceSearchBuilderCareTeam {
   _sort(
     parameters: SortOrderCareTeam | SortOrderCareTeam[]
   ): ResourceSearchBuilderCareTeam {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -8914,7 +8914,7 @@ class ResourceSearchBuilderCareTeam {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCareTeam {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -8968,7 +8968,7 @@ class ResourceSearchBuilderCareTeam {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderCareTeam {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -8981,7 +8981,7 @@ class ResourceSearchBuilderCareTeam {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCareTeam {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -9427,7 +9427,7 @@ class ResourceSearchBuilderCatalogEntry {
   _sort(
     parameters: SortOrderCatalogEntry | SortOrderCatalogEntry[]
   ): ResourceSearchBuilderCatalogEntry {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -9437,7 +9437,7 @@ class ResourceSearchBuilderCatalogEntry {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCatalogEntry {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -9491,7 +9491,7 @@ class ResourceSearchBuilderCatalogEntry {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderCatalogEntry {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -9504,7 +9504,7 @@ class ResourceSearchBuilderCatalogEntry {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCatalogEntry {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -9799,7 +9799,7 @@ class ResourceSearchBuilderChargeItem {
   _sort(
     parameters: SortOrderChargeItem | SortOrderChargeItem[]
   ): ResourceSearchBuilderChargeItem {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -9809,7 +9809,7 @@ class ResourceSearchBuilderChargeItem {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderChargeItem {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -9863,7 +9863,7 @@ class ResourceSearchBuilderChargeItem {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderChargeItem {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -9876,7 +9876,7 @@ class ResourceSearchBuilderChargeItem {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderChargeItem {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -10638,7 +10638,7 @@ class ResourceSearchBuilderChargeItemDefinition {
   _sort(
     parameters: SortOrderChargeItemDefinition | SortOrderChargeItemDefinition[]
   ): ResourceSearchBuilderChargeItemDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -10648,7 +10648,7 @@ class ResourceSearchBuilderChargeItemDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderChargeItemDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -10702,7 +10702,7 @@ class ResourceSearchBuilderChargeItemDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderChargeItemDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -10715,7 +10715,7 @@ class ResourceSearchBuilderChargeItemDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderChargeItemDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -11293,7 +11293,7 @@ class ResourceSearchBuilderCitation {
   _sort(
     parameters: SortOrderCitation | SortOrderCitation[]
   ): ResourceSearchBuilderCitation {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -11303,7 +11303,7 @@ class ResourceSearchBuilderCitation {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCitation {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -11357,7 +11357,7 @@ class ResourceSearchBuilderCitation {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderCitation {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -11370,7 +11370,7 @@ class ResourceSearchBuilderCitation {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCitation {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -11961,7 +11961,7 @@ class ResourceSearchBuilderClaim {
   _sort(
     parameters: SortOrderClaim | SortOrderClaim[]
   ): ResourceSearchBuilderClaim {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -11971,7 +11971,7 @@ class ResourceSearchBuilderClaim {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderClaim {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -12025,7 +12025,7 @@ class ResourceSearchBuilderClaim {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderClaim {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -12036,7 +12036,7 @@ class ResourceSearchBuilderClaim {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilderClaim {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -12832,7 +12832,7 @@ class ResourceSearchBuilderClaimResponse {
   _sort(
     parameters: SortOrderClaimResponse | SortOrderClaimResponse[]
   ): ResourceSearchBuilderClaimResponse {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -12842,7 +12842,7 @@ class ResourceSearchBuilderClaimResponse {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderClaimResponse {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -12896,7 +12896,7 @@ class ResourceSearchBuilderClaimResponse {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderClaimResponse {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -12909,7 +12909,7 @@ class ResourceSearchBuilderClaimResponse {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderClaimResponse {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -13483,7 +13483,7 @@ class ResourceSearchBuilderClinicalImpression {
   _sort(
     parameters: SortOrderClinicalImpression | SortOrderClinicalImpression[]
   ): ResourceSearchBuilderClinicalImpression {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -13493,7 +13493,7 @@ class ResourceSearchBuilderClinicalImpression {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderClinicalImpression {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -13547,7 +13547,7 @@ class ResourceSearchBuilderClinicalImpression {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderClinicalImpression {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -13560,7 +13560,7 @@ class ResourceSearchBuilderClinicalImpression {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderClinicalImpression {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -14192,7 +14192,7 @@ class ResourceSearchBuilderClinicalUseDefinition {
       | SortOrderClinicalUseDefinition
       | SortOrderClinicalUseDefinition[]
   ): ResourceSearchBuilderClinicalUseDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -14202,7 +14202,7 @@ class ResourceSearchBuilderClinicalUseDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderClinicalUseDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -14256,7 +14256,7 @@ class ResourceSearchBuilderClinicalUseDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderClinicalUseDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -14269,7 +14269,7 @@ class ResourceSearchBuilderClinicalUseDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderClinicalUseDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -14893,7 +14893,7 @@ class ResourceSearchBuilderCodeSystem {
   _sort(
     parameters: SortOrderCodeSystem | SortOrderCodeSystem[]
   ): ResourceSearchBuilderCodeSystem {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -14903,7 +14903,7 @@ class ResourceSearchBuilderCodeSystem {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCodeSystem {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -14957,7 +14957,7 @@ class ResourceSearchBuilderCodeSystem {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderCodeSystem {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -14970,7 +14970,7 @@ class ResourceSearchBuilderCodeSystem {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCodeSystem {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -15396,7 +15396,7 @@ class ResourceSearchBuilderCommunication {
   _sort(
     parameters: SortOrderCommunication | SortOrderCommunication[]
   ): ResourceSearchBuilderCommunication {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -15406,7 +15406,7 @@ class ResourceSearchBuilderCommunication {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCommunication {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -15460,7 +15460,7 @@ class ResourceSearchBuilderCommunication {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderCommunication {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -15473,7 +15473,7 @@ class ResourceSearchBuilderCommunication {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCommunication {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -16171,7 +16171,7 @@ class ResourceSearchBuilderCommunicationRequest {
   _sort(
     parameters: SortOrderCommunicationRequest | SortOrderCommunicationRequest[]
   ): ResourceSearchBuilderCommunicationRequest {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -16181,7 +16181,7 @@ class ResourceSearchBuilderCommunicationRequest {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCommunicationRequest {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -16235,7 +16235,7 @@ class ResourceSearchBuilderCommunicationRequest {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderCommunicationRequest {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -16248,7 +16248,7 @@ class ResourceSearchBuilderCommunicationRequest {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCommunicationRequest {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -16993,7 +16993,7 @@ class ResourceSearchBuilderCompartmentDefinition {
       | SortOrderCompartmentDefinition
       | SortOrderCompartmentDefinition[]
   ): ResourceSearchBuilderCompartmentDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -17003,7 +17003,7 @@ class ResourceSearchBuilderCompartmentDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCompartmentDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -17057,7 +17057,7 @@ class ResourceSearchBuilderCompartmentDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderCompartmentDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -17070,7 +17070,7 @@ class ResourceSearchBuilderCompartmentDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCompartmentDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -17423,7 +17423,7 @@ class ResourceSearchBuilderComposition {
   _sort(
     parameters: SortOrderComposition | SortOrderComposition[]
   ): ResourceSearchBuilderComposition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -17433,7 +17433,7 @@ class ResourceSearchBuilderComposition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderComposition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -17487,7 +17487,7 @@ class ResourceSearchBuilderComposition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderComposition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -17500,7 +17500,7 @@ class ResourceSearchBuilderComposition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderComposition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -18150,7 +18150,7 @@ class ResourceSearchBuilderConceptMap {
   _sort(
     parameters: SortOrderConceptMap | SortOrderConceptMap[]
   ): ResourceSearchBuilderConceptMap {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -18160,7 +18160,7 @@ class ResourceSearchBuilderConceptMap {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderConceptMap {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -18214,7 +18214,7 @@ class ResourceSearchBuilderConceptMap {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderConceptMap {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -18227,7 +18227,7 @@ class ResourceSearchBuilderConceptMap {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderConceptMap {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -18813,7 +18813,7 @@ class ResourceSearchBuilderCondition {
   _sort(
     parameters: SortOrderCondition | SortOrderCondition[]
   ): ResourceSearchBuilderCondition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -18823,7 +18823,7 @@ class ResourceSearchBuilderCondition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCondition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -18877,7 +18877,7 @@ class ResourceSearchBuilderCondition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderCondition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -18890,7 +18890,7 @@ class ResourceSearchBuilderCondition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCondition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -19699,7 +19699,7 @@ class ResourceSearchBuilderConsent {
   _sort(
     parameters: SortOrderConsent | SortOrderConsent[]
   ): ResourceSearchBuilderConsent {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -19709,7 +19709,7 @@ class ResourceSearchBuilderConsent {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderConsent {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -19763,7 +19763,7 @@ class ResourceSearchBuilderConsent {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderConsent {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -19776,7 +19776,7 @@ class ResourceSearchBuilderConsent {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderConsent {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -20413,7 +20413,7 @@ class ResourceSearchBuilderContract {
   _sort(
     parameters: SortOrderContract | SortOrderContract[]
   ): ResourceSearchBuilderContract {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -20423,7 +20423,7 @@ class ResourceSearchBuilderContract {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderContract {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -20477,7 +20477,7 @@ class ResourceSearchBuilderContract {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderContract {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -20490,7 +20490,7 @@ class ResourceSearchBuilderContract {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderContract {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -21037,7 +21037,7 @@ class ResourceSearchBuilderCoverage {
   _sort(
     parameters: SortOrderCoverage | SortOrderCoverage[]
   ): ResourceSearchBuilderCoverage {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -21047,7 +21047,7 @@ class ResourceSearchBuilderCoverage {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCoverage {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -21101,7 +21101,7 @@ class ResourceSearchBuilderCoverage {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderCoverage {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -21114,7 +21114,7 @@ class ResourceSearchBuilderCoverage {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCoverage {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -21708,7 +21708,7 @@ class ResourceSearchBuilderCoverageEligibilityRequest {
       | SortOrderCoverageEligibilityRequest
       | SortOrderCoverageEligibilityRequest[]
   ): ResourceSearchBuilderCoverageEligibilityRequest {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -21718,7 +21718,7 @@ class ResourceSearchBuilderCoverageEligibilityRequest {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCoverageEligibilityRequest {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -21774,7 +21774,7 @@ class ResourceSearchBuilderCoverageEligibilityRequest {
   _summary(
     value: SummaryValue
   ): ResourceSearchBuilderCoverageEligibilityRequest {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -21787,7 +21787,7 @@ class ResourceSearchBuilderCoverageEligibilityRequest {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCoverageEligibilityRequest {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -22279,7 +22279,7 @@ class ResourceSearchBuilderCoverageEligibilityResponse {
       | SortOrderCoverageEligibilityResponse
       | SortOrderCoverageEligibilityResponse[]
   ): ResourceSearchBuilderCoverageEligibilityResponse {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -22289,7 +22289,7 @@ class ResourceSearchBuilderCoverageEligibilityResponse {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderCoverageEligibilityResponse {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -22345,7 +22345,7 @@ class ResourceSearchBuilderCoverageEligibilityResponse {
   _summary(
     value: SummaryValue
   ): ResourceSearchBuilderCoverageEligibilityResponse {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -22358,7 +22358,7 @@ class ResourceSearchBuilderCoverageEligibilityResponse {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderCoverageEligibilityResponse {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -22890,7 +22890,7 @@ class ResourceSearchBuilderDetectedIssue {
   _sort(
     parameters: SortOrderDetectedIssue | SortOrderDetectedIssue[]
   ): ResourceSearchBuilderDetectedIssue {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -22900,7 +22900,7 @@ class ResourceSearchBuilderDetectedIssue {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderDetectedIssue {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -22954,7 +22954,7 @@ class ResourceSearchBuilderDetectedIssue {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderDetectedIssue {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -22967,7 +22967,7 @@ class ResourceSearchBuilderDetectedIssue {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderDetectedIssue {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -23366,7 +23366,7 @@ class ResourceSearchBuilderDevice {
   _sort(
     parameters: SortOrderDevice | SortOrderDevice[]
   ): ResourceSearchBuilderDevice {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -23376,7 +23376,7 @@ class ResourceSearchBuilderDevice {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderDevice {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -23430,7 +23430,7 @@ class ResourceSearchBuilderDevice {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderDevice {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -23441,7 +23441,7 @@ class ResourceSearchBuilderDevice {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilderDevice {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -23994,7 +23994,7 @@ class ResourceSearchBuilderDeviceDefinition {
   _sort(
     parameters: SortOrderDeviceDefinition | SortOrderDeviceDefinition[]
   ): ResourceSearchBuilderDeviceDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -24004,7 +24004,7 @@ class ResourceSearchBuilderDeviceDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderDeviceDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -24058,7 +24058,7 @@ class ResourceSearchBuilderDeviceDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderDeviceDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -24071,7 +24071,7 @@ class ResourceSearchBuilderDeviceDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderDeviceDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -24455,7 +24455,7 @@ class ResourceSearchBuilderDeviceMetric {
   _sort(
     parameters: SortOrderDeviceMetric | SortOrderDeviceMetric[]
   ): ResourceSearchBuilderDeviceMetric {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -24465,7 +24465,7 @@ class ResourceSearchBuilderDeviceMetric {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderDeviceMetric {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -24519,7 +24519,7 @@ class ResourceSearchBuilderDeviceMetric {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderDeviceMetric {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -24532,7 +24532,7 @@ class ResourceSearchBuilderDeviceMetric {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderDeviceMetric {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -24976,7 +24976,7 @@ class ResourceSearchBuilderDeviceRequest {
   _sort(
     parameters: SortOrderDeviceRequest | SortOrderDeviceRequest[]
   ): ResourceSearchBuilderDeviceRequest {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -24986,7 +24986,7 @@ class ResourceSearchBuilderDeviceRequest {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderDeviceRequest {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -25040,7 +25040,7 @@ class ResourceSearchBuilderDeviceRequest {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderDeviceRequest {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -25053,7 +25053,7 @@ class ResourceSearchBuilderDeviceRequest {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderDeviceRequest {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -25722,7 +25722,7 @@ class ResourceSearchBuilderDeviceUseStatement {
   _sort(
     parameters: SortOrderDeviceUseStatement | SortOrderDeviceUseStatement[]
   ): ResourceSearchBuilderDeviceUseStatement {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -25732,7 +25732,7 @@ class ResourceSearchBuilderDeviceUseStatement {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderDeviceUseStatement {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -25786,7 +25786,7 @@ class ResourceSearchBuilderDeviceUseStatement {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderDeviceUseStatement {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -25799,7 +25799,7 @@ class ResourceSearchBuilderDeviceUseStatement {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderDeviceUseStatement {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -26185,7 +26185,7 @@ class ResourceSearchBuilderDiagnosticReport {
   _sort(
     parameters: SortOrderDiagnosticReport | SortOrderDiagnosticReport[]
   ): ResourceSearchBuilderDiagnosticReport {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -26195,7 +26195,7 @@ class ResourceSearchBuilderDiagnosticReport {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderDiagnosticReport {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -26249,7 +26249,7 @@ class ResourceSearchBuilderDiagnosticReport {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderDiagnosticReport {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -26262,7 +26262,7 @@ class ResourceSearchBuilderDiagnosticReport {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderDiagnosticReport {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -26874,7 +26874,7 @@ class ResourceSearchBuilderDocumentManifest {
   _sort(
     parameters: SortOrderDocumentManifest | SortOrderDocumentManifest[]
   ): ResourceSearchBuilderDocumentManifest {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -26884,7 +26884,7 @@ class ResourceSearchBuilderDocumentManifest {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderDocumentManifest {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -26938,7 +26938,7 @@ class ResourceSearchBuilderDocumentManifest {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderDocumentManifest {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -26951,7 +26951,7 @@ class ResourceSearchBuilderDocumentManifest {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderDocumentManifest {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -27498,7 +27498,7 @@ class ResourceSearchBuilderDocumentReference {
   _sort(
     parameters: SortOrderDocumentReference | SortOrderDocumentReference[]
   ): ResourceSearchBuilderDocumentReference {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -27508,7 +27508,7 @@ class ResourceSearchBuilderDocumentReference {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderDocumentReference {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -27562,7 +27562,7 @@ class ResourceSearchBuilderDocumentReference {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderDocumentReference {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -27575,7 +27575,7 @@ class ResourceSearchBuilderDocumentReference {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderDocumentReference {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -28398,7 +28398,7 @@ class ResourceSearchBuilderEncounter {
   _sort(
     parameters: SortOrderEncounter | SortOrderEncounter[]
   ): ResourceSearchBuilderEncounter {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -28408,7 +28408,7 @@ class ResourceSearchBuilderEncounter {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderEncounter {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -28462,7 +28462,7 @@ class ResourceSearchBuilderEncounter {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderEncounter {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -28475,7 +28475,7 @@ class ResourceSearchBuilderEncounter {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderEncounter {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -29331,7 +29331,7 @@ class ResourceSearchBuilderEndpoint {
   _sort(
     parameters: SortOrderEndpoint | SortOrderEndpoint[]
   ): ResourceSearchBuilderEndpoint {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -29341,7 +29341,7 @@ class ResourceSearchBuilderEndpoint {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderEndpoint {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -29395,7 +29395,7 @@ class ResourceSearchBuilderEndpoint {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderEndpoint {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -29408,7 +29408,7 @@ class ResourceSearchBuilderEndpoint {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderEndpoint {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -29863,7 +29863,7 @@ class ResourceSearchBuilderEnrollmentRequest {
   _sort(
     parameters: SortOrderEnrollmentRequest | SortOrderEnrollmentRequest[]
   ): ResourceSearchBuilderEnrollmentRequest {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -29873,7 +29873,7 @@ class ResourceSearchBuilderEnrollmentRequest {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderEnrollmentRequest {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -29927,7 +29927,7 @@ class ResourceSearchBuilderEnrollmentRequest {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderEnrollmentRequest {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -29940,7 +29940,7 @@ class ResourceSearchBuilderEnrollmentRequest {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderEnrollmentRequest {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -30355,7 +30355,7 @@ class ResourceSearchBuilderEnrollmentResponse {
   _sort(
     parameters: SortOrderEnrollmentResponse | SortOrderEnrollmentResponse[]
   ): ResourceSearchBuilderEnrollmentResponse {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -30365,7 +30365,7 @@ class ResourceSearchBuilderEnrollmentResponse {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderEnrollmentResponse {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -30419,7 +30419,7 @@ class ResourceSearchBuilderEnrollmentResponse {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderEnrollmentResponse {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -30432,7 +30432,7 @@ class ResourceSearchBuilderEnrollmentResponse {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderEnrollmentResponse {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -30816,7 +30816,7 @@ class ResourceSearchBuilderEpisodeOfCare {
   _sort(
     parameters: SortOrderEpisodeOfCare | SortOrderEpisodeOfCare[]
   ): ResourceSearchBuilderEpisodeOfCare {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -30826,7 +30826,7 @@ class ResourceSearchBuilderEpisodeOfCare {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderEpisodeOfCare {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -30880,7 +30880,7 @@ class ResourceSearchBuilderEpisodeOfCare {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderEpisodeOfCare {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -30893,7 +30893,7 @@ class ResourceSearchBuilderEpisodeOfCare {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderEpisodeOfCare {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -31341,7 +31341,7 @@ class ResourceSearchBuilderEventDefinition {
   _sort(
     parameters: SortOrderEventDefinition | SortOrderEventDefinition[]
   ): ResourceSearchBuilderEventDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -31351,7 +31351,7 @@ class ResourceSearchBuilderEventDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderEventDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -31405,7 +31405,7 @@ class ResourceSearchBuilderEventDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderEventDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -31418,7 +31418,7 @@ class ResourceSearchBuilderEventDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderEventDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -32193,7 +32193,7 @@ class ResourceSearchBuilderEvidence {
   _sort(
     parameters: SortOrderEvidence | SortOrderEvidence[]
   ): ResourceSearchBuilderEvidence {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -32203,7 +32203,7 @@ class ResourceSearchBuilderEvidence {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderEvidence {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -32257,7 +32257,7 @@ class ResourceSearchBuilderEvidence {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderEvidence {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -32270,7 +32270,7 @@ class ResourceSearchBuilderEvidence {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderEvidence {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -32806,7 +32806,7 @@ class ResourceSearchBuilderEvidenceReport {
   _sort(
     parameters: SortOrderEvidenceReport | SortOrderEvidenceReport[]
   ): ResourceSearchBuilderEvidenceReport {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -32816,7 +32816,7 @@ class ResourceSearchBuilderEvidenceReport {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderEvidenceReport {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -32870,7 +32870,7 @@ class ResourceSearchBuilderEvidenceReport {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderEvidenceReport {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -32883,7 +32883,7 @@ class ResourceSearchBuilderEvidenceReport {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderEvidenceReport {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -33351,7 +33351,7 @@ class ResourceSearchBuilderEvidenceVariable {
   _sort(
     parameters: SortOrderEvidenceVariable | SortOrderEvidenceVariable[]
   ): ResourceSearchBuilderEvidenceVariable {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -33361,7 +33361,7 @@ class ResourceSearchBuilderEvidenceVariable {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderEvidenceVariable {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -33415,7 +33415,7 @@ class ResourceSearchBuilderEvidenceVariable {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderEvidenceVariable {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -33428,7 +33428,7 @@ class ResourceSearchBuilderEvidenceVariable {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderEvidenceVariable {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -33977,7 +33977,7 @@ class ResourceSearchBuilderExampleScenario {
   _sort(
     parameters: SortOrderExampleScenario | SortOrderExampleScenario[]
   ): ResourceSearchBuilderExampleScenario {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -33987,7 +33987,7 @@ class ResourceSearchBuilderExampleScenario {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderExampleScenario {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -34041,7 +34041,7 @@ class ResourceSearchBuilderExampleScenario {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderExampleScenario {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -34054,7 +34054,7 @@ class ResourceSearchBuilderExampleScenario {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderExampleScenario {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -34606,7 +34606,7 @@ class ResourceSearchBuilderExplanationOfBenefit {
   _sort(
     parameters: SortOrderExplanationOfBenefit | SortOrderExplanationOfBenefit[]
   ): ResourceSearchBuilderExplanationOfBenefit {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -34616,7 +34616,7 @@ class ResourceSearchBuilderExplanationOfBenefit {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderExplanationOfBenefit {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -34670,7 +34670,7 @@ class ResourceSearchBuilderExplanationOfBenefit {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderExplanationOfBenefit {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -34683,7 +34683,7 @@ class ResourceSearchBuilderExplanationOfBenefit {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderExplanationOfBenefit {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -35465,7 +35465,7 @@ class ResourceSearchBuilderFamilyMemberHistory {
   _sort(
     parameters: SortOrderFamilyMemberHistory | SortOrderFamilyMemberHistory[]
   ): ResourceSearchBuilderFamilyMemberHistory {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -35475,7 +35475,7 @@ class ResourceSearchBuilderFamilyMemberHistory {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderFamilyMemberHistory {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -35529,7 +35529,7 @@ class ResourceSearchBuilderFamilyMemberHistory {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderFamilyMemberHistory {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -35542,7 +35542,7 @@ class ResourceSearchBuilderFamilyMemberHistory {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderFamilyMemberHistory {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -35968,7 +35968,7 @@ class ResourceSearchBuilderFlag {
   _sort(
     parameters: SortOrderFlag | SortOrderFlag[]
   ): ResourceSearchBuilderFlag {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -35978,7 +35978,7 @@ class ResourceSearchBuilderFlag {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderFlag {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -36032,7 +36032,7 @@ class ResourceSearchBuilderFlag {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderFlag {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -36043,7 +36043,7 @@ class ResourceSearchBuilderFlag {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilderFlag {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -36429,7 +36429,7 @@ class ResourceSearchBuilderGoal {
   _sort(
     parameters: SortOrderGoal | SortOrderGoal[]
   ): ResourceSearchBuilderGoal {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -36439,7 +36439,7 @@ class ResourceSearchBuilderGoal {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderGoal {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -36493,7 +36493,7 @@ class ResourceSearchBuilderGoal {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderGoal {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -36504,7 +36504,7 @@ class ResourceSearchBuilderGoal {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilderGoal {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -36943,7 +36943,7 @@ class ResourceSearchBuilderGraphDefinition {
   _sort(
     parameters: SortOrderGraphDefinition | SortOrderGraphDefinition[]
   ): ResourceSearchBuilderGraphDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -36953,7 +36953,7 @@ class ResourceSearchBuilderGraphDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderGraphDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -37007,7 +37007,7 @@ class ResourceSearchBuilderGraphDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderGraphDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -37020,7 +37020,7 @@ class ResourceSearchBuilderGraphDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderGraphDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -37344,7 +37344,7 @@ class ResourceSearchBuilderGroup {
   _sort(
     parameters: SortOrderGroup | SortOrderGroup[]
   ): ResourceSearchBuilderGroup {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -37354,7 +37354,7 @@ class ResourceSearchBuilderGroup {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderGroup {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -37408,7 +37408,7 @@ class ResourceSearchBuilderGroup {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderGroup {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -37419,7 +37419,7 @@ class ResourceSearchBuilderGroup {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilderGroup {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -37979,7 +37979,7 @@ class ResourceSearchBuilderGuidanceResponse {
   _sort(
     parameters: SortOrderGuidanceResponse | SortOrderGuidanceResponse[]
   ): ResourceSearchBuilderGuidanceResponse {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -37989,7 +37989,7 @@ class ResourceSearchBuilderGuidanceResponse {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderGuidanceResponse {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -38043,7 +38043,7 @@ class ResourceSearchBuilderGuidanceResponse {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderGuidanceResponse {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -38056,7 +38056,7 @@ class ResourceSearchBuilderGuidanceResponse {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderGuidanceResponse {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -38471,7 +38471,7 @@ class ResourceSearchBuilderHealthcareService {
   _sort(
     parameters: SortOrderHealthcareService | SortOrderHealthcareService[]
   ): ResourceSearchBuilderHealthcareService {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -38481,7 +38481,7 @@ class ResourceSearchBuilderHealthcareService {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderHealthcareService {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -38535,7 +38535,7 @@ class ResourceSearchBuilderHealthcareService {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderHealthcareService {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -38548,7 +38548,7 @@ class ResourceSearchBuilderHealthcareService {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderHealthcareService {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -39183,7 +39183,7 @@ class ResourceSearchBuilderImagingStudy {
   _sort(
     parameters: SortOrderImagingStudy | SortOrderImagingStudy[]
   ): ResourceSearchBuilderImagingStudy {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -39193,7 +39193,7 @@ class ResourceSearchBuilderImagingStudy {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderImagingStudy {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -39247,7 +39247,7 @@ class ResourceSearchBuilderImagingStudy {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderImagingStudy {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -39260,7 +39260,7 @@ class ResourceSearchBuilderImagingStudy {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderImagingStudy {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -39988,7 +39988,7 @@ class ResourceSearchBuilderImmunization {
   _sort(
     parameters: SortOrderImmunization | SortOrderImmunization[]
   ): ResourceSearchBuilderImmunization {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -39998,7 +39998,7 @@ class ResourceSearchBuilderImmunization {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderImmunization {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -40052,7 +40052,7 @@ class ResourceSearchBuilderImmunization {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderImmunization {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -40065,7 +40065,7 @@ class ResourceSearchBuilderImmunization {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderImmunization {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -40701,7 +40701,7 @@ class ResourceSearchBuilderImmunizationEvaluation {
       | SortOrderImmunizationEvaluation
       | SortOrderImmunizationEvaluation[]
   ): ResourceSearchBuilderImmunizationEvaluation {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -40711,7 +40711,7 @@ class ResourceSearchBuilderImmunizationEvaluation {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderImmunizationEvaluation {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -40765,7 +40765,7 @@ class ResourceSearchBuilderImmunizationEvaluation {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderImmunizationEvaluation {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -40778,7 +40778,7 @@ class ResourceSearchBuilderImmunizationEvaluation {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderImmunizationEvaluation {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -41266,7 +41266,7 @@ class ResourceSearchBuilderImmunizationRecommendation {
       | SortOrderImmunizationRecommendation
       | SortOrderImmunizationRecommendation[]
   ): ResourceSearchBuilderImmunizationRecommendation {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -41276,7 +41276,7 @@ class ResourceSearchBuilderImmunizationRecommendation {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderImmunizationRecommendation {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -41332,7 +41332,7 @@ class ResourceSearchBuilderImmunizationRecommendation {
   _summary(
     value: SummaryValue
   ): ResourceSearchBuilderImmunizationRecommendation {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -41345,7 +41345,7 @@ class ResourceSearchBuilderImmunizationRecommendation {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderImmunizationRecommendation {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -41862,7 +41862,7 @@ class ResourceSearchBuilderImplementationGuide {
   _sort(
     parameters: SortOrderImplementationGuide | SortOrderImplementationGuide[]
   ): ResourceSearchBuilderImplementationGuide {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -41872,7 +41872,7 @@ class ResourceSearchBuilderImplementationGuide {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderImplementationGuide {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -41926,7 +41926,7 @@ class ResourceSearchBuilderImplementationGuide {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderImplementationGuide {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -41939,7 +41939,7 @@ class ResourceSearchBuilderImplementationGuide {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderImplementationGuide {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -42356,7 +42356,7 @@ class ResourceSearchBuilderIngredient {
   _sort(
     parameters: SortOrderIngredient | SortOrderIngredient[]
   ): ResourceSearchBuilderIngredient {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -42366,7 +42366,7 @@ class ResourceSearchBuilderIngredient {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderIngredient {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -42420,7 +42420,7 @@ class ResourceSearchBuilderIngredient {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderIngredient {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -42433,7 +42433,7 @@ class ResourceSearchBuilderIngredient {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderIngredient {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -42968,7 +42968,7 @@ class ResourceSearchBuilderInsurancePlan {
   _sort(
     parameters: SortOrderInsurancePlan | SortOrderInsurancePlan[]
   ): ResourceSearchBuilderInsurancePlan {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -42978,7 +42978,7 @@ class ResourceSearchBuilderInsurancePlan {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderInsurancePlan {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -43032,7 +43032,7 @@ class ResourceSearchBuilderInsurancePlan {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderInsurancePlan {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -43045,7 +43045,7 @@ class ResourceSearchBuilderInsurancePlan {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderInsurancePlan {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -43640,7 +43640,7 @@ class ResourceSearchBuilderInvoice {
   _sort(
     parameters: SortOrderInvoice | SortOrderInvoice[]
   ): ResourceSearchBuilderInvoice {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -43650,7 +43650,7 @@ class ResourceSearchBuilderInvoice {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderInvoice {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -43704,7 +43704,7 @@ class ResourceSearchBuilderInvoice {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderInvoice {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -43717,7 +43717,7 @@ class ResourceSearchBuilderInvoice {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderInvoice {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -44389,7 +44389,7 @@ class ResourceSearchBuilderLibrary {
   _sort(
     parameters: SortOrderLibrary | SortOrderLibrary[]
   ): ResourceSearchBuilderLibrary {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -44399,7 +44399,7 @@ class ResourceSearchBuilderLibrary {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderLibrary {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -44453,7 +44453,7 @@ class ResourceSearchBuilderLibrary {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderLibrary {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -44466,7 +44466,7 @@ class ResourceSearchBuilderLibrary {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderLibrary {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -45299,7 +45299,7 @@ class ResourceSearchBuilderLinkage {
   _sort(
     parameters: SortOrderLinkage | SortOrderLinkage[]
   ): ResourceSearchBuilderLinkage {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -45309,7 +45309,7 @@ class ResourceSearchBuilderLinkage {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderLinkage {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -45363,7 +45363,7 @@ class ResourceSearchBuilderLinkage {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderLinkage {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -45376,7 +45376,7 @@ class ResourceSearchBuilderLinkage {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderLinkage {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -45764,7 +45764,7 @@ class ResourceSearchBuilderList {
   _sort(
     parameters: SortOrderList | SortOrderList[]
   ): ResourceSearchBuilderList {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -45774,7 +45774,7 @@ class ResourceSearchBuilderList {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderList {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -45828,7 +45828,7 @@ class ResourceSearchBuilderList {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderList {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -45839,7 +45839,7 @@ class ResourceSearchBuilderList {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilderList {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -46340,7 +46340,7 @@ class ResourceSearchBuilderLocation {
   _sort(
     parameters: SortOrderLocation | SortOrderLocation[]
   ): ResourceSearchBuilderLocation {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -46350,7 +46350,7 @@ class ResourceSearchBuilderLocation {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderLocation {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -46404,7 +46404,7 @@ class ResourceSearchBuilderLocation {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderLocation {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -46417,7 +46417,7 @@ class ResourceSearchBuilderLocation {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderLocation {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -47030,7 +47030,7 @@ class ResourceSearchBuilderManufacturedItemDefinition {
       | SortOrderManufacturedItemDefinition
       | SortOrderManufacturedItemDefinition[]
   ): ResourceSearchBuilderManufacturedItemDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -47040,7 +47040,7 @@ class ResourceSearchBuilderManufacturedItemDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderManufacturedItemDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -47096,7 +47096,7 @@ class ResourceSearchBuilderManufacturedItemDefinition {
   _summary(
     value: SummaryValue
   ): ResourceSearchBuilderManufacturedItemDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -47109,7 +47109,7 @@ class ResourceSearchBuilderManufacturedItemDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderManufacturedItemDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -47491,7 +47491,7 @@ class ResourceSearchBuilderMeasure {
   _sort(
     parameters: SortOrderMeasure | SortOrderMeasure[]
   ): ResourceSearchBuilderMeasure {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -47501,7 +47501,7 @@ class ResourceSearchBuilderMeasure {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMeasure {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -47555,7 +47555,7 @@ class ResourceSearchBuilderMeasure {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMeasure {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -47568,7 +47568,7 @@ class ResourceSearchBuilderMeasure {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMeasure {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -48343,7 +48343,7 @@ class ResourceSearchBuilderMeasureReport {
   _sort(
     parameters: SortOrderMeasureReport | SortOrderMeasureReport[]
   ): ResourceSearchBuilderMeasureReport {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -48353,7 +48353,7 @@ class ResourceSearchBuilderMeasureReport {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMeasureReport {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -48407,7 +48407,7 @@ class ResourceSearchBuilderMeasureReport {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMeasureReport {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -48420,7 +48420,7 @@ class ResourceSearchBuilderMeasureReport {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMeasureReport {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -48954,7 +48954,7 @@ class ResourceSearchBuilderMedia {
   _sort(
     parameters: SortOrderMedia | SortOrderMedia[]
   ): ResourceSearchBuilderMedia {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -48964,7 +48964,7 @@ class ResourceSearchBuilderMedia {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMedia {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -49018,7 +49018,7 @@ class ResourceSearchBuilderMedia {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMedia {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -49029,7 +49029,7 @@ class ResourceSearchBuilderMedia {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilderMedia {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -49697,7 +49697,7 @@ class ResourceSearchBuilderMedication {
   _sort(
     parameters: SortOrderMedication | SortOrderMedication[]
   ): ResourceSearchBuilderMedication {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -49707,7 +49707,7 @@ class ResourceSearchBuilderMedication {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMedication {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -49761,7 +49761,7 @@ class ResourceSearchBuilderMedication {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMedication {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -49774,7 +49774,7 @@ class ResourceSearchBuilderMedication {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMedication {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -50320,7 +50320,7 @@ class ResourceSearchBuilderMedicationAdministration {
       | SortOrderMedicationAdministration
       | SortOrderMedicationAdministration[]
   ): ResourceSearchBuilderMedicationAdministration {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -50330,7 +50330,7 @@ class ResourceSearchBuilderMedicationAdministration {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMedicationAdministration {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -50384,7 +50384,7 @@ class ResourceSearchBuilderMedicationAdministration {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMedicationAdministration {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -50397,7 +50397,7 @@ class ResourceSearchBuilderMedicationAdministration {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMedicationAdministration {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -50918,7 +50918,7 @@ class ResourceSearchBuilderMedicationDispense {
   _sort(
     parameters: SortOrderMedicationDispense | SortOrderMedicationDispense[]
   ): ResourceSearchBuilderMedicationDispense {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -50928,7 +50928,7 @@ class ResourceSearchBuilderMedicationDispense {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMedicationDispense {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -50982,7 +50982,7 @@ class ResourceSearchBuilderMedicationDispense {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMedicationDispense {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -50995,7 +50995,7 @@ class ResourceSearchBuilderMedicationDispense {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMedicationDispense {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -51565,7 +51565,7 @@ class ResourceSearchBuilderMedicationKnowledge {
   _sort(
     parameters: SortOrderMedicationKnowledge | SortOrderMedicationKnowledge[]
   ): ResourceSearchBuilderMedicationKnowledge {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -51575,7 +51575,7 @@ class ResourceSearchBuilderMedicationKnowledge {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMedicationKnowledge {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -51629,7 +51629,7 @@ class ResourceSearchBuilderMedicationKnowledge {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMedicationKnowledge {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -51642,7 +51642,7 @@ class ResourceSearchBuilderMedicationKnowledge {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMedicationKnowledge {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -52320,7 +52320,7 @@ class ResourceSearchBuilderMedicationRequest {
   _sort(
     parameters: SortOrderMedicationRequest | SortOrderMedicationRequest[]
   ): ResourceSearchBuilderMedicationRequest {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -52330,7 +52330,7 @@ class ResourceSearchBuilderMedicationRequest {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMedicationRequest {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -52384,7 +52384,7 @@ class ResourceSearchBuilderMedicationRequest {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMedicationRequest {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -52397,7 +52397,7 @@ class ResourceSearchBuilderMedicationRequest {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMedicationRequest {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -52995,7 +52995,7 @@ class ResourceSearchBuilderMedicationStatement {
   _sort(
     parameters: SortOrderMedicationStatement | SortOrderMedicationStatement[]
   ): ResourceSearchBuilderMedicationStatement {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -53005,7 +53005,7 @@ class ResourceSearchBuilderMedicationStatement {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMedicationStatement {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -53059,7 +53059,7 @@ class ResourceSearchBuilderMedicationStatement {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMedicationStatement {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -53072,7 +53072,7 @@ class ResourceSearchBuilderMedicationStatement {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMedicationStatement {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -53535,7 +53535,7 @@ class ResourceSearchBuilderMedicinalProductDefinition {
       | SortOrderMedicinalProductDefinition
       | SortOrderMedicinalProductDefinition[]
   ): ResourceSearchBuilderMedicinalProductDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -53545,7 +53545,7 @@ class ResourceSearchBuilderMedicinalProductDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMedicinalProductDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -53601,7 +53601,7 @@ class ResourceSearchBuilderMedicinalProductDefinition {
   _summary(
     value: SummaryValue
   ): ResourceSearchBuilderMedicinalProductDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -53614,7 +53614,7 @@ class ResourceSearchBuilderMedicinalProductDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMedicinalProductDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -54245,7 +54245,7 @@ class ResourceSearchBuilderMessageDefinition {
   _sort(
     parameters: SortOrderMessageDefinition | SortOrderMessageDefinition[]
   ): ResourceSearchBuilderMessageDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -54255,7 +54255,7 @@ class ResourceSearchBuilderMessageDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMessageDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -54309,7 +54309,7 @@ class ResourceSearchBuilderMessageDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMessageDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -54322,7 +54322,7 @@ class ResourceSearchBuilderMessageDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMessageDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -54735,7 +54735,7 @@ class ResourceSearchBuilderMessageHeader {
   _sort(
     parameters: SortOrderMessageHeader | SortOrderMessageHeader[]
   ): ResourceSearchBuilderMessageHeader {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -54745,7 +54745,7 @@ class ResourceSearchBuilderMessageHeader {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMessageHeader {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -54799,7 +54799,7 @@ class ResourceSearchBuilderMessageHeader {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMessageHeader {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -54812,7 +54812,7 @@ class ResourceSearchBuilderMessageHeader {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMessageHeader {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -55463,7 +55463,7 @@ class ResourceSearchBuilderMolecularSequence {
   _sort(
     parameters: SortOrderMolecularSequence | SortOrderMolecularSequence[]
   ): ResourceSearchBuilderMolecularSequence {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -55473,7 +55473,7 @@ class ResourceSearchBuilderMolecularSequence {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderMolecularSequence {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -55527,7 +55527,7 @@ class ResourceSearchBuilderMolecularSequence {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderMolecularSequence {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -55540,7 +55540,7 @@ class ResourceSearchBuilderMolecularSequence {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderMolecularSequence {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -56034,7 +56034,7 @@ class ResourceSearchBuilderNamingSystem {
   _sort(
     parameters: SortOrderNamingSystem | SortOrderNamingSystem[]
   ): ResourceSearchBuilderNamingSystem {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -56044,7 +56044,7 @@ class ResourceSearchBuilderNamingSystem {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderNamingSystem {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -56098,7 +56098,7 @@ class ResourceSearchBuilderNamingSystem {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderNamingSystem {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -56111,7 +56111,7 @@ class ResourceSearchBuilderNamingSystem {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderNamingSystem {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -56574,7 +56574,7 @@ class ResourceSearchBuilderNutritionOrder {
   _sort(
     parameters: SortOrderNutritionOrder | SortOrderNutritionOrder[]
   ): ResourceSearchBuilderNutritionOrder {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -56584,7 +56584,7 @@ class ResourceSearchBuilderNutritionOrder {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderNutritionOrder {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -56638,7 +56638,7 @@ class ResourceSearchBuilderNutritionOrder {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderNutritionOrder {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -56651,7 +56651,7 @@ class ResourceSearchBuilderNutritionOrder {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderNutritionOrder {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -57179,7 +57179,7 @@ class ResourceSearchBuilderNutritionProduct {
   _sort(
     parameters: SortOrderNutritionProduct | SortOrderNutritionProduct[]
   ): ResourceSearchBuilderNutritionProduct {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -57189,7 +57189,7 @@ class ResourceSearchBuilderNutritionProduct {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderNutritionProduct {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -57243,7 +57243,7 @@ class ResourceSearchBuilderNutritionProduct {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderNutritionProduct {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -57256,7 +57256,7 @@ class ResourceSearchBuilderNutritionProduct {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderNutritionProduct {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -57609,7 +57609,7 @@ class ResourceSearchBuilderObservation {
   _sort(
     parameters: SortOrderObservation | SortOrderObservation[]
   ): ResourceSearchBuilderObservation {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -57619,7 +57619,7 @@ class ResourceSearchBuilderObservation {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderObservation {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -57673,7 +57673,7 @@ class ResourceSearchBuilderObservation {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderObservation {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -57686,7 +57686,7 @@ class ResourceSearchBuilderObservation {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderObservation {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -58700,7 +58700,7 @@ class ResourceSearchBuilderObservationDefinition {
       | SortOrderObservationDefinition
       | SortOrderObservationDefinition[]
   ): ResourceSearchBuilderObservationDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -58710,7 +58710,7 @@ class ResourceSearchBuilderObservationDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderObservationDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -58764,7 +58764,7 @@ class ResourceSearchBuilderObservationDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderObservationDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -58777,7 +58777,7 @@ class ResourceSearchBuilderObservationDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderObservationDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -59072,7 +59072,7 @@ class ResourceSearchBuilderOperationDefinition {
   _sort(
     parameters: SortOrderOperationDefinition | SortOrderOperationDefinition[]
   ): ResourceSearchBuilderOperationDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -59082,7 +59082,7 @@ class ResourceSearchBuilderOperationDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderOperationDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -59136,7 +59136,7 @@ class ResourceSearchBuilderOperationDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderOperationDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -59149,7 +59149,7 @@ class ResourceSearchBuilderOperationDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderOperationDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -59682,7 +59682,7 @@ class ResourceSearchBuilderOperationOutcome {
   _sort(
     parameters: SortOrderOperationOutcome | SortOrderOperationOutcome[]
   ): ResourceSearchBuilderOperationOutcome {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -59692,7 +59692,7 @@ class ResourceSearchBuilderOperationOutcome {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderOperationOutcome {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -59746,7 +59746,7 @@ class ResourceSearchBuilderOperationOutcome {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderOperationOutcome {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -59759,7 +59759,7 @@ class ResourceSearchBuilderOperationOutcome {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderOperationOutcome {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -60054,7 +60054,7 @@ class ResourceSearchBuilderOrganization {
   _sort(
     parameters: SortOrderOrganization | SortOrderOrganization[]
   ): ResourceSearchBuilderOrganization {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -60064,7 +60064,7 @@ class ResourceSearchBuilderOrganization {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderOrganization {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -60118,7 +60118,7 @@ class ResourceSearchBuilderOrganization {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderOrganization {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -60131,7 +60131,7 @@ class ResourceSearchBuilderOrganization {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderOrganization {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -60697,7 +60697,7 @@ class ResourceSearchBuilderOrganizationAffiliation {
       | SortOrderOrganizationAffiliation
       | SortOrderOrganizationAffiliation[]
   ): ResourceSearchBuilderOrganizationAffiliation {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -60707,7 +60707,7 @@ class ResourceSearchBuilderOrganizationAffiliation {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderOrganizationAffiliation {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -60761,7 +60761,7 @@ class ResourceSearchBuilderOrganizationAffiliation {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderOrganizationAffiliation {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -60774,7 +60774,7 @@ class ResourceSearchBuilderOrganizationAffiliation {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderOrganizationAffiliation {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -61473,7 +61473,7 @@ class ResourceSearchBuilderPackagedProductDefinition {
       | SortOrderPackagedProductDefinition
       | SortOrderPackagedProductDefinition[]
   ): ResourceSearchBuilderPackagedProductDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -61483,7 +61483,7 @@ class ResourceSearchBuilderPackagedProductDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderPackagedProductDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -61539,7 +61539,7 @@ class ResourceSearchBuilderPackagedProductDefinition {
   _summary(
     value: SummaryValue
   ): ResourceSearchBuilderPackagedProductDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -61552,7 +61552,7 @@ class ResourceSearchBuilderPackagedProductDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderPackagedProductDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -62182,7 +62182,7 @@ class ResourceSearchBuilderPatient {
   _sort(
     parameters: SortOrderPatient | SortOrderPatient[]
   ): ResourceSearchBuilderPatient {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -62192,7 +62192,7 @@ class ResourceSearchBuilderPatient {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderPatient {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -62246,7 +62246,7 @@ class ResourceSearchBuilderPatient {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderPatient {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -62259,7 +62259,7 @@ class ResourceSearchBuilderPatient {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderPatient {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -62789,7 +62789,7 @@ class ResourceSearchBuilderPaymentNotice {
   _sort(
     parameters: SortOrderPaymentNotice | SortOrderPaymentNotice[]
   ): ResourceSearchBuilderPaymentNotice {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -62799,7 +62799,7 @@ class ResourceSearchBuilderPaymentNotice {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderPaymentNotice {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -62853,7 +62853,7 @@ class ResourceSearchBuilderPaymentNotice {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderPaymentNotice {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -62866,7 +62866,7 @@ class ResourceSearchBuilderPaymentNotice {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderPaymentNotice {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -63356,7 +63356,7 @@ class ResourceSearchBuilderPaymentReconciliation {
       | SortOrderPaymentReconciliation
       | SortOrderPaymentReconciliation[]
   ): ResourceSearchBuilderPaymentReconciliation {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -63366,7 +63366,7 @@ class ResourceSearchBuilderPaymentReconciliation {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderPaymentReconciliation {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -63420,7 +63420,7 @@ class ResourceSearchBuilderPaymentReconciliation {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderPaymentReconciliation {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -63433,7 +63433,7 @@ class ResourceSearchBuilderPaymentReconciliation {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderPaymentReconciliation {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -63934,7 +63934,7 @@ class ResourceSearchBuilderPerson {
   _sort(
     parameters: SortOrderPerson | SortOrderPerson[]
   ): ResourceSearchBuilderPerson {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -63944,7 +63944,7 @@ class ResourceSearchBuilderPerson {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderPerson {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -63998,7 +63998,7 @@ class ResourceSearchBuilderPerson {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderPerson {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -64009,7 +64009,7 @@ class ResourceSearchBuilderPerson {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilderPerson {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -64501,7 +64501,7 @@ class ResourceSearchBuilderPlanDefinition {
   _sort(
     parameters: SortOrderPlanDefinition | SortOrderPlanDefinition[]
   ): ResourceSearchBuilderPlanDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -64511,7 +64511,7 @@ class ResourceSearchBuilderPlanDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderPlanDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -64565,7 +64565,7 @@ class ResourceSearchBuilderPlanDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderPlanDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -64578,7 +64578,7 @@ class ResourceSearchBuilderPlanDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderPlanDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -65413,7 +65413,7 @@ class ResourceSearchBuilderPractitioner {
   _sort(
     parameters: SortOrderPractitioner | SortOrderPractitioner[]
   ): ResourceSearchBuilderPractitioner {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -65423,7 +65423,7 @@ class ResourceSearchBuilderPractitioner {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderPractitioner {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -65477,7 +65477,7 @@ class ResourceSearchBuilderPractitioner {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderPractitioner {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -65490,7 +65490,7 @@ class ResourceSearchBuilderPractitioner {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderPractitioner {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -65885,7 +65885,7 @@ class ResourceSearchBuilderPractitionerRole {
   _sort(
     parameters: SortOrderPractitionerRole | SortOrderPractitionerRole[]
   ): ResourceSearchBuilderPractitionerRole {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -65895,7 +65895,7 @@ class ResourceSearchBuilderPractitionerRole {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderPractitionerRole {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -65949,7 +65949,7 @@ class ResourceSearchBuilderPractitionerRole {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderPractitionerRole {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -65962,7 +65962,7 @@ class ResourceSearchBuilderPractitionerRole {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderPractitionerRole {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -66541,7 +66541,7 @@ class ResourceSearchBuilderProcedure {
   _sort(
     parameters: SortOrderProcedure | SortOrderProcedure[]
   ): ResourceSearchBuilderProcedure {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -66551,7 +66551,7 @@ class ResourceSearchBuilderProcedure {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderProcedure {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -66605,7 +66605,7 @@ class ResourceSearchBuilderProcedure {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderProcedure {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -66618,7 +66618,7 @@ class ResourceSearchBuilderProcedure {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderProcedure {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -67230,7 +67230,7 @@ class ResourceSearchBuilderProvenance {
   _sort(
     parameters: SortOrderProvenance | SortOrderProvenance[]
   ): ResourceSearchBuilderProvenance {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -67240,7 +67240,7 @@ class ResourceSearchBuilderProvenance {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderProvenance {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -67294,7 +67294,7 @@ class ResourceSearchBuilderProvenance {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderProvenance {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -67307,7 +67307,7 @@ class ResourceSearchBuilderProvenance {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderProvenance {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -67870,7 +67870,7 @@ class ResourceSearchBuilderQuestionnaire {
   _sort(
     parameters: SortOrderQuestionnaire | SortOrderQuestionnaire[]
   ): ResourceSearchBuilderQuestionnaire {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -67880,7 +67880,7 @@ class ResourceSearchBuilderQuestionnaire {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderQuestionnaire {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -67934,7 +67934,7 @@ class ResourceSearchBuilderQuestionnaire {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderQuestionnaire {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -67947,7 +67947,7 @@ class ResourceSearchBuilderQuestionnaire {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderQuestionnaire {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -68611,7 +68611,7 @@ class ResourceSearchBuilderQuestionnaireResponse {
       | SortOrderQuestionnaireResponse
       | SortOrderQuestionnaireResponse[]
   ): ResourceSearchBuilderQuestionnaireResponse {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -68621,7 +68621,7 @@ class ResourceSearchBuilderQuestionnaireResponse {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderQuestionnaireResponse {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -68675,7 +68675,7 @@ class ResourceSearchBuilderQuestionnaireResponse {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderQuestionnaireResponse {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -68688,7 +68688,7 @@ class ResourceSearchBuilderQuestionnaireResponse {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderQuestionnaireResponse {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -69304,7 +69304,7 @@ class ResourceSearchBuilderRegulatedAuthorization {
       | SortOrderRegulatedAuthorization
       | SortOrderRegulatedAuthorization[]
   ): ResourceSearchBuilderRegulatedAuthorization {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -69314,7 +69314,7 @@ class ResourceSearchBuilderRegulatedAuthorization {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderRegulatedAuthorization {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -69368,7 +69368,7 @@ class ResourceSearchBuilderRegulatedAuthorization {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderRegulatedAuthorization {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -69381,7 +69381,7 @@ class ResourceSearchBuilderRegulatedAuthorization {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderRegulatedAuthorization {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -69883,7 +69883,7 @@ class ResourceSearchBuilderRelatedPerson {
   _sort(
     parameters: SortOrderRelatedPerson | SortOrderRelatedPerson[]
   ): ResourceSearchBuilderRelatedPerson {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -69893,7 +69893,7 @@ class ResourceSearchBuilderRelatedPerson {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderRelatedPerson {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -69947,7 +69947,7 @@ class ResourceSearchBuilderRelatedPerson {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderRelatedPerson {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -69960,7 +69960,7 @@ class ResourceSearchBuilderRelatedPerson {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderRelatedPerson {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -70386,7 +70386,7 @@ class ResourceSearchBuilderRequestGroup {
   _sort(
     parameters: SortOrderRequestGroup | SortOrderRequestGroup[]
   ): ResourceSearchBuilderRequestGroup {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -70396,7 +70396,7 @@ class ResourceSearchBuilderRequestGroup {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderRequestGroup {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -70450,7 +70450,7 @@ class ResourceSearchBuilderRequestGroup {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderRequestGroup {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -70463,7 +70463,7 @@ class ResourceSearchBuilderRequestGroup {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderRequestGroup {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -71144,7 +71144,7 @@ class ResourceSearchBuilderResearchDefinition {
   _sort(
     parameters: SortOrderResearchDefinition | SortOrderResearchDefinition[]
   ): ResourceSearchBuilderResearchDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -71154,7 +71154,7 @@ class ResourceSearchBuilderResearchDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderResearchDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -71208,7 +71208,7 @@ class ResourceSearchBuilderResearchDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderResearchDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -71221,7 +71221,7 @@ class ResourceSearchBuilderResearchDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderResearchDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -71998,7 +71998,7 @@ class ResourceSearchBuilderResearchElementDefinition {
       | SortOrderResearchElementDefinition
       | SortOrderResearchElementDefinition[]
   ): ResourceSearchBuilderResearchElementDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -72008,7 +72008,7 @@ class ResourceSearchBuilderResearchElementDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderResearchElementDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -72064,7 +72064,7 @@ class ResourceSearchBuilderResearchElementDefinition {
   _summary(
     value: SummaryValue
   ): ResourceSearchBuilderResearchElementDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -72077,7 +72077,7 @@ class ResourceSearchBuilderResearchElementDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderResearchElementDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -72852,7 +72852,7 @@ class ResourceSearchBuilderResearchStudy {
   _sort(
     parameters: SortOrderResearchStudy | SortOrderResearchStudy[]
   ): ResourceSearchBuilderResearchStudy {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -72862,7 +72862,7 @@ class ResourceSearchBuilderResearchStudy {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderResearchStudy {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -72916,7 +72916,7 @@ class ResourceSearchBuilderResearchStudy {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderResearchStudy {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -72929,7 +72929,7 @@ class ResourceSearchBuilderResearchStudy {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderResearchStudy {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -73579,7 +73579,7 @@ class ResourceSearchBuilderResearchSubject {
   _sort(
     parameters: SortOrderResearchSubject | SortOrderResearchSubject[]
   ): ResourceSearchBuilderResearchSubject {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -73589,7 +73589,7 @@ class ResourceSearchBuilderResearchSubject {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderResearchSubject {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -73643,7 +73643,7 @@ class ResourceSearchBuilderResearchSubject {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderResearchSubject {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -73656,7 +73656,7 @@ class ResourceSearchBuilderResearchSubject {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderResearchSubject {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -74115,7 +74115,7 @@ class ResourceSearchBuilderRiskAssessment {
   _sort(
     parameters: SortOrderRiskAssessment | SortOrderRiskAssessment[]
   ): ResourceSearchBuilderRiskAssessment {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -74125,7 +74125,7 @@ class ResourceSearchBuilderRiskAssessment {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderRiskAssessment {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -74179,7 +74179,7 @@ class ResourceSearchBuilderRiskAssessment {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderRiskAssessment {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -74192,7 +74192,7 @@ class ResourceSearchBuilderRiskAssessment {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderRiskAssessment {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -74651,7 +74651,7 @@ class ResourceSearchBuilderSchedule {
   _sort(
     parameters: SortOrderSchedule | SortOrderSchedule[]
   ): ResourceSearchBuilderSchedule {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -74661,7 +74661,7 @@ class ResourceSearchBuilderSchedule {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSchedule {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -74715,7 +74715,7 @@ class ResourceSearchBuilderSchedule {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSchedule {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -74728,7 +74728,7 @@ class ResourceSearchBuilderSchedule {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderSchedule {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -75212,7 +75212,7 @@ class ResourceSearchBuilderSearchParameter {
   _sort(
     parameters: SortOrderSearchParameter | SortOrderSearchParameter[]
   ): ResourceSearchBuilderSearchParameter {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -75222,7 +75222,7 @@ class ResourceSearchBuilderSearchParameter {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSearchParameter {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -75276,7 +75276,7 @@ class ResourceSearchBuilderSearchParameter {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSearchParameter {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -75289,7 +75289,7 @@ class ResourceSearchBuilderSearchParameter {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderSearchParameter {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -75762,7 +75762,7 @@ class ResourceSearchBuilderServiceRequest {
   _sort(
     parameters: SortOrderServiceRequest | SortOrderServiceRequest[]
   ): ResourceSearchBuilderServiceRequest {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -75772,7 +75772,7 @@ class ResourceSearchBuilderServiceRequest {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderServiceRequest {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -75826,7 +75826,7 @@ class ResourceSearchBuilderServiceRequest {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderServiceRequest {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -75839,7 +75839,7 @@ class ResourceSearchBuilderServiceRequest {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderServiceRequest {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -76593,7 +76593,7 @@ class ResourceSearchBuilderSlot {
   _sort(
     parameters: SortOrderSlot | SortOrderSlot[]
   ): ResourceSearchBuilderSlot {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -76603,7 +76603,7 @@ class ResourceSearchBuilderSlot {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSlot {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -76657,7 +76657,7 @@ class ResourceSearchBuilderSlot {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSlot {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -76668,7 +76668,7 @@ class ResourceSearchBuilderSlot {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilderSlot {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -77181,7 +77181,7 @@ class ResourceSearchBuilderSpecimen {
   _sort(
     parameters: SortOrderSpecimen | SortOrderSpecimen[]
   ): ResourceSearchBuilderSpecimen {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -77191,7 +77191,7 @@ class ResourceSearchBuilderSpecimen {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSpecimen {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -77245,7 +77245,7 @@ class ResourceSearchBuilderSpecimen {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSpecimen {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -77258,7 +77258,7 @@ class ResourceSearchBuilderSpecimen {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderSpecimen {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -77893,7 +77893,7 @@ class ResourceSearchBuilderSpecimenDefinition {
   _sort(
     parameters: SortOrderSpecimenDefinition | SortOrderSpecimenDefinition[]
   ): ResourceSearchBuilderSpecimenDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -77903,7 +77903,7 @@ class ResourceSearchBuilderSpecimenDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSpecimenDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -77957,7 +77957,7 @@ class ResourceSearchBuilderSpecimenDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSpecimenDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -77970,7 +77970,7 @@ class ResourceSearchBuilderSpecimenDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderSpecimenDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -78352,7 +78352,7 @@ class ResourceSearchBuilderStructureDefinition {
   _sort(
     parameters: SortOrderStructureDefinition | SortOrderStructureDefinition[]
   ): ResourceSearchBuilderStructureDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -78362,7 +78362,7 @@ class ResourceSearchBuilderStructureDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderStructureDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -78416,7 +78416,7 @@ class ResourceSearchBuilderStructureDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderStructureDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -78429,7 +78429,7 @@ class ResourceSearchBuilderStructureDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderStructureDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -79031,7 +79031,7 @@ class ResourceSearchBuilderStructureMap {
   _sort(
     parameters: SortOrderStructureMap | SortOrderStructureMap[]
   ): ResourceSearchBuilderStructureMap {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -79041,7 +79041,7 @@ class ResourceSearchBuilderStructureMap {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderStructureMap {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -79095,7 +79095,7 @@ class ResourceSearchBuilderStructureMap {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderStructureMap {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -79108,7 +79108,7 @@ class ResourceSearchBuilderStructureMap {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderStructureMap {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -79403,7 +79403,7 @@ class ResourceSearchBuilderSubscription {
   _sort(
     parameters: SortOrderSubscription | SortOrderSubscription[]
   ): ResourceSearchBuilderSubscription {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -79413,7 +79413,7 @@ class ResourceSearchBuilderSubscription {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSubscription {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -79467,7 +79467,7 @@ class ResourceSearchBuilderSubscription {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSubscription {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -79480,7 +79480,7 @@ class ResourceSearchBuilderSubscription {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderSubscription {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -79917,7 +79917,7 @@ class ResourceSearchBuilderSubscriptionStatus {
   _sort(
     parameters: SortOrderSubscriptionStatus | SortOrderSubscriptionStatus[]
   ): ResourceSearchBuilderSubscriptionStatus {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -79927,7 +79927,7 @@ class ResourceSearchBuilderSubscriptionStatus {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSubscriptionStatus {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -79981,7 +79981,7 @@ class ResourceSearchBuilderSubscriptionStatus {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSubscriptionStatus {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -79994,7 +79994,7 @@ class ResourceSearchBuilderSubscriptionStatus {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderSubscriptionStatus {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -80289,7 +80289,7 @@ class ResourceSearchBuilderSubscriptionTopic {
   _sort(
     parameters: SortOrderSubscriptionTopic | SortOrderSubscriptionTopic[]
   ): ResourceSearchBuilderSubscriptionTopic {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -80299,7 +80299,7 @@ class ResourceSearchBuilderSubscriptionTopic {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSubscriptionTopic {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -80353,7 +80353,7 @@ class ResourceSearchBuilderSubscriptionTopic {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSubscriptionTopic {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -80366,7 +80366,7 @@ class ResourceSearchBuilderSubscriptionTopic {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderSubscriptionTopic {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -80826,7 +80826,7 @@ class ResourceSearchBuilderSubstance {
   _sort(
     parameters: SortOrderSubstance | SortOrderSubstance[]
   ): ResourceSearchBuilderSubstance {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -80836,7 +80836,7 @@ class ResourceSearchBuilderSubstance {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSubstance {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -80890,7 +80890,7 @@ class ResourceSearchBuilderSubstance {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSubstance {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -80903,7 +80903,7 @@ class ResourceSearchBuilderSubstance {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderSubstance {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -81418,7 +81418,7 @@ class ResourceSearchBuilderSubstanceDefinition {
   _sort(
     parameters: SortOrderSubstanceDefinition | SortOrderSubstanceDefinition[]
   ): ResourceSearchBuilderSubstanceDefinition {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -81428,7 +81428,7 @@ class ResourceSearchBuilderSubstanceDefinition {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSubstanceDefinition {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -81482,7 +81482,7 @@ class ResourceSearchBuilderSubstanceDefinition {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSubstanceDefinition {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -81495,7 +81495,7 @@ class ResourceSearchBuilderSubstanceDefinition {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderSubstanceDefinition {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -81919,7 +81919,7 @@ class ResourceSearchBuilderSupplyDelivery {
   _sort(
     parameters: SortOrderSupplyDelivery | SortOrderSupplyDelivery[]
   ): ResourceSearchBuilderSupplyDelivery {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -81929,7 +81929,7 @@ class ResourceSearchBuilderSupplyDelivery {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSupplyDelivery {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -81983,7 +81983,7 @@ class ResourceSearchBuilderSupplyDelivery {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSupplyDelivery {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -81996,7 +81996,7 @@ class ResourceSearchBuilderSupplyDelivery {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderSupplyDelivery {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -82382,7 +82382,7 @@ class ResourceSearchBuilderSupplyRequest {
   _sort(
     parameters: SortOrderSupplyRequest | SortOrderSupplyRequest[]
   ): ResourceSearchBuilderSupplyRequest {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -82392,7 +82392,7 @@ class ResourceSearchBuilderSupplyRequest {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderSupplyRequest {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -82446,7 +82446,7 @@ class ResourceSearchBuilderSupplyRequest {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderSupplyRequest {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -82459,7 +82459,7 @@ class ResourceSearchBuilderSupplyRequest {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderSupplyRequest {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -82905,7 +82905,7 @@ class ResourceSearchBuilderTask {
   _sort(
     parameters: SortOrderTask | SortOrderTask[]
   ): ResourceSearchBuilderTask {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -82915,7 +82915,7 @@ class ResourceSearchBuilderTask {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderTask {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -82969,7 +82969,7 @@ class ResourceSearchBuilderTask {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderTask {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -82980,7 +82980,7 @@ class ResourceSearchBuilderTask {
    * @see https://hl7.org/fhir/search.html#total
    */
   _total(value: "none" | "estimate" | "accurate"): ResourceSearchBuilderTask {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -83796,7 +83796,7 @@ class ResourceSearchBuilderTerminologyCapabilities {
       | SortOrderTerminologyCapabilities
       | SortOrderTerminologyCapabilities[]
   ): ResourceSearchBuilderTerminologyCapabilities {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -83806,7 +83806,7 @@ class ResourceSearchBuilderTerminologyCapabilities {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderTerminologyCapabilities {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -83860,7 +83860,7 @@ class ResourceSearchBuilderTerminologyCapabilities {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderTerminologyCapabilities {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -83873,7 +83873,7 @@ class ResourceSearchBuilderTerminologyCapabilities {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderTerminologyCapabilities {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -84168,7 +84168,7 @@ class ResourceSearchBuilderTestReport {
   _sort(
     parameters: SortOrderTestReport | SortOrderTestReport[]
   ): ResourceSearchBuilderTestReport {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -84178,7 +84178,7 @@ class ResourceSearchBuilderTestReport {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderTestReport {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -84232,7 +84232,7 @@ class ResourceSearchBuilderTestReport {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderTestReport {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -84245,7 +84245,7 @@ class ResourceSearchBuilderTestReport {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderTestReport {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -84668,7 +84668,7 @@ class ResourceSearchBuilderTestScript {
   _sort(
     parameters: SortOrderTestScript | SortOrderTestScript[]
   ): ResourceSearchBuilderTestScript {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -84678,7 +84678,7 @@ class ResourceSearchBuilderTestScript {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderTestScript {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -84732,7 +84732,7 @@ class ResourceSearchBuilderTestScript {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderTestScript {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -84745,7 +84745,7 @@ class ResourceSearchBuilderTestScript {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderTestScript {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -85336,7 +85336,7 @@ class ResourceSearchBuilderValueSet {
   _sort(
     parameters: SortOrderValueSet | SortOrderValueSet[]
   ): ResourceSearchBuilderValueSet {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -85346,7 +85346,7 @@ class ResourceSearchBuilderValueSet {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderValueSet {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -85400,7 +85400,7 @@ class ResourceSearchBuilderValueSet {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderValueSet {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -85413,7 +85413,7 @@ class ResourceSearchBuilderValueSet {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderValueSet {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -85763,7 +85763,7 @@ class ResourceSearchBuilderVerificationResult {
   _sort(
     parameters: SortOrderVerificationResult | SortOrderVerificationResult[]
   ): ResourceSearchBuilderVerificationResult {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -85773,7 +85773,7 @@ class ResourceSearchBuilderVerificationResult {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderVerificationResult {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -85827,7 +85827,7 @@ class ResourceSearchBuilderVerificationResult {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderVerificationResult {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -85840,7 +85840,7 @@ class ResourceSearchBuilderVerificationResult {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderVerificationResult {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 
@@ -86166,7 +86166,7 @@ class ResourceSearchBuilderVisionPrescription {
   _sort(
     parameters: SortOrderVisionPrescription | SortOrderVisionPrescription[]
   ): ResourceSearchBuilderVisionPrescription {
-    this.builder.string("_sort", parameters, null, "replace");
+    this.builder.string("_sort", parameters, undefined, "replace");
     return this;
   }
 
@@ -86176,7 +86176,7 @@ class ResourceSearchBuilderVisionPrescription {
    * @see https://hl7.org/fhir/search.html#count
    */
   _count(value: number): ResourceSearchBuilderVisionPrescription {
-    this.builder.string("_count", `${value}`, null, "replace");
+    this.builder.string("_count", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -86230,7 +86230,7 @@ class ResourceSearchBuilderVisionPrescription {
    * @see https://hl7.org/fhir/search.html#summary
    */
   _summary(value: SummaryValue): ResourceSearchBuilderVisionPrescription {
-    this.builder.string("_summary", `${value}`, null, "replace");
+    this.builder.string("_summary", `${value}`, undefined, "replace");
     return this;
   }
 
@@ -86243,7 +86243,7 @@ class ResourceSearchBuilderVisionPrescription {
   _total(
     value: "none" | "estimate" | "accurate"
   ): ResourceSearchBuilderVisionPrescription {
-    this.builder.string("_total", value, null, "replace");
+    this.builder.string("_total", value, undefined, "replace");
     return this;
   }
 

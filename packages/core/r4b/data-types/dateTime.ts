@@ -88,7 +88,7 @@ export function fhirDateTimeTypeAdapter(
     locale,
     parse(value) {
       if (!value?.trim()) {
-        return undefined;
+        return;
       }
 
       const matchingData = value.trim().match(fhirDateTimeRegexp)?.groups;
@@ -146,12 +146,12 @@ export function fhirDateTimeTypeAdapter(
         case "full":
           // by default we always show the date
           intlOptions.dateStyle =
-            typeof options?.dateStyle === "undefined"
+            options?.dateStyle === undefined
               ? "short"
               : options.dateStyle || undefined;
           // by default we always show the time
           intlOptions.timeStyle =
-            typeof options?.timeStyle === "undefined"
+            options?.timeStyle === undefined
               ? "short"
               : options.timeStyle || undefined;
           break;

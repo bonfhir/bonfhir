@@ -20,10 +20,8 @@ export function build<TResource extends ResourceType>(
     resourceType,
   } as ExtractResource<TResource>;
 
-  if (isDomainResource(result)) {
-    if (!result.text) {
-      result.text = narrative(result);
-    }
+  if (isDomainResource(result) && !result.text) {
+    result.text = narrative(result);
   }
 
   return result;

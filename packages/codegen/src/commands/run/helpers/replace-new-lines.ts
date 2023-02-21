@@ -9,5 +9,5 @@ export const replaceNewLines = (
     return undefined;
   }
 
-  return value.replace(/([\r\n]+)/g, replace);
+  return value.replace(/([\n\r]+)/g, replace);
 };

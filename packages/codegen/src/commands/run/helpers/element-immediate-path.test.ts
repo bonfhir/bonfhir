@@ -1,4 +1,4 @@
-import { elementImmediatePath } from "./elementImmediatePath";
+import { elementImmediatePath } from "./element-immediate-path";
 
 describe("elementImmediatePath", () => {
   it.each([

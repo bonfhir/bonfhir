@@ -1,4 +1,4 @@
-let fakedSystemTime: Date | null = null;
+let fakedSystemTime: Date | undefined;
 
 /**
  * Returns a UTC date representing the current timestamp.
@@ -16,7 +16,7 @@ export const setSystemTime = (
   date: Date | string | number | null | undefined
 ) => {
   if (!date) {
-    fakedSystemTime = null;
+    fakedSystemTime = undefined;
     return;
   }
 

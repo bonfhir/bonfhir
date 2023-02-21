@@ -33,7 +33,7 @@ export interface FhirCodeTypeAdapter {
   ): string;
 }
 
-const fhirCodeRegexp = new RegExp(/^[^\s]+( [^\s]+)*$/);
+const fhirCodeRegexp = new RegExp(/^\S+( \S+)*$/);
 
 /**
  * Return a {@link FhirCodeTypeAdapter} that uses optional valueSet to format codes
@@ -51,7 +51,7 @@ export function fhirCodeTypeAdapter(
       const formattedValue = value?.trim();
 
       if (!formattedValue) {
-        return undefined;
+        return;
       }
 
       const matchingData = formattedValue.match(fhirCodeRegexp);

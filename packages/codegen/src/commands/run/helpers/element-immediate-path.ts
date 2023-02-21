@@ -12,17 +12,17 @@
  */
 export const elementImmediatePath = (path: string | null | undefined) => {
   if (!path) {
-    return undefined;
+    return;
   }
 
   const splitted = path.split(".");
   if (splitted.length > 2) {
-    return undefined;
+    return;
   }
 
   const resolvedImmediatePath = splitted[1];
   if (resolvedImmediatePath?.includes("[")) {
-    return undefined;
+    return;
   }
 
   return resolvedImmediatePath;

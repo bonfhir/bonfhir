@@ -56,7 +56,7 @@ export function fhirTimeTypeAdapter(
     locale,
     parse(value) {
       if (!value?.trim()) {
-        return undefined;
+        return;
       }
 
       const matchingData = value.trim().match(fhirTimeRegexp)?.groups;

@@ -1,4 +1,4 @@
-import { fhirURITypeAdapter } from "./URI";
+import { fhirURITypeAdapter } from "./uri";
 
 describe("fhirURITypeAdapter", () => {
   ["en-us", undefined].forEach((locale) => {

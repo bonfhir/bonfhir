@@ -9,7 +9,9 @@ export const recursiveFlatten = <T>(fnCtx: T[], attribute: string): T[] => {
   }
 
   if (!Array.isArray(fnCtx)) {
-    throw new Error("The context passed to recursiveFlatten must be an array.");
+    throw new TypeError(
+      "The context passed to recursiveFlatten must be an array."
+    );
   }
 
   return [...recursiveExploration(fnCtx, attribute)];

@@ -100,10 +100,8 @@ function findValueSet(
       }
     }
 
-    if (dataFile.resourceType === "ValueSet") {
-      if (dataFile.url === url) {
-        return dataFile;
-      }
+    if (dataFile.resourceType === "ValueSet" && dataFile.url === url) {
+      return dataFile;
     }
   }
   return undefined;
@@ -124,10 +122,8 @@ function findCodeSystem(
       }
     }
 
-    if (dataFile.resourceType === "CodeSystem") {
-      if (dataFile.url === url) {
-        return dataFile;
-      }
+    if (dataFile.resourceType === "CodeSystem" && dataFile.url === url) {
+      return dataFile;
     }
   }
   return undefined;
@@ -137,7 +133,7 @@ function conceptIsAllowedInValueSet(
   concept: CodeSystemConcept,
   include: ValueSetComposeInclude
 ): boolean {
-  if (!include.concept || !include.concept.length) {
+  if (!include.concept || include.concept.length === 0) {
     return true;
   }
 

@@ -1,6 +1,7 @@
 import { exec } from "node:child_process";
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
 const execAsync = promisify(exec);
@@ -9,10 +10,11 @@ describe("codegen", () => {
   describe("run", () => {
     it("process data and templates", async () => {
       const cli = "yarn dev";
-      const data = join(__dirname, "__fixtures__", "data", "*.json");
-      const templates = join(__dirname, "__fixtures__", "templates", "*.hbs");
+      const thisDirName = dirname(fileURLToPath(import.meta.url));
+      const data = join(thisDirName, "__fixtures__", "data", "*.json");
+      const templates = join(thisDirName, "__fixtures__", "templates", "*.hbs");
       const helper = join(
-        __dirname,
+        thisDirName,
         "__fixtures__",
         "templates",
         "test-helper.js"
@@ -20,12 +22,12 @@ describe("codegen", () => {
       await execAsync(
         `${cli} run -d ${data} -t ${templates} --helpers "${helper}" -p "prettier --write %files%"`,
         {
-          cwd: __dirname,
+          cwd: thisDirName,
         }
       );
 
       const loadedResult = await readFile(
-        join(__dirname, "__fixtures__", "templates", "result.ts"),
+        join(thisDirName, "__fixtures__", "templates", "result.ts"),
         "utf8"
       );
       expect(loadedResult).toMatchSnapshot();

@@ -1,5 +1,5 @@
 /* Date and Time regexp fragments */
-/* eslint-disable */
+
 export const fhirDateRegexpFragment =
   "(?<date>" +
   "(?<year>[0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)" + // mandatory year

@@ -119,10 +119,10 @@ export function mergeFhirResourcesArrays<T>({
       incoming: incomingValue,
     });
     result[1] = result[1] || mergeResult[1];
-    if (!isNil(mergeResult[0])) {
-      result[0].splice(currentEntryIndex, 1, mergeResult[0]);
-    } else {
+    if (isNil(mergeResult[0])) {
       result[0].splice(currentEntryIndex, 1);
+    } else {
+      result[0].splice(currentEntryIndex, 1, mergeResult[0]);
     }
   }
 
@@ -139,7 +139,7 @@ function mergeFhirValues<T = any>({
 
   if (Array.isArray(current)) {
     if (!Array.isArray(incoming)) {
-      throw new Error("Can't merge a non-array value into an array.");
+      throw new TypeError("Can't merge a non-array value into an array.");
     }
 
     return mergeFhirResourcesArrays({ current, incoming }) as MergeResult<T>;

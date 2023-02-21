@@ -151,7 +151,7 @@ export function buildNarrative(components: NarrativeElement[]): Narrative {
   return {
     status: "generated",
     div: `<div xmlns="http://www.w3.org/1999/xhtml" class="fhir-narrative"><ul>${components
-      .map(narrativeElementByType)
+      .map(element => narrativeElementByType(element))
       .filter((x) => !!x).join("")}</ul></div>`,
   };
 }

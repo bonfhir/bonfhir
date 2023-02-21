@@ -9,15 +9,15 @@ const toWords = new ToWords({
  * Invalid characters are stripped out, and starting numbers are converted by their letter equivalent.
  */
 export const safeNameAsVar = (value: string | null | undefined) => {
-  const result = value?.replace(/[^\w_]/g, "");
+  const result = value?.replace(/\W/g, "");
   if (!result) {
     return result;
   }
 
-  if (result.startsWith(parseInt(result).toString())) {
+  if (result.startsWith(Number.parseInt(result).toString())) {
     return result.replace(
-      parseInt(result).toString(),
-      toWords.convert(parseInt(result)).replace(/[^\w]/g, "")
+      Number.parseInt(result).toString(),
+      toWords.convert(Number.parseInt(result)).replace(/\W/g, "")
     );
   }
 

@@ -393,18 +393,15 @@ export async function searchAllPages<TResource extends ResourceType>(
     entry: [],
   };
 
-  let currentSearchBundle: Bundle<ExtractResource<TResource>> | undefined =
-    undefined;
+  let currentSearchBundle: Bundle<ExtractResource<TResource>> | undefined;
 
   while (!currentSearchBundle || linkUrl(currentSearchBundle, "next")) {
-    if (currentSearchBundle) {
-      currentSearchBundle = await client.get<
-        Bundle<ExtractResource<TResource>>
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      >(linkUrl(currentSearchBundle, "next")!);
-    } else {
-      currentSearchBundle = await client.search<TResource>(type, search);
-    }
+    currentSearchBundle = currentSearchBundle
+      ? await client.get<
+          Bundle<ExtractResource<TResource>>
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        >(linkUrl(currentSearchBundle, "next")!)
+      : await client.search<TResource>(type, search);
 
     result.entry.push(...(currentSearchBundle.entry || []));
   }

@@ -53,7 +53,7 @@ export class FhirSearchBuilder {
   ): FhirSearchBuilder {
     if (value) {
       const parameterValues = Array.isArray(value)
-        ? value.filter((x) => x)
+        ? value.filter(Boolean)
         : [value];
       if (!parameterValues.length) {
         return this;
@@ -119,7 +119,7 @@ export class FhirSearchBuilder {
   ): FhirSearchBuilder {
     if (value) {
       const parameterValues = Array.isArray(value)
-        ? value.filter((x) => x)
+        ? value.filter(Boolean)
         : [value];
       this.push(
         parameter,
@@ -315,14 +315,14 @@ export class FhirSearchBuilder {
                 }
               | string
             >,
-        null,
+        undefined,
         replace
       );
 
       return this;
     }
 
-    const parameterValues = Array.isArray(id) ? id.filter((x) => x) : [id];
+    const parameterValues = Array.isArray(id) ? id.filter(Boolean) : [id];
 
     const renderedParameterValues = (
       parameterValues as Array<{ id: string; type: string } | string>
@@ -433,7 +433,7 @@ export class FhirSearchBuilder {
     }
 
     const parameterValues = Array.isArray(value)
-      ? value.filter((x) => x)
+      ? value.filter(Boolean)
       : [value];
 
     if (!parameterValues.length) {
@@ -441,7 +441,7 @@ export class FhirSearchBuilder {
     }
 
     const renderedParameterValues = parameterValues
-      .map(this.tokenParameterValue)
+      .map((x) => this.tokenParameterValue(x))
       .join(",");
 
     if (renderedParameterValues) {
@@ -499,7 +499,7 @@ export class FhirSearchBuilder {
     }
 
     const parameterValues = Array.isArray(value)
-      ? value.filter((x) => x)
+      ? value.filter(Boolean)
       : [value];
     if (!parameterValues.length) {
       return this;
@@ -533,9 +533,9 @@ export class FhirSearchBuilder {
    *    > "name=John%20Doe"
    */
   public get href(): string {
-    return !this.searchParams.length
-      ? ""
-      : this.searchParams.map(([key, value]) => `${key}=${value}`).join("&");
+    return this.searchParams.length
+      ? this.searchParams.map(([key, value]) => `${key}=${value}`).join("&")
+      : "";
   }
 
   private push(

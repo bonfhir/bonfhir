@@ -1,4 +1,4 @@
-import { safeNameAsVar } from "./safeNameAsVar";
+import { safeNameAsVar } from "./safe-name-as-var";
 
 describe("safeNameAsVar", () => {
   it.each([

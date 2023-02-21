@@ -23,7 +23,7 @@ describe("BundleNavigator", () => {
       expect(resource).toBeUndefined();
     });
 
-    it.each([undefined, null, ""])(
+    it.each([undefined, undefined, ""])(
       "returns undefined when reference is",
       (value) => {
         const navigator = bundleNavigator<Patient, Provenance | Organization>(
@@ -43,7 +43,7 @@ describe("BundleNavigator", () => {
       const matches = patientsListFixture.entry.filter(
         (x) => x.search.mode == "match"
       );
-      const includes = patientsListFixture.entry.filter(
+      const include = patientsListFixture.entry.find(
         (x) => x.search.mode == "include"
       );
 
@@ -54,12 +54,12 @@ describe("BundleNavigator", () => {
         buildReferenceFromResource(matches[1]!.resource).reference
       );
       const include1 = navigator.reference(
-        buildReferenceFromResource(includes[0]!.resource).reference
+        buildReferenceFromResource(include!.resource).reference
       );
 
       expect(search1).toMatchObject(matches[0]!.resource);
       expect(search2).toMatchObject(matches[1]!.resource);
-      expect(include1).toMatchObject(includes[0]!.resource);
+      expect(include1).toMatchObject(include!.resource);
     });
 
     it("returns from bundle references", () => {
@@ -82,11 +82,11 @@ describe("BundleNavigator", () => {
         patientsListBundle
       );
       const patientReference = "Patient/23af4168-fc91-4b4d-a498-4485ce5ebc6f";
-      const expectedProvenance = patientsListFixture.entry.filter(
+      const expectedProvenance = patientsListFixture.entry.find(
         (x) =>
           x.resource?.resourceType === "Provenance" &&
           (x.resource as Provenance).target[0]!.reference === patientReference
-      )[0]!.resource;
+      )!.resource;
 
       const provenanceWithPatientTarget = navigator.revReference<Provenance>(
         "ofType(Provenance).target.reference",
@@ -111,7 +111,7 @@ describe("BundleNavigator", () => {
       expect(provenanceWithPatientTarget.length).toBe(0);
     });
 
-    it.each([undefined, null, ""])(
+    it.each([undefined, undefined, ""])(
       "returns an empty array when reference is",
       (patientReference) => {
         const navigator = bundleNavigator<Patient, Provenance | Organization>(
@@ -134,11 +134,11 @@ describe("BundleNavigator", () => {
         patientsListBundle
       );
       const patientReference = "Patient/23af4168-fc91-4b4d-a498-4485ce5ebc6f";
-      const expectedProvenance = patientsListFixture.entry.filter(
+      const expectedProvenance = patientsListFixture.entry.find(
         (x) =>
           x.resource?.resourceType === "Provenance" &&
           (x.resource as Provenance).target[0]!.reference === patientReference
-      )[0]!.resource;
+      )!.resource;
 
       const provenanceWithPatientTarget =
         navigator.firstRevReference<Provenance>(
@@ -163,7 +163,7 @@ describe("BundleNavigator", () => {
       expect(provenanceWithPatientTarget).toBeUndefined();
     });
 
-    it.each([undefined, null, ""])(
+    it.each([undefined, undefined, ""])(
       "returns undefined when reference is",
       (patientReference) => {
         const navigator = bundleNavigator<Patient, Provenance | Organization>(

@@ -38,5 +38,5 @@ export interface Context {
   /**
    * The loaded helpers module. Will be injected as Handlebars helpers.
    */
-  helpers?: unknown | undefined;
+  helpers?: object | undefined;
 }

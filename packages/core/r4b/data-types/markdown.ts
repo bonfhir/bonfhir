@@ -48,7 +48,7 @@ export function fhirMarkdownTypeAdapter(
     locale,
     parse(value) {
       if (!value?.trim()) {
-        return undefined;
+        return;
       }
 
       return value.trim();
@@ -69,6 +69,7 @@ export function fhirMarkdownTypeAdapter(
           return marked.parse(formattedValue).trim();
         case "markdown":
         case "original":
+        // eslint-disable-next-line unicorn/no-null, no-fallthrough
         case null:
         case undefined:
           return formattedValue;

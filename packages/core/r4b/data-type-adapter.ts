@@ -68,8 +68,8 @@ import {
   fhirSimpleQuantityTypeAdapter,
   FhirSimpleQuantityTypeAdapter,
 } from "./data-types/simpleQuantity";
-import { FhirURITypeAdapter, fhirURITypeAdapter } from "./data-types/URI";
-import { FhirURLTypeAdapter, fhirURLTypeAdapter } from "./data-types/URL";
+import { FhirURITypeAdapter, fhirURITypeAdapter } from "./data-types/uri";
+import { FhirURLTypeAdapter, fhirURLTypeAdapter } from "./data-types/url";
 
 /**
  * This is used to manipulate FHIR data types, both parsing values and formatting them as localized strings.

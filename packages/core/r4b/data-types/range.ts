@@ -73,7 +73,7 @@ export function fhirRangeTypeAdapter(
       return removeDoubleSpaces(
         [
           `[${formattedLow} ... ${formattedHigh}]${
-            formattedCode ? formattedCode : formattedUnit
+            formattedCode?.length ? formattedCode : formattedUnit
           }`,
           formattedSystem ? `(${formattedSystem})` : "",
         ].join(" ")

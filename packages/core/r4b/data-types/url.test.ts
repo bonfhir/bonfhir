@@ -1,4 +1,4 @@
-import { fhirURLTypeAdapter } from "./URL";
+import { fhirURLTypeAdapter } from "./url";
 
 describe("fhirURLTypeAdapter", () => {
   ["en-us", undefined].forEach((locale) => {

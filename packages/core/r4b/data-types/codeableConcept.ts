@@ -54,6 +54,7 @@ export function fhirCodeableConceptTypeAdapter(
       );
 
       switch (options?.style) {
+        // eslint-disable-next-line unicorn/no-null
         case null:
         case undefined:
         case "short":

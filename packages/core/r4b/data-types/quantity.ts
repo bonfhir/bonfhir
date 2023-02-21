@@ -73,7 +73,7 @@ export function fhirQuantityTypeAdapter(
         [
           formattedComparator,
           formattedValue,
-          formattedCode ? formattedCode : formattedUnit,
+          formattedCode ?? formattedUnit,
           formattedSystem ? `(${formattedSystem})` : "",
         ].join(" ")
       );

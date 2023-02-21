@@ -23,6 +23,7 @@ describe("fhirBooleanTypeAdapter", () => {
           [false, "false", undefined],
           [undefined, "", undefined],
           [true, "yes", { labels: { true: "yes" } }],
+          // eslint-disable-next-line unicorn/no-null
           [null, "nothing", { labels: { nil: "nothing" } }],
           [undefined, "nothing at all", { labels: { nil: "nothing at all" } }],
         ])("format %p", (value, expected, options) => {

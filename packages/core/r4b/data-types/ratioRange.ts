@@ -101,15 +101,11 @@ export function fhirRatioRangeTypeAdapter(
       return removeDoubleSpaces(
         [
           `[${formattedLow} ... ${formattedHigh}]${
-            formattedNumeratorCode
-              ? formattedNumeratorCode
-              : formattedNumeratorUnit
+            formattedNumeratorCode ?? formattedNumeratorUnit
           }`,
           "/",
           `${formattedDenominatorValue}${
-            formattedDenominatorCode
-              ? formattedDenominatorCode
-              : formattedDenominatorUnit
+            formattedDenominatorCode ?? formattedDenominatorUnit
           }`,
         ].join(" ")
       );

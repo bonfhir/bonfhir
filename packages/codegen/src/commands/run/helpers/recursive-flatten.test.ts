@@ -1,5 +1,5 @@
 import { ValueSetExpansionContains } from "fhir/r4";
-import { recursiveFlatten } from "./recursiveFlatten";
+import { recursiveFlatten } from "./recursive-flatten";
 
 describe("recursiveFlatten", () => {
   it("recursively flatten", () => {

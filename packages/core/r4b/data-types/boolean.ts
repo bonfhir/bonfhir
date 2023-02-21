@@ -54,11 +54,11 @@ export function fhirBooleanTypeAdapter(
 
       const sanitizedValue = value?.trim()?.toLowerCase();
       if (!sanitizedValue) {
-        return undefined;
+        return;
       }
 
       // value is a string
-      if (!sanitizedValue.match(fhirBooleanRegexp))
+      if (!fhirBooleanRegexp.test(sanitizedValue))
         throw new Error(
           "Value does not match the fhir boolean format as described in `https://hl7.org/fhir/datatypes.html#boolean`"
         );
@@ -77,6 +77,7 @@ export function fhirBooleanTypeAdapter(
           return labels["true"];
         case false:
           return labels["false"];
+        // eslint-disable-next-line unicorn/no-null
         case null:
         case undefined:
           return labels["nil"];

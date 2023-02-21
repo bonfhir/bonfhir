@@ -48,7 +48,7 @@ export interface FhirDecimal extends Decimal {
 }
 
 const fhirDecimalRegexp = new RegExp(
-  "^-?(0|[1-9][0-9]*)(.[0-9]+)?([eE][+-]?[0-9]+)?$"
+  "^-?(0|[1-9]\\d*)(.\\d+)?([eE][+-]?\\d+)?$"
 );
 
 /**
@@ -67,21 +67,20 @@ export function fhirDecimalTypeAdapter(
     parse(value) {
       if (typeof value !== "number") {
         if (!value?.trim()) {
-          return undefined;
+          return;
         }
 
-        if (!value.trim().match(fhirDecimalRegexp))
+        if (!fhirDecimalRegexp.test(value.trim()))
           throw new Error(
             "Value does not match the fhir date format as described in `https://hl7.org/fhir/datatypes.html#decimal'"
           );
       }
 
       const decimal = new Decimal(value) as FhirDecimal;
-      if (typeof value === "string" && !value.includes("e")) {
-        decimal.significantDigits = value.trim().replace(/\.|-/g, "").length;
-      } else {
-        decimal.significantDigits = decimal.precision();
-      }
+      decimal.significantDigits =
+        typeof value === "string" && !value.includes("e")
+          ? value.trim().replace(/\.|-/g, "").length
+          : decimal.precision();
 
       return decimal;
     },

@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-useless-undefined */
+/* eslint-disable unicorn/no-null */
 import {
   fhirSearch,
   FhirSearchBuilder,

@@ -12,6 +12,7 @@ describe("fhirMarkdownTypeAdapter", () => {
       [" __123__ ", "__123__"],
       ["  ", undefined],
       [undefined, undefined],
+      // eslint-disable-next-line unicorn/no-null
       [null, undefined],
     ])("parse %p", (value, expected) => {
       expect(adapter.parse(value)).toEqual(expected);

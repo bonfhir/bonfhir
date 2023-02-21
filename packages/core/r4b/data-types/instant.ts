@@ -62,7 +62,7 @@ export function fhirInstantTypeAdapter(
     locale,
     parse(value) {
       if (!value?.trim()) {
-        return undefined;
+        return;
       }
 
       const matchingData = value.trim().match(fhirInstantRegexp)?.groups;
@@ -83,12 +83,12 @@ export function fhirInstantTypeAdapter(
 
       // by default we always show the date
       intlOptions.dateStyle =
-        typeof options?.dateStyle === "undefined"
+        options?.dateStyle === undefined
           ? "short"
           : options.dateStyle || undefined;
       // by default we always show the time
       intlOptions.timeStyle =
-        typeof options?.timeStyle === "undefined"
+        options?.timeStyle === undefined
           ? "short"
           : options.timeStyle || undefined;
 

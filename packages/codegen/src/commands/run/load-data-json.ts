@@ -1,6 +1,6 @@
 import fg from "fast-glob";
-import { readFile } from "fs/promises";
 import { ListrTask } from "listr";
+import { readFile } from "node:fs/promises";
 import { parse as pathParse } from "node:path";
 import { Context } from "./context";
 

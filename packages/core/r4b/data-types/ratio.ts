@@ -73,7 +73,7 @@ export function fhirRatioTypeAdapter(
       return removeDoubleSpaces(
         [
           `${formattedNumeratorValue}/${formattedDenominatorValue}`,
-          formattedCode ? formattedCode : formattedUnit,
+          formattedCode ?? formattedUnit,
           formattedSystem ? `(${formattedSystem})` : "",
         ].join(" ")
       );

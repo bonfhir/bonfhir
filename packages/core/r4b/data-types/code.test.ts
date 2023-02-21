@@ -12,6 +12,7 @@ describe("fhirCodeTypeAdapter", () => {
     it.each([
       ["  123  ", "123"],
       [undefined, undefined],
+      // eslint-disable-next-line unicorn/no-null
       [null, undefined],
     ])("parse %p", (value, expected) => {
       expect(adapter.parse(value)).toEqual(expected);
@@ -34,9 +35,11 @@ describe("fhirCodeTypeAdapter", () => {
     };
 
     it.each([
+      // eslint-disable-next-line unicorn/no-null
       ["  123  ", null, "123"],
       ["  456  ", undefined, "456"],
       [undefined, undefined, ""],
+      // eslint-disable-next-line unicorn/no-null
       [null, undefined, ""],
       ["0", colorValueSetExpansion, "red"],
       ["3", colorValueSetExpansion, "3"],
