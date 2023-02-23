@@ -11,10 +11,13 @@ export function Patients(): ReactElement | null {
 
   const fhirTable = useFhirTable({
     pageSize: 5,
+    restoreKey: "patient-list",
   });
 
-  const patientsQuery = useFhirSearch("Patient", (search) =>
-    search._count(fhirTable.pageSize)._total("accurate")
+  const patientsQuery = useFhirSearch(
+    "Patient",
+    (search) => search._count(fhirTable.pageSize)._total("accurate"),
+    fhirTable.pageUrl
   );
 
   return (

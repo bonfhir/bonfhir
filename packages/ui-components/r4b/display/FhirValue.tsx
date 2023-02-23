@@ -5,7 +5,7 @@ import {
   ValueSetExpandOperationResult,
 } from "@bonfhir/core/r4b";
 import { useFhirExecute } from "@bonfhir/fhir-query/r4b";
-import { ReactElement } from "react";
+import { createElement, ReactElement } from "react";
 import { useFhirUIComponentsContext } from "../FhirUIComponentsContext";
 
 export interface FhirValuePropsCombination<TAdapterName, TValue, TOptions> {
@@ -110,7 +110,7 @@ export type FhirValueProps =
  * @see use the `value` renderer to customize rendering.
  */
 export function FhirValue(props: FhirValueProps): ReactElement | null {
-  const uiContext = useFhirUIComponentsContext();
+  const { dataTypeAdapter, renderer } = useFhirUIComponentsContext();
 
   const { valueSetExpand, ...options } =
     (props.options as HasValueSetExpand) || {};
@@ -127,12 +127,12 @@ export function FhirValue(props: FhirValueProps): ReactElement | null {
     }
   );
 
-  if (uiContext.renderer.value) {
-    return uiContext.renderer.value({
+  if (renderer.value) {
+    return createElement(renderer.value, {
       ...props,
-      dataTypeAdapter: uiContext.dataTypeAdapter,
+      dataTypeAdapter,
       valueSetExpandQuery,
-      formatted: uiContext.dataTypeAdapter[props.type].format(
+      formatted: dataTypeAdapter[props.type].format(
         props.value as any,
         {
           ...options,
@@ -149,10 +149,7 @@ export function FhirValue(props: FhirValueProps): ReactElement | null {
     return (
       <div
         dangerouslySetInnerHTML={{
-          __html: uiContext.dataTypeAdapter.markdown.format(
-            props.value,
-            props.options
-          ),
+          __html: dataTypeAdapter.markdown.format(props.value, props.options),
         }}
       />
     );
@@ -160,7 +157,7 @@ export function FhirValue(props: FhirValueProps): ReactElement | null {
 
   return (
     <>
-      {uiContext.dataTypeAdapter[props.type].format(
+      {dataTypeAdapter[props.type].format(
         props.value as any,
         {
           ...options,

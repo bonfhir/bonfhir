@@ -1,10 +1,11 @@
+import { useFhirQueryContext } from "@bonfhir/fhir-query/r4b";
 import { useState } from "react";
 
 export interface UseFhirTableValue {
   pageNumber: number;
   pageSize: number;
   pageUrl: string | undefined;
-  onPageChange: (pageUrl: string | undefined) => void;
+  onPageChange: (pageUrl: string | undefined, pageNumber: number) => void;
 }
 
 export interface UseFhirTableState {
@@ -13,27 +14,54 @@ export interface UseFhirTableState {
 }
 
 export interface UseFhirTableArgs {
-  scope?: string | null | undefined;
   pageSize?: number | null | undefined;
-  state?: ReturnType<typeof useState<UseFhirTableState>> | null | undefined;
+  restoreKey?: string | null | undefined;
 }
 
 export function useFhirTable(
   args?: UseFhirTableArgs | null | undefined
 ): UseFhirTableValue {
-  const [state, setState] = args?.state
-    ? args.state
-    : useState<UseFhirTableState>({ pageNumber: 1, pageUrl: "" });
+  const { queryClient } = useFhirQueryContext();
+
+  const [state, setState] = useState<UseFhirTableState>(
+    args?.restoreKey &&
+      queryClient.getQueryData([
+        "useFhirTable",
+        "restoreState",
+        args?.restoreKey,
+      ])
+      ? queryClient.getQueryData([
+          "useFhirTable",
+          "restoreState",
+          args?.restoreKey,
+        ]) ?? {
+          pageNumber: 1,
+          pageUrl: "",
+        }
+      : {
+          pageNumber: 1,
+          pageUrl: "",
+        }
+  );
 
   return {
     pageNumber: state?.pageNumber || 1,
     pageSize: args?.pageSize || 20,
     pageUrl: state?.pageUrl || undefined,
-    onPageChange: (pageUrl) => {
-      setState((prevState: UseFhirTableState | undefined) => ({
-        ...(prevState || { pageNumber: 1 }),
+    onPageChange: (pageUrl, pageNumber) => {
+      if (args?.restoreKey) {
+        queryClient.setQueryData(
+          ["useFhirTable", "restoreState", args?.restoreKey],
+          {
+            pageNumber,
+            pageUrl,
+          }
+        );
+      }
+      setState({
+        pageNumber,
         pageUrl,
-      }));
+      });
     },
   };
 }

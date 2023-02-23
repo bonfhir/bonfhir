@@ -1,7 +1,7 @@
 import { PaginatedBundleResult } from "@bonfhir/fhir-query/r4b";
 import { UseQueryResult } from "@tanstack/react-query";
 import { FhirResource } from "fhir/r4";
-import { ReactElement, ReactNode, useCallback } from "react";
+import { createElement, ReactElement, ReactNode, useCallback } from "react";
 import { useFhirUIComponentsContext } from "../FhirUIComponentsContext";
 
 export type FhirTableProps<
@@ -29,7 +29,7 @@ export type FhirTableProps<
     | undefined;
   pageSize: number;
   pageNumber: number;
-  onPageChange?: (pageUrl: string | undefined) => void;
+  onPageChange?: (pageUrl: string | undefined, pageNumber: number) => void;
 };
 
 export type FhirTableColumn<
@@ -58,7 +58,7 @@ export function FhirTable<
     TColumnsRendererProps
   >
 ): ReactElement | null {
-  const uiContext = useFhirUIComponentsContext();
+  const { renderer } = useFhirUIComponentsContext();
 
   const {
     columns,
@@ -79,12 +79,12 @@ export function FhirTable<
       switch (direction) {
         case "next":
           if (query.data?.hasNextPage) {
-            onPageChange(query.data.nextPageUrl);
+            onPageChange(query.data.nextPageUrl, pageNumber + 1);
           }
           break;
         case "previous":
           if (query.data?.hasPreviousPage) {
-            onPageChange(query.data.previousPageUrl);
+            onPageChange(query.data.previousPageUrl, pageNumber - 1);
           }
           break;
       }
@@ -97,14 +97,14 @@ export function FhirTable<
       ? querySelect(query.data)
       : query.data?.nav.searchMatch();
 
-  return uiContext.renderer.table({
+  return createElement(renderer.table, {
     query,
     data,
     columns: columns.map((column) => {
       const { title, render, ...columnRendererProps } = column;
       return {
         title: title,
-        render: (rowIndex) =>
+        render: (rowIndex: number) =>
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           render(data![rowIndex] as PrimaryResourceType, rowIndex, query.data!),
         ...columnRendererProps,
