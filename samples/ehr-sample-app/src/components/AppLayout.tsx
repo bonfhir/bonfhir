@@ -1,5 +1,5 @@
 import { Layout, Menu } from "antd";
-import { PropsWithChildren, ReactElement } from "react";
+import { PropsWithChildren } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ const StyledLayout = styled(Layout)`
   width: 100vw;
 `;
 
-export function AppLayout({ children }: AppLayoutProps): ReactElement | null {
+export function AppLayout({ children }: AppLayoutProps): ReactNode {
   return (
     <StyledLayout>
       <Layout.Header>

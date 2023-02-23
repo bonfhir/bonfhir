@@ -3,7 +3,7 @@ import {
   ValueSetExpandOperationResult,
 } from "@bonfhir/core/r4b";
 import { UseQueryResult } from "@tanstack/react-query";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { FhirValueProps } from "./display";
 
 /**
@@ -33,6 +33,10 @@ export interface FhirUIComponentsRenderer {
     props: LoaderProps<TRendererProps>
   ) => ReactElement | null;
 
+  table: <TRendererProps = unknown, TColumnRenderProps = unknown>(
+    props: TableProps<TRendererProps, TColumnRenderProps>
+  ) => ReactElement | null;
+
   /**
    * Renderer used to render <FhirValue />.
    * This one is optional - <FhirValue /> will renderer to a string if not provided.
@@ -56,6 +60,20 @@ export type LoaderProps<TRendererProps = unknown> = TRendererProps & {
 export type ErrorPanelProps<TRendererProps = unknown> = TRendererProps & {
   query?: UseQueryResult | Array<UseQueryResult> | undefined;
   error: unknown;
+};
+
+export type TableProps<TRendererProps, TColumnRenderProps> = TRendererProps & {
+  query: UseQueryResult;
+  data: readonly unknown[] | undefined;
+  columns: readonly TableColum<TColumnRenderProps>[];
+  total: number;
+  pageSize: number;
+  onPageChange: (direction: "next" | "previous") => void;
+};
+
+export type TableColum<TRendererProps> = TRendererProps & {
+  title: string;
+  render: (rowIndex: number) => ReactNode;
 };
 
 export type ValueRendererProps<TRendererProps = unknown> = TRendererProps &
