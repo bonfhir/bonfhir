@@ -69,10 +69,14 @@ export type TableProps<TRendererProps, TColumnRenderProps> = TRendererProps & {
   total: number;
   pageSize: number;
   onPageChange: (direction: "next" | "previous") => void;
+  sort: string | null | undefined;
+  onSortChange: (sort: string) => void;
 };
 
 export type TableColum<TRendererProps> = TRendererProps & {
+  key: string;
   title: string;
+  sortable: boolean;
   render: (rowIndex: number) => ReactNode;
 };
 

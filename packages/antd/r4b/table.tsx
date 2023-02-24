@@ -10,6 +10,7 @@ import { ColumnType } from "antd/es/table";
 import {
   FilterValue,
   SorterResult,
+  SortOrder,
   TableCurrentDataSource,
 } from "antd/es/table/interface";
 import { ReactElement } from "react";
@@ -25,8 +26,12 @@ export function table(
     total,
     onPageChange,
     onChange,
+    sort,
+    onSortChange,
     ...renderedProps
   } = props as any;
+
+  const { sortedKey, sortOrder } = parseSort(sort);
 
   const managedOnChange = (
     antdPagination: TablePaginationConfig,
@@ -42,6 +47,15 @@ export function table(
       }
     }
 
+    if (!Array.isArray(sorter)) {
+      const newSort = `${sorter.order === "descend" ? "-" : ""}${
+        sorter.columnKey
+      }`;
+      if (newSort !== sort) {
+        onSortChange?.(newSort);
+      }
+    }
+
     onChange?.(antdPagination, filters, sorter, extra);
   };
 
@@ -52,11 +66,14 @@ export function table(
         (
           column: TableColum<AntdTableColumnProps<object>>
         ): ColumnType<object> => {
-          const { title, render, ...columnRenderProps } = column;
+          const { key, title, sortable, render, ...columnRenderProps } = column;
           return {
-            title: title,
+            key,
+            title,
             render: (_value: any, _record: unknown, index: number) =>
               render(index),
+            sorter: sortable,
+            sortOrder: key === sortedKey ? sortOrder : null,
             ...columnRenderProps,
           };
         }
@@ -74,4 +91,23 @@ export function table(
       {...renderedProps}
     />
   );
+}
+
+export function parseSort(sort: string): {
+  sortedKey: string | null;
+  sortOrder: SortOrder | null;
+} {
+  if (!sort) return { sortedKey: null, sortOrder: null };
+
+  if (sort.startsWith("-")) {
+    return {
+      sortedKey: sort.slice(1),
+      sortOrder: "descend",
+    };
+  }
+
+  return {
+    sortedKey: sort,
+    sortOrder: "ascend",
+  };
 }

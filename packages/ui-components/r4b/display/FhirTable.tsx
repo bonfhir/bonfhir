@@ -30,6 +30,8 @@ export type FhirTableProps<
   pageSize: number;
   pageNumber: number;
   onPageChange?: (pageUrl: string | undefined, pageNumber: number) => void;
+  sort?: string | null | undefined;
+  onSortChange: (sort: string) => void;
 };
 
 export type FhirTableColumn<
@@ -37,7 +39,9 @@ export type FhirTableColumn<
   SecondaryResourceType extends FhirResource = PrimaryResourceType,
   TRendererProps = unknown
 > = TRendererProps & {
+  key: string;
   title: string;
+  sortable?: boolean | null | undefined;
   render: (
     row: PrimaryResourceType,
     index: number,
@@ -67,6 +71,8 @@ export function FhirTable<
     pageSize,
     pageNumber,
     onPageChange,
+    sort,
+    onSortChange,
     ...rendererProps
   } = props;
 
@@ -101,9 +107,11 @@ export function FhirTable<
     query,
     data,
     columns: columns.map((column) => {
-      const { title, render, ...columnRendererProps } = column;
+      const { key, title, sortable, render, ...columnRendererProps } = column;
       return {
-        title: title,
+        key,
+        title,
+        sortable: !!sortable,
         render: (rowIndex: number) =>
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           render(data![rowIndex] as PrimaryResourceType, rowIndex, query.data!),
@@ -114,6 +122,8 @@ export function FhirTable<
     pageSize,
     pageNumber,
     onPageChange: managedOnPageChange,
+    sort,
+    onSortChange,
     ...rendererProps,
   });
 }
