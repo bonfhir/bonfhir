@@ -1,10 +1,9 @@
 import { useFhirQueryContext } from "@bonfhir/fhir-query/r4b";
-import { useEffect, useState } from "react";
-import { useMemoCompare } from "./use-memo-compare";
+import { useState } from "react";
 
 export interface UseFhirTableValue<
   TSort extends string = string,
-  TSearchParams = unknown
+  TSearch = unknown
 > {
   pageNumber: number;
   pageSize: number;
@@ -12,38 +11,36 @@ export interface UseFhirTableValue<
   onPageChange: (pageUrl: string | undefined, pageNumber: number) => void;
   sort: TSort | undefined;
   onSortChange: (sort: string) => void;
-  searchParams: TSearchParams | undefined;
+  search: TSearch | undefined;
+  onSearch: (search: TSearch) => void;
 }
 
 export interface UseFhirTableState<
   TSort extends string = string,
-  TSearchParams = unknown
+  TSearch = unknown
 > {
   pageNumber: number;
   pageUrl: string | undefined;
   sort: TSort | undefined;
-  searchParams: TSearchParams | undefined;
+  search: TSearch | undefined;
 }
 
 export interface UseFhirTableArgs<
   TSort extends string = string,
-  TSearchParams = unknown
+  TSearch = unknown
 > {
   key?: string | null | undefined;
   pageSize?: number | null | undefined;
   defaultSort?: TSort | null | undefined;
-  searchParams?: TSearchParams | null | undefined;
+  defaultSearch?: TSearch | null | undefined;
 }
 
-export function useFhirTable<
-  TSort extends string = string,
-  TSearchParams = unknown
->(
-  args?: UseFhirTableArgs<TSort, TSearchParams> | null | undefined
-): UseFhirTableValue<TSort, TSearchParams> {
+export function useFhirTable<TSort extends string = string, TSearch = unknown>(
+  args?: UseFhirTableArgs<TSort, TSearch> | null | undefined
+): UseFhirTableValue<TSort, TSearch> {
   const { queryClient } = useFhirQueryContext();
 
-  const [state, setState] = useState<UseFhirTableState<TSort, TSearchParams>>(
+  const [state, setState] = useState<UseFhirTableState<TSort, TSearch>>(
     args?.key &&
       queryClient.getQueryData(["useFhirTable", "restoreState", args.key])
       ? queryClient.getQueryData([
@@ -54,85 +51,46 @@ export function useFhirTable<
           pageNumber: 1,
           pageUrl: "",
           sort: args.defaultSort || undefined,
-          searchParams: args.searchParams || undefined,
+          search: args.defaultSearch || undefined,
         }
       : {
           pageNumber: 1,
           pageUrl: "",
           sort: args?.defaultSort || undefined,
-          searchParams: args?.searchParams || undefined,
+          search: args?.defaultSearch || undefined,
         }
   );
 
-  const searchParams = useMemoCompare(args?.searchParams || undefined);
-
-  useEffect(() => {
+  const updateState = (
+    newState: Partial<UseFhirTableState<TSort, TSearch>>
+  ) => {
     setState((prevState) => {
       if (args?.key) {
         queryClient.setQueryData(["useFhirTable", "restoreState", args?.key], {
           ...prevState,
-          searchParams,
           pageNumber: 1,
           pageUrl: "",
+          ...newState,
         });
       }
 
       return {
         ...prevState,
-        searchParams,
         pageNumber: 1,
         pageUrl: "",
+        ...newState,
       };
     });
-  }, [searchParams]);
+  };
 
   return {
     pageNumber: state?.pageNumber || 1,
     pageSize: args?.pageSize || 20,
     pageUrl: state?.pageUrl || undefined,
-    onPageChange: (pageUrl, pageNumber) => {
-      setState((prevState) => {
-        if (args?.key) {
-          queryClient.setQueryData(
-            ["useFhirTable", "restoreState", args?.key],
-            {
-              ...prevState,
-              pageNumber,
-              pageUrl,
-            }
-          );
-        }
-
-        return {
-          ...prevState,
-          pageNumber,
-          pageUrl,
-        };
-      });
-    },
+    onPageChange: (pageUrl, pageNumber) => updateState({ pageNumber, pageUrl }),
     sort: state?.sort || undefined,
-    onSortChange: (sort) => {
-      setState((prevState) => {
-        if (args?.key) {
-          queryClient.setQueryData(
-            ["useFhirTable", "restoreState", args?.key],
-            {
-              ...prevState,
-              sort: sort as TSort,
-              pageNumber: 1,
-              pageUrl: "",
-            }
-          );
-        }
-
-        return {
-          ...prevState,
-          sort: sort as TSort,
-          pageNumber: 1,
-          pageUrl: "",
-        };
-      });
-    },
-    searchParams,
+    onSortChange: (sort) => updateState({ sort: sort as TSort }),
+    search: state?.search || undefined,
+    onSearch: (search) => updateState({ search }),
   };
 }

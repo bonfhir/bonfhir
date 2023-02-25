@@ -47,7 +47,8 @@
   },
   "dependencies": {
     "@bonfhir/core": "^1.0.0-alpha.11",
-    "@bonfhir/fhir-query": "^0.1.0-alpha.4"
+    "@bonfhir/fhir-query": "^0.1.0-alpha.4",
+    "use-deep-compare-effect": "^1.8.1"
   },
   "prettier": "@bonfhir/prettier-config",
   "peerDependencies": {

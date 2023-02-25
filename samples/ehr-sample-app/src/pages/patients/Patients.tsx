@@ -14,7 +14,7 @@ import {
   Typography,
 } from "antd";
 import { Patient } from "fhir/r4";
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { Page } from "../../components/Page";
@@ -26,22 +26,27 @@ export function Patients(): ReactElement | null {
 
   const navigate = useNavigate();
 
-  const { register, watch } = useForm<SearchParams>();
-
-  const watchDebounced = useDebounce(watch());
-
   const fhirTable = useFhirTable<SortOrderPatient, SearchParams>({
     key: "patient-list",
     pageSize: 5,
     defaultSort: "name",
-    searchParams: watchDebounced,
   });
+
+  const { register, watch } = useForm<SearchParams>({
+    defaultValues: fhirTable.search,
+  });
+
+  const watchDebounced = useDebounce(watch());
+
+  useEffect(() => {
+    fhirTable.onSearch(watchDebounced);
+  }, [watchDebounced]);
 
   const patientsQuery = useFhirSearch(
     "Patient",
     (search) =>
       search
-        .name(fhirTable.searchParams?.patientName)
+        .name(fhirTable.search?.patientName)
         ._count(fhirTable.pageSize)
         ._sort(fhirTable.sort!)
         ._total("accurate"),
@@ -73,6 +78,7 @@ export function Patients(): ReactElement | null {
           {
             key: "gender",
             title: "Gender",
+            sortable: true,
             render: (patient) => (
               <FhirValue
                 type="code"

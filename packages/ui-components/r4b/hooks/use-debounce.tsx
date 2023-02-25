@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useDeepCompareEffect from "use-deep-compare-effect";
 
 export function useDebounce<T>(value: T, delay = 300): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(value);
     }, delay);
