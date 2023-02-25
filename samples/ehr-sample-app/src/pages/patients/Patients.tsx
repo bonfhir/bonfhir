@@ -2,6 +2,7 @@ import { SortOrderPatient } from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/fhir-query/r4b";
 import { ValueSetURIs } from "@bonfhir/terminology/r4b";
 import {
+  FhirInput,
   FhirTable,
   FhirValue,
   useDebounce,
@@ -9,6 +10,7 @@ import {
 } from "@bonfhir/ui-components/r4b";
 import {
   Divider,
+  InputProps as AntdInputProps,
   TableColumnProps as AntdTableColumnProps,
   TableProps as AntdTableProps,
   Typography,
@@ -32,7 +34,7 @@ export function Patients(): ReactElement | null {
     defaultSort: "name",
   });
 
-  const { register, watch } = useForm<SearchParams>({
+  const { control, watch } = useForm<SearchParams>({
     defaultValues: fhirTable.search,
   });
 
@@ -57,7 +59,11 @@ export function Patients(): ReactElement | null {
     <Page>
       <Typography.Title>Patients</Typography.Title>
       <Divider />
-      <input placeholder="Search by name" {...register("patientName")} />
+      <FhirInput<AntdInputProps, SearchParams>
+        control={control}
+        name="patientName"
+        placeholder="Search by patient name"
+      />
       <Divider />
       <FhirTable<
         Patient,

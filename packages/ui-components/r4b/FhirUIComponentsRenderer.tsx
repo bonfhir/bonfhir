@@ -4,6 +4,7 @@ import {
 } from "@bonfhir/core/r4b";
 import { UseQueryResult } from "@tanstack/react-query";
 import { ReactElement, ReactNode } from "react";
+import { FieldValues, UseControllerProps } from "react-hook-form";
 import { FhirValueProps } from "./display";
 
 /**
@@ -24,6 +25,13 @@ export interface FhirUIComponentsRenderer {
    */
   errorPanel: <TRendererProps = unknown>(
     props: ErrorPanelProps<TRendererProps>
+  ) => ReactElement | null;
+
+  /**
+   * Renderer for an Input component.
+   */
+  input: <TRendererProps = unknown>(
+    props: InputProps<TRendererProps>
   ) => ReactElement | null;
 
   /**
@@ -53,13 +61,16 @@ export type EmptyProps<TRendererProps = unknown> = TRendererProps & {
   query?: UseQueryResult | Array<UseQueryResult> | undefined;
 };
 
-export type LoaderProps<TRendererProps = unknown> = TRendererProps & {
-  query?: UseQueryResult | Array<UseQueryResult> | undefined;
-};
-
 export type ErrorPanelProps<TRendererProps = unknown> = TRendererProps & {
   query?: UseQueryResult | Array<UseQueryResult> | undefined;
   error: unknown;
+};
+
+export type InputProps<TRendererProps = unknown> = TRendererProps &
+  UseControllerProps<FieldValues, string>;
+
+export type LoaderProps<TRendererProps = unknown> = TRendererProps & {
+  query?: UseQueryResult | Array<UseQueryResult> | undefined;
 };
 
 export type TableProps<TRendererProps, TColumnRenderProps> = TRendererProps & {
