@@ -1,50 +1,90 @@
 import { useFhirQueryContext } from "@bonfhir/fhir-query/r4b";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useMemoCompare } from "./use-memo-compare";
 
-export interface UseFhirTableValue<TSort extends string = string> {
+export interface UseFhirTableValue<
+  TSort extends string = string,
+  TSearchParams = unknown
+> {
   pageNumber: number;
   pageSize: number;
   pageUrl: string | undefined;
   onPageChange: (pageUrl: string | undefined, pageNumber: number) => void;
   sort: TSort | undefined;
   onSortChange: (sort: string) => void;
+  searchParams: TSearchParams | undefined;
 }
 
-export interface UseFhirTableState<TSort extends string = string> {
+export interface UseFhirTableState<
+  TSort extends string = string,
+  TSearchParams = unknown
+> {
   pageNumber: number;
   pageUrl: string | undefined;
   sort: TSort | undefined;
+  searchParams: TSearchParams | undefined;
 }
 
-export interface UseFhirTableArgs<TSort extends string = string> {
+export interface UseFhirTableArgs<
+  TSort extends string = string,
+  TSearchParams = unknown
+> {
   key?: string | null | undefined;
   pageSize?: number | null | undefined;
   defaultSort?: TSort | null | undefined;
+  searchParams?: TSearchParams | null | undefined;
 }
 
-export function useFhirTable<TSort extends string = string>(
-  args?: UseFhirTableArgs<TSort> | null | undefined
-): UseFhirTableValue<TSort> {
+export function useFhirTable<
+  TSort extends string = string,
+  TSearchParams = unknown
+>(
+  args?: UseFhirTableArgs<TSort, TSearchParams> | null | undefined
+): UseFhirTableValue<TSort, TSearchParams> {
   const { queryClient } = useFhirQueryContext();
 
-  const [state, setState] = useState<UseFhirTableState<TSort>>(
+  const [state, setState] = useState<UseFhirTableState<TSort, TSearchParams>>(
     args?.key &&
-      queryClient.getQueryData(["useFhirTable", "restoreState", args?.key])
+      queryClient.getQueryData(["useFhirTable", "restoreState", args.key])
       ? queryClient.getQueryData([
           "useFhirTable",
           "restoreState",
-          args?.key,
+          args.key,
         ]) ?? {
           pageNumber: 1,
           pageUrl: "",
-          sort: args?.defaultSort || undefined,
+          sort: args.defaultSort || undefined,
+          searchParams: args.searchParams || undefined,
         }
       : {
           pageNumber: 1,
           pageUrl: "",
           sort: args?.defaultSort || undefined,
+          searchParams: args?.searchParams || undefined,
         }
   );
+
+  const searchParams = useMemoCompare(args?.searchParams || undefined);
+
+  useEffect(() => {
+    setState((prevState) => {
+      if (args?.key) {
+        queryClient.setQueryData(["useFhirTable", "restoreState", args?.key], {
+          ...prevState,
+          searchParams,
+          pageNumber: 1,
+          pageUrl: "",
+        });
+      }
+
+      return {
+        ...prevState,
+        searchParams,
+        pageNumber: 1,
+        pageUrl: "",
+      };
+    });
+  }, [searchParams]);
 
   return {
     pageNumber: state?.pageNumber || 1,
@@ -93,5 +133,6 @@ export function useFhirTable<TSort extends string = string>(
         };
       });
     },
+    searchParams,
   };
 }
