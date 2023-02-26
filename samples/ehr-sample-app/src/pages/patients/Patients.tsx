@@ -7,6 +7,7 @@ import {
   FhirTable,
   FhirValue,
   useFhirTable,
+  useURLSearchParamsStateManager,
 } from "@bonfhir/ui-components/r4b";
 import {
   Col,
@@ -19,6 +20,7 @@ import {
 import { Patient } from "fhir/r4";
 import { ReactElement } from "react";
 import { useNavigate } from "react-router";
+import { useSearchParams } from "react-router-dom";
 import { Page } from "../../components/Page";
 
 export function Patients(): ReactElement | null {
@@ -29,10 +31,10 @@ export function Patients(): ReactElement | null {
   const navigate = useNavigate();
 
   const fhirTable = useFhirTable<SortOrderPatient, SearchParams>({
-    key: "patient-list",
     pageSize: 5,
     defaultSort: "name",
     defaultSearch: { name: "" },
+    stateManager: useURLSearchParamsStateManager("search", useSearchParams()),
   });
 
   const patientsQuery = useFhirSearch(

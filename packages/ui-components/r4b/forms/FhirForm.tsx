@@ -6,7 +6,9 @@ import {
   useFormikContext,
 } from "formik";
 import noop from "lodash/noop";
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
+import useDeepCompareEffect from "use-deep-compare-effect";
+import { useBoolean } from "../hooks";
 
 export type FhirFormProps<TValues extends FormikValues = FormikValues> = Omit<
   FormikConfig<TValues>,
@@ -45,9 +47,14 @@ export function FormObserver<TValues extends FormikValues = FormikValues>({
   onChange?: (values: TValues) => void | null | undefined;
 }): ReactElement | null {
   const { values } = useFormikContext<TValues>();
+  const { value: initialEvent, setFalse } = useBoolean(true);
 
-  useEffect(() => {
-    onChange?.(values);
+  useDeepCompareEffect(() => {
+    if (initialEvent) {
+      setFalse();
+    } else {
+      onChange?.(values);
+    }
   }, [values]);
 
   return null;
