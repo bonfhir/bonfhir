@@ -2,28 +2,28 @@ import { SortOrderPatient } from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/fhir-query/r4b";
 import { ValueSetURIs } from "@bonfhir/terminology/r4b";
 import {
-  FhirInput,
+  FhirField,
+  FhirForm,
   FhirTable,
   FhirValue,
-  useDebounce,
   useFhirTable,
 } from "@bonfhir/ui-components/r4b";
 import {
+  Col,
   Divider,
-  InputProps as AntdInputProps,
+  Row,
   TableColumnProps as AntdTableColumnProps,
   TableProps as AntdTableProps,
   Typography,
 } from "antd";
 import { Patient } from "fhir/r4";
-import { ReactElement, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { ReactElement } from "react";
 import { useNavigate } from "react-router";
 import { Page } from "../../components/Page";
 
 export function Patients(): ReactElement | null {
   interface SearchParams {
-    patientName: string;
+    name: string;
   }
 
   const navigate = useNavigate();
@@ -32,23 +32,14 @@ export function Patients(): ReactElement | null {
     key: "patient-list",
     pageSize: 5,
     defaultSort: "name",
+    defaultSearch: { name: "" },
   });
-
-  const { control, watch } = useForm<SearchParams>({
-    defaultValues: fhirTable.search,
-  });
-
-  const watchDebounced = useDebounce(watch());
-
-  useEffect(() => {
-    fhirTable.onSearch(watchDebounced);
-  }, [watchDebounced]);
 
   const patientsQuery = useFhirSearch(
     "Patient",
     (search) =>
       search
-        .name(fhirTable.search?.patientName)
+        .name(fhirTable.search?.name)
         ._count(fhirTable.pageSize)
         ._sort(fhirTable.sort!)
         ._total("accurate"),
@@ -59,11 +50,21 @@ export function Patients(): ReactElement | null {
     <Page>
       <Typography.Title>Patients</Typography.Title>
       <Divider />
-      <FhirInput<AntdInputProps, SearchParams>
-        control={control}
-        name="patientName"
-        placeholder="Search by patient name"
-      />
+      <FhirForm<SearchParams>
+        initialValues={fhirTable.search!}
+        onChange={fhirTable.onSearch}
+      >
+        <Row>
+          <Col span={12}>
+            <FhirField
+              type="string"
+              name="name"
+              options={{ placeholder: "Search by name" }}
+            />
+          </Col>
+          <Col span={12}></Col>
+        </Row>
+      </FhirForm>
       <Divider />
       <FhirTable<
         Patient,

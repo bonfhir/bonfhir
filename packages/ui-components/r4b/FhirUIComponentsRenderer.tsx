@@ -3,9 +3,10 @@ import {
   ValueSetExpandOperationResult,
 } from "@bonfhir/core/r4b";
 import { UseQueryResult } from "@tanstack/react-query";
+import { FieldHelperProps, FieldInputProps, FieldMetaProps } from "formik";
 import { ReactElement, ReactNode } from "react";
-import { FieldValues, UseControllerProps } from "react-hook-form";
 import { FhirValueProps } from "./display";
+import { FhirFieldStringPropsOptions } from "./forms/fields/string";
 
 /**
  * Renderer interface for FHIR UI Components.
@@ -66,8 +67,13 @@ export type ErrorPanelProps<TRendererProps = unknown> = TRendererProps & {
   error: unknown;
 };
 
-export type InputProps<TRendererProps = unknown> = TRendererProps &
-  UseControllerProps<FieldValues, string>;
+export type InputProps<TRendererProps = unknown> = TRendererProps & {
+  options?: FhirFieldStringPropsOptions | null | undefined;
+} & {
+  field: FieldInputProps<string>;
+  meta: FieldMetaProps<string>;
+  helpers: FieldHelperProps<string>;
+};
 
 export type LoaderProps<TRendererProps = unknown> = TRendererProps & {
   query?: UseQueryResult | Array<UseQueryResult> | undefined;

@@ -9,7 +9,7 @@ import { value } from "./value";
 export const antdFhirUIComponentsRenderer = (): FhirUIComponentsRenderer => ({
   empty,
   errorPanel,
-  input: input as any,
+  input,
   loader,
   table: table as any,
   value: value as any,
