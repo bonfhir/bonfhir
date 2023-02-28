@@ -20,7 +20,7 @@
     "@bonfhir/medplum": "^1.0.0-alpha.12",
     "@bonfhir/prettier-config": "^1.0.0",
     "@bonfhir/typescript-config": "^1.0.1-alpha.0",
-    "@medplum/core": "^2.0.3",
+    "@medplum/core": "^2.0.6",
     "@swc/core": "^1.3.24",
     "@swc/jest": "^0.2.24",
     "@types/fhir": "^0.0.35",

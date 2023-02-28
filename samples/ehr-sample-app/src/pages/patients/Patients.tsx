@@ -1,4 +1,8 @@
-import { SortOrderPatient } from "@bonfhir/core/r4b";
+import {
+  getIdFromReference,
+  resourceSearch,
+  SortOrderPatient,
+} from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/fhir-query/r4b";
 import { ValueSetURIs } from "@bonfhir/terminology/r4b";
 import {
@@ -13,11 +17,14 @@ import {
   Col,
   Divider,
   Row,
+  SelectProps,
   TableColumnProps as AntdTableColumnProps,
   TableProps as AntdTableProps,
   Typography,
 } from "antd";
-import { Patient } from "fhir/r4";
+import { Organization, Patient } from "fhir/r4";
+import compact from "lodash/compact";
+import uniq from "lodash/uniq";
 import { ReactElement } from "react";
 import { useNavigate } from "react-router";
 import { useSearchParams } from "react-router-dom";
@@ -26,6 +33,7 @@ import { Page } from "../../components/Page";
 export function Patients(): ReactElement | null {
   interface SearchParams {
     name: string;
+    organization: string;
   }
 
   const navigate = useNavigate();
@@ -33,7 +41,7 @@ export function Patients(): ReactElement | null {
   const fhirTable = useFhirTable<SortOrderPatient, SearchParams>({
     pageSize: 5,
     defaultSort: "name",
-    defaultSearch: { name: "" },
+    defaultSearch: { name: "", organization: "" },
     stateManager: useURLSearchParamsStateManager("search", useSearchParams()),
   });
 
@@ -42,10 +50,31 @@ export function Patients(): ReactElement | null {
     (search) =>
       search
         .name(fhirTable.search?.name)
+        .organization(fhirTable.search?.organization)
         ._count(fhirTable.pageSize)
         ._sort(fhirTable.sort!)
         ._total("accurate"),
     fhirTable.pageUrl
+  );
+
+  const organizationsQuery = useFhirSearch(
+    "Organization",
+    (search) =>
+      search._id(
+        uniq(
+          compact(
+            patientsQuery.data?.nav
+              .type("Patient")
+              .map((x) => getIdFromReference(x.managingOrganization))
+          )
+        )
+      ),
+    undefined,
+    {
+      query: {
+        enabled: !!patientsQuery.data,
+      },
+    }
   );
 
   return (
@@ -64,7 +93,20 @@ export function Patients(): ReactElement | null {
               options={{ placeholder: "Search by name" }}
             />
           </Col>
-          <Col span={12}></Col>
+          <Col span={12}>
+            <FhirField<Omit<SelectProps, "options">>
+              type="resource"
+              name="organization"
+              options={{
+                resourceType: "Organization",
+                placeholder: "Managing organization",
+                search: (val) =>
+                  resourceSearch("Organization").name(val)._sort("name").href,
+                label: (org: Organization) => org.name || "",
+              }}
+              style={{ width: "100%" }}
+            />
+          </Col>
         </Row>
       </FhirForm>
       <Divider />
@@ -99,6 +141,14 @@ export function Patients(): ReactElement | null {
                 }}
               />
             ),
+          },
+          {
+            key: "organization",
+            title: "Managing Organization",
+            render: (patient: Patient) =>
+              organizationsQuery.data?.nav.reference(
+                patient.managingOrganization?.reference
+              )?.name,
           },
         ]}
         {...fhirTable}

@@ -51,8 +51,6 @@ export function useFhirTable<TSort extends string = string, TSearch = unknown>(
     UseFhirTableState<TSort, TSearch> | undefined
   >(args?.stateManager?.[0]);
 
-  console.log("state", state);
-
   const updateState = (
     newState: Partial<UseFhirTableState<TSort, TSearch>>
   ) => {

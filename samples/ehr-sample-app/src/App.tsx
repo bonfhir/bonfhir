@@ -2,11 +2,11 @@ import { antdFhirUIComponentsRenderer } from "@bonfhir/antd/r4b";
 import { FhirQueryProvider } from "@bonfhir/fhir-query/r4b";
 import { buildFhirRestfulClientAdapter } from "@bonfhir/medplum/r4b";
 import { FhirUIComponentsProvider } from "@bonfhir/ui-components/r4b";
-import { MedplumClient } from "@medplum/core";
+import { LoginState, MedplumClient } from "@medplum/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ConfigProvider } from "antd";
 import "antd/dist/reset.css";
-import { ReactElement, useEffect, useMemo } from "react";
+import { ReactElement, useEffect, useMemo, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./AppRoutes";
 
@@ -22,16 +22,31 @@ export function App(): ReactElement | null {
     []
   );
 
+  const [loginState, setLoginState] = useState<LoginState | undefined>();
+
   useEffect(() => {
-    if (!medplum.getActiveLogin()) {
-      medplum.signInWithRedirect({
-        clientId: process.env.MEDPLUM_CLIENT_ID,
-        redirectUri: window.location.origin.endsWith("/")
-          ? window.location.origin
-          : `${window.location.origin}/`,
-      });
+    function changeEventListener() {
+      setLoginState(medplum.getActiveLogin());
     }
-  }, [medplum, medplum.getActiveLogin()?.profile?.reference]);
+
+    medplum.addEventListener("change", changeEventListener);
+    return () => medplum.removeEventListeneer("change", changeEventListener);
+  }, [medplum]);
+
+  useEffect(() => {
+    async function signIn() {
+      if (!loginState && !medplum.getActiveLogin() && !medplum.isLoading()) {
+        await medplum.signInWithRedirect({
+          clientId: process.env.MEDPLUM_CLIENT_ID,
+          redirectUri: window.location.origin.endsWith("/")
+            ? window.location.origin
+            : `${window.location.origin}/`,
+        });
+      }
+    }
+
+    signIn();
+  }, [medplum, loginState, medplum.getActiveLogin(), medplum.isLoading()]);
 
   const fhirClient = useMemo(() => {
     if (!medplum) {
@@ -44,7 +59,7 @@ export function App(): ReactElement | null {
     return null;
   }
 
-  if (!medplum.getActiveLogin()) {
+  if (!loginState) {
     return null;
   }
 

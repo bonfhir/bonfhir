@@ -6,6 +6,7 @@ import { UseQueryResult } from "@tanstack/react-query";
 import { FieldHelperProps, FieldInputProps, FieldMetaProps } from "formik";
 import { ReactElement, ReactNode } from "react";
 import { FhirValueProps } from "./display";
+import { FhirFieldResourcePropsOptions } from "./forms/fields/resource";
 import { FhirFieldStringPropsOptions } from "./forms/fields/string";
 
 /**
@@ -40,6 +41,10 @@ export interface FhirUIComponentsRenderer {
    */
   loader: <TRendererProps = unknown>(
     props: LoaderProps<TRendererProps>
+  ) => ReactElement | null;
+
+  resource: <TRendererProps = unknown>(
+    props: ResourceProps<TRendererProps>
   ) => ReactElement | null;
 
   table: <TRendererProps = unknown, TColumnRenderProps = unknown>(
@@ -77,6 +82,17 @@ export type InputProps<TRendererProps = unknown> = TRendererProps & {
 
 export type LoaderProps<TRendererProps = unknown> = TRendererProps & {
   query?: UseQueryResult | Array<UseQueryResult> | undefined;
+};
+
+export type ResourceProps<TRendererProps = unknown> = TRendererProps & {
+  options: FhirFieldResourcePropsOptions;
+} & {
+  field: FieldInputProps<string>;
+  meta: FieldMetaProps<string>;
+  helpers: FieldHelperProps<string>;
+} & {
+  onSearch?: (value: string) => void;
+  items: Array<{ label: string; value: string }>;
 };
 
 export type TableProps<TRendererProps, TColumnRenderProps> = TRendererProps & {
