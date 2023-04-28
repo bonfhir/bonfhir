@@ -1,4 +1,5 @@
 {
+  "name": "@bonfhir/monorepo",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -6,14 +7,11 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "check": "turbo run check",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "turbo run format"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-custom": "workspace:*",
-    "prettier": "^2.5.1",
-    "turbo": "canary"
+    "turbo": "^1.9.3"
   }
 }

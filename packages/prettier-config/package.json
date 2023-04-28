@@ -1,0 +1,14 @@
+{
+  "name": "@bonfhir/prettier-config",
+  "description": "Shared prettier configuration for Bonfhir packages.",
+  "version": "2.0.0",
+  "main": "index.json",
+  "dependencies": {
+    "prettier": "^2.8.4",
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "typescript": "^5.0.3"
+  },
+  "devDependencies": {
+    "@types/prettier": "^2.7.2"
+  }
+}

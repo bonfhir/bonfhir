@@ -1,15 +1,17 @@
 {
   "$schema": "https://turborepo.org/schema.json",
+  "globalEnv": ["PACKAGE_VERSION"],
   "pipeline": {
     "build": {
-      "outputs": ["dist/**", "build/**", ".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**"]
     },
-    "lint": {
-      "outputs": []
-    },
+    "check": {},
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "format": {
+      "cache": false
     }
   }
 }
