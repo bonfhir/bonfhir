@@ -1,0 +1,13 @@
+{% for resource in fhir.resources %}
+
+{{ [resource.name, "\n\n", resource.description, "\n\n@see {@link ", resource.fhirDocUrl, "}"] | join | jsdoc }}
+export interface {{ resource.type }} {% if resource.baseDefinition.resource.type %} extends {% endif %} {{ resource.baseDefinition.resource.type }} {
+  /** Resource Type Name (for serialization) */
+  {% if resource.isDomainResource %}
+  readonly resourceType: "{{ resource.type }}";
+  {% else %}
+  readonly resourceType: string;
+  {% endif %}
+}
+
+{% endfor %}

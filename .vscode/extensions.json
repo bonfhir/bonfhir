@@ -1,8 +1,9 @@
 {
   "recommendations": [
     "dbaeumer.vscode-eslint",
-    "EditorConfig.EditorConfig",
+    "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
+    "ronnidc.nunjucks",
     "streetsidesoftware.code-spell-checker"
   ]
 }

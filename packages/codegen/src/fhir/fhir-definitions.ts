@@ -8,14 +8,10 @@ export class FhirDefinitions {
     path?: string | null | undefined
   ): Promise<FhirDefinitions> {
     if (!path) {
-      path = // eslint-disable-next-line unicorn/prefer-module
-        require.main === module
-          ? new URL(
-              `../../definitions/fhir/${release}`,
-              import.meta.url
-            ).toString()
-          : // eslint-disable-next-line unicorn/prefer-module
-            join(__dirname, "..", "..", "definitions", "fhir", release);
+      path = import.meta?.url
+        ? new URL(`../../definitions/fhir/${release}`, import.meta.url).pathname
+        : // eslint-disable-next-line unicorn/prefer-module
+          join(__dirname, "..", "..", "definitions", "fhir", release);
     }
 
     const version = JSON.parse(
@@ -63,7 +59,8 @@ export class FhirResource {
     for (const definition of fhirDefinitions.definitions) {
       if (
         definition.resourceType === "StructureDefinition" &&
-        definition.kind === "resource"
+        definition.kind === "resource" &&
+        (!definition.derivation || definition.derivation === "specialization")
       ) {
         const resource = new FhirResource(fhirDefinitions, definition);
         result.set(resource.url, resource);
@@ -76,7 +73,9 @@ export class FhirResource {
   public abstract: boolean;
   public baseDefinition: ResourcePointer;
   public description: string;
+  public id: string;
   public name: string;
+  public type: string;
   public url: string;
   public elementsByName: Map<string, FhirElement> = new Map();
 
@@ -90,11 +89,13 @@ export class FhirResource {
       structureDefinition.baseDefinition
     );
     this.description = structureDefinition.description;
+    this.id = structureDefinition.id;
     this.name = structureDefinition.name;
+    this.type = structureDefinition.type;
     this.url = structureDefinition.url;
     this.elementsByName = FhirElement.loadAll(
       this._fhirDefinitions,
-      this.name,
+      this.type,
       structureDefinition.snapshot?.element || []
     );
   }
@@ -114,6 +115,12 @@ export class FhirResource {
       ...(this.baseDefinition.resource?.allElements || []),
       ...this.elements,
     ];
+  }
+
+  public get fhirDocUrl(): string {
+    return `http://hl7.org/fhir/${this._fhirDefinitions.release.toUpperCase()}/${
+      this.id
+    }.html`;
   }
 }
 

@@ -44,6 +44,6 @@
     "*.mjs": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
     "*.ts": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
     "*.tsx": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
-    "*.ts.hbs": "${capture}.ts"
+    "*.ts.njk": "${capture}.ts"
   }
 }

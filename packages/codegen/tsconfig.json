@@ -3,6 +3,8 @@
   "include": ["src/**/*"],
   "ts-node": {
     "esm": true,
-    "swc": true
+    "swc": true,
+    "transpileOnly": true,
+    "experimentalSpecifierResolution": "node"
   }
 }

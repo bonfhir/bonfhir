@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import yargs from "yargs";
+import generate from "./commands/generate";
 
 try {
   yargs()
@@ -8,6 +9,7 @@ try {
     .help("h")
     .alias("h", "help")
     .strictCommands()
+    .command(generate)
     .demandCommand(1)
     .version(process.env.PACKAGE_VERSION || "local")
     .parse(process.argv.slice(2));

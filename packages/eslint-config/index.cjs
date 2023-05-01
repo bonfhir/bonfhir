@@ -42,5 +42,6 @@ module.exports = {
         modifiers: ["unused"],
       },
     ],
+    "unicorn/no-array-reduce": "off",
   },
 };
