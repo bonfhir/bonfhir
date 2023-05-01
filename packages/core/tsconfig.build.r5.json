@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/r5/**/*"],
+  "compilerOptions": {
+    "outDir": "dist/r5/types",
+    "noEmit": false,
+    "emitDeclarationOnly": true
+  },
+  "exclude": ["**/*.test.ts"]
+}

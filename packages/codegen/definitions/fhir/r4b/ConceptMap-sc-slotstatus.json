@@ -1,0 +1,68 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "sc-slotstatus",
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>SlotStatusCanonicalMap (http://hl7.org/fhir/ConceptMap/sc-slotstatus)</h2><p>Mapping from <a href=\"valueset-slotstatus.html\">http://hl7.org/fhir/ValueSet/slotstatus</a> to <a href=\"valueset-resource-status.html\">http://hl7.org/fhir/ValueSet/resource-status</a></p><p>DRAFT. Published on 2021-01-17T07:06:13+11:00 by HL7 (FHIR Project) (<a href=\"http://hl7.org/fhir\">http://hl7.org/fhir</a>, <a href=\"mailto:fhir@lists.hl7.org\">fhir@lists.hl7.org</a>). </p><div><p>Canonical Mapping for &quot;The free/busy status of the slot.&quot;</p>\n</div><br/><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Destination Code</b></td></tr><tr><td colspan=\"3\">Mapping from <a href=\"codesystem-slotstatus.html\">SlotStatus</a> to <a href=\"codesystem-resource-status.html\">Canonical Status Codes for FHIR Resources</a></td></tr><tr><td>entered-in-error</td><td><a href=\"codesystem-concept-map-equivalence.html#equivalent\">is equivalent to</a></td><td>error</td></tr><tr><td>busy</td><td><a href=\"codesystem-concept-map-equivalence.html#equivalent\">is equivalent to</a></td><td>accepted</td></tr><tr><td>busy-tentative (Busy (Tentative))</td><td><a href=\"codesystem-concept-map-equivalence.html#equivalent\">is equivalent to</a></td><td>unconfirmed</td></tr><tr><td>busy-unavailable (Busy (Unavailable))</td><td><a href=\"codesystem-concept-map-equivalence.html#equivalent\">is equivalent to</a></td><td>busy-unavailable</td></tr><tr><td>free</td><td><a href=\"codesystem-concept-map-equivalence.html#equivalent\">is equivalent to</a></td><td>free</td></tr></table></div>"
+  },
+  "url" : "http://hl7.org/fhir/ConceptMap/sc-slotstatus",
+  "version" : "4.3.0",
+  "name" : "SlotStatusCanonicalMap",
+  "title" : "Canonical Mapping for \"SlotStatus\"",
+  "status" : "draft",
+  "experimental" : false,
+  "date" : "2021-01-17T07:06:13+11:00",
+  "publisher" : "HL7 (FHIR Project)",
+  "contact" : [{
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://hl7.org/fhir"
+    },
+    {
+      "system" : "email",
+      "value" : "fhir@lists.hl7.org"
+    }]
+  }],
+  "description" : "Canonical Mapping for \"The free/busy status of the slot.\"",
+  "sourceCanonical" : "http://hl7.org/fhir/ValueSet/slotstatus",
+  "targetCanonical" : "http://hl7.org/fhir/ValueSet/resource-status",
+  "group" : [{
+    "source" : "http://hl7.org/fhir/slotstatus",
+    "target" : "http://hl7.org/fhir/resource-status",
+    "element" : [{
+      "code" : "entered-in-error",
+      "target" : [{
+        "code" : "error",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "busy",
+      "target" : [{
+        "code" : "accepted",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "busy-tentative",
+      "target" : [{
+        "code" : "unconfirmed",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "busy-unavailable",
+      "target" : [{
+        "code" : "busy-unavailable",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "free",
+      "target" : [{
+        "code" : "free",
+        "equivalence" : "equivalent"
+      }]
+    }]
+  }]
+}

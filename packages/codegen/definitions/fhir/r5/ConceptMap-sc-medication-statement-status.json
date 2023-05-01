@@ -1,0 +1,56 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "sc-medication-statement-status",
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>MedicationStatementStatusCodesCanonicalMap (http://hl7.org/fhir/ConceptMap/sc-medication-statement-status)</h2><p>Mapping from <a href=\"valueset-medication-statement-status.html\">MedicationStatement Status Codes</a> to <a href=\"valueset-resource-status.html\">Canonical Status Codes for FHIR Resources</a></p><p>DRAFT. Published on ?ngen-10? by FHIR Project team (<a href=\"http://hl7.org/fhir\">http://hl7.org/fhir</a>). </p><div><p>Canonical Mapping for &quot;MedicationStatement Status Codes&quot;</p>\n</div><br/><p><b>Group 1</b>Mapping from <a href=\"codesystem-medication-statement-status.html\">MedicationStatement Status Codes</a> to <a href=\"codesystem-resource-status.html\">Canonical Status Codes for FHIR Resources</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td></tr><tr><td>entered-in-error</td><td><a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>error</td></tr><tr><td>draft</td><td><a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>draft</td></tr><tr><td>recorded</td><td><a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>complete</td></tr></table></div>"
+  },
+  "url" : "http://hl7.org/fhir/ConceptMap/sc-medication-statement-status",
+  "version" : "5.0.0",
+  "name" : "MedicationStatementStatusCodesCanonicalMap",
+  "title" : "Canonical Mapping for \"MedicationStatement Status Codes\"",
+  "status" : "draft",
+  "experimental" : false,
+  "publisher" : "FHIR Project team",
+  "contact" : [{
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://hl7.org/fhir"
+    }]
+  }],
+  "description" : "Canonical Mapping for \"MedicationStatement Status Codes\"",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "http://unstats.un.org/unsd/methods/m49/m49.htm",
+      "code" : "001",
+      "display" : "World"
+    }]
+  }],
+  "sourceScopeCanonical" : "http://hl7.org/fhir/ValueSet/medication-statement-status",
+  "targetScopeCanonical" : "http://hl7.org/fhir/ValueSet/resource-status",
+  "group" : [{
+    "source" : "http://hl7.org/fhir/CodeSystem/medication-statement-status",
+    "target" : "http://hl7.org/fhir/resource-status",
+    "element" : [{
+      "code" : "entered-in-error",
+      "target" : [{
+        "code" : "error",
+        "relationship" : "equivalent"
+      }]
+    },
+    {
+      "code" : "draft",
+      "target" : [{
+        "code" : "draft",
+        "relationship" : "equivalent"
+      }]
+    },
+    {
+      "code" : "recorded",
+      "target" : [{
+        "code" : "complete",
+        "relationship" : "equivalent"
+      }]
+    }]
+  }]
+}

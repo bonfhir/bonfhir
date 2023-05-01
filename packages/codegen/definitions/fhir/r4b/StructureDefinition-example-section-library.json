@@ -1,0 +1,107 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "example-section-library",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;example-section-library&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/StructureDefinition/example-section-library</code></p><p><b>name</b>: DocumentSectionLibrary</p><p><b>title</b>: Document Section Library (For testing section templates)</p><p><b>status</b>: active</p><p><b>experimental</b>: false</p><p><b>date</b>: 2018-11-05T17:57:00+11:00</p><p><b>kind</b>: resource</p><p><b>abstract</b>: true</p><p><b>type</b>: <a href=\"composition.html\">Composition</a></p><p><b>baseDefinition</b>: <a href=\"composition.html\">Composition</a></p><p><b>derivation</b>: constraint</p><blockquote><p><b>differential</b></p></blockquote></div>"
+  },
+  "url" : "http://hl7.org/fhir/StructureDefinition/example-section-library",
+  "name" : "DocumentSectionLibrary",
+  "title" : "Document Section Library (For testing section templates)",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2018-11-05T17:57:00+11:00",
+  "kind" : "resource",
+  "abstract" : true,
+  "type" : "Composition",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Composition",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [{
+      "id" : "Composition",
+      "path" : "Composition"
+    },
+    {
+      "id" : "Composition.section",
+      "path" : "Composition.section",
+      "slicing" : {
+        "discriminator" : [{
+          "type" : "pattern",
+          "path" : "code"
+        }],
+        "description" : "Slice by .section.code when using this library of sections",
+        "ordered" : true,
+        "rules" : "closed"
+      }
+    },
+    {
+      "id" : "Composition.section:procedure",
+      "path" : "Composition.section",
+      "sliceName" : "procedure"
+    },
+    {
+      "id" : "Composition.section:procedure.title",
+      "path" : "Composition.section.title",
+      "min" : 1,
+      "fixedString" : "Procedures Performed"
+    },
+    {
+      "id" : "Composition.section:procedure.code",
+      "path" : "Composition.section.code",
+      "min" : 1,
+      "patternCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "29554-3",
+          "display" : "Procedure Narrative"
+        }]
+      }
+    },
+    {
+      "id" : "Composition.section:medications",
+      "path" : "Composition.section",
+      "sliceName" : "medications"
+    },
+    {
+      "id" : "Composition.section:medications.title",
+      "path" : "Composition.section.title",
+      "min" : 1,
+      "fixedString" : "Medications Administered"
+    },
+    {
+      "id" : "Composition.section:medications.code",
+      "path" : "Composition.section.code",
+      "min" : 1,
+      "patternCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "29549-3",
+          "display" : "Medication administered Narrative"
+        }]
+      }
+    },
+    {
+      "id" : "Composition.section:plan",
+      "path" : "Composition.section",
+      "sliceName" : "plan"
+    },
+    {
+      "id" : "Composition.section:plan.title",
+      "path" : "Composition.section.title",
+      "min" : 1,
+      "fixedString" : "Discharge Treatment Plan"
+    },
+    {
+      "id" : "Composition.section:plan.code",
+      "path" : "Composition.section.code",
+      "min" : 1,
+      "patternCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "18776-5",
+          "display" : "Plan of treatment (narrative)"
+        }]
+      }
+    }]
+  }
+}

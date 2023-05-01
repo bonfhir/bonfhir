@@ -1,0 +1,68 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "sc-encounter-location-status",
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>EncounterLocationStatusCanonicalMap (http://hl7.org/fhir/ConceptMap/sc-encounter-location-status)</h2><p>Mapping from <a href=\"valueset-encounter-location-status.html\">Encounter Location Status</a> to <a href=\"valueset-resource-status.html\">Canonical Status Codes for FHIR Resources</a></p><p>DRAFT. Published on 2020-12-28T16:55:11+11:00 by HL7 (FHIR Project) (<a href=\"http://hl7.org/fhir\">http://hl7.org/fhir</a>, <a href=\"mailto:fhir@lists.hl7.org\">fhir@lists.hl7.org</a>). </p><div><p>Canonical Mapping for &quot;The status of the location.&quot;</p>\n</div><br/><p><b>Group 1</b>Mapping from <a href=\"codesystem-encounter-location-status.html\">Encounter Location Status</a> to <a href=\"codesystem-resource-status.html\">Canonical Status Codes for FHIR Resources</a></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td></tr><tr><td>planned</td><td><a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>planned</td></tr><tr><td>reserved</td><td><a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>accepted</td></tr><tr><td>active</td><td><a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>active</td></tr><tr><td>completed</td><td><a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a></td><td>complete</td></tr></table></div>"
+  },
+  "url" : "http://hl7.org/fhir/ConceptMap/sc-encounter-location-status",
+  "version" : "5.0.0",
+  "name" : "EncounterLocationStatusCanonicalMap",
+  "title" : "Canonical Mapping for \"Encounter Location Status\"",
+  "status" : "draft",
+  "experimental" : false,
+  "date" : "2020-12-28T16:55:11+11:00",
+  "publisher" : "HL7 (FHIR Project)",
+  "contact" : [{
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://hl7.org/fhir"
+    },
+    {
+      "system" : "email",
+      "value" : "fhir@lists.hl7.org"
+    }]
+  }],
+  "description" : "Canonical Mapping for \"The status of the location.\"",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "http://unstats.un.org/unsd/methods/m49/m49.htm",
+      "code" : "001",
+      "display" : "World"
+    }]
+  }],
+  "sourceScopeCanonical" : "http://hl7.org/fhir/ValueSet/encounter-location-status",
+  "targetScopeCanonical" : "http://hl7.org/fhir/ValueSet/resource-status",
+  "group" : [{
+    "source" : "http://hl7.org/fhir/encounter-location-status",
+    "target" : "http://hl7.org/fhir/resource-status",
+    "element" : [{
+      "code" : "planned",
+      "target" : [{
+        "code" : "planned",
+        "relationship" : "equivalent"
+      }]
+    },
+    {
+      "code" : "reserved",
+      "target" : [{
+        "code" : "accepted",
+        "relationship" : "equivalent"
+      }]
+    },
+    {
+      "code" : "active",
+      "target" : [{
+        "code" : "active",
+        "relationship" : "equivalent"
+      }]
+    },
+    {
+      "code" : "completed",
+      "target" : [{
+        "code" : "complete",
+        "relationship" : "equivalent"
+      }]
+    }]
+  }]
+}

@@ -1,0 +1,6 @@
+src/
+.eslintrc.cjs
+jest.config.mjs
+rollup.config.mjs
+tsconfig.build.json
+tsconfig.json

@@ -1,0 +1,152 @@
+{
+  "resourceType" : "StructureMap",
+  "id" : "supplyrequest-transform",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <pre class=\"fml\">\n\n        <span style=\"color: #cc00cc\">/// \n          <b>url</b> = \n        </span>\n        <span style=\"color: blue\">'http://hl7.org/fhir/StructureMap/supplyrequest-transform'</span>\n\n        <span style=\"color: #cc00cc\">/// \n          <b>name</b> = \n        </span>\n        <span style=\"color: blue\">'TransformFromAnActivityDefinitionToASupplyRequest'</span>\n\n        <span style=\"color: #cc00cc\">/// \n          <b>title</b> = \n        </span>\n        <span style=\"color: blue\">'Transform from an ActivityDefinition to a SupplyRequest'</span>\n\n        <span style=\"color: #cc00cc\">/// \n          <b>status</b> = \n        </span>\n        <span style=\"color: blue\">'draft'</span>\n\n\n        <b>uses</b>\n        <span style=\"color: navy\"> &quot;</span>\n        <a href=\"activitydefinition.html\" title=\"ActivityDefinition\">http://hl7.org/fhir/StructureDefinition/ActivityDefinition</a>\n        <span style=\"color: navy\">&quot; </span>\n        <b>as </b>\n        <b>source</b>\n\n        <b>uses</b>\n        <span style=\"color: navy\"> &quot;</span>\n        <a href=\"supplyrequest.html\" title=\"SupplyRequest\">http://hl7.org/fhir/StructureDefinition/SupplyRequest</a>\n        <span style=\"color: navy\">&quot; </span>\n        <b>as </b>\n        <b>target</b>\n\n\n        <b>group </b>main\n        <span style=\"color: navy\">(</span>\n        <b>source</b> \n        <span style=\"color: maroon\">source</span>\n        <span style=\"color: navy\"> : </span>ActivityDefinition, \n        <b>target</b> \n        <span style=\"color: maroon\">target</span>\n        <span style=\"color: navy\"> : </span>SupplyRequest\n        <span style=\"color: navy\">)</span>\n        <span style=\"color: navy\"> {\n</span>  source.id\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.status = \n        <span style=\"color: navy\">(</span>'draft'\n        <span style=\"color: navy\">)</span> \n        <i>&quot;status&quot;</i>\n        <span style=\"color: navy\">;</span>\n  source.id\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.category = \n        <span style=\"color: navy\">(</span>'non-stock'\n        <span style=\"color: navy\">)</span> \n        <i>&quot;category&quot;</i>\n        <span style=\"color: navy\">;</span>\n  source.id\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.priority = \n        <span style=\"color: navy\">(</span>'routine'\n        <span style=\"color: navy\">)</span> \n        <i>&quot;priority&quot;</i>\n        <span style=\"color: navy\">;</span>\n  source.quantity\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.category = \n        <b>copy</b>\n        <span style=\"color: navy\">(</span>\n        <span style=\"color: navy\">)</span>\n        <span style=\"color: navy\">;</span>\n  source.code\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span> target.item = \n        <b>create</b>\n        <span style=\"color: navy\">(</span>\n        <span style=\"color: navy\">)</span>\n        <b> as </b>\n        <span style=\"color: maroon\">b</span>\n        <span style=\"color: navy\">, </span> b.concept = \n        <b>copy</b>\n        <span style=\"color: navy\">(</span>\n        <span style=\"color: navy\">)</span> \n        <i>&quot;item&quot;</i>\n        <span style=\"color: navy\">;</span>\n  source.id\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.occurrence = \n        <span style=\"color: navy\">(</span>now()\n        <span style=\"color: navy\">)</span> \n        <i>&quot;when&quot;</i>\n        <span style=\"color: navy\">;</span>\n  source.id\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.authoredOn = \n        <span style=\"color: navy\">(</span>now()\n        <span style=\"color: navy\">)</span> \n        <i>&quot;authoredOn&quot;</i>\n        <span style=\"color: navy\">;</span>\n\n        <span style=\"color: navy\">}\n\n</span>\n      </pre>\n    </div>"
+  },
+  "url" : "http://hl7.org/fhir/StructureMap/supplyrequest-transform",
+  "identifier" : [{
+    "system" : "urn:ietf:rfc:3986",
+    "value" : "urn:oid:2.16.840.1.113883.4.642.13.1"
+  }],
+  "version" : "5.0.0",
+  "name" : "TransformFromAnActivityDefinitionToASupplyRequest",
+  "title" : "Transform from an ActivityDefinition to a SupplyRequest",
+  "status" : "draft",
+  "experimental" : true,
+  "description" : "Transform from an ActivityDefinition to a SupplyRequest",
+  "structure" : [{
+    "url" : "http://hl7.org/fhir/StructureDefinition/ActivityDefinition",
+    "mode" : "source"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/SupplyRequest",
+    "mode" : "target"
+  }],
+  "group" : [{
+    "name" : "main",
+    "input" : [{
+      "name" : "source",
+      "type" : "ActivityDefinition",
+      "mode" : "source"
+    },
+    {
+      "name" : "target",
+      "type" : "SupplyRequest",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "status",
+      "source" : [{
+        "context" : "source",
+        "element" : "id",
+        "variable" : "a"
+      }],
+      "target" : [{
+        "context" : "target",
+        "element" : "status",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'draft'"
+        }]
+      }]
+    },
+    {
+      "name" : "category",
+      "source" : [{
+        "context" : "source",
+        "element" : "id",
+        "variable" : "a"
+      }],
+      "target" : [{
+        "context" : "target",
+        "element" : "category",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'non-stock'"
+        }]
+      }]
+    },
+    {
+      "name" : "priority",
+      "source" : [{
+        "context" : "source",
+        "element" : "id",
+        "variable" : "a"
+      }],
+      "target" : [{
+        "context" : "target",
+        "element" : "priority",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'routine'"
+        }]
+      }]
+    },
+    {
+      "name" : "quantity",
+      "source" : [{
+        "context" : "source",
+        "element" : "quantity",
+        "variable" : "a"
+      }],
+      "target" : [{
+        "context" : "target",
+        "element" : "category",
+        "transform" : "copy"
+      }]
+    },
+    {
+      "name" : "item",
+      "source" : [{
+        "context" : "source",
+        "element" : "code",
+        "variable" : "a"
+      }],
+      "target" : [{
+        "context" : "target",
+        "element" : "item",
+        "variable" : "b",
+        "transform" : "create"
+      },
+      {
+        "context" : "b",
+        "element" : "concept",
+        "transform" : "copy"
+      }]
+    },
+    {
+      "name" : "when",
+      "source" : [{
+        "context" : "source",
+        "element" : "id",
+        "variable" : "a"
+      }],
+      "target" : [{
+        "context" : "target",
+        "element" : "occurrence",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "now()"
+        }]
+      }]
+    },
+    {
+      "name" : "authoredOn",
+      "source" : [{
+        "context" : "source",
+        "element" : "id",
+        "variable" : "a"
+      }],
+      "target" : [{
+        "context" : "target",
+        "element" : "authoredOn",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "now()"
+        }]
+      }]
+    }]
+  }]
+}

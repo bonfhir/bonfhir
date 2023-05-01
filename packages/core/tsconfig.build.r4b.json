@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/r4b/**/*"],
+  "compilerOptions": {
+    "outDir": "dist/r4b/types",
+    "noEmit": false,
+    "emitDeclarationOnly": true
+  },
+  "exclude": ["**/*.test.ts"]
+}

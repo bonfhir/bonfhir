@@ -1,0 +1,22 @@
+{
+  "resourceType" : "SearchParameter",
+  "id" : "example-constraint",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SearchParameter</b><a name=\"example-constraint\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SearchParameter &quot;example-constraint&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/SearchParameter/example-constraint</code></p><p><b>name</b>: Exampleconstraint</p><p><b>title</b>: example-constraint</p><p><b>status</b>: draft</p><p><b>experimental</b>: true</p><p><b>publisher</b>: Health Level Seven International (FHIR Infrastructure)</p><p><b>description</b>: Search Composition Bundle</p><p><b>code</b>: example-constraint</p><p><b>base</b>: Bundle</p><p><b>type</b>: reference</p><p><b>expression</b>: Bundle.entry[0].resource</p><p><b>processingMode</b>: normal</p><p><b>constraint</b>: Bundle.type = 'document' and Bundle.entry[0].resource is Composition</p><p><b>target</b>: Composition</p></div>"
+  },
+  "url" : "http://hl7.org/fhir/SearchParameter/example-constraint",
+  "name" : "Exampleconstraint",
+  "title" : "example-constraint",
+  "status" : "draft",
+  "experimental" : true,
+  "publisher" : "Health Level Seven International (FHIR Infrastructure)",
+  "description" : "Search Composition Bundle",
+  "code" : "example-constraint",
+  "base" : ["Bundle"],
+  "type" : "reference",
+  "expression" : "Bundle.entry[0].resource",
+  "processingMode" : "normal",
+  "constraint" : "Bundle.type = 'document' and Bundle.entry[0].resource is Composition",
+  "target" : ["Composition"]
+}

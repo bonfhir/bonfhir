@@ -7,7 +7,6 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "eslint-config-prettier",
     "plugin:unicorn/recommended",
-    "plugin:import/recommended",
     "turbo",
   ],
   ignorePatterns: [

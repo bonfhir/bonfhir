@@ -1,6 +1,4 @@
 {
-  "eslint.workingDirectories": ["apps/*", "packages/*"],
-  "explorer.excludeGitIgnore": true,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
@@ -34,5 +32,18 @@
       "source.fixAll.eslint": true
     }
   },
-  "cSpell.words": ["bonfhir", "codegen", "listr", "loglevel"]
+  "cSpell.words": ["bonfhir", "codegen", "FHIR", "listr", "loglevel", "onwarn"],
+  "eslint.workingDirectories": ["apps/*", "packages/*"],
+  "explorer.excludeGitIgnore": true,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.cjs": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
+    "*.js": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
+    "*.jsx": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
+    "*.mjs": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
+    "*.ts": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
+    "*.tsx": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
+    "*.ts.hbs": "${capture}.ts"
+  }
 }

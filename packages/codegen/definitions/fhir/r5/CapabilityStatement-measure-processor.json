@@ -1,0 +1,77 @@
+{
+  "resourceType" : "CapabilityStatement",
+  "id" : "measure-processor",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      \n      <h2>Measure Calculation Service Conformance Statement</h2>\n      \n      <div>\n        \n        <p>Basic conformance statement for a Measure Processor Service. A server can support more functionality\n           than defined here, but this is the minimum amount</p>\n\n      \n      </div>\n      \n      <table>\n        \n        <tr>\n          \n          <td>Mode</td>\n          \n          <td>SERVER</td>\n        \n        </tr>\n        \n        <tr>\n          \n          <td>Description</td>\n          \n          <td>RESTful Measure Processor Server</td>\n        \n        </tr>\n        \n        <tr>\n          \n          <td>Transaction</td>\n          \n          <td/>\n        \n        </tr>\n        \n        <tr>\n          \n          <td>System History</td>\n          \n          <td/>\n        \n        </tr>\n        \n        <tr>\n          \n          <td>System Search</td>\n          \n          <td/>\n        \n        </tr>\n      \n      </table>\n      \n      <table>\n        \n        <tr>\n          \n          <th>\n            \n            <b>Resource Type</b>\n          \n          </th>\n          \n          <th>\n            \n            <b>Profile</b>\n          \n          </th>\n          \n          <th>\n            \n            <b>Read</b>\n          \n          </th>\n          \n          <th>\n            \n            <b>V-Read</b>\n          \n          </th>\n          \n          <th>\n            \n            <b>Search</b>\n          \n          </th>\n          \n          <th>\n            \n            <b>Update</b>\n          \n          </th>\n          \n          <th>\n            \n            <b>Updates</b>\n          \n          </th>\n          \n          <th>\n            \n            <b>Create</b>\n          \n          </th>\n          \n          <th>\n            \n            <b>Delete</b>\n          \n          </th>\n          \n          <th>\n            \n            <b>History</b>\n          \n          </th>\n        \n        </tr>\n      \n      </table>\n    \n    </div>"
+  },
+  "url" : "http://hl7.org/fhir/measure-processor",
+  "name" : "MeasureProcessorServiceConformanceStatement",
+  "title" : "Measure Processor Service Conformance Statement",
+  "status" : "draft",
+  "date" : "2016-09-16",
+  "publisher" : "HL7, Inc",
+  "contact" : [{
+    "name" : "FHIR Project",
+    "telecom" : [{
+      "system" : "other",
+      "value" : "http://hl7.org/fhir"
+    }]
+  }],
+  "description" : "Basic conformance statement for a Measure Processor Service. A server can support more functionality    than defined here, but this is the minimum amount",
+  "kind" : "capability",
+  "software" : {
+    "name" : "ACME Measure Processor Service"
+  },
+  "fhirVersion" : "5.0.0",
+  "format" : ["json",
+  "xml"],
+  "rest" : [{
+    "mode" : "server",
+    "documentation" : "RESTful Measure Processor Service",
+    "security" : {
+      "cors" : true,
+      "service" : [{
+        "coding" : [{
+          "system" : "http://hl7.org/fhir/restful-security-service",
+          "code" : "Certificates"
+        }]
+      }]
+    },
+    "resource" : [{
+      "type" : "Measure",
+      "profile" : "http://hl7.org/fhir/StructureDefinition/Measure",
+      "interaction" : [{
+        "code" : "read",
+        "documentation" : "Read allows clients to get the logical definitions of the measures"
+      },
+      {
+        "code" : "search-type",
+        "documentation" : "Search allows clients to filter measures based on a provided search parameter"
+      }],
+      "searchParam" : [{
+        "name" : "identifier",
+        "definition" : "http://hl7.org/fhir/SearchParameter/Measure-identifier",
+        "type" : "token"
+      },
+      {
+        "name" : "status",
+        "definition" : "http://hl7.org/fhir/SearchParameter/Measure-status",
+        "type" : "token"
+      },
+      {
+        "name" : "version",
+        "definition" : "http://hl7.org/fhir/SearchParameter/Measure-version",
+        "type" : "token"
+      }]
+    }],
+    "operation" : [{
+      "name" : "evaluate-measure",
+      "definition" : "http://hl7.org/fhir/OperationDefinition/Measure-evaluate-measure"
+    },
+    {
+      "name" : "data-requirements",
+      "definition" : "http://hl7.org/fhir/OperationDefinition/Measure-data-requirements"
+    }]
+  }]
+}

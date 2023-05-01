@@ -1,0 +1,56 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "sc-goal-achievement",
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>GoalAchievementStatusCanonicalMap (http://hl7.org/fhir/ConceptMap/sc-goal-achievement)</h2><p>Mapping from <a href=\"valueset-goal-achievement.html\">http://hl7.org/fhir/ValueSet/goal-achievement</a> to <a href=\"valueset-resource-status.html\">http://hl7.org/fhir/ValueSet/resource-status</a></p><p>DRAFT. Published on ?ngen-10? by HL7 International - Patient Care WG (<a href=\"http://www.hl7.org/Special/committees/patientcare/\">http://www.hl7.org/Special/com...</a>). </p><div><p>Canonical Mapping for &quot;Describes the progression, or lack thereof, towards the goal against the target.&quot;</p>\n</div><br/><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Destination Code</b></td></tr><tr><td colspan=\"3\">Mapping from <a href=\"codesystem-goal-achievement.html\">GoalAchievementStatus</a> to <a href=\"codesystem-resource-status.html\">Canonical Status Codes for FHIR Resources</a></td></tr><tr><td>in-progress, sustaining, improving, worsening, no-change</td><td><a href=\"codesystem-concept-map-equivalence.html#equivalent\">is equivalent to</a></td><td>active</td></tr><tr><td>achieved</td><td><a href=\"codesystem-concept-map-equivalence.html#equivalent\">is equivalent to</a></td><td>complete</td></tr><tr><td>not-attainable</td><td><a href=\"codesystem-concept-map-equivalence.html#equivalent\">is equivalent to</a></td><td>abandoned</td></tr><tr><td>no-progress, not-achieved</td><td><a href=\"codesystem-concept-map-equivalence.html#equivalent\">is equivalent to</a></td><td>not-done</td></tr></table></div>"
+  },
+  "url" : "http://hl7.org/fhir/ConceptMap/sc-goal-achievement",
+  "version" : "4.3.0",
+  "name" : "GoalAchievementStatusCanonicalMap",
+  "title" : "Canonical Mapping for \"GoalAchievementStatus\"",
+  "status" : "draft",
+  "experimental" : false,
+  "publisher" : "HL7 International - Patient Care WG",
+  "contact" : [{
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://www.hl7.org/Special/committees/patientcare/"
+    }]
+  }],
+  "description" : "Canonical Mapping for \"Describes the progression, or lack thereof, towards the goal against the target.\"",
+  "sourceCanonical" : "http://hl7.org/fhir/ValueSet/goal-achievement",
+  "targetCanonical" : "http://hl7.org/fhir/ValueSet/resource-status",
+  "group" : [{
+    "source" : "http://terminology.hl7.org/CodeSystem/goal-achievement",
+    "target" : "http://hl7.org/fhir/resource-status",
+    "element" : [{
+      "code" : "in-progress, sustaining, improving, worsening, no-change",
+      "target" : [{
+        "code" : "active",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "achieved",
+      "target" : [{
+        "code" : "complete",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "not-attainable",
+      "target" : [{
+        "code" : "abandoned",
+        "equivalence" : "equivalent"
+      }]
+    },
+    {
+      "code" : "no-progress, not-achieved",
+      "target" : [{
+        "code" : "not-done",
+        "equivalence" : "equivalent"
+      }]
+    }]
+  }]
+}
