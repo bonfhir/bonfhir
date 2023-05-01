@@ -1,5 +1,4 @@
 import chalk from "chalk";
-import chunkText from "chunk-text";
 import fg from "fast-glob";
 import Listr from "listr";
 import { exec } from "node:child_process";
@@ -9,6 +8,7 @@ import { promisify } from "node:util";
 import nunjucks from "nunjucks";
 import { CommandModule } from "yargs";
 import { FhirDefinitions } from "../fhir";
+import { splitLongLines, toJsComment } from "../util-codegen";
 
 const execAsync = promisify(exec);
 
@@ -87,10 +87,7 @@ export default <CommandModule<unknown, CommandOptions>>{
             });
 
             nunjucksEnvironment.addFilter("jsdoc", (value: string) => {
-              const lines = value.split("\n").flatMap((line) => {
-                return line.trim().length === 0 ? line : chunkText(line, 80);
-              });
-              return `/**\n * ${lines.join("\n * ")}\n */`;
+              return toJsComment(splitLongLines(value.split("\n")));
             });
 
             context.writtenFiles = [];

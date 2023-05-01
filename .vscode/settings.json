@@ -32,7 +32,15 @@
       "source.fixAll.eslint": true
     }
   },
-  "cSpell.words": ["bonfhir", "codegen", "FHIR", "listr", "loglevel", "onwarn"],
+  "cSpell.words": [
+    "bonfhir",
+    "codegen",
+    "DICOM",
+    "FHIR",
+    "listr",
+    "loglevel",
+    "onwarn"
+  ],
   "eslint.workingDirectories": ["apps/*", "packages/*"],
   "explorer.excludeGitIgnore": true,
   "explorer.fileNesting.enabled": true,

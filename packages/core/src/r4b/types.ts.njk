@@ -1,18 +1,18 @@
-{% for resource in fhir.resources %}
+/**
+ * FHIR Definitions for {{ fhir.release }}/{{ fhir.version }}
+ */
 
-{{ [resource.name, "\n\n", resource.description, "\n\n@see {@link ", resource.fhirDocUrl, "}"] | join | jsdoc }}
-export interface {{ resource.type }} {% if resource.baseDefinition.resource.type %} extends {% endif %} {{ resource.baseDefinition.resource.type }} {
-  /** Resource Type Name (for serialization) */
-  {% if resource.isDomainResource %}
-  readonly resourceType: "{{ resource.type }}";
-  {% else %}
-  readonly resourceType: string;
+{% for structureDef in fhir.structureDefinitions %}
+
+  {% if (structureDef.derivation != "constraint") and (structureDef.kind != "primitive-type") %}
+    {{ structureDef.jsDoc }}
+    export interface {{ structureDef.type }} {% if structureDef.base.type %}extends {{ structureDef.base.type }} {% endif %}{
+      {% if structureDef.isDomainResource %}
+      readonly resourceType: "{{ structureDef.type }}";
+      {% else %}
+      readonly resourceType: string;
+      {% endif %}
+    }
+
   {% endif %}
-
-  {% for element in resource.elements %}
-  {{ [element.definition, "\n\n", element.comment, "\n\n@see {@link ", resource.fhirDocDefinitionsUrl, "#", element.path,"}"] | join | jsdoc }}
-  {{ element.name }}: {{ element.jsType }};
-  {% endfor %}
-}
-
 {% endfor %}
