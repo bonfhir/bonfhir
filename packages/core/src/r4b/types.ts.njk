@@ -12,6 +12,12 @@
       {% else %}
       readonly resourceType: string;
       {% endif %}
+
+
+      {% for element in structureDef.ownElements %}
+      {{ element.name }}{% if element.isOptional %}?{% endif %}: {{ element.jsType }};
+      _{{ element.name }}?: Element{% if element.isArray %}[]{% endif %} | undefined;
+      {% endfor %}
     }
 
   {% endif %}

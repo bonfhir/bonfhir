@@ -93,7 +93,7 @@ export class StructureDefinition {
 
   public get ownElements(): Element[] {
     return this.elements.filter((x: any) =>
-      x.path.startsWith((this as any).name + ".")
+      x.base.path.startsWith((this as any).name + ".")
     );
   }
 
@@ -131,5 +131,22 @@ export class Element {
 
   public get isArray(): boolean {
     return (this as any).max === "*";
+  }
+
+  public get isOptional(): boolean {
+    return (this as any).min === 0;
+  }
+
+  public get jsType(): string {
+    let resolvedType = (this as any).type?.map((x: any) => x.code).join(" | ");
+
+    if (this.isArray) {
+      resolvedType = `Array<${resolvedType}>`;
+    }
+
+    if (this.isOptional) {
+      resolvedType = `${resolvedType} | undefined`;
+    }
+    return resolvedType;
   }
 }
