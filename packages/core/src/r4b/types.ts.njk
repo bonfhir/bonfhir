@@ -8,6 +8,11 @@ export interface {{ resource.type }} {% if resource.baseDefinition.resource.type
   {% else %}
   readonly resourceType: string;
   {% endif %}
+
+  {% for element in resource.elements %}
+  {{ [element.definition, "\n\n", element.comment, "\n\n@see {@link ", resource.fhirDocDefinitionsUrl, "#", element.path,"}"] | join | jsdoc }}
+  {{ element.name }}: {{ element.jsType }};
+  {% endfor %}
 }
 
 {% endfor %}

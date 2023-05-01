@@ -122,6 +122,12 @@ export class FhirResource {
       this.id
     }.html`;
   }
+
+  public get fhirDocDefinitionsUrl(): string {
+    return `http://hl7.org/fhir/${this._fhirDefinitions.release.toUpperCase()}/${
+      this.id
+    }-definitions.html`;
+  }
 }
 
 export class FhirElement {
@@ -144,6 +150,13 @@ export class FhirElement {
 
   public id: string;
   public short: string;
+  public definition: string;
+  public comment: string;
+  public min: number;
+  public max: string;
+  public isSummary: boolean;
+  public path: string;
+  public type: string[];
 
   constructor(
     private _fhirDefinitions: FhirDefinitions,
@@ -151,10 +164,30 @@ export class FhirElement {
   ) {
     this.id = elementDefinition.id;
     this.short = elementDefinition.short;
+    this.definition = elementDefinition.definition;
+    this.comment = elementDefinition.comment;
+    this.min = elementDefinition.min;
+    this.max = elementDefinition.max;
+    this.isSummary = elementDefinition.isSummary;
+    this.path = elementDefinition.path;
+    this.type = elementDefinition.type?.map((x: any) => x.code) || [];
   }
 
   public get name(): string {
     return this.id.split(".").pop() || "";
+  }
+
+  public get isArray(): boolean {
+    return this.max === "*";
+  }
+
+  public get jsType(): string {
+    const resolvedType = this.type[0];
+    if (this.isArray) {
+      return `Array<${resolvedType}>`;
+    }
+
+    return resolvedType!;
   }
 }
 
