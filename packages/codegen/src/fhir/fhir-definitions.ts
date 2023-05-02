@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
-import { splitLongLines, toJsComment } from "../util-codegen";
+import { splitLongLines, toJsComment, toJsType } from "../util-codegen";
 
 /**
  * Holds all FHIR definitions
@@ -87,7 +87,24 @@ export class StructureDefinition {
 
   public get elements(): Element[] {
     return ((this as any).snapshot?.element || [])
-      .map((x: any) => Object.assign(new Element(this._definitions), x))
+      .flatMap((x: any) => {
+        return x.path.endsWith("[x]")
+          ? x.type.map((t: any) => {
+              const suffix = t.code[0].toUpperCase() + t.code.slice(1);
+              return Object.assign(new Element(this._definitions), {
+                ...x,
+                id: x.id.replace("[x]", suffix),
+                path: x.path.replace("[x]", suffix),
+                min: 0,
+                base: {
+                  ...x.base,
+                  path: x.base.path.replace("[x]", suffix),
+                },
+                type: [t],
+              });
+            })
+          : Object.assign(new Element(this._definitions), x);
+      })
       .sort((a: any, b: any) => a.path.localeCompare(b.path));
   }
 
@@ -138,7 +155,9 @@ export class Element {
   }
 
   public get jsType(): string {
-    let resolvedType = (this as any).type?.map((x: any) => x.code).join(" | ");
+    let resolvedType = (this as any).type
+      ?.map((x: any) => toJsType(x.code))
+      .join(" | ");
 
     if (this.isArray) {
       resolvedType = `Array<${resolvedType}>`;

@@ -1,0 +1,23 @@
+/**
+ * FHIR Definitions for <%= fhir.release %>/<%= fhir.version %>
+ */
+
+<% for (const structureDef of fhir.structureDefinitions) { %>
+
+  <% if (structureDef.derivation != "constraint" && structureDef.kind != "primitive-type") { %>
+    <%= structureDef.jsDoc %>
+    export interface <%= structureDef.type %> <% if (structureDef.base?.type) { %>extends <%= structureDef.base.type %> <% } %>{
+      <% if (structureDef.isDomainResource) { %>
+      readonly resourceType: "<%= structureDef.type %>";
+      <% } else { %>
+      readonly resourceType: string;
+      <% } %>
+
+      <% for (const element of structureDef.ownElements) { %>
+        <%= element.name %><% if (element.isOptional) { %>?<% } %>: <%= element.jsType %>;
+        _<%= element.name %>?: Element<% if (element.isArray) { %>[]<% } %> | undefined;
+      <% } %>
+    }
+
+  <% } %>
+<% } %>

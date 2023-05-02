@@ -1,9 +1,9 @@
 {
   "recommendations": [
     "dbaeumer.vscode-eslint",
+    "digitalbrainstem.javascript-ejs-support",
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
-    "ronnidc.nunjucks",
     "streetsidesoftware.code-spell-checker"
   ]
 }

@@ -43,5 +43,6 @@ module.exports = {
       },
     ],
     "unicorn/no-array-reduce": "off",
+    "unicorn/prevent-abbreviations": "off",
   },
 };

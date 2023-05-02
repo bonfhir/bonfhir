@@ -1,14 +1,13 @@
 import chalk from "chalk";
+import { render } from "ejs";
 import fg from "fast-glob";
 import Listr from "listr";
 import { exec } from "node:child_process";
 import { readFile, writeFile } from "node:fs/promises";
 import { join, parse } from "node:path";
 import { promisify } from "node:util";
-import nunjucks from "nunjucks";
 import { CommandModule } from "yargs";
 import { FhirDefinitions } from "../fhir";
-import { splitLongLines, toJsComment } from "../util-codegen";
 
 const execAsync = promisify(exec);
 
@@ -17,6 +16,7 @@ const EXEC_MAX_BUFFER_SIZE = 1024 * 1000 * 10;
 
 export interface CommandOptions {
   fhir?: "r4b" | "r5" | null | undefined;
+  outDir?: string | null | undefined;
   postProcessing: string[] | undefined;
   templates: string;
 }
@@ -26,7 +26,7 @@ export interface CommandContext {
   options: CommandOptions;
 
   /** Loaded FHIR definitions */
-  fhir?: FhirDefinitions;
+  fhir: FhirDefinitions;
 
   /** The full path of each template file. */
   templates: string[];
@@ -43,6 +43,12 @@ export default <CommandModule<unknown, CommandOptions>>{
       choices: ["r4b", "r5"],
       describe: "Load FHIR definitions from a specific release",
       type: "string",
+    },
+    "out-dir": {
+      type: "string",
+      alias: "o",
+      describe:
+        "Overrides the default output directory. This is a templated string, so you can include context evaluation using EJS.",
     },
     "post-processing": {
       type: "array",
@@ -81,15 +87,6 @@ export default <CommandModule<unknown, CommandOptions>>{
         {
           title: "Process templates",
           task: async (context) => {
-            const nunjucksEnvironment = new nunjucks.Environment(undefined, {
-              autoescape: false,
-              noCache: true,
-            });
-
-            nunjucksEnvironment.addFilter("jsdoc", (value: string) => {
-              return toJsComment(splitLongLines(value.split("\n")));
-            });
-
             context.writtenFiles = [];
 
             return new Listr<CommandContext>(
@@ -98,16 +95,20 @@ export default <CommandModule<unknown, CommandOptions>>{
                 return {
                   title: templateParsedPath.name,
                   task: async (context) => {
-                    const writtenFile = join(
-                      templateParsedPath.dir,
-                      templateParsedPath.name
-                    );
+                    let outDir = templateParsedPath.dir;
+                    if (context.options.outDir) {
+                      outDir = render(context.options.outDir, context);
+                    }
+                    const writtenFile = join(outDir, templateParsedPath.name);
                     await writeFile(
                       writtenFile,
-                      nunjucksEnvironment.renderString(
-                        await readFile(template, "utf8"),
-                        context
-                      ),
+                      render(await readFile(template, "utf8"), context, {
+                        beautify: false,
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        escape(value?: any) {
+                          return value?.toString();
+                        },
+                      }),
                       { encoding: "utf8" }
                     );
                     context.writtenFiles.push(writtenFile);

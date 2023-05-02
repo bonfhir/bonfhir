@@ -2,5 +2,6 @@ src/
 .eslintrc.cjs
 jest.config.mjs
 rollup.config.mjs
+templates/
 tsconfig.build.json
 tsconfig.json
