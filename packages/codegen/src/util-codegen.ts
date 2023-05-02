@@ -6,6 +6,9 @@ export function toJsComment(lines: string[]) {
 
 export function splitLongLines(lines: string[]): string[] {
   return lines.flatMap((line) => {
+    if (line == undefined) {
+      return "";
+    }
     return line.trim().length === 0 ? line : chunkText(line, 80);
   });
 }
@@ -18,6 +21,7 @@ export function toJsType(fhirType: string): string {
     case "code":
     case "date":
     case "dateTime":
+    case "http://hl7.org/fhirpath/System.String":
     case "instant":
     case "markdown":
     case "uri":

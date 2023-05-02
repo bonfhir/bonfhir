@@ -2,6 +2,12 @@
  * FHIR Definitions for <%= fhir.release %>/<%= fhir.version %>
  */
 
+<% const renderElement = (element) => { %>
+  <%= element.jsDoc %>
+  <%= element.name %><% if (element.isOptional) { %>?<% } %>: <%= element.jsType %>;
+  _<%= element.name %>?: Element<% if (element.isArray) { %>[]<% } %> | undefined;
+<% } %>
+
 <% for (const structureDef of fhir.structureDefinitions) { %>
 
   <% if (structureDef.derivation != "constraint" && structureDef.kind != "primitive-type") { %>
@@ -14,8 +20,13 @@
       <% } %>
 
       <% for (const element of structureDef.ownElements) { %>
-        <%= element.name %><% if (element.isOptional) { %>?<% } %>: <%= element.jsType %>;
-        _<%= element.name %>?: Element<% if (element.isArray) { %>[]<% } %> | undefined;
+        <% if (element.hasDataTypeChoiceVariants) { %>
+          <% for (const dataTypeVariant of element.dataTypeChoiceVariants) { %>
+            <%= renderElement(dataTypeVariant) %>
+          <% } %>
+        <% } else { %>
+          <%= renderElement(element) %>
+        <% } %>
       <% } %>
     }
 

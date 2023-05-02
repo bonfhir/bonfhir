@@ -87,24 +87,7 @@ export class StructureDefinition {
 
   public get elements(): Element[] {
     return ((this as any).snapshot?.element || [])
-      .flatMap((x: any) => {
-        return x.path.endsWith("[x]")
-          ? x.type.map((t: any) => {
-              const suffix = t.code[0].toUpperCase() + t.code.slice(1);
-              return Object.assign(new Element(this._definitions), {
-                ...x,
-                id: x.id.replace("[x]", suffix),
-                path: x.path.replace("[x]", suffix),
-                min: 0,
-                base: {
-                  ...x.base,
-                  path: x.base.path.replace("[x]", suffix),
-                },
-                type: [t],
-              });
-            })
-          : Object.assign(new Element(this._definitions), x);
-      })
+      .map((x: any) => Object.assign(new Element(this._definitions), x))
       .sort((a: any, b: any) => a.path.localeCompare(b.path));
   }
 
@@ -154,6 +137,32 @@ export class Element {
     return (this as any).min === 0;
   }
 
+  /** https://hl7.org/fhir/formats.html#choice */
+  public get hasDataTypeChoiceVariants(): boolean {
+    return (this as any).path.endsWith("[x]");
+  }
+
+  public get dataTypeChoiceVariants(): Element[] {
+    if (!this.hasDataTypeChoiceVariants) {
+      return [];
+    }
+
+    return (this as any).type.map((t: any) => {
+      const suffix = t.code[0].toUpperCase() + t.code.slice(1);
+      return Object.assign(new Element(this._definitions), {
+        ...this,
+        id: (this as any).id.replace("[x]", suffix),
+        path: (this as any).path.replace("[x]", suffix),
+        min: 0,
+        base: {
+          ...(this as any).base,
+          path: (this as any).base.path.replace("[x]", suffix),
+        },
+        type: [t],
+      });
+    });
+  }
+
   public get jsType(): string {
     let resolvedType = (this as any).type
       ?.map((x: any) => toJsType(x.code))
@@ -167,5 +176,16 @@ export class Element {
       resolvedType = `${resolvedType} | undefined`;
     }
     return resolvedType;
+  }
+
+  public get jsDoc(): string {
+    return toJsComment([
+      ...splitLongLines(
+        [(this as any).definition, (this as any).comment].filter(
+          (x) => !!x?.trim()
+        )
+      ),
+      //`@see {@link ${this.fhirDocUrl}}`,
+    ]);
   }
 }
