@@ -22,14 +22,21 @@ export function toJsType(fhirType: string): string {
     case "date":
     case "dateTime":
     case "http://hl7.org/fhirpath/System.String":
+    case "id":
     case "instant":
     case "markdown":
+    case "oid":
+    case "time":
     case "uri":
     case "url":
+    case "uuid":
+    case "xhtml":
       return "string";
     case "integer":
+    case "integer64": // TODO: Investigate BigInt support
     case "decimal":
     case "positiveInt":
+    case "unsignedInt":
       return "number";
     default:
       return fhirType;

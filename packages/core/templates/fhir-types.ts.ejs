@@ -2,6 +2,8 @@
  * FHIR Definitions for <%= fhir.release %>/<%= fhir.version %>
  */
 
+/* eslint-disable @typescript-eslint/no-empty-interface */
+
 <% const renderElement = (element) => { %>
   <%= element.jsDoc %>
   <%= element.name %><% if (element.isOptional) { %>?<% } %>: <%= element.jsType %>;
@@ -15,11 +17,11 @@
     export interface <%= structureDef.type %> <% if (structureDef.base?.type) { %>extends <%= structureDef.base.type %> <% } %>{
       <% if (structureDef.isDomainResource) { %>
       readonly resourceType: "<%= structureDef.type %>";
-      <% } else { %>
+      <% } else if (structureDef.isResource) { %>
       readonly resourceType: string;
       <% } %>
 
-      <% for (const element of structureDef.ownElements) { %>
+      <% for (const element of structureDef.ownRootElements) { %>
         <% if (element.hasDataTypeChoiceVariants) { %>
           <% for (const dataTypeVariant of element.dataTypeChoiceVariants) { %>
             <%= renderElement(dataTypeVariant) %>
@@ -32,3 +34,14 @@
 
   <% } %>
 <% } %>
+
+/**
+ *  Create a new type from T with K attributes required.
+ */
+export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
+
+/**
+* Create a new type from a {@link DomainResource} that contains additional guaranteed properties when the resource
+* is retrieved from the server.
+*/
+export type Retrieved<TDomainResource extends DomainResource> = WithRequired<TDomainResource, "id"> & { meta: WithRequired<Meta, "versionId" | "lastUpdated"> };

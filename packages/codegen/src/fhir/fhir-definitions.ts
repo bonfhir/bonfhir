@@ -87,7 +87,7 @@ export class StructureDefinition {
 
   public get elements(): Element[] {
     return ((this as any).snapshot?.element || [])
-      .map((x: any) => Object.assign(new Element(this._definitions), x))
+      .map((x: any) => Object.assign(new Element(this._definitions, this), x))
       .sort((a: any, b: any) => a.path.localeCompare(b.path));
   }
 
@@ -95,6 +95,10 @@ export class StructureDefinition {
     return this.elements.filter((x: any) =>
       x.base.path.startsWith((this as any).name + ".")
     );
+  }
+
+  public get ownRootElements(): Element[] {
+    return this.ownElements.filter((x) => x.isRoot);
   }
 
   public get fhirDocUrl(): string {
@@ -123,7 +127,10 @@ export class StructureDefinition {
 }
 
 export class Element {
-  constructor(private _definitions: FhirDefinitions) {}
+  constructor(
+    private _definitions: FhirDefinitions,
+    private _structureDefinition: StructureDefinition
+  ) {}
 
   public get name(): string {
     return (this as any).id.split(".").pop() || "";
@@ -149,17 +156,20 @@ export class Element {
 
     return (this as any).type.map((t: any) => {
       const suffix = t.code[0].toUpperCase() + t.code.slice(1);
-      return Object.assign(new Element(this._definitions), {
-        ...this,
-        id: (this as any).id.replace("[x]", suffix),
-        path: (this as any).path.replace("[x]", suffix),
-        min: 0,
-        base: {
-          ...(this as any).base,
-          path: (this as any).base.path.replace("[x]", suffix),
-        },
-        type: [t],
-      });
+      return Object.assign(
+        new Element(this._definitions, this._structureDefinition),
+        {
+          ...this,
+          id: (this as any).id.replace("[x]", suffix),
+          path: (this as any).path.replace("[x]", suffix),
+          min: 0,
+          base: {
+            ...(this as any).base,
+            path: (this as any).base.path.replace("[x]", suffix),
+          },
+          type: [t],
+        }
+      );
     });
   }
 
@@ -178,14 +188,26 @@ export class Element {
     return resolvedType;
   }
 
+  public get fhirDocUrl(): string {
+    return this._structureDefinition.isResource
+      ? `${this._structureDefinition.fhirDocDefinitionsUrl}#${(this as any).id}`
+      : "";
+  }
+
   public get jsDoc(): string {
-    return toJsComment([
-      ...splitLongLines(
-        [(this as any).definition, (this as any).comment].filter(
-          (x) => !!x?.trim()
-        )
-      ),
-      //`@see {@link ${this.fhirDocUrl}}`,
-    ]);
+    return toJsComment(
+      [
+        ...splitLongLines(
+          [(this as any).definition, (this as any).comment].filter(
+            (x) => !!x?.trim()
+          )
+        ),
+        this.fhirDocUrl ? `@see {@link ${this.fhirDocUrl}}` : undefined,
+      ].filter(Boolean) as string[]
+    );
+  }
+
+  public get isRoot(): boolean {
+    return (this as any).path.split(".").length === 2;
   }
 }
