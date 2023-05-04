@@ -8,6 +8,11 @@
  * Account Status
  *
  * Indicates whether the account is available to be used.
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in error
+ * - on-hold: On Hold
+ * - unknown: Unknown
  */
 export type AccountStatus =
   | "active"
@@ -21,6 +26,8 @@ export type AccountStatus =
  *
  * Defines behavior for an action or a group for how many times that item may be
  * repeated.
+ * - single: Single
+ * - multiple: Multiple
  */
 export type ActionCardinalityBehavior = "single" | "multiple";
 
@@ -28,6 +35,9 @@ export type ActionCardinalityBehavior = "single" | "multiple";
  * Action Condition Kind
  *
  * Defines the kinds of conditions that can appear on actions.
+ * - applicability: Applicability
+ * - start: Start
+ * - stop: Stop
  */
 export type ActionConditionKind = "applicability" | "start" | "stop";
 
@@ -35,6 +45,9 @@ export type ActionConditionKind = "applicability" | "start" | "stop";
  * Action Grouping Behavior
  *
  * Defines organization behavior of a group.
+ * - visual-group: Visual Group
+ * - logical-group: Logical Group
+ * - sentence-group: Sentence Group
  */
 export type ActionGroupingBehavior =
   | "visual-group"
@@ -45,6 +58,16 @@ export type ActionGroupingBehavior =
  * Action Participant Type
  *
  * The type of participant for the action.
+ * - careteam: CareTeam
+ * - device: Device
+ * - group: Group
+ * - healthcareservice: HealthcareService
+ * - location: Location
+ * - organization: Organization
+ * - patient: Patient
+ * - practitioner: Practitioner
+ * - practitionerrole: PractitionerRole
+ * - relatedperson: RelatedPerson
  */
 export type ActionParticipantType =
   | "careteam"
@@ -62,6 +85,8 @@ export type ActionParticipantType =
  * Action Precheck Behavior
  *
  * Defines selection frequency behavior for an action or group.
+ * - yes: Yes
+ * - no: No
  */
 export type ActionPrecheckBehavior = "yes" | "no";
 
@@ -69,6 +94,15 @@ export type ActionPrecheckBehavior = "yes" | "no";
  * Action Relationship Type
  *
  * Defines the types of relationships between actions.
+ * - before: Before
+ * - before-start: Before Start
+ * - before-end: Before End
+ * - concurrent: Concurrent
+ * - concurrent-with-start: Concurrent With Start
+ * - concurrent-with-end: Concurrent With End
+ * - after: After
+ * - after-start: After Start
+ * - after-end: After End
  */
 export type ActionRelationshipType =
   | "before"
@@ -85,6 +119,9 @@ export type ActionRelationshipType =
  * Action Required Behavior
  *
  * Defines expectations around whether an action or action group is required.
+ * - must: Must
+ * - could: Could
+ * - must-unless-documented: Must Unless Documented
  */
 export type ActionRequiredBehavior =
   | "must"
@@ -95,6 +132,12 @@ export type ActionRequiredBehavior =
  * Action Selection Behavior
  *
  * Defines selection behavior of a group.
+ * - any: Any
+ * - all: All
+ * - all-or-none: All Or None
+ * - exactly-one: Exactly One
+ * - at-most-one: At Most One
+ * - one-or-more: One Or More
  */
 export type ActionSelectionBehavior =
   | "any"
@@ -108,6 +151,16 @@ export type ActionSelectionBehavior =
  * Additional Binding Purpose ValueSet
  *
  * Additional Binding Purpose
+ * - maximum: Maximum Binding
+ * - minimum: Minimum Binding
+ * - required: Required Binding
+ * - extensible: Conformance Binding
+ * - candidate: Candidate Binding
+ * - current: Current Binding
+ * - preferred: Preferred Binding
+ * - ui: UI Suggested Binding
+ * - starter: Starter Binding
+ * - component: Component Binding
  */
 export type AdditionalBindingPurposeVS =
   | "maximum"
@@ -125,6 +178,9 @@ export type AdditionalBindingPurposeVS =
  * AddressType
  *
  * The type of an address (physical / postal).
+ * - postal: Postal
+ * - physical: Physical
+ * - both: Postal & Physical
  */
 export type AddressType = "postal" | "physical" | "both";
 
@@ -132,6 +188,11 @@ export type AddressType = "postal" | "physical" | "both";
  * AddressUse
  *
  * The use of an address.
+ * - home: Home
+ * - work: Work
+ * - temp: Temporary
+ * - old: Old / Incorrect
+ * - billing: Billing
  */
 export type AddressUse = "home" | "work" | "temp" | "old" | "billing";
 
@@ -139,6 +200,10 @@ export type AddressUse = "home" | "work" | "temp" | "old" | "billing";
  * AdministrativeGender
  *
  * The gender of a person used for administrative purposes.
+ * - male: Male
+ * - female: Female
+ * - other: Other
+ * - unknown: Unknown
  */
 export type AdministrativeGender = "male" | "female" | "other" | "unknown";
 
@@ -146,6 +211,8 @@ export type AdministrativeGender = "male" | "female" | "other" | "unknown";
  * Adverse Event Actuality
  *
  * Overall nature of the adverse event, e.g. real or potential.
+ * - actual: Adverse Event
+ * - potential: Potential Adverse Event
  */
 export type AdverseEventActuality = "actual" | "potential";
 
@@ -153,6 +220,10 @@ export type AdverseEventActuality = "actual" | "potential";
  * Adverse Event Status
  *
  * Codes identifying the lifecycle stage of an adverse event.
+ * - in-progress: In Progress
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type AdverseEventStatus =
   | "in-progress"
@@ -164,6 +235,9 @@ export type AdverseEventStatus =
  * AggregationMode
  *
  * How resource references can be aggregated.
+ * - contained: Contained
+ * - referenced: Referenced
+ * - bundled: Bundled
  */
 export type AggregationMode = "contained" | "referenced" | "bundled";
 
@@ -171,6 +245,10 @@ export type AggregationMode = "contained" | "referenced" | "bundled";
  * Allergy Intolerance Category
  *
  * Category of an identified substance associated with allergies or intolerances.
+ * - food: Food
+ * - medication: Medication
+ * - environment: Environment
+ * - biologic: Biologic
  */
 export type AllergyIntoleranceCategory =
   | "food"
@@ -182,6 +260,9 @@ export type AllergyIntoleranceCategory =
  * AllergyIntolerance Clinical Status Codes
  *
  * Preferred value set for AllergyIntolerance Clinical Status.
+ * - active: Active
+ * - inactive: Inactive
+ * - resolved: Resolved
  */
 export type AllergyIntoleranceClinicalStatusCodes =
   | "active"
@@ -193,6 +274,9 @@ export type AllergyIntoleranceClinicalStatusCodes =
  *
  * Estimate of the potential clinical harm, or seriousness, of a reaction to an
  * identified substance.
+ * - low: Low Risk
+ * - high: High Risk
+ * - unable-to-assess: Unable to Assess Risk
  */
 export type AllergyIntoleranceCriticality = "low" | "high" | "unable-to-assess";
 
@@ -201,6 +285,9 @@ export type AllergyIntoleranceCriticality = "low" | "high" | "unable-to-assess";
  *
  * Clinical assessment of the severity of a reaction event as a whole, potentially
  * considering multiple different manifestations.
+ * - mild: Mild
+ * - moderate: Moderate
+ * - severe: Severe
  */
 export type AllergyIntoleranceSeverity = "mild" | "moderate" | "severe";
 
@@ -209,6 +296,11 @@ export type AllergyIntoleranceSeverity = "mild" | "moderate" | "severe";
  *
  * The verification status to support or decline the clinical status of the allergy
  * or intolerance.
+ * - unconfirmed: Unconfirmed
+ * - presumed: Presumed
+ * - confirmed: Confirmed
+ * - refuted: Refuted
+ * - entered-in-error: Entered in Error
  */
 export type AllergyIntoleranceVerificationStatus =
   | "unconfirmed"
@@ -230,6 +322,11 @@ export type AllLanguages = string;
  *
  * The Participation status for a participant in response to a request for an
  * appointment.
+ * - accepted: Accepted
+ * - declined: Declined
+ * - tentative: Tentative
+ * - needs-action: Needs Action
+ * - entered-in-error: Entered in error
  */
 export type AppointmentResponseStatus =
   | "accepted"
@@ -242,6 +339,16 @@ export type AppointmentResponseStatus =
  * Appointment Status
  *
  * The free/busy status of an appointment.
+ * - proposed: Proposed
+ * - pending: Pending
+ * - booked: Booked
+ * - arrived: Arrived
+ * - fulfilled: Fulfilled
+ * - cancelled: Cancelled
+ * - noshow: No Show
+ * - entered-in-error: Entered in error
+ * - checked-in: Checked In
+ * - waitlist: Waitlisted
  */
 export type AppointmentStatus =
   | "proposed"
@@ -262,6 +369,11 @@ export type AppointmentStatus =
  * used for comments and change requests, to indicate the disposition of the
  * responsible party towards the changes suggested by the comment or change
  * request.
+ * - unresolved: Unresolved
+ * - not-persuasive: Not Persuasive
+ * - persuasive: Persuasive
+ * - persuasive-with-modification: Persuasive with Modification
+ * - not-persuasive-with-modification: Not Persuasive with Modification
  */
 export type ArtifactAssessmentDisposition =
   | "unresolved"
@@ -274,6 +386,12 @@ export type ArtifactAssessmentDisposition =
  * Artifact Assessment Information Type
  *
  * The type of information contained in a component of an artifact assessment.
+ * - comment: Comment
+ * - classifier: Classifier
+ * - rating: Rating
+ * - container: Container
+ * - response: Response
+ * - change-request: Change Request
  */
 export type ArtifactAssessmentInformationType =
   | "comment"
@@ -289,6 +407,16 @@ export type ArtifactAssessmentInformationType =
  * Possible values for the workflow status of the comment or assessment, typically
  * used to coordinate workflow around the process of accepting and rejecting
  * changes and comments on the artifact.
+ * - submitted: Submitted
+ * - triaged: Triaged
+ * - waiting-for-input: Waiting for Input
+ * - resolved-no-change: Resolved - No Change
+ * - resolved-change-required: Resolved - Change Required
+ * - deferred: Deferred
+ * - duplicate: Duplicate
+ * - applied: Applied
+ * - published: Published
+ * - entered-in-error: Entered in Error
  */
 export type ArtifactAssessmentWorkflowStatus =
   | "submitted"
@@ -306,6 +434,8 @@ export type ArtifactAssessmentWorkflowStatus =
  * Assertion Direction Type
  *
  * The type of direction to use for assertion.
+ * - response: response
+ * - request: request
  */
 export type AssertionDirectionType = "response" | "request";
 
@@ -313,6 +443,10 @@ export type AssertionDirectionType = "response" | "request";
  * Assertion Manual Completion Type
  *
  * The type of manual completion to use for assertion.
+ * - fail: Fail
+ * - pass: Pass
+ * - skip: Skip
+ * - stop: Stop
  */
 export type AssertionManualCompletionType = "fail" | "pass" | "skip" | "stop";
 
@@ -320,6 +454,18 @@ export type AssertionManualCompletionType = "fail" | "pass" | "skip" | "stop";
  * Assertion Operator Type
  *
  * The type of operator to use for assertion.
+ * - equals: equals
+ * - notEquals: notEquals
+ * - in: in
+ * - notIn: notIn
+ * - greaterThan: greaterThan
+ * - lessThan: lessThan
+ * - empty: empty
+ * - notEmpty: notEmpty
+ * - contains: contains
+ * - notContains: notContains
+ * - eval: evaluate
+ * - manualEval: manualEvaluate
  */
 export type AssertionOperatorType =
   | "equals"
@@ -339,6 +485,50 @@ export type AssertionOperatorType =
  * Assertion Response Types
  *
  * The type of response code to use for assertion.
+ * - continue: Continue
+ * - switchingProtocols: Switching Protocols
+ * - okay: OK
+ * - created: Created
+ * - accepted: Accepted
+ * - nonAuthoritativeInformation: Non-Authoritative Information
+ * - noContent: No Content
+ * - resetContent: Reset Content
+ * - partialContent: Partial Content
+ * - multipleChoices: Multiple Choices
+ * - movedPermanently: Moved Permanently
+ * - found: Found
+ * - seeOther: See Other
+ * - notModified: Not Modified
+ * - useProxy: Use Proxy
+ * - temporaryRedirect: Temporary Redirect
+ * - permanentRedirect: Permanent Redirect
+ * - badRequest: Bad Request
+ * - unauthorized: Unauthorized
+ * - paymentRequired: Payment Required
+ * - forbidden: Forbidden
+ * - notFound: Not Found
+ * - methodNotAllowed: Method Not Allowed
+ * - notAcceptable: Not Acceptable
+ * - proxyAuthenticationRequired: Proxy Authentication Required
+ * - requestTimeout: Request Timeout
+ * - conflict: Conflict
+ * - gone: Gone
+ * - lengthRequired: Length Required
+ * - preconditionFailed: Precondition Failed
+ * - contentTooLarge: Content Too Large
+ * - uriTooLong: URI Too Long
+ * - unsupportedMediaType: Unsupported Media Type
+ * - rangeNotSatisfiable: Range Not Satisfiable
+ * - expectationFailed: Expectation Failed
+ * - misdirectedRequest: Misdirected Request
+ * - unprocessableContent: Unprocessable Content
+ * - upgradeRequired: Upgrade Required
+ * - internalServerError: Internal Server Error
+ * - notImplemented: Not Implemented
+ * - badGateway: Bad Gateway
+ * - serviceUnavailable: Service Unavailable
+ * - gatewayTimeout: Gateway Timeout
+ * - httpVersionNotSupported: HTTP Version Not Supported
  */
 export type AssertionResponseTypes =
   | "continue"
@@ -391,6 +581,11 @@ export type AssertionResponseTypes =
  *
  * Indicator for type of action performed during the event that generated the
  * event.
+ * - C: Create
+ * - R: Read
+ * - U: Update
+ * - D: Delete
+ * - E: Execute
  */
 export type AuditEventAction = "C" | "R" | "U" | "D" | "E";
 
@@ -398,6 +593,14 @@ export type AuditEventAction = "C" | "R" | "U" | "D" | "E";
  * Audit Event Severity
  *
  * The severity of the audit entry.
+ * - emergency: Emergency
+ * - alert: Alert
+ * - critical: Critical
+ * - error: Error
+ * - warning: Warning
+ * - notice: Notice
+ * - informational: Informational
+ * - debug: Debug
  */
 export type AuditEventSeverity =
   | "emergency"
@@ -413,6 +616,9 @@ export type AuditEventSeverity =
  * Benefit Cost Applicability
  *
  * Whether the cost applies to in-network or out-of-network providers.
+ * - in-network: In Network
+ * - out-of-network: Out of Network
+ * - other: Other
  */
 export type BenefitCostApplicability =
   | "in-network"
@@ -423,6 +629,10 @@ export type BenefitCostApplicability =
  * BindingStrength
  *
  * Indication of the degree of conformance expectations associated with a binding.
+ * - required: Required
+ * - extensible: Extensible
+ * - preferred: Preferred
+ * - example: Example
  */
 export type BindingStrength =
   | "required"
@@ -434,6 +644,14 @@ export type BindingStrength =
  * BiologicallyDerivedProductDispense Status Codes
  *
  *
+ * - preparation: Preparation
+ * - in-progress: In Progress
+ * - allocated: Allocated
+ * - issued: Issued
+ * - unfulfilled: Unfulfilled
+ * - returned: Returned
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type BiologicallyDerivedProductDispenseCodes =
   | "preparation"
@@ -471,6 +689,16 @@ export type BodyWeightUnits = string;
  * Bundle Type
  *
  * Indicates the purpose of a bundle - how it is intended to be used.
+ * - document: Document
+ * - message: Message
+ * - transaction: Transaction
+ * - transaction-response: Transaction Response
+ * - batch: Batch
+ * - batch-response: Batch Response
+ * - history: History List
+ * - searchset: Search Results
+ * - collection: Collection
+ * - subscription-notification: Subscription Notification
  */
 export type BundleType =
   | "document"
@@ -496,6 +724,9 @@ export type CanonicalStatusCodesForFHIRResources = string;
  * Capability Statement Kind
  *
  * How a capability statement is intended to be used.
+ * - instance: Instance
+ * - capability: Capability
+ * - requirements: Requirements
  */
 export type CapabilityStatementKind =
   | "instance"
@@ -507,6 +738,11 @@ export type CapabilityStatementKind =
  *
  * Codes indicating the degree of authority/intentionality associated with a care
  * plan.
+ * - proposal: Proposal
+ * - plan: Plan
+ * - order: Order
+ * - option: Option
+ * - directive: Directive
  */
 export type CarePlanIntent =
   | "proposal"
@@ -519,6 +755,11 @@ export type CarePlanIntent =
  * Care Team Status
  *
  * Indicates the status of the care team.
+ * - proposed: Proposed
+ * - active: Active
+ * - suspended: Suspended
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type CareTeamStatus =
   | "proposed"
@@ -531,6 +772,13 @@ export type CareTeamStatus =
  * Characteristic Combination
  *
  * Logical grouping of characteristics.
+ * - all-of: All of
+ * - any-of: Any of
+ * - at-least: At least
+ * - at-most: At most
+ * - statistical: Statistical
+ * - net-effect: Net effect
+ * - dataset: Dataset
  */
 export type CharacteristicCombination =
   | "all-of"
@@ -545,6 +793,13 @@ export type CharacteristicCombination =
  * Charge Item Status
  *
  * Codes identifying the lifecycle stage of a ChargeItem.
+ * - planned: Planned
+ * - billable: Billable
+ * - not-billable: Not billable
+ * - aborted: Aborted
+ * - billed: Billed
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type ChargeItemStatus =
   | "planned"
@@ -559,6 +814,10 @@ export type ChargeItemStatus =
  * Claim Processing Codes
  *
  * This value set includes Claim Processing Outcome codes.
+ * - queued: Queued
+ * - complete: Processing Complete
+ * - error: Error
+ * - partial: Partial Processing
  */
 export type ClaimProcessingCodes = "queued" | "complete" | "error" | "partial";
 
@@ -566,6 +825,11 @@ export type ClaimProcessingCodes = "queued" | "complete" | "error" | "partial";
  * Clinical Use Definition Type
  *
  * Overall defining type of this clinical use definition.
+ * - indication: Indication
+ * - contraindication: Contraindication
+ * - interaction: Interaction
+ * - undesirable-effect: Undesirable Effect
+ * - warning: Warning
  */
 export type ClinicalUseDefinitionType =
   | "indication"
@@ -579,6 +843,9 @@ export type ClinicalUseDefinitionType =
  *
  * The degree to which the server supports the code search parameter on ValueSet,
  * if it is supported.
+ * - in-compose: In Compose
+ * - in-expansion: In Expansion
+ * - in-compose-or-expansion: In Compose Or Expansion
  */
 export type CodeSearchSupport =
   | "in-compose"
@@ -590,6 +857,11 @@ export type CodeSearchSupport =
  *
  * The extent of the content of the code system (the concepts and codes it defines)
  * are represented in a code system resource.
+ * - not-present: Not Present
+ * - example: Example
+ * - fragment: Fragment
+ * - complete: Complete
+ * - supplement: Supplement
  */
 export type CodeSystemContentMode =
   | "not-present"
@@ -602,6 +874,10 @@ export type CodeSystemContentMode =
  * Code System Hierarchy Meaning
  *
  * The meaning of the hierarchy of concepts in a code system.
+ * - grouped-by: Grouped By
+ * - is-a: Is-A
+ * - part-of: Part Of
+ * - classified-with: Classified With
  */
 export type CodeSystemHierarchyMeaning =
   | "grouped-by"
@@ -623,6 +899,88 @@ export type ColorCodesOrRGB = string;
  *
  * This value set includes common codes from BCP-47 (see
  * http://tools.ietf.org/html/bcp47)
+ * - ar: Arabisk
+ * - bg: Bulgarian
+ * - bg-BG: Bulgarian (Bulgaria)
+ * - bn: Bengali
+ * - cs: Czech
+ * - cs-CZ: Czech (Czechia)
+ * - bs: Bosnian
+ * - bs-BA: Bosnian (Bosnia and Herzegovina))
+ * - da: Danish
+ * - da-DK: Danish (Denmark)
+ * - de: German
+ * - de-AT: German (Austria)
+ * - de-CH: German (Switzerland)
+ * - de-DE: German (Germany)
+ * - el: Greek
+ * - el-GR: Greek (Greece)
+ * - en: English
+ * - en-AU: English (Australia)
+ * - en-CA: English (Canada)
+ * - en-GB: English (Great Britain)
+ * - en-IN: English (India)
+ * - en-NZ: English (New Zealand)
+ * - en-SG: English (Singapore)
+ * - en-US: English (United States)
+ * - es: Spanish
+ * - es-AR: Spanish (Argentina)
+ * - es-ES: Spanish (Spain)
+ * - es-UY: Spanish (Uruguay)
+ * - et: Estonian
+ * - et-EE: Estonian (Estonia)
+ * - fi: Finnish
+ * - fr: French
+ * - fr-BE: French (Belgium)
+ * - fr-CH: French (Switzerland)
+ * - fr-FR: French (France)
+ * - fi-FI: Finnish (Finland)
+ * - fr-CA: French (Canada)
+ * - fy: Frisian
+ * - fy-NL: Frisian (Netherlands)
+ * - hi: Hindi
+ * - hr: Croatian
+ * - hr-HR: Croatian (Croatia)
+ * - is: Icelandic
+ * - is-IS: Icelandic (Iceland)
+ * - it: Italian
+ * - it-CH: Italian (Switzerland)
+ * - it-IT: Italian (Italy)
+ * - ja: Japanese
+ * - ko: Korean
+ * - lt: Lithuanian
+ * - lt-LT: Lithuanian (Lithuania)
+ * - lv: Latvian
+ * - lv-LV: Latvian (Latvia)
+ * - nl: Dutch
+ * - nl-BE: Dutch (Belgium)
+ * - nl-NL: Dutch (Netherlands)
+ * - no: Norwegian
+ * - no-NO: Norwegian (Norway)
+ * - pa: Punjabi
+ * - pl: Polskie
+ * - pl-PL: Polish (Poland)
+ * - pt: Portuguese
+ * - pt-PT: Portuguese (Portugal)
+ * - pt-BR: Portuguese (Brazil)
+ * - ro: Romanian
+ * - ro-RO: Romanian (Romania)
+ * - ru: Russian
+ * - ru-RU: Russian (Russia)
+ * - sk: Slovakian
+ * - sk-SK: Slovakian (Slovakia)
+ * - sl: Slovenian
+ * - sl-SI: Slovenian (Slovenia)
+ * - sr: Serbian
+ * - sr-RS: Serbian (Serbia)
+ * - sv: Swedish
+ * - sv-SE: Swedish (Sweden)
+ * - te: Telugu
+ * - zh: Chinese
+ * - zh-CN: Chinese (China)
+ * - zh-HK: Chinese (Hong Kong)
+ * - zh-SG: Chinese (Singapore)
+ * - zh-TW: Chinese (Taiwan)
  */
 export type CommonLanguages =
   | "ar"
@@ -712,6 +1070,12 @@ export type CommonLanguages =
  * Compartment Type
  *
  * Which type a compartment definition describes.
+ * - Patient: Patient
+ * - Encounter: Encounter
+ * - RelatedPerson: RelatedPerson
+ * - Practitioner: Practitioner
+ * - Device: Device
+ * - EpisodeOfCare: EpisodeOfCare
  */
 export type CompartmentType =
   | "Patient"
@@ -725,6 +1089,17 @@ export type CompartmentType =
  * Composition Status
  *
  * The workflow/clinical status of the composition.
+ * - registered: Registered
+ * - partial: Partial
+ * - preliminary: Preliminary
+ * - final: Final
+ * - amended: Amended
+ * - corrected: Corrected
+ * - appended: Appended
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - deprecated: Deprecated
+ * - unknown: Unknown
  */
 export type CompositionStatus =
   | "registered"
@@ -743,6 +1118,11 @@ export type CompositionStatus =
  * ConceptMap Attribute Type
  *
  * The type of a ConceptMap mapping attribute value.
+ * - code: code
+ * - Coding: Coding
+ * - string: string
+ * - boolean: boolean
+ * - Quantity: Quantity
  */
 export type ConceptMapAttributeType =
   | "code"
@@ -755,6 +1135,9 @@ export type ConceptMapAttributeType =
  * Concept Map Group Unmapped Mode
  *
  * Defines which action to take if there is no match in the group.
+ * - use-source-code: Use Provided Source Code
+ * - fixed: Fixed Code
+ * - other-map: Other Map
  */
 export type ConceptMapGroupUnmappedMode =
   | "use-source-code"
@@ -765,6 +1148,13 @@ export type ConceptMapGroupUnmappedMode =
  * ConceptMap Property Type
  *
  * The type of a ConceptMap mapping property value.
+ * - Coding: Coding (external reference)
+ * - string: string
+ * - integer: integer
+ * - boolean: boolean
+ * - dateTime: dateTime
+ * - decimal: decimal
+ * - code: code
  */
 export type ConceptMapPropertyType =
   | "Coding"
@@ -779,6 +1169,11 @@ export type ConceptMapPropertyType =
  * ConceptMapRelationship
  *
  * The relationship between concepts.
+ * - related-to: Related To
+ * - equivalent: Equivalent
+ * - source-is-narrower-than-target: Source Is Narrower Than Target
+ * - source-is-broader-than-target: Source Is Broader Than Target
+ * - not-related-to: Not Related To
  */
 export type ConceptMapRelationship =
   | "related-to"
@@ -791,6 +1186,9 @@ export type ConceptMapRelationship =
  * Conditional Delete Status
  *
  * A code that indicates how the server supports conditional delete.
+ * - not-supported: Not Supported
+ * - single: Single Deletes Supported
+ * - multiple: Multiple Deletes Supported
  */
 export type ConditionalDeleteStatus = "not-supported" | "single" | "multiple";
 
@@ -798,6 +1196,10 @@ export type ConditionalDeleteStatus = "not-supported" | "single" | "multiple";
  * Conditional Read Status
  *
  * A code that indicates how the server supports conditional read.
+ * - not-supported: Not Supported
+ * - modified-since: If-Modified-Since
+ * - not-match: If-None-Match
+ * - full-support: Full Support
  */
 export type ConditionalReadStatus =
   | "not-supported"
@@ -809,6 +1211,13 @@ export type ConditionalReadStatus =
  * Condition Clinical Status Codes
  *
  * Preferred value set for Condition Clinical Status.
+ * - active: Active
+ * - recurrence: Recurrence
+ * - relapse: Relapse
+ * - inactive: Inactive
+ * - remission: Remission
+ * - resolved: Resolved
+ * - unknown: Unknown
  */
 export type ConditionClinicalStatusCodes =
   | "active"
@@ -823,6 +1232,8 @@ export type ConditionClinicalStatusCodes =
  * Condition Precondition Type
  *
  * Kind of precondition for the condition.
+ * - sensitive: Sensitive
+ * - specific: Specific
  */
 export type ConditionPreconditionType = "sensitive" | "specific";
 
@@ -830,6 +1241,9 @@ export type ConditionPreconditionType = "sensitive" | "specific";
  * Condition Questionnaire Purpose
  *
  * The use of a questionnaire.
+ * - preadmit: Pre-admit
+ * - diff-diagnosis: Diff Diagnosis
+ * - outcome: Outcome
  */
 export type ConditionQuestionnairePurpose =
   | "preadmit"
@@ -841,6 +1255,12 @@ export type ConditionQuestionnairePurpose =
  *
  * The verification status to support or decline the clinical status of the
  * condition or diagnosis.
+ * - unconfirmed: Unconfirmed
+ * - provisional: Provisional
+ * - differential: Differential
+ * - confirmed: Confirmed
+ * - refuted: Refuted
+ * - entered-in-error: Entered in Error
  */
 export type ConditionVerificationStatus =
   | "unconfirmed"
@@ -854,6 +1274,10 @@ export type ConditionVerificationStatus =
  * Conformance Expectation
  *
  * Description Needed Here
+ * - SHALL: SHALL
+ * - SHOULD: SHOULD
+ * - MAY: MAY
+ * - SHOULD-NOT: SHOULD-NOT
  */
 export type ConformanceExpectation = "SHALL" | "SHOULD" | "MAY" | "SHOULD-NOT";
 
@@ -861,6 +1285,10 @@ export type ConformanceExpectation = "SHALL" | "SHOULD" | "MAY" | "SHOULD-NOT";
  * Consent Data Meaning
  *
  * How a resource reference is interpreted when testing consent restrictions.
+ * - instance: Instance
+ * - related: Related
+ * - dependents: Dependents
+ * - authoredby: AuthoredBy
  */
 export type ConsentDataMeaning =
   | "instance"
@@ -873,6 +1301,8 @@ export type ConsentDataMeaning =
  *
  * How a rule statement is applied, such as adding additional consent or removing
  * consent.
+ * - deny: Deny
+ * - permit: Permit
  */
 export type ConsentProvisionType = "deny" | "permit";
 
@@ -880,6 +1310,12 @@ export type ConsentProvisionType = "deny" | "permit";
  * Consent State
  *
  * Indicates the state of the consent.
+ * - draft: Pending
+ * - active: Active
+ * - inactive: Inactive
+ * - not-done: Abandoned
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type ConsentState =
   | "draft"
@@ -893,6 +1329,8 @@ export type ConsentState =
  * ConstraintSeverity
  *
  * SHALL applications comply with this constraint?
+ * - error: Error
+ * - warning: Warning
  */
 export type ConstraintSeverity = "error" | "warning";
 
@@ -900,6 +1338,13 @@ export type ConstraintSeverity = "error" | "warning";
  * ContactPointSystem
  *
  * Telecommunications form for contact point.
+ * - phone: Phone
+ * - fax: Fax
+ * - email: Email
+ * - pager: Pager
+ * - url: URL
+ * - sms: SMS
+ * - other: Other
  */
 export type ContactPointSystem =
   | "phone"
@@ -914,6 +1359,11 @@ export type ContactPointSystem =
  * ContactPointUse
  *
  * Use of contact point.
+ * - home: Home
+ * - work: Work
+ * - temp: Temp
+ * - old: Old
+ * - mobile: Mobile
  */
 export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
 
@@ -921,6 +1371,21 @@ export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
  * Contract Resource Publication Status codes
  *
  * This value set contract specific codes for status.
+ * - amended: Amended
+ * - appended: Appended
+ * - cancelled: Cancelled
+ * - disputed: Disputed
+ * - entered-in-error: Entered in Error
+ * - executable: Executable
+ * - executed: Executed
+ * - negotiable: Negotiable
+ * - offered: Offered
+ * - policy: Policy
+ * - rejected: Rejected
+ * - renewed: Renewed
+ * - revoked: Revoked
+ * - resolved: Resolved
+ * - terminated: Terminated
  */
 export type ContractResourcePublicationStatusCodes =
   | "amended"
@@ -943,6 +1408,21 @@ export type ContractResourcePublicationStatusCodes =
  * Contract Resource Status Codes
  *
  * This value set contract specific codes for status.
+ * - amended: Amended
+ * - appended: Appended
+ * - cancelled: Cancelled
+ * - disputed: Disputed
+ * - entered-in-error: Entered in Error
+ * - executable: Executable
+ * - executed: Executed
+ * - negotiable: Negotiable
+ * - offered: Offered
+ * - policy: Policy
+ * - rejected: Rejected
+ * - renewed: Renewed
+ * - revoked: Revoked
+ * - resolved: Resolved
+ * - terminated: Terminated
  */
 export type ContractResourceStatusCodes =
   | "amended"
@@ -965,6 +1445,10 @@ export type ContractResourceStatusCodes =
  * ContributorType
  *
  * The type of contributor.
+ * - author: Author
+ * - editor: Editor
+ * - reviewer: Reviewer
+ * - endorser: Endorser
  */
 export type ContributorType = "author" | "editor" | "reviewer" | "endorser";
 
@@ -976,6 +1460,753 @@ export type ContributorType = "author" | "editor" | "reviewer" | "endorser";
    Note: The
  * codes for countries are taken from    [ISO
  * 3166](https://www.iso.org/iso-3166-country-codes.html).
+ * - AD: Andorra
+ * - AE: United Arab Emirates
+ * - AF: Afghanistan
+ * - AG: Antigua and Barbuda
+ * - AI: Anguilla
+ * - AL: Albania
+ * - AM: Armenia
+ * - AO: Angola
+ * - AQ: Antarctica
+ * - AR: Argentina
+ * - AS: American Samoa
+ * - AT: Austria
+ * - AU: Australia
+ * - AW: Aruba
+ * - AX: Eland Islands
+ * - AZ: Azerbaijan
+ * - BA: Bosnia and Herzegovina
+ * - BB: Barbados
+ * - BD: Bangladesh
+ * - BE: Belgium
+ * - BF: Burkina Faso
+ * - BG: Bulgaria
+ * - BH: Bahrain
+ * - BI: Burundi
+ * - BJ: Benin
+ * - BL: Saint Barthilemy
+ * - BM: Bermuda
+ * - BN: Brunei Darussalam
+ * - BO: Bolivia, Plurinational State of
+ * - BQ: Bonaire, Sint Eustatius and Saba
+ * - BR: Brazil
+ * - BS: Bahamas
+ * - BT: Bhutan
+ * - BV: Bouvet Island
+ * - BW: Botswana
+ * - BY: Belarus
+ * - BZ: Belize
+ * - CA: Canada
+ * - CC: Cocos (Keeling) Islands
+ * - CD: Congo, the Democratic Republic of the
+ * - CF: Central African Republic
+ * - CG: Congo
+ * - CH: Switzerland
+ * - CI: Ctte d'Ivoire
+ * - CK: Cook Islands
+ * - CL: Chile
+ * - CM: Cameroon
+ * - CN: China
+ * - CO: Colombia
+ * - CR: Costa Rica
+ * - CU: Cuba
+ * - CV: Cabo Verde
+ * - CW: Curagao
+ * - CX: Christmas Island
+ * - CY: Cyprus
+ * - CZ: Czechia
+ * - DE: Germany
+ * - DJ: Djibouti
+ * - DK: Denmark
+ * - DM: Dominica
+ * - DO: Dominican Republic
+ * - DZ: Algeria
+ * - EC: Ecuador
+ * - EE: Estonia
+ * - EG: Egypt
+ * - EH: Western Sahara
+ * - ER: Eritrea
+ * - ES: Spain
+ * - ET: Ethiopia
+ * - FI: Finland
+ * - FJ: Fiji
+ * - FK: Falkland Islands (Malvinas)
+ * - FM: Micronesia, Federated States of
+ * - FO: Faroe Islands
+ * - FR: France
+ * - GA: Gabon
+ * - GB: United Kingdom of Great Britain and Northern Ireland
+ * - GD: Grenada
+ * - GE: Georgia
+ * - GF: French Guiana
+ * - GG: Guernsey
+ * - GH: Ghana
+ * - GI: Gibraltar
+ * - GL: Greenland
+ * - GM: Gambia
+ * - GN: Guinea
+ * - GP: Guadeloupe
+ * - GQ: Equatorial Guinea
+ * - GR: Greece
+ * - GS: South Georgia and the South Sandwich Islands
+ * - GT: Guatemala
+ * - GU: Guam
+ * - GW: Guinea-Bissau
+ * - GY: Guyana
+ * - HK: Hong Kong
+ * - HM: Heard Island and McDonald Islands
+ * - HN: Honduras
+ * - HR: Croatia
+ * - HT: Haiti
+ * - HU: Hungary
+ * - ID: Indonesia
+ * - IE: Ireland
+ * - IL: Israel
+ * - IM: Isle of Man
+ * - IN: India
+ * - IO: British Indian Ocean Territory
+ * - IQ: Iraq
+ * - IR: Iran, Islamic Republic of
+ * - IS: Iceland
+ * - IT: Italy
+ * - JE: Jersey
+ * - JM: Jamaica
+ * - JO: Jordan
+ * - JP: Japan
+ * - KE: Kenya
+ * - KG: Kyrgyzstan
+ * - KH: Cambodia
+ * - KI: Kiribati
+ * - KM: Comoros
+ * - KN: Saint Kitts and Nevis
+ * - KP: Korea, Democratic People's Republic of
+ * - KR: Korea, Republic of
+ * - KW: Kuwait
+ * - KY: Cayman Islands
+ * - KZ: Kazakhstan
+ * - LA: Lao People's Democratic Republic
+ * - LB: Lebanon
+ * - LC: Saint Lucia
+ * - LI: Liechtenstein
+ * - LK: Sri Lanka
+ * - LR: Liberia
+ * - LS: Lesotho
+ * - LT: Lithuania
+ * - LU: Luxembourg
+ * - LV: Latvia
+ * - LY: Libya
+ * - MA: Morocco
+ * - MC: Monaco
+ * - MD: Moldova, Republic of
+ * - ME: Montenegro
+ * - MF: Saint Martin (French part)
+ * - MG: Madagascar
+ * - MH: Marshall Islands
+ * - MK: Macedonia, the former Yugoslav Republic of
+ * - ML: Mali
+ * - MM: Myanmar
+ * - MN: Mongolia
+ * - MO: Macao
+ * - MP: Northern Mariana Islands
+ * - MQ: Martinique
+ * - MR: Mauritania
+ * - MS: Montserrat
+ * - MT: Malta
+ * - MU: Mauritius
+ * - MV: Maldives
+ * - MW: Malawi
+ * - MX: Mexico
+ * - MY: Malaysia
+ * - MZ: Mozambique
+ * - NA: Namibia
+ * - NC: New Caledonia
+ * - NE: Niger
+ * - NF: Norfolk Island
+ * - NG: Nigeria
+ * - NI: Nicaragua
+ * - NL: Netherlands
+ * - NO: Norway
+ * - NP: Nepal
+ * - NR: Nauru
+ * - NU: Niue
+ * - NZ: New Zealand
+ * - OM: Oman
+ * - PA: Panama
+ * - PE: Peru
+ * - PF: French Polynesia
+ * - PG: Papua New Guinea
+ * - PH: Philippines
+ * - PK: Pakistan
+ * - PL: Poland
+ * - PM: Saint Pierre and Miquelon
+ * - PN: Pitcairn
+ * - PR: Puerto Rico
+ * - PS: Palestine, State of
+ * - PT: Portugal
+ * - PW: Palau
+ * - PY: Paraguay
+ * - QA: Qatar
+ * - RE: Riunion
+ * - RO: Romania
+ * - RS: Serbia
+ * - RU: Russian Federation
+ * - RW: Rwanda
+ * - SA: Saudi Arabia
+ * - SB: Solomon Islands
+ * - SC: Seychelles
+ * - SD: Sudan
+ * - SE: Sweden
+ * - SG: Singapore
+ * - SH: Saint Helena, Ascension and Tristan da Cunha
+ * - SI: Slovenia
+ * - SJ: Svalbard and Jan Mayen
+ * - SK: Slovakia
+ * - SL: Sierra Leone
+ * - SM: San Marino
+ * - SN: Senegal
+ * - SO: Somalia
+ * - SR: Suriname
+ * - SS: South Sudan
+ * - ST: Sao Tome and Principe
+ * - SV: El Salvador
+ * - SX: Sint Maarten (Dutch part)
+ * - SY: Syrian Arab Republic
+ * - SZ: Swaziland
+ * - TC: Turks and Caicos Islands
+ * - TD: Chad
+ * - TF: French Southern Territories
+ * - TG: Togo
+ * - TH: Thailand
+ * - TJ: Tajikistan
+ * - TK: Tokelau
+ * - TL: Timor-Leste
+ * - TM: Turkmenistan
+ * - TN: Tunisia
+ * - TO: Tonga
+ * - TR: Turkey
+ * - TT: Trinidad and Tobago
+ * - TV: Tuvalu
+ * - TW: Taiwan, Province of China
+ * - TZ: Tanzania, United Republic of
+ * - UA: Ukraine
+ * - UG: Uganda
+ * - UM: United States Minor Outlying Islands
+ * - US: United States of America
+ * - UY: Uruguay
+ * - UZ: Uzbekistan
+ * - VA: Holy See
+ * - VC: Saint Vincent and the Grenadines
+ * - VE: Venezuela, Bolivarian Republic of
+ * - VG: Virgin Islands, British
+ * - VI: Virgin Islands,
+ * - VN: Viet Nam
+ * - VU: Vanuatu
+ * - WF: Wallis and Futuna
+ * - WS: Samoa
+ * - YE: Yemen
+ * - YT: Mayotte
+ * - ZA: South Africa
+ * - ZM: Zambia
+ * - ZW: Zimbabwe
+ * - ABW: Aruba
+ * - AFG: Afghanistan
+ * - AGO: Angola
+ * - AIA: Anguilla
+ * - ALA: Eland Islands
+ * - ALB: Albania
+ * - AND: Andorra
+ * - ARE: United Arab Emirates
+ * - ARG: Argentina
+ * - ARM: Armenia
+ * - ASM: American Samoa
+ * - ATA: Antarctica
+ * - ATF: French Southern Territories
+ * - ATG: Antigua and Barbuda
+ * - AUS: Australia
+ * - AUT: Austria
+ * - AZE: Azerbaijan
+ * - BDI: Burundi
+ * - BEL: Belgium
+ * - BEN: Benin
+ * - BES: Bonaire, Sint Eustatius and Saba
+ * - BFA: Burkina Faso
+ * - BGD: Bangladesh
+ * - BGR: Bulgaria
+ * - BHR: Bahrain
+ * - BHS: Bahamas
+ * - BIH: Bosnia and Herzegovina
+ * - BLM: Saint Barthilemy
+ * - BLR: Belarus
+ * - BLZ: Belize
+ * - BMU: Bermuda
+ * - BOL: Bolivia, Plurinational State of
+ * - BRA: Brazil
+ * - BRB: Barbados
+ * - BRN: Brunei Darussalam
+ * - BTN: Bhutan
+ * - BVT: Bouvet Island
+ * - BWA: Botswana
+ * - CAF: Central African Republic
+ * - CAN: Canada
+ * - CCK: Cocos (Keeling) Islands
+ * - CHE: Switzerland
+ * - CHL: Chile
+ * - CHN: China
+ * - CIV: Ctte d'Ivoire
+ * - CMR: Cameroon
+ * - COD: Congo, the Democratic Republic of the
+ * - COG: Congo
+ * - COK: Cook Islands
+ * - COL: Colombia
+ * - COM: Comoros
+ * - CPV: Cabo Verde
+ * - CRI: Costa Rica
+ * - CUB: Cuba
+ * - CUW: Curagao
+ * - CXR: Christmas Island
+ * - CYM: Cayman Islands
+ * - CYP: Cyprus
+ * - CZE: Czechia
+ * - DEU: Germany
+ * - DJI: Djibouti
+ * - DMA: Dominica
+ * - DNK: Denmark
+ * - DOM: Dominican Republic
+ * - DZA: Algeria
+ * - ECU: Ecuador
+ * - EGY: Egypt
+ * - ERI: Eritrea
+ * - ESH: Western Sahara
+ * - ESP: Spain
+ * - EST: Estonia
+ * - ETH: Ethiopia
+ * - FIN: Finland
+ * - FJI: Fiji
+ * - FLK: Falkland Islands (Malvinas)
+ * - FRA: France
+ * - FRO: Faroe Islands
+ * - FSM: Micronesia, Federated States of
+ * - GAB: Gabon
+ * - GBR: United Kingdom
+ * - GEO: Georgia
+ * - GGY: Guernsey
+ * - GHA: Ghana
+ * - GIB: Gibraltar
+ * - GIN: Guinea
+ * - GLP: Guadeloupe
+ * - GMB: Gambia
+ * - GNB: Guinea-Bissau
+ * - GNQ: Equatorial Guinea
+ * - GRC: Greece
+ * - GRD: Grenada
+ * - GRL: Greenland
+ * - GTM: Guatemala
+ * - GUF: French Guiana
+ * - GUM: Guam
+ * - GUY: Guyana
+ * - HKG: Hong Kong
+ * - HMD: Heard Island and McDonald Islands
+ * - HND: Honduras
+ * - HRV: Croatia
+ * - HTI: Haiti
+ * - HUN: Hungary
+ * - IDN: Indonesia
+ * - IMN: Isle of Man
+ * - IND: India
+ * - IOT: British Indian Ocean Territory
+ * - IRL: Ireland
+ * - IRN: Iran, Islamic Republic of
+ * - IRQ: Iraq
+ * - ISL: Iceland
+ * - ISR: Israel
+ * - ITA: Italy
+ * - JAM: Jamaica
+ * - JEY: Jersey
+ * - JOR: Jordan
+ * - JPN: Japan
+ * - KAZ: Kazakhstan
+ * - KEN: Kenya
+ * - KGZ: Kyrgyzstan
+ * - KHM: Cambodia
+ * - KIR: Kiribati
+ * - KNA: Saint Kitts and Nevis
+ * - KOR: Korea, Republic of
+ * - KWT: Kuwait
+ * - LAO: Lao People's Democratic Republic
+ * - LBN: Lebanon
+ * - LBR: Liberia
+ * - LBY: Libya
+ * - LCA: Saint Lucia
+ * - LIE: Liechtenstein
+ * - LKA: Sri Lanka
+ * - LSO: Lesotho
+ * - LTU: Lithuania
+ * - LUX: Luxembourg
+ * - LVA: Latvia
+ * - MAC: Macao
+ * - MAF: Saint Martin (French part)
+ * - MAR: Morocco
+ * - MCO: Monaco
+ * - MDA: Moldova, Republic of
+ * - MDG: Madagascar
+ * - MDV: Maldives
+ * - MEX: Mexico
+ * - MHL: Marshall Islands
+ * - MKD: Macedonia, the former Yugoslav Republic of
+ * - MLI: Mali
+ * - MLT: Malta
+ * - MMR: Myanmar
+ * - MNE: Montenegro
+ * - MNG: Mongolia
+ * - MNP: Northern Mariana Islands
+ * - MOZ: Mozambique
+ * - MRT: Mauritania
+ * - MSR: Montserrat
+ * - MTQ: Martinique
+ * - MUS: Mauritius
+ * - MWI: Malawi
+ * - MYS: Malaysia
+ * - MYT: Mayotte
+ * - NAM: Namibia
+ * - NCL: New Caledonia
+ * - NER: Niger
+ * - NFK: Norfolk Island
+ * - NGA: Nigeria
+ * - NIC: Nicaragua
+ * - NIU: Niue
+ * - NLD: Netherlands
+ * - NOR: Norway
+ * - NPL: Nepal
+ * - NRU: Nauru
+ * - NZL: New Zealand
+ * - OMN: Oman
+ * - PAK: Pakistan
+ * - PAN: Panama
+ * - PCN: Pitcairn
+ * - PER: Peru
+ * - PHL: Philippines
+ * - PLW: Palau
+ * - PNG: Papua New Guinea
+ * - POL: Poland
+ * - PRI: Puerto Rico
+ * - PRK: Korea, Democratic People's Republic of
+ * - PRT: Portugal
+ * - PRY: Paraguay
+ * - PSE: Palestine, State of
+ * - PYF: French Polynesia
+ * - QAT: Qatar
+ * - REU: Riunion
+ * - ROU: Romania
+ * - RUS: Russian Federation
+ * - RWA: Rwanda
+ * - SAU: Saudi Arabia
+ * - SDN: Sudan
+ * - SEN: Senegal
+ * - SGP: Singapore
+ * - SGS: South Georgia and the South Sandwich Islands
+ * - SHN: Saint Helena, Ascension and Tristan da Cunha
+ * - SJM: Svalbard and Jan Mayen
+ * - SLB: Solomon Islands
+ * - SLE: Sierra Leone
+ * - SLV: El Salvador
+ * - SMR: San Marino
+ * - SOM: Somalia
+ * - SPM: Saint Pierre and Miquelon
+ * - SRB: Serbia
+ * - SSD: South Sudan
+ * - STP: Sao Tome and Principe
+ * - SUR: Suriname
+ * - SVK: Slovakia
+ * - SVN: Slovenia
+ * - SWE: Sweden
+ * - SWZ: Swaziland
+ * - SXM: Sint Maarten (Dutch part)
+ * - SYC: Seychelles
+ * - SYR: Syrian Arab Republic
+ * - TCA: Turks and Caicos Islands
+ * - TCD: Chad
+ * - TGO: Togo
+ * - THA: Thailand
+ * - TJK: Tajikistan
+ * - TKL: Tokelau
+ * - TKM: Turkmenistan
+ * - TLS: Timor-Leste
+ * - TON: Tonga
+ * - TTO: Trinidad and Tobago
+ * - TUN: Tunisia
+ * - TUR: Turkey
+ * - TUV: Tuvalu
+ * - TWN: Taiwan, Province of China
+ * - TZA: Tanzania, United Republic of
+ * - UGA: Uganda
+ * - UKR: Ukraine
+ * - UMI: United States Minor Outlying Islands
+ * - URY: Uruguay
+ * - USA: United States of America
+ * - UZB: Uzbekistan
+ * - VAT: Holy See
+ * - VCT: Saint Vincent and the Grenadines
+ * - VEN: Venezuela, Bolivarian Republic of
+ * - VGB: Virgin Islands, British
+ * - VIR: Virgin Islands, U.S.
+ * - VNM: Viet Nam
+ * - VUT: Vanuatu
+ * - WLF: Wallis and Futuna
+ * - WSM: Samoa
+ * - YEM: Yemen
+ * - ZAF: South Africa
+ * - ZMB: Zambia
+ * - ZWE: Zimbabwe
+ * - 004: Afghanistan
+ * - 008: Albania
+ * - 010: Antarctica
+ * - 012: Algeria
+ * - 016: American Samoa
+ * - 020: Andorra
+ * - 024: Angola
+ * - 028: Antigua and Barbuda
+ * - 031: Azerbaijan
+ * - 032: Argentina
+ * - 036: Australia
+ * - 040: Austria
+ * - 044: Bahamas
+ * - 048: Bahrain
+ * - 050: Bangladesh
+ * - 051: Armenia
+ * - 052: Barbados
+ * - 056: Belgium
+ * - 060: Bermuda
+ * - 064: Bhutan
+ * - 068: Bolivia, Plurinational State of
+ * - 070: Bosnia and Herzegovina
+ * - 072: Botswana
+ * - 074: Bouvet Island
+ * - 076: Brazil
+ * - 084: Belize
+ * - 086: British Indian Ocean Territory
+ * - 090: Solomon Islands
+ * - 092: Virgin Islands, British
+ * - 096: Brunei Darussalam
+ * - 100: Bulgaria
+ * - 104: Myanmar
+ * - 108: Burundi
+ * - 112: Belarus
+ * - 116: Cambodia
+ * - 120: Cameroon
+ * - 124: Canada
+ * - 132: Cabo Verde
+ * - 136: Cayman Islands
+ * - 140: Central African Republic
+ * - 144: Sri Lanka
+ * - 148: Chad
+ * - 152: Chile
+ * - 156: China
+ * - 158: Taiwan, Province of China
+ * - 162: Christmas Island
+ * - 166: Cocos (Keeling) Islands
+ * - 170: Colombia
+ * - 174: Comoros
+ * - 175: Mayotte
+ * - 178: Congo
+ * - 180: Congo, the Democratic Republic of the
+ * - 184: Cook Islands
+ * - 188: Costa Rica
+ * - 191: Croatia
+ * - 192: Cuba
+ * - 196: Cyprus
+ * - 203: Czechia
+ * - 204: Benin
+ * - 208: Denmark
+ * - 212: Dominica
+ * - 214: Dominican Republic
+ * - 218: Ecuador
+ * - 222: El Salvador
+ * - 226: Equatorial Guinea
+ * - 231: Ethiopia
+ * - 232: Eritrea
+ * - 233: Estonia
+ * - 234: Faroe Islands
+ * - 238: Falkland Islands (Malvinas)
+ * - 239: South Georgia and the South Sandwich Islands
+ * - 242: Fiji
+ * - 246: Finland
+ * - 248: Eland Islands
+ * - 250: France
+ * - 254: French Guiana
+ * - 258: French Polynesia
+ * - 260: French Southern Territories
+ * - 262: Djibouti
+ * - 266: Gabon
+ * - 268: Georgia
+ * - 270: Gambia
+ * - 275: Palestine, State of
+ * - 276: Germany
+ * - 288: Ghana
+ * - 292: Gibraltar
+ * - 296: Kiribati
+ * - 300: Greece
+ * - 304: Greenland
+ * - 308: Grenada
+ * - 312: Guadeloupe
+ * - 316: Guam
+ * - 320: Guatemala
+ * - 324: Guinea
+ * - 328: Guyana
+ * - 332: Haiti
+ * - 334: Heard Island and McDonald Islands
+ * - 336: Holy See
+ * - 340: Honduras
+ * - 344: Hong Kong
+ * - 348: Hungary
+ * - 352: Iceland
+ * - 356: India
+ * - 360: Indonesia
+ * - 364: Iran, Islamic Republic of
+ * - 368: Iraq
+ * - 372: Ireland
+ * - 376: Israel
+ * - 380: Italy
+ * - 384: Ctte d'Ivoire
+ * - 388: Jamaica
+ * - 392: Japan
+ * - 398: Kazakhstan
+ * - 400: Jordan
+ * - 404: Kenya
+ * - 408: Korea, Democratic People's Republic of
+ * - 410: Korea, Republic of
+ * - 414: Kuwait
+ * - 417: Kyrgyzstan
+ * - 418: Lao People's Democratic Republic
+ * - 422: Lebanon
+ * - 426: Lesotho
+ * - 428: Latvia
+ * - 430: Liberia
+ * - 434: Libya
+ * - 438: Liechtenstein
+ * - 440: Lithuania
+ * - 442: Luxembourg
+ * - 446: Macao
+ * - 450: Madagascar
+ * - 454: Malawi
+ * - 458: Malaysia
+ * - 462: Maldives
+ * - 466: Mali
+ * - 470: Malta
+ * - 474: Martinique
+ * - 478: Mauritania
+ * - 480: Mauritius
+ * - 484: Mexico
+ * - 492: Monaco
+ * - 496: Mongolia
+ * - 498: Moldova, Republic of
+ * - 499: Montenegro
+ * - 500: Montserrat
+ * - 504: Morocco
+ * - 508: Mozambique
+ * - 512: Oman
+ * - 516: Namibia
+ * - 520: Nauru
+ * - 524: Nepal
+ * - 528: Netherlands
+ * - 531: Curagao
+ * - 533: Aruba
+ * - 534: Sint Maarten (Dutch part)
+ * - 535: Bonaire, Sint Eustatius and Saba
+ * - 540: New Caledonia
+ * - 548: Vanuatu
+ * - 554: New Zealand
+ * - 558: Nicaragua
+ * - 562: Niger
+ * - 566: Nigeria
+ * - 570: Niue
+ * - 574: Norfolk Island
+ * - 578: Norway
+ * - 580: Northern Mariana Islands
+ * - 581: United States Minor Outlying Islands
+ * - 583: Micronesia, Federated States of
+ * - 584: Marshall Islands
+ * - 585: Palau
+ * - 586: Pakistan
+ * - 591: Panama
+ * - 598: Papua New Guinea
+ * - 600: Paraguay
+ * - 604: Peru
+ * - 608: Philippines
+ * - 612: Pitcairn
+ * - 616: Poland
+ * - 620: Portugal
+ * - 624: Guinea-Bissau
+ * - 626: Timor-Leste
+ * - 630: Puerto Rico
+ * - 634: Qatar
+ * - 638: Riunion
+ * - 642: Romania
+ * - 643: Russian Federation
+ * - 646: Rwanda
+ * - 652: Saint Barthilemy
+ * - 654: Saint Helena, Ascension and Tristan da Cunha
+ * - 659: Saint Kitts and Nevis
+ * - 660: Anguilla
+ * - 662: Saint Lucia
+ * - 663: Saint Martin (French part)
+ * - 666: Saint Pierre and Miquelon
+ * - 670: Saint Vincent and the Grenadines
+ * - 674: San Marino
+ * - 678: Sao Tome and Principe
+ * - 682: Saudi Arabia
+ * - 686: Senegal
+ * - 688: Serbia
+ * - 690: Seychelles
+ * - 694: Sierra Leone
+ * - 702: Singapore
+ * - 703: Slovakia
+ * - 704: Viet Nam
+ * - 705: Slovenia
+ * - 706: Somalia
+ * - 710: South Africa
+ * - 716: Zimbabwe
+ * - 724: Spain
+ * - 728: South Sudan
+ * - 729: Sudan
+ * - 732: Western Sahara
+ * - 740: Suriname
+ * - 744: Svalbard and Jan Mayen
+ * - 748: Swaziland
+ * - 752: Sweden
+ * - 756: Switzerland
+ * - 760: Syrian Arab Republic
+ * - 762: Tajikistan
+ * - 764: Thailand
+ * - 768: Togo
+ * - 772: Tokelau
+ * - 776: Tonga
+ * - 780: Trinidad and Tobago
+ * - 784: United Arab Emirates
+ * - 788: Tunisia
+ * - 792: Turkey
+ * - 795: Turkmenistan
+ * - 796: Turks and Caicos Islands
+ * - 798: Tuvalu
+ * - 800: Uganda
+ * - 804: Ukraine
+ * - 807: Macedonia, the former Yugoslav Republic of
+ * - 818: Egypt
+ * - 826: United Kingdom
+ * - 831: Guernsey
+ * - 832: Jersey
+ * - 833: Isle of Man
+ * - 834: Tanzania, United Republic of
+ * - 840: United States of America
+ * - 850: Virgin Islands, U.S.
+ * - 854: Burkina Faso
+ * - 858: Uruguay
+ * - 860: Uzbekistan
+ * - 862: Venezuela, Bolivarian Republic of
+ * - 876: Wallis and Futuna
+ * - 882: Samoa
+ * - 887: Yemen
+ * - 894: Zambia
  */
 export type CountryValueSet =
   | "AD"
@@ -1731,6 +2962,8 @@ export type CountryValueSet =
  *
  * Behavior a server can exhibit when a criteria state does not exist (e.g., state
  * prior to a create or after a delete).
+ * - test-passes: Test passes
+ * - test-fails: Test fails
  */
 export type CriteriaNotExistsBehavior = "test-passes" | "test-fails";
 
@@ -1739,6 +2972,188 @@ export type CriteriaNotExistsBehavior = "test-passes" | "test-fails";
  *
  * Currency codes from ISO 4217 (see
  * https://www.iso.org/iso-4217-currency-codes.html)
+ * - AED: United Arab Emirates dirham
+ * - AFN: Afghan afghani
+ * - ALL: Albanian lek
+ * - AMD: Armenian dram
+ * - ANG: Netherlands Antillean guilder
+ * - AOA: Angolan kwanza
+ * - ARS: Argentine peso
+ * - AUD: Australian dollar
+ * - AWG: Aruban florin
+ * - AZN: Azerbaijani manat
+ * - BAM: Bosnia and Herzegovina convertible mark
+ * - BBD: Barbados dollar
+ * - BDT: Bangladeshi taka
+ * - BGN: Bulgarian lev
+ * - BHD: Bahraini dinar
+ * - BIF: Burundian franc
+ * - BMD: Bermudian dollar
+ * - BND: Brunei dollar
+ * - BOB: Boliviano
+ * - BOV: Bolivian Mvdol (funds code)
+ * - BRL: Brazilian real
+ * - BSD: Bahamian dollar
+ * - BTN: Bhutanese ngultrum
+ * - BWP: Botswana pula
+ * - BYN: Belarusian ruble
+ * - BZD: Belize dollar
+ * - CAD: Canadian dollar
+ * - CDF: Congolese franc
+ * - CHE: WIR Euro (complementary currency)
+ * - CHF: Swiss franc
+ * - CHW: WIR Franc (complementary currency)
+ * - CLF: Unidad de Fomento (funds code)
+ * - CLP: Chilean peso
+ * - CNY: Renminbi (Chinese) yuan[8]
+ * - COP: Colombian peso
+ * - COU: Unidad de Valor Real (UVR) (funds code)[9]
+ * - CRC: Costa Rican colon
+ * - CUC: Cuban convertible peso
+ * - CUP: Cuban peso
+ * - CVE: Cape Verde escudo
+ * - CZK: Czech koruna
+ * - DJF: Djiboutian franc
+ * - DKK: Danish krone
+ * - DOP: Dominican peso
+ * - DZD: Algerian dinar
+ * - EGP: Egyptian pound
+ * - ERN: Eritrean nakfa
+ * - ETB: Ethiopian birr
+ * - EUR: Euro
+ * - FJD: Fiji dollar
+ * - FKP: Falkland Islands pound
+ * - GBP: Pound sterling
+ * - GEL: Georgian lari
+ * - GGP: Guernsey Pound
+ * - GHS: Ghanaian cedi
+ * - GIP: Gibraltar pound
+ * - GMD: Gambian dalasi
+ * - GNF: Guinean franc
+ * - GTQ: Guatemalan quetzal
+ * - GYD: Guyanese dollar
+ * - HKD: Hong Kong dollar
+ * - HNL: Honduran lempira
+ * - HRK: Croatian kuna
+ * - HTG: Haitian gourde
+ * - HUF: Hungarian forint
+ * - IDR: Indonesian rupiah
+ * - ILS: Israeli new shekel
+ * - IMP: Isle of Man Pound
+ * - INR: Indian rupee
+ * - IQD: Iraqi dinar
+ * - IRR: Iranian rial
+ * - ISK: Icelandic króna
+ * - JEP: Jersey Pound
+ * - JMD: Jamaican dollar
+ * - JOD: Jordanian dinar
+ * - JPY: Japanese yen
+ * - KES: Kenyan shilling
+ * - KGS: Kyrgyzstani som
+ * - KHR: Cambodian riel
+ * - KMF: Comoro franc
+ * - KPW: North Korean won
+ * - KRW: South Korean won
+ * - KWD: Kuwaiti dinar
+ * - KYD: Cayman Islands dollar
+ * - KZT: Kazakhstani tenge
+ * - LAK: Lao kip
+ * - LBP: Lebanese pound
+ * - LKR: Sri Lankan rupee
+ * - LRD: Liberian dollar
+ * - LSL: Lesotho loti
+ * - LYD: Libyan dinar
+ * - MAD: Moroccan dirham
+ * - MDL: Moldovan leu
+ * - MGA: Malagasy ariary
+ * - MKD: Macedonian denar
+ * - MMK: Myanmar kyat
+ * - MNT: Mongolian tögrög
+ * - MOP: Macanese pataca
+ * - MRU: Mauritanian ouguiya
+ * - MUR: Mauritian rupee
+ * - MVR: Maldivian rufiyaa
+ * - MWK: Malawian kwacha
+ * - MXN: Mexican peso
+ * - MXV: Mexican Unidad de Inversion (UDI) (funds code)
+ * - MYR: Malaysian ringgit
+ * - MZN: Mozambican metical
+ * - NAD: Namibian dollar
+ * - NGN: Nigerian naira
+ * - NIO: Nicaraguan córdoba
+ * - NOK: Norwegian krone
+ * - NPR: Nepalese rupee
+ * - NZD: New Zealand dollar
+ * - OMR: Omani rial
+ * - PAB: Panamanian balboa
+ * - PEN: Peruvian Sol
+ * - PGK: Papua New Guinean kina
+ * - PHP: Philippine piso[13]
+ * - PKR: Pakistani rupee
+ * - PLN: Polish złoty
+ * - PYG: Paraguayan guaraní
+ * - QAR: Qatari riyal
+ * - RON: Romanian leu
+ * - RSD: Serbian dinar
+ * - RUB: Russian ruble
+ * - RWF: Rwandan franc
+ * - SAR: Saudi riyal
+ * - SBD: Solomon Islands dollar
+ * - SCR: Seychelles rupee
+ * - SDG: Sudanese pound
+ * - SEK: Swedish krona/kronor
+ * - SGD: Singapore dollar
+ * - SHP: Saint Helena pound
+ * - SLL: Sierra Leonean leone
+ * - SOS: Somali shilling
+ * - SRD: Surinamese dollar
+ * - SSP: South Sudanese pound
+ * - STN: São Tomé and Príncipe dobra
+ * - SVC: Salvadoran colón
+ * - SYP: Syrian pound
+ * - SZL: Swazi lilangeni
+ * - THB: Thai baht
+ * - TJS: Tajikistani somoni
+ * - TMT: Turkmenistan manat
+ * - TND: Tunisian dinar
+ * - TOP: Tongan paʻanga
+ * - TRY: Turkish lira
+ * - TTD: Trinidad and Tobago dollar
+ * - TVD: Tuvalu Dollar
+ * - TWD: New Taiwan dollar
+ * - TZS: Tanzanian shilling
+ * - UAH: Ukrainian hryvnia
+ * - UGX: Ugandan shilling
+ * - USD: United States dollar
+ * - USN: United States dollar (next day) (funds code)
+ * - UYI: Uruguay Peso en Unidades Indexadas (URUIURUI) (funds code)
+ * - UYU: Uruguayan peso
+ * - UZS: Uzbekistan som
+ * - VEF: Venezuelan bolívar
+ * - VND: Vietnamese đồng
+ * - VUV: Vanuatu vatu
+ * - WST: Samoan tala
+ * - XAF: CFA franc BEAC
+ * - XAG: Silver (one troy ounce)
+ * - XAU: Gold (one troy ounce)
+ * - XBA: European Composite Unit (EURCO) (bond market unit)
+ * - XBB: European Monetary Unit (E.M.U.-6) (bond market unit)
+ * - XBC: European Unit of Account 9 (E.U.A.-9) (bond market unit)
+ * - XBD: European Unit of Account 17 (E.U.A.-17) (bond market unit)
+ * - XCD: East Caribbean dollar
+ * - XDR: Special drawing rights
+ * - XOF: CFA franc BCEAO
+ * - XPD: Palladium (one troy ounce)
+ * - XPF: CFP franc (franc Pacifique)
+ * - XPT: Platinum (one troy ounce)
+ * - XSU: SUCRE
+ * - XTS: Code reserved for testing purposes
+ * - XUA: ADB Unit of Account
+ * - XXX: No currency
+ * - YER: Yemeni rial
+ * - ZAR: South African rand
+ * - ZMW: Zambian kwacha
+ * - ZWL: Zimbabwean dollar A/10
  */
 export type Currencies =
   | "AED"
@@ -1928,6 +3343,13 @@ export type Currencies =
  * Days Of Week
  *
  * The days of the week.
+ * - mon: Monday
+ * - tue: Tuesday
+ * - wed: Wednesday
+ * - thu: Thursday
+ * - fri: Friday
+ * - sat: Saturday
+ * - sun: Sunday
  */
 export type DaysOfWeek = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
 
@@ -1935,6 +3357,9 @@ export type DaysOfWeek = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
  * Detected Issue Severity
  *
  * Indicates the potential degree of impact of the identified issue on the patient.
+ * - high: High
+ * - moderate: Moderate
+ * - low: Low
  */
 export type DetectedIssueSeverity = "high" | "moderate" | "low";
 
@@ -1942,6 +3367,10 @@ export type DetectedIssueSeverity = "high" | "moderate" | "low";
  * Detected Issue Status
  *
  * Indicates the status of a detected issue
+ * - preliminary: Preliminary
+ * - final: Final
+ * - entered-in-error: Entered in Error
+ * - mitigated: Mitigated
  */
 export type DetectedIssueStatus =
   | "preliminary"
@@ -1953,6 +3382,11 @@ export type DetectedIssueStatus =
  * DeviceAssociation Status Reason Codes
  *
  *
+ * - attached: Attached
+ * - disconnected: Disconnected
+ * - failed: Failed
+ * - placed: placed
+ * - replaced: Replaced
  */
 export type DeviceAssociationStatusReasonCodes =
   | "attached"
@@ -1965,6 +3399,11 @@ export type DeviceAssociationStatusReasonCodes =
  * DeviceAssociation Status Codes
  *
  *
+ * - implanted: Implanted
+ * - explanted: Explanted
+ * - entered-in-error: Entered in Error
+ * - attached: Attached
+ * - unknown: Unknown
  */
 export type DeviceAssociationStatusCodes =
   | "implanted"
@@ -1977,6 +3416,9 @@ export type DeviceAssociationStatusCodes =
  * Device Corrective Action Scope
  *
  * Device - Corrective action scope
+ * - model: Model
+ * - lot-numbers: Lot Numbers
+ * - serial-numbers: Serial Numbers
  */
 export type DeviceCorrectiveActionScope =
   | "model"
@@ -1987,6 +3429,9 @@ export type DeviceCorrectiveActionScope =
  * Device Definition Regulatory Identifier Type
  *
  * Regulatory Identifier type
+ * - basic: Basic
+ * - master: Master
+ * - license: License
  */
 export type DeviceDefinitionRegulatoryIdentifierType =
   | "basic"
@@ -1997,6 +3442,15 @@ export type DeviceDefinitionRegulatoryIdentifierType =
  * DeviceDispense Status Codes
  *
  *
+ * - preparation: Preparation
+ * - in-progress: In Progress
+ * - cancelled: Cancelled
+ * - on-hold: On Hold
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - stopped: Stopped
+ * - declined: Declined
+ * - unknown: Unknown
  */
 export type DeviceDispenseStatusCodes =
   | "preparation"
@@ -2013,6 +3467,10 @@ export type DeviceDispenseStatusCodes =
  * Device Metric Calibration State
  *
  * Describes the state of a metric calibration.
+ * - not-calibrated: Not Calibrated
+ * - calibration-required: Calibration Required
+ * - calibrated: Calibrated
+ * - unspecified: Unspecified
  */
 export type DeviceMetricCalibrationState =
   | "not-calibrated"
@@ -2024,6 +3482,10 @@ export type DeviceMetricCalibrationState =
  * Device Metric Calibration Type
  *
  * Describes the type of a metric calibration.
+ * - unspecified: Unspecified
+ * - offset: Offset
+ * - gain: Gain
+ * - two-point: Two Point
  */
 export type DeviceMetricCalibrationType =
   | "unspecified"
@@ -2035,6 +3497,10 @@ export type DeviceMetricCalibrationType =
  * Device Metric Category
  *
  * Describes the category of the metric.
+ * - measurement: Measurement
+ * - setting: Setting
+ * - calculation: Calculation
+ * - unspecified: Unspecified
  */
 export type DeviceMetricCategory =
   | "measurement"
@@ -2046,6 +3512,10 @@ export type DeviceMetricCategory =
  * Device Metric Operational Status
  *
  * Describes the operational status of the DeviceMetric.
+ * - on: On
+ * - off: Off
+ * - standby: Standby
+ * - entered-in-error: Entered In Error
  */
 export type DeviceMetricOperationalStatus =
   | "on"
@@ -2057,6 +3527,9 @@ export type DeviceMetricOperationalStatus =
  * Device Name Type
  *
  * The type of name the device is referred by.
+ * - registered-name: Registered name
+ * - user-friendly-name: User Friendly name
+ * - patient-reported-name: Patient Reported name
  */
 export type DeviceNameType =
   | "registered-name"
@@ -2067,6 +3540,12 @@ export type DeviceNameType =
  * Device Production Identifier In UDI
  *
  * Device Production Identifier in UDI
+ * - lot-number: Lot Number
+ * - manufactured-date: Manufactured date
+ * - serial-number: Serial Number
+ * - expiration-date: Expiration date
+ * - biological-source: Biological source
+ * - software-version: Software Version
  */
 export type DeviceProductionIdentifierInUDI =
   | "lot-number"
@@ -2080,6 +3559,13 @@ export type DeviceProductionIdentifierInUDI =
  * Device Usage Status
  *
  * A coded concept indicating the current status of the Device Usage.
+ * - active: Active
+ * - completed: Completed
+ * - not-done: Not done
+ * - entered-in-error: Entered in Error
+ * - intended: Intended
+ * - stopped: Stopped
+ * - on-hold: On Hold
  */
 export type DeviceUsageStatus =
   | "active"
@@ -2094,6 +3580,17 @@ export type DeviceUsageStatus =
  * Diagnostic Report Status
  *
  * The status of the diagnostic report.
+ * - registered: Registered
+ * - partial: Partial
+ * - preliminary: Preliminary
+ * - modified: Modified
+ * - final: Final
+ * - amended: Amended
+ * - corrected: Corrected
+ * - appended: Appended
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type DiagnosticReportStatus =
   | "registered"
@@ -2112,6 +3609,12 @@ export type DiagnosticReportStatus =
  * DiscriminatorType
  *
  * How an element value is interpreted when discrimination is evaluated.
+ * - value: Value
+ * - exists: Exists
+ * - pattern: Pattern
+ * - type: Type
+ * - profile: Profile
+ * - position: Position
  */
 export type DiscriminatorType =
   | "value"
@@ -2125,6 +3628,8 @@ export type DiscriminatorType =
  * Document Mode
  *
  * Whether the application produces or consumes documents.
+ * - producer: Producer
+ * - consumer: Consumer
  */
 export type DocumentMode = "producer" | "consumer";
 
@@ -2132,6 +3637,9 @@ export type DocumentMode = "producer" | "consumer";
  * DocumentReferenceStatus
  *
  * The status of the document reference.
+ * - current: Current
+ * - superseded: Superseded
+ * - entered-in-error: Entered in Error
  */
 export type DocumentReferenceStatus =
   | "current"
@@ -2142,6 +3650,10 @@ export type DocumentReferenceStatus =
  * Eligibility Outcome
  *
  * The outcome of the processing.
+ * - queued: Queued
+ * - complete: Processing Complete
+ * - error: Error
+ * - partial: Partial Processing
  */
 export type EligibilityOutcome = "queued" | "complete" | "error" | "partial";
 
@@ -2149,6 +3661,10 @@ export type EligibilityOutcome = "queued" | "complete" | "error" | "partial";
  * Eligibility Request Purpose
  *
  * A code specifying the types of information being requested.
+ * - auth-requirements: Coverage auth-requirements
+ * - benefits: Coverage benefits
+ * - discovery: Coverage Discovery
+ * - validation: Coverage Validation
  */
 export type EligibilityRequestPurpose =
   | "auth-requirements"
@@ -2160,6 +3676,10 @@ export type EligibilityRequestPurpose =
  * Eligibility Response Purpose
  *
  * A code specifying the types of information being requested.
+ * - auth-requirements: Coverage auth-requirements
+ * - benefits: Coverage benefits
+ * - discovery: Coverage Discovery
+ * - validation: Coverage Validation
  */
 export type EligibilityResponsePurpose =
   | "auth-requirements"
@@ -2172,6 +3692,8 @@ export type EligibilityResponsePurpose =
  *
  * Controls how multiple enableWhen values are interpreted -  whether all or any
  * must be true.
+ * - all: All
+ * - any: Any
  */
 export type EnableWhenBehavior = "all" | "any";
 
@@ -2179,6 +3701,10 @@ export type EnableWhenBehavior = "all" | "any";
  * Encounter Location Status
  *
  * The status of the location.
+ * - planned: Planned
+ * - active: Active
+ * - reserved: Reserved
+ * - completed: Completed
  */
 export type EncounterLocationStatus =
   | "planned"
@@ -2190,6 +3716,15 @@ export type EncounterLocationStatus =
  * Encounter Status
  *
  * Current state of the encounter.
+ * - planned: Planned
+ * - in-progress: In Progress
+ * - on-hold: On Hold
+ * - discharged: Discharged
+ * - completed: Completed
+ * - cancelled: Cancelled
+ * - discontinued: Discontinued
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type EncounterStatus =
   | "planned"
@@ -2206,6 +3741,11 @@ export type EncounterStatus =
  * Endpoint Status
  *
  * The status of the endpoint.
+ * - active: Active
+ * - suspended: Suspended
+ * - error: Error
+ * - off: Off
+ * - entered-in-error: Entered in error
  */
 export type EndpointStatus =
   | "active"
@@ -2218,6 +3758,10 @@ export type EndpointStatus =
  * Enrollment Outcome
  *
  * The outcome of the processing.
+ * - queued: Queued
+ * - complete: Processing Complete
+ * - error: Error
+ * - partial: Partial Processing
  */
 export type EnrollmentOutcome = "queued" | "complete" | "error" | "partial";
 
@@ -2225,6 +3769,13 @@ export type EnrollmentOutcome = "queued" | "complete" | "error" | "partial";
  * Episode Of Care Status
  *
  * The status of the episode of care.
+ * - planned: Planned
+ * - waitlist: Waitlist
+ * - active: Active
+ * - onhold: On Hold
+ * - finished: Finished
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
  */
 export type EpisodeOfCareStatus =
   | "planned"
@@ -2239,6 +3790,8 @@ export type EpisodeOfCareStatus =
  * Event Capability Mode
  *
  * The mode of a message capability statement.
+ * - sender: Sender
+ * - receiver: Receiver
  */
 export type EventCapabilityMode = "sender" | "receiver";
 
@@ -2246,6 +3799,14 @@ export type EventCapabilityMode = "sender" | "receiver";
  * EventStatus
  *
  * Codes identifying the lifecycle stage of an event.
+ * - preparation: Preparation
+ * - in-progress: In Progress
+ * - not-done: Not Done
+ * - on-hold: On Hold
+ * - stopped: Stopped
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type EventStatus =
   | "preparation"
@@ -2261,6 +3822,33 @@ export type EventStatus =
  * EventTiming
  *
  * Real-world event relating to the schedule.
+ * - MORN: Morning
+ * - MORN.early: Early Morning
+ * - MORN.late: Late Morning
+ * - NOON: Noon
+ * - AFT: Afternoon
+ * - AFT.early: Early Afternoon
+ * - AFT.late: Late Afternoon
+ * - EVE: Evening
+ * - EVE.early: Early Evening
+ * - EVE.late: Late Evening
+ * - NIGHT: Night
+ * - PHS: After Sleep
+ * - IMD: Immediate
+ * - HS: HS
+ * - WAKE: WAKE
+ * - C: C
+ * - CM: CM
+ * - CD: CD
+ * - CV: CV
+ * - AC: AC
+ * - ACM: ACM
+ * - ACD: ACD
+ * - ACV: ACV
+ * - PC: PC
+ * - PCM: PCM
+ * - PCD: PCD
+ * - PCV: PCV
  */
 export type EventTiming =
   | "MORN"
@@ -2296,6 +3884,10 @@ export type EventTiming =
  *
  * The handling of the variable in statistical analysis for exposures or outcomes
  * (E.g. Dichotomous, Continuous, Descriptive).
+ * - continuous: continuous variable
+ * - dichotomous: dichotomous variable
+ * - ordinal: ordinal variable
+ * - polychotomous: polychotomous variable
  */
 export type EvidenceVariableHandling =
   | "continuous"
@@ -2307,6 +3899,8 @@ export type EvidenceVariableHandling =
  * Example Scenario Actor Type
  *
  * The type of actor - system or human.
+ * - person: Person
+ * - system: System
  */
 export type ExampleScenarioActorType = "person" | "system";
 
@@ -2314,6 +3908,10 @@ export type ExampleScenarioActorType = "person" | "system";
  * Explanation Of Benefit Status
  *
  * A code specifying the state of the resource instance.
+ * - active: Active
+ * - cancelled: Cancelled
+ * - draft: Draft
+ * - entered-in-error: Entered In Error
  */
 export type ExplanationOfBenefitStatus =
   | "active"
@@ -2325,6 +3923,9 @@ export type ExplanationOfBenefitStatus =
  * Extension Context Type
  *
  * How an extension context is interpreted.
+ * - fhirpath: FHIRPath
+ * - element: Element ID
+ * - extension: Extension URL
  */
 export type ExtensionContextType = "fhirpath" | "element" | "extension";
 
@@ -2332,6 +3933,10 @@ export type ExtensionContextType = "fhirpath" | "element" | "extension";
  * Family History Status
  *
  * A code that identifies the status of the family history record.
+ * - partial: Partial
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - health-unknown: Health Unknown
  */
 export type FamilyHistoryStatus =
   | "partial"
@@ -2343,6 +3948,9 @@ export type FamilyHistoryStatus =
  * FHIR Device Status
  *
  * The status of the Device record.
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type FHIRDeviceStatus = "active" | "inactive" | "entered-in-error";
 
@@ -2350,6 +3958,9 @@ export type FHIRDeviceStatus = "active" | "inactive" | "entered-in-error";
  * FHIRSubstanceStatus
  *
  * A code to indicate if the substance is actively used.
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type FHIRSubstanceStatus = "active" | "inactive" | "entered-in-error";
 
@@ -2357,6 +3968,237 @@ export type FHIRSubstanceStatus = "active" | "inactive" | "entered-in-error";
  * All FHIR Types
  *
  * All FHIR types
+ * - Base: Base
+ * - Element: Element
+ * - BackboneElement: BackboneElement
+ * - DataType: DataType
+ * - Address: Address
+ * - Annotation: Annotation
+ * - Attachment: Attachment
+ * - Availability: Availability
+ * - BackboneType: BackboneType
+ * - Dosage: Dosage
+ * - ElementDefinition: ElementDefinition
+ * - MarketingStatus: MarketingStatus
+ * - ProductShelfLife: ProductShelfLife
+ * - Timing: Timing
+ * - CodeableConcept: CodeableConcept
+ * - CodeableReference: CodeableReference
+ * - Coding: Coding
+ * - ContactDetail: ContactDetail
+ * - ContactPoint: ContactPoint
+ * - Contributor: Contributor
+ * - DataRequirement: DataRequirement
+ * - Expression: Expression
+ * - ExtendedContactDetail: ExtendedContactDetail
+ * - Extension: Extension
+ * - HumanName: HumanName
+ * - Identifier: Identifier
+ * - Meta: Meta
+ * - MonetaryComponent: MonetaryComponent
+ * - Money: Money
+ * - Narrative: Narrative
+ * - ParameterDefinition: ParameterDefinition
+ * - Period: Period
+ * - PrimitiveType: PrimitiveType
+ * - base64Binary: base64Binary
+ * - boolean: boolean
+ * - date: date
+ * - dateTime: dateTime
+ * - decimal: decimal
+ * - instant: instant
+ * - integer: integer
+ * - positiveInt: positiveInt
+ * - unsignedInt: unsignedInt
+ * - integer64: integer64
+ * - string: string
+ * - code: code
+ * - id: id
+ * - markdown: markdown
+ * - time: time
+ * - uri: uri
+ * - canonical: canonical
+ * - oid: oid
+ * - url: url
+ * - uuid: uuid
+ * - Quantity: Quantity
+ * - Age: Age
+ * - Count: Count
+ * - Distance: Distance
+ * - Duration: Duration
+ * - Range: Range
+ * - Ratio: Ratio
+ * - RatioRange: RatioRange
+ * - Reference: Reference
+ * - RelatedArtifact: RelatedArtifact
+ * - SampledData: SampledData
+ * - Signature: Signature
+ * - TriggerDefinition: TriggerDefinition
+ * - UsageContext: UsageContext
+ * - VirtualServiceDetail: VirtualServiceDetail
+ * - xhtml: xhtml
+ * - Resource: Resource
+ * - Binary: Binary
+ * - Bundle: Bundle
+ * - DomainResource: DomainResource
+ * - Account: Account
+ * - ActivityDefinition: ActivityDefinition
+ * - ActorDefinition: ActorDefinition
+ * - AdministrableProductDefinition: AdministrableProductDefinition
+ * - AdverseEvent: AdverseEvent
+ * - AllergyIntolerance: AllergyIntolerance
+ * - Appointment: Appointment
+ * - AppointmentResponse: AppointmentResponse
+ * - ArtifactAssessment: ArtifactAssessment
+ * - AuditEvent: AuditEvent
+ * - Basic: Basic
+ * - BiologicallyDerivedProduct: BiologicallyDerivedProduct
+ * - BiologicallyDerivedProductDispense: BiologicallyDerivedProductDispense
+ * - BodyStructure: BodyStructure
+ * - CanonicalResource: CanonicalResource
+ * - CapabilityStatement: CapabilityStatement
+ * - CarePlan: CarePlan
+ * - CareTeam: CareTeam
+ * - ChargeItem: ChargeItem
+ * - ChargeItemDefinition: ChargeItemDefinition
+ * - Citation: Citation
+ * - Claim: Claim
+ * - ClaimResponse: ClaimResponse
+ * - ClinicalImpression: ClinicalImpression
+ * - ClinicalUseDefinition: ClinicalUseDefinition
+ * - CodeSystem: CodeSystem
+ * - Communication: Communication
+ * - CommunicationRequest: CommunicationRequest
+ * - CompartmentDefinition: CompartmentDefinition
+ * - Composition: Composition
+ * - ConceptMap: ConceptMap
+ * - Condition: Condition
+ * - ConditionDefinition: ConditionDefinition
+ * - Consent: Consent
+ * - Contract: Contract
+ * - Coverage: Coverage
+ * - CoverageEligibilityRequest: CoverageEligibilityRequest
+ * - CoverageEligibilityResponse: CoverageEligibilityResponse
+ * - DetectedIssue: DetectedIssue
+ * - Device: Device
+ * - DeviceAssociation: DeviceAssociation
+ * - DeviceDefinition: DeviceDefinition
+ * - DeviceDispense: DeviceDispense
+ * - DeviceMetric: DeviceMetric
+ * - DeviceRequest: DeviceRequest
+ * - DeviceUsage: DeviceUsage
+ * - DiagnosticReport: DiagnosticReport
+ * - DocumentReference: DocumentReference
+ * - Encounter: Encounter
+ * - EncounterHistory: EncounterHistory
+ * - Endpoint: Endpoint
+ * - EnrollmentRequest: EnrollmentRequest
+ * - EnrollmentResponse: EnrollmentResponse
+ * - EpisodeOfCare: EpisodeOfCare
+ * - EventDefinition: EventDefinition
+ * - Evidence: Evidence
+ * - EvidenceReport: EvidenceReport
+ * - EvidenceVariable: EvidenceVariable
+ * - ExampleScenario: ExampleScenario
+ * - ExplanationOfBenefit: ExplanationOfBenefit
+ * - FamilyMemberHistory: FamilyMemberHistory
+ * - Flag: Flag
+ * - FormularyItem: FormularyItem
+ * - GenomicStudy: GenomicStudy
+ * - Goal: Goal
+ * - GraphDefinition: GraphDefinition
+ * - Group: Group
+ * - GuidanceResponse: GuidanceResponse
+ * - HealthcareService: HealthcareService
+ * - ImagingSelection: ImagingSelection
+ * - ImagingStudy: ImagingStudy
+ * - Immunization: Immunization
+ * - ImmunizationEvaluation: ImmunizationEvaluation
+ * - ImmunizationRecommendation: ImmunizationRecommendation
+ * - ImplementationGuide: ImplementationGuide
+ * - Ingredient: Ingredient
+ * - InsurancePlan: InsurancePlan
+ * - InventoryItem: InventoryItem
+ * - InventoryReport: InventoryReport
+ * - Invoice: Invoice
+ * - Library: Library
+ * - Linkage: Linkage
+ * - List: List
+ * - Location: Location
+ * - ManufacturedItemDefinition: ManufacturedItemDefinition
+ * - Measure: Measure
+ * - MeasureReport: MeasureReport
+ * - Medication: Medication
+ * - MedicationAdministration: MedicationAdministration
+ * - MedicationDispense: MedicationDispense
+ * - MedicationKnowledge: MedicationKnowledge
+ * - MedicationRequest: MedicationRequest
+ * - MedicationStatement: MedicationStatement
+ * - MedicinalProductDefinition: MedicinalProductDefinition
+ * - MessageDefinition: MessageDefinition
+ * - MessageHeader: MessageHeader
+ * - MetadataResource: MetadataResource
+ * - MolecularSequence: MolecularSequence
+ * - NamingSystem: NamingSystem
+ * - NutritionIntake: NutritionIntake
+ * - NutritionOrder: NutritionOrder
+ * - NutritionProduct: NutritionProduct
+ * - Observation: Observation
+ * - ObservationDefinition: ObservationDefinition
+ * - OperationDefinition: OperationDefinition
+ * - OperationOutcome: OperationOutcome
+ * - Organization: Organization
+ * - OrganizationAffiliation: OrganizationAffiliation
+ * - PackagedProductDefinition: PackagedProductDefinition
+ * - Patient: Patient
+ * - PaymentNotice: PaymentNotice
+ * - PaymentReconciliation: PaymentReconciliation
+ * - Permission: Permission
+ * - Person: Person
+ * - PlanDefinition: PlanDefinition
+ * - Practitioner: Practitioner
+ * - PractitionerRole: PractitionerRole
+ * - Procedure: Procedure
+ * - Provenance: Provenance
+ * - Questionnaire: Questionnaire
+ * - QuestionnaireResponse: QuestionnaireResponse
+ * - RegulatedAuthorization: RegulatedAuthorization
+ * - RelatedPerson: RelatedPerson
+ * - RequestOrchestration: RequestOrchestration
+ * - Requirements: Requirements
+ * - ResearchStudy: ResearchStudy
+ * - ResearchSubject: ResearchSubject
+ * - RiskAssessment: RiskAssessment
+ * - Schedule: Schedule
+ * - SearchParameter: SearchParameter
+ * - ServiceRequest: ServiceRequest
+ * - Slot: Slot
+ * - Specimen: Specimen
+ * - SpecimenDefinition: SpecimenDefinition
+ * - StructureDefinition: StructureDefinition
+ * - StructureMap: StructureMap
+ * - Subscription: Subscription
+ * - SubscriptionStatus: SubscriptionStatus
+ * - SubscriptionTopic: SubscriptionTopic
+ * - Substance: Substance
+ * - SubstanceDefinition: SubstanceDefinition
+ * - SubstanceNucleicAcid: SubstanceNucleicAcid
+ * - SubstancePolymer: SubstancePolymer
+ * - SubstanceProtein: SubstanceProtein
+ * - SubstanceReferenceInformation: SubstanceReferenceInformation
+ * - SubstanceSourceMaterial: SubstanceSourceMaterial
+ * - SupplyDelivery: SupplyDelivery
+ * - SupplyRequest: SupplyRequest
+ * - Task: Task
+ * - TerminologyCapabilities: TerminologyCapabilities
+ * - TestPlan: TestPlan
+ * - TestReport: TestReport
+ * - TestScript: TestScript
+ * - Transport: Transport
+ * - ValueSet: ValueSet
+ * - VerificationResult: VerificationResult
+ * - VisionPrescription: VisionPrescription
+ * - Parameters: Parameters
  */
 export type AllFHIRTypes =
   | "Base"
@@ -2595,6 +4437,63 @@ export type AllFHIRTypes =
  * FHIRVersion
  *
  * All published FHIR Versions.
+ * - 0.01: 0.01
+ * - 0.05: 0.05
+ * - 0.06: 0.06
+ * - 0.11: 0.11
+ * - 0.0: 0.0
+ * - 0.0.80: 0.0.80
+ * - 0.0.81: 0.0.81
+ * - 0.0.82: 0.0.82
+ * - 0.4: 0.4
+ * - 0.4.0: 0.4.0
+ * - 0.5: 0.5
+ * - 0.5.0: 0.5.0
+ * - 1.0: 1.0
+ * - 1.0.0: 1.0.0
+ * - 1.0.1: 1.0.1
+ * - 1.0.2: 1.0.2
+ * - 1.1: 1.1
+ * - 1.1.0: 1.1.0
+ * - 1.4: 1.4
+ * - 1.4.0: 1.4.0
+ * - 1.6: 1.6
+ * - 1.6.0: 1.6.0
+ * - 1.8: 1.8
+ * - 1.8.0: 1.8.0
+ * - 3.0: 3.0
+ * - 3.0.0: 3.0.0
+ * - 3.0.1: 3.0.1
+ * - 3.0.2: 3.0.2
+ * - 3.3: 3.3
+ * - 3.3.0: 3.3.0
+ * - 3.5: 3.5
+ * - 3.5.0: 3.5.0
+ * - 4.0: 4.0
+ * - 4.0.0: 4.0.0
+ * - 4.0.1: 4.0.1
+ * - 4.1: 4.1
+ * - 4.1.0: 4.1.0
+ * - 4.2: 4.2
+ * - 4.2.0: 4.2.0
+ * - 4.3: 4.3
+ * - 4.3.0: 4.3.0
+ * - 4.3.0-cibuild: 4.3.0-cibuild
+ * - 4.3.0-snapshot1: 4.3.0-snapshot1
+ * - 4.4: 4.4
+ * - 4.4.0: 4.4.0
+ * - 4.5: 4.5
+ * - 4.5.0: 4.5.0
+ * - 4.6: 4.6
+ * - 4.6.0: 4.6.0
+ * - 5.0: 5.0
+ * - 5.0.0: 5.0.0
+ * - 5.0.0-cibuild: 5.0.0-cibuild
+ * - 5.0.0-snapshot1: 5.0.0-snapshot1
+ * - 5.0.0-snapshot2: 5.0.0-snapshot2
+ * - 5.0.0-ballot: 5.0.0-ballot
+ * - 5.0.0-snapshot3: 5.0.0-snapshot3
+ * - 5.0.0-draft-final: 5.0.0-draft-final
  */
 export type FHIRVersion =
   | "0.01"
@@ -2659,6 +4558,17 @@ export type FHIRVersion =
  * Filter Operator
  *
  * The kind of operation to perform as a part of a property based filter.
+ * - =: Equals
+ * - is-a: Is A (by subsumption)
+ * - descendent-of: Descendent Of (by subsumption)
+ * - is-not-a: Not (Is A) (by subsumption)
+ * - regex: Regular Expression
+ * - in: In Set
+ * - not-in: Not in Set
+ * - generalizes: Generalizes (by Subsumption)
+ * - child-of: Child Of
+ * - descendent-leaf: Descendent Leaf
+ * - exists: Exists
  */
 export type FilterOperator =
   | "="
@@ -2677,6 +4587,10 @@ export type FilterOperator =
  * Financial Resource Status Codes
  *
  * This value set includes Status codes.
+ * - active: Active
+ * - cancelled: Cancelled
+ * - draft: Draft
+ * - entered-in-error: Entered in Error
  */
 export type FinancialResourceStatusCodes =
   | "active"
@@ -2689,6 +4603,9 @@ export type FinancialResourceStatusCodes =
  *
  * Indicates whether this flag is active and needs to be displayed to a user, or
  * whether it is no longer needed or was entered in error.
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type FlagStatus = "active" | "inactive" | "entered-in-error";
 
@@ -2696,6 +4613,9 @@ export type FlagStatus = "active" | "inactive" | "entered-in-error";
  * FormularyItem Status Codes
  *
  *
+ * - active: Active
+ * - entered-in-error: Entered in Error
+ * - inactive: Inactive
  */
 export type FormularyItemStatusCodes =
   | "active"
@@ -2706,6 +4626,11 @@ export type FormularyItemStatusCodes =
  * Genomic Study Status
  *
  * The status of the GenomicStudy.
+ * - registered: Registered
+ * - available: Available
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type GenomicStudyStatus =
   | "registered"
@@ -2719,6 +4644,15 @@ export type GenomicStudyStatus =
  *
  * Codes that reflect the current state of a goal and whether the goal is still
  * being targeted.
+ * - proposed: Proposed
+ * - planned: Planned
+ * - accepted: Accepted
+ * - active: Active
+ * - on-hold: On Hold
+ * - completed: Completed
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - rejected: Rejected
  */
 export type GoalLifecycleStatus =
   | "proposed"
@@ -2735,6 +4669,10 @@ export type GoalLifecycleStatus =
  * Graph Compartment Rule
  *
  * How a compartment must be linked.
+ * - identical: Identical
+ * - matching: Matching
+ * - different: Different
+ * - custom: Custom
  */
 export type GraphCompartmentRule =
   | "identical"
@@ -2746,6 +4684,8 @@ export type GraphCompartmentRule =
  * Graph Compartment Use
  *
  * Defines how a compartment rule is used.
+ * - where: Where
+ * - requires: requires
  */
 export type GraphCompartmentUse = "where" | "requires";
 
@@ -2753,6 +4693,8 @@ export type GraphCompartmentUse = "where" | "requires";
  * Group Membership Basis
  *
  * Basis for membership in a group
+ * - definitional: Definitional
+ * - enumerated: Enumerated
  */
 export type GroupMembershipBasis = "definitional" | "enumerated";
 
@@ -2760,6 +4702,16 @@ export type GroupMembershipBasis = "definitional" | "enumerated";
  * Group Type
  *
  * Types of resources that are part of group.
+ * - person: Person
+ * - animal: Animal
+ * - practitioner: Practitioner
+ * - device: Device
+ * - careteam: CareTeam
+ * - healthcareservice: HealthcareService
+ * - location: Location
+ * - organization: Organization
+ * - relatedperson: RelatedPerson
+ * - specimen: Specimen
  */
 export type GroupType =
   | "person"
@@ -2777,6 +4729,12 @@ export type GroupType =
  * Guidance Response Status
  *
  * The status of a guidance response.
+ * - success: Success
+ * - data-requested: Data Requested
+ * - data-required: Data Required
+ * - in-progress: In Progress
+ * - failure: Failure
+ * - entered-in-error: Entered In Error
  */
 export type GuidanceResponseStatus =
   | "success"
@@ -2790,6 +4748,10 @@ export type GuidanceResponseStatus =
  * Guide Page Generation
  *
  * A code that indicates how the page is generated.
+ * - html: HTML
+ * - markdown: Markdown
+ * - xml: XML
+ * - generated: Generated
  */
 export type GuidePageGeneration = "html" | "markdown" | "xml" | "generated";
 
@@ -2798,6 +4760,12 @@ export type GuidePageGeneration = "html" | "markdown" | "xml" | "generated";
  *
  * HTTP verbs (in the HTTP command line). See [HTTP
  * rfc](https://tools.ietf.org/html/rfc7231) for details.
+ * - GET: GET
+ * - HEAD: HEAD
+ * - POST: POST
+ * - PUT: PUT
+ * - DELETE: DELETE
+ * - PATCH: PATCH
  */
 export type HTTPVerb = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "PATCH";
 
@@ -2813,6 +4781,475 @@ export type HTTPVerb = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "PATCH";
  * the official source, and
  * [Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for
  * information
+ * - Africa/Abidjan: Africa/Abidjan
+ * - Africa/Accra: Africa/Accra
+ * - Africa/Addis_Ababa: Africa/Addis_Ababa
+ * - Africa/Algiers: Africa/Algiers
+ * - Africa/Asmara: Africa/Asmara
+ * - Africa/Bamako: Africa/Bamako
+ * - Africa/Bangui: Africa/Bangui
+ * - Africa/Banjul: Africa/Banjul
+ * - Africa/Bissau: Africa/Bissau
+ * - Africa/Blantyre: Africa/Blantyre
+ * - Africa/Brazzaville: Africa/Brazzaville
+ * - Africa/Bujumbura: Africa/Bujumbura
+ * - Africa/Cairo: Africa/Cairo
+ * - Africa/Casablanca: Africa/Casablanca
+ * - Africa/Ceuta: Africa/Ceuta
+ * - Africa/Conakry: Africa/Conakry
+ * - Africa/Dakar: Africa/Dakar
+ * - Africa/Dar_es_Salaam: Africa/Dar_es_Salaam
+ * - Africa/Djibouti: Africa/Djibouti
+ * - Africa/Douala: Africa/Douala
+ * - Africa/El_Aaiun: Africa/El_Aaiun
+ * - Africa/Freetown: Africa/Freetown
+ * - Africa/Gaborone: Africa/Gaborone
+ * - Africa/Harare: Africa/Harare
+ * - Africa/Johannesburg: Africa/Johannesburg
+ * - Africa/Juba: Africa/Juba
+ * - Africa/Kampala: Africa/Kampala
+ * - Africa/Khartoum: Africa/Khartoum
+ * - Africa/Kigali: Africa/Kigali
+ * - Africa/Kinshasa: Africa/Kinshasa
+ * - Africa/Lagos: Africa/Lagos
+ * - Africa/Libreville: Africa/Libreville
+ * - Africa/Lome: Africa/Lome
+ * - Africa/Luanda: Africa/Luanda
+ * - Africa/Lubumbashi: Africa/Lubumbashi
+ * - Africa/Lusaka: Africa/Lusaka
+ * - Africa/Malabo: Africa/Malabo
+ * - Africa/Maputo: Africa/Maputo
+ * - Africa/Maseru: Africa/Maseru
+ * - Africa/Mbabane: Africa/Mbabane
+ * - Africa/Mogadishu: Africa/Mogadishu
+ * - Africa/Monrovia: Africa/Monrovia
+ * - Africa/Nairobi: Africa/Nairobi
+ * - Africa/Ndjamena: Africa/Ndjamena
+ * - Africa/Niamey: Africa/Niamey
+ * - Africa/Nouakchott: Africa/Nouakchott
+ * - Africa/Ouagadougou: Africa/Ouagadougou
+ * - Africa/Porto-Novo: Africa/Porto-Novo
+ * - Africa/Sao_Tome: Africa/Sao_Tome
+ * - Africa/Timbuktu: Africa/Timbuktu
+ * - Africa/Tripoli: Africa/Tripoli
+ * - Africa/Tunis: Africa/Tunis
+ * - Africa/Windhoek: Africa/Windhoek
+ * - America/Adak: America/Adak
+ * - America/Anchorage: America/Anchorage
+ * - America/Anguilla: America/Anguilla
+ * - America/Antigua: America/Antigua
+ * - America/Araguaina: America/Araguaina
+ * - America/Argentina/Buenos_Aires: America/Argentina/Buenos_Aires
+ * - America/Argentina/Catamarca: America/Argentina/Catamarca
+ * - America/Argentina/ComodRivadavia: America/Argentina/ComodRivadavia
+ * - America/Argentina/Cordoba: America/Argentina/Cordoba
+ * - America/Argentina/Jujuy: America/Argentina/Jujuy
+ * - America/Argentina/La_Rioja: America/Argentina/La_Rioja
+ * - America/Argentina/Mendoza: America/Argentina/Mendoza
+ * - America/Argentina/Rio_Gallegos: America/Argentina/Rio_Gallegos
+ * - America/Argentina/Salta: America/Argentina/Salta
+ * - America/Argentina/San_Juan: America/Argentina/San_Juan
+ * - America/Argentina/San_Luis: America/Argentina/San_Luis
+ * - America/Argentina/Tucuman: America/Argentina/Tucuman
+ * - America/Argentina/Ushuaia: America/Argentina/Ushuaia
+ * - America/Aruba: America/Aruba
+ * - America/Asuncion: America/Asuncion
+ * - America/Atikokan: America/Atikokan
+ * - America/Bahia: America/Bahia
+ * - America/Bahia_Banderas: America/Bahia_Banderas
+ * - America/Barbados: America/Barbados
+ * - America/Belem: America/Belem
+ * - America/Belize: America/Belize
+ * - America/Blanc-Sablon: America/Blanc-Sablon
+ * - America/Boa_Vista: America/Boa_Vista
+ * - America/Bogota: America/Bogota
+ * - America/Boise: America/Boise
+ * - America/Cambridge_Bay: America/Cambridge_Bay
+ * - America/Campo_Grande: America/Campo_Grande
+ * - America/Cancun: America/Cancun
+ * - America/Caracas: America/Caracas
+ * - America/Cayenne: America/Cayenne
+ * - America/Cayman: America/Cayman
+ * - America/Chicago: America/Chicago
+ * - America/Chihuahua: America/Chihuahua
+ * - America/Coral_Harbour: America/Coral_Harbour
+ * - America/Costa_Rica: America/Costa_Rica
+ * - America/Creston: America/Creston
+ * - America/Cuiaba: America/Cuiaba
+ * - America/Curacao: America/Curacao
+ * - America/Danmarkshavn: America/Danmarkshavn
+ * - America/Dawson: America/Dawson
+ * - America/Dawson_Creek: America/Dawson_Creek
+ * - America/Denver: America/Denver
+ * - America/Detroit: America/Detroit
+ * - America/Dominica: America/Dominica
+ * - America/Edmonton: America/Edmonton
+ * - America/Eirunepe: America/Eirunepe
+ * - America/El_Salvador: America/El_Salvador
+ * - America/Ensenada: America/Ensenada
+ * - America/Fort_Nelson: America/Fort_Nelson
+ * - America/Fortaleza: America/Fortaleza
+ * - America/Glace_Bay: America/Glace_Bay
+ * - America/Goose_Bay: America/Goose_Bay
+ * - America/Grand_Turk: America/Grand_Turk
+ * - America/Grenada: America/Grenada
+ * - America/Guadeloupe: America/Guadeloupe
+ * - America/Guatemala: America/Guatemala
+ * - America/Guayaquil: America/Guayaquil
+ * - America/Guyana: America/Guyana
+ * - America/Halifax: America/Halifax
+ * - America/Havana: America/Havana
+ * - America/Hermosillo: America/Hermosillo
+ * - America/Indiana/Indianapolis: America/Indiana/Indianapolis
+ * - America/Indiana/Knox: America/Indiana/Knox
+ * - America/Indiana/Marengo: America/Indiana/Marengo
+ * - America/Indiana/Petersburg: America/Indiana/Petersburg
+ * - America/Indiana/Tell_City: America/Indiana/Tell_City
+ * - America/Indiana/Vevay: America/Indiana/Vevay
+ * - America/Indiana/Vincennes: America/Indiana/Vincennes
+ * - America/Indiana/Winamac: America/Indiana/Winamac
+ * - America/Inuvik: America/Inuvik
+ * - America/Iqaluit: America/Iqaluit
+ * - America/Jamaica: America/Jamaica
+ * - America/Juneau: America/Juneau
+ * - America/Kentucky/Louisville: America/Kentucky/Louisville
+ * - America/Kentucky/Monticello: America/Kentucky/Monticello
+ * - America/La_Paz: America/La_Paz
+ * - America/Lima: America/Lima
+ * - America/Los_Angeles: America/Los_Angeles
+ * - America/Maceio: America/Maceio
+ * - America/Managua: America/Managua
+ * - America/Manaus: America/Manaus
+ * - America/Martinique: America/Martinique
+ * - America/Matamoros: America/Matamoros
+ * - America/Mazatlan: America/Mazatlan
+ * - America/Menominee: America/Menominee
+ * - America/Merida: America/Merida
+ * - America/Metlakatla: America/Metlakatla
+ * - America/Mexico_City: America/Mexico_City
+ * - America/Miquelon: America/Miquelon
+ * - America/Moncton: America/Moncton
+ * - America/Monterrey: America/Monterrey
+ * - America/Montevideo: America/Montevideo
+ * - America/Montreal: America/Montreal
+ * - America/Montserrat: America/Montserrat
+ * - America/Nassau: America/Nassau
+ * - America/New_York: America/New_York
+ * - America/Nipigon: America/Nipigon
+ * - America/Nome: America/Nome
+ * - America/Noronha: America/Noronha
+ * - America/North_Dakota/Beulah: America/North_Dakota/Beulah
+ * - America/North_Dakota/Center: America/North_Dakota/Center
+ * - America/North_Dakota/New_Salem: America/North_Dakota/New_Salem
+ * - America/Nuuk: America/Nuuk
+ * - America/Ojinaga: America/Ojinaga
+ * - America/Panama: America/Panama
+ * - America/Pangnirtung: America/Pangnirtung
+ * - America/Paramaribo: America/Paramaribo
+ * - America/Phoenix: America/Phoenix
+ * - America/Port-au-Prince: America/Port-au-Prince
+ * - America/Port_of_Spain: America/Port_of_Spain
+ * - America/Porto_Velho: America/Porto_Velho
+ * - America/Puerto_Rico: America/Puerto_Rico
+ * - America/Punta_Arenas: America/Punta_Arenas
+ * - America/Rainy_River: America/Rainy_River
+ * - America/Rankin_Inlet: America/Rankin_Inlet
+ * - America/Recife: America/Recife
+ * - America/Regina: America/Regina
+ * - America/Resolute: America/Resolute
+ * - America/Rio_Branco: America/Rio_Branco
+ * - America/Rosario: America/Rosario
+ * - America/Santarem: America/Santarem
+ * - America/Santiago: America/Santiago
+ * - America/Santo_Domingo: America/Santo_Domingo
+ * - America/Sao_Paulo: America/Sao_Paulo
+ * - America/Scoresbysund: America/Scoresbysund
+ * - America/Sitka: America/Sitka
+ * - America/St_Johns: America/St_Johns
+ * - America/St_Kitts: America/St_Kitts
+ * - America/St_Lucia: America/St_Lucia
+ * - America/St_Thomas: America/St_Thomas
+ * - America/St_Vincent: America/St_Vincent
+ * - America/Swift_Current: America/Swift_Current
+ * - America/Tegucigalpa: America/Tegucigalpa
+ * - America/Thule: America/Thule
+ * - America/Thunder_Bay: America/Thunder_Bay
+ * - America/Tijuana: America/Tijuana
+ * - America/Toronto: America/Toronto
+ * - America/Tortola: America/Tortola
+ * - America/Vancouver: America/Vancouver
+ * - America/Whitehorse: America/Whitehorse
+ * - America/Winnipeg: America/Winnipeg
+ * - America/Yakutat: America/Yakutat
+ * - America/Yellowknife: America/Yellowknife
+ * - Antarctica/Casey: Antarctica/Casey
+ * - Antarctica/Davis: Antarctica/Davis
+ * - Antarctica/DumontDUrville: Antarctica/DumontDUrville
+ * - Antarctica/Macquarie: Antarctica/Macquarie
+ * - Antarctica/Mawson: Antarctica/Mawson
+ * - Antarctica/McMurdo: Antarctica/McMurdo
+ * - Antarctica/Palmer: Antarctica/Palmer
+ * - Antarctica/Rothera: Antarctica/Rothera
+ * - Antarctica/Syowa: Antarctica/Syowa
+ * - Antarctica/Troll: Antarctica/Troll
+ * - Antarctica/Vostok: Antarctica/Vostok
+ * - Asia/Aden: Asia/Aden
+ * - Asia/Almaty: Asia/Almaty
+ * - Asia/Amman: Asia/Amman
+ * - Asia/Anadyr: Asia/Anadyr
+ * - Asia/Aqtau: Asia/Aqtau
+ * - Asia/Aqtobe: Asia/Aqtobe
+ * - Asia/Ashgabat: Asia/Ashgabat
+ * - Asia/Atyrau: Asia/Atyrau
+ * - Asia/Baghdad: Asia/Baghdad
+ * - Asia/Bahrain: Asia/Bahrain
+ * - Asia/Baku: Asia/Baku
+ * - Asia/Bangkok: Asia/Bangkok
+ * - Asia/Barnaul: Asia/Barnaul
+ * - Asia/Beirut: Asia/Beirut
+ * - Asia/Bishkek: Asia/Bishkek
+ * - Asia/Brunei: Asia/Brunei
+ * - Asia/Chita: Asia/Chita
+ * - Asia/Choibalsan: Asia/Choibalsan
+ * - Asia/Chongqing: Asia/Chongqing
+ * - Asia/Colombo: Asia/Colombo
+ * - Asia/Damascus: Asia/Damascus
+ * - Asia/Dhaka: Asia/Dhaka
+ * - Asia/Dili: Asia/Dili
+ * - Asia/Dubai: Asia/Dubai
+ * - Asia/Dushanbe: Asia/Dushanbe
+ * - Asia/Famagusta: Asia/Famagusta
+ * - Asia/Gaza: Asia/Gaza
+ * - Asia/Hanoi: Asia/Hanoi
+ * - Asia/Harbin: Asia/Harbin
+ * - Asia/Hebron: Asia/Hebron
+ * - Asia/Ho_Chi_Minh: Asia/Ho_Chi_Minh
+ * - Asia/Hong_Kong: Asia/Hong_Kong
+ * - Asia/Hovd: Asia/Hovd
+ * - Asia/Irkutsk: Asia/Irkutsk
+ * - Asia/Jakarta: Asia/Jakarta
+ * - Asia/Jayapura: Asia/Jayapura
+ * - Asia/Jerusalem: Asia/Jerusalem
+ * - Asia/Kabul: Asia/Kabul
+ * - Asia/Kamchatka: Asia/Kamchatka
+ * - Asia/Karachi: Asia/Karachi
+ * - Asia/Kashgar: Asia/Kashgar
+ * - Asia/Kathmandu: Asia/Kathmandu
+ * - Asia/Khandyga: Asia/Khandyga
+ * - Asia/Kolkata: Asia/Kolkata
+ * - Asia/Krasnoyarsk: Asia/Krasnoyarsk
+ * - Asia/Kuala_Lumpur: Asia/Kuala_Lumpur
+ * - Asia/Kuching: Asia/Kuching
+ * - Asia/Kuwait: Asia/Kuwait
+ * - Asia/Macau: Asia/Macau
+ * - Asia/Magadan: Asia/Magadan
+ * - Asia/Makassar: Asia/Makassar
+ * - Asia/Manila: Asia/Manila
+ * - Asia/Muscat: Asia/Muscat
+ * - Asia/Nicosia: Asia/Nicosia
+ * - Asia/Novokuznetsk: Asia/Novokuznetsk
+ * - Asia/Novosibirsk: Asia/Novosibirsk
+ * - Asia/Omsk: Asia/Omsk
+ * - Asia/Oral: Asia/Oral
+ * - Asia/Phnom_Penh: Asia/Phnom_Penh
+ * - Asia/Pontianak: Asia/Pontianak
+ * - Asia/Pyongyang: Asia/Pyongyang
+ * - Asia/Qatar: Asia/Qatar
+ * - Asia/Qostanay: Asia/Qostanay
+ * - Asia/Qyzylorda: Asia/Qyzylorda
+ * - Asia/Riyadh: Asia/Riyadh
+ * - Asia/Sakhalin: Asia/Sakhalin
+ * - Asia/Samarkand: Asia/Samarkand
+ * - Asia/Seoul: Asia/Seoul
+ * - Asia/Shanghai: Asia/Shanghai
+ * - Asia/Singapore: Asia/Singapore
+ * - Asia/Srednekolymsk: Asia/Srednekolymsk
+ * - Asia/Taipei: Asia/Taipei
+ * - Asia/Tashkent: Asia/Tashkent
+ * - Asia/Tbilisi: Asia/Tbilisi
+ * - Asia/Tehran: Asia/Tehran
+ * - Asia/Tel_Aviv: Asia/Tel_Aviv
+ * - Asia/Thimphu: Asia/Thimphu
+ * - Asia/Tokyo: Asia/Tokyo
+ * - Asia/Tomsk: Asia/Tomsk
+ * - Asia/Ulaanbaatar: Asia/Ulaanbaatar
+ * - Asia/Urumqi: Asia/Urumqi
+ * - Asia/Ust-Nera: Asia/Ust-Nera
+ * - Asia/Vientiane: Asia/Vientiane
+ * - Asia/Vladivostok: Asia/Vladivostok
+ * - Asia/Yakutsk: Asia/Yakutsk
+ * - Asia/Yangon: Asia/Yangon
+ * - Asia/Yekaterinburg: Asia/Yekaterinburg
+ * - Asia/Yerevan: Asia/Yerevan
+ * - Atlantic/Azores: Atlantic/Azores
+ * - Atlantic/Bermuda: Atlantic/Bermuda
+ * - Atlantic/Canary: Atlantic/Canary
+ * - Atlantic/Cape_Verde: Atlantic/Cape_Verde
+ * - Atlantic/Faroe: Atlantic/Faroe
+ * - Atlantic/Jan_Mayen: Atlantic/Jan_Mayen
+ * - Atlantic/Madeira: Atlantic/Madeira
+ * - Atlantic/Reykjavik: Atlantic/Reykjavik
+ * - Atlantic/South_Georgia: Atlantic/South_Georgia
+ * - Atlantic/St_Helena: Atlantic/St_Helena
+ * - Atlantic/Stanley: Atlantic/Stanley
+ * - Australia/Adelaide: Australia/Adelaide
+ * - Australia/Brisbane: Australia/Brisbane
+ * - Australia/Broken_Hill: Australia/Broken_Hill
+ * - Australia/Currie: Australia/Currie
+ * - Australia/Darwin: Australia/Darwin
+ * - Australia/Eucla: Australia/Eucla
+ * - Australia/Hobart: Australia/Hobart
+ * - Australia/Lindeman: Australia/Lindeman
+ * - Australia/Lord_Howe: Australia/Lord_Howe
+ * - Australia/Melbourne: Australia/Melbourne
+ * - Australia/Perth: Australia/Perth
+ * - Australia/Sydney: Australia/Sydney
+ * - CET: CET
+ * - CST6CDT: CST6CDT
+ * - EET: EET
+ * - EST: EST
+ * - EST5EDT: EST5EDT
+ * - Etc/GMT: Etc/GMT
+ * - Etc/GMT+1: Etc/GMT+1
+ * - Etc/GMT+10: Etc/GMT+10
+ * - Etc/GMT+11: Etc/GMT+11
+ * - Etc/GMT+12: Etc/GMT+12
+ * - Etc/GMT+2: Etc/GMT+2
+ * - Etc/GMT+3: Etc/GMT+3
+ * - Etc/GMT+4: Etc/GMT+4
+ * - Etc/GMT+5: Etc/GMT+5
+ * - Etc/GMT+6: Etc/GMT+6
+ * - Etc/GMT+7: Etc/GMT+7
+ * - Etc/GMT+8: Etc/GMT+8
+ * - Etc/GMT+9: Etc/GMT+9
+ * - Etc/GMT-1: Etc/GMT-1
+ * - Etc/GMT-10: Etc/GMT-10
+ * - Etc/GMT-11: Etc/GMT-11
+ * - Etc/GMT-12: Etc/GMT-12
+ * - Etc/GMT-13: Etc/GMT-13
+ * - Etc/GMT-14: Etc/GMT-14
+ * - Etc/GMT-2: Etc/GMT-2
+ * - Etc/GMT-3: Etc/GMT-3
+ * - Etc/GMT-4: Etc/GMT-4
+ * - Etc/GMT-5: Etc/GMT-5
+ * - Etc/GMT-6: Etc/GMT-6
+ * - Etc/GMT-7: Etc/GMT-7
+ * - Etc/GMT-8: Etc/GMT-8
+ * - Etc/GMT-9: Etc/GMT-9
+ * - Etc/UTC: Etc/UTC
+ * - Europe/Amsterdam: Europe/Amsterdam
+ * - Europe/Andorra: Europe/Andorra
+ * - Europe/Astrakhan: Europe/Astrakhan
+ * - Europe/Athens: Europe/Athens
+ * - Europe/Belfast: Europe/Belfast
+ * - Europe/Belgrade: Europe/Belgrade
+ * - Europe/Berlin: Europe/Berlin
+ * - Europe/Brussels: Europe/Brussels
+ * - Europe/Bucharest: Europe/Bucharest
+ * - Europe/Budapest: Europe/Budapest
+ * - Europe/Chisinau: Europe/Chisinau
+ * - Europe/Copenhagen: Europe/Copenhagen
+ * - Europe/Dublin: Europe/Dublin
+ * - Europe/Gibraltar: Europe/Gibraltar
+ * - Europe/Guernsey: Europe/Guernsey
+ * - Europe/Helsinki: Europe/Helsinki
+ * - Europe/Isle_of_Man: Europe/Isle_of_Man
+ * - Europe/Istanbul: Europe/Istanbul
+ * - Europe/Jersey: Europe/Jersey
+ * - Europe/Kaliningrad: Europe/Kaliningrad
+ * - Europe/Kiev: Europe/Kiev
+ * - Europe/Kirov: Europe/Kirov
+ * - Europe/Lisbon: Europe/Lisbon
+ * - Europe/Ljubljana: Europe/Ljubljana
+ * - Europe/London: Europe/London
+ * - Europe/Luxembourg: Europe/Luxembourg
+ * - Europe/Madrid: Europe/Madrid
+ * - Europe/Malta: Europe/Malta
+ * - Europe/Minsk: Europe/Minsk
+ * - Europe/Monaco: Europe/Monaco
+ * - Europe/Moscow: Europe/Moscow
+ * - Europe/Oslo: Europe/Oslo
+ * - Europe/Paris: Europe/Paris
+ * - Europe/Prague: Europe/Prague
+ * - Europe/Riga: Europe/Riga
+ * - Europe/Rome: Europe/Rome
+ * - Europe/Samara: Europe/Samara
+ * - Europe/Sarajevo: Europe/Sarajevo
+ * - Europe/Saratov: Europe/Saratov
+ * - Europe/Simferopol: Europe/Simferopol
+ * - Europe/Skopje: Europe/Skopje
+ * - Europe/Sofia: Europe/Sofia
+ * - Europe/Stockholm: Europe/Stockholm
+ * - Europe/Tallinn: Europe/Tallinn
+ * - Europe/Tirane: Europe/Tirane
+ * - Europe/Tiraspol: Europe/Tiraspol
+ * - Europe/Ulyanovsk: Europe/Ulyanovsk
+ * - Europe/Uzhgorod: Europe/Uzhgorod
+ * - Europe/Vaduz: Europe/Vaduz
+ * - Europe/Vienna: Europe/Vienna
+ * - Europe/Vilnius: Europe/Vilnius
+ * - Europe/Volgograd: Europe/Volgograd
+ * - Europe/Warsaw: Europe/Warsaw
+ * - Europe/Zagreb: Europe/Zagreb
+ * - Europe/Zaporozhye: Europe/Zaporozhye
+ * - Europe/Zurich: Europe/Zurich
+ * - Factory: Factory
+ * - HST: HST
+ * - Indian/Antananarivo: Indian/Antananarivo
+ * - Indian/Chagos: Indian/Chagos
+ * - Indian/Christmas: Indian/Christmas
+ * - Indian/Cocos: Indian/Cocos
+ * - Indian/Comoro: Indian/Comoro
+ * - Indian/Kerguelen: Indian/Kerguelen
+ * - Indian/Mahe: Indian/Mahe
+ * - Indian/Maldives: Indian/Maldives
+ * - Indian/Mauritius: Indian/Mauritius
+ * - Indian/Mayotte: Indian/Mayotte
+ * - Indian/Reunion: Indian/Reunion
+ * - MET: MET
+ * - MST: MST
+ * - MST7MDT: MST7MDT
+ * - PST8PDT: PST8PDT
+ * - Pacific/Apia: Pacific/Apia
+ * - Pacific/Auckland: Pacific/Auckland
+ * - Pacific/Bougainville: Pacific/Bougainville
+ * - Pacific/Chatham: Pacific/Chatham
+ * - Pacific/Chuuk: Pacific/Chuuk
+ * - Pacific/Easter: Pacific/Easter
+ * - Pacific/Efate: Pacific/Efate
+ * - Pacific/Enderbury: Pacific/Enderbury
+ * - Pacific/Fakaofo: Pacific/Fakaofo
+ * - Pacific/Fiji: Pacific/Fiji
+ * - Pacific/Funafuti: Pacific/Funafuti
+ * - Pacific/Galapagos: Pacific/Galapagos
+ * - Pacific/Gambier: Pacific/Gambier
+ * - Pacific/Guadalcanal: Pacific/Guadalcanal
+ * - Pacific/Guam: Pacific/Guam
+ * - Pacific/Honolulu: Pacific/Honolulu
+ * - Pacific/Johnston: Pacific/Johnston
+ * - Pacific/Kiritimati: Pacific/Kiritimati
+ * - Pacific/Kosrae: Pacific/Kosrae
+ * - Pacific/Kwajalein: Pacific/Kwajalein
+ * - Pacific/Majuro: Pacific/Majuro
+ * - Pacific/Marquesas: Pacific/Marquesas
+ * - Pacific/Midway: Pacific/Midway
+ * - Pacific/Nauru: Pacific/Nauru
+ * - Pacific/Niue: Pacific/Niue
+ * - Pacific/Norfolk: Pacific/Norfolk
+ * - Pacific/Noumea: Pacific/Noumea
+ * - Pacific/Pago_Pago: Pacific/Pago_Pago
+ * - Pacific/Palau: Pacific/Palau
+ * - Pacific/Pitcairn: Pacific/Pitcairn
+ * - Pacific/Pohnpei: Pacific/Pohnpei
+ * - Pacific/Port_Moresby: Pacific/Port_Moresby
+ * - Pacific/Rarotonga: Pacific/Rarotonga
+ * - Pacific/Saipan: Pacific/Saipan
+ * - Pacific/Tahiti: Pacific/Tahiti
+ * - Pacific/Tarawa: Pacific/Tarawa
+ * - Pacific/Tongatapu: Pacific/Tongatapu
+ * - Pacific/Wake: Pacific/Wake
+ * - Pacific/Wallis: Pacific/Wallis
+ * - WET: WET
  */
 export type IANATimezones =
   | "Africa/Abidjan"
@@ -3289,6 +5726,11 @@ export type IANATimezones =
  * IdentifierUse
  *
  * Identifies the purpose for this identifier, if known .
+ * - usual: Usual
+ * - official: Official
+ * - temp: Temp
+ * - secondary: Secondary
+ * - old: Old
  */
 export type IdentifierUse = "usual" | "official" | "temp" | "secondary" | "old";
 
@@ -3297,6 +5739,10 @@ export type IdentifierUse = "usual" | "official" | "temp" | "secondary" | "old";
  *
  * The level of confidence that this link represents the same actual person, based
  * on NIST Authentication Levels.
+ * - level1: Level 1
+ * - level2: Level 2
+ * - level3: Level 3
+ * - level4: Level 4
  */
 export type IdentityAssuranceLevel = "level1" | "level2" | "level3" | "level4";
 
@@ -3304,6 +5750,11 @@ export type IdentityAssuranceLevel = "level1" | "level2" | "level3" | "level4";
  * Imaging Selection2 D Graphic Type
  *
  * The type of 2D coordinates describing a 2D image region.
+ * - point: POINT
+ * - polyline: POLYLINE
+ * - interpolated: INTERPOLATED
+ * - circle: CIRCLE
+ * - ellipse: ELLIPSE
  */
 export type ImagingSelection2DGraphicType =
   | "point"
@@ -3316,6 +5767,12 @@ export type ImagingSelection2DGraphicType =
  * Imaging Selection3 D Graphic Type
  *
  * The type of coordinates describing a 3D image region.
+ * - point: POINT
+ * - multipoint: MULTIPOINT
+ * - polyline: POLYLINE
+ * - polygon: POLYGON
+ * - ellipse: ELLIPSE
+ * - ellipsoid: ELLIPSOID
  */
 export type ImagingSelection3DGraphicType =
   | "point"
@@ -3329,6 +5786,9 @@ export type ImagingSelection3DGraphicType =
  * Imaging Selection Status
  *
  * The status of the ImagingSelection.
+ * - available: Available
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type ImagingSelectionStatus =
   | "available"
@@ -3339,6 +5799,11 @@ export type ImagingSelectionStatus =
  * Imaging Study Status
  *
  * The status of the ImagingStudy.
+ * - registered: Registered
+ * - available: Available
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type ImagingStudyStatus =
   | "registered"
@@ -3354,6 +5819,8 @@ export type ImagingStudyStatus =
  * terminologically robust code system that consists of or contains concepts to
  * support describing the current status of the evaluation for vaccine
  * administration event.
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
  */
 export type ImmunizationEvaluationStatusCodes =
   | "completed"
@@ -3365,6 +5832,9 @@ export type ImmunizationEvaluationStatusCodes =
  * The value set to instantiate this attribute should be drawn from a
  * terminologically robust code system that consists of or contains concepts to
  * support describing the current status of the administered dose of vaccine.
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - not-done: Not Done
  */
 export type ImmunizationStatusCodes =
   | "completed"
@@ -3378,6 +5848,9 @@ export type ImmunizationStatusCodes =
  * example whether it is a possible one (others allowed), or an exclusive
  * authorized one for this ingredient. Note that this is not the manufacturing
  * process role.
+ * - allowed: Manufacturer is specifically allowed for this ingredient
+ * - possible: Manufacturer is known to make this ingredient in general
+ * - actual: Manufacturer actually makes this particular ingredient
  */
 export type IngredientManufacturerRole = "allowed" | "possible" | "actual";
 
@@ -3385,6 +5858,9 @@ export type IngredientManufacturerRole = "allowed" | "possible" | "actual";
  * Interaction Trigger
  *
  * FHIR RESTful interaction codes used for SubscriptionTopic trigger.
+ * - create: create
+ * - update: update
+ * - delete: delete
  */
 export type InteractionTrigger = "create" | "update" | "delete";
 
@@ -3392,6 +5868,8 @@ export type InteractionTrigger = "create" | "update" | "delete";
  * Inventory Count Type
  *
  * The type of count.
+ * - snapshot: Snapshot
+ * - difference: Difference
  */
 export type InventoryCountType = "snapshot" | "difference";
 
@@ -3399,6 +5877,10 @@ export type InventoryCountType = "snapshot" | "difference";
  * InventoryItem Status Codes
  *
  *
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type InventoryItemStatusCodes =
   | "active"
@@ -3410,6 +5892,10 @@ export type InventoryItemStatusCodes =
  * Inventory Report Status
  *
  * The status of the InventoryReport.
+ * - draft: Draft
+ * - requested: Requested
+ * - active: Active
+ * - entered-in-error: Entered in Error
  */
 export type InventoryReportStatus =
   | "draft"
@@ -3421,6 +5907,11 @@ export type InventoryReportStatus =
  * Invoice Status
  *
  * Codes identifying the lifecycle stage of an Invoice.
+ * - draft: draft
+ * - issued: issued
+ * - balanced: balanced
+ * - cancelled: cancelled
+ * - entered-in-error: entered in error
  */
 export type InvoiceStatus =
   | "draft"
@@ -3433,6 +5924,11 @@ export type InvoiceStatus =
  * Issue Severity
  *
  * How the issue affects the success of the action.
+ * - fatal: Fatal
+ * - error: Error
+ * - warning: Warning
+ * - information: Information
+ * - success: Operation Successful
  */
 export type IssueSeverity =
   | "fatal"
@@ -3445,6 +5941,39 @@ export type IssueSeverity =
  * Issue Type
  *
  * A code that describes the type of issue.
+ * - invalid: Invalid Content
+ * - structure: Structural Issue
+ * - required: Required element missing
+ * - value: Element value invalid
+ * - invariant: Validation rule failed
+ * - security: Security Problem
+ * - login: Login Required
+ * - unknown: Unknown User
+ * - expired: Session Expired
+ * - forbidden: Forbidden
+ * - suppressed: Information  Suppressed
+ * - processing: Processing Failure
+ * - not-supported: Content not supported
+ * - duplicate: Duplicate
+ * - multiple-matches: Multiple Matches
+ * - not-found: Not Found
+ * - deleted: Deleted
+ * - too-long: Content Too Long
+ * - code-invalid: Invalid Code
+ * - extension: Unacceptable Extension
+ * - too-costly: Operation Too Costly
+ * - business-rule: Business Rule Violation
+ * - conflict: Edit Version Conflict
+ * - limited-filter: Limited Filter Application
+ * - transient: Transient Issue
+ * - lock-error: Lock Error
+ * - no-store: No Store Available
+ * - exception: Exception
+ * - timeout: Timeout
+ * - incomplete: Incomplete Results
+ * - throttled: Throttled
+ * - informational: Informational Note
+ * - success: Operation Successful
  */
 export type IssueType =
   | "invalid"
@@ -3490,6 +6019,1782 @@ export type IssueType =
  * 3166](https://www.iso.org/iso-3166-country-codes.html)    while the codes for
  * "supra-national" regions are from    [UN Standard country or area codes for
  * statistical use (M49)](http://unstats.un.org/unsd/methods/m49/m49.htm).
+ * - AD: Andorra
+ * - AE: United Arab Emirates
+ * - AF: Afghanistan
+ * - AG: Antigua and Barbuda
+ * - AI: Anguilla
+ * - AL: Albania
+ * - AM: Armenia
+ * - AO: Angola
+ * - AQ: Antarctica
+ * - AR: Argentina
+ * - AS: American Samoa
+ * - AT: Austria
+ * - AU: Australia
+ * - AW: Aruba
+ * - AX: Eland Islands
+ * - AZ: Azerbaijan
+ * - BA: Bosnia and Herzegovina
+ * - BB: Barbados
+ * - BD: Bangladesh
+ * - BE: Belgium
+ * - BF: Burkina Faso
+ * - BG: Bulgaria
+ * - BH: Bahrain
+ * - BI: Burundi
+ * - BJ: Benin
+ * - BL: Saint Barthilemy
+ * - BM: Bermuda
+ * - BN: Brunei Darussalam
+ * - BO: Bolivia, Plurinational State of
+ * - BQ: Bonaire, Sint Eustatius and Saba
+ * - BR: Brazil
+ * - BS: Bahamas
+ * - BT: Bhutan
+ * - BV: Bouvet Island
+ * - BW: Botswana
+ * - BY: Belarus
+ * - BZ: Belize
+ * - CA: Canada
+ * - CC: Cocos (Keeling) Islands
+ * - CD: Congo, the Democratic Republic of the
+ * - CF: Central African Republic
+ * - CG: Congo
+ * - CH: Switzerland
+ * - CI: Ctte d'Ivoire
+ * - CK: Cook Islands
+ * - CL: Chile
+ * - CM: Cameroon
+ * - CN: China
+ * - CO: Colombia
+ * - CR: Costa Rica
+ * - CU: Cuba
+ * - CV: Cabo Verde
+ * - CW: Curagao
+ * - CX: Christmas Island
+ * - CY: Cyprus
+ * - CZ: Czechia
+ * - DE: Germany
+ * - DJ: Djibouti
+ * - DK: Denmark
+ * - DM: Dominica
+ * - DO: Dominican Republic
+ * - DZ: Algeria
+ * - EC: Ecuador
+ * - EE: Estonia
+ * - EG: Egypt
+ * - EH: Western Sahara
+ * - ER: Eritrea
+ * - ES: Spain
+ * - ET: Ethiopia
+ * - FI: Finland
+ * - FJ: Fiji
+ * - FK: Falkland Islands (Malvinas)
+ * - FM: Micronesia, Federated States of
+ * - FO: Faroe Islands
+ * - FR: France
+ * - GA: Gabon
+ * - GB: United Kingdom of Great Britain and Northern Ireland
+ * - GD: Grenada
+ * - GE: Georgia
+ * - GF: French Guiana
+ * - GG: Guernsey
+ * - GH: Ghana
+ * - GI: Gibraltar
+ * - GL: Greenland
+ * - GM: Gambia
+ * - GN: Guinea
+ * - GP: Guadeloupe
+ * - GQ: Equatorial Guinea
+ * - GR: Greece
+ * - GS: South Georgia and the South Sandwich Islands
+ * - GT: Guatemala
+ * - GU: Guam
+ * - GW: Guinea-Bissau
+ * - GY: Guyana
+ * - HK: Hong Kong
+ * - HM: Heard Island and McDonald Islands
+ * - HN: Honduras
+ * - HR: Croatia
+ * - HT: Haiti
+ * - HU: Hungary
+ * - ID: Indonesia
+ * - IE: Ireland
+ * - IL: Israel
+ * - IM: Isle of Man
+ * - IN: India
+ * - IO: British Indian Ocean Territory
+ * - IQ: Iraq
+ * - IR: Iran, Islamic Republic of
+ * - IS: Iceland
+ * - IT: Italy
+ * - JE: Jersey
+ * - JM: Jamaica
+ * - JO: Jordan
+ * - JP: Japan
+ * - KE: Kenya
+ * - KG: Kyrgyzstan
+ * - KH: Cambodia
+ * - KI: Kiribati
+ * - KM: Comoros
+ * - KN: Saint Kitts and Nevis
+ * - KP: Korea, Democratic People's Republic of
+ * - KR: Korea, Republic of
+ * - KW: Kuwait
+ * - KY: Cayman Islands
+ * - KZ: Kazakhstan
+ * - LA: Lao People's Democratic Republic
+ * - LB: Lebanon
+ * - LC: Saint Lucia
+ * - LI: Liechtenstein
+ * - LK: Sri Lanka
+ * - LR: Liberia
+ * - LS: Lesotho
+ * - LT: Lithuania
+ * - LU: Luxembourg
+ * - LV: Latvia
+ * - LY: Libya
+ * - MA: Morocco
+ * - MC: Monaco
+ * - MD: Moldova, Republic of
+ * - ME: Montenegro
+ * - MF: Saint Martin (French part)
+ * - MG: Madagascar
+ * - MH: Marshall Islands
+ * - MK: Macedonia, the former Yugoslav Republic of
+ * - ML: Mali
+ * - MM: Myanmar
+ * - MN: Mongolia
+ * - MO: Macao
+ * - MP: Northern Mariana Islands
+ * - MQ: Martinique
+ * - MR: Mauritania
+ * - MS: Montserrat
+ * - MT: Malta
+ * - MU: Mauritius
+ * - MV: Maldives
+ * - MW: Malawi
+ * - MX: Mexico
+ * - MY: Malaysia
+ * - MZ: Mozambique
+ * - NA: Namibia
+ * - NC: New Caledonia
+ * - NE: Niger
+ * - NF: Norfolk Island
+ * - NG: Nigeria
+ * - NI: Nicaragua
+ * - NL: Netherlands
+ * - NO: Norway
+ * - NP: Nepal
+ * - NR: Nauru
+ * - NU: Niue
+ * - NZ: New Zealand
+ * - OM: Oman
+ * - PA: Panama
+ * - PE: Peru
+ * - PF: French Polynesia
+ * - PG: Papua New Guinea
+ * - PH: Philippines
+ * - PK: Pakistan
+ * - PL: Poland
+ * - PM: Saint Pierre and Miquelon
+ * - PN: Pitcairn
+ * - PR: Puerto Rico
+ * - PS: Palestine, State of
+ * - PT: Portugal
+ * - PW: Palau
+ * - PY: Paraguay
+ * - QA: Qatar
+ * - RE: Riunion
+ * - RO: Romania
+ * - RS: Serbia
+ * - RU: Russian Federation
+ * - RW: Rwanda
+ * - SA: Saudi Arabia
+ * - SB: Solomon Islands
+ * - SC: Seychelles
+ * - SD: Sudan
+ * - SE: Sweden
+ * - SG: Singapore
+ * - SH: Saint Helena, Ascension and Tristan da Cunha
+ * - SI: Slovenia
+ * - SJ: Svalbard and Jan Mayen
+ * - SK: Slovakia
+ * - SL: Sierra Leone
+ * - SM: San Marino
+ * - SN: Senegal
+ * - SO: Somalia
+ * - SR: Suriname
+ * - SS: South Sudan
+ * - ST: Sao Tome and Principe
+ * - SV: El Salvador
+ * - SX: Sint Maarten (Dutch part)
+ * - SY: Syrian Arab Republic
+ * - SZ: Swaziland
+ * - TC: Turks and Caicos Islands
+ * - TD: Chad
+ * - TF: French Southern Territories
+ * - TG: Togo
+ * - TH: Thailand
+ * - TJ: Tajikistan
+ * - TK: Tokelau
+ * - TL: Timor-Leste
+ * - TM: Turkmenistan
+ * - TN: Tunisia
+ * - TO: Tonga
+ * - TR: Turkey
+ * - TT: Trinidad and Tobago
+ * - TV: Tuvalu
+ * - TW: Taiwan, Province of China
+ * - TZ: Tanzania, United Republic of
+ * - UA: Ukraine
+ * - UG: Uganda
+ * - UM: United States Minor Outlying Islands
+ * - US: United States of America
+ * - UY: Uruguay
+ * - UZ: Uzbekistan
+ * - VA: Holy See
+ * - VC: Saint Vincent and the Grenadines
+ * - VE: Venezuela, Bolivarian Republic of
+ * - VG: Virgin Islands, British
+ * - VI: Virgin Islands,
+ * - VN: Viet Nam
+ * - VU: Vanuatu
+ * - WF: Wallis and Futuna
+ * - WS: Samoa
+ * - YE: Yemen
+ * - YT: Mayotte
+ * - ZA: South Africa
+ * - ZM: Zambia
+ * - ZW: Zimbabwe
+ * - ABW: Aruba
+ * - AFG: Afghanistan
+ * - AGO: Angola
+ * - AIA: Anguilla
+ * - ALA: Eland Islands
+ * - ALB: Albania
+ * - AND: Andorra
+ * - ARE: United Arab Emirates
+ * - ARG: Argentina
+ * - ARM: Armenia
+ * - ASM: American Samoa
+ * - ATA: Antarctica
+ * - ATF: French Southern Territories
+ * - ATG: Antigua and Barbuda
+ * - AUS: Australia
+ * - AUT: Austria
+ * - AZE: Azerbaijan
+ * - BDI: Burundi
+ * - BEL: Belgium
+ * - BEN: Benin
+ * - BES: Bonaire, Sint Eustatius and Saba
+ * - BFA: Burkina Faso
+ * - BGD: Bangladesh
+ * - BGR: Bulgaria
+ * - BHR: Bahrain
+ * - BHS: Bahamas
+ * - BIH: Bosnia and Herzegovina
+ * - BLM: Saint Barthilemy
+ * - BLR: Belarus
+ * - BLZ: Belize
+ * - BMU: Bermuda
+ * - BOL: Bolivia, Plurinational State of
+ * - BRA: Brazil
+ * - BRB: Barbados
+ * - BRN: Brunei Darussalam
+ * - BTN: Bhutan
+ * - BVT: Bouvet Island
+ * - BWA: Botswana
+ * - CAF: Central African Republic
+ * - CAN: Canada
+ * - CCK: Cocos (Keeling) Islands
+ * - CHE: Switzerland
+ * - CHL: Chile
+ * - CHN: China
+ * - CIV: Ctte d'Ivoire
+ * - CMR: Cameroon
+ * - COD: Congo, the Democratic Republic of the
+ * - COG: Congo
+ * - COK: Cook Islands
+ * - COL: Colombia
+ * - COM: Comoros
+ * - CPV: Cabo Verde
+ * - CRI: Costa Rica
+ * - CUB: Cuba
+ * - CUW: Curagao
+ * - CXR: Christmas Island
+ * - CYM: Cayman Islands
+ * - CYP: Cyprus
+ * - CZE: Czechia
+ * - DEU: Germany
+ * - DJI: Djibouti
+ * - DMA: Dominica
+ * - DNK: Denmark
+ * - DOM: Dominican Republic
+ * - DZA: Algeria
+ * - ECU: Ecuador
+ * - EGY: Egypt
+ * - ERI: Eritrea
+ * - ESH: Western Sahara
+ * - ESP: Spain
+ * - EST: Estonia
+ * - ETH: Ethiopia
+ * - FIN: Finland
+ * - FJI: Fiji
+ * - FLK: Falkland Islands (Malvinas)
+ * - FRA: France
+ * - FRO: Faroe Islands
+ * - FSM: Micronesia, Federated States of
+ * - GAB: Gabon
+ * - GBR: United Kingdom
+ * - GEO: Georgia
+ * - GGY: Guernsey
+ * - GHA: Ghana
+ * - GIB: Gibraltar
+ * - GIN: Guinea
+ * - GLP: Guadeloupe
+ * - GMB: Gambia
+ * - GNB: Guinea-Bissau
+ * - GNQ: Equatorial Guinea
+ * - GRC: Greece
+ * - GRD: Grenada
+ * - GRL: Greenland
+ * - GTM: Guatemala
+ * - GUF: French Guiana
+ * - GUM: Guam
+ * - GUY: Guyana
+ * - HKG: Hong Kong
+ * - HMD: Heard Island and McDonald Islands
+ * - HND: Honduras
+ * - HRV: Croatia
+ * - HTI: Haiti
+ * - HUN: Hungary
+ * - IDN: Indonesia
+ * - IMN: Isle of Man
+ * - IND: India
+ * - IOT: British Indian Ocean Territory
+ * - IRL: Ireland
+ * - IRN: Iran, Islamic Republic of
+ * - IRQ: Iraq
+ * - ISL: Iceland
+ * - ISR: Israel
+ * - ITA: Italy
+ * - JAM: Jamaica
+ * - JEY: Jersey
+ * - JOR: Jordan
+ * - JPN: Japan
+ * - KAZ: Kazakhstan
+ * - KEN: Kenya
+ * - KGZ: Kyrgyzstan
+ * - KHM: Cambodia
+ * - KIR: Kiribati
+ * - KNA: Saint Kitts and Nevis
+ * - KOR: Korea, Republic of
+ * - KWT: Kuwait
+ * - LAO: Lao People's Democratic Republic
+ * - LBN: Lebanon
+ * - LBR: Liberia
+ * - LBY: Libya
+ * - LCA: Saint Lucia
+ * - LIE: Liechtenstein
+ * - LKA: Sri Lanka
+ * - LSO: Lesotho
+ * - LTU: Lithuania
+ * - LUX: Luxembourg
+ * - LVA: Latvia
+ * - MAC: Macao
+ * - MAF: Saint Martin (French part)
+ * - MAR: Morocco
+ * - MCO: Monaco
+ * - MDA: Moldova, Republic of
+ * - MDG: Madagascar
+ * - MDV: Maldives
+ * - MEX: Mexico
+ * - MHL: Marshall Islands
+ * - MKD: Macedonia, the former Yugoslav Republic of
+ * - MLI: Mali
+ * - MLT: Malta
+ * - MMR: Myanmar
+ * - MNE: Montenegro
+ * - MNG: Mongolia
+ * - MNP: Northern Mariana Islands
+ * - MOZ: Mozambique
+ * - MRT: Mauritania
+ * - MSR: Montserrat
+ * - MTQ: Martinique
+ * - MUS: Mauritius
+ * - MWI: Malawi
+ * - MYS: Malaysia
+ * - MYT: Mayotte
+ * - NAM: Namibia
+ * - NCL: New Caledonia
+ * - NER: Niger
+ * - NFK: Norfolk Island
+ * - NGA: Nigeria
+ * - NIC: Nicaragua
+ * - NIU: Niue
+ * - NLD: Netherlands
+ * - NOR: Norway
+ * - NPL: Nepal
+ * - NRU: Nauru
+ * - NZL: New Zealand
+ * - OMN: Oman
+ * - PAK: Pakistan
+ * - PAN: Panama
+ * - PCN: Pitcairn
+ * - PER: Peru
+ * - PHL: Philippines
+ * - PLW: Palau
+ * - PNG: Papua New Guinea
+ * - POL: Poland
+ * - PRI: Puerto Rico
+ * - PRK: Korea, Democratic People's Republic of
+ * - PRT: Portugal
+ * - PRY: Paraguay
+ * - PSE: Palestine, State of
+ * - PYF: French Polynesia
+ * - QAT: Qatar
+ * - REU: Riunion
+ * - ROU: Romania
+ * - RUS: Russian Federation
+ * - RWA: Rwanda
+ * - SAU: Saudi Arabia
+ * - SDN: Sudan
+ * - SEN: Senegal
+ * - SGP: Singapore
+ * - SGS: South Georgia and the South Sandwich Islands
+ * - SHN: Saint Helena, Ascension and Tristan da Cunha
+ * - SJM: Svalbard and Jan Mayen
+ * - SLB: Solomon Islands
+ * - SLE: Sierra Leone
+ * - SLV: El Salvador
+ * - SMR: San Marino
+ * - SOM: Somalia
+ * - SPM: Saint Pierre and Miquelon
+ * - SRB: Serbia
+ * - SSD: South Sudan
+ * - STP: Sao Tome and Principe
+ * - SUR: Suriname
+ * - SVK: Slovakia
+ * - SVN: Slovenia
+ * - SWE: Sweden
+ * - SWZ: Swaziland
+ * - SXM: Sint Maarten (Dutch part)
+ * - SYC: Seychelles
+ * - SYR: Syrian Arab Republic
+ * - TCA: Turks and Caicos Islands
+ * - TCD: Chad
+ * - TGO: Togo
+ * - THA: Thailand
+ * - TJK: Tajikistan
+ * - TKL: Tokelau
+ * - TKM: Turkmenistan
+ * - TLS: Timor-Leste
+ * - TON: Tonga
+ * - TTO: Trinidad and Tobago
+ * - TUN: Tunisia
+ * - TUR: Turkey
+ * - TUV: Tuvalu
+ * - TWN: Taiwan, Province of China
+ * - TZA: Tanzania, United Republic of
+ * - UGA: Uganda
+ * - UKR: Ukraine
+ * - UMI: United States Minor Outlying Islands
+ * - URY: Uruguay
+ * - USA: United States of America
+ * - UZB: Uzbekistan
+ * - VAT: Holy See
+ * - VCT: Saint Vincent and the Grenadines
+ * - VEN: Venezuela, Bolivarian Republic of
+ * - VGB: Virgin Islands, British
+ * - VIR: Virgin Islands, U.S.
+ * - VNM: Viet Nam
+ * - VUT: Vanuatu
+ * - WLF: Wallis and Futuna
+ * - WSM: Samoa
+ * - YEM: Yemen
+ * - ZAF: South Africa
+ * - ZMB: Zambia
+ * - ZWE: Zimbabwe
+ * - 004: Afghanistan
+ * - 008: Albania
+ * - 010: Antarctica
+ * - 012: Algeria
+ * - 016: American Samoa
+ * - 020: Andorra
+ * - 024: Angola
+ * - 028: Antigua and Barbuda
+ * - 031: Azerbaijan
+ * - 032: Argentina
+ * - 036: Australia
+ * - 040: Austria
+ * - 044: Bahamas
+ * - 048: Bahrain
+ * - 050: Bangladesh
+ * - 051: Armenia
+ * - 052: Barbados
+ * - 056: Belgium
+ * - 060: Bermuda
+ * - 064: Bhutan
+ * - 068: Bolivia, Plurinational State of
+ * - 070: Bosnia and Herzegovina
+ * - 072: Botswana
+ * - 074: Bouvet Island
+ * - 076: Brazil
+ * - 084: Belize
+ * - 086: British Indian Ocean Territory
+ * - 090: Solomon Islands
+ * - 092: Virgin Islands, British
+ * - 096: Brunei Darussalam
+ * - 100: Bulgaria
+ * - 104: Myanmar
+ * - 108: Burundi
+ * - 112: Belarus
+ * - 116: Cambodia
+ * - 120: Cameroon
+ * - 124: Canada
+ * - 132: Cabo Verde
+ * - 136: Cayman Islands
+ * - 140: Central African Republic
+ * - 144: Sri Lanka
+ * - 148: Chad
+ * - 152: Chile
+ * - 156: China
+ * - 158: Taiwan, Province of China
+ * - 162: Christmas Island
+ * - 166: Cocos (Keeling) Islands
+ * - 170: Colombia
+ * - 174: Comoros
+ * - 175: Mayotte
+ * - 178: Congo
+ * - 180: Congo, the Democratic Republic of the
+ * - 184: Cook Islands
+ * - 188: Costa Rica
+ * - 191: Croatia
+ * - 192: Cuba
+ * - 196: Cyprus
+ * - 203: Czechia
+ * - 204: Benin
+ * - 208: Denmark
+ * - 212: Dominica
+ * - 214: Dominican Republic
+ * - 218: Ecuador
+ * - 222: El Salvador
+ * - 226: Equatorial Guinea
+ * - 231: Ethiopia
+ * - 232: Eritrea
+ * - 233: Estonia
+ * - 234: Faroe Islands
+ * - 238: Falkland Islands (Malvinas)
+ * - 239: South Georgia and the South Sandwich Islands
+ * - 242: Fiji
+ * - 246: Finland
+ * - 248: Eland Islands
+ * - 250: France
+ * - 254: French Guiana
+ * - 258: French Polynesia
+ * - 260: French Southern Territories
+ * - 262: Djibouti
+ * - 266: Gabon
+ * - 268: Georgia
+ * - 270: Gambia
+ * - 275: Palestine, State of
+ * - 276: Germany
+ * - 288: Ghana
+ * - 292: Gibraltar
+ * - 296: Kiribati
+ * - 300: Greece
+ * - 304: Greenland
+ * - 308: Grenada
+ * - 312: Guadeloupe
+ * - 316: Guam
+ * - 320: Guatemala
+ * - 324: Guinea
+ * - 328: Guyana
+ * - 332: Haiti
+ * - 334: Heard Island and McDonald Islands
+ * - 336: Holy See
+ * - 340: Honduras
+ * - 344: Hong Kong
+ * - 348: Hungary
+ * - 352: Iceland
+ * - 356: India
+ * - 360: Indonesia
+ * - 364: Iran, Islamic Republic of
+ * - 368: Iraq
+ * - 372: Ireland
+ * - 376: Israel
+ * - 380: Italy
+ * - 384: Ctte d'Ivoire
+ * - 388: Jamaica
+ * - 392: Japan
+ * - 398: Kazakhstan
+ * - 400: Jordan
+ * - 404: Kenya
+ * - 408: Korea, Democratic People's Republic of
+ * - 410: Korea, Republic of
+ * - 414: Kuwait
+ * - 417: Kyrgyzstan
+ * - 418: Lao People's Democratic Republic
+ * - 422: Lebanon
+ * - 426: Lesotho
+ * - 428: Latvia
+ * - 430: Liberia
+ * - 434: Libya
+ * - 438: Liechtenstein
+ * - 440: Lithuania
+ * - 442: Luxembourg
+ * - 446: Macao
+ * - 450: Madagascar
+ * - 454: Malawi
+ * - 458: Malaysia
+ * - 462: Maldives
+ * - 466: Mali
+ * - 470: Malta
+ * - 474: Martinique
+ * - 478: Mauritania
+ * - 480: Mauritius
+ * - 484: Mexico
+ * - 492: Monaco
+ * - 496: Mongolia
+ * - 498: Moldova, Republic of
+ * - 499: Montenegro
+ * - 500: Montserrat
+ * - 504: Morocco
+ * - 508: Mozambique
+ * - 512: Oman
+ * - 516: Namibia
+ * - 520: Nauru
+ * - 524: Nepal
+ * - 528: Netherlands
+ * - 531: Curagao
+ * - 533: Aruba
+ * - 534: Sint Maarten (Dutch part)
+ * - 535: Bonaire, Sint Eustatius and Saba
+ * - 540: New Caledonia
+ * - 548: Vanuatu
+ * - 554: New Zealand
+ * - 558: Nicaragua
+ * - 562: Niger
+ * - 566: Nigeria
+ * - 570: Niue
+ * - 574: Norfolk Island
+ * - 578: Norway
+ * - 580: Northern Mariana Islands
+ * - 581: United States Minor Outlying Islands
+ * - 583: Micronesia, Federated States of
+ * - 584: Marshall Islands
+ * - 585: Palau
+ * - 586: Pakistan
+ * - 591: Panama
+ * - 598: Papua New Guinea
+ * - 600: Paraguay
+ * - 604: Peru
+ * - 608: Philippines
+ * - 612: Pitcairn
+ * - 616: Poland
+ * - 620: Portugal
+ * - 624: Guinea-Bissau
+ * - 626: Timor-Leste
+ * - 630: Puerto Rico
+ * - 634: Qatar
+ * - 638: Riunion
+ * - 642: Romania
+ * - 643: Russian Federation
+ * - 646: Rwanda
+ * - 652: Saint Barthilemy
+ * - 654: Saint Helena, Ascension and Tristan da Cunha
+ * - 659: Saint Kitts and Nevis
+ * - 660: Anguilla
+ * - 662: Saint Lucia
+ * - 663: Saint Martin (French part)
+ * - 666: Saint Pierre and Miquelon
+ * - 670: Saint Vincent and the Grenadines
+ * - 674: San Marino
+ * - 678: Sao Tome and Principe
+ * - 682: Saudi Arabia
+ * - 686: Senegal
+ * - 688: Serbia
+ * - 690: Seychelles
+ * - 694: Sierra Leone
+ * - 702: Singapore
+ * - 703: Slovakia
+ * - 704: Viet Nam
+ * - 705: Slovenia
+ * - 706: Somalia
+ * - 710: South Africa
+ * - 716: Zimbabwe
+ * - 724: Spain
+ * - 728: South Sudan
+ * - 729: Sudan
+ * - 732: Western Sahara
+ * - 740: Suriname
+ * - 744: Svalbard and Jan Mayen
+ * - 748: Swaziland
+ * - 752: Sweden
+ * - 756: Switzerland
+ * - 760: Syrian Arab Republic
+ * - 762: Tajikistan
+ * - 764: Thailand
+ * - 768: Togo
+ * - 772: Tokelau
+ * - 776: Tonga
+ * - 780: Trinidad and Tobago
+ * - 784: United Arab Emirates
+ * - 788: Tunisia
+ * - 792: Turkey
+ * - 795: Turkmenistan
+ * - 796: Turks and Caicos Islands
+ * - 798: Tuvalu
+ * - 800: Uganda
+ * - 804: Ukraine
+ * - 807: Macedonia, the former Yugoslav Republic of
+ * - 818: Egypt
+ * - 826: United Kingdom
+ * - 831: Guernsey
+ * - 832: Jersey
+ * - 833: Isle of Man
+ * - 834: Tanzania, United Republic of
+ * - 840: United States of America
+ * - 850: Virgin Islands, U.S.
+ * - 854: Burkina Faso
+ * - 858: Uruguay
+ * - 860: Uzbekistan
+ * - 862: Venezuela, Bolivarian Republic of
+ * - 876: Wallis and Futuna
+ * - 882: Samoa
+ * - 887: Yemen
+ * - 894: Zambia
+ * - AF-BAL: Balkh
+ * - AF-BAM: Bāmyān
+ * - AF-BDG: Bādghīs
+ * - AF-BDS: Badakhshān
+ * - AF-BGL: Baghlān
+ * - AF-DAY: Dāykundī
+ * - AF-FRA: Farāh
+ * - AF-FYB: Fāryāb
+ * - AF-GHA: Ghaznī
+ * - AF-GHO: Ghōr
+ * - AF-HEL: Helmand
+ * - AF-HER: Herāt
+ * - AF-JOW: Jowzjān
+ * - AF-KAB: Kābul
+ * - AF-KAN: Kandahār
+ * - AF-KAP: Kāpīsā
+ * - AF-KDZ: Kunduz
+ * - AF-KHO: Khōst
+ * - AF-KNR: Kunar
+ * - AF-LAG: Laghmān
+ * - AF-LOG: Lōgar
+ * - AF-NAN: Nangarhār
+ * - AF-NIM: Nīmrōz
+ * - AF-NUR: Nūristān
+ * - AF-PAN: Panjshayr
+ * - AF-PAR: Parwān
+ * - AF-PIA: Paktiyā
+ * - AF-PKA: Paktīkā
+ * - AF-SAM: Samangān
+ * - AF-SAR: Sar-e Pul
+ * - AF-TAK: Takhār
+ * - AF-URU: Uruzgān
+ * - AF-WAR: Wardak
+ * - AF-ZAB: Zābul
+ * - AX-AX: Åland Islands
+ * - AL-01: Berat
+ * - AL-02: Durrës
+ * - AL-03: Elbasan
+ * - AL-04: Fier
+ * - AL-05: Gjirokastër
+ * - AL-06: Korçë
+ * - AL-07: Kukës
+ * - AL-08: Lezhë
+ * - AL-09: Dibër
+ * - AL-10: Shkodër
+ * - AL-11: Tiranë
+ * - AL-12: Vlorë
+ * - AL-BR: Berat
+ * - AL-BU: Bulqizë
+ * - AL-DI: Dibër
+ * - AL-DL: Delvinë
+ * - AL-DR: Durrës
+ * - AL-DV: Devoll
+ * - AL-EL: Elbasan
+ * - AL-ER: Kolonjë
+ * - AL-FR: Fier
+ * - AL-GJ: Gjirokastër
+ * - AL-GR: Gramsh
+ * - AL-HA: Has
+ * - AL-KA: Kavajë
+ * - AL-KB: Kurbin
+ * - AL-KC: Kuçovë
+ * - AL-KO: Korçë
+ * - AL-KR: Krujë
+ * - AL-KU: Kukës
+ * - AL-LB: Librazhd
+ * - AL-LE: Lezhë
+ * - AL-LU: Lushnjë
+ * - AL-MK: Mallakastër
+ * - AL-MM: Malësi e Madhe
+ * - AL-MR: Mirditë
+ * - AL-MT: Mat
+ * - AL-PG: Pogradec
+ * - AL-PQ: Peqin
+ * - AL-PR: Përmet
+ * - AL-PU: Pukë
+ * - AL-SH: Shkodër
+ * - AL-SK: Skrapar
+ * - AL-SR: Sarandë
+ * - AL-TE: Tepelenë
+ * - AL-TP: Tropojë
+ * - AL-TR: Tiranë
+ * - AL-VL: Vlorë
+ * - DZ-01: Adrar
+ * - DZ-02: Chlef
+ * - DZ-03: Laghouat
+ * - DZ-04: Oum el Bouaghi
+ * - DZ-05: Batna
+ * - DZ-06: Béjaïa
+ * - DZ-07: Biskra
+ * - DZ-08: Béchar
+ * - DZ-09: Blida
+ * - DZ-10: Bouira
+ * - DZ-11: Tamanrasset
+ * - DZ-12: Tébessa
+ * - DZ-13: Tlemcen
+ * - DZ-14: Tiaret
+ * - DZ-15: Tizi Ouzou
+ * - DZ-16: Alger
+ * - DZ-17: Djelfa
+ * - DZ-18: Jijel
+ * - DZ-19: Sétif
+ * - DZ-20: Saïda
+ * - DZ-21: Skikda
+ * - DZ-22: Sidi Bel Abbès
+ * - DZ-23: Annaba
+ * - DZ-24: Guelma
+ * - DZ-25: Constantine
+ * - DZ-26: Médéa
+ * - DZ-27: Mostaganem
+ * - DZ-28: Msila
+ * - DZ-29: Mascara
+ * - DZ-30: Ouargla
+ * - DZ-31: Oran
+ * - DZ-32: El Bayadh
+ * - DZ-33: Illizi
+ * - DZ-34: Bordj Bou Arréridj
+ * - DZ-35: Boumerdès
+ * - DZ-36: El Tarf
+ * - DZ-37: Tindouf
+ * - DZ-38: Tissemsilt
+ * - DZ-39: El Oued
+ * - DZ-40: Khenchela
+ * - DZ-41: Souk Ahras
+ * - DZ-42: Tipaza
+ * - DZ-43: Mila
+ * - DZ-44: Aïn Defla
+ * - DZ-45: Naama
+ * - DZ-46: Aïn Témouchent
+ * - DZ-47: Ghardaïa
+ * - DZ-48: Relizane
+ * - AS-AS: American Samoa
+ * - AD-02: Canillo
+ * - AD-03: Encamp
+ * - AD-04: La Massana
+ * - AD-05: Ordino
+ * - AD-06: Sant Julià de Lòria
+ * - AD-07: Andorra la Vella
+ * - AD-08: Escaldes-Engordany
+ * - AO-BGO: Bengo
+ * - AO-BGU: Benguela
+ * - AO-BIE: Bié
+ * - AO-CAB: Cabinda
+ * - AO-CCU: Kuando Kubango
+ * - AO-CNN: Cunene
+ * - AO-CNO: Kwanza Norte
+ * - AO-CUS: Kwanza Sul
+ * - AO-HUA: Huambo
+ * - AO-HUI: Huíla
+ * - AO-LNO: Lunda Norte
+ * - AO-LSU: Lunda Sul
+ * - AO-LUA: Luanda
+ * - AO-MAL: Malange
+ * - AO-MOX: Moxico
+ * - AO-NAM: Namibe
+ * - AO-UIG: Uíge
+ * - AO-ZAI: Zaire
+ * - AI-AI: Anguilla
+ * - AQ-AQ: Antarctica
+ * - AG-03: Saint George
+ * - AG-04: Saint John
+ * - AG-05: Saint Mary
+ * - AG-06: Saint Paul
+ * - AG-07: Saint Peter
+ * - AG-08: Saint Philip
+ * - AG-10: Barbuda
+ * - AG-11: Redonda
+ * - AR-A: Salta
+ * - AR-B: Buenos Aires
+ * - AR-C: Ciudad Autónoma de Buenos Aires
+ * - AR-D: San Luis
+ * - AR-E: Entre Ríos
+ * - AR-F: La Rioja
+ * - AR-G: Santiago del Estero
+ * - AR-H: Chaco
+ * - AR-J: San Juan
+ * - AR-K: Catamarca
+ * - AR-L: La Pampa
+ * - AR-M: Mendoza
+ * - AR-N: Misiones
+ * - AR-P: Formosa
+ * - AR-Q: Neuquén
+ * - AR-R: Río Negro
+ * - AR-S: Santa Fe
+ * - AR-T: Tucumán
+ * - AR-U: Chubut
+ * - AR-V: Tierra del Fuego
+ * - AR-W: Corrientes
+ * - AR-X: Córdoba
+ * - AR-Y: Jujuy
+ * - AR-Z: Santa Cruz
+ * - AM-AG: Aragac̣otn
+ * - AM-AR: Ararat
+ * - AM-AV: Armavir
+ * - AM-ER: Erevan
+ * - AM-GR: Geġark'unik'
+ * - AM-KT: Kotayk'
+ * - AM-LO: Loṙi
+ * - AM-SH: Širak
+ * - AM-SU: Syunik'
+ * - AM-TV: Tavuš
+ * - AM-VD: Vayoć Jor
+ * - AW-AW: Aruba
+ * - AU-ACT: Australian Capital Territory
+ * - AU-NSW: New South Wales
+ * - AU-NT: Northern Territory
+ * - AU-QLD: Queensland
+ * - AU-SA: South Australia
+ * - AU-TAS: Tasmania
+ * - AU-VIC: Victoria
+ * - AU-WA: Western Australia
+ * - AT-1: Burgenland
+ * - AT-2: Kärnten
+ * - AT-3: Niederösterreich
+ * - AT-4: Oberösterreich
+ * - AT-5: Salzburg
+ * - AT-6: Steiermark
+ * - AT-7: Tirol
+ * - AT-8: Vorarlberg
+ * - AT-9: Wien
+ * - AZ-ABS: Abşeron
+ * - AZ-AGA: Ağstafa
+ * - AZ-AGC: Ağcabәdi
+ * - AZ-AGM: Ağdam
+ * - AZ-AGS: Ağdaş
+ * - AZ-AGU: Ağsu
+ * - AZ-AST: Astara
+ * - AZ-BA: Bakı
+ * - AZ-BAB: Babək
+ * - AZ-BAL: Balakən
+ * - AZ-BAR: Bərdə
+ * - AZ-BEY: Beyləqan
+ * - AZ-BIL: Biləsuvar
+ * - AZ-CAB: Cəbrayıl
+ * - AZ-CAL: Cəlilabad
+ * - AZ-CUL: Culfa
+ * - AZ-DAS: Daşkəsən
+ * - AZ-FUZ: Füzuli
+ * - AZ-GAD: Gədəbəy
+ * - AZ-GA: Gәncә
+ * - AZ-GOR: Goranboy
+ * - AZ-GOY: Göyçay
+ * - AZ-GYG: Göygöl
+ * - AZ-HAC: Hacıqabul
+ * - AZ-IMI: İmişli
+ * - AZ-ISM: İsmayıllı
+ * - AZ-KAL: Kəlbəcər
+ * - AZ-KAN: Kǝngǝrli
+ * - AZ-KUR: Kürdəmir
+ * - AZ-LAC: Laçın
+ * - AZ-LA: Lәnkәran
+ * - AZ-LAN: Lənkəran
+ * - AZ-LER: Lerik
+ * - AZ-MAS: Masallı
+ * - AZ-MI: Mingәçevir
+ * - AZ-NA: Naftalan
+ * - AZ-NEF: Neftçala
+ * - AZ-NV: Naxçıvan
+ * - AZ-NX: Naxçıvan
+ * - AZ-OGU: Oğuz
+ * - AZ-ORD: Ordubad
+ * - AZ-QAB: Qәbәlә
+ * - AZ-QAX: Qax
+ * - AZ-QAZ: Qazax
+ * - AZ-QBA: Quba
+ * - AZ-QBI: Qubadlı
+ * - AZ-QOB: Qobustan
+ * - AZ-QUS: Qusar
+ * - AZ-SAB: Sabirabad
+ * - AZ-SAD: Sәdәrәk
+ * - AZ-SAH: Şahbuz
+ * - AZ-SAK: Şәki
+ * - AZ-SAL: Salyan
+ * - AZ-SAR: Şәrur
+ * - AZ-SA: Şәki
+ * - AZ-SAT: Saatlı
+ * - AZ-SBN: Şabran
+ * - AZ-SIY: Siyәzәn
+ * - AZ-SKR: Şәmkir
+ * - AZ-SMI: Şamaxı
+ * - AZ-SM: Sumqayıt
+ * - AZ-SMX: Samux
+ * - AZ-SR: Şirvan
+ * - AZ-SUS: Şuşa
+ * - AZ-TAR: Tәrtәr
+ * - AZ-TOV: Tovuz
+ * - AZ-UCA: Ucar
+ * - AZ-XAC: Xaçmaz
+ * - AZ-XA: Xankәndi
+ * - AZ-XCI: Xocalı
+ * - AZ-XIZ: Xızı
+ * - AZ-XVD: Xocavәnd
+ * - AZ-YAR: Yardımlı
+ * - AZ-YEV: Yevlax
+ * - AZ-YE: Yevlax
+ * - AZ-ZAN: Zәngilan
+ * - AZ-ZAQ: Zaqatala
+ * - AZ-ZAR: Zәrdab
+ * - BS-AK: Acklins
+ * - BS-BI: Bimini
+ * - BS-BP: Black Point
+ * - BS-BY: Berry Islands
+ * - BS-CE: Central Eleuthera
+ * - BS-CI: Cat Island
+ * - BS-CK: Crooked Island and Long Cay
+ * - BS-CO: Central Abaco
+ * - BS-CS: Central Andros
+ * - BS-EG: East Grand Bahama
+ * - BS-EX: Exuma
+ * - BS-FP: City of Freeport
+ * - BS-GC: Grand Cay
+ * - BS-HI: Harbour Island
+ * - BS-HT: Hope Town
+ * - BS-IN: Inagua
+ * - BS-LI: Long Island
+ * - BS-MC: Mangrove Cay
+ * - BS-MG: Mayaguana
+ * - BS-MI: Moore's Island
+ * - BS-NE: North Eleuthera
+ * - BS-NO: North Abaco
+ * - BS-NS: North Andros
+ * - BS-RC: Rum Cay
+ * - BS-RI: Ragged Island
+ * - BS-SA: South Andros
+ * - BS-SE: South Eleuthera
+ * - BS-SO: South Abaco
+ * - BS-SS: San Salvador
+ * - BS-SW: Spanish Wells
+ * - BS-WG: West Grand Bahama
+ * - BH-13: Al Manāmah
+ * - BH-14: Al Janūbīyah
+ * - BH-15: Al Muḩarraq
+ * - BH-16: Al Wusţá
+ * - BH-17: Ash Shamālīyah
+ * - BD-01: Bandarban
+ * - BD-02: Barguna
+ * - BD-03: Bogra
+ * - BD-04: Brahmanbaria
+ * - BD-05: Bagerhat
+ * - BD-06: Barisal
+ * - BD-07: Bhola
+ * - BD-08: Comilla
+ * - BD-09: Chandpur
+ * - BD-10: Chittagong
+ * - BD-11: Cox's Bazar
+ * - BD-12: Chuadanga
+ * - BD-13: Dhaka
+ * - BD-14: Dinajpur
+ * - BD-15: Faridpur
+ * - BD-16: Feni
+ * - BD-17: Gopalganj
+ * - BD-18: Gazipur
+ * - BD-19: Gaibandha
+ * - BD-20: Habiganj
+ * - BD-21: Jamalpur
+ * - BD-22: Jessore
+ * - BD-23: Jhenaidah
+ * - BD-24: Jaipurhat
+ * - BD-25: Jhalakati
+ * - BD-26: Kishoreganj
+ * - BD-27: Khulna
+ * - BD-28: Kurigram
+ * - BD-29: Khagrachari
+ * - BD-30: Kushtia
+ * - BD-31: Lakshmipur
+ * - BD-32: Lalmonirhat
+ * - BD-33: Manikganj
+ * - BD-34: Mymensingh
+ * - BD-35: Munshiganj
+ * - BD-36: Madaripur
+ * - BD-37: Magura
+ * - BD-38: Moulvibazar
+ * - BD-39: Meherpur
+ * - BD-40: Narayanganj
+ * - BD-41: Netrakona
+ * - BD-42: Narsingdi
+ * - BD-43: Narail
+ * - BD-44: Natore
+ * - BD-45: Nawabganj
+ * - BD-46: Nilphamari
+ * - BD-47: Noakhali
+ * - BD-48: Naogaon
+ * - BD-49: Pabna
+ * - BD-50: Pirojpur
+ * - BD-51: Patuakhali
+ * - BD-52: Panchagarh
+ * - BD-53: Rajbari
+ * - BD-54: Rajshahi
+ * - BD-55: Rangpur
+ * - BD-56: Rangamati
+ * - BD-57: Sherpur
+ * - BD-58: Satkhira
+ * - BD-59: Sirajganj
+ * - BD-60: Sylhet
+ * - BD-61: Sunamganj
+ * - BD-62: Shariatpur
+ * - BD-63: Tangail
+ * - BD-64: Thakurgaon
+ * - BD-A: Barisal
+ * - BD-B: Chittagong
+ * - BD-C: Dhaka
+ * - BD-D: Khulna
+ * - BD-E: Rajshahi
+ * - BD-F: Rangpur
+ * - BD-G: Sylhet
+ * - BB-01: Christ Church
+ * - BB-02: Saint Andrew
+ * - BB-03: Saint George
+ * - BB-04: Saint James
+ * - BB-05: Saint John
+ * - BB-06: Saint Joseph
+ * - BB-07: Saint Lucy
+ * - BB-08: Saint Michael
+ * - BB-09: Saint Peter
+ * - BB-10: Saint Philip
+ * - BB-11: Saint Thomas
+ * - BY-BR: Bresckaja voblasć
+ * - BY-HM: Gorod Minsk
+ * - BY-HO: Gomel'skaja oblast'
+ * - BY-HR: Grodnenskaja oblast'
+ * - BY-MA: Mahilioŭskaja voblasć
+ * - BY-MI: Minskaja oblast'
+ * - BY-VI: Viciebskaja voblasć
+ * - BE-BRU: Brussels Hoofdstedelijk Gewest
+ * - BE-VAN: Antwerpen
+ * - BE-VBR: Vlaams-Brabant
+ * - BE-VLG: Vlaams Gewest
+ * - BE-VLI: Limburg
+ * - BE-VOV: Oost-Vlaanderen
+ * - BE-VWV: West-Vlaanderen
+ * - BE-WAL: wallonne, Région
+ * - BE-WBR: Brabant wallon
+ * - BE-WHT: Hainaut
+ * - BE-WLG: Liège
+ * - BE-WLX: Luxembourg
+ * - BE-WNA: Namur
+ * - BZ-BZ: Belize
+ * - BZ-CY: Cayo
+ * - BZ-CZL: Corozal
+ * - BZ-OW: Orange Walk
+ * - BZ-SC: Stann Creek
+ * - BZ-TOL: Toledo
+ * - BJ-AK: Atakora
+ * - BJ-AL: Alibori
+ * - BJ-AQ: Atlantique
+ * - BJ-BO: Borgou
+ * - BJ-CO: Collines
+ * - BJ-DO: Donga
+ * - BJ-KO: Kouffo
+ * - BJ-LI: Littoral
+ * - BJ-MO: Mono
+ * - BJ-OU: Ouémé
+ * - BJ-PL: Plateau
+ * - BJ-ZO: Zou
+ * - BM-BM: Bermuda
+ * - BT-11: Paro
+ * - BT-12: Chhukha
+ * - BT-13: Ha
+ * - BT-14: Samtse
+ * - BT-15: Thimphu
+ * - BT-21: Tsirang
+ * - BT-22: Dagana
+ * - BT-23: Punakha
+ * - BT-24: Wangdue Phodrang
+ * - BT-31: Sarpang
+ * - BT-32: Trongsa
+ * - BT-33: Bumthang
+ * - BT-34: Zhemgang
+ * - BT-41: Trashigang
+ * - BT-42: Monggar
+ * - BT-43: Pemagatshel
+ * - BT-44: Lhuentse
+ * - BT-45: Samdrup Jongkha
+ * - BT-GA: Gasa
+ * - BT-TY: Trashi Yangtse
+ * - BO-B: El Beni
+ * - BO-C: Cochabamba
+ * - BO-H: Chuquisaca
+ * - BO-L: La Paz
+ * - BO-N: Pando
+ * - BO-O: Oruro
+ * - BO-P: Potosí
+ * - BO-S: Santa Cruz
+ * - BO-T: Tarija
+ * - BQ-BO: Bonaire
+ * - BQ-SA: Saba
+ * - BQ-SE: Sint Eustatius
+ * - BA-01: Unsko-sanska županija
+ * - BA-02: Posavska županija
+ * - BA-03: Tuzlanska županija
+ * - BA-04: Zeničko-dobojska županija
+ * - BA-05: Bosansko-podrinjska županija
+ * - BA-06: Srednjobosanska županija
+ * - BA-07: Hercegovačko-neretvanska županija
+ * - BA-08: Zapadnohercegovačka županija
+ * - BA-09: Kanton Sarajevo
+ * - BA-10: Kanton br. 10
+ * - BA-BIH: Federacija Bosne i Hercegovine
+ * - BA-BRC: Brčko distrikt
+ * - BA-SRP: Republika Srpska
+ * - BW-CE: Central
+ * - BW-CH: Chobe
+ * - BW-FR: Francistown
+ * - BW-GA: Gaborone
+ * - BW-GH: Ghanzi
+ * - BW-JW: Jwaneng
+ * - BW-KG: Kgalagadi
+ * - BW-KL: Kgatleng
+ * - BW-KW: Kweneng
+ * - BW-LO: Lobatse
+ * - BW-NE: North East
+ * - BW-NW: North West
+ * - BW-SE: South East
+ * - BW-SO: Southern
+ * - BW-SP: Selibe Phikwe
+ * - BW-ST: Sowa Town
+ * - BV-BV: Bouvet Island
+ * - BR-AC: Acre
+ * - BR-AL: Alagoas
+ * - BR-AM: Amazonas
+ * - BR-AP: Amapá
+ * - BR-BA: Bahia
+ * - BR-CE: Ceará
+ * - BR-DF: Distrito Federal
+ * - BR-ES: Espírito Santo
+ * - BR-GO: Goiás
+ * - BR-MA: Maranhão
+ * - BR-MG: Minas Gerais
+ * - BR-MS: Mato Grosso do Sul
+ * - BR-MT: Mato Grosso
+ * - BR-PA: Pará
+ * - BR-PB: Paraíba
+ * - BR-PE: Pernambuco
+ * - BR-PI: Piauí
+ * - BR-PR: Paraná
+ * - BR-RJ: Rio de Janeiro
+ * - BR-RN: Rio Grande do Norte
+ * - BR-RO: Rondônia
+ * - BR-RR: Roraima
+ * - BR-RS: Rio Grande do Sul
+ * - BR-SC: Santa Catarina
+ * - BR-SE: Sergipe
+ * - BR-SP: São Paulo
+ * - BR-TO: Tocantins
+ * - IO-IO: British Indian Ocean Territory
+ * - BN-BE: Belait
+ * - BN-BM: Brunei-Muara
+ * - BN-TE: Temburong
+ * - BN-TU: Tutong
+ * - BG-01: Blagoevgrad
+ * - BG-02: Burgas
+ * - BG-03: Varna
+ * - BG-04: Veliko Tarnovo
+ * - BG-05: Vidin
+ * - BG-06: Vratsa
+ * - BG-07: Gabrovo
+ * - BG-08: Dobrich
+ * - BG-09: Kardzhali
+ * - BG-10: Kyustendil
+ * - BG-11: Lovech
+ * - BG-12: Montana
+ * - BG-13: Pazardzhik
+ * - BG-14: Pernik
+ * - BG-15: Pleven
+ * - BG-16: Plovdiv
+ * - BG-17: Razgrad
+ * - BG-18: Ruse
+ * - BG-19: Silistra
+ * - BG-20: Sliven
+ * - BG-21: Smolyan
+ * - BG-22: Sofia
+ * - BG-23: Sofia
+ * - BG-24: Stara Zagora
+ * - BG-25: Targovishte
+ * - BG-26: Haskovo
+ * - BG-27: Shumen
+ * - BG-28: Yambol
+ * - BF-01: Boucle du Mouhoun
+ * - BF-02: Cascades
+ * - BF-03: Centre
+ * - BF-04: Centre-Est
+ * - BF-05: Centre-Nord
+ * - BF-06: Centre-Ouest
+ * - BF-07: Centre-Sud
+ * - BF-08: Est
+ * - BF-09: Hauts-Bassins
+ * - BF-10: Nord
+ * - BF-11: Plateau-Central
+ * - BF-12: Sahel
+ * - BF-13: Sud-Ouest
+ * - BF-BAL: Balé
+ * - BF-BAM: Bam
+ * - BF-BAN: Banwa
+ * - BF-BAZ: Bazèga
+ * - BF-BGR: Bougouriba
+ * - BF-BLG: Boulgou
+ * - BF-BLK: Boulkiemdé
+ * - BF-COM: Comoé
+ * - BF-GAN: Ganzourgou
+ * - BF-GNA: Gnagna
+ * - BF-GOU: Gourma
+ * - BF-HOU: Houet
+ * - BF-IOB: Ioba
+ * - BF-KAD: Kadiogo
+ * - BF-KEN: Kénédougou
+ * - BF-KMD: Komondjari
+ * - BF-KMP: Kompienga
+ * - BF-KOP: Koulpélogo
+ * - BF-KOS: Kossi
+ * - BF-KOT: Kouritenga
+ * - BF-KOW: Kourwéogo
+ * - BF-LER: Léraba
+ * - BF-LOR: Loroum
+ * - BF-MOU: Mouhoun
+ * - BF-NAM: Namentenga
+ * - BF-NAO: Nahouri
+ * - BF-NAY: Nayala
+ * - BF-NOU: Noumbiel
+ * - BF-OUB: Oubritenga
+ * - BF-OUD: Oudalan
+ * - BF-PAS: Passoré
+ * - BF-PON: Poni
+ * - BF-SEN: Séno
+ * - BF-SIS: Sissili
+ * - BF-SMT: Sanmatenga
+ * - BF-SNG: Sanguié
+ * - BF-SOM: Soum
+ * - BF-SOR: Sourou
+ * - BF-TAP: Tapoa
+ * - BF-TUI: Tui
+ * - BF-YAG: Yagha
+ * - BF-YAT: Yatenga
+ * - BF-ZIR: Ziro
+ * - BF-ZON: Zondoma
+ * - BF-ZOU: Zoundwéogo
+ * - BI-BB: Bubanza
+ * - BI-BL: Bujumbura Rural
+ * - BI-BM: Bujumbura Mairie
+ * - BI-BR: Bururi
+ * - BI-CA: Cankuzo
+ * - BI-CI: Cibitoke
+ * - BI-GI: Gitega
+ * - BI-KI: Kirundo
+ * - BI-KR: Karuzi
+ * - BI-KY: Kayanza
+ * - BI-MA: Makamba
+ * - BI-MU: Muramvya
+ * - BI-MW: Mwaro
+ * - BI-MY: Muyinga
+ * - BI-NG: Ngozi
+ * - BI-RT: Rutana
+ * - BI-RY: Ruyigi
+ * - KH-10: Krâchéh
+ * - KH-11: Môndól Kiri
+ * - KH-12: Phnom Penh
+ * - KH-13: Preăh Vihéar
+ * - KH-14: Prey Veaeng
+ * - KH-15: Pousaat
+ * - KH-16: Rotanak Kiri
+ * - KH-17: Siem Reab
+ * - KH-18: Krŏng Preăh Sihanouk
+ * - KH-19: Stoĕng Trêng
+ * - KH-1: Bântéay Méanchey
+ * - KH-20: Svaay Rieng
+ * - KH-21: Taakaev
+ * - KH-22: Ŏtdâr Méanchey
+ * - KH-23: Krong Kaeb
+ * - KH-24: Krŏng Pailĭn
+ * - KH-2: Baat Dambang
+ * - KH-3: Kampong Chaam
+ * - KH-4: Kampong Chhnang
+ * - KH-5: Kâmpóng Spœ
+ * - KH-6: Kâmpóng Thum
+ * - KH-7: Kampot
+ * - KH-8: Kandaal
+ * - KH-9: Kaoh Kong
+ * - CM-AD: Adamaoua
+ * - CM-CE: Centre
+ * - CM-EN: Extrême-Nord
+ * - CM-ES: East
+ * - CM-LT: Littoral
+ * - CM-NO: Nord
+ * - CM-NW: Nord-Ouest
+ * - CM-OU: Ouest
+ * - CM-SU: South
+ * - CM-SW: South-West
+ * - CA-AB: Alberta
+ * - CA-BC: British Columbia
+ * - CA-MB: Manitoba
+ * - CA-NB: New Brunswick
+ * - CA-NL: Newfoundland and Labrador
+ * - CA-NS: Nova Scotia
+ * - CA-NT: Northwest Territories
+ * - CA-NU: Nunavut
+ * - CA-ON: Ontario
+ * - CA-PE: Prince Edward Island
+ * - CA-QC: Quebec
+ * - CA-SK: Saskatchewan
+ * - CA-YT: Yukon
+ * - CV-B: Ilhas de Barlavento
+ * - CV-BR: Brava
+ * - CV-BV: Boa Vista
+ * - CV-CA: Santa Catarina
+ * - CV-CF: Santa Catarina do Fogo
+ * - CV-CR: Santa Cruz
+ * - CV-MA: Maio
+ * - CV-MO: Mosteiros
+ * - CV-PA: Paul
+ * - CV-PN: Porto Novo
+ * - CV-PR: Praia
+ * - CV-RB: Ribeira Brava
+ * - CV-RG: Ribeira Grande
+ * - CV-RS: Ribeira Grande de Santiago
+ * - CV-SD: São Domingos
+ * - CV-SF: São Filipe
+ * - CV-S: Ilhas de Sotavento
+ * - CV-SL: Sal
+ * - CV-SM: São Miguel
+ * - CV-SO: São Lourenço dos Órgãos
+ * - CV-SS: São Salvador do Mundo
+ * - CV-SV: São Vicente
+ * - CV-TA: Tarrafal
+ * - CV-TS: Tarrafal de São Nicolau
+ * - KY-KY: Cayman Islands
+ * - CF-AC: Ouham
+ * - CF-BB: Bamïngï-Bangoran
+ * - CF-BGF: Bangî
+ * - CF-BK: Basse-Kotto
+ * - CF-HK: Haute-Kotto
+ * - CF-HM: Haut-Mbomou
+ * - CF-HS: Haute-Sangha / Mambéré-Kadéï
+ * - CF-KB: Gïrïbïngï
+ * - CF-KG: Kemö-Gïrïbïngï
+ * - CF-LB: Lobaye
+ * - CF-MB: Mbomou
+ * - CF-MP: Ömbëlä-Pökö
+ * - CF-NM: Nana-Mambéré
+ * - CF-OP: Ouham-Pendé
+ * - CF-SE: Sangä
+ * - CF-UK: Ouaka
+ * - CF-VK: Vakaga
+ * - TD-BA: Al Baţḩah
+ * - TD-BG: Baḩr al Ghazāl
+ * - TD-BO: Borkou
+ * - TD-CB: Chari-Baguirmi
+ * - TD-EE: Ennedi-Est
+ * - TD-EO: Ennedi-Ouest
+ * - TD-GR: Guéra
+ * - TD-HL: Hadjer Lamis
+ * - TD-KA: Kanem
+ * - TD-LC: Al Buḩayrah
+ * - TD-LO: Logone-Occidental
+ * - TD-LR: Logone-Oriental
+ * - TD-MA: Mandoul
+ * - TD-MC: Moyen-Chari
+ * - TD-ME: Mayo-Kebbi-Est
+ * - TD-MO: Mayo-Kebbi-Ouest
+ * - TD-ND: Madīnat Injamīnā
+ * - TD-OD: Ouaddaï
+ * - TD-SA: Salamat
+ * - TD-SI: Sila
+ * - TD-TA: Tandjilé
+ * - TD-TI: Tibastī
+ * - TD-WF: Wadi Fira
+ * - CL-AI: Aysén
+ * - CL-AN: Antofagasta
+ * - CL-AP: Arica y Parinacota
+ * - CL-AR: Araucanía
+ * - CL-AT: Atacama
+ * - CL-BI: Biobío
+ * - CL-CO: Coquimbo
+ * - CL-LI: Libertador General Bernardo O'Higgins
+ * - CL-LL: Los Lagos
+ * - CL-LR: Los Ríos
+ * - CL-MA: Magallanes
+ * - CL-ML: Maule
+ * - CL-RM: Región Metropolitana de Santiago
+ * - CL-TA: Tarapacá
+ * - CL-VS: Valparaíso
+ * - CN-11: Beijing
+ * - CN-12: Tianjin
+ * - CN-13: Hebei
+ * - CN-14: Shanxi
+ * - CN-15: Nei Mongol
+ * - CN-21: Liaoning
+ * - CN-22: Jilin
+ * - CN-23: Heilongjiang
+ * - CN-31: Shanghai
+ * - CN-32: Jiangsu
+ * - CN-33: Zhejiang
+ * - CN-34: Anhui
+ * - CN-35: Fujian
+ * - CN-36: Jiangxi
+ * - CN-37: Shandong
+ * - CN-41: Henan
+ * - CN-42: Hubei
+ * - CN-43: Hunan
+ * - CN-44: Guangdong
+ * - CN-45: Guangxi
+ * - CN-46: Hainan
+ * - CN-50: Chongqing
+ * - CN-51: Sichuan
+ * - CN-52: Guizhou
+ * - CN-53: Yunnan
+ * - CN-54: Xizang
+ * - CN-61: Shaanxi
+ * - CN-62: Gansu
+ * - CN-63: Qinghai
+ * - CN-64: Ningxia
+ * - CN-65: Xinjiang
+ * - CN-71: Taiwan
+ * - CN-91: Hong Kong
+ * - CN-92: Aomen
+ * - CX-CX: Christmas Island
+ * - CC-CC: Cocos  Islands
+ * - CO-AMA: Amazonas
+ * - CO-ANT: Antioquia
+ * - CO-ARA: Arauca
+ * - CO-ATL: Atlántico
+ * - CO-BOL: Bolívar
+ * - CO-BOY: Boyacá
+ * - CO-CAL: Caldas
+ * - CO-CAQ: Caquetá
+ * - CO-CAS: Casanare
+ * - CO-CAU: Cauca
+ * - CO-CES: Cesar
+ * - CO-CHO: Chocó
+ * - CO-COR: Córdoba
+ * - CO-CUN: Cundinamarca
+ * - CO-DC: Distrito Capital de Bogotá
+ * - CO-GUA: Guainía
+ * - CO-GUV: Guaviare
+ * - CO-HUI: Huila
+ * - CO-LAG: La Guajira
+ * - CO-MAG: Magdalena
+ * - CO-MET: Meta
+ * - CO-NAR: Nariño
+ * - CO-NSA: Norte de Santander
+ * - CO-PUT: Putumayo
+ * - CO-QUI: Quindío
+ * - CO-RIS: Risaralda
+ * - CO-SAN: Santander
+ * - CO-SAP: San Andrés, Providencia y Santa Catalina
+ * - CO-SUC: Sucre
+ * - CO-TOL: Tolima
+ * - CO-VAC: Valle del Cauca
+ * - CO-VAU: Vaupés
+ * - CO-VID: Vichada
+ * - KM-A: Andjouân
+ * - KM-G: Andjazîdja
+ * - KM-M: Mohéli
+ * - CG-11: Bouenza
+ * - CG-12: Pool
+ * - CG-13: Sangha
+ * - CG-14: Plateaux
+ * - CG-15: Cuvette-Ouest
+ * - CG-16: Pointe-Noire
+ * - CG-2: Lékoumou
+ * - CG-5: Kouilou
+ * - CG-7: Likouala
+ * - CG-8: Cuvette
+ * - CG-9: Niari
+ * - CG-BZV: Brazzaville
+ * - CD-BC: Bas-Congo
+ * - CD-BN: Bandundu
+ * - CD-EQ: Équateur
+ * - CD-KA: Katanga
+ * - CD-KE: Kasai-Oriental
+ * - CD-KN: Kinshasa
+ * - CD-KW: Kasai-Occidental
+ * - CD-MA: Maniema
+ * - CD-NK: Nord-Kivu
+ * - CD-OR: Orientale
+ * - CD-SK: Sud-Kivu
+ * - CK-CK: Cook Islands
+ * - CR-A: Alajuela
+ * - CR-C: Cartago
+ * - CR-G: Guanacaste
+ * - CR-H: Heredia
+ * - CR-L: Limón
+ * - CR-P: Puntarenas
+ * - CR-SJ: San José
+ * - CI-01: Lagunes
+ * - CI-02: Haut-Sassandra
+ * - CI-03: Savanes
+ * - CI-04: Vallée du Bandama
+ * - CI-05: Moyen-Comoé
+ * - CI-06: 18 Montagnes
+ * - CI-07: Lacs
+ * - CI-08: Zanzan
+ * - CI-09: Bas-Sassandra
+ * - CI-10: Denguélé
+ * - CI-11: Nzi-Comoé
+ * - CI-12: Marahoué
+ * - CI-13: Sud-Comoé
+ * - CI-14: Worodougou
+ * - CI-15: Sud-Bandama
+ * - CI-16: Agnébi
+ * - CI-17: Bafing
+ * - CI-18: Fromager
+ * - CI-19: Moyen-Cavally
+ * - HR-01: Zagrebačka županija
+ * - HR-02: Krapinsko-zagorska županija
+ * - HR-03: Sisačko-moslavačka županija
+ * - HR-04: Karlovačka županija
+ * - HR-05: Varaždinska županija
+ * - HR-06: Koprivničko-križevačka županija
+ * - HR-07: Bjelovarsko-bilogorska županija
+ * - HR-08: Primorsko-goranska županija
+ * - HR-09: Ličko-senjska županija
+ * - HR-10: Virovitičko-podravska županija
+ * - HR-11: Požeško-slavonska županija
+ * - HR-12: Brodsko-posavska županija
+ * - HR-13: Zadarska županija
+ * - HR-14: Osječko-baranjska županija
+ * - HR-15: Šibensko-kninska županija
+ * - HR-16: Vukovarsko-srijemska županija
+ * - HR-17: Splitsko-dalmatinska županija
+ * - HR-18: Istarska županija
+ * - HR-19: Dubrovačko-neretvanska županija
+ * - HR-20: Međimurska županija
+ * - HR-21: Grad Zagreb
+ * - CU-01: Pinar del Río
+ * - CU-03: La Habana
+ * - CU-04: Matanzas
+ * - CU-05: Villa Clara
+ * - CU-06: Cienfuegos
+ * - CU-07: Sancti Spíritus
+ * - CU-08: Ciego de Ávila
+ * - CU-09: Camagüey
+ * - CU-10: Las Tunas
+ * - CU-11: Holguín
+ * - CU-12: Granma
+ * - CU-13: Santiago de Cuba
+ * - CU-14: Guantánamo
+ * - CU-15: Artemisa
+ * - CU-16: Mayabeque
+ * - CU-99: Isla de la Juventud
+ * - CW-CW: Curaçao
+ * - CY-01: Lefkoşa
+ * - CY-02: Lemesos
+ * - CY-03: Larnaka
+ * - CY-04: Ammochostos
+ * - CY-05: Baf
+ * - CY-06: Girne
+ * - CZ-101: Praha 1
+ * - CZ-102: Praha 2
+ * - CZ-103: Praha 3
+ * - CZ-104: Praha 4
+ * - CZ-105: Praha 5
+ * - CZ-106: Praha 6
+ * - CZ-107: Praha 7
+ * - CZ-108: Praha 8
+ * - CZ-109: Praha 9
+ * - CZ-10A: Praha 10
+ * - CZ-10B: Praha 11
+ * - CZ-10C: Praha 12
+ * - CZ-10D: Praha 13
+ * - CZ-10E: Praha 14
+ * - CZ-10F: Praha 15
+ * - CZ-201: Benešov
+ * - CZ-202: Beroun
+ * - CZ-203: Kladno
+ * - CZ-204: Kolín
+ * - CZ-205: Kutná Hora
+ * - CZ-206: Mělník
+ * - CZ-207: Mladá Boleslav
+ * - CZ-208: Nymburk
+ * - CZ-209: Praha-východ
+ * - CZ-20A: Praha-západ
+ * - CZ-20B: Příbram
+ * - CZ-20C: Rakovník
+ * - CZ-311: České Budějovice
+ * - CZ-312: Český Krumlov
+ * - CZ-313: Jindřichův Hradec
+ * - CZ-314: Písek
+ * - CZ-315: Prachatice
+ * - CZ-316: Strakonice
+ * - CZ-317: Tábor
+ * - CZ-321: Domažlice
+ * - CZ-322: Klatovy
+ * - CZ-323: Plzeň-město
+ * - CZ-324: Plzeň-jih
+ * - CZ-325: Plzeň-sever
+ * - CZ-326: Rokycany
+ * - CZ-327: Tachov
+ * - CZ-411: Cheb
+ * - CZ-412: Karlovy Vary
+ * - CZ-413: Sokolov
+ * - CZ-421: Děčín
+ * - CZ-422: Chomutov
+ * - CZ-423: Litoměřice
+ * - CZ-424: Louny
+ * - CZ-425: Most
+ * - CZ-426: Teplice
+ * - CZ-427: Ústí nad Labem
+ * - CZ-511: Česká Lípa
+ * - CZ-512: Jablonec nad Nisou
+ * - CZ-513: Liberec
+ * - CZ-514: Semily
+ * - 001: World
+ * - 002: Africa
+ * - 014: Eastern Africa
+ * - 017: Middle Africa
+ * - 015: Northern Africa
+ * - 018: Southern Africa
+ * - 011: Western Africa
+ * - 019: Americas
+ * - 419: Latin America and the Caribbean
+ * - 029: Caribbean
+ * - 013: Central America
+ * - 005: South America
+ * - 021: Northern America a/
+ * - 142: Asia
+ * - 143: Central Asia
+ * - 030: Eastern Asia
+ * - 034: Southern Asia
+ * - 035: South-Eastern Asia
+ * - 145: Western Asia
+ * - 150: Europe
+ * - 151: Eastern Europe
+ * - 154: Northern Europe
+ * - 039: Southern Europe
+ * - 155: Western Europe
+ * - 009: Oceania
+ * - 053: Australia and New Zealand
+ * - 054: Melanesia
+ * - 057: Micronesia
+ * - 061: Polynesia
  */
 export type JurisdictionValueSet =
   | "AD"
@@ -5273,6 +9578,9 @@ export type JurisdictionValueSet =
  * Kind
  *
  * The kind of coverage: insurance, selfpay or other.
+ * - insurance: Insurance
+ * - self-pay: Self-pay
+ * - other: Other
  */
 export type Kind = "insurance" | "self-pay" | "other";
 
@@ -5296,15 +9604,232 @@ export type LDLCodes = string;
  *
  * Used to distinguish different roles a resource can play within a set of linked
  * resources.
+ * - source: Source of Truth
+ * - alternate: Alternate Record
+ * - historical: Historical/Obsolete Record
  */
 export type LinkageType = "source" | "alternate" | "historical";
 
 /**
  * Link Relation Types
- *
+ * 
  * Link Relation Types defined at
  * https://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relati
  * ons-1
+ * - about: Refers to a resource that is the subject of the link's context.
+ * - acl: Asserts that the link target provides an access control description for the link context.
+ * - alternate: Refers to a substitute for this context
+ * - amphtml: Used to reference alternative content that uses the AMP profile of the HTML format.
+ * - appendix: Refers to an appendix.
+ * - apple-touch-icon: Refers to an icon for the context. Synonym for icon.
+ * - apple-touch-startup-image: Refers to a launch screen for the context.
+ * - archives: Refers to a collection of records, documents, or other
+      materials of historical interest.
+ * - author: Refers to the context's author.
+ * - blocked-by: Identifies the entity that blocks access to a resource
+      following receipt of a legal demand.
+ * - bookmark: Gives a permanent link to use for bookmarking purposes.
+ * - canonical: Designates the preferred version of a resource (the IRI and its contents).
+ * - chapter: Refers to a chapter in a collection of resources.
+ * - cite-as: Indicates that the link target is preferred over the link context for the purpose of permanent citation.
+ * - collection: The target IRI points to a resource which represents the collection resource for the context IRI.
+ * - contents: Refers to a table of contents.
+ * - convertedFrom: The document linked to was later converted to the
+      document that contains this link relation.  For example, an RFC can
+      have a link to the Internet-Draft that became the RFC; in that case,
+      the link relation would be "convertedFrom".
+ * - copyright: Refers to a copyright statement that applies to the
+    link's context.
+ * - create-form: The target IRI points to a resource where a submission form can be obtained.
+ * - current: Refers to a resource containing the most recent
+      item(s) in a collection of resources.
+ * - describedby: Refers to a resource providing information about the
+      link's context.
+ * - describes: The relationship A 'describes' B asserts that
+      resource A provides a description of resource B. There are no
+      constraints on the format or representation of either A or B,
+      neither are there any further constraints on either resource.
+ * - disclosure: Refers to a list of patent disclosures made with respect to 
+      material for which 'disclosure' relation is specified.
+ * - dns-prefetch: Used to indicate an origin that will be used to fetch required 
+      resources for the link context, and that the user agent ought to resolve 
+      as early as possible.
+ * - duplicate: Refers to a resource whose available representations
+      are byte-for-byte identical with the corresponding representations of
+      the context IRI.
+ * - edit: Refers to a resource that can be used to edit the
+      link's context.
+ * - edit-form: The target IRI points to a resource where a submission form for
+      editing associated resource can be obtained.
+ * - edit-media: Refers to a resource that can be used to edit media
+      associated with the link's context.
+ * - enclosure: Identifies a related resource that is potentially
+      large and might require special handling.
+ * - external: Refers to a resource that is not part of the same site as the current context.
+ * - first: An IRI that refers to the furthest preceding resource
+    in a series of resources.
+ * - glossary: Refers to a glossary of terms.
+ * - help: Refers to context-sensitive help.
+ * - hosts: Refers to a resource hosted by the server indicated by
+      the link context.
+ * - hub: Refers to a hub that enables registration for
+    notification of updates to the context.
+ * - icon: Refers to an icon representing the link's context.
+ * - index: Refers to an index.
+ * - intervalAfter: refers to a resource associated with a time interval that ends before the beginning of the time interval associated with the context resource
+ * - intervalBefore: refers to a resource associated with a time interval that begins after the end of the time interval associated with the context resource
+ * - intervalContains: refers to a resource associated with a time interval that begins after the beginning of the time interval associated with the context resource, and ends before the end of the time interval associated with the context resource
+ * - intervalDisjoint: refers to a resource associated with a time interval that begins after the end of the time interval associated with the context resource, or ends before the beginning of the time interval associated with the context resource
+ * - intervalDuring: refers to a resource associated with a time interval that begins before the beginning of the time interval associated with the context resource, and ends after the end of the time interval associated with the context resource
+ * - intervalEquals: refers to a resource associated with a time interval whose beginning coincides with the beginning of the time interval associated with the context resource, and whose end coincides with the end of the time interval associated with the context resource
+ * - intervalFinishedBy: refers to a resource associated with a time interval that begins after the beginning of the time interval associated with the context resource, and whose end coincides with the end of the time interval associated with the context resource
+ * - intervalFinishes: refers to a resource associated with a time interval that begins before the beginning of the time interval associated with the context resource, and whose end coincides with the end of the time interval associated with the context resource
+ * - intervalIn: refers to a resource associated with a time interval that begins before or is coincident with the beginning of the time interval associated with the context resource, and ends after or is coincident with the end of the time interval associated with the context resource
+ * - intervalMeets: refers to a resource associated with a time interval whose beginning coincides with the end of the time interval associated with the context resource
+ * - intervalMetBy: refers to a resource associated with a time interval whose end coincides with the beginning of the time interval associated with the context resource
+ * - intervalOverlappedBy: refers to a resource associated with a time interval that begins before the beginning of the time interval associated with the context resource, and ends after the beginning of the time interval associated with the context resource
+ * - intervalOverlaps: refers to a resource associated with a time interval that begins before the end of the time interval associated with the context resource, and ends after the end of the time interval associated with the context resource
+ * - intervalStartedBy: refers to a resource associated with a time interval whose beginning coincides with the beginning of the time interval associated with the context resource, and ends before the end of the time interval associated with the context resource
+ * - intervalStarts: refers to a resource associated with a time interval whose beginning coincides with the beginning of the time interval associated with the context resource, and ends after the end of the time interval associated with the context resource
+ * - item: The target IRI points to a resource that is a member of the collection represented by the context IRI.
+ * - last: An IRI that refers to the furthest following resource
+      in a series of resources.
+ * - latest-version: Points to a resource containing the latest (e.g.,
+      current) version of the context.
+ * - license: Refers to a license associated with this context.
+ * - linkset: The link target of a link with the "linkset" relation
+      type provides a set of links, including links in which the link
+      context of the link participates.
+    
+ * - lrdd: Refers to further information about the link's context,
+      expressed as a LRDD ("Link-based Resource Descriptor Document")
+      resource.  See  for information about
+      processing this relation type in host-meta documents. When used
+      elsewhere, it refers to additional links and other metadata.
+      Multiple instances indicate additional LRDD resources. LRDD
+      resources MUST have an "application/xrd+xml" representation, and
+      MAY have others.
+ * - manifest: Links to a manifest file for the context.
+ * - mask-icon: Refers to a mask that can be applied to the icon for the context.
+ * - media-feed: Refers to a feed of personalised media recommendations relevant to the link context.
+ * - memento: The Target IRI points to a Memento, a fixed resource that will not change state anymore.
+ * - micropub: Links to the context's Micropub endpoint.
+ * - modulepreload: Refers to a module that the user agent is to preemptively fetch and store for use in the current context.
+ * - monitor: Refers to a resource that can be used to monitor changes in an HTTP resource.
+    
+ * - monitor-group: Refers to a resource that can be used to monitor changes in a specified group of HTTP resources.
+    
+ * - next: Indicates that the link's context is a part of a series, and
+      that the next in the series is the link target.
+    
+ * - next-archive: Refers to the immediately following archive resource.
+ * - nofollow: Indicates that the context’s original author or publisher does not endorse the link target.
+ * - noopener: Indicates that any newly created top-level browsing context which results from following the link will not be an auxiliary browsing context.
+ * - noreferrer: Indicates that no referrer information is to be leaked when following the link.
+ * - opener: Indicates that any newly created top-level browsing context which results from following the link will be an auxiliary browsing context.
+ * - openid2.local_id: Refers to an OpenID Authentication server on which the context relies for an assertion that the end user controls an Identifier.
+ * - openid2.provider: Refers to a resource which accepts OpenID Authentication protocol messages for the context.
+ * - original: The Target IRI points to an Original Resource.
+ * - P3Pv1: Refers to a P3P privacy policy for the context.
+ * - payment: Indicates a resource where payment is accepted.
+ * - pingback: Gives the address of the pingback resource for the link context.
+ * - preconnect: Used to indicate an origin that will be used to fetch required 
+      resources for the link context. Initiating an early connection, which 
+      includes the DNS lookup, TCP handshake, and optional TLS negotiation, 
+      allows the user agent to mask the high latency costs of establishing a 
+      connection.
+ * - predecessor-version: Points to a resource containing the predecessor
+      version in the version history.
+    
+ * - prefetch: The prefetch link relation type is used to identify a resource 
+      that might be required by the next navigation from the link context, and 
+      that the user agent ought to fetch, such that the user agent can deliver a 
+      faster response once the resource is requested in the future.
+ * - preload: Refers to a resource that should be loaded early in the 
+      processing of the link's context, without blocking rendering.
+ * - prerender: Used to identify a resource that might be required by the next 
+      navigation from the link context, and that the user agent ought to fetch 
+      and execute, such that the user agent can deliver a faster response once 
+      the resource is requested in the future.
+ * - prev: Indicates that the link's context is a part of a series, and
+      that the previous in the series is the link target.
+    
+ * - preview: Refers to a resource that provides a preview of the link's context.
+ * - previous: Refers to the previous resource in an ordered series
+      of resources.  Synonym for "prev".
+ * - prev-archive: Refers to the immediately preceding archive resource.
+ * - privacy-policy: Refers to a privacy policy associated with the link's context.
+ * - profile: Identifying that a resource representation conforms
+to a certain profile, without affecting the non-profile semantics
+of the resource representation.
+ * - publication: Links to a publication manifest. A manifest represents 
+      structured information about a publication, such as informative metadata, 
+      a list of resources, and a default reading order.
+ * - related: Identifies a related resource.
+ * - restconf: Identifies the root of RESTCONF API as configured on this HTTP server.
+      The "restconf" relation defines the root of the API defined in RFC8040.
+      Subsequent revisions of RESTCONF will use alternate relation values to support 
+      protocol versioning.
+ * - replies: Identifies a resource that is a reply to the context
+      of the link.
+    
+ * - ruleinput: The resource identified by the link target provides an input value to an 
+    instance of a rule, where the resource which represents the rule instance is 
+    identified by the link context.
+    
+ * - search: Refers to a resource that can be used to search through
+      the link's context and related resources.
+ * - section: Refers to a section in a collection of resources.
+ * - self: Conveys an identifier for the link's context.
+    
+ * - service: Indicates a URI that can be used to retrieve a
+      service document.
+ * - service-desc: Identifies service description for the context that
+      is primarily intended for consumption by machines.
+ * - service-doc: Identifies service documentation for the context that
+      is primarily intended for human consumption.
+ * - service-meta: Identifies general metadata for the context that is
+      primarily intended for consumption by machines.
+ * - sponsored: Refers to a resource that is within a context that is 
+		sponsored (such as advertising or another compensation agreement).
+ * - start: Refers to the first resource in a collection of
+      resources.
+ * - status: Identifies a resource that represents the context's
+      status.
+ * - stylesheet: Refers to a stylesheet.
+ * - subsection: Refers to a resource serving as a subsection in a
+      collection of resources.
+ * - successor-version: Points to a resource containing the successor version
+      in the version history.
+    
+ * - sunset: Identifies a resource that provides information about
+      the context's retirement policy.
+    
+ * - tag: Gives a tag (identified by the given address) that applies to
+      the current document.
+    
+ * - terms-of-service: Refers to the terms of service associated with the link's context.
+ * - timegate: The Target IRI points to a TimeGate for an Original Resource.
+ * - timemap: The Target IRI points to a TimeMap for an Original Resource.
+ * - type: Refers to a resource identifying the abstract semantic type of which the link's context is considered to be an instance.
+ * - ugc: Refers to a resource that is within a context that is User Generated Content.
+    
+ * - up: Refers to a parent document in a hierarchy of
+      documents.
+    
+ * - version-history: Points to a resource containing the version history
+      for the context.
+    
+ * - via: Identifies a resource that is the source of the
+      information in the link's context.
+    
+ * - webmention: Identifies a target URI that supports the Webmention protocol.
+    This allows clients that mention a resource in some form of publishing process
+    to contact that endpoint and inform it that this resource has been mentioned.
+ * - working-copy: Points to a working copy for this resource.
+ * - working-copy-of: Points to the versioned resource from which this
+      working copy was obtained.
+    
  */
 export type LinkRelationTypes =
   | "about"
@@ -5433,6 +9958,10 @@ export type LinkRelationTypes =
  *
  * The type of link between this Patient resource and another Patient/RelatedPerson
  * resource.
+ * - replaced-by: Replaced-by
+ * - replaces: Replaces
+ * - refer: Refer
+ * - seealso: See also
  */
 export type LinkType = "replaced-by" | "replaces" | "refer" | "seealso";
 
@@ -5440,6 +9969,9 @@ export type LinkType = "replaced-by" | "replaces" | "refer" | "seealso";
  * List Mode
  *
  * The processing mode that applies to this list.
+ * - working: Working List
+ * - snapshot: Snapshot List
+ * - changes: Change List
  */
 export type ListMode = "working" | "snapshot" | "changes";
 
@@ -5447,6 +9979,9 @@ export type ListMode = "working" | "snapshot" | "changes";
  * List Status
  *
  * The current state of the list.
+ * - current: Current
+ * - retired: Retired
+ * - entered-in-error: Entered In Error
  */
 export type ListStatus = "current" | "retired" | "entered-in-error";
 
@@ -5455,6 +9990,8 @@ export type ListStatus = "current" | "retired" | "entered-in-error";
  *
  * Indicates whether a resource instance represents a specific location or a class
  * of locations.
+ * - instance: Instance
+ * - kind: Kind
  */
 export type LocationMode = "instance" | "kind";
 
@@ -5462,6 +9999,9 @@ export type LocationMode = "instance" | "kind";
  * Location Status
  *
  * Indicates whether the location is still in use.
+ * - active: Active
+ * - suspended: Suspended
+ * - inactive: Inactive
  */
 export type LocationStatus = "active" | "suspended" | "inactive";
 
@@ -5470,6 +10010,8 @@ export type LocationStatus = "active" | "suspended" | "inactive";
  *
  * Observation values that indicate what change in a measurement value or score is
  * indicative of an improvement in the measured item or scored issue.
+ * - increase: Increased score indicates improvement
+ * - decrease: Decreased score indicates improvement
  */
 export type MeasureImprovementNotation = "increase" | "decrease";
 
@@ -5477,6 +10019,9 @@ export type MeasureImprovementNotation = "increase" | "decrease";
  * Measure Report Status
  *
  * The status of the measure report.
+ * - complete: Complete
+ * - pending: Pending
+ * - error: Error
  */
 export type MeasureReportStatus = "complete" | "pending" | "error";
 
@@ -5484,6 +10029,10 @@ export type MeasureReportStatus = "complete" | "pending" | "error";
  * Measure Report Type
  *
  * The type of the measure report.
+ * - individual: Individual
+ * - subject-list: Subject List
+ * - summary: Summary
+ * - data-exchange: Data Exchange
  */
 export type MeasureReportType =
   | "individual"
@@ -5495,6 +10044,13 @@ export type MeasureReportType =
  * MedicationAdministration Status Codes
  *
  *
+ * - in-progress: In Progress
+ * - not-done: Not Done
+ * - on-hold: On Hold
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - stopped: Stopped
+ * - unknown: Unknown
  */
 export type MedicationAdministrationStatusCodes =
   | "in-progress"
@@ -5509,6 +10065,15 @@ export type MedicationAdministrationStatusCodes =
  * MedicationDispense Status Codes
  *
  *
+ * - preparation: Preparation
+ * - in-progress: In Progress
+ * - cancelled: Cancelled
+ * - on-hold: On Hold
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - stopped: Stopped
+ * - declined: Declined
+ * - unknown: Unknown
  */
 export type MedicationDispenseStatusCodes =
   | "preparation"
@@ -5525,6 +10090,9 @@ export type MedicationDispenseStatusCodes =
  * MedicationKnowledge Status Codes
  *
  *
+ * - active: Active
+ * - entered-in-error: Entered in Error
+ * - inactive: Inactive
  */
 export type MedicationKnowledgeStatusCodes =
   | "active"
@@ -5535,6 +10103,14 @@ export type MedicationKnowledgeStatusCodes =
  * medicationRequest Intent
  *
  * MedicationRequest Intent Codes
+ * - proposal: Proposal
+ * - plan: Plan
+ * - order: Order
+ * - original-order: Original Order
+ * - reflex-order: Reflex Order
+ * - filler-order: Filler Order
+ * - instance-order: Instance Order
+ * - option: Option
  */
 export type MedicationRequestIntent =
   | "proposal"
@@ -5550,6 +10126,15 @@ export type MedicationRequestIntent =
  * medicationrequest Status
  *
  * MedicationRequest Status Codes
+ * - active: Active
+ * - on-hold: On Hold
+ * - ended: Ended
+ * - stopped: Stopped
+ * - completed: Completed
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - draft: Draft
+ * - unknown: Unknown
  */
 export type MedicationrequestStatus =
   | "active"
@@ -5566,6 +10151,9 @@ export type MedicationrequestStatus =
  * MedicationStatement Status Codes
  *
  *
+ * - recorded: Recorded
+ * - entered-in-error: Entered in Error
+ * - draft: Draft
  */
 export type MedicationStatementStatusCodes =
   | "recorded"
@@ -5576,6 +10164,9 @@ export type MedicationStatementStatusCodes =
  * Medication Status Codes
  *
  *
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type MedicationStatusCodes = "active" | "inactive" | "entered-in-error";
 
@@ -5584,6 +10175,10 @@ export type MedicationStatusCodes = "active" | "inactive" | "entered-in-error";
  *
  * HL7-defined table of codes which identify conditions under which acknowledgments
  * are required to be returned in response to a message.
+ * - always: Always
+ * - on-error: Error/reject conditions only
+ * - never: Never
+ * - on-success: Successful completion only
  */
 export type MessageheaderResponseRequest =
   | "always"
@@ -5595,6 +10190,9 @@ export type MessageheaderResponseRequest =
  * Message Significance Category
  *
  * The impact of the content of a message.
+ * - consequence: Consequence
+ * - currency: Currency
+ * - notification: Notification
  */
 export type MessageSignificanceCategory =
   | "consequence"
@@ -5613,6 +10211,13 @@ export type MimeTypes = string;
  * NameUse
  *
  * The use of a human name.
+ * - usual: Usual
+ * - official: Official
+ * - temp: Temp
+ * - nickname: Nickname
+ * - anonymous: Anonymous
+ * - old: Old
+ * - maiden: Name changed for Marriage
  */
 export type NameUse =
   | "usual"
@@ -5627,6 +10232,12 @@ export type NameUse =
  * Naming System Identifier Type
  *
  * Identifies the style of unique identifier used to identify a namespace.
+ * - oid: OID
+ * - uuid: UUID
+ * - uri: URI
+ * - iri-stem: IRI stem
+ * - v2csmnemonic: V2CSMNemonic
+ * - other: Other
  */
 export type NamingSystemIdentifierType =
   | "oid"
@@ -5640,6 +10251,9 @@ export type NamingSystemIdentifierType =
  * Naming System Type
  *
  * Identifies the purpose of the naming system.
+ * - codesystem: Code System
+ * - identifier: Identifier
+ * - root: Root
  */
 export type NamingSystemType = "codesystem" | "identifier" | "root";
 
@@ -5647,6 +10261,10 @@ export type NamingSystemType = "codesystem" | "identifier" | "root";
  * NarrativeStatus
  *
  * The status of a resource narrative.
+ * - generated: Generated
+ * - extensions: Extensions
+ * - additional: Additional
+ * - empty: Empty
  */
 export type NarrativeStatus =
   | "generated"
@@ -5658,6 +10276,9 @@ export type NarrativeStatus =
  * NoteType
  *
  * The presentation types of notes.
+ * - display: Display
+ * - print: Print (Form)
+ * - printoper: Print (Operator)
  */
 export type NoteType = "display" | "print" | "printoper";
 
@@ -5665,6 +10286,9 @@ export type NoteType = "display" | "print" | "printoper";
  * Nutrition Product Status
  *
  * Codes identifying the lifecycle stage of a product.
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type NutritionProductStatus = "active" | "inactive" | "entered-in-error";
 
@@ -5672,6 +10296,17 @@ export type NutritionProductStatus = "active" | "inactive" | "entered-in-error";
  * Observation Data Type
  *
  * Permitted data type for observation value.
+ * - Quantity: Quantity
+ * - CodeableConcept: CodeableConcept
+ * - string: string
+ * - boolean: boolean
+ * - integer: integer
+ * - Range: Range
+ * - Ratio: Ratio
+ * - SampledData: SampledData
+ * - time: time
+ * - dateTime: dateTime
+ * - Period: Period
  */
 export type ObservationDataType =
   | "Quantity"
@@ -5690,6 +10325,9 @@ export type ObservationDataType =
  * Observation Range Category
  *
  * Codes identifying the category of observation range.
+ * - reference: reference range
+ * - critical: critical range
+ * - absolute: absolute range
  */
 export type ObservationRangeCategory = "reference" | "critical" | "absolute";
 
@@ -5697,6 +10335,14 @@ export type ObservationRangeCategory = "reference" | "critical" | "absolute";
  * Observation Status
  *
  * Codes providing the status of an observation.
+ * - registered: Registered
+ * - preliminary: Preliminary
+ * - final: Final
+ * - amended: Amended
+ * - corrected: Corrected
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type ObservationStatus =
   | "registered"
@@ -5712,6 +10358,8 @@ export type ObservationStatus =
  * Operation Kind
  *
  * Whether an operation is a normal operation or a query.
+ * - operation: Operation
+ * - query: Query
  */
 export type OperationKind = "operation" | "query";
 
@@ -5720,6 +10368,9 @@ export type OperationKind = "operation" | "query";
  *
  * Indicates that a parameter applies when the operation is being invoked at the
  * specified level
+ * - instance: Instance
+ * - type: Type
+ * - system: System
  */
 export type OperationParameterScope = "instance" | "type" | "system";
 
@@ -5727,6 +10378,8 @@ export type OperationParameterScope = "instance" | "type" | "system";
  * Operation Parameter Use
  *
  * Whether an operation parameter is an input or an output parameter.
+ * - in: In
+ * - out: Out
  */
 export type OperationParameterUse = "in" | "out";
 
@@ -5734,6 +10387,8 @@ export type OperationParameterUse = "in" | "out";
  * orientation Type
  *
  * Type for orientation.
+ * - sense: Sense orientation of referenceSeq
+ * - antisense: Antisense orientation of referenceSeq
  */
 export type OrientationType = "sense" | "antisense";
 
@@ -5741,6 +10396,10 @@ export type OrientationType = "sense" | "antisense";
  * Participation Status
  *
  * The Participation status of an appointment.
+ * - accepted: Accepted
+ * - declined: Declined
+ * - tentative: Tentative
+ * - needs-action: Needs Action
  */
 export type ParticipationStatus =
   | "accepted"
@@ -5752,6 +10411,10 @@ export type ParticipationStatus =
  * Payment Outcome
  *
  * The outcome of the processing.
+ * - queued: Queued
+ * - complete: Processing Complete
+ * - error: Error
+ * - partial: Partial Processing
  */
 export type PaymentOutcome = "queued" | "complete" | "error" | "partial";
 
@@ -5759,6 +10422,12 @@ export type PaymentOutcome = "queued" | "complete" | "error" | "partial";
  * Permission Rule Combining
  *
  * Codes identifying rule combining algorithm.
+ * - deny-overrides: Deny-overrides
+ * - permit-overrides: Permit-overrides
+ * - ordered-deny-overrides: Ordered-deny-overrides
+ * - ordered-permit-overrides: Ordered-permit-overrides
+ * - deny-unless-permit: Deny-unless-permit
+ * - permit-unless-deny: Permit-unless-deny
  */
 export type PermissionRuleCombining =
   | "deny-overrides"
@@ -5772,6 +10441,10 @@ export type PermissionRuleCombining =
  * Permission Status
  *
  * Codes identifying the lifecycle stage of a product.
+ * - active: Active
+ * - entered-in-error: Entered in Error
+ * - draft: Draft
+ * - rejected: Rejected
  */
 export type PermissionStatus =
   | "active"
@@ -5783,6 +10456,12 @@ export type PermissionStatus =
  * Price Component Type
  *
  * Codes indicating the kind of the price component.
+ * - base: base price
+ * - surcharge: surcharge
+ * - deduction: deduction
+ * - discount: discount
+ * - tax: tax
+ * - informational: informational
  */
 export type PriceComponentType =
   | "base"
@@ -5803,6 +10482,11 @@ export type ProductStatus = string;
  * PropertyRepresentation
  *
  * How a property is represented when serialized.
+ * - xmlAttr: XML Attribute
+ * - xmlText: XML Text
+ * - typeAttr: Type Attribute
+ * - cdaText: CDA Text Format
+ * - xhtml: XHTML
  */
 export type PropertyRepresentation =
   | "xmlAttr"
@@ -5815,6 +10499,13 @@ export type PropertyRepresentation =
  * Property Type
  *
  * The type of a property value.
+ * - code: code (internal reference)
+ * - Coding: Coding (external reference)
+ * - string: string
+ * - integer: integer
+ * - boolean: boolean
+ * - dateTime: dateTime
+ * - decimal: decimal
  */
 export type PropertyType =
   | "code"
@@ -5829,6 +10520,11 @@ export type PropertyType =
  * Provenance Entity Role
  *
  * How an entity was used in an activity.
+ * - revision: Revision
+ * - quotation: Quotation
+ * - source: Source
+ * - instantiates: Instantiates
+ * - removal: Removal
  */
 export type ProvenanceEntityRole =
   | "revision"
@@ -5841,6 +10537,10 @@ export type ProvenanceEntityRole =
  * PublicationStatus
  *
  * The lifecycle status of an artifact.
+ * - draft: Draft
+ * - active: Active
+ * - retired: Retired
+ * - unknown: Unknown
  */
 export type PublicationStatus = "draft" | "active" | "retired" | "unknown";
 
@@ -5848,6 +10548,11 @@ export type PublicationStatus = "draft" | "active" | "retired" | "unknown";
  * QuantityComparator
  *
  * How the Quantity should be understood and represented.
+ * - <: Less than
+ * - <=: Less or Equal to
+ * - >=: Greater or Equal to
+ * - >: Greater than
+ * - ad: Sufficient to achieve this total quantity
  */
 export type QuantityComparator = "<" | "<=" | ">=" | ">" | "ad";
 
@@ -5856,6 +10561,9 @@ export type QuantityComparator = "<" | "<=" | ">=" | ">" | "ad";
  *
  * Codes that describe the types of constraints possible on a question item that
  * has a list of permitted answers
+ * - optionsOnly: Options only
+ * - optionsOrType: Options or 'type'
+ * - optionsOrString: Options or string
  */
 export type QuestionnaireAnswerConstraint =
   | "optionsOnly"
@@ -5866,6 +10574,8 @@ export type QuestionnaireAnswerConstraint =
  * Questionnaire Item Disabled Display
  *
  * Codes that guide the display of disabled questionnaire items
+ * - hidden: Hidden
+ * - protected: Protected
  */
 export type QuestionnaireItemDisabledDisplay = "hidden" | "protected";
 
@@ -5873,6 +10583,13 @@ export type QuestionnaireItemDisabledDisplay = "hidden" | "protected";
  * Questionnaire Item Operator
  *
  * The criteria by which a question is enabled.
+ * - exists: Exists
+ * - =: Equals
+ * - !=: Not Equals
+ * - >: Greater Than
+ * - <: Less Than
+ * - >=: Greater or Equals
+ * - <=: Less or Equals
  */
 export type QuestionnaireItemOperator =
   | "exists"
@@ -5888,6 +10605,22 @@ export type QuestionnaireItemOperator =
  *
  * Distinguishes groups from questions and display text and indicates data type for
  * questions.
+ * - group: Group
+ * - display: Display
+ * - question: Question
+ * - boolean: Boolean
+ * - decimal: Decimal
+ * - integer: Integer
+ * - date: Date
+ * - dateTime: Date Time
+ * - time: Time
+ * - string: String
+ * - text: Text
+ * - url: Url
+ * - coding: Coding
+ * - attachment: Attachment
+ * - reference: Reference
+ * - quantity: Quantity
  */
 export type QuestionnaireItemType =
   | "group"
@@ -5911,6 +10644,11 @@ export type QuestionnaireItemType =
  * Questionnaire Response Status
  *
  * Lifecycle status of the questionnaire response.
+ * - in-progress: In Progress
+ * - completed: Completed
+ * - amended: Amended
+ * - entered-in-error: Entered in Error
+ * - stopped: Stopped
  */
 export type QuestionnaireResponseStatus =
   | "in-progress"
@@ -5923,6 +10661,11 @@ export type QuestionnaireResponseStatus =
  * Reference Handling Policy
  *
  * A set of flags that defines how references are supported.
+ * - literal: Literal References
+ * - logical: Logical References
+ * - resolves: Resolves References
+ * - enforced: Reference Integrity Enforced
+ * - local: Local References Only
  */
 export type ReferenceHandlingPolicy =
   | "literal"
@@ -5936,6 +10679,9 @@ export type ReferenceHandlingPolicy =
  *
  * Whether a reference needs to be version specific or version independent, or
  * whether either can be used.
+ * - either: Either Specific or independent
+ * - independent: Version independent
+ * - specific: Version Specific
  */
 export type ReferenceVersionRules = "either" | "independent" | "specific";
 
@@ -5943,6 +10689,42 @@ export type ReferenceVersionRules = "either" | "independent" | "specific";
  * RelatedArtifactType
  *
  * The type of relationship to the related artifact.
+ * - documentation: Documentation
+ * - justification: Justification
+ * - citation: Citation
+ * - predecessor: Predecessor
+ * - successor: Successor
+ * - derived-from: Derived From
+ * - depends-on: Depends On
+ * - composed-of: Composed Of
+ * - part-of: Part Of
+ * - amends: Amends
+ * - amended-with: Amended With
+ * - appends: Appends
+ * - appended-with: Appended With
+ * - cites: Cites
+ * - cited-by: Cited By
+ * - comments-on: Is Comment On
+ * - comment-in: Has Comment In
+ * - contains: Contains
+ * - contained-in: Contained In
+ * - corrects: Corrects
+ * - correction-in: Correction In
+ * - replaces: Replaces
+ * - replaced-with: Replaced With
+ * - retracts: Retracts
+ * - retracted-by: Retracted By
+ * - signs: Signs
+ * - similar-to: Similar To
+ * - supports: Supports
+ * - supported-with: Supported With
+ * - transforms: Transforms
+ * - transformed-into: Transformed Into
+ * - transformed-with: Transformed With
+ * - documents: Documents
+ * - specification-of: Specification Of
+ * - created-with: Created With
+ * - cite-as: Cite As
  */
 export type RelatedArtifactType =
   | "documentation"
@@ -5986,6 +10768,44 @@ export type RelatedArtifactType =
  * Related Artifact Type All
  *
  * The type of relationship to the cited artifact.
+ * - documentation: Documentation
+ * - justification: Justification
+ * - citation: Citation
+ * - predecessor: Predecessor
+ * - successor: Successor
+ * - derived-from: Derived From
+ * - depends-on: Depends On
+ * - composed-of: Composed Of
+ * - part-of: Part Of
+ * - amends: Amends
+ * - amended-with: Amended With
+ * - appends: Appends
+ * - appended-with: Appended With
+ * - cites: Cites
+ * - cited-by: Cited By
+ * - comments-on: Is Comment On
+ * - comment-in: Has Comment In
+ * - contains: Contains
+ * - contained-in: Contained In
+ * - corrects: Corrects
+ * - correction-in: Correction In
+ * - replaces: Replaces
+ * - replaced-with: Replaced With
+ * - retracts: Retracts
+ * - retracted-by: Retracted By
+ * - signs: Signs
+ * - similar-to: Similar To
+ * - supports: Supports
+ * - supported-with: Supported With
+ * - transforms: Transforms
+ * - transformed-into: Transformed Into
+ * - transformed-with: Transformed With
+ * - documents: Documents
+ * - specification-of: Specification Of
+ * - created-with: Created With
+ * - cite-as: Cite As
+ * - reprint: Reprint
+ * - reprint-of: Reprint Of
  */
 export type RelatedArtifactTypeAll =
   | "documentation"
@@ -6031,6 +10851,14 @@ export type RelatedArtifactTypeAll =
  * Report Relationship Type
  *
  * The type of relationship between reports.
+ * - replaces: Replaces
+ * - amends: Amends
+ * - appends: Appends
+ * - transforms: Transforms
+ * - replacedWith: Replaced With
+ * - amendedWith: Amended With
+ * - appendedWith: Appended With
+ * - transformedWith: Transformed With
  */
 export type ReportRelationshipType =
   | "replaces"
@@ -6047,6 +10875,15 @@ export type ReportRelationshipType =
  *
  * Codes indicating the degree of authority/intentionality associated with a
  * request.
+ * - proposal: Proposal
+ * - plan: Plan
+ * - directive: Directive
+ * - order: Order
+ * - original-order: Original Order
+ * - reflex-order: Reflex Order
+ * - filler-order: Filler Order
+ * - instance-order: Instance Order
+ * - option: Option
  */
 export type RequestIntent =
   | "proposal"
@@ -6063,6 +10900,10 @@ export type RequestIntent =
  * RequestPriority
  *
  * Identifies the level of importance to be assigned to actioning the request.
+ * - routine: Routine
+ * - urgent: Urgent
+ * - asap: ASAP
+ * - stat: STAT
  */
 export type RequestPriority = "routine" | "urgent" | "asap" | "stat";
 
@@ -6070,6 +10911,23 @@ export type RequestPriority = "routine" | "urgent" | "asap" | "stat";
  * Request Resource Types
  *
  * All Resource Types that represent request resources
+ * - Appointment: Appointment
+ * - AppointmentResponse: AppointmentResponse
+ * - CarePlan: CarePlan
+ * - Claim: Claim
+ * - CommunicationRequest: CommunicationRequest
+ * - CoverageEligibilityRequest: CoverageEligibilityRequest
+ * - DeviceRequest: DeviceRequest
+ * - EnrollmentRequest: EnrollmentRequest
+ * - ImmunizationRecommendation: ImmunizationRecommendation
+ * - MedicationRequest: MedicationRequest
+ * - NutritionOrder: NutritionOrder
+ * - RequestOrchestration: RequestOrchestration
+ * - ServiceRequest: ServiceRequest
+ * - SupplyRequest: SupplyRequest
+ * - Task: Task
+ * - Transport: Transport
+ * - VisionPrescription: VisionPrescription
  */
 export type RequestResourceTypes =
   | "Appointment"
@@ -6094,6 +10952,13 @@ export type RequestResourceTypes =
  * RequestStatus
  *
  * Codes identifying the lifecycle stage of a request.
+ * - draft: Draft
+ * - active: Active
+ * - on-hold: On Hold
+ * - revoked: Revoked
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type RequestStatus =
   | "draft"
@@ -6108,6 +10973,19 @@ export type RequestStatus =
  * Research Subject State
  *
  * Indicates the progression of a study subject through a study.
+ * - candidate: Candidate
+ * - eligible: Eligible
+ * - follow-up: Follow-up
+ * - ineligible: Ineligible
+ * - not-registered: Not Registered
+ * - off-study: Off-study
+ * - on-study: On-study
+ * - on-study-intervention: On-study-intervention
+ * - on-study-observation: On-study-observation
+ * - pending-on-study: Pending on-study
+ * - potential-candidate: Potential Candidate
+ * - screening: Screening
+ * - withdrawn: Withdrawn
  */
 export type ResearchSubjectState =
   | "candidate"
@@ -6128,6 +11006,164 @@ export type ResearchSubjectState =
  * Resource Types
  *
  * Concrete FHIR Resource Types
+ * - Account: Account
+ * - ActivityDefinition: ActivityDefinition
+ * - ActorDefinition: ActorDefinition
+ * - AdministrableProductDefinition: AdministrableProductDefinition
+ * - AdverseEvent: AdverseEvent
+ * - AllergyIntolerance: AllergyIntolerance
+ * - Appointment: Appointment
+ * - AppointmentResponse: AppointmentResponse
+ * - ArtifactAssessment: ArtifactAssessment
+ * - AuditEvent: AuditEvent
+ * - Basic: Basic
+ * - Binary: Binary
+ * - BiologicallyDerivedProduct: BiologicallyDerivedProduct
+ * - BiologicallyDerivedProductDispense: BiologicallyDerivedProductDispense
+ * - BodyStructure: BodyStructure
+ * - Bundle: Bundle
+ * - CapabilityStatement: CapabilityStatement
+ * - CarePlan: CarePlan
+ * - CareTeam: CareTeam
+ * - ChargeItem: ChargeItem
+ * - ChargeItemDefinition: ChargeItemDefinition
+ * - Citation: Citation
+ * - Claim: Claim
+ * - ClaimResponse: ClaimResponse
+ * - ClinicalImpression: ClinicalImpression
+ * - ClinicalUseDefinition: ClinicalUseDefinition
+ * - CodeSystem: CodeSystem
+ * - Communication: Communication
+ * - CommunicationRequest: CommunicationRequest
+ * - CompartmentDefinition: CompartmentDefinition
+ * - Composition: Composition
+ * - ConceptMap: ConceptMap
+ * - Condition: Condition
+ * - ConditionDefinition: ConditionDefinition
+ * - Consent: Consent
+ * - Contract: Contract
+ * - Coverage: Coverage
+ * - CoverageEligibilityRequest: CoverageEligibilityRequest
+ * - CoverageEligibilityResponse: CoverageEligibilityResponse
+ * - DetectedIssue: DetectedIssue
+ * - Device: Device
+ * - DeviceAssociation: DeviceAssociation
+ * - DeviceDefinition: DeviceDefinition
+ * - DeviceDispense: DeviceDispense
+ * - DeviceMetric: DeviceMetric
+ * - DeviceRequest: DeviceRequest
+ * - DeviceUsage: DeviceUsage
+ * - DiagnosticReport: DiagnosticReport
+ * - DocumentReference: DocumentReference
+ * - Encounter: Encounter
+ * - EncounterHistory: EncounterHistory
+ * - Endpoint: Endpoint
+ * - EnrollmentRequest: EnrollmentRequest
+ * - EnrollmentResponse: EnrollmentResponse
+ * - EpisodeOfCare: EpisodeOfCare
+ * - EventDefinition: EventDefinition
+ * - Evidence: Evidence
+ * - EvidenceReport: EvidenceReport
+ * - EvidenceVariable: EvidenceVariable
+ * - ExampleScenario: ExampleScenario
+ * - ExplanationOfBenefit: ExplanationOfBenefit
+ * - FamilyMemberHistory: FamilyMemberHistory
+ * - Flag: Flag
+ * - FormularyItem: FormularyItem
+ * - GenomicStudy: GenomicStudy
+ * - Goal: Goal
+ * - GraphDefinition: GraphDefinition
+ * - Group: Group
+ * - GuidanceResponse: GuidanceResponse
+ * - HealthcareService: HealthcareService
+ * - ImagingSelection: ImagingSelection
+ * - ImagingStudy: ImagingStudy
+ * - Immunization: Immunization
+ * - ImmunizationEvaluation: ImmunizationEvaluation
+ * - ImmunizationRecommendation: ImmunizationRecommendation
+ * - ImplementationGuide: ImplementationGuide
+ * - Ingredient: Ingredient
+ * - InsurancePlan: InsurancePlan
+ * - InventoryItem: InventoryItem
+ * - InventoryReport: InventoryReport
+ * - Invoice: Invoice
+ * - Library: Library
+ * - Linkage: Linkage
+ * - List: List
+ * - Location: Location
+ * - ManufacturedItemDefinition: ManufacturedItemDefinition
+ * - Measure: Measure
+ * - MeasureReport: MeasureReport
+ * - Medication: Medication
+ * - MedicationAdministration: MedicationAdministration
+ * - MedicationDispense: MedicationDispense
+ * - MedicationKnowledge: MedicationKnowledge
+ * - MedicationRequest: MedicationRequest
+ * - MedicationStatement: MedicationStatement
+ * - MedicinalProductDefinition: MedicinalProductDefinition
+ * - MessageDefinition: MessageDefinition
+ * - MessageHeader: MessageHeader
+ * - MolecularSequence: MolecularSequence
+ * - NamingSystem: NamingSystem
+ * - NutritionIntake: NutritionIntake
+ * - NutritionOrder: NutritionOrder
+ * - NutritionProduct: NutritionProduct
+ * - Observation: Observation
+ * - ObservationDefinition: ObservationDefinition
+ * - OperationDefinition: OperationDefinition
+ * - OperationOutcome: OperationOutcome
+ * - Organization: Organization
+ * - OrganizationAffiliation: OrganizationAffiliation
+ * - PackagedProductDefinition: PackagedProductDefinition
+ * - Parameters: Parameters
+ * - Patient: Patient
+ * - PaymentNotice: PaymentNotice
+ * - PaymentReconciliation: PaymentReconciliation
+ * - Permission: Permission
+ * - Person: Person
+ * - PlanDefinition: PlanDefinition
+ * - Practitioner: Practitioner
+ * - PractitionerRole: PractitionerRole
+ * - Procedure: Procedure
+ * - Provenance: Provenance
+ * - Questionnaire: Questionnaire
+ * - QuestionnaireResponse: QuestionnaireResponse
+ * - RegulatedAuthorization: RegulatedAuthorization
+ * - RelatedPerson: RelatedPerson
+ * - RequestOrchestration: RequestOrchestration
+ * - Requirements: Requirements
+ * - ResearchStudy: ResearchStudy
+ * - ResearchSubject: ResearchSubject
+ * - RiskAssessment: RiskAssessment
+ * - Schedule: Schedule
+ * - SearchParameter: SearchParameter
+ * - ServiceRequest: ServiceRequest
+ * - Slot: Slot
+ * - Specimen: Specimen
+ * - SpecimenDefinition: SpecimenDefinition
+ * - StructureDefinition: StructureDefinition
+ * - StructureMap: StructureMap
+ * - Subscription: Subscription
+ * - SubscriptionStatus: SubscriptionStatus
+ * - SubscriptionTopic: SubscriptionTopic
+ * - Substance: Substance
+ * - SubstanceDefinition: SubstanceDefinition
+ * - SubstanceNucleicAcid: SubstanceNucleicAcid
+ * - SubstancePolymer: SubstancePolymer
+ * - SubstanceProtein: SubstanceProtein
+ * - SubstanceReferenceInformation: SubstanceReferenceInformation
+ * - SubstanceSourceMaterial: SubstanceSourceMaterial
+ * - SupplyDelivery: SupplyDelivery
+ * - SupplyRequest: SupplyRequest
+ * - Task: Task
+ * - TerminologyCapabilities: TerminologyCapabilities
+ * - TestPlan: TestPlan
+ * - TestReport: TestReport
+ * - TestScript: TestScript
+ * - Transport: Transport
+ * - ValueSet: ValueSet
+ * - VerificationResult: VerificationResult
+ * - VisionPrescription: VisionPrescription
  */
 export type ResourceType =
   | "Account"
@@ -6293,6 +11329,9 @@ export type ResourceType =
  * Resource Version Policy
  *
  * How the system supports versioning for a resource.
+ * - no-version: No VersionId Support
+ * - versioned: Versioned
+ * - versioned-update: VersionId tracked fully
  */
 export type ResourceVersionPolicy =
   | "no-version"
@@ -6303,6 +11342,9 @@ export type ResourceVersionPolicy =
  * Response Type
  *
  * The kind of response to a message.
+ * - ok: OK
+ * - transient-error: Transient Error
+ * - fatal-error: Fatal Error
  */
 export type ResponseType = "ok" | "transient-error" | "fatal-error";
 
@@ -6310,6 +11352,8 @@ export type ResponseType = "ok" | "transient-error" | "fatal-error";
  * Restful Capability Mode
  *
  * The mode of a RESTful capability statement.
+ * - client: Client
+ * - server: Server
  */
 export type RestfulCapabilityMode = "client" | "server";
 
@@ -6317,6 +11361,15 @@ export type RestfulCapabilityMode = "client" | "server";
  * Search Comparator
  *
  * What Search Comparator Codes are supported in search.
+ * - eq: Equals
+ * - ne: Not Equals
+ * - gt: Greater Than
+ * - lt: Less Than
+ * - ge: Greater or Equals
+ * - le: Less of Equal
+ * - sa: Starts After
+ * - eb: Ends Before
+ * - ap: Approximately
  */
 export type SearchComparator =
   | "eq"
@@ -6335,6 +11388,9 @@ export type SearchComparator =
  * Why an entry is in the result set - whether it's included as a match or because
  * of an _include requirement, or to convey information or warning information
  * about the search process.
+ * - match: Match
+ * - include: Include
+ * - outcome: Outcome
  */
 export type SearchEntryMode = "match" | "include" | "outcome";
 
@@ -6342,6 +11398,21 @@ export type SearchEntryMode = "match" | "include" | "outcome";
  * Search Modifier Code
  *
  * A supported modifier for a search parameter.
+ * - missing: Missing
+ * - exact: Exact
+ * - contains: Contains
+ * - not: Not
+ * - text: Text
+ * - in: In
+ * - not-in: Not In
+ * - below: Below
+ * - above: Above
+ * - type: Type
+ * - identifier: Identifier
+ * - of-type: Of Type
+ * - code-text: Code Text
+ * - text-advanced: Text Advanced
+ * - iterate: Iterate
  */
 export type SearchModifierCode =
   | "missing"
@@ -6364,6 +11435,15 @@ export type SearchModifierCode =
  * SearchParamType
  *
  * Data types allowed to be used for search parameters.
+ * - number: Number
+ * - date: Date/DateTime
+ * - string: String
+ * - token: Token
+ * - reference: Reference
+ * - composite: Composite
+ * - quantity: Quantity
+ * - uri: URI
+ * - special: Special
  */
 export type SearchParamType =
   | "number"
@@ -6381,6 +11461,9 @@ export type SearchParamType =
  *
  * How a search parameter relates to the set of elements returned by evaluating its
  * expression query.
+ * - normal: Normal
+ * - phonetic: Phonetic
+ * - other: Other
  */
 export type SearchProcessingModeType = "normal" | "phonetic" | "other";
 
@@ -6388,6 +11471,9 @@ export type SearchProcessingModeType = "normal" | "phonetic" | "other";
  * sequence Type
  *
  * Type if a sequence -- DNA, RNA, or amino acid sequence.
+ * - aa: AA Sequence
+ * - dna: DNA Sequence
+ * - rna: RNA Sequence
  */
 export type SequenceType = "aa" | "dna" | "rna";
 
@@ -6395,6 +11481,9 @@ export type SequenceType = "aa" | "dna" | "rna";
  * SlicingRules
  *
  * How slices are interpreted when evaluating an instance.
+ * - closed: Closed
+ * - open: Open
+ * - openAtEnd: Open at End
  */
 export type SlicingRules = "closed" | "open" | "openAtEnd";
 
@@ -6402,6 +11491,11 @@ export type SlicingRules = "closed" | "open" | "openAtEnd";
  * Slot Status
  *
  * The free/busy status of the slot.
+ * - busy: Busy
+ * - free: Free
+ * - busy-unavailable: Busy (Unavailable)
+ * - busy-tentative: Busy (Tentative)
+ * - entered-in-error: Entered in error
  */
 export type SlotStatus =
   | "busy"
@@ -6414,6 +11508,8 @@ export type SlotStatus =
  * SortDirection
  *
  * The possible sort directions, ascending or descending.
+ * - ascending: Ascending
+ * - descending: Descending
  */
 export type SortDirection = "ascending" | "descending";
 
@@ -6423,6 +11519,352 @@ export type SortDirection = "ascending" | "descending";
  * The license that applies to an Implementation Guide (using an SPDX license
  * Identifiers, or 'not-open-source'). The binding is required but new SPDX license
  * Identifiers are allowed to be used (https://spdx.org/licenses/).
+ * - not-open-source: Not open source
+ * - 0BSD: BSD Zero Clause License
+ * - AAL: Attribution Assurance License
+ * - Abstyles: Abstyles License
+ * - Adobe-2006: Adobe Systems Incorporated Source Code License Agreement
+ * - Adobe-Glyph: Adobe Glyph List License
+ * - ADSL: Amazon Digital Services License
+ * - AFL-1.1: Academic Free License v1.1
+ * - AFL-1.2: Academic Free License v1.2
+ * - AFL-2.0: Academic Free License v2.0
+ * - AFL-2.1: Academic Free License v2.1
+ * - AFL-3.0: Academic Free License v3.0
+ * - Afmparse: Afmparse License
+ * - AGPL-1.0-only: Affero General Public License v1.0 only
+ * - AGPL-1.0-or-later: Affero General Public License v1.0 or later
+ * - AGPL-3.0-only: GNU Affero General Public License v3.0 only
+ * - AGPL-3.0-or-later: GNU Affero General Public License v3.0 or later
+ * - Aladdin: Aladdin Free Public License
+ * - AMDPLPA: AMD's plpa_map.c License
+ * - AML: Apple MIT License
+ * - AMPAS: Academy of Motion Picture Arts and Sciences BSD
+ * - ANTLR-PD: ANTLR Software Rights Notice
+ * - Apache-1.0: Apache License 1.0
+ * - Apache-1.1: Apache License 1.1
+ * - Apache-2.0: Apache License 2.0
+ * - APAFML: Adobe Postscript AFM License
+ * - APL-1.0: Adaptive Public License 1.0
+ * - APSL-1.0: Apple Public Source License 1.0
+ * - APSL-1.1: Apple Public Source License 1.1
+ * - APSL-1.2: Apple Public Source License 1.2
+ * - APSL-2.0: Apple Public Source License 2.0
+ * - Artistic-1.0-cl8: Artistic License 1.0 w/clause 8
+ * - Artistic-1.0-Perl: Artistic License 1.0 (Perl)
+ * - Artistic-1.0: Artistic License 1.0
+ * - Artistic-2.0: Artistic License 2.0
+ * - Bahyph: Bahyph License
+ * - Barr: Barr License
+ * - Beerware: Beerware License
+ * - BitTorrent-1.0: BitTorrent Open Source License v1.0
+ * - BitTorrent-1.1: BitTorrent Open Source License v1.1
+ * - Borceux: Borceux license
+ * - BSD-1-Clause: BSD 1-Clause License
+ * - BSD-2-Clause-FreeBSD: BSD 2-Clause FreeBSD License
+ * - BSD-2-Clause-NetBSD: BSD 2-Clause NetBSD License
+ * - BSD-2-Clause-Patent: BSD-2-Clause Plus Patent License
+ * - BSD-2-Clause: BSD 2-Clause "Simplified" License
+ * - BSD-3-Clause-Attribution: BSD with attribution
+ * - BSD-3-Clause-Clear: BSD 3-Clause Clear License
+ * - BSD-3-Clause-LBNL: Lawrence Berkeley National Labs BSD variant license
+ * - BSD-3-Clause-No-Nuclear-License-2014: BSD 3-Clause No Nuclear License 2014
+ * - BSD-3-Clause-No-Nuclear-License: BSD 3-Clause No Nuclear License
+ * - BSD-3-Clause-No-Nuclear-Warranty: BSD 3-Clause No Nuclear Warranty
+ * - BSD-3-Clause: BSD 3-Clause "New" or "Revised" License
+ * - BSD-4-Clause-UC: BSD-4-Clause (University of California-Specific)
+ * - BSD-4-Clause: BSD 4-Clause "Original" or "Old" License
+ * - BSD-Protection: BSD Protection License
+ * - BSD-Source-Code: BSD Source Code Attribution
+ * - BSL-1.0: Boost Software License 1.0
+ * - bzip2-1.0.5: bzip2 and libbzip2 License v1.0.5
+ * - bzip2-1.0.6: bzip2 and libbzip2 License v1.0.6
+ * - Caldera: Caldera License
+ * - CATOSL-1.1: Computer Associates Trusted Open Source License 1.1
+ * - CC-BY-1.0: Creative Commons Attribution 1.0 Generic
+ * - CC-BY-2.0: Creative Commons Attribution 2.0 Generic
+ * - CC-BY-2.5: Creative Commons Attribution 2.5 Generic
+ * - CC-BY-3.0: Creative Commons Attribution 3.0 Unported
+ * - CC-BY-4.0: Creative Commons Attribution 4.0 International
+ * - CC-BY-NC-1.0: Creative Commons Attribution Non Commercial 1.0 Generic
+ * - CC-BY-NC-2.0: Creative Commons Attribution Non Commercial 2.0 Generic
+ * - CC-BY-NC-2.5: Creative Commons Attribution Non Commercial 2.5 Generic
+ * - CC-BY-NC-3.0: Creative Commons Attribution Non Commercial 3.0 Unported
+ * - CC-BY-NC-4.0: Creative Commons Attribution Non Commercial 4.0 International
+ * - CC-BY-NC-ND-1.0: Creative Commons Attribution Non Commercial No Derivatives 1.0 Generic
+ * - CC-BY-NC-ND-2.0: Creative Commons Attribution Non Commercial No Derivatives 2.0 Generic
+ * - CC-BY-NC-ND-2.5: Creative Commons Attribution Non Commercial No Derivatives 2.5 Generic
+ * - CC-BY-NC-ND-3.0: Creative Commons Attribution Non Commercial No Derivatives 3.0 Unported
+ * - CC-BY-NC-ND-4.0: Creative Commons Attribution Non Commercial No Derivatives 4.0 International
+ * - CC-BY-NC-SA-1.0: Creative Commons Attribution Non Commercial Share Alike 1.0 Generic
+ * - CC-BY-NC-SA-2.0: Creative Commons Attribution Non Commercial Share Alike 2.0 Generic
+ * - CC-BY-NC-SA-2.5: Creative Commons Attribution Non Commercial Share Alike 2.5 Generic
+ * - CC-BY-NC-SA-3.0: Creative Commons Attribution Non Commercial Share Alike 3.0 Unported
+ * - CC-BY-NC-SA-4.0: Creative Commons Attribution Non Commercial Share Alike 4.0 International
+ * - CC-BY-ND-1.0: Creative Commons Attribution No Derivatives 1.0 Generic
+ * - CC-BY-ND-2.0: Creative Commons Attribution No Derivatives 2.0 Generic
+ * - CC-BY-ND-2.5: Creative Commons Attribution No Derivatives 2.5 Generic
+ * - CC-BY-ND-3.0: Creative Commons Attribution No Derivatives 3.0 Unported
+ * - CC-BY-ND-4.0: Creative Commons Attribution No Derivatives 4.0 International
+ * - CC-BY-SA-1.0: Creative Commons Attribution Share Alike 1.0 Generic
+ * - CC-BY-SA-2.0: Creative Commons Attribution Share Alike 2.0 Generic
+ * - CC-BY-SA-2.5: Creative Commons Attribution Share Alike 2.5 Generic
+ * - CC-BY-SA-3.0: Creative Commons Attribution Share Alike 3.0 Unported
+ * - CC-BY-SA-4.0: Creative Commons Attribution Share Alike 4.0 International
+ * - CC0-1.0: Creative Commons Zero v1.0 Universal
+ * - CDDL-1.0: Common Development and Distribution License 1.0
+ * - CDDL-1.1: Common Development and Distribution License 1.1
+ * - CDLA-Permissive-1.0: Community Data License Agreement Permissive 1.0
+ * - CDLA-Sharing-1.0: Community Data License Agreement Sharing 1.0
+ * - CECILL-1.0: CeCILL Free Software License Agreement v1.0
+ * - CECILL-1.1: CeCILL Free Software License Agreement v1.1
+ * - CECILL-2.0: CeCILL Free Software License Agreement v2.0
+ * - CECILL-2.1: CeCILL Free Software License Agreement v2.1
+ * - CECILL-B: CeCILL-B Free Software License Agreement
+ * - CECILL-C: CeCILL-C Free Software License Agreement
+ * - ClArtistic: Clarified Artistic License
+ * - CNRI-Jython: CNRI Jython License
+ * - CNRI-Python-GPL-Compatible: CNRI Python Open Source GPL Compatible License Agreement
+ * - CNRI-Python: CNRI Python License
+ * - Condor-1.1: Condor Public License v1.1
+ * - CPAL-1.0: Common Public Attribution License 1.0
+ * - CPL-1.0: Common Public License 1.0
+ * - CPOL-1.02: Code Project Open License 1.02
+ * - Crossword: Crossword License
+ * - CrystalStacker: CrystalStacker License
+ * - CUA-OPL-1.0: CUA Office Public License v1.0
+ * - Cube: Cube License
+ * - curl: curl License
+ * - D-FSL-1.0: Deutsche Freie Software Lizenz
+ * - diffmark: diffmark license
+ * - DOC: DOC License
+ * - Dotseqn: Dotseqn License
+ * - DSDP: DSDP License
+ * - dvipdfm: dvipdfm License
+ * - ECL-1.0: Educational Community License v1.0
+ * - ECL-2.0: Educational Community License v2.0
+ * - EFL-1.0: Eiffel Forum License v1.0
+ * - EFL-2.0: Eiffel Forum License v2.0
+ * - eGenix: eGenix.com Public License 1.1.0
+ * - Entessa: Entessa Public License v1.0
+ * - EPL-1.0: Eclipse Public License 1.0
+ * - EPL-2.0: Eclipse Public License 2.0
+ * - ErlPL-1.1: Erlang Public License v1.1
+ * - EUDatagrid: EU DataGrid Software License
+ * - EUPL-1.0: European Union Public License 1.0
+ * - EUPL-1.1: European Union Public License 1.1
+ * - EUPL-1.2: European Union Public License 1.2
+ * - Eurosym: Eurosym License
+ * - Fair: Fair License
+ * - Frameworx-1.0: Frameworx Open License 1.0
+ * - FreeImage: FreeImage Public License v1.0
+ * - FSFAP: FSF All Permissive License
+ * - FSFUL: FSF Unlimited License
+ * - FSFULLR: FSF Unlimited License (with License Retention)
+ * - FTL: Freetype Project License
+ * - GFDL-1.1-only: GNU Free Documentation License v1.1 only
+ * - GFDL-1.1-or-later: GNU Free Documentation License v1.1 or later
+ * - GFDL-1.2-only: GNU Free Documentation License v1.2 only
+ * - GFDL-1.2-or-later: GNU Free Documentation License v1.2 or later
+ * - GFDL-1.3-only: GNU Free Documentation License v1.3 only
+ * - GFDL-1.3-or-later: GNU Free Documentation License v1.3 or later
+ * - Giftware: Giftware License
+ * - GL2PS: GL2PS License
+ * - Glide: 3dfx Glide License
+ * - Glulxe: Glulxe License
+ * - gnuplot: gnuplot License
+ * - GPL-1.0-only: GNU General Public License v1.0 only
+ * - GPL-1.0-or-later: GNU General Public License v1.0 or later
+ * - GPL-2.0-only: GNU General Public License v2.0 only
+ * - GPL-2.0-or-later: GNU General Public License v2.0 or later
+ * - GPL-3.0-only: GNU General Public License v3.0 only
+ * - GPL-3.0-or-later: GNU General Public License v3.0 or later
+ * - gSOAP-1.3b: gSOAP Public License v1.3b
+ * - HaskellReport: Haskell Language Report License
+ * - HPND: Historical Permission Notice and Disclaimer
+ * - IBM-pibs: IBM PowerPC Initialization and Boot Software
+ * - ICU: ICU License
+ * - IJG: Independent JPEG Group License
+ * - ImageMagick: ImageMagick License
+ * - iMatix: iMatix Standard Function Library Agreement
+ * - Imlib2: Imlib2 License
+ * - Info-ZIP: Info-ZIP License
+ * - Intel-ACPI: Intel ACPI Software License Agreement
+ * - Intel: Intel Open Source License
+ * - Interbase-1.0: Interbase Public License v1.0
+ * - IPA: IPA Font License
+ * - IPL-1.0: IBM Public License v1.0
+ * - ISC: ISC License
+ * - JasPer-2.0: JasPer License
+ * - JSON: JSON License
+ * - LAL-1.2: Licence Art Libre 1.2
+ * - LAL-1.3: Licence Art Libre 1.3
+ * - Latex2e: Latex2e License
+ * - Leptonica: Leptonica License
+ * - LGPL-2.0-only: GNU Library General Public License v2 only
+ * - LGPL-2.0-or-later: GNU Library General Public License v2 or later
+ * - LGPL-2.1-only: GNU Lesser General Public License v2.1 only
+ * - LGPL-2.1-or-later: GNU Lesser General Public License v2.1 or later
+ * - LGPL-3.0-only: GNU Lesser General Public License v3.0 only
+ * - LGPL-3.0-or-later: GNU Lesser General Public License v3.0 or later
+ * - LGPLLR: Lesser General Public License For Linguistic Resources
+ * - Libpng: libpng License
+ * - libtiff: libtiff License
+ * - LiLiQ-P-1.1: Licence Libre du Québec – Permissive version 1.1
+ * - LiLiQ-R-1.1: Licence Libre du Québec – Réciprocité version 1.1
+ * - LiLiQ-Rplus-1.1: Licence Libre du Québec – Réciprocité forte version 1.1
+ * - Linux-OpenIB: Linux Kernel Variant of OpenIB.org license
+ * - LPL-1.0: Lucent Public License Version 1.0
+ * - LPL-1.02: Lucent Public License v1.02
+ * - LPPL-1.0: LaTeX Project Public License v1.0
+ * - LPPL-1.1: LaTeX Project Public License v1.1
+ * - LPPL-1.2: LaTeX Project Public License v1.2
+ * - LPPL-1.3a: LaTeX Project Public License v1.3a
+ * - LPPL-1.3c: LaTeX Project Public License v1.3c
+ * - MakeIndex: MakeIndex License
+ * - MirOS: MirOS License
+ * - MIT-0: MIT No Attribution
+ * - MIT-advertising: Enlightenment License (e16)
+ * - MIT-CMU: CMU License
+ * - MIT-enna: enna License
+ * - MIT-feh: feh License
+ * - MIT: MIT License
+ * - MITNFA: MIT +no-false-attribs license
+ * - Motosoto: Motosoto License
+ * - mpich2: mpich2 License
+ * - MPL-1.0: Mozilla Public License 1.0
+ * - MPL-1.1: Mozilla Public License 1.1
+ * - MPL-2.0-no-copyleft-exception: Mozilla Public License 2.0 (no copyleft exception)
+ * - MPL-2.0: Mozilla Public License 2.0
+ * - MS-PL: Microsoft Public License
+ * - MS-RL: Microsoft Reciprocal License
+ * - MTLL: Matrix Template Library License
+ * - Multics: Multics License
+ * - Mup: Mup License
+ * - NASA-1.3: NASA Open Source Agreement 1.3
+ * - Naumen: Naumen Public License
+ * - NBPL-1.0: Net Boolean Public License v1
+ * - NCSA: University of Illinois/NCSA Open Source License
+ * - Net-SNMP: Net-SNMP License
+ * - NetCDF: NetCDF license
+ * - Newsletr: Newsletr License
+ * - NGPL: Nethack General Public License
+ * - NLOD-1.0: Norwegian Licence for Open Government Data
+ * - NLPL: No Limit Public License
+ * - Nokia: Nokia Open Source License
+ * - NOSL: Netizen Open Source License
+ * - Noweb: Noweb License
+ * - NPL-1.0: Netscape Public License v1.0
+ * - NPL-1.1: Netscape Public License v1.1
+ * - NPOSL-3.0: Non-Profit Open Software License 3.0
+ * - NRL: NRL License
+ * - NTP: NTP License
+ * - OCCT-PL: Open CASCADE Technology Public License
+ * - OCLC-2.0: OCLC Research Public License 2.0
+ * - ODbL-1.0: ODC Open Database License v1.0
+ * - OFL-1.0: SIL Open Font License 1.0
+ * - OFL-1.1: SIL Open Font License 1.1
+ * - OGTSL: Open Group Test Suite License
+ * - OLDAP-1.1: Open LDAP Public License v1.1
+ * - OLDAP-1.2: Open LDAP Public License v1.2
+ * - OLDAP-1.3: Open LDAP Public License v1.3
+ * - OLDAP-1.4: Open LDAP Public License v1.4
+ * - OLDAP-2.0.1: Open LDAP Public License v2.0.1
+ * - OLDAP-2.0: Open LDAP Public License v2.0 (or possibly 2.0A and 2.0B)
+ * - OLDAP-2.1: Open LDAP Public License v2.1
+ * - OLDAP-2.2.1: Open LDAP Public License v2.2.1
+ * - OLDAP-2.2.2: Open LDAP Public License 2.2.2
+ * - OLDAP-2.2: Open LDAP Public License v2.2
+ * - OLDAP-2.3: Open LDAP Public License v2.3
+ * - OLDAP-2.4: Open LDAP Public License v2.4
+ * - OLDAP-2.5: Open LDAP Public License v2.5
+ * - OLDAP-2.6: Open LDAP Public License v2.6
+ * - OLDAP-2.7: Open LDAP Public License v2.7
+ * - OLDAP-2.8: Open LDAP Public License v2.8
+ * - OML: Open Market License
+ * - OpenSSL: OpenSSL License
+ * - OPL-1.0: Open Public License v1.0
+ * - OSET-PL-2.1: OSET Public License version 2.1
+ * - OSL-1.0: Open Software License 1.0
+ * - OSL-1.1: Open Software License 1.1
+ * - OSL-2.0: Open Software License 2.0
+ * - OSL-2.1: Open Software License 2.1
+ * - OSL-3.0: Open Software License 3.0
+ * - PDDL-1.0: ODC Public Domain Dedication & License 1.0
+ * - PHP-3.0: PHP License v3.0
+ * - PHP-3.01: PHP License v3.01
+ * - Plexus: Plexus Classworlds License
+ * - PostgreSQL: PostgreSQL License
+ * - psfrag: psfrag License
+ * - psutils: psutils License
+ * - Python-2.0: Python License 2.0
+ * - Qhull: Qhull License
+ * - QPL-1.0: Q Public License 1.0
+ * - Rdisc: Rdisc License
+ * - RHeCos-1.1: Red Hat eCos Public License v1.1
+ * - RPL-1.1: Reciprocal Public License 1.1
+ * - RPL-1.5: Reciprocal Public License 1.5
+ * - RPSL-1.0: RealNetworks Public Source License v1.0
+ * - RSA-MD: RSA Message-Digest License
+ * - RSCPL: Ricoh Source Code Public License
+ * - Ruby: Ruby License
+ * - SAX-PD: Sax Public Domain Notice
+ * - Saxpath: Saxpath License
+ * - SCEA: SCEA Shared Source License
+ * - Sendmail: Sendmail License
+ * - SGI-B-1.0: SGI Free Software License B v1.0
+ * - SGI-B-1.1: SGI Free Software License B v1.1
+ * - SGI-B-2.0: SGI Free Software License B v2.0
+ * - SimPL-2.0: Simple Public License 2.0
+ * - SISSL-1.2: Sun Industry Standards Source License v1.2
+ * - SISSL: Sun Industry Standards Source License v1.1
+ * - Sleepycat: Sleepycat License
+ * - SMLNJ: Standard ML of New Jersey License
+ * - SMPPL: Secure Messaging Protocol Public License
+ * - SNIA: SNIA Public License 1.1
+ * - Spencer-86: Spencer License 86
+ * - Spencer-94: Spencer License 94
+ * - Spencer-99: Spencer License 99
+ * - SPL-1.0: Sun Public License v1.0
+ * - SugarCRM-1.1.3: SugarCRM Public License v1.1.3
+ * - SWL: Scheme Widget Library (SWL) Software License Agreement
+ * - TCL: TCL/TK License
+ * - TCP-wrappers: TCP Wrappers License
+ * - TMate: TMate Open Source License
+ * - TORQUE-1.1: TORQUE v2.5+ Software License v1.1
+ * - TOSL: Trusster Open Source License
+ * - Unicode-DFS-2015: Unicode License Agreement - Data Files and Software (2015)
+ * - Unicode-DFS-2016: Unicode License Agreement - Data Files and Software (2016)
+ * - Unicode-TOU: Unicode Terms of Use
+ * - Unlicense: The Unlicense
+ * - UPL-1.0: Universal Permissive License v1.0
+ * - Vim: Vim License
+ * - VOSTROM: VOSTROM Public License for Open Source
+ * - VSL-1.0: Vovida Software License v1.0
+ * - W3C-19980720: W3C Software Notice and License (1998-07-20)
+ * - W3C-20150513: W3C Software Notice and Document License (2015-05-13)
+ * - W3C: W3C Software Notice and License (2002-12-31)
+ * - Watcom-1.0: Sybase Open Watcom Public License 1.0
+ * - Wsuipa: Wsuipa License
+ * - WTFPL: Do What The F*ck You Want To Public License
+ * - X11: X11 License
+ * - Xerox: Xerox License
+ * - XFree86-1.1: XFree86 License 1.1
+ * - xinetd: xinetd License
+ * - Xnet: X.Net License
+ * - xpp: XPP License
+ * - XSkat: XSkat License
+ * - YPL-1.0: Yahoo! Public License v1.0
+ * - YPL-1.1: Yahoo! Public License v1.1
+ * - Zed: Zed License
+ * - Zend-2.0: Zend License v2.0
+ * - Zimbra-1.3: Zimbra Public License v1.3
+ * - Zimbra-1.4: Zimbra Public License v1.4
+ * - zlib-acknowledgement: zlib/libpng License with Acknowledgement
+ * - Zlib: zlib License
+ * - ZPL-1.1: Zope Public License 1.1
+ * - ZPL-2.0: Zope Public License 2.0
+ * - ZPL-2.1: Zope Public License 2.1
  */
 export type SPDXLicense =
   | "not-open-source"
@@ -6776,6 +12218,8 @@ export type SPDXLicense =
  * Specimen Combined
  *
  * Codes providing the combined status of a specimen.
+ * - grouped: Grouped
+ * - pooled: Pooled
  */
 export type SpecimenCombined = "grouped" | "pooled";
 
@@ -6783,6 +12227,8 @@ export type SpecimenCombined = "grouped" | "pooled";
  * Specimen Contained Preference
  *
  * Degree of preference of a type of conditioned specimen.
+ * - preferred: Preferred
+ * - alternate: Alternate
  */
 export type SpecimenContainedPreference = "preferred" | "alternate";
 
@@ -6790,6 +12236,10 @@ export type SpecimenContainedPreference = "preferred" | "alternate";
  * Specimen Status
  *
  * Codes providing the status/availability of a specimen.
+ * - available: Available
+ * - unavailable: Unavailable
+ * - unsatisfactory: Unsatisfactory
+ * - entered-in-error: Entered in Error
  */
 export type SpecimenStatus =
   | "available"
@@ -6801,6 +12251,8 @@ export type SpecimenStatus =
  * strand Type
  *
  * Type for strand.
+ * - watson: Watson strand of starting sequence
+ * - crick: Crick strand of starting sequence
  */
 export type StrandType = "watson" | "crick";
 
@@ -6808,6 +12260,10 @@ export type StrandType = "watson" | "crick";
  * Structure Definition Kind
  *
  * Defines the type of structure that a definition is describing.
+ * - primitive-type: Primitive Data Type
+ * - complex-type: Complex Data Type
+ * - resource: Resource
+ * - logical: Logical
  */
 export type StructureDefinitionKind =
   | "primitive-type"
@@ -6820,6 +12276,8 @@ export type StructureDefinitionKind =
  *
  * If this is the default rule set to apply for the source type, or this
  * combination of types.
+ * - types: Default for Type Combination
+ * - type-and-types: Default for type + combination
  */
 export type StructureMapGroupTypeMode = "types" | "type-and-types";
 
@@ -6827,6 +12285,8 @@ export type StructureMapGroupTypeMode = "types" | "type-and-types";
  * Structure Map Input Mode
  *
  * Mode for this instance of data.
+ * - source: Source Instance
+ * - target: Target Instance
  */
 export type StructureMapInputMode = "source" | "target";
 
@@ -6834,6 +12294,10 @@ export type StructureMapInputMode = "source" | "target";
  * Structure Map Model Mode
  *
  * How the referenced structure is used in this mapping.
+ * - source: Source Structure Definition
+ * - queried: Queried Structure Definition
+ * - target: Target Structure Definition
+ * - produced: Produced Structure Definition
  */
 export type StructureMapModelMode =
   | "source"
@@ -6845,6 +12309,11 @@ export type StructureMapModelMode =
  * Structure Map Source List Mode
  *
  * If field is a list, how to manage the source.
+ * - first: First
+ * - not_first: All but the first
+ * - last: Last
+ * - not_last: All but the last
+ * - only_one: Enforce only one
  */
 export type StructureMapSourceListMode =
   | "first"
@@ -6857,6 +12326,10 @@ export type StructureMapSourceListMode =
  * Structure Map Target List Mode
  *
  * If field is a list, how to manage the production.
+ * - first: First
+ * - share: Share
+ * - last: Last
+ * - single: single
  */
 export type StructureMapTargetListMode = "first" | "share" | "last" | "single";
 
@@ -6864,6 +12337,23 @@ export type StructureMapTargetListMode = "first" | "share" | "last" | "single";
  * Structure Map Transform
  *
  * How data is copied/created.
+ * - create: create
+ * - copy: copy
+ * - truncate: truncate
+ * - escape: escape
+ * - cast: cast
+ * - append: append
+ * - translate: translate
+ * - reference: reference
+ * - dateOp: dateOp
+ * - uuid: uuid
+ * - pointer: pointer
+ * - evaluate: evaluate
+ * - cc: cc
+ * - c: c
+ * - qty: qty
+ * - id: id
+ * - cp: cp
  */
 export type StructureMapTransform =
   | "create"
@@ -6889,6 +12379,8 @@ export type StructureMapTransform =
  *
  * Concepts for how a measure report consumer and receiver coordinate data exchange
  * updates. The choices are snapshot or incremental updates
+ * - incremental: Incremental
+ * - snapshot: Snapshot
  */
 export type SubmitDataUpdateType = "incremental" | "snapshot";
 
@@ -6896,6 +12388,11 @@ export type SubmitDataUpdateType = "incremental" | "snapshot";
  * Subscription Notification Type
  *
  * The type of notification represented by the status message.
+ * - handshake: Handshake
+ * - heartbeat: Heartbeat
+ * - event-notification: Event Notification
+ * - query-status: Query Status
+ * - query-event: Query Event
  */
 export type SubscriptionNotificationType =
   | "handshake"
@@ -6909,6 +12406,9 @@ export type SubscriptionNotificationType =
  *
  * Codes to represent how much resource content to send in the notification
  * payload.
+ * - empty: Empty
+ * - id-only: Id-only
+ * - full-resource: Full-resource
  */
 export type SubscriptionPayloadContent = "empty" | "id-only" | "full-resource";
 
@@ -6916,6 +12416,11 @@ export type SubscriptionPayloadContent = "empty" | "id-only" | "full-resource";
  * Subscription Status
  *
  * State values for FHIR Subscriptions.
+ * - requested: Requested
+ * - active: Active
+ * - error: Error
+ * - off: Off
+ * - entered-in-error: Entered in Error
  */
 export type SubscriptionStatusCodes =
   | "requested"
@@ -6928,6 +12433,10 @@ export type SubscriptionStatusCodes =
  * Supply Delivery Status
  *
  * Status of the supply delivery.
+ * - in-progress: In Progress
+ * - completed: Delivered
+ * - abandoned: Abandoned
+ * - entered-in-error: Entered In Error
  */
 export type SupplyDeliveryStatus =
   | "in-progress"
@@ -6939,6 +12448,9 @@ export type SupplyDeliveryStatus =
  * Supply Delivery Supply Item Type
  *
  * This value sets refers to a specific supply item.
+ * - medication: Medication
+ * - device: Device
+ * - biologicallyderivedproduct: Biologically Derived Product
  */
 export type SupplyDeliverySupplyItemType =
   | "medication"
@@ -6949,6 +12461,13 @@ export type SupplyDeliverySupplyItemType =
  * Supply Request Status
  *
  * Status of the supply request.
+ * - draft: Draft
+ * - active: Active
+ * - suspended: Suspended
+ * - cancelled: Cancelled
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type SupplyRequestStatus =
   | "draft"
@@ -6963,6 +12482,10 @@ export type SupplyRequestStatus =
  * System Restful Interaction
  *
  * Operations supported by REST at the system level.
+ * - transaction: transaction
+ * - batch: batch
+ * - search-system: search-system
+ * - history-system: history-system
  */
 export type SystemRestfulInteraction =
   | "transaction"
@@ -6974,6 +12497,15 @@ export type SystemRestfulInteraction =
  * Task Intent
  *
  * Distinguishes whether the task is a proposal, plan or full order.
+ * - unknown: Unknown
+ * - proposal: Proposal
+ * - plan: Plan
+ * - order: Order
+ * - original-order: Original Order
+ * - reflex-order: Reflex Order
+ * - filler-order: Filler Order
+ * - instance-order: Instance Order
+ * - option: Option
  */
 export type TaskIntent =
   | "unknown"
@@ -6990,6 +12522,18 @@ export type TaskIntent =
  * Task Status
  *
  * The current status of the task.
+ * - draft: Draft
+ * - requested: Requested
+ * - received: Received
+ * - accepted: Accepted
+ * - rejected: Rejected
+ * - ready: Ready
+ * - cancelled: Cancelled
+ * - in-progress: In Progress
+ * - on-hold: On Hold
+ * - failed: Failed
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
  */
 export type TaskStatus =
   | "draft"
@@ -7009,6 +12553,11 @@ export type TaskStatus =
  * Test Report Action Result
  *
  * The results of executing an action.
+ * - pass: Pass
+ * - skip: Skip
+ * - fail: Fail
+ * - warning: Warning
+ * - error: Error
  */
 export type TestReportActionResult =
   | "pass"
@@ -7021,6 +12570,9 @@ export type TestReportActionResult =
  * Test Report Participant Type
  *
  * The type of participant.
+ * - test-engine: Test Engine
+ * - client: Client
+ * - server: Server
  */
 export type TestReportParticipantType = "test-engine" | "client" | "server";
 
@@ -7028,6 +12580,9 @@ export type TestReportParticipantType = "test-engine" | "client" | "server";
  * Test Report Result
  *
  * The reported execution result.
+ * - pass: Pass
+ * - fail: Fail
+ * - pending: Pending
  */
 export type TestReportResult = "pass" | "fail" | "pending";
 
@@ -7035,6 +12590,11 @@ export type TestReportResult = "pass" | "fail" | "pending";
  * Test Report Status
  *
  * The current status of the test report.
+ * - completed: Completed
+ * - in-progress: In Progress
+ * - waiting: Waiting
+ * - stopped: Stopped
+ * - entered-in-error: Entered In Error
  */
 export type TestReportStatus =
   | "completed"
@@ -7047,6 +12607,13 @@ export type TestReportStatus =
  * Test Script Request Method Code
  *
  * The allowable request method or HTTP operation codes.
+ * - delete: DELETE
+ * - get: GET
+ * - options: OPTIONS
+ * - patch: PATCH
+ * - post: POST
+ * - put: PUT
+ * - head: HEAD
  */
 export type TestScriptRequestMethodCode =
   | "delete"
@@ -7061,6 +12628,15 @@ export type TestScriptRequestMethodCode =
  * Transport Intent
  *
  * Distinguishes whether the transport is a proposal, plan or full order.
+ * - unknown: Unknown
+ * - proposal: Proposal
+ * - plan: Plan
+ * - order: Order
+ * - original-order: Original Order
+ * - reflex-order: Reflex Order
+ * - filler-order: Filler Order
+ * - instance-order: Instance Order
+ * - option: Option
  */
 export type TransportIntent =
   | "unknown"
@@ -7077,6 +12653,12 @@ export type TransportIntent =
  * Transport Status
  *
  * Status of the transport
+ * - in-progress: In Progress
+ * - completed: Completed
+ * - abandoned: Abandoned
+ * - cancelled: Cancelled
+ * - planned: Planned
+ * - entered-in-error: Entered In Error
  */
 export type TransportStatus =
   | "in-progress"
@@ -7090,6 +12672,9 @@ export type TransportStatus =
  * triggered Bytype
  *
  * Codes providing the type of triggeredBy observation.
+ * - reflex: Reflex
+ * - repeat: Repeat (per policy)
+ * - re-run: Re-run (per policy)
  */
 export type TriggeredBytype = "reflex" | "repeat" | "re-run";
 
@@ -7097,6 +12682,14 @@ export type TriggeredBytype = "reflex" | "repeat" | "re-run";
  * TriggerType
  *
  * The type of trigger.
+ * - named-event: Named Event
+ * - periodic: Periodic
+ * - data-changed: Data Changed
+ * - data-added: Data Added
+ * - data-modified: Data Updated
+ * - data-removed: Data Removed
+ * - data-accessed: Data Accessed
+ * - data-access-ended: Data Access Ended
  */
 export type TriggerType =
   | "named-event"
@@ -7112,6 +12705,8 @@ export type TriggerType =
  * Type Derivation Rule
  *
  * How a type relates to its baseDefinition.
+ * - specialization: Specialization
+ * - constraint: Constraint
  */
 export type TypeDerivationRule = "specialization" | "constraint";
 
@@ -7119,6 +12714,15 @@ export type TypeDerivationRule = "specialization" | "constraint";
  * Type Restful Interaction
  *
  * Operations supported by REST at the type or instance level.
+ * - read: read
+ * - vread: vread
+ * - update: update
+ * - patch: patch
+ * - delete: delete
+ * - history-instance: history-instance
+ * - history-type: history-type
+ * - create: create
+ * - search-type: search-type
  */
 export type TypeRestfulInteraction =
   | "read"
@@ -7142,6 +12746,13 @@ export type UCUMCodes = string;
  * UDI Entry Type
  *
  * Codes to identify how UDI data was entered.
+ * - barcode: Barcode
+ * - rfid: RFID
+ * - manual: Manual
+ * - card: Card
+ * - self-reported: Self Reported
+ * - electronic-transmission: Electronic Transmission
+ * - unknown: Unknown
  */
 export type UDIEntryType =
   | "barcode"
@@ -7156,6 +12767,13 @@ export type UDIEntryType =
  * UnitsOfTime
  *
  * A unit of time (units from UCUM).
+ * - s: 秒
+ * - min: 分钟
+ * - h: 小时
+ * - d: 天
+ * - wk: 星期
+ * - mo: 月
+ * - a: 年
  */
 export type UnitsOfTime = "s" | "min" | "h" | "d" | "wk" | "mo" | "a";
 
@@ -7163,6 +12781,9 @@ export type UnitsOfTime = "s" | "min" | "h" | "d" | "wk" | "mo" | "a";
  * Use
  *
  * The purpose of the Claim: predetermination, preauthorization, claim.
+ * - claim: Claim
+ * - preauthorization: Preauthorization
+ * - predetermination: Predetermination
  */
 export type Use = "claim" | "preauthorization" | "predetermination";
 
@@ -7170,6 +12791,13 @@ export type Use = "claim" | "preauthorization" | "predetermination";
  * Value Filter Comparator
  *
  * The type of comparator operator to use
+ * - eq: Equals
+ * - gt: Greater Than
+ * - lt: Less Than
+ * - ge: Greater or Equals
+ * - le: Less of Equal
+ * - sa: Starts After
+ * - eb: Ends Before
  */
 export type ValueFilterComparator =
   | "eq"
@@ -7184,6 +12812,13 @@ export type ValueFilterComparator =
  * Verification Result status
  *
  * The validation status of the target
+ * - attested: Attested
+ * - validated: Validated
+ * - in-process: In process
+ * - req-revalid: Requires revalidation
+ * - val-fail: Validation failed
+ * - reval-fail: Re-Validation failed
+ * - entered-in-error: Entered in Error
  */
 export type VerificationResultStatus =
   | "attested"
@@ -7199,6 +12834,209 @@ export type VerificationResultStatus =
  *
  * Current and past FHIR resource types (deleted or renamed), including abstract
  * types
+ * - Account: Account
+ * - ActivityDefinition: ActivityDefinition
+ * - ActorDefinition: ActorDefinition
+ * - AdministrableProductDefinition: AdministrableProductDefinition
+ * - AdverseEvent: AdverseEvent
+ * - AllergyIntolerance: AllergyIntolerance
+ * - Appointment: Appointment
+ * - AppointmentResponse: AppointmentResponse
+ * - ArtifactAssessment: ArtifactAssessment
+ * - AuditEvent: AuditEvent
+ * - Basic: Basic
+ * - Binary: Binary
+ * - BiologicallyDerivedProduct: BiologicallyDerivedProduct
+ * - BiologicallyDerivedProductDispense: BiologicallyDerivedProductDispense
+ * - BodyStructure: BodyStructure
+ * - Bundle: Bundle
+ * - CanonicalResource: CanonicalResource
+ * - CapabilityStatement: CapabilityStatement
+ * - CarePlan: CarePlan
+ * - CareTeam: CareTeam
+ * - ChargeItem: ChargeItem
+ * - ChargeItemDefinition: ChargeItemDefinition
+ * - Citation: Citation
+ * - Claim: Claim
+ * - ClaimResponse: ClaimResponse
+ * - ClinicalImpression: ClinicalImpression
+ * - ClinicalUseDefinition: ClinicalUseDefinition
+ * - CodeSystem: CodeSystem
+ * - Communication: Communication
+ * - CommunicationRequest: CommunicationRequest
+ * - CompartmentDefinition: CompartmentDefinition
+ * - Composition: Composition
+ * - ConceptMap: ConceptMap
+ * - Condition: Condition
+ * - ConditionDefinition: ConditionDefinition
+ * - Consent: Consent
+ * - Contract: Contract
+ * - Coverage: Coverage
+ * - CoverageEligibilityRequest: CoverageEligibilityRequest
+ * - CoverageEligibilityResponse: CoverageEligibilityResponse
+ * - DetectedIssue: DetectedIssue
+ * - Device: Device
+ * - DeviceAssociation: DeviceAssociation
+ * - DeviceDefinition: DeviceDefinition
+ * - DeviceDispense: DeviceDispense
+ * - DeviceMetric: DeviceMetric
+ * - DeviceRequest: DeviceRequest
+ * - DeviceUsage: DeviceUsage
+ * - DiagnosticReport: DiagnosticReport
+ * - DocumentReference: DocumentReference
+ * - DomainResource: DomainResource
+ * - Encounter: Encounter
+ * - EncounterHistory: EncounterHistory
+ * - Endpoint: Endpoint
+ * - EnrollmentRequest: EnrollmentRequest
+ * - EnrollmentResponse: EnrollmentResponse
+ * - EpisodeOfCare: EpisodeOfCare
+ * - EventDefinition: EventDefinition
+ * - Evidence: Evidence
+ * - EvidenceReport: EvidenceReport
+ * - EvidenceVariable: EvidenceVariable
+ * - ExampleScenario: ExampleScenario
+ * - ExplanationOfBenefit: ExplanationOfBenefit
+ * - FamilyMemberHistory: FamilyMemberHistory
+ * - Flag: Flag
+ * - FormularyItem: FormularyItem
+ * - GenomicStudy: GenomicStudy
+ * - Goal: Goal
+ * - GraphDefinition: GraphDefinition
+ * - Group: Group
+ * - GuidanceResponse: GuidanceResponse
+ * - HealthcareService: HealthcareService
+ * - ImagingSelection: ImagingSelection
+ * - ImagingStudy: ImagingStudy
+ * - Immunization: Immunization
+ * - ImmunizationEvaluation: ImmunizationEvaluation
+ * - ImmunizationRecommendation: ImmunizationRecommendation
+ * - ImplementationGuide: ImplementationGuide
+ * - Ingredient: Ingredient
+ * - InsurancePlan: InsurancePlan
+ * - InventoryItem: InventoryItem
+ * - InventoryReport: InventoryReport
+ * - Invoice: Invoice
+ * - Library: Library
+ * - Linkage: Linkage
+ * - List: List
+ * - Location: Location
+ * - ManufacturedItemDefinition: ManufacturedItemDefinition
+ * - Measure: Measure
+ * - MeasureReport: MeasureReport
+ * - Medication: Medication
+ * - MedicationAdministration: MedicationAdministration
+ * - MedicationDispense: MedicationDispense
+ * - MedicationKnowledge: MedicationKnowledge
+ * - MedicationRequest: MedicationRequest
+ * - MedicationStatement: MedicationStatement
+ * - MedicinalProductDefinition: MedicinalProductDefinition
+ * - MessageDefinition: MessageDefinition
+ * - MessageHeader: MessageHeader
+ * - MetadataResource: MetadataResource
+ * - MolecularSequence: MolecularSequence
+ * - NamingSystem: NamingSystem
+ * - NutritionIntake: NutritionIntake
+ * - NutritionOrder: NutritionOrder
+ * - NutritionProduct: NutritionProduct
+ * - Observation: Observation
+ * - ObservationDefinition: ObservationDefinition
+ * - OperationDefinition: OperationDefinition
+ * - OperationOutcome: OperationOutcome
+ * - Organization: Organization
+ * - OrganizationAffiliation: OrganizationAffiliation
+ * - PackagedProductDefinition: PackagedProductDefinition
+ * - Parameters: Parameters
+ * - Patient: Patient
+ * - PaymentNotice: PaymentNotice
+ * - PaymentReconciliation: PaymentReconciliation
+ * - Permission: Permission
+ * - Person: Person
+ * - PlanDefinition: PlanDefinition
+ * - Practitioner: Practitioner
+ * - PractitionerRole: PractitionerRole
+ * - Procedure: Procedure
+ * - Provenance: Provenance
+ * - Questionnaire: Questionnaire
+ * - QuestionnaireResponse: QuestionnaireResponse
+ * - RegulatedAuthorization: RegulatedAuthorization
+ * - RelatedPerson: RelatedPerson
+ * - RequestOrchestration: RequestOrchestration
+ * - Requirements: Requirements
+ * - ResearchStudy: ResearchStudy
+ * - ResearchSubject: ResearchSubject
+ * - Resource: Resource
+ * - RiskAssessment: RiskAssessment
+ * - Schedule: Schedule
+ * - SearchParameter: SearchParameter
+ * - ServiceRequest: ServiceRequest
+ * - Slot: Slot
+ * - Specimen: Specimen
+ * - SpecimenDefinition: SpecimenDefinition
+ * - StructureDefinition: StructureDefinition
+ * - StructureMap: StructureMap
+ * - Subscription: Subscription
+ * - SubscriptionStatus: SubscriptionStatus
+ * - SubscriptionTopic: SubscriptionTopic
+ * - Substance: Substance
+ * - SubstanceDefinition: SubstanceDefinition
+ * - SubstanceNucleicAcid: SubstanceNucleicAcid
+ * - SubstancePolymer: SubstancePolymer
+ * - SubstanceProtein: SubstanceProtein
+ * - SubstanceReferenceInformation: SubstanceReferenceInformation
+ * - SubstanceSourceMaterial: SubstanceSourceMaterial
+ * - SupplyDelivery: SupplyDelivery
+ * - SupplyRequest: SupplyRequest
+ * - Task: Task
+ * - TerminologyCapabilities: TerminologyCapabilities
+ * - TestPlan: TestPlan
+ * - TestReport: TestReport
+ * - TestScript: TestScript
+ * - Transport: Transport
+ * - ValueSet: ValueSet
+ * - VerificationResult: VerificationResult
+ * - VisionPrescription: VisionPrescription
+ * - BodySite: BodySite
+ * - CatalogEntry: CatalogEntry
+ * - Conformance: Conformance
+ * - DataElement: DataElement
+ * - DeviceComponent: DeviceComponent
+ * - DeviceUseRequest: DeviceUseRequest
+ * - DeviceUseStatement: DeviceUseStatement
+ * - DiagnosticOrder: DiagnosticOrder
+ * - DocumentManifest: DocumentManifest
+ * - EffectEvidenceSynthesis: EffectEvidenceSynthesis
+ * - EligibilityRequest: EligibilityRequest
+ * - EligibilityResponse: EligibilityResponse
+ * - ExpansionProfile: ExpansionProfile
+ * - ImagingManifest: ImagingManifest
+ * - ImagingObjectSelection: ImagingObjectSelection
+ * - Media: Media
+ * - MedicationOrder: MedicationOrder
+ * - MedicationUsage: MedicationUsage
+ * - MedicinalProduct: MedicinalProduct
+ * - MedicinalProductAuthorization: MedicinalProductAuthorization
+ * - MedicinalProductContraindication: MedicinalProductContraindication
+ * - MedicinalProductIndication: MedicinalProductIndication
+ * - MedicinalProductIngredient: MedicinalProductIngredient
+ * - MedicinalProductInteraction: MedicinalProductInteraction
+ * - MedicinalProductManufactured: MedicinalProductManufactured
+ * - MedicinalProductPackaged: MedicinalProductPackaged
+ * - MedicinalProductPharmaceutical: MedicinalProductPharmaceutical
+ * - MedicinalProductUndesirableEffect: MedicinalProductUndesirableEffect
+ * - Order: Order
+ * - OrderResponse: OrderResponse
+ * - ProcedureRequest: ProcedureRequest
+ * - ProcessRequest: ProcessRequest
+ * - ProcessResponse: ProcessResponse
+ * - ReferralRequest: ReferralRequest
+ * - RequestGroup: RequestGroup
+ * - ResearchDefinition: ResearchDefinition
+ * - ResearchElementDefinition: ResearchElementDefinition
+ * - RiskEvidenceSynthesis: RiskEvidenceSynthesis
+ * - Sequence: Sequence
+ * - ServiceDefinition: ServiceDefinition
+ * - SubstanceSpecification: SubstanceSpecification
  */
 export type VersionIndependentResourceTypesAll =
   | "Account"
@@ -7409,6 +13247,10 @@ export type VersionIndependentResourceTypesAll =
  * Vision Base
  *
  * A coded concept listing the base codes.
+ * - up: Up
+ * - down: Down
+ * - in: In
+ * - out: Out
  */
 export type VisionBase = "up" | "down" | "in" | "out";
 
@@ -7416,6 +13258,8 @@ export type VisionBase = "up" | "down" | "in" | "out";
  * Vision Eyes
  *
  * A coded concept listing the eye codes.
+ * - right: Right Eye
+ * - left: Left Eye
  */
 export type VisionEyes = "right" | "left";
 
@@ -7430,6 +13274,11 @@ export type VitalSignsUnits = string;
  * Week Of Month
  *
  * The set of weeks in a month.
+ * - first: First
+ * - second: Second
+ * - third: Third
+ * - fourth: Fourth
+ * - last: Last
  */
 export type WeekOfMonth = "first" | "second" | "third" | "fourth" | "last";
 
@@ -7492,6 +13341,7 @@ Where the order is important, a local/jurisdictional extension may be
   /**
    * The default currency for the account.
    * @see {@link http://hl7.org/fhir/R5/Account-definitions.html#Account.currency}
+   * @see {@link Currencies}
    */
   currency?: Currencies | undefined;
   _currency?: Element | undefined;
@@ -7574,6 +13424,7 @@ Where the order is important, a local/jurisdictional extension may be
    * This element is labeled as a modifier because the status contains the codes
    * inactive and entered-in-error that mark the Account as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/Account-definitions.html#Account.status}
+   * @see {@link AccountStatus}
    */
   status: AccountStatus;
   _status?: Element | undefined;
@@ -7831,6 +13682,7 @@ See guidance around (not) making local changes to elements
    * Indicates the level of authority/intentionality associated with the activity and
    * where the request should fit into the workflow chain.
    * @see {@link http://hl7.org/fhir/R5/ActivityDefinition-definitions.html#ActivityDefinition.intent}
+   * @see {@link RequestIntent}
    */
   intent?: RequestIntent | undefined;
   _intent?: Element | undefined;
@@ -7861,6 +13713,7 @@ DEPRECATION NOTE:
    * focus of the task set to the event resource to be created. Note that the kind of
    * resource to be created may determine what types of extensions are permitted.
    * @see {@link http://hl7.org/fhir/R5/ActivityDefinition-definitions.html#ActivityDefinition.kind}
+   * @see {@link RequestResourceTypes}
    */
   kind?: RequestResourceTypes | undefined;
   _kind?: Element | undefined;
@@ -7933,6 +13786,7 @@ See guidance around
    * Indicates how quickly the activity  should be addressed with respect to other
    * requests.
    * @see {@link http://hl7.org/fhir/R5/ActivityDefinition-definitions.html#ActivityDefinition.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -8032,6 +13886,7 @@ See guidance around
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/ActivityDefinition-definitions.html#ActivityDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -8484,6 +14339,7 @@ DEPRECATION NOTE:
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/ActorDefinition-definitions.html#ActorDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -8500,6 +14356,7 @@ See guidance around (not) making local changes to elements
   /**
    * Whether the actor represents a human or an appliction.
    * @see {@link http://hl7.org/fhir/R5/ActorDefinition-definitions.html#ActorDefinition.type}
+   * @see {@link ExampleScenarioActorType}
    */
   type: ExampleScenarioActorType;
   _type?: Element | undefined;
@@ -8666,6 +14523,7 @@ export interface Address extends DataType {
    * being a valid delivery destination, and Postal addresses are often used as
    * proxies for physical locations (also see the [Location](location.html#)
    * resource).
+   * @see {@link AddressType}
    */
   type?: AddressType | undefined;
   _type?: Element | undefined;
@@ -8674,6 +14532,7 @@ export interface Address extends DataType {
    * The purpose of this address.
    * Applications can assume that an address is current unless it explicitly says
    * that it is temporary or old.
+   * @see {@link AddressUse}
    */
   use?: AddressUse | undefined;
   _use?: Element | undefined;
@@ -8791,6 +14650,7 @@ export interface AdministrableProductDefinition extends DomainResource {
    * Allows filtering of administrable products that are appropriate for use versus
    * not.
    * @see {@link http://hl7.org/fhir/R5/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -8836,6 +14696,7 @@ export interface AdverseEvent extends DomainResource {
    * was given, then an adverse reaction should be recorded as an AdverseEvent due to
    * the aberrant workflow.
    * @see {@link http://hl7.org/fhir/R5/AdverseEvent-definitions.html#AdverseEvent.actuality}
+   * @see {@link AdverseEventActuality}
    */
   actuality: AdverseEventActuality;
   _actuality?: Element | undefined;
@@ -9024,6 +14885,7 @@ export interface AdverseEvent extends DomainResource {
    * This is not the reporting of the event to any regulatory or quality
    * organization.  This is not the outcome of the patient's condition.
    * @see {@link http://hl7.org/fhir/R5/AdverseEvent-definitions.html#AdverseEvent.status}
+   * @see {@link AdverseEventStatus}
    */
   status: AdverseEventStatus;
   _status?: Element | undefined;
@@ -9093,6 +14955,7 @@ export interface AllergyIntolerance extends DomainResource {
    * Additionally, category should be used with caution because category can be
    * subjective based on the sender.
    * @see {@link http://hl7.org/fhir/R5/AllergyIntolerance-definitions.html#AllergyIntolerance.category}
+   * @see {@link AllergyIntoleranceCategory}
    */
   category?: Array<AllergyIntoleranceCategory> | undefined;
   _category?: Element[] | undefined;
@@ -9110,6 +14973,7 @@ The data type is CodeableConcept because clinicalStatus has some clinical
  * required FHIR value set allows. For example, a SNOMED coding might allow for
  * additional specificity.
  * @see {@link http://hl7.org/fhir/R5/AllergyIntolerance-definitions.html#AllergyIntolerance.clinicalStatus}
+ * @see {@link AllergyIntoleranceClinicalStatusCodes}
  */
   clinicalStatus?: AllergyIntoleranceClinicalStatusCodes | undefined;
   _clinicalStatus?: Element | undefined;
@@ -9174,6 +15038,7 @@ The
    * term "severity" to represent both.  Criticality is the worst it could be in the
    * future (i.e. situation-agnostic) whereas severity is situation-dependent.
    * @see {@link http://hl7.org/fhir/R5/AllergyIntolerance-definitions.html#AllergyIntolerance.criticality}
+   * @see {@link AllergyIntoleranceCriticality}
    */
   criticality?: AllergyIntoleranceCriticality | undefined;
   _criticality?: Element | undefined;
@@ -9355,6 +15220,7 @@ The
    * required FHIR value set allows. For example, a SNOMED coding might allow for
    * additional specificity.
    * @see {@link http://hl7.org/fhir/R5/AllergyIntolerance-definitions.html#AllergyIntolerance.verificationStatus}
+   * @see {@link AllergyIntoleranceVerificationStatus}
    */
   verificationStatus?: AllergyIntoleranceVerificationStatus | undefined;
   _verificationStatus?: Element | undefined;
@@ -9708,6 +15574,7 @@ This element is labeled as a
  * modifier because the status contains the code entered-in-error that mark the
  * Appointment as not currently valid.
  * @see {@link http://hl7.org/fhir/R5/Appointment-definitions.html#Appointment.status}
+ * @see {@link AppointmentStatus}
  */
   status: AppointmentStatus;
   _status?: Element | undefined;
@@ -9821,6 +15688,7 @@ export interface AppointmentResponse extends DomainResource {
    * This element is labeled as a modifier because the status contains the code
    * entered-in-error that marks the participant as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/AppointmentResponse-definitions.html#AppointmentResponse.participantStatus}
+   * @see {@link AppointmentResponseStatus}
    */
   participantStatus: AppointmentResponseStatus;
   _participantStatus?: Element | undefined;
@@ -9983,6 +15851,7 @@ export interface ArtifactAssessment extends DomainResource {
    * Indicates the disposition of the responsible party to the comment or change
    * request.
    * @see {@link http://hl7.org/fhir/R5/ArtifactAssessment-definitions.html#ArtifactAssessment.disposition}
+   * @see {@link ArtifactAssessmentDisposition}
    */
   disposition?: ArtifactAssessmentDisposition | undefined;
   _disposition?: Element | undefined;
@@ -10018,6 +15887,7 @@ export interface ArtifactAssessment extends DomainResource {
   /**
    * Indicates the workflow status of the comment or change request.
    * @see {@link http://hl7.org/fhir/R5/ArtifactAssessment-definitions.html#ArtifactAssessment.workflowStatus}
+   * @see {@link ArtifactAssessmentWorkflowStatus}
    */
   workflowStatus?: ArtifactAssessmentWorkflowStatus | undefined;
   _workflowStatus?: Element | undefined;
@@ -10035,6 +15905,7 @@ export interface Attachment extends DataType {
    * Identifies the type of the data in the attachment and allows a method to be
    * chosen to interpret or render the data. Includes mime type parameters such as
    * charset where appropriate.
+   * @see {@link MimeTypes}
    */
   contentType?: MimeTypes | undefined;
   _contentType?: Element | undefined;
@@ -10092,6 +15963,7 @@ export interface Attachment extends DataType {
   /**
    * The human language of the content. The value can be any valid value according to
    * BCP 47.
+   * @see {@link AllLanguages}
    */
   language?: AllLanguages | undefined;
   _language?: Element | undefined;
@@ -10152,6 +16024,7 @@ export interface AuditEvent extends DomainResource {
    * Indicator for type of action performed during the event that generated the
    * audit.
    * @see {@link http://hl7.org/fhir/R5/AuditEvent-definitions.html#AuditEvent.action}
+   * @see {@link AuditEventAction}
    */
   action?: AuditEventAction | undefined;
   _action?: Element | undefined;
@@ -10279,6 +16152,7 @@ When a network are used in an
    * critical.
    * ATNA will map this to the SYSLOG PRI element.
    * @see {@link http://hl7.org/fhir/R5/AuditEvent-definitions.html#AuditEvent.severity}
+   * @see {@link AuditEventSeverity}
    */
   severity?: AuditEventSeverity | undefined;
   _severity?: Element | undefined;
@@ -10464,6 +16338,7 @@ export interface Binary extends Resource {
   /**
    * MimeType of the binary content represented as a standard MimeType (BCP 13).
    * @see {@link http://hl7.org/fhir/R5/Binary-definitions.html#Binary.contentType}
+   * @see {@link MimeTypes}
    */
   contentType: MimeTypes;
   _contentType?: Element | undefined;
@@ -10743,6 +16618,7 @@ export interface BiologicallyDerivedProductDispense extends DomainResource {
   /**
    * A code specifying the state of the dispense event.
    * @see {@link http://hl7.org/fhir/R5/BiologicallyDerivedProductDispense-definitions.html#BiologicallyDerivedProductDispense.status}
+   * @see {@link BiologicallyDerivedProductDispenseCodes}
    */
   status: BiologicallyDerivedProductDispenseCodes;
   _status?: Element | undefined;
@@ -10976,6 +16852,7 @@ The timestamp value should be greater than the
    * accepted as a transaction). This is primarily defined so that there can be
    * specific rules for some of the bundle types.
    * @see {@link http://hl7.org/fhir/R5/Bundle-definitions.html#Bundle.type}
+   * @see {@link BundleType}
    */
   type: BundleType;
   _type?: Element | undefined;
@@ -11147,6 +17024,7 @@ See guidance
  * around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/CanonicalResource-definitions.html#CanonicalResource.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -11260,6 +17138,7 @@ export interface CapabilityStatement extends DomainResource {
    * support, it should still reutrn the resource, just in its default language for
    * the resource.
    * @see {@link http://hl7.org/fhir/R5/CapabilityStatement-definitions.html#CapabilityStatement.acceptLanguage}
+   * @see {@link AllLanguages}
    */
   acceptLanguage?: Array<AllLanguages> | undefined;
   _acceptLanguage?: Element[] | undefined;
@@ -11365,6 +17244,7 @@ See guidance around (not) making local changes to elements
    * and the CapabilityStatement is requested from the server, then this fhirVersion
    * will be either the version requested, or the server's default version.
    * @see {@link http://hl7.org/fhir/R5/CapabilityStatement-definitions.html#CapabilityStatement.fhirVersion}
+   * @see {@link FHIRVersion}
    */
   fhirVersion: FHIRVersion;
   _fhirVersion?: Element | undefined;
@@ -11376,6 +17256,7 @@ See guidance around (not) making local changes to elements
    * described in the specification (and imply appropriate bundle support).
    * Otherwise, mime types are legal here.
    * @see {@link http://hl7.org/fhir/R5/CapabilityStatement-definitions.html#CapabilityStatement.format}
+   * @see {@link MimeTypes}
    */
   format: Array<MimeTypes>;
   _format?: Element[] | undefined;
@@ -11472,6 +17353,7 @@ DEPRECATION
    * running instance of software, a particular product (kind, not instance of
    * software) or a class of implementation (e.g. a desired purchase).
    * @see {@link http://hl7.org/fhir/R5/CapabilityStatement-definitions.html#CapabilityStatement.kind}
+   * @see {@link CapabilityStatementKind}
    */
   kind: CapabilityStatementKind;
   _kind?: Element | undefined;
@@ -11503,6 +17385,7 @@ DEPRECATION
    * would be expected to support the patch formats and match the formats it
    * supports, but this is not always possible or necessary.
    * @see {@link http://hl7.org/fhir/R5/CapabilityStatement-definitions.html#CapabilityStatement.patchFormat}
+   * @see {@link MimeTypes}
    */
   patchFormat?: Array<MimeTypes> | undefined;
   _patchFormat?: Element[] | undefined;
@@ -11564,6 +17447,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/CapabilityStatement-definitions.html#CapabilityStatement.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -11825,6 +17709,7 @@ This element is expected to be immutable. E.g.
  * instance. Instead, a new instance 'basedOn' the prior instance should be created
  * with the new 'intent' value.
  * @see {@link http://hl7.org/fhir/R5/CarePlan-definitions.html#CarePlan.intent}
+ * @see {@link CarePlanIntent}
  */
   intent: CarePlanIntent;
   _intent?: Element | undefined;
@@ -11878,6 +17763,7 @@ This element is labeled as a
  * modifier because the status contains the code entered-in-error that marks the
  * plan as not currently valid.
  * @see {@link http://hl7.org/fhir/R5/CarePlan-definitions.html#CarePlan.status}
+ * @see {@link RequestStatus}
  */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -12001,6 +17887,7 @@ export interface CareTeam extends DomainResource {
    * This element is labeled as a modifier because the status contains the code
    * entered-in-error that marks the care team as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/CareTeam-definitions.html#CareTeam.status}
+   * @see {@link CareTeamStatus}
    */
   status?: CareTeamStatus | undefined;
   _status?: Element | undefined;
@@ -12248,6 +18135,7 @@ export interface ChargeItem extends DomainResource {
 This element is labeled as a modifier because the status contains the code
  * entered-in-error that marks the charge item as not currently valid.
  * @see {@link http://hl7.org/fhir/R5/ChargeItem-definitions.html#ChargeItem.status}
+ * @see {@link ChargeItemStatus}
  */
   status: ChargeItemStatus;
   _status?: Element | undefined;
@@ -12540,6 +18428,7 @@ See guidance around
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/ChargeItemDefinition-definitions.html#ChargeItemDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -12941,6 +18830,7 @@ See guidance around (not) making local
 See guidance around (not) making
  * local changes to elements [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/Citation-definitions.html#Citation.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -13297,6 +19187,7 @@ export interface Claim extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/Claim-definitions.html#Claim.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -13359,6 +19250,7 @@ export interface Claim extends DomainResource {
    * under the identified policy and report back what the Benefit payable would be
    * had the services actually been provided.
    * @see {@link http://hl7.org/fhir/R5/Claim-definitions.html#Claim.use}
+   * @see {@link Use}
    */
   use: Use;
   _use?: Element | undefined;
@@ -13539,6 +19431,7 @@ export interface ClaimResponse extends DomainResource {
    * processing has been performed (partial); or all of the adjudication processing
    * has completed without errors (complete).
    * @see {@link http://hl7.org/fhir/R5/ClaimResponse-definitions.html#ClaimResponse.outcome}
+   * @see {@link ClaimProcessingCodes}
    */
   outcome: ClaimProcessingCodes;
   _outcome?: Element | undefined;
@@ -13613,6 +19506,7 @@ export interface ClaimResponse extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/ClaimResponse-definitions.html#ClaimResponse.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -13666,6 +19560,7 @@ export interface ClaimResponse extends DomainResource {
    * under the identified policy and report back what the Benefit payable would be
    * had the services actually been provided.
    * @see {@link http://hl7.org/fhir/R5/ClaimResponse-definitions.html#ClaimResponse.use}
+   * @see {@link Use}
    */
   use: Use;
   _use?: Element | undefined;
@@ -13830,6 +19725,7 @@ export interface ClinicalImpression extends DomainResource {
    * This element is labeled as a modifier because the status contains the code
    * entered-in-error that marks the clinical impression as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/ClinicalImpression-definitions.html#ClinicalImpression.status}
+   * @see {@link EventStatus}
    */
   status: EventStatus;
   _status?: Element | undefined;
@@ -13946,6 +19842,7 @@ export interface ClinicalUseDefinition extends DomainResource {
   /**
    * indication | contraindication | interaction | undesirable-effect | warning.
    * @see {@link http://hl7.org/fhir/R5/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.type}
+   * @see {@link ClinicalUseDefinitionType}
    */
   type: ClinicalUseDefinitionType;
   _type?: Element | undefined;
@@ -14105,6 +20002,7 @@ See guidance
    * The extent of the content of the code system (the concepts and codes it defines)
    * are represented in this resource instance.
    * @see {@link http://hl7.org/fhir/R5/CodeSystem-definitions.html#CodeSystem.content}
+   * @see {@link CodeSystemContentMode}
    */
   content: CodeSystemContentMode;
   _content?: Element | undefined;
@@ -14238,6 +20136,7 @@ See
    * Note that other representations might have a different hierarchy or none at all,
    * and represent the information using properties.
    * @see {@link http://hl7.org/fhir/R5/CodeSystem-definitions.html#CodeSystem.hierarchyMeaning}
+   * @see {@link CodeSystemHierarchyMeaning}
    */
   hierarchyMeaning?: CodeSystemHierarchyMeaning | undefined;
   _hierarchyMeaning?: Element | undefined;
@@ -14362,6 +20261,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/CodeSystem-definitions.html#CodeSystem.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -14701,6 +20601,7 @@ export interface Communication extends DomainResource {
    * Used to prioritize workflow (such as which communication to read first) when the
    * communication is planned or in progress.
    * @see {@link http://hl7.org/fhir/R5/Communication-definitions.html#Communication.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -14753,6 +20654,7 @@ export interface Communication extends DomainResource {
    * This element is labeled as a modifier because the status contains the codes
    * aborted and entered-in-error that mark the communication as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/Communication-definitions.html#Communication.status}
+   * @see {@link EventStatus}
    */
   status: EventStatus;
   _status?: Element | undefined;
@@ -14903,6 +20805,7 @@ One exception to this is that the granularity of
  * identified as an "order" might later be clarified to be a "filler-order".  Or,
  * in rarer cases (to meet recipient constraints), the reverse might also occur.
  * @see {@link http://hl7.org/fhir/R5/CommunicationRequest-definitions.html#CommunicationRequest.intent}
+ * @see {@link RequestIntent}
  */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -14947,6 +20850,7 @@ One exception to this is that the granularity of
    * Characterizes how quickly the proposed act must be initiated. Includes concepts
    * such as stat, urgent, routine.
    * @see {@link http://hl7.org/fhir/R5/CommunicationRequest-definitions.html#CommunicationRequest.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -14988,6 +20892,7 @@ One exception to this is that the granularity of
   /**
    * The status of the proposal or order.
    * @see {@link http://hl7.org/fhir/R5/CommunicationRequest-definitions.html#CommunicationRequest.status}
+   * @see {@link RequestStatus}
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -15025,6 +20930,7 @@ export interface CompartmentDefinition extends DomainResource {
    * Only the specification can define the compartments that can exist. Servers can
    * choose to support them.
    * @see {@link http://hl7.org/fhir/R5/CompartmentDefinition-definitions.html#CompartmentDefinition.code}
+   * @see {@link CompartmentType}
    */
   code: CompartmentType;
   _code?: Element | undefined;
@@ -15151,6 +21057,7 @@ See guidance around (not) making local changes to elements
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/CompartmentDefinition-definitions.html#CompartmentDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -15408,6 +21315,7 @@ Some reporting work flows require that the original narrative of a
  * composition resource has no explicit status for explicitly noting whether this
  * business rule is in effect. This would be handled by an extension if required.
  * @see {@link http://hl7.org/fhir/R5/Composition-definitions.html#Composition.status}
+ * @see {@link CompositionStatus}
  */
   status: CompositionStatus;
   _status?: Element | undefined;
@@ -15797,6 +21705,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/ConceptMap-definitions.html#ConceptMap.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -16095,6 +22004,7 @@ Because
    * clinicalStatus may be unknown.  For example, conditions derived from a claim are
    * point in time, so those conditions may have a clinicalStatus of unknown
    * @see {@link http://hl7.org/fhir/R5/Condition-definitions.html#Condition.clinicalStatus}
+   * @see {@link ConditionClinicalStatusCodes}
    */
   clinicalStatus: ConditionClinicalStatusCodes;
   _clinicalStatus?: Element | undefined;
@@ -16323,6 +22233,7 @@ The data
  * FHIR value set allows. For example, a SNOMED coding might allow for additional
  * specificity.
  * @see {@link http://hl7.org/fhir/R5/Condition-definitions.html#Condition.verificationStatus}
+ * @see {@link ConditionVerificationStatus}
  */
   verificationStatus?: ConditionVerificationStatus | undefined;
   _verificationStatus?: Element | undefined;
@@ -16559,6 +22470,7 @@ DEPRECATION
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/ConditionDefinition-definitions.html#ConditionDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -16706,6 +22618,7 @@ export interface Consent extends DomainResource {
   /**
    * Action to take - permit or deny - as default.
    * @see {@link http://hl7.org/fhir/R5/Consent-definitions.html#Consent.decision}
+   * @see {@link ConsentProvisionType}
    */
   decision?: ConsentProvisionType | undefined;
   _decision?: Element | undefined;
@@ -16813,6 +22726,7 @@ export interface Consent extends DomainResource {
    * This element is labeled as a modifier because the status contains the codes
    * rejected and entered-in-error that mark the Consent as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/Consent-definitions.html#Consent.status}
+   * @see {@link ConsentState}
    */
   status: ConsentState;
   _status?: Element | undefined;
@@ -16896,6 +22810,7 @@ Ranks need not be unique.  E.g. it's possible to
   /**
    * Telecommunications form for contact point - what communications system is
    * required to make use of the contact.
+   * @see {@link ContactPointSystem}
    */
   system?: ContactPointSystem | undefined;
   _system?: Element | undefined;
@@ -16904,6 +22819,7 @@ Ranks need not be unique.  E.g. it's possible to
    * Identifies the purpose for the contact point.
    * Applications can assume that a contact is current unless it explicitly says that
    * it is temporary or old.
+   * @see {@link ContactPointUse}
    */
   use?: ContactPointUse | undefined;
   _use?: Element | undefined;
@@ -17151,6 +23067,7 @@ For example,
    * This element is labeled as a modifier because the status contains codes that
    * mark the contract as not currently valid or active.
    * @see {@link http://hl7.org/fhir/R5/Contract-definitions.html#Contract.status}
+   * @see {@link ContractResourceStatusCodes}
    */
   status?: ContractResourceStatusCodes | undefined;
   _status?: Element | undefined;
@@ -17313,6 +23230,7 @@ export interface Contributor extends DataType {
 
   /**
    * The type of contributor.
+   * @see {@link ContributorType}
    */
   type: ContributorType;
   _type?: Element | undefined;
@@ -17415,6 +23333,7 @@ export interface Coverage extends DomainResource {
   /**
    * The nature of the coverage be it insurance, or cash payment such as self-pay.
    * @see {@link http://hl7.org/fhir/R5/Coverage-definitions.html#Coverage.kind}
+   * @see {@link Kind}
    */
   kind: Kind;
   _kind?: Element | undefined;
@@ -17481,6 +23400,7 @@ export interface Coverage extends DomainResource {
    * This element is labeled as a modifier because the status contains the code
    * entered-in-error that marks the coverage as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/Coverage-definitions.html#Coverage.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -17641,6 +23561,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * that the specified coverage is in-force at the date/period specified or 'now' if
    * not specified.
    * @see {@link http://hl7.org/fhir/R5/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.purpose}
+   * @see {@link EligibilityRequestPurpose}
    */
   purpose: Array<EligibilityRequestPurpose>;
   _purpose?: Element[] | undefined;
@@ -17666,6 +23587,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -17765,6 +23687,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * errors were found and that some of the adjudication has been undertaken
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R5/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.outcome}
+   * @see {@link EligibilityOutcome}
    */
   outcome: EligibilityOutcome;
   _outcome?: Element | undefined;
@@ -17792,6 +23715,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * that the specified coverage is in-force at the date/period specified or 'now' if
    * not specified.
    * @see {@link http://hl7.org/fhir/R5/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.purpose}
+   * @see {@link EligibilityResponsePurpose}
    */
   purpose: Array<EligibilityResponsePurpose>;
   _purpose?: Element[] | undefined;
@@ -17835,6 +23759,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -17932,6 +23857,7 @@ The value of mustSupport SHALL be a
   /**
    * The type of the required data, specified as the type name of a resource. For
    * profiles, this value is set to the type of the base resource of the profile.
+   * @see {@link AllFHIRTypes}
    */
   type: AllFHIRTypes;
   _type?: Element | undefined;
@@ -18165,6 +24091,7 @@ DEPRECATION NOTE: For
 Unknown
  * does not represent 'other' - one of the defined statuses must apply.  Unknown is
  * used when the authoring system is not sure what the current status is.
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -18386,6 +24313,7 @@ export interface DetectedIssue extends DomainResource {
    * Indicates the degree of importance associated with the identified issue based on
    * the potential impact on the patient.
    * @see {@link http://hl7.org/fhir/R5/DetectedIssue-definitions.html#DetectedIssue.severity}
+   * @see {@link DetectedIssueSeverity}
    */
   severity?: DetectedIssueSeverity | undefined;
   _severity?: Element | undefined;
@@ -18395,6 +24323,7 @@ export interface DetectedIssue extends DomainResource {
    * This element is labeled as a modifier because the status contains the code
    * entered-in-error that marks the issue as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/DetectedIssue-definitions.html#DetectedIssue.status}
+   * @see {@link DetectedIssueStatus}
    */
   status: DetectedIssueStatus;
   _status?: Element | undefined;
@@ -18690,6 +24619,7 @@ export interface Device extends DomainResource {
    * The Device record status. This is not the status of the device like
    * availability.
    * @see {@link http://hl7.org/fhir/R5/Device-definitions.html#Device.status}
+   * @see {@link FHIRDeviceStatus}
    */
   status?: FHIRDeviceStatus | undefined;
   _status?: Element | undefined;
@@ -18791,6 +24721,7 @@ export interface DeviceAssociation extends DomainResource {
   /**
    * Indicates the state of the Device association.
    * @see {@link http://hl7.org/fhir/R5/DeviceAssociation-definitions.html#DeviceAssociation.status}
+   * @see {@link DeviceAssociationStatusCodes}
    */
   status: DeviceAssociationStatusCodes;
   _status?: Element | undefined;
@@ -18798,6 +24729,7 @@ export interface DeviceAssociation extends DomainResource {
   /**
    * The reasons given for the current association status.
    * @see {@link http://hl7.org/fhir/R5/DeviceAssociation-definitions.html#DeviceAssociation.statusReason}
+   * @see {@link DeviceAssociationStatusReasonCodes}
    */
   statusReason?: Array<DeviceAssociationStatusReasonCodes> | undefined;
   _statusReason?: Element[] | undefined;
@@ -18981,6 +24913,7 @@ export interface DeviceDefinition extends DomainResource {
    * Indicates the production identifier(s) that are expected to appear in the UDI
    * carrier on the device label.
    * @see {@link http://hl7.org/fhir/R5/DeviceDefinition-definitions.html#DeviceDefinition.productionIdentifierInUDI}
+   * @see {@link DeviceProductionIdentifierInUDI}
    */
   productionIdentifierInUDI?:
     | Array<DeviceProductionIdentifierInUDI>
@@ -19179,6 +25112,7 @@ export interface DeviceDispense extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/DeviceDispense-definitions.html#DeviceDispense.status}
+   * @see {@link DeviceDispenseStatusCodes}
    */
   status: DeviceDispenseStatusCodes;
   _status?: Element | undefined;
@@ -19254,6 +25188,7 @@ export interface DeviceMetric extends DomainResource {
    * Indicates the category of the observation generation process. A DeviceMetric can
    * be for example a setting, measurement, or calculation.
    * @see {@link http://hl7.org/fhir/R5/DeviceMetric-definitions.html#DeviceMetric.category}
+   * @see {@link DeviceMetricCategory}
    */
   category: DeviceMetricCategory;
   _category?: Element | undefined;
@@ -19265,6 +25200,7 @@ export interface DeviceMetric extends DomainResource {
    * displayed in different characteristic colors, such as HR in blue, BP in green,
    * and PR and SpO2 in magenta.
    * @see {@link http://hl7.org/fhir/R5/DeviceMetric-definitions.html#DeviceMetric.color}
+   * @see {@link ColorCodesOrRGB}
    */
   color?: ColorCodesOrRGB | undefined;
   _color?: Element | undefined;
@@ -19306,6 +25242,7 @@ export interface DeviceMetric extends DomainResource {
    * Indicates current operational state of the device. For example: On, Off,
    * Standby, etc.
    * @see {@link http://hl7.org/fhir/R5/DeviceMetric-definitions.html#DeviceMetric.operationalStatus}
+   * @see {@link DeviceMetricOperationalStatus}
    */
   operationalStatus?: DeviceMetricOperationalStatus | undefined;
   _operationalStatus?: Element | undefined;
@@ -19451,6 +25388,7 @@ export interface DeviceRequest extends DomainResource {
   /**
    * Whether the request is a proposal, plan, an original order or a reflex order.
    * @see {@link http://hl7.org/fhir/R5/DeviceRequest-definitions.html#DeviceRequest.intent}
+   * @see {@link RequestIntent}
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -19514,6 +25452,7 @@ export interface DeviceRequest extends DomainResource {
    * Indicates how quickly the request should be addressed with respect to other
    * requests.
    * @see {@link http://hl7.org/fhir/R5/DeviceRequest-definitions.html#DeviceRequest.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -19569,6 +25508,7 @@ All Provenances should have some historical version of this
    * This element is labeled as a modifier because the status contains the codes
    * revoked and entered-in-error that mark the request as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/DeviceRequest-definitions.html#DeviceRequest.status}
+   * @see {@link RequestStatus}
    */
   status?: RequestStatus | undefined;
   _status?: Element | undefined;
@@ -19719,6 +25659,7 @@ export interface DeviceUsage extends DomainResource {
 This element is labeled as a modifier because the
  * status contains the codes that mark the statement as not currently valid.
  * @see {@link http://hl7.org/fhir/R5/DeviceUsage-definitions.html#DeviceUsage.status}
+ * @see {@link DeviceUsageStatus}
  */
   status: DeviceUsageStatus;
   _status?: Element | undefined;
@@ -19756,6 +25697,7 @@ This element is labeled as a modifier because the
    * The status of the device usage, for example always, sometimes, never. This is
    * not the same as the status of the statement.
    * @see {@link http://hl7.org/fhir/R5/DeviceUsage-definitions.html#DeviceUsage.usageStatus}
+   * @see {@link DeviceUsageStatus}
    */
   usageStatus?: DeviceUsageStatus | undefined;
   _usageStatus?: Element | undefined;
@@ -19967,6 +25909,7 @@ export interface DiagnosticReport extends DomainResource {
   /**
    * The status of the diagnostic report.
    * @see {@link http://hl7.org/fhir/R5/DiagnosticReport-definitions.html#DiagnosticReport.status}
+   * @see {@link DiagnosticReportStatus}
    */
   status: DiagnosticReportStatus;
   _status?: Element | undefined;
@@ -20132,6 +26075,7 @@ export interface DocumentReference extends DomainResource {
    * The status of the underlying document.
    * The document that is pointed to might be in various lifecycle states.
    * @see {@link http://hl7.org/fhir/R5/DocumentReference-definitions.html#DocumentReference.docStatus}
+   * @see {@link CompositionStatus}
    */
   docStatus?: CompositionStatus | undefined;
   _docStatus?: Element | undefined;
@@ -20246,6 +26190,7 @@ This element is labeled as a modifier because the
  * status contains the codes that mark the document or reference as not currently
  * valid.
  * @see {@link http://hl7.org/fhir/R5/DocumentReference-definitions.html#DocumentReference.status}
+ * @see {@link DocumentReferenceStatus}
  */
   status: DocumentReferenceStatus;
   _status?: Element | undefined;
@@ -24720,6 +30665,7 @@ If a pattern[x] is
    * standard (and profiles must reproduce what the base standard does). This element
    * is used quite commonly in Logical models when the logical models represent a
    * specific serialization format (e.g. CDA, v2 etc.).
+   * @see {@link PropertyRepresentation}
    */
   representation?: Array<PropertyRepresentation> | undefined;
   _representation?: Element[] | undefined;
@@ -25070,6 +31016,7 @@ It is not specifically intended to be used for securing
    * Note that internal business rules will determine the appropriate transitions
    * that may occur between statuses (and also classes).
    * @see {@link http://hl7.org/fhir/R5/Encounter-definitions.html#Encounter.status}
+   * @see {@link EncounterStatus}
    */
   status: EncounterStatus;
   _status?: Element | undefined;
@@ -25239,6 +31186,7 @@ May
    * Note that internal business rules will determine the appropriate transitions
    * that may occur between statuses (and also classes).
    * @see {@link http://hl7.org/fhir/R5/EncounterHistory-definitions.html#EncounterHistory.status}
+   * @see {@link EncounterStatus}
    */
   status: EncounterStatus;
   _status?: Element | undefined;
@@ -25416,6 +31364,7 @@ and not
    * unexpected short-term changes in availability would not be represented in this
    * property.
    * @see {@link http://hl7.org/fhir/R5/Endpoint-definitions.html#Endpoint.status}
+   * @see {@link EndpointStatus}
    */
   status: EndpointStatus;
   _status?: Element | undefined;
@@ -25479,6 +31428,7 @@ export interface EnrollmentRequest extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the request as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/EnrollmentRequest-definitions.html#EnrollmentRequest.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status?: FinancialResourceStatusCodes | undefined;
   _status?: Element | undefined;
@@ -25526,6 +31476,7 @@ export interface EnrollmentResponse extends DomainResource {
   /**
    * Processing status: error, complete.
    * @see {@link http://hl7.org/fhir/R5/EnrollmentResponse-definitions.html#EnrollmentResponse.outcome}
+   * @see {@link EnrollmentOutcome}
    */
   outcome?: EnrollmentOutcome | undefined;
   _outcome?: Element | undefined;
@@ -25549,6 +31500,7 @@ export interface EnrollmentResponse extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the response as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/EnrollmentResponse-definitions.html#EnrollmentResponse.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status?: FinancialResourceStatusCodes | undefined;
   _status?: Element | undefined;
@@ -25677,6 +31629,7 @@ Examples:
    * This element is labeled as a modifier because the status contains codes that
    * mark the episode as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/EpisodeOfCare-definitions.html#EpisodeOfCare.status}
+   * @see {@link EpisodeOfCareStatus}
    */
   status: EpisodeOfCareStatus;
   _status?: Element | undefined;
@@ -25920,6 +31873,7 @@ See additional guidance [here](event.html#history).
 Unknown does not represent
  * "other" - one of the defined statuses must apply.  Unknown is used when the
  * authoring system is not sure what the current status is.
+ * @see {@link EventStatus}
  */
   status: EventStatus;
   _status?: Element | undefined;
@@ -26201,6 +32155,7 @@ See guidance around
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/EventDefinition-definitions.html#EventDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -26624,6 +32579,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/Evidence-definitions.html#Evidence.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -26895,6 +32851,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/EvidenceReport-definitions.html#EvidenceReport.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -27125,6 +33082,7 @@ See guidance around (not) making local
   /**
    * The method of handling in statistical analysis.
    * @see {@link http://hl7.org/fhir/R5/EvidenceVariable-definitions.html#EvidenceVariable.handling}
+   * @see {@link EvidenceVariableHandling}
    */
   handling?: EvidenceVariableHandling | undefined;
   _handling?: Element | undefined;
@@ -27240,6 +33198,7 @@ See guidance around (not) making local
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/EvidenceVariable-definitions.html#EvidenceVariable.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -27509,6 +33468,7 @@ DEPRECATION NOTE:
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/ExampleScenario-definitions.html#ExampleScenario.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -27856,6 +33816,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * processing has been performed (partial); or all of the adjudication processing
    * has completed without errors (complete).
    * @see {@link http://hl7.org/fhir/R5/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.outcome}
+   * @see {@link ClaimProcessingCodes}
    */
   outcome: ClaimProcessingCodes;
   _outcome?: Element | undefined;
@@ -27996,6 +33957,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.status}
+   * @see {@link ExplanationOfBenefitStatus}
    */
   status: ExplanationOfBenefitStatus;
   _status?: Element | undefined;
@@ -28057,6 +34019,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * under the identified policy and report back what the Benefit payable would be
    * had the services actually been provided.
    * @see {@link http://hl7.org/fhir/R5/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.use}
+   * @see {@link Use}
    */
   use: Use;
   _use?: Element | undefined;
@@ -28815,6 +34778,7 @@ export interface FamilyMemberHistory extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/FamilyMemberHistory-definitions.html#FamilyMemberHistory.status}
+   * @see {@link FamilyHistoryStatus}
    */
   status: FamilyHistoryStatus;
   _status?: Element | undefined;
@@ -28910,6 +34874,7 @@ export interface FiveWs extends Base {
 
   /**
    * Status Field.
+   * @see {@link CanonicalStatusCodesForFHIRResources}
    */
   status?: CanonicalStatusCodesForFHIRResources | undefined;
   _status?: Element | undefined;
@@ -29051,6 +35016,7 @@ export interface Flag extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/Flag-definitions.html#Flag.status}
+   * @see {@link FlagStatus}
    */
   status: FlagStatus;
   _status?: Element | undefined;
@@ -29102,6 +35068,7 @@ export interface FormularyItem extends DomainResource {
    * that it is no longer valid in the formulary.  But the product itself might still
    * be in active use and might be included in other formularies.
    * @see {@link http://hl7.org/fhir/R5/FormularyItem-definitions.html#FormularyItem.status}
+   * @see {@link FormularyItemStatusCodes}
    */
   status?: FormularyItemStatusCodes | undefined;
   _status?: Element | undefined;
@@ -29204,6 +35171,7 @@ export interface GenomicStudy extends DomainResource {
   /**
    * The status of the genomic study.
    * @see {@link http://hl7.org/fhir/R5/GenomicStudy-definitions.html#GenomicStudy.status}
+   * @see {@link GenomicStudyStatus}
    */
   status: GenomicStudyStatus;
   _status?: Element | undefined;
@@ -29300,6 +35268,7 @@ export interface Goal extends DomainResource {
    * This element is labeled as a modifier because the lifecycleStatus contains codes
    * that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/Goal-definitions.html#Goal.lifecycleStatus}
+   * @see {@link GoalLifecycleStatus}
    */
   lifecycleStatus: GoalLifecycleStatus;
   _lifecycleStatus?: Element | undefined;
@@ -29585,6 +35554,7 @@ DEPRECATION NOTE:
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/GraphDefinition-definitions.html#GraphDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -29769,6 +35739,7 @@ export interface Group extends DomainResource {
  * Group.characteristics are necessary but not sufficient to determine membership.
  * Membership is determined by being listed as one of the Group.member.
  * @see {@link http://hl7.org/fhir/R5/Group-definitions.html#Group.membership}
+ * @see {@link GroupMembershipBasis}
  */
   membership: GroupMembershipBasis;
   _membership?: Element | undefined;
@@ -29796,6 +35767,7 @@ export interface Group extends DomainResource {
    * Location, Organization, RelatedPerson, or Specimen for the other types.), or a
    * Group of the resources of the appropriate type.
    * @see {@link http://hl7.org/fhir/R5/Group-definitions.html#Group.type}
+   * @see {@link GroupType}
    */
   type: GroupType;
   _type?: Element | undefined;
@@ -29955,6 +35927,7 @@ export interface GuidanceResponse extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/GuidanceResponse-definitions.html#GuidanceResponse.status}
+   * @see {@link GuidanceResponseStatus}
    */
   status: GuidanceResponseStatus;
   _status?: Element | undefined;
@@ -30056,6 +36029,7 @@ The NotAvailableTime(s) included
    * language, it is not derived from the practitioners, and not all are required to
    * use this language, just that this language is available while scheduling.
    * @see {@link http://hl7.org/fhir/R5/HealthcareService-definitions.html#HealthcareService.communication}
+   * @see {@link AllLanguages}
    */
   communication?: Array<AllLanguages> | undefined;
   _communication?: Element[] | undefined;
@@ -30274,6 +36248,7 @@ export interface HumanName extends DataType {
    * Identifies the purpose for this name.
    * Applications can assume that a name is current unless it explicitly says that it
    * is temporary or old.
+   * @see {@link NameUse}
    */
   use?: NameUse | undefined;
   _use?: Element | undefined;
@@ -30329,6 +36304,7 @@ export interface Identifier extends DataType {
    * The purpose of this identifier.
    * Applications can assume that an identifier is permanent unless it explicitly
    * says that it is temporary.
+   * @see {@link IdentifierUse}
    */
   use?: IdentifierUse | undefined;
   _use?: Element | undefined;
@@ -30503,6 +36479,7 @@ export interface ImagingSelection extends DomainResource {
    * Unknown is used when the authoring system is not sure what the current status
    * is.
    * @see {@link http://hl7.org/fhir/R5/ImagingSelection-definitions.html#ImagingSelection.status}
+   * @see {@link ImagingSelectionStatus}
    */
   status: ImagingSelectionStatus;
   _status?: Element | undefined;
@@ -30692,6 +36669,7 @@ export interface ImagingStudy extends DomainResource {
    * Unknown is used when the authoring system is not sure what the current status
    * is.
    * @see {@link http://hl7.org/fhir/R5/ImagingStudy-definitions.html#ImagingStudy.status}
+   * @see {@link ImagingStudyStatus}
    */
   status: ImagingStudyStatus;
   _status?: Element | undefined;
@@ -30942,6 +36920,7 @@ export interface Immunization extends DomainResource {
    * done.  This element is labeled as a modifier because the status contains codes
    * that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/Immunization-definitions.html#Immunization.status}
+   * @see {@link ImmunizationStatusCodes}
    */
   status: ImmunizationStatusCodes;
   _status?: Element | undefined;
@@ -31093,6 +37072,7 @@ export interface ImmunizationEvaluation extends DomainResource {
    * Indicates the current status of the evaluation of the vaccination administration
    * event.
    * @see {@link http://hl7.org/fhir/R5/ImmunizationEvaluation-definitions.html#ImmunizationEvaluation.status}
+   * @see {@link ImmunizationEvaluationStatusCodes}
    */
   status: ImmunizationEvaluationStatusCodes;
   _status?: Element | undefined;
@@ -31280,6 +37260,7 @@ See guidance around (not) making local changes to elements
    * matures and different implementation communities are stuck at different versions
    * by regulation or market dynamics.
    * @see {@link http://hl7.org/fhir/R5/ImplementationGuide-definitions.html#ImplementationGuide.fhirVersion}
+   * @see {@link FHIRVersion}
    */
   fhirVersion: Array<FHIRVersion>;
   _fhirVersion?: Element[] | undefined;
@@ -31323,6 +37304,7 @@ DEPRECATION
    * The license that applies to this Implementation Guide, using an SPDX license
    * code, or 'not-open-source'.
    * @see {@link http://hl7.org/fhir/R5/ImplementationGuide-definitions.html#ImplementationGuide.license}
+   * @see {@link SPDXLicense}
    */
   license?: SPDXLicense | undefined;
   _license?: Element | undefined;
@@ -31395,6 +37377,7 @@ DEPRECATION
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/ImplementationGuide-definitions.html#ImplementationGuide.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -31573,6 +37556,7 @@ export interface Ingredient extends DomainResource {
    * The status of this ingredient. Enables tracking the life-cycle of the content.
    * Allows filtering of ingredient that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R5/Ingredient-definitions.html#Ingredient.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -31698,6 +37682,7 @@ export interface InsurancePlan extends DomainResource {
   /**
    * The current state of the health insurance product.
    * @see {@link http://hl7.org/fhir/R5/InsurancePlan-definitions.html#InsurancePlan.status}
+   * @see {@link PublicationStatus}
    */
   status?: PublicationStatus | undefined;
   _status?: Element | undefined;
@@ -31817,6 +37802,7 @@ export interface InventoryItem extends DomainResource {
   /**
    * Status of the item entry.
    * @see {@link http://hl7.org/fhir/R5/InventoryItem-definitions.html#InventoryItem.status}
+   * @see {@link InventoryItemStatusCodes}
    */
   status: InventoryItemStatusCodes;
   _status?: Element | undefined;
@@ -31836,6 +37822,7 @@ export interface InventoryReport extends DomainResource {
    * Whether the report is about the current inventory count (snapshot) or a
    * differential change in inventory (change).
    * @see {@link http://hl7.org/fhir/R5/InventoryReport-definitions.html#InventoryReport.countType}
+   * @see {@link InventoryCountType}
    */
   countType: InventoryCountType;
   _countType?: Element | undefined;
@@ -31900,6 +37887,7 @@ export interface InventoryReport extends DomainResource {
    * The status of the inventory check or notification - whether this is draft (e.g.
    * the report is still pending some updates) or active.
    * @see {@link http://hl7.org/fhir/R5/InventoryReport-definitions.html#InventoryReport.status}
+   * @see {@link InventoryReportStatus}
    */
   status: InventoryReportStatus;
   _status?: Element | undefined;
@@ -32028,6 +38016,7 @@ export interface Invoice extends DomainResource {
   /**
    * The current state of the Invoice.
    * @see {@link http://hl7.org/fhir/R5/Invoice-definitions.html#Invoice.status}
+   * @see {@link InvoiceStatus}
    */
   status: InvoiceStatus;
   _status?: Element | undefined;
@@ -32361,6 +38350,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/Library-definitions.html#Library.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -32620,6 +38610,7 @@ export interface List extends DomainResource {
    * This element is labeled as a modifier because a change list must not be
    * misunderstood as a complete list.
    * @see {@link http://hl7.org/fhir/R5/List-definitions.html#List.mode}
+   * @see {@link ListMode}
    */
   mode: ListMode;
   _mode?: Element | undefined;
@@ -32656,6 +38647,7 @@ export interface List extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/List-definitions.html#List.status}
+   * @see {@link ListStatus}
    */
   status: ListStatus;
   _status?: Element | undefined;
@@ -32805,6 +38797,7 @@ The availableStartTime is the
    * This is labeled as a modifier because whether or not the location is a class of
    * locations changes how it can be used and understood.
    * @see {@link http://hl7.org/fhir/R5/Location-definitions.html#Location.mode}
+   * @see {@link LocationMode}
    */
   mode?: LocationMode | undefined;
   _mode?: Element | undefined;
@@ -32852,6 +38845,7 @@ The availableStartTime is the
    * current value which may be covered by the operationStatus, or by a
    * schedule/slots if they are configured for the location.
    * @see {@link http://hl7.org/fhir/R5/Location-definitions.html#Location.status}
+   * @see {@link LocationStatus}
    */
   status?: LocationStatus | undefined;
   _status?: Element | undefined;
@@ -32958,6 +38952,7 @@ export interface ManufacturedItemDefinition extends DomainResource {
    * The status of this item. Enables tracking the life-cycle of the content.
    * Allows filtering of manufactured items that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R5/ManufacturedItemDefinition-definitions.html#ManufacturedItemDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -33075,6 +39070,7 @@ See guidance around (not) making local
    * type. For example, for a procedure-based measure, the population criteria would
    * return lists of procedures that should be included in each population.
    * @see {@link http://hl7.org/fhir/R5/Measure-definitions.html#Measure.basis}
+   * @see {@link AllFHIRTypes}
    */
   basis?: AllFHIRTypes | undefined;
   _basis?: Element | undefined;
@@ -33249,6 +39245,7 @@ See guidance
    * (e.g., a higher score indicates better quality OR a lower score indicates better
    * quality OR quality is within a range).
    * @see {@link http://hl7.org/fhir/R5/Measure-definitions.html#Measure.improvementNotation}
+   * @see {@link MeasureImprovementNotation}
    */
   improvementNotation?: MeasureImprovementNotation | undefined;
   _improvementNotation?: Element | undefined;
@@ -33418,6 +39415,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/Measure-definitions.html#Measure.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -33619,6 +39617,7 @@ export interface MeasureReport extends DomainResource {
    * This element only applies to Data-collection reports used to communicate the
    * data-of-interest for a measure
    * @see {@link http://hl7.org/fhir/R5/MeasureReport-definitions.html#MeasureReport.dataUpdateType}
+   * @see {@link SubmitDataUpdateType}
    */
   dataUpdateType?: SubmitDataUpdateType | undefined;
   _dataUpdateType?: Element | undefined;
@@ -33672,6 +39671,7 @@ export interface MeasureReport extends DomainResource {
    * interpret if the measure score is an increase or decrease, I.e., moving in the
    * direction of the desired outcome.
    * @see {@link http://hl7.org/fhir/R5/MeasureReport-definitions.html#MeasureReport.improvementNotation}
+   * @see {@link MeasureImprovementNotation}
    */
   improvementNotation?: MeasureImprovementNotation | undefined;
   _improvementNotation?: Element | undefined;
@@ -33746,6 +39746,7 @@ export interface MeasureReport extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/MeasureReport-definitions.html#MeasureReport.status}
+   * @see {@link MeasureReportStatus}
    */
   status: MeasureReportStatus;
   _status?: Element | undefined;
@@ -33784,6 +39785,7 @@ export interface MeasureReport extends DomainResource {
    * measure. They do not necessarily include all the data for a particular subject
    * or population, but they may.
    * @see {@link http://hl7.org/fhir/R5/MeasureReport-definitions.html#MeasureReport.type}
+   * @see {@link MeasureReportType}
    */
   type: MeasureReportType;
   _type?: Element | undefined;
@@ -33888,6 +39890,7 @@ export interface Medication extends DomainResource {
    * referenced by multiple formularies or catalogues and each of those entries would
    * have a separate status.
    * @see {@link http://hl7.org/fhir/R5/Medication-definitions.html#Medication.status}
+   * @see {@link MedicationStatusCodes}
    */
   status?: MedicationStatusCodes | undefined;
   _status?: Element | undefined;
@@ -34092,6 +40095,7 @@ export interface MedicationAdministration extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/MedicationAdministration-definitions.html#MedicationAdministration.status}
+   * @see {@link MedicationAdministrationStatusCodes}
    */
   status: MedicationAdministrationStatusCodes;
   _status?: Element | undefined;
@@ -34322,6 +40326,7 @@ The
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/MedicationDispense-definitions.html#MedicationDispense.status}
+   * @see {@link MedicationDispenseStatusCodes}
    */
   status: MedicationDispenseStatusCodes;
   _status?: Element | undefined;
@@ -34563,6 +40568,7 @@ export interface MedicationKnowledge extends DomainResource {
    * referenced by multiple formularies or catalogues and each of those entries would
    * have a separate status.
    * @see {@link http://hl7.org/fhir/R5/MedicationKnowledge-definitions.html#MedicationKnowledge.status}
+   * @see {@link MedicationKnowledgeStatusCodes}
    */
   status?: MedicationKnowledgeStatusCodes | undefined;
   _status?: Element | undefined;
@@ -34800,6 +40806,7 @@ An instance-order is an instantiation of a
 This element is labeled as a modifier because the intent alters when
  * and how the resource is actually applicable.
  * @see {@link http://hl7.org/fhir/R5/MedicationRequest-definitions.html#MedicationRequest.intent}
+ * @see {@link MedicationRequestIntent}
  */
   intent: MedicationRequestIntent;
   _intent?: Element | undefined;
@@ -34853,6 +40860,7 @@ This element is labeled as a modifier because the intent alters when
    * Indicates how quickly the Medication Request should be addressed with respect to
    * other requests.
    * @see {@link http://hl7.org/fhir/R5/MedicationRequest-definitions.html#MedicationRequest.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -34919,6 +40927,7 @@ Clinical decision support systems
  * should take the status into account when determining which medications to
  * include in their algorithms.
  * @see {@link http://hl7.org/fhir/R5/MedicationRequest-definitions.html#MedicationRequest.status}
+ * @see {@link MedicationrequestStatus}
  */
   status: MedicationrequestStatus;
   _status?: Element | undefined;
@@ -35201,6 +41210,7 @@ This
  * element is labeled as a modifier because the status contains codes that mark the
  * resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R5/MedicationStatement-definitions.html#MedicationStatement.status}
+ * @see {@link MedicationStatementStatusCodes}
  */
   status: MedicationStatementStatusCodes;
   _status?: Element | undefined;
@@ -35508,6 +41518,7 @@ export interface MessageDefinition extends DomainResource {
   /**
    * The impact of the content of the message.
    * @see {@link http://hl7.org/fhir/R5/MessageDefinition-definitions.html#MessageDefinition.category}
+   * @see {@link MessageSignificanceCategory}
    */
   category?: MessageSignificanceCategory | undefined;
   _category?: Element | undefined;
@@ -35714,6 +41725,7 @@ DEPRECATION NOTE:
    * Level acknowledgement) in HL7 Version 2 to declare at a message instance level
    * whether a response is required or only upon error or success, or never.
    * @see {@link http://hl7.org/fhir/R5/MessageDefinition-definitions.html#MessageDefinition.responseRequired}
+   * @see {@link MessageheaderResponseRequest}
    */
   responseRequired?: MessageheaderResponseRequest | undefined;
   _responseRequired?: Element | undefined;
@@ -35727,6 +41739,7 @@ DEPRECATION NOTE:
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/MessageDefinition-definitions.html#MessageDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -36213,6 +42226,7 @@ export interface MolecularSequence extends DomainResource {
   /**
    * Amino Acid Sequence/ DNA Sequence / RNA Sequence.
    * @see {@link http://hl7.org/fhir/R5/MolecularSequence-definitions.html#MolecularSequence.type}
+   * @see {@link SequenceType}
    */
   type?: SequenceType | undefined;
   _type?: Element | undefined;
@@ -36247,6 +42261,7 @@ export interface MonetaryComponent extends DataType {
 
   /**
    * base | surcharge | deduction | discount | tax | informational.
+   * @see {@link PriceComponentType}
    */
   type: PriceComponentType;
   _type?: Element | undefined;
@@ -36262,6 +42277,7 @@ export interface MonetaryComponent extends DataType {
 export interface Money extends DataType {
   /**
    * ISO 4217 Currency Code.
+   * @see {@link Currencies}
    */
   currency?: Currencies | undefined;
   _currency?: Element | undefined;
@@ -36451,6 +42467,7 @@ DEPRECATION NOTE: For
    * Indicates the purpose for the naming system - what kinds of things does it make
    * unique?
    * @see {@link http://hl7.org/fhir/R5/NamingSystem-definitions.html#NamingSystem.kind}
+   * @see {@link NamingSystemType}
    */
   kind: NamingSystemType;
   _kind?: Element | undefined;
@@ -36546,6 +42563,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/NamingSystem-definitions.html#NamingSystem.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -36705,6 +42723,7 @@ export interface Narrative extends DataType {
    * The status of the narrative - whether it's entirely generated (from just the
    * defined data or the extensions too), or whether a human authored it and it may
    * contain additional data.
+   * @see {@link NarrativeStatus}
    */
   status: NarrativeStatus;
   _status?: Element | undefined;
@@ -36908,6 +42927,7 @@ export interface NutritionIntake extends DomainResource {
 This element is labeled as a modifier because the status
  * contains codes that mark the resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R5/NutritionIntake-definitions.html#NutritionIntake.status}
+ * @see {@link EventStatus}
  */
   status: EventStatus;
   _status?: Element | undefined;
@@ -37072,6 +43092,7 @@ export interface NutritionOrder extends DomainResource {
    * order", "reflex order" would all map to "order".  Expectation is that the set of
    * codes is mutually exclusive or a strict all-encompassing hierarchy.
    * @see {@link http://hl7.org/fhir/R5/NutritionOrder-definitions.html#NutritionOrder.intent}
+   * @see {@link RequestIntent}
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -37122,6 +43143,7 @@ export interface NutritionOrder extends DomainResource {
    * Indicates how quickly the Nutrition Order should be addressed with respect to
    * other        requests.
    * @see {@link http://hl7.org/fhir/R5/NutritionOrder-definitions.html#NutritionOrder.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -37133,6 +43155,7 @@ export interface NutritionOrder extends DomainResource {
    * the request is handled.  This element is labeled as a modifier because the
    * status contains codes that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/NutritionOrder-definitions.html#NutritionOrder.status}
+   * @see {@link RequestStatus}
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -37252,6 +43275,7 @@ export interface NutritionProduct extends DomainResource {
    * Unknown is used when the authoring system is not sure what the current status
    * is.
    * @see {@link http://hl7.org/fhir/R5/NutritionProduct-definitions.html#NutritionProduct.status}
+   * @see {@link NutritionProductStatus}
    */
   status: NutritionProductStatus;
   _status?: Element | undefined;
@@ -37611,6 +43635,7 @@ export interface Observation extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/Observation-definitions.html#Observation.status}
+   * @see {@link ObservationStatus}
    */
   status: ObservationStatus;
   _status?: Element | undefined;
@@ -38297,6 +44322,7 @@ Example: 702659008 |Automated
    * The data types allowed for the value element of the instance observations
    * conforming to this ObservationDefinition.
    * @see {@link http://hl7.org/fhir/R5/ObservationDefinition-definitions.html#ObservationDefinition.permittedDataType}
+   * @see {@link ObservationDataType}
    */
   permittedDataType?: Array<ObservationDataType> | undefined;
   _permittedDataType?: Element[] | undefined;
@@ -38368,6 +44394,7 @@ See guidance around
  * (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/ObservationDefinition-definitions.html#ObservationDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -38642,6 +44669,7 @@ DEPRECATION
    * Whether this is an operation or a named query.
    * Named queries are invoked differently, and have different capabilities.
    * @see {@link http://hl7.org/fhir/R5/OperationDefinition-definitions.html#OperationDefinition.kind}
+   * @see {@link OperationKind}
    */
   kind: OperationKind;
   _kind?: Element | undefined;
@@ -38723,6 +44751,7 @@ DEPRECATION
    * If the type is an abstract resource ("Resource" or "DomainResource") then the
    * operation can be invoked on any concrete specialization.
    * @see {@link http://hl7.org/fhir/R5/OperationDefinition-definitions.html#OperationDefinition.resource}
+   * @see {@link VersionIndependentResourceTypesAll}
    */
   resource?: Array<VersionIndependentResourceTypesAll> | undefined;
   _resource?: Element[] | undefined;
@@ -38735,6 +44764,7 @@ Unknown
  * does not represent 'other' - one of the defined statuses must apply.  Unknown is
  * used when the authoring system is not sure what the current status is.
  * @see {@link http://hl7.org/fhir/R5/OperationDefinition-definitions.html#OperationDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -39292,12 +45322,14 @@ export interface ParameterDefinition extends DataType {
 
   /**
    * The type of the parameter.
+   * @see {@link AllFHIRTypes}
    */
   type: AllFHIRTypes;
   _type?: Element | undefined;
 
   /**
    * Whether the parameter is input or output for the module.
+   * @see {@link OperationParameterUse}
    */
   use: OperationParameterUse;
   _use?: Element | undefined;
@@ -39407,6 +45439,7 @@ export interface ParticipantLiving extends Base {
    * by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g.
    * "en" for English, or "en-US" for American English versus "en-AU" for Australian
    * English.
+   * @see {@link AllLanguages}
    */
   communication?: Array<AllLanguages> | undefined;
   _communication?: Element[] | undefined;
@@ -39414,6 +45447,7 @@ export interface ParticipantLiving extends Base {
   /**
    * Administrative Gender - the gender that the {{title}} is considered to have for
    * administration and record keeping purposes.
+   * @see {@link AdministrativeGender}
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -39534,6 +45568,7 @@ Deceased patients may also be marked
    * a "hard" error.  See the Patient Gender and Sex section for additional
    * information about communicating patient gender and sex.
    * @see {@link http://hl7.org/fhir/R5/Patient-definitions.html#Patient.gender}
+   * @see {@link AdministrativeGender}
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -39750,6 +45785,7 @@ export interface PaymentNotice extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/PaymentNotice-definitions.html#PaymentNotice.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -39892,6 +45928,7 @@ export interface PaymentReconciliation extends DomainResource {
    * errors were found and that some of the adjudication has been undertaken
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R5/PaymentReconciliation-definitions.html#PaymentReconciliation.outcome}
+   * @see {@link PaymentOutcome}
    */
   outcome?: PaymentOutcome | undefined;
   _outcome?: Element | undefined;
@@ -39968,6 +46005,7 @@ export interface PaymentReconciliation extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/PaymentReconciliation-definitions.html#PaymentReconciliation.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -40040,6 +46078,7 @@ export interface Permission extends DomainResource {
    * Rules](http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-cos01-en.html#_T
    * oc325047267)
    * @see {@link http://hl7.org/fhir/R5/Permission-definitions.html#Permission.combining}
+   * @see {@link PermissionRuleCombining}
    */
   combining: PermissionRuleCombining;
   _combining?: Element | undefined;
@@ -40068,6 +46107,7 @@ export interface Permission extends DomainResource {
   /**
    * Status.
    * @see {@link http://hl7.org/fhir/R5/Permission-definitions.html#Permission.status}
+   * @see {@link PermissionStatus}
    */
   status: PermissionStatus;
   _status?: Element | undefined;
@@ -40162,6 +46202,7 @@ Note that this
    * particularly animals, there are other legitimate possibilities than M and F,
    * though a clear majority of systems and contexts only support M and F.
    * @see {@link http://hl7.org/fhir/R5/Person-definitions.html#Person.gender}
+   * @see {@link AdministrativeGender}
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -40538,6 +46579,7 @@ See guidance around
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/PlanDefinition-definitions.html#PlanDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -40802,6 +46844,7 @@ For animals, language is not
    * Administrative Gender - the gender that the person is considered to have for
    * administration and record keeping purposes.
    * @see {@link http://hl7.org/fhir/R5/Practitioner-definitions.html#Practitioner.gender}
+   * @see {@link AdministrativeGender}
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -40945,6 +46988,7 @@ Note that for
  * resources such as HealthcareService and PractitionerRole only include languages
  * that are available for interacting with patients.
  * @see {@link http://hl7.org/fhir/R5/PractitionerRole-definitions.html#PractitionerRole.communication}
+ * @see {@link AllLanguages}
  */
   communication?: Array<AllLanguages> | undefined;
   _communication?: Element[] | undefined;
@@ -41437,6 +47481,7 @@ This element is labeled as a
  * modifier because the status contains codes that mark the resource as not
  * currently valid.
  * @see {@link http://hl7.org/fhir/R5/Procedure-definitions.html#Procedure.status}
+ * @see {@link EventStatus}
  */
   status: EventStatus;
   _status?: Element | undefined;
@@ -41538,6 +47583,7 @@ export interface Product extends Base {
    * Unknown does not represent "other" - one of the defined statuses must apply.
    * Unknown is used when the authoring system is not sure what the current status
    * is.
+   * @see {@link ProductStatus}
    */
   status: ProductStatus;
   _status?: Element | undefined;
@@ -41846,6 +47892,7 @@ export interface Publishable extends Base {
    * A legal or geographic region in which the {{title}} is intended to be used.
    * It may be possible for the {{title}} to be used in jurisdictions other than
    * those for which it was originally designed or intended.
+   * @see {@link JurisdictionValueSet}
    */
   jurisdiction?: Array<JurisdictionValueSet> | undefined;
   _jurisdiction?: Element[] | undefined;
@@ -41932,6 +47979,7 @@ export interface Quantity extends DataType {
    * How the value should be understood and represented - whether the actual value is
    * greater or less than the stated value due to measurement issues; e.g. if the
    * comparator is "<" , then the real value is < stated value.
+   * @see {@link QuantityComparator}
    */
   comparator?: QuantityComparator | undefined;
   _comparator?: Element | undefined;
@@ -42200,6 +48248,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/Questionnaire-definitions.html#Questionnaire.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -42209,6 +48258,7 @@ See
    * questionnaire.
    * If none are specified, then the subject is unlimited.
    * @see {@link http://hl7.org/fhir/R5/Questionnaire-definitions.html#Questionnaire.subjectType}
+   * @see {@link ResourceType}
    */
   subjectType?: Array<ResourceType> | undefined;
   _subjectType?: Element[] | undefined;
@@ -42446,6 +48496,7 @@ Composition of questionnaire responses will be handled using the
    * Unknown is used when the authoring system is not sure what the current status
    * is.
    * @see {@link http://hl7.org/fhir/R5/QuestionnaireResponse-definitions.html#QuestionnaireResponse.status}
+   * @see {@link QuestionnaireResponseStatus}
    */
   status: QuestionnaireResponseStatus;
   _status?: Element | undefined;
@@ -42827,6 +48878,7 @@ export interface RelatedArtifact extends DataType {
 
   /**
    * The publication status of the artifact being referred to.
+   * @see {@link PublicationStatus}
    */
   publicationStatus?: PublicationStatus | undefined;
   _publicationStatus?: Element | undefined;
@@ -42863,6 +48915,7 @@ export interface RelatedArtifact extends DataType {
    * methodology of "new points to old" and "many points to one", when using related
    * artifact elements to describe and reference FHIR resources, the type element
    * SHALL be drawn from the fhir-related-artifact-type ValueSet.
+   * @see {@link RelatedArtifactType}
    */
   type: RelatedArtifactType;
   _type?: Element | undefined;
@@ -42920,6 +48973,7 @@ export interface RelatedPerson extends DomainResource {
    * Administrative Gender - the gender that the person is considered to have for
    * administration and record keeping purposes.
    * @see {@link http://hl7.org/fhir/R5/RelatedPerson-definitions.html#RelatedPerson.gender}
+   * @see {@link AdministrativeGender}
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -43127,6 +49181,7 @@ When resources map to this element,
  * these.  E.g. "original order", "encoded order", "reflex order" would all map to
  * "order".  Expectation is that the set of codes is mutually exclusive or a strict
  * all-encompassing hierarchy.
+ * @see {@link RequestIntent}
  */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -43185,6 +49240,7 @@ When resources map to this element,
   /**
    * Indicates how quickly the {{title}} should be addressed with respect to other
    * requests.
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -43272,6 +49328,7 @@ See additional guidance
 A status of completed for a "doNotPerform"
  * request indicates that the period of non-performance is now satisfied and the
  * request no longer holds.
+ * @see {@link RequestStatus}
  */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -43415,6 +49472,7 @@ export interface RequestOrchestration extends DomainResource {
    * Indicates the level of authority/intentionality associated with the request and
    * where the request fits into the workflow chain.
    * @see {@link http://hl7.org/fhir/R5/RequestOrchestration-definitions.html#RequestOrchestration.intent}
+   * @see {@link RequestIntent}
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -43430,6 +49488,7 @@ export interface RequestOrchestration extends DomainResource {
    * Indicates how quickly the request should be addressed with respect to other
    * requests.
    * @see {@link http://hl7.org/fhir/R5/RequestOrchestration-definitions.html#RequestOrchestration.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -43455,6 +49514,7 @@ export interface RequestOrchestration extends DomainResource {
    * The current state of the request. For request orchestrations, the status
    * reflects the status of all the requests in the orchestration.
    * @see {@link http://hl7.org/fhir/R5/RequestOrchestration-definitions.html#RequestOrchestration.status}
+   * @see {@link RequestStatus}
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -43654,6 +49714,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/Requirements-definitions.html#Requirements.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -43982,6 +50043,7 @@ export interface ResearchStudy extends DomainResource {
   /**
    * The publication state of the resource (not of the study).
    * @see {@link http://hl7.org/fhir/R5/ResearchStudy-definitions.html#ResearchStudy.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -44095,6 +50157,7 @@ It is likely that more than one "state" pattern will be recorded for a
   /**
    * The publication state of the resource (not of the subject).
    * @see {@link http://hl7.org/fhir/R5/ResearchSubject-definitions.html#ResearchSubject.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -44165,6 +50228,7 @@ export interface Resource extends Base {
    * the html (see rules in HTML5 for information about the relationship between
    * xml:lang and the html lang attribute).
    * @see {@link http://hl7.org/fhir/R5/Resource-definitions.html#Resource.language}
+   * @see {@link AllLanguages}
    */
   language?: AllLanguages | undefined;
   _language?: Element | undefined;
@@ -44304,6 +50368,7 @@ export interface RiskAssessment extends DomainResource {
   /**
    * The status of the RiskAssessment, using the same statuses as an Observation.
    * @see {@link http://hl7.org/fhir/R5/RiskAssessment-definitions.html#RiskAssessment.status}
+   * @see {@link ObservationStatus}
    */
   status: ObservationStatus;
   _status?: Element | undefined;
@@ -44371,6 +50436,7 @@ export interface SampledData extends DataType {
 
   /**
    * The measurement unit in which the sample interval is expressed.
+   * @see {@link UCUMCodes}
    */
   intervalUnit: UCUMCodes;
   _intervalUnit?: Element | undefined;
@@ -44520,6 +50586,7 @@ export interface SearchParameter extends DomainResource {
    * the listed resource types, or in a cross-type search (see [Cross Resource
    * Search](http.html#xres-search)).
    * @see {@link http://hl7.org/fhir/R5/SearchParameter-definitions.html#SearchParameter.base}
+   * @see {@link VersionIndependentResourceTypesAll}
    */
   base: Array<VersionIndependentResourceTypesAll>;
   _base?: Element[] | undefined;
@@ -44570,6 +50637,7 @@ export interface SearchParameter extends DomainResource {
    * If no comparators are listed, clients should not expect servers to support any
    * comparators.
    * @see {@link http://hl7.org/fhir/R5/SearchParameter-definitions.html#SearchParameter.comparator}
+   * @see {@link SearchComparator}
    */
   comparator?: Array<SearchComparator> | undefined;
   _comparator?: Element[] | undefined;
@@ -44723,6 +50791,7 @@ DEPRECATION NOTE:
   /**
    * A modifier supported for the search parameter.
    * @see {@link http://hl7.org/fhir/R5/SearchParameter-definitions.html#SearchParameter.modifier}
+   * @see {@link SearchModifierCode}
    */
   modifier?: Array<SearchModifierCode> | undefined;
   _modifier?: Element[] | undefined;
@@ -44758,6 +50827,7 @@ DEPRECATION NOTE:
    * How the search parameter relates to the set of elements returned by evaluating
    * the expression query.
    * @see {@link http://hl7.org/fhir/R5/SearchParameter-definitions.html#SearchParameter.processingMode}
+   * @see {@link SearchProcessingModeType}
    */
   processingMode?: SearchProcessingModeType | undefined;
   _processingMode?: Element | undefined;
@@ -44798,6 +50868,7 @@ DEPRECATION NOTE:
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/SearchParameter-definitions.html#SearchParameter.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -44814,6 +50885,7 @@ However, the list of
  * targets SHOULD cover all targets that might appear that are permitted by the
  * specified FHIRPath.
  * @see {@link http://hl7.org/fhir/R5/SearchParameter-definitions.html#SearchParameter.target}
+ * @see {@link VersionIndependentResourceTypesAll}
  */
   target?: Array<VersionIndependentResourceTypesAll> | undefined;
   _target?: Element[] | undefined;
@@ -44831,6 +50903,7 @@ However, the list of
    * The type of value that a search parameter may contain, and how the content is
    * interpreted.
    * @see {@link http://hl7.org/fhir/R5/SearchParameter-definitions.html#SearchParameter.type}
+   * @see {@link SearchParamType}
    */
   type: SearchParamType;
   _type?: Element | undefined;
@@ -45080,6 +51153,7 @@ export interface ServiceRequest extends DomainResource {
    * This element is labeled as a modifier because the intent alters when and how the
    * resource is actually applicable.
    * @see {@link http://hl7.org/fhir/R5/ServiceRequest-definitions.html#ServiceRequest.intent}
+   * @see {@link RequestIntent}
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -45169,6 +51243,7 @@ export interface ServiceRequest extends DomainResource {
    * Indicates how quickly the ServiceRequest should be addressed with respect to
    * other requests.
    * @see {@link http://hl7.org/fhir/R5/ServiceRequest-definitions.html#ServiceRequest.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -45285,6 +51360,7 @@ All Provenances should have some historical version of this
    * are reflected on either the corresponding event (see [Event Pattern](event.html)
    * for general discussion) or using the [Task](task.html) resource.
    * @see {@link http://hl7.org/fhir/R5/ServiceRequest-definitions.html#ServiceRequest.status}
+   * @see {@link RequestStatus}
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -45352,6 +51428,7 @@ export interface Shareable extends Base {
    * Knowledge representation level provides consumers with a general overview of the
    * level(s) of knowledge representation afforded by a knowledge artifact,
    * narrative, semi-structured, structured, and executable.
+   * @see {@link KnowledgeRepresentationLevel}
    */
   knowledgeRepresentationLevel?:
     | Array<KnowledgeRepresentationLevel>
@@ -45384,6 +51461,7 @@ export interface Shareable extends Base {
 
   /**
    * The status of this {{title}}. Enables tracking the life-cycle of the content.
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -45493,6 +51571,7 @@ export interface Signature extends DataType {
    * A mime type that indicates the technical format of the signature. Important mime
    * types are application/signature+xml for X ML DigSig, application/jose for JWS,
    * and image/* for a graphical image of a signature, etc.
+   * @see {@link MimeTypes}
    */
   sigFormat?: MimeTypes | undefined;
   _sigFormat?: Element | undefined;
@@ -45503,6 +51582,7 @@ export interface Signature extends DataType {
    * "xml", "json" and "ttl" are allowed, which describe the simple encodings
    * described in the specification (and imply appropriate bundle support).
    * Otherwise, mime types are legal here.
+   * @see {@link MimeTypes}
    */
   targetFormat?: MimeTypes | undefined;
   _targetFormat?: Element | undefined;
@@ -45626,6 +51706,7 @@ export interface Slot extends DomainResource {
   /**
    * busy | free | busy-unavailable | busy-tentative | entered-in-error.
    * @see {@link http://hl7.org/fhir/R5/Slot-definitions.html#Slot.status}
+   * @see {@link SlotStatus}
    */
   status: SlotStatus;
   _status?: Element | undefined;
@@ -45660,6 +51741,7 @@ export interface Specimen extends DomainResource {
   /**
    * This element signifies if the specimen is part of a group or pooled.
    * @see {@link http://hl7.org/fhir/R5/Specimen-definitions.html#Specimen.combined}
+   * @see {@link SpecimenCombined}
    */
   combined?: SpecimenCombined | undefined;
   _combined?: Element | undefined;
@@ -45756,6 +51838,7 @@ export interface Specimen extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/Specimen-definitions.html#Specimen.status}
+   * @see {@link SpecimenStatus}
    */
   status?: SpecimenStatus | undefined;
   _status?: Element | undefined;
@@ -45989,6 +52072,7 @@ See guidance around
  * (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/SpecimenDefinition-definitions.html#SpecimenDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -46228,6 +52312,7 @@ See guidance around (not) making local changes to elements
    * constraint, then it cannot define new elements, it can only make new rules about
    * existing content (see [Profiling Resources](profiling.html#resources)).
    * @see {@link http://hl7.org/fhir/R5/StructureDefinition-definitions.html#StructureDefinition.derivation}
+   * @see {@link TypeDerivationRule}
    */
   derivation?: TypeDerivationRule | undefined;
   _derivation?: Element | undefined;
@@ -46275,6 +52360,7 @@ See guidance around (not) making local changes to elements
    * tooling can determine whether a StructureDefinition is consistent with a
    * particular StructureDefinition if desired.
    * @see {@link http://hl7.org/fhir/R5/StructureDefinition-definitions.html#StructureDefinition.fhirVersion}
+   * @see {@link FHIRVersion}
    */
   fhirVersion?: FHIRVersion | undefined;
   _fhirVersion?: Element | undefined;
@@ -46322,6 +52408,7 @@ DEPRECATION
   /**
    * Defines the kind of structure that this definition is describing.
    * @see {@link http://hl7.org/fhir/R5/StructureDefinition-definitions.html#StructureDefinition.kind}
+   * @see {@link StructureDefinitionKind}
    */
   kind: StructureDefinitionKind;
   _kind?: Element | undefined;
@@ -46395,6 +52482,7 @@ DEPRECATION
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/StructureDefinition-definitions.html#StructureDefinition.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -46705,6 +52793,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/StructureMap-definitions.html#StructureMap.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -46841,6 +52930,7 @@ export interface Subscription extends DomainResource {
    * Sending the payload has obvious security implications. The server is responsible
    * for ensuring that the content is appropriately secured.
    * @see {@link http://hl7.org/fhir/R5/Subscription-definitions.html#Subscription.content}
+   * @see {@link SubscriptionPayloadContent}
    */
   content?: SubscriptionPayloadContent | undefined;
   _content?: Element | undefined;
@@ -46857,6 +52947,7 @@ export interface Subscription extends DomainResource {
 * additional MIME types can be allowed by channels - e.g.,
  * `text/plain` and `text/html` are defined by the Email channel.
  * @see {@link http://hl7.org/fhir/R5/Subscription-definitions.html#Subscription.contentType}
+ * @see {@link MimeTypes}
  */
   contentType?: MimeTypes | undefined;
   _contentType?: Element | undefined;
@@ -46965,6 +53056,7 @@ This
  * element is labeled as a modifier because the status contains codes that mark the
  * resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R5/Subscription-definitions.html#Subscription.status}
+ * @see {@link SubscriptionStatusCodes}
  */
   status: SubscriptionStatusCodes;
   _status?: Element | undefined;
@@ -47025,6 +53117,7 @@ export interface SubscriptionStatus extends DomainResource {
    * The status of the subscription, which marks the server state for managing the
    * subscription.
    * @see {@link http://hl7.org/fhir/R5/SubscriptionStatus-definitions.html#SubscriptionStatus.status}
+   * @see {@link SubscriptionStatusCodes}
    */
   status?: SubscriptionStatusCodes | undefined;
   _status?: Element | undefined;
@@ -47050,6 +53143,7 @@ export interface SubscriptionStatus extends DomainResource {
   /**
    * The type of event being conveyed with this notification.
    * @see {@link http://hl7.org/fhir/R5/SubscriptionStatus-definitions.html#SubscriptionStatus.type}
+   * @see {@link SubscriptionNotificationType}
    */
   type: SubscriptionNotificationType;
   _type?: Element | undefined;
@@ -47281,6 +53375,7 @@ See guidance around
  * (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/SubscriptionTopic-definitions.html#SubscriptionTopic.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -47466,6 +53561,7 @@ export interface Substance extends DomainResource {
   /**
    * A code to indicate if the substance is actively used.
    * @see {@link http://hl7.org/fhir/R5/Substance-definitions.html#Substance.status}
+   * @see {@link FHIRSubstanceStatus}
    */
   status?: FHIRSubstanceStatus | undefined;
   _status?: Element | undefined;
@@ -48102,6 +54198,7 @@ export interface SupplyDelivery extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/SupplyDelivery-definitions.html#SupplyDelivery.status}
+   * @see {@link SupplyDeliveryStatus}
    */
   status?: SupplyDeliveryStatus | undefined;
   _status?: Element | undefined;
@@ -48124,6 +54221,7 @@ export interface SupplyDelivery extends DomainResource {
    * Indicates the type of supply being provided.  Examples include: Medication,
    * Device, Biologically Derived Product.
    * @see {@link http://hl7.org/fhir/R5/SupplyDelivery-definitions.html#SupplyDelivery.type}
+   * @see {@link SupplyDeliverySupplyItemType}
    */
   type?: SupplyDeliverySupplyItemType | undefined;
   _type?: Element | undefined;
@@ -48240,6 +54338,7 @@ export interface SupplyRequest extends DomainResource {
    * Indicates how quickly this SupplyRequest should be addressed with respect to
    * other requests.
    * @see {@link http://hl7.org/fhir/R5/SupplyRequest-definitions.html#SupplyRequest.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -48268,6 +54367,7 @@ export interface SupplyRequest extends DomainResource {
   /**
    * Status of the supply request.
    * @see {@link http://hl7.org/fhir/R5/SupplyRequest-definitions.html#SupplyRequest.status}
+   * @see {@link SupplyRequestStatus}
    */
   status?: SupplyRequestStatus | undefined;
   _status?: Element | undefined;
@@ -48466,6 +54566,7 @@ doNotPerform should ONLY be used with Tasks that
 
 In most cases, Tasks will have an intent of "order".
  * @see {@link http://hl7.org/fhir/R5/Task-definitions.html#Task.intent}
+ * @see {@link TaskIntent}
  */
   intent: TaskIntent;
   _intent?: Element | undefined;
@@ -48529,6 +54630,7 @@ In most cases, Tasks will have an intent of "order".
    * Indicates how quickly the Task should be addressed with respect to other
    * requests.
    * @see {@link http://hl7.org/fhir/R5/Task-definitions.html#Task.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -48601,6 +54703,7 @@ In most cases, Tasks will have an intent of "order".
   /**
    * The current status of the task.
    * @see {@link http://hl7.org/fhir/R5/Task-definitions.html#Task.status}
+   * @see {@link TaskStatus}
    */
   status: TaskStatus;
   _status?: Element | undefined;
@@ -48639,6 +54742,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * if it is supported.
    * See notes on the [ValueSet](valueset.html#) resource.
    * @see {@link http://hl7.org/fhir/R5/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSearch}
+   * @see {@link CodeSearchSupport}
    */
   codeSearch?: CodeSearchSupport | undefined;
   _codeSearch?: Element | undefined;
@@ -48787,6 +54891,7 @@ DEPRECATION
    * running instance of software, a particular product (kind, not instance of
    * software) or a class of implementation (e.g. a desired purchase).
    * @see {@link http://hl7.org/fhir/R5/TerminologyCapabilities-definitions.html#TerminologyCapabilities.kind}
+   * @see {@link CapabilityStatementKind}
    */
   kind: CapabilityStatementKind;
   _kind?: Element | undefined;
@@ -48856,6 +54961,7 @@ DEPRECATION
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/TerminologyCapabilities-definitions.html#TerminologyCapabilities.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -49159,6 +55265,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/TestPlan-definitions.html#TestPlan.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -49315,6 +55422,7 @@ export interface TestReport extends DomainResource {
    * pending result represents a test script execution that has not yet started or is
    * currently in progress.
    * @see {@link http://hl7.org/fhir/R5/TestReport-definitions.html#TestReport.result}
+   * @see {@link TestReportResult}
    */
   result: TestReportResult;
   _result?: Element | undefined;
@@ -49343,6 +55451,7 @@ export interface TestReport extends DomainResource {
 This element is labeled as a modifier because the status
  * contains codes that mark the resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R5/TestReport-definitions.html#TestReport.status}
+ * @see {@link TestReportStatus}
  */
   status: TestReportStatus;
   _status?: Element | undefined;
@@ -49606,6 +55715,7 @@ See
  * guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/TestScript-definitions.html#TestScript.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -49931,6 +56041,7 @@ export interface Transport extends DomainResource {
 In most cases, Transports will have an intent of
  * "order".
  * @see {@link http://hl7.org/fhir/R5/Transport-definitions.html#Transport.intent}
+ * @see {@link TransportIntent}
  */
   intent: TransportIntent;
   _intent?: Element | undefined;
@@ -49994,6 +56105,7 @@ In most cases, Transports will have an intent of
    * Indicates how quickly the Transport should be addressed with respect to other
    * requests.
    * @see {@link http://hl7.org/fhir/R5/Transport-definitions.html#Transport.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -50048,6 +56160,7 @@ In most cases, Transports will have an intent of
   /**
    * A code specifying the state of the transport event.
    * @see {@link http://hl7.org/fhir/R5/Transport-definitions.html#Transport.status}
+   * @see {@link TransportStatus}
    */
   status?: TransportStatus | undefined;
   _status?: Element | undefined;
@@ -50151,6 +56264,7 @@ export interface TriggerDefinition extends DataType {
 
   /**
    * The type of triggering event.
+   * @see {@link TriggerType}
    */
   type: TriggerType;
   _type?: Element | undefined;
@@ -50511,6 +56625,7 @@ See guidance around
 See guidance around (not) making local changes to elements
  * [here](canonicalresource.html#localization).
  * @see {@link http://hl7.org/fhir/R5/ValueSet-definitions.html#ValueSet.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -50681,6 +56796,7 @@ export interface VerificationResult extends DomainResource {
    * The validation status of the target (attested; validated; in process; requires
    * revalidation; validation failed; revalidation failed).
    * @see {@link http://hl7.org/fhir/R5/VerificationResult-definitions.html#VerificationResult.status}
+   * @see {@link VerificationResultStatus}
    */
   status: VerificationResultStatus;
   _status?: Element | undefined;
@@ -50885,6 +57001,7 @@ export interface VisionPrescription extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R5/VisionPrescription-definitions.html#VisionPrescription.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;

@@ -8,6 +8,11 @@
  * AccountStatus
  *
  * Indicates whether the account is available to be used.
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in error
+ * - on-hold: On Hold
+ * - unknown: Unknown
  */
 export type AccountStatus =
   | "active"
@@ -21,6 +26,8 @@ export type AccountStatus =
  *
  * Defines behavior for an action or a group for how many times that item may be
  * repeated.
+ * - single: Single
+ * - multiple: Multiple
  */
 export type ActionCardinalityBehavior = "single" | "multiple";
 
@@ -28,6 +35,9 @@ export type ActionCardinalityBehavior = "single" | "multiple";
  * ActionConditionKind
  *
  * Defines the kinds of conditions that can appear on actions.
+ * - applicability: Applicability
+ * - start: Start
+ * - stop: Stop
  */
 export type ActionConditionKind = "applicability" | "start" | "stop";
 
@@ -35,6 +45,9 @@ export type ActionConditionKind = "applicability" | "start" | "stop";
  * ActionGroupingBehavior
  *
  * Defines organization behavior of a group.
+ * - visual-group: Visual Group
+ * - logical-group: Logical Group
+ * - sentence-group: Sentence Group
  */
 export type ActionGroupingBehavior =
   | "visual-group"
@@ -45,6 +58,10 @@ export type ActionGroupingBehavior =
  * ActionParticipantType
  *
  * The type of participant for the action.
+ * - patient: Patient
+ * - practitioner: Practitioner
+ * - related-person: Related Person
+ * - device: Device
  */
 export type ActionParticipantType =
   | "patient"
@@ -56,6 +73,8 @@ export type ActionParticipantType =
  * ActionPrecheckBehavior
  *
  * Defines selection frequency behavior for an action or group.
+ * - yes: Yes
+ * - no: No
  */
 export type ActionPrecheckBehavior = "yes" | "no";
 
@@ -63,6 +82,15 @@ export type ActionPrecheckBehavior = "yes" | "no";
  * ActionRelationshipType
  *
  * Defines the types of relationships between actions.
+ * - before-start: Before Start
+ * - before: Before
+ * - before-end: Before End
+ * - concurrent-with-start: Concurrent With Start
+ * - concurrent: Concurrent
+ * - concurrent-with-end: Concurrent With End
+ * - after-start: After Start
+ * - after: After
+ * - after-end: After End
  */
 export type ActionRelationshipType =
   | "before-start"
@@ -79,6 +107,9 @@ export type ActionRelationshipType =
  * ActionRequiredBehavior
  *
  * Defines expectations around whether an action or action group is required.
+ * - must: Must
+ * - could: Could
+ * - must-unless-documented: Must Unless Documented
  */
 export type ActionRequiredBehavior =
   | "must"
@@ -89,6 +120,12 @@ export type ActionRequiredBehavior =
  * ActionSelectionBehavior
  *
  * Defines selection behavior of a group.
+ * - any: Any
+ * - all: All
+ * - all-or-none: All Or None
+ * - exactly-one: Exactly One
+ * - at-most-one: At Most One
+ * - one-or-more: One Or More
  */
 export type ActionSelectionBehavior =
   | "any"
@@ -102,6 +139,9 @@ export type ActionSelectionBehavior =
  * AddressType
  *
  * The type of an address (physical / postal).
+ * - postal: Postal
+ * - physical: Physical
+ * - both: Postal & Physical
  */
 export type AddressType = "postal" | "physical" | "both";
 
@@ -109,6 +149,11 @@ export type AddressType = "postal" | "physical" | "both";
  * AddressUse
  *
  * The use of an address.
+ * - home: Home
+ * - work: Work
+ * - temp: Temporary
+ * - old: Old / Incorrect
+ * - billing: Billing
  */
 export type AddressUse = "home" | "work" | "temp" | "old" | "billing";
 
@@ -116,6 +161,10 @@ export type AddressUse = "home" | "work" | "temp" | "old" | "billing";
  * AdministrativeGender
  *
  * The gender of a person used for administrative purposes.
+ * - male: Male
+ * - female: Female
+ * - other: Other
+ * - unknown: Unknown
  */
 export type AdministrativeGender = "male" | "female" | "other" | "unknown";
 
@@ -123,6 +172,8 @@ export type AdministrativeGender = "male" | "female" | "other" | "unknown";
  * AdverseEventActuality
  *
  * Overall nature of the adverse event, e.g. real or potential.
+ * - actual: Adverse Event
+ * - potential: Potential Adverse Event
  */
 export type AdverseEventActuality = "actual" | "potential";
 
@@ -130,6 +181,12 @@ export type AdverseEventActuality = "actual" | "potential";
  * AdverseEventOutcome
  *
  * TODO (and should this be required?).
+ * - resolved: Resolved
+ * - recovering: Recovering
+ * - ongoing: Ongoing
+ * - resolvedWithSequelae: Resolved with Sequelae
+ * - fatal: Fatal
+ * - unknown: Unknown
  */
 export type AdverseEventOutcome =
   | "resolved"
@@ -143,6 +200,9 @@ export type AdverseEventOutcome =
  * AdverseEventSeverity
  *
  * The severity of the adverse event itself, in direct relation to the subject.
+ * - mild: Mild
+ * - moderate: Moderate
+ * - severe: Severe
  */
 export type AdverseEventSeverity = "mild" | "moderate" | "severe";
 
@@ -150,6 +210,9 @@ export type AdverseEventSeverity = "mild" | "moderate" | "severe";
  * AggregationMode
  *
  * How resource references can be aggregated.
+ * - contained: Contained
+ * - referenced: Referenced
+ * - bundled: Bundled
  */
 export type AggregationMode = "contained" | "referenced" | "bundled";
 
@@ -157,6 +220,10 @@ export type AggregationMode = "contained" | "referenced" | "bundled";
  * AllergyIntoleranceCategory
  *
  * Category of an identified substance associated with allergies or intolerances.
+ * - food: Food
+ * - medication: Medication
+ * - environment: Environment
+ * - biologic: Biologic
  */
 export type AllergyIntoleranceCategory =
   | "food"
@@ -168,6 +235,9 @@ export type AllergyIntoleranceCategory =
  * AllergyIntolerance Clinical Status Codes
  *
  * Preferred value set for AllergyIntolerance Clinical Status.
+ * - active: Active
+ * - inactive: Inactive
+ * - resolved: Resolved
  */
 export type AllergyIntoleranceClinicalStatusCodes =
   | "active"
@@ -179,6 +249,9 @@ export type AllergyIntoleranceClinicalStatusCodes =
  *
  * Estimate of the potential clinical harm, or seriousness, of a reaction to an
  * identified substance.
+ * - low: Low Risk
+ * - high: High Risk
+ * - unable-to-assess: Unable to Assess Risk
  */
 export type AllergyIntoleranceCriticality = "low" | "high" | "unable-to-assess";
 
@@ -187,6 +260,9 @@ export type AllergyIntoleranceCriticality = "low" | "high" | "unable-to-assess";
  *
  * Clinical assessment of the severity of a reaction event as a whole, potentially
  * considering multiple different manifestations.
+ * - mild: Mild
+ * - moderate: Moderate
+ * - severe: Severe
  */
 export type AllergyIntoleranceSeverity = "mild" | "moderate" | "severe";
 
@@ -194,6 +270,8 @@ export type AllergyIntoleranceSeverity = "mild" | "moderate" | "severe";
  * AllergyIntoleranceType
  *
  * Identification of the underlying physiological mechanism for a Reaction Risk.
+ * - allergy: Allergy
+ * - intolerance: Intolerance
  */
 export type AllergyIntoleranceType = "allergy" | "intolerance";
 
@@ -201,6 +279,10 @@ export type AllergyIntoleranceType = "allergy" | "intolerance";
  * AllergyIntolerance Verification Status Codes
  *
  * Preferred value set for AllergyIntolerance Verification Status.
+ * - unconfirmed: Unconfirmed
+ * - confirmed: Confirmed
+ * - refuted: Refuted
+ * - entered-in-error: Entered in Error
  */
 export type AllergyIntoleranceVerificationStatusCodes =
   | "unconfirmed"
@@ -212,6 +294,16 @@ export type AllergyIntoleranceVerificationStatusCodes =
  * AppointmentStatus
  *
  * The free/busy status of an appointment.
+ * - proposed: Proposed
+ * - pending: Pending
+ * - booked: Booked
+ * - arrived: Arrived
+ * - fulfilled: Fulfilled
+ * - cancelled: Cancelled
+ * - noshow: No Show
+ * - entered-in-error: Entered in error
+ * - checked-in: Checked In
+ * - waitlist: Waitlisted
  */
 export type AppointmentStatus =
   | "proposed"
@@ -229,6 +321,8 @@ export type AppointmentStatus =
  * AssertionDirectionType
  *
  * The type of direction to use for assertion.
+ * - response: response
+ * - request: request
  */
 export type AssertionDirectionType = "response" | "request";
 
@@ -236,6 +330,17 @@ export type AssertionDirectionType = "response" | "request";
  * AssertionOperatorType
  *
  * The type of operator to use for assertion.
+ * - equals: equals
+ * - notEquals: notEquals
+ * - in: in
+ * - notIn: notIn
+ * - greaterThan: greaterThan
+ * - lessThan: lessThan
+ * - empty: empty
+ * - notEmpty: notEmpty
+ * - contains: contains
+ * - notContains: notContains
+ * - eval: evaluate
  */
 export type AssertionOperatorType =
   | "equals"
@@ -254,6 +359,18 @@ export type AssertionOperatorType =
  * AssertionResponseTypes
  *
  * The type of response code to use for assertion.
+ * - okay: okay
+ * - created: created
+ * - noContent: noContent
+ * - notModified: notModified
+ * - bad: bad
+ * - forbidden: forbidden
+ * - notFound: notFound
+ * - methodNotAllowed: methodNotAllowed
+ * - conflict: conflict
+ * - gone: gone
+ * - preconditionFailed: preconditionFailed
+ * - unprocessable: unprocessable
  */
 export type AssertionResponseTypes =
   | "okay"
@@ -274,6 +391,11 @@ export type AssertionResponseTypes =
  *
  * Indicator for type of action performed during the event that generated the
  * event.
+ * - C: Create
+ * - R: Read/View/Print
+ * - U: Update
+ * - D: Delete
+ * - E: Execute
  */
 export type AuditEventAction = "C" | "R" | "U" | "D" | "E";
 
@@ -281,6 +403,11 @@ export type AuditEventAction = "C" | "R" | "U" | "D" | "E";
  * AuditEventAgentNetworkType
  *
  * The type of network access point of this agent in the audit event.
+ * - 1: Machine Name
+ * - 2: IP Address
+ * - 3: Telephone Number
+ * - 4: Email address
+ * - 5: URI
  */
 export type AuditEventAgentNetworkType = "1" | "2" | "3" | "4" | "5";
 
@@ -288,6 +415,10 @@ export type AuditEventAgentNetworkType = "1" | "2" | "3" | "4" | "5";
  * AuditEventOutcome
  *
  * Indicates whether the event succeeded or failed.
+ * - 0: Success
+ * - 4: Minor failure
+ * - 8: Serious failure
+ * - 12: Major failure
  */
 export type AuditEventOutcome = "0" | "4" | "8" | "12";
 
@@ -295,6 +426,9 @@ export type AuditEventOutcome = "0" | "4" | "8" | "12";
  *
  *
  * Whether the cost applies to in-network or out-of-network providers.
+ * - in-network: In Network
+ * - out-of-network: Out of Network
+ * - other: Other
  */
 export type BenefitCostApplicability =
   | "in-network"
@@ -305,6 +439,10 @@ export type BenefitCostApplicability =
  * BindingStrength
  *
  * Indication of the degree of conformance expectations associated with a binding.
+ * - required: Required
+ * - extensible: Extensible
+ * - preferred: Preferred
+ * - example: Example
  */
 export type BindingStrength =
   | "required"
@@ -316,6 +454,11 @@ export type BindingStrength =
  * BiologicallyDerivedProductCategory
  *
  * Biologically Derived Product Category.
+ * - organ: Organ
+ * - tissue: Tissue
+ * - fluid: Fluid
+ * - cells: Cells
+ * - biologicalAgent: BiologicalAgent
  */
 export type BiologicallyDerivedProductCategory =
   | "organ"
@@ -328,6 +471,8 @@ export type BiologicallyDerivedProductCategory =
  * BiologicallyDerivedProductStatus
  *
  * Biologically Derived Product Status.
+ * - available: Available
+ * - unavailable: Unavailable
  */
 export type BiologicallyDerivedProductStatus = "available" | "unavailable";
 
@@ -335,6 +480,9 @@ export type BiologicallyDerivedProductStatus = "available" | "unavailable";
  * BiologicallyDerivedProductStorageScale
  *
  * BiologicallyDerived Product Storage Scale.
+ * - farenheit: Fahrenheit
+ * - celsius: Celsius
+ * - kelvin: Kelvin
  */
 export type BiologicallyDerivedProductStorageScale =
   | "farenheit"
@@ -367,6 +515,15 @@ export type BodyWeightUnits = string;
  * BundleType
  *
  * Indicates the purpose of a bundle - how it is intended to be used.
+ * - document: Document
+ * - message: Message
+ * - transaction: Transaction
+ * - transaction-response: Transaction Response
+ * - batch: Batch
+ * - batch-response: Batch Response
+ * - history: History List
+ * - searchset: Search Results
+ * - collection: Collection
  */
 export type BundleType =
   | "document"
@@ -391,6 +548,9 @@ export type CanonicalStatusCodesForFHIRResources = string;
  * CapabilityStatementKind
  *
  * How a capability statement is intended to be used.
+ * - instance: Instance
+ * - capability: Capability
+ * - requirements: Requirements
  */
 export type CapabilityStatementKind =
   | "instance"
@@ -402,6 +562,14 @@ export type CapabilityStatementKind =
  *
  * Resource types defined as part of FHIR that can be represented as in-line
  * definitions of a care plan activity.
+ * - Appointment: Appointment
+ * - CommunicationRequest: CommunicationRequest
+ * - DeviceRequest: DeviceRequest
+ * - MedicationRequest: MedicationRequest
+ * - NutritionOrder: NutritionOrder
+ * - Task: Task
+ * - ServiceRequest: ServiceRequest
+ * - VisionPrescription: VisionPrescription
  */
 export type CarePlanActivityKind =
   | "Appointment"
@@ -418,6 +586,15 @@ export type CarePlanActivityKind =
  *
  * Codes that reflect the current state of a care plan activity within its overall
  * life cycle.
+ * - not-started: Not Started
+ * - scheduled: Scheduled
+ * - in-progress: In Progress
+ * - on-hold: On Hold
+ * - completed: Completed
+ * - cancelled: Cancelled
+ * - stopped: Stopped
+ * - unknown: Unknown
+ * - entered-in-error: Entered in Error
  */
 export type CarePlanActivityStatus =
   | "not-started"
@@ -435,6 +612,10 @@ export type CarePlanActivityStatus =
  *
  * Codes indicating the degree of authority/intentionality associated with a care
  * plan.
+ * - proposal: Proposal
+ * - plan: Plan
+ * - order: Order
+ * - option: Option
  */
 export type CarePlanIntent = "proposal" | "plan" | "order" | "option";
 
@@ -442,6 +623,11 @@ export type CarePlanIntent = "proposal" | "plan" | "order" | "option";
  * CareTeamStatus
  *
  * Indicates the status of the care team.
+ * - proposed: Proposed
+ * - active: Active
+ * - suspended: Suspended
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type CareTeamStatus =
   | "proposed"
@@ -454,6 +640,8 @@ export type CareTeamStatus =
  * CatalogEntryRelationType
  *
  * The type of relations between entries.
+ * - triggers: Triggers
+ * - is-replaced-by: Replaced By
  */
 export type CatalogEntryRelationType = "triggers" | "is-replaced-by";
 
@@ -461,6 +649,8 @@ export type CatalogEntryRelationType = "triggers" | "is-replaced-by";
  * CharacteristicCombination
  *
  * Logical grouping of characteristics.
+ * - intersection: intersection
+ * - union: union
  */
 export type CharacteristicCombination = "intersection" | "union";
 
@@ -468,6 +658,13 @@ export type CharacteristicCombination = "intersection" | "union";
  * ChargeItemStatus
  *
  * Codes identifying the lifecycle stage of a ChargeItem.
+ * - planned: Planned
+ * - billable: Billable
+ * - not-billable: Not billable
+ * - aborted: Aborted
+ * - billed: Billed
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type ChargeItemStatus =
   | "planned"
@@ -483,6 +680,9 @@ export type ChargeItemStatus =
  *
  * Codes that reflect the current state of a clinical impression within its overall
  * lifecycle.
+ * - in-progress: In Progress
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
  */
 export type ClinicalImpressionStatus =
   | "in-progress"
@@ -493,6 +693,11 @@ export type ClinicalImpressionStatus =
  * ClinicalUseDefinitionType
  *
  * Overall defining type of this clinical use definition.
+ * - indication: Indication
+ * - contraindication: Contraindication
+ * - interaction: Interaction
+ * - undesirable-effect: Undesirable Effect
+ * - warning: Warning
  */
 export type ClinicalUseDefinitionType =
   | "indication"
@@ -506,6 +711,8 @@ export type ClinicalUseDefinitionType =
  *
  * The degree to which the server supports the code search parameter on ValueSet,
  * if it is supported.
+ * - explicit: Explicit Codes
+ * - all: Implicit Codes
  */
 export type CodeSearchSupport = "explicit" | "all";
 
@@ -514,6 +721,11 @@ export type CodeSearchSupport = "explicit" | "all";
  *
  * The extent of the content of the code system (the concepts and codes it defines)
  * are represented in a code system resource.
+ * - not-present: Not Present
+ * - example: Example
+ * - fragment: Fragment
+ * - complete: Complete
+ * - supplement: Supplement
  */
 export type CodeSystemContentMode =
   | "not-present"
@@ -526,6 +738,10 @@ export type CodeSystemContentMode =
  * CodeSystemHierarchyMeaning
  *
  * The meaning of the hierarchy of concepts in a code system.
+ * - grouped-by: Grouped By
+ * - is-a: Is-A
+ * - part-of: Part Of
+ * - classified-with: Classified With
  */
 export type CodeSystemHierarchyMeaning =
   | "grouped-by"
@@ -537,6 +753,11 @@ export type CodeSystemHierarchyMeaning =
  * CompartmentType
  *
  * Which type a compartment definition describes.
+ * - Patient: Patient
+ * - Encounter: Encounter
+ * - RelatedPerson: RelatedPerson
+ * - Practitioner: Practitioner
+ * - Device: Device
  */
 export type CompartmentType =
   | "Patient"
@@ -549,6 +770,10 @@ export type CompartmentType =
  * CompositionAttestationMode
  *
  * The way in which a person authenticated a composition.
+ * - personal: Personal
+ * - professional: Professional
+ * - legal: Legal
+ * - official: Official
  */
 export type CompositionAttestationMode =
   | "personal"
@@ -560,6 +785,10 @@ export type CompositionAttestationMode =
  * CompositionStatus
  *
  * The workflow/clinical status of the composition.
+ * - preliminary: Preliminary
+ * - final: Final
+ * - amended: Amended
+ * - entered-in-error: Entered in Error
  */
 export type CompositionStatus =
   | "preliminary"
@@ -571,6 +800,16 @@ export type CompositionStatus =
  * ConceptMapEquivalence
  *
  * The degree of equivalence between concepts.
+ * - relatedto: Related To
+ * - equivalent: Equivalent
+ * - equal: Equal
+ * - wider: Wider
+ * - subsumes: Subsumes
+ * - narrower: Narrower
+ * - specializes: Specializes
+ * - inexact: Inexact
+ * - unmatched: Unmatched
+ * - disjoint: Disjoint
  */
 export type ConceptMapEquivalence =
   | "relatedto"
@@ -588,6 +827,9 @@ export type ConceptMapEquivalence =
  * ConceptMapGroupUnmappedMode
  *
  * Defines which action to take if there is no match in the group.
+ * - provided: Provided Code
+ * - fixed: Fixed Code
+ * - other-map: Other Map
  */
 export type ConceptMapGroupUnmappedMode = "provided" | "fixed" | "other-map";
 
@@ -595,6 +837,9 @@ export type ConceptMapGroupUnmappedMode = "provided" | "fixed" | "other-map";
  * ConditionalDeleteStatus
  *
  * A code that indicates how the server supports conditional delete.
+ * - not-supported: Not Supported
+ * - single: Single Deletes Supported
+ * - multiple: Multiple Deletes Supported
  */
 export type ConditionalDeleteStatus = "not-supported" | "single" | "multiple";
 
@@ -602,6 +847,10 @@ export type ConditionalDeleteStatus = "not-supported" | "single" | "multiple";
  * ConditionalReadStatus
  *
  * A code that indicates how the server supports conditional read.
+ * - not-supported: Not Supported
+ * - modified-since: If-Modified-Since
+ * - not-match: If-None-Match
+ * - full-support: Full Support
  */
 export type ConditionalReadStatus =
   | "not-supported"
@@ -613,6 +862,12 @@ export type ConditionalReadStatus =
  * Condition Clinical Status Codes
  *
  * Preferred value set for Condition Clinical Status.
+ * - active: Active
+ * - recurrence: Recurrence
+ * - relapse: Relapse
+ * - inactive: Inactive
+ * - remission: Remission
+ * - resolved: Resolved
  */
 export type ConditionClinicalStatusCodes =
   | "active"
@@ -627,6 +882,12 @@ export type ConditionClinicalStatusCodes =
  *
  * The verification status to support or decline the clinical status of the
  * condition or diagnosis.
+ * - unconfirmed: Unconfirmed
+ * - provisional: Provisional
+ * - differential: Differential
+ * - confirmed: Confirmed
+ * - refuted: Refuted
+ * - entered-in-error: Entered in Error
  */
 export type ConditionVerificationStatus =
   | "unconfirmed"
@@ -642,6 +903,12 @@ export type ConditionVerificationStatus =
  * Set of codes used to value Act.Confidentiality and Role.Confidentiality
  * attribute in accordance with the definition for concept domain
  * "Confidentiality".
+ * - L: low
+ * - M: moderate
+ * - N: normal
+ * - R: restricted
+ * - U: unrestricted
+ * - V: very restricted
  */
 export type Confidentiality = "L" | "M" | "N" | "R" | "U" | "V";
 
@@ -649,6 +916,10 @@ export type Confidentiality = "L" | "M" | "N" | "R" | "U" | "V";
  * ConsentDataMeaning
  *
  * How a resource reference is interpreted when testing consent restrictions.
+ * - instance: Instance
+ * - related: Related
+ * - dependents: Dependents
+ * - authoredby: AuthoredBy
  */
 export type ConsentDataMeaning =
   | "instance"
@@ -661,6 +932,8 @@ export type ConsentDataMeaning =
  *
  * How a rule statement is applied, such as adding additional consent or removing
  * consent.
+ * - deny: Opt Out
+ * - permit: Opt In
  */
 export type ConsentProvisionType = "deny" | "permit";
 
@@ -668,6 +941,12 @@ export type ConsentProvisionType = "deny" | "permit";
  * ConsentState
  *
  * Indicates the state of the consent.
+ * - draft: Pending
+ * - proposed: Proposed
+ * - active: Active
+ * - rejected: Rejected
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type ConsentState =
   | "draft"
@@ -681,6 +960,8 @@ export type ConsentState =
  * ConstraintSeverity
  *
  * SHALL applications comply with this constraint?
+ * - error: Error
+ * - warning: Warning
  */
 export type ConstraintSeverity = "error" | "warning";
 
@@ -688,6 +969,13 @@ export type ConstraintSeverity = "error" | "warning";
  * ContactPointSystem
  *
  * Telecommunications form for contact point.
+ * - phone: Phone
+ * - fax: Fax
+ * - email: Email
+ * - pager: Pager
+ * - url: URL
+ * - sms: SMS
+ * - other: Other
  */
 export type ContactPointSystem =
   | "phone"
@@ -702,6 +990,11 @@ export type ContactPointSystem =
  * ContactPointUse
  *
  * Use of contact point.
+ * - home: Home
+ * - work: Work
+ * - temp: Temp
+ * - old: Old
+ * - mobile: Mobile
  */
 export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
 
@@ -709,6 +1002,21 @@ export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
  * Contract Resource Publication Status codes
  *
  * This value set contract specific codes for status.
+ * - amended: Amended
+ * - appended: Appended
+ * - cancelled: Cancelled
+ * - disputed: Disputed
+ * - entered-in-error: Entered in Error
+ * - executable: Executable
+ * - executed: Executed
+ * - negotiable: Negotiable
+ * - offered: Offered
+ * - policy: Policy
+ * - rejected: Rejected
+ * - renewed: Renewed
+ * - revoked: Revoked
+ * - resolved: Resolved
+ * - terminated: Terminated
  */
 export type ContractResourcePublicationStatusCodes =
   | "amended"
@@ -731,6 +1039,21 @@ export type ContractResourcePublicationStatusCodes =
  * Contract Resource Status Codes
  *
  * This value set contract specific codes for status.
+ * - amended: Amended
+ * - appended: Appended
+ * - cancelled: Cancelled
+ * - disputed: Disputed
+ * - entered-in-error: Entered in Error
+ * - executable: Executable
+ * - executed: Executed
+ * - negotiable: Negotiable
+ * - offered: Offered
+ * - policy: Policy
+ * - rejected: Rejected
+ * - renewed: Renewed
+ * - revoked: Revoked
+ * - resolved: Resolved
+ * - terminated: Terminated
  */
 export type ContractResourceStatusCodes =
   | "amended"
@@ -753,6 +1076,10 @@ export type ContractResourceStatusCodes =
  * ContributorType
  *
  * The type of contributor.
+ * - author: Author
+ * - editor: Editor
+ * - reviewer: Reviewer
+ * - endorser: Endorser
  */
 export type ContributorType = "author" | "editor" | "reviewer" | "endorser";
 
@@ -764,6 +1091,753 @@ export type ContributorType = "author" | "editor" | "reviewer" | "endorser";
    Note: The
  * codes for countries are taken from    [ISO
  * 3166](https://www.iso.org/iso-3166-country-codes.html).
+ * - AD: Andorra
+ * - AE: United Arab Emirates
+ * - AF: Afghanistan
+ * - AG: Antigua and Barbuda
+ * - AI: Anguilla
+ * - AL: Albania
+ * - AM: Armenia
+ * - AO: Angola
+ * - AQ: Antarctica
+ * - AR: Argentina
+ * - AS: American Samoa
+ * - AT: Austria
+ * - AU: Australia
+ * - AW: Aruba
+ * - AX: Eland Islands
+ * - AZ: Azerbaijan
+ * - BA: Bosnia and Herzegovina
+ * - BB: Barbados
+ * - BD: Bangladesh
+ * - BE: Belgium
+ * - BF: Burkina Faso
+ * - BG: Bulgaria
+ * - BH: Bahrain
+ * - BI: Burundi
+ * - BJ: Benin
+ * - BL: Saint Barthilemy
+ * - BM: Bermuda
+ * - BN: Brunei Darussalam
+ * - BO: Bolivia, Plurinational State of
+ * - BQ: Bonaire, Sint Eustatius and Saba
+ * - BR: Brazil
+ * - BS: Bahamas
+ * - BT: Bhutan
+ * - BV: Bouvet Island
+ * - BW: Botswana
+ * - BY: Belarus
+ * - BZ: Belize
+ * - CA: Canada
+ * - CC: Cocos (Keeling) Islands
+ * - CD: Congo, the Democratic Republic of the
+ * - CF: Central African Republic
+ * - CG: Congo
+ * - CH: Switzerland
+ * - CI: Ctte d'Ivoire
+ * - CK: Cook Islands
+ * - CL: Chile
+ * - CM: Cameroon
+ * - CN: China
+ * - CO: Colombia
+ * - CR: Costa Rica
+ * - CU: Cuba
+ * - CV: Cabo Verde
+ * - CW: Curagao
+ * - CX: Christmas Island
+ * - CY: Cyprus
+ * - CZ: Czechia
+ * - DE: Germany
+ * - DJ: Djibouti
+ * - DK: Denmark
+ * - DM: Dominica
+ * - DO: Dominican Republic
+ * - DZ: Algeria
+ * - EC: Ecuador
+ * - EE: Estonia
+ * - EG: Egypt
+ * - EH: Western Sahara
+ * - ER: Eritrea
+ * - ES: Spain
+ * - ET: Ethiopia
+ * - FI: Finland
+ * - FJ: Fiji
+ * - FK: Falkland Islands (Malvinas)
+ * - FM: Micronesia, Federated States of
+ * - FO: Faroe Islands
+ * - FR: France
+ * - GA: Gabon
+ * - GB: United Kingdom of Great Britain and Northern Ireland
+ * - GD: Grenada
+ * - GE: Georgia
+ * - GF: French Guiana
+ * - GG: Guernsey
+ * - GH: Ghana
+ * - GI: Gibraltar
+ * - GL: Greenland
+ * - GM: Gambia
+ * - GN: Guinea
+ * - GP: Guadeloupe
+ * - GQ: Equatorial Guinea
+ * - GR: Greece
+ * - GS: South Georgia and the South Sandwich Islands
+ * - GT: Guatemala
+ * - GU: Guam
+ * - GW: Guinea-Bissau
+ * - GY: Guyana
+ * - HK: Hong Kong
+ * - HM: Heard Island and McDonald Islands
+ * - HN: Honduras
+ * - HR: Croatia
+ * - HT: Haiti
+ * - HU: Hungary
+ * - ID: Indonesia
+ * - IE: Ireland
+ * - IL: Israel
+ * - IM: Isle of Man
+ * - IN: India
+ * - IO: British Indian Ocean Territory
+ * - IQ: Iraq
+ * - IR: Iran, Islamic Republic of
+ * - IS: Iceland
+ * - IT: Italy
+ * - JE: Jersey
+ * - JM: Jamaica
+ * - JO: Jordan
+ * - JP: Japan
+ * - KE: Kenya
+ * - KG: Kyrgyzstan
+ * - KH: Cambodia
+ * - KI: Kiribati
+ * - KM: Comoros
+ * - KN: Saint Kitts and Nevis
+ * - KP: Korea, Democratic People's Republic of
+ * - KR: Korea, Republic of
+ * - KW: Kuwait
+ * - KY: Cayman Islands
+ * - KZ: Kazakhstan
+ * - LA: Lao People's Democratic Republic
+ * - LB: Lebanon
+ * - LC: Saint Lucia
+ * - LI: Liechtenstein
+ * - LK: Sri Lanka
+ * - LR: Liberia
+ * - LS: Lesotho
+ * - LT: Lithuania
+ * - LU: Luxembourg
+ * - LV: Latvia
+ * - LY: Libya
+ * - MA: Morocco
+ * - MC: Monaco
+ * - MD: Moldova, Republic of
+ * - ME: Montenegro
+ * - MF: Saint Martin (French part)
+ * - MG: Madagascar
+ * - MH: Marshall Islands
+ * - MK: Macedonia, the former Yugoslav Republic of
+ * - ML: Mali
+ * - MM: Myanmar
+ * - MN: Mongolia
+ * - MO: Macao
+ * - MP: Northern Mariana Islands
+ * - MQ: Martinique
+ * - MR: Mauritania
+ * - MS: Montserrat
+ * - MT: Malta
+ * - MU: Mauritius
+ * - MV: Maldives
+ * - MW: Malawi
+ * - MX: Mexico
+ * - MY: Malaysia
+ * - MZ: Mozambique
+ * - NA: Namibia
+ * - NC: New Caledonia
+ * - NE: Niger
+ * - NF: Norfolk Island
+ * - NG: Nigeria
+ * - NI: Nicaragua
+ * - NL: Netherlands
+ * - NO: Norway
+ * - NP: Nepal
+ * - NR: Nauru
+ * - NU: Niue
+ * - NZ: New Zealand
+ * - OM: Oman
+ * - PA: Panama
+ * - PE: Peru
+ * - PF: French Polynesia
+ * - PG: Papua New Guinea
+ * - PH: Philippines
+ * - PK: Pakistan
+ * - PL: Poland
+ * - PM: Saint Pierre and Miquelon
+ * - PN: Pitcairn
+ * - PR: Puerto Rico
+ * - PS: Palestine, State of
+ * - PT: Portugal
+ * - PW: Palau
+ * - PY: Paraguay
+ * - QA: Qatar
+ * - RE: Riunion
+ * - RO: Romania
+ * - RS: Serbia
+ * - RU: Russian Federation
+ * - RW: Rwanda
+ * - SA: Saudi Arabia
+ * - SB: Solomon Islands
+ * - SC: Seychelles
+ * - SD: Sudan
+ * - SE: Sweden
+ * - SG: Singapore
+ * - SH: Saint Helena, Ascension and Tristan da Cunha
+ * - SI: Slovenia
+ * - SJ: Svalbard and Jan Mayen
+ * - SK: Slovakia
+ * - SL: Sierra Leone
+ * - SM: San Marino
+ * - SN: Senegal
+ * - SO: Somalia
+ * - SR: Suriname
+ * - SS: South Sudan
+ * - ST: Sao Tome and Principe
+ * - SV: El Salvador
+ * - SX: Sint Maarten (Dutch part)
+ * - SY: Syrian Arab Republic
+ * - SZ: Swaziland
+ * - TC: Turks and Caicos Islands
+ * - TD: Chad
+ * - TF: French Southern Territories
+ * - TG: Togo
+ * - TH: Thailand
+ * - TJ: Tajikistan
+ * - TK: Tokelau
+ * - TL: Timor-Leste
+ * - TM: Turkmenistan
+ * - TN: Tunisia
+ * - TO: Tonga
+ * - TR: Turkey
+ * - TT: Trinidad and Tobago
+ * - TV: Tuvalu
+ * - TW: Taiwan, Province of China
+ * - TZ: Tanzania, United Republic of
+ * - UA: Ukraine
+ * - UG: Uganda
+ * - UM: United States Minor Outlying Islands
+ * - US: United States of America
+ * - UY: Uruguay
+ * - UZ: Uzbekistan
+ * - VA: Holy See
+ * - VC: Saint Vincent and the Grenadines
+ * - VE: Venezuela, Bolivarian Republic of
+ * - VG: Virgin Islands, British
+ * - VI: Virgin Islands,
+ * - VN: Viet Nam
+ * - VU: Vanuatu
+ * - WF: Wallis and Futuna
+ * - WS: Samoa
+ * - YE: Yemen
+ * - YT: Mayotte
+ * - ZA: South Africa
+ * - ZM: Zambia
+ * - ZW: Zimbabwe
+ * - ABW: Aruba
+ * - AFG: Afghanistan
+ * - AGO: Angola
+ * - AIA: Anguilla
+ * - ALA: Eland Islands
+ * - ALB: Albania
+ * - AND: Andorra
+ * - ARE: United Arab Emirates
+ * - ARG: Argentina
+ * - ARM: Armenia
+ * - ASM: American Samoa
+ * - ATA: Antarctica
+ * - ATF: French Southern Territories
+ * - ATG: Antigua and Barbuda
+ * - AUS: Australia
+ * - AUT: Austria
+ * - AZE: Azerbaijan
+ * - BDI: Burundi
+ * - BEL: Belgium
+ * - BEN: Benin
+ * - BES: Bonaire, Sint Eustatius and Saba
+ * - BFA: Burkina Faso
+ * - BGD: Bangladesh
+ * - BGR: Bulgaria
+ * - BHR: Bahrain
+ * - BHS: Bahamas
+ * - BIH: Bosnia and Herzegovina
+ * - BLM: Saint Barthilemy
+ * - BLR: Belarus
+ * - BLZ: Belize
+ * - BMU: Bermuda
+ * - BOL: Bolivia, Plurinational State of
+ * - BRA: Brazil
+ * - BRB: Barbados
+ * - BRN: Brunei Darussalam
+ * - BTN: Bhutan
+ * - BVT: Bouvet Island
+ * - BWA: Botswana
+ * - CAF: Central African Republic
+ * - CAN: Canada
+ * - CCK: Cocos (Keeling) Islands
+ * - CHE: Switzerland
+ * - CHL: Chile
+ * - CHN: China
+ * - CIV: Ctte d'Ivoire
+ * - CMR: Cameroon
+ * - COD: Congo, the Democratic Republic of the
+ * - COG: Congo
+ * - COK: Cook Islands
+ * - COL: Colombia
+ * - COM: Comoros
+ * - CPV: Cabo Verde
+ * - CRI: Costa Rica
+ * - CUB: Cuba
+ * - CUW: Curagao
+ * - CXR: Christmas Island
+ * - CYM: Cayman Islands
+ * - CYP: Cyprus
+ * - CZE: Czechia
+ * - DEU: Germany
+ * - DJI: Djibouti
+ * - DMA: Dominica
+ * - DNK: Denmark
+ * - DOM: Dominican Republic
+ * - DZA: Algeria
+ * - ECU: Ecuador
+ * - EGY: Egypt
+ * - ERI: Eritrea
+ * - ESH: Western Sahara
+ * - ESP: Spain
+ * - EST: Estonia
+ * - ETH: Ethiopia
+ * - FIN: Finland
+ * - FJI: Fiji
+ * - FLK: Falkland Islands (Malvinas)
+ * - FRA: France
+ * - FRO: Faroe Islands
+ * - FSM: Micronesia, Federated States of
+ * - GAB: Gabon
+ * - GBR: United Kingdom
+ * - GEO: Georgia
+ * - GGY: Guernsey
+ * - GHA: Ghana
+ * - GIB: Gibraltar
+ * - GIN: Guinea
+ * - GLP: Guadeloupe
+ * - GMB: Gambia
+ * - GNB: Guinea-Bissau
+ * - GNQ: Equatorial Guinea
+ * - GRC: Greece
+ * - GRD: Grenada
+ * - GRL: Greenland
+ * - GTM: Guatemala
+ * - GUF: French Guiana
+ * - GUM: Guam
+ * - GUY: Guyana
+ * - HKG: Hong Kong
+ * - HMD: Heard Island and McDonald Islands
+ * - HND: Honduras
+ * - HRV: Croatia
+ * - HTI: Haiti
+ * - HUN: Hungary
+ * - IDN: Indonesia
+ * - IMN: Isle of Man
+ * - IND: India
+ * - IOT: British Indian Ocean Territory
+ * - IRL: Ireland
+ * - IRN: Iran, Islamic Republic of
+ * - IRQ: Iraq
+ * - ISL: Iceland
+ * - ISR: Israel
+ * - ITA: Italy
+ * - JAM: Jamaica
+ * - JEY: Jersey
+ * - JOR: Jordan
+ * - JPN: Japan
+ * - KAZ: Kazakhstan
+ * - KEN: Kenya
+ * - KGZ: Kyrgyzstan
+ * - KHM: Cambodia
+ * - KIR: Kiribati
+ * - KNA: Saint Kitts and Nevis
+ * - KOR: Korea, Republic of
+ * - KWT: Kuwait
+ * - LAO: Lao People's Democratic Republic
+ * - LBN: Lebanon
+ * - LBR: Liberia
+ * - LBY: Libya
+ * - LCA: Saint Lucia
+ * - LIE: Liechtenstein
+ * - LKA: Sri Lanka
+ * - LSO: Lesotho
+ * - LTU: Lithuania
+ * - LUX: Luxembourg
+ * - LVA: Latvia
+ * - MAC: Macao
+ * - MAF: Saint Martin (French part)
+ * - MAR: Morocco
+ * - MCO: Monaco
+ * - MDA: Moldova, Republic of
+ * - MDG: Madagascar
+ * - MDV: Maldives
+ * - MEX: Mexico
+ * - MHL: Marshall Islands
+ * - MKD: Macedonia, the former Yugoslav Republic of
+ * - MLI: Mali
+ * - MLT: Malta
+ * - MMR: Myanmar
+ * - MNE: Montenegro
+ * - MNG: Mongolia
+ * - MNP: Northern Mariana Islands
+ * - MOZ: Mozambique
+ * - MRT: Mauritania
+ * - MSR: Montserrat
+ * - MTQ: Martinique
+ * - MUS: Mauritius
+ * - MWI: Malawi
+ * - MYS: Malaysia
+ * - MYT: Mayotte
+ * - NAM: Namibia
+ * - NCL: New Caledonia
+ * - NER: Niger
+ * - NFK: Norfolk Island
+ * - NGA: Nigeria
+ * - NIC: Nicaragua
+ * - NIU: Niue
+ * - NLD: Netherlands
+ * - NOR: Norway
+ * - NPL: Nepal
+ * - NRU: Nauru
+ * - NZL: New Zealand
+ * - OMN: Oman
+ * - PAK: Pakistan
+ * - PAN: Panama
+ * - PCN: Pitcairn
+ * - PER: Peru
+ * - PHL: Philippines
+ * - PLW: Palau
+ * - PNG: Papua New Guinea
+ * - POL: Poland
+ * - PRI: Puerto Rico
+ * - PRK: Korea, Democratic People's Republic of
+ * - PRT: Portugal
+ * - PRY: Paraguay
+ * - PSE: Palestine, State of
+ * - PYF: French Polynesia
+ * - QAT: Qatar
+ * - REU: Riunion
+ * - ROU: Romania
+ * - RUS: Russian Federation
+ * - RWA: Rwanda
+ * - SAU: Saudi Arabia
+ * - SDN: Sudan
+ * - SEN: Senegal
+ * - SGP: Singapore
+ * - SGS: South Georgia and the South Sandwich Islands
+ * - SHN: Saint Helena, Ascension and Tristan da Cunha
+ * - SJM: Svalbard and Jan Mayen
+ * - SLB: Solomon Islands
+ * - SLE: Sierra Leone
+ * - SLV: El Salvador
+ * - SMR: San Marino
+ * - SOM: Somalia
+ * - SPM: Saint Pierre and Miquelon
+ * - SRB: Serbia
+ * - SSD: South Sudan
+ * - STP: Sao Tome and Principe
+ * - SUR: Suriname
+ * - SVK: Slovakia
+ * - SVN: Slovenia
+ * - SWE: Sweden
+ * - SWZ: Swaziland
+ * - SXM: Sint Maarten (Dutch part)
+ * - SYC: Seychelles
+ * - SYR: Syrian Arab Republic
+ * - TCA: Turks and Caicos Islands
+ * - TCD: Chad
+ * - TGO: Togo
+ * - THA: Thailand
+ * - TJK: Tajikistan
+ * - TKL: Tokelau
+ * - TKM: Turkmenistan
+ * - TLS: Timor-Leste
+ * - TON: Tonga
+ * - TTO: Trinidad and Tobago
+ * - TUN: Tunisia
+ * - TUR: Turkey
+ * - TUV: Tuvalu
+ * - TWN: Taiwan, Province of China
+ * - TZA: Tanzania, United Republic of
+ * - UGA: Uganda
+ * - UKR: Ukraine
+ * - UMI: United States Minor Outlying Islands
+ * - URY: Uruguay
+ * - USA: United States of America
+ * - UZB: Uzbekistan
+ * - VAT: Holy See
+ * - VCT: Saint Vincent and the Grenadines
+ * - VEN: Venezuela, Bolivarian Republic of
+ * - VGB: Virgin Islands, British
+ * - VIR: Virgin Islands, U.S.
+ * - VNM: Viet Nam
+ * - VUT: Vanuatu
+ * - WLF: Wallis and Futuna
+ * - WSM: Samoa
+ * - YEM: Yemen
+ * - ZAF: South Africa
+ * - ZMB: Zambia
+ * - ZWE: Zimbabwe
+ * - 004: Afghanistan
+ * - 008: Albania
+ * - 010: Antarctica
+ * - 012: Algeria
+ * - 016: American Samoa
+ * - 020: Andorra
+ * - 024: Angola
+ * - 028: Antigua and Barbuda
+ * - 031: Azerbaijan
+ * - 032: Argentina
+ * - 036: Australia
+ * - 040: Austria
+ * - 044: Bahamas
+ * - 048: Bahrain
+ * - 050: Bangladesh
+ * - 051: Armenia
+ * - 052: Barbados
+ * - 056: Belgium
+ * - 060: Bermuda
+ * - 064: Bhutan
+ * - 068: Bolivia, Plurinational State of
+ * - 070: Bosnia and Herzegovina
+ * - 072: Botswana
+ * - 074: Bouvet Island
+ * - 076: Brazil
+ * - 084: Belize
+ * - 086: British Indian Ocean Territory
+ * - 090: Solomon Islands
+ * - 092: Virgin Islands, British
+ * - 096: Brunei Darussalam
+ * - 100: Bulgaria
+ * - 104: Myanmar
+ * - 108: Burundi
+ * - 112: Belarus
+ * - 116: Cambodia
+ * - 120: Cameroon
+ * - 124: Canada
+ * - 132: Cabo Verde
+ * - 136: Cayman Islands
+ * - 140: Central African Republic
+ * - 144: Sri Lanka
+ * - 148: Chad
+ * - 152: Chile
+ * - 156: China
+ * - 158: Taiwan, Province of China
+ * - 162: Christmas Island
+ * - 166: Cocos (Keeling) Islands
+ * - 170: Colombia
+ * - 174: Comoros
+ * - 175: Mayotte
+ * - 178: Congo
+ * - 180: Congo, the Democratic Republic of the
+ * - 184: Cook Islands
+ * - 188: Costa Rica
+ * - 191: Croatia
+ * - 192: Cuba
+ * - 196: Cyprus
+ * - 203: Czechia
+ * - 204: Benin
+ * - 208: Denmark
+ * - 212: Dominica
+ * - 214: Dominican Republic
+ * - 218: Ecuador
+ * - 222: El Salvador
+ * - 226: Equatorial Guinea
+ * - 231: Ethiopia
+ * - 232: Eritrea
+ * - 233: Estonia
+ * - 234: Faroe Islands
+ * - 238: Falkland Islands (Malvinas)
+ * - 239: South Georgia and the South Sandwich Islands
+ * - 242: Fiji
+ * - 246: Finland
+ * - 248: Eland Islands
+ * - 250: France
+ * - 254: French Guiana
+ * - 258: French Polynesia
+ * - 260: French Southern Territories
+ * - 262: Djibouti
+ * - 266: Gabon
+ * - 268: Georgia
+ * - 270: Gambia
+ * - 275: Palestine, State of
+ * - 276: Germany
+ * - 288: Ghana
+ * - 292: Gibraltar
+ * - 296: Kiribati
+ * - 300: Greece
+ * - 304: Greenland
+ * - 308: Grenada
+ * - 312: Guadeloupe
+ * - 316: Guam
+ * - 320: Guatemala
+ * - 324: Guinea
+ * - 328: Guyana
+ * - 332: Haiti
+ * - 334: Heard Island and McDonald Islands
+ * - 336: Holy See
+ * - 340: Honduras
+ * - 344: Hong Kong
+ * - 348: Hungary
+ * - 352: Iceland
+ * - 356: India
+ * - 360: Indonesia
+ * - 364: Iran, Islamic Republic of
+ * - 368: Iraq
+ * - 372: Ireland
+ * - 376: Israel
+ * - 380: Italy
+ * - 384: Ctte d'Ivoire
+ * - 388: Jamaica
+ * - 392: Japan
+ * - 398: Kazakhstan
+ * - 400: Jordan
+ * - 404: Kenya
+ * - 408: Korea, Democratic People's Republic of
+ * - 410: Korea, Republic of
+ * - 414: Kuwait
+ * - 417: Kyrgyzstan
+ * - 418: Lao People's Democratic Republic
+ * - 422: Lebanon
+ * - 426: Lesotho
+ * - 428: Latvia
+ * - 430: Liberia
+ * - 434: Libya
+ * - 438: Liechtenstein
+ * - 440: Lithuania
+ * - 442: Luxembourg
+ * - 446: Macao
+ * - 450: Madagascar
+ * - 454: Malawi
+ * - 458: Malaysia
+ * - 462: Maldives
+ * - 466: Mali
+ * - 470: Malta
+ * - 474: Martinique
+ * - 478: Mauritania
+ * - 480: Mauritius
+ * - 484: Mexico
+ * - 492: Monaco
+ * - 496: Mongolia
+ * - 498: Moldova, Republic of
+ * - 499: Montenegro
+ * - 500: Montserrat
+ * - 504: Morocco
+ * - 508: Mozambique
+ * - 512: Oman
+ * - 516: Namibia
+ * - 520: Nauru
+ * - 524: Nepal
+ * - 528: Netherlands
+ * - 531: Curagao
+ * - 533: Aruba
+ * - 534: Sint Maarten (Dutch part)
+ * - 535: Bonaire, Sint Eustatius and Saba
+ * - 540: New Caledonia
+ * - 548: Vanuatu
+ * - 554: New Zealand
+ * - 558: Nicaragua
+ * - 562: Niger
+ * - 566: Nigeria
+ * - 570: Niue
+ * - 574: Norfolk Island
+ * - 578: Norway
+ * - 580: Northern Mariana Islands
+ * - 581: United States Minor Outlying Islands
+ * - 583: Micronesia, Federated States of
+ * - 584: Marshall Islands
+ * - 585: Palau
+ * - 586: Pakistan
+ * - 591: Panama
+ * - 598: Papua New Guinea
+ * - 600: Paraguay
+ * - 604: Peru
+ * - 608: Philippines
+ * - 612: Pitcairn
+ * - 616: Poland
+ * - 620: Portugal
+ * - 624: Guinea-Bissau
+ * - 626: Timor-Leste
+ * - 630: Puerto Rico
+ * - 634: Qatar
+ * - 638: Riunion
+ * - 642: Romania
+ * - 643: Russian Federation
+ * - 646: Rwanda
+ * - 652: Saint Barthilemy
+ * - 654: Saint Helena, Ascension and Tristan da Cunha
+ * - 659: Saint Kitts and Nevis
+ * - 660: Anguilla
+ * - 662: Saint Lucia
+ * - 663: Saint Martin (French part)
+ * - 666: Saint Pierre and Miquelon
+ * - 670: Saint Vincent and the Grenadines
+ * - 674: San Marino
+ * - 678: Sao Tome and Principe
+ * - 682: Saudi Arabia
+ * - 686: Senegal
+ * - 688: Serbia
+ * - 690: Seychelles
+ * - 694: Sierra Leone
+ * - 702: Singapore
+ * - 703: Slovakia
+ * - 704: Viet Nam
+ * - 705: Slovenia
+ * - 706: Somalia
+ * - 710: South Africa
+ * - 716: Zimbabwe
+ * - 724: Spain
+ * - 728: South Sudan
+ * - 729: Sudan
+ * - 732: Western Sahara
+ * - 740: Suriname
+ * - 744: Svalbard and Jan Mayen
+ * - 748: Swaziland
+ * - 752: Sweden
+ * - 756: Switzerland
+ * - 760: Syrian Arab Republic
+ * - 762: Tajikistan
+ * - 764: Thailand
+ * - 768: Togo
+ * - 772: Tokelau
+ * - 776: Tonga
+ * - 780: Trinidad and Tobago
+ * - 784: United Arab Emirates
+ * - 788: Tunisia
+ * - 792: Turkey
+ * - 795: Turkmenistan
+ * - 796: Turks and Caicos Islands
+ * - 798: Tuvalu
+ * - 800: Uganda
+ * - 804: Ukraine
+ * - 807: Macedonia, the former Yugoslav Republic of
+ * - 818: Egypt
+ * - 826: United Kingdom
+ * - 831: Guernsey
+ * - 832: Jersey
+ * - 833: Isle of Man
+ * - 834: Tanzania, United Republic of
+ * - 840: United States of America
+ * - 850: Virgin Islands, U.S.
+ * - 854: Burkina Faso
+ * - 858: Uruguay
+ * - 860: Uzbekistan
+ * - 862: Venezuela, Bolivarian Republic of
+ * - 876: Wallis and Futuna
+ * - 882: Samoa
+ * - 887: Yemen
+ * - 894: Zambia
  */
 export type CountryValueSet =
   | "AD"
@@ -1519,6 +2593,8 @@ export type CountryValueSet =
  *
  * Behavior a server can exhibit when a criteria state does not exist (e.g., state
  * prior to a create or after a delete).
+ * - test-passes: test passes
+ * - test-fails: test fails
  */
 export type CriteriaNotExistsBehavior = "test-passes" | "test-fails";
 
@@ -1527,6 +2603,188 @@ export type CriteriaNotExistsBehavior = "test-passes" | "test-fails";
  *
  * Currency codes from ISO 4217 (see
  * https://www.iso.org/iso-4217-currency-codes.html)
+ * - AED: United Arab Emirates dirham
+ * - AFN: Afghan afghani
+ * - ALL: Albanian lek
+ * - AMD: Armenian dram
+ * - ANG: Netherlands Antillean guilder
+ * - AOA: Angolan kwanza
+ * - ARS: Argentine peso
+ * - AUD: Australian dollar
+ * - AWG: Aruban florin
+ * - AZN: Azerbaijani manat
+ * - BAM: Bosnia and Herzegovina convertible mark
+ * - BBD: Barbados dollar
+ * - BDT: Bangladeshi taka
+ * - BGN: Bulgarian lev
+ * - BHD: Bahraini dinar
+ * - BIF: Burundian franc
+ * - BMD: Bermudian dollar
+ * - BND: Brunei dollar
+ * - BOB: Boliviano
+ * - BOV: Bolivian Mvdol (funds code)
+ * - BRL: Brazilian real
+ * - BSD: Bahamian dollar
+ * - BTN: Bhutanese ngultrum
+ * - BWP: Botswana pula
+ * - BYN: Belarusian ruble
+ * - BZD: Belize dollar
+ * - CAD: Canadian dollar
+ * - CDF: Congolese franc
+ * - CHE: WIR Euro (complementary currency)
+ * - CHF: Swiss franc
+ * - CHW: WIR Franc (complementary currency)
+ * - CLF: Unidad de Fomento (funds code)
+ * - CLP: Chilean peso
+ * - CNY: Renminbi (Chinese) yuan[8]
+ * - COP: Colombian peso
+ * - COU: Unidad de Valor Real (UVR) (funds code)[9]
+ * - CRC: Costa Rican colon
+ * - CUC: Cuban convertible peso
+ * - CUP: Cuban peso
+ * - CVE: Cape Verde escudo
+ * - CZK: Czech koruna
+ * - DJF: Djiboutian franc
+ * - DKK: Danish krone
+ * - DOP: Dominican peso
+ * - DZD: Algerian dinar
+ * - EGP: Egyptian pound
+ * - ERN: Eritrean nakfa
+ * - ETB: Ethiopian birr
+ * - EUR: Euro
+ * - FJD: Fiji dollar
+ * - FKP: Falkland Islands pound
+ * - GBP: Pound sterling
+ * - GEL: Georgian lari
+ * - GGP: Guernsey Pound
+ * - GHS: Ghanaian cedi
+ * - GIP: Gibraltar pound
+ * - GMD: Gambian dalasi
+ * - GNF: Guinean franc
+ * - GTQ: Guatemalan quetzal
+ * - GYD: Guyanese dollar
+ * - HKD: Hong Kong dollar
+ * - HNL: Honduran lempira
+ * - HRK: Croatian kuna
+ * - HTG: Haitian gourde
+ * - HUF: Hungarian forint
+ * - IDR: Indonesian rupiah
+ * - ILS: Israeli new shekel
+ * - IMP: Isle of Man Pound
+ * - INR: Indian rupee
+ * - IQD: Iraqi dinar
+ * - IRR: Iranian rial
+ * - ISK: Icelandic krC3na
+ * - JEP: Jersey Pound
+ * - JMD: Jamaican dollar
+ * - JOD: Jordanian dinar
+ * - JPY: Japanese yen
+ * - KES: Kenyan shilling
+ * - KGS: Kyrgyzstani som
+ * - KHR: Cambodian riel
+ * - KMF: Comoro franc
+ * - KPW: North Korean won
+ * - KRW: South Korean won
+ * - KWD: Kuwaiti dinar
+ * - KYD: Cayman Islands dollar
+ * - KZT: Kazakhstani tenge
+ * - LAK: Lao kip
+ * - LBP: Lebanese pound
+ * - LKR: Sri Lankan rupee
+ * - LRD: Liberian dollar
+ * - LSL: Lesotho loti
+ * - LYD: Libyan dinar
+ * - MAD: Moroccan dirham
+ * - MDL: Moldovan leu
+ * - MGA: Malagasy ariary
+ * - MKD: Macedonian denar
+ * - MMK: Myanmar kyat
+ * - MNT: Mongolian tC6grC6g
+ * - MOP: Macanese pataca
+ * - MRU: Mauritanian ouguiya
+ * - MUR: Mauritian rupee
+ * - MVR: Maldivian rufiyaa
+ * - MWK: Malawian kwacha
+ * - MXN: Mexican peso
+ * - MXV: Mexican Unidad de Inversion (UDI) (funds code)
+ * - MYR: Malaysian ringgit
+ * - MZN: Mozambican metical
+ * - NAD: Namibian dollar
+ * - NGN: Nigerian naira
+ * - NIO: Nicaraguan cC3rdoba
+ * - NOK: Norwegian krone
+ * - NPR: Nepalese rupee
+ * - NZD: New Zealand dollar
+ * - OMR: Omani rial
+ * - PAB: Panamanian balboa
+ * - PEN: Peruvian Sol
+ * - PGK: Papua New Guinean kina
+ * - PHP: Philippine piso[13]
+ * - PKR: Pakistani rupee
+ * - PLN: Polish zEoty
+ * - PYG: Paraguayan guaranC-
+ * - QAR: Qatari riyal
+ * - RON: Romanian leu
+ * - RSD: Serbian dinar
+ * - RUB: Russian ruble
+ * - RWF: Rwandan franc
+ * - SAR: Saudi riyal
+ * - SBD: Solomon Islands dollar
+ * - SCR: Seychelles rupee
+ * - SDG: Sudanese pound
+ * - SEK: Swedish krona/kronor
+ * - SGD: Singapore dollar
+ * - SHP: Saint Helena pound
+ * - SLL: Sierra Leonean leone
+ * - SOS: Somali shilling
+ * - SRD: Surinamese dollar
+ * - SSP: South Sudanese pound
+ * - STN: SC#o TomC) and PrC-ncipe dobra
+ * - SVC: Salvadoran colC3n
+ * - SYP: Syrian pound
+ * - SZL: Swazi lilangeni
+ * - THB: Thai baht
+ * - TJS: Tajikistani somoni
+ * - TMT: Turkmenistan manat
+ * - TND: Tunisian dinar
+ * - TOP: Tongan paJ;anga
+ * - TRY: Turkish lira
+ * - TTD: Trinidad and Tobago dollar
+ * - TVD: Tuvalu Dollar
+ * - TWD: New Taiwan dollar
+ * - TZS: Tanzanian shilling
+ * - UAH: Ukrainian hryvnia
+ * - UGX: Ugandan shilling
+ * - USD: United States dollar
+ * - USN: United States dollar (next day) (funds code)
+ * - UYI: Uruguay Peso en Unidades Indexadas (URUIURUI) (funds code)
+ * - UYU: Uruguayan peso
+ * - UZS: Uzbekistan som
+ * - VEF: Venezuelan bolC-var
+ * - VND: Vietnamese D#a;%ng
+ * - VUV: Vanuatu vatu
+ * - WST: Samoan tala
+ * - XAF: CFA franc BEAC
+ * - XAG: Silver (one troy ounce)
+ * - XAU: Gold (one troy ounce)
+ * - XBA: European Composite Unit (EURCO) (bond market unit)
+ * - XBB: European Monetary Unit (E.M.U.-6) (bond market unit)
+ * - XBC: European Unit of Account 9 (E.U.A.-9) (bond market unit)
+ * - XBD: European Unit of Account 17 (E.U.A.-17) (bond market unit)
+ * - XCD: East Caribbean dollar
+ * - XDR: Special drawing rights
+ * - XOF: CFA franc BCEAO
+ * - XPD: Palladium (one troy ounce)
+ * - XPF: CFP franc (franc Pacifique)
+ * - XPT: Platinum (one troy ounce)
+ * - XSU: SUCRE
+ * - XTS: Code reserved for testing purposes
+ * - XUA: ADB Unit of Account
+ * - XXX: No currency
+ * - YER: Yemeni rial
+ * - ZAR: South African rand
+ * - ZMW: Zambian kwacha
+ * - ZWL: Zimbabwean dollar A/10
  */
 export type Currencies =
   | "AED"
@@ -1717,6 +2975,21 @@ export type Currencies =
  *
  * Used to specify why the normally expected content of the data element is
  * missing.
+ * - unknown: Unknown
+ * - asked-unknown: Asked But Unknown
+ * - temp-unknown: Temporarily Unknown
+ * - not-asked: Not Asked
+ * - asked-declined: Asked But Declined
+ * - masked: Masked
+ * - not-applicable: Not Applicable
+ * - unsupported: Unsupported
+ * - as-text: As Text
+ * - error: Error
+ * - not-a-number: Not a Number (NaN)
+ * - negative-infinity: Negative Infinity (NINF)
+ * - positive-infinity: Positive Infinity (PINF)
+ * - not-performed: Not Performed
+ * - not-permitted: Not Permitted
  */
 export type DataAbsentReason =
   | "unknown"
@@ -1747,6 +3020,13 @@ export type DataTypeValueSet = string;
  * DaysOfWeek
  *
  * The days of the week.
+ * - mon: Monday
+ * - tue: Tuesday
+ * - wed: Wednesday
+ * - thu: Thursday
+ * - fri: Friday
+ * - sat: Saturday
+ * - sun: Sunday
  */
 export type DaysOfWeek = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
 
@@ -1754,6 +3034,9 @@ export type DaysOfWeek = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
  * DetectedIssueSeverity
  *
  * Indicates the potential degree of impact of the identified issue on the patient.
+ * - high: High
+ * - moderate: Moderate
+ * - low: Low
  */
 export type DetectedIssueSeverity = "high" | "moderate" | "low";
 
@@ -1761,6 +3044,10 @@ export type DetectedIssueSeverity = "high" | "moderate" | "low";
  * DeviceMetricCalibrationState
  *
  * Describes the state of a metric calibration.
+ * - not-calibrated: Not Calibrated
+ * - calibration-required: Calibration Required
+ * - calibrated: Calibrated
+ * - unspecified: Unspecified
  */
 export type DeviceMetricCalibrationState =
   | "not-calibrated"
@@ -1772,6 +3059,10 @@ export type DeviceMetricCalibrationState =
  * DeviceMetricCalibrationType
  *
  * Describes the type of a metric calibration.
+ * - unspecified: Unspecified
+ * - offset: Offset
+ * - gain: Gain
+ * - two-point: Two Point
  */
 export type DeviceMetricCalibrationType =
   | "unspecified"
@@ -1783,6 +3074,10 @@ export type DeviceMetricCalibrationType =
  * DeviceMetricCategory
  *
  * Describes the category of the metric.
+ * - measurement: Measurement
+ * - setting: Setting
+ * - calculation: Calculation
+ * - unspecified: Unspecified
  */
 export type DeviceMetricCategory =
   | "measurement"
@@ -1794,6 +3089,14 @@ export type DeviceMetricCategory =
  * DeviceMetricColor
  *
  * Describes the typical color of representation.
+ * - black: Color Black
+ * - red: Color Red
+ * - green: Color Green
+ * - yellow: Color Yellow
+ * - blue: Color Blue
+ * - magenta: Color Magenta
+ * - cyan: Color Cyan
+ * - white: Color White
  */
 export type DeviceMetricColor =
   | "black"
@@ -1809,6 +3112,10 @@ export type DeviceMetricColor =
  * DeviceMetricOperationalStatus
  *
  * Describes the operational status of the DeviceMetric.
+ * - on: On
+ * - off: Off
+ * - standby: Standby
+ * - entered-in-error: Entered In Error
  */
 export type DeviceMetricOperationalStatus =
   | "on"
@@ -1820,6 +3127,12 @@ export type DeviceMetricOperationalStatus =
  * DeviceNameType
  *
  * The type of name the device is referred by.
+ * - udi-label-name: UDI Label name
+ * - user-friendly-name: User Friendly name
+ * - patient-reported-name: Patient Reported name
+ * - manufacturer-name: Manufacturer name
+ * - model-name: Model name
+ * - other: other
  */
 export type DeviceNameType =
   | "udi-label-name"
@@ -1833,6 +3146,12 @@ export type DeviceNameType =
  * DeviceUseStatementStatus
  *
  * A coded concept indicating the current status of the Device Usage.
+ * - active: Active
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - intended: Intended
+ * - stopped: Stopped
+ * - on-hold: On Hold
  */
 export type DeviceUseStatementStatus =
   | "active"
@@ -1846,6 +3165,16 @@ export type DeviceUseStatementStatus =
  * DiagnosticReportStatus
  *
  * The status of the diagnostic report.
+ * - registered: Registered
+ * - partial: Partial
+ * - preliminary: Preliminary
+ * - final: Final
+ * - amended: Amended
+ * - corrected: Corrected
+ * - appended: Appended
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type DiagnosticReportStatus =
   | "registered"
@@ -1863,6 +3192,11 @@ export type DiagnosticReportStatus =
  * DiscriminatorType
  *
  * How an element value is interpreted when discrimination is evaluated.
+ * - value: Value
+ * - exists: Exists
+ * - pattern: Pattern
+ * - type: Type
+ * - profile: Profile
  */
 export type DiscriminatorType =
   | "value"
@@ -1875,6 +3209,8 @@ export type DiscriminatorType =
  * DocumentMode
  *
  * Whether the application produces or consumes documents.
+ * - producer: Producer
+ * - consumer: Consumer
  */
 export type DocumentMode = "producer" | "consumer";
 
@@ -1882,6 +3218,9 @@ export type DocumentMode = "producer" | "consumer";
  * DocumentReferenceStatus
  *
  * The status of the document reference.
+ * - current: Current
+ * - superseded: Superseded
+ * - entered-in-error: Entered in Error
  */
 export type DocumentReferenceStatus =
   | "current"
@@ -1892,6 +3231,10 @@ export type DocumentReferenceStatus =
  * DocumentRelationshipType
  *
  * The type of relationship between documents.
+ * - replaces: Replaces
+ * - transforms: Transforms
+ * - signs: Signs
+ * - appends: Appends
  */
 export type DocumentRelationshipType =
   | "replaces"
@@ -1903,6 +3246,10 @@ export type DocumentRelationshipType =
  * EligibilityRequestPurpose
  *
  * A code specifying the types of information being requested.
+ * - auth-requirements: Coverage auth-requirements
+ * - benefits: Coverage benefits
+ * - discovery: Coverage Discovery
+ * - validation: Coverage Validation
  */
 export type EligibilityRequestPurpose =
   | "auth-requirements"
@@ -1914,6 +3261,10 @@ export type EligibilityRequestPurpose =
  * EligibilityResponsePurpose
  *
  * A code specifying the types of information being requested.
+ * - auth-requirements: Coverage auth-requirements
+ * - benefits: Coverage benefits
+ * - discovery: Coverage Discovery
+ * - validation: Coverage Validation
  */
 export type EligibilityResponsePurpose =
   | "auth-requirements"
@@ -1926,6 +3277,8 @@ export type EligibilityResponsePurpose =
  *
  * Controls how multiple enableWhen values are interpreted -  whether all or any
  * must be true.
+ * - all: All
+ * - any: Any
  */
 export type EnableWhenBehavior = "all" | "any";
 
@@ -1933,6 +3286,10 @@ export type EnableWhenBehavior = "all" | "any";
  * EncounterLocationStatus
  *
  * The status of the location.
+ * - planned: Planned
+ * - active: Active
+ * - reserved: Reserved
+ * - completed: Completed
  */
 export type EncounterLocationStatus =
   | "planned"
@@ -1944,6 +3301,15 @@ export type EncounterLocationStatus =
  * EncounterStatus
  *
  * Current state of the encounter.
+ * - planned: Planned
+ * - arrived: Arrived
+ * - triaged: Triaged
+ * - in-progress: In Progress
+ * - onleave: On Leave
+ * - finished: Finished
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type EncounterStatus =
   | "planned"
@@ -1960,6 +3326,12 @@ export type EncounterStatus =
  * EndpointStatus
  *
  * The status of the endpoint.
+ * - active: Active
+ * - suspended: Suspended
+ * - error: Error
+ * - off: Off
+ * - entered-in-error: Entered in error
+ * - test: Test
  */
 export type EndpointStatus =
   | "active"
@@ -1981,6 +3353,13 @@ export type EntityNamePartQualifier = string;
  * EpisodeOfCareStatus
  *
  * The status of the episode of care.
+ * - planned: Planned
+ * - waitlist: Waitlist
+ * - active: Active
+ * - onhold: On Hold
+ * - finished: Finished
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
  */
 export type EpisodeOfCareStatus =
   | "planned"
@@ -1995,6 +3374,8 @@ export type EpisodeOfCareStatus =
  * EventCapabilityMode
  *
  * The mode of a message capability statement.
+ * - sender: Sender
+ * - receiver: Receiver
  */
 export type EventCapabilityMode = "sender" | "receiver";
 
@@ -2002,6 +3383,14 @@ export type EventCapabilityMode = "sender" | "receiver";
  * EventStatus
  *
  * Codes identifying the lifecycle stage of an event.
+ * - preparation: Preparation
+ * - in-progress: In Progress
+ * - not-done: Not Done
+ * - on-hold: On Hold
+ * - stopped: Stopped
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type EventStatus =
   | "preparation"
@@ -2017,6 +3406,32 @@ export type EventStatus =
  * EventTiming
  *
  * Real world event relating to the schedule.
+ * - MORN: Morning
+ * - MORN.early: Early Morning
+ * - MORN.late: Late Morning
+ * - NOON: Noon
+ * - AFT: Afternoon
+ * - AFT.early: Early Afternoon
+ * - AFT.late: Late Afternoon
+ * - EVE: Evening
+ * - EVE.early: Early Evening
+ * - EVE.late: Late Evening
+ * - NIGHT: Night
+ * - PHS: After Sleep
+ * - HS: HS
+ * - WAKE: WAKE
+ * - C: C
+ * - CM: CM
+ * - CD: CD
+ * - CV: CV
+ * - AC: AC
+ * - ACM: ACM
+ * - ACD: ACD
+ * - ACV: ACV
+ * - PC: PC
+ * - PCM: PCM
+ * - PCD: PCD
+ * - PCV: PCV
  */
 export type EventTiming =
   | "MORN"
@@ -2051,6 +3466,10 @@ export type EventTiming =
  *
  * The handling of the variable in statistical analysis for exposures or outcomes
  * (E.g. Dichotomous, Continuous, Descriptive).
+ * - continuous: continuous variable
+ * - dichotomous: dichotomous variable
+ * - ordinal: ordinal variable
+ * - polychotomous: polychotomous variable
  */
 export type EvidenceVariableHandling =
   | "continuous"
@@ -2062,6 +3481,8 @@ export type EvidenceVariableHandling =
  * ExampleScenarioActorType
  *
  * The type of actor - system or human.
+ * - person: Person
+ * - entity: System
  */
 export type ExampleScenarioActorType = "person" | "entity";
 
@@ -2069,6 +3490,10 @@ export type ExampleScenarioActorType = "person" | "entity";
  * ExplanationOfBenefitStatus
  *
  * A code specifying the state of the resource instance.
+ * - active: Active
+ * - cancelled: Cancelled
+ * - draft: Draft
+ * - entered-in-error: Entered In Error
  */
 export type ExplanationOfBenefitStatus =
   | "active"
@@ -2080,6 +3505,9 @@ export type ExplanationOfBenefitStatus =
  * ExtensionContextType
  *
  * How an extension context is interpreted.
+ * - fhirpath: FHIRPath
+ * - element: Element ID
+ * - extension: Extension URL
  */
 export type ExtensionContextType = "fhirpath" | "element" | "extension";
 
@@ -2087,6 +3515,10 @@ export type ExtensionContextType = "fhirpath" | "element" | "extension";
  * FamilyHistoryStatus
  *
  * A code that identifies the status of the family history record.
+ * - partial: Partial
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - health-unknown: Health Unknown
  */
 export type FamilyHistoryStatus =
   | "partial"
@@ -2099,6 +3531,215 @@ export type FamilyHistoryStatus =
  *
  * A list of all the concrete types defined in this version of the FHIR
  * specification - Abstract Types, Data Types and Resource Types.
+ * - Address: Address
+ * - Age: Age
+ * - Annotation: Annotation
+ * - Attachment: Attachment
+ * - BackboneElement: BackboneElement
+ * - CodeableConcept: CodeableConcept
+ * - CodeableReference: CodeableReference
+ * - Coding: Coding
+ * - ContactDetail: ContactDetail
+ * - ContactPoint: ContactPoint
+ * - Contributor: Contributor
+ * - Count: Count
+ * - DataRequirement: DataRequirement
+ * - Distance: Distance
+ * - Dosage: Dosage
+ * - Duration: Duration
+ * - Element: Element
+ * - ElementDefinition: ElementDefinition
+ * - Expression: Expression
+ * - Extension: Extension
+ * - HumanName: HumanName
+ * - Identifier: Identifier
+ * - MarketingStatus: MarketingStatus
+ * - Meta: Meta
+ * - Money: Money
+ * - MoneyQuantity: MoneyQuantity
+ * - Narrative: Narrative
+ * - ParameterDefinition: ParameterDefinition
+ * - Period: Period
+ * - Population: Population
+ * - ProdCharacteristic: ProdCharacteristic
+ * - ProductShelfLife: ProductShelfLife
+ * - Quantity: Quantity
+ * - Range: Range
+ * - Ratio: Ratio
+ * - RatioRange: RatioRange
+ * - Reference: Reference
+ * - RelatedArtifact: RelatedArtifact
+ * - SampledData: SampledData
+ * - Signature: Signature
+ * - SimpleQuantity: SimpleQuantity
+ * - Timing: Timing
+ * - TriggerDefinition: TriggerDefinition
+ * - UsageContext: UsageContext
+ * - base64Binary: base64Binary
+ * - boolean: boolean
+ * - canonical: canonical
+ * - code: code
+ * - date: date
+ * - dateTime: dateTime
+ * - decimal: decimal
+ * - id: id
+ * - instant: instant
+ * - integer: integer
+ * - markdown: markdown
+ * - oid: oid
+ * - positiveInt: positiveInt
+ * - string: string
+ * - time: time
+ * - unsignedInt: unsignedInt
+ * - uri: uri
+ * - url: url
+ * - uuid: uuid
+ * - xhtml: XHTML
+ * - Resource: Resource
+ * - Binary: Binary
+ * - Bundle: Bundle
+ * - DomainResource: DomainResource
+ * - Account: Account
+ * - ActivityDefinition: ActivityDefinition
+ * - AdministrableProductDefinition: AdministrableProductDefinition
+ * - AdverseEvent: AdverseEvent
+ * - AllergyIntolerance: AllergyIntolerance
+ * - Appointment: Appointment
+ * - AppointmentResponse: AppointmentResponse
+ * - AuditEvent: AuditEvent
+ * - Basic: Basic
+ * - BiologicallyDerivedProduct: BiologicallyDerivedProduct
+ * - BodyStructure: BodyStructure
+ * - CapabilityStatement: CapabilityStatement
+ * - CarePlan: CarePlan
+ * - CareTeam: CareTeam
+ * - CatalogEntry: CatalogEntry
+ * - ChargeItem: ChargeItem
+ * - ChargeItemDefinition: ChargeItemDefinition
+ * - Citation: Citation
+ * - Claim: Claim
+ * - ClaimResponse: ClaimResponse
+ * - ClinicalImpression: ClinicalImpression
+ * - ClinicalUseDefinition: ClinicalUseDefinition
+ * - CodeSystem: CodeSystem
+ * - Communication: Communication
+ * - CommunicationRequest: CommunicationRequest
+ * - CompartmentDefinition: CompartmentDefinition
+ * - Composition: Composition
+ * - ConceptMap: ConceptMap
+ * - Condition: Condition
+ * - Consent: Consent
+ * - Contract: Contract
+ * - Coverage: Coverage
+ * - CoverageEligibilityRequest: CoverageEligibilityRequest
+ * - CoverageEligibilityResponse: CoverageEligibilityResponse
+ * - DetectedIssue: DetectedIssue
+ * - Device: Device
+ * - DeviceDefinition: DeviceDefinition
+ * - DeviceMetric: DeviceMetric
+ * - DeviceRequest: DeviceRequest
+ * - DeviceUseStatement: DeviceUseStatement
+ * - DiagnosticReport: DiagnosticReport
+ * - DocumentManifest: DocumentManifest
+ * - DocumentReference: DocumentReference
+ * - Encounter: Encounter
+ * - Endpoint: Endpoint
+ * - EnrollmentRequest: EnrollmentRequest
+ * - EnrollmentResponse: EnrollmentResponse
+ * - EpisodeOfCare: EpisodeOfCare
+ * - EventDefinition: EventDefinition
+ * - Evidence: Evidence
+ * - EvidenceReport: EvidenceReport
+ * - EvidenceVariable: EvidenceVariable
+ * - ExampleScenario: ExampleScenario
+ * - ExplanationOfBenefit: ExplanationOfBenefit
+ * - FamilyMemberHistory: FamilyMemberHistory
+ * - Flag: Flag
+ * - Goal: Goal
+ * - GraphDefinition: GraphDefinition
+ * - Group: Group
+ * - GuidanceResponse: GuidanceResponse
+ * - HealthcareService: HealthcareService
+ * - ImagingStudy: ImagingStudy
+ * - Immunization: Immunization
+ * - ImmunizationEvaluation: ImmunizationEvaluation
+ * - ImmunizationRecommendation: ImmunizationRecommendation
+ * - ImplementationGuide: ImplementationGuide
+ * - Ingredient: Ingredient
+ * - InsurancePlan: InsurancePlan
+ * - Invoice: Invoice
+ * - Library: Library
+ * - Linkage: Linkage
+ * - List: List
+ * - Location: Location
+ * - ManufacturedItemDefinition: ManufacturedItemDefinition
+ * - Measure: Measure
+ * - MeasureReport: MeasureReport
+ * - Media: Media
+ * - Medication: Medication
+ * - MedicationAdministration: MedicationAdministration
+ * - MedicationDispense: MedicationDispense
+ * - MedicationKnowledge: MedicationKnowledge
+ * - MedicationRequest: MedicationRequest
+ * - MedicationStatement: MedicationStatement
+ * - MedicinalProductDefinition: MedicinalProductDefinition
+ * - MessageDefinition: MessageDefinition
+ * - MessageHeader: MessageHeader
+ * - MolecularSequence: MolecularSequence
+ * - NamingSystem: NamingSystem
+ * - NutritionOrder: NutritionOrder
+ * - NutritionProduct: NutritionProduct
+ * - Observation: Observation
+ * - ObservationDefinition: ObservationDefinition
+ * - OperationDefinition: OperationDefinition
+ * - OperationOutcome: OperationOutcome
+ * - Organization: Organization
+ * - OrganizationAffiliation: OrganizationAffiliation
+ * - PackagedProductDefinition: PackagedProductDefinition
+ * - Patient: Patient
+ * - PaymentNotice: PaymentNotice
+ * - PaymentReconciliation: PaymentReconciliation
+ * - Person: Person
+ * - PlanDefinition: PlanDefinition
+ * - Practitioner: Practitioner
+ * - PractitionerRole: PractitionerRole
+ * - Procedure: Procedure
+ * - Provenance: Provenance
+ * - Questionnaire: Questionnaire
+ * - QuestionnaireResponse: QuestionnaireResponse
+ * - RegulatedAuthorization: RegulatedAuthorization
+ * - RelatedPerson: RelatedPerson
+ * - RequestGroup: RequestGroup
+ * - ResearchDefinition: ResearchDefinition
+ * - ResearchElementDefinition: ResearchElementDefinition
+ * - ResearchStudy: ResearchStudy
+ * - ResearchSubject: ResearchSubject
+ * - RiskAssessment: RiskAssessment
+ * - Schedule: Schedule
+ * - SearchParameter: SearchParameter
+ * - ServiceRequest: ServiceRequest
+ * - Slot: Slot
+ * - Specimen: Specimen
+ * - SpecimenDefinition: SpecimenDefinition
+ * - StructureDefinition: StructureDefinition
+ * - StructureMap: StructureMap
+ * - Subscription: Subscription
+ * - SubscriptionStatus: SubscriptionStatus
+ * - SubscriptionTopic: SubscriptionTopic
+ * - Substance: Substance
+ * - SubstanceDefinition: SubstanceDefinition
+ * - SupplyDelivery: SupplyDelivery
+ * - SupplyRequest: SupplyRequest
+ * - Task: Task
+ * - TerminologyCapabilities: TerminologyCapabilities
+ * - TestReport: TestReport
+ * - TestScript: TestScript
+ * - ValueSet: ValueSet
+ * - VerificationResult: VerificationResult
+ * - VisionPrescription: VisionPrescription
+ * - Parameters: Parameters
+ * - Type: Type
+ * - Any: Any
  */
 export type FHIRAllTypes =
   | "Address"
@@ -2316,6 +3957,213 @@ export type FHIRAllTypes =
  *
  * A list of all the concrete types defined in this version of the FHIR
  * specification - Data Types and Resource Types.
+ * - Address: Address
+ * - Age: Age
+ * - Annotation: Annotation
+ * - Attachment: Attachment
+ * - BackboneElement: BackboneElement
+ * - CodeableConcept: CodeableConcept
+ * - CodeableReference: CodeableReference
+ * - Coding: Coding
+ * - ContactDetail: ContactDetail
+ * - ContactPoint: ContactPoint
+ * - Contributor: Contributor
+ * - Count: Count
+ * - DataRequirement: DataRequirement
+ * - Distance: Distance
+ * - Dosage: Dosage
+ * - Duration: Duration
+ * - Element: Element
+ * - ElementDefinition: ElementDefinition
+ * - Expression: Expression
+ * - Extension: Extension
+ * - HumanName: HumanName
+ * - Identifier: Identifier
+ * - MarketingStatus: MarketingStatus
+ * - Meta: Meta
+ * - Money: Money
+ * - MoneyQuantity: MoneyQuantity
+ * - Narrative: Narrative
+ * - ParameterDefinition: ParameterDefinition
+ * - Period: Period
+ * - Population: Population
+ * - ProdCharacteristic: ProdCharacteristic
+ * - ProductShelfLife: ProductShelfLife
+ * - Quantity: Quantity
+ * - Range: Range
+ * - Ratio: Ratio
+ * - RatioRange: RatioRange
+ * - Reference: Reference
+ * - RelatedArtifact: RelatedArtifact
+ * - SampledData: SampledData
+ * - Signature: Signature
+ * - SimpleQuantity: SimpleQuantity
+ * - Timing: Timing
+ * - TriggerDefinition: TriggerDefinition
+ * - UsageContext: UsageContext
+ * - base64Binary: base64Binary
+ * - boolean: boolean
+ * - canonical: canonical
+ * - code: code
+ * - date: date
+ * - dateTime: dateTime
+ * - decimal: decimal
+ * - id: id
+ * - instant: instant
+ * - integer: integer
+ * - markdown: markdown
+ * - oid: oid
+ * - positiveInt: positiveInt
+ * - string: string
+ * - time: time
+ * - unsignedInt: unsignedInt
+ * - uri: uri
+ * - url: url
+ * - uuid: uuid
+ * - xhtml: XHTML
+ * - Resource: Resource
+ * - Binary: Binary
+ * - Bundle: Bundle
+ * - DomainResource: DomainResource
+ * - Account: Account
+ * - ActivityDefinition: ActivityDefinition
+ * - AdministrableProductDefinition: AdministrableProductDefinition
+ * - AdverseEvent: AdverseEvent
+ * - AllergyIntolerance: AllergyIntolerance
+ * - Appointment: Appointment
+ * - AppointmentResponse: AppointmentResponse
+ * - AuditEvent: AuditEvent
+ * - Basic: Basic
+ * - BiologicallyDerivedProduct: BiologicallyDerivedProduct
+ * - BodyStructure: BodyStructure
+ * - CapabilityStatement: CapabilityStatement
+ * - CarePlan: CarePlan
+ * - CareTeam: CareTeam
+ * - CatalogEntry: CatalogEntry
+ * - ChargeItem: ChargeItem
+ * - ChargeItemDefinition: ChargeItemDefinition
+ * - Citation: Citation
+ * - Claim: Claim
+ * - ClaimResponse: ClaimResponse
+ * - ClinicalImpression: ClinicalImpression
+ * - ClinicalUseDefinition: ClinicalUseDefinition
+ * - CodeSystem: CodeSystem
+ * - Communication: Communication
+ * - CommunicationRequest: CommunicationRequest
+ * - CompartmentDefinition: CompartmentDefinition
+ * - Composition: Composition
+ * - ConceptMap: ConceptMap
+ * - Condition: Condition
+ * - Consent: Consent
+ * - Contract: Contract
+ * - Coverage: Coverage
+ * - CoverageEligibilityRequest: CoverageEligibilityRequest
+ * - CoverageEligibilityResponse: CoverageEligibilityResponse
+ * - DetectedIssue: DetectedIssue
+ * - Device: Device
+ * - DeviceDefinition: DeviceDefinition
+ * - DeviceMetric: DeviceMetric
+ * - DeviceRequest: DeviceRequest
+ * - DeviceUseStatement: DeviceUseStatement
+ * - DiagnosticReport: DiagnosticReport
+ * - DocumentManifest: DocumentManifest
+ * - DocumentReference: DocumentReference
+ * - Encounter: Encounter
+ * - Endpoint: Endpoint
+ * - EnrollmentRequest: EnrollmentRequest
+ * - EnrollmentResponse: EnrollmentResponse
+ * - EpisodeOfCare: EpisodeOfCare
+ * - EventDefinition: EventDefinition
+ * - Evidence: Evidence
+ * - EvidenceReport: EvidenceReport
+ * - EvidenceVariable: EvidenceVariable
+ * - ExampleScenario: ExampleScenario
+ * - ExplanationOfBenefit: ExplanationOfBenefit
+ * - FamilyMemberHistory: FamilyMemberHistory
+ * - Flag: Flag
+ * - Goal: Goal
+ * - GraphDefinition: GraphDefinition
+ * - Group: Group
+ * - GuidanceResponse: GuidanceResponse
+ * - HealthcareService: HealthcareService
+ * - ImagingStudy: ImagingStudy
+ * - Immunization: Immunization
+ * - ImmunizationEvaluation: ImmunizationEvaluation
+ * - ImmunizationRecommendation: ImmunizationRecommendation
+ * - ImplementationGuide: ImplementationGuide
+ * - Ingredient: Ingredient
+ * - InsurancePlan: InsurancePlan
+ * - Invoice: Invoice
+ * - Library: Library
+ * - Linkage: Linkage
+ * - List: List
+ * - Location: Location
+ * - ManufacturedItemDefinition: ManufacturedItemDefinition
+ * - Measure: Measure
+ * - MeasureReport: MeasureReport
+ * - Media: Media
+ * - Medication: Medication
+ * - MedicationAdministration: MedicationAdministration
+ * - MedicationDispense: MedicationDispense
+ * - MedicationKnowledge: MedicationKnowledge
+ * - MedicationRequest: MedicationRequest
+ * - MedicationStatement: MedicationStatement
+ * - MedicinalProductDefinition: MedicinalProductDefinition
+ * - MessageDefinition: MessageDefinition
+ * - MessageHeader: MessageHeader
+ * - MolecularSequence: MolecularSequence
+ * - NamingSystem: NamingSystem
+ * - NutritionOrder: NutritionOrder
+ * - NutritionProduct: NutritionProduct
+ * - Observation: Observation
+ * - ObservationDefinition: ObservationDefinition
+ * - OperationDefinition: OperationDefinition
+ * - OperationOutcome: OperationOutcome
+ * - Organization: Organization
+ * - OrganizationAffiliation: OrganizationAffiliation
+ * - PackagedProductDefinition: PackagedProductDefinition
+ * - Patient: Patient
+ * - PaymentNotice: PaymentNotice
+ * - PaymentReconciliation: PaymentReconciliation
+ * - Person: Person
+ * - PlanDefinition: PlanDefinition
+ * - Practitioner: Practitioner
+ * - PractitionerRole: PractitionerRole
+ * - Procedure: Procedure
+ * - Provenance: Provenance
+ * - Questionnaire: Questionnaire
+ * - QuestionnaireResponse: QuestionnaireResponse
+ * - RegulatedAuthorization: RegulatedAuthorization
+ * - RelatedPerson: RelatedPerson
+ * - RequestGroup: RequestGroup
+ * - ResearchDefinition: ResearchDefinition
+ * - ResearchElementDefinition: ResearchElementDefinition
+ * - ResearchStudy: ResearchStudy
+ * - ResearchSubject: ResearchSubject
+ * - RiskAssessment: RiskAssessment
+ * - Schedule: Schedule
+ * - SearchParameter: SearchParameter
+ * - ServiceRequest: ServiceRequest
+ * - Slot: Slot
+ * - Specimen: Specimen
+ * - SpecimenDefinition: SpecimenDefinition
+ * - StructureDefinition: StructureDefinition
+ * - StructureMap: StructureMap
+ * - Subscription: Subscription
+ * - SubscriptionStatus: SubscriptionStatus
+ * - SubscriptionTopic: SubscriptionTopic
+ * - Substance: Substance
+ * - SubstanceDefinition: SubstanceDefinition
+ * - SupplyDelivery: SupplyDelivery
+ * - SupplyRequest: SupplyRequest
+ * - Task: Task
+ * - TerminologyCapabilities: TerminologyCapabilities
+ * - TestReport: TestReport
+ * - TestScript: TestScript
+ * - ValueSet: ValueSet
+ * - VerificationResult: VerificationResult
+ * - VisionPrescription: VisionPrescription
+ * - Parameters: Parameters
  */
 export type FHIRDefinedType =
   | "Address"
@@ -2530,6 +4378,10 @@ export type FHIRDefinedType =
  * FHIRDeviceStatus
  *
  * The availability status of the device.
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type FHIRDeviceStatus =
   | "active"
@@ -2541,6 +4393,9 @@ export type FHIRDeviceStatus =
  * FHIRSubstanceStatus
  *
  * A code to indicate if the substance is actively used.
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type FHIRSubstanceStatus = "active" | "inactive" | "entered-in-error";
 
@@ -2548,6 +4403,33 @@ export type FHIRSubstanceStatus = "active" | "inactive" | "entered-in-error";
  * FHIRVersion
  *
  * All published FHIR Versions.
+ * - 0.01: 0.01
+ * - 0.05: 0.05
+ * - 0.06: 0.06
+ * - 0.11: 0.11
+ * - 0.0.80: 0.0.80
+ * - 0.0.81: 0.0.81
+ * - 0.0.82: 0.0.82
+ * - 0.4.0: 0.4.0
+ * - 0.5.0: 0.5.0
+ * - 1.0.0: 1.0.0
+ * - 1.0.1: 1.0.1
+ * - 1.0.2: 1.0.2
+ * - 1.1.0: 1.1.0
+ * - 1.4.0: 1.4.0
+ * - 1.6.0: 1.6.0
+ * - 1.8.0: 1.8.0
+ * - 3.0.0: 3.0.0
+ * - 3.0.1: 3.0.1
+ * - 3.0.2: 3.0.2
+ * - 3.3.0: 3.3.0
+ * - 3.5.0: 3.5.0
+ * - 4.0.0: 4.0.0
+ * - 4.0.1: 4.0.1
+ * - 4.1.0: 4.1.0
+ * - 4.3.0-cibuild: 4.3.0-cibuild
+ * - 4.3.0-snapshot1: 4.3.0-snapshot1
+ * - 4.3.0: 4.3.0
  */
 export type FHIRVersion =
   | "0.01"
@@ -2582,6 +4464,15 @@ export type FHIRVersion =
  * FilterOperator
  *
  * The kind of operation to perform as a part of a property based filter.
+ * - =: Equals
+ * - is-a: Is A (by subsumption)
+ * - descendent-of: Descendent Of (by subsumption)
+ * - is-not-a: Not (Is A) (by subsumption)
+ * - regex: Regular Expression
+ * - in: In Set
+ * - not-in: Not in Set
+ * - generalizes: Generalizes (by Subsumption)
+ * - exists: Exists
  */
 export type FilterOperator =
   | "="
@@ -2598,6 +4489,10 @@ export type FilterOperator =
  * Financial Resource Status Codes
  *
  * This value set includes Status codes.
+ * - active: Active
+ * - cancelled: Cancelled
+ * - draft: Draft
+ * - entered-in-error: Entered in Error
  */
 export type FinancialResourceStatusCodes =
   | "active"
@@ -2610,6 +4505,9 @@ export type FinancialResourceStatusCodes =
  *
  * Indicates whether this flag is active and needs to be displayed to a user, or
  * whether it is no longer needed or was entered in error.
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type FlagStatus = "active" | "inactive" | "entered-in-error";
 
@@ -2618,6 +4516,15 @@ export type FlagStatus = "active" | "inactive" | "entered-in-error";
  *
  * Codes that reflect the current state of a goal and whether the goal is still
  * being targeted.
+ * - proposed: Proposed
+ * - planned: Planned
+ * - accepted: Accepted
+ * - active: Active
+ * - on-hold: On Hold
+ * - completed: Completed
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - rejected: Rejected
  */
 export type GoalLifecycleStatus =
   | "proposed"
@@ -2634,6 +4541,10 @@ export type GoalLifecycleStatus =
  * GraphCompartmentRule
  *
  * How a compartment must be linked.
+ * - identical: Identical
+ * - matching: Matching
+ * - different: Different
+ * - custom: Custom
  */
 export type GraphCompartmentRule =
   | "identical"
@@ -2645,6 +4556,8 @@ export type GraphCompartmentRule =
  * GraphCompartmentUse
  *
  * Defines how a compartment rule is used.
+ * - condition: Condition
+ * - requirement: Requirement
  */
 export type GraphCompartmentUse = "condition" | "requirement";
 
@@ -2652,6 +4565,12 @@ export type GraphCompartmentUse = "condition" | "requirement";
  * GroupMeasure
  *
  * Possible group measure aggregates (E.g. Mean, Median).
+ * - mean: Mean
+ * - median: Median
+ * - mean-of-mean: Mean of Study Means
+ * - mean-of-median: Mean of Study Medins
+ * - median-of-mean: Median of Study Means
+ * - median-of-median: Median of Study Medians
  */
 export type GroupMeasure =
   | "mean"
@@ -2665,6 +4584,12 @@ export type GroupMeasure =
  * GroupType
  *
  * Types of resources that are part of group.
+ * - person: Person
+ * - animal: Animal
+ * - practitioner: Practitioner
+ * - device: Device
+ * - medication: Medication
+ * - substance: Substance
  */
 export type GroupType =
   | "person"
@@ -2678,6 +4603,12 @@ export type GroupType =
  * GuidanceResponseStatus
  *
  * The status of a guidance response.
+ * - success: Success
+ * - data-requested: Data Requested
+ * - data-required: Data Required
+ * - in-progress: In Progress
+ * - failure: Failure
+ * - entered-in-error: Entered In Error
  */
 export type GuidanceResponseStatus =
   | "success"
@@ -2691,6 +4622,10 @@ export type GuidanceResponseStatus =
  * GuidePageGeneration
  *
  * A code that indicates how the page is generated.
+ * - html: HTML
+ * - markdown: Markdown
+ * - xml: XML
+ * - generated: Generated
  */
 export type GuidePageGeneration = "html" | "markdown" | "xml" | "generated";
 
@@ -2698,6 +4633,16 @@ export type GuidePageGeneration = "html" | "markdown" | "xml" | "generated";
  * GuideParameterCode
  *
  * Code of parameter that is input to the guide.
+ * - apply: Apply Metadata Value
+ * - path-resource: Resource Path
+ * - path-pages: Pages Path
+ * - path-tx-cache: Terminology Cache Path
+ * - expansion-parameter: Expansion Profile
+ * - rule-broken-links: Broken Links Rule
+ * - generate-xml: Generate XML
+ * - generate-json: Generate JSON
+ * - generate-turtle: Generate Turtle
+ * - html-template: HTML Template
  */
 export type GuideParameterCode =
   | "apply"
@@ -2716,6 +4661,12 @@ export type GuideParameterCode =
  *
  * HTTP verbs (in the HTTP command line). See [HTTP
  * rfc](https://tools.ietf.org/html/rfc7231) for details.
+ * - GET: GET
+ * - HEAD: HEAD
+ * - POST: POST
+ * - PUT: PUT
+ * - DELETE: DELETE
+ * - PATCH: PATCH
  */
 export type HTTPVerb = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "PATCH";
 
@@ -2738,6 +4689,11 @@ export type IANATimezones = string;
  * IdentifierUse
  *
  * Identifies the purpose for this identifier, if known .
+ * - usual: Usual
+ * - official: Official
+ * - temp: Temp
+ * - secondary: Secondary
+ * - old: Old
  */
 export type IdentifierUse = "usual" | "official" | "temp" | "secondary" | "old";
 
@@ -2746,6 +4702,10 @@ export type IdentifierUse = "usual" | "official" | "temp" | "secondary" | "old";
  *
  * The level of confidence that this link represents the same actual person, based
  * on NIST Authentication Levels.
+ * - level1: Level 1
+ * - level2: Level 2
+ * - level3: Level 3
+ * - level4: Level 4
  */
 export type IdentityAssuranceLevel = "level1" | "level2" | "level3" | "level4";
 
@@ -2753,6 +4713,11 @@ export type IdentityAssuranceLevel = "level1" | "level2" | "level3" | "level4";
  * ImagingStudyStatus
  *
  * The status of the ImagingStudy.
+ * - registered: Registered
+ * - available: Available
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type ImagingStudyStatus =
   | "registered"
@@ -2768,6 +4733,8 @@ export type ImagingStudyStatus =
  * terminologically robust code system that consists of or contains concepts to
  * support describing the current status of the evaluation for vaccine
  * administration event.
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
  */
 export type ImmunizationEvaluationStatusCodes =
   | "completed"
@@ -2779,6 +4746,9 @@ export type ImmunizationEvaluationStatusCodes =
  * The value set to instantiate this attribute should be drawn from a
  * terminologically robust code system that consists of or contains concepts to
  * support describing the current status of the administered dose of vaccine.
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - not-done: Not Done
  */
 export type ImmunizationStatusCodes =
   | "completed"
@@ -2792,6 +4762,9 @@ export type ImmunizationStatusCodes =
  * example whether it is a possible one (others allowed), or an exclusive
  * authorized one for this ingredient. Note that this is not the manufacturing
  * process role.
+ * - allowed: Manufacturer is specifically allowed for this ingredient
+ * - possible: Manufacturer is known to make this ingredient in general
+ * - actual: Manufacturer actually makes this particular ingredient
  */
 export type IngredientManufacturerRole = "allowed" | "possible" | "actual";
 
@@ -2799,6 +4772,9 @@ export type IngredientManufacturerRole = "allowed" | "possible" | "actual";
  * Interaction Trigger
  *
  * FHIR RESTful interaction codes used for SubscriptionTopic trigger.
+ * - create: create
+ * - update: update
+ * - delete: delete
  */
 export type InteractionTrigger = "create" | "update" | "delete";
 
@@ -2806,6 +4782,12 @@ export type InteractionTrigger = "create" | "update" | "delete";
  * InvoicePriceComponentType
  *
  * Codes indicating the kind of the price component.
+ * - base: base price
+ * - surcharge: surcharge
+ * - deduction: deduction
+ * - discount: discount
+ * - tax: tax
+ * - informational: informational
  */
 export type InvoicePriceComponentType =
   | "base"
@@ -2819,6 +4801,11 @@ export type InvoicePriceComponentType =
  * InvoiceStatus
  *
  * Codes identifying the lifecycle stage of an Invoice.
+ * - draft: draft
+ * - issued: issued
+ * - balanced: balanced
+ * - cancelled: cancelled
+ * - entered-in-error: entered in error
  */
 export type InvoiceStatus =
   | "draft"
@@ -2831,6 +4818,10 @@ export type InvoiceStatus =
  * IssueSeverity
  *
  * How the issue affects the success of the action.
+ * - fatal: Fatal
+ * - error: Error
+ * - warning: Warning
+ * - information: Information
  */
 export type IssueSeverity = "fatal" | "error" | "warning" | "information";
 
@@ -2838,6 +4829,37 @@ export type IssueSeverity = "fatal" | "error" | "warning" | "information";
  * IssueType
  *
  * A code that describes the type of issue.
+ * - invalid: Invalid Content
+ * - structure: Structural Issue
+ * - required: Required element missing
+ * - value: Element value invalid
+ * - invariant: Validation rule failed
+ * - security: Security Problem
+ * - login: Login Required
+ * - unknown: Unknown User
+ * - expired: Session Expired
+ * - forbidden: Forbidden
+ * - suppressed: Information  Suppressed
+ * - processing: Processing Failure
+ * - not-supported: Content not supported
+ * - duplicate: Duplicate
+ * - multiple-matches: Multiple Matches
+ * - not-found: Not Found
+ * - deleted: Deleted
+ * - too-long: Content Too Long
+ * - code-invalid: Invalid Code
+ * - extension: Unacceptable Extension
+ * - too-costly: Operation Too Costly
+ * - business-rule: Business Rule Violation
+ * - conflict: Edit Version Conflict
+ * - transient: Transient Issue
+ * - lock-error: Lock Error
+ * - no-store: No Store Available
+ * - exception: Exception
+ * - timeout: Timeout
+ * - incomplete: Incomplete Results
+ * - throttled: Throttled
+ * - informational: Informational Note
  */
 export type IssueType =
   | "invalid"
@@ -2884,6 +4906,9 @@ export type LDLCodes = string;
  *
  * Used to distinguish different roles a resource can play within a set of linked
  * resources.
+ * - source: Source of Truth
+ * - alternate: Alternate Record
+ * - historical: Historical/Obsolete Record
  */
 export type LinkageType = "source" | "alternate" | "historical";
 
@@ -2891,6 +4916,10 @@ export type LinkageType = "source" | "alternate" | "historical";
  * LinkType
  *
  * The type of link between this patient resource and another patient resource.
+ * - replaced-by: Replaced-by
+ * - replaces: Replaces
+ * - refer: Refer
+ * - seealso: See also
  */
 export type LinkType = "replaced-by" | "replaces" | "refer" | "seealso";
 
@@ -2898,6 +4927,9 @@ export type LinkType = "replaced-by" | "replaces" | "refer" | "seealso";
  * ListMode
  *
  * The processing mode that applies to this list.
+ * - working: Working List
+ * - snapshot: Snapshot List
+ * - changes: Change List
  */
 export type ListMode = "working" | "snapshot" | "changes";
 
@@ -2905,6 +4937,9 @@ export type ListMode = "working" | "snapshot" | "changes";
  * ListStatus
  *
  * The current state of the list.
+ * - current: Current
+ * - retired: Retired
+ * - entered-in-error: Entered In Error
  */
 export type ListStatus = "current" | "retired" | "entered-in-error";
 
@@ -2913,6 +4948,8 @@ export type ListStatus = "current" | "retired" | "entered-in-error";
  *
  * Indicates whether a resource instance represents a specific location or a class
  * of locations.
+ * - instance: Instance
+ * - kind: Kind
  */
 export type LocationMode = "instance" | "kind";
 
@@ -2920,6 +4957,9 @@ export type LocationMode = "instance" | "kind";
  * LocationStatus
  *
  * Indicates whether the location is still in use.
+ * - active: Active
+ * - suspended: Suspended
+ * - inactive: Inactive
  */
 export type LocationStatus = "active" | "suspended" | "inactive";
 
@@ -2928,6 +4968,8 @@ export type LocationStatus = "active" | "suspended" | "inactive";
  *
  * Observation values that indicate what change in a measurement value or score is
  * indicative of an improvement in the measured item or scored issue.
+ * - increase: Increased score indicates improvement
+ * - decrease: Decreased score indicates improvement
  */
 export type MeasureImprovementNotation = "increase" | "decrease";
 
@@ -2935,6 +4977,9 @@ export type MeasureImprovementNotation = "increase" | "decrease";
  * MeasureReportStatus
  *
  * The status of the measure report.
+ * - complete: Complete
+ * - pending: Pending
+ * - error: Error
  */
 export type MeasureReportStatus = "complete" | "pending" | "error";
 
@@ -2942,6 +4987,10 @@ export type MeasureReportStatus = "complete" | "pending" | "error";
  * MeasureReportType
  *
  * The type of the measure report.
+ * - individual: Individual
+ * - subject-list: Subject List
+ * - summary: Summary
+ * - data-collection: Data Collection
  */
 export type MeasureReportType =
   | "individual"
@@ -2953,6 +5002,9 @@ export type MeasureReportType =
  *
  *
  * Medication Status Codes
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type MedicationStatusCodes = "active" | "inactive" | "entered-in-error";
 
@@ -2960,6 +5012,13 @@ export type MedicationStatusCodes = "active" | "inactive" | "entered-in-error";
  *
  *
  * MedicationAdministration Status Codes
+ * - in-progress: In Progress
+ * - not-done: Not Done
+ * - on-hold: On Hold
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - stopped: Stopped
+ * - unknown: Unknown
  */
 export type MedicationAdministrationStatusCodes =
   | "in-progress"
@@ -2974,6 +5033,15 @@ export type MedicationAdministrationStatusCodes =
  *
  *
  * MedicationDispense Status Codes
+ * - preparation: Preparation
+ * - in-progress: In Progress
+ * - cancelled: Cancelled
+ * - on-hold: On Hold
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - stopped: Stopped
+ * - declined: Declined
+ * - unknown: Unknown
  */
 export type MedicationDispenseStatusCodes =
   | "preparation"
@@ -2990,6 +5058,9 @@ export type MedicationDispenseStatusCodes =
  *
  *
  * MedicationKnowledge Status Codes
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type MedicationKnowledgeStatusCodes =
   | "active"
@@ -3000,6 +5071,14 @@ export type MedicationKnowledgeStatusCodes =
  *
  *
  * MedicationRequest Intent Codes
+ * - proposal: Proposal
+ * - plan: Plan
+ * - order: Order
+ * - original-order: Original Order
+ * - reflex-order: Reflex Order
+ * - filler-order: Filler Order
+ * - instance-order: Instance Order
+ * - option: Option
  */
 export type medicationRequestIntent =
   | "proposal"
@@ -3015,6 +5094,14 @@ export type medicationRequestIntent =
  *
  *
  * MedicationRequest Status Codes
+ * - active: Active
+ * - on-hold: On Hold
+ * - cancelled: Cancelled
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - stopped: Stopped
+ * - draft: Draft
+ * - unknown: Unknown
  */
 export type medicationrequestStatus =
   | "active"
@@ -3030,6 +5117,14 @@ export type medicationrequestStatus =
  *
  *
  * MedicationStatement Status Codes
+ * - active: Active
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - intended: Intended
+ * - stopped: Stopped
+ * - on-hold: On Hold
+ * - unknown: Unknown
+ * - not-taken: Not Taken
  */
 export type MedicationStatementStatusCodes =
   | "active"
@@ -3046,6 +5141,10 @@ export type MedicationStatementStatusCodes =
  *
  * HL7-defined table of codes which identify conditions under which acknowledgments
  * are required to be returned in response to a message.
+ * - always: Always
+ * - on-error: Error/reject conditions only
+ * - never: Never
+ * - on-success: Successful completion only
  */
 export type messageheaderresponserequest =
   | "always"
@@ -3057,6 +5156,9 @@ export type messageheaderresponserequest =
  * MessageSignificanceCategory
  *
  * The impact of the content of a message.
+ * - consequence: Consequence
+ * - currency: Currency
+ * - notification: Notification
  */
 export type MessageSignificanceCategory =
   | "consequence"
@@ -3082,6 +5184,13 @@ export type NameRepresentationUse = string;
  * NameUse
  *
  * The use of a human name.
+ * - usual: Usual
+ * - official: Official
+ * - temp: Temp
+ * - nickname: Nickname
+ * - anonymous: Anonymous
+ * - old: Old
+ * - maiden: Name changed for Marriage
  */
 export type NameUse =
   | "usual"
@@ -3096,6 +5205,10 @@ export type NameUse =
  * NamingSystemIdentifierType
  *
  * Identifies the style of unique identifier used to identify a namespace.
+ * - oid: OID
+ * - uuid: UUID
+ * - uri: URI
+ * - other: Other
  */
 export type NamingSystemIdentifierType = "oid" | "uuid" | "uri" | "other";
 
@@ -3103,6 +5216,9 @@ export type NamingSystemIdentifierType = "oid" | "uuid" | "uri" | "other";
  * NamingSystemType
  *
  * Identifies the purpose of the naming system.
+ * - codesystem: Code System
+ * - identifier: Identifier
+ * - root: Root
  */
 export type NamingSystemType = "codesystem" | "identifier" | "root";
 
@@ -3110,6 +5226,10 @@ export type NamingSystemType = "codesystem" | "identifier" | "root";
  * NarrativeStatus
  *
  * The status of a resource narrative.
+ * - generated: Generated
+ * - extensions: Extensions
+ * - additional: Additional
+ * - empty: Empty
  */
 export type NarrativeStatus =
   | "generated"
@@ -3121,6 +5241,9 @@ export type NarrativeStatus =
  * NoteType
  *
  * The presentation types of notes.
+ * - display: Display
+ * - print: Print (Form)
+ * - printoper: Print (Operator)
  */
 export type NoteType = "display" | "print" | "printoper";
 
@@ -3128,6 +5251,9 @@ export type NoteType = "display" | "print" | "printoper";
  * NutritionProductStatus
  *
  * Codes identifying the lifecycle stage of a product.
+ * - active: Active
+ * - inactive: Inactive
+ * - entered-in-error: Entered in Error
  */
 export type NutritionProductStatus = "active" | "inactive" | "entered-in-error";
 
@@ -3135,6 +5261,17 @@ export type NutritionProductStatus = "active" | "inactive" | "entered-in-error";
  * ObservationDataType
  *
  * Permitted data type for observation value.
+ * - Quantity: Quantity
+ * - CodeableConcept: CodeableConcept
+ * - string: string
+ * - boolean: boolean
+ * - integer: integer
+ * - Range: Range
+ * - Ratio: Ratio
+ * - SampledData: SampledData
+ * - time: time
+ * - dateTime: dateTime
+ * - Period: Period
  */
 export type ObservationDataType =
   | "Quantity"
@@ -3153,6 +5290,9 @@ export type ObservationDataType =
  * ObservationRangeCategory
  *
  * Codes identifying the category of observation range.
+ * - reference: reference range
+ * - critical: critical range
+ * - absolute: absolute range
  */
 export type ObservationRangeCategory = "reference" | "critical" | "absolute";
 
@@ -3160,6 +5300,14 @@ export type ObservationRangeCategory = "reference" | "critical" | "absolute";
  * ObservationStatus
  *
  * Codes providing the status of an observation.
+ * - registered: Registered
+ * - preliminary: Preliminary
+ * - final: Final
+ * - amended: Amended
+ * - corrected: Corrected
+ * - cancelled: Cancelled
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type ObservationStatus =
   | "registered"
@@ -3175,6 +5323,8 @@ export type ObservationStatus =
  * OperationKind
  *
  * Whether an operation is a normal operation or a query.
+ * - operation: Operation
+ * - query: Query
  */
 export type OperationKind = "operation" | "query";
 
@@ -3182,6 +5332,8 @@ export type OperationKind = "operation" | "query";
  * OperationParameterUse
  *
  * Whether an operation parameter is an input or an output parameter.
+ * - in: In
+ * - out: Out
  */
 export type OperationParameterUse = "in" | "out";
 
@@ -3189,6 +5341,8 @@ export type OperationParameterUse = "in" | "out";
  * orientationType
  *
  * Type for orientation.
+ * - sense: Sense orientation of referenceSeq
+ * - antisense: Antisense orientation of referenceSeq
  */
 export type orientationType = "sense" | "antisense";
 
@@ -3205,6 +5359,9 @@ export type ParentRelationshipCodes = string;
  * ParticipantRequired
  *
  * Is the Participant required to attend the appointment.
+ * - required: Required
+ * - optional: Optional
+ * - information-only: Information Only
  */
 export type ParticipantRequired = "required" | "optional" | "information-only";
 
@@ -3212,6 +5369,10 @@ export type ParticipantRequired = "required" | "optional" | "information-only";
  * ParticipationStatus
  *
  * The Participation status of an appointment.
+ * - accepted: Accepted
+ * - declined: Declined
+ * - tentative: Tentative
+ * - needs-action: Needs Action
  */
 export type ParticipationStatus =
   | "accepted"
@@ -3237,6 +5398,11 @@ export type ProbabilityDistributionType = string;
  * PropertyRepresentation
  *
  * How a property is represented when serialized.
+ * - xmlAttr: XML Attribute
+ * - xmlText: XML Text
+ * - typeAttr: Type Attribute
+ * - cdaText: CDA Text Format
+ * - xhtml: XHTML
  */
 export type PropertyRepresentation =
   | "xmlAttr"
@@ -3249,6 +5415,13 @@ export type PropertyRepresentation =
  * PropertyType
  *
  * The type of a property value.
+ * - code: code (internal reference)
+ * - Coding: Coding (external reference)
+ * - string: string
+ * - integer: integer
+ * - boolean: boolean
+ * - dateTime: dateTime
+ * - decimal: decimal
  */
 export type PropertyType =
   | "code"
@@ -3263,6 +5436,11 @@ export type PropertyType =
  * ProvenanceEntityRole
  *
  * How an entity was used in an activity.
+ * - derivation: Derivation
+ * - revision: Revision
+ * - quotation: Quotation
+ * - source: Source
+ * - removal: Removal
  */
 export type ProvenanceEntityRole =
   | "derivation"
@@ -3275,6 +5453,10 @@ export type ProvenanceEntityRole =
  * PublicationStatus
  *
  * The lifecycle status of an artifact.
+ * - draft: Draft
+ * - active: Active
+ * - retired: Retired
+ * - unknown: Unknown
  */
 export type PublicationStatus = "draft" | "active" | "retired" | "unknown";
 
@@ -3282,6 +5464,9 @@ export type PublicationStatus = "draft" | "active" | "retired" | "unknown";
  * qualityType
  *
  * Type for quality report.
+ * - indel: INDEL Comparison
+ * - snp: SNP Comparison
+ * - unknown: UNKNOWN Comparison
  */
 export type qualityType = "indel" | "snp" | "unknown";
 
@@ -3289,6 +5474,10 @@ export type qualityType = "indel" | "snp" | "unknown";
  * QuantityComparator
  *
  * How the Quantity should be understood and represented.
+ * - <: Less than
+ * - <=: Less or Equal to
+ * - >=: Greater or Equal to
+ * - >: Greater than
  */
 export type QuantityComparator = "<" | "<=" | ">=" | ">";
 
@@ -3296,6 +5485,13 @@ export type QuantityComparator = "<" | "<=" | ">=" | ">";
  * QuestionnaireItemOperator
  *
  * The criteria by which a question is enabled.
+ * - exists: Exists
+ * - =: Equals
+ * - !=: Not Equals
+ * - >: Greater Than
+ * - <: Less Than
+ * - >=: Greater or Equals
+ * - <=: Less or Equals
  */
 export type QuestionnaireItemOperator =
   | "exists"
@@ -3311,6 +5507,23 @@ export type QuestionnaireItemOperator =
  *
  * Distinguishes groups from questions and display text and indicates data type for
  * questions.
+ * - group: Group
+ * - display: Display
+ * - question: Question
+ * - boolean: Boolean
+ * - decimal: Decimal
+ * - integer: Integer
+ * - date: Date
+ * - dateTime: Date Time
+ * - time: Time
+ * - string: String
+ * - text: Text
+ * - url: Url
+ * - choice: Choice
+ * - open-choice: Open Choice
+ * - attachment: Attachment
+ * - reference: Reference
+ * - quantity: Quantity
  */
 export type QuestionnaireItemType =
   | "group"
@@ -3342,6 +5555,11 @@ export type QuestionnaireResponseMode = string;
  * QuestionnaireResponseStatus
  *
  * Lifecycle status of the questionnaire response.
+ * - in-progress: In Progress
+ * - completed: Completed
+ * - amended: Amended
+ * - entered-in-error: Entered in Error
+ * - stopped: Stopped
  */
 export type QuestionnaireResponseStatus =
   | "in-progress"
@@ -3354,6 +5572,11 @@ export type QuestionnaireResponseStatus =
  * ReferenceHandlingPolicy
  *
  * A set of flags that defines how references are supported.
+ * - literal: Literal References
+ * - logical: Logical References
+ * - resolves: Resolves References
+ * - enforced: Reference Integrity Enforced
+ * - local: Local References Only
  */
 export type ReferenceHandlingPolicy =
   | "literal"
@@ -3367,6 +5590,9 @@ export type ReferenceHandlingPolicy =
  *
  * Whether a reference needs to be version specific or version independent, or
  * whether either can be used.
+ * - either: Either Specific or independent
+ * - independent: Version independent
+ * - specific: Version Specific
  */
 export type ReferenceVersionRules = "either" | "independent" | "specific";
 
@@ -3374,6 +5600,14 @@ export type ReferenceVersionRules = "either" | "independent" | "specific";
  * RelatedArtifactType
  *
  * The type of relationship to the related artifact.
+ * - documentation: Documentation
+ * - justification: Justification
+ * - citation: Citation
+ * - predecessor: Predecessor
+ * - successor: Successor
+ * - derived-from: Derived From
+ * - depends-on: Depends On
+ * - composed-of: Composed Of
  */
 export type RelatedArtifactType =
   | "documentation"
@@ -3389,6 +5623,10 @@ export type RelatedArtifactType =
  * RemittanceOutcome
  *
  * The outcome of the processing.
+ * - queued: Queued
+ * - complete: Complete
+ * - error: Error
+ * - partial: Partial
  */
 export type RemittanceOutcome = "queued" | "complete" | "error" | "partial";
 
@@ -3396,6 +5634,14 @@ export type RemittanceOutcome = "queued" | "complete" | "error" | "partial";
  * ReportRelationshipType
  *
  * The type of relationship between reports.
+ * - replaces: Replaces
+ * - amends: Amends
+ * - appends: Appends
+ * - transforms: Transforms
+ * - replacedWith: Replaced With
+ * - amendedWith: Amended With
+ * - appendedWith: Appended With
+ * - transformedWith: Transformed With
  */
 export type ReportRelationshipType =
   | "replaces"
@@ -3411,6 +5657,11 @@ export type ReportRelationshipType =
  * repositoryType
  *
  * Type for access of external URI.
+ * - directlink: Click and see
+ * - openapi: The URL is the RESTful or other kind of API that can access to the result.
+ * - login: Result cannot be access unless an account is logged in
+ * - oauth: Result need to be fetched with API and need LOGIN( or cookies are required when visiting the link of resource)
+ * - other: Some other complicated or particular way to get resource from URL.
  */
 export type repositoryType =
   | "directlink"
@@ -3424,6 +5675,15 @@ export type repositoryType =
  *
  * Codes indicating the degree of authority/intentionality associated with a
  * request.
+ * - proposal: Proposal
+ * - plan: Plan
+ * - directive: Directive
+ * - order: Order
+ * - original-order: Original Order
+ * - reflex-order: Reflex Order
+ * - filler-order: Filler Order
+ * - instance-order: Instance Order
+ * - option: Option
  */
 export type RequestIntent =
   | "proposal"
@@ -3440,6 +5700,10 @@ export type RequestIntent =
  * RequestPriority
  *
  * Identifies the level of importance to be assigned to actioning the request.
+ * - routine: Routine
+ * - urgent: Urgent
+ * - asap: ASAP
+ * - stat: STAT
  */
 export type RequestPriority = "routine" | "urgent" | "asap" | "stat";
 
@@ -3448,6 +5712,21 @@ export type RequestPriority = "routine" | "urgent" | "asap" | "stat";
  *
  * A list of all the request resource types defined in this version of the FHIR
  * specification.
+ * - Appointment: Appointment
+ * - AppointmentResponse: AppointmentResponse
+ * - CarePlan: CarePlan
+ * - Claim: Claim
+ * - CommunicationRequest: CommunicationRequest
+ * - Contract: Contract
+ * - DeviceRequest: DeviceRequest
+ * - EnrollmentRequest: EnrollmentRequest
+ * - ImmunizationRecommendation: ImmunizationRecommendation
+ * - MedicationRequest: MedicationRequest
+ * - NutritionOrder: NutritionOrder
+ * - ServiceRequest: ServiceRequest
+ * - SupplyRequest: SupplyRequest
+ * - Task: Task
+ * - VisionPrescription: VisionPrescription
  */
 export type RequestResourceType =
   | "Appointment"
@@ -3470,6 +5749,13 @@ export type RequestResourceType =
  * RequestStatus
  *
  * Codes identifying the lifecycle stage of a request.
+ * - draft: Draft
+ * - active: Active
+ * - on-hold: On Hold
+ * - revoked: Revoked
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type RequestStatus =
   | "draft"
@@ -3484,6 +5770,9 @@ export type RequestStatus =
  * ResearchElementType
  *
  * The possible types of research elements (E.g. Population, Exposure, Outcome).
+ * - population: Population
+ * - exposure: Exposure
+ * - outcome: Outcome
  */
 export type ResearchElementType = "population" | "exposure" | "outcome";
 
@@ -3491,6 +5780,17 @@ export type ResearchElementType = "population" | "exposure" | "outcome";
  * ResearchStudyStatus
  *
  * Codes that convey the current status of the research study.
+ * - active: Active
+ * - administratively-completed: Administratively Completed
+ * - approved: Approved
+ * - closed-to-accrual: Closed to Accrual
+ * - closed-to-accrual-and-intervention: Closed to Accrual and Intervention
+ * - completed: Completed
+ * - disapproved: Disapproved
+ * - in-review: In Review
+ * - temporarily-closed-to-accrual: Temporarily Closed to Accrual
+ * - temporarily-closed-to-accrual-and-intervention: Temporarily Closed to Accrual and Intervention
+ * - withdrawn: Withdrawn
  */
 export type ResearchStudyStatus =
   | "active"
@@ -3509,6 +5809,19 @@ export type ResearchStudyStatus =
  * ResearchSubjectStatus
  *
  * Indicates the progression of a study subject through a study.
+ * - candidate: Candidate
+ * - eligible: Eligible
+ * - follow-up: Follow-up
+ * - ineligible: Ineligible
+ * - not-registered: Not Registered
+ * - off-study: Off-study
+ * - on-study: On-study
+ * - on-study-intervention: On-study-intervention
+ * - on-study-observation: On-study-observation
+ * - pending-on-study: Pending on-study
+ * - potential-candidate: Potential Candidate
+ * - screening: Screening
+ * - withdrawn: Withdrawn
  */
 export type ResearchSubjectStatus =
   | "candidate"
@@ -3536,6 +5849,149 @@ export type ResourceSecurityCategory = string;
  * ResourceType
  *
  * One of the resource types defined as part of this version of FHIR.
+ * - Resource: Resource
+ * - Binary: Binary
+ * - Bundle: Bundle
+ * - DomainResource: DomainResource
+ * - Account: Account
+ * - ActivityDefinition: ActivityDefinition
+ * - AdministrableProductDefinition: AdministrableProductDefinition
+ * - AdverseEvent: AdverseEvent
+ * - AllergyIntolerance: AllergyIntolerance
+ * - Appointment: Appointment
+ * - AppointmentResponse: AppointmentResponse
+ * - AuditEvent: AuditEvent
+ * - Basic: Basic
+ * - BiologicallyDerivedProduct: BiologicallyDerivedProduct
+ * - BodyStructure: BodyStructure
+ * - CapabilityStatement: CapabilityStatement
+ * - CarePlan: CarePlan
+ * - CareTeam: CareTeam
+ * - CatalogEntry: CatalogEntry
+ * - ChargeItem: ChargeItem
+ * - ChargeItemDefinition: ChargeItemDefinition
+ * - Citation: Citation
+ * - Claim: Claim
+ * - ClaimResponse: ClaimResponse
+ * - ClinicalImpression: ClinicalImpression
+ * - ClinicalUseDefinition: ClinicalUseDefinition
+ * - CodeSystem: CodeSystem
+ * - Communication: Communication
+ * - CommunicationRequest: CommunicationRequest
+ * - CompartmentDefinition: CompartmentDefinition
+ * - Composition: Composition
+ * - ConceptMap: ConceptMap
+ * - Condition: Condition
+ * - Consent: Consent
+ * - Contract: Contract
+ * - Coverage: Coverage
+ * - CoverageEligibilityRequest: CoverageEligibilityRequest
+ * - CoverageEligibilityResponse: CoverageEligibilityResponse
+ * - DetectedIssue: DetectedIssue
+ * - Device: Device
+ * - DeviceDefinition: DeviceDefinition
+ * - DeviceMetric: DeviceMetric
+ * - DeviceRequest: DeviceRequest
+ * - DeviceUseStatement: DeviceUseStatement
+ * - DiagnosticReport: DiagnosticReport
+ * - DocumentManifest: DocumentManifest
+ * - DocumentReference: DocumentReference
+ * - Encounter: Encounter
+ * - Endpoint: Endpoint
+ * - EnrollmentRequest: EnrollmentRequest
+ * - EnrollmentResponse: EnrollmentResponse
+ * - EpisodeOfCare: EpisodeOfCare
+ * - EventDefinition: EventDefinition
+ * - Evidence: Evidence
+ * - EvidenceReport: EvidenceReport
+ * - EvidenceVariable: EvidenceVariable
+ * - ExampleScenario: ExampleScenario
+ * - ExplanationOfBenefit: ExplanationOfBenefit
+ * - FamilyMemberHistory: FamilyMemberHistory
+ * - Flag: Flag
+ * - Goal: Goal
+ * - GraphDefinition: GraphDefinition
+ * - Group: Group
+ * - GuidanceResponse: GuidanceResponse
+ * - HealthcareService: HealthcareService
+ * - ImagingStudy: ImagingStudy
+ * - Immunization: Immunization
+ * - ImmunizationEvaluation: ImmunizationEvaluation
+ * - ImmunizationRecommendation: ImmunizationRecommendation
+ * - ImplementationGuide: ImplementationGuide
+ * - Ingredient: Ingredient
+ * - InsurancePlan: InsurancePlan
+ * - Invoice: Invoice
+ * - Library: Library
+ * - Linkage: Linkage
+ * - List: List
+ * - Location: Location
+ * - ManufacturedItemDefinition: ManufacturedItemDefinition
+ * - Measure: Measure
+ * - MeasureReport: MeasureReport
+ * - Media: Media
+ * - Medication: Medication
+ * - MedicationAdministration: MedicationAdministration
+ * - MedicationDispense: MedicationDispense
+ * - MedicationKnowledge: MedicationKnowledge
+ * - MedicationRequest: MedicationRequest
+ * - MedicationStatement: MedicationStatement
+ * - MedicinalProductDefinition: MedicinalProductDefinition
+ * - MessageDefinition: MessageDefinition
+ * - MessageHeader: MessageHeader
+ * - MolecularSequence: MolecularSequence
+ * - NamingSystem: NamingSystem
+ * - NutritionOrder: NutritionOrder
+ * - NutritionProduct: NutritionProduct
+ * - Observation: Observation
+ * - ObservationDefinition: ObservationDefinition
+ * - OperationDefinition: OperationDefinition
+ * - OperationOutcome: OperationOutcome
+ * - Organization: Organization
+ * - OrganizationAffiliation: OrganizationAffiliation
+ * - PackagedProductDefinition: PackagedProductDefinition
+ * - Patient: Patient
+ * - PaymentNotice: PaymentNotice
+ * - PaymentReconciliation: PaymentReconciliation
+ * - Person: Person
+ * - PlanDefinition: PlanDefinition
+ * - Practitioner: Practitioner
+ * - PractitionerRole: PractitionerRole
+ * - Procedure: Procedure
+ * - Provenance: Provenance
+ * - Questionnaire: Questionnaire
+ * - QuestionnaireResponse: QuestionnaireResponse
+ * - RegulatedAuthorization: RegulatedAuthorization
+ * - RelatedPerson: RelatedPerson
+ * - RequestGroup: RequestGroup
+ * - ResearchDefinition: ResearchDefinition
+ * - ResearchElementDefinition: ResearchElementDefinition
+ * - ResearchStudy: ResearchStudy
+ * - ResearchSubject: ResearchSubject
+ * - RiskAssessment: RiskAssessment
+ * - Schedule: Schedule
+ * - SearchParameter: SearchParameter
+ * - ServiceRequest: ServiceRequest
+ * - Slot: Slot
+ * - Specimen: Specimen
+ * - SpecimenDefinition: SpecimenDefinition
+ * - StructureDefinition: StructureDefinition
+ * - StructureMap: StructureMap
+ * - Subscription: Subscription
+ * - SubscriptionStatus: SubscriptionStatus
+ * - SubscriptionTopic: SubscriptionTopic
+ * - Substance: Substance
+ * - SubstanceDefinition: SubstanceDefinition
+ * - SupplyDelivery: SupplyDelivery
+ * - SupplyRequest: SupplyRequest
+ * - Task: Task
+ * - TerminologyCapabilities: TerminologyCapabilities
+ * - TestReport: TestReport
+ * - TestScript: TestScript
+ * - ValueSet: ValueSet
+ * - VerificationResult: VerificationResult
+ * - VisionPrescription: VisionPrescription
+ * - Parameters: Parameters
  */
 export type ResourceType =
   | "Resource"
@@ -3686,6 +6142,9 @@ export type ResourceType =
  * ResourceVersionPolicy
  *
  * How the system supports versioning for a resource.
+ * - no-version: No VersionId Support
+ * - versioned: Versioned
+ * - versioned-update: VersionId tracked fully
  */
 export type ResourceVersionPolicy =
   | "no-version"
@@ -3696,6 +6155,9 @@ export type ResourceVersionPolicy =
  * ResponseType
  *
  * The kind of response to a message.
+ * - ok: OK
+ * - transient-error: Transient Error
+ * - fatal-error: Fatal Error
  */
 export type ResponseType = "ok" | "transient-error" | "fatal-error";
 
@@ -3703,6 +6165,8 @@ export type ResponseType = "ok" | "transient-error" | "fatal-error";
  * RestfulCapabilityMode
  *
  * The mode of a RESTful capability statement.
+ * - client: Client
+ * - server: Server
  */
 export type RestfulCapabilityMode = "client" | "server";
 
@@ -3710,6 +6174,15 @@ export type RestfulCapabilityMode = "client" | "server";
  * SearchComparator
  *
  * What Search Comparator Codes are supported in search.
+ * - eq: Equals
+ * - ne: Not Equals
+ * - gt: Greater Than
+ * - lt: Less Than
+ * - ge: Greater or Equals
+ * - le: Less of Equal
+ * - sa: Starts After
+ * - eb: Ends Before
+ * - ap: Approximately
  */
 export type SearchComparator =
   | "eq"
@@ -3728,6 +6201,9 @@ export type SearchComparator =
  * Why an entry is in the result set - whether it's included as a match or because
  * of an _include requirement, or to convey information or warning information
  * about the search process.
+ * - match: Match
+ * - include: Include
+ * - outcome: Outcome
  */
 export type SearchEntryMode = "match" | "include" | "outcome";
 
@@ -3735,6 +6211,18 @@ export type SearchEntryMode = "match" | "include" | "outcome";
  * SearchModifierCode
  *
  * A supported modifier for a search parameter.
+ * - missing: Missing
+ * - exact: Exact
+ * - contains: Contains
+ * - not: Not
+ * - text: Text
+ * - in: In
+ * - not-in: Not In
+ * - below: Below
+ * - above: Above
+ * - type: Type
+ * - identifier: Identifier
+ * - ofType: Of Type
  */
 export type SearchModifierCode =
   | "missing"
@@ -3754,6 +6242,15 @@ export type SearchModifierCode =
  * SearchParamType
  *
  * Data types allowed to be used for search parameters.
+ * - number: Number
+ * - date: Date/DateTime
+ * - string: String
+ * - token: Token
+ * - reference: Reference
+ * - composite: Composite
+ * - quantity: Quantity
+ * - uri: URI
+ * - special: Special
  */
 export type SearchParamType =
   | "number"
@@ -3770,6 +6267,9 @@ export type SearchParamType =
  * sequenceType
  *
  * Type if a sequence -- DNA, RNA, or amino acid sequence.
+ * - aa: AA Sequence
+ * - dna: DNA Sequence
+ * - rna: RNA Sequence
  */
 export type sequenceType = "aa" | "dna" | "rna";
 
@@ -3786,6 +6286,9 @@ export type SiblingRelationshipCodes = string;
  * SlicingRules
  *
  * How slices are interpreted when evaluating an instance.
+ * - closed: Closed
+ * - open: Open
+ * - openAtEnd: Open at End
  */
 export type SlicingRules = "closed" | "open" | "openAtEnd";
 
@@ -3793,6 +6296,11 @@ export type SlicingRules = "closed" | "open" | "openAtEnd";
  * SlotStatus
  *
  * The free/busy status of the slot.
+ * - busy: Busy
+ * - free: Free
+ * - busy-unavailable: Busy (Unavailable)
+ * - busy-tentative: Busy (Tentative)
+ * - entered-in-error: Entered in error
  */
 export type SlotStatus =
   | "busy"
@@ -3812,6 +6320,8 @@ export type SmartCapabilities = string;
  * SortDirection
  *
  * The possible sort directions, ascending or descending.
+ * - ascending: Ascending
+ * - descending: Descending
  */
 export type SortDirection = "ascending" | "descending";
 
@@ -3821,6 +6331,352 @@ export type SortDirection = "ascending" | "descending";
  * The license that applies to an Implementation Guide (using an SPDX license
  * Identifiers, or 'not-open-source'). The binding is required but new SPDX license
  * Identifiers are allowed to be used (https://spdx.org/licenses/).
+ * - not-open-source: Not open source
+ * - 0BSD: BSD Zero Clause License
+ * - AAL: Attribution Assurance License
+ * - Abstyles: Abstyles License
+ * - Adobe-2006: Adobe Systems Incorporated Source Code License Agreement
+ * - Adobe-Glyph: Adobe Glyph List License
+ * - ADSL: Amazon Digital Services License
+ * - AFL-1.1: Academic Free License v1.1
+ * - AFL-1.2: Academic Free License v1.2
+ * - AFL-2.0: Academic Free License v2.0
+ * - AFL-2.1: Academic Free License v2.1
+ * - AFL-3.0: Academic Free License v3.0
+ * - Afmparse: Afmparse License
+ * - AGPL-1.0-only: Affero General Public License v1.0 only
+ * - AGPL-1.0-or-later: Affero General Public License v1.0 or later
+ * - AGPL-3.0-only: GNU Affero General Public License v3.0 only
+ * - AGPL-3.0-or-later: GNU Affero General Public License v3.0 or later
+ * - Aladdin: Aladdin Free Public License
+ * - AMDPLPA: AMD's plpa_map.c License
+ * - AML: Apple MIT License
+ * - AMPAS: Academy of Motion Picture Arts and Sciences BSD
+ * - ANTLR-PD: ANTLR Software Rights Notice
+ * - Apache-1.0: Apache License 1.0
+ * - Apache-1.1: Apache License 1.1
+ * - Apache-2.0: Apache License 2.0
+ * - APAFML: Adobe Postscript AFM License
+ * - APL-1.0: Adaptive Public License 1.0
+ * - APSL-1.0: Apple Public Source License 1.0
+ * - APSL-1.1: Apple Public Source License 1.1
+ * - APSL-1.2: Apple Public Source License 1.2
+ * - APSL-2.0: Apple Public Source License 2.0
+ * - Artistic-1.0-cl8: Artistic License 1.0 w/clause 8
+ * - Artistic-1.0-Perl: Artistic License 1.0 (Perl)
+ * - Artistic-1.0: Artistic License 1.0
+ * - Artistic-2.0: Artistic License 2.0
+ * - Bahyph: Bahyph License
+ * - Barr: Barr License
+ * - Beerware: Beerware License
+ * - BitTorrent-1.0: BitTorrent Open Source License v1.0
+ * - BitTorrent-1.1: BitTorrent Open Source License v1.1
+ * - Borceux: Borceux license
+ * - BSD-1-Clause: BSD 1-Clause License
+ * - BSD-2-Clause-FreeBSD: BSD 2-Clause FreeBSD License
+ * - BSD-2-Clause-NetBSD: BSD 2-Clause NetBSD License
+ * - BSD-2-Clause-Patent: BSD-2-Clause Plus Patent License
+ * - BSD-2-Clause: BSD 2-Clause "Simplified" License
+ * - BSD-3-Clause-Attribution: BSD with attribution
+ * - BSD-3-Clause-Clear: BSD 3-Clause Clear License
+ * - BSD-3-Clause-LBNL: Lawrence Berkeley National Labs BSD variant license
+ * - BSD-3-Clause-No-Nuclear-License-2014: BSD 3-Clause No Nuclear License 2014
+ * - BSD-3-Clause-No-Nuclear-License: BSD 3-Clause No Nuclear License
+ * - BSD-3-Clause-No-Nuclear-Warranty: BSD 3-Clause No Nuclear Warranty
+ * - BSD-3-Clause: BSD 3-Clause "New" or "Revised" License
+ * - BSD-4-Clause-UC: BSD-4-Clause (University of California-Specific)
+ * - BSD-4-Clause: BSD 4-Clause "Original" or "Old" License
+ * - BSD-Protection: BSD Protection License
+ * - BSD-Source-Code: BSD Source Code Attribution
+ * - BSL-1.0: Boost Software License 1.0
+ * - bzip2-1.0.5: bzip2 and libbzip2 License v1.0.5
+ * - bzip2-1.0.6: bzip2 and libbzip2 License v1.0.6
+ * - Caldera: Caldera License
+ * - CATOSL-1.1: Computer Associates Trusted Open Source License 1.1
+ * - CC-BY-1.0: Creative Commons Attribution 1.0 Generic
+ * - CC-BY-2.0: Creative Commons Attribution 2.0 Generic
+ * - CC-BY-2.5: Creative Commons Attribution 2.5 Generic
+ * - CC-BY-3.0: Creative Commons Attribution 3.0 Unported
+ * - CC-BY-4.0: Creative Commons Attribution 4.0 International
+ * - CC-BY-NC-1.0: Creative Commons Attribution Non Commercial 1.0 Generic
+ * - CC-BY-NC-2.0: Creative Commons Attribution Non Commercial 2.0 Generic
+ * - CC-BY-NC-2.5: Creative Commons Attribution Non Commercial 2.5 Generic
+ * - CC-BY-NC-3.0: Creative Commons Attribution Non Commercial 3.0 Unported
+ * - CC-BY-NC-4.0: Creative Commons Attribution Non Commercial 4.0 International
+ * - CC-BY-NC-ND-1.0: Creative Commons Attribution Non Commercial No Derivatives 1.0 Generic
+ * - CC-BY-NC-ND-2.0: Creative Commons Attribution Non Commercial No Derivatives 2.0 Generic
+ * - CC-BY-NC-ND-2.5: Creative Commons Attribution Non Commercial No Derivatives 2.5 Generic
+ * - CC-BY-NC-ND-3.0: Creative Commons Attribution Non Commercial No Derivatives 3.0 Unported
+ * - CC-BY-NC-ND-4.0: Creative Commons Attribution Non Commercial No Derivatives 4.0 International
+ * - CC-BY-NC-SA-1.0: Creative Commons Attribution Non Commercial Share Alike 1.0 Generic
+ * - CC-BY-NC-SA-2.0: Creative Commons Attribution Non Commercial Share Alike 2.0 Generic
+ * - CC-BY-NC-SA-2.5: Creative Commons Attribution Non Commercial Share Alike 2.5 Generic
+ * - CC-BY-NC-SA-3.0: Creative Commons Attribution Non Commercial Share Alike 3.0 Unported
+ * - CC-BY-NC-SA-4.0: Creative Commons Attribution Non Commercial Share Alike 4.0 International
+ * - CC-BY-ND-1.0: Creative Commons Attribution No Derivatives 1.0 Generic
+ * - CC-BY-ND-2.0: Creative Commons Attribution No Derivatives 2.0 Generic
+ * - CC-BY-ND-2.5: Creative Commons Attribution No Derivatives 2.5 Generic
+ * - CC-BY-ND-3.0: Creative Commons Attribution No Derivatives 3.0 Unported
+ * - CC-BY-ND-4.0: Creative Commons Attribution No Derivatives 4.0 International
+ * - CC-BY-SA-1.0: Creative Commons Attribution Share Alike 1.0 Generic
+ * - CC-BY-SA-2.0: Creative Commons Attribution Share Alike 2.0 Generic
+ * - CC-BY-SA-2.5: Creative Commons Attribution Share Alike 2.5 Generic
+ * - CC-BY-SA-3.0: Creative Commons Attribution Share Alike 3.0 Unported
+ * - CC-BY-SA-4.0: Creative Commons Attribution Share Alike 4.0 International
+ * - CC0-1.0: Creative Commons Zero v1.0 Universal
+ * - CDDL-1.0: Common Development and Distribution License 1.0
+ * - CDDL-1.1: Common Development and Distribution License 1.1
+ * - CDLA-Permissive-1.0: Community Data License Agreement Permissive 1.0
+ * - CDLA-Sharing-1.0: Community Data License Agreement Sharing 1.0
+ * - CECILL-1.0: CeCILL Free Software License Agreement v1.0
+ * - CECILL-1.1: CeCILL Free Software License Agreement v1.1
+ * - CECILL-2.0: CeCILL Free Software License Agreement v2.0
+ * - CECILL-2.1: CeCILL Free Software License Agreement v2.1
+ * - CECILL-B: CeCILL-B Free Software License Agreement
+ * - CECILL-C: CeCILL-C Free Software License Agreement
+ * - ClArtistic: Clarified Artistic License
+ * - CNRI-Jython: CNRI Jython License
+ * - CNRI-Python-GPL-Compatible: CNRI Python Open Source GPL Compatible License Agreement
+ * - CNRI-Python: CNRI Python License
+ * - Condor-1.1: Condor Public License v1.1
+ * - CPAL-1.0: Common Public Attribution License 1.0
+ * - CPL-1.0: Common Public License 1.0
+ * - CPOL-1.02: Code Project Open License 1.02
+ * - Crossword: Crossword License
+ * - CrystalStacker: CrystalStacker License
+ * - CUA-OPL-1.0: CUA Office Public License v1.0
+ * - Cube: Cube License
+ * - curl: curl License
+ * - D-FSL-1.0: Deutsche Freie Software Lizenz
+ * - diffmark: diffmark license
+ * - DOC: DOC License
+ * - Dotseqn: Dotseqn License
+ * - DSDP: DSDP License
+ * - dvipdfm: dvipdfm License
+ * - ECL-1.0: Educational Community License v1.0
+ * - ECL-2.0: Educational Community License v2.0
+ * - EFL-1.0: Eiffel Forum License v1.0
+ * - EFL-2.0: Eiffel Forum License v2.0
+ * - eGenix: eGenix.com Public License 1.1.0
+ * - Entessa: Entessa Public License v1.0
+ * - EPL-1.0: Eclipse Public License 1.0
+ * - EPL-2.0: Eclipse Public License 2.0
+ * - ErlPL-1.1: Erlang Public License v1.1
+ * - EUDatagrid: EU DataGrid Software License
+ * - EUPL-1.0: European Union Public License 1.0
+ * - EUPL-1.1: European Union Public License 1.1
+ * - EUPL-1.2: European Union Public License 1.2
+ * - Eurosym: Eurosym License
+ * - Fair: Fair License
+ * - Frameworx-1.0: Frameworx Open License 1.0
+ * - FreeImage: FreeImage Public License v1.0
+ * - FSFAP: FSF All Permissive License
+ * - FSFUL: FSF Unlimited License
+ * - FSFULLR: FSF Unlimited License (with License Retention)
+ * - FTL: Freetype Project License
+ * - GFDL-1.1-only: GNU Free Documentation License v1.1 only
+ * - GFDL-1.1-or-later: GNU Free Documentation License v1.1 or later
+ * - GFDL-1.2-only: GNU Free Documentation License v1.2 only
+ * - GFDL-1.2-or-later: GNU Free Documentation License v1.2 or later
+ * - GFDL-1.3-only: GNU Free Documentation License v1.3 only
+ * - GFDL-1.3-or-later: GNU Free Documentation License v1.3 or later
+ * - Giftware: Giftware License
+ * - GL2PS: GL2PS License
+ * - Glide: 3dfx Glide License
+ * - Glulxe: Glulxe License
+ * - gnuplot: gnuplot License
+ * - GPL-1.0-only: GNU General Public License v1.0 only
+ * - GPL-1.0-or-later: GNU General Public License v1.0 or later
+ * - GPL-2.0-only: GNU General Public License v2.0 only
+ * - GPL-2.0-or-later: GNU General Public License v2.0 or later
+ * - GPL-3.0-only: GNU General Public License v3.0 only
+ * - GPL-3.0-or-later: GNU General Public License v3.0 or later
+ * - gSOAP-1.3b: gSOAP Public License v1.3b
+ * - HaskellReport: Haskell Language Report License
+ * - HPND: Historical Permission Notice and Disclaimer
+ * - IBM-pibs: IBM PowerPC Initialization and Boot Software
+ * - ICU: ICU License
+ * - IJG: Independent JPEG Group License
+ * - ImageMagick: ImageMagick License
+ * - iMatix: iMatix Standard Function Library Agreement
+ * - Imlib2: Imlib2 License
+ * - Info-ZIP: Info-ZIP License
+ * - Intel-ACPI: Intel ACPI Software License Agreement
+ * - Intel: Intel Open Source License
+ * - Interbase-1.0: Interbase Public License v1.0
+ * - IPA: IPA Font License
+ * - IPL-1.0: IBM Public License v1.0
+ * - ISC: ISC License
+ * - JasPer-2.0: JasPer License
+ * - JSON: JSON License
+ * - LAL-1.2: Licence Art Libre 1.2
+ * - LAL-1.3: Licence Art Libre 1.3
+ * - Latex2e: Latex2e License
+ * - Leptonica: Leptonica License
+ * - LGPL-2.0-only: GNU Library General Public License v2 only
+ * - LGPL-2.0-or-later: GNU Library General Public License v2 or later
+ * - LGPL-2.1-only: GNU Lesser General Public License v2.1 only
+ * - LGPL-2.1-or-later: GNU Lesser General Public License v2.1 or later
+ * - LGPL-3.0-only: GNU Lesser General Public License v3.0 only
+ * - LGPL-3.0-or-later: GNU Lesser General Public License v3.0 or later
+ * - LGPLLR: Lesser General Public License For Linguistic Resources
+ * - Libpng: libpng License
+ * - libtiff: libtiff License
+ * - LiLiQ-P-1.1: Licence Libre du Québec – Permissive version 1.1
+ * - LiLiQ-R-1.1: Licence Libre du Québec – Réciprocité version 1.1
+ * - LiLiQ-Rplus-1.1: Licence Libre du Québec – Réciprocité forte version 1.1
+ * - Linux-OpenIB: Linux Kernel Variant of OpenIB.org license
+ * - LPL-1.0: Lucent Public License Version 1.0
+ * - LPL-1.02: Lucent Public License v1.02
+ * - LPPL-1.0: LaTeX Project Public License v1.0
+ * - LPPL-1.1: LaTeX Project Public License v1.1
+ * - LPPL-1.2: LaTeX Project Public License v1.2
+ * - LPPL-1.3a: LaTeX Project Public License v1.3a
+ * - LPPL-1.3c: LaTeX Project Public License v1.3c
+ * - MakeIndex: MakeIndex License
+ * - MirOS: MirOS License
+ * - MIT-0: MIT No Attribution
+ * - MIT-advertising: Enlightenment License (e16)
+ * - MIT-CMU: CMU License
+ * - MIT-enna: enna License
+ * - MIT-feh: feh License
+ * - MIT: MIT License
+ * - MITNFA: MIT +no-false-attribs license
+ * - Motosoto: Motosoto License
+ * - mpich2: mpich2 License
+ * - MPL-1.0: Mozilla Public License 1.0
+ * - MPL-1.1: Mozilla Public License 1.1
+ * - MPL-2.0-no-copyleft-exception: Mozilla Public License 2.0 (no copyleft exception)
+ * - MPL-2.0: Mozilla Public License 2.0
+ * - MS-PL: Microsoft Public License
+ * - MS-RL: Microsoft Reciprocal License
+ * - MTLL: Matrix Template Library License
+ * - Multics: Multics License
+ * - Mup: Mup License
+ * - NASA-1.3: NASA Open Source Agreement 1.3
+ * - Naumen: Naumen Public License
+ * - NBPL-1.0: Net Boolean Public License v1
+ * - NCSA: University of Illinois/NCSA Open Source License
+ * - Net-SNMP: Net-SNMP License
+ * - NetCDF: NetCDF license
+ * - Newsletr: Newsletr License
+ * - NGPL: Nethack General Public License
+ * - NLOD-1.0: Norwegian Licence for Open Government Data
+ * - NLPL: No Limit Public License
+ * - Nokia: Nokia Open Source License
+ * - NOSL: Netizen Open Source License
+ * - Noweb: Noweb License
+ * - NPL-1.0: Netscape Public License v1.0
+ * - NPL-1.1: Netscape Public License v1.1
+ * - NPOSL-3.0: Non-Profit Open Software License 3.0
+ * - NRL: NRL License
+ * - NTP: NTP License
+ * - OCCT-PL: Open CASCADE Technology Public License
+ * - OCLC-2.0: OCLC Research Public License 2.0
+ * - ODbL-1.0: ODC Open Database License v1.0
+ * - OFL-1.0: SIL Open Font License 1.0
+ * - OFL-1.1: SIL Open Font License 1.1
+ * - OGTSL: Open Group Test Suite License
+ * - OLDAP-1.1: Open LDAP Public License v1.1
+ * - OLDAP-1.2: Open LDAP Public License v1.2
+ * - OLDAP-1.3: Open LDAP Public License v1.3
+ * - OLDAP-1.4: Open LDAP Public License v1.4
+ * - OLDAP-2.0.1: Open LDAP Public License v2.0.1
+ * - OLDAP-2.0: Open LDAP Public License v2.0 (or possibly 2.0A and 2.0B)
+ * - OLDAP-2.1: Open LDAP Public License v2.1
+ * - OLDAP-2.2.1: Open LDAP Public License v2.2.1
+ * - OLDAP-2.2.2: Open LDAP Public License 2.2.2
+ * - OLDAP-2.2: Open LDAP Public License v2.2
+ * - OLDAP-2.3: Open LDAP Public License v2.3
+ * - OLDAP-2.4: Open LDAP Public License v2.4
+ * - OLDAP-2.5: Open LDAP Public License v2.5
+ * - OLDAP-2.6: Open LDAP Public License v2.6
+ * - OLDAP-2.7: Open LDAP Public License v2.7
+ * - OLDAP-2.8: Open LDAP Public License v2.8
+ * - OML: Open Market License
+ * - OpenSSL: OpenSSL License
+ * - OPL-1.0: Open Public License v1.0
+ * - OSET-PL-2.1: OSET Public License version 2.1
+ * - OSL-1.0: Open Software License 1.0
+ * - OSL-1.1: Open Software License 1.1
+ * - OSL-2.0: Open Software License 2.0
+ * - OSL-2.1: Open Software License 2.1
+ * - OSL-3.0: Open Software License 3.0
+ * - PDDL-1.0: ODC Public Domain Dedication & License 1.0
+ * - PHP-3.0: PHP License v3.0
+ * - PHP-3.01: PHP License v3.01
+ * - Plexus: Plexus Classworlds License
+ * - PostgreSQL: PostgreSQL License
+ * - psfrag: psfrag License
+ * - psutils: psutils License
+ * - Python-2.0: Python License 2.0
+ * - Qhull: Qhull License
+ * - QPL-1.0: Q Public License 1.0
+ * - Rdisc: Rdisc License
+ * - RHeCos-1.1: Red Hat eCos Public License v1.1
+ * - RPL-1.1: Reciprocal Public License 1.1
+ * - RPL-1.5: Reciprocal Public License 1.5
+ * - RPSL-1.0: RealNetworks Public Source License v1.0
+ * - RSA-MD: RSA Message-Digest License
+ * - RSCPL: Ricoh Source Code Public License
+ * - Ruby: Ruby License
+ * - SAX-PD: Sax Public Domain Notice
+ * - Saxpath: Saxpath License
+ * - SCEA: SCEA Shared Source License
+ * - Sendmail: Sendmail License
+ * - SGI-B-1.0: SGI Free Software License B v1.0
+ * - SGI-B-1.1: SGI Free Software License B v1.1
+ * - SGI-B-2.0: SGI Free Software License B v2.0
+ * - SimPL-2.0: Simple Public License 2.0
+ * - SISSL-1.2: Sun Industry Standards Source License v1.2
+ * - SISSL: Sun Industry Standards Source License v1.1
+ * - Sleepycat: Sleepycat License
+ * - SMLNJ: Standard ML of New Jersey License
+ * - SMPPL: Secure Messaging Protocol Public License
+ * - SNIA: SNIA Public License 1.1
+ * - Spencer-86: Spencer License 86
+ * - Spencer-94: Spencer License 94
+ * - Spencer-99: Spencer License 99
+ * - SPL-1.0: Sun Public License v1.0
+ * - SugarCRM-1.1.3: SugarCRM Public License v1.1.3
+ * - SWL: Scheme Widget Library (SWL) Software License Agreement
+ * - TCL: TCL/TK License
+ * - TCP-wrappers: TCP Wrappers License
+ * - TMate: TMate Open Source License
+ * - TORQUE-1.1: TORQUE v2.5+ Software License v1.1
+ * - TOSL: Trusster Open Source License
+ * - Unicode-DFS-2015: Unicode License Agreement - Data Files and Software (2015)
+ * - Unicode-DFS-2016: Unicode License Agreement - Data Files and Software (2016)
+ * - Unicode-TOU: Unicode Terms of Use
+ * - Unlicense: The Unlicense
+ * - UPL-1.0: Universal Permissive License v1.0
+ * - Vim: Vim License
+ * - VOSTROM: VOSTROM Public License for Open Source
+ * - VSL-1.0: Vovida Software License v1.0
+ * - W3C-19980720: W3C Software Notice and License (1998-07-20)
+ * - W3C-20150513: W3C Software Notice and Document License (2015-05-13)
+ * - W3C: W3C Software Notice and License (2002-12-31)
+ * - Watcom-1.0: Sybase Open Watcom Public License 1.0
+ * - Wsuipa: Wsuipa License
+ * - WTFPL: Do What The F*ck You Want To Public License
+ * - X11: X11 License
+ * - Xerox: Xerox License
+ * - XFree86-1.1: XFree86 License 1.1
+ * - xinetd: xinetd License
+ * - Xnet: X.Net License
+ * - xpp: XPP License
+ * - XSkat: XSkat License
+ * - YPL-1.0: Yahoo! Public License v1.0
+ * - YPL-1.1: Yahoo! Public License v1.1
+ * - Zed: Zed License
+ * - Zend-2.0: Zend License v2.0
+ * - Zimbra-1.3: Zimbra Public License v1.3
+ * - Zimbra-1.4: Zimbra Public License v1.4
+ * - zlib-acknowledgement: zlib/libpng License with Acknowledgement
+ * - Zlib: zlib License
+ * - ZPL-1.1: Zope Public License 1.1
+ * - ZPL-2.0: Zope Public License 2.0
+ * - ZPL-2.1: Zope Public License 2.1
  */
 export type SPDXLicense =
   | "not-open-source"
@@ -4174,6 +7030,8 @@ export type SPDXLicense =
  * SpecimenContainedPreference
  *
  * Degree of preference of a type of conditioned specimen.
+ * - preferred: Preferred
+ * - alternate: Alternate
  */
 export type SpecimenContainedPreference = "preferred" | "alternate";
 
@@ -4181,6 +7039,10 @@ export type SpecimenContainedPreference = "preferred" | "alternate";
  * SpecimenStatus
  *
  * Codes providing the status/availability of a specimen.
+ * - available: Available
+ * - unavailable: Unavailable
+ * - unsatisfactory: Unsatisfactory
+ * - entered-in-error: Entered in Error
  */
 export type SpecimenStatus =
   | "available"
@@ -4199,6 +7061,12 @@ export type StandardsStatus = string;
  *
  *
  * The validation status of the target
+ * - attested: Attested
+ * - validated: Validated
+ * - in-process: In process
+ * - req-revalid: Requires revalidation
+ * - val-fail: Validation failed
+ * - reval-fail: Re-Validation failed
  */
 export type status =
   | "attested"
@@ -4212,6 +7080,8 @@ export type status =
  * strandType
  *
  * Type for strand.
+ * - watson: Watson strand of referenceSeq
+ * - crick: Crick strand of referenceSeq
  */
 export type strandType = "watson" | "crick";
 
@@ -4219,6 +7089,10 @@ export type strandType = "watson" | "crick";
  * StructureDefinitionKind
  *
  * Defines the type of structure that a definition is describing.
+ * - primitive-type: Primitive Data Type
+ * - complex-type: Complex Data Type
+ * - resource: Resource
+ * - logical: Logical
  */
 export type StructureDefinitionKind =
   | "primitive-type"
@@ -4230,6 +7104,8 @@ export type StructureDefinitionKind =
  * StructureMapContextType
  *
  * How to interpret the context.
+ * - type: Type
+ * - variable: Variable
  */
 export type StructureMapContextType = "type" | "variable";
 
@@ -4238,6 +7114,9 @@ export type StructureMapContextType = "type" | "variable";
  *
  * If this is the default rule set to apply for the source type, or this
  * combination of types.
+ * - none: Not a Default
+ * - types: Default for Type Combination
+ * - type-and-types: Default for type + combination
  */
 export type StructureMapGroupTypeMode = "none" | "types" | "type-and-types";
 
@@ -4245,6 +7124,8 @@ export type StructureMapGroupTypeMode = "none" | "types" | "type-and-types";
  * StructureMapInputMode
  *
  * Mode for this instance of data.
+ * - source: Source Instance
+ * - target: Target Instance
  */
 export type StructureMapInputMode = "source" | "target";
 
@@ -4252,6 +7133,10 @@ export type StructureMapInputMode = "source" | "target";
  * StructureMapModelMode
  *
  * How the referenced structure is used in this mapping.
+ * - source: Source Structure Definition
+ * - queried: Queried Structure Definition
+ * - target: Target Structure Definition
+ * - produced: Produced Structure Definition
  */
 export type StructureMapModelMode =
   | "source"
@@ -4263,6 +7148,11 @@ export type StructureMapModelMode =
  * StructureMapSourceListMode
  *
  * If field is a list, how to manage the source.
+ * - first: First
+ * - not_first: All but the first
+ * - last: Last
+ * - not_last: All but the last
+ * - only_one: Enforce only one
  */
 export type StructureMapSourceListMode =
   | "first"
@@ -4275,6 +7165,10 @@ export type StructureMapSourceListMode =
  * StructureMapTargetListMode
  *
  * If field is a list, how to manage the production.
+ * - first: First
+ * - share: Share
+ * - last: Last
+ * - collate: Collate
  */
 export type StructureMapTargetListMode = "first" | "share" | "last" | "collate";
 
@@ -4282,6 +7176,23 @@ export type StructureMapTargetListMode = "first" | "share" | "last" | "collate";
  * StructureMapTransform
  *
  * How data is copied/created.
+ * - create: create
+ * - copy: copy
+ * - truncate: truncate
+ * - escape: escape
+ * - cast: cast
+ * - append: append
+ * - translate: translate
+ * - reference: reference
+ * - dateOp: dateOp
+ * - uuid: uuid
+ * - pointer: pointer
+ * - evaluate: evaluate
+ * - cc: cc
+ * - c: c
+ * - qty: qty
+ * - id: id
+ * - cp: cp
  */
 export type StructureMapTransform =
   | "create"
@@ -4306,6 +7217,11 @@ export type StructureMapTransform =
  * SubscriptionChannelType
  *
  * The type of method used to execute a subscription.
+ * - rest-hook: Rest Hook
+ * - websocket: Websocket
+ * - email: Email
+ * - sms: SMS
+ * - message: Message
  */
 export type SubscriptionChannelType =
   | "rest-hook"
@@ -4318,6 +7234,11 @@ export type SubscriptionChannelType =
  * SubscriptionNotificationType
  *
  * The type of notification represented by the status message.
+ * - handshake: Handshake
+ * - heartbeat: Heartbeat
+ * - event-notification: Event Notification
+ * - query-status: Query Status
+ * - query-event: Query Event
  */
 export type SubscriptionNotificationType =
   | "handshake"
@@ -4330,6 +7251,21 @@ export type SubscriptionNotificationType =
  * Subscription Search Modifier
  *
  * FHIR search modifiers allowed for use in Subscriptions and SubscriptionTopics.
+ * - =: =
+ * - eq: Equal
+ * - ne: Not Equal
+ * - gt: Greater Than
+ * - lt: Less Than
+ * - ge: Greater Than or Equal
+ * - le: Less Than or Equal
+ * - sa: Starts After
+ * - eb: Ends Before
+ * - ap: Approximately
+ * - above: Above
+ * - below: Below
+ * - in: In
+ * - not-in: Not In
+ * - of-type: Of Type
  */
 export type SubscriptionSearchModifier =
   | "="
@@ -4352,6 +7288,10 @@ export type SubscriptionSearchModifier =
  * SubscriptionStatusCodes
  *
  * The status of a subscription.
+ * - requested: Requested
+ * - active: Active
+ * - error: Error
+ * - off: Off
  */
 export type SubscriptionStatusCodes = "requested" | "active" | "error" | "off";
 
@@ -4359,6 +7299,10 @@ export type SubscriptionStatusCodes = "requested" | "active" | "error" | "off";
  * SupplyDeliveryStatus
  *
  * Status of the supply delivery.
+ * - in-progress: In Progress
+ * - completed: Delivered
+ * - abandoned: Abandoned
+ * - entered-in-error: Entered In Error
  */
 export type SupplyDeliveryStatus =
   | "in-progress"
@@ -4370,6 +7314,8 @@ export type SupplyDeliveryStatus =
  * Supply Item Type
  *
  * This value sets refers to a specific supply item.
+ * - medication: Medication
+ * - device: Device
  */
 export type SupplyItemType = "medication" | "device";
 
@@ -4377,6 +7323,13 @@ export type SupplyItemType = "medication" | "device";
  * SupplyRequestStatus
  *
  * Status of the supply request.
+ * - draft: Draft
+ * - active: Active
+ * - suspended: Suspended
+ * - cancelled: Cancelled
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
+ * - unknown: Unknown
  */
 export type SupplyRequestStatus =
   | "draft"
@@ -4391,6 +7344,10 @@ export type SupplyRequestStatus =
  * SystemRestfulInteraction
  *
  * Operations supported by REST at the system level.
+ * - transaction: transaction
+ * - batch: batch
+ * - search-system: search-system
+ * - history-system: history-system
  */
 export type SystemRestfulInteraction =
   | "transaction"
@@ -4402,6 +7359,15 @@ export type SystemRestfulInteraction =
  * TaskIntent
  *
  * Distinguishes whether the task is a proposal, plan or full order.
+ * - unknown: Unknown
+ * - proposal: Proposal
+ * - plan: Plan
+ * - order: Order
+ * - original-order: Original Order
+ * - reflex-order: Reflex Order
+ * - filler-order: Filler Order
+ * - instance-order: Instance Order
+ * - option: Option
  */
 export type TaskIntent =
   | "unknown"
@@ -4418,6 +7384,18 @@ export type TaskIntent =
  * TaskStatus
  *
  * The current status of the task.
+ * - draft: Draft
+ * - requested: Requested
+ * - received: Received
+ * - accepted: Accepted
+ * - rejected: Rejected
+ * - ready: Ready
+ * - cancelled: Cancelled
+ * - in-progress: In Progress
+ * - on-hold: On Hold
+ * - failed: Failed
+ * - completed: Completed
+ * - entered-in-error: Entered in Error
  */
 export type TaskStatus =
   | "draft"
@@ -4445,6 +7423,11 @@ export type TemplateStatusCode = string;
  * TestReportActionResult
  *
  * The results of executing an action.
+ * - pass: Pass
+ * - skip: Skip
+ * - fail: Fail
+ * - warning: Warning
+ * - error: Error
  */
 export type TestReportActionResult =
   | "pass"
@@ -4457,6 +7440,9 @@ export type TestReportActionResult =
  * TestReportParticipantType
  *
  * The type of participant.
+ * - test-engine: Test Engine
+ * - client: Client
+ * - server: Server
  */
 export type TestReportParticipantType = "test-engine" | "client" | "server";
 
@@ -4464,6 +7450,9 @@ export type TestReportParticipantType = "test-engine" | "client" | "server";
  * TestReportResult
  *
  * The reported execution result.
+ * - pass: Pass
+ * - fail: Fail
+ * - pending: Pending
  */
 export type TestReportResult = "pass" | "fail" | "pending";
 
@@ -4471,6 +7460,11 @@ export type TestReportResult = "pass" | "fail" | "pending";
  * TestReportStatus
  *
  * The current status of the test report.
+ * - completed: Completed
+ * - in-progress: In Progress
+ * - waiting: Waiting
+ * - stopped: Stopped
+ * - entered-in-error: Entered In Error
  */
 export type TestReportStatus =
   | "completed"
@@ -4483,6 +7477,13 @@ export type TestReportStatus =
  * TestScriptRequestMethodCode
  *
  * The allowable request method or HTTP operation codes.
+ * - delete: DELETE
+ * - get: GET
+ * - options: OPTIONS
+ * - patch: PATCH
+ * - post: POST
+ * - put: PUT
+ * - head: HEAD
  */
 export type TestScriptRequestMethodCode =
   | "delete"
@@ -4497,6 +7498,14 @@ export type TestScriptRequestMethodCode =
  * TriggerType
  *
  * The type of trigger.
+ * - named-event: Named Event
+ * - periodic: Periodic
+ * - data-changed: Data Changed
+ * - data-added: Data Added
+ * - data-modified: Data Updated
+ * - data-removed: Data Removed
+ * - data-accessed: Data Accessed
+ * - data-access-ended: Data Access Ended
  */
 export type TriggerType =
   | "named-event"
@@ -4512,6 +7521,8 @@ export type TriggerType =
  * TypeDerivationRule
  *
  * How a type relates to its baseDefinition.
+ * - specialization: Specialization
+ * - constraint: Constraint
  */
 export type TypeDerivationRule = "specialization" | "constraint";
 
@@ -4519,6 +7530,15 @@ export type TypeDerivationRule = "specialization" | "constraint";
  * TypeRestfulInteraction
  *
  * Operations supported by REST at the type or instance level.
+ * - read: read
+ * - vread: vread
+ * - update: update
+ * - patch: patch
+ * - delete: delete
+ * - history-instance: history-instance
+ * - history-type: history-type
+ * - create: create
+ * - search-type: search-type
  */
 export type TypeRestfulInteraction =
   | "read"
@@ -4535,6 +7555,1363 @@ export type TypeRestfulInteraction =
  * UCUM Codes
  *
  * Unified Code for Units of Measure (UCUM). This value set includes all UCUM codes
+ * - %: percent
+ * - %/100{WBC}: percent / 100 WBC
+ * - %{0to3Hours}: percent 0to3Hours
+ * - %{Abnormal}: percent Abnormal
+ * - %{Activity}: percent Activity
+ * - %{BasalActivity}: percent BasalActivity
+ * - %{Binding}: percent Binding
+ * - %{Blockade}: percent Blockade
+ * - %{Carboxyhemoglobin}: percent Carboxyhemoglobin
+ * - %{Conversion}: percent Conversion
+ * - %{Cound}: percent Cound
+ * - %{EosSeen}: percent EosSeen
+ * - %{Excretion}: percent Excretion
+ * - %{Fat}: percent Fat
+ * - %{FetalErythrocytes}: percent FetalErythrocytes
+ * - %{Hemoglobin}: percent Hemoglobin
+ * - %{HemoglobinA1C}: percent HemoglobinA1C
+ * - %{HemoglobinSaturation}: percent HemoglobinSaturation
+ * - %{Hemolysis}: percent Hemolysis
+ * - %{HumanResponse}: percent HumanResponse
+ * - %{Index}: percent Index
+ * - %{Inhibition}: percent Inhibition
+ * - %{Live}: percent Live
+ * - %{Negative Control}: percent Negative Control
+ * - %{Normal}: percent Normal
+ * - %{NormalControl}: percent NormalControl
+ * - %{NormalPooledPlasma}: percent NormalPooledPlasma
+ * - %{ofAvailable}: percent ofAvailable
+ * - %{ofBacteria}: percent ofBacteria
+ * - %{OfLymphocytes}: percent OfLymphocytes
+ * - %{OfWBCs}: percent OfWBCs
+ * - %{Oxygen}: percent Oxygen
+ * - %{Positive}: percent Positive
+ * - %{Precipitate}: percent Precipitate
+ * - %{Reactivity}: percent Reactivity
+ * - %{response}: percent response
+ * - %{risk}: percent risk
+ * - %{SpermMotility}: percent SpermMotility
+ * - %{Total}: percent Total
+ * - %{TotalProtein}: percent TotalProtein
+ * - %{Tot'Cholesterol}: percent Tot'Cholesterol
+ * - %{Tot'Hgb}: percent Tot'Hgb
+ * - %{Uptake}: percent Uptake
+ * - %{vol}: VolumePercent
+ * - %{WeightToWeight}: percent WeightToWeight
+ * - /(12.h): per 12 * hour
+ * - /[arb'U]: per arbitrary unit
+ * - /[HPF]: per high power field
+ * - /[iU]: per international unit
+ * - /[LPF]: per low power field
+ * - /{Entity}: per Entity
+ * - /{oif}: per oif
+ * - /{Specimen}: per Specimen
+ * - /{tot}: per tot
+ * - /10*10: PerTenGiga
+ * - /10*12: PerTrillion
+ * - /10*12{rbc}: PerTrillionRedBloodCells
+ * - /10*6: PerMillion
+ * - /10*9: PerBillion
+ * - /100: per 100
+ * - /100{cells}: per 100 cells
+ * - /100{neutrophils}: per 100 neutrophils
+ * - /100{spermatozoa}: per 100 spermatozoa
+ * - /100{WBC}: Per100WBC
+ * - /100{WBCs}: Per100WBC
+ * - /a: / year
+ * - /cm[H2O]: per centimeter of water
+ * - /d: per day
+ * - /dL: per deciliter
+ * - /g: per gram
+ * - /g{creat}: per gram creat
+ * - /g{hgb}: per gram hgb
+ * - /g{tot'nit}: per gram tot'nit
+ * - /g{tot'prot}: per gram tot'prot
+ * - /g{wet'tis}: per gram wet'tis
+ * - /h: per hour
+ * - /kg: per kilogram
+ * - /kg{body'wt}: per kilogram body wt
+ * - /L: per liter
+ * - /m2: per square meter
+ * - /mg: per milligram
+ * - /min: per minute
+ * - /mL: per milliliter
+ * - /mm3: per cubic millimeter
+ * - /mmol: per millimole
+ * - /mo: per month
+ * - /s: per second
+ * - /U: per enzyme unit
+ * - /ug: per microgram
+ * - /uL: per microliter
+ * - /wk: per week
+ * - [APL'U]: IgA anticardiolipin unit
+ * - [APL'U]/mL: IgA anticardiolipin unit per milliliter
+ * - [arb'U]: arbitrary unit
+ * - [arb'U]/L: arbitary unit / liter
+ * - [arb'U]/mL: arbitrary unit per milliliter
+ * - [AU]: allergy unit
+ * - [BAU]: bioequivalent allergen unit
+ * - [beth'U]: Bethesda unit
+ * - [CFU]: colony forming unit
+ * - [CFU]/L: colony forming unit per liter
+ * - [CFU]/mL: colony forming unit per milliliter
+ * - [Ch]: French (catheter gauge)
+ * - [cin_i]: cubic inch
+ * - [cup_us]: cup
+ * - [degF]: degree Fahrenheit
+ * - [dr_av]: Dram (US and British)
+ * - [drp]: drop
+ * - [drp]/[HPF]: drop / HPF
+ * - [drp]/h: drop / hour
+ * - [drp]/min: drop / minute
+ * - [drp]/mL: drop / milliliter
+ * - [drp]/s: drop / second
+ * - [fdr_us]: fluid dram
+ * - [foz_br]: fluid ounce
+ * - [foz_us]: fluid ounce
+ * - [ft_i]: Feet
+ * - [fth_i]: fathom
+ * - [gal_br]: gallon
+ * - [gal_us]: Queen Anne's wine gallon
+ * - [GPL'U]: IgG anticardiolipin unit
+ * - [gr]: grain
+ * - [in_i]: inch (international)
+ * - [iU]: international unit
+ * - [IU]/(2.h): international unit per 2 hour
+ * - [IU]/(24.h): international unit per 24 hour
+ * - [IU]/10*9{RBCs}: international unit per billion red blood cells
+ * - [IU]/d: international unit per day
+ * - [IU]/dL: international unit per deciliter
+ * - [IU]/g: international unit per gram
+ * - [IU]/g{Hb}: international unit per gram of hemoglobin
+ * - [iU]/g{Hgb}: international unit / gram Hgb
+ * - [IU]/h: international unit per hour
+ * - [IU]/kg: international unit per kilogram
+ * - [IU]/kg/d: international unit per kilogram per day
+ * - [IU]/L: international unit per liter
+ * - [IU]/min: international unit per minute
+ * - [IU]/mL: international unit per milliliter
+ * - [lb_av]: pound (US and British)
+ * - [mi_i]: statute mile
+ * - [mi_us]: mile
+ * - [min_us]: minim
+ * - [MPL'U]: IgM anticardiolipin unit
+ * - [nmi_i]: nautical mile
+ * - [oz_av]: ounce (US and British)
+ * - [oz_tr]: ounce
+ * - [pH]: pH
+ * - [pi].rad/min: the number pi * radian / minute
+ * - [ppb]: part per billion
+ * - [ppm]: part per million
+ * - [ppm]{v/v}: part per million in volume per volume
+ * - [pptr]: part per trillion
+ * - [ppth]: parts per thousand
+ * - [psi]: pound per square inch
+ * - [pt_br]: pint
+ * - [qt_br]: quart
+ * - [qt_us]: quart
+ * - [sft_i]: square foot (international)
+ * - [sin_i]: square inch (international)
+ * - [ston_av]: short ton U.S. ton
+ * - [syd_i]: square yard
+ * - [tbs_us]: tablespoon (US)
+ * - [tb'U]: tuberculin unit
+ * - [todd'U]: Todd unit
+ * - [tsp_us]: teaspoon
+ * - [yd_i]: yard
+ * - {# of calculi}: # of calculi
+ * - {# of donor informative markers}: # of donor informative markers
+ * - {# of fetuses}: # of fetuses
+ * - {# of informative markers}: # of informative markers
+ * - {#}: #
+ * - {2 or 3 times}/d: 2 or 3 times / day
+ * - {3 times}/d: 3 times / day
+ * - {4 times}/d: 4 times / day
+ * - {5 times}/d: 5 times / day
+ * - {absorbance}: absorbance
+ * - {Absorbance'U}: Absorbance'U
+ * - {Absorbance'U}/mL: Absorbance'U / milliliter
+ * - {activity}: activity
+ * - {ActivityCoefficient}: ActivityCoefficient
+ * - {AHF'U}: AHF'U
+ * - {AntibodyResponse'U}: AntibodyResponse'U
+ * - {Applicator}: Applicator
+ * - {APS'U}: IgA antiphosphatidylserine unit
+ * - {AspirinReaction'U}: AspirinReaction'U
+ * - {Bead}: Bead
+ * - {Beats}/min: Beats / minute
+ * - {Bottle}: Bottle
+ * - {Bowls}/d: Bowls / day
+ * - {Breaths}/min: Breaths / minute
+ * - {CAE'U}: complement activity enzyme unit
+ * - {CagRepeat}: CagRepeat
+ * - {Can}: Can
+ * - {Cans}/wk: Cans / week
+ * - {Capsule}: Capsule
+ * - {Cell}: Cell
+ * - {cells}: cells
+ * - {cells}/[HPF]: cells per high power field
+ * - {Cells}/mL: Cells / milliliter
+ * - {cells}/uL: cells per microliter
+ * - {CfTiter}: CfTiter
+ * - {cfu}: cfu
+ * - {cfu}/mL: cfu / milliliter
+ * - {CGG_repeats}: CGG_repeats
+ * - {CGG}: CGG
+ * - {CH100'U}: complement CH100 unit
+ * - {clock time}: clock time
+ * - {clock_time}: clock_time
+ * - {ComplementActivityEnzyme'U}: ComplementActivityEnzyme'U
+ * - {ComplementCH100'U}: ComplementCH100'U
+ * - {ComplementCH50'U}: ComplementCH50'U
+ * - {copies}/mL: copies per milliliter
+ * - {copies}/ug: copies per microgram
+ * - {Copies}/uL: Copies / microliter
+ * - {Count}: Count
+ * - {Counts}/min: Counts / minute
+ * - {Dalton}: Dalton
+ * - {DdTiter}: DdTiter
+ * - {DeltaOpticalDensity}: DeltaOpticalDensity
+ * - {Dilution}: dilution
+ * - {Disintegrations}/min: Disintegrations / minute
+ * - {Dose}: Dose
+ * - {Drinks}/d: Drinks / day
+ * - {Each}: Each
+ * - {Ehrlich'U}: Ehrlich unit
+ * - {Ehrlich'U}/(2.h): Ehrlich unit per 2 hour
+ * - {Ehrlich'U}/100.g: Ehrlich unit per 100 gram
+ * - {Ehrlich'U}/d: Ehrlich unit per day
+ * - {Ehrlich'U}/dL: Ehrilich unit per deciliter
+ * - {Ehrlich'U}/mL: Ehrlich'U / milliliter
+ * - {EIAIndex}: EIA index
+ * - {EIATiter}: EIA titer
+ * - {EIA'U}: EIA unit
+ * - {EIA'U}/U: EIA unit per enzyme Unit
+ * - {ElisaIndex}: ElisaIndex
+ * - {ELISA'U}: ELISA unit
+ * - {Elisa'U}/mL: Elisa'U / milliliter
+ * - {ElisaValue}: ElisaValue
+ * - {ERY}/uL: erythrocyte per microliter
+ * - {Events}: Events
+ * - {FluorescenceIntensity'U}: FluorescenceIntensity'U
+ * - U{G}: G unit
+ * - {GliadinIndexValue}: GliadinIndexValue
+ * - {G-PortionPhospholipids}: G-PortionPhospholipids
+ * - {HaTiter}: HaTiter
+ * - {IfaIndex}: IfaIndex
+ * - {IfaTiter}: IfaTiter
+ * - {IgAAntiphosphatidyleserine'U}: IgAAntiphosphatidyleserine'U
+ * - {IgAPhospholipid'U}: IgAPhospholipid'U
+ * - {IgGAntiphosphatidyleserine'U}: IgGAntiphosphatidyleserine'U
+ * - {IgGIndex}: IgGIndex
+ * - {IgMAntiphosphatidyleserine'U}: IgMAntiphosphatidyleserine'U
+ * - {IgMIndex}: IgMIndex
+ * - {ImmuneComplex'U}: immune complex unit
+ * - {ImmuneStatusRatio}: ImmuneStatusRatio
+ * - {Immunity}: Immunity
+ * - {Index_val}: Index_val
+ * - {index}: index
+ * - {IndexValue}: IndexValue
+ * - {InhaledTobaccoUseAmountYears}: InhaledTobaccoUseAmountYears
+ * - {InhaledTobaccoUsePacks}/d: InhaledTobaccoUsePacks / day
+ * - {INR}: international normalized ratio
+ * - {INR'unit}: INR'unit
+ * - {JDF'U}: Juvenile Diabetes Foundation unit
+ * - {JDF'U}/L: Juvenile Diabetes Foundation unit per liter
+ * - {JuvenileDiabetesFound'U}: JuvenileDiabetesFound'U
+ * - {KCT'U}: kaolin clotting time
+ * - {KRONU'U}/L: Kronus unit per liter
+ * - {KRONU'U}/mL: Kronus unit per milliliter
+ * - {lgCopies}/ml: lgCopies / milliliter
+ * - {log_copies}/mL: log (base 10) copies per milliliter
+ * - {log_IU}/mL: log (base 10) international unit per milliliter
+ * - {LymeIndexValue}: LymeIndexValue
+ * - {M.o.M.}: M.o.M.
+ * - {M.o.M}: multiple of the median
+ * - {Markers}: Markers
+ * - {minidrp}: minidrp
+ * - {Molecule}/{Platelet}: Molecule / Platelet
+ * - {M-PortionPhospholipids}: M-PortionPhospholipids
+ * - {MPS'U}: IgM antiphosphatidylserine unit
+ * - {MPS'U}/mL: IgM antiphosphatidylserine unit per milliliter
+ * - {MultOfMean}: MultOfMean
+ * - {NonspecificOunce}: NonspecificOunce
+ * - {Number}: Number
+ * - {OD_unit}: optical density unit
+ * - {Once}/d: Once / day
+ * - {OpticalDensity}: OpticalDensity
+ * - {OpticalDensityIndex}: OpticalDensityIndex
+ * - {OpticalDensityRatio}: OpticalDensityRatio
+ * - {P2Y12 Reaction Units}: P2Y12 Reaction Units
+ * - {Package}: Package
+ * - {Packs}/d: Packs / day
+ * - {PackYears}: PackYears
+ * - {Patch}: Patch
+ * - {Percentile}: Percentile
+ * - {Pill}: Pill
+ * - {Pouches}/wk: Pouches / week
+ * - {RadioactiveT3UptakeRatio}: RadioactiveT3UptakeRatio
+ * - {ratio}: ratio
+ * - {RBC}/uL: red blood cell per microliter
+ * - {RecTiter}: RecTiter
+ * - {Relative'U}: Relative'U
+ * - {RelativeViscosity}: RelativeViscosity
+ * - {RPI'U}: RPI'U
+ * - {RubellaVirus}: RubellaVirus
+ * - {SatIndex}: SatIndex
+ * - {Scoop}: Scoop
+ * - {ScoreOf}: ScoreOf
+ * - {shift}: shift
+ * - {spermatozoa}/mL: spermatozoa per milliliter
+ * - {spray}: spray
+ * - {StandardDeviation}: StandardDeviation
+ * - {StandardIgA'U}: StandardIgA'U
+ * - {StandardIgG'U}: StandardIgG'U
+ * - {StandardIgM'U}: StandardIgM'U
+ * - {StdDeviation'U}: StdDeviation'U
+ * - {StimulatingIndex}: StimulatingIndex
+ * - {Streptozyme'U}: Streptozyme'U
+ * - {ThyroxinUptake'U}: ThyroxinUptake'U
+ * - {TIBC'U}: TIBC'U
+ * - {Times}/wk: Times / week
+ * - {Tine'U}: Tine'U
+ * - {titer}: titer
+ * - {ToxoplasmaIndexValue}: ToxoplasmaIndexValue
+ * - {Vial}: Vial
+ * - {Volume}/{Vvolume}: Volume / Vvolume
+ * - {WeeksDays}: WeeksDays
+ * - {WhiteBloodCell}: WhiteBloodCell
+ * - 1/d: one per day
+ * - 1/min: one per minute
+ * - 10*12/L: trillion per liter
+ * - 10*3: Thousand
+ * - 10*3.{RBC}: Thousand Red Blood Cells
+ * - 10*3.U: Thousand Per * Unit
+ * - 10*3/L: Thousand Per Liter
+ * - 10*3/mL: Thousand Per MilliLiter
+ * - 10*3/uL: Thousands Per MicroLiter
+ * - 10*3{Copies}/mL: Thousand Copies Per MilliLiter
+ * - 10*-3{Polarization'U}: (the number ten for arbitrary powers ^ -3) Polarization'U
+ * - 10*5: OneHundredThousand
+ * - 10*6: Million
+ * - 10*6.[iU]: MillionInternationalUnit
+ * - 10*6.eq/mL: MillionEquivalentsPerMilliLiter
+ * - 10*6.U: (the number ten for arbitrary powers ^ 6) * Unit
+ * - 10*6/{Specimen}: MillionPerSpecimen
+ * - 10*6/kg: million per kilogram
+ * - 10*6/L: million per liter
+ * - 10*6/mL: million per milliliter
+ * - 10*6/mm3: (the number ten for arbitrary powers ^ 6) / (millimeter ^ 3)
+ * - 10*6/uL: million per microliter
+ * - 10*-6{Immunofluorescence'U}: (the number ten for arbitrary powers ^ -6) Immunofluorescence'U
+ * - 10*8: TenToEighth
+ * - 10*9/L: billion per liter
+ * - 10*9/mL: billion per milliliter
+ * - 10*9/uL: billion per microliter
+ * - 10.L/(min.m2): 10 liter per minute per square meter
+ * - 10.L/min: 10 liter per minute
+ * - 10.uN.s/(cm.m2): 10 * microNewton * second / centimeter * (meter ^ 2)
+ * - 10.uN.s/cm: 10 * microNewton * second / centimeter
+ * - 10.uN.s/cm2: 10 * microNewton * second / (centimeter ^ 2)
+ * - a: year
+ * - A/m: Ampère / meter
+ * - att: technical atmosphere
+ * - bar: bar
+ * - Cel: degree Celsius
+ * - cg: centigram
+ * - cL: centiliter
+ * - cm: centimeter
+ * - cm[H2O]: centimeter of water
+ * - cm[H2O]/(s.m): centimeter of water column / second * meter
+ * - cm[H2O]/L/s: centimeter of water per liter per second
+ * - cm[Hg]: centimeter of mercury
+ * - cm2: square centimeter
+ * - cm2/s: square centimeter per second
+ * - cm3: cubic centimeter
+ * - cP: centiPoise
+ * - cSt: centiStokes
+ * - d: day
+ * - dB: decibel
+ * - deg: degree
+ * - deg/s: degree per second
+ * - dg: decigram
+ * - dL: deciliter
+ * - dm: decimeter
+ * - dm2/s2: square decimeter per square second
+ * - eq: equivalents
+ * - eq/L: equivalents / liter
+ * - eq/mL: equivalents / milliliter
+ * - eq/mmol: equivalents / millimole
+ * - eq/umol: equivalents / micromole
+ * - erg: erg
+ * - eV: electronvolt
+ * - fg: femtogram
+ * - fL: femtoliter
+ * - fL/nL: femtoliter / nanoliter
+ * - fm: femtometer
+ * - fmol: femtomole
+ * - fmol/g: femtomole per gram
+ * - fmol/L: femtomole per liter
+ * - fmol/mg: femtomole / milligram
+ * - fmol/mL: femtomole / milliliter
+ * - g: gram
+ * - g.m: gram * meter
+ * - g.m/({hb}.m2): gram * meter / hb * (meter ^ 2)
+ * - g.m/{hb}: gram * meter / hb
+ * - g/(100.g): gram per 100 gram
+ * - g/(12.h): gram per 12 hour
+ * - g/(24.h): gram per 24 hour
+ * - g/(3.d): gram per 3 days
+ * - g/(4.h): gram per 4 hour
+ * - g/(48.h): gram per 48 hour
+ * - g/(5.h): gram per 5 hour
+ * - g/(6.h): gram per 6 hour
+ * - g/(72.h): gram per 72 hour
+ * - g/(8.h): gram / 8 * hour
+ * - g/(8.kg.h): gram / 8 * kilogram * hour
+ * - g/(kg.h): gram / kilogram * hour
+ * - g/(kg.min): gram / kilogram * minute
+ * - g/{TotalWeight}: gram / TotalWeight
+ * - g/d: gram per day
+ * - g/dL: gram per deciliter
+ * - g/g: gram per gram
+ * - g/g{Cre}: gram / gram Cre
+ * - g/g{creat}: gram / gram creat
+ * - g/g{tissue}: gram per gram of tissue
+ * - g/h: gram per hour
+ * - g/h/m2: gram per hour per square meter
+ * - g/kg: gram per kilogram
+ * - g/kg/d: gram per kilogram per day
+ * - g/L: gram per liter
+ * - g/m2: grams Per Square Meter
+ * - g/mg: gram per milligram
+ * - g/min: gram per minute
+ * - g/mL: gram per milliliter
+ * - g/mmol: gram per millimole
+ * - g/mmol{creat}: gram / millimole creat
+ * - g/mol: gram per mole
+ * - GBq: gigaBecquerel
+ * - h: hour
+ * - hL: hectoliter
+ * - Hz: Hertz
+ * - J: joule
+ * - J/L: joule per liter
+ * - K: Kelvin
+ * - K/W: Kelvin / Watt
+ * - k[IU]/L: kilo international unit per liter
+ * - k[IU]/mL: kilo international unit per milliliter
+ * - kat/kg: katal / kilogram
+ * - kat/L: katal / liter
+ * - kBq: kiloBecquerel
+ * - kcal: kilocalorie
+ * - kcal/(8.h): kilocalorie / 8 * hour
+ * - kcal/h: kilocalorie per hour
+ * - kg: kilogram
+ * - kg.m/s: kilogram meter per second
+ * - kg/(s.m2): kilogram per second per square meter
+ * - kg/h: kilogram per hour
+ * - kg/L: kilogram per liter
+ * - kg/m2: kilogram / (meter ^ 2)
+ * - kg/m3: kilogram / (meter ^ 3)
+ * - kg/min: kilogram / minute
+ * - kg/mol: kilogram per mole
+ * - kg/s: kilogram / second
+ * - kL: kiloliter
+ * - km: kilometer
+ * - kPa: kiloPascal
+ * - ks: kilosecond
+ * - kU/g: kiloenzyme Unit per gram
+ * - kU/h: kiloUnit / hour
+ * - kU/L: kiloenzyme Unit per liter
+ * - kU/mL: kilo enzyme unit per milliliter
+ * - L: liter
+ * - L.s2/s: liter * (second ^ 2) / second
+ * - L/(8.h): liter per 8 hour
+ * - L/(min.m2): liter per minute per square meter
+ * - L/d: liter per day
+ * - L/h: liter per hour
+ * - L/kg: liter per kilogram
+ * - L/L: liter per liter
+ * - L/min: liter per minute
+ * - L/s: liter / second
+ * - lm/m2: lumen / (meter ^ 2)
+ * - m: meter
+ * - m/s: meter per second
+ * - m/s2: meter per square second
+ * - m[iU]: milliinternational unit
+ * - m[IU]/L: milli international unit per liter
+ * - m[IU]/mL: milli international unit per milliliter
+ * - m2: square meter
+ * - m2/s: square meter per second
+ * - m3/s: cubic meter per second
+ * - mA: milliAmpère
+ * - mbar: millibar
+ * - mbar.s/L: millibar second per liter
+ * - MBq: megaBecquerel
+ * - mCi: milliCurie
+ * - meq: milliequivalent
+ * - meq/(12.h): milliequivalent per 12 hour
+ * - meq/(2.h): milliequivalent per 2 hour
+ * - meq/(24.h): milliequivalent per 24 hour
+ * - meq/(8.h): milliequivalent per 8 hour
+ * - meq/(8.h.kg): milliequivalents / 8 * hour * kilogram
+ * - meq/(kg.d): milliequivalents / kilogram * day
+ * - meq/{Specimen}: milliequivalents / Specimen
+ * - meq/d: milliequivalent per day
+ * - meq/dL: milliequivalent per deciliter
+ * - meq/g: milliequivalent per gram
+ * - meq/g{Cre}: milliequivalents / gram Cre
+ * - meq/h: milliequivalent per hour
+ * - meq/kg: milliequivalent per kilogram
+ * - meq/kg/h: milliequivalent per kilogram per hour
+ * - meq/kg/min: milliequivalents / kilogram / minute
+ * - meq/L: milliequivalent per liter
+ * - meq/m2: milliequivalent per square meter
+ * - meq/min: milliequivalent per minute
+ * - meq/mL: milliequivalent per milliliter
+ * - mg: milligram
+ * - mg/(10.h): milligram per 10 hour
+ * - mg/(12.h): milligram per 12 hour
+ * - mg/(18.h): milligram per 18 hour
+ * - mg/(2.h): milligram per 2 hour
+ * - mg/(24.h): milligram per 24 hour
+ * - mg/(72.h): milligram per 72 hour
+ * - mg/(8.h): milligram per 8 hour
+ * - mg/(8.h.kg): milligram / 8 * hour * kilogram
+ * - mg/(kg.h): milligram / kilogram * hour
+ * - mg/{Hgb}/g: milligram / Hgb / gram
+ * - mg/{Specimen}: milligram / Specimen
+ * - mg/{Tot'Volume}: milligram / Tot'Volume
+ * - mg/{Volume}: milligram / Volume
+ * - mg/d: milligram per day
+ * - mg/d/(173.10*-2.m2): milligram / day / 173 * (the number ten for arbitrary powers ^ -2) * (meter ^ 2)
+ * - mg/dL: milligram per deciliter
+ * - mg/g: milligram per gram
+ * - mg/g{Cre}: milligram / gram Cre
+ * - mg/g{creat}: milligram per gram of creatinine
+ * - mg/h: milligram per hour
+ * - mg/kg: milligram per kilogram
+ * - mg/kg/(24.h): milligram / kilogram / 24 * hour
+ * - mg/kg/d: milligram per kilogram per day
+ * - mg/kg/min: milligram per kilogram per minute
+ * - mg/L: milligram per liter
+ * - mg/m2: milligram per square meter
+ * - mg/m3: milligram per cubic meter
+ * - mg/mg: milligram per milligram
+ * - mg/mg{cre}: milligram / milligram cre
+ * - mg/min: milligram per minute
+ * - mg/mL: milligram per milliliter
+ * - mg/mmol: milligram per millimole
+ * - mg/mmol{Cre}: milligram / millimole Cre
+ * - mg/mmol{creat}: milligram per millimole of creatinine
+ * - mg/wk: milligram per week
+ * - mg{Phenylketones}/dL: milligram Phenylketones / deciliter
+ * - min: minute
+ * - mL: milliliter
+ * - mL/({h'b}.m2): milliliter / h'b * (meter ^ 2)
+ * - mL/(10.h): milliliter per 10 hour
+ * - mL/(12.h): milliliter per 12 hour
+ * - mL/(2.h): milliliter per 2 hour
+ * - mL/(24.h): milliliter per 24 hour
+ * - mL/(4.h): milliliter per 4 hour
+ * - mL/(72.h): milliliter per 72 hour
+ * - mL/(8.h): milliliter per 8 hour
+ * - mL/(kg.min): milliliter / kilogram * minute
+ * - mL/[sin_i]: milliliter per square inch (international)
+ * - mL/{h'b}: MilliLitersPerHeartbeat [SI Volume Units]
+ * - mL/cm[H2O]: milliliter / centimeter of water column
+ * - mL/d: milliliter per day
+ * - mL/dL: milliliter per deciliter
+ * - mL/h: milliliter per hour
+ * - mL/kg: milliliter per kilogram
+ * - mL/kg/(8.h): milliliter per kilogram per 8 hour
+ * - mL/kg/d: milliliter per kilogram per day
+ * - mL/kg/h: milliliter per kilogram per hour
+ * - mL/kg/min: milliliter per kilogram per minute
+ * - mL/L: milliliter per liter
+ * - mL/m2: milliliter per square meter
+ * - mL/mbar: milliliter per millibar
+ * - mL/min: milliliter per minute
+ * - mL/min/(173.10*-2.m2): milliliter / minute / 173 * (the number ten for arbitrary powers ^ -2) * (meter ^ 2)
+ * - mL/min/{1.73_m2}: milliliter per minute per 1.73 square meter
+ * - mL/min/m2: milliliter per minute per square meter
+ * - mL/mm: milliliter per millimeter
+ * - mL/s: milliliter per second
+ * - mm: millimeter
+ * - mm/h: millimeter per hour
+ * - mm/min: millimeter per minute
+ * - mm[H2O]: millimeter of water
+ * - mm[Hg]: millimeter of mercury
+ * - mm2: square millimeter
+ * - mm3: cubic millimeter
+ * - mmol: millimole
+ * - mmol/(12.h): millimole per 12 hour
+ * - mmol/(18.h): millimole per 18 hour
+ * - mmol/(2.h): millimole per 2 hour
+ * - mmol/(24.h): millimole per 24 hour
+ * - mmol/(6.h): millimole per 6 hour
+ * - mmol/(8.h): millimole per 8 hour
+ * - mmol/(8.h.kg): millimole / 8 * hour * kilogram
+ * - mmol/{Tot'Volume}: millimole / Tot'Volume
+ * - mmol/d: millimole per day
+ * - mmol/dL: millimole per deciliter
+ * - mmol/g: millimole per gram
+ * - mmol/g{creat}: millimole per gram of creatinine
+ * - mmol/g{hemoglobin}: millimole per gram of hemoglobin
+ * - mmol/h: millimole per hour
+ * - mmol/h/mg{Hb}: millimole per hour per milligram of hemoglobin
+ * - mmol/h/mg{protein}: millimole per hour per milligram of protein
+ * - mmol/kg: millimole per kilogram
+ * - mmol/kg/d: millimole per kilogram per day
+ * - mmol/kg/h: millimole per kilogram per hour
+ * - mmol/kg/min: millimole per kilogram per minute
+ * - mmol/kg{H2O}: millimole per kilogram of water
+ * - mmol/L: millimole per liter
+ * - mmol/L/s: millimole per liter per second
+ * - mmol/m: millimole / meter
+ * - mmol/m2: millimole per square meter
+ * - mmol/min: millimole per minute
+ * - mmol/mmol: millimole per millimole
+ * - mmol/mol: millimole per mole
+ * - mmol/mol{creat}: millimole per mole of creatinine
+ * - mmol/s/L: millimole per second per liter
+ * - mo: month
+ * - mol: mole
+ * - mol/d: mole per day
+ * - mol/kg: mole per kilogram
+ * - mol/kg/s: mole per kilogram per second
+ * - mol/L: mole per liter
+ * - mol/m3: mole per cubic meter
+ * - mol/mL: mole per milliliter
+ * - mol/mol: mole per mole
+ * - mol/mol{creat}: mole / mole creat
+ * - mol/s: mole per second
+ * - mosm: milliosmole
+ * - mosm/kg: milliosmole per kilogram
+ * - mosm/L: milliosmole per liter
+ * - mPa: millipascal
+ * - ms: millisecond
+ * - mU: millienzyme Unit
+ * - mU/g: millienzyme Unit per gram
+ * - mU/g{Hgb}: milliUnit / gram Hgb
+ * - mU/L: millienzyme Unit per liter
+ * - mU/mg: milliUnit / milligram
+ * - mU/mg{Cre}: milliUnit / milligram Cre
+ * - mU/min: milliUnit / minute
+ * - mU/mL: millienzyme Unit per milliliter
+ * - mU/mL/min: millienzyme Unit per milliliter per minute
+ * - mU/mmol{creatinine}: millienzyme Unit per millimole of creatinine
+ * - mU/mmol{RBCs}: millienzyme Unit per millimole of red blood cells
+ * - mV: milliVolt
+ * - N: Newton
+ * - N.cm: Newton centimeter
+ * - N.s: Newton second
+ * - nCi: nanoCurie
+ * - ng: nanogram
+ * - ng/(24.h): nanogram per 24 hour
+ * - ng/(8.h): nanogram per 8 hour
+ * - ng/(8.h.kg): nanogram / 8 * hour * kilogram
+ * - ng/(kg.d): nanogram / kilogram * day
+ * - ng/(kg.h): nanogram / kilogram * hour
+ * - ng/(kg.min): nanogram / kilogram * minute
+ * - ng/10*6: nanogram per million
+ * - ng/d: nanogram per day
+ * - ng/dL: nanogram per deciliter
+ * - ng/dL/h: nanogram / deciliter / hour
+ * - ng/g: nanogram per gram
+ * - ng/g{Cre}: nanogram / gram Cre
+ * - ng/g{creat}: nanogram per gram of creatinine
+ * - ng/h: nanogram per hour
+ * - ng/kg: nanogram per kilogram
+ * - ng/kg/(8.h): nanogram per kilogram per 8 hour
+ * - ng/kg/h: nanogram per kilogram per hour
+ * - ng/kg/min: nanogram per kilogram per minute
+ * - ng/L: nanogram per liter
+ * - ng/m2: nanogram per square meter
+ * - ng/mg: nanogram per milligram
+ * - ng/mg/h: nanogram per milligram per hour
+ * - ng/mg{Protein}: nanogram / milligram Protein
+ * - ng/min: nanogram per minute
+ * - ng/mL: nanogram per millliiter
+ * - ng/mL/h: nanogram per milliliter per hour
+ * - ng/mL{rbc}: nanogram / milliliter rbc
+ * - ng/s: nanogram per second
+ * - nkat: nanokatal
+ * - nL: nanoliter
+ * - nm: nanometer
+ * - nm/s/L: nanometer per second per liter
+ * - nmol: nanomole
+ * - nmol/(24.h): nanomole per 24 hour
+ * - nmol/d: nanomole per day
+ * - nmol/dL: nanomole per deciliter
+ * - nmol/g: nanomole per gram
+ * - nmol/g{Cre}: nanomole / gram Cre
+ * - nmol/g{creat}: nanomole per gram of creatinine
+ * - nmol/g{dry_wt}: nanomole per gram of dry weight
+ * - nmol/h/L: nanomole per hour per liter
+ * - nmol/h/mg{protein}: nanomole per hour per milligram of protein
+ * - nmol/h/mL: nanomole per hour per milliliter
+ * - nmol/L: nanomole per liter
+ * - nmol/L/mmol{creat}: nanomole per liter per millimole of creatinine
+ * - nmol/L/s: nanomole per liter per second
+ * - nmol/L{RBCs}: nanomole per liter of red blood cells
+ * - nmol/m/mg{protein}: nanomole per meter per milligram of protein
+ * - nmol/mg: nanomole per milligram
+ * - nmol/mg/h: nanomole per milligram per hour
+ * - nmol/min/mg{hemoglobin}: nanomole per minute per milligram of hemoglobin
+ * - nmol/min/mg{protein}: nanomole per minute per milligram of protein
+ * - nmol/min/mL: nanomole per minute per milliliter
+ * - nmol/mL: nanomole per milliliter
+ * - nmol/mL/h: nanomole per milliliter per hour
+ * - nmol/mL/min: nanomole per milliliter per minute
+ * - nmol/mmol: nanomole per millimole
+ * - nmol/mmol{Cre}: nanomole / millimole Cre
+ * - nmol/mmol{creat}: nanomole per millimole of creatinine
+ * - nmol/mol: nanomole per mole
+ * - nmol/nmol: nanomole per nanomole
+ * - nmol/s: nanomole per second
+ * - nmol/s/L: nanomole per second per liter
+ * - nmol/umol{creat}: nanomole per micromole  of creatinine
+ * - ns: nanosecond
+ * - Ohm: Ohm
+ * - osm/kg: osmole per kilogram
+ * - osm/L: osmole per liter
+ * - Pa: Pascal
+ * - pg: picogram
+ * - pg/dL: picogram per deciliter
+ * - pg/L: picogram per liter
+ * - pg/mg: picogram per milligram
+ * - pg/mL: picogram per milliliter
+ * - pg/mm: picogram per millimeter
+ * - pkat: picokatal
+ * - pL: picoliter
+ * - pm: picometer
+ * - pmol: picomole
+ * - pmol/d: picomole per day
+ * - pmol/dL: picomole per deciliter
+ * - pmol/g: picomole per gram
+ * - pmol/h/mg{protein}: picomole per hour per milligram of protein
+ * - pmol/h/mL: picomole per hour per milliliter
+ * - pmol/L: picomole per liter
+ * - pmol/mg{protein}: picomole per milligram of protein
+ * - pmol/min: picomole per minute
+ * - pmol/min/mg{protein}: picomole per minute per milligram of protein
+ * - pmol/mL: picomole per milliliter
+ * - pmol/mmol: picomole per millimole
+ * - pmol/mmol{creat}: picomole per millimole of creatinine
+ * - pmol/mol: picomole per mole
+ * - pmol/umol: picomole per micromole
+ * - pmol/umol{creat}: picomole per micromole of creatinine
+ * - ps: picosecond
+ * - pT: picotesla
+ * - s: second
+ * - St: Stokes
+ * - t: tonne
+ * - U: enzyme Unit
+ * - U/(1.h): enzyme Unit per 1 hour
+ * - U/(12.h): enzyme unit per 12 hour
+ * - U/(18.h): enzyme Unit per 18 hour
+ * - U/(2.h): enzyme unit per 2 hour
+ * - U/(24.h): enzyme unit per 24 hour
+ * - U/10*10{cells}: enzyme unit per 10 billion cells
+ * - U/10*12: enzyme unit per trillion
+ * - U/10*6: enzyme unit per million
+ * - U/10*9: enzyme unit per billion
+ * - U/d: enzyme unit per day
+ * - U/dL: enzyme unit per deciliter
+ * - U/g: enzyme unit per gram
+ * - U/g{Cre}: Unit / gram Cre
+ * - U/g{Hb}: enzyme unit per gram of hemoglobin
+ * - U/g{hemoglobin}: enzyme Unit per gram of hemoglobin
+ * - U/g{Hgb}: UnitsPerGramHemoglobin
+ * - U/h: enzyme unit per hour
+ * - U/kg/h: Unit / kilogram / hour
+ * - U/kg{Hb}: enzyme unit per kilogram of hemoglobin
+ * - U/kg{hemoglobin}: enzyme Unit per kilogram of hemoglobin
+ * - U/L: enzyme unit per liter
+ * - U/min: enzyme unit per minute
+ * - U/mL: enzyme unit per milliliter
+ * - U/mL{RBC}: Unit / milliliter RBC
+ * - U/mL{RBCs}: enzyme unit per milliliter of red blood cells
+ * - U/mmol{creat}: enzyme unit per millimole of creatinine
+ * - U/mol: enzyme Unit per mole
+ * - U/s: enzyme unit per second
+ * - U/umol: enzyme Unit per micromole
+ * - u[IU]: micro international unit
+ * - u[IU]/L: microinternational unit per liter
+ * - u[IU]/mL: micro international unit per milliliter
+ * - ueq: microequivalents
+ * - ueq/L: microequivalent per liter
+ * - ueq/mL: microequivalent per milliliter
+ * - ug: microgram
+ * - ug/(24.h): microgram per 24 hour
+ * - ug/(8.h): microgram per 8 hour
+ * - ug/(kg.d): microgram / kilogram * day
+ * - ug/(kg.h): microgram / kilogram * hour
+ * - ug/{Specimen}: microgram / Specimen
+ * - ug/{TotalVolume}: MicroGramsPerTotalVolume
+ * - ug/d: microgram per day
+ * - ug/dL: microgram per deciliter
+ * - ug/dL{rbc}: microgram / deciliter rbc
+ * - ug/g: microgram per gram
+ * - ug/g{Cre}: microgram / gram Cre
+ * - ug/g{creat}: microgram per gram of creatinine
+ * - ug/g{DryWeight}: microgram / gram DryWeight
+ * - ug/g{Hgb}: microgram / gram Hgb
+ * - ug/g{Tissue}: microgram / gram Tissue
+ * - ug/h: microgram per hour
+ * - ug/kg: microgram per kilogram
+ * - ug/kg/(8.h): microgram per kilogram per 8 hour
+ * - ug/kg/d: microgram per kilogram per day
+ * - ug/kg/h: microgram per kilogram per hour
+ * - ug/kg/min: microgram per kilogram per minute
+ * - ug/L: microgram per liter
+ * - ug/L/(24.h): microgram per liter per 24 hour
+ * - ug/L{DDU}: microgram / liter DDU
+ * - ug/m2: microgram per square meter
+ * - ug/mg: microgram per milligram
+ * - ug/mg{Cre}: microgram / milligram Cre
+ * - ug/mg{creat}: microgram per milligram of creatinine
+ * - ug/min: microgram per minute
+ * - ug/mL: microgram per milliliter
+ * - ug/mL{FEU}: microgram / milliliter FEU
+ * - ug/mmol: microgram per millimole
+ * - ug/ng: microgram per nanogram
+ * - ug{T4}/dL: microgram T4 / deciliter
+ * - ukat: microkatal
+ * - uL: microliter
+ * - uL/(2.h): microliter per 2 hour
+ * - uL/h: microliter per hour
+ * - um: micrometer
+ * - um/s: micrometer per second
+ * - umol: micromole
+ * - umol/(24.h): micromole per 24 hour
+ * - umol/d: micromole per day
+ * - umol/dL: micromole per deciliter
+ * - umol/g: micromole per gram
+ * - umol/g{Cre}: micromole / gram Cre
+ * - umol/g{creat}: micromole per gram of creatinine
+ * - umol/g{Hb}: micromole per gram of hemoglobin
+ * - umol/g{hemoglobin}: micromole per gram of hemoglobin
+ * - umol/g{Hgb}: micromole / gram Hgb
+ * - umol/h: micromole per hour
+ * - umol/h/g: micromole / hour / gram
+ * - umol/h/L: micromole per hour per liter
+ * - umol/h/mg{protein}: micromole per hour per milligram of protein
+ * - umol/kg: micromole per kilogram
+ * - umol/L: micromole per liter
+ * - umol/L/h: micromole per liter per hour
+ * - umol/L{rbc}: micromole per liter of red blood cells
+ * - umol/m: micromole / meter
+ * - umol/mg: micromole per milligram
+ * - umol/mg{Cre}: micromole / milligram Cre
+ * - umol/min: micromole per minute
+ * - umol/min/g: micromole per minute per gram
+ * - umol/min/g{prot}: micromole / minute / gram prot
+ * - umol/min/g{protein}: micromole per minute per gram of protein
+ * - umol/min/L: micromole per minute per liter
+ * - umol/mL: micromole per milliliter
+ * - umol/mL/min: micromole per milliliter per minute
+ * - umol/mmol: micromole per millimole
+ * - umol/mol: micromole per mole
+ * - umol/mol{Cre}: micromole / mole Cre
+ * - umol/mol{creat}: micromole per mole of creatinine
+ * - umol/mol{Hb}: micromole per mole of hemoglobin
+ * - umol/umol: micromole per micromole
+ * - uOhm: microOhm
+ * - us: microsecond
+ * - uU: microUnit
+ * - uU/g: micro enzyme unit per gram
+ * - uU/L: micro enzyme unit per liter
+ * - uU/mL: micro enzyme unit per milliliter
+ * - uV: microvolt
+ * - V: volt
+ * - wk: week
+ * - 10.uN.s/(cm5.m2): 10 micronewton second per centimeter to the fifth power per square meter
+ * - 10*4/uL: 10 thousand per microliter
+ * - 24.h: 24 hour
+ * - A: Ampère
+ * - {ARU}: aspirin response unit
+ * - atm: standard atmosphere
+ * - ag/{cell}: attogram per cell
+ * - Bq: Becquerel
+ * - {binding_index}: binding index
+ * - [bdsk'U]: Bodansky unit
+ * - {CAG_repeats}: CAG trinucleotide repeats
+ * - cal: calorie
+ * - cm[H2O]/s/m: centimeter of water per second per meter
+ * - {delta_OD}: change in (delta) optical density
+ * - {copies}: copies
+ * - {count}: count
+ * - {CPM}: counts per minute
+ * - {CPM}/10*3{cell}: counts per minute per thousand cells
+ * - daL/min: dekaliter per minute
+ * - daL/min/m2: dekaliter per minute per square meter
+ * - {dilution}: dilution
+ * - dyn.s/cm: dyne second per centimeter
+ * - dyn.s/(cm.m2): dyne second per centimeter per square meter
+ * - {EIA_index}: EIA index
+ * - {EIA_titer}: EIA titer
+ * - {EV}: EIA value
+ * - U/10: enzyme unit per 10
+ * - U/10*10: enzyme unit per 10 billion
+ * - U/(10.g){feces}: enzyme unit per 10 gram of feces
+ * - U/g{creat}: enzyme unit per gram of creatinine
+ * - U/g{protein}: enzyme unit per gram of protein
+ * - U{25Cel}/L: enzyme unit per liter at 25 deg Celsius
+ * - U{37Cel}/L: enzyme unit per liter at 37 deg Celsius
+ * - U/10*12{RBCs}: enzyme unit per trillion red blood cells
+ * - F: Farad
+ * - fmol/mg{cytosol_protein}: femtomole per milligram of cytosol protein
+ * - fmol/mg{protein}: femtomole per milligram of protein
+ * - {FIU}: fluorescent intensity unit
+ * - {fraction}: fraction
+ * - {GAA_repeats}: GAA trinucleotide repeats
+ * - {genomes}/mL: genomes per milliliter
+ * - {Globules}/[HPF]: globules (drops)  per high power field
+ * - g.m/{beat}: gram meter per heart beat
+ * - g{creat}: gram of creatinine
+ * - g{Hb}: gram of hemoglobin
+ * - g{total_nit}: gram of total nitrogen
+ * - g{total_prot}: gram of total protein
+ * - g{wet_tissue}: gram of wet tissue
+ * - g/kg/(8.h): gram per  kilogram per 8 hour
+ * - g/(8.h){shift}: gram per 8 hour shift
+ * - g/cm3: gram per cubic centimeter
+ * - g/g{globulin}: gram per gram of globulin
+ * - g/kg/(8.h){shift}: gram per kilogram per 8 hour shift
+ * - g/kg/h: gram per kilogram per hour
+ * - g/kg/min: gram per kilogram per minute
+ * - g/mol{creat}: gram per mole of creatinine
+ * - g/{specimen}: gram per specimen
+ * - g/{total_output}: gram per total output
+ * - g/{total_weight}: gram per total weight
+ * - Gy: Gray
+ * - {beats}/min: heart beats per minute
+ * - H: Henry
+ * - [HPF]: high power field
+ * - [GPL'U]/mL: IgG anticardiolipin unit per milliliter**
+ * - {GPS'U}: IgG antiphosphatidylserine unit
+ * - [MPL'U]/mL: IgM anticardiolipin unit per milliliter**
+ * - {ISR}: immune status ratio
+ * - {IFA_index}: immunofluorescence assay index
+ * - {IFA_titer}: Immunofluorescence assay titer
+ * - [in_i'H2O]: inch (international) of water
+ * - {index_val}: index value
+ * - {HA_titer}: influenza hemagglutination titer
+ * - [IU]: international unit
+ * - [IU]/L{37Cel}: international unit per liter at 37 degrees Celsius
+ * - [IU]/mg{creat}: international unit per milligram of creatinine
+ * - kat: katal
+ * - kU: kilo enzyme unit
+ * - kU/L{class}: kilo enzyme unit per liter class
+ * - kcal/d: kilocalorie per day
+ * - kcal/kg/(24.h): kilocalorie per kilogram per 24 hour
+ * - kcal/[oz_av]: kilocalorie per ounce (US & British)
+ * - [ka'U]: King Armstrong unit
+ * - L/(24.h): liter per 24 hour
+ * - L/s/s2: liter per second per square second
+ * - {Log_copies}/mL: log (base 10) copies per milliliter
+ * - {Log_IU}: log (base 10) international unit
+ * - {Log_IU}/mL: log (base 10) international unit per milliliter
+ * - {Log}: log base 10
+ * - [LPF]: low power field
+ * - lm: lumen
+ * - lm.m2: lumen square meter
+ * - {Lyme_index_value}: Lyme index value
+ * - [mclg'U]: Mac Lagan unit
+ * - Ms: megasecond
+ * - ug/g{feces}: microgram  per gram of feces
+ * - ug{FEU}/mL: microgram fibrinogen equivalent unit per milliliter
+ * - ug/(100.g): microgram per 100 gram
+ * - ug/m3: microgram per cubic meter
+ * - ug/dL{RBCs}: microgram per deciliter of red blood cells
+ * - ug/g{dry_tissue}: microgram per gram of dry tissue
+ * - ug/g{dry_wt}: microgram per gram of dry weight
+ * - ug/g{hair}: microgram per gram of hair
+ * - ug/g{Hb}: microgram per gram of hemoglobin
+ * - ug/g{tissue}: microgram per gram of tissue
+ * - ug/L{RBCs}: microgram per liter of red blood cells
+ * - ug/mL{class}: microgram per milliliter class
+ * - ug/mL{eqv}: microgram per milliliter equivalent
+ * - ug/mmol{creat}: microgram per millimole of creatinine
+ * - ug/{specimen}: microgram per specimen
+ * - ug/[sft_i]: microgram per square foot (international)
+ * - umol{BCE}/mol: micromole bone collagen equivalent per mole
+ * - umol/(2.h): micromole per 2 hour
+ * - umol/(8.h): micromole per 8 hour
+ * - umol/dL{GF}: micromole per deciliter of glomerular filtrate
+ * - umol/kg{feces}: micromole per kilogram of feces
+ * - umol/L{RBCs}: micromole per liter of red blood cells
+ * - umol/umol{creat}: micromole per micromole of creatinine
+ * - umol/mg{creat}: micromole per milligram of creatinine
+ * - umol/mmol{creat}: micromole per millimole of creatinine
+ * - umol/min/g{mucosa}: micromole per minute per gram of mucosa
+ * - mU/mmol{creat}: milli  enzyme unit per millimole of creatinine
+ * - mU/g{Hb}: milli enzyme unit per gram of hemoglobin
+ * - mU/g{protein}: milli enzyme unit per gram of protein
+ * - mU/mg{creat}: milli enzyme unit per milligram of creatinine
+ * - mbar/L/s: millibar per liter per second
+ * - meq/g{creat}: milliequivalent per gram of creatinine
+ * - meq/{specimen}: milliequivalent per specimen
+ * - meq/{total_volume}: milliequivalent per total volume
+ * - mg{FEU}/L: milligram fibrinogen equivalent unit per liter
+ * - mg/(6.h): milligram per 6 hour
+ * - mg/{collection}: milligram per collection
+ * - mg/d/{1.73_m2}: milligram per day per 1.73 square meter
+ * - mg/dL{RBCs}: milligram per deciliter of red blood cells
+ * - mg/g{dry_tissue}: milligram per gram of dry tissue
+ * - mg/g{feces}: milligram per gram of feces
+ * - mg/g{tissue}: milligram per gram of tissue
+ * - mg/g{wet_tissue}: milligram per gram of wet tissue
+ * - mg/kg/(8.h): milligram per kilogram per 8 hour
+ * - mg/kg/h: milligram per kilogram per hour
+ * - mg/L{RBCs}: milligram per liter of red blood cells
+ * - mg/mg{creat}: milligram per milligram of creatinine
+ * - mg/{specimen}: milligram per specimen
+ * - mg/{total_output}: milligram per total output
+ * - mg/{total_volume}: milligram per total volume
+ * - mL{fetal_RBCs}: milliliter of fetal red blood cells
+ * - mL/(5.h): milliliter per 5 hour
+ * - mL/(6.h): milliliter per 6 hour
+ * - mL/{beat}: milliliter per heart beat
+ * - mL/{beat}/m2: milliliter per heart beat per  square meter
+ * - mmol/(5.h): millimole per 5 hour
+ * - mmol/{ejaculate}: millimole per ejaculate
+ * - mmol/kg/(8.h): millimole per kilogram per 8 hour
+ * - mmol/L{RBCs}: millimole per liter of red blood cells
+ * - mmol/mmol{urea}: millimole per millimole of urea
+ * - mmol/mmol{creat}: millimole per millmole of creatinine
+ * - mmol/{specimen}: millimole per specimen
+ * - mmol/{total_vol}: millimole per total volume
+ * - 10*6.[CFU]/L: million colony forming unit per liter
+ * - 10*6.[IU]: million international unit
+ * - 10*6/(24.h): million per 24 hour
+ * - mPa.s: millipascal second
+ * - {minidrop}/min: minidrop per minute
+ * - {minidrop}/s: minidrop per second
+ * - {molecule}/{platelet}: molecule per platelet
+ * - {mm/dd/yyyy}: month-day-year
+ * - {mutation}: mutation
+ * - nU/mL: nanoenzyme unit per milliliter
+ * - nU/{RBC}: nanoenzyme unit per red blood cell
+ * - ng{FEU}/mL: nanogram fibrinogen equivalent unit per milliliter
+ * - ng/U: nanogram per enzyme unit
+ * - ng/mg{creat}: nanogram per milligram of creatinine
+ * - ng/mg{protein}: nanogram per milligram of protein
+ * - ng/mL{RBCs}: nanogram per milliliter of red blood cells
+ * - ng/10*6{RBCs}: nanogram per million red blood cells
+ * - nmol{BCE}: nanomole bone collagen equivalent
+ * - nmol{BCE}/L: nanomole bone collagen equivalent per liter
+ * - nmol{BCE}/mmol{creat}: nanomole bone collagen equivalent per millimole of creatinine
+ * - nmol{1/2cys}/mg{protein}: nanomole of 1/2 cystine per milligram of protein
+ * - nmol{ATP}: nanomole of ATP
+ * - nmol/dL{GF}: nanomole per deciliter of glomerular filtrate
+ * - nmol/mg{creat}: nanomole per milligram of creatinine
+ * - nmol/mg{protein}: nanomole per milligram of protein
+ * - nmol/mg{protein}/h: nanomole per milligram of protein per hour
+ * - nmol/min: nanomole per minute
+ * - nmol/min/mg{Hb}: nanomole per minute per milligram of hemoglobin
+ * - nmol/min/10*6{cells}: nanomole per minute per million cells
+ * - {#}/[HPF]: number per high power field
+ * - {#}/L: number per liter
+ * - {#}/[LPF]: number per low power field
+ * - {#}/uL: number per microliter
+ * - {#}/mL: number per milliliter
+ * - {#}/min: number per minute
+ * - Ohm.m: Ohm meter
+ * - osm: osmole
+ * - {Pan_Bio'U}: panbio unit
+ * - /10*4{RBCs}: per 10 thousand red blood cells
+ * - /m3: per cubic meter
+ * - /{entity}: per entity
+ * - /g{Hb}: per gram of hemoglobin
+ * - /g{tot_nit}: per gram of total nitrogen
+ * - /g{tot_prot}: per gram of total protein
+ * - /g{wet_tis}: per gram of wet tissue
+ * - /[IU]: per international unit
+ * - /kg{body_wt}: per kilogram of body weight
+ * - /mm: per millimeter
+ * - /mmol{creat}: per millimole of creatinine
+ * - /{OIF}: per oil immersion field
+ * - /10*3: per thousand
+ * - /10*3.{RBCs}: per thousand red blood cells
+ * - /10*12{RBCs}: per trillion red blood cells
+ * - %{loss_AChR}: percent  loss of acetylcholine receptor
+ * - %{penetration}: percent  penetration
+ * - %{abnormal}: percent abnormal
+ * - %{activity}: percent activity
+ * - %{aggregation}: percent aggregation
+ * - %{at_60_min}: percent at 60 minute
+ * - %{basal_activity}: percent basal activity
+ * - %{binding}: percent binding
+ * - %{blockade}: percent blockade
+ * - %{blocked}: percent blocked
+ * - %{bound}: percent bound
+ * - %{breakdown}: percent breakdown
+ * - %{deficient}: percent deficient
+ * - %{dose}: percent dose
+ * - %{excretion}: percent excretion
+ * - %{Hb}: percent hemoglobin
+ * - %{hemolysis}: percent hemolysis
+ * - %{index}: percent index
+ * - %{inhibition}: percent inhibition
+ * - %{loss}: percent loss
+ * - %{lysis}: percent lysis
+ * - %{normal}: percent normal
+ * - %{normal_pooled_plasma}: percent normal pooled plasma
+ * - %{bacteria}: percent of bacteria
+ * - %{baseline}: percent of baseline
+ * - %{cells}: percent of cells
+ * - %{RBCs}: percent of red blood cells
+ * - %{WBCs}: percent of white blood cells
+ * - %{positive}: percent positive
+ * - %{reactive}: percent reactive
+ * - %{recovery}: percent recovery
+ * - %{reference}: percent reference
+ * - %{residual}: percent residual
+ * - %{saturation}: percent saturation
+ * - %{total}: percent total
+ * - %{uptake}: percent uptake
+ * - %{viable}: percent viable
+ * - {percentile}: percentile
+ * - {phenotype}: phenotype
+ * - pA: picoampere
+ * - pg/{cell}: picogram per cell
+ * - pg/mg{creat}: picogram per milligram of creatinine
+ * - pg/{RBC}: picogram per red blood cell
+ * - pmol/(24.h): picomole per 24 hour
+ * - pmol/{RBC}: picomole per red blood cell
+ * - [pt_us]: pint
+ * - %{relative}: relative percent
+ * - {relative_saturation}: relative saturation
+ * - {Rubella_virus}: rubella virus
+ * - {saturation}: saturation
+ * - s/{control}: second per control
+ * - S: Siemens
+ * - Sv: Sievert
+ * - {s_co_ratio}: signal to cutoff ratio
+ * - {STDV}: standard deviation
+ * - T: Tesla
+ * - 10*3{copies}/mL: thousand copies per milliliter
+ * - 10*3{RBCs}: thousand red blood cells
+ * - {TSI_index}: thyroid-stimulating immunoglobulin index
+ * - Wb: Weber
+ * - {WBCs}: white blood cells
+ * - 1: 1*
+ * - ': minute
+ * - '': second
+ * - %[slope]: percent of slope
+ * - %{Bound}: PercentBound
+ * - /100{Spermatozoa}: Per100Spermatozoa
+ * - /g{HGB}: PerGramHemoglobin
+ * - [acr_br]: acre
+ * - [acr_us]: acre
+ * - [Amb'a'1'U]: Amb a 1 units
+ * - [bbl_us]: barrel
+ * - [bf_i]: board foot
+ * - [Btu]: British thermal unit
+ * - [Btu_39]: British thermal unit at 39 °F
+ * - [Btu_59]: British thermal unit at 59 °F
+ * - [Btu_60]: British thermal unit at 60 °F
+ * - [Btu_IT]: international table British thermal unit
+ * - [Btu_m]: mean British thermal unit
+ * - [Btu_th]: thermochemical British thermal unit
+ * - [bu_br]: bushel
+ * - [bu_us]: bushel
+ * - [c]: velocity of light
+ * - [Cal]: nutrition label Calories
+ * - [car_Au]: carat of gold alloys
+ * - [car_m]: metric carat
+ * - [CCID_50]: CELL CULTURE INFECTIOUS DOSE 50%
+ * - [cft_i]: cubic foot
+ * - [ch_br]: Gunter's chain
+ * - [ch_us]: Gunter's chain Surveyor's chain
+ * - [cicero]: cicero Didot's pica
+ * - [cml_i]: circular mil
+ * - [cr_i]: cord
+ * - [crd_us]: cord
+ * - [cyd_i]: cubic yard
+ * - [D'ag'U]: D-ANTIGEN UNITS
+ * - [didot]: didot Didot's point
+ * - [diop]: diopter
+ * - [dpt_us]: dry pint
+ * - [dqt_us]: dry quart
+ * - [dr_ap]: dram drachm
+ * - [dye'U]: Dye unit
+ * - [e]: elementary charge
+ * - [eps_0]: permittivity of vacuum
+ * - [fdr_br]: fluid dram
+ * - [FFU]: FOCUS-FORMING UNITS
+ * - [ft_br]: foot
+ * - [ft_us]: foot
+ * - [fth_br]: fathom
+ * - [fth_us]: fathom
+ * - [fur_us]: furlong
+ * - [G]: Newtonian constant of gravitation
+ * - [gal_wi]: historical winchester gallon
+ * - [gil_br]: gill
+ * - [gil_us]: gill
+ * - [h]: Planck constant
+ * - [hd_i]: hand
+ * - [hnsf'U]: Hounsfield unit
+ * - [HP]: horsepower
+ * - [hp_C]: HOMEOPATHIC POTENCY OF CENTESIMAL SERIES
+ * - [hp_M]: HOMEOPATHIC POTENCY OF MILLESIMAL SERIES
+ * - [hp_Q]: HOMEOPATHIC POTENCY OF QUINTAMILLESIMAL SERIES
+ * - [hp_X]: HOMEOPATHIC POTENCY OF DECIMAL SERIES
+ * - [in_br]: inch
+ * - [in_i'Hg]: inch of mercury column
+ * - [in_us]: inch
+ * - [iU]/dL: InternationalUnitsPerDeciLiter
+ * - [iU]/g: InternationalUnitsPerGram
+ * - [iU]/kg: InternationalUnitsPerKilogram
+ * - [iU]/L: InternationalUnitsPerLiter
+ * - [iU]/mL: InternationalUnitsPerMilliLiter
+ * - [k]: Boltzmann constant
+ * - [kn_br]: knot
+ * - [kn_i]: knot
+ * - [knk'U]: Kunkel unit
+ * - [lb_ap]: pound
+ * - [lb_tr]: pound
+ * - [lbf_av]: pound force
+ * - [lcwt_av]: long hunderdweight British hundredweight
+ * - [Lf]: LIMIT OF FLOCCULATION
+ * - [ligne]: ligne French line
+ * - [lk_br]: link for Gunter's chain
+ * - [lk_us]: link for Gunter's chain
+ * - [lne]: line
+ * - [lton_av]: long ton British ton
+ * - [ly]: light-year
+ * - [m_e]: electron mass
+ * - [m_p]: proton mass
+ * - [mesh_i]: mesh
+ * - [MET]: metabolic equivalent
+ * - [mi_br]: mile
+ * - [mil_i]: mil
+ * - [mil_us]: mil
+ * - [min_br]: minim
+ * - [mu_0]: permeability of vacuum
+ * - [nmi_br]: nautical mile
+ * - [oz_ap]: ounce (US and British)
+ * - [pc_br]: pace
+ * - [pca]: pica
+ * - [pca_pr]: Printer's pica
+ * - [p'diop]: prism diopter
+ * - [PFU]: PLAQUE-FORMING UNITS
+ * - [pi]: the number pi
+ * - [pied]: pied French foot
+ * - [pk_br]: peck
+ * - [pk_us]: peck
+ * - [pnt]: point
+ * - [pnt_pr]: Printer's point
+ * - [PNU]: PROTEIN NITROGEN UNITS
+ * - [pouce]: pouce French inch
+ * - [PRU]: peripheral vascular resistance unit
+ * - [pwt_tr]: pennyweight
+ * - [rch_us]: Ramden's chain Engineer's chain
+ * - [rd_br]: rod
+ * - [rd_us]: rod
+ * - [rlk_us]: link for Ramden's chain
+ * - [S]: Svedberg unit
+ * - [sc_ap]: scruple
+ * - [sct]: section
+ * - [scwt_av]: short hundredweight U.S. hundredweight
+ * - [smgy'U]: Somogyi unit
+ * - [smi_us]: square mile
+ * - [smoot]: Smoot
+ * - [srd_us]: square rod
+ * - [stone_av]: stone British stone
+ * - [TCID_50]: TISSUE CULTURE INFECTIOUS DOSE 50%
+ * - [twp]: township
+ * - [USP'U]: UNITED STATES PHARMACOPEIA UNIT
+ * - [yd_br]: yard
+ * - [yd_us]: yard
+ * - {Cells}/uL: CellsPerMicroLiter
+ * - {Copies}/mL: CopiesPerMilliLiter
+ * - {Ct}: crossing threshold
+ * - {Ehrlich_U}/dL: EhrlichUnitsPerDeciLiter
+ * - {EhrlichU}/dL: EhrlichUnitsPerDeciLiter [Arbitrary Concentration Units]
+ * - {Elisa_U}/mL: ElisaUnitsPerMilliLiter
+ * - {ElisaU}/mL: ElisaUnitsPerMilliLiter [Arbitrary Concentration Units]
+ * - {kp_C}: HOMEOPATHIC POTENCY OF CENTESIMAL KORSAKOVIAN SERIES
+ * - {rbc}: red blood cell count
+ * - {Spermatozoa}/mL: SpermatozoaPerMilliLiter
+ * - {tbl}: tablets
+ * - {tot}: particles total count
+ * - 10*: the number ten for arbitrary powers
+ * - 10^: the number ten for arbitrary powers
+ * - a_g: mean Gregorian year
+ * - a_j: mean Julian year
+ * - a_t: tropical year
+ * - Ao: Ångström
+ * - ar: are
+ * - AU: astronomic unit
+ * - b: barn
+ * - B: bel
+ * - B[kW]: bel kilowatt
+ * - B[mV]: bel millivolt
+ * - B[SPL]: bel sound pressure
+ * - B[uV]: bel microvolt
+ * - B[V]: bel volt
+ * - B[W]: bel watt
+ * - Bd: baud
+ * - Bi: Biot
+ * - bit: bit
+ * - bit_s: bit
+ * - By: byte
+ * - C: Coulomb
+ * - cal_[15]: calorie at 15 °C
+ * - cal_[20]: calorie at 20 °C
+ * - cal_IT: international table calorie
+ * - cal_m: mean calorie
+ * - cal_th: thermochemical calorie
+ * - cd: candela
+ * - Ci: CURIE
+ * - circ: circle
+ * - dyn: dyne
+ * - G: Gauss
+ * - g%: gram percent
+ * - g.m/{H.B.}: gram meter per heartbeat
+ * - Gal: Gal
+ * - Gb: Gilbert
+ * - gf: gram-force
+ * - gon: gon grade
+ * - k[iU]/mL: KiloInternationalUnitsPerMilliLiter
+ * - kg{wet'tis}: kilogram of wet tissue
+ * - Ky: Kayser
+ * - Lmb: Lambert
+ * - lx: lux
+ * - m[H2O]: meter of water column
+ * - m[Hg]: meter of mercury column
+ * - mg/{TotalVolume}: MilliGramPerTotalVolume
+ * - mg/mg{Cre}: MilligramsPerMilligramCreatinine
+ * - mg{creat}: milligram of creatinine
+ * - mho: mho
+ * - mmol/{TotalVolume}: MilliMolesPerTotalVolume [Substance Units]
+ * - mmol/mol{Cre}: MilliMolesPerMoleCreatinine
+ * - mo_g: mean Gregorian month
+ * - mo_j: mean Julian month
+ * - mo_s: synodal month
+ * - Mx: Maxwell
+ * - Np: neper
+ * - Oe: Oersted
+ * - P: Poise
+ * - pc: parsec
+ * - ph: phot
+ * - R: Roentgen
+ * - rad: radian
+ * - RAD: radiation absorbed dose
+ * - REM: radiation equivalent man
+ * - sb: stilb
+ * - sph: spere
+ * - sr: steradian
+ * - st: stere
+ * - u: unified atomic mass unit
+ * - uCi: MICROCURIE
+ * - W: Watt
  */
 export type UCUMCodes =
   | "%"
@@ -5899,6 +10276,12 @@ export type UCUMCodes =
  * UDIEntryType
  *
  * Codes to identify how UDI data was entered.
+ * - barcode: Barcode
+ * - rfid: RFID
+ * - manual: Manual
+ * - card: Card
+ * - self-reported: Self Reported
+ * - unknown: Unknown
  */
 export type UDIEntryType =
   | "barcode"
@@ -5912,6 +10295,13 @@ export type UDIEntryType =
  * UnitsOfTime
  *
  * A unit of time (units from UCUM).
+ * - s: 秒
+ * - min: 分钟
+ * - h: 小时
+ * - d: 天
+ * - wk: 星期
+ * - mo: 月
+ * - a: 年
  */
 export type UnitsOfTime = "s" | "min" | "h" | "d" | "wk" | "mo" | "a";
 
@@ -5919,6 +10309,9 @@ export type UnitsOfTime = "s" | "min" | "h" | "d" | "wk" | "mo" | "a";
  * Use
  *
  * The purpose of the Claim: predetermination, preauthorization, claim.
+ * - claim: Claim
+ * - preauthorization: Preauthorization
+ * - predetermination: Predetermination
  */
 export type Use = "claim" | "preauthorization" | "predetermination";
 
@@ -5927,6 +10320,9 @@ export type Use = "claim" | "preauthorization" | "predetermination";
  *
  * The possible types of variables for exposures or outcomes (E.g. Dichotomous,
  * Continuous, Descriptive).
+ * - dichotomous: Dichotomous
+ * - continuous: Continuous
+ * - descriptive: Descriptive
  */
 export type VariableType = "dichotomous" | "continuous" | "descriptive";
 
@@ -5934,6 +10330,10 @@ export type VariableType = "dichotomous" | "continuous" | "descriptive";
  * VisionBase
  *
  * A coded concept listing the base codes.
+ * - up: Up
+ * - down: Down
+ * - in: In
+ * - out: Out
  */
 export type VisionBase = "up" | "down" | "in" | "out";
 
@@ -5941,6 +10341,8 @@ export type VisionBase = "up" | "down" | "in" | "out";
  * VisionEyes
  *
  * A coded concept listing the eye codes.
+ * - right: Right Eye
+ * - left: Left Eye
  */
 export type VisionEyes = "right" | "left";
 
@@ -5949,6 +10351,11 @@ export type VisionEyes = "right" | "left";
  *
  * How a search parameter relates to the set of elements returned by evaluating its
  * xpath query.
+ * - normal: Normal
+ * - phonetic: Phonetic
+ * - nearby: Nearby
+ * - distance: Distance
+ * - other: Other
  */
 export type XPathUsageType =
   | "normal"
@@ -6044,6 +10451,7 @@ Where the order is important, a local/jurisdictional extension may be
    * This element is labeled as a modifier because the status contains the codes
    * inactive and entered-in-error that mark the Account as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.status}
+   * @see {@link AccountStatus}
    */
   status: AccountStatus;
   _status?: Element | undefined;
@@ -6255,6 +10663,7 @@ export interface ActivityDefinition extends DomainResource {
    * Indicates the level of authority/intentionality associated with the activity and
    * where the request should fit into the workflow chain.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.intent}
+   * @see {@link RequestIntent}
    */
   intent?: RequestIntent | undefined;
   _intent?: Element | undefined;
@@ -6275,6 +10684,7 @@ export interface ActivityDefinition extends DomainResource {
    * Typically, but not always, this is a Request resource.
    * May determine what types of extensions are permitted.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.kind}
+   * @see {@link RequestResourceType}
    */
   kind?: RequestResourceType | undefined;
   _kind?: Element | undefined;
@@ -6343,6 +10753,7 @@ export interface ActivityDefinition extends DomainResource {
    * Indicates how quickly the activity  should be addressed with respect to other
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -6437,6 +10848,7 @@ export interface ActivityDefinition extends DomainResource {
    * Allows filtering of activity definitions that are appropriate for use versus
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -6715,6 +11127,7 @@ export interface Address extends Element {
    * being a valid delivery destination, and Postal addresses are often used as
    * proxies for physical locations (also see the [Location](location.html#)
    * resource).
+   * @see {@link AddressType}
    */
   type?: AddressType | undefined;
   _type?: Element | undefined;
@@ -6723,6 +11136,7 @@ export interface Address extends Element {
    * The purpose of this address.
    * Applications can assume that an address is current unless it explicitly says
    * that it is temporary or old.
+   * @see {@link AddressUse}
    */
   use?: AddressUse | undefined;
   _use?: Element | undefined;
@@ -6829,6 +11243,7 @@ export interface AdministrableProductDefinition extends DomainResource {
    * Allows filtering of administrable products that are appropriate for use versus
    * not.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -6860,6 +11275,7 @@ export interface AdverseEvent extends DomainResource {
    * Whether the event actually happened, or just had the potential to. Note that
    * this is independent of whether anyone was affected or harmed or how severely.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.actuality}
+   * @see {@link AdverseEventActuality}
    */
   actuality: AdverseEventActuality;
   _actuality?: Element | undefined;
@@ -6946,6 +11362,7 @@ export interface AdverseEvent extends DomainResource {
   /**
    * Describes the type of outcome from the adverse event.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.outcome}
+   * @see {@link AdverseEventOutcome}
    */
   outcome?: AdverseEventOutcome | undefined;
   _outcome?: Element | undefined;
@@ -6995,6 +11412,7 @@ export interface AdverseEvent extends DomainResource {
    * Contrast to AdverseEvent.seriousness - a severe rash might not be serious, but a
    * mild heart problem is.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.severity}
+   * @see {@link AdverseEventSeverity}
    */
   severity?: AdverseEventSeverity | undefined;
   _severity?: Element | undefined;
@@ -7073,6 +11491,7 @@ export interface AllergyIntolerance extends DomainResource {
    * Additionally, category should be used with caution because category can be
    * subjective based on the sender.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.category}
+   * @see {@link AllergyIntoleranceCategory}
    */
   category?: Array<AllergyIntoleranceCategory> | undefined;
   _category?: Element[] | undefined;
@@ -7086,6 +11505,7 @@ The data type is CodeableConcept because clinicalStatus has some
  * than the required FHIR value set allows. For example, a SNOMED coding might
  * allow for additional specificity.
  * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.clinicalStatus}
+ * @see {@link AllergyIntoleranceClinicalStatusCodes}
  */
   clinicalStatus?: AllergyIntoleranceClinicalStatusCodes | undefined;
   _clinicalStatus?: Element | undefined;
@@ -7150,6 +11570,7 @@ The
    * term "severity" to represent both.  Criticality is the worst it could be in the
    * future (i.e. situation-agnostic) whereas severity is situation-dependent.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.criticality}
+   * @see {@link AllergyIntoleranceCriticality}
    */
   criticality?: AllergyIntoleranceCriticality | undefined;
   _criticality?: Element | undefined;
@@ -7291,6 +11712,7 @@ The
    * reaction is due to an allergy or an intolerance, then the type element should be
    * omitted from the resource.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.type}
+   * @see {@link AllergyIntoleranceType}
    */
   type?: AllergyIntoleranceType | undefined;
   _type?: Element | undefined;
@@ -7303,6 +11725,7 @@ The
    * required FHIR value set allows. For example, a SNOMED coding might allow for
    * additional specificity.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.verificationStatus}
+   * @see {@link AllergyIntoleranceVerificationStatusCodes}
    */
   verificationStatus?: AllergyIntoleranceVerificationStatusCodes | undefined;
   _verificationStatus?: Element | undefined;
@@ -7563,6 +11986,7 @@ This element is labeled as a
  * modifier because the status contains the code entered-in-error that mark the
  * Appointment as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.status}
+ * @see {@link AppointmentStatus}
  */
   status: AppointmentStatus;
   _status?: Element | undefined;
@@ -7638,6 +12062,7 @@ export interface AppointmentResponse extends DomainResource {
    * This element is labeled as a modifier because the status contains the code
    * entered-in-error that marks the participant as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/AppointmentResponse-definitions.html#AppointmentResponse.participantStatus}
+   * @see {@link ParticipationStatus}
    */
   participantStatus: ParticipationStatus;
   _participantStatus?: Element | undefined;
@@ -7682,6 +12107,7 @@ export interface Attachment extends Element {
    * Identifies the type of the data in the attachment and allows a method to be
    * chosen to interpret or render the data. Includes mime type parameters such as
    * charset where appropriate.
+   * @see {@link MimeTypes}
    */
   contentType?: MimeTypes | undefined;
   _contentType?: Element | undefined;
@@ -7762,6 +12188,7 @@ export interface AuditEvent extends DomainResource {
    * Indicator for type of action performed during the event that generated the
    * audit.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.action}
+   * @see {@link AuditEventAction}
    */
   action?: AuditEventAction | undefined;
   _action?: Element | undefined;
@@ -7796,6 +12223,7 @@ For example, an activity may be initiated by one
    * interrupted transfer of a radiological study. For the purpose of establishing
    * accountability, these distinctions are not relevant.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.outcome}
+   * @see {@link AuditEventOutcome}
    */
   outcome?: AuditEventOutcome | undefined;
   _outcome?: Element | undefined;
@@ -7973,6 +12401,7 @@ export interface Binary extends Resource {
   /**
    * MimeType of the binary content represented as a standard MimeType (BCP 13).
    * @see {@link http://hl7.org/fhir/R4B/Binary-definitions.html#Binary.contentType}
+   * @see {@link MimeTypes}
    */
   contentType: MimeTypes;
   _contentType?: Element | undefined;
@@ -8070,6 +12499,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
   /**
    * Broad category of this product.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.productCategory}
+   * @see {@link BiologicallyDerivedProductCategory}
    */
   productCategory?: BiologicallyDerivedProductCategory | undefined;
   _productCategory?: Element | undefined;
@@ -8099,6 +12529,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
   /**
    * Whether the product is currently available.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.status}
+   * @see {@link BiologicallyDerivedProductStatus}
    */
   status?: BiologicallyDerivedProductStatus | undefined;
   _status?: Element | undefined;
@@ -8306,6 +12737,7 @@ The timestamp value should be greater than the
    * accepted as a transaction). This is primarily defined so that there can be
    * specific rules for some of the bundle types.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.type}
+   * @see {@link BundleType}
    */
   type: BundleType;
   _type?: Element | undefined;
@@ -8403,6 +12835,7 @@ export interface CapabilityStatement extends DomainResource {
    * and the CapabilityStatement is requested from the server, then this fhirVersion
    * will be either the version requested, or the server's default version.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.fhirVersion}
+   * @see {@link FHIRVersion}
    */
   fhirVersion: FHIRVersion;
   _fhirVersion?: Element | undefined;
@@ -8414,6 +12847,7 @@ export interface CapabilityStatement extends DomainResource {
    * described in the specification (and imply appropriate bundle support).
    * Otherwise, mime types are legal here.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.format}
+   * @see {@link MimeTypes}
    */
   format: Array<MimeTypes>;
   _format?: Element[] | undefined;
@@ -8484,6 +12918,7 @@ Many [Implementation
    * running instance of software, a particular product (kind, not instance of
    * software) or a class of implementation (e.g. a desired purchase).
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.kind}
+   * @see {@link CapabilityStatementKind}
    */
   kind: CapabilityStatementKind;
   _kind?: Element | undefined;
@@ -8515,6 +12950,7 @@ Many [Implementation
    * would be expected to support the patch formats and match the formats it
    * supports, but this is not always possible or necessary.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.patchFormat}
+   * @see {@link MimeTypes}
    */
   patchFormat?: Array<MimeTypes> | undefined;
   _patchFormat?: Element[] | undefined;
@@ -8572,6 +13008,7 @@ Many [Implementation
    * not.This is not intended for use with actual capability statements, but where
    * capability statements are used to describe possible or desired systems.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -8796,6 +13233,7 @@ export interface CarePlan extends DomainResource {
    * This element is labeled as a modifier because the intent alters when and how the
    * resource is actually applicable.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.intent}
+   * @see {@link CarePlanIntent}
    */
   intent: CarePlanIntent;
   _intent?: Element | undefined;
@@ -8849,6 +13287,7 @@ This element is labeled as a
  * modifier because the status contains the code entered-in-error that marks the
  * plan as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.status}
+ * @see {@link RequestStatus}
  */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -8987,6 +13426,7 @@ export interface CareTeam extends DomainResource {
    * This element is labeled as a modifier because the status contains the code
    * entered-in-error that marks the care team as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.status}
+   * @see {@link CareTeamStatus}
    */
   status?: CareTeamStatus | undefined;
   _status?: Element | undefined;
@@ -9089,6 +13529,7 @@ export interface CatalogEntry extends DomainResource {
    * Used to support catalog exchange even for unsupported products, e.g. getting
    * list of medications even if not prescribable.
    * @see {@link http://hl7.org/fhir/R4B/CatalogEntry-definitions.html#CatalogEntry.status}
+   * @see {@link PublicationStatus}
    */
   status?: PublicationStatus | undefined;
   _status?: Element | undefined;
@@ -9369,6 +13810,7 @@ export interface ChargeItem extends DomainResource {
 This element is labeled as a modifier because the status contains the code
  * entered-in-error that marks the charge item as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.status}
+ * @see {@link ChargeItemStatus}
  */
   status: ChargeItemStatus;
   _status?: Element | undefined;
@@ -9594,6 +14036,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * Allows filtering of charge item definitions that are appropriate for use versus
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -9890,6 +14333,7 @@ export interface Citation extends DomainResource {
    * The status of this summary. Enables tracking the life-cycle of the content.
    * Allows filtering of summarys s that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -10167,6 +14611,7 @@ export interface Claim extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -10214,6 +14659,7 @@ export interface Claim extends DomainResource {
    * adjudication of the listed products and services which could be provided in the
    * future.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.use}
+   * @see {@link Use}
    */
   use: Use;
   _use?: Element | undefined;
@@ -10348,6 +14794,7 @@ export interface ClaimResponse extends DomainResource {
    * errors were found and that some of the adjudication has been undertaken
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.outcome}
+   * @see {@link RemittanceOutcome}
    */
   outcome: RemittanceOutcome;
   _outcome?: Element | undefined;
@@ -10420,6 +14867,7 @@ export interface ClaimResponse extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -10459,6 +14907,7 @@ export interface ClaimResponse extends DomainResource {
    * adjudication of the listed products and services which could be provided in the
    * future.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.use}
+   * @see {@link Use}
    */
   use: Use;
   _use?: Element | undefined;
@@ -10634,6 +15083,7 @@ export interface ClinicalImpression extends DomainResource {
    * This element is labeled as a modifier because the status contains the code
    * entered-in-error that marks the clinical impression as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.status}
+   * @see {@link ClinicalImpressionStatus}
    */
   status: ClinicalImpressionStatus;
   _status?: Element | undefined;
@@ -10744,6 +15194,7 @@ export interface ClinicalUseDefinition extends DomainResource {
   /**
    * indication | contraindication | interaction | undesirable-effect | warning.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.type}
+   * @see {@link ClinicalUseDefinitionType}
    */
   type: ClinicalUseDefinitionType;
   _type?: Element | undefined;
@@ -10879,6 +15330,7 @@ export interface CodeSystem extends DomainResource {
    * The extent of the content of the code system (the concepts and codes it defines)
    * are represented in this resource instance.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.content}
+   * @see {@link CodeSystemContentMode}
    */
   content: CodeSystemContentMode;
   _content?: Element | undefined;
@@ -10962,6 +15414,7 @@ export interface CodeSystem extends DomainResource {
    * Note that other representations might have a different hierarchy or none at all,
    * and represent the information using properties.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.hierarchyMeaning}
+   * @see {@link CodeSystemHierarchyMeaning}
    */
   hierarchyMeaning?: CodeSystemHierarchyMeaning | undefined;
   _hierarchyMeaning?: Element | undefined;
@@ -11039,6 +15492,7 @@ export interface CodeSystem extends DomainResource {
    * revised.
    * Allows filtering of code systems that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -11334,6 +15788,7 @@ export interface Communication extends DomainResource {
    * Used to prioritize workflow (such as which communication to read first) when the
    * communication is planned or in progress.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -11392,6 +15847,7 @@ export interface Communication extends DomainResource {
    * This element is labeled as a modifier because the status contains the codes
    * aborted and entered-in-error that mark the communication as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.status}
+   * @see {@link EventStatus}
    */
   status: EventStatus;
   _status?: Element | undefined;
@@ -11558,6 +16014,7 @@ export interface CommunicationRequest extends DomainResource {
    * Characterizes how quickly the proposed act must be initiated. Includes concepts
    * such as stat, urgent, routine.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -11614,6 +16071,7 @@ export interface CommunicationRequest extends DomainResource {
   /**
    * The status of the proposal or order.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.status}
+   * @see {@link RequestStatus}
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -11652,6 +16110,7 @@ export interface CompartmentDefinition extends DomainResource {
    * Only the specification can define the compartments that can exist. Servers can
    * choose to support them.
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.code}
+   * @see {@link CompartmentType}
    */
   code: CompartmentType;
   _code?: Element | undefined;
@@ -11767,6 +16226,7 @@ export interface CompartmentDefinition extends DomainResource {
    * Allows filtering of compartment definitions that are appropriate for use versus
    * not.
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -11881,6 +16341,7 @@ export interface Composition extends DomainResource {
    * modifier because highly confidential documents must not be treated as if they
    * are not.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.confidentiality}
+   * @see {@link Confidentiality}
    */
   confidentiality?: Confidentiality | undefined;
   _confidentiality?: Element | undefined;
@@ -11966,6 +16427,7 @@ Some reporting work flows require that the original narrative of a
  * composition resource has no explicit status for explicitly noting whether this
  * business rule is in effect. This would be handled by an extension if required.
  * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.status}
+ * @see {@link CompositionStatus}
  */
   status: CompositionStatus;
   _status?: Element | undefined;
@@ -12167,6 +16629,7 @@ export interface ConceptMap extends DomainResource {
    * The status of this concept map. Enables tracking the life-cycle of the content.
    * Allows filtering of concept maps that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -12383,6 +16846,7 @@ export interface Condition extends DomainResource {
    * required FHIR value set allows. For example, a SNOMED coding might allow for
    * additional specificity.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.clinicalStatus}
+   * @see {@link ConditionClinicalStatusCodes}
    */
   clinicalStatus?: ConditionClinicalStatusCodes | undefined;
   _clinicalStatus?: Element | undefined;
@@ -12541,6 +17005,7 @@ The data
  * FHIR value set allows. For example, a SNOMED coding might allow for additional
  * specificity.
  * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.verificationStatus}
+ * @see {@link ConditionVerificationStatus}
  */
   verificationStatus?: ConditionVerificationStatus | undefined;
   _verificationStatus?: Element | undefined;
@@ -12678,6 +17143,7 @@ export interface Consent extends DomainResource {
    * This element is labeled as a modifier because the status contains the codes
    * rejected and entered-in-error that mark the Consent as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.status}
+   * @see {@link ConsentState}
    */
   status: ConsentState;
   _status?: Element | undefined;
@@ -12744,6 +17210,7 @@ export interface ContactPoint extends Element {
   /**
    * Telecommunications form for contact point - what communications system is
    * required to make use of the contact.
+   * @see {@link ContactPointSystem}
    */
   system?: ContactPointSystem | undefined;
   _system?: Element | undefined;
@@ -12752,6 +17219,7 @@ export interface ContactPoint extends Element {
    * Identifies the purpose for the contact point.
    * Applications can assume that a contact is current unless it explicitly says that
    * it is temporary or old.
+   * @see {@link ContactPointUse}
    */
   use?: ContactPointUse | undefined;
   _use?: Element | undefined;
@@ -12999,6 +17467,7 @@ For example,
    * This element is labeled as a modifier because the status contains codes that
    * mark the contract as not currently valid or active.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.status}
+   * @see {@link ContractResourceStatusCodes}
    */
   status?: ContractResourceStatusCodes | undefined;
   _status?: Element | undefined;
@@ -13136,6 +17605,7 @@ export interface Contributor extends Element {
 
   /**
    * The type of contributor.
+   * @see {@link ContributorType}
    */
   type: ContributorType;
   _type?: Element | undefined;
@@ -13280,6 +17750,7 @@ For selfpay it may provide multiple paying
    * This element is labeled as a modifier because the status contains the code
    * entered-in-error that marks the coverage as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -13428,6 +17899,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * that the specified coverage is in-force at the date/period specified or 'now' if
    * not specified.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.purpose}
+   * @see {@link EligibilityRequestPurpose}
    */
   purpose: Array<EligibilityRequestPurpose>;
   _purpose?: Element[] | undefined;
@@ -13453,6 +17925,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -13545,6 +18018,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * errors were found and that some of the adjudication has been undertaken
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.outcome}
+   * @see {@link RemittanceOutcome}
    */
   outcome: RemittanceOutcome;
   _outcome?: Element | undefined;
@@ -13572,6 +18046,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * that the specified coverage is in-force at the date/period specified or 'now' if
    * not specified.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.purpose}
+   * @see {@link EligibilityResponsePurpose}
    */
   purpose: Array<EligibilityResponsePurpose>;
   _purpose?: Element[] | undefined;
@@ -13614,6 +18089,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -13712,6 +18188,7 @@ The value of mustSupport SHALL be a
   /**
    * The type of the required data, specified as the type name of a resource. For
    * profiles, this value is set to the type of the base resource of the profile.
+   * @see {@link FHIRAllTypes}
    */
   type: FHIRAllTypes;
   _type?: Element | undefined;
@@ -13890,6 +18367,7 @@ export interface Definition {
 Unknown
  * does not represent "other" - one of the defined statuses must apply.  Unknown is
  * used when the authoring system is not sure what the current status is.
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -14054,6 +18532,7 @@ export interface DetectedIssue extends DomainResource {
    * Indicates the degree of importance associated with the identified issue based on
    * the potential impact on the patient.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.severity}
+   * @see {@link DetectedIssueSeverity}
    */
   severity?: DetectedIssueSeverity | undefined;
   _severity?: Element | undefined;
@@ -14063,6 +18542,7 @@ export interface DetectedIssue extends DomainResource {
    * This element is labeled as a modifier because the status contains the codes
    * cancelled and entered-in-error that mark the issue as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.status}
+   * @see {@link ObservationStatus}
    */
   status: ObservationStatus;
   _status?: Element | undefined;
@@ -14247,6 +18727,7 @@ export interface Device extends DomainResource {
    * inactive and entered-in-error that mark the device (record)as not currently
    * valid.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.status}
+   * @see {@link FHIRDeviceStatus}
    */
   status?: FHIRDeviceStatus | undefined;
   _status?: Element | undefined;
@@ -14505,6 +18986,7 @@ export interface DeviceMetric extends DomainResource {
    * Indicates the category of the observation generation process. A DeviceMetric can
    * be for example a setting, measurement, or calculation.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.category}
+   * @see {@link DeviceMetricCategory}
    */
   category: DeviceMetricCategory;
   _category?: Element | undefined;
@@ -14516,6 +18998,7 @@ export interface DeviceMetric extends DomainResource {
    * displayed in different characteristic colors, such as HR-blue, BP-green, and PR
    * and SpO2- magenta.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.color}
+   * @see {@link DeviceMetricColor}
    */
   color?: DeviceMetricColor | undefined;
   _color?: Element | undefined;
@@ -14549,6 +19032,7 @@ export interface DeviceMetric extends DomainResource {
    * Indicates current operational state of the device. For example: On, Off,
    * Standby, etc.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.operationalStatus}
+   * @see {@link DeviceMetricOperationalStatus}
    */
   operationalStatus?: DeviceMetricOperationalStatus | undefined;
   _operationalStatus?: Element | undefined;
@@ -14688,6 +19172,7 @@ export interface DeviceRequest extends DomainResource {
   /**
    * Whether the request is a proposal, plan, an original order or a reflex order.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.intent}
+   * @see {@link RequestIntent}
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -14757,6 +19242,7 @@ export interface DeviceRequest extends DomainResource {
    * Indicates how quickly the {{title}} should be addressed with respect to other
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -14812,6 +19298,7 @@ All Provenances should have some historical version of this
    * This element is labeled as a modifier because the status contains the codes
    * cancelled and entered-in-error that mark the request as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.status}
+   * @see {@link RequestStatus}
    */
   status?: RequestStatus | undefined;
   _status?: Element | undefined;
@@ -14936,6 +19423,7 @@ export interface DeviceUseStatement extends DomainResource {
 This element is labeled as a modifier because the
  * status contains the codes that mark the statement as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement-definitions.html#DeviceUseStatement.status}
+ * @see {@link DeviceUseStatementStatus}
  */
   status: DeviceUseStatementStatus;
   _status?: Element | undefined;
@@ -15165,6 +19653,7 @@ export interface DiagnosticReport extends DomainResource {
   /**
    * The status of the diagnostic report.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.status}
+   * @see {@link DiagnosticReportStatus}
    */
   status: DiagnosticReportStatus;
   _status?: Element | undefined;
@@ -15293,6 +19782,7 @@ export interface DocumentManifest extends DomainResource {
    * This element is labeled as a modifier because the status contains the codes that
    * mark the manifest as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.status}
+   * @see {@link DocumentReferenceStatus}
    */
   status: DocumentReferenceStatus;
   _status?: Element | undefined;
@@ -15417,6 +19907,7 @@ export interface DocumentReference extends DomainResource {
    * The status of the underlying document.
    * The document that is pointed to might be in various lifecycle states.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.docStatus}
+   * @see {@link CompositionStatus}
    */
   docStatus?: CompositionStatus | undefined;
   _docStatus?: Element | undefined;
@@ -15483,6 +19974,7 @@ This element is labeled as a modifier because the
  * status contains the codes that mark the document or reference as not currently
  * valid.
  * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.status}
+ * @see {@link DocumentReferenceStatus}
  */
   status: DocumentReferenceStatus;
   _status?: Element | undefined;
@@ -19270,6 +23762,7 @@ When
    * standard (and profiles must reproduce what the base standard does). This element
    * is used quite commonly in Logical models when the logical models represent a
    * specific serialization format (e.g. CDA, v2 etc.).
+   * @see {@link PropertyRepresentation}
    */
   representation?: Array<PropertyRepresentation> | undefined;
   _representation?: Element[] | undefined;
@@ -19546,6 +24039,7 @@ Refer to the Notes section in the Patient resource for further
    * Note that internal business rules will determine the appropriate transitions
    * that may occur between statuses (and also classes).
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.status}
+   * @see {@link EncounterStatus}
    */
   status: EncounterStatus;
   _status?: Element | undefined;
@@ -19685,6 +24179,7 @@ and not
    * Sending the payload has obvious security consequences. The server is responsible
    * for ensuring that the content is appropriately secured.
    * @see {@link http://hl7.org/fhir/R4B/Endpoint-definitions.html#Endpoint.payloadMimeType}
+   * @see {@link MimeTypes}
    */
   payloadMimeType?: Array<MimeTypes> | undefined;
   _payloadMimeType?: Element[] | undefined;
@@ -19712,6 +24207,7 @@ and not
    * This element is labeled as a modifier because the status contains codes that
    * mark the endpoint as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Endpoint-definitions.html#Endpoint.status}
+   * @see {@link EndpointStatus}
    */
   status: EndpointStatus;
   _status?: Element | undefined;
@@ -19775,6 +24271,7 @@ export interface EnrollmentRequest extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the request as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentRequest-definitions.html#EnrollmentRequest.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status?: FinancialResourceStatusCodes | undefined;
   _status?: Element | undefined;
@@ -19822,6 +24319,7 @@ export interface EnrollmentResponse extends DomainResource {
   /**
    * Processing status: error, complete.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentResponse-definitions.html#EnrollmentResponse.outcome}
+   * @see {@link RemittanceOutcome}
    */
   outcome?: RemittanceOutcome | undefined;
   _outcome?: Element | undefined;
@@ -19845,6 +24343,7 @@ export interface EnrollmentResponse extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the response as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentResponse-definitions.html#EnrollmentResponse.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status?: FinancialResourceStatusCodes | undefined;
   _status?: Element | undefined;
@@ -19930,6 +24429,7 @@ export interface EpisodeOfCare extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the episode as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.status}
+   * @see {@link EpisodeOfCareStatus}
    */
   status: EpisodeOfCareStatus;
   _status?: Element | undefined;
@@ -20164,6 +24664,7 @@ export interface Event {
 Unknown does not represent "other" - one of the
  * defined statuses must apply.  Unknown is used when the authoring system is not
  * sure what the current status is.
+ * @see {@link EventStatus}
  */
   status: EventStatus;
   _status?: Element | undefined;
@@ -20397,6 +24898,7 @@ export interface EventDefinition extends DomainResource {
    * content.
    * Allows filtering of event definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/EventDefinition-definitions.html#EventDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -20710,6 +25212,7 @@ export interface Evidence extends DomainResource {
    * The status of this summary. Enables tracking the life-cycle of the content.
    * Allows filtering of summarys s that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -20944,6 +25447,7 @@ export interface EvidenceReport extends DomainResource {
    * The status of this summary. Enables tracking the life-cycle of the content.
    * Allows filtering of summaries that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -21045,6 +25549,7 @@ export interface EvidenceVariable extends DomainResource {
   /**
    * Used to specify if two or more characteristics are combined with OR or AND.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristicCombination}
+   * @see {@link CharacteristicCombination}
    */
   characteristicCombination?: CharacteristicCombination | undefined;
   _characteristicCombination?: Element | undefined;
@@ -21114,6 +25619,7 @@ export interface EvidenceVariable extends DomainResource {
   /**
    * Used for an outcome to classify.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.handling}
+   * @see {@link EvidenceVariableHandling}
    */
   handling?: EvidenceVariableHandling | undefined;
   _handling?: Element | undefined;
@@ -21196,6 +25702,7 @@ export interface EvidenceVariable extends DomainResource {
    * content.
    * Allows filtering of evidence variables that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -21417,6 +25924,7 @@ export interface ExampleScenario extends DomainResource {
    * content.
    * Allows filtering of example scenarios that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -21697,6 +26205,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * errors were found and that some of the adjudication has been undertaken
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.outcome}
+   * @see {@link RemittanceOutcome}
    */
   outcome: RemittanceOutcome;
   _outcome?: Element | undefined;
@@ -21820,6 +26329,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.status}
+   * @see {@link ExplanationOfBenefitStatus}
    */
   status: ExplanationOfBenefitStatus;
   _status?: Element | undefined;
@@ -21867,6 +26377,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * adjudication of the listed products and services which could be provided in the
    * future.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.use}
+   * @see {@link Use}
    */
   use: Use;
   _use?: Element | undefined;
@@ -22531,6 +27042,7 @@ export interface FamilyMemberHistory extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.status}
+   * @see {@link FamilyHistoryStatus}
    */
   status: FamilyHistoryStatus;
   _status?: Element | undefined;
@@ -22626,6 +27138,7 @@ export interface FiveWs {
 
   /**
    * Status Field.
+   * @see {@link CanonicalStatusCodesForFHIRResources}
    */
   status?: CanonicalStatusCodesForFHIRResources | undefined;
   _status?: Element | undefined;
@@ -22767,6 +27280,7 @@ export interface Flag extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Flag-definitions.html#Flag.status}
+   * @see {@link FlagStatus}
    */
   status: FlagStatus;
   _status?: Element | undefined;
@@ -22854,6 +27368,7 @@ export interface Goal extends DomainResource {
    * This element is labeled as a modifier because the lifecycleStatus contains codes
    * that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.lifecycleStatus}
+   * @see {@link GoalLifecycleStatus}
    */
   lifecycleStatus: GoalLifecycleStatus;
   _lifecycleStatus?: Element | undefined;
@@ -23079,6 +27594,7 @@ export interface GraphDefinition extends DomainResource {
   /**
    * The type of FHIR resource at which instances of this graph start.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.start}
+   * @see {@link ResourceType}
    */
   start: ResourceType;
   _start?: Element | undefined;
@@ -23088,6 +27604,7 @@ export interface GraphDefinition extends DomainResource {
    * content.
    * Allows filtering of graph definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -23240,6 +27757,7 @@ export interface Group extends DomainResource {
    * Group members SHALL be of the appropriate resource type (Patient for person or
    * animal; or Practitioner, Device, Medication or Substance for the other types.).
    * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.type}
+   * @see {@link GroupType}
    */
   type: GroupType;
   _type?: Element | undefined;
@@ -23395,6 +27913,7 @@ export interface GuidanceResponse extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.status}
+   * @see {@link GuidanceResponseStatus}
    */
   status: GuidanceResponseStatus;
   _status?: Element | undefined;
@@ -23696,6 +28215,7 @@ export interface HumanName extends Element {
    * Identifies the purpose for this name.
    * Applications can assume that a name is current unless it explicitly says that it
    * is temporary or old.
+   * @see {@link NameUse}
    */
   use?: NameUse | undefined;
   _use?: Element | undefined;
@@ -23752,6 +28272,7 @@ export interface Identifier extends Element {
    * The purpose of this identifier.
    * Applications can assume that an identifier is permanent unless it explicitly
    * says that it is temporary.
+   * @see {@link IdentifierUse}
    */
   use?: IdentifierUse | undefined;
   _use?: Element | undefined;
@@ -23947,6 +28468,7 @@ export interface ImagingStudy extends DomainResource {
    * Unknown is used when the authoring system is not sure what the current status
    * is.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.status}
+   * @see {@link ImagingStudyStatus}
    */
   status: ImagingStudyStatus;
   _status?: Element | undefined;
@@ -24198,6 +28720,7 @@ export interface Immunization extends DomainResource {
    * done.  This element is labeled as a modifier because the status contains codes
    * that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.status}
+   * @see {@link ImmunizationStatusCodes}
    */
   status: ImmunizationStatusCodes;
   _status?: Element | undefined;
@@ -24348,6 +28871,7 @@ export interface ImmunizationEvaluation extends DomainResource {
    * Indicates the current status of the evaluation of the vaccination administration
    * event.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationEvaluation-definitions.html#ImmunizationEvaluation.status}
+   * @see {@link ImmunizationEvaluationStatusCodes}
    */
   status: ImmunizationEvaluationStatusCodes;
   _status?: Element | undefined;
@@ -24511,6 +29035,7 @@ export interface ImplementationGuide extends DomainResource {
    * matures and different implementation communities are stuck at different versions
    * by regulation or market dynamics.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.fhirVersion}
+   * @see {@link FHIRVersion}
    */
   fhirVersion: Array<FHIRVersion>;
   _fhirVersion?: Element[] | undefined;
@@ -24539,6 +29064,7 @@ export interface ImplementationGuide extends DomainResource {
    * The license that applies to this Implementation Guide, using an SPDX license
    * code, or 'not-open-source'.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.license}
+   * @see {@link SPDXLicense}
    */
   license?: SPDXLicense | undefined;
   _license?: Element | undefined;
@@ -24596,6 +29122,7 @@ export interface ImplementationGuide extends DomainResource {
    * Allows filtering of implementation guides that are appropriate for use versus
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -24733,6 +29260,7 @@ export interface Ingredient extends DomainResource {
    * The status of this ingredient. Enables tracking the life-cycle of the content.
    * Allows filtering of ingredient that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -24858,6 +29386,7 @@ export interface InsurancePlan extends DomainResource {
   /**
    * The current state of the health insurance product.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.status}
+   * @see {@link PublicationStatus}
    */
   status?: PublicationStatus | undefined;
   _status?: Element | undefined;
@@ -24971,6 +29500,7 @@ export interface Invoice extends DomainResource {
   /**
    * The current state of the Invoice.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.status}
+   * @see {@link InvoiceStatus}
    */
   status: InvoiceStatus;
   _status?: Element | undefined;
@@ -25255,6 +29785,7 @@ export interface Library extends DomainResource {
    * The status of this library. Enables tracking the life-cycle of the content.
    * Allows filtering of libraries that are appropriate for use vs. not.
    * @see {@link http://hl7.org/fhir/R4B/Library-definitions.html#Library.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -25484,6 +30015,7 @@ export interface List extends DomainResource {
    * This element is labeled as a modifier because a change list must not be
    * misunderstood as a complete list.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.mode}
+   * @see {@link ListMode}
    */
   mode: ListMode;
   _mode?: Element | undefined;
@@ -25520,6 +30052,7 @@ export interface List extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.status}
+   * @see {@link ListStatus}
    */
   status: ListStatus;
   _status?: Element | undefined;
@@ -25632,6 +30165,7 @@ Specific services
    * This is labeled as a modifier because whether or not the location is a class of
    * locations changes how it can be used and understood.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.mode}
+   * @see {@link LocationMode}
    */
   mode?: LocationMode | undefined;
   _mode?: Element | undefined;
@@ -25682,6 +30216,7 @@ Specific services
    * current value which may be covered by the operationStatus, or by a
    * schedule/slots if they are configured for the location.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.status}
+   * @see {@link LocationStatus}
    */
   status?: LocationStatus | undefined;
   _status?: Element | undefined;
@@ -25757,6 +30292,7 @@ export interface ManufacturedItemDefinition extends DomainResource {
    * The status of this item. Enables tracking the life-cycle of the content.
    * Allows filtering of manufactured items that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/ManufacturedItemDefinition-definitions.html#ManufacturedItemDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -26001,6 +30537,7 @@ export interface Measure extends DomainResource {
    * (e.g., a higher score indicates better quality OR a lower score indicates better
    * quality OR quality is within a range).
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.improvementNotation}
+   * @see {@link MeasureImprovementNotation}
    */
   improvementNotation?: MeasureImprovementNotation | undefined;
   _improvementNotation?: Element | undefined;
@@ -26140,6 +30677,7 @@ export interface Measure extends DomainResource {
    * The status of this measure. Enables tracking the life-cycle of the content.
    * Allows filtering of measures that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -26333,6 +30871,7 @@ export interface MeasureReport extends DomainResource {
    * the measure score can be interpreted. The element is labeled as a modifier
    * because it changes the interpretation of the reported measure score.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.improvementNotation}
+   * @see {@link MeasureImprovementNotation}
    */
   improvementNotation?: MeasureImprovementNotation | undefined;
   _improvementNotation?: Element | undefined;
@@ -26364,6 +30903,7 @@ export interface MeasureReport extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.status}
+   * @see {@link MeasureReportStatus}
    */
   status: MeasureReportStatus;
   _status?: Element | undefined;
@@ -26386,6 +30926,7 @@ export interface MeasureReport extends DomainResource {
    * measure. They do not necessarily include all the data for a particular subject
    * or population, but they may.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.type}
+   * @see {@link MeasureReportType}
    */
   type: MeasureReportType;
   _type?: Element | undefined;
@@ -26582,6 +31123,7 @@ Unknown does not represent "other" - one of the
  * defined statuses must apply.  Unknown is used when the authoring system is not
  * sure what the current status is.
  * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.status}
+ * @see {@link EventStatus}
  */
   status: EventStatus;
   _status?: Element | undefined;
@@ -26713,6 +31255,7 @@ export interface Medication extends DomainResource {
    * referenced by multiple formularies or catalogues and each of those entries would
    * have a separate status.
    * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.status}
+   * @see {@link MedicationStatusCodes}
    */
   status?: MedicationStatusCodes | undefined;
   _status?: Element | undefined;
@@ -26901,6 +31444,7 @@ export interface MedicationAdministration extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.status}
+   * @see {@link MedicationAdministrationStatusCodes}
    */
   status: MedicationAdministrationStatusCodes;
   _status?: Element | undefined;
@@ -27110,6 +31654,7 @@ The
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.status}
+   * @see {@link MedicationDispenseStatusCodes}
    */
   status: MedicationDispenseStatusCodes;
   _status?: Element | undefined;
@@ -27371,6 +31916,7 @@ export interface MedicationKnowledge extends DomainResource {
    * referenced by multiple formularies or catalogues and each of those entries would
    * have a separate status.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.status}
+   * @see {@link MedicationKnowledgeStatusCodes}
    */
   status?: MedicationKnowledgeStatusCodes | undefined;
   _status?: Element | undefined;
@@ -27571,6 +32117,7 @@ An instance-order is an instantiation of a
 This element is labeled as a modifier because the intent alters when
  * and how the resource is actually applicable.
  * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.intent}
+ * @see {@link medicationRequestIntent}
  */
   intent: medicationRequestIntent;
   _intent?: Element | undefined;
@@ -27635,6 +32182,7 @@ This element is labeled as a modifier because the intent alters when
    * Indicates how quickly the Medication Request should be addressed with respect to
    * other requests.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -27705,6 +32253,7 @@ This element is labeled as a modifier because the intent alters when
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.status}
+   * @see {@link medicationrequestStatus}
    */
   status: medicationrequestStatus;
   _status?: Element | undefined;
@@ -27961,6 +32510,7 @@ export interface MedicationStatement extends DomainResource {
 This element is labeled as a modifier because the status contains
  * codes that mark the resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.status}
+ * @see {@link MedicationStatementStatusCodes}
  */
   status: MedicationStatementStatusCodes;
   _status?: Element | undefined;
@@ -28268,6 +32818,7 @@ export interface MessageDefinition extends DomainResource {
   /**
    * The impact of the content of the message.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.category}
+   * @see {@link MessageSignificanceCategory}
    */
   category?: MessageSignificanceCategory | undefined;
   _category?: Element | undefined;
@@ -28448,6 +32999,7 @@ export interface MessageDefinition extends DomainResource {
    * Level acknowledgement) in HL7 Version 2 to declare at a message instance level
    * whether a response is required or only upon error or success, or never.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.responseRequired}
+   * @see {@link messageheaderresponserequest}
    */
   responseRequired?: messageheaderresponserequest | undefined;
   _responseRequired?: Element | undefined;
@@ -28457,6 +33009,7 @@ export interface MessageDefinition extends DomainResource {
    * content.
    * Allows filtering of message definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -28856,6 +33409,7 @@ export interface MolecularSequence extends DomainResource {
   /**
    * Amino Acid Sequence/ DNA Sequence / RNA Sequence.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.type}
+   * @see {@link sequenceType}
    */
   type?: sequenceType | undefined;
   _type?: Element | undefined;
@@ -28883,6 +33437,7 @@ export interface MolecularSequence extends DomainResource {
 export interface Money extends Element {
   /**
    * ISO 4217 Currency Code.
+   * @see {@link Currencies}
    */
   currency?: Currencies | undefined;
   _currency?: Element | undefined;
@@ -28960,6 +33515,7 @@ export interface NamingSystem extends DomainResource {
    * Indicates the purpose for the naming system - what kinds of things does it make
    * unique?
    * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.kind}
+   * @see {@link NamingSystemType}
    */
   kind: NamingSystemType;
   _kind?: Element | undefined;
@@ -29005,6 +33561,7 @@ export interface NamingSystem extends DomainResource {
    * content.
    * Allows filtering of naming systems that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -29077,6 +33634,7 @@ export interface Narrative extends Element {
    * The status of the narrative - whether it's entirely generated (from just the
    * defined data or the extensions too), or whether a human authored it and it may
    * contain additional data.
+   * @see {@link NarrativeStatus}
    */
   status: NarrativeStatus;
   _status?: Element | undefined;
@@ -29208,6 +33766,7 @@ export interface NutritionOrder extends DomainResource {
    * order", "reflex order" would all map to "order".  Expectation is that the set of
    * codes is mutually exclusive or a strict all-encompassing hierarchy.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.intent}
+   * @see {@link RequestIntent}
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -29253,6 +33812,7 @@ export interface NutritionOrder extends DomainResource {
    * the request is handled.  This element is labeled as a modifier because the
    * status contains codes that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.status}
+   * @see {@link RequestStatus}
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -29356,6 +33916,7 @@ export interface NutritionProduct extends DomainResource {
    * Unknown is used when the authoring system is not sure what the current status
    * is.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.status}
+   * @see {@link NutritionProductStatus}
    */
   status: NutritionProductStatus;
   _status?: Element | undefined;
@@ -29682,6 +34243,7 @@ export interface Observation extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.status}
+   * @see {@link ObservationStatus}
    */
   status: ObservationStatus;
   _status?: Element | undefined;
@@ -29952,6 +34514,7 @@ export interface ObservationDefinition extends DomainResource {
    * The data types allowed for the value element of the instance observations
    * conforming to this ObservationDefinition.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.permittedDataType}
+   * @see {@link ObservationDataType}
    */
   permittedDataType?: Array<ObservationDataType> | undefined;
   _permittedDataType?: Element[] | undefined;
@@ -30124,6 +34687,7 @@ export interface OperationDefinition extends DomainResource {
    * Whether this is an operation or a named query.
    * Named queries are invoked differently, and have different capabilities.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.kind}
+   * @see {@link OperationKind}
    */
   kind: OperationKind;
   _kind?: Element | undefined;
@@ -30204,6 +34768,7 @@ export interface OperationDefinition extends DomainResource {
    * If the type is an abstract resource ("Resource" or "DomainResource") then the
    * operation can be invoked on any concrete specialization.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.resource}
+   * @see {@link ResourceType}
    */
   resource?: Array<ResourceType> | undefined;
   _resource?: Element[] | undefined;
@@ -30214,6 +34779,7 @@ export interface OperationDefinition extends DomainResource {
    * Allows filtering of operation definitions that are appropriate for use versus
    * not.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -30723,12 +35289,14 @@ export interface ParameterDefinition extends Element {
 
   /**
    * The type of the parameter.
+   * @see {@link FHIRAllTypes}
    */
   type: FHIRAllTypes;
   _type?: Element | undefined;
 
   /**
    * Whether the parameter is input or output for the module.
+   * @see {@link OperationParameterUse}
    */
   use: OperationParameterUse;
   _use?: Element | undefined;
@@ -30863,6 +35431,7 @@ Deceased patients may also be marked
    * a "hard" error.  See the Patient Gender and Sex section for additional
    * information about communicating patient gender and sex.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.gender}
+   * @see {@link AdministrativeGender}
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -31077,6 +35646,7 @@ export interface PaymentNotice extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/PaymentNotice-definitions.html#PaymentNotice.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -31137,6 +35707,7 @@ export interface PaymentReconciliation extends DomainResource {
    * errors were found and that some of the adjudication has been undertaken
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.outcome}
+   * @see {@link RemittanceOutcome}
    */
   outcome?: RemittanceOutcome | undefined;
   _outcome?: Element | undefined;
@@ -31205,6 +35776,7 @@ export interface PaymentReconciliation extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -31281,6 +35853,7 @@ export interface Person extends DomainResource {
    * particularly animals, there are other legitimate possibilities than M and F,
    * though a clear majority of systems and contexts only support M and F.
    * @see {@link http://hl7.org/fhir/R4B/Person-definitions.html#Person.gender}
+   * @see {@link AdministrativeGender}
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -31576,6 +36149,7 @@ export interface PlanDefinition extends DomainResource {
    * content.
    * Allows filtering of plan definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -31824,6 +36398,7 @@ Work addresses are not typically entered in this property as they are
    * Administrative Gender - the gender that the person is considered to have for
    * administration and record keeping purposes.
    * @see {@link http://hl7.org/fhir/R4B/Practitioner-definitions.html#Practitioner.gender}
+   * @see {@link AdministrativeGender}
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -32337,6 +36912,7 @@ This element is labeled as a
  * modifier because the status contains codes that mark the resource as not
  * currently valid.
  * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.status}
+ * @see {@link EventStatus}
  */
   status: EventStatus;
   _status?: Element | undefined;
@@ -32668,6 +37244,7 @@ export interface Quantity extends Element {
    * How the value should be understood and represented - whether the actual value is
    * greater or less than the stated value due to measurement issues; e.g. if the
    * comparator is "<" , then the real value is < stated value.
+   * @see {@link QuantityComparator}
    */
   comparator?: QuantityComparator | undefined;
   _comparator?: Element | undefined;
@@ -32883,6 +37460,7 @@ export interface Questionnaire extends DomainResource {
    * content.
    * Allows filtering of questionnaires that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -32892,6 +37470,7 @@ export interface Questionnaire extends DomainResource {
    * questionnaire.
    * If none are specified, then the subject is unlimited.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.subjectType}
+   * @see {@link ResourceType}
    */
   subjectType?: Array<ResourceType> | undefined;
   _subjectType?: Element[] | undefined;
@@ -33063,6 +37642,7 @@ This element is optional to allow for systems that might not know the
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.status}
+   * @see {@link QuestionnaireResponseStatus}
    */
   status: QuestionnaireResponseStatus;
   _status?: Element | undefined;
@@ -33433,6 +38013,7 @@ export interface RelatedArtifact extends Element {
 
   /**
    * The type of relationship to the related artifact.
+   * @see {@link RelatedArtifactType}
    */
   type: RelatedArtifactType;
   _type?: Element | undefined;
@@ -33497,6 +38078,7 @@ export interface RelatedPerson extends DomainResource {
    * Administrative Gender - the gender that the person is considered to have for
    * administration and record keeping purposes.
    * @see {@link http://hl7.org/fhir/R4B/RelatedPerson-definitions.html#RelatedPerson.gender}
+   * @see {@link AdministrativeGender}
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -33689,6 +38271,7 @@ When resources map to this element,
  * these.  E.g. "original order", "encoded order", "reflex order" would all map to
  * "order".  Expectation is that the set of codes is mutually exclusive or a strict
  * all-encompassing hierarchy.
+ * @see {@link RequestIntent}
  */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -33746,6 +38329,7 @@ When resources map to this element,
   /**
    * Indicates how quickly the {{title}} should be addressed with respect to other
    * requests.
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -33828,6 +38412,7 @@ When resources map to this element,
 A status of completed for a "doNotPerform"
  * request indicates that the period of non-performance is now satisfied and the
  * request no longer holds.
+ * @see {@link RequestStatus}
  */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -33958,6 +38543,7 @@ export interface RequestGroup extends DomainResource {
    * Indicates the level of authority/intentionality associated with the request and
    * where the request fits into the workflow chain.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.intent}
+   * @see {@link RequestIntent}
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -33973,6 +38559,7 @@ export interface RequestGroup extends DomainResource {
    * Indicates how quickly the request should be addressed with respect to other
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -34005,6 +38592,7 @@ export interface RequestGroup extends DomainResource {
    * The current state of the request. For request groups, the status reflects the
    * status of all the requests in the group.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.status}
+   * @see {@link RequestStatus}
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -34282,6 +38870,7 @@ export interface ResearchDefinition extends DomainResource {
    * Allows filtering of research definitions that are appropriate for use versus
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -34651,6 +39240,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * Allows filtering of research element definitions that are appropriate for use
    * versus not.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -34714,6 +39304,7 @@ export interface ResearchElementDefinition extends DomainResource {
   /**
    * The type of research element, a population, an exposure, or an outcome.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.type}
+   * @see {@link ResearchElementType}
    */
   type: ResearchElementType;
   _type?: Element | undefined;
@@ -34768,6 +39359,7 @@ In some cases, the resource can no longer
   /**
    * The type of the outcome (e.g. Dichotomous, Continuous, or Descriptive).
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.variableType}
+   * @see {@link VariableType}
    */
   variableType?: VariableType | undefined;
   _variableType?: Element | undefined;
@@ -34984,6 +39576,7 @@ export interface ResearchStudy extends DomainResource {
   /**
    * The current state of the study.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.status}
+   * @see {@link ResearchStudyStatus}
    */
   status: ResearchStudyStatus;
   _status?: Element | undefined;
@@ -35054,6 +39647,7 @@ export interface ResearchSubject extends DomainResource {
   /**
    * The current state of the subject.
    * @see {@link http://hl7.org/fhir/R4B/ResearchSubject-definitions.html#ResearchSubject.status}
+   * @see {@link ResearchSubjectStatus}
    */
   status: ResearchSubjectStatus;
   _status?: Element | undefined;
@@ -35261,6 +39855,7 @@ export interface RiskAssessment extends DomainResource {
   /**
    * The status of the RiskAssessment, using the same statuses as an Observation.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.status}
+   * @see {@link ObservationStatus}
    */
   status: ObservationStatus;
   _status?: Element | undefined;
@@ -35440,6 +40035,7 @@ export interface SearchParameter extends DomainResource {
    * the listed resource types, or in a cross-type search (see [Cross Resource
    * Search](http.html#xres-search)).
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.base}
+   * @see {@link ResourceType}
    */
   base: Array<ResourceType>;
   _base?: Element[] | undefined;
@@ -35472,6 +40068,7 @@ export interface SearchParameter extends DomainResource {
    * If no comparators are listed, clients should not expect servers to support any
    * comparators.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.comparator}
+   * @see {@link SearchComparator}
    */
   comparator?: Array<SearchComparator> | undefined;
   _comparator?: Element[] | undefined;
@@ -35571,6 +40168,7 @@ export interface SearchParameter extends DomainResource {
   /**
    * A modifier supported for the search parameter.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.modifier}
+   * @see {@link SearchModifierCode}
    */
   modifier?: Array<SearchModifierCode> | undefined;
   _modifier?: Element[] | undefined;
@@ -35633,6 +40231,7 @@ export interface SearchParameter extends DomainResource {
    * content.
    * Allows filtering of search parameters that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -35640,6 +40239,7 @@ export interface SearchParameter extends DomainResource {
   /**
    * Types of resource (if a resource is referenced).
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.target}
+   * @see {@link ResourceType}
    */
   target?: Array<ResourceType> | undefined;
   _target?: Element[] | undefined;
@@ -35648,6 +40248,7 @@ export interface SearchParameter extends DomainResource {
    * The type of value that a search parameter may contain, and how the content is
    * interpreted.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.type}
+   * @see {@link SearchParamType}
    */
   type: SearchParamType;
   _type?: Element | undefined;
@@ -35721,6 +40322,7 @@ In some cases, the resource can no longer
    * How the search parameter relates to the set of elements returned by evaluating
    * the xpath query.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.xpathUsage}
+   * @see {@link XPathUsageType}
    */
   xpathUsage?: XPathUsageType | undefined;
   _xpathUsage?: Element | undefined;
@@ -35873,6 +40475,7 @@ export interface ServiceRequest extends DomainResource {
    * This element is labeled as a modifier because the intent alters when and how the
    * resource is actually applicable.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.intent}
+   * @see {@link RequestIntent}
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -35968,6 +40571,7 @@ export interface ServiceRequest extends DomainResource {
    * Indicates how quickly the ServiceRequest should be addressed with respect to
    * other requests.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -36100,6 +40704,7 @@ All Provenances should have some historical version of this
    * reflected on either the corresponding event (see [Event Pattern](event.html) for
    * general discussion) or using the [Task](task.html) resource.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.status}
+   * @see {@link RequestStatus}
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -36163,6 +40768,7 @@ export interface Signature extends Element {
    * A mime type that indicates the technical format of the signature. Important mime
    * types are application/signature+xml for X ML DigSig, application/jose for JWS,
    * and image/* for a graphical image of a signature, etc.
+   * @see {@link MimeTypes}
    */
   sigFormat?: MimeTypes | undefined;
   _sigFormat?: Element | undefined;
@@ -36173,6 +40779,7 @@ export interface Signature extends Element {
    * "xml", "json" and "ttl" are allowed, which describe the simple encodings
    * described in the specification (and imply appropriate bundle support).
    * Otherwise, mime types are legal here.
+   * @see {@link MimeTypes}
    */
   targetFormat?: MimeTypes | undefined;
   _targetFormat?: Element | undefined;
@@ -36294,6 +40901,7 @@ export interface Slot extends DomainResource {
   /**
    * busy | free | busy-unavailable | busy-tentative | entered-in-error.
    * @see {@link http://hl7.org/fhir/R4B/Slot-definitions.html#Slot.status}
+   * @see {@link SlotStatus}
    */
   status: SlotStatus;
   _status?: Element | undefined;
@@ -36398,6 +41006,7 @@ export interface Specimen extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.status}
+   * @see {@link SpecimenStatus}
    */
   status?: SpecimenStatus | undefined;
   _status?: Element | undefined;
@@ -36578,6 +41187,7 @@ export interface StructureDefinition extends DomainResource {
    * new rules about existing content (see [Profiling
    * Resources](profiling.html#resources)).
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.derivation}
+   * @see {@link TypeDerivationRule}
    */
   derivation?: TypeDerivationRule | undefined;
   _derivation?: Element | undefined;
@@ -36626,6 +41236,7 @@ export interface StructureDefinition extends DomainResource {
    * tooling can determine whether a StructureDefinition is consistent with a
    * particular StructureDefinition if desired.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.fhirVersion}
+   * @see {@link FHIRVersion}
    */
   fhirVersion?: FHIRVersion | undefined;
   _fhirVersion?: Element | undefined;
@@ -36664,6 +41275,7 @@ export interface StructureDefinition extends DomainResource {
   /**
    * Defines the kind of structure that this definition is describing.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.kind}
+   * @see {@link StructureDefinitionKind}
    */
   kind: StructureDefinitionKind;
   _kind?: Element | undefined;
@@ -36734,6 +41346,7 @@ export interface StructureDefinition extends DomainResource {
    * Allows filtering of structure definitions that are appropriate for use versus
    * not.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -36974,6 +41587,7 @@ export interface StructureMap extends DomainResource {
    * content.
    * Allows filtering of structure maps that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -37126,6 +41740,7 @@ This
  * element is labeled as a modifier because the status contains codes that mark the
  * resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/Subscription-definitions.html#Subscription.status}
+ * @see {@link SubscriptionStatusCodes}
  */
   status: SubscriptionStatusCodes;
   _status?: Element | undefined;
@@ -37171,6 +41786,7 @@ export interface SubscriptionStatus extends DomainResource {
    * The status of the subscription, which marks the server state for managing the
    * subscription.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.status}
+   * @see {@link SubscriptionStatusCodes}
    */
   status?: SubscriptionStatusCodes | undefined;
   _status?: Element | undefined;
@@ -37196,6 +41812,7 @@ export interface SubscriptionStatus extends DomainResource {
   /**
    * The type of event being conveyed with this notificaiton.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.type}
+   * @see {@link SubscriptionNotificationType}
    */
   type: SubscriptionNotificationType;
   _type?: Element | undefined;
@@ -37387,6 +42004,7 @@ Unknown
  * does not represent "other" - one of the defined statuses must apply.  Unknown is
  * used when the authoring system is not sure what the current status is.
  * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.status}
+ * @see {@link PublicationStatus}
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -37517,6 +42135,7 @@ export interface Substance extends DomainResource {
   /**
    * A code to indicate if the substance is actively used.
    * @see {@link http://hl7.org/fhir/R4B/Substance-definitions.html#Substance.status}
+   * @see {@link FHIRSubstanceStatus}
    */
   status?: FHIRSubstanceStatus | undefined;
   _status?: Element | undefined;
@@ -37762,6 +42381,7 @@ export interface SupplyDelivery extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.status}
+   * @see {@link SupplyDeliveryStatus}
    */
   status?: SupplyDeliveryStatus | undefined;
   _status?: Element | undefined;
@@ -37784,6 +42404,7 @@ export interface SupplyDelivery extends DomainResource {
    * Indicates the type of dispensing event that is performed. Examples include:
    * Trial Fill, Completion of Trial, Partial Fill, Emergency Fill, Samples, etc.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.type}
+   * @see {@link SupplyItemType}
    */
   type?: SupplyItemType | undefined;
   _type?: Element | undefined;
@@ -37897,6 +42518,7 @@ export interface SupplyRequest extends DomainResource {
    * Indicates how quickly this SupplyRequest should be addressed with respect to
    * other requests.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -37932,6 +42554,7 @@ export interface SupplyRequest extends DomainResource {
   /**
    * Status of the supply request.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.status}
+   * @see {@link SupplyRequestStatus}
    */
   status?: SupplyRequestStatus | undefined;
   _status?: Element | undefined;
@@ -38085,6 +42708,7 @@ export interface Task extends DomainResource {
 
 In most cases, Tasks will have an intent of "order".
  * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.intent}
+ * @see {@link TaskIntent}
  */
   intent: TaskIntent;
   _intent?: Element | undefined;
@@ -38144,6 +42768,7 @@ In most cases, Tasks will have an intent of "order".
    * Indicates how quickly the Task should be addressed with respect to other
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.priority}
+   * @see {@link RequestPriority}
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -38199,6 +42824,7 @@ In most cases, Tasks will have an intent of "order".
   /**
    * The current status of the task.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.status}
+   * @see {@link TaskStatus}
    */
   status: TaskStatus;
   _status?: Element | undefined;
@@ -38237,6 +42863,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * if it is supported.
    * See notes on the [ValueSet](valueset.html#) resource.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSearch}
+   * @see {@link CodeSearchSupport}
    */
   codeSearch?: CodeSearchSupport | undefined;
   _codeSearch?: Element | undefined;
@@ -38346,6 +42973,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * running instance of software, a particular product (kind, not instance of
    * software) or a class of implementation (e.g. a desired purchase).
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.kind}
+   * @see {@link CapabilityStatementKind}
    */
   kind: CapabilityStatementKind;
   _kind?: Element | undefined;
@@ -38411,6 +43039,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * versus not.This is not intended for use with actual capability statements, but
    * where capability statements are used to describe possible or desired systems.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -38544,6 +43173,7 @@ export interface TestReport extends DomainResource {
    * pending result represents a test script execution that has not yet started or is
    * currently in progress.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.result}
+   * @see {@link TestReportResult}
    */
   result: TestReportResult;
   _result?: Element | undefined;
@@ -38572,6 +43202,7 @@ export interface TestReport extends DomainResource {
 This element is labeled as a modifier because the status
  * contains codes that mark the resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.status}
+ * @see {@link TestReportStatus}
  */
   status: TestReportStatus;
   _status?: Element | undefined;
@@ -38794,6 +43425,7 @@ export interface TestScript extends DomainResource {
    * The status of this test script. Enables tracking the life-cycle of the content.
    * Allows filtering of test scripts that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -39016,6 +43648,7 @@ export interface TriggerDefinition extends Element {
 
   /**
    * The type of triggering event.
+   * @see {@link TriggerType}
    */
   type: TriggerType;
   _type?: Element | undefined;
@@ -39260,6 +43893,7 @@ Expansion.parameter is  a simplified list of parameters - a subset
    * the [valueset-workflowStatus](extension-valueset-workflowstatus.html) extension
    * for additional status information related to the editorial process.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.status}
+   * @see {@link PublicationStatus}
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -39392,6 +44026,7 @@ export interface VerificationResult extends DomainResource {
    * The validation status of the target (attested; validated; in process; requires
    * revalidation; validation failed; revalidation failed).
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.status}
+   * @see {@link status}
    */
   status: status;
   _status?: Element | undefined;
@@ -39511,6 +44146,7 @@ export interface VisionPrescription extends DomainResource {
    * This element is labeled as a modifier because the status contains codes that
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.status}
+   * @see {@link FinancialResourceStatusCodes}
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;

@@ -241,6 +241,13 @@ export class Element {
           )
         ),
         this.fhirDocUrl ? `@see {@link ${this.fhirDocUrl}}` : undefined,
+        this.hasRequiredBinding
+          ? `@see {@link ${
+              this._definitions.valueSetsByUrl.get(
+                (this as any).binding.valueSet.split("|")[0]
+              )?.safeName
+            }}`
+          : undefined,
       ].filter(Boolean) as string[]
     );
   }
@@ -266,6 +273,11 @@ export class ValueSet {
           ? undefined
           : (this as any).description,
       ]),
+      ...((this as any).expansion?.contains?.length
+        ? (this as any).expansion.contains.map(
+            (x: any) => `- ${x.code}: ${x.display}`
+          )
+        : []),
     ]);
   }
 
