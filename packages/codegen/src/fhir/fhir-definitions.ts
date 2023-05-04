@@ -156,6 +156,12 @@ export class StructureDefinition {
       `@see {@link ${this.fhirDocUrl}}`,
     ]);
   }
+
+  public get backboneElements(): BackboneElement[] {
+    return this.ownElements
+      .filter((x) => x.backboneElementName)
+      .map((x) => new BackboneElement(this._definitions, this, x));
+  }
 }
 
 export class Element {
@@ -174,6 +180,17 @@ export class Element {
 
   public get isOptional(): boolean {
     return (this as any).min === 0;
+  }
+
+  public get backboneElementName(): string | undefined {
+    if ((this as any).type?.[0]?.code !== "BackboneElement") {
+      return undefined;
+    }
+
+    return (this as any).path
+      .split(".")
+      .map((x: any) => x[0].toUpperCase() + x.slice(1))
+      .join("");
   }
 
   /** https://hl7.org/fhir/formats.html#choice */
@@ -214,6 +231,10 @@ export class Element {
       resolvedType = this._definitions.valueSetsByUrl.get(
         (this as any).binding.valueSet.split("|")[0]
       )?.safeName;
+    }
+
+    if (this.backboneElementName) {
+      resolvedType = this.backboneElementName;
     }
 
     if (this.isArray) {
@@ -302,4 +323,12 @@ export class ValueSet {
     }
     return name;
   }
+}
+
+export class BackboneElement {
+  constructor(
+    private _definitions: FhirDefinitions,
+    private _parent: StructureDefinition,
+    public rootElement: Element
+  ) {}
 }

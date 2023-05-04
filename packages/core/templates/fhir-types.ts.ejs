@@ -24,6 +24,12 @@
 
 <% for (const structureDef of fhir.structureDefinitions) { %>
 
+  <% for (const backboneElement of structureDef.backboneElements) { %>
+    <%= backboneElement.rootElement.jsDoc %>
+    export interface <%= backboneElement.rootElement.backboneElementName %> {
+    }
+  <% } %>
+
   <% if (structureDef.derivation != "constraint" && structureDef.kind != "primitive-type") { %>
     <%= structureDef.jsDoc %>
     export interface <%= structureDef.type %> <% if (structureDef.base?.type) { %>extends <%= structureDef.base.type %> <% } %>{

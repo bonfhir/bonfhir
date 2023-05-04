@@ -10365,6 +10365,28 @@ export type XPathUsageType =
   | "other";
 
 /**
+ * The party(s) that are responsible for covering the payment of this account, and
+ * what order should they be applied to the account.
+ * Typically. this may be some form of insurance, internal charges, or
+ * self-pay.
+
+Local or jurisdictional business rules may determine which coverage
+ * covers which types of billable items charged to the account, and in which
+ * order.
+Where the order is important, a local/jurisdictional extension may be
+ * defined to specify the order for the type of charge.
+ * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.coverage}
+ */
+export interface AccountCoverage {}
+
+/**
+ * The parties responsible for balancing the account if other payment options fall
+ * short.
+ * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.guarantor}
+ */
+export interface AccountGuarantor {}
+
+/**
  * Account
  *
  * A financial tool for tracking value accrued for a particular purpose.  In the
@@ -10388,7 +10410,7 @@ Where the order is important, a local/jurisdictional extension may be
  * defined to specify the order for the type of charge.
  * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.coverage}
  */
-  coverage?: Array<BackboneElement> | undefined;
+  coverage?: Array<AccountCoverage> | undefined;
   _coverage?: Element[] | undefined;
 
   /**
@@ -10404,7 +10426,7 @@ Where the order is important, a local/jurisdictional extension may be
    * short.
    * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.guarantor}
    */
-  guarantor?: Array<BackboneElement> | undefined;
+  guarantor?: Array<AccountGuarantor> | undefined;
   _guarantor?: Element[] | undefined;
 
   /**
@@ -10475,6 +10497,25 @@ Where the order is important, a local/jurisdictional extension may be
   type?: CodeableConcept | undefined;
   _type?: Element | undefined;
 }
+
+/**
+ * Dynamic values that will be evaluated to produce values for elements of the
+ * resulting resource. For example, if the dosage of a medication must be computed
+ * based on the patient's weight, a dynamic value would be used to specify an
+ * expression that calculated the weight, and the path on the request resource that
+ * would contain the result.
+ * Dynamic values are applied in the order in which they are defined in the
+ * ActivityDefinition. Note that if both a transform and dynamic values are
+ * specified, the dynamic values will be applied to the result of the transform.
+ * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.dynamicValue}
+ */
+export interface ActivityDefinitionDynamicValue {}
+
+/**
+ * Indicates who should participate in performing the action described.
+ * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.participant}
+ */
+export interface ActivityDefinitionParticipant {}
 
 /**
  * ActivityDefinition
@@ -10605,7 +10646,7 @@ export interface ActivityDefinition extends DomainResource {
    * specified, the dynamic values will be applied to the result of the transform.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.dynamicValue}
    */
-  dynamicValue?: Array<BackboneElement> | undefined;
+  dynamicValue?: Array<ActivityDefinitionDynamicValue> | undefined;
   _dynamicValue?: Element[] | undefined;
 
   /**
@@ -10746,7 +10787,7 @@ export interface ActivityDefinition extends DomainResource {
    * Indicates who should participate in performing the action described.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.participant}
    */
-  participant?: Array<BackboneElement> | undefined;
+  participant?: Array<ActivityDefinitionParticipant> | undefined;
   _participant?: Element[] | undefined;
 
   /**
@@ -11143,6 +11184,34 @@ export interface Address extends Element {
 }
 
 /**
+ * Characteristics e.g. a product's onset of action.
+ * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.property}
+ */
+export interface AdministrableProductDefinitionProperty {}
+
+/**
+ * The path by which the product is taken into or makes contact with the body. In
+ * some regions this is referred to as the licenced or approved route.
+ * RouteOfAdministration cannot be used when the 'formOf' product already uses
+ * MedicinalProductDefinition.route (and vice versa).
+ * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.routeOfAdministration}
+ */
+export interface AdministrableProductDefinitionRouteOfAdministration {}
+
+/**
+ * A species for which this route applies.
+ * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.routeOfAdministration.targetSpecies}
+ */
+export interface AdministrableProductDefinitionRouteOfAdministrationTargetSpecies {}
+
+/**
+ * A species specific time during which consumption of animal product is not
+ * appropriate.
+ * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod}
+ */
+export interface AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod {}
+
+/**
  * AdministrableProductDefinition
  *
  * A medicinal product in the final form which is suitable for administering to a
@@ -11224,7 +11293,7 @@ export interface AdministrableProductDefinition extends DomainResource {
    * Characteristics e.g. a product's onset of action.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.property}
    */
-  property?: Array<BackboneElement> | undefined;
+  property?: Array<AdministrableProductDefinitionProperty> | undefined;
   _property?: Element[] | undefined;
 
   /**
@@ -11234,7 +11303,7 @@ export interface AdministrableProductDefinition extends DomainResource {
    * MedicinalProductDefinition.route (and vice versa).
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.routeOfAdministration}
    */
-  routeOfAdministration: Array<BackboneElement>;
+  routeOfAdministration: Array<AdministrableProductDefinitionRouteOfAdministration>;
   _routeOfAdministration?: Element[] | undefined;
 
   /**
@@ -11257,6 +11326,18 @@ export interface AdministrableProductDefinition extends DomainResource {
   unitOfPresentation?: CodeableConcept | undefined;
   _unitOfPresentation?: Element | undefined;
 }
+
+/**
+ * Describes the entity that is suspected to have caused the adverse event.
+ * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.suspectEntity}
+ */
+export interface AdverseEventSuspectEntity {}
+
+/**
+ * Information on the possible cause of the event.
+ * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.suspectEntity.causality}
+ */
+export interface AdverseEventSuspectEntityCausality {}
 
 /**
  * AdverseEvent
@@ -11444,7 +11525,7 @@ export interface AdverseEvent extends DomainResource {
    * Describes the entity that is suspected to have caused the adverse event.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.suspectEntity}
    */
-  suspectEntity?: Array<BackboneElement> | undefined;
+  suspectEntity?: Array<AdverseEventSuspectEntity> | undefined;
   _suspectEntity?: Element[] | undefined;
 }
 
@@ -11457,6 +11538,13 @@ export interface AdverseEvent extends DomainResource {
  * @see {@link http://hl7.org/fhir/R4B/Age.html}
  */
 export interface Age extends Quantity {}
+
+/**
+ * Details about each adverse reaction event linked to exposure to the identified
+ * substance.
+ * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.reaction}
+ */
+export interface AllergyIntoleranceReaction {}
 
 /**
  * AllergyIntolerance
@@ -11676,7 +11764,7 @@ The
    * substance.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.reaction}
    */
-  reaction?: Array<BackboneElement> | undefined;
+  reaction?: Array<AllergyIntoleranceReaction> | undefined;
   _reaction?: Element[] | undefined;
 
   /**
@@ -11768,6 +11856,12 @@ export interface Annotation extends Element {
   time?: string | undefined;
   _time?: Element | undefined;
 }
+
+/**
+ * List of participants involved in the appointment.
+ * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.participant}
+ */
+export interface AppointmentParticipant {}
 
 /**
  * Appointment
@@ -11874,7 +11968,7 @@ Where this is a planned appointment and the start/end dates are not
    * List of participants involved in the appointment.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.participant}
    */
-  participant: Array<BackboneElement>;
+  participant: Array<AppointmentParticipant>;
   _participant?: Element[] | undefined;
 
   /**
@@ -12173,6 +12267,53 @@ export interface Attachment extends Element {
 }
 
 /**
+ * An actor taking an active role in the event or activity that is logged.
+ * Several agents may be associated (i.e. have some responsibility for an activity)
+ * with an event or activity.
+
+For example, an activity may be initiated by one
+ * user for other users or involve more than one user. However, only one user may
+ * be the initiator/requestor for the activity.
+ * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.agent}
+ */
+export interface AuditEventAgent {}
+
+/**
+ * Logical network location for application activity, if the activity has a network
+ * location.
+ * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.agent.network}
+ */
+export interface AuditEventAgentNetwork {}
+
+/**
+ * Specific instances of data or objects that have been accessed.
+ * Required unless the values for event identification, agent identification, and
+ * audit source identification are sufficient to document the entire auditable
+ * event. Because events may have more than one entity, this group can be a
+ * repeating set of values.
+ * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.entity}
+ */
+export interface AuditEventEntity {}
+
+/**
+ * Tagged value pairs for conveying additional information about the entity.
+ * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.entity.detail}
+ */
+export interface AuditEventEntityDetail {}
+
+/**
+ * The system that is reporting the event.
+ * Since multi-tier, distributed, or composite applications make source
+ * identification ambiguous, this collection of fields may repeat for each
+ * application or process actively involved in the event. For example, multiple
+ * value-sets can identify participating web servers, application processes, and
+ * database server threads in an n-tier distributed application. Passive event
+ * participants (e.g. low-level network transports) need not be identified.
+ * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.source}
+ */
+export interface AuditEventSource {}
+
+/**
  * AuditEvent
  *
  * A record of an event made for purposes of maintaining a security log. Typical
@@ -12203,7 +12344,7 @@ For example, an activity may be initiated by one
  * be the initiator/requestor for the activity.
  * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.agent}
  */
-  agent: Array<BackboneElement>;
+  agent: Array<AuditEventAgent>;
   _agent?: Element[] | undefined;
 
   /**
@@ -12214,7 +12355,7 @@ For example, an activity may be initiated by one
    * repeating set of values.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.entity}
    */
-  entity?: Array<BackboneElement> | undefined;
+  entity?: Array<AuditEventEntity> | undefined;
   _entity?: Element[] | undefined;
 
   /**
@@ -12274,7 +12415,7 @@ For example, an activity may be initiated by one
    * participants (e.g. low-level network transports) need not be identified.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.source}
    */
-  source: BackboneElement;
+  source: AuditEventSource;
   _source?: Element | undefined;
 
   /**
@@ -12440,6 +12581,34 @@ export interface Binary extends Resource {
 }
 
 /**
+ * How this product was collected.
+ * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.collection}
+ */
+export interface BiologicallyDerivedProductCollection {}
+
+/**
+ * Any manipulation of product post-collection that is intended to alter the
+ * product.  For example a buffy-coat enrichment or CD8 reduction of Peripheral
+ * Blood Stem Cells to make it more suitable for infusion.
+ * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.manipulation}
+ */
+export interface BiologicallyDerivedProductManipulation {}
+
+/**
+ * Any processing of the product during collection that does not change the
+ * fundamental nature of the product. For example adding anti-coagulants during the
+ * collection of Peripheral Blood Stem Cells.
+ * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.processing}
+ */
+export interface BiologicallyDerivedProductProcessing {}
+
+/**
+ * Product storage.
+ * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.storage}
+ */
+export interface BiologicallyDerivedProductStorage {}
+
+/**
  * BiologicallyDerivedProduct
  * 
  * A material substance originating from a biological entity intended to be
@@ -12455,7 +12624,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
    * How this product was collected.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.collection}
    */
-  collection?: BackboneElement | undefined;
+  collection?: BiologicallyDerivedProductCollection | undefined;
   _collection?: Element | undefined;
 
   /**
@@ -12474,7 +12643,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
    * Blood Stem Cells to make it more suitable for infusion.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.manipulation}
    */
-  manipulation?: BackboneElement | undefined;
+  manipulation?: BiologicallyDerivedProductManipulation | undefined;
   _manipulation?: Element | undefined;
 
   /**
@@ -12493,7 +12662,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
    * collection of Peripheral Blood Stem Cells.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.processing}
    */
-  processing?: Array<BackboneElement> | undefined;
+  processing?: Array<BiologicallyDerivedProductProcessing> | undefined;
   _processing?: Element[] | undefined;
 
   /**
@@ -12538,7 +12707,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
    * Product storage.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.storage}
    */
-  storage?: Array<BackboneElement> | undefined;
+  storage?: Array<BiologicallyDerivedProductStorage> | undefined;
   _storage?: Element[] | undefined;
 }
 
@@ -12620,6 +12789,53 @@ export interface BodyStructure extends DomainResource {
 }
 
 /**
+ * An entry in a bundle resource - will either contain a resource or information
+ * about a resource (transactions and history only).
+ * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry}
+ */
+export interface BundleEntry {}
+
+/**
+ * Additional information about how this entry should be processed as part of a
+ * transaction or batch.  For history, it shows how the entry was processed to
+ * create the version contained in the entry.
+ * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.request}
+ */
+export interface BundleEntryRequest {}
+
+/**
+ * Indicates the results of processing the corresponding 'request' entry in the
+ * batch or transaction being responded to or what the results of an operation
+ * where when returning history.
+ * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.response}
+ */
+export interface BundleEntryResponse {}
+
+/**
+ * Information about the search process that lead to the creation of this entry.
+ * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.search}
+ */
+export interface BundleEntrySearch {}
+
+/**
+ * A series of links that provide context to this bundle.
+ * Both Bundle.link and Bundle.entry.link are defined to support providing
+ * additional context when Bundles are used (e.g.
+ * [HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)). 
+
+Bundle.entry.link
+ * corresponds to links found in the HTTP header if the resource in the entry was
+ * [read](http.html#read) directly.
+
+This specification defines some specific uses
+ * of Bundle.link for [searching](search.html#conformance) and
+ * [paging](http.html#paging), but no specific uses for Bundle.entry.link, and no
+ * defined function in a transaction - the meaning is implementation specific.
+ * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.link}
+ */
+export interface BundleLink {}
+
+/**
  * Bundle
  *
  * A container for a collection of resources.
@@ -12634,7 +12850,7 @@ export interface Bundle extends Resource {
    * about a resource (transactions and history only).
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry}
    */
-  entry?: Array<BackboneElement> | undefined;
+  entry?: Array<BundleEntry> | undefined;
   _entry?: Element[] | undefined;
 
   /**
@@ -12666,7 +12882,7 @@ This specification defines some specific uses
  * defined function in a transaction - the meaning is implementation specific.
  * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.link}
  */
-  link?: Array<BackboneElement> | undefined;
+  link?: Array<BundleLink> | undefined;
   _link?: Element[] | undefined;
 
   /**
@@ -12744,6 +12960,122 @@ The timestamp value should be greater than the
 }
 
 /**
+ * A document definition.
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.document}
+ */
+export interface CapabilityStatementDocument {}
+
+/**
+ * Identifies a specific implementation instance that is described by the
+ * capability statement - i.e. a particular installation, rather than the
+ * capabilities of a software program.
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.implementation}
+ */
+export interface CapabilityStatementImplementation {}
+
+/**
+ * A description of the messaging capabilities of the solution.
+ * Multiple repetitions allow the documentation of multiple endpoints per solution.
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging}
+ */
+export interface CapabilityStatementMessaging {}
+
+/**
+ * An endpoint (network accessible address) to which messages and/or replies are to
+ * be sent.
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging.endpoint}
+ */
+export interface CapabilityStatementMessagingEndpoint {}
+
+/**
+ * References to message definitions for messages this system can send or receive.
+ * This is a proposed alternative to the messaging.event structure.
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging.supportedMessage}
+ */
+export interface CapabilityStatementMessagingSupportedMessage {}
+
+/**
+ * A definition of the restful capabilities of the solution, if any.
+ * Multiple repetitions allow definition of both client and/or server behaviors or
+ * possibly behaviors under different configuration settings (for software or
+ * requirements statements).
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest}
+ */
+export interface CapabilityStatementRest {}
+
+/**
+ * A specification of restful operations supported by the system.
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.interaction}
+ */
+export interface CapabilityStatementRestInteraction {}
+
+/**
+ * A specification of the restful capabilities of the solution for a specific
+ * resource type.
+ * Max of one repetition per resource type.
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource}
+ */
+export interface CapabilityStatementRestResource {}
+
+/**
+ * Identifies a restful operation supported by the solution.
+ * In general, a Resource will only appear in a CapabilityStatement if the server
+ * actually has some capabilities - e.g. there is at least one interaction
+ * supported. However interactions can be omitted to support summarization
+ * (_summary = true).
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.interaction}
+ */
+export interface CapabilityStatementRestResourceInteraction {}
+
+/**
+ * Definition of an operation or a named query together with its parameters and
+ * their meaning and type. Consult the definition of the operation for details
+ * about how to invoke the operation, and the parameters.
+ * Operations linked from CapabilityStatement.rest.resource.operation must have
+ * OperationDefinition.type = true or OperationDefinition.instance = true.    
+
+If
+ * an operation that is listed in multiple
+ * CapabilityStatement.rest.resource.operation (e.g. for different resource types),
+ * then clients should understand that the operation is only supported on the
+ * specified resource types, and that may be a subset of those listed in
+ * OperationDefinition.resource.
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.operation}
+ */
+export interface CapabilityStatementRestResourceOperation {}
+
+/**
+ * Search parameters for implementations to support and/or make use of - either
+ * references to ones defined in the specification, or additional ones defined
+ * for/by the implementation.
+ * The search parameters should include the control search parameters such as
+ * _sort, _count, etc. that also apply to this resource (though many will be listed
+ * at
+ * [CapabilityStatement.rest.searchParam](capabilitystatement-definitions.html#Capa
+ * bilityStatement.rest.searchParam)). The behavior of some search parameters may
+ * be further described by other code or extension elements, or narrative within
+ * the capability statement or linked [SearchParameter](searchparameter.html#)
+ * definitions.
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.searchParam}
+ */
+export interface CapabilityStatementRestResourceSearchParam {}
+
+/**
+ * Information about security implementation from an interface perspective - what a
+ * client needs to know.
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.security}
+ */
+export interface CapabilityStatementRestSecurity {}
+
+/**
+ * Software that is covered by this capability statement.  It is used when the
+ * capability statement describes the capabilities of a particular software
+ * version, independent of an installation.
+ * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.software}
+ */
+export interface CapabilityStatementSoftware {}
+
+/**
  * CapabilityStatement
  *
  * A Capability Statement documents a set of capabilities (behaviors) of a FHIR
@@ -12811,7 +13143,7 @@ export interface CapabilityStatement extends DomainResource {
    * A document definition.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.document}
    */
-  document?: Array<BackboneElement> | undefined;
+  document?: Array<CapabilityStatementDocument> | undefined;
   _document?: Element[] | undefined;
 
   /**
@@ -12858,7 +13190,7 @@ export interface CapabilityStatement extends DomainResource {
    * capabilities of a software program.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.implementation}
    */
-  implementation?: BackboneElement | undefined;
+  implementation?: CapabilityStatementImplementation | undefined;
   _implementation?: Element | undefined;
 
   /**
@@ -12928,7 +13260,7 @@ Many [Implementation
    * Multiple repetitions allow the documentation of multiple endpoints per solution.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging}
    */
-  messaging?: Array<BackboneElement> | undefined;
+  messaging?: Array<CapabilityStatementMessaging> | undefined;
   _messaging?: Element[] | undefined;
 
   /**
@@ -12989,7 +13321,7 @@ Many [Implementation
    * requirements statements).
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest}
    */
-  rest?: Array<BackboneElement> | undefined;
+  rest?: Array<CapabilityStatementRest> | undefined;
   _rest?: Element[] | undefined;
 
   /**
@@ -12998,7 +13330,7 @@ Many [Implementation
    * version, independent of an installation.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.software}
    */
-  software?: BackboneElement | undefined;
+  software?: CapabilityStatementSoftware | undefined;
   _software?: Element | undefined;
 
   /**
@@ -13079,6 +13411,21 @@ In some cases, the resource can no longer
 }
 
 /**
+ * Identifies a planned action to occur as part of the plan.  For example, a
+ * medication to be used, lab tests to perform, self-monitoring, education, etc.
+ * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity}
+ */
+export interface CarePlanActivity {}
+
+/**
+ * A simple summary of a planned activity suitable for a general care plan system
+ * (e.g. form driven) that doesn't know about specific resources such as procedure
+ * etc.
+ * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.detail}
+ */
+export interface CarePlanActivityDetail {}
+
+/**
  * CarePlan
  *
  * Describes the intention of how one or more practitioners intend to deliver care
@@ -13095,7 +13442,7 @@ export interface CarePlan extends DomainResource {
    * medication to be used, lab tests to perform, self-monitoring, education, etc.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity}
    */
-  activity?: Array<BackboneElement> | undefined;
+  activity?: Array<CarePlanActivity> | undefined;
   _activity?: Element[] | undefined;
 
   /**
@@ -13318,6 +13665,13 @@ This element is labeled as a
 }
 
 /**
+ * Identifies all people and organizations who are expected to be involved in the
+ * care team.
+ * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.participant}
+ */
+export interface CareTeamParticipant {}
+
+/**
  * CareTeam
  *
  * The Care Team includes all the people and organizations who plan to participate
@@ -13397,7 +13751,7 @@ export interface CareTeam extends DomainResource {
    * care team.
    * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.participant}
    */
-  participant?: Array<BackboneElement> | undefined;
+  participant?: Array<CareTeamParticipant> | undefined;
   _participant?: Element[] | undefined;
 
   /**
@@ -13447,6 +13801,13 @@ export interface CareTeam extends DomainResource {
   telecom?: Array<ContactPoint> | undefined;
   _telecom?: Element[] | undefined;
 }
+
+/**
+ * Used for example, to point to a substance, or to a device used to administer a
+ * medication.
+ * @see {@link http://hl7.org/fhir/R4B/CatalogEntry-definitions.html#CatalogEntry.relatedEntry}
+ */
+export interface CatalogEntryRelatedEntry {}
 
 /**
  * CatalogEntry
@@ -13522,7 +13883,7 @@ export interface CatalogEntry extends DomainResource {
    * medication.
    * @see {@link http://hl7.org/fhir/R4B/CatalogEntry-definitions.html#CatalogEntry.relatedEntry}
    */
-  relatedEntry?: Array<BackboneElement> | undefined;
+  relatedEntry?: Array<CatalogEntryRelatedEntry> | undefined;
   _relatedEntry?: Element[] | undefined;
 
   /**
@@ -13555,6 +13916,12 @@ export interface CatalogEntry extends DomainResource {
   validTo?: string | undefined;
   _validTo?: Element | undefined;
 }
+
+/**
+ * Indicates who or what performed or participated in the charged service.
+ * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.performer}
+ */
+export interface ChargeItemPerformer {}
 
 /**
  * ChargeItem
@@ -13725,7 +14092,7 @@ export interface ChargeItem extends DomainResource {
    * Indicates who or what performed or participated in the charged service.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.performer}
    */
-  performer?: Array<BackboneElement> | undefined;
+  performer?: Array<ChargeItemPerformer> | undefined;
   _performer?: Element[] | undefined;
 
   /**
@@ -13831,6 +14198,34 @@ This element is labeled as a modifier because the status contains the code
 }
 
 /**
+ * Expressions that describe applicability criteria for the billing code.
+ * The applicability conditions can be used to ascertain whether a billing item is
+ * allowed in a specific context. E.g. some billing codes may only be applicable in
+ * out-patient settings, only to male/female patients or only to children.
+ * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.applicability}
+ */
+export interface ChargeItemDefinitionApplicability {}
+
+/**
+ * Group of properties which are applicable under the same conditions. If no
+ * applicability rules are established for the group, then all properties always
+ * apply.
+ * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.propertyGroup}
+ */
+export interface ChargeItemDefinitionPropertyGroup {}
+
+/**
+ * The price for a ChargeItem may be calculated as a base price with
+ * surcharges/deductions that apply in certain conditions. A ChargeItemDefinition
+ * resource that defines the prices, factors and conditions that apply to a billing
+ * code is currently under development. The priceComponent element can be used to
+ * offer transparency to the recipient of the Invoice of how the prices have been
+ * calculated.
+ * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.propertyGroup.priceComponent}
+ */
+export interface ChargeItemDefinitionPropertyGroupPriceComponent {}
+
+/**
  * ChargeItemDefinition
  *
  * The ChargeItemDefinition resource provides the properties that apply to the
@@ -13850,7 +14245,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * out-patient settings, only to male/female patients or only to children.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.applicability}
    */
-  applicability?: Array<BackboneElement> | undefined;
+  applicability?: Array<ChargeItemDefinitionApplicability> | undefined;
   _applicability?: Element[] | undefined;
 
   /**
@@ -14005,7 +14400,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * apply.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.propertyGroup}
    */
-  propertyGroup?: Array<BackboneElement> | undefined;
+  propertyGroup?: Array<ChargeItemDefinitionPropertyGroup> | undefined;
   _propertyGroup?: Element[] | undefined;
 
   /**
@@ -14111,6 +14506,151 @@ In some cases, the resource can no longer
 }
 
 /**
+ * The article or artifact being described.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact}
+ */
+export interface CitationCitedArtifact {}
+
+/**
+ * Summary of the article or artifact.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.abstract}
+ */
+export interface CitationCitedArtifactAbstract {}
+
+/**
+ * The assignment to an organizing scheme.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.classification}
+ */
+export interface CitationCitedArtifactClassification {}
+
+/**
+ * Provenance and copyright of classification.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.classification.whoClassified}
+ */
+export interface CitationCitedArtifactClassificationWhoClassified {}
+
+/**
+ * This element is used to list authors and other contributors, their contact
+ * information, specific contributions, and summary statements.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship}
+ */
+export interface CitationCitedArtifactContributorship {}
+
+/**
+ * An individual entity named in the author list or contributor list.
+ * Used to report contributorship in individualized ways.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.entry}
+ */
+export interface CitationCitedArtifactContributorshipEntry {}
+
+/**
+ * Organization affiliated with the entity.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.entry.affiliationInfo}
+ */
+export interface CitationCitedArtifactContributorshipEntryAffiliationInfo {}
+
+/**
+ * Contributions with accounting for time or number.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.entry.contributionInstance}
+ */
+export interface CitationCitedArtifactContributorshipEntryContributionInstance {}
+
+/**
+ * Used to record a display of the author/contributor list without separate coding
+ * for each list member.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.summary}
+ */
+export interface CitationCitedArtifactContributorshipSummary {}
+
+/**
+ * The component of the article or artifact.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.part}
+ */
+export interface CitationCitedArtifactPart {}
+
+/**
+ * If multiple, used to represent alternative forms of the article that are not
+ * separate citations.
+ * A common use is a journal article with a publication date and pagination for a
+ * print version and a different publication date for the online version of the
+ * same article.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm}
+ */
+export interface CitationCitedArtifactPublicationForm {}
+
+/**
+ * The specific issue in which the cited article resides.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.periodicRelease}
+ */
+export interface CitationCitedArtifactPublicationFormPeriodicRelease {}
+
+/**
+ * Defining the date on which the issue of the journal was published.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.periodicRelease.dateOfPublication}
+ */
+export interface CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication {}
+
+/**
+ * The collection the cited article or artifact is published in.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.publishedIn}
+ */
+export interface CitationCitedArtifactPublicationFormPublishedIn {}
+
+/**
+ * The artifact related to the cited artifact.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.relatesTo}
+ */
+export interface CitationCitedArtifactRelatesTo {}
+
+/**
+ * An effective date or period for a status of the cited artifact.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.statusDate}
+ */
+export interface CitationCitedArtifactStatusDate {}
+
+/**
+ * The title details of the article or artifact.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.title}
+ */
+export interface CitationCitedArtifactTitle {}
+
+/**
+ * The defined version of the cited artifact.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.version}
+ */
+export interface CitationCitedArtifactVersion {}
+
+/**
+ * Used for any URL for the article or artifact cited.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.webLocation}
+ */
+export interface CitationCitedArtifactWebLocation {}
+
+/**
+ * The assignment to an organizing scheme.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.classification}
+ */
+export interface CitationClassification {}
+
+/**
+ * Artifact related to the Citation Resource.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.relatesTo}
+ */
+export interface CitationRelatesTo {}
+
+/**
+ * An effective date or period for a status of the citation.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.statusDate}
+ */
+export interface CitationStatusDate {}
+
+/**
+ * A human-readable display of the citation.
+ * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.summary}
+ */
+export interface CitationSummary {}
+
+/**
  * Citation
  *
  * The Citation Resource enables reference to any knowledge artifact for purposes
@@ -14144,14 +14684,14 @@ export interface Citation extends DomainResource {
    * The article or artifact being described.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact}
    */
-  citedArtifact?: BackboneElement | undefined;
+  citedArtifact?: CitationCitedArtifact | undefined;
   _citedArtifact?: Element | undefined;
 
   /**
    * The assignment to an organizing scheme.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.classification}
    */
-  classification?: Array<BackboneElement> | undefined;
+  classification?: Array<CitationClassification> | undefined;
   _classification?: Element[] | undefined;
 
   /**
@@ -14319,7 +14859,7 @@ export interface Citation extends DomainResource {
    * Artifact related to the Citation Resource.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.relatesTo}
    */
-  relatesTo?: Array<BackboneElement> | undefined;
+  relatesTo?: Array<CitationRelatesTo> | undefined;
   _relatesTo?: Element[] | undefined;
 
   /**
@@ -14342,14 +14882,14 @@ export interface Citation extends DomainResource {
    * An effective date or period for a status of the citation.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.statusDate}
    */
-  statusDate?: Array<BackboneElement> | undefined;
+  statusDate?: Array<CitationStatusDate> | undefined;
   _statusDate?: Element[] | undefined;
 
   /**
    * A human-readable display of the citation.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.summary}
    */
-  summary?: Array<BackboneElement> | undefined;
+  summary?: Array<CitationSummary> | undefined;
   _summary?: Element[] | undefined;
 
   /**
@@ -14406,6 +14946,94 @@ export interface Citation extends DomainResource {
 }
 
 /**
+ * Details of an accident which resulted in injuries which required the products
+ * and services listed in the claim.
+ * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.accident}
+ */
+export interface ClaimAccident {}
+
+/**
+ * The members of the team who provided the products and services.
+ * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.careTeam}
+ */
+export interface ClaimCareTeam {}
+
+/**
+ * Information about diagnoses relevant to the claim items.
+ * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.diagnosis}
+ */
+export interface ClaimDiagnosis {}
+
+/**
+ * Financial instruments for reimbursement for the health care products and
+ * services specified on the claim.
+ * All insurance coverages for the patient which may be applicable for
+ * reimbursement, of the products and services listed in the claim, are typically
+ * provided in the claim to allow insurers to confirm the ordering of the insurance
+ * coverages relative to local 'coordination of benefit' rules. One coverage (and
+ * only one) with 'focal=true' is to be used in the adjudication of this claim.
+ * Coverages appearing before the focal Coverage in the list, and where
+ * 'Coverage.subrogation=false', should provide a reference to the ClaimResponse
+ * containing the adjudication results of the prior claim.
+ * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.insurance}
+ */
+export interface ClaimInsurance {}
+
+/**
+ * A claim line. Either a simple  product or service or a 'group' of details which
+ * can each be a simple items or groups of sub-details.
+ * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item}
+ */
+export interface ClaimItem {}
+
+/**
+ * A claim detail line. Either a simple (a product or service) or a 'group' of
+ * sub-details which are simple items.
+ * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.detail}
+ */
+export interface ClaimItemDetail {}
+
+/**
+ * A claim detail line. Either a simple (a product or service) or a 'group' of
+ * sub-details which are simple items.
+ * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.detail.subDetail}
+ */
+export interface ClaimItemDetailSubDetail {}
+
+/**
+ * The party to be reimbursed for cost of the products and services according to
+ * the terms of the policy.
+ * Often providers agree to receive the benefits payable to reduce the near-term
+ * costs to the patient. The insurer may decline to pay the provider and choose to
+ * pay the subscriber instead.
+ * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.payee}
+ */
+export interface ClaimPayee {}
+
+/**
+ * Procedures performed on the patient relevant to the billing items with the
+ * claim.
+ * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.procedure}
+ */
+export interface ClaimProcedure {}
+
+/**
+ * Other claims which are related to this claim such as prior submissions or claims
+ * for related services or for the same event.
+ * For example,  for the original treatment and follow-up exams.
+ * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.related}
+ */
+export interface ClaimRelated {}
+
+/**
+ * Additional information codes regarding exceptions, special considerations, the
+ * condition, situation, prior or concurrent issues.
+ * Often there are multiple jurisdiction specific valuesets which are required.
+ * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.supportingInfo}
+ */
+export interface ClaimSupportingInfo {}
+
+/**
  * Claim
  *
  * A provider issued list of professional services and products which have been
@@ -14422,7 +15050,7 @@ export interface Claim extends DomainResource {
    * and services listed in the claim.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.accident}
    */
-  accident?: BackboneElement | undefined;
+  accident?: ClaimAccident | undefined;
   _accident?: Element | undefined;
 
   /**
@@ -14439,7 +15067,7 @@ export interface Claim extends DomainResource {
    * The members of the team who provided the products and services.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.careTeam}
    */
-  careTeam?: Array<BackboneElement> | undefined;
+  careTeam?: Array<ClaimCareTeam> | undefined;
   _careTeam?: Element[] | undefined;
 
   /**
@@ -14456,7 +15084,7 @@ export interface Claim extends DomainResource {
    * Information about diagnoses relevant to the claim items.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.diagnosis}
    */
-  diagnosis?: Array<BackboneElement> | undefined;
+  diagnosis?: Array<ClaimDiagnosis> | undefined;
   _diagnosis?: Element[] | undefined;
 
   /**
@@ -14502,7 +15130,7 @@ export interface Claim extends DomainResource {
    * containing the adjudication results of the prior claim.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.insurance}
    */
-  insurance: Array<BackboneElement>;
+  insurance: Array<ClaimInsurance>;
   _insurance?: Element[] | undefined;
 
   /**
@@ -14517,7 +15145,7 @@ export interface Claim extends DomainResource {
    * can each be a simple items or groups of sub-details.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item}
    */
-  item?: Array<BackboneElement> | undefined;
+  item?: Array<ClaimItem> | undefined;
   _item?: Element[] | undefined;
 
   /**
@@ -14549,7 +15177,7 @@ export interface Claim extends DomainResource {
    * pay the subscriber instead.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.payee}
    */
-  payee?: BackboneElement | undefined;
+  payee?: ClaimPayee | undefined;
   _payee?: Element | undefined;
 
   /**
@@ -14574,7 +15202,7 @@ export interface Claim extends DomainResource {
    * claim.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.procedure}
    */
-  procedure?: Array<BackboneElement> | undefined;
+  procedure?: Array<ClaimProcedure> | undefined;
   _procedure?: Element[] | undefined;
 
   /**
@@ -14603,7 +15231,7 @@ export interface Claim extends DomainResource {
    * For example,  for the original treatment and follow-up exams.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.related}
    */
-  related?: Array<BackboneElement> | undefined;
+  related?: Array<ClaimRelated> | undefined;
   _related?: Element[] | undefined;
 
   /**
@@ -14632,7 +15260,7 @@ export interface Claim extends DomainResource {
    * Often there are multiple jurisdiction specific valuesets which are required.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.supportingInfo}
    */
-  supportingInfo?: Array<BackboneElement> | undefined;
+  supportingInfo?: Array<ClaimSupportingInfo> | undefined;
   _supportingInfo?: Element[] | undefined;
 
   /**
@@ -14666,6 +15294,94 @@ export interface Claim extends DomainResource {
 }
 
 /**
+ * The first-tier service adjudications for payor added product or service lines.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem}
+ */
+export interface ClaimResponseAddItem {}
+
+/**
+ * The second-tier service adjudications for payor added services.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detail}
+ */
+export interface ClaimResponseAddItemDetail {}
+
+/**
+ * The third-tier service adjudications for payor added services.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detail.subDetail}
+ */
+export interface ClaimResponseAddItemDetailSubDetail {}
+
+/**
+ * Errors encountered during the processing of the adjudication.
+ * If the request contains errors then an error element should be provided and no
+ * adjudication related sections (item, addItem, or payment) should be present.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.error}
+ */
+export interface ClaimResponseError {}
+
+/**
+ * Financial instruments for reimbursement for the health care products and
+ * services specified on the claim.
+ * All insurance coverages for the patient which may be applicable for
+ * reimbursement, of the products and services listed in the claim, are typically
+ * provided in the claim to allow insurers to confirm the ordering of the insurance
+ * coverages relative to local 'coordination of benefit' rules. One coverage (and
+ * only one) with 'focal=true' is to be used in the adjudication of this claim.
+ * Coverages appearing before the focal Coverage in the list, and where
+ * 'subrogation=false', should provide a reference to the ClaimResponse containing
+ * the adjudication results of the prior claim.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.insurance}
+ */
+export interface ClaimResponseInsurance {}
+
+/**
+ * A claim line. Either a simple (a product or service) or a 'group' of details
+ * which can also be a simple items or groups of sub-details.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item}
+ */
+export interface ClaimResponseItem {}
+
+/**
+ * If this item is a group then the values here are a summary of the adjudication
+ * of the detail items. If this item is a simple product or service then this is
+ * the result of the adjudication of this item.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.adjudication}
+ */
+export interface ClaimResponseItemAdjudication {}
+
+/**
+ * A claim detail. Either a simple (a product or service) or a 'group' of
+ * sub-details which are simple items.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail}
+ */
+export interface ClaimResponseItemDetail {}
+
+/**
+ * A sub-detail adjudication of a simple product or service.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail.subDetail}
+ */
+export interface ClaimResponseItemDetailSubDetail {}
+
+/**
+ * Payment details for the adjudication of the claim.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.payment}
+ */
+export interface ClaimResponsePayment {}
+
+/**
+ * A note that describes or explains adjudication results in a human readable form.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.processNote}
+ */
+export interface ClaimResponseProcessNote {}
+
+/**
+ * Categorized monetary totals for the adjudication.
+ * Totals for amounts submitted, co-pays, benefits payable etc.
+ * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.total}
+ */
+export interface ClaimResponseTotal {}
+
+/**
  * ClaimResponse
  *
  * This resource provides the adjudication details from the processing of a Claim
@@ -14680,7 +15396,7 @@ export interface ClaimResponse extends DomainResource {
    * The first-tier service adjudications for payor added product or service lines.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem}
    */
-  addItem?: Array<BackboneElement> | undefined;
+  addItem?: Array<ClaimResponseAddItem> | undefined;
   _addItem?: Element[] | undefined;
 
   /**
@@ -14720,7 +15436,7 @@ export interface ClaimResponse extends DomainResource {
    * adjudication related sections (item, addItem, or payment) should be present.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.error}
    */
-  error?: Array<BackboneElement> | undefined;
+  error?: Array<ClaimResponseError> | undefined;
   _error?: Element[] | undefined;
 
   /**
@@ -14769,7 +15485,7 @@ export interface ClaimResponse extends DomainResource {
    * the adjudication results of the prior claim.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.insurance}
    */
-  insurance?: Array<BackboneElement> | undefined;
+  insurance?: Array<ClaimResponseInsurance> | undefined;
   _insurance?: Element[] | undefined;
 
   /**
@@ -14784,7 +15500,7 @@ export interface ClaimResponse extends DomainResource {
    * which can also be a simple items or groups of sub-details.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item}
    */
-  item?: Array<BackboneElement> | undefined;
+  item?: Array<ClaimResponseItem> | undefined;
   _item?: Element[] | undefined;
 
   /**
@@ -14818,7 +15534,7 @@ export interface ClaimResponse extends DomainResource {
    * Payment details for the adjudication of the claim.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.payment}
    */
-  payment?: BackboneElement | undefined;
+  payment?: ClaimResponsePayment | undefined;
   _payment?: Element | undefined;
 
   /**
@@ -14841,7 +15557,7 @@ export interface ClaimResponse extends DomainResource {
    * A note that describes or explains adjudication results in a human readable form.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.processNote}
    */
-  processNote?: Array<BackboneElement> | undefined;
+  processNote?: Array<ClaimResponseProcessNote> | undefined;
   _processNote?: Element[] | undefined;
 
   /**
@@ -14887,7 +15603,7 @@ export interface ClaimResponse extends DomainResource {
    * Totals for amounts submitted, co-pays, benefits payable etc.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.total}
    */
-  total?: Array<BackboneElement> | undefined;
+  total?: Array<ClaimResponseTotal> | undefined;
   _total?: Element[] | undefined;
 
   /**
@@ -14912,6 +15628,23 @@ export interface ClaimResponse extends DomainResource {
   use: Use;
   _use?: Element | undefined;
 }
+
+/**
+ * Specific findings or diagnoses that were considered likely or relevant to
+ * ongoing treatment.
+ * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.finding}
+ */
+export interface ClinicalImpressionFinding {}
+
+/**
+ * One or more sets of investigations (signs, symptoms, etc.). The actual grouping
+ * of investigations varies greatly depending on the type and context of the
+ * assessment. These investigations may include data generated during the
+ * assessment process, or data previously generated and recorded that is pertinent
+ * to the outcomes.
+ * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.investigation}
+ */
+export interface ClinicalImpressionInvestigation {}
 
 /**
  * ClinicalImpression
@@ -14994,7 +15727,7 @@ export interface ClinicalImpression extends DomainResource {
    * ongoing treatment.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.finding}
    */
-  finding?: Array<BackboneElement> | undefined;
+  finding?: Array<ClinicalImpressionFinding> | undefined;
   _finding?: Element[] | undefined;
 
   /**
@@ -15021,7 +15754,7 @@ export interface ClinicalImpression extends DomainResource {
    * to the outcomes.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.investigation}
    */
-  investigation?: Array<BackboneElement> | undefined;
+  investigation?: Array<ClinicalImpressionInvestigation> | undefined;
   _investigation?: Element[] | undefined;
 
   /**
@@ -15123,6 +15856,53 @@ export interface ClinicalImpression extends DomainResource {
 }
 
 /**
+ * Specifics for when this is a contraindication.
+ * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.contraindication}
+ */
+export interface ClinicalUseDefinitionContraindication {}
+
+/**
+ * Information about the use of the medicinal product in relation to other
+ * therapies described as part of the contraindication.
+ * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.contraindication.otherTherapy}
+ */
+export interface ClinicalUseDefinitionContraindicationOtherTherapy {}
+
+/**
+ * Specifics for when this is an indication.
+ * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.indication}
+ */
+export interface ClinicalUseDefinitionIndication {}
+
+/**
+ * Specifics for when this is an interaction.
+ * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.interaction}
+ */
+export interface ClinicalUseDefinitionInteraction {}
+
+/**
+ * The specific medication, food, substance or laboratory test that interacts.
+ * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.interaction.interactant}
+ */
+export interface ClinicalUseDefinitionInteractionInteractant {}
+
+/**
+ * Describe the possible undesirable effects (negative outcomes) from the use of
+ * the medicinal product as treatment.
+ * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.undesirableEffect}
+ */
+export interface ClinicalUseDefinitionUndesirableEffect {}
+
+/**
+ * A critical piece of information about environmental, health or physical risks or
+ * hazards that serve as caution to the user. For example 'Do not operate heavy
+ * machinery', 'May cause drowsiness', or 'Get medical advice/attention if you feel
+ * unwell'.
+ * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.warning}
+ */
+export interface ClinicalUseDefinitionWarning {}
+
+/**
  * ClinicalUseDefinition
  *
  * A single issue - either an indication, contraindication, interaction or an
@@ -15146,7 +15926,7 @@ export interface ClinicalUseDefinition extends DomainResource {
    * Specifics for when this is a contraindication.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.contraindication}
    */
-  contraindication?: BackboneElement | undefined;
+  contraindication?: ClinicalUseDefinitionContraindication | undefined;
   _contraindication?: Element | undefined;
 
   /**
@@ -15160,14 +15940,14 @@ export interface ClinicalUseDefinition extends DomainResource {
    * Specifics for when this is an indication.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.indication}
    */
-  indication?: BackboneElement | undefined;
+  indication?: ClinicalUseDefinitionIndication | undefined;
   _indication?: Element | undefined;
 
   /**
    * Specifics for when this is an interaction.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.interaction}
    */
-  interaction?: BackboneElement | undefined;
+  interaction?: ClinicalUseDefinitionInteraction | undefined;
   _interaction?: Element | undefined;
 
   /**
@@ -15204,7 +15984,7 @@ export interface ClinicalUseDefinition extends DomainResource {
    * the medicinal product as treatment.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.undesirableEffect}
    */
-  undesirableEffect?: BackboneElement | undefined;
+  undesirableEffect?: ClinicalUseDefinitionUndesirableEffect | undefined;
   _undesirableEffect?: Element | undefined;
 
   /**
@@ -15214,7 +15994,7 @@ export interface ClinicalUseDefinition extends DomainResource {
    * unwell'.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.warning}
    */
-  warning?: BackboneElement | undefined;
+  warning?: ClinicalUseDefinitionWarning | undefined;
   _warning?: Element | undefined;
 }
 
@@ -15274,6 +16054,51 @@ export interface CodeableReference extends Element {
 }
 
 /**
+ * Concepts that are in the code system. The concept definitions are inherently
+ * hierarchical, but the definitions must be consulted to determine what the
+ * meanings of the hierarchical relationships are.
+ * If this is empty, it means that the code system resource does not represent the
+ * content of the code system.
+ * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept}
+ */
+export interface CodeSystemConcept {}
+
+/**
+ * Additional representations for the concept - other languages, aliases,
+ * specialized purposes, used for particular purposes, etc.
+ * Concepts have both a ```display``` and an array of ```designation```. The
+ * display is equivalent to a special designation with an implied
+ * ```designation.use``` of "primary code" and a language equal to the [Resource
+ * Language](resource.html#language).
+ * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.designation}
+ */
+export interface CodeSystemConceptDesignation {}
+
+/**
+ * A property value for this concept.
+ * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.property}
+ */
+export interface CodeSystemConceptProperty {}
+
+/**
+ * A filter that can be used in a value set compose statement when selecting
+ * concepts using a filter.
+ * Note that filters defined in code systems usually require custom code on the
+ * part of any terminology engine that will make them available for use in value
+ * set filters. For this reason, they are generally only seen in high value
+ * published terminologies.
+ * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.filter}
+ */
+export interface CodeSystemFilter {}
+
+/**
+ * A property defines an additional slot through which additional information can
+ * be provided about a concept.
+ * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.property}
+ */
+export interface CodeSystemProperty {}
+
+/**
  * CodeSystem
  *
  * The CodeSystem resource is used to declare the existence of and describe a code
@@ -15314,7 +16139,7 @@ export interface CodeSystem extends DomainResource {
    * content of the code system.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept}
    */
-  concept?: Array<BackboneElement> | undefined;
+  concept?: Array<CodeSystemConcept> | undefined;
   _concept?: Element[] | undefined;
 
   /**
@@ -15406,7 +16231,7 @@ export interface CodeSystem extends DomainResource {
    * published terminologies.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.filter}
    */
-  filter?: Array<BackboneElement> | undefined;
+  filter?: Array<CodeSystemFilter> | undefined;
   _filter?: Element[] | undefined;
 
   /**
@@ -15458,7 +16283,7 @@ export interface CodeSystem extends DomainResource {
    * be provided about a concept.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.property}
    */
-  property?: Array<BackboneElement> | undefined;
+  property?: Array<CodeSystemProperty> | undefined;
   _property?: Element[] | undefined;
 
   /**
@@ -15661,6 +16486,12 @@ export interface Coding extends Element {
 }
 
 /**
+ * Text, attachment(s), or resource(s) that was communicated to the recipient.
+ * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.payload}
+ */
+export interface CommunicationPayload {}
+
+/**
  * Communication
  *
  * An occurrence of information being transmitted; e.g. an alert that was sent to a
@@ -15779,7 +16610,7 @@ export interface Communication extends DomainResource {
    * Text, attachment(s), or resource(s) that was communicated to the recipient.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.payload}
    */
-  payload?: Array<BackboneElement> | undefined;
+  payload?: Array<CommunicationPayload> | undefined;
   _payload?: Element[] | undefined;
 
   /**
@@ -15877,6 +16708,12 @@ export interface Communication extends DomainResource {
   topic?: CodeableConcept | undefined;
   _topic?: Element | undefined;
 }
+
+/**
+ * Text, attachment(s), or resource(s) to be communicated to the recipient.
+ * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.payload}
+ */
+export interface CommunicationRequestPayload {}
 
 /**
  * CommunicationRequest
@@ -16007,7 +16844,7 @@ export interface CommunicationRequest extends DomainResource {
    * Text, attachment(s), or resource(s) to be communicated to the recipient.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.payload}
    */
-  payload?: Array<BackboneElement> | undefined;
+  payload?: Array<CommunicationRequestPayload> | undefined;
   _payload?: Element[] | undefined;
 
   /**
@@ -16094,6 +16931,12 @@ export interface CommunicationRequest extends DomainResource {
   subject?: Reference | undefined;
   _subject?: Element | undefined;
 }
+
+/**
+ * Information about how a resource is related to the compartment.
+ * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.resource}
+ */
+export interface CompartmentDefinitionResource {}
 
 /**
  * CompartmentDefinition
@@ -16208,7 +17051,7 @@ export interface CompartmentDefinition extends DomainResource {
    * Information about how a resource is related to the compartment.
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.resource}
    */
-  resource?: Array<BackboneElement> | undefined;
+  resource?: Array<CompartmentDefinitionResource> | undefined;
   _resource?: Element[] | undefined;
 
   /**
@@ -16288,6 +17131,36 @@ In some cases, the resource can no longer
 }
 
 /**
+ * A participant who has attested to the accuracy of the composition/document.
+ * Only list each attester once.
+ * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.attester}
+ */
+export interface CompositionAttester {}
+
+/**
+ * The clinical service, such as a colonoscopy or an appendectomy, being
+ * documented.
+ * The event needs to be consistent with the type element, though can provide
+ * further information if desired.
+ * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.event}
+ */
+export interface CompositionEvent {}
+
+/**
+ * Relationships that this composition has with other compositions or documents
+ * that already exist.
+ * A document is a version specific composition.
+ * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.relatesTo}
+ */
+export interface CompositionRelatesTo {}
+
+/**
+ * The root of the sections that make up the composition.
+ * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.section}
+ */
+export interface CompositionSection {}
+
+/**
  * Composition
  *
  * A set of healthcare-related information that is assembled together into a single
@@ -16310,7 +17183,7 @@ export interface Composition extends DomainResource {
    * Only list each attester once.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.attester}
    */
-  attester?: Array<BackboneElement> | undefined;
+  attester?: Array<CompositionAttester> | undefined;
   _attester?: Element[] | undefined;
 
   /**
@@ -16384,7 +17257,7 @@ export interface Composition extends DomainResource {
    * further information if desired.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.event}
    */
-  event?: Array<BackboneElement> | undefined;
+  event?: Array<CompositionEvent> | undefined;
   _event?: Element[] | undefined;
 
   /**
@@ -16403,14 +17276,14 @@ export interface Composition extends DomainResource {
    * A document is a version specific composition.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.relatesTo}
    */
-  relatesTo?: Array<BackboneElement> | undefined;
+  relatesTo?: Array<CompositionRelatesTo> | undefined;
   _relatesTo?: Element[] | undefined;
 
   /**
    * The root of the sections that make up the composition.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.section}
    */
-  section?: Array<BackboneElement> | undefined;
+  section?: Array<CompositionSection> | undefined;
   _section?: Element[] | undefined;
 
   /**
@@ -16467,6 +17340,49 @@ Some reporting work flows require that the original narrative of a
   type: CodeableConcept;
   _type?: Element | undefined;
 }
+
+/**
+ * A group of mappings that all have the same source and target system.
+ * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group}
+ */
+export interface ConceptMapGroup {}
+
+/**
+ * Mappings for an individual concept in the source to one or more concepts in the
+ * target.
+ * Generally, the ideal is that there would only be one mapping for each concept in
+ * the source value set, but a given concept may be mapped multiple times with
+ * different comments or dependencies.
+ * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element}
+ */
+export interface ConceptMapGroupElement {}
+
+/**
+ * A concept from the target value set that this concept maps to.
+ * Ideally there would only be one map, with equal or equivalent mapping. But
+ * multiple maps are allowed for several narrower options, or to assert that other
+ * concepts are unmatched.
+ * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element.target}
+ */
+export interface ConceptMapGroupElementTarget {}
+
+/**
+ * A set of additional dependencies for this mapping to hold. This mapping is only
+ * applicable if the specified element can be resolved, and it has the specified
+ * value.
+ * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element.target.dependsOn}
+ */
+export interface ConceptMapGroupElementTargetDependsOn {}
+
+/**
+ * What to do when there is no mapping for the source concept. "Unmapped" does not
+ * include codes that are unmatched, and the unmapped element is ignored in a code
+ * is specified to have equivalence = unmatched.
+ * This only applies if the source code has a system value that matches the system
+ * defined for the group.
+ * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.unmapped}
+ */
+export interface ConceptMapGroupUnmapped {}
 
 /**
  * ConceptMap
@@ -16540,7 +17456,7 @@ export interface ConceptMap extends DomainResource {
    * A group of mappings that all have the same source and target system.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group}
    */
-  group?: Array<BackboneElement> | undefined;
+  group?: Array<ConceptMapGroup> | undefined;
   _group?: Element[] | undefined;
 
   /**
@@ -16721,6 +17637,21 @@ In some cases, the resource can no longer
 }
 
 /**
+ * Supporting evidence / manifestations that are the basis of the Condition's
+ * verification status, such as evidence that confirmed or refuted the condition.
+ * The evidence may be a simple list of coded symptoms/manifestations, or
+ * references to observations or formal assessments, or both.
+ * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.evidence}
+ */
+export interface ConditionEvidence {}
+
+/**
+ * Clinical stage or grade of a condition. May include formal severity assessments.
+ * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.stage}
+ */
+export interface ConditionStage {}
+
+/**
  * Condition
  *
  * A clinical condition, problem, diagnosis, or other event, situation, issue, or
@@ -16880,7 +17811,7 @@ export interface Condition extends DomainResource {
    * references to observations or formal assessments, or both.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.evidence}
    */
-  evidence?: Array<BackboneElement> | undefined;
+  evidence?: Array<ConditionEvidence> | undefined;
   _evidence?: Element[] | undefined;
 
   /**
@@ -16985,7 +17916,7 @@ export interface Condition extends DomainResource {
    * Clinical stage or grade of a condition. May include formal severity assessments.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.stage}
    */
-  stage?: Array<BackboneElement> | undefined;
+  stage?: Array<ConditionStage> | undefined;
   _stage?: Element[] | undefined;
 
   /**
@@ -17010,6 +17941,40 @@ The data
   verificationStatus?: ConditionVerificationStatus | undefined;
   _verificationStatus?: Element | undefined;
 }
+
+/**
+ * The references to the policies that are included in this consent scope. Policies
+ * may be organizational, but are often defined jurisdictionally, or in law.
+ * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.policy}
+ */
+export interface ConsentPolicy {}
+
+/**
+ * An exception to the base policy of this consent. An exception can be an addition
+ * or removal of access permissions.
+ * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision}
+ */
+export interface ConsentProvision {}
+
+/**
+ * Who or what is controlled by this rule. Use group to identify a set of actors by
+ * some property they share (e.g. 'admitting officers').
+ * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision.actor}
+ */
+export interface ConsentProvisionActor {}
+
+/**
+ * The resources controlled by this rule if specific resources are referenced.
+ * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision.data}
+ */
+export interface ConsentProvisionData {}
+
+/**
+ * Whether a treatment instruction (e.g. artificial respiration yes or no) was
+ * verified with the patient, his/her family or another authorized person.
+ * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.verification}
+ */
+export interface ConsentVerification {}
 
 /**
  * Consent
@@ -17084,7 +18049,7 @@ export interface Consent extends DomainResource {
    * may be organizational, but are often defined jurisdictionally, or in law.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.policy}
    */
-  policy?: Array<BackboneElement> | undefined;
+  policy?: Array<ConsentPolicy> | undefined;
   _policy?: Element[] | undefined;
 
   /**
@@ -17101,7 +18066,7 @@ export interface Consent extends DomainResource {
    * or removal of access permissions.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision}
    */
-  provision?: BackboneElement | undefined;
+  provision?: ConsentProvision | undefined;
   _provision?: Element | undefined;
 
   /**
@@ -17153,7 +18118,7 @@ export interface Consent extends DomainResource {
    * verified with the patient, his/her family or another authorized person.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.verification}
    */
-  verification?: Array<BackboneElement> | undefined;
+  verification?: Array<ConsentVerification> | undefined;
   _verification?: Element[] | undefined;
 }
 
@@ -17235,6 +18200,128 @@ export interface ContactPoint extends Element {
 }
 
 /**
+ * Precusory content developed with a focus and intent of supporting the formation
+ * a Contract instance, which may be associated with and transformable into a
+ * Contract.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.contentDefinition}
+ */
+export interface ContractContentDefinition {}
+
+/**
+ * The "patient friendly language" versionof the Contract in whole or in parts.
+ * "Patient friendly language" means the representation of the Contract and
+ * Contract Provisions in a manner that is readily accessible and understandable by
+ * a layperson in accordance with best practices for communication styles that
+ * ensure that those agreeing to or signing the Contract understand the roles,
+ * actions, obligations, responsibilities, and implication of the agreement.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.friendly}
+ */
+export interface ContractFriendly {}
+
+/**
+ * List of Legal expressions or representations of this Contract.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.legal}
+ */
+export interface ContractLegal {}
+
+/**
+ * List of Computable Policy Rule Language Representations of this Contract.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.rule}
+ */
+export interface ContractRule {}
+
+/**
+ * Parties with legal standing in the Contract, including the principal parties,
+ * the grantor(s) and grantee(s), which are any person or organization bound by the
+ * contract, and any ancillary parties, which facilitate the execution of the
+ * contract such as a notary or witness.
+ * Signers who are principal parties to the contract are bound by the
+ * Contract.activity related to the Contract.topic, and the Contract.term(s), which
+ * either extend or restrict the overall action on the topic by, for example,
+ * stipulating specific policies or obligations constraining actions, action
+ * reason, or agents with respect to some or all of the topic.
+For example,
+ * specifying how policies or obligations shall constrain actions and action
+ * reasons permitted or denied on all or a subset of the Contract.topic (e.g., all
+ * or a portion of property being transferred by the contract), agents (e.g., who
+ * can resell, assign interests, or alter the property being transferred by the
+ * contract), actions, and action reasons; or with respect to Contract.terms,
+ * stipulating, extending, or limiting the Contract.period of applicability or
+ * valuation of items under consideration.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.signer}
+ */
+export interface ContractSigner {}
+
+/**
+ * One or more Contract Provisions, which may be related and conveyed as a group,
+ * and may contain nested groups.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term}
+ */
+export interface ContractTerm {}
+
+/**
+ * An actor taking a role in an activity for which it can be assigned some degree
+ * of responsibility for the activity taking place.
+ * Several agents may be associated (i.e. has some responsibility for an activity)
+ * with an activity and vice-versa.
+For example, in cases of actions initiated by
+ * one user for other users, or in events that involve more than one user, hardware
+ * device, software, or system process. However, only one user may be the
+ * initiator/requestor for the event.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.action}
+ */
+export interface ContractTermAction {}
+
+/**
+ * Entity of the action.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.action.subject}
+ */
+export interface ContractTermActionSubject {}
+
+/**
+ * Contract Term Asset List.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset}
+ */
+export interface ContractTermAsset {}
+
+/**
+ * Circumstance of the asset.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.context}
+ */
+export interface ContractTermAssetContext {}
+
+/**
+ * Contract Valued Item List.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.valuedItem}
+ */
+export interface ContractTermAssetValuedItem {}
+
+/**
+ * The matter of concern in the context of this provision of the agrement.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer}
+ */
+export interface ContractTermOffer {}
+
+/**
+ * Response to offer text.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.answer}
+ */
+export interface ContractTermOfferAnswer {}
+
+/**
+ * Offer Recipient.
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.party}
+ */
+export interface ContractTermOfferParty {}
+
+/**
+ * Security labels that protect the handling of information about the term and its
+ * elements, which may be specifically identified..
+ * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.securityLabel}
+ */
+export interface ContractTermSecurityLabel {}
+
+/**
  * Contract
  *
  * Legally enforceable, formally recorded unilateral or bilateral directive i.e., a
@@ -17285,7 +18372,7 @@ export interface Contract extends DomainResource {
    * Contract.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.contentDefinition}
    */
-  contentDefinition?: BackboneElement | undefined;
+  contentDefinition?: ContractContentDefinition | undefined;
   _contentDefinition?: Element | undefined;
 
   /**
@@ -17323,7 +18410,7 @@ export interface Contract extends DomainResource {
    * actions, obligations, responsibilities, and implication of the agreement.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.friendly}
    */
-  friendly?: Array<BackboneElement> | undefined;
+  friendly?: Array<ContractFriendly> | undefined;
   _friendly?: Element[] | undefined;
 
   /**
@@ -17361,7 +18448,7 @@ export interface Contract extends DomainResource {
    * List of Legal expressions or representations of this Contract.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.legal}
    */
-  legal?: Array<BackboneElement> | undefined;
+  legal?: Array<ContractLegal> | undefined;
   _legal?: Element[] | undefined;
 
   /**
@@ -17421,7 +18508,7 @@ export interface Contract extends DomainResource {
    * List of Computable Policy Rule Language Representations of this Contract.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.rule}
    */
-  rule?: Array<BackboneElement> | undefined;
+  rule?: Array<ContractRule> | undefined;
   _rule?: Element[] | undefined;
 
   /**
@@ -17452,7 +18539,7 @@ For example,
  * valuation of items under consideration.
  * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.signer}
  */
-  signer?: Array<BackboneElement> | undefined;
+  signer?: Array<ContractSigner> | undefined;
   _signer?: Element[] | undefined;
 
   /**
@@ -17518,7 +18605,7 @@ In many cases, the
    * and may contain nested groups.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term}
    */
-  term?: Array<BackboneElement> | undefined;
+  term?: Array<ContractTerm> | undefined;
   _term?: Element[] | undefined;
 
   /**
@@ -17624,6 +18711,30 @@ export interface Contributor extends Element {
 export interface Count extends Quantity {}
 
 /**
+ * A suite of underwriter specific classifiers.
+ * For example may be used to identify a class of coverage or employer group,
+ * Policy, Plan.
+ * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.class}
+ */
+export interface CoverageClass {}
+
+/**
+ * A suite of codes indicating the cost category and associated amount which have
+ * been detailed in the policy and may have been  included on the health card.
+ * For example by knowing the patient visit co-pay, the provider can collect the
+ * amount prior to undertaking treatment.
+ * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.costToBeneficiary}
+ */
+export interface CoverageCostToBeneficiary {}
+
+/**
+ * A suite of codes indicating exceptions or reductions to patient costs and their
+ * effective periods.
+ * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.costToBeneficiary.exception}
+ */
+export interface CoverageCostToBeneficiaryException {}
+
+/**
  * Coverage
  *
  * Financial instrument which may be used to reimburse or pay for health care
@@ -17648,7 +18759,7 @@ export interface Coverage extends DomainResource {
    * Policy, Plan.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.class}
    */
-  class?: Array<BackboneElement> | undefined;
+  class?: Array<CoverageClass> | undefined;
   _class?: Element[] | undefined;
 
   /**
@@ -17665,7 +18776,7 @@ export interface Coverage extends DomainResource {
    * amount prior to undertaking treatment.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.costToBeneficiary}
    */
-  costToBeneficiary?: Array<BackboneElement> | undefined;
+  costToBeneficiary?: Array<CoverageCostToBeneficiary> | undefined;
   _costToBeneficiary?: Element[] | undefined;
 
   /**
@@ -17793,6 +18904,42 @@ For selfpay it may provide multiple paying
 }
 
 /**
+ * Financial instruments for reimbursement for the health care products and
+ * services.
+ * All insurance coverages for the patient which may be applicable for
+ * reimbursement, of the products and services listed in the claim, are typically
+ * provided in the claim to allow insurers to confirm the ordering of the insurance
+ * coverages relative to local 'coordination of benefit' rules. One coverage (and
+ * only one) with 'focal=true' is to be used in the adjudication of this claim.
+ * Coverages appearing before the focal Coverage in the list, and where
+ * 'subrogation=false', should provide a reference to the ClaimResponse containing
+ * the adjudication results of the prior claim.
+ * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.insurance}
+ */
+export interface CoverageEligibilityRequestInsurance {}
+
+/**
+ * Service categories or billable services for which benefit details and/or an
+ * authorization prior to service delivery may be required by the payor.
+ * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.item}
+ */
+export interface CoverageEligibilityRequestItem {}
+
+/**
+ * Patient diagnosis for which care is sought.
+ * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.item.diagnosis}
+ */
+export interface CoverageEligibilityRequestItemDiagnosis {}
+
+/**
+ * Additional information codes regarding exceptions, special considerations, the
+ * condition, situation, prior or concurrent issues.
+ * Often there are multiple jurisdiction specific valuesets which are required.
+ * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.supportingInfo}
+ */
+export interface CoverageEligibilityRequestSupportingInfo {}
+
+/**
  * CoverageEligibilityRequest
  *
  * The CoverageEligibilityRequest provides patient and insurance coverage
@@ -17847,7 +18994,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * the adjudication results of the prior claim.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.insurance}
    */
-  insurance?: Array<BackboneElement> | undefined;
+  insurance?: Array<CoverageEligibilityRequestInsurance> | undefined;
   _insurance?: Element[] | undefined;
 
   /**
@@ -17863,7 +19010,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * authorization prior to service delivery may be required by the payor.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.item}
    */
-  item?: Array<BackboneElement> | undefined;
+  item?: Array<CoverageEligibilityRequestItem> | undefined;
   _item?: Element[] | undefined;
 
   /**
@@ -17936,9 +19083,43 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * Often there are multiple jurisdiction specific valuesets which are required.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.supportingInfo}
    */
-  supportingInfo?: Array<BackboneElement> | undefined;
+  supportingInfo?: Array<CoverageEligibilityRequestSupportingInfo> | undefined;
   _supportingInfo?: Element[] | undefined;
 }
+
+/**
+ * Errors encountered during the processing of the request.
+ * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.error}
+ */
+export interface CoverageEligibilityResponseError {}
+
+/**
+ * Financial instruments for reimbursement for the health care products and
+ * services.
+ * All insurance coverages for the patient which may be applicable for
+ * reimbursement, of the products and services listed in the claim, are typically
+ * provided in the claim to allow insurers to confirm the ordering of the insurance
+ * coverages relative to local 'coordination of benefit' rules. One coverage (and
+ * only one) with 'focal=true' is to be used in the adjudication of this claim.
+ * Coverages appearing before the focal Coverage in the list, and where
+ * 'subrogation=false', should provide a reference to the ClaimResponse containing
+ * the adjudication results of the prior claim.
+ * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance}
+ */
+export interface CoverageEligibilityResponseInsurance {}
+
+/**
+ * Benefits and optionally current balances, and authorization details by category
+ * or service.
+ * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance.item}
+ */
+export interface CoverageEligibilityResponseInsuranceItem {}
+
+/**
+ * Benefits used to date.
+ * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance.item.benefit}
+ */
+export interface CoverageEligibilityResponseInsuranceItemBenefit {}
 
 /**
  * CoverageEligibilityResponse
@@ -17969,7 +19150,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * Errors encountered during the processing of the request.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.error}
    */
-  error?: Array<BackboneElement> | undefined;
+  error?: Array<CoverageEligibilityResponseError> | undefined;
   _error?: Element[] | undefined;
 
   /**
@@ -18000,7 +19181,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * the adjudication results of the prior claim.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance}
    */
-  insurance?: Array<BackboneElement> | undefined;
+  insurance?: Array<CoverageEligibilityResponseInsurance> | undefined;
   _insurance?: Element[] | undefined;
 
   /**
@@ -18428,6 +19609,22 @@ Unknown
 }
 
 /**
+ * Supporting evidence or manifestations that provide the basis for identifying the
+ * detected issue such as a GuidanceResponse or MeasureReport.
+ * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.evidence}
+ */
+export interface DetectedIssueEvidence {}
+
+/**
+ * Indicates an action that has been taken or is committed to reduce or eliminate
+ * the likelihood of the risk identified by the detected issue from manifesting.
+ * Can also reflect an observation of known mitigating factors that may
+ * reduce/eliminate the need for any action.
+ * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.mitigation}
+ */
+export interface DetectedIssueMitigation {}
+
+/**
  * DetectedIssue
  *
  * Indicates an actual or potential clinical issue with or between one or more
@@ -18468,7 +19665,7 @@ export interface DetectedIssue extends DomainResource {
    * detected issue such as a GuidanceResponse or MeasureReport.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.evidence}
    */
-  evidence?: Array<BackboneElement> | undefined;
+  evidence?: Array<DetectedIssueEvidence> | undefined;
   _evidence?: Element[] | undefined;
 
   /**
@@ -18510,7 +19707,7 @@ export interface DetectedIssue extends DomainResource {
    * reduce/eliminate the need for any action.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.mitigation}
    */
-  mitigation?: Array<BackboneElement> | undefined;
+  mitigation?: Array<DetectedIssueMitigation> | undefined;
   _mitigation?: Element[] | undefined;
 
   /**
@@ -18549,6 +19746,47 @@ export interface DetectedIssue extends DomainResource {
 }
 
 /**
+ * This represents the manufacturer's name of the device as provided by the device,
+ * from a UDI label, or by a person describing the Device.  This typically would be
+ * used when a person provides the name(s) or when the device represents one of the
+ * names available from DeviceDefinition.
+ * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.deviceName}
+ */
+export interface DeviceDeviceName {}
+
+/**
+ * The actual configuration settings of a device as it actually operates, e.g.,
+ * regulation status, time properties.
+ * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.property}
+ */
+export interface DeviceProperty {}
+
+/**
+ * The capabilities supported on a  device, the standards to which the device
+ * conforms for a particular purpose, and used for the communication.
+ * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.specialization}
+ */
+export interface DeviceSpecialization {}
+
+/**
+ * Unique device identifier (UDI) assigned to device label or package.  Note that
+ * the Device may include multiple udiCarriers as it either may include just the
+ * udiCarrier for the jurisdiction it is sold, or for multiple jurisdictions it
+ * could have been sold.
+ * UDI may identify an unique instance of a device, or it may only identify the
+ * type of the device.  See [UDI mappings](device-mappings.html#udi) for a complete
+ * mapping of UDI parts to Device.
+ * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.udiCarrier}
+ */
+export interface DeviceUdiCarrier {}
+
+/**
+ * The actual design of the device or software version running on the device.
+ * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.version}
+ */
+export interface DeviceVersion {}
+
+/**
  * Device
  *
  * A type of a manufactured item that is used in the provision of healthcare
@@ -18583,7 +19821,7 @@ export interface Device extends DomainResource {
    * names available from DeviceDefinition.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.deviceName}
    */
-  deviceName?: Array<BackboneElement> | undefined;
+  deviceName?: Array<DeviceDeviceName> | undefined;
   _deviceName?: Element[] | undefined;
 
   /**
@@ -18694,7 +19932,7 @@ export interface Device extends DomainResource {
    * regulation status, time properties.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.property}
    */
-  property?: Array<BackboneElement> | undefined;
+  property?: Array<DeviceProperty> | undefined;
   _property?: Element[] | undefined;
 
   /**
@@ -18718,7 +19956,7 @@ export interface Device extends DomainResource {
    * conforms for a particular purpose, and used for the communication.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.specialization}
    */
-  specialization?: Array<BackboneElement> | undefined;
+  specialization?: Array<DeviceSpecialization> | undefined;
   _specialization?: Element[] | undefined;
 
   /**
@@ -18756,7 +19994,7 @@ export interface Device extends DomainResource {
    * mapping of UDI parts to Device.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.udiCarrier}
    */
-  udiCarrier?: Array<BackboneElement> | undefined;
+  udiCarrier?: Array<DeviceUdiCarrier> | undefined;
   _udiCarrier?: Element[] | undefined;
 
   /**
@@ -18772,9 +20010,50 @@ export interface Device extends DomainResource {
    * The actual design of the device or software version running on the device.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.version}
    */
-  version?: Array<BackboneElement> | undefined;
+  version?: Array<DeviceVersion> | undefined;
   _version?: Element[] | undefined;
 }
+
+/**
+ * Device capabilities.
+ * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.capability}
+ */
+export interface DeviceDefinitionCapability {}
+
+/**
+ * A name given to the device to identify it.
+ * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.deviceName}
+ */
+export interface DeviceDefinitionDeviceName {}
+
+/**
+ * A substance used to create the material(s) of which the device is made.
+ * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.material}
+ */
+export interface DeviceDefinitionMaterial {}
+
+/**
+ * The actual configuration settings of a device as it actually operates, e.g.,
+ * regulation status, time properties.
+ * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.property}
+ */
+export interface DeviceDefinitionProperty {}
+
+/**
+ * The capabilities supported on a  device, the standards to which the device
+ * conforms for a particular purpose, and used for the communication.
+ * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.specialization}
+ */
+export interface DeviceDefinitionSpecialization {}
+
+/**
+ * Unique device identifier (UDI) assigned to device label or package.  Note that
+ * the Device may include multiple udiCarriers as it either may include just the
+ * udiCarrier for the jurisdiction it is sold, or for multiple jurisdictions it
+ * could have been sold.
+ * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.udiDeviceIdentifier}
+ */
+export interface DeviceDefinitionUdiDeviceIdentifier {}
 
 /**
  * DeviceDefinition
@@ -18791,7 +20070,7 @@ export interface DeviceDefinition extends DomainResource {
    * Device capabilities.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.capability}
    */
-  capability?: Array<BackboneElement> | undefined;
+  capability?: Array<DeviceDefinitionCapability> | undefined;
   _capability?: Element[] | undefined;
 
   /**
@@ -18807,7 +20086,7 @@ export interface DeviceDefinition extends DomainResource {
    * A name given to the device to identify it.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.deviceName}
    */
-  deviceName?: Array<BackboneElement> | undefined;
+  deviceName?: Array<DeviceDefinitionDeviceName> | undefined;
   _deviceName?: Element[] | undefined;
 
   /**
@@ -18844,7 +20123,7 @@ export interface DeviceDefinition extends DomainResource {
    * A substance used to create the material(s) of which the device is made.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.material}
    */
-  material?: Array<BackboneElement> | undefined;
+  material?: Array<DeviceDefinitionMaterial> | undefined;
   _material?: Element[] | undefined;
 
   /**
@@ -18896,7 +20175,7 @@ export interface DeviceDefinition extends DomainResource {
    * regulation status, time properties.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.property}
    */
-  property?: Array<BackboneElement> | undefined;
+  property?: Array<DeviceDefinitionProperty> | undefined;
   _property?: Element[] | undefined;
 
   /**
@@ -18927,7 +20206,7 @@ export interface DeviceDefinition extends DomainResource {
    * conforms for a particular purpose, and used for the communication.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.specialization}
    */
-  specialization?: Array<BackboneElement> | undefined;
+  specialization?: Array<DeviceDefinitionSpecialization> | undefined;
   _specialization?: Element[] | undefined;
 
   /**
@@ -18944,7 +20223,7 @@ export interface DeviceDefinition extends DomainResource {
    * could have been sold.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.udiDeviceIdentifier}
    */
-  udiDeviceIdentifier?: Array<BackboneElement> | undefined;
+  udiDeviceIdentifier?: Array<DeviceDefinitionUdiDeviceIdentifier> | undefined;
   _udiDeviceIdentifier?: Element[] | undefined;
 
   /**
@@ -18965,6 +20244,13 @@ export interface DeviceDefinition extends DomainResource {
 }
 
 /**
+ * Describes the calibrations that have been performed or that are required to be
+ * performed.
+ * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.calibration}
+ */
+export interface DeviceMetricCalibration {}
+
+/**
  * DeviceMetric
  *
  * Describes a measurement, calculation or setting capability of a medical device.
@@ -18979,7 +20265,7 @@ export interface DeviceMetric extends DomainResource {
    * performed.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.calibration}
    */
-  calibration?: Array<BackboneElement> | undefined;
+  calibration?: Array<DeviceMetricCalibration> | undefined;
   _calibration?: Element[] | undefined;
 
   /**
@@ -19075,6 +20361,13 @@ export interface DeviceMetric extends DomainResource {
   unit?: CodeableConcept | undefined;
   _unit?: Element | undefined;
 }
+
+/**
+ * Specific parameters for the ordered item.  For example, the prism value for
+ * lenses.
+ * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.parameter}
+ */
+export interface DeviceRequestParameter {}
 
 /**
  * DeviceRequest
@@ -19221,7 +20514,7 @@ export interface DeviceRequest extends DomainResource {
    * lenses.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.parameter}
    */
-  parameter?: Array<BackboneElement> | undefined;
+  parameter?: Array<DeviceRequestParameter> | undefined;
   _parameter?: Element[] | undefined;
 
   /**
@@ -19458,6 +20751,14 @@ This element is labeled as a modifier because the
 }
 
 /**
+ * A list of key images associated with this report. The images are generally
+ * created during the diagnostic process, and may be directly of the patient, or of
+ * treated specimens (i.e. slides of interest).
+ * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.media}
+ */
+export interface DiagnosticReportMedia {}
+
+/**
  * DiagnosticReport
  *
  * The findings and interpretation of diagnostic  tests performed on patients,
@@ -19600,7 +20901,7 @@ export interface DiagnosticReport extends DomainResource {
    * treated specimens (i.e. slides of interest).
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.media}
    */
-  media?: Array<BackboneElement> | undefined;
+  media?: Array<DiagnosticReportMedia> | undefined;
   _media?: Element[] | undefined;
 
   /**
@@ -19677,6 +20978,13 @@ export interface DiagnosticReport extends DomainResource {
  * @see {@link http://hl7.org/fhir/R4B/Distance.html}
  */
 export interface Distance extends Quantity {}
+
+/**
+ * Related identifiers or resources associated with the DocumentManifest.
+ * May be identifiers or resources that caused the DocumentManifest to be created.
+ * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.related}
+ */
+export interface DocumentManifestRelated {}
 
 /**
  * DocumentManifest
@@ -19766,7 +21074,7 @@ export interface DocumentManifest extends DomainResource {
    * May be identifiers or resources that caused the DocumentManifest to be created.
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.related}
    */
-  related?: Array<BackboneElement> | undefined;
+  related?: Array<DocumentManifestRelated> | undefined;
   _related?: Element[] | undefined;
 
   /**
@@ -19810,6 +21118,30 @@ export interface DocumentManifest extends DomainResource {
   type?: CodeableConcept | undefined;
   _type?: Element | undefined;
 }
+
+/**
+ * The document and format referenced. There may be multiple content element
+ * repetitions, each with a different format.
+ * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.content}
+ */
+export interface DocumentReferenceContent {}
+
+/**
+ * The clinical context in which the document was prepared.
+ * These values are primarily added to help with searching for interesting/relevant
+ * documents.
+ * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.context}
+ */
+export interface DocumentReferenceContext {}
+
+/**
+ * Relationships that this document has with other document references that already
+ * exist.
+ * This element is labeled as a modifier because documents that append to other
+ * documents are incomplete on their own.
+ * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.relatesTo}
+ */
+export interface DocumentReferenceRelatesTo {}
 
 /**
  * DocumentReference
@@ -19861,7 +21193,7 @@ export interface DocumentReference extends DomainResource {
    * repetitions, each with a different format.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.content}
    */
-  content: Array<BackboneElement>;
+  content: Array<DocumentReferenceContent>;
   _content?: Element[] | undefined;
 
   /**
@@ -19870,7 +21202,7 @@ export interface DocumentReference extends DomainResource {
    * documents.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.context}
    */
-  context?: BackboneElement | undefined;
+  context?: DocumentReferenceContext | undefined;
   _context?: Element | undefined;
 
   /**
@@ -19937,7 +21269,7 @@ export interface DocumentReference extends DomainResource {
    * documents are incomplete on their own.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.relatesTo}
    */
-  relatesTo?: Array<BackboneElement> | undefined;
+  relatesTo?: Array<DocumentReferenceRelatesTo> | undefined;
   _relatesTo?: Element[] | undefined;
 
   /**
@@ -23842,6 +25174,61 @@ When
 }
 
 /**
+ * The class history permits the tracking of the encounters transitions without
+ * needing to go  through the resource history.  This would be used for a case
+ * where an admission starts of as an emergency encounter, then transitions into an
+ * inpatient scenario. Doing this and not restarting a new encounter ensures that
+ * any lab/diagnostic results can more easily follow the patient and not require
+ * re-processing and not get lost or cancelled during a kind of discharge from
+ * emergency to inpatient.
+ * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.classHistory}
+ */
+export interface EncounterClassHistory {}
+
+/**
+ * The list of diagnosis relevant to this encounter.
+ * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.diagnosis}
+ */
+export interface EncounterDiagnosis {}
+
+/**
+ * Details about the admission to a healthcare service.
+ * An Encounter may cover more than just the inpatient stay. Contexts such as
+ * outpatients, community clinics, and aged care facilities are also included.
+
+The
+ * duration recorded in the period of this encounter covers the entire scope of
+ * this hospitalization record.
+ * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.hospitalization}
+ */
+export interface EncounterHospitalization {}
+
+/**
+ * List of locations where  the patient has been during this encounter.
+ * Virtual encounters can be recorded in the Encounter by specifying a location
+ * reference to a location of type "kind" such as "client's home" and an
+ * encounter.class = "virtual".
+ * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.location}
+ */
+export interface EncounterLocation {}
+
+/**
+ * The list of people responsible for providing the service.
+ * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.participant}
+ */
+export interface EncounterParticipant {}
+
+/**
+ * The status history permits the encounter resource to contain the status history
+ * without needing to read through the historical versions of the resource, or even
+ * have the server store them.
+ * The current status is always found in the current version of the resource, not
+ * the status history.
+ * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.statusHistory}
+ */
+export interface EncounterStatusHistory {}
+
+/**
  * Encounter
  *
  * An interaction between a patient and healthcare provider(s) for the purpose of
@@ -23895,14 +25282,14 @@ export interface Encounter extends DomainResource {
    * emergency to inpatient.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.classHistory}
    */
-  classHistory?: Array<BackboneElement> | undefined;
+  classHistory?: Array<EncounterClassHistory> | undefined;
   _classHistory?: Element[] | undefined;
 
   /**
    * The list of diagnosis relevant to this encounter.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.diagnosis}
    */
-  diagnosis?: Array<BackboneElement> | undefined;
+  diagnosis?: Array<EncounterDiagnosis> | undefined;
   _diagnosis?: Element[] | undefined;
 
   /**
@@ -23928,7 +25315,7 @@ The
  * this hospitalization record.
  * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.hospitalization}
  */
-  hospitalization?: BackboneElement | undefined;
+  hospitalization?: EncounterHospitalization | undefined;
   _hospitalization?: Element | undefined;
 
   /**
@@ -23955,14 +25342,14 @@ The
    * encounter.class = "virtual".
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.location}
    */
-  location?: Array<BackboneElement> | undefined;
+  location?: Array<EncounterLocation> | undefined;
   _location?: Element[] | undefined;
 
   /**
    * The list of people responsible for providing the service.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.participant}
    */
-  participant?: Array<BackboneElement> | undefined;
+  participant?: Array<EncounterParticipant> | undefined;
   _participant?: Element[] | undefined;
 
   /**
@@ -24052,7 +25439,7 @@ Refer to the Notes section in the Patient resource for further
    * the status history.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.statusHistory}
    */
-  statusHistory?: Array<BackboneElement> | undefined;
+  statusHistory?: Array<EncounterStatusHistory> | undefined;
   _statusHistory?: Element[] | undefined;
 
   /**
@@ -24350,6 +25737,19 @@ export interface EnrollmentResponse extends DomainResource {
 }
 
 /**
+ * The list of diagnosis relevant to this episode of care.
+ * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.diagnosis}
+ */
+export interface EpisodeOfCareDiagnosis {}
+
+/**
+ * The history of statuses that the EpisodeOfCare has been through (without
+ * requiring processing the history of the resource).
+ * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.statusHistory}
+ */
+export interface EpisodeOfCareStatusHistory {}
+
+/**
  * EpisodeOfCare
  *
  * An association between a patient and an organization / healthcare provider(s)
@@ -24381,7 +25781,7 @@ export interface EpisodeOfCare extends DomainResource {
    * The list of diagnosis relevant to this episode of care.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.diagnosis}
    */
-  diagnosis?: Array<BackboneElement> | undefined;
+  diagnosis?: Array<EpisodeOfCareDiagnosis> | undefined;
   _diagnosis?: Element[] | undefined;
 
   /**
@@ -24439,7 +25839,7 @@ export interface EpisodeOfCare extends DomainResource {
    * requiring processing the history of the resource).
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.statusHistory}
    */
-  statusHistory?: Array<BackboneElement> | undefined;
+  statusHistory?: Array<EpisodeOfCareStatusHistory> | undefined;
   _statusHistory?: Element[] | undefined;
 
   /**
@@ -25017,6 +26417,49 @@ In some cases, the resource can no longer
 }
 
 /**
+ * Assessment of certainty, confidence in the estimates, or quality of the
+ * evidence.
+ * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.certainty}
+ */
+export interface EvidenceCertainty {}
+
+/**
+ * Values and parameters for a single statistic.
+ * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic}
+ */
+export interface EvidenceStatistic {}
+
+/**
+ * A statistical attribute of the statistic such as a measure of heterogeneity.
+ * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.attributeEstimate}
+ */
+export interface EvidenceStatisticAttributeEstimate {}
+
+/**
+ * A component of the method to generate the statistic.
+ * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.modelCharacteristic}
+ */
+export interface EvidenceStatisticModelCharacteristic {}
+
+/**
+ * A variable adjusted for in the adjusted analysis.
+ * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.modelCharacteristic.variable}
+ */
+export interface EvidenceStatisticModelCharacteristicVariable {}
+
+/**
+ * Number of samples in the statistic.
+ * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.sampleSize}
+ */
+export interface EvidenceStatisticSampleSize {}
+
+/**
+ * Evidence variable such as population, exposure, or outcome.
+ * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.variableDefinition}
+ */
+export interface EvidenceVariableDefinition {}
+
+/**
  * Evidence
  *
  * The Evidence Resource provides a machine-interpretable expression of an evidence
@@ -25062,7 +26505,7 @@ export interface Evidence extends DomainResource {
    * evidence.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.certainty}
    */
-  certainty?: Array<BackboneElement> | undefined;
+  certainty?: Array<EvidenceCertainty> | undefined;
   _certainty?: Element[] | undefined;
 
   /**
@@ -25205,7 +26648,7 @@ export interface Evidence extends DomainResource {
    * Values and parameters for a single statistic.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic}
    */
-  statistic?: Array<BackboneElement> | undefined;
+  statistic?: Array<EvidenceStatistic> | undefined;
   _statistic?: Element[] | undefined;
 
   /**
@@ -25272,7 +26715,7 @@ export interface Evidence extends DomainResource {
    * Evidence variable such as population, exposure, or outcome.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.variableDefinition}
    */
-  variableDefinition: Array<BackboneElement>;
+  variableDefinition: Array<EvidenceVariableDefinition>;
   _variableDefinition?: Element[] | undefined;
 
   /**
@@ -25290,6 +26733,34 @@ export interface Evidence extends DomainResource {
   version?: string | undefined;
   _version?: Element | undefined;
 }
+
+/**
+ * Relationships that this composition has with other compositions or documents
+ * that already exist.
+ * A document is a version specific composition.
+ * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.relatesTo}
+ */
+export interface EvidenceReportRelatesTo {}
+
+/**
+ * The root of the sections that make up the composition.
+ * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.section}
+ */
+export interface EvidenceReportSection {}
+
+/**
+ * Specifies the subject or focus of the report. Answers "What is this report
+ * about?".
+ * May be used as an expression for search queries and search results
+ * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.subject}
+ */
+export interface EvidenceReportSubject {}
+
+/**
+ * Characteristic.
+ * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.subject.characteristic}
+ */
+export interface EvidenceReportSubjectCharacteristic {}
 
 /**
  * EvidenceReport
@@ -25422,7 +26893,7 @@ export interface EvidenceReport extends DomainResource {
    * A document is a version specific composition.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.relatesTo}
    */
-  relatesTo?: Array<BackboneElement> | undefined;
+  relatesTo?: Array<EvidenceReportRelatesTo> | undefined;
   _relatesTo?: Element[] | undefined;
 
   /**
@@ -25440,7 +26911,7 @@ export interface EvidenceReport extends DomainResource {
    * The root of the sections that make up the composition.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.section}
    */
-  section?: Array<BackboneElement> | undefined;
+  section?: Array<EvidenceReportSection> | undefined;
   _section?: Element[] | undefined;
 
   /**
@@ -25458,7 +26929,7 @@ export interface EvidenceReport extends DomainResource {
    * May be used as an expression for search queries and search results
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.subject}
    */
-  subject: BackboneElement;
+  subject: EvidenceReportSubject;
   _subject?: Element | undefined;
 
   /**
@@ -25498,6 +26969,30 @@ export interface EvidenceReport extends DomainResource {
 }
 
 /**
+ * A grouping (or set of values) described along with other groupings to specify
+ * the set of groupings allowed for the variable.
+ * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.category}
+ */
+export interface EvidenceVariableCategory {}
+
+/**
+ * A characteristic that defines the members of the evidence element. Multiple
+ * characteristics are applied with "and" semantics.
+ * Characteristics can be defined flexibly to accommodate different use cases for
+ * membership criteria, ranging from simple codes, all the way to using an
+ * expression language to express the criteria.
+ * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristic}
+ */
+export interface EvidenceVariableCharacteristic {}
+
+/**
+ * Indicates duration, period, or point of observation from the participant's study
+ * entry.
+ * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristic.timeFromStart}
+ */
+export interface EvidenceVariableCharacteristicTimeFromStart {}
+
+/**
  * EvidenceVariable
  *
  * The EvidenceVariable resource describes an element that knowledge (Evidence) is
@@ -25532,7 +27027,7 @@ export interface EvidenceVariable extends DomainResource {
    * the set of groupings allowed for the variable.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.category}
    */
-  category?: Array<BackboneElement> | undefined;
+  category?: Array<EvidenceVariableCategory> | undefined;
   _category?: Element[] | undefined;
 
   /**
@@ -25543,7 +27038,7 @@ export interface EvidenceVariable extends DomainResource {
    * expression language to express the criteria.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristic}
    */
-  characteristic?: Array<BackboneElement> | undefined;
+  characteristic?: Array<EvidenceVariableCharacteristic> | undefined;
   _characteristic?: Element[] | undefined;
 
   /**
@@ -25784,6 +27279,56 @@ In some cases, the resource can no longer
 }
 
 /**
+ * Actor participating in the resource.
+ * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.actor}
+ */
+export interface ExampleScenarioActor {}
+
+/**
+ * Each resource and each version that is present in the workflow.
+ * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.instance}
+ */
+export interface ExampleScenarioInstance {}
+
+/**
+ * Resources contained in the instance (e.g. the observations contained in a
+ * bundle).
+ * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.instance.containedInstance}
+ */
+export interface ExampleScenarioInstanceContainedInstance {}
+
+/**
+ * A specific version of the resource.
+ * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.instance.version}
+ */
+export interface ExampleScenarioInstanceVersion {}
+
+/**
+ * Each major process - a group of operations.
+ * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process}
+ */
+export interface ExampleScenarioProcess {}
+
+/**
+ * Each step of the process.
+ * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step}
+ */
+export interface ExampleScenarioProcessStep {}
+
+/**
+ * Indicates an alternative step that can be taken instead of the operations on the
+ * base step in exceptional/atypical circumstances.
+ * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step.alternative}
+ */
+export interface ExampleScenarioProcessStepAlternative {}
+
+/**
+ * Each interaction or action.
+ * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step.operation}
+ */
+export interface ExampleScenarioProcessStepOperation {}
+
+/**
  * ExampleScenario
  *
  * Example of workflow instance.
@@ -25797,7 +27342,7 @@ export interface ExampleScenario extends DomainResource {
    * Actor participating in the resource.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.actor}
    */
-  actor?: Array<BackboneElement> | undefined;
+  actor?: Array<ExampleScenarioActor> | undefined;
   _actor?: Element[] | undefined;
 
   /**
@@ -25861,7 +27406,7 @@ export interface ExampleScenario extends DomainResource {
    * Each resource and each version that is present in the workflow.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.instance}
    */
-  instance?: Array<BackboneElement> | undefined;
+  instance?: Array<ExampleScenarioInstance> | undefined;
   _instance?: Element[] | undefined;
 
   /**
@@ -25889,7 +27434,7 @@ export interface ExampleScenario extends DomainResource {
    * Each major process - a group of operations.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process}
    */
-  process?: Array<BackboneElement> | undefined;
+  process?: Array<ExampleScenarioProcess> | undefined;
   _process?: Element[] | undefined;
 
   /**
@@ -25992,6 +27537,149 @@ In some cases, the resource can no longer
 }
 
 /**
+ * Details of a accident which resulted in injuries which required the products and
+ * services listed in the claim.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.accident}
+ */
+export interface ExplanationOfBenefitAccident {}
+
+/**
+ * The first-tier service adjudications for payor added product or service lines.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem}
+ */
+export interface ExplanationOfBenefitAddItem {}
+
+/**
+ * The second-tier service adjudications for payor added services.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.detail}
+ */
+export interface ExplanationOfBenefitAddItemDetail {}
+
+/**
+ * The third-tier service adjudications for payor added services.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.detail.subDetail}
+ */
+export interface ExplanationOfBenefitAddItemDetailSubDetail {}
+
+/**
+ * Balance by Benefit Category.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.benefitBalance}
+ */
+export interface ExplanationOfBenefitBenefitBalance {}
+
+/**
+ * Benefits Used to date.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.benefitBalance.financial}
+ */
+export interface ExplanationOfBenefitBenefitBalanceFinancial {}
+
+/**
+ * The members of the team who provided the products and services.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.careTeam}
+ */
+export interface ExplanationOfBenefitCareTeam {}
+
+/**
+ * Information about diagnoses relevant to the claim items.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.diagnosis}
+ */
+export interface ExplanationOfBenefitDiagnosis {}
+
+/**
+ * Financial instruments for reimbursement for the health care products and
+ * services specified on the claim.
+ * All insurance coverages for the patient which may be applicable for
+ * reimbursement, of the products and services listed in the claim, are typically
+ * provided in the claim to allow insurers to confirm the ordering of the insurance
+ * coverages relative to local 'coordination of benefit' rules. One coverage (and
+ * only one) with 'focal=true' is to be used in the adjudication of this claim.
+ * Coverages appearing before the focal Coverage in the list, and where
+ * 'Coverage.subrogation=false', should provide a reference to the ClaimResponse
+ * containing the adjudication results of the prior claim.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.insurance}
+ */
+export interface ExplanationOfBenefitInsurance {}
+
+/**
+ * A claim line. Either a simple (a product or service) or a 'group' of details
+ * which can also be a simple items or groups of sub-details.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item}
+ */
+export interface ExplanationOfBenefitItem {}
+
+/**
+ * If this item is a group then the values here are a summary of the adjudication
+ * of the detail items. If this item is a simple product or service then this is
+ * the result of the adjudication of this item.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.adjudication}
+ */
+export interface ExplanationOfBenefitItemAdjudication {}
+
+/**
+ * Second-tier of goods and services.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail}
+ */
+export interface ExplanationOfBenefitItemDetail {}
+
+/**
+ * Third-tier of goods and services.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.subDetail}
+ */
+export interface ExplanationOfBenefitItemDetailSubDetail {}
+
+/**
+ * The party to be reimbursed for cost of the products and services according to
+ * the terms of the policy.
+ * Often providers agree to receive the benefits payable to reduce the near-term
+ * costs to the patient. The insurer may decline to pay the provider and may choose
+ * to pay the subscriber instead.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.payee}
+ */
+export interface ExplanationOfBenefitPayee {}
+
+/**
+ * Payment details for the adjudication of the claim.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.payment}
+ */
+export interface ExplanationOfBenefitPayment {}
+
+/**
+ * Procedures performed on the patient relevant to the billing items with the
+ * claim.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.procedure}
+ */
+export interface ExplanationOfBenefitProcedure {}
+
+/**
+ * A note that describes or explains adjudication results in a human readable form.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.processNote}
+ */
+export interface ExplanationOfBenefitProcessNote {}
+
+/**
+ * Other claims which are related to this claim such as prior submissions or claims
+ * for related services or for the same event.
+ * For example,  for the original treatment and follow-up exams.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.related}
+ */
+export interface ExplanationOfBenefitRelated {}
+
+/**
+ * Additional information codes regarding exceptions, special considerations, the
+ * condition, situation, prior or concurrent issues.
+ * Often there are multiple jurisdiction specific valuesets which are required.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.supportingInfo}
+ */
+export interface ExplanationOfBenefitSupportingInfo {}
+
+/**
+ * Categorized monetary totals for the adjudication.
+ * Totals for amounts submitted, co-pays, benefits payable etc.
+ * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.total}
+ */
+export interface ExplanationOfBenefitTotal {}
+
+/**
  * ExplanationOfBenefit
  *
  * This resource provides: the claim details; adjudication details from the
@@ -26008,14 +27696,14 @@ export interface ExplanationOfBenefit extends DomainResource {
    * services listed in the claim.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.accident}
    */
-  accident?: BackboneElement | undefined;
+  accident?: ExplanationOfBenefitAccident | undefined;
   _accident?: Element | undefined;
 
   /**
    * The first-tier service adjudications for payor added product or service lines.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem}
    */
-  addItem?: Array<BackboneElement> | undefined;
+  addItem?: Array<ExplanationOfBenefitAddItem> | undefined;
   _addItem?: Element[] | undefined;
 
   /**
@@ -26030,7 +27718,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * Balance by Benefit Category.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.benefitBalance}
    */
-  benefitBalance?: Array<BackboneElement> | undefined;
+  benefitBalance?: Array<ExplanationOfBenefitBenefitBalance> | undefined;
   _benefitBalance?: Element[] | undefined;
 
   /**
@@ -26055,7 +27743,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * The members of the team who provided the products and services.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.careTeam}
    */
-  careTeam?: Array<BackboneElement> | undefined;
+  careTeam?: Array<ExplanationOfBenefitCareTeam> | undefined;
   _careTeam?: Element[] | undefined;
 
   /**
@@ -26088,7 +27776,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * Information about diagnoses relevant to the claim items.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.diagnosis}
    */
-  diagnosis?: Array<BackboneElement> | undefined;
+  diagnosis?: Array<ExplanationOfBenefitDiagnosis> | undefined;
   _diagnosis?: Element[] | undefined;
 
   /**
@@ -26167,7 +27855,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * containing the adjudication results of the prior claim.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.insurance}
    */
-  insurance: Array<BackboneElement>;
+  insurance: Array<ExplanationOfBenefitInsurance>;
   _insurance?: Element[] | undefined;
 
   /**
@@ -26182,7 +27870,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * which can also be a simple items or groups of sub-details.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item}
    */
-  item?: Array<BackboneElement> | undefined;
+  item?: Array<ExplanationOfBenefitItem> | undefined;
   _item?: Element[] | undefined;
 
   /**
@@ -26227,14 +27915,14 @@ export interface ExplanationOfBenefit extends DomainResource {
    * to pay the subscriber instead.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.payee}
    */
-  payee?: BackboneElement | undefined;
+  payee?: ExplanationOfBenefitPayee | undefined;
   _payee?: Element | undefined;
 
   /**
    * Payment details for the adjudication of the claim.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.payment}
    */
-  payment?: BackboneElement | undefined;
+  payment?: ExplanationOfBenefitPayment | undefined;
   _payment?: Element | undefined;
 
   /**
@@ -26285,14 +27973,14 @@ export interface ExplanationOfBenefit extends DomainResource {
    * claim.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.procedure}
    */
-  procedure?: Array<BackboneElement> | undefined;
+  procedure?: Array<ExplanationOfBenefitProcedure> | undefined;
   _procedure?: Element[] | undefined;
 
   /**
    * A note that describes or explains adjudication results in a human readable form.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.processNote}
    */
-  processNote?: Array<BackboneElement> | undefined;
+  processNote?: Array<ExplanationOfBenefitProcessNote> | undefined;
   _processNote?: Element[] | undefined;
 
   /**
@@ -26321,7 +28009,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * For example,  for the original treatment and follow-up exams.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.related}
    */
-  related?: Array<BackboneElement> | undefined;
+  related?: Array<ExplanationOfBenefitRelated> | undefined;
   _related?: Element[] | undefined;
 
   /**
@@ -26349,7 +28037,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * Often there are multiple jurisdiction specific valuesets which are required.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.supportingInfo}
    */
-  supportingInfo?: Array<BackboneElement> | undefined;
+  supportingInfo?: Array<ExplanationOfBenefitSupportingInfo> | undefined;
   _supportingInfo?: Element[] | undefined;
 
   /**
@@ -26357,7 +28045,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * Totals for amounts submitted, co-pays, benefits payable etc.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.total}
    */
-  total?: Array<BackboneElement> | undefined;
+  total?: Array<ExplanationOfBenefitTotal> | undefined;
   _total?: Element[] | undefined;
 
   /**
@@ -26807,6 +28495,15 @@ export interface Extension extends Element {
 }
 
 /**
+ * The significant Conditions (or condition) that the family member had. This is a
+ * repeating section to allow a system to represent more than one condition per
+ * resource, though there is nothing stopping multiple resources - one per
+ * condition.
+ * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.condition}
+ */
+export interface FamilyMemberHistoryCondition {}
+
+/**
  * FamilyMemberHistory
  *
  * Significant health conditions for a person related to the patient relevant in
@@ -26869,7 +28566,7 @@ export interface FamilyMemberHistory extends DomainResource {
    * condition.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.condition}
    */
-  condition?: Array<BackboneElement> | undefined;
+  condition?: Array<FamilyMemberHistoryCondition> | undefined;
   _condition?: Element[] | undefined;
 
   /**
@@ -27295,6 +28992,14 @@ export interface Flag extends DomainResource {
 }
 
 /**
+ * Indicates what should be done by when.
+ * When multiple targets are present for a single goal instance, all targets must
+ * be met for the overall goal to be met.
+ * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.target}
+ */
+export interface GoalTarget {}
+
+/**
  * Goal
  *
  * Describes the intended objective(s) for a patient, group or organization care,
@@ -27464,9 +29169,27 @@ The ordinal extension on Coding can
    * be met for the overall goal to be met.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.target}
    */
-  target?: Array<BackboneElement> | undefined;
+  target?: Array<GoalTarget> | undefined;
   _target?: Element[] | undefined;
 }
+
+/**
+ * Links this graph makes rules about.
+ * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link}
+ */
+export interface GraphDefinitionLink {}
+
+/**
+ * Potential target for the link.
+ * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.target}
+ */
+export interface GraphDefinitionLinkTarget {}
+
+/**
+ * Compartment Consistency Rules.
+ * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.target.compartment}
+ */
+export interface GraphDefinitionLinkTargetCompartment {}
 
 /**
  * GraphDefinition
@@ -27542,7 +29265,7 @@ export interface GraphDefinition extends DomainResource {
    * Links this graph makes rules about.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link}
    */
-  link?: Array<BackboneElement> | undefined;
+  link?: Array<GraphDefinitionLink> | undefined;
   _link?: Element[] | undefined;
 
   /**
@@ -27665,6 +29388,20 @@ In some cases, the resource can no longer
 }
 
 /**
+ * Identifies traits whose presence r absence is shared by members of the group.
+ * All the identified characteristics must be true for an entity to a member of the
+ * group.
+ * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.characteristic}
+ */
+export interface GroupCharacteristic {}
+
+/**
+ * Identifies the resource instances that are members of the group.
+ * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.member}
+ */
+export interface GroupMember {}
+
+/**
  * Group
  *
  * Represents a defined collection of entities that may be discussed or acted upon
@@ -27699,7 +29436,7 @@ export interface Group extends DomainResource {
    * group.
    * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.characteristic}
    */
-  characteristic?: Array<BackboneElement> | undefined;
+  characteristic?: Array<GroupCharacteristic> | undefined;
   _characteristic?: Element[] | undefined;
 
   /**
@@ -27733,7 +29470,7 @@ export interface Group extends DomainResource {
    * Identifies the resource instances that are members of the group.
    * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.member}
    */
-  member?: Array<BackboneElement> | undefined;
+  member?: Array<GroupMember> | undefined;
   _member?: Element[] | undefined;
 
   /**
@@ -27927,6 +29664,28 @@ export interface GuidanceResponse extends DomainResource {
 }
 
 /**
+ * A collection of times that the Service Site is available.
+ * More detailed availability information may be provided in associated
+ * Schedule/Slot resources.
+ * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.availableTime}
+ */
+export interface HealthcareServiceAvailableTime {}
+
+/**
+ * Does this service have specific eligibility requirements that need to be met in
+ * order to use the service?
+ * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.eligibility}
+ */
+export interface HealthcareServiceEligibility {}
+
+/**
+ * The HealthcareService is not available during this period of time due to the
+ * provided reason.
+ * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.notAvailable}
+ */
+export interface HealthcareServiceNotAvailable {}
+
+/**
  * HealthcareService
  *
  * The details of a healthcare service available at a location.
@@ -27971,7 +29730,7 @@ export interface HealthcareService extends DomainResource {
    * Schedule/Slot resources.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.availableTime}
    */
-  availableTime?: Array<BackboneElement> | undefined;
+  availableTime?: Array<HealthcareServiceAvailableTime> | undefined;
   _availableTime?: Element[] | undefined;
 
   /**
@@ -28034,7 +29793,7 @@ export interface HealthcareService extends DomainResource {
    * order to use the service?
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.eligibility}
    */
-  eligibility?: Array<BackboneElement> | undefined;
+  eligibility?: Array<HealthcareServiceEligibility> | undefined;
   _eligibility?: Element[] | undefined;
 
   /**
@@ -28079,7 +29838,7 @@ export interface HealthcareService extends DomainResource {
    * provided reason.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.notAvailable}
    */
-  notAvailable?: Array<BackboneElement> | undefined;
+  notAvailable?: Array<HealthcareServiceNotAvailable> | undefined;
   _notAvailable?: Element[] | undefined;
 
   /**
@@ -28293,6 +30052,27 @@ export interface Identifier extends Element {
 }
 
 /**
+ * Each study has one or more series of images or other content.
+ * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series}
+ */
+export interface ImagingStudySeries {}
+
+/**
+ * A single SOP instance within the series, e.g. an image, or presentation state.
+ * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.instance}
+ */
+export interface ImagingStudySeriesInstance {}
+
+/**
+ * Indicates who or what performed the series and how they were involved.
+ * If the person who performed the series is not known, their Organization may be
+ * recorded. A patient, or related person, may be the performer, e.g. for
+ * patient-captured images.
+ * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.performer}
+ */
+export interface ImagingStudySeriesPerformer {}
+
+/**
  * ImagingStudy
  *
  * Representation of the content produced in a DICOM imaging study. A study
@@ -28452,7 +30232,7 @@ export interface ImagingStudy extends DomainResource {
    * Each study has one or more series of images or other content.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series}
    */
-  series?: Array<BackboneElement> | undefined;
+  series?: Array<ImagingStudySeries> | undefined;
   _series?: Element[] | undefined;
 
   /**
@@ -28484,6 +30264,37 @@ export interface ImagingStudy extends DomainResource {
 }
 
 /**
+ * Educational material presented to the patient (or guardian) at the time of
+ * vaccine administration.
+ * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.education}
+ */
+export interface ImmunizationEducation {}
+
+/**
+ * Indicates who performed the immunization event.
+ * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.performer}
+ */
+export interface ImmunizationPerformer {}
+
+/**
+ * The protocol (set of recommendations) being followed by the provider who
+ * administered the dose.
+ * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.protocolApplied}
+ */
+export interface ImmunizationProtocolApplied {}
+
+/**
+ * Categorical data indicating that an adverse event is associated in time to an
+ * immunization.
+ * A reaction may be an indication of an allergy or intolerance and, if this is
+ * determined to be the case, it should be recorded as a new AllergyIntolerance
+ * resource instance as most systems will not query against past
+ * Immunization.reaction elements.
+ * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.reaction}
+ */
+export interface ImmunizationReaction {}
+
+/**
  * Immunization
  *
  * Describes the event of a patient being administered a vaccine or a record of an
@@ -28506,7 +30317,7 @@ export interface Immunization extends DomainResource {
    * vaccine administration.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.education}
    */
-  education?: Array<BackboneElement> | undefined;
+  education?: Array<ImmunizationEducation> | undefined;
   _education?: Element[] | undefined;
 
   /**
@@ -28627,7 +30438,7 @@ export interface Immunization extends DomainResource {
    * Indicates who performed the immunization event.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.performer}
    */
-  performer?: Array<BackboneElement> | undefined;
+  performer?: Array<ImmunizationPerformer> | undefined;
   _performer?: Element[] | undefined;
 
   /**
@@ -28652,7 +30463,7 @@ export interface Immunization extends DomainResource {
    * administered the dose.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.protocolApplied}
    */
-  protocolApplied?: Array<BackboneElement> | undefined;
+  protocolApplied?: Array<ImmunizationProtocolApplied> | undefined;
   _protocolApplied?: Element[] | undefined;
 
   /**
@@ -28664,7 +30475,7 @@ export interface Immunization extends DomainResource {
    * Immunization.reaction elements.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.reaction}
    */
-  reaction?: Array<BackboneElement> | undefined;
+  reaction?: Array<ImmunizationReaction> | undefined;
   _reaction?: Element[] | undefined;
 
   /**
@@ -28885,6 +30696,19 @@ export interface ImmunizationEvaluation extends DomainResource {
 }
 
 /**
+ * Vaccine administration recommendations.
+ * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.recommendation}
+ */
+export interface ImmunizationRecommendationRecommendation {}
+
+/**
+ * Vaccine date recommendations.  For example, earliest date to administer, latest
+ * date to administer, etc.
+ * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.recommendation.dateCriterion}
+ */
+export interface ImmunizationRecommendationRecommendationDateCriterion {}
+
+/**
  * ImmunizationRecommendation
  *
  * A patient's point-in-time set of recommendations (i.e. forecasting) according to
@@ -28927,9 +30751,95 @@ export interface ImmunizationRecommendation extends DomainResource {
    * Vaccine administration recommendations.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.recommendation}
    */
-  recommendation: Array<BackboneElement>;
+  recommendation: Array<ImmunizationRecommendationRecommendation>;
   _recommendation?: Element[] | undefined;
 }
+
+/**
+ * The information needed by an IG publisher tool to publish the whole
+ * implementation guide.
+ * Principally, this consists of information abuot source resource and file
+ * locations, and build parameters and templates.
+ * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition}
+ */
+export interface ImplementationGuideDefinition {}
+
+/**
+ * A logical group of resources. Logical groups can be used when building pages.
+ * Groupings are arbitrary sub-divisions of content. Typically, they are used to
+ * help build Table of Contents automatically.
+ * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.grouping}
+ */
+export interface ImplementationGuideDefinitionGrouping {}
+
+/**
+ * A page / section in the implementation guide. The root page is the
+ * implementation guide home page.
+ * Pages automatically become sections if they have sub-pages. By convention, the
+ * home page is called index.html.
+ * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.page}
+ */
+export interface ImplementationGuideDefinitionPage {}
+
+/**
+ * Defines how IG is built by tools.
+ * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.parameter}
+ */
+export interface ImplementationGuideDefinitionParameter {}
+
+/**
+ * A resource that is part of the implementation guide. Conformance resources
+ * (value set, structure definition, capability statements etc.) are obvious
+ * candidates for inclusion, but any kind of resource can be included as an example
+ * resource.
+ * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.resource}
+ */
+export interface ImplementationGuideDefinitionResource {}
+
+/**
+ * A template for building resources.
+ * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.template}
+ */
+export interface ImplementationGuideDefinitionTemplate {}
+
+/**
+ * Another implementation guide that this implementation depends on. Typically, an
+ * implementation guide uses value sets, profiles etc.defined in other
+ * implementation guides.
+ * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.dependsOn}
+ */
+export interface ImplementationGuideDependsOn {}
+
+/**
+ * A set of profiles that all resources covered by this implementation guide must
+ * conform to.
+ * See [Default Profiles](implementationguide.html#default) for a discussion of
+ * which resources are 'covered' by an implementation guide.
+ * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.global}
+ */
+export interface ImplementationGuideGlobal {}
+
+/**
+ * Information about an assembled implementation guide, created by the publication
+ * tooling.
+ * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.manifest}
+ */
+export interface ImplementationGuideManifest {}
+
+/**
+ * Information about a page within the IG.
+ * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.manifest.page}
+ */
+export interface ImplementationGuideManifestPage {}
+
+/**
+ * A resource that is part of the implementation guide. Conformance resources
+ * (value set, structure definition, capability statements etc.) are obvious
+ * candidates for inclusion, but any kind of resource can be included as an example
+ * resource.
+ * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.manifest.resource}
+ */
+export interface ImplementationGuideManifestResource {}
 
 /**
  * ImplementationGuide
@@ -28983,7 +30893,7 @@ export interface ImplementationGuide extends DomainResource {
    * locations, and build parameters and templates.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition}
    */
-  definition?: BackboneElement | undefined;
+  definition?: ImplementationGuideDefinition | undefined;
   _definition?: Element | undefined;
 
   /**
@@ -28992,7 +30902,7 @@ export interface ImplementationGuide extends DomainResource {
    * implementation guides.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.dependsOn}
    */
-  dependsOn?: Array<BackboneElement> | undefined;
+  dependsOn?: Array<ImplementationGuideDependsOn> | undefined;
   _dependsOn?: Element[] | undefined;
 
   /**
@@ -29047,7 +30957,7 @@ export interface ImplementationGuide extends DomainResource {
    * which resources are 'covered' by an implementation guide.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.global}
    */
-  global?: Array<BackboneElement> | undefined;
+  global?: Array<ImplementationGuideGlobal> | undefined;
   _global?: Element[] | undefined;
 
   /**
@@ -29074,7 +30984,7 @@ export interface ImplementationGuide extends DomainResource {
    * tooling.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.manifest}
    */
-  manifest?: BackboneElement | undefined;
+  manifest?: ImplementationGuideManifest | undefined;
   _manifest?: Element | undefined;
 
   /**
@@ -29193,6 +31103,42 @@ In some cases, the resource can no longer
 }
 
 /**
+ * The organization(s) that manufacture this ingredient. Can be used to indicate:
+ * 1) Organizations we are aware of that manufacture this ingredient
+ * 2) Specific Manufacturer(s) currently being used         3) Set of organisations
+ * allowed to manufacture this ingredient for this product         Users must be
+ * clear on the application of context relevant to their use case.
+ * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.manufacturer}
+ */
+export interface IngredientManufacturer {}
+
+/**
+ * The substance that comprises this ingredient.
+ * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.substance}
+ */
+export interface IngredientSubstance {}
+
+/**
+ * The quantity of substance in the unit of presentation, or in the volume (or
+ * mass) of the single pharmaceutical product or manufactured item. The allowed
+ * repetitions do not represent different strengths, but are different
+ * representations - mathematically equivalent - of a single strength.
+ * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.substance.strength}
+ */
+export interface IngredientSubstanceStrength {}
+
+/**
+ * Strength expressed in terms of a reference substance. For when the ingredient
+ * strength is additionally expressed as equivalent to the strength of some other
+ * closely related substance (e.g. salt vs. base). Reference strength represents
+ * the strength (quantitative composition) of the active moiety of the active
+ * substance. There are situations when the active substance and active moiety are
+ * different, therefore both a strength and a reference strength are needed.
+ * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.substance.strength.referenceStrength}
+ */
+export interface IngredientSubstanceStrengthReferenceStrength {}
+
+/**
  * Ingredient
  *
  * An ingredient of a manufactured item or pharmaceutical product.
@@ -29245,7 +31191,7 @@ export interface Ingredient extends DomainResource {
    * clear on the application of context relevant to their use case.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.manufacturer}
    */
-  manufacturer?: Array<BackboneElement> | undefined;
+  manufacturer?: Array<IngredientManufacturer> | undefined;
   _manufacturer?: Element[] | undefined;
 
   /**
@@ -29269,9 +31215,66 @@ export interface Ingredient extends DomainResource {
    * The substance that comprises this ingredient.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.substance}
    */
-  substance: BackboneElement;
+  substance: IngredientSubstance;
   _substance?: Element | undefined;
 }
+
+/**
+ * The contact for the health insurance product for a certain purpose.
+ * Where multiple contacts for the same purpose are provided there is a standard
+ * extension that can be used to determine which one is the preferred contact to
+ * use.
+ * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.contact}
+ */
+export interface InsurancePlanContact {}
+
+/**
+ * Details about the coverage offered by the insurance product.
+ * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.coverage}
+ */
+export interface InsurancePlanCoverage {}
+
+/**
+ * Specific benefits under this type of coverage.
+ * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.coverage.benefit}
+ */
+export interface InsurancePlanCoverageBenefit {}
+
+/**
+ * The specific limits on the benefit.
+ * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.coverage.benefit.limit}
+ */
+export interface InsurancePlanCoverageBenefitLimit {}
+
+/**
+ * Details about an insurance plan.
+ * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan}
+ */
+export interface InsurancePlanPlan {}
+
+/**
+ * Overall costs associated with the plan.
+ * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.generalCost}
+ */
+export interface InsurancePlanPlanGeneralCost {}
+
+/**
+ * Costs associated with the coverage provided by the product.
+ * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.specificCost}
+ */
+export interface InsurancePlanPlanSpecificCost {}
+
+/**
+ * List of the specific benefits under this category of benefit.
+ * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.specificCost.benefit}
+ */
+export interface InsurancePlanPlanSpecificCostBenefit {}
+
+/**
+ * List of the costs associated with a specific benefit.
+ * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.specificCost.benefit.cost}
+ */
+export interface InsurancePlanPlanSpecificCostBenefitCost {}
 
 /**
  * InsurancePlan
@@ -29310,14 +31313,14 @@ export interface InsurancePlan extends DomainResource {
    * use.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.contact}
    */
-  contact?: Array<BackboneElement> | undefined;
+  contact?: Array<InsurancePlanContact> | undefined;
   _contact?: Element[] | undefined;
 
   /**
    * Details about the coverage offered by the insurance product.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.coverage}
    */
-  coverage?: Array<BackboneElement> | undefined;
+  coverage?: Array<InsurancePlanCoverage> | undefined;
   _coverage?: Element[] | undefined;
 
   /**
@@ -29380,7 +31383,7 @@ export interface InsurancePlan extends DomainResource {
    * Details about an insurance plan.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan}
    */
-  plan?: Array<BackboneElement> | undefined;
+  plan?: Array<InsurancePlanPlan> | undefined;
   _plan?: Element[] | undefined;
 
   /**
@@ -29398,6 +31401,30 @@ export interface InsurancePlan extends DomainResource {
   type?: Array<CodeableConcept> | undefined;
   _type?: Element[] | undefined;
 }
+
+/**
+ * Each line item represents one charge for goods and services rendered. Details
+ * such as date, code and amount are found in the referenced ChargeItem resource.
+ * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.lineItem}
+ */
+export interface InvoiceLineItem {}
+
+/**
+ * The price for a ChargeItem may be calculated as a base price with
+ * surcharges/deductions that apply in certain conditions. A ChargeItemDefinition
+ * resource that defines the prices, factors and conditions that apply to a billing
+ * code is currently under development. The priceComponent element can be used to
+ * offer transparency to the recipient of the Invoice as to how the prices have
+ * been calculated.
+ * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.lineItem.priceComponent}
+ */
+export interface InvoiceLineItemPriceComponent {}
+
+/**
+ * Indicates who or what performed or participated in the charged service.
+ * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.participant}
+ */
+export interface InvoiceParticipant {}
 
 /**
  * Invoice
@@ -29463,7 +31490,7 @@ export interface Invoice extends DomainResource {
    * such as date, code and amount are found in the referenced ChargeItem resource.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.lineItem}
    */
-  lineItem?: Array<BackboneElement> | undefined;
+  lineItem?: Array<InvoiceLineItem> | undefined;
   _lineItem?: Element[] | undefined;
 
   /**
@@ -29477,7 +31504,7 @@ export interface Invoice extends DomainResource {
    * Indicates who or what performed or participated in the charged service.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.participant}
    */
-  participant?: Array<BackboneElement> | undefined;
+  participant?: Array<InvoiceParticipant> | undefined;
   _participant?: Element[] | undefined;
 
   /**
@@ -29906,6 +31933,14 @@ In some cases, the resource can no longer
 }
 
 /**
+ * Identifies which record considered as the reference to the same real-world
+ * occurrence as well as how the items should be evaluated within the collection of
+ * linked items.
+ * @see {@link http://hl7.org/fhir/R4B/Linkage-definitions.html#Linkage.item}
+ */
+export interface LinkageItem {}
+
+/**
  * Linkage
  *
  * Identifies two or more records (resource instances) that refer to the same
@@ -29940,9 +31975,16 @@ export interface Linkage extends DomainResource {
    * linked items.
    * @see {@link http://hl7.org/fhir/R4B/Linkage-definitions.html#Linkage.item}
    */
-  item: Array<BackboneElement>;
+  item: Array<LinkageItem>;
   _item?: Element[] | undefined;
 }
+
+/**
+ * Entries in this list.
+ * If there are no entries in the list, an emptyReason SHOULD be provided.
+ * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.entry}
+ */
+export interface ListEntry {}
 
 /**
  * List
@@ -29996,7 +32038,7 @@ export interface List extends DomainResource {
    * If there are no entries in the list, an emptyReason SHOULD be provided.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.entry}
    */
-  entry?: Array<BackboneElement> | undefined;
+  entry?: Array<ListEntry> | undefined;
   _entry?: Element[] | undefined;
 
   /**
@@ -30075,6 +32117,25 @@ export interface List extends DomainResource {
 }
 
 /**
+ * What days/times during a week is this location usually open.
+ * This type of information is commonly found published in directories and on
+ * websites informing customers when the facility is available.
+
+Specific services
+ * within the location may have their own hours which could be shorter (or longer)
+ * than the locations hours.
+ * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.hoursOfOperation}
+ */
+export interface LocationHoursOfOperation {}
+
+/**
+ * The absolute geographic location of the Location, expressed using the WGS84
+ * datum (This is the same co-ordinate system used in KML).
+ * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.position}
+ */
+export interface LocationPosition {}
+
+/**
  * Location
  *
  * Details and position information for a physical place where services are
@@ -30139,7 +32200,7 @@ Specific services
  * than the locations hours.
  * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.hoursOfOperation}
  */
-  hoursOfOperation?: Array<BackboneElement> | undefined;
+  hoursOfOperation?: Array<LocationHoursOfOperation> | undefined;
   _hoursOfOperation?: Element[] | undefined;
 
   /**
@@ -30208,7 +32269,7 @@ Specific services
    * datum (This is the same co-ordinate system used in KML).
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.position}
    */
-  position?: BackboneElement | undefined;
+  position?: LocationPosition | undefined;
   _position?: Element | undefined;
 
   /**
@@ -30237,6 +32298,12 @@ Specific services
   type?: Array<CodeableConcept> | undefined;
   _type?: Element[] | undefined;
 }
+
+/**
+ * General characteristics of this item.
+ * @see {@link http://hl7.org/fhir/R4B/ManufacturedItemDefinition-definitions.html#ManufacturedItemDefinition.property}
+ */
+export interface ManufacturedItemDefinitionProperty {}
 
 /**
  * ManufacturedItemDefinition
@@ -30285,7 +32352,7 @@ export interface ManufacturedItemDefinition extends DomainResource {
    * General characteristics of this item.
    * @see {@link http://hl7.org/fhir/R4B/ManufacturedItemDefinition-definitions.html#ManufacturedItemDefinition.property}
    */
-  property?: Array<BackboneElement> | undefined;
+  property?: Array<ManufacturedItemDefinitionProperty> | undefined;
   _property?: Element[] | undefined;
 
   /**
@@ -30361,6 +32428,47 @@ export interface MarketingStatus extends BackboneElement {
   status: CodeableConcept;
   _status?: Element | undefined;
 }
+
+/**
+ * A group of population criteria for the measure.
+ * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.group}
+ */
+export interface MeasureGroup {}
+
+/**
+ * A population criteria for the measure.
+ * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.group.population}
+ */
+export interface MeasureGroupPopulation {}
+
+/**
+ * The stratifier criteria for the measure report, specified as either the name of
+ * a valid CQL expression defined within a referenced library or a valid FHIR
+ * Resource Path.
+ * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.group.stratifier}
+ */
+export interface MeasureGroupStratifier {}
+
+/**
+ * A component of the stratifier criteria for the measure report, specified as
+ * either the name of a valid CQL expression defined within a referenced library or
+ * a valid FHIR Resource Path.
+ * Stratifiers are defined either as a single criteria, or as a set of component
+ * criteria.
+ * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.group.stratifier.component}
+ */
+export interface MeasureGroupStratifierComponent {}
+
+/**
+ * The supplemental data criteria for the measure report, specified as either the
+ * name of a valid CQL expression within a referenced library, or a valid FHIR
+ * Resource Path.
+ * Note that supplemental data are reported as observations for each patient and
+ * included in the evaluatedResources bundle. See the MeasureReport resource or the
+ * Quality Reporting topic for more information.
+ * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.supplementalData}
+ */
+export interface MeasureSupplementalData {}
 
 /**
  * Measure
@@ -30509,7 +32617,7 @@ export interface Measure extends DomainResource {
    * A group of population criteria for the measure.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.group}
    */
-  group?: Array<BackboneElement> | undefined;
+  group?: Array<MeasureGroup> | undefined;
   _group?: Element[] | undefined;
 
   /**
@@ -30725,7 +32833,7 @@ export interface Measure extends DomainResource {
    * Quality Reporting topic for more information.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.supplementalData}
    */
-  supplementalData?: Array<BackboneElement> | undefined;
+  supplementalData?: Array<MeasureSupplementalData> | undefined;
   _supplementalData?: Element[] | undefined;
 
   /**
@@ -30820,6 +32928,47 @@ In some cases, the resource can no longer
 }
 
 /**
+ * The results of the calculation, one for each population group in the measure.
+ * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group}
+ */
+export interface MeasureReportGroup {}
+
+/**
+ * The populations that make up the population group, one for each type of
+ * population appropriate for the measure.
+ * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.population}
+ */
+export interface MeasureReportGroupPopulation {}
+
+/**
+ * When a measure includes multiple stratifiers, there will be a stratifier group
+ * for each stratifier defined by the measure.
+ * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.stratifier}
+ */
+export interface MeasureReportGroupStratifier {}
+
+/**
+ * This element contains the results for a single stratum within the stratifier.
+ * For example, when stratifying on administrative gender, there will be four
+ * strata, one for each possible gender value.
+ * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.stratifier.stratum}
+ */
+export interface MeasureReportGroupStratifierStratum {}
+
+/**
+ * A stratifier component value.
+ * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.stratifier.stratum.component}
+ */
+export interface MeasureReportGroupStratifierStratumComponent {}
+
+/**
+ * The populations that make up the stratum, one for each type of population
+ * appropriate to the measure.
+ * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.stratifier.stratum.population}
+ */
+export interface MeasureReportGroupStratifierStratumPopulation {}
+
+/**
  * MeasureReport
  *
  * The MeasureReport resource contains the results of the calculation of a measure;
@@ -30849,7 +32998,7 @@ export interface MeasureReport extends DomainResource {
    * The results of the calculation, one for each population group in the measure.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group}
    */
-  group?: Array<BackboneElement> | undefined;
+  group?: Array<MeasureReportGroup> | undefined;
   _group?: Element[] | undefined;
 
   /**
@@ -31159,6 +33308,22 @@ Unknown does not represent "other" - one of the
 }
 
 /**
+ * Information that only applies to packages (not products).
+ * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.batch}
+ */
+export interface MedicationBatch {}
+
+/**
+ * Identifies a particular constituent of interest in the product.
+ * The ingredients need not be a complete list.  If an ingredient is not specified,
+ * this does not indicate whether an ingredient is present or absent.  If an
+ * ingredient is specified it does not mean that all ingredients are specified.  It
+ * is possible to specify both inactive and active ingredients.
+ * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.ingredient}
+ */
+export interface MedicationIngredient {}
+
+/**
  * Medication
  *
  * This resource is primarily used for the identification and definition of a
@@ -31184,7 +33349,7 @@ export interface Medication extends DomainResource {
    * Information that only applies to packages (not products).
    * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.batch}
    */
-  batch?: BackboneElement | undefined;
+  batch?: MedicationBatch | undefined;
   _batch?: Element | undefined;
 
   /**
@@ -31232,7 +33397,7 @@ export interface Medication extends DomainResource {
    * is possible to specify both inactive and active ingredients.
    * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.ingredient}
    */
-  ingredient?: Array<BackboneElement> | undefined;
+  ingredient?: Array<MedicationIngredient> | undefined;
   _ingredient?: Element[] | undefined;
 
   /**
@@ -31260,6 +33425,20 @@ export interface Medication extends DomainResource {
   status?: MedicationStatusCodes | undefined;
   _status?: Element | undefined;
 }
+
+/**
+ * Describes the medication dosage information details e.g. dose, rate, site,
+ * route, etc.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.dosage}
+ */
+export interface MedicationAdministrationDosage {}
+
+/**
+ * Indicates who or what performed the medication administration and how they were
+ * involved.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.performer}
+ */
+export interface MedicationAdministrationPerformer {}
 
 /**
  * MedicationAdministration
@@ -31303,7 +33482,7 @@ export interface MedicationAdministration extends DomainResource {
    * route, etc.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.dosage}
    */
-  dosage?: BackboneElement | undefined;
+  dosage?: MedicationAdministrationDosage | undefined;
   _dosage?: Element | undefined;
 
   /**
@@ -31407,7 +33586,7 @@ export interface MedicationAdministration extends DomainResource {
    * involved.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.performer}
    */
-  performer?: Array<BackboneElement> | undefined;
+  performer?: Array<MedicationAdministrationPerformer> | undefined;
   _performer?: Element[] | undefined;
 
   /**
@@ -31471,6 +33650,22 @@ export interface MedicationAdministration extends DomainResource {
   supportingInformation?: Array<Reference> | undefined;
   _supportingInformation?: Element[] | undefined;
 }
+
+/**
+ * Indicates who or what performed the event.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.performer}
+ */
+export interface MedicationDispensePerformer {}
+
+/**
+ * Indicates whether or not substitution was made as part of the dispense.  In some
+ * cases, substitution will be expected but does not happen, in other cases
+ * substitution is not expected but does happen.  This block explains what
+ * substitution did or did not happen and why.  If nothing is specified,
+ * substitution was not done.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.substitution}
+ */
+export interface MedicationDispenseSubstitution {}
 
 /**
  * MedicationDispense
@@ -31630,7 +33825,7 @@ The
    * Indicates who or what performed the event.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.performer}
    */
-  performer?: Array<BackboneElement> | undefined;
+  performer?: Array<MedicationDispensePerformer> | undefined;
   _performer?: Element[] | undefined;
 
   /**
@@ -31690,7 +33885,7 @@ The
    * substitution was not done.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.substitution}
    */
-  substitution?: BackboneElement | undefined;
+  substitution?: MedicationDispenseSubstitution | undefined;
   _substitution?: Element | undefined;
 
   /**
@@ -31725,6 +33920,106 @@ The
 }
 
 /**
+ * Guidelines for the administration of the medication.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.administrationGuidelines}
+ */
+export interface MedicationKnowledgeAdministrationGuidelines {}
+
+/**
+ * Dosage for the medication for the specific guidelines.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.administrationGuidelines.dosage}
+ */
+export interface MedicationKnowledgeAdministrationGuidelinesDosage {}
+
+/**
+ * Characteristics of the patient that are relevant to the administration
+ * guidelines (for example, height, weight, gender, etc.).
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.administrationGuidelines.patientCharacteristics}
+ */
+export interface MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics {}
+
+/**
+ * The price of the medication.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.cost}
+ */
+export interface MedicationKnowledgeCost {}
+
+/**
+ * Specifies descriptive properties of the medicine, such as color, shape,
+ * imprints, etc.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.drugCharacteristic}
+ */
+export interface MedicationKnowledgeDrugCharacteristic {}
+
+/**
+ * Identifies a particular constituent of interest in the product.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.ingredient}
+ */
+export interface MedicationKnowledgeIngredient {}
+
+/**
+ * The time course of drug absorption, distribution, metabolism and excretion of a
+ * medication from the body.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.kinetics}
+ */
+export interface MedicationKnowledgeKinetics {}
+
+/**
+ * Categorization of the medication within a formulary or classification system.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.medicineClassification}
+ */
+export interface MedicationKnowledgeMedicineClassification {}
+
+/**
+ * The program under which the medication is reviewed.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.monitoringProgram}
+ */
+export interface MedicationKnowledgeMonitoringProgram {}
+
+/**
+ * Associated documentation about the medication.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.monograph}
+ */
+export interface MedicationKnowledgeMonograph {}
+
+/**
+ * Information that only applies to packages (not products).
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.packaging}
+ */
+export interface MedicationKnowledgePackaging {}
+
+/**
+ * Regulatory information about a medication.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.regulatory}
+ */
+export interface MedicationKnowledgeRegulatory {}
+
+/**
+ * The maximum number of units of the medication that can be dispensed in a period.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.regulatory.maxDispense}
+ */
+export interface MedicationKnowledgeRegulatoryMaxDispense {}
+
+/**
+ * Specifies the schedule of a medication in jurisdiction.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.regulatory.schedule}
+ */
+export interface MedicationKnowledgeRegulatorySchedule {}
+
+/**
+ * Specifies if changes are allowed when dispensing a medication from a regulatory
+ * perspective.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.regulatory.substitution}
+ */
+export interface MedicationKnowledgeRegulatorySubstitution {}
+
+/**
+ * Associated or related knowledge about a medication.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.relatedMedicationKnowledge}
+ */
+export interface MedicationKnowledgeRelatedMedicationKnowledge {}
+
+/**
  * MedicationKnowledge
  *
  * Information about a medication that is used to support knowledge.
@@ -31738,7 +34033,9 @@ export interface MedicationKnowledge extends DomainResource {
    * Guidelines for the administration of the medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.administrationGuidelines}
    */
-  administrationGuidelines?: Array<BackboneElement> | undefined;
+  administrationGuidelines?:
+    | Array<MedicationKnowledgeAdministrationGuidelines>
+    | undefined;
   _administrationGuidelines?: Element[] | undefined;
 
   /**
@@ -31793,7 +34090,7 @@ export interface MedicationKnowledge extends DomainResource {
    * The price of the medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.cost}
    */
-  cost?: Array<BackboneElement> | undefined;
+  cost?: Array<MedicationKnowledgeCost> | undefined;
   _cost?: Element[] | undefined;
 
   /**
@@ -31812,14 +34109,14 @@ export interface MedicationKnowledge extends DomainResource {
    * imprints, etc.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.drugCharacteristic}
    */
-  drugCharacteristic?: Array<BackboneElement> | undefined;
+  drugCharacteristic?: Array<MedicationKnowledgeDrugCharacteristic> | undefined;
   _drugCharacteristic?: Element[] | undefined;
 
   /**
    * Identifies a particular constituent of interest in the product.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.ingredient}
    */
-  ingredient?: Array<BackboneElement> | undefined;
+  ingredient?: Array<MedicationKnowledgeIngredient> | undefined;
   _ingredient?: Element[] | undefined;
 
   /**
@@ -31834,7 +34131,7 @@ export interface MedicationKnowledge extends DomainResource {
    * medication from the body.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.kinetics}
    */
-  kinetics?: Array<BackboneElement> | undefined;
+  kinetics?: Array<MedicationKnowledgeKinetics> | undefined;
   _kinetics?: Element[] | undefined;
 
   /**
@@ -31849,28 +34146,30 @@ export interface MedicationKnowledge extends DomainResource {
    * Categorization of the medication within a formulary or classification system.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.medicineClassification}
    */
-  medicineClassification?: Array<BackboneElement> | undefined;
+  medicineClassification?:
+    | Array<MedicationKnowledgeMedicineClassification>
+    | undefined;
   _medicineClassification?: Element[] | undefined;
 
   /**
    * The program under which the medication is reviewed.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.monitoringProgram}
    */
-  monitoringProgram?: Array<BackboneElement> | undefined;
+  monitoringProgram?: Array<MedicationKnowledgeMonitoringProgram> | undefined;
   _monitoringProgram?: Element[] | undefined;
 
   /**
    * Associated documentation about the medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.monograph}
    */
-  monograph?: Array<BackboneElement> | undefined;
+  monograph?: Array<MedicationKnowledgeMonograph> | undefined;
   _monograph?: Element[] | undefined;
 
   /**
    * Information that only applies to packages (not products).
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.packaging}
    */
-  packaging?: BackboneElement | undefined;
+  packaging?: MedicationKnowledgePackaging | undefined;
   _packaging?: Element | undefined;
 
   /**
@@ -31892,14 +34191,16 @@ export interface MedicationKnowledge extends DomainResource {
    * Regulatory information about a medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.regulatory}
    */
-  regulatory?: Array<BackboneElement> | undefined;
+  regulatory?: Array<MedicationKnowledgeRegulatory> | undefined;
   _regulatory?: Element[] | undefined;
 
   /**
    * Associated or related knowledge about a medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.relatedMedicationKnowledge}
    */
-  relatedMedicationKnowledge?: Array<BackboneElement> | undefined;
+  relatedMedicationKnowledge?:
+    | Array<MedicationKnowledgeRelatedMedicationKnowledge>
+    | undefined;
   _relatedMedicationKnowledge?: Element[] | undefined;
 
   /**
@@ -31930,6 +34231,33 @@ export interface MedicationKnowledge extends DomainResource {
   synonym?: Array<string> | undefined;
   _synonym?: Element[] | undefined;
 }
+
+/**
+ * Indicates the specific details for the dispense or medication supply part of a
+ * medication request (also known as a Medication Prescription or Medication
+ * Order).  Note that this information is not always sent with the order.  There
+ * may be in some settings (e.g. hospitals) institutional or system support for
+ * completing the dispense details in the pharmacy department.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.dispenseRequest}
+ */
+export interface MedicationRequestDispenseRequest {}
+
+/**
+ * Indicates the quantity or duration for the first dispense of the medication.
+ * If populating this element, either the quantity or the duration must be
+ * included.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.dispenseRequest.initialFill}
+ */
+export interface MedicationRequestDispenseRequestInitialFill {}
+
+/**
+ * Indicates whether or not substitution can or should be part of the dispense. In
+ * some cases, substitution must happen, in other cases substitution must not
+ * happen. This block explains the prescriber's intent. If nothing is specified
+ * substitution may be done.
+ * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.substitution}
+ */
+export interface MedicationRequestSubstitution {}
 
 /**
  * MedicationRequest
@@ -32000,7 +34328,7 @@ export interface MedicationRequest extends DomainResource {
    * completing the dispense details in the pharmacy department.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.dispenseRequest}
    */
-  dispenseRequest?: BackboneElement | undefined;
+  dispenseRequest?: MedicationRequestDispenseRequest | undefined;
   _dispenseRequest?: Element | undefined;
 
   /**
@@ -32286,7 +34614,7 @@ This element is labeled as a modifier because the intent alters when
    * substitution may be done.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.substitution}
    */
-  substitution?: BackboneElement | undefined;
+  substitution?: MedicationRequestSubstitution | undefined;
   _substitution?: Element | undefined;
 
   /**
@@ -32534,6 +34862,51 @@ This element is labeled as a modifier because the status contains
 }
 
 /**
+ * Allows the key product features to be recorded, such as "sugar free", "modified
+ * release", "parallel import".
+ * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.characteristic}
+ */
+export interface MedicinalProductDefinitionCharacteristic {}
+
+/**
+ * A product specific contact, person (in a role), or an organization.
+ * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.contact}
+ */
+export interface MedicinalProductDefinitionContact {}
+
+/**
+ * Reference to another product, e.g. for linking authorised to investigational
+ * product, or a virtual product.
+ * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.crossReference}
+ */
+export interface MedicinalProductDefinitionCrossReference {}
+
+/**
+ * The product's name, including full name and possibly coded parts.
+ * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.name}
+ */
+export interface MedicinalProductDefinitionName {}
+
+/**
+ * Country and jurisdiction where the name applies, and associated language.
+ * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.name.countryLanguage}
+ */
+export interface MedicinalProductDefinitionNameCountryLanguage {}
+
+/**
+ * Coding words or phrases of the name.
+ * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.name.namePart}
+ */
+export interface MedicinalProductDefinitionNameNamePart {}
+
+/**
+ * A manufacturing or administrative process or step associated with (or performed
+ * on) the medicinal product.
+ * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.operation}
+ */
+export interface MedicinalProductDefinitionOperation {}
+
+/**
  * MedicinalProductDefinition
  *
  * Detailed definition of a medicinal product, typically for uses other than direct
@@ -32565,7 +34938,7 @@ export interface MedicinalProductDefinition extends DomainResource {
    * release", "parallel import".
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.characteristic}
    */
-  characteristic?: Array<BackboneElement> | undefined;
+  characteristic?: Array<MedicinalProductDefinitionCharacteristic> | undefined;
   _characteristic?: Element[] | undefined;
 
   /**
@@ -32608,7 +34981,7 @@ export interface MedicinalProductDefinition extends DomainResource {
    * A product specific contact, person (in a role), or an organization.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.contact}
    */
-  contact?: Array<BackboneElement> | undefined;
+  contact?: Array<MedicinalProductDefinitionContact> | undefined;
   _contact?: Element[] | undefined;
 
   /**
@@ -32616,7 +34989,7 @@ export interface MedicinalProductDefinition extends DomainResource {
    * product, or a virtual product.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.crossReference}
    */
-  crossReference?: Array<BackboneElement> | undefined;
+  crossReference?: Array<MedicinalProductDefinitionCrossReference> | undefined;
   _crossReference?: Element[] | undefined;
 
   /**
@@ -32708,7 +35081,7 @@ export interface MedicinalProductDefinition extends DomainResource {
    * The product's name, including full name and possibly coded parts.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.name}
    */
-  name: Array<BackboneElement>;
+  name: Array<MedicinalProductDefinitionName>;
   _name?: Element[] | undefined;
 
   /**
@@ -32716,7 +35089,7 @@ export interface MedicinalProductDefinition extends DomainResource {
    * on) the medicinal product.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.operation}
    */
-  operation?: Array<BackboneElement> | undefined;
+  operation?: Array<MedicinalProductDefinitionOperation> | undefined;
   _operation?: Element[] | undefined;
 
   /**
@@ -32785,6 +35158,25 @@ export interface MedicinalProductDefinition extends DomainResource {
 }
 
 /**
+ * Indicates what types of messages may be sent as an application-level response to
+ * this message.
+ * This indicates an application level response to "close" a transaction implicit
+ * in a particular request message.  To define a complete workflow scenario, look
+ * to the [[PlanDefinition]] resource which allows the definition of complex
+ * orchestrations, conditionality, etc.
+ * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.allowedResponse}
+ */
+export interface MessageDefinitionAllowedResponse {}
+
+/**
+ * Identifies the resource (or resources) that are being addressed by the event.
+ * For example, the Encounter for an admit message or two Account records for a
+ * merge.
+ * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.focus}
+ */
+export interface MessageDefinitionFocus {}
+
+/**
  * MessageDefinition
  *
  * Defines the characteristics of a message that can be shared between systems,
@@ -32805,7 +35197,7 @@ export interface MessageDefinition extends DomainResource {
    * orchestrations, conditionality, etc.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.allowedResponse}
    */
-  allowedResponse?: Array<BackboneElement> | undefined;
+  allowedResponse?: Array<MessageDefinitionAllowedResponse> | undefined;
   _allowedResponse?: Element[] | undefined;
 
   /**
@@ -32900,7 +35292,7 @@ export interface MessageDefinition extends DomainResource {
    * merge.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.focus}
    */
-  focus?: Array<BackboneElement> | undefined;
+  focus?: Array<MessageDefinitionFocus> | undefined;
   _focus?: Element[] | undefined;
 
   /**
@@ -33075,6 +35467,27 @@ In some cases, the resource can no longer
 }
 
 /**
+ * The destination application which the message is intended for.
+ * There SHOULD be at least one destination, but in some circumstances, the source
+ * system is unaware of any particular destination system.
+ * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.destination}
+ */
+export interface MessageHeaderDestination {}
+
+/**
+ * Information about the message that this message is a response to.  Only present
+ * if this message is a response.
+ * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.response}
+ */
+export interface MessageHeaderResponse {}
+
+/**
+ * The source application from which this message originated.
+ * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.source}
+ */
+export interface MessageHeaderSource {}
+
+/**
  * MessageHeader
  *
  * The header for a message exchange that is either requesting or responding to an
@@ -33110,7 +35523,7 @@ export interface MessageHeader extends DomainResource {
    * system is unaware of any particular destination system.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.destination}
    */
-  destination?: Array<BackboneElement> | undefined;
+  destination?: Array<MessageHeaderDestination> | undefined;
   _destination?: Element[] | undefined;
 
   /**
@@ -33175,7 +35588,7 @@ export interface MessageHeader extends DomainResource {
    * if this message is a response.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.response}
    */
-  response?: BackboneElement | undefined;
+  response?: MessageHeaderResponse | undefined;
   _response?: Element | undefined;
 
   /**
@@ -33202,7 +35615,7 @@ export interface MessageHeader extends DomainResource {
    * The source application from which this message originated.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.source}
    */
-  source: BackboneElement;
+  source: MessageHeaderSource;
   _source?: Element | undefined;
 }
 
@@ -33288,6 +35701,64 @@ This element
 }
 
 /**
+ * An experimental feature attribute that defines the quality of the feature in a
+ * quantitative way, such as a phred quality score
+ * ([SO:0001686](http://www.sequenceontology.org/browser/current_svn/term/SO:000168
+ * 6)).
+ * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality}
+ */
+export interface MolecularSequenceQuality {}
+
+/**
+ * Receiver Operator Characteristic (ROC) Curve  to give sensitivity/specificity
+ * tradeoff.
+ * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.roc}
+ */
+export interface MolecularSequenceQualityRoc {}
+
+/**
+ * A sequence that is used as a reference to describe variants that are present in
+ * a sequence analyzed.
+ * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.referenceSeq}
+ */
+export interface MolecularSequenceReferenceSeq {}
+
+/**
+ * Configurations of the external repository. The repository shall store target's
+ * observedSeq or records related with target's observedSeq.
+ * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.repository}
+ */
+export interface MolecularSequenceRepository {}
+
+/**
+ * Information about chromosome structure variation.
+ * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant}
+ */
+export interface MolecularSequenceStructureVariant {}
+
+/**
+ * Structural variant inner.
+ * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant.inner}
+ */
+export interface MolecularSequenceStructureVariantInner {}
+
+/**
+ * Structural variant outer.
+ * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant.outer}
+ */
+export interface MolecularSequenceStructureVariantOuter {}
+
+/**
+ * The definition of variant here originates from Sequence ontology
+ * ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_o
+ * f)). This element can represent amino acid or nucleic sequence change(including
+ * insertion,deletion,SNP,etc.)  It can represent some complex mutation or segment
+ * variation with the assist of CIGAR string.
+ * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.variant}
+ */
+export interface MolecularSequenceVariant {}
+
+/**
  * MolecularSequence
  *
  * Raw data describing a biological sequence.
@@ -33358,7 +35829,7 @@ export interface MolecularSequence extends DomainResource {
    * 6)).
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality}
    */
-  quality?: Array<BackboneElement> | undefined;
+  quality?: Array<MolecularSequenceQuality> | undefined;
   _quality?: Element[] | undefined;
 
   /**
@@ -33381,7 +35852,7 @@ export interface MolecularSequence extends DomainResource {
    * a sequence analyzed.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.referenceSeq}
    */
-  referenceSeq?: BackboneElement | undefined;
+  referenceSeq?: MolecularSequenceReferenceSeq | undefined;
   _referenceSeq?: Element | undefined;
 
   /**
@@ -33389,7 +35860,7 @@ export interface MolecularSequence extends DomainResource {
    * observedSeq or records related with target's observedSeq.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.repository}
    */
-  repository?: Array<BackboneElement> | undefined;
+  repository?: Array<MolecularSequenceRepository> | undefined;
   _repository?: Element[] | undefined;
 
   /**
@@ -33403,7 +35874,7 @@ export interface MolecularSequence extends DomainResource {
    * Information about chromosome structure variation.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant}
    */
-  structureVariant?: Array<BackboneElement> | undefined;
+  structureVariant?: Array<MolecularSequenceStructureVariant> | undefined;
   _structureVariant?: Element[] | undefined;
 
   /**
@@ -33422,7 +35893,7 @@ export interface MolecularSequence extends DomainResource {
    * variation with the assist of CIGAR string.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.variant}
    */
-  variant?: Array<BackboneElement> | undefined;
+  variant?: Array<MolecularSequenceVariant> | undefined;
   _variant?: Element[] | undefined;
 }
 
@@ -33450,6 +35921,15 @@ export interface Money extends Element {
   value?: number | undefined;
   _value?: Element | undefined;
 }
+
+/**
+ * Indicates how the system may be identified when referenced in electronic
+ * exchange.
+ * Multiple identifiers may exist, either due to duplicate registration, regional
+ * rules, needs of different communication technologies, etc.
+ * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.uniqueId}
+ */
+export interface NamingSystemUniqueId {}
 
 /**
  * NamingSystem
@@ -33583,7 +36063,7 @@ export interface NamingSystem extends DomainResource {
    * rules, needs of different communication technologies, etc.
    * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.uniqueId}
    */
-  uniqueId: Array<BackboneElement>;
+  uniqueId: Array<NamingSystemUniqueId>;
   _uniqueId?: Element[] | undefined;
 
   /**
@@ -33641,6 +36121,51 @@ export interface Narrative extends Element {
 }
 
 /**
+ * Feeding provided through the gastrointestinal tract via a tube, catheter, or
+ * stoma that delivers nutrition distal to the oral cavity.
+ * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.enteralFormula}
+ */
+export interface NutritionOrderEnteralFormula {}
+
+/**
+ * Formula administration instructions as structured data.  This repeating
+ * structure allows for changing the administration rate or volume over time for
+ * both bolus and continuous feeding.  An example of this would be an instruction
+ * to increase the rate of continuous feeding every 2 hours.
+ * See implementation notes below for further discussion on how to order continuous
+ * vs bolus enteral feeding using this resource.
+ * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.enteralFormula.administration}
+ */
+export interface NutritionOrderEnteralFormulaAdministration {}
+
+/**
+ * Diet given orally in contrast to enteral (tube) feeding.
+ * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.oralDiet}
+ */
+export interface NutritionOrderOralDiet {}
+
+/**
+ * Class that defines the quantity and type of nutrient modifications (for example
+ * carbohydrate, fiber or sodium) required for the oral diet.
+ * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.oralDiet.nutrient}
+ */
+export interface NutritionOrderOralDietNutrient {}
+
+/**
+ * Class that describes any texture modifications required for the patient to
+ * safely consume various types of solid foods.
+ * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.oralDiet.texture}
+ */
+export interface NutritionOrderOralDietTexture {}
+
+/**
+ * Oral nutritional products given in order to add further nutritional value to the
+ * patient's diet.
+ * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.supplement}
+ */
+export interface NutritionOrderSupplement {}
+
+/**
  * NutritionOrder
  *
  * A request to supply a diet, formula feeding (enteral) or oral nutritional
@@ -33681,7 +36206,7 @@ export interface NutritionOrder extends DomainResource {
    * stoma that delivers nutrition distal to the oral cavity.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.enteralFormula}
    */
-  enteralFormula?: BackboneElement | undefined;
+  enteralFormula?: NutritionOrderEnteralFormula | undefined;
   _enteralFormula?: Element | undefined;
 
   /**
@@ -33786,7 +36311,7 @@ export interface NutritionOrder extends DomainResource {
    * Diet given orally in contrast to enteral (tube) feeding.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.oralDiet}
    */
-  oralDiet?: BackboneElement | undefined;
+  oralDiet?: NutritionOrderOralDiet | undefined;
   _oralDiet?: Element | undefined;
 
   /**
@@ -33822,9 +36347,41 @@ export interface NutritionOrder extends DomainResource {
    * patient's diet.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.supplement}
    */
-  supplement?: Array<BackboneElement> | undefined;
+  supplement?: Array<NutritionOrderSupplement> | undefined;
   _supplement?: Element[] | undefined;
 }
+
+/**
+ * Ingredients contained in this product.
+ * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.ingredient}
+ */
+export interface NutritionProductIngredient {}
+
+/**
+ * Conveys instance-level information about this product item. One or several
+ * physical, countable instances or occurrences of the product.
+ * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.instance}
+ */
+export interface NutritionProductInstance {}
+
+/**
+ * The product's nutritional information expressed by the nutrients.
+ * Note: This is a business identifier, not a resource identifier (see
+ * [discussion](resource.html#identifiers)).  It is best practice for the
+ * identifier to only appear on a single resource instance, however business
+ * practices may occasionally dictate that multiple resource instances with the
+ * same identifier can exist - possibly even with different resource types.  For
+ * example, multiple Patient and a Person resource instance might share the same
+ * social insurance number.
+ * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.nutrient}
+ */
+export interface NutritionProductNutrient {}
+
+/**
+ * Specifies descriptive properties of the nutrition product.
+ * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.productCharacteristic}
+ */
+export interface NutritionProductProductCharacteristic {}
 
 /**
  * NutritionProduct
@@ -33856,7 +36413,7 @@ export interface NutritionProduct extends DomainResource {
    * Ingredients contained in this product.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.ingredient}
    */
-  ingredient?: Array<BackboneElement> | undefined;
+  ingredient?: Array<NutritionProductIngredient> | undefined;
   _ingredient?: Element[] | undefined;
 
   /**
@@ -33864,7 +36421,7 @@ export interface NutritionProduct extends DomainResource {
    * physical, countable instances or occurrences of the product.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.instance}
    */
-  instance?: BackboneElement | undefined;
+  instance?: NutritionProductInstance | undefined;
   _instance?: Element | undefined;
 
   /**
@@ -33900,14 +36457,16 @@ export interface NutritionProduct extends DomainResource {
    * social insurance number.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.nutrient}
    */
-  nutrient?: Array<BackboneElement> | undefined;
+  nutrient?: Array<NutritionProductNutrient> | undefined;
   _nutrient?: Element[] | undefined;
 
   /**
    * Specifies descriptive properties of the nutrition product.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.productCharacteristic}
    */
-  productCharacteristic?: Array<BackboneElement> | undefined;
+  productCharacteristic?:
+    | Array<NutritionProductProductCharacteristic>
+    | undefined;
   _productCharacteristic?: Element[] | undefined;
 
   /**
@@ -33921,6 +36480,33 @@ export interface NutritionProduct extends DomainResource {
   status: NutritionProductStatus;
   _status?: Element | undefined;
 }
+
+/**
+ * Some observations have multiple component observations.  These component
+ * observations are expressed as separate code value pairs that share the same
+ * attributes.  Examples include systolic and diastolic component observations for
+ * blood pressure measurement and multiple component observations for genetics
+ * observations.
+ * For a discussion on the ways Observations can be assembled in groups together
+ * see [Notes](observation.html#notes) below.
+ * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.component}
+ */
+export interface ObservationComponent {}
+
+/**
+ * Guidance on how to interpret the value by comparison to a normal or recommended
+ * range.  Multiple reference ranges are interpreted as an "OR".   In other words,
+ * to represent two distinct target populations, two `referenceRange` elements
+ * would be used.
+ * Most observations only have one generic reference range. Systems MAY choose to
+ * restrict to only supplying the relevant reference range based on knowledge about
+ * the patient (e.g., specific to the patient's age, gender, weight and other
+ * factors), but this might not be possible or appropriate. Whenever more than one
+ * reference range is supplied, the differences between them SHOULD be provided in
+ * the reference range and/or age properties.
+ * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.referenceRange}
+ */
+export interface ObservationReferenceRange {}
 
 /**
  * Observation
@@ -33985,7 +36571,7 @@ export interface Observation extends DomainResource {
    * see [Notes](observation.html#notes) below.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.component}
    */
-  component?: Array<BackboneElement> | undefined;
+  component?: Array<ObservationComponent> | undefined;
   _component?: Element[] | undefined;
 
   /**
@@ -34222,7 +36808,7 @@ export interface Observation extends DomainResource {
    * the reference range and/or age properties.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.referenceRange}
    */
-  referenceRange?: Array<BackboneElement> | undefined;
+  referenceRange?: Array<ObservationReferenceRange> | undefined;
   _referenceRange?: Element[] | undefined;
 
   /**
@@ -34431,6 +37017,19 @@ export interface Observation extends DomainResource {
 }
 
 /**
+ * Multiple  ranges of results qualified by different contexts for ordinal or
+ * continuous observations conforming to this ObservationDefinition.
+ * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.qualifiedInterval}
+ */
+export interface ObservationDefinitionQualifiedInterval {}
+
+/**
+ * Characteristics for quantitative results of this observation.
+ * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.quantitativeDetails}
+ */
+export interface ObservationDefinitionQuantitativeDetails {}
+
+/**
  * ObservationDefinition
  *
  * Set of definitional characteristics for a kind of observation or measurement
@@ -34532,14 +37131,14 @@ export interface ObservationDefinition extends DomainResource {
    * continuous observations conforming to this ObservationDefinition.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.qualifiedInterval}
    */
-  qualifiedInterval?: Array<BackboneElement> | undefined;
+  qualifiedInterval?: Array<ObservationDefinitionQualifiedInterval> | undefined;
   _qualifiedInterval?: Element[] | undefined;
 
   /**
    * Characteristics for quantitative results of this observation.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.quantitativeDetails}
    */
-  quantitativeDetails?: BackboneElement | undefined;
+  quantitativeDetails?: ObservationDefinitionQuantitativeDetails | undefined;
   _quantitativeDetails?: Element | undefined;
 
   /**
@@ -34550,6 +37149,38 @@ export interface ObservationDefinition extends DomainResource {
   validCodedValueSet?: Reference | undefined;
   _validCodedValueSet?: Element | undefined;
 }
+
+/**
+ * Defines an appropriate combination of parameters to use when invoking this
+ * operation, to help code generators when generating overloaded parameter sets for
+ * this operation.
+ * The combinations are suggestions as to which sets of parameters to use together,
+ * but the combinations are not intended to be authoritative.
+ * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.overload}
+ */
+export interface OperationDefinitionOverload {}
+
+/**
+ * The parameters for the operation/query.
+ * Query Definitions only have one output parameter, named "result". This might not
+ * be described, but can be to allow a profile to be defined.
+ * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter}
+ */
+export interface OperationDefinitionParameter {}
+
+/**
+ * Binds to a value set if this parameter is coded (code, Coding, CodeableConcept).
+ * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.binding}
+ */
+export interface OperationDefinitionParameterBinding {}
+
+/**
+ * Identifies other resource parameters within the operation invocation that are
+ * expected to resolve to this resource.
+ * Resolution applies if the referenced parameter exists.
+ * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.referencedFrom}
+ */
+export interface OperationDefinitionParameterReferencedFrom {}
 
 /**
  * OperationDefinition
@@ -34724,7 +37355,7 @@ export interface OperationDefinition extends DomainResource {
    * but the combinations are not intended to be authoritative.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.overload}
    */
-  overload?: Array<BackboneElement> | undefined;
+  overload?: Array<OperationDefinitionOverload> | undefined;
   _overload?: Element[] | undefined;
 
   /**
@@ -34733,7 +37364,7 @@ export interface OperationDefinition extends DomainResource {
    * be described, but can be to allow a profile to be defined.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter}
    */
-  parameter?: Array<BackboneElement> | undefined;
+  parameter?: Array<OperationDefinitionParameter> | undefined;
   _parameter?: Element[] | undefined;
 
   /**
@@ -34867,6 +37498,12 @@ In some cases, the resource can no longer
 }
 
 /**
+ * An error, warning, or information message that results from a system action.
+ * @see {@link http://hl7.org/fhir/R4B/OperationOutcome-definitions.html#OperationOutcome.issue}
+ */
+export interface OperationOutcomeIssue {}
+
+/**
  * OperationOutcome
  *
  * A collection of error, warning, or information messages that result from a
@@ -34881,9 +37518,18 @@ export interface OperationOutcome extends DomainResource {
    * An error, warning, or information message that results from a system action.
    * @see {@link http://hl7.org/fhir/R4B/OperationOutcome-definitions.html#OperationOutcome.issue}
    */
-  issue: Array<BackboneElement>;
+  issue: Array<OperationOutcomeIssue>;
   _issue?: Element[] | undefined;
 }
+
+/**
+ * Contact for the organization for a certain purpose.
+ * Where multiple contacts for the same purpose are provided there is a standard
+ * extension that can be used to determine which one is the preferred contact to
+ * use.
+ * @see {@link http://hl7.org/fhir/R4B/Organization-definitions.html#Organization.contact}
+ */
+export interface OrganizationContact {}
 
 /**
  * Organization
@@ -34940,7 +37586,7 @@ This element is labeled as a modifier because it may be used to mark that
    * use.
    * @see {@link http://hl7.org/fhir/R4B/Organization-definitions.html#Organization.contact}
    */
-  contact?: Array<BackboneElement> | undefined;
+  contact?: Array<OrganizationContact> | undefined;
   _contact?: Element[] | undefined;
 
   /**
@@ -35110,6 +37756,38 @@ export interface OrganizationAffiliation extends DomainResource {
 }
 
 /**
+ * The legal status of supply of the packaged item as classified by the regulator.
+ * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.legalStatusOfSupply}
+ */
+export interface PackagedProductDefinitionLegalStatusOfSupply {}
+
+/**
+ * A packaging item, as a container for medically related items, possibly with
+ * other packaging items within, or a packaging component, such as bottle cap
+ * (which is not a device or a medication manufactured item).
+ * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package}
+ */
+export interface PackagedProductDefinitionPackage {}
+
+/**
+ * The item(s) within the packaging.
+ * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.containedItem}
+ */
+export interface PackagedProductDefinitionPackageContainedItem {}
+
+/**
+ * General characteristics of this item.
+ * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.property}
+ */
+export interface PackagedProductDefinitionPackageProperty {}
+
+/**
+ * Shelf Life and storage information.
+ * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.shelfLifeStorage}
+ */
+export interface PackagedProductDefinitionPackageShelfLifeStorage {}
+
+/**
  * PackagedProductDefinition
  *
  * A medically related item or items, in a container or package.
@@ -35173,7 +37851,9 @@ export interface PackagedProductDefinition extends DomainResource {
    * The legal status of supply of the packaged item as classified by the regulator.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.legalStatusOfSupply}
    */
-  legalStatusOfSupply?: Array<BackboneElement> | undefined;
+  legalStatusOfSupply?:
+    | Array<PackagedProductDefinitionLegalStatusOfSupply>
+    | undefined;
   _legalStatusOfSupply?: Element[] | undefined;
 
   /**
@@ -35206,7 +37886,7 @@ export interface PackagedProductDefinition extends DomainResource {
    * (which is not a device or a medication manufactured item).
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package}
    */
-  package?: BackboneElement | undefined;
+  package?: PackagedProductDefinitionPackage | undefined;
   _package?: Element | undefined;
 
   /**
@@ -35303,6 +37983,12 @@ export interface ParameterDefinition extends Element {
 }
 
 /**
+ * A parameter passed to or received from the operation.
+ * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter}
+ */
+export interface ParametersParameter {}
+
+/**
  * Parameters
  *
  * This resource is a non-persisted resource used to pass information into and back
@@ -35318,9 +38004,38 @@ export interface Parameters extends Resource {
    * A parameter passed to or received from the operation.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter}
    */
-  parameter?: Array<BackboneElement> | undefined;
+  parameter?: Array<ParametersParameter> | undefined;
   _parameter?: Element[] | undefined;
 }
+
+/**
+ * A language which may be used to communicate with the patient about his or her
+ * health.
+ * If no language is specified, this *implies* that the default local language is
+ * spoken.  If you need to convey proficiency for multiple modes, then you need
+ * multiple Patient.Communication associations.   For animals, language is not a
+ * relevant field, and should be absent from the instance. If the Patient does not
+ * speak the default local language, then the Interpreter Required Standard can be
+ * used to explicitly declare that an interpreter is required.
+ * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.communication}
+ */
+export interface PatientCommunication {}
+
+/**
+ * A contact party (e.g. guardian, partner, friend) for the patient.
+ * Contact covers all kinds of contact parties: family members, business contacts,
+ * guardians, caregivers. Not applicable to register pedigree and family ties
+ * beyond use of having contact.
+ * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.contact}
+ */
+export interface PatientContact {}
+
+/**
+ * Link to another patient resource that concerns the same actual patient.
+ * There is no assumption that linked patient records have mutual links.
+ * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.link}
+ */
+export interface PatientLink {}
 
 /**
  * Patient
@@ -35380,7 +38095,7 @@ Deceased patients may also be marked
    * used to explicitly declare that an interpreter is required.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.communication}
    */
-  communication?: Array<BackboneElement> | undefined;
+  communication?: Array<PatientCommunication> | undefined;
   _communication?: Element[] | undefined;
 
   /**
@@ -35390,7 +38105,7 @@ Deceased patients may also be marked
    * beyond use of having contact.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.contact}
    */
-  contact?: Array<BackboneElement> | undefined;
+  contact?: Array<PatientContact> | undefined;
   _contact?: Element[] | undefined;
 
   /**
@@ -35468,7 +38183,7 @@ Jurisdictions may decide that they can profile
    * There is no assumption that linked patient records have mutual links.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.link}
    */
-  link?: Array<BackboneElement> | undefined;
+  link?: Array<PatientLink> | undefined;
   _link?: Element[] | undefined;
 
   /**
@@ -35653,6 +38368,18 @@ export interface PaymentNotice extends DomainResource {
 }
 
 /**
+ * Distribution of the payment amount for a previously acknowledged payable.
+ * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.detail}
+ */
+export interface PaymentReconciliationDetail {}
+
+/**
+ * A note that describes or explains the processing in a human readable form.
+ * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.processNote}
+ */
+export interface PaymentReconciliationProcessNote {}
+
+/**
  * PaymentReconciliation
  *
  * This resource provides the details including amount of a payment and allocates
@@ -35674,7 +38401,7 @@ export interface PaymentReconciliation extends DomainResource {
    * Distribution of the payment amount for a previously acknowledged payable.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.detail}
    */
-  detail?: Array<BackboneElement> | undefined;
+  detail?: Array<PaymentReconciliationDetail> | undefined;
   _detail?: Element[] | undefined;
 
   /**
@@ -35754,7 +38481,7 @@ export interface PaymentReconciliation extends DomainResource {
    * A note that describes or explains the processing in a human readable form.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.processNote}
    */
-  processNote?: Array<BackboneElement> | undefined;
+  processNote?: Array<PaymentReconciliationProcessNote> | undefined;
   _processNote?: Element[] | undefined;
 
   /**
@@ -35810,6 +38537,12 @@ export interface Period extends Element {
   start?: string | undefined;
   _start?: Element | undefined;
 }
+
+/**
+ * Link to a resource that concerns the same actual person.
+ * @see {@link http://hl7.org/fhir/R4B/Person-definitions.html#Person.link}
+ */
+export interface PersonLink {}
 
 /**
  * Person
@@ -35869,7 +38602,7 @@ export interface Person extends DomainResource {
    * Link to a resource that concerns the same actual person.
    * @see {@link http://hl7.org/fhir/R4B/Person-definitions.html#Person.link}
    */
-  link?: Array<BackboneElement> | undefined;
+  link?: Array<PersonLink> | undefined;
   _link?: Element[] | undefined;
 
   /**
@@ -35907,6 +38640,77 @@ export interface Person extends DomainResource {
 }
 
 /**
+ * An action or group of actions to be taken as part of the plan. For example, in
+ * clinical care, an action would be to prescribe a particular indicated
+ * medication, or perform a particular test as appropriate. In pharmaceutical
+ * quality, an action would be the test that needs to be performed on a drug
+ * product as defined in the quality specification.
+ * Note that there is overlap between many of the elements defined here and the
+ * ActivityDefinition resource. When an ActivityDefinition is referenced (using the
+ * definition element), the overlapping elements in the plan override the content
+ * of the referenced ActivityDefinition unless otherwise documented in the specific
+ * elements. See the PlanDefinition resource for more detailed information.
+ * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action}
+ */
+export interface PlanDefinitionAction {}
+
+/**
+ * An expression that describes applicability criteria or start/stop conditions for
+ * the action.
+ * When multiple conditions of the same kind are present, the effects are combined
+ * using AND semantics, so the overall condition is true only if all the conditions
+ * are true.
+ * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.condition}
+ */
+export interface PlanDefinitionActionCondition {}
+
+/**
+ * Customizations that should be applied to the statically defined resource. For
+ * example, if the dosage of a medication must be computed based on the patient's
+ * weight, a customization would be used to specify an expression that calculated
+ * the weight, and the path on the resource that would contain the result.
+ * Dynamic values are applied in the order in which they are defined in the
+ * PlanDefinition resource. Note that when dynamic values are also specified by a
+ * referenced ActivityDefinition, the dynamicValues from the ActivityDefinition are
+ * applied first, followed by the dynamicValues specified here. In addition, if
+ * both a transform and dynamic values are specific, the dynamic values are applied
+ * to the result of the transform.
+ * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.dynamicValue}
+ */
+export interface PlanDefinitionActionDynamicValue {}
+
+/**
+ * Indicates who should participate in performing the action described.
+ * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.participant}
+ */
+export interface PlanDefinitionActionParticipant {}
+
+/**
+ * A relationship to another action such as "before" or "30-60 minutes after start
+ * of".
+ * When an action depends on multiple actions, the meaning is that all actions are
+ * dependencies, rather than that any of the actions are a dependency.
+ * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.relatedAction}
+ */
+export interface PlanDefinitionActionRelatedAction {}
+
+/**
+ * A goal describes an expected outcome that activities within the plan are
+ * intended to achieve. For example, weight loss, restoring an activity of daily
+ * living, obtaining herd immunity via immunization, meeting a process improvement
+ * objective, meeting the acceptance criteria for a test as specified by a quality
+ * specification, etc.
+ * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.goal}
+ */
+export interface PlanDefinitionGoal {}
+
+/**
+ * Indicates what should be done and within what timeframe.
+ * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.goal.target}
+ */
+export interface PlanDefinitionGoalTarget {}
+
+/**
  * PlanDefinition
  *
  * This resource allows for the definition of various types of plans as a sharable,
@@ -35933,7 +38737,7 @@ export interface PlanDefinition extends DomainResource {
    * elements. See the PlanDefinition resource for more detailed information.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action}
    */
-  action?: Array<BackboneElement> | undefined;
+  action?: Array<PlanDefinitionAction> | undefined;
   _action?: Element[] | undefined;
 
   /**
@@ -36047,7 +38851,7 @@ export interface PlanDefinition extends DomainResource {
    * specification, etc.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.goal}
    */
-  goal?: Array<BackboneElement> | undefined;
+  goal?: Array<PlanDefinitionGoal> | undefined;
   _goal?: Element[] | undefined;
 
   /**
@@ -36345,6 +39149,15 @@ export interface Population extends BackboneElement {
 }
 
 /**
+ * The official certifications, training, and licenses that authorize or otherwise
+ * pertain to the provision of care by the practitioner.  For example, a medical
+ * license issued by a medical board authorizing the practitioner to practice
+ * medicine within a certian locality.
+ * @see {@link http://hl7.org/fhir/R4B/Practitioner-definitions.html#Practitioner.qualification}
+ */
+export interface PractitionerQualification {}
+
+/**
  * Practitioner
  *
  * A person who is directly or indirectly involved in the provisioning of
@@ -36445,7 +39258,7 @@ In general, select the value to be used in the
    * medicine within a certian locality.
    * @see {@link http://hl7.org/fhir/R4B/Practitioner-definitions.html#Practitioner.qualification}
    */
-  qualification?: Array<BackboneElement> | undefined;
+  qualification?: Array<PractitionerQualification> | undefined;
   _qualification?: Element[] | undefined;
 
   /**
@@ -36460,6 +39273,22 @@ In general, select the value to be used in the
   telecom?: Array<ContactPoint> | undefined;
   _telecom?: Element[] | undefined;
 }
+
+/**
+ * A collection of times the practitioner is available or performing this role at
+ * the location and/or healthcareservice.
+ * More detailed availability information may be provided in associated
+ * Schedule/Slot resources.
+ * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.availableTime}
+ */
+export interface PractitionerRoleAvailableTime {}
+
+/**
+ * The practitioner is not available or performing this role during this period of
+ * time due to the provided reason.
+ * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.notAvailable}
+ */
+export interface PractitionerRoleNotAvailable {}
 
 /**
  * PractitionerRole
@@ -36498,7 +39327,7 @@ export interface PractitionerRole extends DomainResource {
    * Schedule/Slot resources.
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.availableTime}
    */
-  availableTime?: Array<BackboneElement> | undefined;
+  availableTime?: Array<PractitionerRoleAvailableTime> | undefined;
   _availableTime?: Element[] | undefined;
 
   /**
@@ -36544,7 +39373,7 @@ export interface PractitionerRole extends DomainResource {
    * time due to the provided reason.
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.notAvailable}
    */
-  notAvailable?: Array<BackboneElement> | undefined;
+  notAvailable?: Array<PractitionerRoleNotAvailable> | undefined;
   _notAvailable?: Element[] | undefined;
 
   /**
@@ -36583,6 +39412,20 @@ export interface PractitionerRole extends DomainResource {
   telecom?: Array<ContactPoint> | undefined;
   _telecom?: Element[] | undefined;
 }
+
+/**
+ * A device that is implanted, removed or otherwise manipulated (calibration,
+ * battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a
+ * focal portion of the Procedure.
+ * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.focalDevice}
+ */
+export interface ProcedureFocalDevice {}
+
+/**
+ * Limited to "real" people rather than equipment.
+ * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.performer}
+ */
+export interface ProcedurePerformer {}
 
 /**
  * Procedure
@@ -36675,7 +39518,7 @@ export interface Procedure extends DomainResource {
    * focal portion of the Procedure.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.focalDevice}
    */
-  focalDevice?: Array<BackboneElement> | undefined;
+  focalDevice?: Array<ProcedureFocalDevice> | undefined;
   _focalDevice?: Element[] | undefined;
 
   /**
@@ -36843,7 +39686,7 @@ export interface Procedure extends DomainResource {
    * Limited to "real" people rather than equipment.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.performer}
    */
-  performer?: Array<BackboneElement> | undefined;
+  performer?: Array<ProcedurePerformer> | undefined;
   _performer?: Element[] | undefined;
 
   /**
@@ -37097,6 +39940,21 @@ export interface ProductShelfLife extends BackboneElement {
 }
 
 /**
+ * An actor taking a role in an activity  for which it can be assigned some degree
+ * of responsibility for the activity taking place.
+ * Several agents may be associated (i.e. has some responsibility for an activity)
+ * with an activity and vice-versa.
+ * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.agent}
+ */
+export interface ProvenanceAgent {}
+
+/**
+ * An entity used in this activity.
+ * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.entity}
+ */
+export interface ProvenanceEntity {}
+
+/**
  * Provenance
  *
  * Provenance of a resource is a record that describes entities and processes
@@ -37130,14 +39988,14 @@ export interface Provenance extends DomainResource {
    * with an activity and vice-versa.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.agent}
    */
-  agent: Array<BackboneElement>;
+  agent: Array<ProvenanceAgent>;
   _agent?: Element[] | undefined;
 
   /**
    * An entity used in this activity.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.entity}
    */
-  entity?: Array<BackboneElement> | undefined;
+  entity?: Array<ProvenanceEntity> | undefined;
   _entity?: Element[] | undefined;
 
   /**
@@ -37273,6 +40131,51 @@ export interface Quantity extends Element {
 }
 
 /**
+ * A particular question, question grouping or display text that is part of the
+ * questionnaire.
+ * The content of the questionnaire is constructed from an ordered, hierarchical
+ * collection of items.
+ * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item}
+ */
+export interface QuestionnaireItem {}
+
+/**
+ * One of the permitted answers for a "choice" or "open-choice" question.
+ * This element can be used when the value set machinery of answerValueSet is
+ * deemed too cumbersome or when there's a need to capture possible answers that
+ * are not codes.
+ * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.answerOption}
+ */
+export interface QuestionnaireItemAnswerOption {}
+
+/**
+ * A constraint indicating that this item should only be enabled (displayed/allow
+ * answers to be captured) when the specified condition is true.
+ * If multiple repetitions of this extension are present, the item should be
+ * enabled when the condition for *any* of the repetitions is true.  I.e. treat
+ * "enableWhen"s as being joined by an "or" clause.  This element is a modifier
+ * because if enableWhen is present for an item, "required" is ignored unless one
+ * of the enableWhen conditions is met. When an item is disabled, all of its
+ * descendants are disabled, regardless of what their own enableWhen logic might
+ * evaluate to.
+ * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.enableWhen}
+ */
+export interface QuestionnaireItemEnableWhen {}
+
+/**
+ * One or more values that should be pre-populated in the answer when initially
+ * rendering the questionnaire for user input.
+ * The user is allowed to change the value and override the default (unless marked
+ * as read-only). If the user doesn't change the value, then this initial value
+ * will be persisted when the QuestionnaireResponse is initially created.  Note
+ * that initial values can influence results.  The data type of initial[x] must
+ * agree with the item.type, and only repeating items can have more then one
+ * initial value.
+ * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.initial}
+ */
+export interface QuestionnaireItemInitial {}
+
+/**
  * Questionnaire
  *
  * A structured set of questions intended to guide the collection of answers from
@@ -37397,7 +40300,7 @@ export interface Questionnaire extends DomainResource {
    * collection of items.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item}
    */
-  item?: Array<BackboneElement> | undefined;
+  item?: Array<QuestionnaireItem> | undefined;
   _item?: Element[] | undefined;
 
   /**
@@ -37529,6 +40432,24 @@ export interface Questionnaire extends DomainResource {
 }
 
 /**
+ * A group or question item from the original questionnaire for which answers are
+ * provided.
+ * Groups cannot have answers and therefore must nest directly within item. When
+ * dealing with questions, nesting must occur within each answer because some
+ * questions may have multiple answers (and the nesting occurs for each answer).
+ * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item}
+ */
+export interface QuestionnaireResponseItem {}
+
+/**
+ * The respondent's answer(s) to the question.
+ * The value is nested because we cannot have a repeating structure that has
+ * variable type.
+ * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.answer}
+ */
+export interface QuestionnaireResponseItemAnswer {}
+
+/**
  * QuestionnaireResponse
  *
  * A structured set of questions and their answers. The questions are ordered and
@@ -37603,7 +40524,7 @@ This element is optional to allow for systems that might not know the
    * questions may have multiple answers (and the nesting occurs for each answer).
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item}
    */
-  item?: Array<BackboneElement> | undefined;
+  item?: Array<QuestionnaireResponseItem> | undefined;
   _item?: Element[] | undefined;
 
   /**
@@ -37835,6 +40756,18 @@ The type is the Canonical URL of Resource Definition that
 }
 
 /**
+ * The case or regulatory procedure for granting or amending a regulated
+ * authorization. An authorization is granted in response to
+ * submissions/applications by those seeking authorization. A case is the
+ * administrative process that deals with the application(s) that relate to this
+ * and assesses them. Note: This area is subject to ongoing review and the
+ * workgroup is seeking implementer feedback on its use (see link at bottom of
+ * page).
+ * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.case}
+ */
+export interface RegulatedAuthorizationCase {}
+
+/**
  * RegulatedAuthorization
  *
  * Regulatory approval, clearance or licencing related to a regulated product,
@@ -37865,7 +40798,7 @@ export interface RegulatedAuthorization extends DomainResource {
    * page).
    * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.case}
    */
-  case?: BackboneElement | undefined;
+  case?: RegulatedAuthorizationCase | undefined;
   _case?: Element | undefined;
 
   /**
@@ -38028,6 +40961,17 @@ export interface RelatedArtifact extends Element {
 }
 
 /**
+ * A language which may be used to communicate with about the patient's health.
+ * If no language is specified, this *implies* that the default local language is
+ * spoken.  If you need to convey proficiency for multiple modes, then you need
+ * multiple RelatedPerson.Communication associations.   If the RelatedPerson does
+ * not speak the default local language, then the Interpreter Required Standard can
+ * be used to explicitly declare that an interpreter is required.
+ * @see {@link http://hl7.org/fhir/R4B/RelatedPerson-definitions.html#RelatedPerson.communication}
+ */
+export interface RelatedPersonCommunication {}
+
+/**
  * RelatedPerson
  *
  * Information about a person that is involved in the care for a patient, but who
@@ -38071,7 +41015,7 @@ export interface RelatedPerson extends DomainResource {
    * be used to explicitly declare that an interpreter is required.
    * @see {@link http://hl7.org/fhir/R4B/RelatedPerson-definitions.html#RelatedPerson.communication}
    */
-  communication?: Array<BackboneElement> | undefined;
+  communication?: Array<RelatedPersonCommunication> | undefined;
   _communication?: Element[] | undefined;
 
   /**
@@ -38448,6 +41392,29 @@ A status of completed for a "doNotPerform"
 }
 
 /**
+ * The actions, if any, produced by the evaluation of the artifact.
+ * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action}
+ */
+export interface RequestGroupAction {}
+
+/**
+ * An expression that describes applicability criteria, or start/stop conditions
+ * for the action.
+ * When multiple conditions of the same kind are present, the effects are combined
+ * using AND semantics, so the overall condition is true only if all of the
+ * conditions are true.
+ * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.condition}
+ */
+export interface RequestGroupActionCondition {}
+
+/**
+ * A relationship to another action such as "before" or "30-60 minutes after start
+ * of".
+ * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.relatedAction}
+ */
+export interface RequestGroupActionRelatedAction {}
+
+/**
  * RequestGroup
  *
  * A group of related requests that can be used to capture intended activities that
@@ -38462,7 +41429,7 @@ export interface RequestGroup extends DomainResource {
    * The actions, if any, produced by the evaluation of the artifact.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action}
    */
-  action?: Array<BackboneElement> | undefined;
+  action?: Array<RequestGroupAction> | undefined;
   _action?: Element[] | undefined;
 
   /**
@@ -38998,6 +41965,16 @@ In some cases, the resource can no longer
 }
 
 /**
+ * A characteristic that defines the members of the research element. Multiple
+ * characteristics are applied with "and" semantics.
+ * Characteristics can be defined flexibly to accommodate different use cases for
+ * membership criteria, ranging from simple codes, all the way to using an
+ * expression language to express the criteria.
+ * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.characteristic}
+ */
+export interface ResearchElementDefinitionCharacteristic {}
+
+/**
  * ResearchElementDefinition
  *
  * The ResearchElementDefinition resource describes a "PICO" element that knowledge
@@ -39034,7 +42011,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * expression language to express the criteria.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.characteristic}
    */
-  characteristic: Array<BackboneElement>;
+  characteristic: Array<ResearchElementDefinitionCharacteristic>;
   _characteristic?: Element[] | undefined;
 
   /**
@@ -39387,6 +42364,20 @@ In some cases, the resource can no longer
 }
 
 /**
+ * Describes an expected sequence of events for one of the participants of a study.
+ * E.g. Exposure to drug A, wash-out, exposure to drug B, wash-out, follow-up.
+ * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.arm}
+ */
+export interface ResearchStudyArm {}
+
+/**
+ * A goal that the study is aiming to achieve in terms of a scientific question to
+ * be answered by the analysis of data collected during the study.
+ * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.objective}
+ */
+export interface ResearchStudyObjective {}
+
+/**
  * ResearchStudy
  *
  * A process where a researcher or organization plans and then executes a series of
@@ -39406,7 +42397,7 @@ export interface ResearchStudy extends DomainResource {
    * E.g. Exposure to drug A, wash-out, exposure to drug B, wash-out, follow-up.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.arm}
    */
-  arm?: Array<BackboneElement> | undefined;
+  arm?: Array<ResearchStudyArm> | undefined;
   _arm?: Element[] | undefined;
 
   /**
@@ -39493,7 +42484,7 @@ export interface ResearchStudy extends DomainResource {
    * be answered by the analysis of data collected during the study.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.objective}
    */
-  objective?: Array<BackboneElement> | undefined;
+  objective?: Array<ResearchStudyObjective> | undefined;
   _objective?: Element[] | undefined;
 
   /**
@@ -39725,6 +42716,14 @@ export interface Resource {
 }
 
 /**
+ * Describes the expected outcome for the subject.
+ * Multiple repetitions can be used to identify the same type of outcome in
+ * different timeframes as well as different types of outcomes.
+ * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.prediction}
+ */
+export interface RiskAssessmentPrediction {}
+
+/**
  * RiskAssessment
  *
  * An assessment of the likely outcome(s) for a patient or other subject as well as
@@ -39835,7 +42834,7 @@ export interface RiskAssessment extends DomainResource {
    * different timeframes as well as different types of outcomes.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.prediction}
    */
-  prediction?: Array<BackboneElement> | undefined;
+  prediction?: Array<RiskAssessmentPrediction> | undefined;
   _prediction?: Element[] | undefined;
 
   /**
@@ -40018,6 +43017,12 @@ export interface Schedule extends DomainResource {
 }
 
 /**
+ * Used to define the parts of a composite search parameter.
+ * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.component}
+ */
+export interface SearchParameterComponent {}
+
+/**
  * SearchParameter
  *
  * A search parameter that defines a named search item that can be used to
@@ -40077,7 +43082,7 @@ export interface SearchParameter extends DomainResource {
    * Used to define the parts of a composite search parameter.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.component}
    */
-  component?: Array<BackboneElement> | undefined;
+  component?: Array<SearchParameterComponent> | undefined;
   _component?: Element[] | undefined;
 
   /**
@@ -40908,6 +43913,25 @@ export interface Slot extends DomainResource {
 }
 
 /**
+ * Details concerning the specimen collection.
+ * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.collection}
+ */
+export interface SpecimenCollection {}
+
+/**
+ * The container holding the specimen.  The recursive nature of containers; i.e.
+ * blood in tube in tray in rack is not addressed here.
+ * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.container}
+ */
+export interface SpecimenContainer {}
+
+/**
+ * Details concerning processing and processing steps for the specimen.
+ * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.processing}
+ */
+export interface SpecimenProcessing {}
+
+/**
  * Specimen
  *
  * A sample to be used for analysis.
@@ -40930,7 +43954,7 @@ export interface Specimen extends DomainResource {
    * Details concerning the specimen collection.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.collection}
    */
-  collection?: BackboneElement | undefined;
+  collection?: SpecimenCollection | undefined;
   _collection?: Element | undefined;
 
   /**
@@ -40948,7 +43972,7 @@ export interface Specimen extends DomainResource {
    * blood in tube in tray in rack is not addressed here.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.container}
    */
-  container?: Array<BackboneElement> | undefined;
+  container?: Array<SpecimenContainer> | undefined;
   _container?: Element[] | undefined;
 
   /**
@@ -40982,7 +44006,7 @@ export interface Specimen extends DomainResource {
    * Details concerning processing and processing steps for the specimen.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.processing}
    */
-  processing?: Array<BackboneElement> | undefined;
+  processing?: Array<SpecimenProcessing> | undefined;
   _processing?: Element[] | undefined;
 
   /**
@@ -41030,6 +44054,32 @@ export interface Specimen extends DomainResource {
   type?: CodeableConcept | undefined;
   _type?: Element | undefined;
 }
+
+/**
+ * Specimen conditioned in a container as expected by the testing laboratory.
+ * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition-definitions.html#SpecimenDefinition.typeTested}
+ */
+export interface SpecimenDefinitionTypeTested {}
+
+/**
+ * The specimen's container.
+ * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition-definitions.html#SpecimenDefinition.typeTested.container}
+ */
+export interface SpecimenDefinitionTypeTestedContainer {}
+
+/**
+ * Substance introduced in the kind of container to preserve, maintain or enhance
+ * the specimen. Examples: Formalin, Citrate, EDTA.
+ * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition-definitions.html#SpecimenDefinition.typeTested.container.additive}
+ */
+export interface SpecimenDefinitionTypeTestedContainerAdditive {}
+
+/**
+ * Set of instructions for preservation/transport of the specimen at a defined
+ * temperature interval, prior the testing process.
+ * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition-definitions.html#SpecimenDefinition.typeTested.handling}
+ */
+export interface SpecimenDefinitionTypeTestedHandling {}
 
 /**
  * SpecimenDefinition
@@ -41080,9 +44130,36 @@ export interface SpecimenDefinition extends DomainResource {
    * Specimen conditioned in a container as expected by the testing laboratory.
    * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition-definitions.html#SpecimenDefinition.typeTested}
    */
-  typeTested?: Array<BackboneElement> | undefined;
+  typeTested?: Array<SpecimenDefinitionTypeTested> | undefined;
   _typeTested?: Element[] | undefined;
 }
+
+/**
+ * Identifies the types of resource or data type elements to which the extension
+ * can be applied.
+ * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.context}
+ */
+export interface StructureDefinitionContext {}
+
+/**
+ * A differential view is expressed relative to the base StructureDefinition - a
+ * statement of differences that it applies.
+ * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.differential}
+ */
+export interface StructureDefinitionDifferential {}
+
+/**
+ * An external specification that the content is mapped to.
+ * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.mapping}
+ */
+export interface StructureDefinitionMapping {}
+
+/**
+ * A snapshot view is expressed in a standalone form that can be used and
+ * interpreted without considering the base StructureDefinition.
+ * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.snapshot}
+ */
+export interface StructureDefinitionSnapshot {}
 
 /**
  * StructureDefinition
@@ -41142,7 +44219,7 @@ export interface StructureDefinition extends DomainResource {
    * can be applied.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.context}
    */
-  context?: Array<BackboneElement> | undefined;
+  context?: Array<StructureDefinitionContext> | undefined;
   _context?: Element[] | undefined;
 
   /**
@@ -41213,7 +44290,7 @@ export interface StructureDefinition extends DomainResource {
    * statement of differences that it applies.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.differential}
    */
-  differential?: BackboneElement | undefined;
+  differential?: StructureDefinitionDifferential | undefined;
   _differential?: Element | undefined;
 
   /**
@@ -41284,7 +44361,7 @@ export interface StructureDefinition extends DomainResource {
    * An external specification that the content is mapped to.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.mapping}
    */
-  mapping?: Array<BackboneElement> | undefined;
+  mapping?: Array<StructureDefinitionMapping> | undefined;
   _mapping?: Element[] | undefined;
 
   /**
@@ -41337,7 +44414,7 @@ export interface StructureDefinition extends DomainResource {
    * interpreted without considering the base StructureDefinition.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.snapshot}
    */
-  snapshot?: BackboneElement | undefined;
+  snapshot?: StructureDefinitionSnapshot | undefined;
   _snapshot?: Element | undefined;
 
   /**
@@ -41443,6 +44520,60 @@ In some cases, the resource can no longer
 }
 
 /**
+ * Organizes the mapping into manageable chunks for human review/ease of
+ * maintenance.
+ * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group}
+ */
+export interface StructureMapGroup {}
+
+/**
+ * A name assigned to an instance of data. The instance must be provided when the
+ * mapping is invoked.
+ * If no inputs are named, then the entry mappings are type based.
+ * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.input}
+ */
+export interface StructureMapGroupInput {}
+
+/**
+ * Transform Rule from source to target.
+ * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule}
+ */
+export interface StructureMapGroupRule {}
+
+/**
+ * Which other rules to apply in the context of this rule.
+ * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.dependent}
+ */
+export interface StructureMapGroupRuleDependent {}
+
+/**
+ * Source inputs to the mapping.
+ * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source}
+ */
+export interface StructureMapGroupRuleSource {}
+
+/**
+ * Content to create because of this mapping rule.
+ * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target}
+ */
+export interface StructureMapGroupRuleTarget {}
+
+/**
+ * Parameters to the transform.
+ * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.parameter}
+ */
+export interface StructureMapGroupRuleTargetParameter {}
+
+/**
+ * A structure definition used by this map. The structure definition may describe
+ * instances that are converted, or the instances that are produced.
+ * It is not necessary for a structure map to identify any dependent structures,
+ * though not listing them may restrict its usefulness.
+ * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.structure}
+ */
+export interface StructureMapStructure {}
+
+/**
  * StructureMap
  *
  * A Map of relationships between 2 structures that can be used to transform data.
@@ -41514,7 +44645,7 @@ export interface StructureMap extends DomainResource {
    * maintenance.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group}
    */
-  group: Array<BackboneElement>;
+  group: Array<StructureMapGroup>;
   _group?: Element[] | undefined;
 
   /**
@@ -41599,7 +44730,7 @@ export interface StructureMap extends DomainResource {
    * though not listing them may restrict its usefulness.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.structure}
    */
-  structure?: Array<BackboneElement> | undefined;
+  structure?: Array<StructureMapStructure> | undefined;
   _structure?: Element[] | undefined;
 
   /**
@@ -41667,6 +44798,13 @@ In some cases, the resource can no longer
 }
 
 /**
+ * Details where to send notifications when resources are received that meet the
+ * criteria.
+ * @see {@link http://hl7.org/fhir/R4B/Subscription-definitions.html#Subscription.channel}
+ */
+export interface SubscriptionChannel {}
+
+/**
  * Subscription
  *
  * The subscription resource is used to define a push-based subscription from a
@@ -41685,7 +44823,7 @@ export interface Subscription extends DomainResource {
    * criteria.
    * @see {@link http://hl7.org/fhir/R4B/Subscription-definitions.html#Subscription.channel}
    */
-  channel: BackboneElement;
+  channel: SubscriptionChannel;
   _channel?: Element | undefined;
 
   /**
@@ -41747,6 +44885,12 @@ This
 }
 
 /**
+ * Detailed information about events relevant to this subscription notification.
+ * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.notificationEvent}
+ */
+export interface SubscriptionStatusNotificationEvent {}
+
+/**
  * SubscriptionStatus
  *
  * The SubscriptionStatus resource describes the state of a Subscription during
@@ -41779,7 +44923,7 @@ export interface SubscriptionStatus extends DomainResource {
    * Detailed information about events relevant to this subscription notification.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.notificationEvent}
    */
-  notificationEvent?: Array<BackboneElement> | undefined;
+  notificationEvent?: Array<SubscriptionStatusNotificationEvent> | undefined;
   _notificationEvent?: Element[] | undefined;
 
   /**
@@ -41819,6 +44963,44 @@ export interface SubscriptionStatus extends DomainResource {
 }
 
 /**
+ * List of properties by which Subscriptions on the SubscriptionTopic can be
+ * filtered. May be defined Search Parameters (e.g., Encounter.patient) or
+ * parameters defined within this SubscriptionTopic context (e.g., hub.event).
+ * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.canFilterBy}
+ */
+export interface SubscriptionTopicCanFilterBy {}
+
+/**
+ * Event definition which can be used to trigger the SubscriptionTopic.
+ * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.eventTrigger}
+ */
+export interface SubscriptionTopicEventTrigger {}
+
+/**
+ * List of properties to describe the shape (e.g., resources) included in
+ * notifications from this Subscription Topic.
+ * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.notificationShape}
+ */
+export interface SubscriptionTopicNotificationShape {}
+
+/**
+ * A definition of a resource-based event that triggers a notification based on the
+ * SubscriptionTopic. The criteria may be just a human readable description and/or
+ * a full FHIR search string or FHIRPath expression. Multiple triggers are
+ * considered OR joined (e.g., a resource update matching ANY of the definitions
+ * will trigger a notification).
+ * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.resourceTrigger}
+ */
+export interface SubscriptionTopicResourceTrigger {}
+
+/**
+ * The FHIR query based rules that the server should use to determine when to
+ * trigger a notification for this subscription topic.
+ * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.resourceTrigger.queryCriteria}
+ */
+export interface SubscriptionTopicResourceTriggerQueryCriteria {}
+
+/**
  * SubscriptionTopic
  *
  * Describes a stream of resource state changes identified by trigger criteria and
@@ -41845,7 +45027,7 @@ export interface SubscriptionTopic extends DomainResource {
    * parameters defined within this SubscriptionTopic context (e.g., hub.event).
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.canFilterBy}
    */
-  canFilterBy?: Array<BackboneElement> | undefined;
+  canFilterBy?: Array<SubscriptionTopicCanFilterBy> | undefined;
   _canFilterBy?: Element[] | undefined;
 
   /**
@@ -41912,7 +45094,7 @@ export interface SubscriptionTopic extends DomainResource {
    * Event definition which can be used to trigger the SubscriptionTopic.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.eventTrigger}
    */
-  eventTrigger?: Array<BackboneElement> | undefined;
+  eventTrigger?: Array<SubscriptionTopicEventTrigger> | undefined;
   _eventTrigger?: Element[] | undefined;
 
   /**
@@ -41962,7 +45144,7 @@ export interface SubscriptionTopic extends DomainResource {
    * notifications from this Subscription Topic.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.notificationShape}
    */
-  notificationShape?: Array<BackboneElement> | undefined;
+  notificationShape?: Array<SubscriptionTopicNotificationShape> | undefined;
   _notificationShape?: Element[] | undefined;
 
   /**
@@ -41992,7 +45174,7 @@ export interface SubscriptionTopic extends DomainResource {
    * will trigger a notification).
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.resourceTrigger}
    */
-  resourceTrigger?: Array<BackboneElement> | undefined;
+  resourceTrigger?: Array<SubscriptionTopicResourceTrigger> | undefined;
   _resourceTrigger?: Element[] | undefined;
 
   /**
@@ -42070,6 +45252,19 @@ In some cases, the resource can no longer
 }
 
 /**
+ * A substance can be composed of other substances.
+ * @see {@link http://hl7.org/fhir/R4B/Substance-definitions.html#Substance.ingredient}
+ */
+export interface SubstanceIngredient {}
+
+/**
+ * Substance may be used to describe a kind of substance, or a specific
+ * package/container of the substance: an instance.
+ * @see {@link http://hl7.org/fhir/R4B/Substance-definitions.html#Substance.instance}
+ */
+export interface SubstanceInstance {}
+
+/**
  * Substance
  *
  * A homogeneous material with a definite composition.
@@ -42121,7 +45316,7 @@ export interface Substance extends DomainResource {
    * A substance can be composed of other substances.
    * @see {@link http://hl7.org/fhir/R4B/Substance-definitions.html#Substance.ingredient}
    */
-  ingredient?: Array<BackboneElement> | undefined;
+  ingredient?: Array<SubstanceIngredient> | undefined;
   _ingredient?: Element[] | undefined;
 
   /**
@@ -42129,7 +45324,7 @@ export interface Substance extends DomainResource {
    * package/container of the substance: an instance.
    * @see {@link http://hl7.org/fhir/R4B/Substance-definitions.html#Substance.instance}
    */
-  instance?: Array<BackboneElement> | undefined;
+  instance?: Array<SubstanceInstance> | undefined;
   _instance?: Element[] | undefined;
 
   /**
@@ -42140,6 +45335,66 @@ export interface Substance extends DomainResource {
   status?: FHIRSubstanceStatus | undefined;
   _status?: Element | undefined;
 }
+
+/**
+ * Codes associated with the substance.
+ * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.code}
+ */
+export interface SubstanceDefinitionCode {}
+
+/**
+ * Moiety, for structural modifications.
+ * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.moiety}
+ */
+export interface SubstanceDefinitionMoiety {}
+
+/**
+ * The molecular weight or weight range (for proteins, polymers or nucleic acids).
+ * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.molecularWeight}
+ */
+export interface SubstanceDefinitionMolecularWeight {}
+
+/**
+ * Names applicable to this substance.
+ * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.name}
+ */
+export interface SubstanceDefinitionName {}
+
+/**
+ * Details of the official nature of this name.
+ * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.name.official}
+ */
+export interface SubstanceDefinitionNameOfficial {}
+
+/**
+ * General specifications for this substance.
+ * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.property}
+ */
+export interface SubstanceDefinitionProperty {}
+
+/**
+ * A link between this substance and another, with details of the relationship.
+ * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.relationship}
+ */
+export interface SubstanceDefinitionRelationship {}
+
+/**
+ * Material or taxonomic/anatomical source for the substance.
+ * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.sourceMaterial}
+ */
+export interface SubstanceDefinitionSourceMaterial {}
+
+/**
+ * Structural information.
+ * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.structure}
+ */
+export interface SubstanceDefinitionStructure {}
+
+/**
+ * A depiction of the structure or characterization of the substance.
+ * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.structure.representation}
+ */
+export interface SubstanceDefinitionStructureRepresentation {}
 
 /**
  * SubstanceDefinition
@@ -42165,7 +45420,7 @@ export interface SubstanceDefinition extends DomainResource {
    * Codes associated with the substance.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.code}
    */
-  code?: Array<BackboneElement> | undefined;
+  code?: Array<SubstanceDefinitionCode> | undefined;
   _code?: Element[] | undefined;
 
   /**
@@ -42216,21 +45471,21 @@ export interface SubstanceDefinition extends DomainResource {
    * Moiety, for structural modifications.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.moiety}
    */
-  moiety?: Array<BackboneElement> | undefined;
+  moiety?: Array<SubstanceDefinitionMoiety> | undefined;
   _moiety?: Element[] | undefined;
 
   /**
    * The molecular weight or weight range (for proteins, polymers or nucleic acids).
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.molecularWeight}
    */
-  molecularWeight?: Array<BackboneElement> | undefined;
+  molecularWeight?: Array<SubstanceDefinitionMolecularWeight> | undefined;
   _molecularWeight?: Element[] | undefined;
 
   /**
    * Names applicable to this substance.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.name}
    */
-  name?: Array<BackboneElement> | undefined;
+  name?: Array<SubstanceDefinitionName> | undefined;
   _name?: Element[] | undefined;
 
   /**
@@ -42244,21 +45499,21 @@ export interface SubstanceDefinition extends DomainResource {
    * General specifications for this substance.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.property}
    */
-  property?: Array<BackboneElement> | undefined;
+  property?: Array<SubstanceDefinitionProperty> | undefined;
   _property?: Element[] | undefined;
 
   /**
    * A link between this substance and another, with details of the relationship.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.relationship}
    */
-  relationship?: Array<BackboneElement> | undefined;
+  relationship?: Array<SubstanceDefinitionRelationship> | undefined;
   _relationship?: Element[] | undefined;
 
   /**
    * Material or taxonomic/anatomical source for the substance.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.sourceMaterial}
    */
-  sourceMaterial?: BackboneElement | undefined;
+  sourceMaterial?: SubstanceDefinitionSourceMaterial | undefined;
   _sourceMaterial?: Element | undefined;
 
   /**
@@ -42272,7 +45527,7 @@ export interface SubstanceDefinition extends DomainResource {
    * Structural information.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.structure}
    */
-  structure?: BackboneElement | undefined;
+  structure?: SubstanceDefinitionStructure | undefined;
   _structure?: Element | undefined;
 
   /**
@@ -42290,6 +45545,12 @@ export interface SubstanceDefinition extends DomainResource {
   version?: string | undefined;
   _version?: Element | undefined;
 }
+
+/**
+ * The item that is being delivered or has been supplied.
+ * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.suppliedItem}
+ */
+export interface SupplyDeliverySuppliedItem {}
 
 /**
  * SupplyDelivery
@@ -42390,7 +45651,7 @@ export interface SupplyDelivery extends DomainResource {
    * The item that is being delivered or has been supplied.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.suppliedItem}
    */
-  suppliedItem?: BackboneElement | undefined;
+  suppliedItem?: SupplyDeliverySuppliedItem | undefined;
   _suppliedItem?: Element | undefined;
 
   /**
@@ -42409,6 +45670,13 @@ export interface SupplyDelivery extends DomainResource {
   type?: SupplyItemType | undefined;
   _type?: Element | undefined;
 }
+
+/**
+ * Specific parameters for the ordered item.  For example, the size of the
+ * indicated item.
+ * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.parameter}
+ */
+export interface SupplyRequestParameter {}
 
 /**
  * SupplyRequest
@@ -42511,7 +45779,7 @@ export interface SupplyRequest extends DomainResource {
    * indicated item.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.parameter}
    */
-  parameter?: Array<BackboneElement> | undefined;
+  parameter?: Array<SupplyRequestParameter> | undefined;
   _parameter?: Element[] | undefined;
 
   /**
@@ -42566,6 +45834,26 @@ export interface SupplyRequest extends DomainResource {
   supplier?: Array<Reference> | undefined;
   _supplier?: Element[] | undefined;
 }
+
+/**
+ * Additional information that may be needed in the execution of the task.
+ * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input}
+ */
+export interface TaskInput {}
+
+/**
+ * Outputs produced by the Task.
+ * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output}
+ */
+export interface TaskOutput {}
+
+/**
+ * If the Task.focus is a request resource and the task is seeking fulfillment
+ * (i.e. is asking for the request to be actioned), this element identifies any
+ * limitations on what parts of the referenced request should be actioned.
+ * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.restriction}
+ */
+export interface TaskRestriction {}
 
 /**
  * Task
@@ -42673,7 +45961,7 @@ export interface Task extends DomainResource {
    * Additional information that may be needed in the execution of the task.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input}
    */
-  input?: Array<BackboneElement> | undefined;
+  input?: Array<TaskInput> | undefined;
   _input?: Element[] | undefined;
 
   /**
@@ -42738,7 +46026,7 @@ In most cases, Tasks will have an intent of "order".
    * Outputs produced by the Task.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output}
    */
-  output?: Array<BackboneElement> | undefined;
+  output?: Array<TaskOutput> | undefined;
   _output?: Element[] | undefined;
 
   /**
@@ -42818,7 +46106,7 @@ In most cases, Tasks will have an intent of "order".
    * limitations on what parts of the referenced request should be actioned.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.restriction}
    */
-  restriction?: BackboneElement | undefined;
+  restriction?: TaskRestriction | undefined;
   _restriction?: Element | undefined;
 
   /**
@@ -42840,6 +46128,78 @@ In most cases, Tasks will have an intent of "order".
 }
 
 /**
+ * Whether the $closure operation is supported.
+ * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.closure}
+ */
+export interface TerminologyCapabilitiesClosure {}
+
+/**
+ * Identifies a code system that is supported by the server. If there is a no code
+ * system URL, then this declares the general assumptions a client can make about
+ * support for any CodeSystem resource.
+ * The code system - identified by its system URL - may also be declared explicitly
+ * as a Code System Resource at /CodeSystem, but it might not be.
+ * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem}
+ */
+export interface TerminologyCapabilitiesCodeSystem {}
+
+/**
+ * For the code system, a list of versions that are supported by the server.
+ * Language translations might not be available for all codes.
+ * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem.version}
+ */
+export interface TerminologyCapabilitiesCodeSystemVersion {}
+
+/**
+ * Filter Properties supported.
+ * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem.version.filter}
+ */
+export interface TerminologyCapabilitiesCodeSystemVersionFilter {}
+
+/**
+ * Information about the [ValueSet/$expand](valueset-operation-expand.html)
+ * operation.
+ * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.expansion}
+ */
+export interface TerminologyCapabilitiesExpansion {}
+
+/**
+ * Supported expansion parameter.
+ * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.expansion.parameter}
+ */
+export interface TerminologyCapabilitiesExpansionParameter {}
+
+/**
+ * Identifies a specific implementation instance that is described by the
+ * terminology capability statement - i.e. a particular installation, rather than
+ * the capabilities of a software program.
+ * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.implementation}
+ */
+export interface TerminologyCapabilitiesImplementation {}
+
+/**
+ * Software that is covered by this terminology capability statement.  It is used
+ * when the statement describes the capabilities of a particular software version,
+ * independent of an installation.
+ * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.software}
+ */
+export interface TerminologyCapabilitiesSoftware {}
+
+/**
+ * Information about the
+ * [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
+ * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.translation}
+ */
+export interface TerminologyCapabilitiesTranslation {}
+
+/**
+ * Information about the
+ * [ValueSet/$validate-code](valueset-operation-validate-code.html) operation.
+ * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.validateCode}
+ */
+export interface TerminologyCapabilitiesValidateCode {}
+
+/**
  * TerminologyCapabilities
  *
  * A TerminologyCapabilities resource documents a set of capabilities (behaviors)
@@ -42855,7 +46215,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * Whether the $closure operation is supported.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.closure}
    */
-  closure?: BackboneElement | undefined;
+  closure?: TerminologyCapabilitiesClosure | undefined;
   _closure?: Element | undefined;
 
   /**
@@ -42876,7 +46236,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * as a Code System Resource at /CodeSystem, but it might not be.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem}
    */
-  codeSystem?: Array<BackboneElement> | undefined;
+  codeSystem?: Array<TerminologyCapabilitiesCodeSystem> | undefined;
   _codeSystem?: Element[] | undefined;
 
   /**
@@ -42935,7 +46295,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * operation.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.expansion}
    */
-  expansion?: BackboneElement | undefined;
+  expansion?: TerminologyCapabilitiesExpansion | undefined;
   _expansion?: Element | undefined;
 
   /**
@@ -42955,7 +46315,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * the capabilities of a software program.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.implementation}
    */
-  implementation?: BackboneElement | undefined;
+  implementation?: TerminologyCapabilitiesImplementation | undefined;
   _implementation?: Element | undefined;
 
   /**
@@ -43029,7 +46389,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * independent of an installation.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.software}
    */
-  software?: BackboneElement | undefined;
+  software?: TerminologyCapabilitiesSoftware | undefined;
   _software?: Element | undefined;
 
   /**
@@ -43058,7 +46418,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.translation}
    */
-  translation?: BackboneElement | undefined;
+  translation?: TerminologyCapabilitiesTranslation | undefined;
   _translation?: Element | undefined;
 
   /**
@@ -43105,7 +46465,7 @@ In some cases, the resource can no longer
    * [ValueSet/$validate-code](valueset-operation-validate-code.html) operation.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.validateCode}
    */
-  validateCode?: BackboneElement | undefined;
+  validateCode?: TerminologyCapabilitiesValidateCode | undefined;
   _validateCode?: Element | undefined;
 
   /**
@@ -43124,6 +46484,69 @@ In some cases, the resource can no longer
   version?: string | undefined;
   _version?: Element | undefined;
 }
+
+/**
+ * A participant in the test execution, either the execution engine, a client, or a
+ * server.
+ * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.participant}
+ */
+export interface TestReportParticipant {}
+
+/**
+ * The results of the series of required setup operations before the tests were
+ * executed.
+ * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup}
+ */
+export interface TestReportSetup {}
+
+/**
+ * Action would contain either an operation or an assertion.
+ * An action should contain either an operation or an assertion but not both.  It
+ * can contain any number of variables.
+ * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.action}
+ */
+export interface TestReportSetupAction {}
+
+/**
+ * The results of the assertion performed on the previous operations.
+ * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.action.assert}
+ */
+export interface TestReportSetupActionAssert {}
+
+/**
+ * The operation performed.
+ * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.action.operation}
+ */
+export interface TestReportSetupActionOperation {}
+
+/**
+ * The results of the series of operations required to clean up after all the tests
+ * were executed (successfully or otherwise).
+ * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.teardown}
+ */
+export interface TestReportTeardown {}
+
+/**
+ * The teardown action will only contain an operation.
+ * An action should contain either an operation or an assertion but not both.  It
+ * can contain any number of variables.
+ * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.teardown.action}
+ */
+export interface TestReportTeardownAction {}
+
+/**
+ * A test executed from the test script.
+ * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.test}
+ */
+export interface TestReportTest {}
+
+/**
+ * Action would contain either an operation or an assertion.
+ * An action should contain either an operation or an assertion but not both.  It
+ * can contain any number of variables.
+ * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.test.action}
+ */
+export interface TestReportTestAction {}
 
 /**
  * TestReport
@@ -43164,7 +46587,7 @@ export interface TestReport extends DomainResource {
    * server.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.participant}
    */
-  participant?: Array<BackboneElement> | undefined;
+  participant?: Array<TestReportParticipant> | undefined;
   _participant?: Element[] | undefined;
 
   /**
@@ -43191,7 +46614,7 @@ export interface TestReport extends DomainResource {
    * executed.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup}
    */
-  setup?: BackboneElement | undefined;
+  setup?: TestReportSetup | undefined;
   _setup?: Element | undefined;
 
   /**
@@ -43212,14 +46635,14 @@ This element is labeled as a modifier because the status
    * were executed (successfully or otherwise).
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.teardown}
    */
-  teardown?: BackboneElement | undefined;
+  teardown?: TestReportTeardown | undefined;
   _teardown?: Element | undefined;
 
   /**
    * A test executed from the test script.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.test}
    */
-  test?: Array<BackboneElement> | undefined;
+  test?: Array<TestReportTest> | undefined;
   _test?: Element[] | undefined;
 
   /**
@@ -43239,6 +46662,156 @@ This element is labeled as a modifier because the status
   testScript: Reference;
   _testScript?: Element | undefined;
 }
+
+/**
+ * An abstract server used in operations within this test script in the destination
+ * element.
+ * The purpose of this element is to define the profile of a destination element
+ * used elsewhere in the script.  Test engines could then use the
+ * destination-profile mapping to offer a filtered list of test systems that can
+ * serve as the receiver for the interaction.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.destination}
+ */
+export interface TestScriptDestination {}
+
+/**
+ * Fixture in the test script - by reference (uri). All fixtures are required for
+ * the test script to execute.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.fixture}
+ */
+export interface TestScriptFixture {}
+
+/**
+ * The required capability must exist and are assumed to function correctly on the
+ * FHIR server being tested.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata}
+ */
+export interface TestScriptMetadata {}
+
+/**
+ * Capabilities that must exist and are assumed to function correctly on the FHIR
+ * server being tested.
+ * When the metadata capabilities section is defined at TestScript.metadata or at
+ * TestScript.setup.metadata, and the server's conformance statement does not
+ * contain the elements defined in the minimal conformance statement, then all the
+ * tests in the TestScript are skipped.  When the metadata capabilities section is
+ * defined at TestScript.test.metadata and the server's conformance statement does
+ * not contain the elements defined in the minimal conformance statement, then only
+ * that test is skipped.  The "metadata.capabilities.required" and
+ * "metadata.capabilities.validated" elements only indicate whether the
+ * capabilities are the primary focus of the test script or not.  They do not
+ * impact the skipping logic.  Capabilities whose "metadata.capabilities.validated"
+ * flag is true are the primary focus of the test script.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata.capability}
+ */
+export interface TestScriptMetadataCapability {}
+
+/**
+ * A link to the FHIR specification that this test is covering.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata.link}
+ */
+export interface TestScriptMetadataLink {}
+
+/**
+ * An abstract server used in operations within this test script in the origin
+ * element.
+ * The purpose of this element is to define the profile of an origin element used
+ * elsewhere in the script.  Test engines could then use the origin-profile mapping
+ * to offer a filtered list of test systems that can serve as the sender for the
+ * interaction.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.origin}
+ */
+export interface TestScriptOrigin {}
+
+/**
+ * A series of required setup operations before tests are executed.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup}
+ */
+export interface TestScriptSetup {}
+
+/**
+ * Action would contain either an operation or an assertion.
+ * An action should contain either an operation or an assertion but not both.  It
+ * can contain any number of variables.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action}
+ */
+export interface TestScriptSetupAction {}
+
+/**
+ * Evaluates the results of previous operations to determine if the server under
+ * test behaves appropriately.
+ * In order to evaluate an assertion, the request, response, and results of the
+ * most recently executed operation must always be maintained by the test engine.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.assert}
+ */
+export interface TestScriptSetupActionAssert {}
+
+/**
+ * The operation to perform.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation}
+ */
+export interface TestScriptSetupActionOperation {}
+
+/**
+ * Header elements would be used to set HTTP headers.
+ * This gives control to test-script writers to set headers explicitly based on
+ * test requirements.  It will allow for testing using:  - "If-Modified-Since" and
+ * "If-None-Match" headers.  See http://build.fhir.org/http.html#2.1.0.5.1 -
+ * "If-Match" header.  See http://build.fhir.org/http.html#2.1.0.11 - Conditional
+ * Create using "If-None-Exist".  See http://build.fhir.org/http.html#2.1.0.13.1 -
+ * Invalid "Content-Type" header for negative testing. - etc.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.requestHeader}
+ */
+export interface TestScriptSetupActionOperationRequestHeader {}
+
+/**
+ * A series of operations required to clean up after all the tests are executed
+ * (successfully or otherwise).
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.teardown}
+ */
+export interface TestScriptTeardown {}
+
+/**
+ * The teardown action will only contain an operation.
+ * An action should contain either an operation or an assertion but not both.  It
+ * can contain any number of variables.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.teardown.action}
+ */
+export interface TestScriptTeardownAction {}
+
+/**
+ * A test in this script.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.test}
+ */
+export interface TestScriptTest {}
+
+/**
+ * Action would contain either an operation or an assertion.
+ * An action should contain either an operation or an assertion but not both.  It
+ * can contain any number of variables.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.test.action}
+ */
+export interface TestScriptTestAction {}
+
+/**
+ * Variable is set based either on element value in response body or on header
+ * field value in the response headers.
+ * Variables would be set based either on XPath/JSONPath expressions against
+ * fixtures (static and response), or headerField evaluations against response
+ * headers. If variable evaluates to nodelist or anything other than a primitive
+ * value, then test engine would report an error.  Variables would be used to
+ * perform clean replacements in "operation.params",
+ * "operation.requestHeader.value", and "operation.url" element values during
+ * operation calls and in "assert.value" during assertion evaluations. This limits
+ * the places that test engines would need to look for placeholders "${}".
+ * Variables are scoped to the whole script. They are NOT evaluated at declaration.
+ * They are evaluated by test engine when used for substitutions in
+ * "operation.params", "operation.requestHeader.value", and "operation.url" element
+ * values during operation calls and in "assert.value" during assertion
+ * evaluations.  See example testscript-search.xml.
+ * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.variable}
+ */
+export interface TestScriptVariable {}
 
 /**
  * TestScript
@@ -43307,7 +46880,7 @@ export interface TestScript extends DomainResource {
    * serve as the receiver for the interaction.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.destination}
    */
-  destination?: Array<BackboneElement> | undefined;
+  destination?: Array<TestScriptDestination> | undefined;
   _destination?: Element[] | undefined;
 
   /**
@@ -43325,7 +46898,7 @@ export interface TestScript extends DomainResource {
    * the test script to execute.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.fixture}
    */
-  fixture?: Array<BackboneElement> | undefined;
+  fixture?: Array<TestScriptFixture> | undefined;
   _fixture?: Element[] | undefined;
 
   /**
@@ -43354,7 +46927,7 @@ export interface TestScript extends DomainResource {
    * FHIR server being tested.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata}
    */
-  metadata?: BackboneElement | undefined;
+  metadata?: TestScriptMetadata | undefined;
   _metadata?: Element | undefined;
 
   /**
@@ -43377,7 +46950,7 @@ export interface TestScript extends DomainResource {
    * interaction.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.origin}
    */
-  origin?: Array<BackboneElement> | undefined;
+  origin?: Array<TestScriptOrigin> | undefined;
   _origin?: Element[] | undefined;
 
   /**
@@ -43418,7 +46991,7 @@ export interface TestScript extends DomainResource {
    * A series of required setup operations before tests are executed.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup}
    */
-  setup?: BackboneElement | undefined;
+  setup?: TestScriptSetup | undefined;
   _setup?: Element | undefined;
 
   /**
@@ -43435,14 +47008,14 @@ export interface TestScript extends DomainResource {
    * (successfully or otherwise).
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.teardown}
    */
-  teardown?: BackboneElement | undefined;
+  teardown?: TestScriptTeardown | undefined;
   _teardown?: Element | undefined;
 
   /**
    * A test in this script.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.test}
    */
-  test?: Array<BackboneElement> | undefined;
+  test?: Array<TestScriptTest> | undefined;
   _test?: Element[] | undefined;
 
   /**
@@ -43510,7 +47083,7 @@ In some cases, the resource can no longer
    * evaluations.  See example testscript-search.xml.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.variable}
    */
-  variable?: Array<BackboneElement> | undefined;
+  variable?: Array<TestScriptVariable> | undefined;
   _variable?: Element[] | undefined;
 
   /**
@@ -43703,6 +47276,94 @@ export interface UsageContext extends Element {
 }
 
 /**
+ * A set of criteria that define the contents of the value set by including or
+ * excluding codes selected from the specified code system(s) that the value set
+ * draws from. This is also known as the Content Logical Definition (CLD).
+ * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose}
+ */
+export interface ValueSetCompose {}
+
+/**
+ * Include one or more codes from a code system or other value set(s).
+ * All the conditions in an include must be true. If a system is listed, all the
+ * codes from the system are listed. If one or more filters are listed, all of the
+ * filters must apply. If one or more value sets are listed, the codes must be in
+ * all the value sets. E.g. each include is 'include all the codes that meet all
+ * these conditions'.
+ * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include}
+ */
+export interface ValueSetComposeInclude {}
+
+/**
+ * Specifies a concept to be included or excluded.
+ * The list of concepts is considered ordered, though the order might not have any
+ * particular significance. Typically, the order of an expansion follows that
+ * defined in the compose element.
+ * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.concept}
+ */
+export interface ValueSetComposeIncludeConcept {}
+
+/**
+ * Additional representations for this concept when used in this value set - other
+ * languages, aliases, specialized purposes, used for particular purposes, etc.
+ * Concepts have both a ```display``` and an array of ```designation```. The
+ * display is equivalent to a special designation with an implied
+ * ```designation.use``` of "primary code" and a language equal to the [Resource
+ * Language](resource.html#language).
+ * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.concept.designation}
+ */
+export interface ValueSetComposeIncludeConceptDesignation {}
+
+/**
+ * Select concepts by specify a matching criterion based on the properties
+ * (including relationships) defined by the system, or on filters defined by the
+ * system. If multiple filters are specified, they SHALL all be true.
+ * Selecting codes by specifying filters based on properties is only possible where
+ * the underlying code system defines appropriate properties. Note that in some
+ * cases, the underlying code system defines the logical concepts but not the
+ * literal codes for the concepts. In such cases, the literal definitions may be
+ * provided by a third party.
+ * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.filter}
+ */
+export interface ValueSetComposeIncludeFilter {}
+
+/**
+ * A value set can also be "expanded", where the value set is turned into a simple
+ * collection of enumerated codes. This element holds the expansion, if it has been
+ * performed.
+ * Expansion is performed to produce a collection of codes that are ready to use
+ * for data entry or validation. Value set expansions are always considered to be
+ * stateless - they are a record of the set of codes in the value set at a point in
+ * time under a given set of conditions, and are not subject to ongoing
+ * maintenance.
+
+Expansion.parameter is  a simplified list of parameters - a subset
+ * of the features of the [Parameters](parameters.html) resource.
+ * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion}
+ */
+export interface ValueSetExpansion {}
+
+/**
+ * The codes that are contained in the value set expansion.
+ * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.contains}
+ */
+export interface ValueSetExpansionContains {}
+
+/**
+ * A parameter that controlled the expansion process. These parameters may be used
+ * by users of expanded value sets to check whether the expansion is suitable for a
+ * particular purpose, or to pick the correct expansion.
+ * The server decides which parameters to include here, but at a minimum, the list
+ * SHOULD include all of the parameters that affect the $expand operation. If the
+ * expansion will be persisted all of these parameters SHALL be included. If the
+ * codeSystem on the server has a specified version then this version SHALL be
+ * provided as a parameter in the expansion (note that not all code systems have a
+ * version).
+ * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.parameter}
+ */
+export interface ValueSetExpansionParameter {}
+
+/**
  * ValueSet
  *
  * A ValueSet resource instance specifies a set of codes drawn from one or more
@@ -43721,7 +47382,7 @@ export interface ValueSet extends DomainResource {
    * draws from. This is also known as the Content Logical Definition (CLD).
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose}
    */
-  compose?: BackboneElement | undefined;
+  compose?: ValueSetCompose | undefined;
   _compose?: Element | undefined;
 
   /**
@@ -43794,7 +47455,7 @@ Expansion.parameter is  a simplified list of parameters - a subset
  * of the features of the [Parameters](parameters.html) resource.
  * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion}
  */
-  expansion?: BackboneElement | undefined;
+  expansion?: ValueSetExpansion | undefined;
   _expansion?: Element | undefined;
 
   /**
@@ -43963,6 +47624,24 @@ In some cases, the resource can no longer
 }
 
 /**
+ * Information about the entity attesting to information.
+ * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.attestation}
+ */
+export interface VerificationResultAttestation {}
+
+/**
+ * Information about the primary source(s) involved in validation.
+ * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.primarySource}
+ */
+export interface VerificationResultPrimarySource {}
+
+/**
+ * Information about the entity validating information.
+ * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.validator}
+ */
+export interface VerificationResultValidator {}
+
+/**
  * VerificationResult
  *
  * Describes validation requirements, source(s), status and dates for one or more
@@ -43977,7 +47656,7 @@ export interface VerificationResult extends DomainResource {
    * Information about the entity attesting to information.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.attestation}
    */
-  attestation?: BackboneElement | undefined;
+  attestation?: VerificationResultAttestation | undefined;
   _attestation?: Element | undefined;
 
   /**
@@ -44019,7 +47698,7 @@ export interface VerificationResult extends DomainResource {
    * Information about the primary source(s) involved in validation.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.primarySource}
    */
-  primarySource?: Array<BackboneElement> | undefined;
+  primarySource?: Array<VerificationResultPrimarySource> | undefined;
   _primarySource?: Element[] | undefined;
 
   /**
@@ -44072,9 +47751,22 @@ export interface VerificationResult extends DomainResource {
    * Information about the entity validating information.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.validator}
    */
-  validator?: Array<BackboneElement> | undefined;
+  validator?: Array<VerificationResultValidator> | undefined;
   _validator?: Element[] | undefined;
 }
+
+/**
+ * Contain the details of  the individual lens specifications and serves as the
+ * authorization for the fullfillment by certified professionals.
+ * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification}
+ */
+export interface VisionPrescriptionLensSpecification {}
+
+/**
+ * Allows for adjustment on two axis.
+ * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.prism}
+ */
+export interface VisionPrescriptionLensSpecificationPrism {}
 
 /**
  * VisionPrescription
@@ -44124,7 +47816,7 @@ export interface VisionPrescription extends DomainResource {
    * authorization for the fullfillment by certified professionals.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification}
    */
-  lensSpecification: Array<BackboneElement>;
+  lensSpecification: Array<VisionPrescriptionLensSpecification>;
   _lensSpecification?: Element[] | undefined;
 
   /**
