@@ -9,7 +9,12 @@
  *
  * Indicates whether the account is available to be used.
  */
-export type AccountStatus = string;
+export type AccountStatus =
+  | "active"
+  | "inactive"
+  | "entered-in-error"
+  | "on-hold"
+  | "unknown";
 
 /**
  * Action Cardinality Behavior
@@ -17,119 +22,171 @@ export type AccountStatus = string;
  * Defines behavior for an action or a group for how many times that item may be
  * repeated.
  */
-export type ActionCardinalityBehavior = string;
+export type ActionCardinalityBehavior = "single" | "multiple";
 
 /**
  * Action Condition Kind
  *
  * Defines the kinds of conditions that can appear on actions.
  */
-export type ActionConditionKind = string;
+export type ActionConditionKind = "applicability" | "start" | "stop";
 
 /**
  * Action Grouping Behavior
  *
  * Defines organization behavior of a group.
  */
-export type ActionGroupingBehavior = string;
+export type ActionGroupingBehavior =
+  | "visual-group"
+  | "logical-group"
+  | "sentence-group";
 
 /**
  * Action Participant Type
  *
  * The type of participant for the action.
  */
-export type ActionParticipantType = string;
+export type ActionParticipantType =
+  | "careteam"
+  | "device"
+  | "group"
+  | "healthcareservice"
+  | "location"
+  | "organization"
+  | "patient"
+  | "practitioner"
+  | "practitionerrole"
+  | "relatedperson";
 
 /**
  * Action Precheck Behavior
  *
  * Defines selection frequency behavior for an action or group.
  */
-export type ActionPrecheckBehavior = string;
+export type ActionPrecheckBehavior = "yes" | "no";
 
 /**
  * Action Relationship Type
  *
  * Defines the types of relationships between actions.
  */
-export type ActionRelationshipType = string;
+export type ActionRelationshipType =
+  | "before"
+  | "before-start"
+  | "before-end"
+  | "concurrent"
+  | "concurrent-with-start"
+  | "concurrent-with-end"
+  | "after"
+  | "after-start"
+  | "after-end";
 
 /**
  * Action Required Behavior
  *
  * Defines expectations around whether an action or action group is required.
  */
-export type ActionRequiredBehavior = string;
+export type ActionRequiredBehavior =
+  | "must"
+  | "could"
+  | "must-unless-documented";
 
 /**
  * Action Selection Behavior
  *
  * Defines selection behavior of a group.
  */
-export type ActionSelectionBehavior = string;
+export type ActionSelectionBehavior =
+  | "any"
+  | "all"
+  | "all-or-none"
+  | "exactly-one"
+  | "at-most-one"
+  | "one-or-more";
 
 /**
  * Additional Binding Purpose ValueSet
  *
  * Additional Binding Purpose
  */
-export type AdditionalBindingPurposeVS = string;
+export type AdditionalBindingPurposeVS =
+  | "maximum"
+  | "minimum"
+  | "required"
+  | "extensible"
+  | "candidate"
+  | "current"
+  | "preferred"
+  | "ui"
+  | "starter"
+  | "component";
 
 /**
  * AddressType
  *
  * The type of an address (physical / postal).
  */
-export type AddressType = string;
+export type AddressType = "postal" | "physical" | "both";
 
 /**
  * AddressUse
  *
  * The use of an address.
  */
-export type AddressUse = string;
+export type AddressUse = "home" | "work" | "temp" | "old" | "billing";
 
 /**
  * AdministrativeGender
  *
  * The gender of a person used for administrative purposes.
  */
-export type AdministrativeGender = string;
+export type AdministrativeGender = "male" | "female" | "other" | "unknown";
 
 /**
  * Adverse Event Actuality
  *
  * Overall nature of the adverse event, e.g. real or potential.
  */
-export type AdverseEventActuality = string;
+export type AdverseEventActuality = "actual" | "potential";
 
 /**
  * Adverse Event Status
  *
  * Codes identifying the lifecycle stage of an adverse event.
  */
-export type AdverseEventStatus = string;
+export type AdverseEventStatus =
+  | "in-progress"
+  | "completed"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * AggregationMode
  *
  * How resource references can be aggregated.
  */
-export type AggregationMode = string;
+export type AggregationMode = "contained" | "referenced" | "bundled";
 
 /**
  * Allergy Intolerance Category
  *
  * Category of an identified substance associated with allergies or intolerances.
  */
-export type AllergyIntoleranceCategory = string;
+export type AllergyIntoleranceCategory =
+  | "food"
+  | "medication"
+  | "environment"
+  | "biologic";
 
 /**
  * AllergyIntolerance Clinical Status Codes
  *
  * Preferred value set for AllergyIntolerance Clinical Status.
  */
-export type AllergyIntoleranceClinicalStatusCodes = string;
+export type AllergyIntoleranceClinicalStatusCodes =
+  | "active"
+  | "inactive"
+  | "resolved";
 
 /**
  * Allergy Intolerance Criticality
@@ -137,7 +194,7 @@ export type AllergyIntoleranceClinicalStatusCodes = string;
  * Estimate of the potential clinical harm, or seriousness, of a reaction to an
  * identified substance.
  */
-export type AllergyIntoleranceCriticality = string;
+export type AllergyIntoleranceCriticality = "low" | "high" | "unable-to-assess";
 
 /**
  * Allergy Intolerance Severity
@@ -145,7 +202,7 @@ export type AllergyIntoleranceCriticality = string;
  * Clinical assessment of the severity of a reaction event as a whole, potentially
  * considering multiple different manifestations.
  */
-export type AllergyIntoleranceSeverity = string;
+export type AllergyIntoleranceSeverity = "mild" | "moderate" | "severe";
 
 /**
  * AllergyIntolerance Verification Status
@@ -153,7 +210,12 @@ export type AllergyIntoleranceSeverity = string;
  * The verification status to support or decline the clinical status of the allergy
  * or intolerance.
  */
-export type AllergyIntoleranceVerificationStatus = string;
+export type AllergyIntoleranceVerificationStatus =
+  | "unconfirmed"
+  | "presumed"
+  | "confirmed"
+  | "refuted"
+  | "entered-in-error";
 
 /**
  * All Languages
@@ -169,14 +231,29 @@ export type AllLanguages = string;
  * The Participation status for a participant in response to a request for an
  * appointment.
  */
-export type AppointmentResponseStatus = string;
+export type AppointmentResponseStatus =
+  | "accepted"
+  | "declined"
+  | "tentative"
+  | "needs-action"
+  | "entered-in-error";
 
 /**
  * Appointment Status
  *
  * The free/busy status of an appointment.
  */
-export type AppointmentStatus = string;
+export type AppointmentStatus =
+  | "proposed"
+  | "pending"
+  | "booked"
+  | "arrived"
+  | "fulfilled"
+  | "cancelled"
+  | "noshow"
+  | "entered-in-error"
+  | "checked-in"
+  | "waitlist";
 
 /**
  * Artifact Assessment Disposition
@@ -186,14 +263,25 @@ export type AppointmentStatus = string;
  * responsible party towards the changes suggested by the comment or change
  * request.
  */
-export type ArtifactAssessmentDisposition = string;
+export type ArtifactAssessmentDisposition =
+  | "unresolved"
+  | "not-persuasive"
+  | "persuasive"
+  | "persuasive-with-modification"
+  | "not-persuasive-with-modification";
 
 /**
  * Artifact Assessment Information Type
  *
  * The type of information contained in a component of an artifact assessment.
  */
-export type ArtifactAssessmentInformationType = string;
+export type ArtifactAssessmentInformationType =
+  | "comment"
+  | "classifier"
+  | "rating"
+  | "container"
+  | "response"
+  | "change-request";
 
 /**
  * Artifact Assessment Workflow Status
@@ -202,35 +290,101 @@ export type ArtifactAssessmentInformationType = string;
  * used to coordinate workflow around the process of accepting and rejecting
  * changes and comments on the artifact.
  */
-export type ArtifactAssessmentWorkflowStatus = string;
+export type ArtifactAssessmentWorkflowStatus =
+  | "submitted"
+  | "triaged"
+  | "waiting-for-input"
+  | "resolved-no-change"
+  | "resolved-change-required"
+  | "deferred"
+  | "duplicate"
+  | "applied"
+  | "published"
+  | "entered-in-error";
 
 /**
  * Assertion Direction Type
  *
  * The type of direction to use for assertion.
  */
-export type AssertionDirectionType = string;
+export type AssertionDirectionType = "response" | "request";
 
 /**
  * Assertion Manual Completion Type
  *
  * The type of manual completion to use for assertion.
  */
-export type AssertionManualCompletionType = string;
+export type AssertionManualCompletionType = "fail" | "pass" | "skip" | "stop";
 
 /**
  * Assertion Operator Type
  *
  * The type of operator to use for assertion.
  */
-export type AssertionOperatorType = string;
+export type AssertionOperatorType =
+  | "equals"
+  | "notEquals"
+  | "in"
+  | "notIn"
+  | "greaterThan"
+  | "lessThan"
+  | "empty"
+  | "notEmpty"
+  | "contains"
+  | "notContains"
+  | "eval"
+  | "manualEval";
 
 /**
  * Assertion Response Types
  *
  * The type of response code to use for assertion.
  */
-export type AssertionResponseTypes = string;
+export type AssertionResponseTypes =
+  | "continue"
+  | "switchingProtocols"
+  | "okay"
+  | "created"
+  | "accepted"
+  | "nonAuthoritativeInformation"
+  | "noContent"
+  | "resetContent"
+  | "partialContent"
+  | "multipleChoices"
+  | "movedPermanently"
+  | "found"
+  | "seeOther"
+  | "notModified"
+  | "useProxy"
+  | "temporaryRedirect"
+  | "permanentRedirect"
+  | "badRequest"
+  | "unauthorized"
+  | "paymentRequired"
+  | "forbidden"
+  | "notFound"
+  | "methodNotAllowed"
+  | "notAcceptable"
+  | "proxyAuthenticationRequired"
+  | "requestTimeout"
+  | "conflict"
+  | "gone"
+  | "lengthRequired"
+  | "preconditionFailed"
+  | "contentTooLarge"
+  | "uriTooLong"
+  | "unsupportedMediaType"
+  | "rangeNotSatisfiable"
+  | "expectationFailed"
+  | "misdirectedRequest"
+  | "unprocessableContent"
+  | "upgradeRequired"
+  | "internalServerError"
+  | "notImplemented"
+  | "badGateway"
+  | "serviceUnavailable"
+  | "gatewayTimeout"
+  | "httpVersionNotSupported";
 
 /**
  * Audit Event Action
@@ -238,35 +392,58 @@ export type AssertionResponseTypes = string;
  * Indicator for type of action performed during the event that generated the
  * event.
  */
-export type AuditEventAction = string;
+export type AuditEventAction = "C" | "R" | "U" | "D" | "E";
 
 /**
  * Audit Event Severity
  *
  * The severity of the audit entry.
  */
-export type AuditEventSeverity = string;
+export type AuditEventSeverity =
+  | "emergency"
+  | "alert"
+  | "critical"
+  | "error"
+  | "warning"
+  | "notice"
+  | "informational"
+  | "debug";
 
 /**
  * Benefit Cost Applicability
  *
  * Whether the cost applies to in-network or out-of-network providers.
  */
-export type BenefitCostApplicability = string;
+export type BenefitCostApplicability =
+  | "in-network"
+  | "out-of-network"
+  | "other";
 
 /**
  * BindingStrength
  *
  * Indication of the degree of conformance expectations associated with a binding.
  */
-export type BindingStrength = string;
+export type BindingStrength =
+  | "required"
+  | "extensible"
+  | "preferred"
+  | "example";
 
 /**
  * BiologicallyDerivedProductDispense Status Codes
  *
  *
  */
-export type BiologicallyDerivedProductDispenseCodes = string;
+export type BiologicallyDerivedProductDispenseCodes =
+  | "preparation"
+  | "in-progress"
+  | "allocated"
+  | "issued"
+  | "unfulfilled"
+  | "returned"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * Body Length Units
@@ -295,7 +472,17 @@ export type BodyWeightUnits = string;
  *
  * Indicates the purpose of a bundle - how it is intended to be used.
  */
-export type BundleType = string;
+export type BundleType =
+  | "document"
+  | "message"
+  | "transaction"
+  | "transaction-response"
+  | "batch"
+  | "batch-response"
+  | "history"
+  | "searchset"
+  | "collection"
+  | "subscription-notification";
 
 /**
  * Canonical Status Codes for FHIR Resources
@@ -310,7 +497,10 @@ export type CanonicalStatusCodesForFHIRResources = string;
  *
  * How a capability statement is intended to be used.
  */
-export type CapabilityStatementKind = string;
+export type CapabilityStatementKind =
+  | "instance"
+  | "capability"
+  | "requirements";
 
 /**
  * Care Plan Intent
@@ -318,42 +508,71 @@ export type CapabilityStatementKind = string;
  * Codes indicating the degree of authority/intentionality associated with a care
  * plan.
  */
-export type CarePlanIntent = string;
+export type CarePlanIntent =
+  | "proposal"
+  | "plan"
+  | "order"
+  | "option"
+  | "directive";
 
 /**
  * Care Team Status
  *
  * Indicates the status of the care team.
  */
-export type CareTeamStatus = string;
+export type CareTeamStatus =
+  | "proposed"
+  | "active"
+  | "suspended"
+  | "inactive"
+  | "entered-in-error";
 
 /**
  * Characteristic Combination
  *
  * Logical grouping of characteristics.
  */
-export type CharacteristicCombination = string;
+export type CharacteristicCombination =
+  | "all-of"
+  | "any-of"
+  | "at-least"
+  | "at-most"
+  | "statistical"
+  | "net-effect"
+  | "dataset";
 
 /**
  * Charge Item Status
  *
  * Codes identifying the lifecycle stage of a ChargeItem.
  */
-export type ChargeItemStatus = string;
+export type ChargeItemStatus =
+  | "planned"
+  | "billable"
+  | "not-billable"
+  | "aborted"
+  | "billed"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * Claim Processing Codes
  *
  * This value set includes Claim Processing Outcome codes.
  */
-export type ClaimProcessingCodes = string;
+export type ClaimProcessingCodes = "queued" | "complete" | "error" | "partial";
 
 /**
  * Clinical Use Definition Type
  *
  * Overall defining type of this clinical use definition.
  */
-export type ClinicalUseDefinitionType = string;
+export type ClinicalUseDefinitionType =
+  | "indication"
+  | "contraindication"
+  | "interaction"
+  | "undesirable-effect"
+  | "warning";
 
 /**
  * Code Search Support
@@ -361,7 +580,10 @@ export type ClinicalUseDefinitionType = string;
  * The degree to which the server supports the code search parameter on ValueSet,
  * if it is supported.
  */
-export type CodeSearchSupport = string;
+export type CodeSearchSupport =
+  | "in-compose"
+  | "in-expansion"
+  | "in-compose-or-expansion";
 
 /**
  * Code System Content Mode
@@ -369,14 +591,23 @@ export type CodeSearchSupport = string;
  * The extent of the content of the code system (the concepts and codes it defines)
  * are represented in a code system resource.
  */
-export type CodeSystemContentMode = string;
+export type CodeSystemContentMode =
+  | "not-present"
+  | "example"
+  | "fragment"
+  | "complete"
+  | "supplement";
 
 /**
  * Code System Hierarchy Meaning
  *
  * The meaning of the hierarchy of concepts in a code system.
  */
-export type CodeSystemHierarchyMeaning = string;
+export type CodeSystemHierarchyMeaning =
+  | "grouped-by"
+  | "is-a"
+  | "part-of"
+  | "classified-with";
 
 /**
  * Color Codes (Names or RGB Values)
@@ -393,84 +624,217 @@ export type ColorCodesOrRGB = string;
  * This value set includes common codes from BCP-47 (see
  * http://tools.ietf.org/html/bcp47)
  */
-export type CommonLanguages = string;
+export type CommonLanguages =
+  | "ar"
+  | "bg"
+  | "bg-BG"
+  | "bn"
+  | "cs"
+  | "cs-CZ"
+  | "bs"
+  | "bs-BA"
+  | "da"
+  | "da-DK"
+  | "de"
+  | "de-AT"
+  | "de-CH"
+  | "de-DE"
+  | "el"
+  | "el-GR"
+  | "en"
+  | "en-AU"
+  | "en-CA"
+  | "en-GB"
+  | "en-IN"
+  | "en-NZ"
+  | "en-SG"
+  | "en-US"
+  | "es"
+  | "es-AR"
+  | "es-ES"
+  | "es-UY"
+  | "et"
+  | "et-EE"
+  | "fi"
+  | "fr"
+  | "fr-BE"
+  | "fr-CH"
+  | "fr-FR"
+  | "fi-FI"
+  | "fr-CA"
+  | "fy"
+  | "fy-NL"
+  | "hi"
+  | "hr"
+  | "hr-HR"
+  | "is"
+  | "is-IS"
+  | "it"
+  | "it-CH"
+  | "it-IT"
+  | "ja"
+  | "ko"
+  | "lt"
+  | "lt-LT"
+  | "lv"
+  | "lv-LV"
+  | "nl"
+  | "nl-BE"
+  | "nl-NL"
+  | "no"
+  | "no-NO"
+  | "pa"
+  | "pl"
+  | "pl-PL"
+  | "pt"
+  | "pt-PT"
+  | "pt-BR"
+  | "ro"
+  | "ro-RO"
+  | "ru"
+  | "ru-RU"
+  | "sk"
+  | "sk-SK"
+  | "sl"
+  | "sl-SI"
+  | "sr"
+  | "sr-RS"
+  | "sv"
+  | "sv-SE"
+  | "te"
+  | "zh"
+  | "zh-CN"
+  | "zh-HK"
+  | "zh-SG"
+  | "zh-TW";
 
 /**
  * Compartment Type
  *
  * Which type a compartment definition describes.
  */
-export type CompartmentType = string;
+export type CompartmentType =
+  | "Patient"
+  | "Encounter"
+  | "RelatedPerson"
+  | "Practitioner"
+  | "Device"
+  | "EpisodeOfCare";
 
 /**
  * Composition Status
  *
  * The workflow/clinical status of the composition.
  */
-export type CompositionStatus = string;
+export type CompositionStatus =
+  | "registered"
+  | "partial"
+  | "preliminary"
+  | "final"
+  | "amended"
+  | "corrected"
+  | "appended"
+  | "cancelled"
+  | "entered-in-error"
+  | "deprecated"
+  | "unknown";
 
 /**
  * ConceptMap Attribute Type
  *
  * The type of a ConceptMap mapping attribute value.
  */
-export type ConceptMapAttributeType = string;
+export type ConceptMapAttributeType =
+  | "code"
+  | "Coding"
+  | "string"
+  | "boolean"
+  | "Quantity";
 
 /**
  * Concept Map Group Unmapped Mode
  *
  * Defines which action to take if there is no match in the group.
  */
-export type ConceptMapGroupUnmappedMode = string;
+export type ConceptMapGroupUnmappedMode =
+  | "use-source-code"
+  | "fixed"
+  | "other-map";
 
 /**
  * ConceptMap Property Type
  *
  * The type of a ConceptMap mapping property value.
  */
-export type ConceptMapPropertyType = string;
+export type ConceptMapPropertyType =
+  | "Coding"
+  | "string"
+  | "integer"
+  | "boolean"
+  | "dateTime"
+  | "decimal"
+  | "code";
 
 /**
  * ConceptMapRelationship
  *
  * The relationship between concepts.
  */
-export type ConceptMapRelationship = string;
+export type ConceptMapRelationship =
+  | "related-to"
+  | "equivalent"
+  | "source-is-narrower-than-target"
+  | "source-is-broader-than-target"
+  | "not-related-to";
 
 /**
  * Conditional Delete Status
  *
  * A code that indicates how the server supports conditional delete.
  */
-export type ConditionalDeleteStatus = string;
+export type ConditionalDeleteStatus = "not-supported" | "single" | "multiple";
 
 /**
  * Conditional Read Status
  *
  * A code that indicates how the server supports conditional read.
  */
-export type ConditionalReadStatus = string;
+export type ConditionalReadStatus =
+  | "not-supported"
+  | "modified-since"
+  | "not-match"
+  | "full-support";
 
 /**
  * Condition Clinical Status Codes
  *
  * Preferred value set for Condition Clinical Status.
  */
-export type ConditionClinicalStatusCodes = string;
+export type ConditionClinicalStatusCodes =
+  | "active"
+  | "recurrence"
+  | "relapse"
+  | "inactive"
+  | "remission"
+  | "resolved"
+  | "unknown";
 
 /**
  * Condition Precondition Type
  *
  * Kind of precondition for the condition.
  */
-export type ConditionPreconditionType = string;
+export type ConditionPreconditionType = "sensitive" | "specific";
 
 /**
  * Condition Questionnaire Purpose
  *
  * The use of a questionnaire.
  */
-export type ConditionQuestionnairePurpose = string;
+export type ConditionQuestionnairePurpose =
+  | "preadmit"
+  | "diff-diagnosis"
+  | "outcome";
 
 /**
  * Condition Verification Status
@@ -478,21 +842,31 @@ export type ConditionQuestionnairePurpose = string;
  * The verification status to support or decline the clinical status of the
  * condition or diagnosis.
  */
-export type ConditionVerificationStatus = string;
+export type ConditionVerificationStatus =
+  | "unconfirmed"
+  | "provisional"
+  | "differential"
+  | "confirmed"
+  | "refuted"
+  | "entered-in-error";
 
 /**
  * Conformance Expectation
  *
  * Description Needed Here
  */
-export type ConformanceExpectation = string;
+export type ConformanceExpectation = "SHALL" | "SHOULD" | "MAY" | "SHOULD-NOT";
 
 /**
  * Consent Data Meaning
  *
  * How a resource reference is interpreted when testing consent restrictions.
  */
-export type ConsentDataMeaning = string;
+export type ConsentDataMeaning =
+  | "instance"
+  | "related"
+  | "dependents"
+  | "authoredby";
 
 /**
  * Consent Provision Type
@@ -500,56 +874,99 @@ export type ConsentDataMeaning = string;
  * How a rule statement is applied, such as adding additional consent or removing
  * consent.
  */
-export type ConsentProvisionType = string;
+export type ConsentProvisionType = "deny" | "permit";
 
 /**
  * Consent State
  *
  * Indicates the state of the consent.
  */
-export type ConsentState = string;
+export type ConsentState =
+  | "draft"
+  | "active"
+  | "inactive"
+  | "not-done"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * ConstraintSeverity
  *
  * SHALL applications comply with this constraint?
  */
-export type ConstraintSeverity = string;
+export type ConstraintSeverity = "error" | "warning";
 
 /**
  * ContactPointSystem
  *
  * Telecommunications form for contact point.
  */
-export type ContactPointSystem = string;
+export type ContactPointSystem =
+  | "phone"
+  | "fax"
+  | "email"
+  | "pager"
+  | "url"
+  | "sms"
+  | "other";
 
 /**
  * ContactPointUse
  *
  * Use of contact point.
  */
-export type ContactPointUse = string;
+export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
 
 /**
  * Contract Resource Publication Status codes
  *
  * This value set contract specific codes for status.
  */
-export type ContractResourcePublicationStatusCodes = string;
+export type ContractResourcePublicationStatusCodes =
+  | "amended"
+  | "appended"
+  | "cancelled"
+  | "disputed"
+  | "entered-in-error"
+  | "executable"
+  | "executed"
+  | "negotiable"
+  | "offered"
+  | "policy"
+  | "rejected"
+  | "renewed"
+  | "revoked"
+  | "resolved"
+  | "terminated";
 
 /**
  * Contract Resource Status Codes
  *
  * This value set contract specific codes for status.
  */
-export type ContractResourceStatusCodes = string;
+export type ContractResourceStatusCodes =
+  | "amended"
+  | "appended"
+  | "cancelled"
+  | "disputed"
+  | "entered-in-error"
+  | "executable"
+  | "executed"
+  | "negotiable"
+  | "offered"
+  | "policy"
+  | "rejected"
+  | "renewed"
+  | "revoked"
+  | "resolved"
+  | "terminated";
 
 /**
  * ContributorType
  *
  * The type of contributor.
  */
-export type ContributorType = string;
+export type ContributorType = "author" | "editor" | "reviewer" | "endorser";
 
 /**
  * Country ValueSet
@@ -560,7 +977,754 @@ export type ContributorType = string;
  * codes for countries are taken from    [ISO
  * 3166](https://www.iso.org/iso-3166-country-codes.html).
  */
-export type CountryValueSet = string;
+export type CountryValueSet =
+  | "AD"
+  | "AE"
+  | "AF"
+  | "AG"
+  | "AI"
+  | "AL"
+  | "AM"
+  | "AO"
+  | "AQ"
+  | "AR"
+  | "AS"
+  | "AT"
+  | "AU"
+  | "AW"
+  | "AX"
+  | "AZ"
+  | "BA"
+  | "BB"
+  | "BD"
+  | "BE"
+  | "BF"
+  | "BG"
+  | "BH"
+  | "BI"
+  | "BJ"
+  | "BL"
+  | "BM"
+  | "BN"
+  | "BO"
+  | "BQ"
+  | "BR"
+  | "BS"
+  | "BT"
+  | "BV"
+  | "BW"
+  | "BY"
+  | "BZ"
+  | "CA"
+  | "CC"
+  | "CD"
+  | "CF"
+  | "CG"
+  | "CH"
+  | "CI"
+  | "CK"
+  | "CL"
+  | "CM"
+  | "CN"
+  | "CO"
+  | "CR"
+  | "CU"
+  | "CV"
+  | "CW"
+  | "CX"
+  | "CY"
+  | "CZ"
+  | "DE"
+  | "DJ"
+  | "DK"
+  | "DM"
+  | "DO"
+  | "DZ"
+  | "EC"
+  | "EE"
+  | "EG"
+  | "EH"
+  | "ER"
+  | "ES"
+  | "ET"
+  | "FI"
+  | "FJ"
+  | "FK"
+  | "FM"
+  | "FO"
+  | "FR"
+  | "GA"
+  | "GB"
+  | "GD"
+  | "GE"
+  | "GF"
+  | "GG"
+  | "GH"
+  | "GI"
+  | "GL"
+  | "GM"
+  | "GN"
+  | "GP"
+  | "GQ"
+  | "GR"
+  | "GS"
+  | "GT"
+  | "GU"
+  | "GW"
+  | "GY"
+  | "HK"
+  | "HM"
+  | "HN"
+  | "HR"
+  | "HT"
+  | "HU"
+  | "ID"
+  | "IE"
+  | "IL"
+  | "IM"
+  | "IN"
+  | "IO"
+  | "IQ"
+  | "IR"
+  | "IS"
+  | "IT"
+  | "JE"
+  | "JM"
+  | "JO"
+  | "JP"
+  | "KE"
+  | "KG"
+  | "KH"
+  | "KI"
+  | "KM"
+  | "KN"
+  | "KP"
+  | "KR"
+  | "KW"
+  | "KY"
+  | "KZ"
+  | "LA"
+  | "LB"
+  | "LC"
+  | "LI"
+  | "LK"
+  | "LR"
+  | "LS"
+  | "LT"
+  | "LU"
+  | "LV"
+  | "LY"
+  | "MA"
+  | "MC"
+  | "MD"
+  | "ME"
+  | "MF"
+  | "MG"
+  | "MH"
+  | "MK"
+  | "ML"
+  | "MM"
+  | "MN"
+  | "MO"
+  | "MP"
+  | "MQ"
+  | "MR"
+  | "MS"
+  | "MT"
+  | "MU"
+  | "MV"
+  | "MW"
+  | "MX"
+  | "MY"
+  | "MZ"
+  | "NA"
+  | "NC"
+  | "NE"
+  | "NF"
+  | "NG"
+  | "NI"
+  | "NL"
+  | "NO"
+  | "NP"
+  | "NR"
+  | "NU"
+  | "NZ"
+  | "OM"
+  | "PA"
+  | "PE"
+  | "PF"
+  | "PG"
+  | "PH"
+  | "PK"
+  | "PL"
+  | "PM"
+  | "PN"
+  | "PR"
+  | "PS"
+  | "PT"
+  | "PW"
+  | "PY"
+  | "QA"
+  | "RE"
+  | "RO"
+  | "RS"
+  | "RU"
+  | "RW"
+  | "SA"
+  | "SB"
+  | "SC"
+  | "SD"
+  | "SE"
+  | "SG"
+  | "SH"
+  | "SI"
+  | "SJ"
+  | "SK"
+  | "SL"
+  | "SM"
+  | "SN"
+  | "SO"
+  | "SR"
+  | "SS"
+  | "ST"
+  | "SV"
+  | "SX"
+  | "SY"
+  | "SZ"
+  | "TC"
+  | "TD"
+  | "TF"
+  | "TG"
+  | "TH"
+  | "TJ"
+  | "TK"
+  | "TL"
+  | "TM"
+  | "TN"
+  | "TO"
+  | "TR"
+  | "TT"
+  | "TV"
+  | "TW"
+  | "TZ"
+  | "UA"
+  | "UG"
+  | "UM"
+  | "US"
+  | "UY"
+  | "UZ"
+  | "VA"
+  | "VC"
+  | "VE"
+  | "VG"
+  | "VI"
+  | "VN"
+  | "VU"
+  | "WF"
+  | "WS"
+  | "YE"
+  | "YT"
+  | "ZA"
+  | "ZM"
+  | "ZW"
+  | "ABW"
+  | "AFG"
+  | "AGO"
+  | "AIA"
+  | "ALA"
+  | "ALB"
+  | "AND"
+  | "ARE"
+  | "ARG"
+  | "ARM"
+  | "ASM"
+  | "ATA"
+  | "ATF"
+  | "ATG"
+  | "AUS"
+  | "AUT"
+  | "AZE"
+  | "BDI"
+  | "BEL"
+  | "BEN"
+  | "BES"
+  | "BFA"
+  | "BGD"
+  | "BGR"
+  | "BHR"
+  | "BHS"
+  | "BIH"
+  | "BLM"
+  | "BLR"
+  | "BLZ"
+  | "BMU"
+  | "BOL"
+  | "BRA"
+  | "BRB"
+  | "BRN"
+  | "BTN"
+  | "BVT"
+  | "BWA"
+  | "CAF"
+  | "CAN"
+  | "CCK"
+  | "CHE"
+  | "CHL"
+  | "CHN"
+  | "CIV"
+  | "CMR"
+  | "COD"
+  | "COG"
+  | "COK"
+  | "COL"
+  | "COM"
+  | "CPV"
+  | "CRI"
+  | "CUB"
+  | "CUW"
+  | "CXR"
+  | "CYM"
+  | "CYP"
+  | "CZE"
+  | "DEU"
+  | "DJI"
+  | "DMA"
+  | "DNK"
+  | "DOM"
+  | "DZA"
+  | "ECU"
+  | "EGY"
+  | "ERI"
+  | "ESH"
+  | "ESP"
+  | "EST"
+  | "ETH"
+  | "FIN"
+  | "FJI"
+  | "FLK"
+  | "FRA"
+  | "FRO"
+  | "FSM"
+  | "GAB"
+  | "GBR"
+  | "GEO"
+  | "GGY"
+  | "GHA"
+  | "GIB"
+  | "GIN"
+  | "GLP"
+  | "GMB"
+  | "GNB"
+  | "GNQ"
+  | "GRC"
+  | "GRD"
+  | "GRL"
+  | "GTM"
+  | "GUF"
+  | "GUM"
+  | "GUY"
+  | "HKG"
+  | "HMD"
+  | "HND"
+  | "HRV"
+  | "HTI"
+  | "HUN"
+  | "IDN"
+  | "IMN"
+  | "IND"
+  | "IOT"
+  | "IRL"
+  | "IRN"
+  | "IRQ"
+  | "ISL"
+  | "ISR"
+  | "ITA"
+  | "JAM"
+  | "JEY"
+  | "JOR"
+  | "JPN"
+  | "KAZ"
+  | "KEN"
+  | "KGZ"
+  | "KHM"
+  | "KIR"
+  | "KNA"
+  | "KOR"
+  | "KWT"
+  | "LAO"
+  | "LBN"
+  | "LBR"
+  | "LBY"
+  | "LCA"
+  | "LIE"
+  | "LKA"
+  | "LSO"
+  | "LTU"
+  | "LUX"
+  | "LVA"
+  | "MAC"
+  | "MAF"
+  | "MAR"
+  | "MCO"
+  | "MDA"
+  | "MDG"
+  | "MDV"
+  | "MEX"
+  | "MHL"
+  | "MKD"
+  | "MLI"
+  | "MLT"
+  | "MMR"
+  | "MNE"
+  | "MNG"
+  | "MNP"
+  | "MOZ"
+  | "MRT"
+  | "MSR"
+  | "MTQ"
+  | "MUS"
+  | "MWI"
+  | "MYS"
+  | "MYT"
+  | "NAM"
+  | "NCL"
+  | "NER"
+  | "NFK"
+  | "NGA"
+  | "NIC"
+  | "NIU"
+  | "NLD"
+  | "NOR"
+  | "NPL"
+  | "NRU"
+  | "NZL"
+  | "OMN"
+  | "PAK"
+  | "PAN"
+  | "PCN"
+  | "PER"
+  | "PHL"
+  | "PLW"
+  | "PNG"
+  | "POL"
+  | "PRI"
+  | "PRK"
+  | "PRT"
+  | "PRY"
+  | "PSE"
+  | "PYF"
+  | "QAT"
+  | "REU"
+  | "ROU"
+  | "RUS"
+  | "RWA"
+  | "SAU"
+  | "SDN"
+  | "SEN"
+  | "SGP"
+  | "SGS"
+  | "SHN"
+  | "SJM"
+  | "SLB"
+  | "SLE"
+  | "SLV"
+  | "SMR"
+  | "SOM"
+  | "SPM"
+  | "SRB"
+  | "SSD"
+  | "STP"
+  | "SUR"
+  | "SVK"
+  | "SVN"
+  | "SWE"
+  | "SWZ"
+  | "SXM"
+  | "SYC"
+  | "SYR"
+  | "TCA"
+  | "TCD"
+  | "TGO"
+  | "THA"
+  | "TJK"
+  | "TKL"
+  | "TKM"
+  | "TLS"
+  | "TON"
+  | "TTO"
+  | "TUN"
+  | "TUR"
+  | "TUV"
+  | "TWN"
+  | "TZA"
+  | "UGA"
+  | "UKR"
+  | "UMI"
+  | "URY"
+  | "USA"
+  | "UZB"
+  | "VAT"
+  | "VCT"
+  | "VEN"
+  | "VGB"
+  | "VIR"
+  | "VNM"
+  | "VUT"
+  | "WLF"
+  | "WSM"
+  | "YEM"
+  | "ZAF"
+  | "ZMB"
+  | "ZWE"
+  | "004"
+  | "008"
+  | "010"
+  | "012"
+  | "016"
+  | "020"
+  | "024"
+  | "028"
+  | "031"
+  | "032"
+  | "036"
+  | "040"
+  | "044"
+  | "048"
+  | "050"
+  | "051"
+  | "052"
+  | "056"
+  | "060"
+  | "064"
+  | "068"
+  | "070"
+  | "072"
+  | "074"
+  | "076"
+  | "084"
+  | "086"
+  | "090"
+  | "092"
+  | "096"
+  | "100"
+  | "104"
+  | "108"
+  | "112"
+  | "116"
+  | "120"
+  | "124"
+  | "132"
+  | "136"
+  | "140"
+  | "144"
+  | "148"
+  | "152"
+  | "156"
+  | "158"
+  | "162"
+  | "166"
+  | "170"
+  | "174"
+  | "175"
+  | "178"
+  | "180"
+  | "184"
+  | "188"
+  | "191"
+  | "192"
+  | "196"
+  | "203"
+  | "204"
+  | "208"
+  | "212"
+  | "214"
+  | "218"
+  | "222"
+  | "226"
+  | "231"
+  | "232"
+  | "233"
+  | "234"
+  | "238"
+  | "239"
+  | "242"
+  | "246"
+  | "248"
+  | "250"
+  | "254"
+  | "258"
+  | "260"
+  | "262"
+  | "266"
+  | "268"
+  | "270"
+  | "275"
+  | "276"
+  | "288"
+  | "292"
+  | "296"
+  | "300"
+  | "304"
+  | "308"
+  | "312"
+  | "316"
+  | "320"
+  | "324"
+  | "328"
+  | "332"
+  | "334"
+  | "336"
+  | "340"
+  | "344"
+  | "348"
+  | "352"
+  | "356"
+  | "360"
+  | "364"
+  | "368"
+  | "372"
+  | "376"
+  | "380"
+  | "384"
+  | "388"
+  | "392"
+  | "398"
+  | "400"
+  | "404"
+  | "408"
+  | "410"
+  | "414"
+  | "417"
+  | "418"
+  | "422"
+  | "426"
+  | "428"
+  | "430"
+  | "434"
+  | "438"
+  | "440"
+  | "442"
+  | "446"
+  | "450"
+  | "454"
+  | "458"
+  | "462"
+  | "466"
+  | "470"
+  | "474"
+  | "478"
+  | "480"
+  | "484"
+  | "492"
+  | "496"
+  | "498"
+  | "499"
+  | "500"
+  | "504"
+  | "508"
+  | "512"
+  | "516"
+  | "520"
+  | "524"
+  | "528"
+  | "531"
+  | "533"
+  | "534"
+  | "535"
+  | "540"
+  | "548"
+  | "554"
+  | "558"
+  | "562"
+  | "566"
+  | "570"
+  | "574"
+  | "578"
+  | "580"
+  | "581"
+  | "583"
+  | "584"
+  | "585"
+  | "586"
+  | "591"
+  | "598"
+  | "600"
+  | "604"
+  | "608"
+  | "612"
+  | "616"
+  | "620"
+  | "624"
+  | "626"
+  | "630"
+  | "634"
+  | "638"
+  | "642"
+  | "643"
+  | "646"
+  | "652"
+  | "654"
+  | "659"
+  | "660"
+  | "662"
+  | "663"
+  | "666"
+  | "670"
+  | "674"
+  | "678"
+  | "682"
+  | "686"
+  | "688"
+  | "690"
+  | "694"
+  | "702"
+  | "703"
+  | "704"
+  | "705"
+  | "706"
+  | "710"
+  | "716"
+  | "724"
+  | "728"
+  | "729"
+  | "732"
+  | "740"
+  | "744"
+  | "748"
+  | "752"
+  | "756"
+  | "760"
+  | "762"
+  | "764"
+  | "768"
+  | "772"
+  | "776"
+  | "780"
+  | "784"
+  | "788"
+  | "792"
+  | "795"
+  | "796"
+  | "798"
+  | "800"
+  | "804"
+  | "807"
+  | "818"
+  | "826"
+  | "831"
+  | "832"
+  | "833"
+  | "834"
+  | "840"
+  | "850"
+  | "854"
+  | "858"
+  | "860"
+  | "862"
+  | "876"
+  | "882"
+  | "887"
+  | "894";
 
 /**
  * Criteria Not Exists Behavior
@@ -568,7 +1732,7 @@ export type CountryValueSet = string;
  * Behavior a server can exhibit when a criteria state does not exist (e.g., state
  * prior to a create or after a delete).
  */
-export type CriteriaNotExistsBehavior = string;
+export type CriteriaNotExistsBehavior = "test-passes" | "test-fails";
 
 /**
  * Currencies
@@ -576,161 +1740,432 @@ export type CriteriaNotExistsBehavior = string;
  * Currency codes from ISO 4217 (see
  * https://www.iso.org/iso-4217-currency-codes.html)
  */
-export type Currencies = string;
+export type Currencies =
+  | "AED"
+  | "AFN"
+  | "ALL"
+  | "AMD"
+  | "ANG"
+  | "AOA"
+  | "ARS"
+  | "AUD"
+  | "AWG"
+  | "AZN"
+  | "BAM"
+  | "BBD"
+  | "BDT"
+  | "BGN"
+  | "BHD"
+  | "BIF"
+  | "BMD"
+  | "BND"
+  | "BOB"
+  | "BOV"
+  | "BRL"
+  | "BSD"
+  | "BTN"
+  | "BWP"
+  | "BYN"
+  | "BZD"
+  | "CAD"
+  | "CDF"
+  | "CHE"
+  | "CHF"
+  | "CHW"
+  | "CLF"
+  | "CLP"
+  | "CNY"
+  | "COP"
+  | "COU"
+  | "CRC"
+  | "CUC"
+  | "CUP"
+  | "CVE"
+  | "CZK"
+  | "DJF"
+  | "DKK"
+  | "DOP"
+  | "DZD"
+  | "EGP"
+  | "ERN"
+  | "ETB"
+  | "EUR"
+  | "FJD"
+  | "FKP"
+  | "GBP"
+  | "GEL"
+  | "GGP"
+  | "GHS"
+  | "GIP"
+  | "GMD"
+  | "GNF"
+  | "GTQ"
+  | "GYD"
+  | "HKD"
+  | "HNL"
+  | "HRK"
+  | "HTG"
+  | "HUF"
+  | "IDR"
+  | "ILS"
+  | "IMP"
+  | "INR"
+  | "IQD"
+  | "IRR"
+  | "ISK"
+  | "JEP"
+  | "JMD"
+  | "JOD"
+  | "JPY"
+  | "KES"
+  | "KGS"
+  | "KHR"
+  | "KMF"
+  | "KPW"
+  | "KRW"
+  | "KWD"
+  | "KYD"
+  | "KZT"
+  | "LAK"
+  | "LBP"
+  | "LKR"
+  | "LRD"
+  | "LSL"
+  | "LYD"
+  | "MAD"
+  | "MDL"
+  | "MGA"
+  | "MKD"
+  | "MMK"
+  | "MNT"
+  | "MOP"
+  | "MRU"
+  | "MUR"
+  | "MVR"
+  | "MWK"
+  | "MXN"
+  | "MXV"
+  | "MYR"
+  | "MZN"
+  | "NAD"
+  | "NGN"
+  | "NIO"
+  | "NOK"
+  | "NPR"
+  | "NZD"
+  | "OMR"
+  | "PAB"
+  | "PEN"
+  | "PGK"
+  | "PHP"
+  | "PKR"
+  | "PLN"
+  | "PYG"
+  | "QAR"
+  | "RON"
+  | "RSD"
+  | "RUB"
+  | "RWF"
+  | "SAR"
+  | "SBD"
+  | "SCR"
+  | "SDG"
+  | "SEK"
+  | "SGD"
+  | "SHP"
+  | "SLL"
+  | "SOS"
+  | "SRD"
+  | "SSP"
+  | "STN"
+  | "SVC"
+  | "SYP"
+  | "SZL"
+  | "THB"
+  | "TJS"
+  | "TMT"
+  | "TND"
+  | "TOP"
+  | "TRY"
+  | "TTD"
+  | "TVD"
+  | "TWD"
+  | "TZS"
+  | "UAH"
+  | "UGX"
+  | "USD"
+  | "USN"
+  | "UYI"
+  | "UYU"
+  | "UZS"
+  | "VEF"
+  | "VND"
+  | "VUV"
+  | "WST"
+  | "XAF"
+  | "XAG"
+  | "XAU"
+  | "XBA"
+  | "XBB"
+  | "XBC"
+  | "XBD"
+  | "XCD"
+  | "XDR"
+  | "XOF"
+  | "XPD"
+  | "XPF"
+  | "XPT"
+  | "XSU"
+  | "XTS"
+  | "XUA"
+  | "XXX"
+  | "YER"
+  | "ZAR"
+  | "ZMW"
+  | "ZWL";
 
 /**
  * Days Of Week
  *
  * The days of the week.
  */
-export type DaysOfWeek = string;
+export type DaysOfWeek = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
 
 /**
  * Detected Issue Severity
  *
  * Indicates the potential degree of impact of the identified issue on the patient.
  */
-export type DetectedIssueSeverity = string;
+export type DetectedIssueSeverity = "high" | "moderate" | "low";
 
 /**
  * Detected Issue Status
  *
  * Indicates the status of a detected issue
  */
-export type DetectedIssueStatus = string;
+export type DetectedIssueStatus =
+  | "preliminary"
+  | "final"
+  | "entered-in-error"
+  | "mitigated";
 
 /**
  * DeviceAssociation Status Reason Codes
  *
  *
  */
-export type DeviceAssociationStatusReasonCodes = string;
+export type DeviceAssociationStatusReasonCodes =
+  | "attached"
+  | "disconnected"
+  | "failed"
+  | "placed"
+  | "replaced";
 
 /**
  * DeviceAssociation Status Codes
  *
  *
  */
-export type DeviceAssociationStatusCodes = string;
+export type DeviceAssociationStatusCodes =
+  | "implanted"
+  | "explanted"
+  | "entered-in-error"
+  | "attached"
+  | "unknown";
 
 /**
  * Device Corrective Action Scope
  *
  * Device - Corrective action scope
  */
-export type DeviceCorrectiveActionScope = string;
+export type DeviceCorrectiveActionScope =
+  | "model"
+  | "lot-numbers"
+  | "serial-numbers";
 
 /**
  * Device Definition Regulatory Identifier Type
  *
  * Regulatory Identifier type
  */
-export type DeviceDefinitionRegulatoryIdentifierType = string;
+export type DeviceDefinitionRegulatoryIdentifierType =
+  | "basic"
+  | "master"
+  | "license";
 
 /**
  * DeviceDispense Status Codes
  *
  *
  */
-export type DeviceDispenseStatusCodes = string;
+export type DeviceDispenseStatusCodes =
+  | "preparation"
+  | "in-progress"
+  | "cancelled"
+  | "on-hold"
+  | "completed"
+  | "entered-in-error"
+  | "stopped"
+  | "declined"
+  | "unknown";
 
 /**
  * Device Metric Calibration State
  *
  * Describes the state of a metric calibration.
  */
-export type DeviceMetricCalibrationState = string;
+export type DeviceMetricCalibrationState =
+  | "not-calibrated"
+  | "calibration-required"
+  | "calibrated"
+  | "unspecified";
 
 /**
  * Device Metric Calibration Type
  *
  * Describes the type of a metric calibration.
  */
-export type DeviceMetricCalibrationType = string;
+export type DeviceMetricCalibrationType =
+  | "unspecified"
+  | "offset"
+  | "gain"
+  | "two-point";
 
 /**
  * Device Metric Category
  *
  * Describes the category of the metric.
  */
-export type DeviceMetricCategory = string;
+export type DeviceMetricCategory =
+  | "measurement"
+  | "setting"
+  | "calculation"
+  | "unspecified";
 
 /**
  * Device Metric Operational Status
  *
  * Describes the operational status of the DeviceMetric.
  */
-export type DeviceMetricOperationalStatus = string;
+export type DeviceMetricOperationalStatus =
+  | "on"
+  | "off"
+  | "standby"
+  | "entered-in-error";
 
 /**
  * Device Name Type
  *
  * The type of name the device is referred by.
  */
-export type DeviceNameType = string;
+export type DeviceNameType =
+  | "registered-name"
+  | "user-friendly-name"
+  | "patient-reported-name";
 
 /**
  * Device Production Identifier In UDI
  *
  * Device Production Identifier in UDI
  */
-export type DeviceProductionIdentifierInUDI = string;
+export type DeviceProductionIdentifierInUDI =
+  | "lot-number"
+  | "manufactured-date"
+  | "serial-number"
+  | "expiration-date"
+  | "biological-source"
+  | "software-version";
 
 /**
  * Device Usage Status
  *
  * A coded concept indicating the current status of the Device Usage.
  */
-export type DeviceUsageStatus = string;
+export type DeviceUsageStatus =
+  | "active"
+  | "completed"
+  | "not-done"
+  | "entered-in-error"
+  | "intended"
+  | "stopped"
+  | "on-hold";
 
 /**
  * Diagnostic Report Status
  *
  * The status of the diagnostic report.
  */
-export type DiagnosticReportStatus = string;
+export type DiagnosticReportStatus =
+  | "registered"
+  | "partial"
+  | "preliminary"
+  | "modified"
+  | "final"
+  | "amended"
+  | "corrected"
+  | "appended"
+  | "cancelled"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * DiscriminatorType
  *
  * How an element value is interpreted when discrimination is evaluated.
  */
-export type DiscriminatorType = string;
+export type DiscriminatorType =
+  | "value"
+  | "exists"
+  | "pattern"
+  | "type"
+  | "profile"
+  | "position";
 
 /**
  * Document Mode
  *
  * Whether the application produces or consumes documents.
  */
-export type DocumentMode = string;
+export type DocumentMode = "producer" | "consumer";
 
 /**
  * DocumentReferenceStatus
  *
  * The status of the document reference.
  */
-export type DocumentReferenceStatus = string;
+export type DocumentReferenceStatus =
+  | "current"
+  | "superseded"
+  | "entered-in-error";
 
 /**
  * Eligibility Outcome
  *
  * The outcome of the processing.
  */
-export type EligibilityOutcome = string;
+export type EligibilityOutcome = "queued" | "complete" | "error" | "partial";
 
 /**
  * Eligibility Request Purpose
  *
  * A code specifying the types of information being requested.
  */
-export type EligibilityRequestPurpose = string;
+export type EligibilityRequestPurpose =
+  | "auth-requirements"
+  | "benefits"
+  | "discovery"
+  | "validation";
 
 /**
  * Eligibility Response Purpose
  *
  * A code specifying the types of information being requested.
  */
-export type EligibilityResponsePurpose = string;
+export type EligibilityResponsePurpose =
+  | "auth-requirements"
+  | "benefits"
+  | "discovery"
+  | "validation";
 
 /**
  * Enable When Behavior
@@ -738,63 +2173,123 @@ export type EligibilityResponsePurpose = string;
  * Controls how multiple enableWhen values are interpreted -  whether all or any
  * must be true.
  */
-export type EnableWhenBehavior = string;
+export type EnableWhenBehavior = "all" | "any";
 
 /**
  * Encounter Location Status
  *
  * The status of the location.
  */
-export type EncounterLocationStatus = string;
+export type EncounterLocationStatus =
+  | "planned"
+  | "active"
+  | "reserved"
+  | "completed";
 
 /**
  * Encounter Status
  *
  * Current state of the encounter.
  */
-export type EncounterStatus = string;
+export type EncounterStatus =
+  | "planned"
+  | "in-progress"
+  | "on-hold"
+  | "discharged"
+  | "completed"
+  | "cancelled"
+  | "discontinued"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * Endpoint Status
  *
  * The status of the endpoint.
  */
-export type EndpointStatus = string;
+export type EndpointStatus =
+  | "active"
+  | "suspended"
+  | "error"
+  | "off"
+  | "entered-in-error";
 
 /**
  * Enrollment Outcome
  *
  * The outcome of the processing.
  */
-export type EnrollmentOutcome = string;
+export type EnrollmentOutcome = "queued" | "complete" | "error" | "partial";
 
 /**
  * Episode Of Care Status
  *
  * The status of the episode of care.
  */
-export type EpisodeOfCareStatus = string;
+export type EpisodeOfCareStatus =
+  | "planned"
+  | "waitlist"
+  | "active"
+  | "onhold"
+  | "finished"
+  | "cancelled"
+  | "entered-in-error";
 
 /**
  * Event Capability Mode
  *
  * The mode of a message capability statement.
  */
-export type EventCapabilityMode = string;
+export type EventCapabilityMode = "sender" | "receiver";
 
 /**
  * EventStatus
  *
  * Codes identifying the lifecycle stage of an event.
  */
-export type EventStatus = string;
+export type EventStatus =
+  | "preparation"
+  | "in-progress"
+  | "not-done"
+  | "on-hold"
+  | "stopped"
+  | "completed"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * EventTiming
  *
  * Real-world event relating to the schedule.
  */
-export type EventTiming = string;
+export type EventTiming =
+  | "MORN"
+  | "MORN.early"
+  | "MORN.late"
+  | "NOON"
+  | "AFT"
+  | "AFT.early"
+  | "AFT.late"
+  | "EVE"
+  | "EVE.early"
+  | "EVE.late"
+  | "NIGHT"
+  | "PHS"
+  | "IMD"
+  | "HS"
+  | "WAKE"
+  | "C"
+  | "CM"
+  | "CD"
+  | "CV"
+  | "AC"
+  | "ACM"
+  | "ACD"
+  | "ACV"
+  | "PC"
+  | "PCM"
+  | "PCD"
+  | "PCV";
 
 /**
  * Evidence Variable Handling
@@ -802,77 +2297,392 @@ export type EventTiming = string;
  * The handling of the variable in statistical analysis for exposures or outcomes
  * (E.g. Dichotomous, Continuous, Descriptive).
  */
-export type EvidenceVariableHandling = string;
+export type EvidenceVariableHandling =
+  | "continuous"
+  | "dichotomous"
+  | "ordinal"
+  | "polychotomous";
 
 /**
  * Example Scenario Actor Type
  *
  * The type of actor - system or human.
  */
-export type ExampleScenarioActorType = string;
+export type ExampleScenarioActorType = "person" | "system";
 
 /**
  * Explanation Of Benefit Status
  *
  * A code specifying the state of the resource instance.
  */
-export type ExplanationOfBenefitStatus = string;
+export type ExplanationOfBenefitStatus =
+  | "active"
+  | "cancelled"
+  | "draft"
+  | "entered-in-error";
 
 /**
  * Extension Context Type
  *
  * How an extension context is interpreted.
  */
-export type ExtensionContextType = string;
+export type ExtensionContextType = "fhirpath" | "element" | "extension";
 
 /**
  * Family History Status
  *
  * A code that identifies the status of the family history record.
  */
-export type FamilyHistoryStatus = string;
+export type FamilyHistoryStatus =
+  | "partial"
+  | "completed"
+  | "entered-in-error"
+  | "health-unknown";
 
 /**
  * FHIR Device Status
  *
  * The status of the Device record.
  */
-export type FHIRDeviceStatus = string;
+export type FHIRDeviceStatus = "active" | "inactive" | "entered-in-error";
 
 /**
  * FHIRSubstanceStatus
  *
  * A code to indicate if the substance is actively used.
  */
-export type FHIRSubstanceStatus = string;
+export type FHIRSubstanceStatus = "active" | "inactive" | "entered-in-error";
 
 /**
  * All FHIR Types
  *
  * All FHIR types
  */
-export type AllFHIRTypes = string;
+export type AllFHIRTypes =
+  | "Base"
+  | "Element"
+  | "BackboneElement"
+  | "DataType"
+  | "Address"
+  | "Annotation"
+  | "Attachment"
+  | "Availability"
+  | "BackboneType"
+  | "Dosage"
+  | "ElementDefinition"
+  | "MarketingStatus"
+  | "ProductShelfLife"
+  | "Timing"
+  | "CodeableConcept"
+  | "CodeableReference"
+  | "Coding"
+  | "ContactDetail"
+  | "ContactPoint"
+  | "Contributor"
+  | "DataRequirement"
+  | "Expression"
+  | "ExtendedContactDetail"
+  | "Extension"
+  | "HumanName"
+  | "Identifier"
+  | "Meta"
+  | "MonetaryComponent"
+  | "Money"
+  | "Narrative"
+  | "ParameterDefinition"
+  | "Period"
+  | "PrimitiveType"
+  | "base64Binary"
+  | "boolean"
+  | "date"
+  | "dateTime"
+  | "decimal"
+  | "instant"
+  | "integer"
+  | "positiveInt"
+  | "unsignedInt"
+  | "integer64"
+  | "string"
+  | "code"
+  | "id"
+  | "markdown"
+  | "time"
+  | "uri"
+  | "canonical"
+  | "oid"
+  | "url"
+  | "uuid"
+  | "Quantity"
+  | "Age"
+  | "Count"
+  | "Distance"
+  | "Duration"
+  | "Range"
+  | "Ratio"
+  | "RatioRange"
+  | "Reference"
+  | "RelatedArtifact"
+  | "SampledData"
+  | "Signature"
+  | "TriggerDefinition"
+  | "UsageContext"
+  | "VirtualServiceDetail"
+  | "xhtml"
+  | "Resource"
+  | "Binary"
+  | "Bundle"
+  | "DomainResource"
+  | "Account"
+  | "ActivityDefinition"
+  | "ActorDefinition"
+  | "AdministrableProductDefinition"
+  | "AdverseEvent"
+  | "AllergyIntolerance"
+  | "Appointment"
+  | "AppointmentResponse"
+  | "ArtifactAssessment"
+  | "AuditEvent"
+  | "Basic"
+  | "BiologicallyDerivedProduct"
+  | "BiologicallyDerivedProductDispense"
+  | "BodyStructure"
+  | "CanonicalResource"
+  | "CapabilityStatement"
+  | "CarePlan"
+  | "CareTeam"
+  | "ChargeItem"
+  | "ChargeItemDefinition"
+  | "Citation"
+  | "Claim"
+  | "ClaimResponse"
+  | "ClinicalImpression"
+  | "ClinicalUseDefinition"
+  | "CodeSystem"
+  | "Communication"
+  | "CommunicationRequest"
+  | "CompartmentDefinition"
+  | "Composition"
+  | "ConceptMap"
+  | "Condition"
+  | "ConditionDefinition"
+  | "Consent"
+  | "Contract"
+  | "Coverage"
+  | "CoverageEligibilityRequest"
+  | "CoverageEligibilityResponse"
+  | "DetectedIssue"
+  | "Device"
+  | "DeviceAssociation"
+  | "DeviceDefinition"
+  | "DeviceDispense"
+  | "DeviceMetric"
+  | "DeviceRequest"
+  | "DeviceUsage"
+  | "DiagnosticReport"
+  | "DocumentReference"
+  | "Encounter"
+  | "EncounterHistory"
+  | "Endpoint"
+  | "EnrollmentRequest"
+  | "EnrollmentResponse"
+  | "EpisodeOfCare"
+  | "EventDefinition"
+  | "Evidence"
+  | "EvidenceReport"
+  | "EvidenceVariable"
+  | "ExampleScenario"
+  | "ExplanationOfBenefit"
+  | "FamilyMemberHistory"
+  | "Flag"
+  | "FormularyItem"
+  | "GenomicStudy"
+  | "Goal"
+  | "GraphDefinition"
+  | "Group"
+  | "GuidanceResponse"
+  | "HealthcareService"
+  | "ImagingSelection"
+  | "ImagingStudy"
+  | "Immunization"
+  | "ImmunizationEvaluation"
+  | "ImmunizationRecommendation"
+  | "ImplementationGuide"
+  | "Ingredient"
+  | "InsurancePlan"
+  | "InventoryItem"
+  | "InventoryReport"
+  | "Invoice"
+  | "Library"
+  | "Linkage"
+  | "List"
+  | "Location"
+  | "ManufacturedItemDefinition"
+  | "Measure"
+  | "MeasureReport"
+  | "Medication"
+  | "MedicationAdministration"
+  | "MedicationDispense"
+  | "MedicationKnowledge"
+  | "MedicationRequest"
+  | "MedicationStatement"
+  | "MedicinalProductDefinition"
+  | "MessageDefinition"
+  | "MessageHeader"
+  | "MetadataResource"
+  | "MolecularSequence"
+  | "NamingSystem"
+  | "NutritionIntake"
+  | "NutritionOrder"
+  | "NutritionProduct"
+  | "Observation"
+  | "ObservationDefinition"
+  | "OperationDefinition"
+  | "OperationOutcome"
+  | "Organization"
+  | "OrganizationAffiliation"
+  | "PackagedProductDefinition"
+  | "Patient"
+  | "PaymentNotice"
+  | "PaymentReconciliation"
+  | "Permission"
+  | "Person"
+  | "PlanDefinition"
+  | "Practitioner"
+  | "PractitionerRole"
+  | "Procedure"
+  | "Provenance"
+  | "Questionnaire"
+  | "QuestionnaireResponse"
+  | "RegulatedAuthorization"
+  | "RelatedPerson"
+  | "RequestOrchestration"
+  | "Requirements"
+  | "ResearchStudy"
+  | "ResearchSubject"
+  | "RiskAssessment"
+  | "Schedule"
+  | "SearchParameter"
+  | "ServiceRequest"
+  | "Slot"
+  | "Specimen"
+  | "SpecimenDefinition"
+  | "StructureDefinition"
+  | "StructureMap"
+  | "Subscription"
+  | "SubscriptionStatus"
+  | "SubscriptionTopic"
+  | "Substance"
+  | "SubstanceDefinition"
+  | "SubstanceNucleicAcid"
+  | "SubstancePolymer"
+  | "SubstanceProtein"
+  | "SubstanceReferenceInformation"
+  | "SubstanceSourceMaterial"
+  | "SupplyDelivery"
+  | "SupplyRequest"
+  | "Task"
+  | "TerminologyCapabilities"
+  | "TestPlan"
+  | "TestReport"
+  | "TestScript"
+  | "Transport"
+  | "ValueSet"
+  | "VerificationResult"
+  | "VisionPrescription"
+  | "Parameters";
 
 /**
  * FHIRVersion
  *
  * All published FHIR Versions.
  */
-export type FHIRVersion = string;
+export type FHIRVersion =
+  | "0.01"
+  | "0.05"
+  | "0.06"
+  | "0.11"
+  | "0.0"
+  | "0.0.80"
+  | "0.0.81"
+  | "0.0.82"
+  | "0.4"
+  | "0.4.0"
+  | "0.5"
+  | "0.5.0"
+  | "1.0"
+  | "1.0.0"
+  | "1.0.1"
+  | "1.0.2"
+  | "1.1"
+  | "1.1.0"
+  | "1.4"
+  | "1.4.0"
+  | "1.6"
+  | "1.6.0"
+  | "1.8"
+  | "1.8.0"
+  | "3.0"
+  | "3.0.0"
+  | "3.0.1"
+  | "3.0.2"
+  | "3.3"
+  | "3.3.0"
+  | "3.5"
+  | "3.5.0"
+  | "4.0"
+  | "4.0.0"
+  | "4.0.1"
+  | "4.1"
+  | "4.1.0"
+  | "4.2"
+  | "4.2.0"
+  | "4.3"
+  | "4.3.0"
+  | "4.3.0-cibuild"
+  | "4.3.0-snapshot1"
+  | "4.4"
+  | "4.4.0"
+  | "4.5"
+  | "4.5.0"
+  | "4.6"
+  | "4.6.0"
+  | "5.0"
+  | "5.0.0"
+  | "5.0.0-cibuild"
+  | "5.0.0-snapshot1"
+  | "5.0.0-snapshot2"
+  | "5.0.0-ballot"
+  | "5.0.0-snapshot3"
+  | "5.0.0-draft-final";
 
 /**
  * Filter Operator
  *
  * The kind of operation to perform as a part of a property based filter.
  */
-export type FilterOperator = string;
+export type FilterOperator =
+  | "="
+  | "is-a"
+  | "descendent-of"
+  | "is-not-a"
+  | "regex"
+  | "in"
+  | "not-in"
+  | "generalizes"
+  | "child-of"
+  | "descendent-leaf"
+  | "exists";
 
 /**
  * Financial Resource Status Codes
  *
  * This value set includes Status codes.
  */
-export type FinancialResourceStatusCodes = string;
+export type FinancialResourceStatusCodes =
+  | "active"
+  | "cancelled"
+  | "draft"
+  | "entered-in-error";
 
 /**
  * Flag Status
@@ -880,21 +2690,29 @@ export type FinancialResourceStatusCodes = string;
  * Indicates whether this flag is active and needs to be displayed to a user, or
  * whether it is no longer needed or was entered in error.
  */
-export type FlagStatus = string;
+export type FlagStatus = "active" | "inactive" | "entered-in-error";
 
 /**
  * FormularyItem Status Codes
  *
  *
  */
-export type FormularyItemStatusCodes = string;
+export type FormularyItemStatusCodes =
+  | "active"
+  | "entered-in-error"
+  | "inactive";
 
 /**
  * Genomic Study Status
  *
  * The status of the GenomicStudy.
  */
-export type GenomicStudyStatus = string;
+export type GenomicStudyStatus =
+  | "registered"
+  | "available"
+  | "cancelled"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * Goal Lifecycle Status
@@ -902,49 +2720,78 @@ export type GenomicStudyStatus = string;
  * Codes that reflect the current state of a goal and whether the goal is still
  * being targeted.
  */
-export type GoalLifecycleStatus = string;
+export type GoalLifecycleStatus =
+  | "proposed"
+  | "planned"
+  | "accepted"
+  | "active"
+  | "on-hold"
+  | "completed"
+  | "cancelled"
+  | "entered-in-error"
+  | "rejected";
 
 /**
  * Graph Compartment Rule
  *
  * How a compartment must be linked.
  */
-export type GraphCompartmentRule = string;
+export type GraphCompartmentRule =
+  | "identical"
+  | "matching"
+  | "different"
+  | "custom";
 
 /**
  * Graph Compartment Use
  *
  * Defines how a compartment rule is used.
  */
-export type GraphCompartmentUse = string;
+export type GraphCompartmentUse = "where" | "requires";
 
 /**
  * Group Membership Basis
  *
  * Basis for membership in a group
  */
-export type GroupMembershipBasis = string;
+export type GroupMembershipBasis = "definitional" | "enumerated";
 
 /**
  * Group Type
  *
  * Types of resources that are part of group.
  */
-export type GroupType = string;
+export type GroupType =
+  | "person"
+  | "animal"
+  | "practitioner"
+  | "device"
+  | "careteam"
+  | "healthcareservice"
+  | "location"
+  | "organization"
+  | "relatedperson"
+  | "specimen";
 
 /**
  * Guidance Response Status
  *
  * The status of a guidance response.
  */
-export type GuidanceResponseStatus = string;
+export type GuidanceResponseStatus =
+  | "success"
+  | "data-requested"
+  | "data-required"
+  | "in-progress"
+  | "failure"
+  | "entered-in-error";
 
 /**
  * Guide Page Generation
  *
  * A code that indicates how the page is generated.
  */
-export type GuidePageGeneration = string;
+export type GuidePageGeneration = "html" | "markdown" | "xml" | "generated";
 
 /**
  * H T T P Verb
@@ -952,7 +2799,7 @@ export type GuidePageGeneration = string;
  * HTTP verbs (in the HTTP command line). See [HTTP
  * rfc](https://tools.ietf.org/html/rfc7231) for details.
  */
-export type HTTPVerb = string;
+export type HTTPVerb = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "PATCH";
 
 /**
  * IANA Timezones
@@ -967,14 +2814,483 @@ export type HTTPVerb = string;
  * [Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for
  * information
  */
-export type IANATimezones = string;
+export type IANATimezones =
+  | "Africa/Abidjan"
+  | "Africa/Accra"
+  | "Africa/Addis_Ababa"
+  | "Africa/Algiers"
+  | "Africa/Asmara"
+  | "Africa/Bamako"
+  | "Africa/Bangui"
+  | "Africa/Banjul"
+  | "Africa/Bissau"
+  | "Africa/Blantyre"
+  | "Africa/Brazzaville"
+  | "Africa/Bujumbura"
+  | "Africa/Cairo"
+  | "Africa/Casablanca"
+  | "Africa/Ceuta"
+  | "Africa/Conakry"
+  | "Africa/Dakar"
+  | "Africa/Dar_es_Salaam"
+  | "Africa/Djibouti"
+  | "Africa/Douala"
+  | "Africa/El_Aaiun"
+  | "Africa/Freetown"
+  | "Africa/Gaborone"
+  | "Africa/Harare"
+  | "Africa/Johannesburg"
+  | "Africa/Juba"
+  | "Africa/Kampala"
+  | "Africa/Khartoum"
+  | "Africa/Kigali"
+  | "Africa/Kinshasa"
+  | "Africa/Lagos"
+  | "Africa/Libreville"
+  | "Africa/Lome"
+  | "Africa/Luanda"
+  | "Africa/Lubumbashi"
+  | "Africa/Lusaka"
+  | "Africa/Malabo"
+  | "Africa/Maputo"
+  | "Africa/Maseru"
+  | "Africa/Mbabane"
+  | "Africa/Mogadishu"
+  | "Africa/Monrovia"
+  | "Africa/Nairobi"
+  | "Africa/Ndjamena"
+  | "Africa/Niamey"
+  | "Africa/Nouakchott"
+  | "Africa/Ouagadougou"
+  | "Africa/Porto-Novo"
+  | "Africa/Sao_Tome"
+  | "Africa/Timbuktu"
+  | "Africa/Tripoli"
+  | "Africa/Tunis"
+  | "Africa/Windhoek"
+  | "America/Adak"
+  | "America/Anchorage"
+  | "America/Anguilla"
+  | "America/Antigua"
+  | "America/Araguaina"
+  | "America/Argentina/Buenos_Aires"
+  | "America/Argentina/Catamarca"
+  | "America/Argentina/ComodRivadavia"
+  | "America/Argentina/Cordoba"
+  | "America/Argentina/Jujuy"
+  | "America/Argentina/La_Rioja"
+  | "America/Argentina/Mendoza"
+  | "America/Argentina/Rio_Gallegos"
+  | "America/Argentina/Salta"
+  | "America/Argentina/San_Juan"
+  | "America/Argentina/San_Luis"
+  | "America/Argentina/Tucuman"
+  | "America/Argentina/Ushuaia"
+  | "America/Aruba"
+  | "America/Asuncion"
+  | "America/Atikokan"
+  | "America/Bahia"
+  | "America/Bahia_Banderas"
+  | "America/Barbados"
+  | "America/Belem"
+  | "America/Belize"
+  | "America/Blanc-Sablon"
+  | "America/Boa_Vista"
+  | "America/Bogota"
+  | "America/Boise"
+  | "America/Cambridge_Bay"
+  | "America/Campo_Grande"
+  | "America/Cancun"
+  | "America/Caracas"
+  | "America/Cayenne"
+  | "America/Cayman"
+  | "America/Chicago"
+  | "America/Chihuahua"
+  | "America/Coral_Harbour"
+  | "America/Costa_Rica"
+  | "America/Creston"
+  | "America/Cuiaba"
+  | "America/Curacao"
+  | "America/Danmarkshavn"
+  | "America/Dawson"
+  | "America/Dawson_Creek"
+  | "America/Denver"
+  | "America/Detroit"
+  | "America/Dominica"
+  | "America/Edmonton"
+  | "America/Eirunepe"
+  | "America/El_Salvador"
+  | "America/Ensenada"
+  | "America/Fort_Nelson"
+  | "America/Fortaleza"
+  | "America/Glace_Bay"
+  | "America/Goose_Bay"
+  | "America/Grand_Turk"
+  | "America/Grenada"
+  | "America/Guadeloupe"
+  | "America/Guatemala"
+  | "America/Guayaquil"
+  | "America/Guyana"
+  | "America/Halifax"
+  | "America/Havana"
+  | "America/Hermosillo"
+  | "America/Indiana/Indianapolis"
+  | "America/Indiana/Knox"
+  | "America/Indiana/Marengo"
+  | "America/Indiana/Petersburg"
+  | "America/Indiana/Tell_City"
+  | "America/Indiana/Vevay"
+  | "America/Indiana/Vincennes"
+  | "America/Indiana/Winamac"
+  | "America/Inuvik"
+  | "America/Iqaluit"
+  | "America/Jamaica"
+  | "America/Juneau"
+  | "America/Kentucky/Louisville"
+  | "America/Kentucky/Monticello"
+  | "America/La_Paz"
+  | "America/Lima"
+  | "America/Los_Angeles"
+  | "America/Maceio"
+  | "America/Managua"
+  | "America/Manaus"
+  | "America/Martinique"
+  | "America/Matamoros"
+  | "America/Mazatlan"
+  | "America/Menominee"
+  | "America/Merida"
+  | "America/Metlakatla"
+  | "America/Mexico_City"
+  | "America/Miquelon"
+  | "America/Moncton"
+  | "America/Monterrey"
+  | "America/Montevideo"
+  | "America/Montreal"
+  | "America/Montserrat"
+  | "America/Nassau"
+  | "America/New_York"
+  | "America/Nipigon"
+  | "America/Nome"
+  | "America/Noronha"
+  | "America/North_Dakota/Beulah"
+  | "America/North_Dakota/Center"
+  | "America/North_Dakota/New_Salem"
+  | "America/Nuuk"
+  | "America/Ojinaga"
+  | "America/Panama"
+  | "America/Pangnirtung"
+  | "America/Paramaribo"
+  | "America/Phoenix"
+  | "America/Port-au-Prince"
+  | "America/Port_of_Spain"
+  | "America/Porto_Velho"
+  | "America/Puerto_Rico"
+  | "America/Punta_Arenas"
+  | "America/Rainy_River"
+  | "America/Rankin_Inlet"
+  | "America/Recife"
+  | "America/Regina"
+  | "America/Resolute"
+  | "America/Rio_Branco"
+  | "America/Rosario"
+  | "America/Santarem"
+  | "America/Santiago"
+  | "America/Santo_Domingo"
+  | "America/Sao_Paulo"
+  | "America/Scoresbysund"
+  | "America/Sitka"
+  | "America/St_Johns"
+  | "America/St_Kitts"
+  | "America/St_Lucia"
+  | "America/St_Thomas"
+  | "America/St_Vincent"
+  | "America/Swift_Current"
+  | "America/Tegucigalpa"
+  | "America/Thule"
+  | "America/Thunder_Bay"
+  | "America/Tijuana"
+  | "America/Toronto"
+  | "America/Tortola"
+  | "America/Vancouver"
+  | "America/Whitehorse"
+  | "America/Winnipeg"
+  | "America/Yakutat"
+  | "America/Yellowknife"
+  | "Antarctica/Casey"
+  | "Antarctica/Davis"
+  | "Antarctica/DumontDUrville"
+  | "Antarctica/Macquarie"
+  | "Antarctica/Mawson"
+  | "Antarctica/McMurdo"
+  | "Antarctica/Palmer"
+  | "Antarctica/Rothera"
+  | "Antarctica/Syowa"
+  | "Antarctica/Troll"
+  | "Antarctica/Vostok"
+  | "Asia/Aden"
+  | "Asia/Almaty"
+  | "Asia/Amman"
+  | "Asia/Anadyr"
+  | "Asia/Aqtau"
+  | "Asia/Aqtobe"
+  | "Asia/Ashgabat"
+  | "Asia/Atyrau"
+  | "Asia/Baghdad"
+  | "Asia/Bahrain"
+  | "Asia/Baku"
+  | "Asia/Bangkok"
+  | "Asia/Barnaul"
+  | "Asia/Beirut"
+  | "Asia/Bishkek"
+  | "Asia/Brunei"
+  | "Asia/Chita"
+  | "Asia/Choibalsan"
+  | "Asia/Chongqing"
+  | "Asia/Colombo"
+  | "Asia/Damascus"
+  | "Asia/Dhaka"
+  | "Asia/Dili"
+  | "Asia/Dubai"
+  | "Asia/Dushanbe"
+  | "Asia/Famagusta"
+  | "Asia/Gaza"
+  | "Asia/Hanoi"
+  | "Asia/Harbin"
+  | "Asia/Hebron"
+  | "Asia/Ho_Chi_Minh"
+  | "Asia/Hong_Kong"
+  | "Asia/Hovd"
+  | "Asia/Irkutsk"
+  | "Asia/Jakarta"
+  | "Asia/Jayapura"
+  | "Asia/Jerusalem"
+  | "Asia/Kabul"
+  | "Asia/Kamchatka"
+  | "Asia/Karachi"
+  | "Asia/Kashgar"
+  | "Asia/Kathmandu"
+  | "Asia/Khandyga"
+  | "Asia/Kolkata"
+  | "Asia/Krasnoyarsk"
+  | "Asia/Kuala_Lumpur"
+  | "Asia/Kuching"
+  | "Asia/Kuwait"
+  | "Asia/Macau"
+  | "Asia/Magadan"
+  | "Asia/Makassar"
+  | "Asia/Manila"
+  | "Asia/Muscat"
+  | "Asia/Nicosia"
+  | "Asia/Novokuznetsk"
+  | "Asia/Novosibirsk"
+  | "Asia/Omsk"
+  | "Asia/Oral"
+  | "Asia/Phnom_Penh"
+  | "Asia/Pontianak"
+  | "Asia/Pyongyang"
+  | "Asia/Qatar"
+  | "Asia/Qostanay"
+  | "Asia/Qyzylorda"
+  | "Asia/Riyadh"
+  | "Asia/Sakhalin"
+  | "Asia/Samarkand"
+  | "Asia/Seoul"
+  | "Asia/Shanghai"
+  | "Asia/Singapore"
+  | "Asia/Srednekolymsk"
+  | "Asia/Taipei"
+  | "Asia/Tashkent"
+  | "Asia/Tbilisi"
+  | "Asia/Tehran"
+  | "Asia/Tel_Aviv"
+  | "Asia/Thimphu"
+  | "Asia/Tokyo"
+  | "Asia/Tomsk"
+  | "Asia/Ulaanbaatar"
+  | "Asia/Urumqi"
+  | "Asia/Ust-Nera"
+  | "Asia/Vientiane"
+  | "Asia/Vladivostok"
+  | "Asia/Yakutsk"
+  | "Asia/Yangon"
+  | "Asia/Yekaterinburg"
+  | "Asia/Yerevan"
+  | "Atlantic/Azores"
+  | "Atlantic/Bermuda"
+  | "Atlantic/Canary"
+  | "Atlantic/Cape_Verde"
+  | "Atlantic/Faroe"
+  | "Atlantic/Jan_Mayen"
+  | "Atlantic/Madeira"
+  | "Atlantic/Reykjavik"
+  | "Atlantic/South_Georgia"
+  | "Atlantic/St_Helena"
+  | "Atlantic/Stanley"
+  | "Australia/Adelaide"
+  | "Australia/Brisbane"
+  | "Australia/Broken_Hill"
+  | "Australia/Currie"
+  | "Australia/Darwin"
+  | "Australia/Eucla"
+  | "Australia/Hobart"
+  | "Australia/Lindeman"
+  | "Australia/Lord_Howe"
+  | "Australia/Melbourne"
+  | "Australia/Perth"
+  | "Australia/Sydney"
+  | "CET"
+  | "CST6CDT"
+  | "EET"
+  | "EST"
+  | "EST5EDT"
+  | "Etc/GMT"
+  | "Etc/GMT+1"
+  | "Etc/GMT+10"
+  | "Etc/GMT+11"
+  | "Etc/GMT+12"
+  | "Etc/GMT+2"
+  | "Etc/GMT+3"
+  | "Etc/GMT+4"
+  | "Etc/GMT+5"
+  | "Etc/GMT+6"
+  | "Etc/GMT+7"
+  | "Etc/GMT+8"
+  | "Etc/GMT+9"
+  | "Etc/GMT-1"
+  | "Etc/GMT-10"
+  | "Etc/GMT-11"
+  | "Etc/GMT-12"
+  | "Etc/GMT-13"
+  | "Etc/GMT-14"
+  | "Etc/GMT-2"
+  | "Etc/GMT-3"
+  | "Etc/GMT-4"
+  | "Etc/GMT-5"
+  | "Etc/GMT-6"
+  | "Etc/GMT-7"
+  | "Etc/GMT-8"
+  | "Etc/GMT-9"
+  | "Etc/UTC"
+  | "Europe/Amsterdam"
+  | "Europe/Andorra"
+  | "Europe/Astrakhan"
+  | "Europe/Athens"
+  | "Europe/Belfast"
+  | "Europe/Belgrade"
+  | "Europe/Berlin"
+  | "Europe/Brussels"
+  | "Europe/Bucharest"
+  | "Europe/Budapest"
+  | "Europe/Chisinau"
+  | "Europe/Copenhagen"
+  | "Europe/Dublin"
+  | "Europe/Gibraltar"
+  | "Europe/Guernsey"
+  | "Europe/Helsinki"
+  | "Europe/Isle_of_Man"
+  | "Europe/Istanbul"
+  | "Europe/Jersey"
+  | "Europe/Kaliningrad"
+  | "Europe/Kiev"
+  | "Europe/Kirov"
+  | "Europe/Lisbon"
+  | "Europe/Ljubljana"
+  | "Europe/London"
+  | "Europe/Luxembourg"
+  | "Europe/Madrid"
+  | "Europe/Malta"
+  | "Europe/Minsk"
+  | "Europe/Monaco"
+  | "Europe/Moscow"
+  | "Europe/Oslo"
+  | "Europe/Paris"
+  | "Europe/Prague"
+  | "Europe/Riga"
+  | "Europe/Rome"
+  | "Europe/Samara"
+  | "Europe/Sarajevo"
+  | "Europe/Saratov"
+  | "Europe/Simferopol"
+  | "Europe/Skopje"
+  | "Europe/Sofia"
+  | "Europe/Stockholm"
+  | "Europe/Tallinn"
+  | "Europe/Tirane"
+  | "Europe/Tiraspol"
+  | "Europe/Ulyanovsk"
+  | "Europe/Uzhgorod"
+  | "Europe/Vaduz"
+  | "Europe/Vienna"
+  | "Europe/Vilnius"
+  | "Europe/Volgograd"
+  | "Europe/Warsaw"
+  | "Europe/Zagreb"
+  | "Europe/Zaporozhye"
+  | "Europe/Zurich"
+  | "Factory"
+  | "HST"
+  | "Indian/Antananarivo"
+  | "Indian/Chagos"
+  | "Indian/Christmas"
+  | "Indian/Cocos"
+  | "Indian/Comoro"
+  | "Indian/Kerguelen"
+  | "Indian/Mahe"
+  | "Indian/Maldives"
+  | "Indian/Mauritius"
+  | "Indian/Mayotte"
+  | "Indian/Reunion"
+  | "MET"
+  | "MST"
+  | "MST7MDT"
+  | "PST8PDT"
+  | "Pacific/Apia"
+  | "Pacific/Auckland"
+  | "Pacific/Bougainville"
+  | "Pacific/Chatham"
+  | "Pacific/Chuuk"
+  | "Pacific/Easter"
+  | "Pacific/Efate"
+  | "Pacific/Enderbury"
+  | "Pacific/Fakaofo"
+  | "Pacific/Fiji"
+  | "Pacific/Funafuti"
+  | "Pacific/Galapagos"
+  | "Pacific/Gambier"
+  | "Pacific/Guadalcanal"
+  | "Pacific/Guam"
+  | "Pacific/Honolulu"
+  | "Pacific/Johnston"
+  | "Pacific/Kiritimati"
+  | "Pacific/Kosrae"
+  | "Pacific/Kwajalein"
+  | "Pacific/Majuro"
+  | "Pacific/Marquesas"
+  | "Pacific/Midway"
+  | "Pacific/Nauru"
+  | "Pacific/Niue"
+  | "Pacific/Norfolk"
+  | "Pacific/Noumea"
+  | "Pacific/Pago_Pago"
+  | "Pacific/Palau"
+  | "Pacific/Pitcairn"
+  | "Pacific/Pohnpei"
+  | "Pacific/Port_Moresby"
+  | "Pacific/Rarotonga"
+  | "Pacific/Saipan"
+  | "Pacific/Tahiti"
+  | "Pacific/Tarawa"
+  | "Pacific/Tongatapu"
+  | "Pacific/Wake"
+  | "Pacific/Wallis"
+  | "WET";
 
 /**
  * IdentifierUse
  *
  * Identifies the purpose for this identifier, if known .
  */
-export type IdentifierUse = string;
+export type IdentifierUse = "usual" | "official" | "temp" | "secondary" | "old";
 
 /**
  * Identity Assurance Level
@@ -982,35 +3298,54 @@ export type IdentifierUse = string;
  * The level of confidence that this link represents the same actual person, based
  * on NIST Authentication Levels.
  */
-export type IdentityAssuranceLevel = string;
+export type IdentityAssuranceLevel = "level1" | "level2" | "level3" | "level4";
 
 /**
  * Imaging Selection2 D Graphic Type
  *
  * The type of 2D coordinates describing a 2D image region.
  */
-export type ImagingSelection2DGraphicType = string;
+export type ImagingSelection2DGraphicType =
+  | "point"
+  | "polyline"
+  | "interpolated"
+  | "circle"
+  | "ellipse";
 
 /**
  * Imaging Selection3 D Graphic Type
  *
  * The type of coordinates describing a 3D image region.
  */
-export type ImagingSelection3DGraphicType = string;
+export type ImagingSelection3DGraphicType =
+  | "point"
+  | "multipoint"
+  | "polyline"
+  | "polygon"
+  | "ellipse"
+  | "ellipsoid";
 
 /**
  * Imaging Selection Status
  *
  * The status of the ImagingSelection.
  */
-export type ImagingSelectionStatus = string;
+export type ImagingSelectionStatus =
+  | "available"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * Imaging Study Status
  *
  * The status of the ImagingStudy.
  */
-export type ImagingStudyStatus = string;
+export type ImagingStudyStatus =
+  | "registered"
+  | "available"
+  | "cancelled"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * Immunization Evaluation Status Codes
@@ -1020,7 +3355,9 @@ export type ImagingStudyStatus = string;
  * support describing the current status of the evaluation for vaccine
  * administration event.
  */
-export type ImmunizationEvaluationStatusCodes = string;
+export type ImmunizationEvaluationStatusCodes =
+  | "completed"
+  | "entered-in-error";
 
 /**
  * Immunization Status Codes
@@ -1029,7 +3366,10 @@ export type ImmunizationEvaluationStatusCodes = string;
  * terminologically robust code system that consists of or contains concepts to
  * support describing the current status of the administered dose of vaccine.
  */
-export type ImmunizationStatusCodes = string;
+export type ImmunizationStatusCodes =
+  | "completed"
+  | "entered-in-error"
+  | "not-done";
 
 /**
  * Ingredient Manufacturer Role
@@ -1039,56 +3379,107 @@ export type ImmunizationStatusCodes = string;
  * authorized one for this ingredient. Note that this is not the manufacturing
  * process role.
  */
-export type IngredientManufacturerRole = string;
+export type IngredientManufacturerRole = "allowed" | "possible" | "actual";
 
 /**
  * Interaction Trigger
  *
  * FHIR RESTful interaction codes used for SubscriptionTopic trigger.
  */
-export type InteractionTrigger = string;
+export type InteractionTrigger = "create" | "update" | "delete";
 
 /**
  * Inventory Count Type
  *
  * The type of count.
  */
-export type InventoryCountType = string;
+export type InventoryCountType = "snapshot" | "difference";
 
 /**
  * InventoryItem Status Codes
  *
  *
  */
-export type InventoryItemStatusCodes = string;
+export type InventoryItemStatusCodes =
+  | "active"
+  | "inactive"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * Inventory Report Status
  *
  * The status of the InventoryReport.
  */
-export type InventoryReportStatus = string;
+export type InventoryReportStatus =
+  | "draft"
+  | "requested"
+  | "active"
+  | "entered-in-error";
 
 /**
  * Invoice Status
  *
  * Codes identifying the lifecycle stage of an Invoice.
  */
-export type InvoiceStatus = string;
+export type InvoiceStatus =
+  | "draft"
+  | "issued"
+  | "balanced"
+  | "cancelled"
+  | "entered-in-error";
 
 /**
  * Issue Severity
  *
  * How the issue affects the success of the action.
  */
-export type IssueSeverity = string;
+export type IssueSeverity =
+  | "fatal"
+  | "error"
+  | "warning"
+  | "information"
+  | "success";
 
 /**
  * Issue Type
  *
  * A code that describes the type of issue.
  */
-export type IssueType = string;
+export type IssueType =
+  | "invalid"
+  | "structure"
+  | "required"
+  | "value"
+  | "invariant"
+  | "security"
+  | "login"
+  | "unknown"
+  | "expired"
+  | "forbidden"
+  | "suppressed"
+  | "processing"
+  | "not-supported"
+  | "duplicate"
+  | "multiple-matches"
+  | "not-found"
+  | "deleted"
+  | "too-long"
+  | "code-invalid"
+  | "extension"
+  | "too-costly"
+  | "business-rule"
+  | "conflict"
+  | "limited-filter"
+  | "transient"
+  | "lock-error"
+  | "no-store"
+  | "exception"
+  | "timeout"
+  | "incomplete"
+  | "throttled"
+  | "informational"
+  | "success";
 
 /**
  * Jurisdiction ValueSet
@@ -1100,14 +3491,1790 @@ export type IssueType = string;
  * "supra-national" regions are from    [UN Standard country or area codes for
  * statistical use (M49)](http://unstats.un.org/unsd/methods/m49/m49.htm).
  */
-export type JurisdictionValueSet = string;
+export type JurisdictionValueSet =
+  | "AD"
+  | "AE"
+  | "AF"
+  | "AG"
+  | "AI"
+  | "AL"
+  | "AM"
+  | "AO"
+  | "AQ"
+  | "AR"
+  | "AS"
+  | "AT"
+  | "AU"
+  | "AW"
+  | "AX"
+  | "AZ"
+  | "BA"
+  | "BB"
+  | "BD"
+  | "BE"
+  | "BF"
+  | "BG"
+  | "BH"
+  | "BI"
+  | "BJ"
+  | "BL"
+  | "BM"
+  | "BN"
+  | "BO"
+  | "BQ"
+  | "BR"
+  | "BS"
+  | "BT"
+  | "BV"
+  | "BW"
+  | "BY"
+  | "BZ"
+  | "CA"
+  | "CC"
+  | "CD"
+  | "CF"
+  | "CG"
+  | "CH"
+  | "CI"
+  | "CK"
+  | "CL"
+  | "CM"
+  | "CN"
+  | "CO"
+  | "CR"
+  | "CU"
+  | "CV"
+  | "CW"
+  | "CX"
+  | "CY"
+  | "CZ"
+  | "DE"
+  | "DJ"
+  | "DK"
+  | "DM"
+  | "DO"
+  | "DZ"
+  | "EC"
+  | "EE"
+  | "EG"
+  | "EH"
+  | "ER"
+  | "ES"
+  | "ET"
+  | "FI"
+  | "FJ"
+  | "FK"
+  | "FM"
+  | "FO"
+  | "FR"
+  | "GA"
+  | "GB"
+  | "GD"
+  | "GE"
+  | "GF"
+  | "GG"
+  | "GH"
+  | "GI"
+  | "GL"
+  | "GM"
+  | "GN"
+  | "GP"
+  | "GQ"
+  | "GR"
+  | "GS"
+  | "GT"
+  | "GU"
+  | "GW"
+  | "GY"
+  | "HK"
+  | "HM"
+  | "HN"
+  | "HR"
+  | "HT"
+  | "HU"
+  | "ID"
+  | "IE"
+  | "IL"
+  | "IM"
+  | "IN"
+  | "IO"
+  | "IQ"
+  | "IR"
+  | "IS"
+  | "IT"
+  | "JE"
+  | "JM"
+  | "JO"
+  | "JP"
+  | "KE"
+  | "KG"
+  | "KH"
+  | "KI"
+  | "KM"
+  | "KN"
+  | "KP"
+  | "KR"
+  | "KW"
+  | "KY"
+  | "KZ"
+  | "LA"
+  | "LB"
+  | "LC"
+  | "LI"
+  | "LK"
+  | "LR"
+  | "LS"
+  | "LT"
+  | "LU"
+  | "LV"
+  | "LY"
+  | "MA"
+  | "MC"
+  | "MD"
+  | "ME"
+  | "MF"
+  | "MG"
+  | "MH"
+  | "MK"
+  | "ML"
+  | "MM"
+  | "MN"
+  | "MO"
+  | "MP"
+  | "MQ"
+  | "MR"
+  | "MS"
+  | "MT"
+  | "MU"
+  | "MV"
+  | "MW"
+  | "MX"
+  | "MY"
+  | "MZ"
+  | "NA"
+  | "NC"
+  | "NE"
+  | "NF"
+  | "NG"
+  | "NI"
+  | "NL"
+  | "NO"
+  | "NP"
+  | "NR"
+  | "NU"
+  | "NZ"
+  | "OM"
+  | "PA"
+  | "PE"
+  | "PF"
+  | "PG"
+  | "PH"
+  | "PK"
+  | "PL"
+  | "PM"
+  | "PN"
+  | "PR"
+  | "PS"
+  | "PT"
+  | "PW"
+  | "PY"
+  | "QA"
+  | "RE"
+  | "RO"
+  | "RS"
+  | "RU"
+  | "RW"
+  | "SA"
+  | "SB"
+  | "SC"
+  | "SD"
+  | "SE"
+  | "SG"
+  | "SH"
+  | "SI"
+  | "SJ"
+  | "SK"
+  | "SL"
+  | "SM"
+  | "SN"
+  | "SO"
+  | "SR"
+  | "SS"
+  | "ST"
+  | "SV"
+  | "SX"
+  | "SY"
+  | "SZ"
+  | "TC"
+  | "TD"
+  | "TF"
+  | "TG"
+  | "TH"
+  | "TJ"
+  | "TK"
+  | "TL"
+  | "TM"
+  | "TN"
+  | "TO"
+  | "TR"
+  | "TT"
+  | "TV"
+  | "TW"
+  | "TZ"
+  | "UA"
+  | "UG"
+  | "UM"
+  | "US"
+  | "UY"
+  | "UZ"
+  | "VA"
+  | "VC"
+  | "VE"
+  | "VG"
+  | "VI"
+  | "VN"
+  | "VU"
+  | "WF"
+  | "WS"
+  | "YE"
+  | "YT"
+  | "ZA"
+  | "ZM"
+  | "ZW"
+  | "ABW"
+  | "AFG"
+  | "AGO"
+  | "AIA"
+  | "ALA"
+  | "ALB"
+  | "AND"
+  | "ARE"
+  | "ARG"
+  | "ARM"
+  | "ASM"
+  | "ATA"
+  | "ATF"
+  | "ATG"
+  | "AUS"
+  | "AUT"
+  | "AZE"
+  | "BDI"
+  | "BEL"
+  | "BEN"
+  | "BES"
+  | "BFA"
+  | "BGD"
+  | "BGR"
+  | "BHR"
+  | "BHS"
+  | "BIH"
+  | "BLM"
+  | "BLR"
+  | "BLZ"
+  | "BMU"
+  | "BOL"
+  | "BRA"
+  | "BRB"
+  | "BRN"
+  | "BTN"
+  | "BVT"
+  | "BWA"
+  | "CAF"
+  | "CAN"
+  | "CCK"
+  | "CHE"
+  | "CHL"
+  | "CHN"
+  | "CIV"
+  | "CMR"
+  | "COD"
+  | "COG"
+  | "COK"
+  | "COL"
+  | "COM"
+  | "CPV"
+  | "CRI"
+  | "CUB"
+  | "CUW"
+  | "CXR"
+  | "CYM"
+  | "CYP"
+  | "CZE"
+  | "DEU"
+  | "DJI"
+  | "DMA"
+  | "DNK"
+  | "DOM"
+  | "DZA"
+  | "ECU"
+  | "EGY"
+  | "ERI"
+  | "ESH"
+  | "ESP"
+  | "EST"
+  | "ETH"
+  | "FIN"
+  | "FJI"
+  | "FLK"
+  | "FRA"
+  | "FRO"
+  | "FSM"
+  | "GAB"
+  | "GBR"
+  | "GEO"
+  | "GGY"
+  | "GHA"
+  | "GIB"
+  | "GIN"
+  | "GLP"
+  | "GMB"
+  | "GNB"
+  | "GNQ"
+  | "GRC"
+  | "GRD"
+  | "GRL"
+  | "GTM"
+  | "GUF"
+  | "GUM"
+  | "GUY"
+  | "HKG"
+  | "HMD"
+  | "HND"
+  | "HRV"
+  | "HTI"
+  | "HUN"
+  | "IDN"
+  | "IMN"
+  | "IND"
+  | "IOT"
+  | "IRL"
+  | "IRN"
+  | "IRQ"
+  | "ISL"
+  | "ISR"
+  | "ITA"
+  | "JAM"
+  | "JEY"
+  | "JOR"
+  | "JPN"
+  | "KAZ"
+  | "KEN"
+  | "KGZ"
+  | "KHM"
+  | "KIR"
+  | "KNA"
+  | "KOR"
+  | "KWT"
+  | "LAO"
+  | "LBN"
+  | "LBR"
+  | "LBY"
+  | "LCA"
+  | "LIE"
+  | "LKA"
+  | "LSO"
+  | "LTU"
+  | "LUX"
+  | "LVA"
+  | "MAC"
+  | "MAF"
+  | "MAR"
+  | "MCO"
+  | "MDA"
+  | "MDG"
+  | "MDV"
+  | "MEX"
+  | "MHL"
+  | "MKD"
+  | "MLI"
+  | "MLT"
+  | "MMR"
+  | "MNE"
+  | "MNG"
+  | "MNP"
+  | "MOZ"
+  | "MRT"
+  | "MSR"
+  | "MTQ"
+  | "MUS"
+  | "MWI"
+  | "MYS"
+  | "MYT"
+  | "NAM"
+  | "NCL"
+  | "NER"
+  | "NFK"
+  | "NGA"
+  | "NIC"
+  | "NIU"
+  | "NLD"
+  | "NOR"
+  | "NPL"
+  | "NRU"
+  | "NZL"
+  | "OMN"
+  | "PAK"
+  | "PAN"
+  | "PCN"
+  | "PER"
+  | "PHL"
+  | "PLW"
+  | "PNG"
+  | "POL"
+  | "PRI"
+  | "PRK"
+  | "PRT"
+  | "PRY"
+  | "PSE"
+  | "PYF"
+  | "QAT"
+  | "REU"
+  | "ROU"
+  | "RUS"
+  | "RWA"
+  | "SAU"
+  | "SDN"
+  | "SEN"
+  | "SGP"
+  | "SGS"
+  | "SHN"
+  | "SJM"
+  | "SLB"
+  | "SLE"
+  | "SLV"
+  | "SMR"
+  | "SOM"
+  | "SPM"
+  | "SRB"
+  | "SSD"
+  | "STP"
+  | "SUR"
+  | "SVK"
+  | "SVN"
+  | "SWE"
+  | "SWZ"
+  | "SXM"
+  | "SYC"
+  | "SYR"
+  | "TCA"
+  | "TCD"
+  | "TGO"
+  | "THA"
+  | "TJK"
+  | "TKL"
+  | "TKM"
+  | "TLS"
+  | "TON"
+  | "TTO"
+  | "TUN"
+  | "TUR"
+  | "TUV"
+  | "TWN"
+  | "TZA"
+  | "UGA"
+  | "UKR"
+  | "UMI"
+  | "URY"
+  | "USA"
+  | "UZB"
+  | "VAT"
+  | "VCT"
+  | "VEN"
+  | "VGB"
+  | "VIR"
+  | "VNM"
+  | "VUT"
+  | "WLF"
+  | "WSM"
+  | "YEM"
+  | "ZAF"
+  | "ZMB"
+  | "ZWE"
+  | "004"
+  | "008"
+  | "010"
+  | "012"
+  | "016"
+  | "020"
+  | "024"
+  | "028"
+  | "031"
+  | "032"
+  | "036"
+  | "040"
+  | "044"
+  | "048"
+  | "050"
+  | "051"
+  | "052"
+  | "056"
+  | "060"
+  | "064"
+  | "068"
+  | "070"
+  | "072"
+  | "074"
+  | "076"
+  | "084"
+  | "086"
+  | "090"
+  | "092"
+  | "096"
+  | "100"
+  | "104"
+  | "108"
+  | "112"
+  | "116"
+  | "120"
+  | "124"
+  | "132"
+  | "136"
+  | "140"
+  | "144"
+  | "148"
+  | "152"
+  | "156"
+  | "158"
+  | "162"
+  | "166"
+  | "170"
+  | "174"
+  | "175"
+  | "178"
+  | "180"
+  | "184"
+  | "188"
+  | "191"
+  | "192"
+  | "196"
+  | "203"
+  | "204"
+  | "208"
+  | "212"
+  | "214"
+  | "218"
+  | "222"
+  | "226"
+  | "231"
+  | "232"
+  | "233"
+  | "234"
+  | "238"
+  | "239"
+  | "242"
+  | "246"
+  | "248"
+  | "250"
+  | "254"
+  | "258"
+  | "260"
+  | "262"
+  | "266"
+  | "268"
+  | "270"
+  | "275"
+  | "276"
+  | "288"
+  | "292"
+  | "296"
+  | "300"
+  | "304"
+  | "308"
+  | "312"
+  | "316"
+  | "320"
+  | "324"
+  | "328"
+  | "332"
+  | "334"
+  | "336"
+  | "340"
+  | "344"
+  | "348"
+  | "352"
+  | "356"
+  | "360"
+  | "364"
+  | "368"
+  | "372"
+  | "376"
+  | "380"
+  | "384"
+  | "388"
+  | "392"
+  | "398"
+  | "400"
+  | "404"
+  | "408"
+  | "410"
+  | "414"
+  | "417"
+  | "418"
+  | "422"
+  | "426"
+  | "428"
+  | "430"
+  | "434"
+  | "438"
+  | "440"
+  | "442"
+  | "446"
+  | "450"
+  | "454"
+  | "458"
+  | "462"
+  | "466"
+  | "470"
+  | "474"
+  | "478"
+  | "480"
+  | "484"
+  | "492"
+  | "496"
+  | "498"
+  | "499"
+  | "500"
+  | "504"
+  | "508"
+  | "512"
+  | "516"
+  | "520"
+  | "524"
+  | "528"
+  | "531"
+  | "533"
+  | "534"
+  | "535"
+  | "540"
+  | "548"
+  | "554"
+  | "558"
+  | "562"
+  | "566"
+  | "570"
+  | "574"
+  | "578"
+  | "580"
+  | "581"
+  | "583"
+  | "584"
+  | "585"
+  | "586"
+  | "591"
+  | "598"
+  | "600"
+  | "604"
+  | "608"
+  | "612"
+  | "616"
+  | "620"
+  | "624"
+  | "626"
+  | "630"
+  | "634"
+  | "638"
+  | "642"
+  | "643"
+  | "646"
+  | "652"
+  | "654"
+  | "659"
+  | "660"
+  | "662"
+  | "663"
+  | "666"
+  | "670"
+  | "674"
+  | "678"
+  | "682"
+  | "686"
+  | "688"
+  | "690"
+  | "694"
+  | "702"
+  | "703"
+  | "704"
+  | "705"
+  | "706"
+  | "710"
+  | "716"
+  | "724"
+  | "728"
+  | "729"
+  | "732"
+  | "740"
+  | "744"
+  | "748"
+  | "752"
+  | "756"
+  | "760"
+  | "762"
+  | "764"
+  | "768"
+  | "772"
+  | "776"
+  | "780"
+  | "784"
+  | "788"
+  | "792"
+  | "795"
+  | "796"
+  | "798"
+  | "800"
+  | "804"
+  | "807"
+  | "818"
+  | "826"
+  | "831"
+  | "832"
+  | "833"
+  | "834"
+  | "840"
+  | "850"
+  | "854"
+  | "858"
+  | "860"
+  | "862"
+  | "876"
+  | "882"
+  | "887"
+  | "894"
+  | "AF-BAL"
+  | "AF-BAM"
+  | "AF-BDG"
+  | "AF-BDS"
+  | "AF-BGL"
+  | "AF-DAY"
+  | "AF-FRA"
+  | "AF-FYB"
+  | "AF-GHA"
+  | "AF-GHO"
+  | "AF-HEL"
+  | "AF-HER"
+  | "AF-JOW"
+  | "AF-KAB"
+  | "AF-KAN"
+  | "AF-KAP"
+  | "AF-KDZ"
+  | "AF-KHO"
+  | "AF-KNR"
+  | "AF-LAG"
+  | "AF-LOG"
+  | "AF-NAN"
+  | "AF-NIM"
+  | "AF-NUR"
+  | "AF-PAN"
+  | "AF-PAR"
+  | "AF-PIA"
+  | "AF-PKA"
+  | "AF-SAM"
+  | "AF-SAR"
+  | "AF-TAK"
+  | "AF-URU"
+  | "AF-WAR"
+  | "AF-ZAB"
+  | "AX-AX"
+  | "AL-01"
+  | "AL-02"
+  | "AL-03"
+  | "AL-04"
+  | "AL-05"
+  | "AL-06"
+  | "AL-07"
+  | "AL-08"
+  | "AL-09"
+  | "AL-10"
+  | "AL-11"
+  | "AL-12"
+  | "AL-BR"
+  | "AL-BU"
+  | "AL-DI"
+  | "AL-DL"
+  | "AL-DR"
+  | "AL-DV"
+  | "AL-EL"
+  | "AL-ER"
+  | "AL-FR"
+  | "AL-GJ"
+  | "AL-GR"
+  | "AL-HA"
+  | "AL-KA"
+  | "AL-KB"
+  | "AL-KC"
+  | "AL-KO"
+  | "AL-KR"
+  | "AL-KU"
+  | "AL-LB"
+  | "AL-LE"
+  | "AL-LU"
+  | "AL-MK"
+  | "AL-MM"
+  | "AL-MR"
+  | "AL-MT"
+  | "AL-PG"
+  | "AL-PQ"
+  | "AL-PR"
+  | "AL-PU"
+  | "AL-SH"
+  | "AL-SK"
+  | "AL-SR"
+  | "AL-TE"
+  | "AL-TP"
+  | "AL-TR"
+  | "AL-VL"
+  | "DZ-01"
+  | "DZ-02"
+  | "DZ-03"
+  | "DZ-04"
+  | "DZ-05"
+  | "DZ-06"
+  | "DZ-07"
+  | "DZ-08"
+  | "DZ-09"
+  | "DZ-10"
+  | "DZ-11"
+  | "DZ-12"
+  | "DZ-13"
+  | "DZ-14"
+  | "DZ-15"
+  | "DZ-16"
+  | "DZ-17"
+  | "DZ-18"
+  | "DZ-19"
+  | "DZ-20"
+  | "DZ-21"
+  | "DZ-22"
+  | "DZ-23"
+  | "DZ-24"
+  | "DZ-25"
+  | "DZ-26"
+  | "DZ-27"
+  | "DZ-28"
+  | "DZ-29"
+  | "DZ-30"
+  | "DZ-31"
+  | "DZ-32"
+  | "DZ-33"
+  | "DZ-34"
+  | "DZ-35"
+  | "DZ-36"
+  | "DZ-37"
+  | "DZ-38"
+  | "DZ-39"
+  | "DZ-40"
+  | "DZ-41"
+  | "DZ-42"
+  | "DZ-43"
+  | "DZ-44"
+  | "DZ-45"
+  | "DZ-46"
+  | "DZ-47"
+  | "DZ-48"
+  | "AS-AS"
+  | "AD-02"
+  | "AD-03"
+  | "AD-04"
+  | "AD-05"
+  | "AD-06"
+  | "AD-07"
+  | "AD-08"
+  | "AO-BGO"
+  | "AO-BGU"
+  | "AO-BIE"
+  | "AO-CAB"
+  | "AO-CCU"
+  | "AO-CNN"
+  | "AO-CNO"
+  | "AO-CUS"
+  | "AO-HUA"
+  | "AO-HUI"
+  | "AO-LNO"
+  | "AO-LSU"
+  | "AO-LUA"
+  | "AO-MAL"
+  | "AO-MOX"
+  | "AO-NAM"
+  | "AO-UIG"
+  | "AO-ZAI"
+  | "AI-AI"
+  | "AQ-AQ"
+  | "AG-03"
+  | "AG-04"
+  | "AG-05"
+  | "AG-06"
+  | "AG-07"
+  | "AG-08"
+  | "AG-10"
+  | "AG-11"
+  | "AR-A"
+  | "AR-B"
+  | "AR-C"
+  | "AR-D"
+  | "AR-E"
+  | "AR-F"
+  | "AR-G"
+  | "AR-H"
+  | "AR-J"
+  | "AR-K"
+  | "AR-L"
+  | "AR-M"
+  | "AR-N"
+  | "AR-P"
+  | "AR-Q"
+  | "AR-R"
+  | "AR-S"
+  | "AR-T"
+  | "AR-U"
+  | "AR-V"
+  | "AR-W"
+  | "AR-X"
+  | "AR-Y"
+  | "AR-Z"
+  | "AM-AG"
+  | "AM-AR"
+  | "AM-AV"
+  | "AM-ER"
+  | "AM-GR"
+  | "AM-KT"
+  | "AM-LO"
+  | "AM-SH"
+  | "AM-SU"
+  | "AM-TV"
+  | "AM-VD"
+  | "AW-AW"
+  | "AU-ACT"
+  | "AU-NSW"
+  | "AU-NT"
+  | "AU-QLD"
+  | "AU-SA"
+  | "AU-TAS"
+  | "AU-VIC"
+  | "AU-WA"
+  | "AT-1"
+  | "AT-2"
+  | "AT-3"
+  | "AT-4"
+  | "AT-5"
+  | "AT-6"
+  | "AT-7"
+  | "AT-8"
+  | "AT-9"
+  | "AZ-ABS"
+  | "AZ-AGA"
+  | "AZ-AGC"
+  | "AZ-AGM"
+  | "AZ-AGS"
+  | "AZ-AGU"
+  | "AZ-AST"
+  | "AZ-BA"
+  | "AZ-BAB"
+  | "AZ-BAL"
+  | "AZ-BAR"
+  | "AZ-BEY"
+  | "AZ-BIL"
+  | "AZ-CAB"
+  | "AZ-CAL"
+  | "AZ-CUL"
+  | "AZ-DAS"
+  | "AZ-FUZ"
+  | "AZ-GAD"
+  | "AZ-GA"
+  | "AZ-GOR"
+  | "AZ-GOY"
+  | "AZ-GYG"
+  | "AZ-HAC"
+  | "AZ-IMI"
+  | "AZ-ISM"
+  | "AZ-KAL"
+  | "AZ-KAN"
+  | "AZ-KUR"
+  | "AZ-LAC"
+  | "AZ-LA"
+  | "AZ-LAN"
+  | "AZ-LER"
+  | "AZ-MAS"
+  | "AZ-MI"
+  | "AZ-NA"
+  | "AZ-NEF"
+  | "AZ-NV"
+  | "AZ-NX"
+  | "AZ-OGU"
+  | "AZ-ORD"
+  | "AZ-QAB"
+  | "AZ-QAX"
+  | "AZ-QAZ"
+  | "AZ-QBA"
+  | "AZ-QBI"
+  | "AZ-QOB"
+  | "AZ-QUS"
+  | "AZ-SAB"
+  | "AZ-SAD"
+  | "AZ-SAH"
+  | "AZ-SAK"
+  | "AZ-SAL"
+  | "AZ-SAR"
+  | "AZ-SA"
+  | "AZ-SAT"
+  | "AZ-SBN"
+  | "AZ-SIY"
+  | "AZ-SKR"
+  | "AZ-SMI"
+  | "AZ-SM"
+  | "AZ-SMX"
+  | "AZ-SR"
+  | "AZ-SUS"
+  | "AZ-TAR"
+  | "AZ-TOV"
+  | "AZ-UCA"
+  | "AZ-XAC"
+  | "AZ-XA"
+  | "AZ-XCI"
+  | "AZ-XIZ"
+  | "AZ-XVD"
+  | "AZ-YAR"
+  | "AZ-YEV"
+  | "AZ-YE"
+  | "AZ-ZAN"
+  | "AZ-ZAQ"
+  | "AZ-ZAR"
+  | "BS-AK"
+  | "BS-BI"
+  | "BS-BP"
+  | "BS-BY"
+  | "BS-CE"
+  | "BS-CI"
+  | "BS-CK"
+  | "BS-CO"
+  | "BS-CS"
+  | "BS-EG"
+  | "BS-EX"
+  | "BS-FP"
+  | "BS-GC"
+  | "BS-HI"
+  | "BS-HT"
+  | "BS-IN"
+  | "BS-LI"
+  | "BS-MC"
+  | "BS-MG"
+  | "BS-MI"
+  | "BS-NE"
+  | "BS-NO"
+  | "BS-NS"
+  | "BS-RC"
+  | "BS-RI"
+  | "BS-SA"
+  | "BS-SE"
+  | "BS-SO"
+  | "BS-SS"
+  | "BS-SW"
+  | "BS-WG"
+  | "BH-13"
+  | "BH-14"
+  | "BH-15"
+  | "BH-16"
+  | "BH-17"
+  | "BD-01"
+  | "BD-02"
+  | "BD-03"
+  | "BD-04"
+  | "BD-05"
+  | "BD-06"
+  | "BD-07"
+  | "BD-08"
+  | "BD-09"
+  | "BD-10"
+  | "BD-11"
+  | "BD-12"
+  | "BD-13"
+  | "BD-14"
+  | "BD-15"
+  | "BD-16"
+  | "BD-17"
+  | "BD-18"
+  | "BD-19"
+  | "BD-20"
+  | "BD-21"
+  | "BD-22"
+  | "BD-23"
+  | "BD-24"
+  | "BD-25"
+  | "BD-26"
+  | "BD-27"
+  | "BD-28"
+  | "BD-29"
+  | "BD-30"
+  | "BD-31"
+  | "BD-32"
+  | "BD-33"
+  | "BD-34"
+  | "BD-35"
+  | "BD-36"
+  | "BD-37"
+  | "BD-38"
+  | "BD-39"
+  | "BD-40"
+  | "BD-41"
+  | "BD-42"
+  | "BD-43"
+  | "BD-44"
+  | "BD-45"
+  | "BD-46"
+  | "BD-47"
+  | "BD-48"
+  | "BD-49"
+  | "BD-50"
+  | "BD-51"
+  | "BD-52"
+  | "BD-53"
+  | "BD-54"
+  | "BD-55"
+  | "BD-56"
+  | "BD-57"
+  | "BD-58"
+  | "BD-59"
+  | "BD-60"
+  | "BD-61"
+  | "BD-62"
+  | "BD-63"
+  | "BD-64"
+  | "BD-A"
+  | "BD-B"
+  | "BD-C"
+  | "BD-D"
+  | "BD-E"
+  | "BD-F"
+  | "BD-G"
+  | "BB-01"
+  | "BB-02"
+  | "BB-03"
+  | "BB-04"
+  | "BB-05"
+  | "BB-06"
+  | "BB-07"
+  | "BB-08"
+  | "BB-09"
+  | "BB-10"
+  | "BB-11"
+  | "BY-BR"
+  | "BY-HM"
+  | "BY-HO"
+  | "BY-HR"
+  | "BY-MA"
+  | "BY-MI"
+  | "BY-VI"
+  | "BE-BRU"
+  | "BE-VAN"
+  | "BE-VBR"
+  | "BE-VLG"
+  | "BE-VLI"
+  | "BE-VOV"
+  | "BE-VWV"
+  | "BE-WAL"
+  | "BE-WBR"
+  | "BE-WHT"
+  | "BE-WLG"
+  | "BE-WLX"
+  | "BE-WNA"
+  | "BZ-BZ"
+  | "BZ-CY"
+  | "BZ-CZL"
+  | "BZ-OW"
+  | "BZ-SC"
+  | "BZ-TOL"
+  | "BJ-AK"
+  | "BJ-AL"
+  | "BJ-AQ"
+  | "BJ-BO"
+  | "BJ-CO"
+  | "BJ-DO"
+  | "BJ-KO"
+  | "BJ-LI"
+  | "BJ-MO"
+  | "BJ-OU"
+  | "BJ-PL"
+  | "BJ-ZO"
+  | "BM-BM"
+  | "BT-11"
+  | "BT-12"
+  | "BT-13"
+  | "BT-14"
+  | "BT-15"
+  | "BT-21"
+  | "BT-22"
+  | "BT-23"
+  | "BT-24"
+  | "BT-31"
+  | "BT-32"
+  | "BT-33"
+  | "BT-34"
+  | "BT-41"
+  | "BT-42"
+  | "BT-43"
+  | "BT-44"
+  | "BT-45"
+  | "BT-GA"
+  | "BT-TY"
+  | "BO-B"
+  | "BO-C"
+  | "BO-H"
+  | "BO-L"
+  | "BO-N"
+  | "BO-O"
+  | "BO-P"
+  | "BO-S"
+  | "BO-T"
+  | "BQ-BO"
+  | "BQ-SA"
+  | "BQ-SE"
+  | "BA-01"
+  | "BA-02"
+  | "BA-03"
+  | "BA-04"
+  | "BA-05"
+  | "BA-06"
+  | "BA-07"
+  | "BA-08"
+  | "BA-09"
+  | "BA-10"
+  | "BA-BIH"
+  | "BA-BRC"
+  | "BA-SRP"
+  | "BW-CE"
+  | "BW-CH"
+  | "BW-FR"
+  | "BW-GA"
+  | "BW-GH"
+  | "BW-JW"
+  | "BW-KG"
+  | "BW-KL"
+  | "BW-KW"
+  | "BW-LO"
+  | "BW-NE"
+  | "BW-NW"
+  | "BW-SE"
+  | "BW-SO"
+  | "BW-SP"
+  | "BW-ST"
+  | "BV-BV"
+  | "BR-AC"
+  | "BR-AL"
+  | "BR-AM"
+  | "BR-AP"
+  | "BR-BA"
+  | "BR-CE"
+  | "BR-DF"
+  | "BR-ES"
+  | "BR-GO"
+  | "BR-MA"
+  | "BR-MG"
+  | "BR-MS"
+  | "BR-MT"
+  | "BR-PA"
+  | "BR-PB"
+  | "BR-PE"
+  | "BR-PI"
+  | "BR-PR"
+  | "BR-RJ"
+  | "BR-RN"
+  | "BR-RO"
+  | "BR-RR"
+  | "BR-RS"
+  | "BR-SC"
+  | "BR-SE"
+  | "BR-SP"
+  | "BR-TO"
+  | "IO-IO"
+  | "BN-BE"
+  | "BN-BM"
+  | "BN-TE"
+  | "BN-TU"
+  | "BG-01"
+  | "BG-02"
+  | "BG-03"
+  | "BG-04"
+  | "BG-05"
+  | "BG-06"
+  | "BG-07"
+  | "BG-08"
+  | "BG-09"
+  | "BG-10"
+  | "BG-11"
+  | "BG-12"
+  | "BG-13"
+  | "BG-14"
+  | "BG-15"
+  | "BG-16"
+  | "BG-17"
+  | "BG-18"
+  | "BG-19"
+  | "BG-20"
+  | "BG-21"
+  | "BG-22"
+  | "BG-23"
+  | "BG-24"
+  | "BG-25"
+  | "BG-26"
+  | "BG-27"
+  | "BG-28"
+  | "BF-01"
+  | "BF-02"
+  | "BF-03"
+  | "BF-04"
+  | "BF-05"
+  | "BF-06"
+  | "BF-07"
+  | "BF-08"
+  | "BF-09"
+  | "BF-10"
+  | "BF-11"
+  | "BF-12"
+  | "BF-13"
+  | "BF-BAL"
+  | "BF-BAM"
+  | "BF-BAN"
+  | "BF-BAZ"
+  | "BF-BGR"
+  | "BF-BLG"
+  | "BF-BLK"
+  | "BF-COM"
+  | "BF-GAN"
+  | "BF-GNA"
+  | "BF-GOU"
+  | "BF-HOU"
+  | "BF-IOB"
+  | "BF-KAD"
+  | "BF-KEN"
+  | "BF-KMD"
+  | "BF-KMP"
+  | "BF-KOP"
+  | "BF-KOS"
+  | "BF-KOT"
+  | "BF-KOW"
+  | "BF-LER"
+  | "BF-LOR"
+  | "BF-MOU"
+  | "BF-NAM"
+  | "BF-NAO"
+  | "BF-NAY"
+  | "BF-NOU"
+  | "BF-OUB"
+  | "BF-OUD"
+  | "BF-PAS"
+  | "BF-PON"
+  | "BF-SEN"
+  | "BF-SIS"
+  | "BF-SMT"
+  | "BF-SNG"
+  | "BF-SOM"
+  | "BF-SOR"
+  | "BF-TAP"
+  | "BF-TUI"
+  | "BF-YAG"
+  | "BF-YAT"
+  | "BF-ZIR"
+  | "BF-ZON"
+  | "BF-ZOU"
+  | "BI-BB"
+  | "BI-BL"
+  | "BI-BM"
+  | "BI-BR"
+  | "BI-CA"
+  | "BI-CI"
+  | "BI-GI"
+  | "BI-KI"
+  | "BI-KR"
+  | "BI-KY"
+  | "BI-MA"
+  | "BI-MU"
+  | "BI-MW"
+  | "BI-MY"
+  | "BI-NG"
+  | "BI-RT"
+  | "BI-RY"
+  | "KH-10"
+  | "KH-11"
+  | "KH-12"
+  | "KH-13"
+  | "KH-14"
+  | "KH-15"
+  | "KH-16"
+  | "KH-17"
+  | "KH-18"
+  | "KH-19"
+  | "KH-1"
+  | "KH-20"
+  | "KH-21"
+  | "KH-22"
+  | "KH-23"
+  | "KH-24"
+  | "KH-2"
+  | "KH-3"
+  | "KH-4"
+  | "KH-5"
+  | "KH-6"
+  | "KH-7"
+  | "KH-8"
+  | "KH-9"
+  | "CM-AD"
+  | "CM-CE"
+  | "CM-EN"
+  | "CM-ES"
+  | "CM-LT"
+  | "CM-NO"
+  | "CM-NW"
+  | "CM-OU"
+  | "CM-SU"
+  | "CM-SW"
+  | "CA-AB"
+  | "CA-BC"
+  | "CA-MB"
+  | "CA-NB"
+  | "CA-NL"
+  | "CA-NS"
+  | "CA-NT"
+  | "CA-NU"
+  | "CA-ON"
+  | "CA-PE"
+  | "CA-QC"
+  | "CA-SK"
+  | "CA-YT"
+  | "CV-B"
+  | "CV-BR"
+  | "CV-BV"
+  | "CV-CA"
+  | "CV-CF"
+  | "CV-CR"
+  | "CV-MA"
+  | "CV-MO"
+  | "CV-PA"
+  | "CV-PN"
+  | "CV-PR"
+  | "CV-RB"
+  | "CV-RG"
+  | "CV-RS"
+  | "CV-SD"
+  | "CV-SF"
+  | "CV-S"
+  | "CV-SL"
+  | "CV-SM"
+  | "CV-SO"
+  | "CV-SS"
+  | "CV-SV"
+  | "CV-TA"
+  | "CV-TS"
+  | "KY-KY"
+  | "CF-AC"
+  | "CF-BB"
+  | "CF-BGF"
+  | "CF-BK"
+  | "CF-HK"
+  | "CF-HM"
+  | "CF-HS"
+  | "CF-KB"
+  | "CF-KG"
+  | "CF-LB"
+  | "CF-MB"
+  | "CF-MP"
+  | "CF-NM"
+  | "CF-OP"
+  | "CF-SE"
+  | "CF-UK"
+  | "CF-VK"
+  | "TD-BA"
+  | "TD-BG"
+  | "TD-BO"
+  | "TD-CB"
+  | "TD-EE"
+  | "TD-EO"
+  | "TD-GR"
+  | "TD-HL"
+  | "TD-KA"
+  | "TD-LC"
+  | "TD-LO"
+  | "TD-LR"
+  | "TD-MA"
+  | "TD-MC"
+  | "TD-ME"
+  | "TD-MO"
+  | "TD-ND"
+  | "TD-OD"
+  | "TD-SA"
+  | "TD-SI"
+  | "TD-TA"
+  | "TD-TI"
+  | "TD-WF"
+  | "CL-AI"
+  | "CL-AN"
+  | "CL-AP"
+  | "CL-AR"
+  | "CL-AT"
+  | "CL-BI"
+  | "CL-CO"
+  | "CL-LI"
+  | "CL-LL"
+  | "CL-LR"
+  | "CL-MA"
+  | "CL-ML"
+  | "CL-RM"
+  | "CL-TA"
+  | "CL-VS"
+  | "CN-11"
+  | "CN-12"
+  | "CN-13"
+  | "CN-14"
+  | "CN-15"
+  | "CN-21"
+  | "CN-22"
+  | "CN-23"
+  | "CN-31"
+  | "CN-32"
+  | "CN-33"
+  | "CN-34"
+  | "CN-35"
+  | "CN-36"
+  | "CN-37"
+  | "CN-41"
+  | "CN-42"
+  | "CN-43"
+  | "CN-44"
+  | "CN-45"
+  | "CN-46"
+  | "CN-50"
+  | "CN-51"
+  | "CN-52"
+  | "CN-53"
+  | "CN-54"
+  | "CN-61"
+  | "CN-62"
+  | "CN-63"
+  | "CN-64"
+  | "CN-65"
+  | "CN-71"
+  | "CN-91"
+  | "CN-92"
+  | "CX-CX"
+  | "CC-CC"
+  | "CO-AMA"
+  | "CO-ANT"
+  | "CO-ARA"
+  | "CO-ATL"
+  | "CO-BOL"
+  | "CO-BOY"
+  | "CO-CAL"
+  | "CO-CAQ"
+  | "CO-CAS"
+  | "CO-CAU"
+  | "CO-CES"
+  | "CO-CHO"
+  | "CO-COR"
+  | "CO-CUN"
+  | "CO-DC"
+  | "CO-GUA"
+  | "CO-GUV"
+  | "CO-HUI"
+  | "CO-LAG"
+  | "CO-MAG"
+  | "CO-MET"
+  | "CO-NAR"
+  | "CO-NSA"
+  | "CO-PUT"
+  | "CO-QUI"
+  | "CO-RIS"
+  | "CO-SAN"
+  | "CO-SAP"
+  | "CO-SUC"
+  | "CO-TOL"
+  | "CO-VAC"
+  | "CO-VAU"
+  | "CO-VID"
+  | "KM-A"
+  | "KM-G"
+  | "KM-M"
+  | "CG-11"
+  | "CG-12"
+  | "CG-13"
+  | "CG-14"
+  | "CG-15"
+  | "CG-16"
+  | "CG-2"
+  | "CG-5"
+  | "CG-7"
+  | "CG-8"
+  | "CG-9"
+  | "CG-BZV"
+  | "CD-BC"
+  | "CD-BN"
+  | "CD-EQ"
+  | "CD-KA"
+  | "CD-KE"
+  | "CD-KN"
+  | "CD-KW"
+  | "CD-MA"
+  | "CD-NK"
+  | "CD-OR"
+  | "CD-SK"
+  | "CK-CK"
+  | "CR-A"
+  | "CR-C"
+  | "CR-G"
+  | "CR-H"
+  | "CR-L"
+  | "CR-P"
+  | "CR-SJ"
+  | "CI-01"
+  | "CI-02"
+  | "CI-03"
+  | "CI-04"
+  | "CI-05"
+  | "CI-06"
+  | "CI-07"
+  | "CI-08"
+  | "CI-09"
+  | "CI-10"
+  | "CI-11"
+  | "CI-12"
+  | "CI-13"
+  | "CI-14"
+  | "CI-15"
+  | "CI-16"
+  | "CI-17"
+  | "CI-18"
+  | "CI-19"
+  | "HR-01"
+  | "HR-02"
+  | "HR-03"
+  | "HR-04"
+  | "HR-05"
+  | "HR-06"
+  | "HR-07"
+  | "HR-08"
+  | "HR-09"
+  | "HR-10"
+  | "HR-11"
+  | "HR-12"
+  | "HR-13"
+  | "HR-14"
+  | "HR-15"
+  | "HR-16"
+  | "HR-17"
+  | "HR-18"
+  | "HR-19"
+  | "HR-20"
+  | "HR-21"
+  | "CU-01"
+  | "CU-03"
+  | "CU-04"
+  | "CU-05"
+  | "CU-06"
+  | "CU-07"
+  | "CU-08"
+  | "CU-09"
+  | "CU-10"
+  | "CU-11"
+  | "CU-12"
+  | "CU-13"
+  | "CU-14"
+  | "CU-15"
+  | "CU-16"
+  | "CU-99"
+  | "CW-CW"
+  | "CY-01"
+  | "CY-02"
+  | "CY-03"
+  | "CY-04"
+  | "CY-05"
+  | "CY-06"
+  | "CZ-101"
+  | "CZ-102"
+  | "CZ-103"
+  | "CZ-104"
+  | "CZ-105"
+  | "CZ-106"
+  | "CZ-107"
+  | "CZ-108"
+  | "CZ-109"
+  | "CZ-10A"
+  | "CZ-10B"
+  | "CZ-10C"
+  | "CZ-10D"
+  | "CZ-10E"
+  | "CZ-10F"
+  | "CZ-201"
+  | "CZ-202"
+  | "CZ-203"
+  | "CZ-204"
+  | "CZ-205"
+  | "CZ-206"
+  | "CZ-207"
+  | "CZ-208"
+  | "CZ-209"
+  | "CZ-20A"
+  | "CZ-20B"
+  | "CZ-20C"
+  | "CZ-311"
+  | "CZ-312"
+  | "CZ-313"
+  | "CZ-314"
+  | "CZ-315"
+  | "CZ-316"
+  | "CZ-317"
+  | "CZ-321"
+  | "CZ-322"
+  | "CZ-323"
+  | "CZ-324"
+  | "CZ-325"
+  | "CZ-326"
+  | "CZ-327"
+  | "CZ-411"
+  | "CZ-412"
+  | "CZ-413"
+  | "CZ-421"
+  | "CZ-422"
+  | "CZ-423"
+  | "CZ-424"
+  | "CZ-425"
+  | "CZ-426"
+  | "CZ-427"
+  | "CZ-511"
+  | "CZ-512"
+  | "CZ-513"
+  | "CZ-514"
+  | "001"
+  | "002"
+  | "014"
+  | "017"
+  | "015"
+  | "018"
+  | "011"
+  | "019"
+  | "419"
+  | "029"
+  | "013"
+  | "005"
+  | "021"
+  | "142"
+  | "143"
+  | "030"
+  | "034"
+  | "035"
+  | "145"
+  | "150"
+  | "151"
+  | "154"
+  | "039"
+  | "155"
+  | "009"
+  | "053"
+  | "054"
+  | "057"
+  | "061";
 
 /**
  * Kind
  *
  * The kind of coverage: insurance, selfpay or other.
  */
-export type Kind = string;
+export type Kind = "insurance" | "self-pay" | "other";
 
 /**
  * Knowledge Representation Level
@@ -1130,7 +5297,7 @@ export type LDLCodes = string;
  * Used to distinguish different roles a resource can play within a set of linked
  * resources.
  */
-export type LinkageType = string;
+export type LinkageType = "source" | "alternate" | "historical";
 
 /**
  * Link Relation Types
@@ -1139,7 +5306,127 @@ export type LinkageType = string;
  * https://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relati
  * ons-1
  */
-export type LinkRelationTypes = string;
+export type LinkRelationTypes =
+  | "about"
+  | "acl"
+  | "alternate"
+  | "amphtml"
+  | "appendix"
+  | "apple-touch-icon"
+  | "apple-touch-startup-image"
+  | "archives"
+  | "author"
+  | "blocked-by"
+  | "bookmark"
+  | "canonical"
+  | "chapter"
+  | "cite-as"
+  | "collection"
+  | "contents"
+  | "convertedFrom"
+  | "copyright"
+  | "create-form"
+  | "current"
+  | "describedby"
+  | "describes"
+  | "disclosure"
+  | "dns-prefetch"
+  | "duplicate"
+  | "edit"
+  | "edit-form"
+  | "edit-media"
+  | "enclosure"
+  | "external"
+  | "first"
+  | "glossary"
+  | "help"
+  | "hosts"
+  | "hub"
+  | "icon"
+  | "index"
+  | "intervalAfter"
+  | "intervalBefore"
+  | "intervalContains"
+  | "intervalDisjoint"
+  | "intervalDuring"
+  | "intervalEquals"
+  | "intervalFinishedBy"
+  | "intervalFinishes"
+  | "intervalIn"
+  | "intervalMeets"
+  | "intervalMetBy"
+  | "intervalOverlappedBy"
+  | "intervalOverlaps"
+  | "intervalStartedBy"
+  | "intervalStarts"
+  | "item"
+  | "last"
+  | "latest-version"
+  | "license"
+  | "linkset"
+  | "lrdd"
+  | "manifest"
+  | "mask-icon"
+  | "media-feed"
+  | "memento"
+  | "micropub"
+  | "modulepreload"
+  | "monitor"
+  | "monitor-group"
+  | "next"
+  | "next-archive"
+  | "nofollow"
+  | "noopener"
+  | "noreferrer"
+  | "opener"
+  | "openid2.local_id"
+  | "openid2.provider"
+  | "original"
+  | "P3Pv1"
+  | "payment"
+  | "pingback"
+  | "preconnect"
+  | "predecessor-version"
+  | "prefetch"
+  | "preload"
+  | "prerender"
+  | "prev"
+  | "preview"
+  | "previous"
+  | "prev-archive"
+  | "privacy-policy"
+  | "profile"
+  | "publication"
+  | "related"
+  | "restconf"
+  | "replies"
+  | "ruleinput"
+  | "search"
+  | "section"
+  | "self"
+  | "service"
+  | "service-desc"
+  | "service-doc"
+  | "service-meta"
+  | "sponsored"
+  | "start"
+  | "status"
+  | "stylesheet"
+  | "subsection"
+  | "successor-version"
+  | "sunset"
+  | "tag"
+  | "terms-of-service"
+  | "timegate"
+  | "timemap"
+  | "type"
+  | "ugc"
+  | "up"
+  | "version-history"
+  | "via"
+  | "webmention"
+  | "working-copy"
+  | "working-copy-of";
 
 /**
  * Link Type
@@ -1147,21 +5434,21 @@ export type LinkRelationTypes = string;
  * The type of link between this Patient resource and another Patient/RelatedPerson
  * resource.
  */
-export type LinkType = string;
+export type LinkType = "replaced-by" | "replaces" | "refer" | "seealso";
 
 /**
  * List Mode
  *
  * The processing mode that applies to this list.
  */
-export type ListMode = string;
+export type ListMode = "working" | "snapshot" | "changes";
 
 /**
  * List Status
  *
  * The current state of the list.
  */
-export type ListStatus = string;
+export type ListStatus = "current" | "retired" | "entered-in-error";
 
 /**
  * Location Mode
@@ -1169,14 +5456,14 @@ export type ListStatus = string;
  * Indicates whether a resource instance represents a specific location or a class
  * of locations.
  */
-export type LocationMode = string;
+export type LocationMode = "instance" | "kind";
 
 /**
  * Location Status
  *
  * Indicates whether the location is still in use.
  */
-export type LocationStatus = string;
+export type LocationStatus = "active" | "suspended" | "inactive";
 
 /**
  * Measure Improvement Notation
@@ -1184,70 +5471,113 @@ export type LocationStatus = string;
  * Observation values that indicate what change in a measurement value or score is
  * indicative of an improvement in the measured item or scored issue.
  */
-export type MeasureImprovementNotation = string;
+export type MeasureImprovementNotation = "increase" | "decrease";
 
 /**
  * Measure Report Status
  *
  * The status of the measure report.
  */
-export type MeasureReportStatus = string;
+export type MeasureReportStatus = "complete" | "pending" | "error";
 
 /**
  * Measure Report Type
  *
  * The type of the measure report.
  */
-export type MeasureReportType = string;
+export type MeasureReportType =
+  | "individual"
+  | "subject-list"
+  | "summary"
+  | "data-exchange";
 
 /**
  * MedicationAdministration Status Codes
  *
  *
  */
-export type MedicationAdministrationStatusCodes = string;
+export type MedicationAdministrationStatusCodes =
+  | "in-progress"
+  | "not-done"
+  | "on-hold"
+  | "completed"
+  | "entered-in-error"
+  | "stopped"
+  | "unknown";
 
 /**
  * MedicationDispense Status Codes
  *
  *
  */
-export type MedicationDispenseStatusCodes = string;
+export type MedicationDispenseStatusCodes =
+  | "preparation"
+  | "in-progress"
+  | "cancelled"
+  | "on-hold"
+  | "completed"
+  | "entered-in-error"
+  | "stopped"
+  | "declined"
+  | "unknown";
 
 /**
  * MedicationKnowledge Status Codes
  *
  *
  */
-export type MedicationKnowledgeStatusCodes = string;
+export type MedicationKnowledgeStatusCodes =
+  | "active"
+  | "entered-in-error"
+  | "inactive";
 
 /**
  * medicationRequest Intent
  *
  * MedicationRequest Intent Codes
  */
-export type MedicationRequestIntent = string;
+export type MedicationRequestIntent =
+  | "proposal"
+  | "plan"
+  | "order"
+  | "original-order"
+  | "reflex-order"
+  | "filler-order"
+  | "instance-order"
+  | "option";
 
 /**
  * medicationrequest Status
  *
  * MedicationRequest Status Codes
  */
-export type MedicationrequestStatus = string;
+export type MedicationrequestStatus =
+  | "active"
+  | "on-hold"
+  | "ended"
+  | "stopped"
+  | "completed"
+  | "cancelled"
+  | "entered-in-error"
+  | "draft"
+  | "unknown";
 
 /**
  * MedicationStatement Status Codes
  *
  *
  */
-export type MedicationStatementStatusCodes = string;
+export type MedicationStatementStatusCodes =
+  | "recorded"
+  | "entered-in-error"
+  | "draft";
 
 /**
  * Medication Status Codes
  *
  *
  */
-export type MedicationStatusCodes = string;
+export type MedicationStatusCodes = "active" | "inactive" | "entered-in-error";
 
 /**
  * messageheader-response-request
@@ -1255,14 +5585,21 @@ export type MedicationStatusCodes = string;
  * HL7-defined table of codes which identify conditions under which acknowledgments
  * are required to be returned in response to a message.
  */
-export type MessageheaderResponseRequest = string;
+export type MessageheaderResponseRequest =
+  | "always"
+  | "on-error"
+  | "never"
+  | "on-success";
 
 /**
  * Message Significance Category
  *
  * The impact of the content of a message.
  */
-export type MessageSignificanceCategory = string;
+export type MessageSignificanceCategory =
+  | "consequence"
+  | "currency"
+  | "notification";
 
 /**
  * Mime Types
@@ -1277,70 +5614,106 @@ export type MimeTypes = string;
  *
  * The use of a human name.
  */
-export type NameUse = string;
+export type NameUse =
+  | "usual"
+  | "official"
+  | "temp"
+  | "nickname"
+  | "anonymous"
+  | "old"
+  | "maiden";
 
 /**
  * Naming System Identifier Type
  *
  * Identifies the style of unique identifier used to identify a namespace.
  */
-export type NamingSystemIdentifierType = string;
+export type NamingSystemIdentifierType =
+  | "oid"
+  | "uuid"
+  | "uri"
+  | "iri-stem"
+  | "v2csmnemonic"
+  | "other";
 
 /**
  * Naming System Type
  *
  * Identifies the purpose of the naming system.
  */
-export type NamingSystemType = string;
+export type NamingSystemType = "codesystem" | "identifier" | "root";
 
 /**
  * NarrativeStatus
  *
  * The status of a resource narrative.
  */
-export type NarrativeStatus = string;
+export type NarrativeStatus =
+  | "generated"
+  | "extensions"
+  | "additional"
+  | "empty";
 
 /**
  * NoteType
  *
  * The presentation types of notes.
  */
-export type NoteType = string;
+export type NoteType = "display" | "print" | "printoper";
 
 /**
  * Nutrition Product Status
  *
  * Codes identifying the lifecycle stage of a product.
  */
-export type NutritionProductStatus = string;
+export type NutritionProductStatus = "active" | "inactive" | "entered-in-error";
 
 /**
  * Observation Data Type
  *
  * Permitted data type for observation value.
  */
-export type ObservationDataType = string;
+export type ObservationDataType =
+  | "Quantity"
+  | "CodeableConcept"
+  | "string"
+  | "boolean"
+  | "integer"
+  | "Range"
+  | "Ratio"
+  | "SampledData"
+  | "time"
+  | "dateTime"
+  | "Period";
 
 /**
  * Observation Range Category
  *
  * Codes identifying the category of observation range.
  */
-export type ObservationRangeCategory = string;
+export type ObservationRangeCategory = "reference" | "critical" | "absolute";
 
 /**
  * Observation Status
  *
  * Codes providing the status of an observation.
  */
-export type ObservationStatus = string;
+export type ObservationStatus =
+  | "registered"
+  | "preliminary"
+  | "final"
+  | "amended"
+  | "corrected"
+  | "cancelled"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * Operation Kind
  *
  * Whether an operation is a normal operation or a query.
  */
-export type OperationKind = string;
+export type OperationKind = "operation" | "query";
 
 /**
  * Operation Parameter Scope
@@ -1348,56 +5721,76 @@ export type OperationKind = string;
  * Indicates that a parameter applies when the operation is being invoked at the
  * specified level
  */
-export type OperationParameterScope = string;
+export type OperationParameterScope = "instance" | "type" | "system";
 
 /**
  * Operation Parameter Use
  *
  * Whether an operation parameter is an input or an output parameter.
  */
-export type OperationParameterUse = string;
+export type OperationParameterUse = "in" | "out";
 
 /**
  * orientation Type
  *
  * Type for orientation.
  */
-export type OrientationType = string;
+export type OrientationType = "sense" | "antisense";
 
 /**
  * Participation Status
  *
  * The Participation status of an appointment.
  */
-export type ParticipationStatus = string;
+export type ParticipationStatus =
+  | "accepted"
+  | "declined"
+  | "tentative"
+  | "needs-action";
 
 /**
  * Payment Outcome
  *
  * The outcome of the processing.
  */
-export type PaymentOutcome = string;
+export type PaymentOutcome = "queued" | "complete" | "error" | "partial";
 
 /**
  * Permission Rule Combining
  *
  * Codes identifying rule combining algorithm.
  */
-export type PermissionRuleCombining = string;
+export type PermissionRuleCombining =
+  | "deny-overrides"
+  | "permit-overrides"
+  | "ordered-deny-overrides"
+  | "ordered-permit-overrides"
+  | "deny-unless-permit"
+  | "permit-unless-deny";
 
 /**
  * Permission Status
  *
  * Codes identifying the lifecycle stage of a product.
  */
-export type PermissionStatus = string;
+export type PermissionStatus =
+  | "active"
+  | "entered-in-error"
+  | "draft"
+  | "rejected";
 
 /**
  * Price Component Type
  *
  * Codes indicating the kind of the price component.
  */
-export type PriceComponentType = string;
+export type PriceComponentType =
+  | "base"
+  | "surcharge"
+  | "deduction"
+  | "discount"
+  | "tax"
+  | "informational";
 
 /**
  * ProductStatus
@@ -1411,35 +5804,52 @@ export type ProductStatus = string;
  *
  * How a property is represented when serialized.
  */
-export type PropertyRepresentation = string;
+export type PropertyRepresentation =
+  | "xmlAttr"
+  | "xmlText"
+  | "typeAttr"
+  | "cdaText"
+  | "xhtml";
 
 /**
  * Property Type
  *
  * The type of a property value.
  */
-export type PropertyType = string;
+export type PropertyType =
+  | "code"
+  | "Coding"
+  | "string"
+  | "integer"
+  | "boolean"
+  | "dateTime"
+  | "decimal";
 
 /**
  * Provenance Entity Role
  *
  * How an entity was used in an activity.
  */
-export type ProvenanceEntityRole = string;
+export type ProvenanceEntityRole =
+  | "revision"
+  | "quotation"
+  | "source"
+  | "instantiates"
+  | "removal";
 
 /**
  * PublicationStatus
  *
  * The lifecycle status of an artifact.
  */
-export type PublicationStatus = string;
+export type PublicationStatus = "draft" | "active" | "retired" | "unknown";
 
 /**
  * QuantityComparator
  *
  * How the Quantity should be understood and represented.
  */
-export type QuantityComparator = string;
+export type QuantityComparator = "<" | "<=" | ">=" | ">" | "ad";
 
 /**
  * Questionnaire answer constraints value set
@@ -1447,21 +5857,31 @@ export type QuantityComparator = string;
  * Codes that describe the types of constraints possible on a question item that
  * has a list of permitted answers
  */
-export type QuestionnaireAnswerConstraint = string;
+export type QuestionnaireAnswerConstraint =
+  | "optionsOnly"
+  | "optionsOrType"
+  | "optionsOrString";
 
 /**
  * Questionnaire Item Disabled Display
  *
  * Codes that guide the display of disabled questionnaire items
  */
-export type QuestionnaireItemDisabledDisplay = string;
+export type QuestionnaireItemDisabledDisplay = "hidden" | "protected";
 
 /**
  * Questionnaire Item Operator
  *
  * The criteria by which a question is enabled.
  */
-export type QuestionnaireItemOperator = string;
+export type QuestionnaireItemOperator =
+  | "exists"
+  | "="
+  | "!="
+  | ">"
+  | "<"
+  | ">="
+  | "<=";
 
 /**
  * Questionnaire Item Type
@@ -1469,21 +5889,47 @@ export type QuestionnaireItemOperator = string;
  * Distinguishes groups from questions and display text and indicates data type for
  * questions.
  */
-export type QuestionnaireItemType = string;
+export type QuestionnaireItemType =
+  | "group"
+  | "display"
+  | "question"
+  | "boolean"
+  | "decimal"
+  | "integer"
+  | "date"
+  | "dateTime"
+  | "time"
+  | "string"
+  | "text"
+  | "url"
+  | "coding"
+  | "attachment"
+  | "reference"
+  | "quantity";
 
 /**
  * Questionnaire Response Status
  *
  * Lifecycle status of the questionnaire response.
  */
-export type QuestionnaireResponseStatus = string;
+export type QuestionnaireResponseStatus =
+  | "in-progress"
+  | "completed"
+  | "amended"
+  | "entered-in-error"
+  | "stopped";
 
 /**
  * Reference Handling Policy
  *
  * A set of flags that defines how references are supported.
  */
-export type ReferenceHandlingPolicy = string;
+export type ReferenceHandlingPolicy =
+  | "literal"
+  | "logical"
+  | "resolves"
+  | "enforced"
+  | "local";
 
 /**
  * ReferenceVersionRules
@@ -1491,28 +5937,110 @@ export type ReferenceHandlingPolicy = string;
  * Whether a reference needs to be version specific or version independent, or
  * whether either can be used.
  */
-export type ReferenceVersionRules = string;
+export type ReferenceVersionRules = "either" | "independent" | "specific";
 
 /**
  * RelatedArtifactType
  *
  * The type of relationship to the related artifact.
  */
-export type RelatedArtifactType = string;
+export type RelatedArtifactType =
+  | "documentation"
+  | "justification"
+  | "citation"
+  | "predecessor"
+  | "successor"
+  | "derived-from"
+  | "depends-on"
+  | "composed-of"
+  | "part-of"
+  | "amends"
+  | "amended-with"
+  | "appends"
+  | "appended-with"
+  | "cites"
+  | "cited-by"
+  | "comments-on"
+  | "comment-in"
+  | "contains"
+  | "contained-in"
+  | "corrects"
+  | "correction-in"
+  | "replaces"
+  | "replaced-with"
+  | "retracts"
+  | "retracted-by"
+  | "signs"
+  | "similar-to"
+  | "supports"
+  | "supported-with"
+  | "transforms"
+  | "transformed-into"
+  | "transformed-with"
+  | "documents"
+  | "specification-of"
+  | "created-with"
+  | "cite-as";
 
 /**
  * Related Artifact Type All
  *
  * The type of relationship to the cited artifact.
  */
-export type RelatedArtifactTypeAll = string;
+export type RelatedArtifactTypeAll =
+  | "documentation"
+  | "justification"
+  | "citation"
+  | "predecessor"
+  | "successor"
+  | "derived-from"
+  | "depends-on"
+  | "composed-of"
+  | "part-of"
+  | "amends"
+  | "amended-with"
+  | "appends"
+  | "appended-with"
+  | "cites"
+  | "cited-by"
+  | "comments-on"
+  | "comment-in"
+  | "contains"
+  | "contained-in"
+  | "corrects"
+  | "correction-in"
+  | "replaces"
+  | "replaced-with"
+  | "retracts"
+  | "retracted-by"
+  | "signs"
+  | "similar-to"
+  | "supports"
+  | "supported-with"
+  | "transforms"
+  | "transformed-into"
+  | "transformed-with"
+  | "documents"
+  | "specification-of"
+  | "created-with"
+  | "cite-as"
+  | "reprint"
+  | "reprint-of";
 
 /**
  * Report Relationship Type
  *
  * The type of relationship between reports.
  */
-export type ReportRelationshipType = string;
+export type ReportRelationshipType =
+  | "replaces"
+  | "amends"
+  | "appends"
+  | "transforms"
+  | "replacedWith"
+  | "amendedWith"
+  | "appendedWith"
+  | "transformedWith";
 
 /**
  * RequestIntent
@@ -1520,70 +6048,286 @@ export type ReportRelationshipType = string;
  * Codes indicating the degree of authority/intentionality associated with a
  * request.
  */
-export type RequestIntent = string;
+export type RequestIntent =
+  | "proposal"
+  | "plan"
+  | "directive"
+  | "order"
+  | "original-order"
+  | "reflex-order"
+  | "filler-order"
+  | "instance-order"
+  | "option";
 
 /**
  * RequestPriority
  *
  * Identifies the level of importance to be assigned to actioning the request.
  */
-export type RequestPriority = string;
+export type RequestPriority = "routine" | "urgent" | "asap" | "stat";
 
 /**
  * Request Resource Types
  *
  * All Resource Types that represent request resources
  */
-export type RequestResourceTypes = string;
+export type RequestResourceTypes =
+  | "Appointment"
+  | "AppointmentResponse"
+  | "CarePlan"
+  | "Claim"
+  | "CommunicationRequest"
+  | "CoverageEligibilityRequest"
+  | "DeviceRequest"
+  | "EnrollmentRequest"
+  | "ImmunizationRecommendation"
+  | "MedicationRequest"
+  | "NutritionOrder"
+  | "RequestOrchestration"
+  | "ServiceRequest"
+  | "SupplyRequest"
+  | "Task"
+  | "Transport"
+  | "VisionPrescription";
 
 /**
  * RequestStatus
  *
  * Codes identifying the lifecycle stage of a request.
  */
-export type RequestStatus = string;
+export type RequestStatus =
+  | "draft"
+  | "active"
+  | "on-hold"
+  | "revoked"
+  | "completed"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * Research Subject State
  *
  * Indicates the progression of a study subject through a study.
  */
-export type ResearchSubjectState = string;
+export type ResearchSubjectState =
+  | "candidate"
+  | "eligible"
+  | "follow-up"
+  | "ineligible"
+  | "not-registered"
+  | "off-study"
+  | "on-study"
+  | "on-study-intervention"
+  | "on-study-observation"
+  | "pending-on-study"
+  | "potential-candidate"
+  | "screening"
+  | "withdrawn";
 
 /**
  * Resource Types
  *
  * Concrete FHIR Resource Types
  */
-export type ResourceType = string;
+export type ResourceType =
+  | "Account"
+  | "ActivityDefinition"
+  | "ActorDefinition"
+  | "AdministrableProductDefinition"
+  | "AdverseEvent"
+  | "AllergyIntolerance"
+  | "Appointment"
+  | "AppointmentResponse"
+  | "ArtifactAssessment"
+  | "AuditEvent"
+  | "Basic"
+  | "Binary"
+  | "BiologicallyDerivedProduct"
+  | "BiologicallyDerivedProductDispense"
+  | "BodyStructure"
+  | "Bundle"
+  | "CapabilityStatement"
+  | "CarePlan"
+  | "CareTeam"
+  | "ChargeItem"
+  | "ChargeItemDefinition"
+  | "Citation"
+  | "Claim"
+  | "ClaimResponse"
+  | "ClinicalImpression"
+  | "ClinicalUseDefinition"
+  | "CodeSystem"
+  | "Communication"
+  | "CommunicationRequest"
+  | "CompartmentDefinition"
+  | "Composition"
+  | "ConceptMap"
+  | "Condition"
+  | "ConditionDefinition"
+  | "Consent"
+  | "Contract"
+  | "Coverage"
+  | "CoverageEligibilityRequest"
+  | "CoverageEligibilityResponse"
+  | "DetectedIssue"
+  | "Device"
+  | "DeviceAssociation"
+  | "DeviceDefinition"
+  | "DeviceDispense"
+  | "DeviceMetric"
+  | "DeviceRequest"
+  | "DeviceUsage"
+  | "DiagnosticReport"
+  | "DocumentReference"
+  | "Encounter"
+  | "EncounterHistory"
+  | "Endpoint"
+  | "EnrollmentRequest"
+  | "EnrollmentResponse"
+  | "EpisodeOfCare"
+  | "EventDefinition"
+  | "Evidence"
+  | "EvidenceReport"
+  | "EvidenceVariable"
+  | "ExampleScenario"
+  | "ExplanationOfBenefit"
+  | "FamilyMemberHistory"
+  | "Flag"
+  | "FormularyItem"
+  | "GenomicStudy"
+  | "Goal"
+  | "GraphDefinition"
+  | "Group"
+  | "GuidanceResponse"
+  | "HealthcareService"
+  | "ImagingSelection"
+  | "ImagingStudy"
+  | "Immunization"
+  | "ImmunizationEvaluation"
+  | "ImmunizationRecommendation"
+  | "ImplementationGuide"
+  | "Ingredient"
+  | "InsurancePlan"
+  | "InventoryItem"
+  | "InventoryReport"
+  | "Invoice"
+  | "Library"
+  | "Linkage"
+  | "List"
+  | "Location"
+  | "ManufacturedItemDefinition"
+  | "Measure"
+  | "MeasureReport"
+  | "Medication"
+  | "MedicationAdministration"
+  | "MedicationDispense"
+  | "MedicationKnowledge"
+  | "MedicationRequest"
+  | "MedicationStatement"
+  | "MedicinalProductDefinition"
+  | "MessageDefinition"
+  | "MessageHeader"
+  | "MolecularSequence"
+  | "NamingSystem"
+  | "NutritionIntake"
+  | "NutritionOrder"
+  | "NutritionProduct"
+  | "Observation"
+  | "ObservationDefinition"
+  | "OperationDefinition"
+  | "OperationOutcome"
+  | "Organization"
+  | "OrganizationAffiliation"
+  | "PackagedProductDefinition"
+  | "Parameters"
+  | "Patient"
+  | "PaymentNotice"
+  | "PaymentReconciliation"
+  | "Permission"
+  | "Person"
+  | "PlanDefinition"
+  | "Practitioner"
+  | "PractitionerRole"
+  | "Procedure"
+  | "Provenance"
+  | "Questionnaire"
+  | "QuestionnaireResponse"
+  | "RegulatedAuthorization"
+  | "RelatedPerson"
+  | "RequestOrchestration"
+  | "Requirements"
+  | "ResearchStudy"
+  | "ResearchSubject"
+  | "RiskAssessment"
+  | "Schedule"
+  | "SearchParameter"
+  | "ServiceRequest"
+  | "Slot"
+  | "Specimen"
+  | "SpecimenDefinition"
+  | "StructureDefinition"
+  | "StructureMap"
+  | "Subscription"
+  | "SubscriptionStatus"
+  | "SubscriptionTopic"
+  | "Substance"
+  | "SubstanceDefinition"
+  | "SubstanceNucleicAcid"
+  | "SubstancePolymer"
+  | "SubstanceProtein"
+  | "SubstanceReferenceInformation"
+  | "SubstanceSourceMaterial"
+  | "SupplyDelivery"
+  | "SupplyRequest"
+  | "Task"
+  | "TerminologyCapabilities"
+  | "TestPlan"
+  | "TestReport"
+  | "TestScript"
+  | "Transport"
+  | "ValueSet"
+  | "VerificationResult"
+  | "VisionPrescription";
 
 /**
  * Resource Version Policy
  *
  * How the system supports versioning for a resource.
  */
-export type ResourceVersionPolicy = string;
+export type ResourceVersionPolicy =
+  | "no-version"
+  | "versioned"
+  | "versioned-update";
 
 /**
  * Response Type
  *
  * The kind of response to a message.
  */
-export type ResponseType = string;
+export type ResponseType = "ok" | "transient-error" | "fatal-error";
 
 /**
  * Restful Capability Mode
  *
  * The mode of a RESTful capability statement.
  */
-export type RestfulCapabilityMode = string;
+export type RestfulCapabilityMode = "client" | "server";
 
 /**
  * Search Comparator
  *
  * What Search Comparator Codes are supported in search.
  */
-export type SearchComparator = string;
+export type SearchComparator =
+  | "eq"
+  | "ne"
+  | "gt"
+  | "lt"
+  | "ge"
+  | "le"
+  | "sa"
+  | "eb"
+  | "ap";
 
 /**
  * Search Entry Mode
@@ -1592,21 +6336,45 @@ export type SearchComparator = string;
  * of an _include requirement, or to convey information or warning information
  * about the search process.
  */
-export type SearchEntryMode = string;
+export type SearchEntryMode = "match" | "include" | "outcome";
 
 /**
  * Search Modifier Code
  *
  * A supported modifier for a search parameter.
  */
-export type SearchModifierCode = string;
+export type SearchModifierCode =
+  | "missing"
+  | "exact"
+  | "contains"
+  | "not"
+  | "text"
+  | "in"
+  | "not-in"
+  | "below"
+  | "above"
+  | "type"
+  | "identifier"
+  | "of-type"
+  | "code-text"
+  | "text-advanced"
+  | "iterate";
 
 /**
  * SearchParamType
  *
  * Data types allowed to be used for search parameters.
  */
-export type SearchParamType = string;
+export type SearchParamType =
+  | "number"
+  | "date"
+  | "string"
+  | "token"
+  | "reference"
+  | "composite"
+  | "quantity"
+  | "uri"
+  | "special";
 
 /**
  * Search Processing Mode Type
@@ -1614,35 +6382,40 @@ export type SearchParamType = string;
  * How a search parameter relates to the set of elements returned by evaluating its
  * expression query.
  */
-export type SearchProcessingModeType = string;
+export type SearchProcessingModeType = "normal" | "phonetic" | "other";
 
 /**
  * sequence Type
  *
  * Type if a sequence -- DNA, RNA, or amino acid sequence.
  */
-export type SequenceType = string;
+export type SequenceType = "aa" | "dna" | "rna";
 
 /**
  * SlicingRules
  *
  * How slices are interpreted when evaluating an instance.
  */
-export type SlicingRules = string;
+export type SlicingRules = "closed" | "open" | "openAtEnd";
 
 /**
  * Slot Status
  *
  * The free/busy status of the slot.
  */
-export type SlotStatus = string;
+export type SlotStatus =
+  | "busy"
+  | "free"
+  | "busy-unavailable"
+  | "busy-tentative"
+  | "entered-in-error";
 
 /**
  * SortDirection
  *
  * The possible sort directions, ascending or descending.
  */
-export type SortDirection = string;
+export type SortDirection = "ascending" | "descending";
 
 /**
  * S P D X License
@@ -1651,42 +6424,396 @@ export type SortDirection = string;
  * Identifiers, or 'not-open-source'). The binding is required but new SPDX license
  * Identifiers are allowed to be used (https://spdx.org/licenses/).
  */
-export type SPDXLicense = string;
+export type SPDXLicense =
+  | "not-open-source"
+  | "0BSD"
+  | "AAL"
+  | "Abstyles"
+  | "Adobe-2006"
+  | "Adobe-Glyph"
+  | "ADSL"
+  | "AFL-1.1"
+  | "AFL-1.2"
+  | "AFL-2.0"
+  | "AFL-2.1"
+  | "AFL-3.0"
+  | "Afmparse"
+  | "AGPL-1.0-only"
+  | "AGPL-1.0-or-later"
+  | "AGPL-3.0-only"
+  | "AGPL-3.0-or-later"
+  | "Aladdin"
+  | "AMDPLPA"
+  | "AML"
+  | "AMPAS"
+  | "ANTLR-PD"
+  | "Apache-1.0"
+  | "Apache-1.1"
+  | "Apache-2.0"
+  | "APAFML"
+  | "APL-1.0"
+  | "APSL-1.0"
+  | "APSL-1.1"
+  | "APSL-1.2"
+  | "APSL-2.0"
+  | "Artistic-1.0-cl8"
+  | "Artistic-1.0-Perl"
+  | "Artistic-1.0"
+  | "Artistic-2.0"
+  | "Bahyph"
+  | "Barr"
+  | "Beerware"
+  | "BitTorrent-1.0"
+  | "BitTorrent-1.1"
+  | "Borceux"
+  | "BSD-1-Clause"
+  | "BSD-2-Clause-FreeBSD"
+  | "BSD-2-Clause-NetBSD"
+  | "BSD-2-Clause-Patent"
+  | "BSD-2-Clause"
+  | "BSD-3-Clause-Attribution"
+  | "BSD-3-Clause-Clear"
+  | "BSD-3-Clause-LBNL"
+  | "BSD-3-Clause-No-Nuclear-License-2014"
+  | "BSD-3-Clause-No-Nuclear-License"
+  | "BSD-3-Clause-No-Nuclear-Warranty"
+  | "BSD-3-Clause"
+  | "BSD-4-Clause-UC"
+  | "BSD-4-Clause"
+  | "BSD-Protection"
+  | "BSD-Source-Code"
+  | "BSL-1.0"
+  | "bzip2-1.0.5"
+  | "bzip2-1.0.6"
+  | "Caldera"
+  | "CATOSL-1.1"
+  | "CC-BY-1.0"
+  | "CC-BY-2.0"
+  | "CC-BY-2.5"
+  | "CC-BY-3.0"
+  | "CC-BY-4.0"
+  | "CC-BY-NC-1.0"
+  | "CC-BY-NC-2.0"
+  | "CC-BY-NC-2.5"
+  | "CC-BY-NC-3.0"
+  | "CC-BY-NC-4.0"
+  | "CC-BY-NC-ND-1.0"
+  | "CC-BY-NC-ND-2.0"
+  | "CC-BY-NC-ND-2.5"
+  | "CC-BY-NC-ND-3.0"
+  | "CC-BY-NC-ND-4.0"
+  | "CC-BY-NC-SA-1.0"
+  | "CC-BY-NC-SA-2.0"
+  | "CC-BY-NC-SA-2.5"
+  | "CC-BY-NC-SA-3.0"
+  | "CC-BY-NC-SA-4.0"
+  | "CC-BY-ND-1.0"
+  | "CC-BY-ND-2.0"
+  | "CC-BY-ND-2.5"
+  | "CC-BY-ND-3.0"
+  | "CC-BY-ND-4.0"
+  | "CC-BY-SA-1.0"
+  | "CC-BY-SA-2.0"
+  | "CC-BY-SA-2.5"
+  | "CC-BY-SA-3.0"
+  | "CC-BY-SA-4.0"
+  | "CC0-1.0"
+  | "CDDL-1.0"
+  | "CDDL-1.1"
+  | "CDLA-Permissive-1.0"
+  | "CDLA-Sharing-1.0"
+  | "CECILL-1.0"
+  | "CECILL-1.1"
+  | "CECILL-2.0"
+  | "CECILL-2.1"
+  | "CECILL-B"
+  | "CECILL-C"
+  | "ClArtistic"
+  | "CNRI-Jython"
+  | "CNRI-Python-GPL-Compatible"
+  | "CNRI-Python"
+  | "Condor-1.1"
+  | "CPAL-1.0"
+  | "CPL-1.0"
+  | "CPOL-1.02"
+  | "Crossword"
+  | "CrystalStacker"
+  | "CUA-OPL-1.0"
+  | "Cube"
+  | "curl"
+  | "D-FSL-1.0"
+  | "diffmark"
+  | "DOC"
+  | "Dotseqn"
+  | "DSDP"
+  | "dvipdfm"
+  | "ECL-1.0"
+  | "ECL-2.0"
+  | "EFL-1.0"
+  | "EFL-2.0"
+  | "eGenix"
+  | "Entessa"
+  | "EPL-1.0"
+  | "EPL-2.0"
+  | "ErlPL-1.1"
+  | "EUDatagrid"
+  | "EUPL-1.0"
+  | "EUPL-1.1"
+  | "EUPL-1.2"
+  | "Eurosym"
+  | "Fair"
+  | "Frameworx-1.0"
+  | "FreeImage"
+  | "FSFAP"
+  | "FSFUL"
+  | "FSFULLR"
+  | "FTL"
+  | "GFDL-1.1-only"
+  | "GFDL-1.1-or-later"
+  | "GFDL-1.2-only"
+  | "GFDL-1.2-or-later"
+  | "GFDL-1.3-only"
+  | "GFDL-1.3-or-later"
+  | "Giftware"
+  | "GL2PS"
+  | "Glide"
+  | "Glulxe"
+  | "gnuplot"
+  | "GPL-1.0-only"
+  | "GPL-1.0-or-later"
+  | "GPL-2.0-only"
+  | "GPL-2.0-or-later"
+  | "GPL-3.0-only"
+  | "GPL-3.0-or-later"
+  | "gSOAP-1.3b"
+  | "HaskellReport"
+  | "HPND"
+  | "IBM-pibs"
+  | "ICU"
+  | "IJG"
+  | "ImageMagick"
+  | "iMatix"
+  | "Imlib2"
+  | "Info-ZIP"
+  | "Intel-ACPI"
+  | "Intel"
+  | "Interbase-1.0"
+  | "IPA"
+  | "IPL-1.0"
+  | "ISC"
+  | "JasPer-2.0"
+  | "JSON"
+  | "LAL-1.2"
+  | "LAL-1.3"
+  | "Latex2e"
+  | "Leptonica"
+  | "LGPL-2.0-only"
+  | "LGPL-2.0-or-later"
+  | "LGPL-2.1-only"
+  | "LGPL-2.1-or-later"
+  | "LGPL-3.0-only"
+  | "LGPL-3.0-or-later"
+  | "LGPLLR"
+  | "Libpng"
+  | "libtiff"
+  | "LiLiQ-P-1.1"
+  | "LiLiQ-R-1.1"
+  | "LiLiQ-Rplus-1.1"
+  | "Linux-OpenIB"
+  | "LPL-1.0"
+  | "LPL-1.02"
+  | "LPPL-1.0"
+  | "LPPL-1.1"
+  | "LPPL-1.2"
+  | "LPPL-1.3a"
+  | "LPPL-1.3c"
+  | "MakeIndex"
+  | "MirOS"
+  | "MIT-0"
+  | "MIT-advertising"
+  | "MIT-CMU"
+  | "MIT-enna"
+  | "MIT-feh"
+  | "MIT"
+  | "MITNFA"
+  | "Motosoto"
+  | "mpich2"
+  | "MPL-1.0"
+  | "MPL-1.1"
+  | "MPL-2.0-no-copyleft-exception"
+  | "MPL-2.0"
+  | "MS-PL"
+  | "MS-RL"
+  | "MTLL"
+  | "Multics"
+  | "Mup"
+  | "NASA-1.3"
+  | "Naumen"
+  | "NBPL-1.0"
+  | "NCSA"
+  | "Net-SNMP"
+  | "NetCDF"
+  | "Newsletr"
+  | "NGPL"
+  | "NLOD-1.0"
+  | "NLPL"
+  | "Nokia"
+  | "NOSL"
+  | "Noweb"
+  | "NPL-1.0"
+  | "NPL-1.1"
+  | "NPOSL-3.0"
+  | "NRL"
+  | "NTP"
+  | "OCCT-PL"
+  | "OCLC-2.0"
+  | "ODbL-1.0"
+  | "OFL-1.0"
+  | "OFL-1.1"
+  | "OGTSL"
+  | "OLDAP-1.1"
+  | "OLDAP-1.2"
+  | "OLDAP-1.3"
+  | "OLDAP-1.4"
+  | "OLDAP-2.0.1"
+  | "OLDAP-2.0"
+  | "OLDAP-2.1"
+  | "OLDAP-2.2.1"
+  | "OLDAP-2.2.2"
+  | "OLDAP-2.2"
+  | "OLDAP-2.3"
+  | "OLDAP-2.4"
+  | "OLDAP-2.5"
+  | "OLDAP-2.6"
+  | "OLDAP-2.7"
+  | "OLDAP-2.8"
+  | "OML"
+  | "OpenSSL"
+  | "OPL-1.0"
+  | "OSET-PL-2.1"
+  | "OSL-1.0"
+  | "OSL-1.1"
+  | "OSL-2.0"
+  | "OSL-2.1"
+  | "OSL-3.0"
+  | "PDDL-1.0"
+  | "PHP-3.0"
+  | "PHP-3.01"
+  | "Plexus"
+  | "PostgreSQL"
+  | "psfrag"
+  | "psutils"
+  | "Python-2.0"
+  | "Qhull"
+  | "QPL-1.0"
+  | "Rdisc"
+  | "RHeCos-1.1"
+  | "RPL-1.1"
+  | "RPL-1.5"
+  | "RPSL-1.0"
+  | "RSA-MD"
+  | "RSCPL"
+  | "Ruby"
+  | "SAX-PD"
+  | "Saxpath"
+  | "SCEA"
+  | "Sendmail"
+  | "SGI-B-1.0"
+  | "SGI-B-1.1"
+  | "SGI-B-2.0"
+  | "SimPL-2.0"
+  | "SISSL-1.2"
+  | "SISSL"
+  | "Sleepycat"
+  | "SMLNJ"
+  | "SMPPL"
+  | "SNIA"
+  | "Spencer-86"
+  | "Spencer-94"
+  | "Spencer-99"
+  | "SPL-1.0"
+  | "SugarCRM-1.1.3"
+  | "SWL"
+  | "TCL"
+  | "TCP-wrappers"
+  | "TMate"
+  | "TORQUE-1.1"
+  | "TOSL"
+  | "Unicode-DFS-2015"
+  | "Unicode-DFS-2016"
+  | "Unicode-TOU"
+  | "Unlicense"
+  | "UPL-1.0"
+  | "Vim"
+  | "VOSTROM"
+  | "VSL-1.0"
+  | "W3C-19980720"
+  | "W3C-20150513"
+  | "W3C"
+  | "Watcom-1.0"
+  | "Wsuipa"
+  | "WTFPL"
+  | "X11"
+  | "Xerox"
+  | "XFree86-1.1"
+  | "xinetd"
+  | "Xnet"
+  | "xpp"
+  | "XSkat"
+  | "YPL-1.0"
+  | "YPL-1.1"
+  | "Zed"
+  | "Zend-2.0"
+  | "Zimbra-1.3"
+  | "Zimbra-1.4"
+  | "zlib-acknowledgement"
+  | "Zlib"
+  | "ZPL-1.1"
+  | "ZPL-2.0"
+  | "ZPL-2.1";
 
 /**
  * Specimen Combined
  *
  * Codes providing the combined status of a specimen.
  */
-export type SpecimenCombined = string;
+export type SpecimenCombined = "grouped" | "pooled";
 
 /**
  * Specimen Contained Preference
  *
  * Degree of preference of a type of conditioned specimen.
  */
-export type SpecimenContainedPreference = string;
+export type SpecimenContainedPreference = "preferred" | "alternate";
 
 /**
  * Specimen Status
  *
  * Codes providing the status/availability of a specimen.
  */
-export type SpecimenStatus = string;
+export type SpecimenStatus =
+  | "available"
+  | "unavailable"
+  | "unsatisfactory"
+  | "entered-in-error";
 
 /**
  * strand Type
  *
  * Type for strand.
  */
-export type StrandType = string;
+export type StrandType = "watson" | "crick";
 
 /**
  * Structure Definition Kind
  *
  * Defines the type of structure that a definition is describing.
  */
-export type StructureDefinitionKind = string;
+export type StructureDefinitionKind =
+  | "primitive-type"
+  | "complex-type"
+  | "resource"
+  | "logical";
 
 /**
  * Structure Map Group Type Mode
@@ -1694,42 +6821,68 @@ export type StructureDefinitionKind = string;
  * If this is the default rule set to apply for the source type, or this
  * combination of types.
  */
-export type StructureMapGroupTypeMode = string;
+export type StructureMapGroupTypeMode = "types" | "type-and-types";
 
 /**
  * Structure Map Input Mode
  *
  * Mode for this instance of data.
  */
-export type StructureMapInputMode = string;
+export type StructureMapInputMode = "source" | "target";
 
 /**
  * Structure Map Model Mode
  *
  * How the referenced structure is used in this mapping.
  */
-export type StructureMapModelMode = string;
+export type StructureMapModelMode =
+  | "source"
+  | "queried"
+  | "target"
+  | "produced";
 
 /**
  * Structure Map Source List Mode
  *
  * If field is a list, how to manage the source.
  */
-export type StructureMapSourceListMode = string;
+export type StructureMapSourceListMode =
+  | "first"
+  | "not_first"
+  | "last"
+  | "not_last"
+  | "only_one";
 
 /**
  * Structure Map Target List Mode
  *
  * If field is a list, how to manage the production.
  */
-export type StructureMapTargetListMode = string;
+export type StructureMapTargetListMode = "first" | "share" | "last" | "single";
 
 /**
  * Structure Map Transform
  *
  * How data is copied/created.
  */
-export type StructureMapTransform = string;
+export type StructureMapTransform =
+  | "create"
+  | "copy"
+  | "truncate"
+  | "escape"
+  | "cast"
+  | "append"
+  | "translate"
+  | "reference"
+  | "dateOp"
+  | "uuid"
+  | "pointer"
+  | "evaluate"
+  | "cc"
+  | "c"
+  | "qty"
+  | "id"
+  | "cp";
 
 /**
  * Submit Data Update Type
@@ -1737,14 +6890,19 @@ export type StructureMapTransform = string;
  * Concepts for how a measure report consumer and receiver coordinate data exchange
  * updates. The choices are snapshot or incremental updates
  */
-export type SubmitDataUpdateType = string;
+export type SubmitDataUpdateType = "incremental" | "snapshot";
 
 /**
  * Subscription Notification Type
  *
  * The type of notification represented by the status message.
  */
-export type SubscriptionNotificationType = string;
+export type SubscriptionNotificationType =
+  | "handshake"
+  | "heartbeat"
+  | "event-notification"
+  | "query-status"
+  | "query-event";
 
 /**
  * Subscription Payload Content
@@ -1752,133 +6910,226 @@ export type SubscriptionNotificationType = string;
  * Codes to represent how much resource content to send in the notification
  * payload.
  */
-export type SubscriptionPayloadContent = string;
+export type SubscriptionPayloadContent = "empty" | "id-only" | "full-resource";
 
 /**
  * Subscription Status
  *
  * State values for FHIR Subscriptions.
  */
-export type SubscriptionStatusCodes = string;
+export type SubscriptionStatusCodes =
+  | "requested"
+  | "active"
+  | "error"
+  | "off"
+  | "entered-in-error";
 
 /**
  * Supply Delivery Status
  *
  * Status of the supply delivery.
  */
-export type SupplyDeliveryStatus = string;
+export type SupplyDeliveryStatus =
+  | "in-progress"
+  | "completed"
+  | "abandoned"
+  | "entered-in-error";
 
 /**
  * Supply Delivery Supply Item Type
  *
  * This value sets refers to a specific supply item.
  */
-export type SupplyDeliverySupplyItemType = string;
+export type SupplyDeliverySupplyItemType =
+  | "medication"
+  | "device"
+  | "biologicallyderivedproduct";
 
 /**
  * Supply Request Status
  *
  * Status of the supply request.
  */
-export type SupplyRequestStatus = string;
+export type SupplyRequestStatus =
+  | "draft"
+  | "active"
+  | "suspended"
+  | "cancelled"
+  | "completed"
+  | "entered-in-error"
+  | "unknown";
 
 /**
  * System Restful Interaction
  *
  * Operations supported by REST at the system level.
  */
-export type SystemRestfulInteraction = string;
+export type SystemRestfulInteraction =
+  | "transaction"
+  | "batch"
+  | "search-system"
+  | "history-system";
 
 /**
  * Task Intent
  *
  * Distinguishes whether the task is a proposal, plan or full order.
  */
-export type TaskIntent = string;
+export type TaskIntent =
+  | "unknown"
+  | "proposal"
+  | "plan"
+  | "order"
+  | "original-order"
+  | "reflex-order"
+  | "filler-order"
+  | "instance-order"
+  | "option";
 
 /**
  * Task Status
  *
  * The current status of the task.
  */
-export type TaskStatus = string;
+export type TaskStatus =
+  | "draft"
+  | "requested"
+  | "received"
+  | "accepted"
+  | "rejected"
+  | "ready"
+  | "cancelled"
+  | "in-progress"
+  | "on-hold"
+  | "failed"
+  | "completed"
+  | "entered-in-error";
 
 /**
  * Test Report Action Result
  *
  * The results of executing an action.
  */
-export type TestReportActionResult = string;
+export type TestReportActionResult =
+  | "pass"
+  | "skip"
+  | "fail"
+  | "warning"
+  | "error";
 
 /**
  * Test Report Participant Type
  *
  * The type of participant.
  */
-export type TestReportParticipantType = string;
+export type TestReportParticipantType = "test-engine" | "client" | "server";
 
 /**
  * Test Report Result
  *
  * The reported execution result.
  */
-export type TestReportResult = string;
+export type TestReportResult = "pass" | "fail" | "pending";
 
 /**
  * Test Report Status
  *
  * The current status of the test report.
  */
-export type TestReportStatus = string;
+export type TestReportStatus =
+  | "completed"
+  | "in-progress"
+  | "waiting"
+  | "stopped"
+  | "entered-in-error";
 
 /**
  * Test Script Request Method Code
  *
  * The allowable request method or HTTP operation codes.
  */
-export type TestScriptRequestMethodCode = string;
+export type TestScriptRequestMethodCode =
+  | "delete"
+  | "get"
+  | "options"
+  | "patch"
+  | "post"
+  | "put"
+  | "head";
 
 /**
  * Transport Intent
  *
  * Distinguishes whether the transport is a proposal, plan or full order.
  */
-export type TransportIntent = string;
+export type TransportIntent =
+  | "unknown"
+  | "proposal"
+  | "plan"
+  | "order"
+  | "original-order"
+  | "reflex-order"
+  | "filler-order"
+  | "instance-order"
+  | "option";
 
 /**
  * Transport Status
  *
  * Status of the transport
  */
-export type TransportStatus = string;
+export type TransportStatus =
+  | "in-progress"
+  | "completed"
+  | "abandoned"
+  | "cancelled"
+  | "planned"
+  | "entered-in-error";
 
 /**
  * triggered Bytype
  *
  * Codes providing the type of triggeredBy observation.
  */
-export type TriggeredBytype = string;
+export type TriggeredBytype = "reflex" | "repeat" | "re-run";
 
 /**
  * TriggerType
  *
  * The type of trigger.
  */
-export type TriggerType = string;
+export type TriggerType =
+  | "named-event"
+  | "periodic"
+  | "data-changed"
+  | "data-added"
+  | "data-modified"
+  | "data-removed"
+  | "data-accessed"
+  | "data-access-ended";
 
 /**
  * Type Derivation Rule
  *
  * How a type relates to its baseDefinition.
  */
-export type TypeDerivationRule = string;
+export type TypeDerivationRule = "specialization" | "constraint";
 
 /**
  * Type Restful Interaction
  *
  * Operations supported by REST at the type or instance level.
  */
-export type TypeRestfulInteraction = string;
+export type TypeRestfulInteraction =
+  | "read"
+  | "vread"
+  | "update"
+  | "patch"
+  | "delete"
+  | "history-instance"
+  | "history-type"
+  | "create"
+  | "search-type";
 
 /**
  * UCUM Codes
@@ -1892,35 +7143,56 @@ export type UCUMCodes = string;
  *
  * Codes to identify how UDI data was entered.
  */
-export type UDIEntryType = string;
+export type UDIEntryType =
+  | "barcode"
+  | "rfid"
+  | "manual"
+  | "card"
+  | "self-reported"
+  | "electronic-transmission"
+  | "unknown";
 
 /**
  * UnitsOfTime
  *
  * A unit of time (units from UCUM).
  */
-export type UnitsOfTime = string;
+export type UnitsOfTime = "s" | "min" | "h" | "d" | "wk" | "mo" | "a";
 
 /**
  * Use
  *
  * The purpose of the Claim: predetermination, preauthorization, claim.
  */
-export type Use = string;
+export type Use = "claim" | "preauthorization" | "predetermination";
 
 /**
  * Value Filter Comparator
  *
  * The type of comparator operator to use
  */
-export type ValueFilterComparator = string;
+export type ValueFilterComparator =
+  | "eq"
+  | "gt"
+  | "lt"
+  | "ge"
+  | "le"
+  | "sa"
+  | "eb";
 
 /**
  * Verification Result status
  *
  * The validation status of the target
  */
-export type VerificationResultStatus = string;
+export type VerificationResultStatus =
+  | "attested"
+  | "validated"
+  | "in-process"
+  | "req-revalid"
+  | "val-fail"
+  | "reval-fail"
+  | "entered-in-error";
 
 /**
  * Version Independent Resource Types (All)
@@ -1928,21 +7200,224 @@ export type VerificationResultStatus = string;
  * Current and past FHIR resource types (deleted or renamed), including abstract
  * types
  */
-export type VersionIndependentResourceTypesAll = string;
+export type VersionIndependentResourceTypesAll =
+  | "Account"
+  | "ActivityDefinition"
+  | "ActorDefinition"
+  | "AdministrableProductDefinition"
+  | "AdverseEvent"
+  | "AllergyIntolerance"
+  | "Appointment"
+  | "AppointmentResponse"
+  | "ArtifactAssessment"
+  | "AuditEvent"
+  | "Basic"
+  | "Binary"
+  | "BiologicallyDerivedProduct"
+  | "BiologicallyDerivedProductDispense"
+  | "BodyStructure"
+  | "Bundle"
+  | "CanonicalResource"
+  | "CapabilityStatement"
+  | "CarePlan"
+  | "CareTeam"
+  | "ChargeItem"
+  | "ChargeItemDefinition"
+  | "Citation"
+  | "Claim"
+  | "ClaimResponse"
+  | "ClinicalImpression"
+  | "ClinicalUseDefinition"
+  | "CodeSystem"
+  | "Communication"
+  | "CommunicationRequest"
+  | "CompartmentDefinition"
+  | "Composition"
+  | "ConceptMap"
+  | "Condition"
+  | "ConditionDefinition"
+  | "Consent"
+  | "Contract"
+  | "Coverage"
+  | "CoverageEligibilityRequest"
+  | "CoverageEligibilityResponse"
+  | "DetectedIssue"
+  | "Device"
+  | "DeviceAssociation"
+  | "DeviceDefinition"
+  | "DeviceDispense"
+  | "DeviceMetric"
+  | "DeviceRequest"
+  | "DeviceUsage"
+  | "DiagnosticReport"
+  | "DocumentReference"
+  | "DomainResource"
+  | "Encounter"
+  | "EncounterHistory"
+  | "Endpoint"
+  | "EnrollmentRequest"
+  | "EnrollmentResponse"
+  | "EpisodeOfCare"
+  | "EventDefinition"
+  | "Evidence"
+  | "EvidenceReport"
+  | "EvidenceVariable"
+  | "ExampleScenario"
+  | "ExplanationOfBenefit"
+  | "FamilyMemberHistory"
+  | "Flag"
+  | "FormularyItem"
+  | "GenomicStudy"
+  | "Goal"
+  | "GraphDefinition"
+  | "Group"
+  | "GuidanceResponse"
+  | "HealthcareService"
+  | "ImagingSelection"
+  | "ImagingStudy"
+  | "Immunization"
+  | "ImmunizationEvaluation"
+  | "ImmunizationRecommendation"
+  | "ImplementationGuide"
+  | "Ingredient"
+  | "InsurancePlan"
+  | "InventoryItem"
+  | "InventoryReport"
+  | "Invoice"
+  | "Library"
+  | "Linkage"
+  | "List"
+  | "Location"
+  | "ManufacturedItemDefinition"
+  | "Measure"
+  | "MeasureReport"
+  | "Medication"
+  | "MedicationAdministration"
+  | "MedicationDispense"
+  | "MedicationKnowledge"
+  | "MedicationRequest"
+  | "MedicationStatement"
+  | "MedicinalProductDefinition"
+  | "MessageDefinition"
+  | "MessageHeader"
+  | "MetadataResource"
+  | "MolecularSequence"
+  | "NamingSystem"
+  | "NutritionIntake"
+  | "NutritionOrder"
+  | "NutritionProduct"
+  | "Observation"
+  | "ObservationDefinition"
+  | "OperationDefinition"
+  | "OperationOutcome"
+  | "Organization"
+  | "OrganizationAffiliation"
+  | "PackagedProductDefinition"
+  | "Parameters"
+  | "Patient"
+  | "PaymentNotice"
+  | "PaymentReconciliation"
+  | "Permission"
+  | "Person"
+  | "PlanDefinition"
+  | "Practitioner"
+  | "PractitionerRole"
+  | "Procedure"
+  | "Provenance"
+  | "Questionnaire"
+  | "QuestionnaireResponse"
+  | "RegulatedAuthorization"
+  | "RelatedPerson"
+  | "RequestOrchestration"
+  | "Requirements"
+  | "ResearchStudy"
+  | "ResearchSubject"
+  | "Resource"
+  | "RiskAssessment"
+  | "Schedule"
+  | "SearchParameter"
+  | "ServiceRequest"
+  | "Slot"
+  | "Specimen"
+  | "SpecimenDefinition"
+  | "StructureDefinition"
+  | "StructureMap"
+  | "Subscription"
+  | "SubscriptionStatus"
+  | "SubscriptionTopic"
+  | "Substance"
+  | "SubstanceDefinition"
+  | "SubstanceNucleicAcid"
+  | "SubstancePolymer"
+  | "SubstanceProtein"
+  | "SubstanceReferenceInformation"
+  | "SubstanceSourceMaterial"
+  | "SupplyDelivery"
+  | "SupplyRequest"
+  | "Task"
+  | "TerminologyCapabilities"
+  | "TestPlan"
+  | "TestReport"
+  | "TestScript"
+  | "Transport"
+  | "ValueSet"
+  | "VerificationResult"
+  | "VisionPrescription"
+  | "BodySite"
+  | "CatalogEntry"
+  | "Conformance"
+  | "DataElement"
+  | "DeviceComponent"
+  | "DeviceUseRequest"
+  | "DeviceUseStatement"
+  | "DiagnosticOrder"
+  | "DocumentManifest"
+  | "EffectEvidenceSynthesis"
+  | "EligibilityRequest"
+  | "EligibilityResponse"
+  | "ExpansionProfile"
+  | "ImagingManifest"
+  | "ImagingObjectSelection"
+  | "Media"
+  | "MedicationOrder"
+  | "MedicationUsage"
+  | "MedicinalProduct"
+  | "MedicinalProductAuthorization"
+  | "MedicinalProductContraindication"
+  | "MedicinalProductIndication"
+  | "MedicinalProductIngredient"
+  | "MedicinalProductInteraction"
+  | "MedicinalProductManufactured"
+  | "MedicinalProductPackaged"
+  | "MedicinalProductPharmaceutical"
+  | "MedicinalProductUndesirableEffect"
+  | "Order"
+  | "OrderResponse"
+  | "ProcedureRequest"
+  | "ProcessRequest"
+  | "ProcessResponse"
+  | "ReferralRequest"
+  | "RequestGroup"
+  | "ResearchDefinition"
+  | "ResearchElementDefinition"
+  | "RiskEvidenceSynthesis"
+  | "Sequence"
+  | "ServiceDefinition"
+  | "SubstanceSpecification";
 
 /**
  * Vision Base
  *
  * A coded concept listing the base codes.
  */
-export type VisionBase = string;
+export type VisionBase = "up" | "down" | "in" | "out";
 
 /**
  * Vision Eyes
  *
  * A coded concept listing the eye codes.
  */
-export type VisionEyes = string;
+export type VisionEyes = "right" | "left";
 
 /**
  * Vital Signs Units
@@ -1956,7 +7431,7 @@ export type VitalSignsUnits = string;
  *
  * The set of weeks in a month.
  */
-export type WeekOfMonth = string;
+export type WeekOfMonth = "first" | "second" | "third" | "fourth" | "last";
 
 /**
  * Account

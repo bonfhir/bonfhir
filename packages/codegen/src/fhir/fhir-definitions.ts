@@ -45,14 +45,6 @@ export class FhirDefinitions {
             definitions.valueSetsByUrl.set(valueSet.url, valueSet);
             break;
           }
-          case "CodeSystem": {
-            const codeSystem = Object.assign(
-              new CodeSystem(definitions),
-              parsed
-            );
-            definitions.codeSystemsByUrl.set(codeSystem.url, codeSystem);
-            break;
-          }
         }
       } catch (error) {
         console.warn(`Failed to parse ${file}`, error);
@@ -66,7 +58,6 @@ export class FhirDefinitions {
 
   public structureDefinitionsByUrl = new Map<string, StructureDefinition>();
   public valueSetsByUrl = new Map<string, ValueSet>();
-  public codeSystemsByUrl = new Map<string, CodeSystem>();
 
   public get structureDefinitions(): StructureDefinition[] {
     return [...this.structureDefinitionsByUrl.values()].sort((a: any, b: any) =>
@@ -106,12 +97,6 @@ export class FhirDefinitions {
         requiredBindingsValueSetUrls.has((valueSet as any).url)
       )
       .sort((a: any, b: any) => a.name.localeCompare(b.name));
-  }
-
-  public get codeSystems(): CodeSystem[] {
-    return [...this.codeSystemsByUrl.values()].sort((a: any, b: any) =>
-      a.name.localeCompare(b.name)
-    );
   }
 }
 
@@ -305,8 +290,4 @@ export class ValueSet {
     }
     return name;
   }
-}
-
-export class CodeSystem {
-  constructor(private _definitions: FhirDefinitions) {}
 }
