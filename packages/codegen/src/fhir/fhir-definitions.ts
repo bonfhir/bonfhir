@@ -40,6 +40,19 @@ export class FhirDefinitions {
             );
             break;
           }
+          case "ValueSet": {
+            const valueSet = Object.assign(new ValueSet(definitions), parsed);
+            definitions.valueSetsByUrl.set(valueSet.url, valueSet);
+            break;
+          }
+          case "CodeSystem": {
+            const codeSystem = Object.assign(
+              new CodeSystem(definitions),
+              parsed
+            );
+            definitions.codeSystemsByUrl.set(codeSystem.url, codeSystem);
+            break;
+          }
         }
       } catch (error) {
         console.warn(`Failed to parse ${file}`, error);
@@ -52,6 +65,8 @@ export class FhirDefinitions {
   private constructor(public release: string, public version: string) {}
 
   public structureDefinitionsByUrl = new Map<string, StructureDefinition>();
+  public valueSetsByUrl = new Map<string, ValueSet>();
+  public codeSystemsByUrl = new Map<string, CodeSystem>();
 
   public get structureDefinitions(): StructureDefinition[] {
     return [...this.structureDefinitionsByUrl.values()].sort((a: any, b: any) =>
@@ -65,6 +80,38 @@ export class FhirDefinitions {
 
   public get domainResources(): StructureDefinition[] {
     return this.resources.filter((x) => x.isDomainResource);
+  }
+
+  public get valueSets(): ValueSet[] {
+    return [...this.valueSetsByUrl.values()].sort((a: any, b: any) =>
+      a.name.localeCompare(b.name)
+    );
+  }
+
+  public get requiredBindingValueSets(): ValueSet[] {
+    const requiredBindingsValueSetUrls = new Set(
+      this.structureDefinitions
+        .flatMap((structureDef) =>
+          structureDef.elements.map((element) =>
+            (element as any).binding?.strength === "required"
+              ? (element as any).binding?.valueSet?.split("|")?.[0]
+              : undefined
+          )
+        )
+        .filter(Boolean)
+    );
+
+    return [...this.valueSetsByUrl.values()]
+      .filter((valueSet) =>
+        requiredBindingsValueSetUrls.has((valueSet as any).url)
+      )
+      .sort((a: any, b: any) => a.name.localeCompare(b.name));
+  }
+
+  public get codeSystems(): CodeSystem[] {
+    return [...this.codeSystemsByUrl.values()].sort((a: any, b: any) =>
+      a.name.localeCompare(b.name)
+    );
   }
 }
 
@@ -210,4 +257,46 @@ export class Element {
   public get isRoot(): boolean {
     return (this as any).path.split(".").length === 2;
   }
+}
+
+export class ValueSet {
+  constructor(private _definitions: FhirDefinitions) {}
+
+  public get jsDoc(): string {
+    return toJsComment([
+      ...splitLongLines([
+        (this as any).title,
+        "",
+        (this as any).description === (this as any).title
+          ? undefined
+          : (this as any).description,
+      ]),
+    ]);
+  }
+
+  public get safeName(): string {
+    const name = (this as any).name.replace(/[^\dA-Za-z]/g, "");
+    // We avoid conflicts with structure definitions by appending "ValueSet" to the name
+    if (
+      this._definitions.structureDefinitions.some(
+        (x) => (x as any).name === name
+      )
+    ) {
+      return `${name}ValueSet`;
+    }
+
+    // We avoid conflicts with other value sets by using the title as the name in that case.
+    if (
+      this._definitions.valueSets.some(
+        (x) => (x as any).name === name && (x as any).id !== (this as any).id
+      )
+    ) {
+      return (this as any).title.replace(/[^\dA-Za-z]/g, "");
+    }
+    return name;
+  }
+}
+
+export class CodeSystem {
+  constructor(private _definitions: FhirDefinitions) {}
 }

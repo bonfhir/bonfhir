@@ -5,6 +5,1960 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 
 /**
+ * Account Status
+ *
+ * Indicates whether the account is available to be used.
+ */
+export type AccountStatus = string;
+
+/**
+ * Action Cardinality Behavior
+ *
+ * Defines behavior for an action or a group for how many times that item may be
+ * repeated.
+ */
+export type ActionCardinalityBehavior = string;
+
+/**
+ * Action Condition Kind
+ *
+ * Defines the kinds of conditions that can appear on actions.
+ */
+export type ActionConditionKind = string;
+
+/**
+ * Action Grouping Behavior
+ *
+ * Defines organization behavior of a group.
+ */
+export type ActionGroupingBehavior = string;
+
+/**
+ * Action Participant Type
+ *
+ * The type of participant for the action.
+ */
+export type ActionParticipantType = string;
+
+/**
+ * Action Precheck Behavior
+ *
+ * Defines selection frequency behavior for an action or group.
+ */
+export type ActionPrecheckBehavior = string;
+
+/**
+ * Action Relationship Type
+ *
+ * Defines the types of relationships between actions.
+ */
+export type ActionRelationshipType = string;
+
+/**
+ * Action Required Behavior
+ *
+ * Defines expectations around whether an action or action group is required.
+ */
+export type ActionRequiredBehavior = string;
+
+/**
+ * Action Selection Behavior
+ *
+ * Defines selection behavior of a group.
+ */
+export type ActionSelectionBehavior = string;
+
+/**
+ * Additional Binding Purpose ValueSet
+ *
+ * Additional Binding Purpose
+ */
+export type AdditionalBindingPurposeVS = string;
+
+/**
+ * AddressType
+ *
+ * The type of an address (physical / postal).
+ */
+export type AddressType = string;
+
+/**
+ * AddressUse
+ *
+ * The use of an address.
+ */
+export type AddressUse = string;
+
+/**
+ * AdministrativeGender
+ *
+ * The gender of a person used for administrative purposes.
+ */
+export type AdministrativeGender = string;
+
+/**
+ * Adverse Event Actuality
+ *
+ * Overall nature of the adverse event, e.g. real or potential.
+ */
+export type AdverseEventActuality = string;
+
+/**
+ * Adverse Event Status
+ *
+ * Codes identifying the lifecycle stage of an adverse event.
+ */
+export type AdverseEventStatus = string;
+
+/**
+ * AggregationMode
+ *
+ * How resource references can be aggregated.
+ */
+export type AggregationMode = string;
+
+/**
+ * Allergy Intolerance Category
+ *
+ * Category of an identified substance associated with allergies or intolerances.
+ */
+export type AllergyIntoleranceCategory = string;
+
+/**
+ * AllergyIntolerance Clinical Status Codes
+ *
+ * Preferred value set for AllergyIntolerance Clinical Status.
+ */
+export type AllergyIntoleranceClinicalStatusCodes = string;
+
+/**
+ * Allergy Intolerance Criticality
+ *
+ * Estimate of the potential clinical harm, or seriousness, of a reaction to an
+ * identified substance.
+ */
+export type AllergyIntoleranceCriticality = string;
+
+/**
+ * Allergy Intolerance Severity
+ *
+ * Clinical assessment of the severity of a reaction event as a whole, potentially
+ * considering multiple different manifestations.
+ */
+export type AllergyIntoleranceSeverity = string;
+
+/**
+ * AllergyIntolerance Verification Status
+ *
+ * The verification status to support or decline the clinical status of the allergy
+ * or intolerance.
+ */
+export type AllergyIntoleranceVerificationStatus = string;
+
+/**
+ * All Languages
+ *
+ * This value set includes all possible codes from BCP-47 (see
+ * http://tools.ietf.org/html/bcp47)
+ */
+export type AllLanguages = string;
+
+/**
+ * Appointment Response Status
+ *
+ * The Participation status for a participant in response to a request for an
+ * appointment.
+ */
+export type AppointmentResponseStatus = string;
+
+/**
+ * Appointment Status
+ *
+ * The free/busy status of an appointment.
+ */
+export type AppointmentStatus = string;
+
+/**
+ * Artifact Assessment Disposition
+ *
+ * Possible values for the disposition of a comment or change request, typically
+ * used for comments and change requests, to indicate the disposition of the
+ * responsible party towards the changes suggested by the comment or change
+ * request.
+ */
+export type ArtifactAssessmentDisposition = string;
+
+/**
+ * Artifact Assessment Information Type
+ *
+ * The type of information contained in a component of an artifact assessment.
+ */
+export type ArtifactAssessmentInformationType = string;
+
+/**
+ * Artifact Assessment Workflow Status
+ *
+ * Possible values for the workflow status of the comment or assessment, typically
+ * used to coordinate workflow around the process of accepting and rejecting
+ * changes and comments on the artifact.
+ */
+export type ArtifactAssessmentWorkflowStatus = string;
+
+/**
+ * Assertion Direction Type
+ *
+ * The type of direction to use for assertion.
+ */
+export type AssertionDirectionType = string;
+
+/**
+ * Assertion Manual Completion Type
+ *
+ * The type of manual completion to use for assertion.
+ */
+export type AssertionManualCompletionType = string;
+
+/**
+ * Assertion Operator Type
+ *
+ * The type of operator to use for assertion.
+ */
+export type AssertionOperatorType = string;
+
+/**
+ * Assertion Response Types
+ *
+ * The type of response code to use for assertion.
+ */
+export type AssertionResponseTypes = string;
+
+/**
+ * Audit Event Action
+ *
+ * Indicator for type of action performed during the event that generated the
+ * event.
+ */
+export type AuditEventAction = string;
+
+/**
+ * Audit Event Severity
+ *
+ * The severity of the audit entry.
+ */
+export type AuditEventSeverity = string;
+
+/**
+ * Benefit Cost Applicability
+ *
+ * Whether the cost applies to in-network or out-of-network providers.
+ */
+export type BenefitCostApplicability = string;
+
+/**
+ * BindingStrength
+ *
+ * Indication of the degree of conformance expectations associated with a binding.
+ */
+export type BindingStrength = string;
+
+/**
+ * BiologicallyDerivedProductDispense Status Codes
+ *
+ *
+ */
+export type BiologicallyDerivedProductDispenseCodes = string;
+
+/**
+ * Body Length Units
+ *
+ * UCUM units for recording body length measures such as height and head
+ * circumference
+ */
+export type BodyLengthUnits = string;
+
+/**
+ * Body Temperature Units
+ *
+ * UCUM units for recording Body Temperature
+ */
+export type BodyTemperatureUnits = string;
+
+/**
+ * Body Weight Units
+ *
+ * UCUM units for recording Body Weight
+ */
+export type BodyWeightUnits = string;
+
+/**
+ * Bundle Type
+ *
+ * Indicates the purpose of a bundle - how it is intended to be used.
+ */
+export type BundleType = string;
+
+/**
+ * Canonical Status Codes for FHIR Resources
+ *
+ * The master set of status codes used throughout FHIR. All status codes are mapped
+ * to one of these codes.
+ */
+export type CanonicalStatusCodesForFHIRResources = string;
+
+/**
+ * Capability Statement Kind
+ *
+ * How a capability statement is intended to be used.
+ */
+export type CapabilityStatementKind = string;
+
+/**
+ * Care Plan Intent
+ *
+ * Codes indicating the degree of authority/intentionality associated with a care
+ * plan.
+ */
+export type CarePlanIntent = string;
+
+/**
+ * Care Team Status
+ *
+ * Indicates the status of the care team.
+ */
+export type CareTeamStatus = string;
+
+/**
+ * Characteristic Combination
+ *
+ * Logical grouping of characteristics.
+ */
+export type CharacteristicCombination = string;
+
+/**
+ * Charge Item Status
+ *
+ * Codes identifying the lifecycle stage of a ChargeItem.
+ */
+export type ChargeItemStatus = string;
+
+/**
+ * Claim Processing Codes
+ *
+ * This value set includes Claim Processing Outcome codes.
+ */
+export type ClaimProcessingCodes = string;
+
+/**
+ * Clinical Use Definition Type
+ *
+ * Overall defining type of this clinical use definition.
+ */
+export type ClinicalUseDefinitionType = string;
+
+/**
+ * Code Search Support
+ *
+ * The degree to which the server supports the code search parameter on ValueSet,
+ * if it is supported.
+ */
+export type CodeSearchSupport = string;
+
+/**
+ * Code System Content Mode
+ *
+ * The extent of the content of the code system (the concepts and codes it defines)
+ * are represented in a code system resource.
+ */
+export type CodeSystemContentMode = string;
+
+/**
+ * Code System Hierarchy Meaning
+ *
+ * The meaning of the hierarchy of concepts in a code system.
+ */
+export type CodeSystemHierarchyMeaning = string;
+
+/**
+ * Color Codes (Names or RGB Values)
+ *
+ * This value set includes color codes - either the color names as defined in
+ * [CSS4](https://www.w3.org/TR/css-color-4/), or any valid RGB code (```#RRGGBB```
+ * in Hex).
+ */
+export type ColorCodesOrRGB = string;
+
+/**
+ * Common Languages
+ *
+ * This value set includes common codes from BCP-47 (see
+ * http://tools.ietf.org/html/bcp47)
+ */
+export type CommonLanguages = string;
+
+/**
+ * Compartment Type
+ *
+ * Which type a compartment definition describes.
+ */
+export type CompartmentType = string;
+
+/**
+ * Composition Status
+ *
+ * The workflow/clinical status of the composition.
+ */
+export type CompositionStatus = string;
+
+/**
+ * ConceptMap Attribute Type
+ *
+ * The type of a ConceptMap mapping attribute value.
+ */
+export type ConceptMapAttributeType = string;
+
+/**
+ * Concept Map Group Unmapped Mode
+ *
+ * Defines which action to take if there is no match in the group.
+ */
+export type ConceptMapGroupUnmappedMode = string;
+
+/**
+ * ConceptMap Property Type
+ *
+ * The type of a ConceptMap mapping property value.
+ */
+export type ConceptMapPropertyType = string;
+
+/**
+ * ConceptMapRelationship
+ *
+ * The relationship between concepts.
+ */
+export type ConceptMapRelationship = string;
+
+/**
+ * Conditional Delete Status
+ *
+ * A code that indicates how the server supports conditional delete.
+ */
+export type ConditionalDeleteStatus = string;
+
+/**
+ * Conditional Read Status
+ *
+ * A code that indicates how the server supports conditional read.
+ */
+export type ConditionalReadStatus = string;
+
+/**
+ * Condition Clinical Status Codes
+ *
+ * Preferred value set for Condition Clinical Status.
+ */
+export type ConditionClinicalStatusCodes = string;
+
+/**
+ * Condition Precondition Type
+ *
+ * Kind of precondition for the condition.
+ */
+export type ConditionPreconditionType = string;
+
+/**
+ * Condition Questionnaire Purpose
+ *
+ * The use of a questionnaire.
+ */
+export type ConditionQuestionnairePurpose = string;
+
+/**
+ * Condition Verification Status
+ *
+ * The verification status to support or decline the clinical status of the
+ * condition or diagnosis.
+ */
+export type ConditionVerificationStatus = string;
+
+/**
+ * Conformance Expectation
+ *
+ * Description Needed Here
+ */
+export type ConformanceExpectation = string;
+
+/**
+ * Consent Data Meaning
+ *
+ * How a resource reference is interpreted when testing consent restrictions.
+ */
+export type ConsentDataMeaning = string;
+
+/**
+ * Consent Provision Type
+ *
+ * How a rule statement is applied, such as adding additional consent or removing
+ * consent.
+ */
+export type ConsentProvisionType = string;
+
+/**
+ * Consent State
+ *
+ * Indicates the state of the consent.
+ */
+export type ConsentState = string;
+
+/**
+ * ConstraintSeverity
+ *
+ * SHALL applications comply with this constraint?
+ */
+export type ConstraintSeverity = string;
+
+/**
+ * ContactPointSystem
+ *
+ * Telecommunications form for contact point.
+ */
+export type ContactPointSystem = string;
+
+/**
+ * ContactPointUse
+ *
+ * Use of contact point.
+ */
+export type ContactPointUse = string;
+
+/**
+ * Contract Resource Publication Status codes
+ *
+ * This value set contract specific codes for status.
+ */
+export type ContractResourcePublicationStatusCodes = string;
+
+/**
+ * Contract Resource Status Codes
+ *
+ * This value set contract specific codes for status.
+ */
+export type ContractResourceStatusCodes = string;
+
+/**
+ * ContributorType
+ *
+ * The type of contributor.
+ */
+export type ContributorType = string;
+
+/**
+ * Country ValueSet
+ * 
+ * This value set defines a base set of codes for countries.   
+   
+   Note: The
+ * codes for countries are taken from    [ISO
+ * 3166](https://www.iso.org/iso-3166-country-codes.html).
+ */
+export type CountryValueSet = string;
+
+/**
+ * Criteria Not Exists Behavior
+ *
+ * Behavior a server can exhibit when a criteria state does not exist (e.g., state
+ * prior to a create or after a delete).
+ */
+export type CriteriaNotExistsBehavior = string;
+
+/**
+ * Currencies
+ *
+ * Currency codes from ISO 4217 (see
+ * https://www.iso.org/iso-4217-currency-codes.html)
+ */
+export type Currencies = string;
+
+/**
+ * Days Of Week
+ *
+ * The days of the week.
+ */
+export type DaysOfWeek = string;
+
+/**
+ * Detected Issue Severity
+ *
+ * Indicates the potential degree of impact of the identified issue on the patient.
+ */
+export type DetectedIssueSeverity = string;
+
+/**
+ * Detected Issue Status
+ *
+ * Indicates the status of a detected issue
+ */
+export type DetectedIssueStatus = string;
+
+/**
+ * DeviceAssociation Status Reason Codes
+ *
+ *
+ */
+export type DeviceAssociationStatusReasonCodes = string;
+
+/**
+ * DeviceAssociation Status Codes
+ *
+ *
+ */
+export type DeviceAssociationStatusCodes = string;
+
+/**
+ * Device Corrective Action Scope
+ *
+ * Device - Corrective action scope
+ */
+export type DeviceCorrectiveActionScope = string;
+
+/**
+ * Device Definition Regulatory Identifier Type
+ *
+ * Regulatory Identifier type
+ */
+export type DeviceDefinitionRegulatoryIdentifierType = string;
+
+/**
+ * DeviceDispense Status Codes
+ *
+ *
+ */
+export type DeviceDispenseStatusCodes = string;
+
+/**
+ * Device Metric Calibration State
+ *
+ * Describes the state of a metric calibration.
+ */
+export type DeviceMetricCalibrationState = string;
+
+/**
+ * Device Metric Calibration Type
+ *
+ * Describes the type of a metric calibration.
+ */
+export type DeviceMetricCalibrationType = string;
+
+/**
+ * Device Metric Category
+ *
+ * Describes the category of the metric.
+ */
+export type DeviceMetricCategory = string;
+
+/**
+ * Device Metric Operational Status
+ *
+ * Describes the operational status of the DeviceMetric.
+ */
+export type DeviceMetricOperationalStatus = string;
+
+/**
+ * Device Name Type
+ *
+ * The type of name the device is referred by.
+ */
+export type DeviceNameType = string;
+
+/**
+ * Device Production Identifier In UDI
+ *
+ * Device Production Identifier in UDI
+ */
+export type DeviceProductionIdentifierInUDI = string;
+
+/**
+ * Device Usage Status
+ *
+ * A coded concept indicating the current status of the Device Usage.
+ */
+export type DeviceUsageStatus = string;
+
+/**
+ * Diagnostic Report Status
+ *
+ * The status of the diagnostic report.
+ */
+export type DiagnosticReportStatus = string;
+
+/**
+ * DiscriminatorType
+ *
+ * How an element value is interpreted when discrimination is evaluated.
+ */
+export type DiscriminatorType = string;
+
+/**
+ * Document Mode
+ *
+ * Whether the application produces or consumes documents.
+ */
+export type DocumentMode = string;
+
+/**
+ * DocumentReferenceStatus
+ *
+ * The status of the document reference.
+ */
+export type DocumentReferenceStatus = string;
+
+/**
+ * Eligibility Outcome
+ *
+ * The outcome of the processing.
+ */
+export type EligibilityOutcome = string;
+
+/**
+ * Eligibility Request Purpose
+ *
+ * A code specifying the types of information being requested.
+ */
+export type EligibilityRequestPurpose = string;
+
+/**
+ * Eligibility Response Purpose
+ *
+ * A code specifying the types of information being requested.
+ */
+export type EligibilityResponsePurpose = string;
+
+/**
+ * Enable When Behavior
+ *
+ * Controls how multiple enableWhen values are interpreted -  whether all or any
+ * must be true.
+ */
+export type EnableWhenBehavior = string;
+
+/**
+ * Encounter Location Status
+ *
+ * The status of the location.
+ */
+export type EncounterLocationStatus = string;
+
+/**
+ * Encounter Status
+ *
+ * Current state of the encounter.
+ */
+export type EncounterStatus = string;
+
+/**
+ * Endpoint Status
+ *
+ * The status of the endpoint.
+ */
+export type EndpointStatus = string;
+
+/**
+ * Enrollment Outcome
+ *
+ * The outcome of the processing.
+ */
+export type EnrollmentOutcome = string;
+
+/**
+ * Episode Of Care Status
+ *
+ * The status of the episode of care.
+ */
+export type EpisodeOfCareStatus = string;
+
+/**
+ * Event Capability Mode
+ *
+ * The mode of a message capability statement.
+ */
+export type EventCapabilityMode = string;
+
+/**
+ * EventStatus
+ *
+ * Codes identifying the lifecycle stage of an event.
+ */
+export type EventStatus = string;
+
+/**
+ * EventTiming
+ *
+ * Real-world event relating to the schedule.
+ */
+export type EventTiming = string;
+
+/**
+ * Evidence Variable Handling
+ *
+ * The handling of the variable in statistical analysis for exposures or outcomes
+ * (E.g. Dichotomous, Continuous, Descriptive).
+ */
+export type EvidenceVariableHandling = string;
+
+/**
+ * Example Scenario Actor Type
+ *
+ * The type of actor - system or human.
+ */
+export type ExampleScenarioActorType = string;
+
+/**
+ * Explanation Of Benefit Status
+ *
+ * A code specifying the state of the resource instance.
+ */
+export type ExplanationOfBenefitStatus = string;
+
+/**
+ * Extension Context Type
+ *
+ * How an extension context is interpreted.
+ */
+export type ExtensionContextType = string;
+
+/**
+ * Family History Status
+ *
+ * A code that identifies the status of the family history record.
+ */
+export type FamilyHistoryStatus = string;
+
+/**
+ * FHIR Device Status
+ *
+ * The status of the Device record.
+ */
+export type FHIRDeviceStatus = string;
+
+/**
+ * FHIRSubstanceStatus
+ *
+ * A code to indicate if the substance is actively used.
+ */
+export type FHIRSubstanceStatus = string;
+
+/**
+ * All FHIR Types
+ *
+ * All FHIR types
+ */
+export type AllFHIRTypes = string;
+
+/**
+ * FHIRVersion
+ *
+ * All published FHIR Versions.
+ */
+export type FHIRVersion = string;
+
+/**
+ * Filter Operator
+ *
+ * The kind of operation to perform as a part of a property based filter.
+ */
+export type FilterOperator = string;
+
+/**
+ * Financial Resource Status Codes
+ *
+ * This value set includes Status codes.
+ */
+export type FinancialResourceStatusCodes = string;
+
+/**
+ * Flag Status
+ *
+ * Indicates whether this flag is active and needs to be displayed to a user, or
+ * whether it is no longer needed or was entered in error.
+ */
+export type FlagStatus = string;
+
+/**
+ * FormularyItem Status Codes
+ *
+ *
+ */
+export type FormularyItemStatusCodes = string;
+
+/**
+ * Genomic Study Status
+ *
+ * The status of the GenomicStudy.
+ */
+export type GenomicStudyStatus = string;
+
+/**
+ * Goal Lifecycle Status
+ *
+ * Codes that reflect the current state of a goal and whether the goal is still
+ * being targeted.
+ */
+export type GoalLifecycleStatus = string;
+
+/**
+ * Graph Compartment Rule
+ *
+ * How a compartment must be linked.
+ */
+export type GraphCompartmentRule = string;
+
+/**
+ * Graph Compartment Use
+ *
+ * Defines how a compartment rule is used.
+ */
+export type GraphCompartmentUse = string;
+
+/**
+ * Group Membership Basis
+ *
+ * Basis for membership in a group
+ */
+export type GroupMembershipBasis = string;
+
+/**
+ * Group Type
+ *
+ * Types of resources that are part of group.
+ */
+export type GroupType = string;
+
+/**
+ * Guidance Response Status
+ *
+ * The status of a guidance response.
+ */
+export type GuidanceResponseStatus = string;
+
+/**
+ * Guide Page Generation
+ *
+ * A code that indicates how the page is generated.
+ */
+export type GuidePageGeneration = string;
+
+/**
+ * H T T P Verb
+ *
+ * HTTP verbs (in the HTTP command line). See [HTTP
+ * rfc](https://tools.ietf.org/html/rfc7231) for details.
+ */
+export type HTTPVerb = string;
+
+/**
+ * IANA Timezones
+ *
+ * An IANA timezone code for  the timezone offset per [BCP
+ * 175](https://www.iana.org/go/rfc6557). The offset is specified as part of a
+ * dateTime/instant (or using the tzOffset extension on a date if necessary). The
+ * timezone code may also be provided to allow for human display of the location
+ * associated with the offset. These are codes like 'America/New_York' or
+ * 'America/Los_Angeles'. See [IANA Timezones](https://www.iana.org/time-zones) for
+ * the official source, and
+ * [Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for
+ * information
+ */
+export type IANATimezones = string;
+
+/**
+ * IdentifierUse
+ *
+ * Identifies the purpose for this identifier, if known .
+ */
+export type IdentifierUse = string;
+
+/**
+ * Identity Assurance Level
+ *
+ * The level of confidence that this link represents the same actual person, based
+ * on NIST Authentication Levels.
+ */
+export type IdentityAssuranceLevel = string;
+
+/**
+ * Imaging Selection2 D Graphic Type
+ *
+ * The type of 2D coordinates describing a 2D image region.
+ */
+export type ImagingSelection2DGraphicType = string;
+
+/**
+ * Imaging Selection3 D Graphic Type
+ *
+ * The type of coordinates describing a 3D image region.
+ */
+export type ImagingSelection3DGraphicType = string;
+
+/**
+ * Imaging Selection Status
+ *
+ * The status of the ImagingSelection.
+ */
+export type ImagingSelectionStatus = string;
+
+/**
+ * Imaging Study Status
+ *
+ * The status of the ImagingStudy.
+ */
+export type ImagingStudyStatus = string;
+
+/**
+ * Immunization Evaluation Status Codes
+ *
+ * The value set to instantiate this attribute should be drawn from a
+ * terminologically robust code system that consists of or contains concepts to
+ * support describing the current status of the evaluation for vaccine
+ * administration event.
+ */
+export type ImmunizationEvaluationStatusCodes = string;
+
+/**
+ * Immunization Status Codes
+ *
+ * The value set to instantiate this attribute should be drawn from a
+ * terminologically robust code system that consists of or contains concepts to
+ * support describing the current status of the administered dose of vaccine.
+ */
+export type ImmunizationStatusCodes = string;
+
+/**
+ * Ingredient Manufacturer Role
+ *
+ * The way in which this manufacturer is associated with the ingredient. For
+ * example whether it is a possible one (others allowed), or an exclusive
+ * authorized one for this ingredient. Note that this is not the manufacturing
+ * process role.
+ */
+export type IngredientManufacturerRole = string;
+
+/**
+ * Interaction Trigger
+ *
+ * FHIR RESTful interaction codes used for SubscriptionTopic trigger.
+ */
+export type InteractionTrigger = string;
+
+/**
+ * Inventory Count Type
+ *
+ * The type of count.
+ */
+export type InventoryCountType = string;
+
+/**
+ * InventoryItem Status Codes
+ *
+ *
+ */
+export type InventoryItemStatusCodes = string;
+
+/**
+ * Inventory Report Status
+ *
+ * The status of the InventoryReport.
+ */
+export type InventoryReportStatus = string;
+
+/**
+ * Invoice Status
+ *
+ * Codes identifying the lifecycle stage of an Invoice.
+ */
+export type InvoiceStatus = string;
+
+/**
+ * Issue Severity
+ *
+ * How the issue affects the success of the action.
+ */
+export type IssueSeverity = string;
+
+/**
+ * Issue Type
+ *
+ * A code that describes the type of issue.
+ */
+export type IssueType = string;
+
+/**
+ * Jurisdiction ValueSet
+ *
+ * This value set defines a base set of codes for country, country subdivision and
+ * region    for indicating where a resource is intended to be used.
+ * Note: The codes for countries and country subdivisions are taken from    [ISO
+ * 3166](https://www.iso.org/iso-3166-country-codes.html)    while the codes for
+ * "supra-national" regions are from    [UN Standard country or area codes for
+ * statistical use (M49)](http://unstats.un.org/unsd/methods/m49/m49.htm).
+ */
+export type JurisdictionValueSet = string;
+
+/**
+ * Kind
+ *
+ * The kind of coverage: insurance, selfpay or other.
+ */
+export type Kind = string;
+
+/**
+ * Knowledge Representation Level
+ *
+ * A knowledge representation level, narrative, semi-structured, structured, and
+ * executable
+ */
+export type KnowledgeRepresentationLevel = string;
+
+/**
+ * L D L Codes
+ *
+ * LDL Cholesterol codes - measured or calculated
+ */
+export type LDLCodes = string;
+
+/**
+ * Linkage Type
+ *
+ * Used to distinguish different roles a resource can play within a set of linked
+ * resources.
+ */
+export type LinkageType = string;
+
+/**
+ * Link Relation Types
+ *
+ * Link Relation Types defined at
+ * https://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relati
+ * ons-1
+ */
+export type LinkRelationTypes = string;
+
+/**
+ * Link Type
+ *
+ * The type of link between this Patient resource and another Patient/RelatedPerson
+ * resource.
+ */
+export type LinkType = string;
+
+/**
+ * List Mode
+ *
+ * The processing mode that applies to this list.
+ */
+export type ListMode = string;
+
+/**
+ * List Status
+ *
+ * The current state of the list.
+ */
+export type ListStatus = string;
+
+/**
+ * Location Mode
+ *
+ * Indicates whether a resource instance represents a specific location or a class
+ * of locations.
+ */
+export type LocationMode = string;
+
+/**
+ * Location Status
+ *
+ * Indicates whether the location is still in use.
+ */
+export type LocationStatus = string;
+
+/**
+ * Measure Improvement Notation
+ *
+ * Observation values that indicate what change in a measurement value or score is
+ * indicative of an improvement in the measured item or scored issue.
+ */
+export type MeasureImprovementNotation = string;
+
+/**
+ * Measure Report Status
+ *
+ * The status of the measure report.
+ */
+export type MeasureReportStatus = string;
+
+/**
+ * Measure Report Type
+ *
+ * The type of the measure report.
+ */
+export type MeasureReportType = string;
+
+/**
+ * MedicationAdministration Status Codes
+ *
+ *
+ */
+export type MedicationAdministrationStatusCodes = string;
+
+/**
+ * MedicationDispense Status Codes
+ *
+ *
+ */
+export type MedicationDispenseStatusCodes = string;
+
+/**
+ * MedicationKnowledge Status Codes
+ *
+ *
+ */
+export type MedicationKnowledgeStatusCodes = string;
+
+/**
+ * medicationRequest Intent
+ *
+ * MedicationRequest Intent Codes
+ */
+export type MedicationRequestIntent = string;
+
+/**
+ * medicationrequest Status
+ *
+ * MedicationRequest Status Codes
+ */
+export type MedicationrequestStatus = string;
+
+/**
+ * MedicationStatement Status Codes
+ *
+ *
+ */
+export type MedicationStatementStatusCodes = string;
+
+/**
+ * Medication Status Codes
+ *
+ *
+ */
+export type MedicationStatusCodes = string;
+
+/**
+ * messageheader-response-request
+ *
+ * HL7-defined table of codes which identify conditions under which acknowledgments
+ * are required to be returned in response to a message.
+ */
+export type MessageheaderResponseRequest = string;
+
+/**
+ * Message Significance Category
+ *
+ * The impact of the content of a message.
+ */
+export type MessageSignificanceCategory = string;
+
+/**
+ * Mime Types
+ *
+ * This value set includes all possible codes from BCP-13 (see
+ * http://tools.ietf.org/html/bcp13)
+ */
+export type MimeTypes = string;
+
+/**
+ * NameUse
+ *
+ * The use of a human name.
+ */
+export type NameUse = string;
+
+/**
+ * Naming System Identifier Type
+ *
+ * Identifies the style of unique identifier used to identify a namespace.
+ */
+export type NamingSystemIdentifierType = string;
+
+/**
+ * Naming System Type
+ *
+ * Identifies the purpose of the naming system.
+ */
+export type NamingSystemType = string;
+
+/**
+ * NarrativeStatus
+ *
+ * The status of a resource narrative.
+ */
+export type NarrativeStatus = string;
+
+/**
+ * NoteType
+ *
+ * The presentation types of notes.
+ */
+export type NoteType = string;
+
+/**
+ * Nutrition Product Status
+ *
+ * Codes identifying the lifecycle stage of a product.
+ */
+export type NutritionProductStatus = string;
+
+/**
+ * Observation Data Type
+ *
+ * Permitted data type for observation value.
+ */
+export type ObservationDataType = string;
+
+/**
+ * Observation Range Category
+ *
+ * Codes identifying the category of observation range.
+ */
+export type ObservationRangeCategory = string;
+
+/**
+ * Observation Status
+ *
+ * Codes providing the status of an observation.
+ */
+export type ObservationStatus = string;
+
+/**
+ * Operation Kind
+ *
+ * Whether an operation is a normal operation or a query.
+ */
+export type OperationKind = string;
+
+/**
+ * Operation Parameter Scope
+ *
+ * Indicates that a parameter applies when the operation is being invoked at the
+ * specified level
+ */
+export type OperationParameterScope = string;
+
+/**
+ * Operation Parameter Use
+ *
+ * Whether an operation parameter is an input or an output parameter.
+ */
+export type OperationParameterUse = string;
+
+/**
+ * orientation Type
+ *
+ * Type for orientation.
+ */
+export type OrientationType = string;
+
+/**
+ * Participation Status
+ *
+ * The Participation status of an appointment.
+ */
+export type ParticipationStatus = string;
+
+/**
+ * Payment Outcome
+ *
+ * The outcome of the processing.
+ */
+export type PaymentOutcome = string;
+
+/**
+ * Permission Rule Combining
+ *
+ * Codes identifying rule combining algorithm.
+ */
+export type PermissionRuleCombining = string;
+
+/**
+ * Permission Status
+ *
+ * Codes identifying the lifecycle stage of a product.
+ */
+export type PermissionStatus = string;
+
+/**
+ * Price Component Type
+ *
+ * Codes indicating the kind of the price component.
+ */
+export type PriceComponentType = string;
+
+/**
+ * ProductStatus
+ *
+ * Codes identifying the lifecycle stage of a product.
+ */
+export type ProductStatus = string;
+
+/**
+ * PropertyRepresentation
+ *
+ * How a property is represented when serialized.
+ */
+export type PropertyRepresentation = string;
+
+/**
+ * Property Type
+ *
+ * The type of a property value.
+ */
+export type PropertyType = string;
+
+/**
+ * Provenance Entity Role
+ *
+ * How an entity was used in an activity.
+ */
+export type ProvenanceEntityRole = string;
+
+/**
+ * PublicationStatus
+ *
+ * The lifecycle status of an artifact.
+ */
+export type PublicationStatus = string;
+
+/**
+ * QuantityComparator
+ *
+ * How the Quantity should be understood and represented.
+ */
+export type QuantityComparator = string;
+
+/**
+ * Questionnaire answer constraints value set
+ *
+ * Codes that describe the types of constraints possible on a question item that
+ * has a list of permitted answers
+ */
+export type QuestionnaireAnswerConstraint = string;
+
+/**
+ * Questionnaire Item Disabled Display
+ *
+ * Codes that guide the display of disabled questionnaire items
+ */
+export type QuestionnaireItemDisabledDisplay = string;
+
+/**
+ * Questionnaire Item Operator
+ *
+ * The criteria by which a question is enabled.
+ */
+export type QuestionnaireItemOperator = string;
+
+/**
+ * Questionnaire Item Type
+ *
+ * Distinguishes groups from questions and display text and indicates data type for
+ * questions.
+ */
+export type QuestionnaireItemType = string;
+
+/**
+ * Questionnaire Response Status
+ *
+ * Lifecycle status of the questionnaire response.
+ */
+export type QuestionnaireResponseStatus = string;
+
+/**
+ * Reference Handling Policy
+ *
+ * A set of flags that defines how references are supported.
+ */
+export type ReferenceHandlingPolicy = string;
+
+/**
+ * ReferenceVersionRules
+ *
+ * Whether a reference needs to be version specific or version independent, or
+ * whether either can be used.
+ */
+export type ReferenceVersionRules = string;
+
+/**
+ * RelatedArtifactType
+ *
+ * The type of relationship to the related artifact.
+ */
+export type RelatedArtifactType = string;
+
+/**
+ * Related Artifact Type All
+ *
+ * The type of relationship to the cited artifact.
+ */
+export type RelatedArtifactTypeAll = string;
+
+/**
+ * Report Relationship Type
+ *
+ * The type of relationship between reports.
+ */
+export type ReportRelationshipType = string;
+
+/**
+ * RequestIntent
+ *
+ * Codes indicating the degree of authority/intentionality associated with a
+ * request.
+ */
+export type RequestIntent = string;
+
+/**
+ * RequestPriority
+ *
+ * Identifies the level of importance to be assigned to actioning the request.
+ */
+export type RequestPriority = string;
+
+/**
+ * Request Resource Types
+ *
+ * All Resource Types that represent request resources
+ */
+export type RequestResourceTypes = string;
+
+/**
+ * RequestStatus
+ *
+ * Codes identifying the lifecycle stage of a request.
+ */
+export type RequestStatus = string;
+
+/**
+ * Research Subject State
+ *
+ * Indicates the progression of a study subject through a study.
+ */
+export type ResearchSubjectState = string;
+
+/**
+ * Resource Types
+ *
+ * Concrete FHIR Resource Types
+ */
+export type ResourceType = string;
+
+/**
+ * Resource Version Policy
+ *
+ * How the system supports versioning for a resource.
+ */
+export type ResourceVersionPolicy = string;
+
+/**
+ * Response Type
+ *
+ * The kind of response to a message.
+ */
+export type ResponseType = string;
+
+/**
+ * Restful Capability Mode
+ *
+ * The mode of a RESTful capability statement.
+ */
+export type RestfulCapabilityMode = string;
+
+/**
+ * Search Comparator
+ *
+ * What Search Comparator Codes are supported in search.
+ */
+export type SearchComparator = string;
+
+/**
+ * Search Entry Mode
+ *
+ * Why an entry is in the result set - whether it's included as a match or because
+ * of an _include requirement, or to convey information or warning information
+ * about the search process.
+ */
+export type SearchEntryMode = string;
+
+/**
+ * Search Modifier Code
+ *
+ * A supported modifier for a search parameter.
+ */
+export type SearchModifierCode = string;
+
+/**
+ * SearchParamType
+ *
+ * Data types allowed to be used for search parameters.
+ */
+export type SearchParamType = string;
+
+/**
+ * Search Processing Mode Type
+ *
+ * How a search parameter relates to the set of elements returned by evaluating its
+ * expression query.
+ */
+export type SearchProcessingModeType = string;
+
+/**
+ * sequence Type
+ *
+ * Type if a sequence -- DNA, RNA, or amino acid sequence.
+ */
+export type SequenceType = string;
+
+/**
+ * SlicingRules
+ *
+ * How slices are interpreted when evaluating an instance.
+ */
+export type SlicingRules = string;
+
+/**
+ * Slot Status
+ *
+ * The free/busy status of the slot.
+ */
+export type SlotStatus = string;
+
+/**
+ * SortDirection
+ *
+ * The possible sort directions, ascending or descending.
+ */
+export type SortDirection = string;
+
+/**
+ * S P D X License
+ *
+ * The license that applies to an Implementation Guide (using an SPDX license
+ * Identifiers, or 'not-open-source'). The binding is required but new SPDX license
+ * Identifiers are allowed to be used (https://spdx.org/licenses/).
+ */
+export type SPDXLicense = string;
+
+/**
+ * Specimen Combined
+ *
+ * Codes providing the combined status of a specimen.
+ */
+export type SpecimenCombined = string;
+
+/**
+ * Specimen Contained Preference
+ *
+ * Degree of preference of a type of conditioned specimen.
+ */
+export type SpecimenContainedPreference = string;
+
+/**
+ * Specimen Status
+ *
+ * Codes providing the status/availability of a specimen.
+ */
+export type SpecimenStatus = string;
+
+/**
+ * strand Type
+ *
+ * Type for strand.
+ */
+export type StrandType = string;
+
+/**
+ * Structure Definition Kind
+ *
+ * Defines the type of structure that a definition is describing.
+ */
+export type StructureDefinitionKind = string;
+
+/**
+ * Structure Map Group Type Mode
+ *
+ * If this is the default rule set to apply for the source type, or this
+ * combination of types.
+ */
+export type StructureMapGroupTypeMode = string;
+
+/**
+ * Structure Map Input Mode
+ *
+ * Mode for this instance of data.
+ */
+export type StructureMapInputMode = string;
+
+/**
+ * Structure Map Model Mode
+ *
+ * How the referenced structure is used in this mapping.
+ */
+export type StructureMapModelMode = string;
+
+/**
+ * Structure Map Source List Mode
+ *
+ * If field is a list, how to manage the source.
+ */
+export type StructureMapSourceListMode = string;
+
+/**
+ * Structure Map Target List Mode
+ *
+ * If field is a list, how to manage the production.
+ */
+export type StructureMapTargetListMode = string;
+
+/**
+ * Structure Map Transform
+ *
+ * How data is copied/created.
+ */
+export type StructureMapTransform = string;
+
+/**
+ * Submit Data Update Type
+ *
+ * Concepts for how a measure report consumer and receiver coordinate data exchange
+ * updates. The choices are snapshot or incremental updates
+ */
+export type SubmitDataUpdateType = string;
+
+/**
+ * Subscription Notification Type
+ *
+ * The type of notification represented by the status message.
+ */
+export type SubscriptionNotificationType = string;
+
+/**
+ * Subscription Payload Content
+ *
+ * Codes to represent how much resource content to send in the notification
+ * payload.
+ */
+export type SubscriptionPayloadContent = string;
+
+/**
+ * Subscription Status
+ *
+ * State values for FHIR Subscriptions.
+ */
+export type SubscriptionStatusCodes = string;
+
+/**
+ * Supply Delivery Status
+ *
+ * Status of the supply delivery.
+ */
+export type SupplyDeliveryStatus = string;
+
+/**
+ * Supply Delivery Supply Item Type
+ *
+ * This value sets refers to a specific supply item.
+ */
+export type SupplyDeliverySupplyItemType = string;
+
+/**
+ * Supply Request Status
+ *
+ * Status of the supply request.
+ */
+export type SupplyRequestStatus = string;
+
+/**
+ * System Restful Interaction
+ *
+ * Operations supported by REST at the system level.
+ */
+export type SystemRestfulInteraction = string;
+
+/**
+ * Task Intent
+ *
+ * Distinguishes whether the task is a proposal, plan or full order.
+ */
+export type TaskIntent = string;
+
+/**
+ * Task Status
+ *
+ * The current status of the task.
+ */
+export type TaskStatus = string;
+
+/**
+ * Test Report Action Result
+ *
+ * The results of executing an action.
+ */
+export type TestReportActionResult = string;
+
+/**
+ * Test Report Participant Type
+ *
+ * The type of participant.
+ */
+export type TestReportParticipantType = string;
+
+/**
+ * Test Report Result
+ *
+ * The reported execution result.
+ */
+export type TestReportResult = string;
+
+/**
+ * Test Report Status
+ *
+ * The current status of the test report.
+ */
+export type TestReportStatus = string;
+
+/**
+ * Test Script Request Method Code
+ *
+ * The allowable request method or HTTP operation codes.
+ */
+export type TestScriptRequestMethodCode = string;
+
+/**
+ * Transport Intent
+ *
+ * Distinguishes whether the transport is a proposal, plan or full order.
+ */
+export type TransportIntent = string;
+
+/**
+ * Transport Status
+ *
+ * Status of the transport
+ */
+export type TransportStatus = string;
+
+/**
+ * triggered Bytype
+ *
+ * Codes providing the type of triggeredBy observation.
+ */
+export type TriggeredBytype = string;
+
+/**
+ * TriggerType
+ *
+ * The type of trigger.
+ */
+export type TriggerType = string;
+
+/**
+ * Type Derivation Rule
+ *
+ * How a type relates to its baseDefinition.
+ */
+export type TypeDerivationRule = string;
+
+/**
+ * Type Restful Interaction
+ *
+ * Operations supported by REST at the type or instance level.
+ */
+export type TypeRestfulInteraction = string;
+
+/**
+ * UCUM Codes
+ *
+ * Unified Code for Units of Measure (UCUM). This value set includes all UCUM codes
+ */
+export type UCUMCodes = string;
+
+/**
+ * UDI Entry Type
+ *
+ * Codes to identify how UDI data was entered.
+ */
+export type UDIEntryType = string;
+
+/**
+ * UnitsOfTime
+ *
+ * A unit of time (units from UCUM).
+ */
+export type UnitsOfTime = string;
+
+/**
+ * Use
+ *
+ * The purpose of the Claim: predetermination, preauthorization, claim.
+ */
+export type Use = string;
+
+/**
+ * Value Filter Comparator
+ *
+ * The type of comparator operator to use
+ */
+export type ValueFilterComparator = string;
+
+/**
+ * Verification Result status
+ *
+ * The validation status of the target
+ */
+export type VerificationResultStatus = string;
+
+/**
+ * Version Independent Resource Types (All)
+ *
+ * Current and past FHIR resource types (deleted or renamed), including abstract
+ * types
+ */
+export type VersionIndependentResourceTypesAll = string;
+
+/**
+ * Vision Base
+ *
+ * A coded concept listing the base codes.
+ */
+export type VisionBase = string;
+
+/**
+ * Vision Eyes
+ *
+ * A coded concept listing the eye codes.
+ */
+export type VisionEyes = string;
+
+/**
+ * Vital Signs Units
+ *
+ * Common UCUM units for recording Vital Signs
+ */
+export type VitalSignsUnits = string;
+
+/**
+ * Week Of Month
+ *
+ * The set of weeks in a month.
+ */
+export type WeekOfMonth = string;
+
+/**
  * Account
  *
  * A financial tool for tracking value accrued for a particular purpose.  In the
