@@ -93,7 +93,7 @@ export class FhirDefinitions {
       this.structureDefinitions
         .flatMap((structureDef) =>
           structureDef.elements.map((element) =>
-            (element as any).binding?.strength === "required"
+            element.hasRequiredBinding
               ? (element as any).binding?.valueSet?.split("|")?.[0]
               : undefined
           )
@@ -225,6 +225,12 @@ export class Element {
       ?.map((x: any) => toJsType(x.code))
       .join(" | ");
 
+    if (this.hasRequiredBinding) {
+      resolvedType = this._definitions.valueSetsByUrl.get(
+        (this as any).binding.valueSet.split("|")[0]
+      )?.safeName;
+    }
+
     if (this.isArray) {
       resolvedType = `Array<${resolvedType}>`;
     }
@@ -256,6 +262,10 @@ export class Element {
 
   public get isRoot(): boolean {
     return (this as any).path.split(".").length === 2;
+  }
+
+  public get hasRequiredBinding(): boolean {
+    return (this as any).binding?.strength === "required";
   }
 }
 

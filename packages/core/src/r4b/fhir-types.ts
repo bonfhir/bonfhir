@@ -1917,7 +1917,7 @@ Where the order is important, a local/jurisdictional extension may be
    * inactive and entered-in-error that mark the Account as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.status}
    */
-  status: string;
+  status: AccountStatus;
   _status?: Element | undefined;
 
   /**
@@ -2128,7 +2128,7 @@ export interface ActivityDefinition extends DomainResource {
    * where the request should fit into the workflow chain.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.intent}
    */
-  intent?: string | undefined;
+  intent?: RequestIntent | undefined;
   _intent?: Element | undefined;
 
   /**
@@ -2148,7 +2148,7 @@ export interface ActivityDefinition extends DomainResource {
    * May determine what types of extensions are permitted.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.kind}
    */
-  kind?: string | undefined;
+  kind?: RequestResourceType | undefined;
   _kind?: Element | undefined;
 
   /**
@@ -2216,7 +2216,7 @@ export interface ActivityDefinition extends DomainResource {
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.priority}
    */
-  priority?: string | undefined;
+  priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
 
   /**
@@ -2310,7 +2310,7 @@ export interface ActivityDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -2588,7 +2588,7 @@ export interface Address extends Element {
    * proxies for physical locations (also see the [Location](location.html#)
    * resource).
    */
-  type?: string | undefined;
+  type?: AddressType | undefined;
   _type?: Element | undefined;
 
   /**
@@ -2596,7 +2596,7 @@ export interface Address extends Element {
    * Applications can assume that an address is current unless it explicitly says
    * that it is temporary or old.
    */
-  use?: string | undefined;
+  use?: AddressUse | undefined;
   _use?: Element | undefined;
 }
 
@@ -2702,7 +2702,7 @@ export interface AdministrableProductDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -2733,7 +2733,7 @@ export interface AdverseEvent extends DomainResource {
    * this is independent of whether anyone was affected or harmed or how severely.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.actuality}
    */
-  actuality: string;
+  actuality: AdverseEventActuality;
   _actuality?: Element | undefined;
 
   /**
@@ -2819,7 +2819,7 @@ export interface AdverseEvent extends DomainResource {
    * Describes the type of outcome from the adverse event.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.outcome}
    */
-  outcome?: CodeableConcept | undefined;
+  outcome?: AdverseEventOutcome | undefined;
   _outcome?: Element | undefined;
 
   /**
@@ -2868,7 +2868,7 @@ export interface AdverseEvent extends DomainResource {
    * mild heart problem is.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.severity}
    */
-  severity?: CodeableConcept | undefined;
+  severity?: AdverseEventSeverity | undefined;
   _severity?: Element | undefined;
 
   /**
@@ -2946,7 +2946,7 @@ export interface AllergyIntolerance extends DomainResource {
    * subjective based on the sender.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.category}
    */
-  category?: Array<string> | undefined;
+  category?: Array<AllergyIntoleranceCategory> | undefined;
   _category?: Element[] | undefined;
 
   /**
@@ -2959,7 +2959,7 @@ The data type is CodeableConcept because clinicalStatus has some
  * allow for additional specificity.
  * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.clinicalStatus}
  */
-  clinicalStatus?: CodeableConcept | undefined;
+  clinicalStatus?: AllergyIntoleranceClinicalStatusCodes | undefined;
   _clinicalStatus?: Element | undefined;
 
   /**
@@ -3023,7 +3023,7 @@ The
    * future (i.e. situation-agnostic) whereas severity is situation-dependent.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.criticality}
    */
-  criticality?: string | undefined;
+  criticality?: AllergyIntoleranceCriticality | undefined;
   _criticality?: Element | undefined;
 
   /**
@@ -3164,7 +3164,7 @@ The
    * omitted from the resource.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.type}
    */
-  type?: string | undefined;
+  type?: AllergyIntoleranceType | undefined;
   _type?: Element | undefined;
 
   /**
@@ -3176,7 +3176,7 @@ The
    * additional specificity.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.verificationStatus}
    */
-  verificationStatus?: CodeableConcept | undefined;
+  verificationStatus?: AllergyIntoleranceVerificationStatusCodes | undefined;
   _verificationStatus?: Element | undefined;
 }
 
@@ -3436,7 +3436,7 @@ This element is labeled as a
  * Appointment as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.status}
  */
-  status: string;
+  status: AppointmentStatus;
   _status?: Element | undefined;
 
   /**
@@ -3511,7 +3511,7 @@ export interface AppointmentResponse extends DomainResource {
    * entered-in-error that marks the participant as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/AppointmentResponse-definitions.html#AppointmentResponse.participantStatus}
    */
-  participantStatus: string;
+  participantStatus: ParticipationStatus;
   _participantStatus?: Element | undefined;
 
   /**
@@ -3555,7 +3555,7 @@ export interface Attachment extends Element {
    * chosen to interpret or render the data. Includes mime type parameters such as
    * charset where appropriate.
    */
-  contentType?: string | undefined;
+  contentType?: MimeTypes | undefined;
   _contentType?: Element | undefined;
 
   /**
@@ -3635,7 +3635,7 @@ export interface AuditEvent extends DomainResource {
    * audit.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.action}
    */
-  action?: string | undefined;
+  action?: AuditEventAction | undefined;
   _action?: Element | undefined;
 
   /**
@@ -3669,7 +3669,7 @@ For example, an activity may be initiated by one
    * accountability, these distinctions are not relevant.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.outcome}
    */
-  outcome?: string | undefined;
+  outcome?: AuditEventOutcome | undefined;
   _outcome?: Element | undefined;
 
   /**
@@ -3846,7 +3846,7 @@ export interface Binary extends Resource {
    * MimeType of the binary content represented as a standard MimeType (BCP 13).
    * @see {@link http://hl7.org/fhir/R4B/Binary-definitions.html#Binary.contentType}
    */
-  contentType: string;
+  contentType: MimeTypes;
   _contentType?: Element | undefined;
 
   /**
@@ -3943,7 +3943,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
    * Broad category of this product.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.productCategory}
    */
-  productCategory?: string | undefined;
+  productCategory?: BiologicallyDerivedProductCategory | undefined;
   _productCategory?: Element | undefined;
 
   /**
@@ -3972,7 +3972,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
    * Whether the product is currently available.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.status}
    */
-  status?: string | undefined;
+  status?: BiologicallyDerivedProductStatus | undefined;
   _status?: Element | undefined;
 
   /**
@@ -4179,7 +4179,7 @@ The timestamp value should be greater than the
    * specific rules for some of the bundle types.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.type}
    */
-  type: string;
+  type: BundleType;
   _type?: Element | undefined;
 }
 
@@ -4276,7 +4276,7 @@ export interface CapabilityStatement extends DomainResource {
    * will be either the version requested, or the server's default version.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.fhirVersion}
    */
-  fhirVersion: string;
+  fhirVersion: FHIRVersion;
   _fhirVersion?: Element | undefined;
 
   /**
@@ -4287,7 +4287,7 @@ export interface CapabilityStatement extends DomainResource {
    * Otherwise, mime types are legal here.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.format}
    */
-  format: Array<string>;
+  format: Array<MimeTypes>;
   _format?: Element[] | undefined;
 
   /**
@@ -4357,7 +4357,7 @@ Many [Implementation
    * software) or a class of implementation (e.g. a desired purchase).
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.kind}
    */
-  kind: string;
+  kind: CapabilityStatementKind;
   _kind?: Element | undefined;
 
   /**
@@ -4388,7 +4388,7 @@ Many [Implementation
    * supports, but this is not always possible or necessary.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.patchFormat}
    */
-  patchFormat?: Array<string> | undefined;
+  patchFormat?: Array<MimeTypes> | undefined;
   _patchFormat?: Element[] | undefined;
 
   /**
@@ -4445,7 +4445,7 @@ Many [Implementation
    * capability statements are used to describe possible or desired systems.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -4669,7 +4669,7 @@ export interface CarePlan extends DomainResource {
    * resource is actually applicable.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.intent}
    */
-  intent: string;
+  intent: CarePlanIntent;
   _intent?: Element | undefined;
 
   /**
@@ -4722,7 +4722,7 @@ This element is labeled as a
  * plan as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.status}
  */
-  status: string;
+  status: RequestStatus;
   _status?: Element | undefined;
 
   /**
@@ -4860,7 +4860,7 @@ export interface CareTeam extends DomainResource {
    * entered-in-error that marks the care team as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.status}
    */
-  status?: string | undefined;
+  status?: CareTeamStatus | undefined;
   _status?: Element | undefined;
 
   /**
@@ -4962,7 +4962,7 @@ export interface CatalogEntry extends DomainResource {
    * list of medications even if not prescribable.
    * @see {@link http://hl7.org/fhir/R4B/CatalogEntry-definitions.html#CatalogEntry.status}
    */
-  status?: string | undefined;
+  status?: PublicationStatus | undefined;
   _status?: Element | undefined;
 
   /**
@@ -5242,7 +5242,7 @@ This element is labeled as a modifier because the status contains the code
  * entered-in-error that marks the charge item as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.status}
  */
-  status: string;
+  status: ChargeItemStatus;
   _status?: Element | undefined;
 
   /**
@@ -5467,7 +5467,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -5763,7 +5763,7 @@ export interface Citation extends DomainResource {
    * Allows filtering of summarys s that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -6040,7 +6040,7 @@ export interface Claim extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.status}
    */
-  status: string;
+  status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
 
   /**
@@ -6087,7 +6087,7 @@ export interface Claim extends DomainResource {
    * future.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.use}
    */
-  use: string;
+  use: Use;
   _use?: Element | undefined;
 }
 
@@ -6221,7 +6221,7 @@ export interface ClaimResponse extends DomainResource {
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.outcome}
    */
-  outcome: string;
+  outcome: RemittanceOutcome;
   _outcome?: Element | undefined;
 
   /**
@@ -6293,7 +6293,7 @@ export interface ClaimResponse extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.status}
    */
-  status: string;
+  status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
 
   /**
@@ -6332,7 +6332,7 @@ export interface ClaimResponse extends DomainResource {
    * future.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.use}
    */
-  use: string;
+  use: Use;
   _use?: Element | undefined;
 }
 
@@ -6507,7 +6507,7 @@ export interface ClinicalImpression extends DomainResource {
    * entered-in-error that marks the clinical impression as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.status}
    */
-  status: string;
+  status: ClinicalImpressionStatus;
   _status?: Element | undefined;
 
   /**
@@ -6617,7 +6617,7 @@ export interface ClinicalUseDefinition extends DomainResource {
    * indication | contraindication | interaction | undesirable-effect | warning.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.type}
    */
-  type: string;
+  type: ClinicalUseDefinitionType;
   _type?: Element | undefined;
 
   /**
@@ -6752,7 +6752,7 @@ export interface CodeSystem extends DomainResource {
    * are represented in this resource instance.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.content}
    */
-  content: string;
+  content: CodeSystemContentMode;
   _content?: Element | undefined;
 
   /**
@@ -6835,7 +6835,7 @@ export interface CodeSystem extends DomainResource {
    * and represent the information using properties.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.hierarchyMeaning}
    */
-  hierarchyMeaning?: string | undefined;
+  hierarchyMeaning?: CodeSystemHierarchyMeaning | undefined;
   _hierarchyMeaning?: Element | undefined;
 
   /**
@@ -6912,7 +6912,7 @@ export interface CodeSystem extends DomainResource {
    * Allows filtering of code systems that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -7207,7 +7207,7 @@ export interface Communication extends DomainResource {
    * communication is planned or in progress.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.priority}
    */
-  priority?: string | undefined;
+  priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
 
   /**
@@ -7265,7 +7265,7 @@ export interface Communication extends DomainResource {
    * aborted and entered-in-error that mark the communication as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.status}
    */
-  status: string;
+  status: EventStatus;
   _status?: Element | undefined;
 
   /**
@@ -7431,7 +7431,7 @@ export interface CommunicationRequest extends DomainResource {
    * such as stat, urgent, routine.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.priority}
    */
-  priority?: string | undefined;
+  priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
 
   /**
@@ -7487,7 +7487,7 @@ export interface CommunicationRequest extends DomainResource {
    * The status of the proposal or order.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.status}
    */
-  status: string;
+  status: RequestStatus;
   _status?: Element | undefined;
 
   /**
@@ -7525,7 +7525,7 @@ export interface CompartmentDefinition extends DomainResource {
    * choose to support them.
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.code}
    */
-  code: string;
+  code: CompartmentType;
   _code?: Element | undefined;
 
   /**
@@ -7640,7 +7640,7 @@ export interface CompartmentDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -7754,7 +7754,7 @@ export interface Composition extends DomainResource {
    * are not.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.confidentiality}
    */
-  confidentiality?: string | undefined;
+  confidentiality?: undefined | undefined;
   _confidentiality?: Element | undefined;
 
   /**
@@ -7839,7 +7839,7 @@ Some reporting work flows require that the original narrative of a
  * business rule is in effect. This would be handled by an extension if required.
  * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.status}
  */
-  status: string;
+  status: CompositionStatus;
   _status?: Element | undefined;
 
   /**
@@ -8040,7 +8040,7 @@ export interface ConceptMap extends DomainResource {
    * Allows filtering of concept maps that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -8256,7 +8256,7 @@ export interface Condition extends DomainResource {
    * additional specificity.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.clinicalStatus}
    */
-  clinicalStatus?: CodeableConcept | undefined;
+  clinicalStatus?: ConditionClinicalStatusCodes | undefined;
   _clinicalStatus?: Element | undefined;
 
   /**
@@ -8414,7 +8414,7 @@ The data
  * specificity.
  * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.verificationStatus}
  */
-  verificationStatus?: CodeableConcept | undefined;
+  verificationStatus?: ConditionVerificationStatus | undefined;
   _verificationStatus?: Element | undefined;
 }
 
@@ -8551,7 +8551,7 @@ export interface Consent extends DomainResource {
    * rejected and entered-in-error that mark the Consent as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.status}
    */
-  status: string;
+  status: ConsentState;
   _status?: Element | undefined;
 
   /**
@@ -8617,7 +8617,7 @@ export interface ContactPoint extends Element {
    * Telecommunications form for contact point - what communications system is
    * required to make use of the contact.
    */
-  system?: string | undefined;
+  system?: ContactPointSystem | undefined;
   _system?: Element | undefined;
 
   /**
@@ -8625,7 +8625,7 @@ export interface ContactPoint extends Element {
    * Applications can assume that a contact is current unless it explicitly says that
    * it is temporary or old.
    */
-  use?: string | undefined;
+  use?: ContactPointUse | undefined;
   _use?: Element | undefined;
 
   /**
@@ -8872,7 +8872,7 @@ For example,
    * mark the contract as not currently valid or active.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.status}
    */
-  status?: string | undefined;
+  status?: ContractResourceStatusCodes | undefined;
   _status?: Element | undefined;
 
   /**
@@ -9009,7 +9009,7 @@ export interface Contributor extends Element {
   /**
    * The type of contributor.
    */
-  type: string;
+  type: ContributorType;
   _type?: Element | undefined;
 }
 
@@ -9153,7 +9153,7 @@ For selfpay it may provide multiple paying
    * entered-in-error that marks the coverage as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.status}
    */
-  status: string;
+  status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
 
   /**
@@ -9301,7 +9301,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * not specified.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.purpose}
    */
-  purpose: Array<string>;
+  purpose: Array<EligibilityRequestPurpose>;
   _purpose?: Element[] | undefined;
 
   /**
@@ -9326,7 +9326,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.status}
    */
-  status: string;
+  status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
 
   /**
@@ -9418,7 +9418,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.outcome}
    */
-  outcome: string;
+  outcome: RemittanceOutcome;
   _outcome?: Element | undefined;
 
   /**
@@ -9445,7 +9445,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * not specified.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.purpose}
    */
-  purpose: Array<string>;
+  purpose: Array<EligibilityResponsePurpose>;
   _purpose?: Element[] | undefined;
 
   /**
@@ -9487,7 +9487,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.status}
    */
-  status: string;
+  status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
 }
 
@@ -9585,7 +9585,7 @@ The value of mustSupport SHALL be a
    * The type of the required data, specified as the type name of a resource. For
    * profiles, this value is set to the type of the base resource of the profile.
    */
-  type: string;
+  type: FHIRAllTypes;
   _type?: Element | undefined;
 }
 
@@ -9763,7 +9763,7 @@ Unknown
  * does not represent "other" - one of the defined statuses must apply.  Unknown is
  * used when the authoring system is not sure what the current status is.
  */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -9927,7 +9927,7 @@ export interface DetectedIssue extends DomainResource {
    * the potential impact on the patient.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.severity}
    */
-  severity?: string | undefined;
+  severity?: DetectedIssueSeverity | undefined;
   _severity?: Element | undefined;
 
   /**
@@ -9936,7 +9936,7 @@ export interface DetectedIssue extends DomainResource {
    * cancelled and entered-in-error that mark the issue as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.status}
    */
-  status: string;
+  status: ObservationStatus;
   _status?: Element | undefined;
 }
 
@@ -10120,7 +10120,7 @@ export interface Device extends DomainResource {
    * valid.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.status}
    */
-  status?: string | undefined;
+  status?: FHIRDeviceStatus | undefined;
   _status?: Element | undefined;
 
   /**
@@ -10378,7 +10378,7 @@ export interface DeviceMetric extends DomainResource {
    * be for example a setting, measurement, or calculation.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.category}
    */
-  category: string;
+  category: DeviceMetricCategory;
   _category?: Element | undefined;
 
   /**
@@ -10389,7 +10389,7 @@ export interface DeviceMetric extends DomainResource {
    * and SpO2- magenta.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.color}
    */
-  color?: string | undefined;
+  color?: DeviceMetricColor | undefined;
   _color?: Element | undefined;
 
   /**
@@ -10422,7 +10422,7 @@ export interface DeviceMetric extends DomainResource {
    * Standby, etc.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.operationalStatus}
    */
-  operationalStatus?: string | undefined;
+  operationalStatus?: DeviceMetricOperationalStatus | undefined;
   _operationalStatus?: Element | undefined;
 
   /**
@@ -10561,7 +10561,7 @@ export interface DeviceRequest extends DomainResource {
    * Whether the request is a proposal, plan, an original order or a reflex order.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.intent}
    */
-  intent: string;
+  intent: RequestIntent;
   _intent?: Element | undefined;
 
   /**
@@ -10630,7 +10630,7 @@ export interface DeviceRequest extends DomainResource {
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.priority}
    */
-  priority?: string | undefined;
+  priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
 
   /**
@@ -10685,7 +10685,7 @@ All Provenances should have some historical version of this
    * cancelled and entered-in-error that mark the request as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.status}
    */
-  status?: string | undefined;
+  status?: RequestStatus | undefined;
   _status?: Element | undefined;
 
   /**
@@ -10809,7 +10809,7 @@ This element is labeled as a modifier because the
  * status contains the codes that mark the statement as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement-definitions.html#DeviceUseStatement.status}
  */
-  status: string;
+  status: DeviceUseStatementStatus;
   _status?: Element | undefined;
 
   /**
@@ -11038,7 +11038,7 @@ export interface DiagnosticReport extends DomainResource {
    * The status of the diagnostic report.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.status}
    */
-  status: string;
+  status: DiagnosticReportStatus;
   _status?: Element | undefined;
 
   /**
@@ -11166,7 +11166,7 @@ export interface DocumentManifest extends DomainResource {
    * mark the manifest as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.status}
    */
-  status: string;
+  status: DocumentReferenceStatus;
   _status?: Element | undefined;
 
   /**
@@ -11290,7 +11290,7 @@ export interface DocumentReference extends DomainResource {
    * The document that is pointed to might be in various lifecycle states.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.docStatus}
    */
-  docStatus?: string | undefined;
+  docStatus?: CompositionStatus | undefined;
   _docStatus?: Element | undefined;
 
   /**
@@ -11356,7 +11356,7 @@ This element is labeled as a modifier because the
  * valid.
  * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.status}
  */
-  status: string;
+  status: DocumentReferenceStatus;
   _status?: Element | undefined;
 
   /**
@@ -15143,7 +15143,7 @@ When
    * is used quite commonly in Logical models when the logical models represent a
    * specific serialization format (e.g. CDA, v2 etc.).
    */
-  representation?: Array<string> | undefined;
+  representation?: Array<PropertyRepresentation> | undefined;
   _representation?: Element[] | undefined;
 
   /**
@@ -15419,7 +15419,7 @@ Refer to the Notes section in the Patient resource for further
    * that may occur between statuses (and also classes).
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.status}
    */
-  status: string;
+  status: EncounterStatus;
   _status?: Element | undefined;
 
   /**
@@ -15558,7 +15558,7 @@ and not
    * for ensuring that the content is appropriately secured.
    * @see {@link http://hl7.org/fhir/R4B/Endpoint-definitions.html#Endpoint.payloadMimeType}
    */
-  payloadMimeType?: Array<string> | undefined;
+  payloadMimeType?: Array<MimeTypes> | undefined;
   _payloadMimeType?: Element[] | undefined;
 
   /**
@@ -15585,7 +15585,7 @@ and not
    * mark the endpoint as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Endpoint-definitions.html#Endpoint.status}
    */
-  status: string;
+  status: EndpointStatus;
   _status?: Element | undefined;
 }
 
@@ -15648,7 +15648,7 @@ export interface EnrollmentRequest extends DomainResource {
    * mark the request as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentRequest-definitions.html#EnrollmentRequest.status}
    */
-  status?: string | undefined;
+  status?: FinancialResourceStatusCodes | undefined;
   _status?: Element | undefined;
 }
 
@@ -15695,7 +15695,7 @@ export interface EnrollmentResponse extends DomainResource {
    * Processing status: error, complete.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentResponse-definitions.html#EnrollmentResponse.outcome}
    */
-  outcome?: string | undefined;
+  outcome?: RemittanceOutcome | undefined;
   _outcome?: Element | undefined;
 
   /**
@@ -15718,7 +15718,7 @@ export interface EnrollmentResponse extends DomainResource {
    * mark the response as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentResponse-definitions.html#EnrollmentResponse.status}
    */
-  status?: string | undefined;
+  status?: FinancialResourceStatusCodes | undefined;
   _status?: Element | undefined;
 }
 
@@ -15803,7 +15803,7 @@ export interface EpisodeOfCare extends DomainResource {
    * mark the episode as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.status}
    */
-  status: string;
+  status: EpisodeOfCareStatus;
   _status?: Element | undefined;
 
   /**
@@ -16037,7 +16037,7 @@ Unknown does not represent "other" - one of the
  * defined statuses must apply.  Unknown is used when the authoring system is not
  * sure what the current status is.
  */
-  status: string;
+  status: EventStatus;
   _status?: Element | undefined;
 
   /**
@@ -16270,7 +16270,7 @@ export interface EventDefinition extends DomainResource {
    * Allows filtering of event definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/EventDefinition-definitions.html#EventDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -16583,7 +16583,7 @@ export interface Evidence extends DomainResource {
    * Allows filtering of summarys s that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -16817,7 +16817,7 @@ export interface EvidenceReport extends DomainResource {
    * Allows filtering of summaries that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -16918,7 +16918,7 @@ export interface EvidenceVariable extends DomainResource {
    * Used to specify if two or more characteristics are combined with OR or AND.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristicCombination}
    */
-  characteristicCombination?: string | undefined;
+  characteristicCombination?: CharacteristicCombination | undefined;
   _characteristicCombination?: Element | undefined;
 
   /**
@@ -16987,7 +16987,7 @@ export interface EvidenceVariable extends DomainResource {
    * Used for an outcome to classify.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.handling}
    */
-  handling?: string | undefined;
+  handling?: EvidenceVariableHandling | undefined;
   _handling?: Element | undefined;
 
   /**
@@ -17069,7 +17069,7 @@ export interface EvidenceVariable extends DomainResource {
    * Allows filtering of evidence variables that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -17290,7 +17290,7 @@ export interface ExampleScenario extends DomainResource {
    * Allows filtering of example scenarios that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -17570,7 +17570,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.outcome}
    */
-  outcome: string;
+  outcome: RemittanceOutcome;
   _outcome?: Element | undefined;
 
   /**
@@ -17693,7 +17693,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.status}
    */
-  status: string;
+  status: ExplanationOfBenefitStatus;
   _status?: Element | undefined;
 
   /**
@@ -17740,7 +17740,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * future.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.use}
    */
-  use: string;
+  use: Use;
   _use?: Element | undefined;
 }
 
@@ -18404,7 +18404,7 @@ export interface FamilyMemberHistory extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.status}
    */
-  status: string;
+  status: FamilyHistoryStatus;
   _status?: Element | undefined;
 }
 
@@ -18499,7 +18499,7 @@ export interface FiveWs {
   /**
    * Status Field.
    */
-  status?: string | undefined;
+  status?: CanonicalStatusCodesForFHIRResources | undefined;
   _status?: Element | undefined;
 
   /**
@@ -18640,7 +18640,7 @@ export interface Flag extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Flag-definitions.html#Flag.status}
    */
-  status: string;
+  status: FlagStatus;
   _status?: Element | undefined;
 
   /**
@@ -18727,7 +18727,7 @@ export interface Goal extends DomainResource {
    * that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.lifecycleStatus}
    */
-  lifecycleStatus: string;
+  lifecycleStatus: GoalLifecycleStatus;
   _lifecycleStatus?: Element | undefined;
 
   /**
@@ -18952,7 +18952,7 @@ export interface GraphDefinition extends DomainResource {
    * The type of FHIR resource at which instances of this graph start.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.start}
    */
-  start: string;
+  start: ResourceType;
   _start?: Element | undefined;
 
   /**
@@ -18961,7 +18961,7 @@ export interface GraphDefinition extends DomainResource {
    * Allows filtering of graph definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -19113,7 +19113,7 @@ export interface Group extends DomainResource {
    * animal; or Practitioner, Device, Medication or Substance for the other types.).
    * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.type}
    */
-  type: string;
+  type: GroupType;
   _type?: Element | undefined;
 }
 
@@ -19268,7 +19268,7 @@ export interface GuidanceResponse extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.status}
    */
-  status: string;
+  status: GuidanceResponseStatus;
   _status?: Element | undefined;
 
   /**
@@ -19569,7 +19569,7 @@ export interface HumanName extends Element {
    * Applications can assume that a name is current unless it explicitly says that it
    * is temporary or old.
    */
-  use?: string | undefined;
+  use?: NameUse | undefined;
   _use?: Element | undefined;
 }
 
@@ -19625,7 +19625,7 @@ export interface Identifier extends Element {
    * Applications can assume that an identifier is permanent unless it explicitly
    * says that it is temporary.
    */
-  use?: string | undefined;
+  use?: IdentifierUse | undefined;
   _use?: Element | undefined;
 
   /**
@@ -19820,7 +19820,7 @@ export interface ImagingStudy extends DomainResource {
    * is.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.status}
    */
-  status: string;
+  status: ImagingStudyStatus;
   _status?: Element | undefined;
 
   /**
@@ -20071,7 +20071,7 @@ export interface Immunization extends DomainResource {
    * that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.status}
    */
-  status: string;
+  status: ImmunizationStatusCodes;
   _status?: Element | undefined;
 
   /**
@@ -20221,7 +20221,7 @@ export interface ImmunizationEvaluation extends DomainResource {
    * event.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationEvaluation-definitions.html#ImmunizationEvaluation.status}
    */
-  status: string;
+  status: ImmunizationEvaluationStatusCodes;
   _status?: Element | undefined;
 
   /**
@@ -20384,7 +20384,7 @@ export interface ImplementationGuide extends DomainResource {
    * by regulation or market dynamics.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.fhirVersion}
    */
-  fhirVersion: Array<string>;
+  fhirVersion: Array<FHIRVersion>;
   _fhirVersion?: Element[] | undefined;
 
   /**
@@ -20412,7 +20412,7 @@ export interface ImplementationGuide extends DomainResource {
    * code, or 'not-open-source'.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.license}
    */
-  license?: string | undefined;
+  license?: SPDXLicense | undefined;
   _license?: Element | undefined;
 
   /**
@@ -20469,7 +20469,7 @@ export interface ImplementationGuide extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -20606,7 +20606,7 @@ export interface Ingredient extends DomainResource {
    * Allows filtering of ingredient that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -20731,7 +20731,7 @@ export interface InsurancePlan extends DomainResource {
    * The current state of the health insurance product.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.status}
    */
-  status?: string | undefined;
+  status?: PublicationStatus | undefined;
   _status?: Element | undefined;
 
   /**
@@ -20844,7 +20844,7 @@ export interface Invoice extends DomainResource {
    * The current state of the Invoice.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.status}
    */
-  status: string;
+  status: InvoiceStatus;
   _status?: Element | undefined;
 
   /**
@@ -21128,7 +21128,7 @@ export interface Library extends DomainResource {
    * Allows filtering of libraries that are appropriate for use vs. not.
    * @see {@link http://hl7.org/fhir/R4B/Library-definitions.html#Library.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -21357,7 +21357,7 @@ export interface List extends DomainResource {
    * misunderstood as a complete list.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.mode}
    */
-  mode: string;
+  mode: ListMode;
   _mode?: Element | undefined;
 
   /**
@@ -21393,7 +21393,7 @@ export interface List extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.status}
    */
-  status: string;
+  status: ListStatus;
   _status?: Element | undefined;
 
   /**
@@ -21505,7 +21505,7 @@ Specific services
    * locations changes how it can be used and understood.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.mode}
    */
-  mode?: string | undefined;
+  mode?: LocationMode | undefined;
   _mode?: Element | undefined;
 
   /**
@@ -21555,7 +21555,7 @@ Specific services
    * schedule/slots if they are configured for the location.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.status}
    */
-  status?: string | undefined;
+  status?: LocationStatus | undefined;
   _status?: Element | undefined;
 
   /**
@@ -21630,7 +21630,7 @@ export interface ManufacturedItemDefinition extends DomainResource {
    * Allows filtering of manufactured items that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/ManufacturedItemDefinition-definitions.html#ManufacturedItemDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -21874,7 +21874,7 @@ export interface Measure extends DomainResource {
    * quality OR quality is within a range).
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.improvementNotation}
    */
-  improvementNotation?: CodeableConcept | undefined;
+  improvementNotation?: MeasureImprovementNotation | undefined;
   _improvementNotation?: Element | undefined;
 
   /**
@@ -22013,7 +22013,7 @@ export interface Measure extends DomainResource {
    * Allows filtering of measures that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -22206,7 +22206,7 @@ export interface MeasureReport extends DomainResource {
    * because it changes the interpretation of the reported measure score.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.improvementNotation}
    */
-  improvementNotation?: CodeableConcept | undefined;
+  improvementNotation?: MeasureImprovementNotation | undefined;
   _improvementNotation?: Element | undefined;
 
   /**
@@ -22237,7 +22237,7 @@ export interface MeasureReport extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.status}
    */
-  status: string;
+  status: MeasureReportStatus;
   _status?: Element | undefined;
 
   /**
@@ -22259,7 +22259,7 @@ export interface MeasureReport extends DomainResource {
    * or population, but they may.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.type}
    */
-  type: string;
+  type: MeasureReportType;
   _type?: Element | undefined;
 }
 
@@ -22455,7 +22455,7 @@ Unknown does not represent "other" - one of the
  * sure what the current status is.
  * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.status}
  */
-  status: string;
+  status: EventStatus;
   _status?: Element | undefined;
 
   /**
@@ -22586,7 +22586,7 @@ export interface Medication extends DomainResource {
    * have a separate status.
    * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.status}
    */
-  status?: string | undefined;
+  status?: MedicationStatusCodes | undefined;
   _status?: Element | undefined;
 }
 
@@ -22774,7 +22774,7 @@ export interface MedicationAdministration extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.status}
    */
-  status: string;
+  status: MedicationAdministrationStatusCodes;
   _status?: Element | undefined;
 
   /**
@@ -22983,7 +22983,7 @@ The
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.status}
    */
-  status: string;
+  status: MedicationDispenseStatusCodes;
   _status?: Element | undefined;
 
   /**
@@ -23244,7 +23244,7 @@ export interface MedicationKnowledge extends DomainResource {
    * have a separate status.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.status}
    */
-  status?: string | undefined;
+  status?: MedicationKnowledgeStatusCodes | undefined;
   _status?: Element | undefined;
 
   /**
@@ -23444,7 +23444,7 @@ This element is labeled as a modifier because the intent alters when
  * and how the resource is actually applicable.
  * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.intent}
  */
-  intent: string;
+  intent: medicationRequestIntent;
   _intent?: Element | undefined;
 
   /**
@@ -23508,7 +23508,7 @@ This element is labeled as a modifier because the intent alters when
    * other requests.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.priority}
    */
-  priority?: string | undefined;
+  priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
 
   /**
@@ -23578,7 +23578,7 @@ This element is labeled as a modifier because the intent alters when
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.status}
    */
-  status: string;
+  status: medicationrequestStatus;
   _status?: Element | undefined;
 
   /**
@@ -23834,7 +23834,7 @@ This element is labeled as a modifier because the status contains
  * codes that mark the resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.status}
  */
-  status: string;
+  status: MedicationStatementStatusCodes;
   _status?: Element | undefined;
 
   /**
@@ -24141,7 +24141,7 @@ export interface MessageDefinition extends DomainResource {
    * The impact of the content of the message.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.category}
    */
-  category?: string | undefined;
+  category?: MessageSignificanceCategory | undefined;
   _category?: Element | undefined;
 
   /**
@@ -24321,7 +24321,7 @@ export interface MessageDefinition extends DomainResource {
    * whether a response is required or only upon error or success, or never.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.responseRequired}
    */
-  responseRequired?: string | undefined;
+  responseRequired?: messageheaderresponserequest | undefined;
   _responseRequired?: Element | undefined;
 
   /**
@@ -24330,7 +24330,7 @@ export interface MessageDefinition extends DomainResource {
    * Allows filtering of message definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -24729,7 +24729,7 @@ export interface MolecularSequence extends DomainResource {
    * Amino Acid Sequence/ DNA Sequence / RNA Sequence.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.type}
    */
-  type?: string | undefined;
+  type?: sequenceType | undefined;
   _type?: Element | undefined;
 
   /**
@@ -24756,7 +24756,7 @@ export interface Money extends Element {
   /**
    * ISO 4217 Currency Code.
    */
-  currency?: string | undefined;
+  currency?: Currencies | undefined;
   _currency?: Element | undefined;
 
   /**
@@ -24833,7 +24833,7 @@ export interface NamingSystem extends DomainResource {
    * unique?
    * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.kind}
    */
-  kind: string;
+  kind: NamingSystemType;
   _kind?: Element | undefined;
 
   /**
@@ -24878,7 +24878,7 @@ export interface NamingSystem extends DomainResource {
    * Allows filtering of naming systems that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -24950,7 +24950,7 @@ export interface Narrative extends Element {
    * defined data or the extensions too), or whether a human authored it and it may
    * contain additional data.
    */
-  status: string;
+  status: NarrativeStatus;
   _status?: Element | undefined;
 }
 
@@ -25081,7 +25081,7 @@ export interface NutritionOrder extends DomainResource {
    * codes is mutually exclusive or a strict all-encompassing hierarchy.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.intent}
    */
-  intent: string;
+  intent: RequestIntent;
   _intent?: Element | undefined;
 
   /**
@@ -25126,7 +25126,7 @@ export interface NutritionOrder extends DomainResource {
    * status contains codes that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.status}
    */
-  status: string;
+  status: RequestStatus;
   _status?: Element | undefined;
 
   /**
@@ -25229,7 +25229,7 @@ export interface NutritionProduct extends DomainResource {
    * is.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.status}
    */
-  status: string;
+  status: NutritionProductStatus;
   _status?: Element | undefined;
 }
 
@@ -25555,7 +25555,7 @@ export interface Observation extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.status}
    */
-  status: string;
+  status: ObservationStatus;
   _status?: Element | undefined;
 
   /**
@@ -25825,7 +25825,7 @@ export interface ObservationDefinition extends DomainResource {
    * conforming to this ObservationDefinition.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.permittedDataType}
    */
-  permittedDataType?: Array<string> | undefined;
+  permittedDataType?: Array<ObservationDataType> | undefined;
   _permittedDataType?: Element[] | undefined;
 
   /**
@@ -25997,7 +25997,7 @@ export interface OperationDefinition extends DomainResource {
    * Named queries are invoked differently, and have different capabilities.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.kind}
    */
-  kind: string;
+  kind: OperationKind;
   _kind?: Element | undefined;
 
   /**
@@ -26077,7 +26077,7 @@ export interface OperationDefinition extends DomainResource {
    * operation can be invoked on any concrete specialization.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.resource}
    */
-  resource?: Array<string> | undefined;
+  resource?: Array<ResourceType> | undefined;
   _resource?: Element[] | undefined;
 
   /**
@@ -26087,7 +26087,7 @@ export interface OperationDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -26596,13 +26596,13 @@ export interface ParameterDefinition extends Element {
   /**
    * The type of the parameter.
    */
-  type: string;
+  type: FHIRAllTypes;
   _type?: Element | undefined;
 
   /**
    * Whether the parameter is input or output for the module.
    */
-  use: string;
+  use: OperationParameterUse;
   _use?: Element | undefined;
 }
 
@@ -26736,7 +26736,7 @@ Deceased patients may also be marked
    * information about communicating patient gender and sex.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.gender}
    */
-  gender?: string | undefined;
+  gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
 
   /**
@@ -26950,7 +26950,7 @@ export interface PaymentNotice extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/PaymentNotice-definitions.html#PaymentNotice.status}
    */
-  status: string;
+  status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
 }
 
@@ -27010,7 +27010,7 @@ export interface PaymentReconciliation extends DomainResource {
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.outcome}
    */
-  outcome?: string | undefined;
+  outcome?: RemittanceOutcome | undefined;
   _outcome?: Element | undefined;
 
   /**
@@ -27078,7 +27078,7 @@ export interface PaymentReconciliation extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.status}
    */
-  status: string;
+  status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
 }
 
@@ -27154,7 +27154,7 @@ export interface Person extends DomainResource {
    * though a clear majority of systems and contexts only support M and F.
    * @see {@link http://hl7.org/fhir/R4B/Person-definitions.html#Person.gender}
    */
-  gender?: string | undefined;
+  gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
 
   /**
@@ -27449,7 +27449,7 @@ export interface PlanDefinition extends DomainResource {
    * Allows filtering of plan definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -27697,7 +27697,7 @@ Work addresses are not typically entered in this property as they are
    * administration and record keeping purposes.
    * @see {@link http://hl7.org/fhir/R4B/Practitioner-definitions.html#Practitioner.gender}
    */
-  gender?: string | undefined;
+  gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
 
   /**
@@ -28210,7 +28210,7 @@ This element is labeled as a
  * currently valid.
  * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.status}
  */
-  status: string;
+  status: EventStatus;
   _status?: Element | undefined;
 
   /**
@@ -28541,7 +28541,7 @@ export interface Quantity extends Element {
    * greater or less than the stated value due to measurement issues; e.g. if the
    * comparator is "<" , then the real value is < stated value.
    */
-  comparator?: string | undefined;
+  comparator?: QuantityComparator | undefined;
   _comparator?: Element | undefined;
 
   /**
@@ -28756,7 +28756,7 @@ export interface Questionnaire extends DomainResource {
    * Allows filtering of questionnaires that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -28765,7 +28765,7 @@ export interface Questionnaire extends DomainResource {
    * If none are specified, then the subject is unlimited.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.subjectType}
    */
-  subjectType?: Array<string> | undefined;
+  subjectType?: Array<ResourceType> | undefined;
   _subjectType?: Element[] | undefined;
 
   /**
@@ -28936,7 +28936,7 @@ This element is optional to allow for systems that might not know the
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.status}
    */
-  status: string;
+  status: QuestionnaireResponseStatus;
   _status?: Element | undefined;
 
   /**
@@ -29306,7 +29306,7 @@ export interface RelatedArtifact extends Element {
   /**
    * The type of relationship to the related artifact.
    */
-  type: string;
+  type: RelatedArtifactType;
   _type?: Element | undefined;
 
   /**
@@ -29370,7 +29370,7 @@ export interface RelatedPerson extends DomainResource {
    * administration and record keeping purposes.
    * @see {@link http://hl7.org/fhir/R4B/RelatedPerson-definitions.html#RelatedPerson.gender}
    */
-  gender?: string | undefined;
+  gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
 
   /**
@@ -29562,7 +29562,7 @@ When resources map to this element,
  * "order".  Expectation is that the set of codes is mutually exclusive or a strict
  * all-encompassing hierarchy.
  */
-  intent: string;
+  intent: RequestIntent;
   _intent?: Element | undefined;
 
   /**
@@ -29619,7 +29619,7 @@ When resources map to this element,
    * Indicates how quickly the {{title}} should be addressed with respect to other
    * requests.
    */
-  priority?: string | undefined;
+  priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
 
   /**
@@ -29701,7 +29701,7 @@ A status of completed for a "doNotPerform"
  * request indicates that the period of non-performance is now satisfied and the
  * request no longer holds.
  */
-  status: string;
+  status: RequestStatus;
   _status?: Element | undefined;
 
   /**
@@ -29831,7 +29831,7 @@ export interface RequestGroup extends DomainResource {
    * where the request fits into the workflow chain.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.intent}
    */
-  intent: string;
+  intent: RequestIntent;
   _intent?: Element | undefined;
 
   /**
@@ -29846,7 +29846,7 @@ export interface RequestGroup extends DomainResource {
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.priority}
    */
-  priority?: string | undefined;
+  priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
 
   /**
@@ -29878,7 +29878,7 @@ export interface RequestGroup extends DomainResource {
    * status of all the requests in the group.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.status}
    */
-  status: string;
+  status: RequestStatus;
   _status?: Element | undefined;
 
   /**
@@ -30155,7 +30155,7 @@ export interface ResearchDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -30524,7 +30524,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * versus not.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -30587,7 +30587,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * The type of research element, a population, an exposure, or an outcome.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.type}
    */
-  type: string;
+  type: ResearchElementType;
   _type?: Element | undefined;
 
   /**
@@ -30641,7 +30641,7 @@ In some cases, the resource can no longer
    * The type of the outcome (e.g. Dichotomous, Continuous, or Descriptive).
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.variableType}
    */
-  variableType?: string | undefined;
+  variableType?: VariableType | undefined;
   _variableType?: Element | undefined;
 
   /**
@@ -30857,7 +30857,7 @@ export interface ResearchStudy extends DomainResource {
    * The current state of the study.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.status}
    */
-  status: string;
+  status: ResearchStudyStatus;
   _status?: Element | undefined;
 
   /**
@@ -30927,7 +30927,7 @@ export interface ResearchSubject extends DomainResource {
    * The current state of the subject.
    * @see {@link http://hl7.org/fhir/R4B/ResearchSubject-definitions.html#ResearchSubject.status}
    */
-  status: string;
+  status: ResearchSubjectStatus;
   _status?: Element | undefined;
 
   /**
@@ -31134,7 +31134,7 @@ export interface RiskAssessment extends DomainResource {
    * The status of the RiskAssessment, using the same statuses as an Observation.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.status}
    */
-  status: string;
+  status: ObservationStatus;
   _status?: Element | undefined;
 
   /**
@@ -31313,7 +31313,7 @@ export interface SearchParameter extends DomainResource {
    * Search](http.html#xres-search)).
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.base}
    */
-  base: Array<string>;
+  base: Array<ResourceType>;
   _base?: Element[] | undefined;
 
   /**
@@ -31345,7 +31345,7 @@ export interface SearchParameter extends DomainResource {
    * comparators.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.comparator}
    */
-  comparator?: Array<string> | undefined;
+  comparator?: Array<SearchComparator> | undefined;
   _comparator?: Element[] | undefined;
 
   /**
@@ -31444,7 +31444,7 @@ export interface SearchParameter extends DomainResource {
    * A modifier supported for the search parameter.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.modifier}
    */
-  modifier?: Array<string> | undefined;
+  modifier?: Array<SearchModifierCode> | undefined;
   _modifier?: Element[] | undefined;
 
   /**
@@ -31506,14 +31506,14 @@ export interface SearchParameter extends DomainResource {
    * Allows filtering of search parameters that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
    * Types of resource (if a resource is referenced).
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.target}
    */
-  target?: Array<string> | undefined;
+  target?: Array<ResourceType> | undefined;
   _target?: Element[] | undefined;
 
   /**
@@ -31521,7 +31521,7 @@ export interface SearchParameter extends DomainResource {
    * interpreted.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.type}
    */
-  type: string;
+  type: SearchParamType;
   _type?: Element | undefined;
 
   /**
@@ -31594,7 +31594,7 @@ In some cases, the resource can no longer
    * the xpath query.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.xpathUsage}
    */
-  xpathUsage?: string | undefined;
+  xpathUsage?: XPathUsageType | undefined;
   _xpathUsage?: Element | undefined;
 }
 
@@ -31746,7 +31746,7 @@ export interface ServiceRequest extends DomainResource {
    * resource is actually applicable.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.intent}
    */
-  intent: string;
+  intent: RequestIntent;
   _intent?: Element | undefined;
 
   /**
@@ -31841,7 +31841,7 @@ export interface ServiceRequest extends DomainResource {
    * other requests.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.priority}
    */
-  priority?: string | undefined;
+  priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
 
   /**
@@ -31973,7 +31973,7 @@ All Provenances should have some historical version of this
    * general discussion) or using the [Task](task.html) resource.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.status}
    */
-  status: string;
+  status: RequestStatus;
   _status?: Element | undefined;
 
   /**
@@ -32036,7 +32036,7 @@ export interface Signature extends Element {
    * types are application/signature+xml for X ML DigSig, application/jose for JWS,
    * and image/* for a graphical image of a signature, etc.
    */
-  sigFormat?: string | undefined;
+  sigFormat?: MimeTypes | undefined;
   _sigFormat?: Element | undefined;
 
   /**
@@ -32046,7 +32046,7 @@ export interface Signature extends Element {
    * described in the specification (and imply appropriate bundle support).
    * Otherwise, mime types are legal here.
    */
-  targetFormat?: string | undefined;
+  targetFormat?: MimeTypes | undefined;
   _targetFormat?: Element | undefined;
 
   /**
@@ -32167,7 +32167,7 @@ export interface Slot extends DomainResource {
    * busy | free | busy-unavailable | busy-tentative | entered-in-error.
    * @see {@link http://hl7.org/fhir/R4B/Slot-definitions.html#Slot.status}
    */
-  status: string;
+  status: SlotStatus;
   _status?: Element | undefined;
 }
 
@@ -32271,7 +32271,7 @@ export interface Specimen extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.status}
    */
-  status?: string | undefined;
+  status?: SpecimenStatus | undefined;
   _status?: Element | undefined;
 
   /**
@@ -32451,7 +32451,7 @@ export interface StructureDefinition extends DomainResource {
    * Resources](profiling.html#resources)).
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.derivation}
    */
-  derivation?: string | undefined;
+  derivation?: TypeDerivationRule | undefined;
   _derivation?: Element | undefined;
 
   /**
@@ -32499,7 +32499,7 @@ export interface StructureDefinition extends DomainResource {
    * particular StructureDefinition if desired.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.fhirVersion}
    */
-  fhirVersion?: string | undefined;
+  fhirVersion?: FHIRVersion | undefined;
   _fhirVersion?: Element | undefined;
 
   /**
@@ -32537,7 +32537,7 @@ export interface StructureDefinition extends DomainResource {
    * Defines the kind of structure that this definition is describing.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.kind}
    */
-  kind: string;
+  kind: StructureDefinitionKind;
   _kind?: Element | undefined;
 
   /**
@@ -32607,7 +32607,7 @@ export interface StructureDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -32847,7 +32847,7 @@ export interface StructureMap extends DomainResource {
    * Allows filtering of structure maps that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -32999,7 +32999,7 @@ This
  * resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/Subscription-definitions.html#Subscription.status}
  */
-  status: string;
+  status: SubscriptionStatusCodes;
   _status?: Element | undefined;
 }
 
@@ -33044,7 +33044,7 @@ export interface SubscriptionStatus extends DomainResource {
    * subscription.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.status}
    */
-  status?: string | undefined;
+  status?: SubscriptionStatusCodes | undefined;
   _status?: Element | undefined;
 
   /**
@@ -33069,7 +33069,7 @@ export interface SubscriptionStatus extends DomainResource {
    * The type of event being conveyed with this notificaiton.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.type}
    */
-  type: string;
+  type: SubscriptionNotificationType;
   _type?: Element | undefined;
 }
 
@@ -33260,7 +33260,7 @@ Unknown
  * used when the authoring system is not sure what the current status is.
  * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.status}
  */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -33390,7 +33390,7 @@ export interface Substance extends DomainResource {
    * A code to indicate if the substance is actively used.
    * @see {@link http://hl7.org/fhir/R4B/Substance-definitions.html#Substance.status}
    */
-  status?: string | undefined;
+  status?: FHIRSubstanceStatus | undefined;
   _status?: Element | undefined;
 }
 
@@ -33635,7 +33635,7 @@ export interface SupplyDelivery extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.status}
    */
-  status?: string | undefined;
+  status?: SupplyDeliveryStatus | undefined;
   _status?: Element | undefined;
 
   /**
@@ -33657,7 +33657,7 @@ export interface SupplyDelivery extends DomainResource {
    * Trial Fill, Completion of Trial, Partial Fill, Emergency Fill, Samples, etc.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.type}
    */
-  type?: CodeableConcept | undefined;
+  type?: SupplyItemType | undefined;
   _type?: Element | undefined;
 }
 
@@ -33770,7 +33770,7 @@ export interface SupplyRequest extends DomainResource {
    * other requests.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.priority}
    */
-  priority?: string | undefined;
+  priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
 
   /**
@@ -33805,7 +33805,7 @@ export interface SupplyRequest extends DomainResource {
    * Status of the supply request.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.status}
    */
-  status?: string | undefined;
+  status?: SupplyRequestStatus | undefined;
   _status?: Element | undefined;
 
   /**
@@ -33958,7 +33958,7 @@ export interface Task extends DomainResource {
 In most cases, Tasks will have an intent of "order".
  * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.intent}
  */
-  intent: string;
+  intent: TaskIntent;
   _intent?: Element | undefined;
 
   /**
@@ -34017,7 +34017,7 @@ In most cases, Tasks will have an intent of "order".
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.priority}
    */
-  priority?: string | undefined;
+  priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
 
   /**
@@ -34072,7 +34072,7 @@ In most cases, Tasks will have an intent of "order".
    * The current status of the task.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.status}
    */
-  status: string;
+  status: TaskStatus;
   _status?: Element | undefined;
 
   /**
@@ -34110,7 +34110,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * See notes on the [ValueSet](valueset.html#) resource.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSearch}
    */
-  codeSearch?: string | undefined;
+  codeSearch?: CodeSearchSupport | undefined;
   _codeSearch?: Element | undefined;
 
   /**
@@ -34219,7 +34219,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * software) or a class of implementation (e.g. a desired purchase).
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.kind}
    */
-  kind: string;
+  kind: CapabilityStatementKind;
   _kind?: Element | undefined;
 
   /**
@@ -34284,7 +34284,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * where capability statements are used to describe possible or desired systems.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -34417,7 +34417,7 @@ export interface TestReport extends DomainResource {
    * currently in progress.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.result}
    */
-  result: string;
+  result: TestReportResult;
   _result?: Element | undefined;
 
   /**
@@ -34445,7 +34445,7 @@ This element is labeled as a modifier because the status
  * contains codes that mark the resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.status}
  */
-  status: string;
+  status: TestReportStatus;
   _status?: Element | undefined;
 
   /**
@@ -34667,7 +34667,7 @@ export interface TestScript extends DomainResource {
    * Allows filtering of test scripts that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -34889,7 +34889,7 @@ export interface TriggerDefinition extends Element {
   /**
    * The type of triggering event.
    */
-  type: string;
+  type: TriggerType;
   _type?: Element | undefined;
 }
 
@@ -35133,7 +35133,7 @@ Expansion.parameter is  a simplified list of parameters - a subset
    * for additional status information related to the editorial process.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.status}
    */
-  status: string;
+  status: PublicationStatus;
   _status?: Element | undefined;
 
   /**
@@ -35265,7 +35265,7 @@ export interface VerificationResult extends DomainResource {
    * revalidation; validation failed; revalidation failed).
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.status}
    */
-  status: string;
+  status: status;
   _status?: Element | undefined;
 
   /**
@@ -35384,7 +35384,7 @@ export interface VisionPrescription extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.status}
    */
-  status: string;
+  status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
 }
 
