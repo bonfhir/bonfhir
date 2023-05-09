@@ -28,14 +28,8 @@
     <%= backboneElement.rootElement.jsDoc %>
     export interface <%= backboneElement.rootElement.backboneElementName %> extends BackboneElement {
 
-      <% for (const element of backboneElement.ownRootElements) { %>
-        <% if (element.hasDataTypeChoiceVariants) { %>
-          <% for (const dataTypeVariant of element.dataTypeChoiceVariants) { %>
-            <%= renderElement(dataTypeVariant) %>
-          <% } %>
-        <% } else { %>
-          <%= renderElement(element) %>
-        <% } %>
+      <% for (const element of backboneElement.ownRootElementsWithChoices) { %>
+        <%= renderElement(element) %>
       <% } %>
 
     }
@@ -50,14 +44,8 @@
       readonly resourceType: string;
       <% } %>
 
-      <% for (const element of structureDef.ownRootElements) { %>
-        <% if (element.hasDataTypeChoiceVariants) { %>
-          <% for (const dataTypeVariant of element.dataTypeChoiceVariants) { %>
-            <%= renderElement(dataTypeVariant) %>
-          <% } %>
-        <% } else { %>
-          <%= renderElement(element) %>
-        <% } %>
+      <% for (const element of structureDef.ownRootElementsWithChoices) { %>
+        <%= renderElement(element) %>
       <% } %>
     }
 

@@ -173,6 +173,15 @@ export class StructureDefinition {
   }
 
   /**
+   * Only the elements that are root elements with the data type choice variants expanded.
+   */
+  public get ownRootElementsWithChoices(): ElementDefinition[] {
+    return this.ownRootElements.flatMap((x) =>
+      x.hasDataTypeChoiceVariants ? x.dataTypeChoiceVariants : x
+    );
+  }
+
+  /**
    * URL to the official FHIR documentation for this structure definition
    */
   public get fhirDocUrl(): string {
@@ -431,17 +440,32 @@ export class BackboneElement {
     public rootElement: ElementDefinition
   ) {}
 
+  /**
+   * Only the element definitions that starts with this backbone element's name
+   */
   public get ownElements(): ElementDefinition[] {
     return this._parent.elements.filter((x: any) =>
       x.path.startsWith((this.rootElement as any).path + ".")
     );
   }
 
+  /**
+   * Only the elements that are root elements - e.g. not nested in another backbone element
+   */
   public get ownRootElements(): ElementDefinition[] {
     return this.ownElements.filter(
       (x) =>
         (x as any).path.split(".").length ===
         (this.rootElement as any).path.split(".").length + 1
+    );
+  }
+
+  /**
+   * Only the elements that are root elements with the data type choice variants expanded.
+   */
+  public get ownRootElementsWithChoices(): ElementDefinition[] {
+    return this.ownRootElements.flatMap((x) =>
+      x.hasDataTypeChoiceVariants ? x.dataTypeChoiceVariants : x
     );
   }
 }
