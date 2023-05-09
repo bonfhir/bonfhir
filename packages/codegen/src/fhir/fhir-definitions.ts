@@ -72,7 +72,12 @@ export class FhirDefinitions {
    * All resources sorted by name
    */
   public get resources(): StructureDefinition[] {
-    return this.structureDefinitions.filter((x: any) => x.isResource);
+    return this.structureDefinitions.filter(
+      (x: any) =>
+        x.isResource &&
+        x.derivation != "constraint" &&
+        x.kind != "primitive-type"
+    );
   }
 
   /**

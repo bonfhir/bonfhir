@@ -63,3 +63,62 @@ export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 */
 export type Retrieved<TDomainResource extends DomainResource> = WithRequired<TDomainResource, "id"> & { meta: WithRequired<Meta, "versionId" | "lastUpdated"> };
 
+/**
+ * All the possible resource types
+ */
+export type FhirResource =
+  <% for (const structureDef of fhir.resources) { %> | <%= structureDef.type %> <% } %>;
+
+/**
+ * All the possible resource types as string
+ */
+export type FhirResourceType = FhirResource["resourceType"];
+
+/**
+ * Allow referencing a resource type from its string {@link FhirResourceType} representation.
+ */
+export type ExtractFhirResource<TResourceType extends FhirResourceType> = Extract<
+  FhirResource,
+  { resourceType: TResourceType }
+>;
+
+/**
+ * Return true if the object is a FhirResource of a specific type.
+ */
+export function isFhirResource<TResourceType extends FhirResourceType>(
+  type: TResourceType,
+  object: unknown | null | undefined
+): object is ExtractFhirResource<TResourceType> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (object as any)?.resourceType === type;
+}
+
+/**
+ * All the possible domain resource types
+ */
+export type FhirDomainResource =
+  <% for (const structureDef of fhir.domainResources) { %> | <%= structureDef.type %> <% } %>;
+
+/**
+ * All the possible domain resource types as string
+ */
+export type FhirDomainResourceType = FhirDomainResource["resourceType"];
+
+/**
+ * Allow referencing domain resource type from its string {@link FhirDomainResourceType} representation.
+ */
+export type ExtractFhirDomainResource<TDomainResourceType extends FhirDomainResourceType> = Extract<
+  FhirDomainResource,
+  { resourceType: TDomainResourceType }
+>;
+
+/**
+ * Return true if the object is a FhirDomainResource of a specific type.
+ */
+export function isFhirDomainResource<TDomainResourceType extends FhirDomainResourceType>(
+  type: TDomainResourceType,
+  object: unknown | null | undefined
+): object is ExtractFhirDomainResource<TDomainResourceType> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (object as any)?.resourceType === type;
+}

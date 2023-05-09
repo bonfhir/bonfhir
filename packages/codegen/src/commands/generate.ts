@@ -88,8 +88,11 @@ export default <CommandModule<unknown, CommandOptions>>{
         },
         {
           title: "Process templates",
-          task: async (context) => {
+          task: async (context, task) => {
             context.writtenFiles = [];
+            task.title += ` (${
+              context.templates.length * context.fhir.length
+            })`;
 
             return new Listr<CommandContext>(
               context.templates.flatMap((template) => {
