@@ -15,7 +15,7 @@ const GLOBAL_POST_PROCESSING_CHUNK_SIZE = 100;
 const EXEC_MAX_BUFFER_SIZE = 1024 * 1000 * 10;
 
 export interface CommandOptions {
-  fhir?: "r4b" | "r5" | null | undefined;
+  fhir?: string | null | undefined;
   outDir?: string | null | undefined;
   postProcessing: string[] | undefined;
   templates: string;
@@ -26,7 +26,7 @@ export interface CommandContext {
   options: CommandOptions;
 
   /** Loaded FHIR definitions */
-  fhir: FhirDefinitions;
+  fhir: FhirDefinitions[];
 
   /** The full path of each template file. */
   templates: string[];
@@ -40,9 +40,9 @@ export default <CommandModule<unknown, CommandOptions>>{
   describe: "Generate code from FHIR definitions",
   builder: {
     fhir: {
-      choices: ["r4b", "r5"],
-      describe: "Load FHIR definitions from a specific release",
       type: "string",
+      describe:
+        "Load FHIR definitions from a specific release. Can be either r4b, r5, or a path to a FHIR JSON definitions file. If using a comma, the whole operation is repeated for multiple releases.",
     },
     "out-dir": {
       type: "string",
@@ -70,9 +70,11 @@ export default <CommandModule<unknown, CommandOptions>>{
           title: "Loading FHIR definitions",
           task: async (context, task) => {
             task.title += ` (${context.options.fhir})`;
-            context.fhir = await FhirDefinitions.load(
+            context.fhir = await Promise.all(
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              context.options.fhir!
+              context.options
+                .fhir!.split(",")
+                .map((x) => FhirDefinitions.load(x.trim()))
             );
           },
           enabled: (context) => !!context.options.fhir,
@@ -90,30 +92,38 @@ export default <CommandModule<unknown, CommandOptions>>{
             context.writtenFiles = [];
 
             return new Listr<CommandContext>(
-              context.templates.map((template) => {
+              context.templates.flatMap((template) => {
                 const templateParsedPath = parse(template);
-                return {
-                  title: templateParsedPath.name,
+
+                return context.fhir.map((fhir) => ({
+                  title: `${templateParsedPath.name} (${fhir?.release})`,
                   task: async (context) => {
                     let outDir = templateParsedPath.dir;
                     if (context.options.outDir) {
-                      outDir = render(context.options.outDir, context);
+                      outDir = render(context.options.outDir, {
+                        ...context,
+                        fhir,
+                      });
                     }
                     const writtenFile = join(outDir, templateParsedPath.name);
                     await writeFile(
                       writtenFile,
-                      render(await readFile(template, "utf8"), context, {
-                        beautify: false,
-                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        escape(value?: any) {
-                          return value?.toString();
-                        },
-                      }),
+                      render(
+                        await readFile(template, "utf8"),
+                        { ...context, fhir },
+                        {
+                          beautify: false,
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                          escape(value?: any) {
+                            return value?.toString();
+                          },
+                        }
+                      ),
                       { encoding: "utf8" }
                     );
                     context.writtenFiles.push(writtenFile);
                   },
-                };
+                }));
               })
             );
           },
