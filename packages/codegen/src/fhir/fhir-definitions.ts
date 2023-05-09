@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
-import { splitLongLines, toJsComment, toJsType } from "../util-codegen";
+import { splitLongLines, toJsComment, toTsType } from "../util-codegen";
 
 /**
  * Holds all FHIR definitions
@@ -59,26 +59,41 @@ export class FhirDefinitions {
   public structureDefinitionsByUrl = new Map<string, StructureDefinition>();
   public valueSetsByUrl = new Map<string, ValueSet>();
 
+  /**
+   * All structure definitions sorted by name
+   */
   public get structureDefinitions(): StructureDefinition[] {
     return [...this.structureDefinitionsByUrl.values()].sort((a: any, b: any) =>
       a.name.localeCompare(b.name)
     );
   }
 
+  /**
+   * All resources sorted by name
+   */
   public get resources(): StructureDefinition[] {
     return this.structureDefinitions.filter((x: any) => x.isResource);
   }
 
+  /**
+   * All domain resources sorted by name
+   */
   public get domainResources(): StructureDefinition[] {
     return this.resources.filter((x) => x.isDomainResource);
   }
 
+  /**
+   * All value sets sorted by name
+   */
   public get valueSets(): ValueSet[] {
     return [...this.valueSetsByUrl.values()].sort((a: any, b: any) =>
       a.name.localeCompare(b.name)
     );
   }
 
+  /**
+   * All value sets that are referenced by an element with a required binding
+   */
   public get requiredBindingValueSets(): ValueSet[] {
     const requiredBindingsValueSetUrls = new Set(
       this.structureDefinitions
@@ -100,51 +115,84 @@ export class FhirDefinitions {
   }
 }
 
+/**
+ * http://hl7.org/fhir/structuredefinition.html
+ */
 export class StructureDefinition {
   constructor(private _definitions: FhirDefinitions) {}
 
+  /**
+   * The base structure definition this "derives" from
+   */
   public get base(): StructureDefinition | undefined {
     return this._definitions.structureDefinitionsByUrl.get(
       (this as any).baseDefinition
     );
   }
 
+  /**
+   * True if this is a resource
+   */
   public get isResource(): boolean {
     return (this as any).kind === "resource";
   }
 
+  /**
+   * True if this is a domain resource
+   */
   public get isDomainResource(): boolean {
     return (this.base as any)?.name === "DomainResource";
   }
 
-  public get elements(): Element[] {
+  /**
+   * All the element definitions of this structure definition
+   */
+  public get elements(): ElementDefinition[] {
     return ((this as any).snapshot?.element || [])
-      .map((x: any) => Object.assign(new Element(this._definitions, this), x))
+      .map((x: any) =>
+        Object.assign(new ElementDefinition(this._definitions, this), x)
+      )
+      .filter((x: any) => !!x.type?.length)
       .sort((a: any, b: any) => a.path.localeCompare(b.path));
   }
 
-  public get ownElements(): Element[] {
+  /**
+   * Only the element definitions that starts with this structure definition's name
+   */
+  public get ownElements(): ElementDefinition[] {
     return this.elements.filter((x: any) =>
       x.base.path.startsWith((this as any).name + ".")
     );
   }
 
-  public get ownRootElements(): Element[] {
+  /**
+   * Only the elements that are root elements - e.g. not nested in another backbone element
+   */
+  public get ownRootElements(): ElementDefinition[] {
     return this.ownElements.filter((x) => x.isRoot);
   }
 
+  /**
+   * URL to the official FHIR documentation for this structure definition
+   */
   public get fhirDocUrl(): string {
     return `http://hl7.org/fhir/${this._definitions.release.toUpperCase()}/${
       (this as any).id
     }.html`;
   }
 
+  /**
+   * Base URL to the official FHIR documentation for definitions (e.g. elements)
+   */
   public get fhirDocDefinitionsUrl(): string {
     return `http://hl7.org/fhir/${this._definitions.release.toUpperCase()}/${
       (this as any).id
     }-definitions.html`;
   }
 
+  /**
+   * A JSDoc comment for this structure definition
+   */
   public get jsDoc(): string {
     return toJsComment([
       ...splitLongLines([
@@ -157,31 +205,50 @@ export class StructureDefinition {
     ]);
   }
 
+  /**
+   * Nested backbone elements inside this structure definition, regardless of nesting level
+   */
   public get backboneElements(): BackboneElement[] {
     return this.ownElements
       .filter((x) => x.backboneElementName)
-      .map((x) => new BackboneElement(this._definitions, this, x));
+      .map((x) => new BackboneElement(this, x));
   }
 }
 
-export class Element {
+/**
+ * http://hl7.org/fhir/elementdefinition.html
+ */
+export class ElementDefinition {
   constructor(
     private _definitions: FhirDefinitions,
     private _structureDefinition: StructureDefinition
   ) {}
 
+  /**
+   * The name of this element
+   */
   public get name(): string {
     return (this as any).id.split(".").pop() || "";
   }
 
+  /**
+   * True if this is an array (e.g. max = "*")
+   */
   public get isArray(): boolean {
     return (this as any).max === "*";
   }
 
+  /**
+   * True if this is optional (e.g. min = 0)
+   */
   public get isOptional(): boolean {
     return (this as any).min === 0;
   }
 
+  /**
+   * If this element is a BackboneElement, return the name of the BackboneElement.
+   * Otherwise, return undefined.
+   */
   public get backboneElementName(): string | undefined {
     if ((this as any).type?.[0]?.code !== "BackboneElement") {
       return undefined;
@@ -193,12 +260,17 @@ export class Element {
       .join("");
   }
 
-  /** https://hl7.org/fhir/formats.html#choice */
+  /**
+   * https://hl7.org/fhir/formats.html#choice
+   */
   public get hasDataTypeChoiceVariants(): boolean {
     return (this as any).path.endsWith("[x]");
   }
 
-  public get dataTypeChoiceVariants(): Element[] {
+  /**
+   * If this element has data type choice variants, return all the variants.
+   */
+  public get dataTypeChoiceVariants(): ElementDefinition[] {
     if (!this.hasDataTypeChoiceVariants) {
       return [];
     }
@@ -206,7 +278,7 @@ export class Element {
     return (this as any).type.map((t: any) => {
       const suffix = t.code[0].toUpperCase() + t.code.slice(1);
       return Object.assign(
-        new Element(this._definitions, this._structureDefinition),
+        new ElementDefinition(this._definitions, this._structureDefinition),
         {
           ...this,
           id: (this as any).id.replace("[x]", suffix),
@@ -222,9 +294,12 @@ export class Element {
     });
   }
 
-  public get jsType(): string {
+  /**
+   * The TypeScript type for this element
+   */
+  public get tsType(): string {
     let resolvedType = (this as any).type
-      ?.map((x: any) => toJsType(x.code))
+      ?.map((x: any) => toTsType(x.code))
       .join(" | ");
 
     if (this.hasRequiredBinding) {
@@ -247,12 +322,18 @@ export class Element {
     return resolvedType;
   }
 
+  /**
+   * URL to the official FHIR documentation for this element
+   */
   public get fhirDocUrl(): string {
     return this._structureDefinition.isResource
       ? `${this._structureDefinition.fhirDocDefinitionsUrl}#${(this as any).id}`
       : "";
   }
 
+  /**
+   * A JSDoc comment for this element
+   */
   public get jsDoc(): string {
     return toJsComment(
       [
@@ -273,18 +354,30 @@ export class Element {
     );
   }
 
+  /**
+   * True if this element is at the root of StructureDefinition
+   */
   public get isRoot(): boolean {
     return (this as any).path.split(".").length === 2;
   }
 
+  /**
+   * True if this element is linked to a ValueSet and has a binding strength of "required"
+   */
   public get hasRequiredBinding(): boolean {
     return (this as any).binding?.strength === "required";
   }
 }
 
+/**
+ * http://hl7.org/fhir/valueset.html
+ */
 export class ValueSet {
   constructor(private _definitions: FhirDefinitions) {}
 
+  /**
+   * A JSDoc comment for this value set
+   */
   public get jsDoc(): string {
     return toJsComment([
       ...splitLongLines([
@@ -302,6 +395,10 @@ export class ValueSet {
     ]);
   }
 
+  /**
+   * The name of this value set, but will make sure to avoid conflicts with other names
+   * for StructureDefinitions and other value sets.
+   */
   public get safeName(): string {
     const name = (this as any).name.replace(/[^\dA-Za-z]/g, "");
     // We avoid conflicts with structure definitions by appending "ValueSet" to the name
@@ -325,10 +422,26 @@ export class ValueSet {
   }
 }
 
+/**
+ * http://hl7.org/fhir/types.html#BackBoneElement
+ */
 export class BackboneElement {
   constructor(
-    private _definitions: FhirDefinitions,
     private _parent: StructureDefinition,
-    public rootElement: Element
+    public rootElement: ElementDefinition
   ) {}
+
+  public get ownElements(): ElementDefinition[] {
+    return this._parent.elements.filter((x: any) =>
+      x.path.startsWith((this.rootElement as any).path + ".")
+    );
+  }
+
+  public get ownRootElements(): ElementDefinition[] {
+    return this.ownElements.filter(
+      (x) =>
+        (x as any).path.split(".").length ===
+        (this.rootElement as any).path.split(".").length + 1
+    );
+  }
 }

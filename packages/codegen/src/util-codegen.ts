@@ -1,7 +1,10 @@
 import chunkText from "chunk-text";
 
 export function toJsComment(lines: string[]) {
-  return `/**\n * ${lines.join("\n * ")}\n */`;
+  return `/**\n * ${lines.join("\n * ")}\n */`.replace(
+    IRREGULAR_WHITESPACE,
+    " "
+  );
 }
 
 export function splitLongLines(lines: string[]): string[] {
@@ -13,7 +16,7 @@ export function splitLongLines(lines: string[]): string[] {
   });
 }
 
-export function toJsType(fhirType: string): string {
+export function toTsType(fhirType: string): string {
   /* eslint-disable unicorn/switch-case-braces */
   switch (fhirType) {
     case "base64Binary":
@@ -43,3 +46,10 @@ export function toJsType(fhirType: string): string {
   }
   /* eslint-enable unicorn/switch-case-braces */
 }
+
+/**
+ * This was taken from https://github.com/eslint/eslint/blob/0c415cda5d76dbe5120ab9f3c4c81320538e35f0/lib/rules/no-irregular-whitespace.js#LL20C1-L20C163
+ * Some FHIR definitions contain irregular whitespace characters, which are not allowed in JavaScript.
+ */
+const IRREGULAR_WHITESPACE =
+  /[\f\v\u0085\uFEFF\u00A0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u200B\u202F\u205F\u3000]+/gmu;

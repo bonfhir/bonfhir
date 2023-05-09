@@ -18,7 +18,7 @@
 
 <% const renderElement = (element) => { %>
   <%= element.jsDoc %>
-  <%= element.name %><% if (element.isOptional) { %>?<% } %>: <%= element.jsType %>;
+  <%= element.name %><% if (element.isOptional) { %>?<% } %>: <%= element.tsType %>;
   _<%= element.name %>?: Element<% if (element.isArray) { %>[]<% } %> | undefined;
 <% } %>
 
@@ -26,7 +26,18 @@
 
   <% for (const backboneElement of structureDef.backboneElements) { %>
     <%= backboneElement.rootElement.jsDoc %>
-    export interface <%= backboneElement.rootElement.backboneElementName %> {
+    export interface <%= backboneElement.rootElement.backboneElementName %> extends BackboneElement {
+
+      <% for (const element of backboneElement.ownRootElements) { %>
+        <% if (element.hasDataTypeChoiceVariants) { %>
+          <% for (const dataTypeVariant of element.dataTypeChoiceVariants) { %>
+            <%= renderElement(dataTypeVariant) %>
+          <% } %>
+        <% } else { %>
+          <%= renderElement(element) %>
+        <% } %>
+      <% } %>
+
     }
   <% } %>
 
@@ -63,3 +74,4 @@ export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 * is retrieved from the server.
 */
 export type Retrieved<TDomainResource extends DomainResource> = WithRequired<TDomainResource, "id"> & { meta: WithRequired<Meta, "versionId" | "lastUpdated"> };
+
