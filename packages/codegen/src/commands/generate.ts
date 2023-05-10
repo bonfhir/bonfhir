@@ -3,7 +3,8 @@ import { render } from "ejs";
 import fg from "fast-glob";
 import Listr from "listr";
 import { exec } from "node:child_process";
-import { readFile, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join, parse } from "node:path";
 import { promisify } from "node:util";
 import { CommandModule } from "yargs";
@@ -17,6 +18,7 @@ const EXEC_MAX_BUFFER_SIZE = 1024 * 1000 * 10;
 export interface CommandOptions {
   fhir?: string | null | undefined;
   outDir?: string | null | undefined;
+  baseDir?: string | null | undefined;
   postProcessing: string[] | undefined;
   templates: string;
 }
@@ -49,6 +51,12 @@ export default <CommandModule<unknown, CommandOptions>>{
       alias: "o",
       describe:
         "Overrides the default output directory. This is a templated string, so you can include context evaluation using EJS.",
+    },
+    "base-dir": {
+      type: "string",
+      alias: "b",
+      describe:
+        "Set a base directory to respect when using a custom out-dir. The hierarchy of the source template relative to this will be carried out to the out-dir.",
     },
     "post-processing": {
       type: "array",
@@ -107,7 +115,22 @@ export default <CommandModule<unknown, CommandOptions>>{
                         ...context,
                         fhir,
                       });
+
+                      if (context.options.baseDir) {
+                        const remainder = templateParsedPath.dir.replace(
+                          context.options.baseDir,
+                          ""
+                        );
+                        if (remainder) {
+                          outDir = join(outDir, remainder);
+                        }
+                      }
                     }
+
+                    if (!existsSync(outDir)) {
+                      await mkdir(outDir, { recursive: true });
+                    }
+
                     const writtenFile = join(outDir, templateParsedPath.name);
                     await writeFile(
                       writtenFile,

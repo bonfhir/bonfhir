@@ -5,7 +5,7 @@
     "build": "rimraf dist && tsc --project tsconfig.build.r4b.json && tsc --project tsconfig.build.r5.json && rollup --config rollup.config.mjs",
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
     "clean": "rimraf dist",
-    "codegen": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r4b,r5 -t \"${PWD}/templates/**/*.ejs\" -p 'prettier --write %files%' -o \"${PWD}/src/<%= fhir.release %>\"",
+    "codegen": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r4b,r5 -t \"${PWD}/templates/**/*.ejs\" -b \"${PWD}/templates\" -p 'prettier --write %files%' -o \"${PWD}/src/<%= fhir.release %>\"",
     "codegen-watch": "nodemon --watch templates --ext ejs --exec \"pnpm codegen\"",
     "format": "prettier --loglevel warn --write ./**/*.ts && eslint --fix ./**/*.ts",
     "test": "jest"
