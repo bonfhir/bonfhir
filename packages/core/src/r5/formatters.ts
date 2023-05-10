@@ -1,11 +1,19 @@
-import { uriFormatter } from "./formatters/uri";
+import * as valueFormatters from "./value-formatters";
 
+/**
+ * A value formatter is a function that takes a value and returns a string.
+ * Its intent is to be composed with other formatters.
+ */
 export interface ValueFormatter<TType extends string, TValue, TOptions> {
   type: TType;
   format: (
     value: TValue,
     options: TOptions | null | undefined,
-    formatterOptions: FormatterOptions | null | undefined
+    formatterOptions: { formatter: Formatter } & (
+      | FormatterOptions
+      | null
+      | undefined
+    )
   ) => string;
 }
 
@@ -32,12 +40,15 @@ export class Formatter {
       throw new Error(`No formatter found for type '${type}'`);
     }
 
-    return valueFormatter.format(value, options, this._options);
+    return valueFormatter.format(value, options, {
+      formatter: this,
+      ...this._options,
+    });
   }
 
   public register<TType extends string, TValue, TOptions>(
     valueFormatter: ValueFormatter<TType, TValue, TOptions>
-  ): Formatter & {
+  ): this & {
     format(
       type: TType,
       value: TValue,
@@ -49,11 +60,21 @@ export class Formatter {
       valueFormatter.type,
       valueFormatter as ValueFormatter<string, unknown, unknown>
     );
-    return new Formatter(this._options, newFormatters);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return new Formatter(this._options, newFormatters) as any;
   }
 }
 
 export const formatter = (options?: FormatterOptions | null | undefined) =>
-  new Formatter(options).register(uriFormatter);
+  new Formatter(options)
+    .register(valueFormatters.canonicalFormatter)
+    .register(valueFormatters.fhirPathFormatter)
+    .register(valueFormatters.idFormatter)
+    .register(valueFormatters.oidFormatter)
+    .register(valueFormatters.stringFormatter)
+    .register(valueFormatters.uriFormatter)
+    .register(valueFormatters.urlFormatter)
+    .register(valueFormatters.uuidFormatter);
 
 export type FormatterType = ReturnType<typeof formatter>;
