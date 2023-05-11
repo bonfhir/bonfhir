@@ -1,4 +1,9 @@
-import { FhirResource, HumanName, Reference, Retrieved } from "./fhir-types";
+import {
+  FhirResource,
+  HumanName,
+  Reference,
+  Retrieved,
+} from "./fhir-types.codegen";
 
 export interface ReferenceOptions {
   versionSpecific?: boolean | null | undefined;
