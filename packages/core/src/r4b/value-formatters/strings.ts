@@ -1,23 +1,11 @@
 import { ValueFormatter } from "../formatters";
-import { truncate } from "../lang-utils";
-
-export interface StringFormatterTruncateOptions {
-  /** The maximum string length */
-  length: number;
-
-  /** The string to indicate text is omitted */
-  suffix?: string | null | undefined;
-
-  /** The separator pattern to truncate to */
-  separator?: RegExp | string | null | undefined;
-}
+import { TruncateOptions, truncate } from "../lang-utils";
 
 export interface StringFormatterOptions {
   /**
    * Truncates string if it's longer than the given maximum string length.
-   * The last characters of the truncated string are replaced with the omission string which defaults to "...".
    */
-  truncate?: StringFormatterTruncateOptions | null | undefined;
+  truncate?: true | TruncateOptions | null | undefined;
 }
 
 export const canonicalFormatter: ValueFormatter<
@@ -70,9 +58,7 @@ export const stringFormatter: ValueFormatter<
     if (options?.truncate) {
       return truncate(
         value,
-        options.truncate.length,
-        options.truncate.suffix,
-        options.truncate.separator
+        typeof options.truncate === "boolean" ? undefined : options.truncate
       );
     }
 

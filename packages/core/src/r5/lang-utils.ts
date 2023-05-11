@@ -13,35 +13,42 @@ export function asArray<T>(
   return Array.isArray(value) ? (value as any) : [value];
 }
 
+export interface TruncateOptions {
+  /** The maximum string length. Defaults to 30. */
+  length?: number | null | undefined;
+
+  /** The string to indicate text is omitted. Defaults to "..." */
+  suffix?: string | null | undefined;
+
+  /** The separator pattern to truncate to. Defaults to null. */
+  separator?: RegExp | string | null | undefined;
+}
+
 /**
  * Truncate a string to a given length and append an optional suffix.
- * @param value The string to truncate
- * @param length The maximum string length
- * @param suffix The string to indicate text is omitted
- * @param separator The separator pattern to truncate to
- * @returns
  */
 export function truncate(
   value: string,
-  length = 27,
-  suffix: string | null | undefined = "...",
-  separator?: RegExp | string | null | undefined
+  options?: TruncateOptions | null | undefined
 ): string {
   if (!value) {
     return "";
   }
 
+  const length = options?.length ?? 30;
+  const suffix = options?.suffix ?? "...";
+
   if (value.length <= length) {
     return value;
   }
 
-  if (separator) {
+  if (options?.separator) {
     const stringBeforeTruncation = value.slice(0, Math.max(0, length));
     const stringAfterTruncation = value.slice(length);
     const separatorIndex =
-      typeof separator === "string"
-        ? stringAfterTruncation.indexOf(separator, length)
-        : stringAfterTruncation.search(separator);
+      typeof options.separator === "string"
+        ? stringAfterTruncation.indexOf(options.separator, length)
+        : stringAfterTruncation.search(options.separator);
 
     if (separatorIndex !== -1 && separatorIndex <= length) {
       return (

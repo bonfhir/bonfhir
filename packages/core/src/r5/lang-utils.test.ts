@@ -13,16 +13,16 @@ describe("lang-utils", () => {
 
   describe("truncate", () => {
     it.each`
-      value                    | length | omission | separator | expected
-      ${"Hello world"}         | ${5}   | ${""}    | ${""}     | ${"Hello"}
-      ${"Hello, world"}        | ${5}   | ${""}    | ${","}    | ${"Hello"}
-      ${"Hello, world, again"} | ${10}  | ${"..."} | ${/,\s/}  | ${"Hello, world..."}
-      ${"Hello, world"}        | ${20}  | ${""}    | ${""}     | ${"Hello, world"}
-      ${"Hello, world"}        | ${20}  | ${"..."} | ${""}     | ${"Hello, world"}
+      value                    | options                                      | expected
+      ${"Hello world"}         | ${{ length: 5, suffix: "" }}                 | ${"Hello"}
+      ${"Hello, world"}        | ${{ length: 5, suffix: "", separator: "," }} | ${"Hello"}
+      ${"Hello, world, again"} | ${{ length: 10, separator: /,\s/ }}          | ${"Hello, world..."}
+      ${"Hello, world"}        | ${{ length: 20, suffix: "" }}                | ${"Hello, world"}
+      ${"Hello, world"}        | ${{ length: 20, suffix: "..." }}             | ${"Hello, world"}
     `(
       "returns $expected when given value=$value, length=$length, omission=$omission, and separator=$separator",
-      ({ value, length, omission, separator, expected }) => {
-        expect(truncate(value, length, omission, separator)).toEqual(expected);
+      ({ value, options, expected }) => {
+        expect(truncate(value, options)).toEqual(expected);
       }
     );
   });
