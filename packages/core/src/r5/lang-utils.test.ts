@@ -14,6 +14,8 @@ describe("lang-utils", () => {
   describe("truncate", () => {
     it.each`
       value                    | options                                      | expected
+      ${""}                    | ${undefined}                                 | ${""}
+      ${undefined}             | ${undefined}                                 | ${undefined}
       ${"Hello world"}         | ${{ length: 5, suffix: "" }}                 | ${"Hello"}
       ${"Hello, world"}        | ${{ length: 5, suffix: "", separator: "," }} | ${"Hello"}
       ${"Hello, world, again"} | ${{ length: 10, separator: /,\s/ }}          | ${"Hello, world..."}

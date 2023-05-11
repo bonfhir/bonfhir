@@ -28,11 +28,23 @@ export interface TruncateOptions {
  * Truncate a string to a given length and append an optional suffix.
  */
 export function truncate(
+  value: null | undefined,
+  options?: TruncateOptions | null | undefined
+): undefined;
+export function truncate(
   value: string,
   options?: TruncateOptions | null | undefined
-): string {
-  if (!value) {
-    return "";
+): string;
+export function truncate(
+  value: string | null | undefined,
+  options?: TruncateOptions | null | undefined
+): string | undefined;
+export function truncate(
+  value: string | null | undefined,
+  options?: TruncateOptions | null | undefined
+): string | undefined {
+  if (value == undefined) {
+    return undefined;
   }
 
   const length = options?.length ?? 30;
