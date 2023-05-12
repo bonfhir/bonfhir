@@ -8,17 +8,6 @@ export interface StringFormatterOptions {
   truncate?: true | TruncateOptions | null | undefined;
 }
 
-export const fhirPathFormatter: ValueFormatter<
-  "http://hl7.org/fhirpath/System.String",
-  string,
-  null | undefined
-> = {
-  type: "http://hl7.org/fhirpath/System.String",
-  format: (value) => {
-    return value || "";
-  },
-};
-
 export const stringFormatter: ValueFormatter<
   "string",
   string,
@@ -26,17 +15,19 @@ export const stringFormatter: ValueFormatter<
 > = {
   type: "string",
   format: (value, options) => {
-    if (!value) {
+    const trimmedValue = value?.trim() || "";
+
+    if (!trimmedValue) {
       return "";
     }
 
     if (options?.truncate) {
       return truncate(
-        value,
+        trimmedValue,
         typeof options.truncate === "boolean" ? undefined : options.truncate
       );
     }
 
-    return value;
+    return trimmedValue;
   },
 };

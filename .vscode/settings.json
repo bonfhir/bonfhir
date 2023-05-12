@@ -38,6 +38,7 @@
     "datetime",
     "DICOM",
     "FHIR",
+    "fhirpath",
     "listr",
     "loglevel",
     "onwarn"
