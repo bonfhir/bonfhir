@@ -22,7 +22,7 @@ export interface FormatterOptions {
    * The locale to use when formatting values.
    * If not provided, will use the ambient value.
    */
-  locale?: string | null | undefined;
+  locale?: string | undefined;
 
   /**
    * The default labels to use for boolean values.
@@ -86,6 +86,8 @@ export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
   new Formatter(options)
     .register(valueFormatters.booleanFormatter)
     .register(valueFormatters.canonicalFormatter)
+    .register(valueFormatters.dateFormatter)
+    .register(valueFormatters.dateTimeFormatter)
     .register(valueFormatters.fhirPathFormatter)
     .register(valueFormatters.idFormatter)
     .register(valueFormatters.oidFormatter)
@@ -95,6 +97,11 @@ export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
     .register(valueFormatters.uuidFormatter);
 
 /**
- * The default formatter type - with all the default value formatters registered.
+ * The standard formatter type - with all the default value formatters registered.
  */
-export type DefaultFormatter = ReturnType<typeof buildFormatter>;
+export type StandardFormatter = ReturnType<typeof buildFormatter>;
+
+/**
+ * A default formatter instance with all the default value formatters registered.
+ */
+export const DEFAULT_FORMATTER: StandardFormatter = buildFormatter();

@@ -35,6 +35,7 @@
   "cSpell.words": [
     "bonfhir",
     "codegen",
+    "datetime",
     "DICOM",
     "FHIR",
     "listr",
