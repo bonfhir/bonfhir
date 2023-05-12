@@ -18,7 +18,16 @@ export interface ValueFormatter<TType extends string, TValue, TOptions> {
 }
 
 export interface FormatterOptions {
+  /**
+   * The locale to use when formatting values.
+   * If not provided, will use the ambient value.
+   */
   locale?: string | null | undefined;
+
+  /**
+   * The default labels to use for boolean values.
+   */
+  booleanLabels?: valueFormatters.BooleanLabels | null | undefined;
 }
 
 export class Formatter {
@@ -30,6 +39,9 @@ export class Formatter {
     >()
   ) {}
 
+  /**
+   * Format a value using the specified type and options.
+   */
   public format(
     type: string,
     value: unknown,
@@ -46,15 +58,18 @@ export class Formatter {
     });
   }
 
+  /**
+   * Register an additional {@link ValueFormatter} with this formatter.
+   */
   public register<TType extends string, TValue, TOptions>(
     valueFormatter: ValueFormatter<TType, TValue, TOptions>
-  ): this & {
+  ): {
     format(
       type: TType,
       value: TValue,
       options?: TOptions | null | undefined
     ): string;
-  } {
+  } & this {
     const newFormatters = new Map(this._formatters);
     newFormatters.set(
       valueFormatter.type,
@@ -66,8 +81,10 @@ export class Formatter {
   }
 }
 
-export const formatter = (options?: FormatterOptions | null | undefined) =>
+/** Build a new formatter with the default value formatters registered. */
+export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
   new Formatter(options)
+    .register(valueFormatters.booleanFormatter)
     .register(valueFormatters.canonicalFormatter)
     .register(valueFormatters.fhirPathFormatter)
     .register(valueFormatters.idFormatter)
@@ -77,4 +94,7 @@ export const formatter = (options?: FormatterOptions | null | undefined) =>
     .register(valueFormatters.urlFormatter)
     .register(valueFormatters.uuidFormatter);
 
-export type FormatterType = ReturnType<typeof formatter>;
+/**
+ * The default formatter type - with all the default value formatters registered.
+ */
+export type DefaultFormatter = ReturnType<typeof buildFormatter>;

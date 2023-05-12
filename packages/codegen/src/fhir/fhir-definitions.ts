@@ -73,10 +73,7 @@ export class FhirDefinitions {
    */
   public get resources(): StructureDefinition[] {
     return this.structureDefinitions.filter(
-      (x: any) =>
-        x.isResource &&
-        x.derivation != "constraint" &&
-        x.kind != "primitive-type"
+      (x: any) => x.isResource && x.derivation != "constraint"
     );
   }
 
@@ -85,6 +82,20 @@ export class FhirDefinitions {
    */
   public get domainResources(): StructureDefinition[] {
     return this.resources.filter((x) => x.isDomainResource);
+  }
+
+  /**
+   * All primitive types sorted by name
+   */
+  public get primitiveTypes(): StructureDefinition[] {
+    return this.structureDefinitions.filter((x: any) => x.isPrimitiveType);
+  }
+
+  /**
+   * All complex types sorted by name
+   */
+  public get complexTypes(): StructureDefinition[] {
+    return this.structureDefinitions.filter((x: any) => x.isComplexType);
   }
 
   /**
@@ -147,6 +158,20 @@ export class StructureDefinition {
    */
   public get isDomainResource(): boolean {
     return (this.base as any)?.name === "DomainResource";
+  }
+
+  /**
+   * True if this is a resource
+   */
+  public get isPrimitiveType(): boolean {
+    return (this as any).kind === "primitive-type";
+  }
+
+  /**
+   * True if this is a resource
+   */
+  public get isComplexType(): boolean {
+    return (this as any).kind === "complex-type";
   }
 
   /**
