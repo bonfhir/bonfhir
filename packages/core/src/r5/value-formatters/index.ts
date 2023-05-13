@@ -4,6 +4,7 @@ export * from "./date";
 export * from "./datetime";
 export * from "./fhirpath";
 export * from "./id";
+export * from "./instant";
 export * from "./oid";
 export * from "./string";
 export * from "./uri";

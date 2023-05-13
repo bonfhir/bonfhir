@@ -17,6 +17,22 @@ export interface ValueFormatter<TType extends string, TValue, TOptions> {
   ) => string;
 }
 
+/**
+ * Extends the base Formatter type with an overload of the format function that fit the ValueFormatter.
+ */
+export type WithValueFormatter<
+  TThis extends Formatter,
+  TType,
+  TValue,
+  TOptions
+> = {
+  format(
+    type: TType,
+    value: TValue,
+    options?: TOptions | null | undefined
+  ): string;
+} & TThis;
+
 export interface FormatterOptions {
   /**
    * The locale to use when formatting values.
@@ -63,13 +79,7 @@ export class Formatter {
    */
   public register<TType extends string, TValue, TOptions>(
     valueFormatter: ValueFormatter<TType, TValue, TOptions>
-  ): {
-    format(
-      type: TType,
-      value: TValue,
-      options?: TOptions | null | undefined
-    ): string;
-  } & this {
+  ): WithValueFormatter<this, TType, TValue, TOptions> {
     const newFormatters = new Map(this._formatters);
     newFormatters.set(
       valueFormatter.type,
@@ -90,6 +100,7 @@ export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
     .register(valueFormatters.dateTimeFormatter)
     .register(valueFormatters.fhirPathFormatter)
     .register(valueFormatters.idFormatter)
+    .register(valueFormatters.instantFormatter)
     .register(valueFormatters.oidFormatter)
     .register(valueFormatters.stringFormatter)
     .register(valueFormatters.uriFormatter)
