@@ -60,8 +60,8 @@ export class Formatter {
    */
   public format(
     type: string,
-    value: unknown,
-    options?: unknown | null | undefined
+    value: never,
+    options?: never | null | undefined
   ): string {
     const valueFormatter = this._formatters.get(type);
     if (!valueFormatter) {
