@@ -3,6 +3,7 @@ export * from "./canonical";
 export * from "./code";
 export * from "./date";
 export * from "./datetime";
+export * from "./decimal";
 export * from "./fhirpath";
 export * from "./id";
 export * from "./instant";
