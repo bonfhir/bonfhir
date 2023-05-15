@@ -104,6 +104,7 @@ export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
     .register(valueFormatters.distanceFormatter)
     .register(valueFormatters.durationFormatter)
     .register(valueFormatters.fhirPathFormatter)
+    .register(valueFormatters.humanNameFormatter)
     .register(valueFormatters.idFormatter)
     .register(valueFormatters.instantFormatter)
     .register(valueFormatters.oidFormatter)

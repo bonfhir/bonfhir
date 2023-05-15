@@ -10,7 +10,7 @@ export interface StringFormatterOptions {
 
 export const stringFormatter: ValueFormatter<
   "string",
-  string,
+  string | null | undefined,
   StringFormatterOptions | null | undefined
 > = {
   type: "string",

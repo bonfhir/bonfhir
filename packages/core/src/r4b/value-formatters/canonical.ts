@@ -2,7 +2,7 @@ import { ValueFormatter } from "../formatters";
 
 export const canonicalFormatter: ValueFormatter<
   "canonical",
-  string,
+  string | null | undefined,
   null | undefined
 > = {
   type: "canonical",

@@ -8,6 +8,7 @@ export * from "./decimal";
 export * from "./distance";
 export * from "./duration";
 export * from "./fhirpath";
+export * from "./human-name";
 export * from "./id";
 export * from "./instant";
 export * from "./oid";
