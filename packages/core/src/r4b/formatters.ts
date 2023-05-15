@@ -96,6 +96,7 @@ export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
   new Formatter(options)
     .register(valueFormatters.booleanFormatter)
     .register(valueFormatters.canonicalFormatter)
+    .register(valueFormatters.codeFormatter)
     .register(valueFormatters.dateFormatter)
     .register(valueFormatters.dateTimeFormatter)
     .register(valueFormatters.fhirPathFormatter)

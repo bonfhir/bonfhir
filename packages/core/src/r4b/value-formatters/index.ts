@@ -1,5 +1,6 @@
 export * from "./boolean";
 export * from "./canonical";
+export * from "./code";
 export * from "./date";
 export * from "./datetime";
 export * from "./fhirpath";
