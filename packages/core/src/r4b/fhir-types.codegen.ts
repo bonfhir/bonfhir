@@ -10409,6 +10409,7 @@ A coverage may only be responsible for
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.coverage.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -10442,6 +10443,7 @@ Modifier extensions
    * to an account, and a sequence is required to order the settling of the account
    * (often with insurance claiming).
    * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.coverage.priority}
+   * @fhirType positiveInt
    */
   priority?: number | undefined;
   _priority?: Element | undefined;
@@ -10472,6 +10474,7 @@ export interface AccountGuarantor extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.guarantor.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -10610,6 +10613,7 @@ Where the order is important, a local/jurisdictional extension may be
    * inactive and entered-in-error that mark the Account as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.status}
    * @see {@link AccountStatus}
+   * @fhirType code
    */
   status: AccountStatus;
   _status?: Element | undefined;
@@ -10674,6 +10678,7 @@ export interface ActivityDefinitionDynamicValue extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.dynamicValue.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -10742,6 +10747,7 @@ export interface ActivityDefinitionParticipant extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.participant.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -10780,6 +10786,7 @@ Modifier extensions
    * The type of participant in the action.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.participant.type}
    * @see {@link ActionParticipantType}
+   * @fhirType code
    */
   type: ActionParticipantType;
   _type?: Element | undefined;
@@ -10802,6 +10809,7 @@ export interface ActivityDefinition extends DomainResource {
    * The 'date' element may be more recent than the approval date because of minor
    * changes or editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -10846,6 +10854,7 @@ export interface ActivityDefinition extends DomainResource {
    * Copyright statements are generally legal restrictions on the use and publishing
    * of the activity definition.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -10860,6 +10869,7 @@ export interface ActivityDefinition extends DomainResource {
    * Additional specific dates may be added as extensions or be found by consulting
    * Provenances associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -10876,6 +10886,7 @@ export interface ActivityDefinition extends DomainResource {
    * to be the predominant language in the place the activity definition was
    * created).
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -10973,6 +10984,7 @@ export interface ActivityDefinition extends DomainResource {
    * where the request should fit into the workflow chain.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.intent}
    * @see {@link RequestIntent}
+   * @fhirType code
    */
   intent?: RequestIntent | undefined;
   _intent?: Element | undefined;
@@ -10994,6 +11006,7 @@ export interface ActivityDefinition extends DomainResource {
    * May determine what types of extensions are permitted.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.kind}
    * @see {@link RequestResourceType}
+   * @fhirType code
    */
   kind?: RequestResourceType | undefined;
   _kind?: Element | undefined;
@@ -11003,6 +11016,7 @@ export interface ActivityDefinition extends DomainResource {
    * periodically after approval but does not change the original approval date.
    * If specified, this date follows the original approval date.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -11011,6 +11025,7 @@ export interface ActivityDefinition extends DomainResource {
    * A reference to a Library resource containing any formal logic used by the
    * activity definition.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.library}
+   * @fhirType canonical
    */
   library?: Array<string> | undefined;
   _library?: Element[] | undefined;
@@ -11063,6 +11078,7 @@ export interface ActivityDefinition extends DomainResource {
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.priority}
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -11086,6 +11102,7 @@ export interface ActivityDefinition extends DomainResource {
   /**
    * A profile to which the target of the activity definition is expected to conform.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.profile}
+   * @fhirType canonical
    */
   profile?: string | undefined;
   _profile?: Element | undefined;
@@ -11113,6 +11130,7 @@ export interface ActivityDefinition extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this activity definition.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -11158,6 +11176,7 @@ export interface ActivityDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -11206,6 +11225,7 @@ export interface ActivityDefinition extends DomainResource {
    * backwards-compatibility as possible, it is recommended to only use the new
    * canonical type with these use cases.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.subjectCanonical}
+   * @fhirType canonical
    */
   subjectCanonical?: string | undefined;
   _subjectCanonical?: Element | undefined;
@@ -11228,6 +11248,7 @@ export interface ActivityDefinition extends DomainResource {
   /**
    * The period, timing or frequency upon which the described activity is to occur.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.timingDateTime}
+   * @fhirType dateTime
    */
   timingDateTime?: string | undefined;
   _timingDateTime?: Element | undefined;
@@ -11285,6 +11306,7 @@ export interface ActivityDefinition extends DomainResource {
    * Note that if both a transform and dynamic values are specified, the dynamic
    * values will be applied to the result of the transform.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.transform}
+   * @fhirType canonical
    */
   transform?: string | undefined;
   _transform?: Element | undefined;
@@ -11311,6 +11333,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -11437,6 +11460,7 @@ export interface Address extends Element {
    * proxies for physical locations (also see the [Location](location.html#)
    * resource).
    * @see {@link AddressType}
+   * @fhirType code
    */
   type?: AddressType | undefined;
   _type?: Element | undefined;
@@ -11446,6 +11470,7 @@ export interface Address extends Element {
    * Applications can assume that an address is current unless it explicitly says
    * that it is temporary or old.
    * @see {@link AddressUse}
+   * @fhirType code
    */
   use?: AddressUse | undefined;
   _use?: Element | undefined;
@@ -11476,6 +11501,7 @@ export interface AdministrableProductDefinitionProperty
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.property.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -11535,6 +11561,7 @@ Modifier extensions
   /**
    * A value for the characteristic.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.property.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -11597,6 +11624,7 @@ export interface AdministrableProductDefinitionRouteOfAdministration
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.routeOfAdministration.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -11696,6 +11724,7 @@ export interface AdministrableProductDefinitionRouteOfAdministrationTargetSpecie
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.routeOfAdministration.targetSpecies.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -11760,6 +11789,7 @@ export interface AdministrableProductDefinitionRouteOfAdministrationTargetSpecie
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -11912,6 +11942,7 @@ export interface AdministrableProductDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -11957,6 +11988,7 @@ export interface AdverseEventSuspectEntity extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.suspectEntity.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -12032,6 +12064,7 @@ export interface AdverseEventSuspectEntityCausality extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.suspectEntity.causality.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -12092,6 +12125,7 @@ export interface AdverseEvent extends DomainResource {
    * this is independent of whether anyone was affected or harmed or how severely.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.actuality}
    * @see {@link AdverseEventActuality}
+   * @fhirType code
    */
   actuality: AdverseEventActuality;
   _actuality?: Element | undefined;
@@ -12118,6 +12152,7 @@ export interface AdverseEvent extends DomainResource {
   /**
    * The date (and perhaps time) when the adverse event occurred.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -12125,6 +12160,7 @@ export interface AdverseEvent extends DomainResource {
   /**
    * Estimated or actual date the AdverseEvent began, in the opinion of the reporter.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.detected}
+   * @fhirType dateTime
    */
   detected?: string | undefined;
   _detected?: Element | undefined;
@@ -12189,6 +12225,7 @@ export interface AdverseEvent extends DomainResource {
    * was created in the system, not the date of the most recent update.  The date of
    * the last record modification can be retrieved from the resource metadata.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.recordedDate}
+   * @fhirType dateTime
    */
   recordedDate?: string | undefined;
   _recordedDate?: Element | undefined;
@@ -12321,6 +12358,7 @@ export interface AllergyIntoleranceReaction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.reaction.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -12376,6 +12414,7 @@ Modifier extensions
   /**
    * Record of the date and/or time of the onset of the Reaction.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.reaction.onset}
+   * @fhirType dateTime
    */
   onset?: string | undefined;
   _onset?: Element | undefined;
@@ -12388,6 +12427,7 @@ Modifier extensions
    * scales can be included in this model as extensions.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.reaction.severity}
    * @see {@link AllergyIntoleranceSeverity}
+   * @fhirType code
    */
   severity?: AllergyIntoleranceSeverity | undefined;
   _severity?: Element | undefined;
@@ -12452,6 +12492,7 @@ export interface AllergyIntolerance extends DomainResource {
    * subjective based on the sender.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.category}
    * @see {@link AllergyIntoleranceCategory}
+   * @fhirType code
    */
   category?: Array<AllergyIntoleranceCategory> | undefined;
   _category?: Element[] | undefined;
@@ -12531,6 +12572,7 @@ The
    * future (i.e. situation-agnostic) whereas severity is situation-dependent.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.criticality}
    * @see {@link AllergyIntoleranceCriticality}
+   * @fhirType code
    */
   criticality?: AllergyIntoleranceCriticality | undefined;
   _criticality?: Element | undefined;
@@ -12565,6 +12607,7 @@ The
    * textual representation of the date of last occurrence is required e.g. 'In
    * Childhood, '10 years ago' the Comment element should be used.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.lastOccurrence}
+   * @fhirType dateTime
    */
   lastOccurrence?: string | undefined;
   _lastOccurrence?: Element | undefined;
@@ -12588,6 +12631,7 @@ The
    * Estimated or actual date,  date-time, or age when allergy or intolerance was
    * identified.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.onsetDateTime}
+   * @fhirType dateTime
    */
   onsetDateTime?: string | undefined;
   _onsetDateTime?: Element | undefined;
@@ -12643,6 +12687,7 @@ The
    * The recordedDate represents when this particular AllergyIntolerance record was
    * created in the system, which is often a system-generated date.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.recordedDate}
+   * @fhirType dateTime
    */
   recordedDate?: string | undefined;
   _recordedDate?: Element | undefined;
@@ -12673,6 +12718,7 @@ The
    * omitted from the resource.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.type}
    * @see {@link AllergyIntoleranceType}
+   * @fhirType code
    */
   type?: AllergyIntoleranceType | undefined;
   _type?: Element | undefined;
@@ -12718,12 +12764,14 @@ export interface Annotation extends Element {
 
   /**
    * The text of the annotation in markdown format.
+   * @fhirType markdown
    */
   text: string;
   _text?: Element | undefined;
 
   /**
    * Indicates when this particular annotation was made.
+   * @fhirType dateTime
    */
   time?: string | undefined;
   _time?: Element | undefined;
@@ -12761,6 +12809,7 @@ export interface AppointmentParticipant extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.participant.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -12801,6 +12850,7 @@ Modifier extensions
    * patient, and the patient is not required to be present.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.participant.required}
    * @see {@link ParticipantRequired}
+   * @fhirType code
    */
   required?: ParticipantRequired | undefined;
   _required?: Element | undefined;
@@ -12809,6 +12859,7 @@ Modifier extensions
    * Participation status of the actor.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.participant.status}
    * @see {@link ParticipationStatus}
+   * @fhirType code
    */
   status: ParticipationStatus;
   _status?: Element | undefined;
@@ -12889,6 +12940,7 @@ Where this is a planned appointment and the start/end dates are not
    * This property is required for many use cases where the age of an appointment is
    * considered in processing workflows for scheduling and billing of appointments.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.created}
+   * @fhirType dateTime
    */
   created?: string | undefined;
   _created?: Element | undefined;
@@ -12905,6 +12957,7 @@ Where this is a planned appointment and the start/end dates are not
   /**
    * Date/Time that the appointment is to conclude.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.end}
+   * @fhirType instant
    */
   end?: string | undefined;
   _end?: Element | undefined;
@@ -12927,6 +12980,7 @@ Where this is a planned appointment and the start/end dates are not
    * 15 minute break in the middle of a long appointment, the duration may be 15
    * minutes less than the difference between the start and end.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.minutesDuration}
+   * @fhirType positiveInt
    */
   minutesDuration?: number | undefined;
   _minutesDuration?: Element | undefined;
@@ -12958,6 +13012,7 @@ Where this is a planned appointment and the start/end dates are not
 Using an extension to record a CodeableConcept for named values may be
  * tested at a future connectathon.
  * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.priority}
+ * @fhirType unsignedInt
  */
   priority?: number | undefined;
   _priority?: Element | undefined;
@@ -13031,6 +13086,7 @@ The duration (usually in minutes) could also
   /**
    * Date/Time that the appointment is to take place.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.start}
+   * @fhirType instant
    */
   start?: string | undefined;
   _start?: Element | undefined;
@@ -13048,6 +13104,7 @@ This element is labeled as a
  * Appointment as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.status}
  * @see {@link AppointmentStatus}
+ * @fhirType code
  */
   status: AppointmentStatus;
   _status?: Element | undefined;
@@ -13101,6 +13158,7 @@ export interface AppointmentResponse extends DomainResource {
    * the appointment, or alternately a new time to request a re-negotiation of the
    * end time.
    * @see {@link http://hl7.org/fhir/R4B/AppointmentResponse-definitions.html#AppointmentResponse.end}
+   * @fhirType instant
    */
   end?: string | undefined;
   _end?: Element | undefined;
@@ -13124,6 +13182,7 @@ export interface AppointmentResponse extends DomainResource {
    * entered-in-error that marks the participant as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/AppointmentResponse-definitions.html#AppointmentResponse.participantStatus}
    * @see {@link ParticipationStatus}
+   * @fhirType code
    */
   participantStatus: ParticipationStatus;
   _participantStatus?: Element | undefined;
@@ -13150,6 +13209,7 @@ This value SHALL be the same as specified on the referenced
    * the appointment, or alternately a new time to request a re-negotiation of the
    * start time.
    * @see {@link http://hl7.org/fhir/R4B/AppointmentResponse-definitions.html#AppointmentResponse.start}
+   * @fhirType instant
    */
   start?: string | undefined;
   _start?: Element | undefined;
@@ -13169,12 +13229,14 @@ export interface Attachment extends Element {
    * chosen to interpret or render the data. Includes mime type parameters such as
    * charset where appropriate.
    * @see {@link MimeTypes}
+   * @fhirType code
    */
   contentType?: MimeTypes | undefined;
   _contentType?: Element | undefined;
 
   /**
    * The date that the attachment was first created.
+   * @fhirType dateTime
    */
   creation?: string | undefined;
   _creation?: Element | undefined;
@@ -13183,6 +13245,7 @@ export interface Attachment extends Element {
    * The actual data of the attachment - a sequence of bytes, base64 encoded.
    * The base64-encoded data SHALL be expressed in the same character set as the base
    * resource XML or JSON.
+   * @fhirType base64Binary
    */
   data?: string | undefined;
   _data?: Element | undefined;
@@ -13194,6 +13257,7 @@ export interface Attachment extends Element {
    * protection against malicious threats a digital signature should be considered,
    * see [Provenance.signature](provenance-definitions.html#Provenance.signature) for
    * mechanism to protect a resource with a digital signature.
+   * @fhirType base64Binary
    */
   hash?: string | undefined;
   _hash?: Element | undefined;
@@ -13201,6 +13265,7 @@ export interface Attachment extends Element {
   /**
    * The human language of the content. The value can be any valid value according to
    * BCP 47.
+   * @fhirType code
    */
   language?: string | undefined;
   _language?: Element | undefined;
@@ -13210,6 +13275,7 @@ export interface Attachment extends Element {
    * encoding, if that is done).
    * The number of bytes is redundant if the data is provided as a base64binary, but
    * is useful if the data is provided as a url reference.
+   * @fhirType unsignedInt
    */
   size?: number | undefined;
   _size?: Element | undefined;
@@ -13228,6 +13294,7 @@ export interface Attachment extends Element {
    * for using signatures. Relative URLs are interpreted relative to the service url,
    * like a resource reference, rather than relative to the resource itself. If a URL
    * is provided, it SHALL resolve to actual data.
+   * @fhirType url
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -13272,6 +13339,7 @@ export interface AuditEventAgent extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.agent.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -13338,6 +13406,7 @@ Modifier extensions
    * holds policy logic, the unique policy identifier is placed into the policy
    * element.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.agent.policy}
+   * @fhirType uri
    */
   policy?: Array<string> | undefined;
   _policy?: Element[] | undefined;
@@ -13427,6 +13496,7 @@ export interface AuditEventAgentNetwork extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.agent.network.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -13459,6 +13529,7 @@ Modifier extensions
    * event.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.agent.network.type}
    * @see {@link AuditEventAgentNetworkType}
+   * @fhirType code
    */
   type?: AuditEventAgentNetworkType | undefined;
   _type?: Element | undefined;
@@ -13506,6 +13577,7 @@ export interface AuditEventEntity extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.entity.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -13563,6 +13635,7 @@ Modifier extensions
    * Oracle network database access, the Oracle formats must be understood as they
    * will be simply encoded in the base64binary blob.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.entity.query}
+   * @fhirType base64Binary
    */
   query?: string | undefined;
   _query?: Element | undefined;
@@ -13624,6 +13697,7 @@ export interface AuditEventEntityDetail extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.entity.detail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -13688,6 +13762,7 @@ Modifier extensions
    * Oracle network database access, the Oracle formats must be understood as they
    * will be simply encoded in the base64binary blob.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.entity.detail.valueBase64Binary}
+   * @fhirType base64Binary
    */
   valueBase64Binary?: string | undefined;
   _valueBase64Binary?: Element | undefined;
@@ -13723,6 +13798,7 @@ export interface AuditEventSource extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.source.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -13790,6 +13866,7 @@ export interface AuditEvent extends DomainResource {
    * audit.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.action}
    * @see {@link AuditEventAction}
+   * @fhirType code
    */
   action?: AuditEventAction | undefined;
   _action?: Element | undefined;
@@ -13825,6 +13902,7 @@ For example, an activity may be initiated by one
    * accountability, these distinctions are not relevant.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.outcome}
    * @see {@link AuditEventOutcome}
+   * @fhirType code
    */
   outcome?: AuditEventOutcome | undefined;
   _outcome?: Element | undefined;
@@ -13861,6 +13939,7 @@ For example, an activity may be initiated by one
    * In a distributed system, some sort of common time base (e.g. an NTP [RFC1305]
    * server) is a good implementation tactic.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.recorded}
+   * @fhirType instant
    */
   recorded: string;
   _recorded?: Element | undefined;
@@ -13964,6 +14043,7 @@ This element is labeled as a modifier because it
   /**
    * Identifies when the resource was first created.
    * @see {@link http://hl7.org/fhir/R4B/Basic-definitions.html#Basic.created}
+   * @fhirType date
    */
   created?: string | undefined;
   _created?: Element | undefined;
@@ -14003,6 +14083,7 @@ export interface Binary extends Resource {
    * MimeType of the binary content represented as a standard MimeType (BCP 13).
    * @see {@link http://hl7.org/fhir/R4B/Binary-definitions.html#Binary.contentType}
    * @see {@link MimeTypes}
+   * @fhirType code
    */
   contentType: MimeTypes;
   _contentType?: Element | undefined;
@@ -14013,6 +14094,7 @@ export interface Binary extends Resource {
    * twice - what is created by un-base64ing the content must be the specified
    * content type.
    * @see {@link http://hl7.org/fhir/R4B/Binary-definitions.html#Binary.data}
+   * @fhirType base64Binary
    */
   data?: string | undefined;
   _data?: Element | undefined;
@@ -14048,6 +14130,7 @@ export interface BiologicallyDerivedProductCollection extends BackboneElement {
   /**
    * Time of product collection.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.collection.collectedDateTime}
+   * @fhirType dateTime
    */
   collectedDateTime?: string | undefined;
   _collectedDateTime?: Element | undefined;
@@ -14085,6 +14168,7 @@ export interface BiologicallyDerivedProductCollection extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.collection.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -14155,6 +14239,7 @@ export interface BiologicallyDerivedProductManipulation
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.manipulation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -14185,6 +14270,7 @@ Modifier extensions
   /**
    * Time of manipulation.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.manipulation.timeDateTime}
+   * @fhirType dateTime
    */
   timeDateTime?: string | undefined;
   _timeDateTime?: Element | undefined;
@@ -14237,6 +14323,7 @@ export interface BiologicallyDerivedProductProcessing extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.processing.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -14274,6 +14361,7 @@ Modifier extensions
   /**
    * Time of processing.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.processing.timeDateTime}
+   * @fhirType dateTime
    */
   timeDateTime?: string | undefined;
   _timeDateTime?: Element | undefined;
@@ -14324,6 +14412,7 @@ export interface BiologicallyDerivedProductStorage extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.storage.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -14355,6 +14444,7 @@ Modifier extensions
    * Temperature scale used.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.storage.scale}
    * @see {@link BiologicallyDerivedProductStorageScale}
+   * @fhirType code
    */
   scale?: BiologicallyDerivedProductStorageScale | undefined;
   _scale?: Element | undefined;
@@ -14362,6 +14452,7 @@ Modifier extensions
   /**
    * Storage temperature.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.storage.temperature}
+   * @fhirType decimal
    */
   temperature?: number | undefined;
   _temperature?: Element | undefined;
@@ -14428,6 +14519,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
    * Broad category of this product.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.productCategory}
    * @see {@link BiologicallyDerivedProductCategory}
+   * @fhirType code
    */
   productCategory?: BiologicallyDerivedProductCategory | undefined;
   _productCategory?: Element | undefined;
@@ -14443,6 +14535,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
   /**
    * Number of discrete units within this product.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.quantity}
+   * @fhirType integer
    */
   quantity?: number | undefined;
   _quantity?: Element | undefined;
@@ -14458,6 +14551,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
    * Whether the product is currently available.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.status}
    * @see {@link BiologicallyDerivedProductStatus}
+   * @fhirType code
    */
   status?: BiologicallyDerivedProductStatus | undefined;
   _status?: Element | undefined;
@@ -14591,6 +14685,7 @@ Note that the fullUrl is not the same
  * (these will happen to have the same value on the canonical server for the
  * resource with the canonical URL).
  * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.fullUrl}
+ * @fhirType uri
  */
   fullUrl?: string | undefined;
   _fullUrl?: Element | undefined;
@@ -14599,6 +14694,7 @@ Note that the fullUrl is not the same
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -14686,6 +14782,7 @@ export interface BundleEntryRequest extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.request.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -14702,6 +14799,7 @@ export interface BundleEntryRequest extends BackboneElement {
    * Only perform the operation if the last updated date matches. See the API
    * documentation for ["Conditional Read"](http.html#cread).
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.request.ifModifiedSince}
+   * @fhirType instant
    */
   ifModifiedSince?: string | undefined;
   _ifModifiedSince?: Element | undefined;
@@ -14729,6 +14827,7 @@ export interface BundleEntryRequest extends BackboneElement {
    * entry. In a history bundle, this indicates the HTTP action that occurred.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.request.method}
    * @see {@link HTTPVerb}
+   * @fhirType code
    */
   method: HTTPVerb;
   _method?: Element | undefined;
@@ -14763,6 +14862,7 @@ Modifier extensions
    * "Patient". For a Patient Update, the method would be PUT and the URL would be
    * "Patient/[id]".
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.request.url}
+   * @fhirType uri
    */
   url: string;
   _url?: Element | undefined;
@@ -14805,6 +14905,7 @@ export interface BundleEntryResponse extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.response.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -14814,6 +14915,7 @@ export interface BundleEntryResponse extends BackboneElement {
    * This has to match the same time in the meta header (meta.lastUpdated) if a
    * resource is included.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.response.lastModified}
+   * @fhirType instant
    */
   lastModified?: string | undefined;
   _lastModified?: Element | undefined;
@@ -14822,6 +14924,7 @@ export interface BundleEntryResponse extends BackboneElement {
    * The location header created by processing this operation, populated if the
    * operation returns a location.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.response.location}
+   * @fhirType uri
    */
   location?: string | undefined;
   _location?: Element | undefined;
@@ -14900,6 +15003,7 @@ export interface BundleEntrySearch extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.search.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -14913,6 +15017,7 @@ export interface BundleEntrySearch extends BackboneElement {
    * precedence.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.search.mode}
    * @see {@link SearchEntryMode}
+   * @fhirType code
    */
   mode?: SearchEntryMode | undefined;
   _mode?: Element | undefined;
@@ -14950,6 +15055,7 @@ See [Patient
  * Match](patient-operation-match.html) for the EMPI search which relates to this
  * element.
  * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.search.score}
+ * @fhirType decimal
  */
   score?: number | undefined;
   _score?: Element | undefined;
@@ -14991,6 +15097,7 @@ export interface BundleLink extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.link.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -15031,6 +15138,7 @@ Modifier extensions
   /**
    * The reference details for the link.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.link.url}
+   * @fhirType uri
    */
   url: string;
   _url?: Element | undefined;
@@ -15131,6 +15239,7 @@ The timestamp value should be greater than the
  * lastUpdated and other timestamps in the resources in the bundle, and it should
  * be equal or earlier than the .meta.lastUpdated on the Bundle itself.
  * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.timestamp}
+ * @fhirType instant
  */
   timestamp?: string | undefined;
   _timestamp?: Element | undefined;
@@ -15144,6 +15253,7 @@ The timestamp value should be greater than the
    * resources such as OperationOutcome and included resources, only the total number
    * of matching resources.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.total}
+   * @fhirType unsignedInt
    */
   total?: number | undefined;
   _total?: Element | undefined;
@@ -15155,6 +15265,7 @@ The timestamp value should be greater than the
    * specific rules for some of the bundle types.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.type}
    * @see {@link BundleType}
+   * @fhirType code
    */
   type: BundleType;
   _type?: Element | undefined;
@@ -15170,6 +15281,7 @@ export interface CapabilityStatementDocument extends BackboneElement {
    * profile.  For example, when documents are created, what action is taken with
    * consumed documents, etc.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.document.documentation}
+   * @fhirType markdown
    */
   documentation?: string | undefined;
   _documentation?: Element | undefined;
@@ -15193,6 +15305,7 @@ export interface CapabilityStatementDocument extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.document.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -15202,6 +15315,7 @@ export interface CapabilityStatementDocument extends BackboneElement {
    * consumer.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.document.mode}
    * @see {@link DocumentMode}
+   * @fhirType code
    */
   mode: DocumentMode;
   _mode?: Element | undefined;
@@ -15234,6 +15348,7 @@ Modifier extensions
    * and their contents.
    * The profile is actually on the Bundle.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.document.profile}
+   * @fhirType canonical
    */
   profile: string;
   _profile?: Element | undefined;
@@ -15281,6 +15396,7 @@ export interface CapabilityStatementImplementation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.implementation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -15312,6 +15428,7 @@ Modifier extensions
    * An absolute base URL for the implementation.  This forms the base for REST
    * interfaces as well as the mailbox and document interfaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.implementation.url}
+   * @fhirType url
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -15328,6 +15445,7 @@ export interface CapabilityStatementMessaging extends BackboneElement {
    * otherwise documented by the capability statement.  For example, the process for
    * becoming an authorized messaging exchange partner.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging.documentation}
+   * @fhirType markdown
    */
   documentation?: string | undefined;
   _documentation?: Element | undefined;
@@ -15359,6 +15477,7 @@ export interface CapabilityStatementMessaging extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -15392,6 +15511,7 @@ Modifier extensions
    * If this value is missing then the application does not implement (receiver) or
    * depend on (sender) reliable messaging.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging.reliableCache}
+   * @fhirType unsignedInt
    */
   reliableCache?: number | undefined;
   _reliableCache?: Element | undefined;
@@ -15417,6 +15537,7 @@ export interface CapabilityStatementMessagingEndpoint extends BackboneElement {
    * The network address of the endpoint. For solutions that do not use network
    * addresses for routing, it can be just an identifier.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging.endpoint.address}
+   * @fhirType url
    */
   address: string;
   _address?: Element | undefined;
@@ -15440,6 +15561,7 @@ export interface CapabilityStatementMessagingEndpoint extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging.endpoint.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -15487,6 +15609,7 @@ export interface CapabilityStatementMessagingSupportedMessage
    * Points to a message definition that identifies the messaging event, message
    * structure, allowed responses, etc.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging.supportedMessage.definition}
+   * @fhirType canonical
    */
   definition: string;
   _definition?: Element | undefined;
@@ -15510,6 +15633,7 @@ export interface CapabilityStatementMessagingSupportedMessage
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging.supportedMessage.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -15518,6 +15642,7 @@ export interface CapabilityStatementMessagingSupportedMessage
    * The mode of this event declaration - whether application is sender or receiver.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.messaging.supportedMessage.mode}
    * @see {@link EventCapabilityMode}
+   * @fhirType code
    */
   mode: EventCapabilityMode;
   _mode?: Element | undefined;
@@ -15561,6 +15686,7 @@ export interface CapabilityStatementRest extends BackboneElement {
    * At present, the only defined compartments are at
    * [CompartmentDefinition](compartmentdefinition.html).
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.compartment}
+   * @fhirType canonical
    */
   compartment?: Array<string> | undefined;
   _compartment?: Element[] | undefined;
@@ -15569,6 +15695,7 @@ export interface CapabilityStatementRest extends BackboneElement {
    * Information about the system's restful capabilities that apply across all
    * applications, such as security.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.documentation}
+   * @fhirType markdown
    */
   documentation?: string | undefined;
   _documentation?: Element | undefined;
@@ -15592,6 +15719,7 @@ export interface CapabilityStatementRest extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -15608,6 +15736,7 @@ export interface CapabilityStatementRest extends BackboneElement {
    * initiate or receive restful operations.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.mode}
    * @see {@link RestfulCapabilityMode}
+   * @fhirType code
    */
   mode: RestfulCapabilityMode;
   _mode?: Element | undefined;
@@ -15662,6 +15791,7 @@ export interface CapabilityStatementRestInteraction extends BackboneElement {
    * A coded identifier of the operation, supported by the system.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.interaction.code}
    * @see {@link SystemRestfulInteraction}
+   * @fhirType code
    */
   code: SystemRestfulInteraction;
   _code?: Element | undefined;
@@ -15671,6 +15801,7 @@ export interface CapabilityStatementRestInteraction extends BackboneElement {
    * on the kind of transactions allowed, or information about system wide search is
    * implemented.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.interaction.documentation}
+   * @fhirType markdown
    */
   documentation?: string | undefined;
   _documentation?: Element | undefined;
@@ -15694,6 +15825,7 @@ export interface CapabilityStatementRestInteraction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.interaction.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -15744,6 +15876,7 @@ export interface CapabilityStatementRestResource extends BackboneElement {
    * from other formats, such as v2.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.conditionalDelete}
    * @see {@link ConditionalDeleteStatus}
+   * @fhirType code
    */
   conditionalDelete?: ConditionalDeleteStatus | undefined;
   _conditionalDelete?: Element | undefined;
@@ -15754,6 +15887,7 @@ export interface CapabilityStatementRestResource extends BackboneElement {
    * from other formats, such as v2.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.conditionalRead}
    * @see {@link ConditionalReadStatus}
+   * @fhirType code
    */
   conditionalRead?: ConditionalReadStatus | undefined;
   _conditionalRead?: Element | undefined;
@@ -15770,6 +15904,7 @@ export interface CapabilityStatementRestResource extends BackboneElement {
   /**
    * Additional information about the resource type used by the system.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.documentation}
+   * @fhirType markdown
    */
   documentation?: string | undefined;
   _documentation?: Element | undefined;
@@ -15793,6 +15928,7 @@ export interface CapabilityStatementRestResource extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -15857,6 +15993,7 @@ If
    * The profile applies to all  resources of this type - i.e. it is the superset of
    * what is supported by the system.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.profile}
+   * @fhirType canonical
    */
   profile?: string | undefined;
   _profile?: Element | undefined;
@@ -15875,6 +16012,7 @@ If
    * A set of flags that defines how references are supported.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.referencePolicy}
    * @see {@link ReferenceHandlingPolicy}
+   * @fhirType code
    */
   referencePolicy?: Array<ReferenceHandlingPolicy> | undefined;
   _referencePolicy?: Element[] | undefined;
@@ -15935,6 +16073,7 @@ If
    * valid values for the _profile resource (using the identifier in the target
    * profile).
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.supportedProfile}
+   * @fhirType canonical
    */
   supportedProfile?: Array<string> | undefined;
   _supportedProfile?: Element[] | undefined;
@@ -15943,6 +16082,7 @@ If
    * A type of resource exposed via the restful interface.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.type}
    * @see {@link ResourceType}
+   * @fhirType code
    */
   type: ResourceType;
   _type?: Element | undefined;
@@ -15974,6 +16114,7 @@ If
    * not required to do so.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.versioning}
    * @see {@link ResourceVersionPolicy}
+   * @fhirType code
    */
   versioning?: ResourceVersionPolicy | undefined;
   _versioning?: Element | undefined;
@@ -15993,6 +16134,7 @@ export interface CapabilityStatementRestResourceInteraction
    * Coded identifier of the operation, supported by the system resource.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.interaction.code}
    * @see {@link TypeRestfulInteraction}
+   * @fhirType code
    */
   code: TypeRestfulInteraction;
   _code?: Element | undefined;
@@ -16002,6 +16144,7 @@ export interface CapabilityStatementRestResourceInteraction
    * logical delete' or 'updates are only allowed with version id' or 'creates
    * permitted from pre-authorized certificates only'.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.interaction.documentation}
+   * @fhirType markdown
    */
   documentation?: string | undefined;
   _documentation?: Element | undefined;
@@ -16025,6 +16168,7 @@ export interface CapabilityStatementRestResourceInteraction
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.interaction.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -16081,6 +16225,7 @@ export interface CapabilityStatementRestResourceOperation
    * of functionality supported.
    * This can be used to build an HTML form to invoke the operation, for instance.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.operation.definition}
+   * @fhirType canonical
    */
   definition: string;
   _definition?: Element | undefined;
@@ -16090,6 +16235,7 @@ export interface CapabilityStatementRestResourceOperation
    * possibly detailing different behavior for system, type and instance-level
    * invocation of the operation.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.operation.documentation}
+   * @fhirType markdown
    */
   documentation?: string | undefined;
   _documentation?: Element | undefined;
@@ -16113,6 +16259,7 @@ export interface CapabilityStatementRestResourceOperation
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.operation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -16185,6 +16332,7 @@ export interface CapabilityStatementRestResourceSearchParam
    * the search parameter refers to a SearchParameter defined by the FHIR core
    * specification or externally defined IGs.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.searchParam.definition}
+   * @fhirType canonical
    */
   definition?: string | undefined;
   _definition?: Element | undefined;
@@ -16193,6 +16341,7 @@ export interface CapabilityStatementRestResourceSearchParam
    * This allows documentation of any distinct behaviors about how the search
    * parameter is used.  For example, text matching algorithms.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.searchParam.documentation}
+   * @fhirType markdown
    */
   documentation?: string | undefined;
   _documentation?: Element | undefined;
@@ -16216,6 +16365,7 @@ export interface CapabilityStatementRestResourceSearchParam
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.searchParam.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -16261,6 +16411,7 @@ Modifier extensions
    * definition.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.resource.searchParam.type}
    * @see {@link SearchParamType}
+   * @fhirType code
    */
   type: SearchParamType;
   _type?: Element | undefined;
@@ -16286,6 +16437,7 @@ export interface CapabilityStatementRestSecurity extends BackboneElement {
   /**
    * General description of how security works.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.security.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -16309,6 +16461,7 @@ export interface CapabilityStatementRestSecurity extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.security.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -16370,6 +16523,7 @@ export interface CapabilityStatementSoftware extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.software.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -16407,6 +16561,7 @@ Modifier extensions
   /**
    * Date this version of the software was released.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.software.releaseDate}
+   * @fhirType dateTime
    */
   releaseDate?: string | undefined;
   _releaseDate?: Element | undefined;
@@ -16448,6 +16603,7 @@ export interface CapabilityStatement extends DomainResource {
    * Copyright statements are generally legal restrictions on the use and publishing
    * of the capability statement.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -16462,6 +16618,7 @@ export interface CapabilityStatement extends DomainResource {
    * Additional specific dates may be added as extensions or be found by consulting
    * Provenances associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.date}
+   * @fhirType dateTime
    */
   date: string;
   _date?: Element | undefined;
@@ -16481,6 +16638,7 @@ export interface CapabilityStatement extends DomainResource {
    * was created).This does not need to be populated if the description is adequately
    * implied by the software or implementation details.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -16514,6 +16672,7 @@ export interface CapabilityStatement extends DomainResource {
    * will be either the version requested, or the server's default version.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.fhirVersion}
    * @see {@link FHIRVersion}
+   * @fhirType code
    */
   fhirVersion: FHIRVersion;
   _fhirVersion?: Element | undefined;
@@ -16526,6 +16685,7 @@ export interface CapabilityStatement extends DomainResource {
    * Otherwise, mime types are legal here.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.format}
    * @see {@link MimeTypes}
+   * @fhirType code
    */
   format: Array<MimeTypes>;
   _format?: Element[] | undefined;
@@ -16543,6 +16703,7 @@ export interface CapabilityStatement extends DomainResource {
    * A list of implementation guides that the server does (or should) support in
    * their entirety.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.implementationGuide}
+   * @fhirType canonical
    */
   implementationGuide?: Array<string> | undefined;
   _implementationGuide?: Element[] | undefined;
@@ -16561,6 +16722,7 @@ A
  * instantiates it too (though this is often not a very useful statement for the
  * kinds of CapabilityStatements that are suitable for importing).
  * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.imports}
+ * @fhirType canonical
  */
   imports?: Array<string> | undefined;
   _imports?: Element[] | undefined;
@@ -16577,6 +16739,7 @@ A
 Many [Implementation
  * Guides](http://fhir.org/guides/registry) define additional services.
  * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.instantiates}
+ * @fhirType canonical
  */
   instantiates?: Array<string> | undefined;
   _instantiates?: Element[] | undefined;
@@ -16597,6 +16760,7 @@ Many [Implementation
    * software) or a class of implementation (e.g. a desired purchase).
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.kind}
    * @see {@link CapabilityStatementKind}
+   * @fhirType code
    */
   kind: CapabilityStatementKind;
   _kind?: Element | undefined;
@@ -16629,6 +16793,7 @@ Many [Implementation
    * supports, but this is not always possible or necessary.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.patchFormat}
    * @see {@link MimeTypes}
+   * @fhirType code
    */
   patchFormat?: Array<MimeTypes> | undefined;
   _patchFormat?: Element[] | undefined;
@@ -16656,6 +16821,7 @@ Many [Implementation
    * is defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this capability statement.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -16687,6 +16853,7 @@ Many [Implementation
    * capability statements are used to describe possible or desired systems.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -16722,6 +16889,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -16790,6 +16958,7 @@ export interface CarePlanActivity extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -16943,6 +17112,7 @@ export interface CarePlanActivityDetail extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.detail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -16951,6 +17121,7 @@ export interface CarePlanActivityDetail extends BackboneElement {
    * The URL pointing to a FHIR-defined protocol, guideline, questionnaire or other
    * definition that is adhered to in whole or in part by this CarePlan activity.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.detail.instantiatesCanonical}
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -16962,6 +17133,7 @@ export interface CarePlanActivityDetail extends BackboneElement {
    * This might be an HTML page, PDF, etc. or could just be a non-resolvable URI
    * identifier.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.detail.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -16973,6 +17145,7 @@ export interface CarePlanActivityDetail extends BackboneElement {
    * example, a MedicationRequest, a ServiceRequest, or a CommunicationRequest.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.detail.kind}
    * @see {@link CarePlanActivityKind}
+   * @fhirType code
    */
   kind?: CarePlanActivityKind | undefined;
   _kind?: Element | undefined;
@@ -17093,6 +17266,7 @@ The unknown code is not to be used to convey other statuses.
  * authoring system doesn't know the current state of the activity.
  * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.detail.status}
  * @see {@link CarePlanActivityStatus}
+ * @fhirType code
  */
   status: CarePlanActivityStatus;
   _status?: Element | undefined;
@@ -17190,6 +17364,7 @@ export interface CarePlan extends DomainResource {
    * Represents when this particular CarePlan record was created in the system, which
    * is often a system-generated date.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.created}
+   * @fhirType dateTime
    */
   created?: string | undefined;
   _created?: Element | undefined;
@@ -17243,6 +17418,7 @@ export interface CarePlan extends DomainResource {
    * The URL pointing to a FHIR-defined protocol, guideline, questionnaire or other
    * definition that is adhered to in whole or in part by this CarePlan.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.instantiatesCanonical}
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -17253,6 +17429,7 @@ export interface CarePlan extends DomainResource {
    * This might be an HTML page, PDF, etc. or could just be a non-resolvable URI
    * identifier.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -17264,6 +17441,7 @@ export interface CarePlan extends DomainResource {
    * resource is actually applicable.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.intent}
    * @see {@link CarePlanIntent}
+   * @fhirType code
    */
   intent: CarePlanIntent;
   _intent?: Element | undefined;
@@ -17318,6 +17496,7 @@ This element is labeled as a
  * plan as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.status}
  * @see {@link RequestStatus}
+ * @fhirType code
  */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -17372,6 +17551,7 @@ export interface CareTeamParticipant extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.participant.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -17549,6 +17729,7 @@ export interface CareTeam extends DomainResource {
    * entered-in-error that marks the care team as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.status}
    * @see {@link CareTeamStatus}
+   * @fhirType code
    */
   status?: CareTeamStatus | undefined;
   _status?: Element | undefined;
@@ -17595,6 +17776,7 @@ export interface CatalogEntryRelatedEntry extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CatalogEntry-definitions.html#CatalogEntry.relatedEntry.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -17634,6 +17816,7 @@ Modifier extensions
    * containerPackage, usedIn, uses, requires, etc.
    * @see {@link http://hl7.org/fhir/R4B/CatalogEntry-definitions.html#CatalogEntry.relatedEntry.relationtype}
    * @see {@link CatalogEntryRelationType}
+   * @fhirType code
    */
   relationtype: CatalogEntryRelationType;
   _relationtype?: Element | undefined;
@@ -17690,6 +17873,7 @@ export interface CatalogEntry extends DomainResource {
    * can be used to see when an item was last updated.
    * Perhaps not needed - if we use fhir resource metadata.
    * @see {@link http://hl7.org/fhir/R4B/CatalogEntry-definitions.html#CatalogEntry.lastUpdated}
+   * @fhirType dateTime
    */
   lastUpdated?: string | undefined;
   _lastUpdated?: Element | undefined;
@@ -17721,6 +17905,7 @@ export interface CatalogEntry extends DomainResource {
    * list of medications even if not prescribable.
    * @see {@link http://hl7.org/fhir/R4B/CatalogEntry-definitions.html#CatalogEntry.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status?: PublicationStatus | undefined;
   _status?: Element | undefined;
@@ -17742,6 +17927,7 @@ export interface CatalogEntry extends DomainResource {
   /**
    * The date until which this catalog entry is expected to be active.
    * @see {@link http://hl7.org/fhir/R4B/CatalogEntry-definitions.html#CatalogEntry.validTo}
+   * @fhirType dateTime
    */
   validTo?: string | undefined;
   _validTo?: Element | undefined;
@@ -17786,6 +17972,7 @@ export interface ChargeItemPerformer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.performer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -17881,6 +18068,7 @@ export interface ChargeItem extends DomainResource {
    * References the source of pricing information, rules of application for the code
    * this ChargeItem uses.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.definitionCanonical}
+   * @fhirType canonical
    */
   definitionCanonical?: Array<string> | undefined;
   _definitionCanonical?: Element[] | undefined;
@@ -17889,6 +18077,7 @@ export interface ChargeItem extends DomainResource {
    * References the (external) source of pricing information, rules of application
    * for the code this ChargeItem uses.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.definitionUri}
+   * @fhirType uri
    */
   definitionUri?: Array<string> | undefined;
   _definitionUri?: Element[] | undefined;
@@ -17898,6 +18087,7 @@ export interface ChargeItem extends DomainResource {
    * The actual date when the service associated with the charge has been rendered is
    * captured in occurrence[x].
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.enteredDate}
+   * @fhirType dateTime
    */
   enteredDate?: string | undefined;
   _enteredDate?: Element | undefined;
@@ -17919,6 +18109,7 @@ export interface ChargeItem extends DomainResource {
    * ChargeItem.definition). Derived profiles may require a ChargeItem.overrideReason
    * to be provided if either factor or price are manually overridden.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.factorOverride}
+   * @fhirType decimal
    */
   factorOverride?: number | undefined;
   _factorOverride?: Element | undefined;
@@ -17941,6 +18132,7 @@ export interface ChargeItem extends DomainResource {
    * Date/time(s) or duration when the charged service was applied.
    * The list of types may be constrained as appropriate for the type of charge item.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.occurrenceDateTime}
+   * @fhirType dateTime
    */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -18069,6 +18261,7 @@ This element is labeled as a modifier because the status contains the code
  * entered-in-error that marks the charge item as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.status}
  * @see {@link ChargeItemStatus}
+ * @fhirType code
  */
   status: ChargeItemStatus;
   _status?: Element | undefined;
@@ -18140,6 +18333,7 @@ FHIRPath
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.applicability.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -18202,6 +18396,7 @@ export interface ChargeItemDefinitionPropertyGroup extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.propertyGroup.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -18289,6 +18484,7 @@ export interface ChargeItemDefinitionPropertyGroupPriceComponent
    * The factor that has been applied on the base price for calculating this
    * component.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.propertyGroup.priceComponent.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -18297,6 +18493,7 @@ export interface ChargeItemDefinitionPropertyGroupPriceComponent
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.propertyGroup.priceComponent.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -18328,6 +18525,7 @@ Modifier extensions
    * This code identifies the type of the component.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.propertyGroup.priceComponent.type}
    * @see {@link InvoicePriceComponentType}
+   * @fhirType code
    */
   type: InvoicePriceComponentType;
   _type?: Element | undefined;
@@ -18362,6 +18560,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * The 'date' element may be more recent than the approval date because of minor
    * changes or editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -18387,6 +18586,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * contents. Copyright statements are generally legal restrictions on the use and
    * publishing of the charge item definition.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -18401,6 +18601,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * Additional specific dates may be added as extensions or be found by consulting
    * Provenances associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -18409,6 +18610,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * The URL pointing to an externally-defined charge item definition that is adhered
    * to in whole or in part by this definition.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.derivedFromUri}
+   * @fhirType uri
    */
   derivedFromUri?: Array<string> | undefined;
   _derivedFromUri?: Element[] | undefined;
@@ -18425,6 +18627,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * presumed to be the predominant language in the place the charge item definition
    * was created).
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -18491,6 +18694,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * periodically after approval but does not change the original approval date.
    * If specified, this date follows the original approval date.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -18498,6 +18702,7 @@ export interface ChargeItemDefinition extends DomainResource {
   /**
    * A larger definition of which this particular definition is a component or step.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.partOf}
+   * @fhirType canonical
    */
   partOf?: Array<string> | undefined;
   _partOf?: Element[] | undefined;
@@ -18530,6 +18735,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * As new versions of a protocol or guideline are defined, allows identification of
    * what versions are replaced by a new instance.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.replaces}
+   * @fhirType canonical
    */
   replaces?: Array<string> | undefined;
   _replaces?: Element[] | undefined;
@@ -18540,6 +18746,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -18575,6 +18782,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.url}
+ * @fhirType uri
  */
   url: string;
   _url?: Element | undefined;
@@ -18650,6 +18858,7 @@ export interface CitationCitedArtifact extends BackboneElement {
   /**
    * When the cited artifact was accessed.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.dateAccessed}
+   * @fhirType dateTime
    */
   dateAccessed?: string | undefined;
   _dateAccessed?: Element | undefined;
@@ -18673,6 +18882,7 @@ export interface CitationCitedArtifact extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -18792,6 +19002,7 @@ export interface CitationCitedArtifactAbstract extends BackboneElement {
   /**
    * Copyright notice for the abstract.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.abstract.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -18815,6 +19026,7 @@ export interface CitationCitedArtifactAbstract extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.abstract.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -18852,6 +19064,7 @@ Modifier extensions
   /**
    * Abstract content.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.abstract.text}
+   * @fhirType markdown
    */
   text: string;
   _text?: Element | undefined;
@@ -18895,6 +19108,7 @@ export interface CitationCitedArtifactClassification extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.classification.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -18976,6 +19190,7 @@ export interface CitationCitedArtifactClassificationWhoClassified
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.classification.whoClassified.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -19068,6 +19283,7 @@ export interface CitationCitedArtifactContributorship extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -19183,6 +19399,7 @@ export interface CitationCitedArtifactContributorshipEntry
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.entry.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -19208,6 +19425,7 @@ export interface CitationCitedArtifactContributorshipEntry
   /**
    * Used to code order of authors.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.entry.listOrder}
+   * @fhirType positiveInt
    */
   listOrder?: number | undefined;
   _listOrder?: Element | undefined;
@@ -19293,6 +19511,7 @@ export interface CitationCitedArtifactContributorshipEntryAffiliationInfo
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.entry.affiliationInfo.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -19360,6 +19579,7 @@ export interface CitationCitedArtifactContributorshipEntryContributionInstance
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.entry.contributionInstance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -19390,6 +19610,7 @@ Modifier extensions
   /**
    * The time that the contribution was made.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.entry.contributionInstance.time}
+   * @fhirType dateTime
    */
   time?: string | undefined;
   _time?: Element | undefined;
@@ -19428,6 +19649,7 @@ export interface CitationCitedArtifactContributorshipSummary
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.summary.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -19480,6 +19702,7 @@ Modifier extensions
    * The display string for the author list, contributor list, or contributorship
    * statement.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.contributorship.summary.value}
+   * @fhirType markdown
    */
   value: string;
   _value?: Element | undefined;
@@ -19516,6 +19739,7 @@ export interface CitationCitedArtifactPart extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.part.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -19578,6 +19802,7 @@ export interface CitationCitedArtifactPublicationForm extends BackboneElement {
    * The date the article was added to the database, or the date the article was
    * released (which may differ from the journal issue publication date).
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.articleDate}
+   * @fhirType dateTime
    */
   articleDate?: string | undefined;
   _articleDate?: Element | undefined;
@@ -19585,6 +19810,7 @@ export interface CitationCitedArtifactPublicationForm extends BackboneElement {
   /**
    * Copyright notice for the full article or artifact.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -19615,6 +19841,7 @@ export interface CitationCitedArtifactPublicationForm extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -19645,6 +19872,7 @@ export interface CitationCitedArtifactPublicationForm extends BackboneElement {
   /**
    * The date the article was last revised or updated in the database.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.lastRevisionDate}
+   * @fhirType dateTime
    */
   lastRevisionDate?: string | undefined;
   _lastRevisionDate?: Element | undefined;
@@ -19745,6 +19973,7 @@ export interface CitationCitedArtifactPublicationFormPeriodicRelease
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.periodicRelease.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -19796,6 +20025,7 @@ export interface CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublic
   /**
    * Date on which the issue of the journal was published.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.periodicRelease.dateOfPublication.date}
+   * @fhirType date
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -19826,6 +20056,7 @@ export interface CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublic
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.periodicRelease.dateOfPublication.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -19907,6 +20138,7 @@ export interface CitationCitedArtifactPublicationFormPublishedIn
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.publishedIn.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -19997,6 +20229,7 @@ export interface CitationCitedArtifactRelatesTo extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.relatesTo.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -20034,6 +20267,7 @@ Modifier extensions
   /**
    * The article or artifact that the cited artifact is related to.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.relatesTo.targetUri}
+   * @fhirType uri
    */
   targetUri?: string | undefined;
   _targetUri?: Element | undefined;
@@ -20105,6 +20339,7 @@ export interface CitationCitedArtifactStatusDate extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.statusDate.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -20165,6 +20400,7 @@ export interface CitationCitedArtifactTitle extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.title.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -20202,6 +20438,7 @@ Modifier extensions
   /**
    * The title of the article or artifact.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.title.text}
+   * @fhirType markdown
    */
   text: string;
   _text?: Element | undefined;
@@ -20245,6 +20482,7 @@ export interface CitationCitedArtifactVersion extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.version.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -20304,6 +20542,7 @@ export interface CitationCitedArtifactWebLocation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.webLocation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -20342,6 +20581,7 @@ Modifier extensions
    * The specific URL.
    * Persistent URLs, like doi, are preferred.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.webLocation.url}
+   * @fhirType uri
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -20378,6 +20618,7 @@ export interface CitationClassification extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.classification.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -20437,6 +20678,7 @@ export interface CitationRelatesTo extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.relatesTo.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -20474,6 +20716,7 @@ Modifier extensions
   /**
    * The article or artifact that the Citation Resource is related to.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.relatesTo.targetUri}
+   * @fhirType uri
    */
   targetUri?: string | undefined;
   _targetUri?: Element | undefined;
@@ -20545,6 +20788,7 @@ export interface CitationStatusDate extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.statusDate.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -20605,6 +20849,7 @@ export interface CitationSummary extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.summary.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -20642,6 +20887,7 @@ Modifier extensions
   /**
    * The human-readable display of the citation.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.summary.text}
+   * @fhirType markdown
    */
   text: string;
   _text?: Element | undefined;
@@ -20666,6 +20912,7 @@ export interface Citation extends DomainResource {
    * The 'date' element may be more recent than the approval date because of minor
    * changes or editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -20703,6 +20950,7 @@ export interface Citation extends DomainResource {
   /**
    * Use and/or publishing restrictions for the Citation, not for the cited artifact.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -20724,6 +20972,7 @@ export interface Citation extends DomainResource {
    * dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -20739,6 +20988,7 @@ export interface Citation extends DomainResource {
    * the language of the citation is presumed to be the predominant language in the
    * place the citation was created).
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -20804,6 +21054,7 @@ export interface Citation extends DomainResource {
    * periodically after approval but does not change the original approval date.
    * If specified, this date follows the original approval date.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -20848,6 +21099,7 @@ export interface Citation extends DomainResource {
    * as it is.  This may be used to point to source materials or specifications that
    * drove the structure of this citation.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -20871,6 +21123,7 @@ export interface Citation extends DomainResource {
    * Allows filtering of summarys s that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -20908,6 +21161,7 @@ export interface Citation extends DomainResource {
    * Can be a urn:uuid: or a urn:oid: but real http: addresses are preferred.
    * Multiple instances may share the same URL if they have a distinct version.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.url}
+   * @fhirType uri
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -20954,6 +21208,7 @@ export interface ClaimAccident extends BackboneElement {
    * The date of the accident has to precede the dates of the products and services
    * but within a reasonable timeframe.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.accident.date}
+   * @fhirType date
    */
   date: string;
   _date?: Element | undefined;
@@ -20977,6 +21232,7 @@ export interface ClaimAccident extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.accident.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -21052,6 +21308,7 @@ export interface ClaimCareTeam extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.careTeam.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -21114,6 +21371,7 @@ Modifier extensions
   /**
    * A number to uniquely identify care team entries.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.careTeam.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -21159,6 +21417,7 @@ export interface ClaimDiagnosis extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.diagnosis.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -21212,6 +21471,7 @@ Modifier extensions
    * Diagnosis are presented in list order to their expected importance: primary,
    * secondary, etc.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.diagnosis.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -21298,6 +21558,7 @@ export interface ClaimInsurance extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.insurance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -21352,6 +21613,7 @@ Modifier extensions
    * A number to uniquely identify insurance entries and provide a sequence of
    * coverages to convey coordination of benefit order.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.insurance.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -21375,6 +21637,7 @@ export interface ClaimItem extends BackboneElement {
   /**
    * CareTeam members related to this service or product.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.careTeamSequence}
+   * @fhirType positiveInt
    */
   careTeamSequence?: Array<number> | undefined;
   _careTeamSequence?: Element[] | undefined;
@@ -21399,6 +21662,7 @@ export interface ClaimItem extends BackboneElement {
   /**
    * Diagnosis applicable for this service or product.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.diagnosisSequence}
+   * @fhirType positiveInt
    */
   diagnosisSequence?: Array<number> | undefined;
   _diagnosisSequence?: Element[] | undefined;
@@ -21435,6 +21699,7 @@ export interface ClaimItem extends BackboneElement {
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -21443,6 +21708,7 @@ export interface ClaimItem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -21451,6 +21717,7 @@ export interface ClaimItem extends BackboneElement {
    * Exceptions, special conditions and supporting information applicable for this
    * service or product.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.informationSequence}
+   * @fhirType positiveInt
    */
   informationSequence?: Array<number> | undefined;
   _informationSequence?: Element[] | undefined;
@@ -21523,6 +21790,7 @@ Modifier extensions
   /**
    * Procedures applicable for this service or product.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.procedureSequence}
+   * @fhirType positiveInt
    */
   procedureSequence?: Array<number> | undefined;
   _procedureSequence?: Element[] | undefined;
@@ -21566,6 +21834,7 @@ Modifier extensions
   /**
    * A number to uniquely identify item entries.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -21574,6 +21843,7 @@ Modifier extensions
    * The date or dates when the service or product was supplied, performed or
    * completed.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.servicedDate}
+   * @fhirType date
    */
   servicedDate?: string | undefined;
   _servicedDate?: Element | undefined;
@@ -21645,6 +21915,7 @@ export interface ClaimItemDetail extends BackboneElement {
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.detail.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -21653,6 +21924,7 @@ export interface ClaimItemDetail extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.detail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -21739,6 +22011,7 @@ Modifier extensions
   /**
    * A number to uniquely identify item entries.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.detail.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -21803,6 +22076,7 @@ export interface ClaimItemDetailSubDetail extends BackboneElement {
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.detail.subDetail.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -21811,6 +22085,7 @@ export interface ClaimItemDetailSubDetail extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.detail.subDetail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -21897,6 +22172,7 @@ Modifier extensions
   /**
    * A number to uniquely identify item entries.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.detail.subDetail.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -21945,6 +22221,7 @@ export interface ClaimPayee extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.payee.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -21997,6 +22274,7 @@ export interface ClaimProcedure extends BackboneElement {
   /**
    * Date and optionally time the procedure was performed.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.procedure.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -22020,6 +22298,7 @@ export interface ClaimProcedure extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.procedure.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -22066,6 +22345,7 @@ Modifier extensions
   /**
    * A number to uniquely identify procedure entries.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.procedure.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -22119,6 +22399,7 @@ export interface ClaimRelated extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.related.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -22208,6 +22489,7 @@ export interface ClaimSupportingInfo extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.supportingInfo.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -22247,6 +22529,7 @@ Modifier extensions
   /**
    * A number to uniquely identify supporting information entries.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.supportingInfo.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -22254,6 +22537,7 @@ Modifier extensions
   /**
    * The date when or period to which this information refers.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.supportingInfo.timingDate}
+   * @fhirType date
    */
   timingDate?: string | undefined;
   _timingDate?: Element | undefined;
@@ -22359,6 +22643,7 @@ export interface Claim extends DomainResource {
    * reflect the creation date of a source document prior to digitization. Typically
    * for claims all services must be completed as of this date.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.created}
+   * @fhirType dateTime
    */
   created: string;
   _created?: Element | undefined;
@@ -22523,6 +22808,7 @@ export interface Claim extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.status}
    * @see {@link FinancialResourceStatusCodes}
+   * @fhirType code
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -22571,6 +22857,7 @@ export interface Claim extends DomainResource {
    * future.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.use}
    * @see {@link Use}
+   * @fhirType code
    */
   use: Use;
   _use?: Element | undefined;
@@ -22601,6 +22888,7 @@ export interface ClaimResponseAddItem extends BackboneElement {
    * The sequence number of the details within the claim item which this line is
    * intended to replace.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detailSequence}
+   * @fhirType positiveInt
    */
   detailSequence?: Array<number> | undefined;
   _detailSequence?: Element[] | undefined;
@@ -22626,6 +22914,7 @@ export interface ClaimResponseAddItem extends BackboneElement {
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -22634,6 +22923,7 @@ export interface ClaimResponseAddItem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -22641,6 +22931,7 @@ export interface ClaimResponseAddItem extends BackboneElement {
   /**
    * Claim items which this service line is intended to replace.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.itemSequence}
+   * @fhirType positiveInt
    */
   itemSequence?: Array<number> | undefined;
   _itemSequence?: Element[] | undefined;
@@ -22714,6 +23005,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -22758,6 +23050,7 @@ Modifier extensions
    * The date or dates when the service or product was supplied, performed or
    * completed.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.servicedDate}
+   * @fhirType date
    */
   servicedDate?: string | undefined;
   _servicedDate?: Element | undefined;
@@ -22774,6 +23067,7 @@ Modifier extensions
    * The sequence number of the sub-details within the details within the claim item
    * which this line is intended to replace.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.subdetailSequence}
+   * @fhirType positiveInt
    */
   subdetailSequence?: Array<number> | undefined;
   _subdetailSequence?: Element[] | undefined;
@@ -22820,6 +23114,7 @@ export interface ClaimResponseAddItemDetail extends BackboneElement {
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detail.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -22828,6 +23123,7 @@ export interface ClaimResponseAddItemDetail extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -22880,6 +23176,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detail.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -22946,6 +23243,7 @@ export interface ClaimResponseAddItemDetailSubDetail extends BackboneElement {
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detail.subDetail.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -22954,6 +23252,7 @@ export interface ClaimResponseAddItemDetailSubDetail extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detail.subDetail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -23006,6 +23305,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detail.subDetail.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -23059,6 +23359,7 @@ export interface ClaimResponseError extends BackboneElement {
    * the error. This value is omitted when the error occurs outside of the item
    * structure.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.error.detailSequence}
+   * @fhirType positiveInt
    */
   detailSequence?: number | undefined;
   _detailSequence?: Element | undefined;
@@ -23082,6 +23383,7 @@ export interface ClaimResponseError extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.error.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -23090,6 +23392,7 @@ export interface ClaimResponseError extends BackboneElement {
    * The sequence number of the line item submitted which contains the error. This
    * value is omitted when the error occurs outside of the item structure.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.error.itemSequence}
+   * @fhirType positiveInt
    */
   itemSequence?: number | undefined;
   _itemSequence?: Element | undefined;
@@ -23122,6 +23425,7 @@ Modifier extensions
    * submitted which contains the error. This value is omitted when the error occurs
    * outside of the item structure.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.error.subDetailSequence}
+   * @fhirType positiveInt
    */
   subDetailSequence?: number | undefined;
   _subDetailSequence?: Element | undefined;
@@ -23200,6 +23504,7 @@ export interface ClaimResponseInsurance extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.insurance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -23231,6 +23536,7 @@ Modifier extensions
    * A number to uniquely identify insurance entries and provide a sequence of
    * coverages to convey coordination of benefit order.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.insurance.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -23278,6 +23584,7 @@ export interface ClaimResponseItem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -23285,6 +23592,7 @@ export interface ClaimResponseItem extends BackboneElement {
   /**
    * A number to uniquely reference the claim item entries.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.itemSequence}
+   * @fhirType positiveInt
    */
   itemSequence: number;
   _itemSequence?: Element | undefined;
@@ -23316,6 +23624,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -23367,6 +23676,7 @@ export interface ClaimResponseItemAdjudication extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.adjudication.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -23409,6 +23719,7 @@ Modifier extensions
    * amount element above.
    * For example: eligible percentage or co-payment percentage.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.adjudication.value}
+   * @fhirType decimal
    */
   value?: number | undefined;
   _value?: Element | undefined;
@@ -23423,6 +23734,7 @@ export interface ClaimResponseItemDetail extends BackboneElement {
   /**
    * A number to uniquely reference the claim detail entry.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail.detailSequence}
+   * @fhirType positiveInt
    */
   detailSequence: number;
   _detailSequence?: Element | undefined;
@@ -23446,6 +23758,7 @@ export interface ClaimResponseItemDetail extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -23477,6 +23790,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -23513,6 +23827,7 @@ export interface ClaimResponseItemDetailSubDetail extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail.subDetail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -23544,6 +23859,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail.subDetail.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -23551,6 +23867,7 @@ Modifier extensions
   /**
    * A number to uniquely reference the claim sub-detail entry.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail.subDetail.subDetailSequence}
+   * @fhirType positiveInt
    */
   subDetailSequence: number;
   _subDetailSequence?: Element | undefined;
@@ -23589,6 +23906,7 @@ export interface ClaimResponsePayment extends BackboneElement {
   /**
    * Estimated date the payment will be issued or the actual issue date of payment.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.payment.date}
+   * @fhirType date
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -23612,6 +23930,7 @@ export interface ClaimResponsePayment extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.payment.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -23679,6 +23998,7 @@ export interface ClaimResponseProcessNote extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.processNote.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -23717,6 +24037,7 @@ Modifier extensions
   /**
    * A number to uniquely identify a note entry.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.processNote.number}
+   * @fhirType positiveInt
    */
   number?: number | undefined;
   _number?: Element | undefined;
@@ -23732,6 +24053,7 @@ Modifier extensions
    * The business purpose of the note text.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.processNote.type}
    * @see {@link NoteType}
+   * @fhirType code
    */
   type?: NoteType | undefined;
   _type?: Element | undefined;
@@ -23781,6 +24103,7 @@ export interface ClaimResponseTotal extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.total.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -23839,6 +24162,7 @@ export interface ClaimResponse extends DomainResource {
   /**
    * The date this resource was created.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.created}
+   * @fhirType dateTime
    */
   created: string;
   _created?: Element | undefined;
@@ -23931,6 +24255,7 @@ export interface ClaimResponse extends DomainResource {
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.outcome}
    * @see {@link RemittanceOutcome}
+   * @fhirType code
    */
   outcome: RemittanceOutcome;
   _outcome?: Element | undefined;
@@ -24004,6 +24329,7 @@ export interface ClaimResponse extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.status}
    * @see {@link FinancialResourceStatusCodes}
+   * @fhirType code
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -24044,6 +24370,7 @@ export interface ClaimResponse extends DomainResource {
    * future.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.use}
    * @see {@link Use}
+   * @fhirType code
    */
   use: Use;
   _use?: Element | undefined;
@@ -24081,6 +24408,7 @@ export interface ClinicalImpressionFinding extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.finding.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -24163,6 +24491,7 @@ export interface ClinicalImpressionInvestigation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.investigation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -24235,6 +24564,7 @@ export interface ClinicalImpression extends DomainResource {
   /**
    * Indicates when the documentation of the assessment was complete.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -24252,6 +24582,7 @@ export interface ClinicalImpression extends DomainResource {
    * This SHOULD be accurate to at least the minute, though some assessments only
    * have a known date.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.effectiveDateTime}
+   * @fhirType dateTime
    */
   effectiveDateTime?: string | undefined;
   _effectiveDateTime?: Element | undefined;
@@ -24361,6 +24692,7 @@ export interface ClinicalImpression extends DomainResource {
    * Reference to a specific published clinical protocol that was followed during
    * this assessment, and/or that provides evidence in support of the diagnosis.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.protocol}
+   * @fhirType uri
    */
   protocol?: Array<string> | undefined;
   _protocol?: Element[] | undefined;
@@ -24371,6 +24703,7 @@ export interface ClinicalImpression extends DomainResource {
    * entered-in-error that marks the clinical impression as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.status}
    * @see {@link ClinicalImpressionStatus}
+   * @fhirType code
    */
   status: ClinicalImpressionStatus;
   _status?: Element | undefined;
@@ -24455,6 +24788,7 @@ export interface ClinicalUseDefinitionContraindication extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.contraindication.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -24526,6 +24860,7 @@ export interface ClinicalUseDefinitionContraindicationOtherTherapy
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.contraindication.otherTherapy.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -24636,6 +24971,7 @@ export interface ClinicalUseDefinitionIndication extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.indication.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -24711,6 +25047,7 @@ export interface ClinicalUseDefinitionInteraction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.interaction.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -24793,6 +25130,7 @@ export interface ClinicalUseDefinitionInteractionInteractant
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.interaction.interactant.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -24875,6 +25213,7 @@ export interface ClinicalUseDefinitionUndesirableEffect
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.undesirableEffect.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -24928,6 +25267,7 @@ export interface ClinicalUseDefinitionWarning extends BackboneElement {
   /**
    * A textual definition of this warning, with formatting.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.warning.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -24951,6 +25291,7 @@ export interface ClinicalUseDefinitionWarning extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.warning.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -25052,6 +25393,7 @@ export interface ClinicalUseDefinition extends DomainResource {
    * indication | contraindication | interaction | undesirable-effect | warning.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.type}
    * @see {@link ClinicalUseDefinitionType}
+   * @fhirType code
    */
   type: ClinicalUseDefinitionType;
   _type?: Element | undefined;
@@ -25143,6 +25485,7 @@ export interface CodeSystemConcept extends BackboneElement {
    * A code - a text symbol - that uniquely identifies the concept within the code
    * system.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.code}
+   * @fhirType code
    */
   code: string;
   _code?: Element | undefined;
@@ -25196,6 +25539,7 @@ export interface CodeSystemConcept extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -25260,6 +25604,7 @@ export interface CodeSystemConceptDesignation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.designation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -25268,6 +25613,7 @@ export interface CodeSystemConceptDesignation extends BackboneElement {
    * The language this designation is defined for.
    * In the absence of a language, the resource language applies.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.designation.language}
+   * @fhirType code
    */
   language?: string | undefined;
   _language?: Element | undefined;
@@ -25320,6 +25666,7 @@ export interface CodeSystemConceptProperty extends BackboneElement {
   /**
    * A code that is a reference to CodeSystem.property.code.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.property.code}
+   * @fhirType code
    */
   code: string;
   _code?: Element | undefined;
@@ -25343,6 +25690,7 @@ export interface CodeSystemConceptProperty extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.property.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -25373,6 +25721,7 @@ Modifier extensions
   /**
    * The value of this property.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.property.valueCode}
+   * @fhirType code
    */
   valueCode?: string | undefined;
   _valueCode?: Element | undefined;
@@ -25394,6 +25743,7 @@ Modifier extensions
   /**
    * The value of this property.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.property.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -25408,6 +25758,7 @@ Modifier extensions
   /**
    * The value of this property.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.property.valueDateTime}
+   * @fhirType dateTime
    */
   valueDateTime?: string | undefined;
   _valueDateTime?: Element | undefined;
@@ -25415,6 +25766,7 @@ Modifier extensions
   /**
    * The value of this property.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.property.valueDecimal}
+   * @fhirType decimal
    */
   valueDecimal?: number | undefined;
   _valueDecimal?: Element | undefined;
@@ -25434,6 +25786,7 @@ export interface CodeSystemFilter extends BackboneElement {
    * The code that identifies this filter when it is used as a filter in
    * [ValueSet](valueset.html#).compose.include.filter.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.filter.code}
+   * @fhirType code
    */
   code: string;
   _code?: Element | undefined;
@@ -25464,6 +25817,7 @@ export interface CodeSystemFilter extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.filter.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -25495,6 +25849,7 @@ Modifier extensions
    * A list of operators that can be used with the filter.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.filter.operator}
    * @see {@link FilterOperator}
+   * @fhirType code
    */
   operator: Array<FilterOperator>;
   _operator?: Element[] | undefined;
@@ -25518,6 +25873,7 @@ export interface CodeSystemProperty extends BackboneElement {
    * CodeSystem.concept.property.code) and also externally, such as in property
    * filters.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.property.code}
+   * @fhirType code
    */
   code: string;
   _code?: Element | undefined;
@@ -25549,6 +25905,7 @@ export interface CodeSystemProperty extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.property.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -25581,6 +25938,7 @@ Modifier extensions
    * by the code system (e.g. a reference to another defined concept).
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.property.type}
    * @see {@link PropertyType}
+   * @fhirType code
    */
   type: PropertyType;
   _type?: Element | undefined;
@@ -25589,6 +25947,7 @@ Modifier extensions
    * Reference to the formal meaning of the property. One possible source of meaning
    * is the [Concept Properties](codesystem-concept-properties.html) code system.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.property.uri}
+   * @fhirType uri
    */
   uri?: string | undefined;
   _uri?: Element | undefined;
@@ -25652,6 +26011,7 @@ export interface CodeSystem extends DomainResource {
    * are represented in this resource instance.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.content}
    * @see {@link CodeSystemContentMode}
+   * @fhirType code
    */
   content: CodeSystemContentMode;
   _content?: Element | undefined;
@@ -25664,6 +26024,7 @@ export interface CodeSystem extends DomainResource {
    * are included. The copyright statement should clearly differentiate between these
    * when required.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -25675,6 +26036,7 @@ export interface CodeSystem extends DomainResource {
    * The count of concepts defined in this resource cannot be more than this value
    * but may be less for several reasons - see the content element.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.count}
+   * @fhirType unsignedInt
    */
   count?: number | undefined;
   _count?: Element | undefined;
@@ -25689,6 +26051,7 @@ export interface CodeSystem extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -25704,6 +26067,7 @@ export interface CodeSystem extends DomainResource {
    * the language of the code system is presumed to be the predominant language in
    * the place the code system was created).
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -25736,6 +26100,7 @@ export interface CodeSystem extends DomainResource {
    * and represent the information using properties.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.hierarchyMeaning}
    * @see {@link CodeSystemHierarchyMeaning}
+   * @fhirType code
    */
   hierarchyMeaning?: CodeSystemHierarchyMeaning | undefined;
   _hierarchyMeaning?: Element | undefined;
@@ -25804,6 +26169,7 @@ export interface CodeSystem extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this code system.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -25814,6 +26180,7 @@ export interface CodeSystem extends DomainResource {
    * Allows filtering of code systems that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -25824,6 +26191,7 @@ export interface CodeSystem extends DomainResource {
    * The most common use of a code system supplement is to add additional language
    * support.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.supplements}
+   * @fhirType canonical
    */
   supplements?: string | undefined;
   _supplements?: Element | undefined;
@@ -25859,6 +26227,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -25881,6 +26250,7 @@ In some cases, the resource can no longer
    * The definition of the value set SHALL include all codes from this code system
    * and only codes from this code system, and it SHALL be immutable.
    * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.valueSet}
+   * @fhirType canonical
    */
   valueSet?: string | undefined;
   _valueSet?: Element | undefined;
@@ -25933,6 +26303,7 @@ export interface Coding extends Element {
   /**
    * A symbol in syntax defined by the system. The symbol may be a predefined code or
    * an expression in a syntax defined by the coding system (e.g. post-coordination).
+   * @fhirType code
    */
   code?: string | undefined;
   _code?: Element | undefined;
@@ -25951,6 +26322,7 @@ export interface Coding extends Element {
    * SHALL be references to the HL7 OID registry. Otherwise, the URI should come from
    * HL7's list of FHIR defined special URIs or it should reference to some
    * definition that establishes the system clearly and unambiguously.
+   * @fhirType uri
    */
   system?: string | undefined;
   _system?: Element | undefined;
@@ -26029,6 +26401,7 @@ export interface CommunicationPayload extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.payload.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -26136,6 +26509,7 @@ export interface Communication extends DomainResource {
    * The URL pointing to a FHIR-defined protocol, guideline, orderset or other
    * definition that is adhered to in whole or in part by this Communication.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.instantiatesCanonical}
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -26146,6 +26520,7 @@ export interface Communication extends DomainResource {
    * This might be an HTML page, PDF, etc. or could just be a non-resolvable URI
    * identifier.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -26186,6 +26561,7 @@ export interface Communication extends DomainResource {
    * communication is planned or in progress.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.priority}
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -26208,6 +26584,7 @@ export interface Communication extends DomainResource {
   /**
    * The time when this communication arrived at the destination.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.received}
+   * @fhirType dateTime
    */
   received?: string | undefined;
   _received?: Element | undefined;
@@ -26235,6 +26612,7 @@ export interface Communication extends DomainResource {
   /**
    * The time when this communication was sent.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.sent}
+   * @fhirType dateTime
    */
   sent?: string | undefined;
   _sent?: Element | undefined;
@@ -26245,6 +26623,7 @@ export interface Communication extends DomainResource {
    * aborted and entered-in-error that mark the communication as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.status}
    * @see {@link EventStatus}
+   * @fhirType code
    */
   status: EventStatus;
   _status?: Element | undefined;
@@ -26323,6 +26702,7 @@ export interface CommunicationRequestPayload extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.payload.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -26377,6 +26757,7 @@ export interface CommunicationRequest extends DomainResource {
    * For draft requests, indicates the date of initial creation.  For requests with
    * other statuses, indicates the date of activation.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.authoredOn}
+   * @fhirType dateTime
    */
   authoredOn?: string | undefined;
   _authoredOn?: Element | undefined;
@@ -26465,6 +26846,7 @@ export interface CommunicationRequest extends DomainResource {
   /**
    * The time when this communication is to occur.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.occurrenceDateTime}
+   * @fhirType dateTime
    */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -26488,6 +26870,7 @@ export interface CommunicationRequest extends DomainResource {
    * such as stat, urgent, routine.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.priority}
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -26545,6 +26928,7 @@ export interface CommunicationRequest extends DomainResource {
    * The status of the proposal or order.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.status}
    * @see {@link RequestStatus}
+   * @fhirType code
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -26577,6 +26961,7 @@ export interface CompartmentDefinitionResource extends BackboneElement {
    * The name of a resource supported by the server.
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.resource.code}
    * @see {@link ResourceType}
+   * @fhirType code
    */
   code: ResourceType;
   _code?: Element | undefined;
@@ -26607,6 +26992,7 @@ export interface CompartmentDefinitionResource extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.resource.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -26662,6 +27048,7 @@ export interface CompartmentDefinition extends DomainResource {
    * choose to support them.
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.code}
    * @see {@link CompartmentType}
+   * @fhirType code
    */
   code: CompartmentType;
   _code?: Element | undefined;
@@ -26685,6 +27072,7 @@ export interface CompartmentDefinition extends DomainResource {
    * Additional specific dates may be added as extensions or be found by consulting
    * Provenances associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -26701,6 +27089,7 @@ export interface CompartmentDefinition extends DomainResource {
    * presumed to be the predominant language in the place the compartment definition
    * was created).
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -26751,6 +27140,7 @@ export interface CompartmentDefinition extends DomainResource {
    * is defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this compartment definition.
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -26778,6 +27168,7 @@ export interface CompartmentDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -26804,6 +27195,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition-definitions.html#CompartmentDefinition.url}
+ * @fhirType uri
  */
   url: string;
   _url?: Element | undefined;
@@ -26863,6 +27255,7 @@ export interface CompositionAttester extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.attester.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -26871,6 +27264,7 @@ export interface CompositionAttester extends BackboneElement {
    * The type of attestation the authenticator offers.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.attester.mode}
    * @see {@link CompositionAttestationMode}
+   * @fhirType code
    */
   mode: CompositionAttestationMode;
   _mode?: Element | undefined;
@@ -26908,6 +27302,7 @@ Modifier extensions
   /**
    * When the composition was attested by the party.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.attester.time}
+   * @fhirType dateTime
    */
   time?: string | undefined;
   _time?: Element | undefined;
@@ -26964,6 +27359,7 @@ export interface CompositionEvent extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.event.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -27015,6 +27411,7 @@ export interface CompositionRelatesTo extends BackboneElement {
    * understood without also accessing the referenced document.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.relatesTo.code}
    * @see {@link DocumentRelationshipType}
+   * @fhirType code
    */
   code: DocumentRelationshipType;
   _code?: Element | undefined;
@@ -27038,6 +27435,7 @@ export interface CompositionRelatesTo extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.relatesTo.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -27169,6 +27567,7 @@ If the section has content (instead of sub-sections), the
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.section.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -27182,6 +27581,7 @@ If the section has content (instead of sub-sections), the
    * misunderstood as a complete list.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.section.mode}
    * @see {@link ListMode}
+   * @fhirType code
    */
   mode?: ListMode | undefined;
   _mode?: Element | undefined;
@@ -27302,6 +27702,7 @@ export interface Composition extends DomainResource {
    * are not.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.confidentiality}
    * @see {@link Confidentiality}
+   * @fhirType code
    */
   confidentiality?: Confidentiality | undefined;
   _confidentiality?: Element | undefined;
@@ -27325,6 +27726,7 @@ export interface Composition extends DomainResource {
    * The Last Modified Date on the composition may be after the date of the document
    * was attested without being changed.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.date}
+   * @fhirType dateTime
    */
   date: string;
   _date?: Element | undefined;
@@ -27388,6 +27790,7 @@ Some reporting work flows require that the original narrative of a
  * business rule is in effect. This would be handled by an extension if required.
  * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.status}
  * @see {@link CompositionStatus}
+ * @fhirType code
  */
   status: CompositionStatus;
   _status?: Element | undefined;
@@ -27463,6 +27866,7 @@ export interface ConceptMapGroup extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -27496,6 +27900,7 @@ Modifier extensions
    * This is not needed if the source value set is specified and it contains concepts
    * from only a single system.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.source}
+   * @fhirType uri
    */
   source?: string | undefined;
   _source?: Element | undefined;
@@ -27517,6 +27922,7 @@ Modifier extensions
    * from only a single system. The group target may also be omitted if all of the
    * target element equivalence values are 'unmatched'.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.target}
+   * @fhirType uri
    */
   target?: string | undefined;
   _target?: Element | undefined;
@@ -27555,6 +27961,7 @@ export interface ConceptMapGroupElement extends BackboneElement {
   /**
    * Identity (code or path) or the element/item being mapped.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element.code}
+   * @fhirType code
    */
   code?: string | undefined;
   _code?: Element | undefined;
@@ -27587,6 +27994,7 @@ export interface ConceptMapGroupElement extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -27636,6 +28044,7 @@ export interface ConceptMapGroupElementTarget extends BackboneElement {
   /**
    * Identity (code or path) or the element/item that the map refers to.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element.target.code}
+   * @fhirType code
    */
   code?: string | undefined;
   _code?: Element | undefined;
@@ -27674,6 +28083,7 @@ export interface ConceptMapGroupElementTarget extends BackboneElement {
    * not apply.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element.target.equivalence}
    * @see {@link ConceptMapEquivalence}
+   * @fhirType code
    */
   equivalence: ConceptMapEquivalence;
   _equivalence?: Element | undefined;
@@ -27697,6 +28107,7 @@ export interface ConceptMapGroupElementTarget extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element.target.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -27760,6 +28171,7 @@ export interface ConceptMapGroupElementTargetDependsOn extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element.target.dependsOn.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -27792,6 +28204,7 @@ Modifier extensions
    * system property. The idea is that the information model carries an element
    * somewhere that is labeled to correspond with a code system property.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element.target.dependsOn.property}
+   * @fhirType uri
    */
   property: string;
   _property?: Element | undefined;
@@ -27800,6 +28213,7 @@ Modifier extensions
    * An absolute URI that identifies the code system of the dependency code (if the
    * source/dependency is a value set that crosses code systems).
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element.target.dependsOn.system}
+   * @fhirType canonical
    */
   system?: string | undefined;
   _system?: Element | undefined;
@@ -27826,6 +28240,7 @@ export interface ConceptMapGroupUnmapped extends BackboneElement {
    * The fixed code to use when the mode = 'fixed'  - all unmapped codes are mapped
    * to a single fixed code.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.unmapped.code}
+   * @fhirType code
    */
   code?: string | undefined;
   _code?: Element | undefined;
@@ -27858,6 +28273,7 @@ export interface ConceptMapGroupUnmapped extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.unmapped.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -27870,6 +28286,7 @@ export interface ConceptMapGroupUnmapped extends BackboneElement {
    * reference to a different concept map can be provided (by canonical URL).
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.unmapped.mode}
    * @see {@link ConceptMapGroupUnmappedMode}
+   * @fhirType code
    */
   mode: ConceptMapGroupUnmappedMode;
   _mode?: Element | undefined;
@@ -27902,6 +28319,7 @@ Modifier extensions
    * mapping if this ConceptMap resource contains no matching mapping for the source
    * concept.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.unmapped.url}
+   * @fhirType canonical
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -27936,6 +28354,7 @@ export interface ConceptMap extends DomainResource {
    * included. The copyright statement should clearly differentiate between these
    * when required.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -27950,6 +28369,7 @@ export interface ConceptMap extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -27961,6 +28381,7 @@ export interface ConceptMap extends DomainResource {
    * The description should capture its intended use, which is needed for ensuring
    * integrity for its use in models across future changes.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -28036,6 +28457,7 @@ export interface ConceptMap extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this concept map.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -28048,6 +28470,7 @@ export interface ConceptMap extends DomainResource {
    * recommended).  The source value set may select codes from either an explicit
    * (standard or local) or implicit code system.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.sourceUri}
+   * @fhirType uri
    */
   sourceUri?: string | undefined;
   _sourceUri?: Element | undefined;
@@ -28060,6 +28483,7 @@ export interface ConceptMap extends DomainResource {
    * recommended).  The source value set may select codes from either an explicit
    * (standard or local) or implicit code system.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.sourceCanonical}
+   * @fhirType canonical
    */
   sourceCanonical?: string | undefined;
   _sourceCanonical?: Element | undefined;
@@ -28069,6 +28493,7 @@ export interface ConceptMap extends DomainResource {
    * Allows filtering of concept maps that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -28080,6 +28505,7 @@ export interface ConceptMap extends DomainResource {
    * Should be a version specific reference. URIs SHOULD be absolute. If there is no
    * source or target value set, the is no specified context for the map.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.targetUri}
+   * @fhirType uri
    */
   targetUri?: string | undefined;
   _targetUri?: Element | undefined;
@@ -28091,6 +28517,7 @@ export interface ConceptMap extends DomainResource {
    * Should be a version specific reference. URIs SHOULD be absolute. If there is no
    * source or target value set, the is no specified context for the map.
    * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.targetCanonical}
+   * @fhirType canonical
    */
   targetCanonical?: string | undefined;
   _targetCanonical?: Element | undefined;
@@ -28125,6 +28552,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -28200,6 +28628,7 @@ export interface ConditionEvidence extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.evidence.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -28260,6 +28689,7 @@ export interface ConditionStage extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.stage.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -28326,6 +28756,7 @@ export interface Condition extends DomainResource {
    * applications and users should generally assume that the condition is still
    * valid.  When abatementString exists, it implies the condition is abated.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.abatementDateTime}
+   * @fhirType dateTime
    */
   abatementDateTime?: string | undefined;
   _abatementDateTime?: Element | undefined;
@@ -28496,6 +28927,7 @@ export interface Condition extends DomainResource {
    * Age is generally used when the patient reports an age at which the Condition
    * began to occur.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.onsetDateTime}
+   * @fhirType dateTime
    */
   onsetDateTime?: string | undefined;
   _onsetDateTime?: Element | undefined;
@@ -28544,6 +28976,7 @@ export interface Condition extends DomainResource {
    * The recordedDate represents when this particular Condition record was created in
    * the system, which is often a system-generated date.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.recordedDate}
+   * @fhirType dateTime
    */
   recordedDate?: string | undefined;
   _recordedDate?: Element | undefined;
@@ -28604,6 +29037,7 @@ export interface ConsentPolicy extends BackboneElement {
    * Entity or Organization having regulatory jurisdiction or accountability for
    * enforcing policies pertaining to Consent Directives.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.policy.authority}
+   * @fhirType uri
    */
   authority?: string | undefined;
   _authority?: Element | undefined;
@@ -28627,6 +29061,7 @@ export interface ConsentPolicy extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.policy.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -28660,6 +29095,7 @@ Modifier extensions
    * This element is for discoverability / documentation and does not modify or
    * qualify the policy rules.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.policy.uri}
+   * @fhirType uri
    */
   uri?: string | undefined;
   _uri?: Element | undefined;
@@ -28746,6 +29182,7 @@ export interface ConsentProvision extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -28808,6 +29245,7 @@ Modifier extensions
    * permitted in root rule, required in all nested rules.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision.type}
    * @see {@link ConsentProvisionType}
+   * @fhirType code
    */
   type?: ConsentProvisionType | undefined;
   _type?: Element | undefined;
@@ -28838,6 +29276,7 @@ export interface ConsentProvisionActor extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision.actor.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -28907,6 +29346,7 @@ export interface ConsentProvisionData extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision.data.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -28915,6 +29355,7 @@ export interface ConsentProvisionData extends BackboneElement {
    * How the resource reference is interpreted when testing consent restrictions.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision.data.meaning}
    * @see {@link ConsentDataMeaning}
+   * @fhirType code
    */
   meaning: ConsentDataMeaning;
   _meaning?: Element | undefined;
@@ -28976,6 +29417,7 @@ export interface ConsentVerification extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.verification.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -29006,6 +29448,7 @@ Modifier extensions
   /**
    * Date verification was collected.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.verification.verificationDate}
+   * @fhirType dateTime
    */
   verificationDate?: string | undefined;
   _verificationDate?: Element | undefined;
@@ -29050,6 +29493,7 @@ export interface Consent extends DomainResource {
    * This is not the time of the original consent, but the time that this statement
    * was made or derived.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.dateTime}
+   * @fhirType dateTime
    */
   dateTime?: string | undefined;
   _dateTime?: Element | undefined;
@@ -29158,6 +29602,7 @@ export interface Consent extends DomainResource {
    * rejected and entered-in-error that mark the Consent as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.status}
    * @see {@link ConsentState}
+   * @fhirType code
    */
   status: ConsentState;
   _status?: Element | undefined;
@@ -29217,6 +29662,7 @@ export interface ContactPoint extends Element {
    * with lower rank values are more preferred than those with higher rank values.
    * Note that rank does not necessarily follow the order in which the contacts are
    * represented in the instance.
+   * @fhirType positiveInt
    */
   rank?: number | undefined;
   _rank?: Element | undefined;
@@ -29225,6 +29671,7 @@ export interface ContactPoint extends Element {
    * Telecommunications form for contact point - what communications system is
    * required to make use of the contact.
    * @see {@link ContactPointSystem}
+   * @fhirType code
    */
   system?: ContactPointSystem | undefined;
   _system?: Element | undefined;
@@ -29234,6 +29681,7 @@ export interface ContactPoint extends Element {
    * Applications can assume that a contact is current unless it explicitly says that
    * it is temporary or old.
    * @see {@link ContactPointUse}
+   * @fhirType code
    */
   use?: ContactPointUse | undefined;
   _use?: Element | undefined;
@@ -29260,6 +29708,7 @@ export interface ContractContentDefinition extends BackboneElement {
    * statements are generally legal restrictions on the use and publishing of the
    * Contract precursor content.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.contentDefinition.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -29283,6 +29732,7 @@ export interface ContractContentDefinition extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.contentDefinition.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -29316,6 +29766,7 @@ Modifier extensions
    * changes. In addition, it should change when the substantive content of the
    * contract changes.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.contentDefinition.publicationDate}
+   * @fhirType dateTime
    */
   publicationDate?: string | undefined;
   _publicationDate?: Element | undefined;
@@ -29326,6 +29777,7 @@ Modifier extensions
    * resolved | terminated.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.contentDefinition.publicationStatus}
    * @see {@link ContractResourcePublicationStatusCodes}
+   * @fhirType code
    */
   publicationStatus: ContractResourcePublicationStatusCodes;
   _publicationStatus?: Element | undefined;
@@ -29399,6 +29851,7 @@ export interface ContractFriendly extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.friendly.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -29465,6 +29918,7 @@ export interface ContractLegal extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.legal.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -29533,6 +29987,7 @@ export interface ContractRule extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.rule.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -29601,6 +30056,7 @@ export interface ContractSigner extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.signer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -29703,6 +30159,7 @@ For example, in cases of actions initiated by
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -29717,6 +30174,7 @@ For example, in cases of actions initiated by
   /**
    * When this Contract Provision was issued.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.issued}
+   * @fhirType dateTime
    */
   issued?: string | undefined;
   _issued?: Element | undefined;
@@ -29851,6 +30309,7 @@ export interface ContractTermAction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.action.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -29904,6 +30363,7 @@ Modifier extensions
   /**
    * When action happens.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.action.occurrenceDateTime}
+   * @fhirType dateTime
    */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -30002,6 +30462,7 @@ Modifier extensions
   /**
    * Security labels that protects the action.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.action.securityLabelNumber}
+   * @fhirType unsignedInt
    */
   securityLabelNumber?: Array<number> | undefined;
   _securityLabelNumber?: Element[] | undefined;
@@ -30053,6 +30514,7 @@ export interface ContractTermActionSubject extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.action.subject.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -30134,6 +30596,7 @@ export interface ContractTermAsset extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -30202,6 +30665,7 @@ Modifier extensions
   /**
    * Security labels that protects the asset.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.securityLabelNumber}
+   * @fhirType unsignedInt
    */
   securityLabelNumber?: Array<number> | undefined;
   _securityLabelNumber?: Element[] | undefined;
@@ -30282,6 +30746,7 @@ export interface ContractTermAssetContext extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.context.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -30335,6 +30800,7 @@ export interface ContractTermAssetValuedItem extends BackboneElement {
    * Indicates the time during which this Contract ValuedItem information is
    * effective.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.valuedItem.effectiveTime}
+   * @fhirType dateTime
    */
   effectiveTime?: string | undefined;
   _effectiveTime?: Element | undefined;
@@ -30373,6 +30839,7 @@ export interface ContractTermAssetValuedItem extends BackboneElement {
    * of the Contract Valued Item delivered. The concept of a Factor allows for a
    * discount or surcharge multiplier to be applied to a monetary amount.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.valuedItem.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -30381,6 +30848,7 @@ export interface ContractTermAssetValuedItem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.valuedItem.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -30443,6 +30911,7 @@ Modifier extensions
   /**
    * When payment is due.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.valuedItem.paymentDate}
+   * @fhirType dateTime
    */
   paymentDate?: string | undefined;
   _paymentDate?: Element | undefined;
@@ -30453,6 +30922,7 @@ Modifier extensions
    * concept of Points allows for assignment of point values for a Contract Valued
    * Item, such that a monetary amount can be assigned to each point.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.valuedItem.points}
+   * @fhirType decimal
    */
   points?: number | undefined;
   _points?: Element | undefined;
@@ -30483,6 +30953,7 @@ Modifier extensions
    * A set of security labels that define which terms are controlled by this
    * condition.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.valuedItem.securityLabelNumber}
+   * @fhirType unsignedInt
    */
   securityLabelNumber?: Array<number> | undefined;
   _securityLabelNumber?: Element[] | undefined;
@@ -30541,6 +31012,7 @@ export interface ContractTermOffer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -30593,6 +31065,7 @@ Modifier extensions
   /**
    * Security labels that protects the offer.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.securityLabelNumber}
+   * @fhirType unsignedInt
    */
   securityLabelNumber?: Array<number> | undefined;
   _securityLabelNumber?: Element[] | undefined;
@@ -30671,6 +31144,7 @@ export interface ContractTermOfferAnswer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.answer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -30714,6 +31188,7 @@ Modifier extensions
    * rental, warrently duration, or whether biospecimen may be used for further
    * research.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.answer.valueDecimal}
+   * @fhirType decimal
    */
   valueDecimal?: number | undefined;
   _valueDecimal?: Element | undefined;
@@ -30724,6 +31199,7 @@ Modifier extensions
    * rental, warrently duration, or whether biospecimen may be used for further
    * research.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.answer.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -30734,6 +31210,7 @@ Modifier extensions
    * rental, warrently duration, or whether biospecimen may be used for further
    * research.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.answer.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -30744,6 +31221,7 @@ Modifier extensions
    * rental, warrently duration, or whether biospecimen may be used for further
    * research.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.answer.valueDateTime}
+   * @fhirType dateTime
    */
   valueDateTime?: string | undefined;
   _valueDateTime?: Element | undefined;
@@ -30754,6 +31232,7 @@ Modifier extensions
    * rental, warrently duration, or whether biospecimen may be used for further
    * research.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.answer.valueTime}
+   * @fhirType time
    */
   valueTime?: string | undefined;
   _valueTime?: Element | undefined;
@@ -30774,6 +31253,7 @@ Modifier extensions
    * rental, warrently duration, or whether biospecimen may be used for further
    * research.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.answer.valueUri}
+   * @fhirType uri
    */
   valueUri?: string | undefined;
   _valueUri?: Element | undefined;
@@ -30843,6 +31323,7 @@ export interface ContractTermOfferParty extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.party.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -30934,6 +31415,7 @@ export interface ContractTermSecurityLabel extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.securityLabel.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -30964,6 +31446,7 @@ Modifier extensions
   /**
    * Number used to link this term or term element to the applicable Security Label.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.securityLabel.number}
+   * @fhirType unsignedInt
    */
   number?: Array<number> | undefined;
   _number?: Element[] | undefined;
@@ -31081,6 +31564,7 @@ export interface Contract extends DomainResource {
    * The URL pointing to an externally maintained definition that is adhered to in
    * whole or in part by this Contract.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: string | undefined;
   _instantiatesUri?: Element | undefined;
@@ -31088,6 +31572,7 @@ export interface Contract extends DomainResource {
   /**
    * When this  Contract was issued.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.issued}
+   * @fhirType dateTime
    */
   issued?: string | undefined;
   _issued?: Element | undefined;
@@ -31203,6 +31688,7 @@ For example,
    * mark the contract as not currently valid or active.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.status}
    * @see {@link ContractResourceStatusCodes}
+   * @fhirType code
    */
   status?: ContractResourceStatusCodes | undefined;
   _status?: Element | undefined;
@@ -31296,6 +31782,7 @@ In many cases, the
    * Canonical identifier for this contract, represented as a URI (globally unique).
    * Used in a domain that uses a supplied contract repository.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.url}
+   * @fhirType uri
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -31341,6 +31828,7 @@ export interface Contributor extends Element {
   /**
    * The type of contributor.
    * @see {@link ContributorType}
+   * @fhirType code
    */
   type: ContributorType;
   _type?: Element | undefined;
@@ -31384,6 +31872,7 @@ export interface CoverageClass extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.class.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -31471,6 +31960,7 @@ export interface CoverageCostToBeneficiary extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.costToBeneficiary.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -31550,6 +32040,7 @@ export interface CoverageCostToBeneficiaryException extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.costToBeneficiary.exception.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -31672,6 +32163,7 @@ export interface Coverage extends DomainResource {
    * not imply primary, secondary etc. as the specific positioning of coverages
    * depends upon the episode of care.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.order}
+   * @fhirType positiveInt
    */
   order?: number | undefined;
   _order?: Element | undefined;
@@ -31720,6 +32212,7 @@ For selfpay it may provide multiple paying
    * entered-in-error that marks the coverage as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.status}
    * @see {@link FinancialResourceStatusCodes}
+   * @fhirType code
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -31825,6 +32318,7 @@ export interface CoverageEligibilityRequestInsurance extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.insurance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -31908,6 +32402,7 @@ export interface CoverageEligibilityRequestItem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.item.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -31973,6 +32468,7 @@ Modifier extensions
    * Exceptions, special conditions and supporting information applicable for this
    * service or product line.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.item.supportingInfoSequence}
+   * @fhirType positiveInt
    */
   supportingInfoSequence?: Array<number> | undefined;
   _supportingInfoSequence?: Element[] | undefined;
@@ -32026,6 +32522,7 @@ export interface CoverageEligibilityRequestItemDiagnosis
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.item.diagnosis.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -32089,6 +32586,7 @@ export interface CoverageEligibilityRequestSupportingInfo
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.supportingInfo.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -32129,6 +32627,7 @@ Modifier extensions
   /**
    * A number to uniquely identify supporting information entries.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.supportingInfo.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -32151,6 +32650,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
   /**
    * The date when this resource was created.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.created}
+   * @fhirType dateTime
    */
   created: string;
   _created?: Element | undefined;
@@ -32242,6 +32742,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * not specified.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.purpose}
    * @see {@link EligibilityRequestPurpose}
+   * @fhirType code
    */
   purpose: Array<EligibilityRequestPurpose>;
   _purpose?: Element[] | undefined;
@@ -32250,6 +32751,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * The date or dates when the enclosed suite of services were performed or
    * completed.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.servicedDate}
+   * @fhirType date
    */
   servicedDate?: string | undefined;
   _servicedDate?: Element | undefined;
@@ -32268,6 +32770,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.status}
    * @see {@link FinancialResourceStatusCodes}
+   * @fhirType code
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -32314,6 +32817,7 @@ export interface CoverageEligibilityResponseError extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.error.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -32391,6 +32895,7 @@ export interface CoverageEligibilityResponseInsurance extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -32462,6 +32967,7 @@ export interface CoverageEligibilityResponseInsuranceItem
    * A web location for obtaining requirements or descriptive information regarding
    * the preauthorization.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance.item.authorizationUrl}
+   * @fhirType uri
    */
   authorizationUrl?: string | undefined;
   _authorizationUrl?: Element | undefined;
@@ -32518,6 +33024,7 @@ export interface CoverageEligibilityResponseInsuranceItem
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance.item.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -32612,6 +33119,7 @@ export interface CoverageEligibilityResponseInsuranceItemBenefit
   /**
    * The quantity of the benefit which is permitted under the coverage.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance.item.benefit.allowedUnsignedInt}
+   * @fhirType unsignedInt
    */
   allowedUnsignedInt?: number | undefined;
   _allowedUnsignedInt?: Element | undefined;
@@ -32649,6 +33157,7 @@ export interface CoverageEligibilityResponseInsuranceItemBenefit
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance.item.benefit.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -32687,6 +33196,7 @@ Modifier extensions
   /**
    * The quantity of the benefit which have been consumed to date.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance.item.benefit.usedUnsignedInt}
+   * @fhirType unsignedInt
    */
   usedUnsignedInt?: number | undefined;
   _usedUnsignedInt?: Element | undefined;
@@ -32720,6 +33230,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
   /**
    * The date this resource was created.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.created}
+   * @fhirType dateTime
    */
   created: string;
   _created?: Element | undefined;
@@ -32785,6 +33296,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.outcome}
    * @see {@link RemittanceOutcome}
+   * @fhirType code
    */
   outcome: RemittanceOutcome;
   _outcome?: Element | undefined;
@@ -32813,6 +33325,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * not specified.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.purpose}
    * @see {@link EligibilityResponsePurpose}
+   * @fhirType code
    */
   purpose: Array<EligibilityResponsePurpose>;
   _purpose?: Element[] | undefined;
@@ -32838,6 +33351,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * The date or dates when the enclosed suite of services were performed or
    * completed.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.servicedDate}
+   * @fhirType date
    */
   servicedDate?: string | undefined;
   _servicedDate?: Element | undefined;
@@ -32856,6 +33370,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.status}
    * @see {@link FinancialResourceStatusCodes}
+   * @fhirType code
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -32892,6 +33407,7 @@ export interface DataRequirement extends Element {
    * parameter).
    * This element can be used in combination with the sort element to specify quota
    * requirements such as "the most recent 5" or "the highest 5".
+   * @fhirType positiveInt
    */
   limit?: number | undefined;
   _limit?: Element | undefined;
@@ -32914,6 +33430,7 @@ The value of mustSupport SHALL be a
   /**
    * The profile of the required data, specified as the uri of the profile
    * definition.
+   * @fhirType canonical
    */
   profile?: Array<string> | undefined;
   _profile?: Element[] | undefined;
@@ -32955,6 +33472,7 @@ The value of mustSupport SHALL be a
    * The type of the required data, specified as the type name of a resource. For
    * profiles, this value is set to the type of the base resource of the profile.
    * @see {@link FHIRAllTypes}
+   * @fhirType code
    */
   type: FHIRAllTypes;
   _type?: Element | undefined;
@@ -32984,6 +33502,7 @@ export interface Definition {
    * happens once when the content is officially approved for usage.
    * The date may be more recent than the approval date because of minor changes /
    * editorial corrections.
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -33000,6 +33519,7 @@ export interface Definition {
    * A copyright statement relating to the {{title}} and/or its contents. Copyright
    * statements are generally legal restrictions on the use and publishing of the
    * {{title}}.
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -33008,6 +33528,7 @@ export interface Definition {
    * For draft definitions, indicates the date of initial creation.  For active
    * definitions, represents the date of activation.  For withdrawn definitions,
    * indicates the date of withdrawal.
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -33015,6 +33536,7 @@ export interface Definition {
   /**
    * The canonical URL pointing to another FHIR-defined protocol, guideline, orderset
    * or other definition that is adhered to in whole or in part by this definition.
+   * @fhirType canonical
    */
   derivedFromCanonical?: Array<string> | undefined;
   _derivedFromCanonical?: Element[] | undefined;
@@ -33024,6 +33546,7 @@ export interface Definition {
    * definition that is adhered to in whole or in part by this definition.
    * This might be an HTML page, PDF, etc. or could just be a non-resolvable URI
    * identifier.
+   * @fhirType uri
    */
   derivedFromUri?: Array<string> | undefined;
   _derivedFromUri?: Element[] | undefined;
@@ -33036,6 +33559,7 @@ export interface Definition {
    * literature references, examples from the paper world, etc. It is not a rendering
    * of the module as conveyed in the text field of the resource itself. This item
    * SHOULD be populated unless the information is available from context.
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -33083,6 +33607,7 @@ export interface Definition {
    * The date on which the asset content was last reviewed. Review happens
    * periodically after that, but doesn't change the original approval date.
    * If specified, this is usually after the approval date.
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -33091,6 +33616,7 @@ export interface Definition {
    * A larger definition of which this particular definition is a component or step.
    * [The allowed reference resources may be adjusted as appropriate for the event
    * resource].
+   * @fhirType canonical
    */
   partOf?: Array<string> | undefined;
   _partOf?: Element[] | undefined;
@@ -33115,12 +33641,14 @@ export interface Definition {
    * traceability of ''why'' the resource is either needed or ''why'' it is defined
    * as it is.  This may be used to point to source materials or specifications that
    * drove the structure of this {{title}}.
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
 
   /**
    * Completed or terminated request(s) whose function is taken by this new request.
+   * @fhirType canonical
    */
   replaces?: Array<string> | undefined;
   _replaces?: Element[] | undefined;
@@ -33134,6 +33662,7 @@ Unknown
  * does not represent "other" - one of the defined statuses must apply.  Unknown is
  * used when the authoring system is not sure what the current status is.
  * @see {@link PublicationStatus}
+ * @fhirType code
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -33166,6 +33695,7 @@ Unknown
    * more information see [Technical and Business Versions](resource.html#versions).
    * Can be a urn:uuid: or a urn:oid:, but real http: addresses are preferred.  This
    * is the URI that will be used when making canonical references to this resource.
+   * @fhirType uri
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -33233,6 +33763,7 @@ export interface DetectedIssueEvidence extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.evidence.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -33290,6 +33821,7 @@ export interface DetectedIssueMitigation extends BackboneElement {
    * Indicates when the mitigating action was documented.
    * This might not be the same as when the mitigating step was actually taken.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.mitigation.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -33313,6 +33845,7 @@ export interface DetectedIssueMitigation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.mitigation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -33388,6 +33921,7 @@ export interface DetectedIssue extends DomainResource {
   /**
    * The date or period when the detected issue was initially identified.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.identifiedDateTime}
+   * @fhirType dateTime
    */
   identifiedDateTime?: string | undefined;
   _identifiedDateTime?: Element | undefined;
@@ -33438,6 +33972,7 @@ export interface DetectedIssue extends DomainResource {
    * The literature, knowledge-base or similar reference that describes the
    * propensity for the detected issue identified.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.reference}
+   * @fhirType uri
    */
   reference?: string | undefined;
   _reference?: Element | undefined;
@@ -33447,6 +33982,7 @@ export interface DetectedIssue extends DomainResource {
    * the potential impact on the patient.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.severity}
    * @see {@link DetectedIssueSeverity}
+   * @fhirType code
    */
   severity?: DetectedIssueSeverity | undefined;
   _severity?: Element | undefined;
@@ -33457,6 +33993,7 @@ export interface DetectedIssue extends DomainResource {
    * cancelled and entered-in-error that mark the issue as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.status}
    * @see {@link ObservationStatus}
+   * @fhirType code
    */
   status: ObservationStatus;
   _status?: Element | undefined;
@@ -33489,6 +34026,7 @@ export interface DeviceDeviceName extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.deviceName.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -33529,6 +34067,7 @@ UDILabelName | UserFriendlyName | PatientReportedName |
  * ManufactureDeviceName | ModelName.
  * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.deviceName.type}
  * @see {@link DeviceNameType}
+ * @fhirType code
  */
   type: DeviceNameType;
   _type?: Element | undefined;
@@ -33559,6 +34098,7 @@ export interface DeviceProperty extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.property.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -33633,6 +34173,7 @@ export interface DeviceSpecialization extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.specialization.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -33698,6 +34239,7 @@ export interface DeviceUdiCarrier extends BackboneElement {
    * concatenate the string with DI first and in order of human readable expression
    * on label.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.udiCarrier.carrierAIDC}
+   * @fhirType base64Binary
    */
   carrierAIDC?: string | undefined;
   _carrierAIDC?: Element | undefined;
@@ -33724,6 +34266,7 @@ export interface DeviceUdiCarrier extends BackboneElement {
    * A coded entry to indicate how the data was entered.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.udiCarrier.entryType}
    * @see {@link UDIEntryType}
+   * @fhirType code
    */
   entryType?: UDIEntryType | undefined;
   _entryType?: Element | undefined;
@@ -33747,6 +34290,7 @@ export interface DeviceUdiCarrier extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.udiCarrier.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -33766,6 +34310,7 @@ http://hl7.org/fhir/NamingSystem/iccbba-blood-di,
  * other devices:
 http://hl7.org/fhir/NamingSystem/iccbba-other-di.
  * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.udiCarrier.issuer}
+ * @fhirType uri
  */
   issuer?: string | undefined;
   _issuer?: Element | undefined;
@@ -33776,6 +34321,7 @@ http://hl7.org/fhir/NamingSystem/iccbba-other-di.
    * appropriate repository uri as the system.  For example,  UDIs of devices managed
    * in the U.S. by the FDA, the value is  http://hl7.org/fhir/NamingSystem/fda-udi.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.udiCarrier.jurisdiction}
+   * @fhirType uri
    */
   jurisdiction?: string | undefined;
   _jurisdiction?: Element | undefined;
@@ -33835,6 +34381,7 @@ export interface DeviceVersion extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.version.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -33929,6 +34476,7 @@ export interface Device extends DomainResource {
    * The date and time beyond which this device is no longer valid or should not be
    * used (if applicable).
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.expirationDate}
+   * @fhirType dateTime
    */
   expirationDate?: string | undefined;
   _expirationDate?: Element | undefined;
@@ -33962,6 +34510,7 @@ export interface Device extends DomainResource {
   /**
    * The date and time when the device was manufactured.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.manufactureDate}
+   * @fhirType dateTime
    */
   manufactureDate?: string | undefined;
   _manufactureDate?: Element | undefined;
@@ -34057,6 +34606,7 @@ export interface Device extends DomainResource {
    * valid.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.status}
    * @see {@link FHIRDeviceStatus}
+   * @fhirType code
    */
   status?: FHIRDeviceStatus | undefined;
   _status?: Element | undefined;
@@ -34093,6 +34643,7 @@ export interface Device extends DomainResource {
    * If the device is running a FHIR server, the network address should  be the Base
    * URL from which a conformance statement may be retrieved.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.url}
+   * @fhirType uri
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -34136,6 +34687,7 @@ export interface DeviceDefinitionCapability extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.capability.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -34195,6 +34747,7 @@ export interface DeviceDefinitionDeviceName extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.deviceName.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -34235,6 +34788,7 @@ UDILabelName | UserFriendlyName | PatientReportedName |
  * ManufactureDeviceName | ModelName.
  * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.deviceName.type}
  * @see {@link DeviceNameType}
+ * @fhirType code
  */
   type: DeviceNameType;
   _type?: Element | undefined;
@@ -34278,6 +34832,7 @@ export interface DeviceDefinitionMaterial extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.material.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -34338,6 +34893,7 @@ export interface DeviceDefinitionProperty extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.property.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -34412,6 +34968,7 @@ export interface DeviceDefinitionSpecialization extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.specialization.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -34490,6 +35047,7 @@ export interface DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.udiDeviceIdentifier.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -34497,6 +35055,7 @@ export interface DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   /**
    * The organization that assigns the identifier algorithm.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.udiDeviceIdentifier.issuer}
+   * @fhirType uri
    */
   issuer: string;
   _issuer?: Element | undefined;
@@ -34504,6 +35063,7 @@ export interface DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   /**
    * The jurisdiction to which the deviceIdentifier applies.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.udiDeviceIdentifier.jurisdiction}
+   * @fhirType uri
    */
   jurisdiction: string;
   _jurisdiction?: Element | undefined;
@@ -34621,6 +35181,7 @@ export interface DeviceDefinition extends DomainResource {
   /**
    * Access to on-line information about the device.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.onlineInformation}
+   * @fhirType uri
    */
   onlineInformation?: string | undefined;
   _onlineInformation?: Element | undefined;
@@ -34708,6 +35269,7 @@ export interface DeviceDefinition extends DomainResource {
    * If the device is running a FHIR server, the network address should  be the Base
    * URL from which a conformance statement may be retrieved.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.url}
+   * @fhirType uri
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -34745,6 +35307,7 @@ export interface DeviceMetricCalibration extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.calibration.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -34776,6 +35339,7 @@ Modifier extensions
    * Describes the state of the calibration.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.calibration.state}
    * @see {@link DeviceMetricCalibrationState}
+   * @fhirType code
    */
   state?: DeviceMetricCalibrationState | undefined;
   _state?: Element | undefined;
@@ -34783,6 +35347,7 @@ Modifier extensions
   /**
    * Describes the time last calibration has been performed.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.calibration.time}
+   * @fhirType instant
    */
   time?: string | undefined;
   _time?: Element | undefined;
@@ -34791,6 +35356,7 @@ Modifier extensions
    * Describes the type of the calibration method.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.calibration.type}
    * @see {@link DeviceMetricCalibrationType}
+   * @fhirType code
    */
   type?: DeviceMetricCalibrationType | undefined;
   _type?: Element | undefined;
@@ -34819,6 +35385,7 @@ export interface DeviceMetric extends DomainResource {
    * be for example a setting, measurement, or calculation.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.category}
    * @see {@link DeviceMetricCategory}
+   * @fhirType code
    */
   category: DeviceMetricCategory;
   _category?: Element | undefined;
@@ -34831,6 +35398,7 @@ export interface DeviceMetric extends DomainResource {
    * and SpO2- magenta.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.color}
    * @see {@link DeviceMetricColor}
+   * @fhirType code
    */
   color?: DeviceMetricColor | undefined;
   _color?: Element | undefined;
@@ -34865,6 +35433,7 @@ export interface DeviceMetric extends DomainResource {
    * Standby, etc.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.operationalStatus}
    * @see {@link DeviceMetricOperationalStatus}
+   * @fhirType code
    */
   operationalStatus?: DeviceMetricOperationalStatus | undefined;
   _operationalStatus?: Element | undefined;
@@ -34940,6 +35509,7 @@ export interface DeviceRequestParameter extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.parameter.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -35018,6 +35588,7 @@ export interface DeviceRequest extends DomainResource {
   /**
    * When the request transitioned to being actionable.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.authoredOn}
+   * @fhirType dateTime
    */
   authoredOn?: string | undefined;
   _authoredOn?: Element | undefined;
@@ -35075,6 +35646,7 @@ export interface DeviceRequest extends DomainResource {
    * example, multiple Patient and a Person resource instance might share the same
    * social insurance number.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.instantiatesCanonical}
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -35085,6 +35657,7 @@ export interface DeviceRequest extends DomainResource {
    * This might be an HTML page, PDF, etc. or could just be a non-resolvable URI
    * identifier.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -35101,6 +35674,7 @@ export interface DeviceRequest extends DomainResource {
    * Whether the request is a proposal, plan, an original order or a reflex order.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.intent}
    * @see {@link RequestIntent}
+   * @fhirType code
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -35120,6 +35694,7 @@ export interface DeviceRequest extends DomainResource {
    * "1/2 an hour before breakfast for 10 days from 23-Dec 2011:"; "15 Oct 2013, 17
    * Oct 2013 and 1 Nov 2013".
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.occurrenceDateTime}
+   * @fhirType dateTime
    */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -35171,6 +35746,7 @@ export interface DeviceRequest extends DomainResource {
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.priority}
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -35227,6 +35803,7 @@ All Provenances should have some historical version of this
    * cancelled and entered-in-error that mark the request as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.status}
    * @see {@link RequestStatus}
+   * @fhirType code
    */
   status?: RequestStatus | undefined;
   _status?: Element | undefined;
@@ -35327,6 +35904,7 @@ export interface DeviceUseStatement extends DomainResource {
   /**
    * The time at which the statement was made/recorded.
    * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement-definitions.html#DeviceUseStatement.recordedOn}
+   * @fhirType dateTime
    */
   recordedOn?: string | undefined;
   _recordedOn?: Element | undefined;
@@ -35352,6 +35930,7 @@ This element is labeled as a modifier because the
  * status contains the codes that mark the statement as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement-definitions.html#DeviceUseStatement.status}
  * @see {@link DeviceUseStatementStatus}
+ * @fhirType code
  */
   status: DeviceUseStatementStatus;
   _status?: Element | undefined;
@@ -35380,6 +35959,7 @@ This element is labeled as a modifier because the
   /**
    * How often the device was used.
    * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement-definitions.html#DeviceUseStatement.timingDateTime}
+   * @fhirType dateTime
    */
   timingDateTime?: string | undefined;
   _timingDateTime?: Element | undefined;
@@ -35423,6 +36003,7 @@ export interface DiagnosticReportMedia extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.media.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -35530,6 +36111,7 @@ export interface DiagnosticReport extends DomainResource {
    * always available, and the exact relationship between the specimens and the
    * diagnostically relevant time is not always automatic.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.effectiveDateTime}
+   * @fhirType dateTime
    */
   effectiveDateTime?: string | undefined;
   _effectiveDateTime?: Element | undefined;
@@ -35591,6 +36173,7 @@ export interface DiagnosticReport extends DomainResource {
    * the status of the record (potentially a secondary copy), not the actual release
    * time of the report.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.issued}
+   * @fhirType instant
    */
   issued?: string | undefined;
   _issued?: Element | undefined;
@@ -35655,6 +36238,7 @@ export interface DiagnosticReport extends DomainResource {
    * The status of the diagnostic report.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.status}
    * @see {@link DiagnosticReportStatus}
+   * @fhirType code
    */
   status: DiagnosticReportStatus;
   _status?: Element | undefined;
@@ -35704,6 +36288,7 @@ export interface DocumentManifestRelated extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.related.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -35791,6 +36376,7 @@ export interface DocumentManifest extends DomainResource {
    * Creation time is used for tracking, organizing versions and searching. This is
    * the creation time of the document set, not the documents on which it is based.
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.created}
+   * @fhirType dateTime
    */
   created?: string | undefined;
   _created?: Element | undefined;
@@ -35847,6 +36433,7 @@ export interface DocumentManifest extends DomainResource {
    * Identifies the source system, application, or software that produced the
    * document manifest.
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.source}
+   * @fhirType uri
    */
   source?: string | undefined;
   _source?: Element | undefined;
@@ -35857,6 +36444,7 @@ export interface DocumentManifest extends DomainResource {
    * mark the manifest as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.status}
    * @see {@link DocumentReferenceStatus}
+   * @fhirType code
    */
   status: DocumentReferenceStatus;
   _status?: Element | undefined;
@@ -35928,6 +36516,7 @@ export interface DocumentReferenceContent extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.content.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -36012,6 +36601,7 @@ export interface DocumentReferenceContext extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.context.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -36090,6 +36680,7 @@ export interface DocumentReferenceRelatesTo extends BackboneElement {
    * understood without also accessing the referenced document.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.relatesTo.code}
    * @see {@link DocumentRelationshipType}
+   * @fhirType code
    */
   code: DocumentRelationshipType;
   _code?: Element | undefined;
@@ -36113,6 +36704,7 @@ export interface DocumentReferenceRelatesTo extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.relatesTo.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -36228,6 +36820,7 @@ export interface DocumentReference extends DomainResource {
    * Referencing/indexing time is used for tracking, organizing versions and
    * searching.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.date}
+   * @fhirType instant
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -36245,6 +36838,7 @@ export interface DocumentReference extends DomainResource {
    * The document that is pointed to might be in various lifecycle states.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.docStatus}
    * @see {@link CompositionStatus}
+   * @fhirType code
    */
   docStatus?: CompositionStatus | undefined;
   _docStatus?: Element | undefined;
@@ -36312,6 +36906,7 @@ This element is labeled as a modifier because the
  * valid.
  * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.status}
  * @see {@link DocumentReferenceStatus}
+ * @fhirType code
  */
   status: DocumentReferenceStatus;
   _status?: Element | undefined;
@@ -36520,6 +37115,7 @@ export interface Dosage extends BackboneElement {
   /**
    * Indicates the order in which the dosage instructions should be applied or
    * interpreted.
+   * @fhirType integer
    */
   sequence?: number | undefined;
   _sequence?: Element | undefined;
@@ -36585,6 +37181,7 @@ export interface Element {
   /**
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -36651,6 +37248,7 @@ export interface ElementDefinition extends BackboneElement {
    * The text you are reading is specified in ElementDefinition.comment).
    * If it is possible to capture usage rules using constraints, that mechanism
    * should be used in preference to this element.
+   * @fhirType markdown
    */
   comment?: string | undefined;
   _comment?: Element | undefined;
@@ -36658,6 +37256,7 @@ export interface ElementDefinition extends BackboneElement {
   /**
    * A reference to an invariant that may make additional statements about the
    * cardinality or value in the instance.
+   * @fhirType id
    */
   condition?: Array<string> | undefined;
   _condition?: Element[] | undefined;
@@ -36678,6 +37277,7 @@ export interface ElementDefinition extends BackboneElement {
    * cardinality constraints, bindings, invariants etc.
    * ContentReferences can only be defined in specializations, not constrained types,
    * and they cannot be changed and always reference the non-constrained definition.
+   * @fhirType uri
    */
   contentReference?: string | undefined;
   _contentReference?: Element | undefined;
@@ -36695,6 +37295,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType base64Binary
  */
   defaultValueBase64Binary?: string | undefined;
   _defaultValueBase64Binary?: Element | undefined;
@@ -36729,6 +37330,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType canonical
  */
   defaultValueCanonical?: string | undefined;
   _defaultValueCanonical?: Element | undefined;
@@ -36746,6 +37348,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType code
  */
   defaultValueCode?: string | undefined;
   _defaultValueCode?: Element | undefined;
@@ -36763,6 +37366,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType date
  */
   defaultValueDate?: string | undefined;
   _defaultValueDate?: Element | undefined;
@@ -36780,6 +37384,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType dateTime
  */
   defaultValueDateTime?: string | undefined;
   _defaultValueDateTime?: Element | undefined;
@@ -36797,6 +37402,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType decimal
  */
   defaultValueDecimal?: number | undefined;
   _defaultValueDecimal?: Element | undefined;
@@ -36814,6 +37420,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType id
  */
   defaultValueId?: string | undefined;
   _defaultValueId?: Element | undefined;
@@ -36831,6 +37438,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType instant
  */
   defaultValueInstant?: string | undefined;
   _defaultValueInstant?: Element | undefined;
@@ -36848,6 +37456,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType integer
  */
   defaultValueInteger?: number | undefined;
   _defaultValueInteger?: Element | undefined;
@@ -36865,6 +37474,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType markdown
  */
   defaultValueMarkdown?: string | undefined;
   _defaultValueMarkdown?: Element | undefined;
@@ -36882,6 +37492,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType oid
  */
   defaultValueOid?: string | undefined;
   _defaultValueOid?: Element | undefined;
@@ -36899,6 +37510,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType positiveInt
  */
   defaultValuePositiveInt?: number | undefined;
   _defaultValuePositiveInt?: Element | undefined;
@@ -36933,6 +37545,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType time
  */
   defaultValueTime?: string | undefined;
   _defaultValueTime?: Element | undefined;
@@ -36950,6 +37563,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType unsignedInt
  */
   defaultValueUnsignedInt?: number | undefined;
   _defaultValueUnsignedInt?: Element | undefined;
@@ -36967,6 +37581,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType uri
  */
   defaultValueUri?: string | undefined;
   _defaultValueUri?: Element | undefined;
@@ -36984,6 +37599,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType url
  */
   defaultValueUrl?: string | undefined;
   _defaultValueUrl?: Element | undefined;
@@ -37001,6 +37617,7 @@ No
  * default values are ever defined in the FHIR specification, nor can they be
  * defined in constraints ("profiles") on data types or resources. This element
  * only exists so that default values may be defined in logical models.
+ * @fhirType uuid
  */
   defaultValueUuid?: string | undefined;
   _defaultValueUuid?: Element | undefined;
@@ -37559,6 +38176,7 @@ No
    * It is easy for a different definition to change the meaning of an element and
    * this can have nasty downstream consequences. Please be careful when providing
    * definitions in a profile.
+   * @fhirType markdown
    */
   definition?: string | undefined;
   _definition?: Element | undefined;
@@ -37582,6 +38200,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType base64Binary
    */
   fixedBase64Binary?: string | undefined;
   _fixedBase64Binary?: Element | undefined;
@@ -37604,6 +38223,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType canonical
    */
   fixedCanonical?: string | undefined;
   _fixedCanonical?: Element | undefined;
@@ -37615,6 +38235,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType code
    */
   fixedCode?: string | undefined;
   _fixedCode?: Element | undefined;
@@ -37626,6 +38247,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType date
    */
   fixedDate?: string | undefined;
   _fixedDate?: Element | undefined;
@@ -37637,6 +38259,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType dateTime
    */
   fixedDateTime?: string | undefined;
   _fixedDateTime?: Element | undefined;
@@ -37648,6 +38271,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType decimal
    */
   fixedDecimal?: number | undefined;
   _fixedDecimal?: Element | undefined;
@@ -37659,6 +38283,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType id
    */
   fixedId?: string | undefined;
   _fixedId?: Element | undefined;
@@ -37670,6 +38295,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType instant
    */
   fixedInstant?: string | undefined;
   _fixedInstant?: Element | undefined;
@@ -37681,6 +38307,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType integer
    */
   fixedInteger?: number | undefined;
   _fixedInteger?: Element | undefined;
@@ -37692,6 +38319,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType markdown
    */
   fixedMarkdown?: string | undefined;
   _fixedMarkdown?: Element | undefined;
@@ -37703,6 +38331,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType oid
    */
   fixedOid?: string | undefined;
   _fixedOid?: Element | undefined;
@@ -37714,6 +38343,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType positiveInt
    */
   fixedPositiveInt?: number | undefined;
   _fixedPositiveInt?: Element | undefined;
@@ -37736,6 +38366,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType time
    */
   fixedTime?: string | undefined;
   _fixedTime?: Element | undefined;
@@ -37747,6 +38378,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType unsignedInt
    */
   fixedUnsignedInt?: number | undefined;
   _fixedUnsignedInt?: Element | undefined;
@@ -37758,6 +38390,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType uri
    */
   fixedUri?: string | undefined;
   _fixedUri?: Element | undefined;
@@ -37769,6 +38402,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType url
    */
   fixedUrl?: string | undefined;
   _fixedUrl?: Element | undefined;
@@ -37780,6 +38414,7 @@ No
    * elements/attributes must also be missing.
    * This is not recommended for Coding and CodeableConcept since these often have
    * highly contextual properties such as version or display.
+   * @fhirType uuid
    */
   fixedUuid?: string | undefined;
   _fixedUuid?: Element | undefined;
@@ -38210,6 +38845,7 @@ No
    * truncation should be undertaken with care and an understanding of the
    * consequences of doing so. If not specified, there is no conformance expectation
    * for length support.
+   * @fhirType integer
    */
   maxLength?: number | undefined;
   _maxLength?: Element | undefined;
@@ -38226,6 +38862,7 @@ No
    * to determine the maximum allowable value.   A maximum value for a Quantity is
    * interpreted as an canonical maximum - e.g. you cannot provide 10g if the maximum
    * value is 50mg.
+   * @fhirType date
    */
   maxValueDate?: string | undefined;
   _maxValueDate?: Element | undefined;
@@ -38242,6 +38879,7 @@ No
    * to determine the maximum allowable value.   A maximum value for a Quantity is
    * interpreted as an canonical maximum - e.g. you cannot provide 10g if the maximum
    * value is 50mg.
+   * @fhirType dateTime
    */
   maxValueDateTime?: string | undefined;
   _maxValueDateTime?: Element | undefined;
@@ -38258,6 +38896,7 @@ No
    * to determine the maximum allowable value.   A maximum value for a Quantity is
    * interpreted as an canonical maximum - e.g. you cannot provide 10g if the maximum
    * value is 50mg.
+   * @fhirType instant
    */
   maxValueInstant?: string | undefined;
   _maxValueInstant?: Element | undefined;
@@ -38274,6 +38913,7 @@ No
    * to determine the maximum allowable value.   A maximum value for a Quantity is
    * interpreted as an canonical maximum - e.g. you cannot provide 10g if the maximum
    * value is 50mg.
+   * @fhirType time
    */
   maxValueTime?: string | undefined;
   _maxValueTime?: Element | undefined;
@@ -38290,6 +38930,7 @@ No
    * to determine the maximum allowable value.   A maximum value for a Quantity is
    * interpreted as an canonical maximum - e.g. you cannot provide 10g if the maximum
    * value is 50mg.
+   * @fhirType decimal
    */
   maxValueDecimal?: number | undefined;
   _maxValueDecimal?: Element | undefined;
@@ -38306,6 +38947,7 @@ No
    * to determine the maximum allowable value.   A maximum value for a Quantity is
    * interpreted as an canonical maximum - e.g. you cannot provide 10g if the maximum
    * value is 50mg.
+   * @fhirType integer
    */
   maxValueInteger?: number | undefined;
   _maxValueInteger?: Element | undefined;
@@ -38322,6 +38964,7 @@ No
    * to determine the maximum allowable value.   A maximum value for a Quantity is
    * interpreted as an canonical maximum - e.g. you cannot provide 10g if the maximum
    * value is 50mg.
+   * @fhirType positiveInt
    */
   maxValuePositiveInt?: number | undefined;
   _maxValuePositiveInt?: Element | undefined;
@@ -38338,6 +38981,7 @@ No
    * to determine the maximum allowable value.   A maximum value for a Quantity is
    * interpreted as an canonical maximum - e.g. you cannot provide 10g if the maximum
    * value is 50mg.
+   * @fhirType unsignedInt
    */
   maxValueUnsignedInt?: number | undefined;
   _maxValueUnsignedInt?: Element | undefined;
@@ -38366,12 +39010,14 @@ No
    * these. An implicit meaning for a missing value can never be changed, and
    * specifying one has the consequence that constraining its use in profiles
    * eliminates use cases as possibilities, not merely moving them out of scope.
+   * @fhirType markdown
    */
   meaningWhenMissing?: string | undefined;
   _meaningWhenMissing?: Element | undefined;
 
   /**
    * The minimum number of times this element SHALL appear in the instance.
+   * @fhirType unsignedInt
    */
   min?: number | undefined;
   _min?: Element | undefined;
@@ -38388,6 +39034,7 @@ No
    * clock to determine the minimum allowable value.   A minimum value for a Quantity
    * is interpreted as an canonical minimum - e.g. you cannot provide 100mg if the
    * minimum value is 10g.
+   * @fhirType date
    */
   minValueDate?: string | undefined;
   _minValueDate?: Element | undefined;
@@ -38404,6 +39051,7 @@ No
    * clock to determine the minimum allowable value.   A minimum value for a Quantity
    * is interpreted as an canonical minimum - e.g. you cannot provide 100mg if the
    * minimum value is 10g.
+   * @fhirType dateTime
    */
   minValueDateTime?: string | undefined;
   _minValueDateTime?: Element | undefined;
@@ -38420,6 +39068,7 @@ No
    * clock to determine the minimum allowable value.   A minimum value for a Quantity
    * is interpreted as an canonical minimum - e.g. you cannot provide 100mg if the
    * minimum value is 10g.
+   * @fhirType instant
    */
   minValueInstant?: string | undefined;
   _minValueInstant?: Element | undefined;
@@ -38436,6 +39085,7 @@ No
    * clock to determine the minimum allowable value.   A minimum value for a Quantity
    * is interpreted as an canonical minimum - e.g. you cannot provide 100mg if the
    * minimum value is 10g.
+   * @fhirType time
    */
   minValueTime?: string | undefined;
   _minValueTime?: Element | undefined;
@@ -38452,6 +39102,7 @@ No
    * clock to determine the minimum allowable value.   A minimum value for a Quantity
    * is interpreted as an canonical minimum - e.g. you cannot provide 100mg if the
    * minimum value is 10g.
+   * @fhirType decimal
    */
   minValueDecimal?: number | undefined;
   _minValueDecimal?: Element | undefined;
@@ -38468,6 +39119,7 @@ No
    * clock to determine the minimum allowable value.   A minimum value for a Quantity
    * is interpreted as an canonical minimum - e.g. you cannot provide 100mg if the
    * minimum value is 10g.
+   * @fhirType integer
    */
   minValueInteger?: number | undefined;
   _minValueInteger?: Element | undefined;
@@ -38484,6 +39136,7 @@ No
    * clock to determine the minimum allowable value.   A minimum value for a Quantity
    * is interpreted as an canonical minimum - e.g. you cannot provide 100mg if the
    * minimum value is 10g.
+   * @fhirType positiveInt
    */
   minValuePositiveInt?: number | undefined;
   _minValuePositiveInt?: Element | undefined;
@@ -38500,6 +39153,7 @@ No
    * clock to determine the minimum allowable value.   A minimum value for a Quantity
    * is interpreted as an canonical minimum - e.g. you cannot provide 100mg if the
    * minimum value is 10g.
+   * @fhirType unsignedInt
    */
   minValueUnsignedInt?: number | undefined;
   _minValueUnsignedInt?: Element | undefined;
@@ -38587,6 +39241,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType base64Binary
  */
   patternBase64Binary?: string | undefined;
   _patternBase64Binary?: Element | undefined;
@@ -38647,6 +39302,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType canonical
  */
   patternCanonical?: string | undefined;
   _patternCanonical?: Element | undefined;
@@ -38677,6 +39333,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType code
  */
   patternCode?: string | undefined;
   _patternCode?: Element | undefined;
@@ -38707,6 +39364,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType date
  */
   patternDate?: string | undefined;
   _patternDate?: Element | undefined;
@@ -38737,6 +39395,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType dateTime
  */
   patternDateTime?: string | undefined;
   _patternDateTime?: Element | undefined;
@@ -38767,6 +39426,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType decimal
  */
   patternDecimal?: number | undefined;
   _patternDecimal?: Element | undefined;
@@ -38797,6 +39457,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType id
  */
   patternId?: string | undefined;
   _patternId?: Element | undefined;
@@ -38827,6 +39488,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType instant
  */
   patternInstant?: string | undefined;
   _patternInstant?: Element | undefined;
@@ -38857,6 +39519,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType integer
  */
   patternInteger?: number | undefined;
   _patternInteger?: Element | undefined;
@@ -38887,6 +39550,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType markdown
  */
   patternMarkdown?: string | undefined;
   _patternMarkdown?: Element | undefined;
@@ -38917,6 +39581,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType oid
  */
   patternOid?: string | undefined;
   _patternOid?: Element | undefined;
@@ -38947,6 +39612,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType positiveInt
  */
   patternPositiveInt?: number | undefined;
   _patternPositiveInt?: Element | undefined;
@@ -39007,6 +39673,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType time
  */
   patternTime?: string | undefined;
   _patternTime?: Element | undefined;
@@ -39037,6 +39704,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType unsignedInt
  */
   patternUnsignedInt?: number | undefined;
   _patternUnsignedInt?: Element | undefined;
@@ -39067,6 +39735,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType uri
  */
   patternUri?: string | undefined;
   _patternUri?: Element | undefined;
@@ -39097,6 +39766,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType url
  */
   patternUrl?: string | undefined;
   _patternUrl?: Element | undefined;
@@ -39127,6 +39797,7 @@ When
  * Mostly used for fixing values of CodeableConcept. In general, pattern[x] is not
  * intended for use with primitive types, where is has the same meaning as
  * fixed[x].
+ * @fhirType uuid
  */
   patternUuid?: string | undefined;
   _patternUuid?: Element | undefined;
@@ -40100,6 +40771,7 @@ When
    * is used quite commonly in Logical models when the logical models represent a
    * specific serialization format (e.g. CDA, v2 etc.).
    * @see {@link PropertyRepresentation}
+   * @fhirType code
    */
   representation?: Array<PropertyRepresentation> | undefined;
   _representation?: Element[] | undefined;
@@ -40112,6 +40784,7 @@ When
    * comments), rather it's for traceability of *why* the element is either needed or
    * why the constraints exist as they do.  This may be used to point to source
    * materials or specifications that drove the structure of this data element.
+   * @fhirType markdown
    */
   requirements?: string | undefined;
   _requirements?: Element | undefined;
@@ -40215,6 +40888,7 @@ export interface EncounterClassHistory extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.classHistory.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -40287,6 +40961,7 @@ export interface EncounterDiagnosis extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.diagnosis.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -40317,6 +40992,7 @@ Modifier extensions
   /**
    * Ranking of the diagnosis (for each role type).
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.diagnosis.rank}
+   * @fhirType positiveInt
    */
   rank?: number | undefined;
   _rank?: Element | undefined;
@@ -40390,6 +41066,7 @@ export interface EncounterHospitalization extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.hospitalization.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -40481,6 +41158,7 @@ export interface EncounterLocation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.location.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -40544,6 +41222,7 @@ There may be many levels in the hierachy, and this may only pic specific
    * entered, and the status may be changed to completed.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.location.status}
    * @see {@link EncounterLocationStatus}
+   * @fhirType code
    */
   status?: EncounterLocationStatus | undefined;
   _status?: Element | undefined;
@@ -40573,6 +41252,7 @@ export interface EncounterParticipant extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.participant.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -40657,6 +41337,7 @@ export interface EncounterStatusHistory extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.statusHistory.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -40695,6 +41376,7 @@ Modifier extensions
    * planned | arrived | triaged | in-progress | onleave | finished | cancelled +.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.statusHistory.status}
    * @see {@link EncounterStatus}
+   * @fhirType code
    */
   status: EncounterStatus;
   _status?: Element | undefined;
@@ -40899,6 +41581,7 @@ Refer to the Notes section in the Patient resource for further
    * that may occur between statuses (and also classes).
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.status}
    * @see {@link EncounterStatus}
+   * @fhirType code
    */
   status: EncounterStatus;
   _status?: Element | undefined;
@@ -40969,6 +41652,7 @@ and not
  * "https://pacs.hospital.org/wado-rs/studies/1.2.250.1.59.40211.12345678.678910/se
  * ries/1.2.250.1.59.40211.789001276.14556172.67789/instances/...".
  * @see {@link http://hl7.org/fhir/R4B/Endpoint-definitions.html#Endpoint.address}
+ * @fhirType url
  */
   address: string;
   _address?: Element | undefined;
@@ -41039,6 +41723,7 @@ and not
    * for ensuring that the content is appropriately secured.
    * @see {@link http://hl7.org/fhir/R4B/Endpoint-definitions.html#Endpoint.payloadMimeType}
    * @see {@link MimeTypes}
+   * @fhirType code
    */
   payloadMimeType?: Array<MimeTypes> | undefined;
   _payloadMimeType?: Element[] | undefined;
@@ -41067,6 +41752,7 @@ and not
    * mark the endpoint as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Endpoint-definitions.html#Endpoint.status}
    * @see {@link EndpointStatus}
+   * @fhirType code
    */
   status: EndpointStatus;
   _status?: Element | undefined;
@@ -41100,6 +41786,7 @@ export interface EnrollmentRequest extends DomainResource {
   /**
    * The date when this resource was created.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentRequest-definitions.html#EnrollmentRequest.created}
+   * @fhirType dateTime
    */
   created?: string | undefined;
   _created?: Element | undefined;
@@ -41131,6 +41818,7 @@ export interface EnrollmentRequest extends DomainResource {
    * mark the request as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentRequest-definitions.html#EnrollmentRequest.status}
    * @see {@link FinancialResourceStatusCodes}
+   * @fhirType code
    */
   status?: FinancialResourceStatusCodes | undefined;
   _status?: Element | undefined;
@@ -41150,6 +41838,7 @@ export interface EnrollmentResponse extends DomainResource {
   /**
    * The date when the enclosed suite of services were performed or completed.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentResponse-definitions.html#EnrollmentResponse.created}
+   * @fhirType dateTime
    */
   created?: string | undefined;
   _created?: Element | undefined;
@@ -41179,6 +41868,7 @@ export interface EnrollmentResponse extends DomainResource {
    * Processing status: error, complete.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentResponse-definitions.html#EnrollmentResponse.outcome}
    * @see {@link RemittanceOutcome}
+   * @fhirType code
    */
   outcome?: RemittanceOutcome | undefined;
   _outcome?: Element | undefined;
@@ -41203,6 +41893,7 @@ export interface EnrollmentResponse extends DomainResource {
    * mark the response as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentResponse-definitions.html#EnrollmentResponse.status}
    * @see {@link FinancialResourceStatusCodes}
+   * @fhirType code
    */
   status?: FinancialResourceStatusCodes | undefined;
   _status?: Element | undefined;
@@ -41240,6 +41931,7 @@ export interface EpisodeOfCareDiagnosis extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.diagnosis.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -41270,6 +41962,7 @@ Modifier extensions
   /**
    * Ranking of the diagnosis (for each role type).
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.diagnosis.rank}
+   * @fhirType positiveInt
    */
   rank?: number | undefined;
   _rank?: Element | undefined;
@@ -41308,6 +42001,7 @@ export interface EpisodeOfCareStatusHistory extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.statusHistory.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -41346,6 +42040,7 @@ Modifier extensions
    * planned | waitlist | active | onhold | finished | cancelled.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.statusHistory.status}
    * @see {@link EpisodeOfCareStatus}
+   * @fhirType code
    */
   status: EpisodeOfCareStatus;
   _status?: Element | undefined;
@@ -41432,6 +42127,7 @@ export interface EpisodeOfCare extends DomainResource {
    * mark the episode as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.status}
    * @see {@link EpisodeOfCareStatus}
+   * @fhirType code
    */
   status: EpisodeOfCareStatus;
   _status?: Element | undefined;
@@ -41519,6 +42215,7 @@ export interface Event {
   /**
    * The URL pointing to a FHIR-defined protocol, guideline, orderset or other
    * definition that is adhered to in whole or in part by this {{title}}.
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -41528,6 +42225,7 @@ export interface Event {
    * other definition that is adhered to in whole or in part by this {{title}}.
    * This might be an HTML page, PDF, etc. or could just be a non-resolvable URI
    * identifier.
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -41557,6 +42255,7 @@ export interface Event {
 [The list of types may be constrained as appropriate for the
  * type of event.  The use of 'Timing' in type is generally only appropriate for
  * Events that are typically used to represent summary information.].
+ * @fhirType dateTime
  */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -41629,6 +42328,7 @@ export interface Event {
   /**
    * The date the occurrence of the {{title}} was first captured in the record -
    * potentially significantly after the occurrence of the event.
+   * @fhirType dateTime
    */
   recorded?: string | undefined;
   _recorded?: Element | undefined;
@@ -41667,6 +42367,7 @@ Unknown does not represent "other" - one of the
  * defined statuses must apply.  Unknown is used when the authoring system is not
  * sure what the current status is.
  * @see {@link EventStatus}
+ * @fhirType code
  */
   status: EventStatus;
   _status?: Element | undefined;
@@ -41712,6 +42413,7 @@ export interface EventDefinition extends DomainResource {
    * The 'date' element may be more recent than the approval date because of minor
    * changes or editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/EventDefinition-definitions.html#EventDefinition.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -41738,6 +42440,7 @@ export interface EventDefinition extends DomainResource {
    * Copyright statements are generally legal restrictions on the use and publishing
    * of the event definition.
    * @see {@link http://hl7.org/fhir/R4B/EventDefinition-definitions.html#EventDefinition.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -41752,6 +42455,7 @@ export interface EventDefinition extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/EventDefinition-definitions.html#EventDefinition.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -41767,6 +42471,7 @@ export interface EventDefinition extends DomainResource {
    * available from context (e.g. the language of the event definition is presumed to
    * be the predominant language in the place the event definition was created).
    * @see {@link http://hl7.org/fhir/R4B/EventDefinition-definitions.html#EventDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -41836,6 +42541,7 @@ export interface EventDefinition extends DomainResource {
    * periodically after approval but does not change the original approval date.
    * If specified, this date follows the original approval date.
    * @see {@link http://hl7.org/fhir/R4B/EventDefinition-definitions.html#EventDefinition.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -41873,6 +42579,7 @@ export interface EventDefinition extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this event definition.
    * @see {@link http://hl7.org/fhir/R4B/EventDefinition-definitions.html#EventDefinition.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -41901,6 +42608,7 @@ export interface EventDefinition extends DomainResource {
    * Allows filtering of event definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/EventDefinition-definitions.html#EventDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -41976,6 +42684,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/EventDefinition-definitions.html#EventDefinition.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -42050,6 +42759,7 @@ export interface EvidenceCertainty extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.certainty.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -42156,6 +42866,7 @@ export interface EvidenceStatistic extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -42208,6 +42919,7 @@ Modifier extensions
    * have 2 or more events), use Evidence.statistic.numberAffected to record the
    * number of participants with events rather than the total number of events.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.numberAffected}
+   * @fhirType unsignedInt
    */
   numberAffected?: number | undefined;
   _numberAffected?: Element | undefined;
@@ -42223,6 +42935,7 @@ Modifier extensions
    * Evidence.statistic.numberOfEvents to record the total number of events rather
    * than the number of participants with events.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.numberOfEvents}
+   * @fhirType unsignedInt
    */
   numberOfEvents?: number | undefined;
   _numberOfEvents?: Element | undefined;
@@ -42280,6 +42993,7 @@ export interface EvidenceStatisticAttributeEstimate extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.attributeEstimate.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -42287,6 +43001,7 @@ export interface EvidenceStatisticAttributeEstimate extends BackboneElement {
   /**
    * Use 95 for a 95% confidence interval.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.attributeEstimate.level}
+   * @fhirType decimal
    */
   level?: number | undefined;
   _level?: Element | undefined;
@@ -42376,6 +43091,7 @@ export interface EvidenceStatisticModelCharacteristic extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.modelCharacteristic.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -42444,6 +43160,7 @@ export interface EvidenceStatisticModelCharacteristicVariable
    * How the variable is classified for use in adjusted analysis.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.modelCharacteristic.variable.handling}
    * @see {@link EvidenceVariableHandling}
+   * @fhirType code
    */
   handling?: EvidenceVariableHandling | undefined;
   _handling?: Element | undefined;
@@ -42452,6 +43169,7 @@ export interface EvidenceStatisticModelCharacteristicVariable
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.modelCharacteristic.variable.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -42539,6 +43257,7 @@ export interface EvidenceStatisticSampleSize extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.sampleSize.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -42546,6 +43265,7 @@ export interface EvidenceStatisticSampleSize extends BackboneElement {
   /**
    * Number of participants with known results for measured variables.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.sampleSize.knownDataCount}
+   * @fhirType unsignedInt
    */
   knownDataCount?: number | undefined;
   _knownDataCount?: Element | undefined;
@@ -42583,6 +43303,7 @@ Modifier extensions
   /**
    * A human-readable string to clarify or explain concepts about the sample size.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.sampleSize.numberOfParticipants}
+   * @fhirType unsignedInt
    */
   numberOfParticipants?: number | undefined;
   _numberOfParticipants?: Element | undefined;
@@ -42590,6 +43311,7 @@ Modifier extensions
   /**
    * Number of participants in the population.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.sampleSize.numberOfStudies}
+   * @fhirType unsignedInt
    */
   numberOfStudies?: number | undefined;
   _numberOfStudies?: Element | undefined;
@@ -42603,6 +43325,7 @@ export interface EvidenceVariableDefinition extends BackboneElement {
   /**
    * A text description or summary of the variable.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.variableDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -42633,6 +43356,7 @@ export interface EvidenceVariableDefinition extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.variableDefinition.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -42709,6 +43433,7 @@ export interface Evidence extends DomainResource {
    * The 'date' element may be more recent than the approval date because of minor
    * changes or editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -42716,6 +43441,7 @@ export interface Evidence extends DomainResource {
   /**
    * Declarative description of the Evidence.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.assertion}
+   * @fhirType markdown
    */
   assertion?: string | undefined;
   _assertion?: Element | undefined;
@@ -42749,6 +43475,7 @@ export interface Evidence extends DomainResource {
   /**
    * Citation Resource or display of suggested citation for this evidence.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.citeAsMarkdown}
+   * @fhirType markdown
    */
   citeAsMarkdown?: string | undefined;
   _citeAsMarkdown?: Element | undefined;
@@ -42774,6 +43501,7 @@ export interface Evidence extends DomainResource {
    * dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -42789,6 +43517,7 @@ export interface Evidence extends DomainResource {
    * the language of the evidence is presumed to be the predominant language in the
    * place the evidence was created).
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -42832,6 +43561,7 @@ export interface Evidence extends DomainResource {
    * periodically after approval but does not change the original approval date.
    * If specified, this date follows the original approval date.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -42887,6 +43617,7 @@ export interface Evidence extends DomainResource {
    * Allows filtering of summarys s that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -42925,6 +43656,7 @@ export interface Evidence extends DomainResource {
    * Can be a urn:uuid: or a urn:oid: but real http: addresses are preferred.
    * Multiple instances may share the same URL if they have a distinct version.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.url}
+   * @fhirType uri
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -42979,6 +43711,7 @@ export interface EvidenceReportRelatesTo extends BackboneElement {
    * understood without also accessing the referenced document.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.relatesTo.code}
    * @see {@link ReportRelationshipType}
+   * @fhirType code
    */
   code: ReportRelationshipType;
   _code?: Element | undefined;
@@ -43002,6 +43735,7 @@ export interface EvidenceReportRelatesTo extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.relatesTo.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -43135,6 +43869,7 @@ If the section has content (instead of sub-sections), the
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.section.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -43148,6 +43883,7 @@ If the section has content (instead of sub-sections), the
    * misunderstood as a complete list.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.section.mode}
    * @see {@link ListMode}
+   * @fhirType code
    */
   mode?: ListMode | undefined;
   _mode?: Element | undefined;
@@ -43245,6 +43981,7 @@ export interface EvidenceReportSubject extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.subject.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -43320,6 +44057,7 @@ export interface EvidenceReportSubjectCharacteristic extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.subject.characteristic.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -43437,6 +44175,7 @@ export interface EvidenceReport extends DomainResource {
    * used for reports for which external citation is expected, such as use in support
    * of scholarly publications.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.citeAsMarkdown}
+   * @fhirType markdown
    */
   citeAsMarkdown?: string | undefined;
   _citeAsMarkdown?: Element | undefined;
@@ -43557,6 +44296,7 @@ export interface EvidenceReport extends DomainResource {
    * Allows filtering of summaries that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -43588,6 +44328,7 @@ export interface EvidenceReport extends DomainResource {
    * Can be a urn:uuid: or a urn:oid: but real http: addresses are preferred.
    * Multiple instances may share the same URL if they have a distinct version.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.url}
+   * @fhirType uri
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -43631,6 +44372,7 @@ export interface EvidenceVariableCategory extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.category.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -43712,6 +44454,7 @@ export interface EvidenceVariableCharacteristic extends BackboneElement {
    * FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis onset in the
    * last year).
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristic.definitionCanonical}
+   * @fhirType canonical
    */
   definitionCanonical?: string | undefined;
   _definitionCanonical?: Element | undefined;
@@ -43777,6 +44520,7 @@ export interface EvidenceVariableCharacteristic extends BackboneElement {
    * Indicates how elements are aggregated within the study effective period.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristic.groupMeasure}
    * @see {@link GroupMeasure}
+   * @fhirType code
    */
   groupMeasure?: GroupMeasure | undefined;
   _groupMeasure?: Element | undefined;
@@ -43785,6 +44529,7 @@ export interface EvidenceVariableCharacteristic extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristic.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -43861,6 +44606,7 @@ export interface EvidenceVariableCharacteristicTimeFromStart
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristic.timeFromStart.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -43964,6 +44710,7 @@ export interface EvidenceVariable extends DomainResource {
    * Used to specify if two or more characteristics are combined with OR or AND.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristicCombination}
    * @see {@link CharacteristicCombination}
+   * @fhirType code
    */
   characteristicCombination?: CharacteristicCombination | undefined;
   _characteristicCombination?: Element | undefined;
@@ -43989,6 +44736,7 @@ export interface EvidenceVariable extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -44004,6 +44752,7 @@ export interface EvidenceVariable extends DomainResource {
    * available from context (e.g. the language of the evidence variable is presumed
    * to be the predominant language in the place the evidence variable was created).
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -44034,6 +44783,7 @@ export interface EvidenceVariable extends DomainResource {
    * Used for an outcome to classify.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.handling}
    * @see {@link EvidenceVariableHandling}
+   * @fhirType code
    */
   handling?: EvidenceVariableHandling | undefined;
   _handling?: Element | undefined;
@@ -44117,6 +44867,7 @@ export interface EvidenceVariable extends DomainResource {
    * Allows filtering of evidence variables that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -44159,6 +44910,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -44214,6 +44966,7 @@ export interface ExampleScenarioActor extends BackboneElement {
    * The description of the actor.
    * Cardinality: is name and description 1..1?
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.actor.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -44237,6 +44990,7 @@ export interface ExampleScenarioActor extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.actor.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -44276,6 +45030,7 @@ Modifier extensions
    * The type of actor - person or system.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.actor.type}
    * @see {@link ExampleScenarioActorType}
+   * @fhirType code
    */
   type: ExampleScenarioActorType;
   _type?: Element | undefined;
@@ -44299,6 +45054,7 @@ export interface ExampleScenarioInstance extends BackboneElement {
   /**
    * Human-friendly description of the resource instance.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.instance.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -44322,6 +45078,7 @@ export interface ExampleScenarioInstance extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.instance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -44367,6 +45124,7 @@ Modifier extensions
    * The type of the resource.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.instance.resourceType}
    * @see {@link ResourceType}
+   * @fhirType code
    */
   resourceType: ResourceType;
   _resourceType?: Element | undefined;
@@ -44405,6 +45163,7 @@ export interface ExampleScenarioInstanceContainedInstance
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.instance.containedInstance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -44455,6 +45214,7 @@ export interface ExampleScenarioInstanceVersion extends BackboneElement {
   /**
    * The description of the resource version.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.instance.version.description}
+   * @fhirType markdown
    */
   description: string;
   _description?: Element | undefined;
@@ -44478,6 +45238,7 @@ export interface ExampleScenarioInstanceVersion extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.instance.version.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -44521,6 +45282,7 @@ export interface ExampleScenarioProcess extends BackboneElement {
   /**
    * A longer description of the group of operations.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -44544,6 +45306,7 @@ export interface ExampleScenarioProcess extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -44574,6 +45337,7 @@ Modifier extensions
   /**
    * Description of final status after the process ends.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.postConditions}
+   * @fhirType markdown
    */
   postConditions?: string | undefined;
   _postConditions?: Element | undefined;
@@ -44581,6 +45345,7 @@ Modifier extensions
   /**
    * Description of initial status before the process starts.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.preConditions}
+   * @fhirType markdown
    */
   preConditions?: string | undefined;
   _preConditions?: Element | undefined;
@@ -44632,6 +45397,7 @@ export interface ExampleScenarioProcessStep extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -44684,6 +45450,7 @@ export interface ExampleScenarioProcessStepAlternative extends BackboneElement {
    * A human-readable description of the alternative explaining when the alternative
    * should occur rather than the base step.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step.alternative.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -44707,6 +45474,7 @@ export interface ExampleScenarioProcessStepAlternative extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step.alternative.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -44751,6 +45519,7 @@ export interface ExampleScenarioProcessStepOperation extends BackboneElement {
   /**
    * A comment to be inserted in the diagram.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step.operation.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -44774,6 +45543,7 @@ export interface ExampleScenarioProcessStepOperation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step.operation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -44885,6 +45655,7 @@ export interface ExampleScenario extends DomainResource {
    * are included. The copyright statement should clearly differentiate between these
    * when required.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -44899,6 +45670,7 @@ export interface ExampleScenario extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -44983,6 +45755,7 @@ export interface ExampleScenario extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this example scenario.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -44993,6 +45766,7 @@ export interface ExampleScenario extends DomainResource {
    * Allows filtering of example scenarios that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -45018,6 +45792,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -45054,6 +45829,7 @@ In some cases, the resource can no longer
   /**
    * Another nested workflow.
    * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.workflow}
+   * @fhirType canonical
    */
   workflow?: Array<string> | undefined;
   _workflow?: Element[] | undefined;
@@ -45071,6 +45847,7 @@ export interface ExplanationOfBenefitAccident extends BackboneElement {
    * The date of the accident has to precede the dates of the products and services
    * but within a reasonable timeframe.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.accident.date}
+   * @fhirType date
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -45094,6 +45871,7 @@ export interface ExplanationOfBenefitAccident extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.accident.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -45170,6 +45948,7 @@ export interface ExplanationOfBenefitAddItem extends BackboneElement {
    * The sequence number of the details within the claim item which this line is
    * intended to replace.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.detailSequence}
+   * @fhirType positiveInt
    */
   detailSequence?: Array<number> | undefined;
   _detailSequence?: Element[] | undefined;
@@ -45195,6 +45974,7 @@ export interface ExplanationOfBenefitAddItem extends BackboneElement {
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -45203,6 +45983,7 @@ export interface ExplanationOfBenefitAddItem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -45210,6 +45991,7 @@ export interface ExplanationOfBenefitAddItem extends BackboneElement {
   /**
    * Claim items which this service line is intended to replace.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.itemSequence}
+   * @fhirType positiveInt
    */
   itemSequence?: Array<number> | undefined;
   _itemSequence?: Element[] | undefined;
@@ -45283,6 +46065,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -45327,6 +46110,7 @@ Modifier extensions
    * The date or dates when the service or product was supplied, performed or
    * completed.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.servicedDate}
+   * @fhirType date
    */
   servicedDate?: string | undefined;
   _servicedDate?: Element | undefined;
@@ -45343,6 +46127,7 @@ Modifier extensions
    * The sequence number of the sub-details woithin the details within the claim item
    * which this line is intended to replace.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.subDetailSequence}
+   * @fhirType positiveInt
    */
   subDetailSequence?: Array<number> | undefined;
   _subDetailSequence?: Element[] | undefined;
@@ -45389,6 +46174,7 @@ export interface ExplanationOfBenefitAddItemDetail extends BackboneElement {
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.detail.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -45397,6 +46183,7 @@ export interface ExplanationOfBenefitAddItemDetail extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.detail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -45449,6 +46236,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.detail.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -45516,6 +46304,7 @@ export interface ExplanationOfBenefitAddItemDetailSubDetail
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.detail.subDetail.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -45524,6 +46313,7 @@ export interface ExplanationOfBenefitAddItemDetailSubDetail
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.detail.subDetail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -45576,6 +46366,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.detail.subDetail.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -45666,6 +46457,7 @@ export interface ExplanationOfBenefitBenefitBalance extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.benefitBalance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -45734,6 +46526,7 @@ export interface ExplanationOfBenefitBenefitBalanceFinancial
   /**
    * The quantity of the benefit which is permitted under the coverage.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.benefitBalance.financial.allowedUnsignedInt}
+   * @fhirType unsignedInt
    */
   allowedUnsignedInt?: number | undefined;
   _allowedUnsignedInt?: Element | undefined;
@@ -45771,6 +46564,7 @@ export interface ExplanationOfBenefitBenefitBalanceFinancial
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.benefitBalance.financial.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -45809,6 +46603,7 @@ Modifier extensions
   /**
    * The quantity of the benefit which have been consumed to date.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.benefitBalance.financial.usedUnsignedInt}
+   * @fhirType unsignedInt
    */
   usedUnsignedInt?: number | undefined;
   _usedUnsignedInt?: Element | undefined;
@@ -45845,6 +46640,7 @@ export interface ExplanationOfBenefitCareTeam extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.careTeam.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -45907,6 +46703,7 @@ Modifier extensions
   /**
    * A number to uniquely identify care team entries.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.careTeam.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -45952,6 +46749,7 @@ export interface ExplanationOfBenefitDiagnosis extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.diagnosis.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -46004,6 +46802,7 @@ Modifier extensions
    * Diagnosis are presented in list order to their expected importance: primary,
    * secondary, etc.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.diagnosis.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -46073,6 +46872,7 @@ export interface ExplanationOfBenefitInsurance extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.insurance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -46140,6 +46940,7 @@ export interface ExplanationOfBenefitItem extends BackboneElement {
   /**
    * Care team members related to this service or product.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.careTeamSequence}
+   * @fhirType positiveInt
    */
   careTeamSequence?: Array<number> | undefined;
   _careTeamSequence?: Element[] | undefined;
@@ -46163,6 +46964,7 @@ export interface ExplanationOfBenefitItem extends BackboneElement {
   /**
    * Diagnoses applicable for this service or product.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.diagnosisSequence}
+   * @fhirType positiveInt
    */
   diagnosisSequence?: Array<number> | undefined;
   _diagnosisSequence?: Element[] | undefined;
@@ -46195,6 +46997,7 @@ export interface ExplanationOfBenefitItem extends BackboneElement {
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -46203,6 +47006,7 @@ export interface ExplanationOfBenefitItem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -46211,6 +47015,7 @@ export interface ExplanationOfBenefitItem extends BackboneElement {
    * Exceptions, special conditions and supporting information applicable for this
    * service or product.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.informationSequence}
+   * @fhirType positiveInt
    */
   informationSequence?: Array<number> | undefined;
   _informationSequence?: Element[] | undefined;
@@ -46284,6 +47089,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -46291,6 +47097,7 @@ Modifier extensions
   /**
    * Procedures applicable for this service or product.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.procedureSequence}
+   * @fhirType positiveInt
    */
   procedureSequence?: Array<number> | undefined;
   _procedureSequence?: Element[] | undefined;
@@ -46334,6 +47141,7 @@ Modifier extensions
   /**
    * A number to uniquely identify item entries.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -46342,6 +47150,7 @@ Modifier extensions
    * The date or dates when the service or product was supplied, performed or
    * completed.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.servicedDate}
+   * @fhirType date
    */
   servicedDate?: string | undefined;
   _servicedDate?: Element | undefined;
@@ -46423,6 +47232,7 @@ export interface ExplanationOfBenefitItemAdjudication extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.adjudication.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -46465,6 +47275,7 @@ Modifier extensions
    * amount element above.
    * For example: eligible percentage or co-payment percentage.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.adjudication.value}
+   * @fhirType decimal
    */
   value?: number | undefined;
   _value?: Element | undefined;
@@ -46505,6 +47316,7 @@ export interface ExplanationOfBenefitItemDetail extends BackboneElement {
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -46513,6 +47325,7 @@ export interface ExplanationOfBenefitItemDetail extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -46565,6 +47378,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -46609,6 +47423,7 @@ Modifier extensions
    * A claim detail line. Either a simple (a product or service) or a 'group' of
    * sub-details which are simple items.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -46672,6 +47487,7 @@ export interface ExplanationOfBenefitItemDetailSubDetail
    * a discount or surcharge multiplier to be applied to a monetary amount.
    * To show a 10% senior's discount, the value entered is: 0.90 (1.00 - 0.10).
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.subDetail.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -46680,6 +47496,7 @@ export interface ExplanationOfBenefitItemDetailSubDetail
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.subDetail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -46732,6 +47549,7 @@ Modifier extensions
    * The numbers associated with notes below which apply to the adjudication of this
    * item.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.subDetail.noteNumber}
+   * @fhirType positiveInt
    */
   noteNumber?: Array<number> | undefined;
   _noteNumber?: Element[] | undefined;
@@ -46776,6 +47594,7 @@ Modifier extensions
    * A claim detail line. Either a simple (a product or service) or a 'group' of
    * sub-details which are simple items.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.subDetail.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -46824,6 +47643,7 @@ export interface ExplanationOfBenefitPayee extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.payee.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -46900,6 +47720,7 @@ export interface ExplanationOfBenefitPayment extends BackboneElement {
   /**
    * Estimated date the payment will be issued or the actual issue date of payment.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.payment.date}
+   * @fhirType date
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -46923,6 +47744,7 @@ export interface ExplanationOfBenefitPayment extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.payment.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -46975,6 +47797,7 @@ export interface ExplanationOfBenefitProcedure extends BackboneElement {
   /**
    * Date and optionally time the procedure was performed.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.procedure.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -46998,6 +47821,7 @@ export interface ExplanationOfBenefitProcedure extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.procedure.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -47044,6 +47868,7 @@ Modifier extensions
   /**
    * A number to uniquely identify procedure entries.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.procedure.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -47087,6 +47912,7 @@ export interface ExplanationOfBenefitProcessNote extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.processNote.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -47125,6 +47951,7 @@ Modifier extensions
   /**
    * A number to uniquely identify a note entry.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.processNote.number}
+   * @fhirType positiveInt
    */
   number?: number | undefined;
   _number?: Element | undefined;
@@ -47140,6 +47967,7 @@ Modifier extensions
    * The business purpose of the note text.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.processNote.type}
    * @see {@link NoteType}
+   * @fhirType code
    */
   type?: NoteType | undefined;
   _type?: Element | undefined;
@@ -47178,6 +48006,7 @@ export interface ExplanationOfBenefitRelated extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.related.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -47269,6 +48098,7 @@ export interface ExplanationOfBenefitSupportingInfo extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.supportingInfo.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -47308,6 +48138,7 @@ Modifier extensions
   /**
    * A number to uniquely identify supporting information entries.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.supportingInfo.sequence}
+   * @fhirType positiveInt
    */
   sequence: number;
   _sequence?: Element | undefined;
@@ -47315,6 +48146,7 @@ Modifier extensions
   /**
    * The date when or period to which this information refers.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.supportingInfo.timingDate}
+   * @fhirType date
    */
   timingDate?: string | undefined;
   _timingDate?: Element | undefined;
@@ -47421,6 +48253,7 @@ export interface ExplanationOfBenefitTotal extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.total.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -47530,6 +48363,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * reflect the creation date of a source document prior to digitization. Typically
    * for claims all services must be completed as of this date.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.created}
+   * @fhirType dateTime
    */
   created: string;
   _created?: Element | undefined;
@@ -47656,6 +48490,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.outcome}
    * @see {@link RemittanceOutcome}
+   * @fhirType code
    */
   outcome: RemittanceOutcome;
   _outcome?: Element | undefined;
@@ -47709,6 +48544,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * This indicates the relative order of a series of EOBs related to different
    * coverages for the same suite of services.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.precedence}
+   * @fhirType positiveInt
    */
   precedence?: number | undefined;
   _precedence?: Element | undefined;
@@ -47780,6 +48616,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.status}
    * @see {@link ExplanationOfBenefitStatus}
+   * @fhirType code
    */
   status: ExplanationOfBenefitStatus;
   _status?: Element | undefined;
@@ -47828,6 +48665,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * future.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.use}
    * @see {@link Use}
+   * @fhirType code
    */
   use: Use;
   _use?: Element | undefined;
@@ -47859,6 +48697,7 @@ export interface Expression extends Element {
 
   /**
    * The media type of the language for the expression.
+   * @fhirType code
    */
   language: string;
   _language?: Element | undefined;
@@ -47866,6 +48705,7 @@ export interface Expression extends Element {
   /**
    * A short name assigned to the expression to allow for multiple reuse of the
    * expression in the context where it is defined.
+   * @fhirType id
    */
   name?: string | undefined;
   _name?: Element | undefined;
@@ -47874,6 +48714,7 @@ export interface Expression extends Element {
    * A URI that defines where the expression is found.
    * If both a reference and an expression is found, the reference SHALL point to the
    * same expression.
+   * @fhirType uri
    */
   reference?: string | undefined;
   _reference?: Element | undefined;
@@ -47894,6 +48735,7 @@ export interface Extension extends Element {
    * of the extensibility codes, or it may be a logical URI as declared in some other
    * specification. The definition SHALL be a URI for the Structure Definition
    * defining the extension.
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   url: string;
   _url?: Element | undefined;
@@ -47901,6 +48743,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType base64Binary
    */
   valueBase64Binary?: string | undefined;
   _valueBase64Binary?: Element | undefined;
@@ -47915,6 +48758,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType canonical
    */
   valueCanonical?: string | undefined;
   _valueCanonical?: Element | undefined;
@@ -47922,6 +48766,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType code
    */
   valueCode?: string | undefined;
   _valueCode?: Element | undefined;
@@ -47929,6 +48774,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -47936,6 +48782,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType dateTime
    */
   valueDateTime?: string | undefined;
   _valueDateTime?: Element | undefined;
@@ -47943,6 +48790,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType decimal
    */
   valueDecimal?: number | undefined;
   _valueDecimal?: Element | undefined;
@@ -47950,6 +48798,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType id
    */
   valueId?: string | undefined;
   _valueId?: Element | undefined;
@@ -47957,6 +48806,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType instant
    */
   valueInstant?: string | undefined;
   _valueInstant?: Element | undefined;
@@ -47964,6 +48814,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -47971,6 +48822,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType markdown
    */
   valueMarkdown?: string | undefined;
   _valueMarkdown?: Element | undefined;
@@ -47978,6 +48830,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType oid
    */
   valueOid?: string | undefined;
   _valueOid?: Element | undefined;
@@ -47985,6 +48838,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType positiveInt
    */
   valuePositiveInt?: number | undefined;
   _valuePositiveInt?: Element | undefined;
@@ -47999,6 +48853,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType time
    */
   valueTime?: string | undefined;
   _valueTime?: Element | undefined;
@@ -48006,6 +48861,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType unsignedInt
    */
   valueUnsignedInt?: number | undefined;
   _valueUnsignedInt?: Element | undefined;
@@ -48013,6 +48869,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType uri
    */
   valueUri?: string | undefined;
   _valueUri?: Element | undefined;
@@ -48020,6 +48877,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType url
    */
   valueUrl?: string | undefined;
   _valueUrl?: Element | undefined;
@@ -48027,6 +48885,7 @@ export interface Extension extends Element {
   /**
    * Value of extension - must be one of a constrained set of the data types (see
    * [Extensibility](extensibility.html) for a list).
+   * @fhirType uuid
    */
   valueUuid?: string | undefined;
   _valueUuid?: Element | undefined;
@@ -48300,6 +49159,7 @@ export interface FamilyMemberHistoryCondition extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.condition.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -48424,6 +49284,7 @@ export interface FamilyMemberHistory extends DomainResource {
   /**
    * The actual or approximate date of birth of the relative.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.bornDate}
+   * @fhirType date
    */
   bornDate?: string | undefined;
   _bornDate?: Element | undefined;
@@ -48458,6 +49319,7 @@ export interface FamilyMemberHistory extends DomainResource {
    * This should be captured even if the same as the date on the List aggregating the
    * full family history.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -48490,6 +49352,7 @@ export interface FamilyMemberHistory extends DomainResource {
    * Deceased flag or the actual or approximate age of the relative at the time of
    * death for the family member history record.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.deceasedDate}
+   * @fhirType date
    */
   deceasedDate?: string | undefined;
   _deceasedDate?: Element | undefined;
@@ -48532,6 +49395,7 @@ export interface FamilyMemberHistory extends DomainResource {
    * The URL pointing to a FHIR-defined protocol, guideline, orderset or other
    * definition that is adhered to in whole or in part by this FamilyMemberHistory.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.instantiatesCanonical}
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -48543,6 +49407,7 @@ export interface FamilyMemberHistory extends DomainResource {
    * This might be an HTML page, PDF, etc. or could just be a non-resolvable URI
    * identifier.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -48616,6 +49481,7 @@ export interface FamilyMemberHistory extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.status}
    * @see {@link FamilyHistoryStatus}
+   * @fhirType code
    */
   status: FamilyHistoryStatus;
   _status?: Element | undefined;
@@ -48663,6 +49529,7 @@ export interface FiveWs {
 
   /**
    * when the work described in this resource was completed (or will be).
+   * @fhirType dateTime
    */
   doneDateTime?: string | undefined;
   _doneDateTime?: Element | undefined;
@@ -48687,6 +49554,7 @@ export interface FiveWs {
 
   /**
    * when the work described in this resource was started (or will be).
+   * @fhirType dateTime
    */
   init?: string | undefined;
   _init?: Element | undefined;
@@ -48699,6 +49567,7 @@ export interface FiveWs {
 
   /**
    * when this resource itself was created.
+   * @fhirType instant
    */
   recorded?: string | undefined;
   _recorded?: Element | undefined;
@@ -48712,6 +49581,7 @@ export interface FiveWs {
   /**
    * Status Field.
    * @see {@link CanonicalStatusCodesForFHIRResources}
+   * @fhirType code
    */
   status?: CanonicalStatusCodesForFHIRResources | undefined;
   _status?: Element | undefined;
@@ -48854,6 +49724,7 @@ export interface Flag extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Flag-definitions.html#Flag.status}
    * @see {@link FlagStatus}
+   * @fhirType code
    */
   status: FlagStatus;
   _status?: Element | undefined;
@@ -48960,6 +49831,7 @@ export interface GoalTarget extends BackboneElement {
    * field was usually coded, or if the type associated with the Goal.target.measure
    * defines a coded value.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.target.detailInteger}
+   * @fhirType integer
    */
   detailInteger?: number | undefined;
   _detailInteger?: Element | undefined;
@@ -48983,6 +49855,7 @@ export interface GoalTarget extends BackboneElement {
    * Indicates either the date or the duration after start by which the goal should
    * be met.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.target.dueDate}
+   * @fhirType date
    */
   dueDate?: string | undefined;
   _dueDate?: Element | undefined;
@@ -49014,6 +49887,7 @@ export interface GoalTarget extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.target.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -49125,6 +49999,7 @@ export interface Goal extends DomainResource {
    * that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.lifecycleStatus}
    * @see {@link GoalLifecycleStatus}
+   * @fhirType code
    */
   lifecycleStatus: GoalLifecycleStatus;
   _lifecycleStatus?: Element | undefined;
@@ -49177,6 +50052,7 @@ The ordinal extension on Coding can
   /**
    * The date or event after which the goal should begin being pursued.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.startDate}
+   * @fhirType date
    */
   startDate?: string | undefined;
   _startDate?: Element | undefined;
@@ -49193,6 +50069,7 @@ The ordinal extension on Coding can
    * when cancelled, etc.
    * To see the date for past statuses, query history.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.statusDate}
+   * @fhirType date
    */
   statusDate?: string | undefined;
   _statusDate?: Element | undefined;
@@ -49255,6 +50132,7 @@ export interface GraphDefinitionLink extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -49269,6 +50147,7 @@ export interface GraphDefinitionLink extends BackboneElement {
   /**
    * Minimum occurrences for this link.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.min}
+   * @fhirType integer
    */
   min?: number | undefined;
   _min?: Element | undefined;
@@ -49352,6 +50231,7 @@ export interface GraphDefinitionLinkTarget extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.target.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -49391,6 +50271,7 @@ Modifier extensions
   /**
    * Profile for the target resource.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.target.profile}
+   * @fhirType canonical
    */
   profile?: string | undefined;
   _profile?: Element | undefined;
@@ -49399,6 +50280,7 @@ Modifier extensions
    * Type of resource this link refers to.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.target.type}
    * @see {@link ResourceType}
+   * @fhirType code
    */
   type: ResourceType;
   _type?: Element | undefined;
@@ -49413,6 +50295,7 @@ export interface GraphDefinitionLinkTargetCompartment extends BackboneElement {
    * Identifies the compartment.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.target.compartment.code}
    * @see {@link CompartmentType}
+   * @fhirType code
    */
   code: CompartmentType;
   _code?: Element | undefined;
@@ -49450,6 +50333,7 @@ export interface GraphDefinitionLinkTargetCompartment extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.target.compartment.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -49481,6 +50365,7 @@ Modifier extensions
    * identical | matching | different | no-rule | custom.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.target.compartment.rule}
    * @see {@link GraphCompartmentRule}
+   * @fhirType code
    */
   rule: GraphCompartmentRule;
   _rule?: Element | undefined;
@@ -49493,6 +50378,7 @@ Modifier extensions
    * evaluated.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.target.compartment.use}
    * @see {@link GraphCompartmentUse}
+   * @fhirType code
    */
   use: GraphCompartmentUse;
   _use?: Element | undefined;
@@ -49529,6 +50415,7 @@ export interface GraphDefinition extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -49544,6 +50431,7 @@ export interface GraphDefinition extends DomainResource {
    * available from context (e.g. the language of the graph definition is presumed to
    * be the predominant language in the place the graph definition was created).
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -49591,6 +50479,7 @@ export interface GraphDefinition extends DomainResource {
    * The code does not include the '$' prefix that is always included in the URL when
    * the operation is invoked.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.profile}
+   * @fhirType canonical
    */
   profile?: string | undefined;
   _profile?: Element | undefined;
@@ -49617,6 +50506,7 @@ export interface GraphDefinition extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this graph definition.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -49625,6 +50515,7 @@ export interface GraphDefinition extends DomainResource {
    * The type of FHIR resource at which instances of this graph start.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.start}
    * @see {@link ResourceType}
+   * @fhirType code
    */
   start: ResourceType;
   _start?: Element | undefined;
@@ -49635,6 +50526,7 @@ export interface GraphDefinition extends DomainResource {
    * Allows filtering of graph definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -49660,6 +50552,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -49737,6 +50630,7 @@ export interface GroupCharacteristic extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.characteristic.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -49855,6 +50749,7 @@ export interface GroupMember extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.member.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -49982,6 +50877,7 @@ export interface Group extends DomainResource {
    * Note that the quantity may be less than the number of members if some of the
    * members are not active.
    * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.quantity}
+   * @fhirType unsignedInt
    */
   quantity?: number | undefined;
   _quantity?: Element | undefined;
@@ -49992,6 +50888,7 @@ export interface Group extends DomainResource {
    * animal; or Practitioner, Device, Medication or Substance for the other types.).
    * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.type}
    * @see {@link GroupType}
+   * @fhirType code
    */
   type: GroupType;
   _type?: Element | undefined;
@@ -50050,6 +50947,7 @@ export interface GuidanceResponse extends DomainResource {
    * An identifier, CodeableConcept or canonical reference to the guidance that was
    * requested.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.moduleUri}
+   * @fhirType uri
    */
   moduleUri?: string | undefined;
   _moduleUri?: Element | undefined;
@@ -50058,6 +50956,7 @@ export interface GuidanceResponse extends DomainResource {
    * An identifier, CodeableConcept or canonical reference to the guidance that was
    * requested.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.moduleCanonical}
+   * @fhirType canonical
    */
   moduleCanonical?: string | undefined;
   _moduleCanonical?: Element | undefined;
@@ -50080,6 +50979,7 @@ export interface GuidanceResponse extends DomainResource {
   /**
    * Indicates when the guidance response was processed.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.occurrenceDateTime}
+   * @fhirType dateTime
    */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -50148,6 +51048,7 @@ export interface GuidanceResponse extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.status}
    * @see {@link GuidanceResponseStatus}
+   * @fhirType code
    */
   status: GuidanceResponseStatus;
   _status?: Element | undefined;
@@ -50179,6 +51080,7 @@ export interface HealthcareServiceAvailableTime extends BackboneElement {
    * ignored.
    * The time zone is expected to be for where this HealthcareService is provided at.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.availableTime.availableEndTime}
+   * @fhirType time
    */
   availableEndTime?: string | undefined;
   _availableEndTime?: Element | undefined;
@@ -50188,6 +51090,7 @@ export interface HealthcareServiceAvailableTime extends BackboneElement {
    * ignored.
    * The time zone is expected to be for where this HealthcareService is provided at.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.availableTime.availableStartTime}
+   * @fhirType time
    */
   availableStartTime?: string | undefined;
   _availableStartTime?: Element | undefined;
@@ -50196,6 +51099,7 @@ export interface HealthcareServiceAvailableTime extends BackboneElement {
    * Indicates which days of the week are available between the start and end Times.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.availableTime.daysOfWeek}
    * @see {@link DaysOfWeek}
+   * @fhirType code
    */
   daysOfWeek?: Array<DaysOfWeek> | undefined;
   _daysOfWeek?: Element[] | undefined;
@@ -50219,6 +51123,7 @@ export interface HealthcareServiceAvailableTime extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.availableTime.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -50270,6 +51175,7 @@ export interface HealthcareServiceEligibility extends BackboneElement {
    * of Parliament, this should be noted, preferably with a reference to a commonly
    * available copy of the source document such as a web page.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.eligibility.comment}
+   * @fhirType markdown
    */
   comment?: string | undefined;
   _comment?: Element | undefined;
@@ -50293,6 +51199,7 @@ export interface HealthcareServiceEligibility extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.eligibility.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -50361,6 +51268,7 @@ export interface HealthcareServiceNotAvailable extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.notAvailable.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -50511,6 +51419,7 @@ export interface HealthcareService extends DomainResource {
   /**
    * Extra details about the service that can't be placed in the other fields.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.extraDetails}
+   * @fhirType markdown
    */
   extraDetails?: string | undefined;
   _extraDetails?: Element | undefined;
@@ -50679,6 +51588,7 @@ export interface HumanName extends Element {
    * Applications can assume that a name is current unless it explicitly says that it
    * is temporary or old.
    * @see {@link NameUse}
+   * @fhirType code
    */
   use?: NameUse | undefined;
   _use?: Element | undefined;
@@ -50713,6 +51623,7 @@ export interface Identifier extends Element {
    * Establishes the namespace for the value - that is, a URL that describes a set
    * values that are unique.
    * Identifier.system is always case sensitive.
+   * @fhirType uri
    */
   system?: string | undefined;
   _system?: Element | undefined;
@@ -50736,6 +51647,7 @@ export interface Identifier extends Element {
    * Applications can assume that an identifier is permanent unless it explicitly
    * says that it is temporary.
    * @see {@link IdentifierUse}
+   * @fhirType code
    */
   use?: IdentifierUse | undefined;
   _use?: Element | undefined;
@@ -50812,6 +51724,7 @@ export interface ImagingStudySeries extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -50865,6 +51778,7 @@ Modifier extensions
   /**
    * The numeric identifier of this series in the study.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.number}
+   * @fhirType unsignedInt
    */
   number?: number | undefined;
   _number?: Element | undefined;
@@ -50875,6 +51789,7 @@ Modifier extensions
    * security, or other factors. This element should be present if any instance
    * elements are present.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.numberOfInstances}
+   * @fhirType unsignedInt
    */
   numberOfInstances?: number | undefined;
   _numberOfInstances?: Element | undefined;
@@ -50899,6 +51814,7 @@ Modifier extensions
   /**
    * The date and time the series was started.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.started}
+   * @fhirType dateTime
    */
   started?: string | undefined;
   _started?: Element | undefined;
@@ -50909,6 +51825,7 @@ Modifier extensions
    * C.7.3](http://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.7.
    * 3.html).
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.uid}
+   * @fhirType id
    */
   uid: string;
   _uid?: Element | undefined;
@@ -50938,6 +51855,7 @@ export interface ImagingStudySeriesInstance extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.instance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -50968,6 +51886,7 @@ Modifier extensions
   /**
    * The number of instance in the series.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.instance.number}
+   * @fhirType unsignedInt
    */
   number?: number | undefined;
   _number?: Element | undefined;
@@ -50994,6 +51913,7 @@ Modifier extensions
    * C.12.1](http://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.1
    * 2.html#sect_C.12.1).
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.instance.uid}
+   * @fhirType id
    */
   uid: string;
   _uid?: Element | undefined;
@@ -51040,6 +51960,7 @@ export interface ImagingStudySeriesPerformer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.performer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -51175,6 +52096,7 @@ export interface ImagingStudy extends DomainResource {
    * security, or other factors. This element should be present if any instance
    * elements are present.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.numberOfInstances}
+   * @fhirType unsignedInt
    */
   numberOfInstances?: number | undefined;
   _numberOfInstances?: Element | undefined;
@@ -51185,6 +52107,7 @@ export interface ImagingStudy extends DomainResource {
    * or other factors. This element should be present if any series elements are
    * present.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.numberOfSeries}
+   * @fhirType unsignedInt
    */
   numberOfSeries?: number | undefined;
   _numberOfSeries?: Element | undefined;
@@ -51234,6 +52157,7 @@ export interface ImagingStudy extends DomainResource {
   /**
    * Date and time the study started.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.started}
+   * @fhirType dateTime
    */
   started?: string | undefined;
   _started?: Element | undefined;
@@ -51245,6 +52169,7 @@ export interface ImagingStudy extends DomainResource {
    * is.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.status}
    * @see {@link ImagingStudyStatus}
+   * @fhirType code
    */
   status: ImagingStudyStatus;
   _status?: Element | undefined;
@@ -51291,6 +52216,7 @@ export interface ImmunizationEducation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.education.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -51321,6 +52247,7 @@ Modifier extensions
   /**
    * Date the educational material was given to the patient.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.education.presentationDate}
+   * @fhirType dateTime
    */
   presentationDate?: string | undefined;
   _presentationDate?: Element | undefined;
@@ -51328,6 +52255,7 @@ Modifier extensions
   /**
    * Date the educational material was published.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.education.publicationDate}
+   * @fhirType dateTime
    */
   publicationDate?: string | undefined;
   _publicationDate?: Element | undefined;
@@ -51336,6 +52264,7 @@ Modifier extensions
    * Reference pointer to the educational material given to the patient if the
    * information was on line.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.education.reference}
+   * @fhirType uri
    */
   reference?: string | undefined;
   _reference?: Element | undefined;
@@ -51382,6 +52311,7 @@ export interface ImmunizationPerformer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.performer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -51430,6 +52360,7 @@ export interface ImmunizationProtocolApplied extends BackboneElement {
    * cases where an integer is not available (such as when documenting a recurring
    * booster dose).
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.protocolApplied.doseNumberPositiveInt}
+   * @fhirType positiveInt
    */
   doseNumberPositiveInt?: number | undefined;
   _doseNumberPositiveInt?: Element | undefined;
@@ -51463,6 +52394,7 @@ export interface ImmunizationProtocolApplied extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.protocolApplied.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -51504,6 +52436,7 @@ Modifier extensions
    * cases where an integer is not available (such as when documenting a recurring
    * booster dose).
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.protocolApplied.seriesDosesPositiveInt}
+   * @fhirType positiveInt
    */
   seriesDosesPositiveInt?: number | undefined;
   _seriesDosesPositiveInt?: Element | undefined;
@@ -51539,6 +52472,7 @@ export interface ImmunizationReaction extends BackboneElement {
   /**
    * Date of reaction to the immunization.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.reaction.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -51569,6 +52503,7 @@ export interface ImmunizationReaction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.reaction.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -51641,6 +52576,7 @@ export interface Immunization extends DomainResource {
   /**
    * Date vaccine batch expires.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.expirationDate}
+   * @fhirType date
    */
   expirationDate?: string | undefined;
   _expirationDate?: Element | undefined;
@@ -51717,6 +52653,7 @@ export interface Immunization extends DomainResource {
    * this, often, only the first dose (typically a provider supervised dose) is
    * recorded with the occurrence indicating the date/time of the first dose.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.occurrenceDateTime}
+   * @fhirType dateTime
    */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -51807,6 +52744,7 @@ export interface Immunization extends DomainResource {
    * The date the occurrence of the immunization was first captured in the record -
    * potentially significantly after the occurrence of the event.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.recorded}
+   * @fhirType dateTime
    */
   recorded?: string | undefined;
   _recorded?: Element | undefined;
@@ -51842,6 +52780,7 @@ export interface Immunization extends DomainResource {
    * that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.status}
    * @see {@link ImmunizationStatusCodes}
+   * @fhirType code
    */
   status: ImmunizationStatusCodes;
   _status?: Element | undefined;
@@ -51892,6 +52831,7 @@ export interface ImmunizationEvaluation extends DomainResource {
   /**
    * The date the evaluation of the vaccine administration event was performed.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationEvaluation-definitions.html#ImmunizationEvaluation.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -51909,6 +52849,7 @@ export interface ImmunizationEvaluation extends DomainResource {
    * cases where an integer is not available (such as when documenting a recurring
    * booster dose).
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationEvaluation-definitions.html#ImmunizationEvaluation.doseNumberPositiveInt}
+   * @fhirType positiveInt
    */
   doseNumberPositiveInt?: number | undefined;
   _doseNumberPositiveInt?: Element | undefined;
@@ -51974,6 +52915,7 @@ export interface ImmunizationEvaluation extends DomainResource {
    * cases where an integer is not available (such as when documenting a recurring
    * booster dose).
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationEvaluation-definitions.html#ImmunizationEvaluation.seriesDosesPositiveInt}
+   * @fhirType positiveInt
    */
   seriesDosesPositiveInt?: number | undefined;
   _seriesDosesPositiveInt?: Element | undefined;
@@ -51993,6 +52935,7 @@ export interface ImmunizationEvaluation extends DomainResource {
    * event.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationEvaluation-definitions.html#ImmunizationEvaluation.status}
    * @see {@link ImmunizationEvaluationStatusCodes}
+   * @fhirType code
    */
   status: ImmunizationEvaluationStatusCodes;
   _status?: Element | undefined;
@@ -52043,6 +52986,7 @@ export interface ImmunizationRecommendationRecommendation
    * cases where an interger is not available (such as when documenting a recurring
    * booster dose).
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.recommendation.doseNumberPositiveInt}
+   * @fhirType positiveInt
    */
   doseNumberPositiveInt?: number | undefined;
   _doseNumberPositiveInt?: Element | undefined;
@@ -52092,6 +53036,7 @@ export interface ImmunizationRecommendationRecommendation
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.recommendation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -52133,6 +53078,7 @@ Modifier extensions
    * cases where an interger is not available (such as when documenting a recurring
    * booster dose).
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.recommendation.seriesDosesPositiveInt}
+   * @fhirType positiveInt
    */
   seriesDosesPositiveInt?: number | undefined;
   _seriesDosesPositiveInt?: Element | undefined;
@@ -52212,6 +53158,7 @@ export interface ImmunizationRecommendationRecommendationDateCriterion
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.recommendation.dateCriterion.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -52242,6 +53189,7 @@ Modifier extensions
   /**
    * The date whose meaning is specified by dateCriterion.code.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.recommendation.dateCriterion.value}
+   * @fhirType dateTime
    */
   value: string;
   _value?: Element | undefined;
@@ -52268,6 +53216,7 @@ export interface ImmunizationRecommendation extends DomainResource {
   /**
    * The date the immunization recommendation(s) were created.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.date}
+   * @fhirType dateTime
    */
   date: string;
   _date?: Element | undefined;
@@ -52330,6 +53279,7 @@ export interface ImplementationGuideDefinition extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -52425,6 +53375,7 @@ export interface ImplementationGuideDefinitionGrouping extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.grouping.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -52488,6 +53439,7 @@ export interface ImplementationGuideDefinitionPage extends BackboneElement {
    * A code that indicates how the page is generated.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.page.generation}
    * @see {@link GuidePageGeneration}
+   * @fhirType code
    */
   generation: GuidePageGeneration;
   _generation?: Element | undefined;
@@ -52496,6 +53448,7 @@ export interface ImplementationGuideDefinitionPage extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.page.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -52528,6 +53481,7 @@ Modifier extensions
    * The publishing tool will autogenerate source for list (source = n/a) and inject
    * included implementations for include (source = uri of guide to include).
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.page.nameUrl}
+   * @fhirType url
    */
   nameUrl?: string | undefined;
   _nameUrl?: Element | undefined;
@@ -52562,6 +53516,7 @@ export interface ImplementationGuideDefinitionParameter
    * html-template.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.parameter.code}
    * @see {@link GuideParameterCode}
+   * @fhirType code
    */
   code: GuideParameterCode;
   _code?: Element | undefined;
@@ -52585,6 +53540,7 @@ export interface ImplementationGuideDefinitionParameter
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.parameter.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -52666,6 +53622,7 @@ export interface ImplementationGuideDefinitionResource extends BackboneElement {
  * OperationDefinition -> Parameters 
 * Questionnaire -> QuestionnaireResponse.
  * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.resource.exampleCanonical}
+ * @fhirType canonical
  */
   exampleCanonical?: string | undefined;
   _exampleCanonical?: Element | undefined;
@@ -52698,6 +53655,7 @@ export interface ImplementationGuideDefinitionResource extends BackboneElement {
    * extension.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.resource.fhirVersion}
    * @see {@link FHIRVersion}
+   * @fhirType code
    */
   fhirVersion?: Array<FHIRVersion> | undefined;
   _fhirVersion?: Element[] | undefined;
@@ -52706,6 +53664,7 @@ export interface ImplementationGuideDefinitionResource extends BackboneElement {
    * Reference to the id of the grouping this resource appears in.
    * This must correspond to a package.id element within this implementation guide.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.resource.groupingId}
+   * @fhirType id
    */
   groupingId?: string | undefined;
   _groupingId?: Element | undefined;
@@ -52714,6 +53673,7 @@ export interface ImplementationGuideDefinitionResource extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.resource.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -52770,6 +53730,7 @@ export interface ImplementationGuideDefinitionTemplate extends BackboneElement {
   /**
    * Type of template specified.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.template.code}
+   * @fhirType code
    */
   code: string;
   _code?: Element | undefined;
@@ -52793,6 +53754,7 @@ export interface ImplementationGuideDefinitionTemplate extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.template.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -52861,6 +53823,7 @@ export interface ImplementationGuideDependsOn extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.dependsOn.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -52891,6 +53854,7 @@ Modifier extensions
   /**
    * The NPM package name for the Implementation Guide that this IG depends on.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.dependsOn.packageId}
+   * @fhirType id
    */
   packageId?: string | undefined;
   _packageId?: Element | undefined;
@@ -52900,6 +53864,7 @@ Modifier extensions
    * Usually, A canonical reference to the implementation guide is the same as the
    * master location at which the implementation guide is published.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.dependsOn.uri}
+   * @fhirType canonical
    */
   uri: string;
   _uri?: Element | undefined;
@@ -52941,6 +53906,7 @@ export interface ImplementationGuideGlobal extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.global.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -52971,6 +53937,7 @@ Modifier extensions
   /**
    * A reference to the profile that all instances must conform to.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.global.profile}
+   * @fhirType canonical
    */
   profile: string;
   _profile?: Element | undefined;
@@ -52983,6 +53950,7 @@ Modifier extensions
    * is not available.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.global.type}
    * @see {@link ResourceType}
+   * @fhirType code
    */
   type: ResourceType;
   _type?: Element | undefined;
@@ -53013,6 +53981,7 @@ export interface ImplementationGuideManifest extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.manifest.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -53067,6 +54036,7 @@ Modifier extensions
    * A pointer to official web page, PDF or other rendering of the implementation
    * guide.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.manifest.rendering}
+   * @fhirType url
    */
   rendering?: string | undefined;
   _rendering?: Element | undefined;
@@ -53115,6 +54085,7 @@ export interface ImplementationGuideManifestPage extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.manifest.page.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -53186,6 +54157,7 @@ export interface ImplementationGuideManifestResource extends BackboneElement {
    * the implementation guide, with their normal meaning, and patient linked
    * resources are usually examples. However this is not always true.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.manifest.resource.exampleCanonical}
+   * @fhirType canonical
    */
   exampleCanonical?: string | undefined;
   _exampleCanonical?: Element | undefined;
@@ -53209,6 +54181,7 @@ export interface ImplementationGuideManifestResource extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.manifest.resource.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -53252,6 +54225,7 @@ Modifier extensions
    * The relative path for primary page for this resource within the IG.
    * Appending 'rendering' + "/" + this should resolve to the resource page.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.manifest.resource.relativePath}
+   * @fhirType url
    */
   relativePath?: string | undefined;
   _relativePath?: Element | undefined;
@@ -53284,6 +54258,7 @@ export interface ImplementationGuide extends DomainResource {
    * Copyright statements are generally legal restrictions on the use and publishing
    * of the implementation guide.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -53298,6 +54273,7 @@ export interface ImplementationGuide extends DomainResource {
    * Additional specific dates may be added as extensions or be found by consulting
    * Provenances associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -53333,6 +54309,7 @@ export interface ImplementationGuide extends DomainResource {
    * presumed to be the predominant language in the place the implementation guide
    * was created).
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -53362,6 +54339,7 @@ export interface ImplementationGuide extends DomainResource {
    * by regulation or market dynamics.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.fhirVersion}
    * @see {@link FHIRVersion}
+   * @fhirType code
    */
   fhirVersion: Array<FHIRVersion>;
   _fhirVersion?: Element[] | undefined;
@@ -53391,6 +54369,7 @@ export interface ImplementationGuide extends DomainResource {
    * code, or 'not-open-source'.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.license}
    * @see {@link SPDXLicense}
+   * @fhirType code
    */
   license?: SPDXLicense | undefined;
   _license?: Element | undefined;
@@ -53423,6 +54402,7 @@ export interface ImplementationGuide extends DomainResource {
    * For implementation guides published through HL7 or the FHIR foundation, the FHIR
    * product director assigns package IDs.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.packageId}
+   * @fhirType id
    */
   packageId: string;
   _packageId?: Element | undefined;
@@ -53449,6 +54429,7 @@ export interface ImplementationGuide extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -53484,6 +54465,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.url}
+ * @fhirType uri
  */
   url: string;
   _url?: Element | undefined;
@@ -53546,6 +54528,7 @@ export interface IngredientManufacturer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.manufacturer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -53587,6 +54570,7 @@ Modifier extensions
    * process role.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.manufacturer.role}
    * @see {@link IngredientManufacturerRole}
+   * @fhirType code
    */
   role?: IngredientManufacturerRole | undefined;
   _role?: Element | undefined;
@@ -53623,6 +54607,7 @@ export interface IngredientSubstance extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.substance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -53709,6 +54694,7 @@ export interface IngredientSubstanceStrength extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.substance.strength.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -53836,6 +54822,7 @@ export interface IngredientSubstanceStrengthReferenceStrength
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.substance.strength.referenceStrength.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -53961,6 +54948,7 @@ export interface Ingredient extends DomainResource {
    * Allows filtering of ingredient that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -54007,6 +54995,7 @@ export interface InsurancePlanContact extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.contact.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -54088,6 +55077,7 @@ export interface InsurancePlanCoverage extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.coverage.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -54156,6 +55146,7 @@ export interface InsurancePlanCoverageBenefit extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.coverage.benefit.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -54237,6 +55228,7 @@ export interface InsurancePlanCoverageBenefitLimit extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.coverage.benefit.limit.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -54313,6 +55305,7 @@ export interface InsurancePlanPlan extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -54408,6 +55401,7 @@ export interface InsurancePlanPlanGeneralCost extends BackboneElement {
   /**
    * Number of participants enrolled in the plan.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.generalCost.groupSize}
+   * @fhirType positiveInt
    */
   groupSize?: number | undefined;
   _groupSize?: Element | undefined;
@@ -54416,6 +55410,7 @@ export interface InsurancePlanPlanGeneralCost extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.generalCost.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -54490,6 +55485,7 @@ export interface InsurancePlanPlanSpecificCost extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.specificCost.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -54549,6 +55545,7 @@ export interface InsurancePlanPlanSpecificCostBenefit extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.specificCost.benefit.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -54619,6 +55616,7 @@ export interface InsurancePlanPlanSpecificCostBenefitCost
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.specificCost.benefit.cost.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -54784,6 +55782,7 @@ export interface InsurancePlan extends DomainResource {
    * The current state of the health insurance product.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status?: PublicationStatus | undefined;
   _status?: Element | undefined;
@@ -54839,6 +55838,7 @@ export interface InvoiceLineItem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.lineItem.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -54881,6 +55881,7 @@ Modifier extensions
   /**
    * Sequence in which the items appear on the invoice.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.lineItem.sequence}
+   * @fhirType positiveInt
    */
   sequence?: number | undefined;
   _sequence?: Element | undefined;
@@ -54940,6 +55941,7 @@ export interface InvoiceLineItemPriceComponent extends BackboneElement {
    * profiles may require a ChargeItem.overrideReason to be provided if either factor
    * or price are manually overridden.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.lineItem.priceComponent.factor}
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -54948,6 +55950,7 @@ export interface InvoiceLineItemPriceComponent extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.lineItem.priceComponent.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -54979,6 +55982,7 @@ Modifier extensions
    * This code identifies the type of the component.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.lineItem.priceComponent.type}
    * @see {@link InvoicePriceComponentType}
+   * @fhirType code
    */
   type: InvoicePriceComponentType;
   _type?: Element | undefined;
@@ -55015,6 +56019,7 @@ export interface InvoiceParticipant extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.participant.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -55089,6 +56094,7 @@ export interface Invoice extends DomainResource {
    * Date/time(s) of when this Invoice was posted.
    * The list of types may be constrained as appropriate for the type of charge item.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -55139,6 +56145,7 @@ export interface Invoice extends DomainResource {
    * Derived Profiles may chose to add invariants requiring this field to be
    * populated if either priceOverride or factorOverride have been filled.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.paymentTerms}
+   * @fhirType markdown
    */
   paymentTerms?: string | undefined;
   _paymentTerms?: Element | undefined;
@@ -55154,6 +56161,7 @@ export interface Invoice extends DomainResource {
    * The current state of the Invoice.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.status}
    * @see {@link InvoiceStatus}
+   * @fhirType code
    */
   status: InvoiceStatus;
   _status?: Element | undefined;
@@ -55218,6 +56226,7 @@ export interface Library extends DomainResource {
    * The 'date' element may be more recent than the approval date because of minor
    * changes or editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/Library-definitions.html#Library.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -55253,6 +56262,7 @@ export interface Library extends DomainResource {
    * statements are generally legal restrictions on the use and publishing of the
    * library.
    * @see {@link http://hl7.org/fhir/R4B/Library-definitions.html#Library.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -55275,6 +56285,7 @@ export interface Library extends DomainResource {
    * dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/Library-definitions.html#Library.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -55290,6 +56301,7 @@ export interface Library extends DomainResource {
    * language of the library is presumed to be the predominant language in the place
    * the library was created).
    * @see {@link http://hl7.org/fhir/R4B/Library-definitions.html#Library.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -55358,6 +56370,7 @@ export interface Library extends DomainResource {
    * periodically after approval but does not change the original approval date.
    * If specified, this date follows the original approval date.
    * @see {@link http://hl7.org/fhir/R4B/Library-definitions.html#Library.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -55402,6 +56415,7 @@ export interface Library extends DomainResource {
    * as it is.  This may be used to point to source materials or specifications that
    * drove the structure of this library.
    * @see {@link http://hl7.org/fhir/R4B/Library-definitions.html#Library.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -55429,6 +56443,7 @@ export interface Library extends DomainResource {
    * Allows filtering of libraries that are appropriate for use vs. not.
    * @see {@link http://hl7.org/fhir/R4B/Library-definitions.html#Library.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -55504,6 +56519,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/Library-definitions.html#Library.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -55574,6 +56590,7 @@ export interface LinkageItem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Linkage-definitions.html#Linkage.item.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -55613,6 +56630,7 @@ Modifier extensions
    * longer considered to be current representations.
    * @see {@link http://hl7.org/fhir/R4B/Linkage-definitions.html#Linkage.item.type}
    * @see {@link LinkageType}
+   * @fhirType code
    */
   type: LinkageType;
   _type?: Element | undefined;
@@ -55666,6 +56684,7 @@ export interface ListEntry extends BackboneElement {
   /**
    * When this item was added to the list.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.entry.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -55712,6 +56731,7 @@ export interface ListEntry extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.entry.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -55772,6 +56792,7 @@ export interface List extends DomainResource {
    * summarized, but it is usually assumed that these are current when the
    * preparation occurs.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -55819,6 +56840,7 @@ export interface List extends DomainResource {
    * misunderstood as a complete list.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.mode}
    * @see {@link ListMode}
+   * @fhirType code
    */
   mode: ListMode;
   _mode?: Element | undefined;
@@ -55856,6 +56878,7 @@ export interface List extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.status}
    * @see {@link ListStatus}
+   * @fhirType code
    */
   status: ListStatus;
   _status?: Element | undefined;
@@ -55898,6 +56921,7 @@ export interface LocationHoursOfOperation extends BackboneElement {
   /**
    * Time that the Location closes.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.hoursOfOperation.closingTime}
+   * @fhirType time
    */
   closingTime?: string | undefined;
   _closingTime?: Element | undefined;
@@ -55906,6 +56930,7 @@ export interface LocationHoursOfOperation extends BackboneElement {
    * Indicates which days of the week are available between the start and end Times.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.hoursOfOperation.daysOfWeek}
    * @see {@link DaysOfWeek}
+   * @fhirType code
    */
   daysOfWeek?: Array<DaysOfWeek> | undefined;
   _daysOfWeek?: Element[] | undefined;
@@ -55929,6 +56954,7 @@ export interface LocationHoursOfOperation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.hoursOfOperation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -55959,6 +56985,7 @@ Modifier extensions
   /**
    * Time that the Location opens.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.hoursOfOperation.openingTime}
+   * @fhirType time
    */
   openingTime?: string | undefined;
   _openingTime?: Element | undefined;
@@ -55974,6 +57001,7 @@ export interface LocationPosition extends BackboneElement {
    * Altitude. The value domain and the interpretation are the same as for the text
    * of the altitude element in KML (see notes below).
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.position.altitude}
+   * @fhirType decimal
    */
   altitude?: number | undefined;
   _altitude?: Element | undefined;
@@ -55997,6 +57025,7 @@ export interface LocationPosition extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.position.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -56005,6 +57034,7 @@ export interface LocationPosition extends BackboneElement {
    * Latitude. The value domain and the interpretation are the same as for the text
    * of the latitude element in KML (see notes below).
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.position.latitude}
+   * @fhirType decimal
    */
   latitude: number;
   _latitude?: Element | undefined;
@@ -56013,6 +57043,7 @@ export interface LocationPosition extends BackboneElement {
    * Longitude. The value domain and the interpretation are the same as for the text
    * of the longitude element in KML (see notes below).
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.position.longitude}
+   * @fhirType decimal
    */
   longitude: number;
   _longitude?: Element | undefined;
@@ -56133,6 +57164,7 @@ Specific services
    * locations changes how it can be used and understood.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.mode}
    * @see {@link LocationMode}
+   * @fhirType code
    */
   mode?: LocationMode | undefined;
   _mode?: Element | undefined;
@@ -56184,6 +57216,7 @@ Specific services
    * schedule/slots if they are configured for the location.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.status}
    * @see {@link LocationStatus}
+   * @fhirType code
    */
   status?: LocationStatus | undefined;
   _status?: Element | undefined;
@@ -56229,6 +57262,7 @@ export interface ManufacturedItemDefinitionProperty extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ManufacturedItemDefinition-definitions.html#ManufacturedItemDefinition.property.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -56280,6 +57314,7 @@ Modifier extensions
   /**
    * A value for the characteristic.
    * @see {@link http://hl7.org/fhir/R4B/ManufacturedItemDefinition-definitions.html#ManufacturedItemDefinition.property.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -56354,6 +57389,7 @@ export interface ManufacturedItemDefinition extends DomainResource {
    * Allows filtering of manufactured items that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/ManufacturedItemDefinition-definitions.html#ManufacturedItemDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -56411,6 +57447,7 @@ export interface MarketingStatus extends BackboneElement {
    * month and year shall be specified using the ISO 8601 date format NOTE “Placed on
    * the market” refers to the release of the Medicinal Product into the distribution
    * chain.
+   * @fhirType dateTime
    */
   restoreDate?: string | undefined;
   _restoreDate?: Element | undefined;
@@ -56463,6 +57500,7 @@ export interface MeasureGroup extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.group.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -56559,6 +57597,7 @@ export interface MeasureGroupPopulation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.group.population.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -56649,6 +57688,7 @@ export interface MeasureGroupStratifier extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.group.stratifier.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -56730,6 +57770,7 @@ export interface MeasureGroupStratifierComponent extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.group.stratifier.component.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -56813,6 +57854,7 @@ export interface MeasureSupplementalData extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.supplementalData.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -56868,6 +57910,7 @@ export interface Measure extends DomainResource {
    * The 'date' element may be more recent than the approval date because of minor
    * changes or editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -56884,6 +57927,7 @@ export interface Measure extends DomainResource {
    * Provides a summary of relevant clinical guidelines or other clinical
    * recommendations supporting the measure.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.clinicalRecommendationStatement}
+   * @fhirType markdown
    */
   clinicalRecommendationStatement?: string | undefined;
   _clinicalRecommendationStatement?: Element | undefined;
@@ -56910,6 +57954,7 @@ export interface Measure extends DomainResource {
    * statements are generally legal restrictions on the use and publishing of the
    * measure.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -56924,6 +57969,7 @@ export interface Measure extends DomainResource {
    * dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -56931,6 +57977,7 @@ export interface Measure extends DomainResource {
   /**
    * Provides a description of an individual term used within the measure.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.definition}
+   * @fhirType markdown
    */
   definition?: Array<string> | undefined;
   _definition?: Element[] | undefined;
@@ -56946,6 +57993,7 @@ export interface Measure extends DomainResource {
    * language of the measure is presumed to be the predominant language in the place
    * the measure was created).
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -56954,6 +58002,7 @@ export interface Measure extends DomainResource {
    * Notices and disclaimers regarding the use of the measure or related to
    * intellectual property (such as code systems) referenced by the measure.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.disclaimer}
+   * @fhirType markdown
    */
   disclaimer?: string | undefined;
   _disclaimer?: Element | undefined;
@@ -57006,6 +58055,7 @@ export interface Measure extends DomainResource {
    * Additional guidance for the measure including how it can be used in a clinical
    * context, and the intent of the measure.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.guidance}
+   * @fhirType markdown
    */
   guidance?: string | undefined;
   _guidance?: Element | undefined;
@@ -57046,6 +58096,7 @@ export interface Measure extends DomainResource {
    * periodically after approval but does not change the original approval date.
    * If specified, this date follows the original approval date.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -57054,6 +58105,7 @@ export interface Measure extends DomainResource {
    * A reference to a Library resource containing the formal logic used by the
    * measure.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.library}
+   * @fhirType canonical
    */
   library?: Array<string> | undefined;
   _library?: Element[] | undefined;
@@ -57091,6 +58143,7 @@ export interface Measure extends DomainResource {
    * as it is.  This may be used to point to source materials or specifications that
    * drove the structure of this measure.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -57118,6 +58171,7 @@ export interface Measure extends DomainResource {
    * statements pertaining to importance criterion: impact, gap in care, and
    * evidence.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.rationale}
+   * @fhirType markdown
    */
   rationale?: string | undefined;
   _rationale?: Element | undefined;
@@ -57168,6 +58222,7 @@ export interface Measure extends DomainResource {
    * Allows filtering of measures that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -57265,6 +58320,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -57340,6 +58396,7 @@ export interface MeasureReportGroup extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -57409,6 +58466,7 @@ export interface MeasureReportGroupPopulation extends BackboneElement {
   /**
    * The number of members of the population.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.population.count}
+   * @fhirType integer
    */
   count?: number | undefined;
   _count?: Element | undefined;
@@ -57432,6 +58490,7 @@ export interface MeasureReportGroupPopulation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.population.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -57500,6 +58559,7 @@ export interface MeasureReportGroupStratifier extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.stratifier.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -57570,6 +58630,7 @@ export interface MeasureReportGroupStratifierStratum extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.stratifier.stratum.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -57655,6 +58716,7 @@ export interface MeasureReportGroupStratifierStratumComponent
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.stratifier.stratum.component.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -57707,6 +58769,7 @@ export interface MeasureReportGroupStratifierStratumPopulation
   /**
    * The number of members of the population in this stratum.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.stratifier.stratum.population.count}
+   * @fhirType integer
    */
   count?: number | undefined;
   _count?: Element | undefined;
@@ -57730,6 +58793,7 @@ export interface MeasureReportGroupStratifierStratumPopulation
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.stratifier.stratum.population.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -57780,6 +58844,7 @@ export interface MeasureReport extends DomainResource {
   /**
    * The date this measure report was generated.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -57826,6 +58891,7 @@ export interface MeasureReport extends DomainResource {
   /**
    * A reference to the Measure that was calculated to produce this report.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.measure}
+   * @fhirType canonical
    */
   measure: string;
   _measure?: Element | undefined;
@@ -57851,6 +58917,7 @@ export interface MeasureReport extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.status}
    * @see {@link MeasureReportStatus}
+   * @fhirType code
    */
   status: MeasureReportStatus;
   _status?: Element | undefined;
@@ -57874,6 +58941,7 @@ export interface MeasureReport extends DomainResource {
    * or population, but they may.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.type}
    * @see {@link MeasureReportType}
+   * @fhirType code
    */
   type: MeasureReportType;
   _type?: Element | undefined;
@@ -57926,6 +58994,7 @@ export interface Media extends DomainResource {
   /**
    * The date and time(s) at which the media was collected.
    * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.createdDateTime}
+   * @fhirType dateTime
    */
   createdDateTime?: string | undefined;
   _createdDateTime?: Element | undefined;
@@ -57959,6 +59028,7 @@ export interface Media extends DomainResource {
    * The duration of the recording in seconds - for audio and video.
    * The duration might differ from occurrencePeriod if recording was paused.
    * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.duration}
+   * @fhirType decimal
    */
   duration?: number | undefined;
   _duration?: Element | undefined;
@@ -57980,6 +59050,7 @@ export interface Media extends DomainResource {
    * if the number of frames is not supplied, the value may be unknown. Applications
    * should not assume that there is only one frame unless it is explicitly stated.
    * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.frames}
+   * @fhirType positiveInt
    */
   frames?: number | undefined;
   _frames?: Element | undefined;
@@ -57987,6 +59058,7 @@ export interface Media extends DomainResource {
   /**
    * Height of the image in pixels (photo/video).
    * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.height}
+   * @fhirType positiveInt
    */
   height?: number | undefined;
   _height?: Element | undefined;
@@ -58012,6 +59084,7 @@ export interface Media extends DomainResource {
    * non-clinically significant update that does not require the new version to be
    * reviewed and verified again.
    * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.issued}
+   * @fhirType instant
    */
   issued?: string | undefined;
   _issued?: Element | undefined;
@@ -58071,6 +59144,7 @@ Unknown does not represent "other" - one of the
  * sure what the current status is.
  * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.status}
  * @see {@link EventStatus}
+ * @fhirType code
  */
   status: EventStatus;
   _status?: Element | undefined;
@@ -58100,6 +59174,7 @@ Unknown does not represent "other" - one of the
   /**
    * Width of the image in pixels (photo/video).
    * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.width}
+   * @fhirType positiveInt
    */
   width?: number | undefined;
   _width?: Element | undefined;
@@ -58113,6 +59188,7 @@ export interface MedicationBatch extends BackboneElement {
   /**
    * When this specific batch of product will expire.
    * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.batch.expirationDate}
+   * @fhirType dateTime
    */
   expirationDate?: string | undefined;
   _expirationDate?: Element | undefined;
@@ -58136,6 +59212,7 @@ export interface MedicationBatch extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.batch.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -58199,6 +59276,7 @@ export interface MedicationIngredient extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.ingredient.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -58358,6 +59436,7 @@ export interface Medication extends DomainResource {
    * have a separate status.
    * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.status}
    * @see {@link MedicationStatusCodes}
+   * @fhirType code
    */
   status?: MedicationStatusCodes | undefined;
   _status?: Element | undefined;
@@ -58400,6 +59479,7 @@ export interface MedicationAdministrationDosage extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.dosage.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -58551,6 +59631,7 @@ export interface MedicationAdministrationPerformer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.performer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -58630,6 +59711,7 @@ export interface MedicationAdministration extends DomainResource {
    * administrations, such as swallowing a tablet the use of dateTime is more
    * appropriate.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.effectiveDateTime}
+   * @fhirType dateTime
    */
   effectiveDateTime?: string | undefined;
   _effectiveDateTime?: Element | undefined;
@@ -58675,6 +59757,7 @@ export interface MedicationAdministration extends DomainResource {
    * A protocol, guideline, orderset, or other definition that was adhered to in
    * whole or in part by this event.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.instantiates}
+   * @fhirType uri
    */
   instantiates?: Array<string> | undefined;
   _instantiates?: Element[] | undefined;
@@ -58763,6 +59846,7 @@ export interface MedicationAdministration extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.status}
    * @see {@link MedicationAdministrationStatusCodes}
+   * @fhirType code
    */
   status: MedicationAdministrationStatusCodes;
   _status?: Element | undefined;
@@ -58830,6 +59914,7 @@ export interface MedicationDispensePerformer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.performer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -58886,6 +59971,7 @@ export interface MedicationDispenseSubstitution extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.substitution.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -59128,6 +60214,7 @@ The
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.status}
    * @see {@link MedicationDispenseStatusCodes}
+   * @fhirType code
    */
   status: MedicationDispenseStatusCodes;
   _status?: Element | undefined;
@@ -59185,6 +60272,7 @@ The
    * The time the dispensed product was provided to the patient or their
    * representative.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.whenHandedOver}
+   * @fhirType dateTime
    */
   whenHandedOver?: string | undefined;
   _whenHandedOver?: Element | undefined;
@@ -59192,6 +60280,7 @@ The
   /**
    * The time when the dispensed product was packaged and reviewed.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.whenPrepared}
+   * @fhirType dateTime
    */
   whenPrepared?: string | undefined;
   _whenPrepared?: Element | undefined;
@@ -59229,6 +60318,7 @@ export interface MedicationKnowledgeAdministrationGuidelines
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.administrationGuidelines.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -59313,6 +60403,7 @@ export interface MedicationKnowledgeAdministrationGuidelinesDosage
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.administrationGuidelines.dosage.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -59390,6 +60481,7 @@ export interface MedicationKnowledgeAdministrationGuidelinesPatientCharacteristi
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.administrationGuidelines.patientCharacteristics.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -59456,6 +60548,7 @@ export interface MedicationKnowledgeCost extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.cost.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -59524,6 +60617,7 @@ export interface MedicationKnowledgeDrugCharacteristic extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.drugCharacteristic.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -59595,6 +60689,7 @@ Modifier extensions
    * image.  The description can be a string only when these others are not
    * available.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.drugCharacteristic.valueBase64Binary}
+   * @fhirType base64Binary
    */
   valueBase64Binary?: string | undefined;
   _valueBase64Binary?: Element | undefined;
@@ -59624,6 +60719,7 @@ export interface MedicationKnowledgeIngredient extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.ingredient.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -59725,6 +60821,7 @@ export interface MedicationKnowledgeKinetics extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.kinetics.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -59793,6 +60890,7 @@ export interface MedicationKnowledgeMedicineClassification
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.medicineClassification.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -59853,6 +60951,7 @@ export interface MedicationKnowledgeMonitoringProgram extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.monitoringProgram.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -59919,6 +61018,7 @@ export interface MedicationKnowledgeMonograph extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.monograph.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -59986,6 +61086,7 @@ export interface MedicationKnowledgePackaging extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.packaging.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -60053,6 +61154,7 @@ export interface MedicationKnowledgeRegulatory extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.regulatory.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -60135,6 +61237,7 @@ export interface MedicationKnowledgeRegulatoryMaxDispense
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.regulatory.maxDispense.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -60201,6 +61304,7 @@ export interface MedicationKnowledgeRegulatorySchedule extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.regulatory.schedule.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -60269,6 +61373,7 @@ export interface MedicationKnowledgeRegulatorySubstitution
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.regulatory.substitution.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -60329,6 +61434,7 @@ export interface MedicationKnowledgeRelatedMedicationKnowledge
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.relatedMedicationKnowledge.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -60527,6 +61633,7 @@ export interface MedicationKnowledge extends DomainResource {
   /**
    * The instructions for preparing the medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.preparationInstruction}
+   * @fhirType markdown
    */
   preparationInstruction?: string | undefined;
   _preparationInstruction?: Element | undefined;
@@ -60570,6 +61677,7 @@ export interface MedicationKnowledge extends DomainResource {
    * have a separate status.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.status}
    * @see {@link MedicationKnowledgeStatusCodes}
+   * @fhirType code
    */
   status?: MedicationKnowledgeStatusCodes | undefined;
   _status?: Element | undefined;
@@ -60633,6 +61741,7 @@ export interface MedicationRequestDispenseRequest extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.dispenseRequest.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -60679,6 +61788,7 @@ Modifier extensions
    * after the initial dispense.
    * If displaying "number of authorized fills", add 1 to this number.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.dispenseRequest.numberOfRepeatsAllowed}
+   * @fhirType unsignedInt
    */
   numberOfRepeatsAllowed?: number | undefined;
   _numberOfRepeatsAllowed?: Element | undefined;
@@ -60746,6 +61856,7 @@ export interface MedicationRequestDispenseRequestInitialFill
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.dispenseRequest.initialFill.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -60828,6 +61939,7 @@ export interface MedicationRequestSubstitution extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.substitution.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -60882,6 +61994,7 @@ export interface MedicationRequest extends DomainResource {
    * The date (and perhaps time) when the prescription was initially written or
    * authored on.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.authoredOn}
+   * @fhirType dateTime
    */
   authoredOn?: string | undefined;
   _authoredOn?: Element | undefined;
@@ -61014,6 +62127,7 @@ export interface MedicationRequest extends DomainResource {
    * The URL pointing to a protocol, guideline, orderset, or other definition that is
    * adhered to in whole or in part by this MedicationRequest.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.instantiatesCanonical}
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -61023,6 +62137,7 @@ export interface MedicationRequest extends DomainResource {
    * other definition that is adhered to in whole or in part by this
    * MedicationRequest.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -61051,6 +62166,7 @@ This element is labeled as a modifier because the intent alters when
  * and how the resource is actually applicable.
  * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.intent}
  * @see {@link medicationRequestIntent}
+ * @fhirType code
  */
   intent: medicationRequestIntent;
   _intent?: Element | undefined;
@@ -61116,6 +62232,7 @@ This element is labeled as a modifier because the intent alters when
    * other requests.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.priority}
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -61187,6 +62304,7 @@ This element is labeled as a modifier because the intent alters when
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.status}
    * @see {@link medicationrequestStatus}
+   * @fhirType code
    */
   status: medicationrequestStatus;
   _status?: Element | undefined;
@@ -61288,6 +62406,7 @@ export interface MedicationStatement extends DomainResource {
   /**
    * The date when the medication statement was asserted by the information source.
    * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.dateAsserted}
+   * @fhirType dateTime
    */
   dateAsserted?: string | undefined;
   _dateAsserted?: Element | undefined;
@@ -61330,6 +62449,7 @@ export interface MedicationStatement extends DomainResource {
    * variety of dates - year, year/month and exact date.  If something more than this
    * is required, this should be conveyed as text.
    * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.effectiveDateTime}
+   * @fhirType dateTime
    */
   effectiveDateTime?: string | undefined;
   _effectiveDateTime?: Element | undefined;
@@ -61444,6 +62564,7 @@ This element is labeled as a modifier because the status contains
  * codes that mark the resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.status}
  * @see {@link MedicationStatementStatusCodes}
+ * @fhirType code
  */
   status: MedicationStatementStatusCodes;
   _status?: Element | undefined;
@@ -61492,6 +62613,7 @@ export interface MedicinalProductDefinitionCharacteristic
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.characteristic.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -61543,6 +62665,7 @@ Modifier extensions
   /**
    * A value for the characteristic.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.characteristic.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -61593,6 +62716,7 @@ export interface MedicinalProductDefinitionContact extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.contact.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -61655,6 +62779,7 @@ export interface MedicinalProductDefinitionCrossReference
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.crossReference.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -61733,6 +62858,7 @@ export interface MedicinalProductDefinitionName extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.name.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -61814,6 +62940,7 @@ export interface MedicinalProductDefinitionNameCountryLanguage
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.name.countryLanguage.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -61882,6 +63009,7 @@ export interface MedicinalProductDefinitionNameNamePart
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.name.namePart.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -61964,6 +63092,7 @@ export interface MedicinalProductDefinitionOperation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.operation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -62098,6 +63227,7 @@ export interface MedicinalProductDefinition extends DomainResource {
   /**
    * General description of this product.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -62136,6 +63266,7 @@ export interface MedicinalProductDefinition extends DomainResource {
    * captured using the ClinicalUseDefinition resource. An indication is a medical
    * situation for which using the product is appropriate.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.indication}
+   * @fhirType markdown
    */
   indication?: string | undefined;
   _indication?: Element | undefined;
@@ -62240,6 +63371,7 @@ export interface MedicinalProductDefinition extends DomainResource {
   /**
    * The date at which the given status became applicable.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.statusDate}
+   * @fhirType dateTime
    */
   statusDate?: string | undefined;
   _statusDate?: Element | undefined;
@@ -62289,6 +63421,7 @@ export interface MessageDefinitionAllowedResponse extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.allowedResponse.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -62297,6 +63430,7 @@ export interface MessageDefinitionAllowedResponse extends BackboneElement {
    * A reference to the message definition that must be adhered to by this supported
    * response.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.allowedResponse.message}
+   * @fhirType canonical
    */
   message: string;
   _message?: Element | undefined;
@@ -62328,6 +63462,7 @@ Modifier extensions
    * Provides a description of the circumstances in which this response should be
    * used (as opposed to one of the alternative responses).
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.allowedResponse.situation}
+   * @fhirType markdown
    */
   situation?: string | undefined;
   _situation?: Element | undefined;
@@ -62346,6 +63481,7 @@ export interface MessageDefinitionFocus extends BackboneElement {
    * link or unlink a resource from a particular account or encounter, etc.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.focus.code}
    * @see {@link ResourceType}
+   * @fhirType code
    */
   code: ResourceType;
   _code?: Element | undefined;
@@ -62369,6 +63505,7 @@ export interface MessageDefinitionFocus extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.focus.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -62385,6 +63522,7 @@ export interface MessageDefinitionFocus extends BackboneElement {
    * Identifies the minimum number of resources of this type that must be pointed to
    * by a message in order for it to be valid against this MessageDefinition.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.focus.min}
+   * @fhirType unsignedInt
    */
   min: number;
   _min?: Element | undefined;
@@ -62420,6 +63558,7 @@ Modifier extensions
    * resources or otherwise enforce the presence of particular elements, it can be
    * omitted.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.focus.profile}
+   * @fhirType canonical
    */
   profile?: string | undefined;
   _profile?: Element | undefined;
@@ -62452,6 +63591,7 @@ export interface MessageDefinition extends DomainResource {
   /**
    * The MessageDefinition that is the basis for the contents of this resource.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.base}
+   * @fhirType canonical
    */
   base?: string | undefined;
   _base?: Element | undefined;
@@ -62460,6 +63600,7 @@ export interface MessageDefinition extends DomainResource {
    * The impact of the content of the message.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.category}
    * @see {@link MessageSignificanceCategory}
+   * @fhirType code
    */
   category?: MessageSignificanceCategory | undefined;
   _category?: Element | undefined;
@@ -62478,6 +63619,7 @@ export interface MessageDefinition extends DomainResource {
    * Copyright statements are generally legal restrictions on the use and publishing
    * of the message definition.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -62492,6 +63634,7 @@ export interface MessageDefinition extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.date}
+   * @fhirType dateTime
    */
   date: string;
   _date?: Element | undefined;
@@ -62507,6 +63650,7 @@ export interface MessageDefinition extends DomainResource {
    * available from context (e.g. the language of the message definition is presumed
    * to be the predominant language in the place the message definition was created).
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -62521,6 +63665,7 @@ export interface MessageDefinition extends DomainResource {
   /**
    * Event code or link to the EventDefinition.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.eventUri}
+   * @fhirType uri
    */
   eventUri?: string | undefined;
   _eventUri?: Element | undefined;
@@ -62551,6 +63696,7 @@ export interface MessageDefinition extends DomainResource {
    * document. The GraphDefinition can also specify profiles that apply to the
    * various resources.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.graph}
+   * @fhirType canonical
    */
   graph?: Array<string> | undefined;
   _graph?: Element[] | undefined;
@@ -62595,6 +63741,7 @@ export interface MessageDefinition extends DomainResource {
    * by certain steps in a particular protocol as part of a PlanDefinition or
    * ActivityDefinition.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.parent}
+   * @fhirType canonical
    */
   parent?: Array<string> | undefined;
   _parent?: Element[] | undefined;
@@ -62622,6 +63769,7 @@ export interface MessageDefinition extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this message definition.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -62629,6 +63777,7 @@ export interface MessageDefinition extends DomainResource {
   /**
    * A MessageDefinition that is superseded by this definition.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.replaces}
+   * @fhirType canonical
    */
   replaces?: Array<string> | undefined;
   _replaces?: Element[] | undefined;
@@ -62641,6 +63790,7 @@ export interface MessageDefinition extends DomainResource {
    * whether a response is required or only upon error or success, or never.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.responseRequired}
    * @see {@link messageheaderresponserequest}
+   * @fhirType code
    */
   responseRequired?: messageheaderresponserequest | undefined;
   _responseRequired?: Element | undefined;
@@ -62651,6 +63801,7 @@ export interface MessageDefinition extends DomainResource {
    * Allows filtering of message definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -62681,6 +63832,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/MessageDefinition-definitions.html#MessageDefinition.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -62727,6 +63879,7 @@ export interface MessageHeaderDestination extends BackboneElement {
    * The id may be a non-resolvable URI for systems that do not use standard
    * network-based addresses.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.destination.endpoint}
+   * @fhirType url
    */
   endpoint: string;
   _endpoint?: Element | undefined;
@@ -62750,6 +63903,7 @@ export interface MessageHeaderDestination extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.destination.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -62814,6 +63968,7 @@ export interface MessageHeaderResponse extends BackboneElement {
    * response will be found in MessageHeader.focus.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.response.code}
    * @see {@link ResponseType}
+   * @fhirType code
    */
   code: ResponseType;
   _code?: Element | undefined;
@@ -62846,6 +64001,7 @@ export interface MessageHeaderResponse extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.response.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -62853,6 +64009,7 @@ export interface MessageHeaderResponse extends BackboneElement {
   /**
    * The MessageHeader.id of the message to which this message is a response.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.response.identifier}
+   * @fhirType id
    */
   identifier: string;
   _identifier?: Element | undefined;
@@ -62899,6 +64056,7 @@ export interface MessageHeaderSource extends BackboneElement {
    * The id may be a non-resolvable URI for systems that do not use standard
    * network-based addresses.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.source.endpoint}
+   * @fhirType url
    */
   endpoint: string;
   _endpoint?: Element | undefined;
@@ -62922,6 +64080,7 @@ export interface MessageHeaderSource extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.source.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -62998,6 +64157,7 @@ export interface MessageHeader extends DomainResource {
   /**
    * Permanent link to the MessageDefinition for this message.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.definition}
+   * @fhirType canonical
    */
   definition?: string | undefined;
   _definition?: Element | undefined;
@@ -63043,6 +64203,7 @@ export interface MessageHeader extends DomainResource {
    * message will be found in
    * [Bundle.timestamp](bundle-definitions.html#Bundle.timestamp).
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.eventUri}
+   * @fhirType uri
    */
   eventUri?: string | undefined;
   _eventUri?: Element | undefined;
@@ -63120,6 +64281,7 @@ export interface Meta extends Element {
    * The server / resource manager sets this value; what a client provides is
    * irrelevant. This is equivalent to the HTTP Last-Modified and SHOULD have the
    * same value on a [read](http.html#read) interaction.
+   * @fhirType instant
    */
   lastUpdated?: string | undefined;
   _lastUpdated?: Element | undefined;
@@ -63133,6 +64295,7 @@ export interface Meta extends Element {
    * It is up to the server and/or other infrastructure of policy to determine
    * whether/how these claims are verified and/or updated over time.  The list of
    * profile URLs is a set.
+   * @fhirType canonical
    */
   profile?: Array<string> | undefined;
   _profile?: Element[] | undefined;
@@ -63160,6 +64323,7 @@ export interface Meta extends Element {
 This element
  * can be used to indicate where the current master source of a resource that has a
  * canonical URL if the resource is no longer hosted at the canonical URL.
+ * @fhirType uri
  */
   source?: string | undefined;
   _source?: Element | undefined;
@@ -63180,6 +64344,7 @@ This element
    * URL. This value changes when the resource is created, updated, or deleted.
    * The server assigns this value, and ignores what the client specifies, except in
    * the case that the server is imposing version integrity on updates/deletes.
+   * @fhirType id
    */
   versionId?: string | undefined;
   _versionId?: Element | undefined;
@@ -63198,6 +64363,7 @@ export interface MolecularSequenceQuality extends BackboneElement {
    * exclusive and does not include the last position. If the coordinate system is
    * 1-base, then end is inclusive and includes the last position.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.end}
+   * @fhirType integer
    */
   end?: number | undefined;
   _end?: Element | undefined;
@@ -63221,6 +64387,7 @@ export interface MolecularSequenceQuality extends BackboneElement {
    * Harmonic mean of Recall and Precision, computed as: 2 * precision * recall /
    * (precision + recall).
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.fScore}
+   * @fhirType decimal
    */
   fScore?: number | undefined;
   _fScore?: Element | undefined;
@@ -63230,6 +64397,7 @@ export interface MolecularSequenceQuality extends BackboneElement {
    * Call Sets match (i.e. cases where the truth is 1/1 and the query is 0/1 or
    * similar).
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.gtFP}
+   * @fhirType decimal
    */
   gtFP?: number | undefined;
   _gtFP?: Element | undefined;
@@ -63238,6 +64406,7 @@ export interface MolecularSequenceQuality extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -63275,6 +64444,7 @@ Modifier extensions
   /**
    * QUERY.TP / (QUERY.TP + QUERY.FP).
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.precision}
+   * @fhirType decimal
    */
   precision?: number | undefined;
   _precision?: Element | undefined;
@@ -63284,6 +64454,7 @@ Modifier extensions
    * is no path through the Truth Call Set that is consistent with this site. Sites
    * with correct variant but incorrect genotype are counted here.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.queryFP}
+   * @fhirType decimal
    */
   queryFP?: number | undefined;
   _queryFP?: Element | undefined;
@@ -63294,6 +64465,7 @@ Modifier extensions
    * are consistent with all of the alleles at this site, and for which there is an
    * accurate genotype call for the event.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.queryTP}
+   * @fhirType decimal
    */
   queryTP?: number | undefined;
   _queryTP?: Element | undefined;
@@ -63301,6 +64473,7 @@ Modifier extensions
   /**
    * TRUTH.TP / (TRUTH.TP + TRUTH.FN).
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.recall}
+   * @fhirType decimal
    */
   recall?: number | undefined;
   _recall?: Element | undefined;
@@ -63333,6 +64506,7 @@ Modifier extensions
    * Start position of the sequence. If the coordinate system is either 0-based or
    * 1-based, then start position is inclusive.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.start}
+   * @fhirType integer
    */
   start?: number | undefined;
   _start?: Element | undefined;
@@ -63343,6 +64517,7 @@ Modifier extensions
    * at this site, or sites for which there is an inaccurate genotype call for the
    * event. Sites with correct variant but incorrect genotype are counted here.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.truthFN}
+   * @fhirType decimal
    */
   truthFN?: number | undefined;
   _truthFN?: Element | undefined;
@@ -63353,6 +64528,7 @@ Modifier extensions
    * are consistent with all of the alleles at this site, and for which there is an
    * accurate genotype call for the event.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.truthTP}
+   * @fhirType decimal
    */
   truthTP?: number | undefined;
   _truthTP?: Element | undefined;
@@ -63361,6 +64537,7 @@ Modifier extensions
    * INDEL / SNP / Undefined variant.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.type}
    * @see {@link qualityType}
+   * @fhirType code
    */
   type: qualityType;
   _type?: Element | undefined;
@@ -63390,6 +64567,7 @@ export interface MolecularSequenceQualityRoc extends BackboneElement {
   /**
    * Calculated fScore if the GQ score threshold was set to "score" field value.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.roc.fMeasure}
+   * @fhirType decimal
    */
   fMeasure?: Array<number> | undefined;
   _fMeasure?: Element[] | undefined;
@@ -63398,6 +64576,7 @@ export interface MolecularSequenceQualityRoc extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.roc.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -63429,6 +64608,7 @@ Modifier extensions
    * The number of false negatives if the GQ score threshold was set to "score" field
    * value.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.roc.numFN}
+   * @fhirType integer
    */
   numFN?: Array<number> | undefined;
   _numFN?: Element[] | undefined;
@@ -63437,6 +64617,7 @@ Modifier extensions
    * The number of false positives if the GQ score threshold was set to "score" field
    * value.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.roc.numFP}
+   * @fhirType integer
    */
   numFP?: Array<number> | undefined;
   _numFP?: Element[] | undefined;
@@ -63445,6 +64626,7 @@ Modifier extensions
    * The number of true positives if the GQ score threshold was set to "score" field
    * value.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.roc.numTP}
+   * @fhirType integer
    */
   numTP?: Array<number> | undefined;
   _numTP?: Element[] | undefined;
@@ -63452,6 +64634,7 @@ Modifier extensions
   /**
    * Calculated precision if the GQ score threshold was set to "score" field value.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.roc.precision}
+   * @fhirType decimal
    */
   precision?: Array<number> | undefined;
   _precision?: Element[] | undefined;
@@ -63459,6 +64642,7 @@ Modifier extensions
   /**
    * Invidual data point representing the GQ (genotype quality) score threshold.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.roc.score}
+   * @fhirType integer
    */
   score?: Array<number> | undefined;
   _score?: Element[] | undefined;
@@ -63466,6 +64650,7 @@ Modifier extensions
   /**
    * Calculated sensitivity if the GQ score threshold was set to "score" field value.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.quality.roc.sensitivity}
+   * @fhirType decimal
    */
   sensitivity?: Array<number> | undefined;
   _sensitivity?: Element[] | undefined;
@@ -63516,6 +64701,7 @@ export interface MolecularSequenceReferenceSeq extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.referenceSeq.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -63549,6 +64735,7 @@ Modifier extensions
    * opposite complementary strand is the "antisense" strand.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.referenceSeq.orientation}
    * @see {@link orientationType}
+   * @fhirType code
    */
   orientation?: orientationType | undefined;
   _orientation?: Element | undefined;
@@ -63583,6 +64770,7 @@ Modifier extensions
    * 5'-end is on the long arm.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.referenceSeq.strand}
    * @see {@link strandType}
+   * @fhirType code
    */
   strand?: strandType | undefined;
   _strand?: Element | undefined;
@@ -63593,6 +64781,7 @@ Modifier extensions
    * coordinate system is 1-base, then end is inclusive and includes the last
    * position.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.referenceSeq.windowEnd}
+   * @fhirType integer
    */
   windowEnd?: number | undefined;
   _windowEnd?: Element | undefined;
@@ -63601,6 +64790,7 @@ Modifier extensions
    * Start position of the window on the reference sequence. If the coordinate system
    * is either 0-based or 1-based, then start position is inclusive.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.referenceSeq.windowStart}
+   * @fhirType integer
    */
   windowStart?: number | undefined;
   _windowStart?: Element | undefined;
@@ -63639,6 +64829,7 @@ export interface MolecularSequenceRepository extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.repository.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -63686,6 +64877,7 @@ Modifier extensions
    * authentication / Other ways to see resource.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.repository.type}
    * @see {@link repositoryType}
+   * @fhirType code
    */
   type: repositoryType;
   _type?: Element | undefined;
@@ -63694,6 +64886,7 @@ Modifier extensions
    * URI of an external repository which contains further details about the genetics
    * data.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.repository.url}
+   * @fhirType uri
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -63738,6 +64931,7 @@ export interface MolecularSequenceStructureVariant extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -63752,6 +64946,7 @@ export interface MolecularSequenceStructureVariant extends BackboneElement {
   /**
    * Length of the variant chromosome.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant.length}
+   * @fhirType integer
    */
   length?: number | undefined;
   _length?: Element | undefined;
@@ -63806,6 +65001,7 @@ export interface MolecularSequenceStructureVariantInner
    * exclusive and does not include the last position. If the coordinate system is
    * 1-base, then end is inclusive and includes the last position.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant.inner.end}
+   * @fhirType integer
    */
   end?: number | undefined;
   _end?: Element | undefined;
@@ -63829,6 +65025,7 @@ export interface MolecularSequenceStructureVariantInner
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant.inner.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -63860,6 +65057,7 @@ Modifier extensions
    * Structural variant inner start. If the coordinate system is either 0-based or
    * 1-based, then start position is inclusive.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant.inner.start}
+   * @fhirType integer
    */
   start?: number | undefined;
   _start?: Element | undefined;
@@ -63876,6 +65074,7 @@ export interface MolecularSequenceStructureVariantOuter
    * exclusive and does not include the last position. If the coordinate system is
    * 1-base, then end is inclusive and includes the last position.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant.outer.end}
+   * @fhirType integer
    */
   end?: number | undefined;
   _end?: Element | undefined;
@@ -63899,6 +65098,7 @@ export interface MolecularSequenceStructureVariantOuter
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant.outer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -63930,6 +65130,7 @@ Modifier extensions
    * Structural variant outer start. If the coordinate system is either 0-based or
    * 1-based, then start position is inclusive.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.structureVariant.outer.start}
+   * @fhirType integer
    */
   start?: number | undefined;
   _start?: Element | undefined;
@@ -63960,6 +65161,7 @@ export interface MolecularSequenceVariant extends BackboneElement {
    * coordinate system is 1-base, then end is inclusive and includes the last
    * position.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.variant.end}
+   * @fhirType integer
    */
   end?: number | undefined;
   _end?: Element | undefined;
@@ -63983,6 +65185,7 @@ export interface MolecularSequenceVariant extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.variant.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -64038,6 +65241,7 @@ Modifier extensions
    * Start position of the variant on the  reference sequence. If the coordinate
    * system is either 0-based or 1-based, then start position is inclusive.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.variant.start}
+   * @fhirType integer
    */
   start?: number | undefined;
   _start?: Element | undefined;
@@ -64065,6 +65269,7 @@ export interface MolecularSequence extends DomainResource {
    * coordinates, inclusive start, exclusive end) or starting at 1 (1-based
    * numbering, inclusive start and inclusive end).
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.coordinateSystem}
+   * @fhirType integer
    */
   coordinateSystem: number;
   _coordinateSystem?: Element | undefined;
@@ -64135,6 +65340,7 @@ export interface MolecularSequence extends DomainResource {
    * Coverage (read depth or depth) is the average number of reads representing a
    * given nucleotide in the reconstructed sequence.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.readCoverage}
+   * @fhirType integer
    */
   readCoverage?: number | undefined;
   _readCoverage?: Element | undefined;
@@ -64173,6 +65379,7 @@ export interface MolecularSequence extends DomainResource {
    * Amino Acid Sequence/ DNA Sequence / RNA Sequence.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.type}
    * @see {@link sequenceType}
+   * @fhirType code
    */
   type?: sequenceType | undefined;
   _type?: Element | undefined;
@@ -64201,6 +65408,7 @@ export interface Money extends Element {
   /**
    * ISO 4217 Currency Code.
    * @see {@link Currencies}
+   * @fhirType code
    */
   currency?: Currencies | undefined;
   _currency?: Element | undefined;
@@ -64209,6 +65417,7 @@ export interface Money extends Element {
    * Numerical value (with implicit precision).
    * Monetary values have their own rules for handling precision (refer to standard
    * accounting text books).
+   * @fhirType decimal
    */
   value?: number | undefined;
   _value?: Element | undefined;
@@ -64250,6 +65459,7 @@ export interface NamingSystemUniqueId extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.uniqueId.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -64303,6 +65513,7 @@ Modifier extensions
    * code name strings, etc.
    * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.uniqueId.type}
    * @see {@link NamingSystemIdentifierType}
+   * @fhirType code
    */
   type: NamingSystemIdentifierType;
   _type?: Element | undefined;
@@ -64349,6 +65560,7 @@ export interface NamingSystem extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.date}
+   * @fhirType dateTime
    */
   date: string;
   _date?: Element | undefined;
@@ -64365,6 +65577,7 @@ export interface NamingSystem extends DomainResource {
    * available from context (e.g. the language of the naming system is presumed to be
    * the predominant language in the place the naming system was created).
    * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -64383,6 +65596,7 @@ export interface NamingSystem extends DomainResource {
    * unique?
    * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.kind}
    * @see {@link NamingSystemType}
+   * @fhirType code
    */
   kind: NamingSystemType;
   _kind?: Element | undefined;
@@ -64429,6 +65643,7 @@ export interface NamingSystem extends DomainResource {
    * Allows filtering of naming systems that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/NamingSystem-definitions.html#NamingSystem.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -64493,6 +65708,7 @@ export interface Narrative extends Element {
    * stylesheets. The XHTML content SHALL NOT contain a head, a body, external
    * stylesheet references, scripts, forms, base/link/xlink, frames, iframes and
    * objects.
+   * @fhirType xhtml
    */
   div: string;
   _div?: Element | undefined;
@@ -64502,6 +65718,7 @@ export interface Narrative extends Element {
    * defined data or the extensions too), or whether a human authored it and it may
    * contain additional data.
    * @see {@link NarrativeStatus}
+   * @fhirType code
    */
   status: NarrativeStatus;
   _status?: Element | undefined;
@@ -64598,6 +65815,7 @@ export interface NutritionOrderEnteralFormula extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.enteralFormula.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -64673,6 +65891,7 @@ export interface NutritionOrderEnteralFormulaAdministration
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.enteralFormula.administration.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -64771,6 +65990,7 @@ export interface NutritionOrderOralDiet extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.oralDiet.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -64873,6 +66093,7 @@ export interface NutritionOrderOralDietNutrient extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.oralDiet.nutrient.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -64942,6 +66163,7 @@ export interface NutritionOrderOralDietTexture extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.oralDiet.texture.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -65004,6 +66226,7 @@ export interface NutritionOrderSupplement extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.supplement.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -65098,6 +66321,7 @@ export interface NutritionOrder extends DomainResource {
   /**
    * The date and time that this nutrition order was requested.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.dateTime}
+   * @fhirType dateTime
    */
   dateTime: string;
   _dateTime?: Element | undefined;
@@ -65162,6 +66386,7 @@ export interface NutritionOrder extends DomainResource {
    * The URL pointing to a protocol, guideline, orderset or other definition that is
    * adhered to in whole or in part by this NutritionOrder.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.instantiates}
+   * @fhirType uri
    */
   instantiates?: Array<string> | undefined;
   _instantiates?: Element[] | undefined;
@@ -65177,6 +66402,7 @@ export interface NutritionOrder extends DomainResource {
    * example, multiple Patient and a Person resource instance might share the same
    * social insurance number.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.instantiatesCanonical}
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -65187,6 +66413,7 @@ export interface NutritionOrder extends DomainResource {
    * This might be an HTML page, PDF, etc. or could just be a non-resolvable URI
    * identifier.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -65201,6 +66428,7 @@ export interface NutritionOrder extends DomainResource {
    * codes is mutually exclusive or a strict all-encompassing hierarchy.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.intent}
    * @see {@link RequestIntent}
+   * @fhirType code
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -65247,6 +66475,7 @@ export interface NutritionOrder extends DomainResource {
    * status contains codes that mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.status}
    * @see {@link RequestStatus}
+   * @fhirType code
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -65291,6 +66520,7 @@ export interface NutritionProductIngredient extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.ingredient.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -65336,6 +66566,7 @@ export interface NutritionProductInstance extends BackboneElement {
    * The time after which the product is no longer expected to be in proper
    * condition, or its use is not advised or not allowed.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.instance.expiry}
+   * @fhirType dateTime
    */
   expiry?: string | undefined;
   _expiry?: Element | undefined;
@@ -65359,6 +66590,7 @@ export interface NutritionProductInstance extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.instance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -65412,6 +66644,7 @@ Modifier extensions
    * The time after which the product is no longer expected to be in proper
    * condition, or its use is not advised or not allowed.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.instance.useBy}
+   * @fhirType dateTime
    */
   useBy?: string | undefined;
   _useBy?: Element | undefined;
@@ -65456,6 +66689,7 @@ export interface NutritionProductNutrient extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.nutrient.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -65515,6 +66749,7 @@ export interface NutritionProductProductCharacteristic extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.productCharacteristic.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -65586,6 +66821,7 @@ Modifier extensions
    * image.  The description can be a string only when these others are not
    * available.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.productCharacteristic.valueBase64Binary}
+   * @fhirType base64Binary
    */
   valueBase64Binary?: string | undefined;
   _valueBase64Binary?: Element | undefined;
@@ -65704,6 +66940,7 @@ export interface NutritionProduct extends DomainResource {
    * is.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.status}
    * @see {@link NutritionProductStatus}
+   * @fhirType code
    */
   status: NutritionProductStatus;
   _status?: Element | undefined;
@@ -65767,6 +67004,7 @@ The alternate
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.component.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -65883,6 +67121,7 @@ Modifier extensions
    * coded value.  For additional guidance, see the [Notes
    * section](observation.html#notes) below.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.component.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -65947,6 +67186,7 @@ Modifier extensions
    * coded value.  For additional guidance, see the [Notes
    * section](observation.html#notes) below.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.component.valueTime}
+   * @fhirType time
    */
   valueTime?: string | undefined;
   _valueTime?: Element | undefined;
@@ -65963,6 +67203,7 @@ Modifier extensions
    * coded value.  For additional guidance, see the [Notes
    * section](observation.html#notes) below.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.component.valueDateTime}
+   * @fhirType dateTime
    */
   valueDateTime?: string | undefined;
   _valueDateTime?: Element | undefined;
@@ -66048,6 +67289,7 @@ export interface ObservationReferenceRange extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.referenceRange.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -66225,6 +67467,7 @@ export interface Observation extends DomainResource {
    * measurement taken "after breakfast") use the [Timing](datatypes.html#timing)
    * datatype which allow the measurement to be tied to regular life events.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.effectiveDateTime}
+   * @fhirType dateTime
    */
   effectiveDateTime?: string | undefined;
   _effectiveDateTime?: Element | undefined;
@@ -66270,6 +67513,7 @@ export interface Observation extends DomainResource {
    * measurement taken "after breakfast") use the [Timing](datatypes.html#timing)
    * datatype which allow the measurement to be tied to regular life events.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.effectiveInstant}
+   * @fhirType instant
    */
   effectiveInstant?: string | undefined;
   _effectiveInstant?: Element | undefined;
@@ -66352,6 +67596,7 @@ export interface Observation extends DomainResource {
    * resource itself due to a non-clinically significant update that doesn’t require
    * the new version to be reviewed and verified again.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.issued}
+   * @fhirType instant
    */
   issued?: string | undefined;
   _issued?: Element | undefined;
@@ -66427,6 +67672,7 @@ export interface Observation extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.status}
    * @see {@link ObservationStatus}
+   * @fhirType code
    */
   status: ObservationStatus;
   _status?: Element | undefined;
@@ -66518,6 +67764,7 @@ export interface Observation extends DomainResource {
    * Observation.code defines a coded value.  For additional guidance, see the [Notes
    * section](observation.html#notes) below.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -66578,6 +67825,7 @@ export interface Observation extends DomainResource {
    * Observation.code defines a coded value.  For additional guidance, see the [Notes
    * section](observation.html#notes) below.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.valueTime}
+   * @fhirType time
    */
   valueTime?: string | undefined;
   _valueTime?: Element | undefined;
@@ -66593,6 +67841,7 @@ export interface Observation extends DomainResource {
    * Observation.code defines a coded value.  For additional guidance, see the [Notes
    * section](observation.html#notes) below.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.valueDateTime}
+   * @fhirType dateTime
    */
   valueDateTime?: string | undefined;
   _valueDateTime?: Element | undefined;
@@ -66642,6 +67891,7 @@ export interface ObservationDefinitionQualifiedInterval
    * conforming to this ObservationDefinition.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.qualifiedInterval.category}
    * @see {@link ObservationRangeCategory}
+   * @fhirType code
    */
   category?: ObservationRangeCategory | undefined;
   _category?: Element | undefined;
@@ -66680,6 +67930,7 @@ export interface ObservationDefinitionQualifiedInterval
    * Sex of the population the range applies to.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.qualifiedInterval.gender}
    * @see {@link AdministrativeGender}
+   * @fhirType code
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -66696,6 +67947,7 @@ export interface ObservationDefinitionQualifiedInterval
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.qualifiedInterval.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -66742,6 +67994,7 @@ export interface ObservationDefinitionQuantitativeDetails
    * Factor for converting value expressed with SI unit to value expressed with
    * customary unit.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.quantitativeDetails.conversionFactor}
+   * @fhirType decimal
    */
   conversionFactor?: number | undefined;
   _conversionFactor?: Element | undefined;
@@ -66758,6 +68011,7 @@ export interface ObservationDefinitionQuantitativeDetails
    * Number of digits after decimal separator when the results of such observations
    * are of type Quantity.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.quantitativeDetails.decimalPrecision}
+   * @fhirType integer
    */
   decimalPrecision?: number | undefined;
   _decimalPrecision?: Element | undefined;
@@ -66781,6 +68035,7 @@ export interface ObservationDefinitionQuantitativeDetails
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.quantitativeDetails.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -66902,6 +68157,7 @@ export interface ObservationDefinition extends DomainResource {
    * conforming to this ObservationDefinition.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.permittedDataType}
    * @see {@link ObservationDataType}
+   * @fhirType code
    */
   permittedDataType?: Array<ObservationDataType> | undefined;
   _permittedDataType?: Element[] | undefined;
@@ -66973,6 +68229,7 @@ export interface OperationDefinitionOverload extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.overload.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -67048,6 +68305,7 @@ export interface OperationDefinitionParameter extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -67064,6 +68322,7 @@ export interface OperationDefinitionParameter extends BackboneElement {
    * The minimum number of times this parameter SHALL appear in the request or
    * response.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.min}
+   * @fhirType integer
    */
   min: number;
   _min?: Element | undefined;
@@ -67097,6 +68356,7 @@ Modifier extensions
    * letters, numerals, and underscore. Note that for search parameters (type =
    * string, with a search type), the name may be altered by the search modifiers.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.name}
+   * @fhirType code
    */
   name: string;
   _name?: Element | undefined;
@@ -67117,6 +68377,7 @@ Modifier extensions
    * parameter type is 'string'.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.searchType}
    * @see {@link SearchParamType}
+   * @fhirType code
    */
   searchType?: SearchParamType | undefined;
   _searchType?: Element | undefined;
@@ -67133,6 +68394,7 @@ Modifier extensions
    * Often, these profiles are the base definitions from the spec (e.g.
    * http://hl7.org/fhir/StructureDefinition/Patient).
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.targetProfile}
+   * @fhirType canonical
    */
   targetProfile?: Array<string> | undefined;
   _targetProfile?: Element[] | undefined;
@@ -67143,6 +68405,7 @@ Modifier extensions
    * type and must have at least one part defined.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.type}
    * @see {@link FHIRAllTypes}
+   * @fhirType code
    */
   type?: FHIRAllTypes | undefined;
   _type?: Element | undefined;
@@ -67153,6 +68416,7 @@ Modifier extensions
    * parameter should be defined twice.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.use}
    * @see {@link OperationParameterUse}
+   * @fhirType code
    */
   use: OperationParameterUse;
   _use?: Element | undefined;
@@ -67182,6 +68446,7 @@ export interface OperationDefinitionParameterBinding extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.binding.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -67216,6 +68481,7 @@ Modifier extensions
    * For further discussion, see [Using Terminologies](terminologies.html).
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.binding.strength}
    * @see {@link BindingStrength}
+   * @fhirType code
    */
   strength: BindingStrength;
   _strength?: Element | undefined;
@@ -67226,6 +68492,7 @@ Modifier extensions
    * For value sets with a referenceResource, the display can contain the value set
    * description.  The reference may be version-specific or not.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.binding.valueSet}
+   * @fhirType canonical
    */
   valueSet: string;
   _valueSet?: Element | undefined;
@@ -67258,6 +68525,7 @@ export interface OperationDefinitionParameterReferencedFrom
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.referencedFrom.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -67335,6 +68603,7 @@ export interface OperationDefinition extends DomainResource {
    * A constrained profile can make optional parameters required or not used and
    * clarify documentation.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.base}
+   * @fhirType canonical
    */
   base?: string | undefined;
   _base?: Element | undefined;
@@ -67342,6 +68611,7 @@ export interface OperationDefinition extends DomainResource {
   /**
    * The name used to invoke the operation.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.code}
+   * @fhirType code
    */
   code: string;
   _code?: Element | undefined;
@@ -67349,6 +68619,7 @@ export interface OperationDefinition extends DomainResource {
   /**
    * Additional information about how to use this operation or named query.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.comment}
+   * @fhirType markdown
    */
   comment?: string | undefined;
   _comment?: Element | undefined;
@@ -67372,6 +68643,7 @@ export interface OperationDefinition extends DomainResource {
    * Additional specific dates may be added as extensions or be found by consulting
    * Provenances associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -67388,6 +68660,7 @@ export interface OperationDefinition extends DomainResource {
    * presumed to be the predominant language in the place the operation definition
    * was created).
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -67412,6 +68685,7 @@ export interface OperationDefinition extends DomainResource {
    * additional constraints. The constraints expressed in the profile apply whether
    * the operation is invoked by a POST wih parameters or not.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.inputProfile}
+   * @fhirType canonical
    */
   inputProfile?: string | undefined;
   _inputProfile?: Element | undefined;
@@ -67439,6 +68713,7 @@ export interface OperationDefinition extends DomainResource {
    * Named queries are invoked differently, and have different capabilities.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.kind}
    * @see {@link OperationKind}
+   * @fhirType code
    */
   kind: OperationKind;
   _kind?: Element | undefined;
@@ -67463,6 +68738,7 @@ export interface OperationDefinition extends DomainResource {
    * additional constraints. The constraints expressed in the profile apply whether
    * the operation is invoked by a POST wih parameters or not.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.outputProfile}
+   * @fhirType canonical
    */
   outputProfile?: string | undefined;
   _outputProfile?: Element | undefined;
@@ -67510,6 +68786,7 @@ export interface OperationDefinition extends DomainResource {
    * is defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this operation definition.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -67520,6 +68797,7 @@ export interface OperationDefinition extends DomainResource {
    * operation can be invoked on any concrete specialization.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.resource}
    * @see {@link ResourceType}
+   * @fhirType code
    */
   resource?: Array<ResourceType> | undefined;
   _resource?: Element[] | undefined;
@@ -67531,6 +68809,7 @@ export interface OperationDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -67583,6 +68862,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -67628,6 +68908,7 @@ export interface OperationOutcomeIssue extends BackboneElement {
    * additional provide its own code for the error in the details element.
    * @see {@link http://hl7.org/fhir/R4B/OperationOutcome-definitions.html#OperationOutcome.issue.code}
    * @see {@link IssueType}
+   * @fhirType code
    */
   code: IssueType;
   _code?: Element | undefined;
@@ -67681,6 +68962,7 @@ export interface OperationOutcomeIssue extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/OperationOutcome-definitions.html#OperationOutcome.issue.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -67731,6 +69013,7 @@ Modifier extensions
    * and warnings with errors.
    * @see {@link http://hl7.org/fhir/R4B/OperationOutcome-definitions.html#OperationOutcome.issue.severity}
    * @see {@link IssueSeverity}
+   * @fhirType code
    */
   severity: IssueSeverity;
   _severity?: Element | undefined;
@@ -67789,6 +69072,7 @@ export interface OrganizationContact extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Organization-definitions.html#Organization.contact.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -68096,6 +69380,7 @@ export interface PackagedProductDefinitionLegalStatusOfSupply
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.legalStatusOfSupply.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -68176,6 +69461,7 @@ export interface PackagedProductDefinitionPackage extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -68237,6 +69523,7 @@ Modifier extensions
    * The quantity of this level of packaging in the package that contains it. If
    * specified, the outermost level is always 1.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.quantity}
+   * @fhirType integer
    */
   quantity?: number | undefined;
   _quantity?: Element | undefined;
@@ -68290,6 +69577,7 @@ export interface PackagedProductDefinitionPackageContainedItem
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.containedItem.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -68356,6 +69644,7 @@ export interface PackagedProductDefinitionPackageProperty
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.property.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -68407,6 +69696,7 @@ Modifier extensions
   /**
    * A value for the characteristic.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.property.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -68451,6 +69741,7 @@ export interface PackagedProductDefinitionPackageShelfLifeStorage
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.shelfLifeStorage.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -68567,6 +69858,7 @@ export interface PackagedProductDefinition extends DomainResource {
   /**
    * Textual description. Note that this is not the name of the package or product.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -68641,6 +69933,7 @@ export interface PackagedProductDefinition extends DomainResource {
   /**
    * The date at which the given status became applicable.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.statusDate}
+   * @fhirType dateTime
    */
   statusDate?: string | undefined;
   _statusDate?: Element | undefined;
@@ -68682,6 +69975,7 @@ export interface ParameterDefinition extends Element {
   /**
    * The minimum number of times this parameter SHALL appear in the request or
    * response.
+   * @fhirType integer
    */
   min?: number | undefined;
   _min?: Element | undefined;
@@ -68689,6 +69983,7 @@ export interface ParameterDefinition extends Element {
   /**
    * The name of the parameter used to allow access to the value of the parameter in
    * evaluation contexts.
+   * @fhirType code
    */
   name?: string | undefined;
   _name?: Element | undefined;
@@ -68696,6 +69991,7 @@ export interface ParameterDefinition extends Element {
   /**
    * If specified, this indicates a profile that the input data must conform to, or
    * that the output data will conform to.
+   * @fhirType canonical
    */
   profile?: string | undefined;
   _profile?: Element | undefined;
@@ -68703,6 +69999,7 @@ export interface ParameterDefinition extends Element {
   /**
    * The type of the parameter.
    * @see {@link FHIRAllTypes}
+   * @fhirType code
    */
   type: FHIRAllTypes;
   _type?: Element | undefined;
@@ -68710,6 +70007,7 @@ export interface ParameterDefinition extends Element {
   /**
    * Whether the parameter is input or output for the module.
    * @see {@link OperationParameterUse}
+   * @fhirType code
    */
   use: OperationParameterUse;
   _use?: Element | undefined;
@@ -68739,6 +70037,7 @@ export interface ParametersParameter extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -68787,6 +70086,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueBase64Binary}
+   * @fhirType base64Binary
    */
   valueBase64Binary?: string | undefined;
   _valueBase64Binary?: Element | undefined;
@@ -68801,6 +70101,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueCanonical}
+   * @fhirType canonical
    */
   valueCanonical?: string | undefined;
   _valueCanonical?: Element | undefined;
@@ -68808,6 +70109,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueCode}
+   * @fhirType code
    */
   valueCode?: string | undefined;
   _valueCode?: Element | undefined;
@@ -68815,6 +70117,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -68822,6 +70125,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueDateTime}
+   * @fhirType dateTime
    */
   valueDateTime?: string | undefined;
   _valueDateTime?: Element | undefined;
@@ -68829,6 +70133,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueDecimal}
+   * @fhirType decimal
    */
   valueDecimal?: number | undefined;
   _valueDecimal?: Element | undefined;
@@ -68836,6 +70141,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueId}
+   * @fhirType id
    */
   valueId?: string | undefined;
   _valueId?: Element | undefined;
@@ -68843,6 +70149,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueInstant}
+   * @fhirType instant
    */
   valueInstant?: string | undefined;
   _valueInstant?: Element | undefined;
@@ -68850,6 +70157,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -68857,6 +70165,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueMarkdown}
+   * @fhirType markdown
    */
   valueMarkdown?: string | undefined;
   _valueMarkdown?: Element | undefined;
@@ -68864,6 +70173,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueOid}
+   * @fhirType oid
    */
   valueOid?: string | undefined;
   _valueOid?: Element | undefined;
@@ -68871,6 +70181,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valuePositiveInt}
+   * @fhirType positiveInt
    */
   valuePositiveInt?: number | undefined;
   _valuePositiveInt?: Element | undefined;
@@ -68885,6 +70196,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueTime}
+   * @fhirType time
    */
   valueTime?: string | undefined;
   _valueTime?: Element | undefined;
@@ -68892,6 +70204,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueUnsignedInt}
+   * @fhirType unsignedInt
    */
   valueUnsignedInt?: number | undefined;
   _valueUnsignedInt?: Element | undefined;
@@ -68899,6 +70212,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueUri}
+   * @fhirType uri
    */
   valueUri?: string | undefined;
   _valueUri?: Element | undefined;
@@ -68906,6 +70220,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueUrl}
+   * @fhirType url
    */
   valueUrl?: string | undefined;
   _valueUrl?: Element | undefined;
@@ -68913,6 +70228,7 @@ Modifier extensions
   /**
    * Conveys the content if the parameter is a data type.
    * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.valueUuid}
+   * @fhirType uuid
    */
   valueUuid?: string | undefined;
   _valueUuid?: Element | undefined;
@@ -69186,6 +70502,7 @@ export interface PatientCommunication extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.communication.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -69272,6 +70589,7 @@ export interface PatientContact extends BackboneElement {
    * for administration and record keeping purposes.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.contact.gender}
    * @see {@link AdministrativeGender}
+   * @fhirType code
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -69280,6 +70598,7 @@ export interface PatientContact extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.contact.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -69373,6 +70692,7 @@ export interface PatientLink extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.link.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -69413,6 +70733,7 @@ Modifier extensions
    * The type of link between this patient resource and another patient resource.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.link.type}
    * @see {@link LinkType}
+   * @fhirType code
    */
   type: LinkType;
   _type?: Element | undefined;
@@ -69461,6 +70782,7 @@ Deceased patients may also be marked
    * unknown  There is a standard extension "patient-birthTime" available that should
    * be used where Time is required (such as in maternity/infant care systems).
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.birthDate}
+   * @fhirType date
    */
   birthDate?: string | undefined;
   _birthDate?: Element | undefined;
@@ -69505,6 +70827,7 @@ Deceased patients may also be marked
    * or not the individual is deceased. Most systems will interpret the absence of a
    * value as a sign of the person being alive.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.deceasedDateTime}
+   * @fhirType dateTime
    */
   deceasedDateTime?: string | undefined;
   _deceasedDateTime?: Element | undefined;
@@ -69528,6 +70851,7 @@ Deceased patients may also be marked
    * information about communicating patient gender and sex.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.gender}
    * @see {@link AdministrativeGender}
+   * @fhirType code
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -69607,6 +70931,7 @@ Jurisdictions may decide that they can profile
    * triplets example, then all 3 patient records would have valueBoolean=true (the
    * ordering is not indicated).
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.multipleBirthInteger}
+   * @fhirType integer
    */
   multipleBirthInteger?: number | undefined;
   _multipleBirthInteger?: Element | undefined;
@@ -69668,6 +70993,7 @@ export interface PaymentNotice extends DomainResource {
   /**
    * The date when this resource was created.
    * @see {@link http://hl7.org/fhir/R4B/PaymentNotice-definitions.html#PaymentNotice.created}
+   * @fhirType dateTime
    */
   created: string;
   _created?: Element | undefined;
@@ -69697,6 +71023,7 @@ export interface PaymentNotice extends DomainResource {
   /**
    * The date when the above payment action occurred.
    * @see {@link http://hl7.org/fhir/R4B/PaymentNotice-definitions.html#PaymentNotice.paymentDate}
+   * @fhirType date
    */
   paymentDate?: string | undefined;
   _paymentDate?: Element | undefined;
@@ -69743,6 +71070,7 @@ export interface PaymentNotice extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/PaymentNotice-definitions.html#PaymentNotice.status}
    * @see {@link FinancialResourceStatusCodes}
+   * @fhirType code
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -69763,6 +71091,7 @@ export interface PaymentReconciliationDetail extends BackboneElement {
   /**
    * The date from the response resource containing a commitment to pay.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.detail.date}
+   * @fhirType date
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -69786,6 +71115,7 @@ export interface PaymentReconciliationDetail extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.detail.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -69896,6 +71226,7 @@ export interface PaymentReconciliationProcessNote extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.processNote.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -69934,6 +71265,7 @@ Modifier extensions
    * The business purpose of the note text.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.processNote.type}
    * @see {@link NoteType}
+   * @fhirType code
    */
   type?: NoteType | undefined;
   _type?: Element | undefined;
@@ -69953,6 +71285,7 @@ export interface PaymentReconciliation extends DomainResource {
   /**
    * The date when the resource was created.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.created}
+   * @fhirType dateTime
    */
   created: string;
   _created?: Element | undefined;
@@ -69995,6 +71328,7 @@ export interface PaymentReconciliation extends DomainResource {
    * (partial) or that all of the adjudication has been undertaken (complete).
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.outcome}
    * @see {@link RemittanceOutcome}
+   * @fhirType code
    */
   outcome?: RemittanceOutcome | undefined;
   _outcome?: Element | undefined;
@@ -70009,6 +71343,7 @@ export interface PaymentReconciliation extends DomainResource {
   /**
    * The date of payment as indicated on the financial instrument.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.paymentDate}
+   * @fhirType date
    */
   paymentDate: string;
   _paymentDate?: Element | undefined;
@@ -70064,6 +71399,7 @@ export interface PaymentReconciliation extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.status}
    * @see {@link FinancialResourceStatusCodes}
+   * @fhirType code
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;
@@ -70085,6 +71421,7 @@ export interface Period extends Element {
    * expected/planned to end at that time.
    * The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a
    * period that has an end value of 2012-02-03.
+   * @fhirType dateTime
    */
   end?: string | undefined;
   _end?: Element | undefined;
@@ -70093,6 +71430,7 @@ export interface Period extends Element {
    * The start of the period. The boundary is inclusive.
    * If the low element is missing, the meaning is that the low boundary is not
    * known.
+   * @fhirType dateTime
    */
   start?: string | undefined;
   _start?: Element | undefined;
@@ -70107,6 +71445,7 @@ export interface PersonLink extends BackboneElement {
    * Level of assurance that this link is associated with the target resource.
    * @see {@link http://hl7.org/fhir/R4B/Person-definitions.html#Person.link.assurance}
    * @see {@link IdentityAssuranceLevel}
+   * @fhirType code
    */
   assurance?: IdentityAssuranceLevel | undefined;
   _assurance?: Element | undefined;
@@ -70130,6 +71469,7 @@ export interface PersonLink extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Person-definitions.html#Person.link.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -70196,6 +71536,7 @@ export interface Person extends DomainResource {
    * At least an estimated year should be provided as a guess if the real DOB is
    * unknown.
    * @see {@link http://hl7.org/fhir/R4B/Person-definitions.html#Person.birthDate}
+   * @fhirType date
    */
   birthDate?: string | undefined;
   _birthDate?: Element | undefined;
@@ -70208,6 +71549,7 @@ export interface Person extends DomainResource {
    * though a clear majority of systems and contexts only support M and F.
    * @see {@link http://hl7.org/fhir/R4B/Person-definitions.html#Person.gender}
    * @see {@link AdministrativeGender}
+   * @fhirType code
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -70278,6 +71620,7 @@ export interface PlanDefinitionAction extends BackboneElement {
    * Defines whether the action can be selected multiple times.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.cardinalityBehavior}
    * @see {@link ActionCardinalityBehavior}
+   * @fhirType code
    */
   cardinalityBehavior?: ActionCardinalityBehavior | undefined;
   _cardinalityBehavior?: Element | undefined;
@@ -70310,6 +71653,7 @@ export interface PlanDefinitionAction extends BackboneElement {
    * dynamicValue with a root ($this) path can be used to define the entire resource
    * dynamically.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.definitionCanonical}
+   * @fhirType canonical
    */
   definitionCanonical?: string | undefined;
   _definitionCanonical?: Element | undefined;
@@ -70321,6 +71665,7 @@ export interface PlanDefinitionAction extends BackboneElement {
    * dynamicValue with a root ($this) path can be used to define the entire resource
    * dynamically.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.definitionUri}
+   * @fhirType uri
    */
   definitionUri?: string | undefined;
   _definitionUri?: Element | undefined;
@@ -70380,6 +71725,7 @@ export interface PlanDefinitionAction extends BackboneElement {
    * would be the unique id of a defined goal element establishing the acceptance
    * criteria for the action.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.goalId}
+   * @fhirType id
    */
   goalId?: Array<string> | undefined;
   _goalId?: Element[] | undefined;
@@ -70388,6 +71734,7 @@ export interface PlanDefinitionAction extends BackboneElement {
    * Defines the grouping behavior for the action and its children.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.groupingBehavior}
    * @see {@link ActionGroupingBehavior}
+   * @fhirType code
    */
   groupingBehavior?: ActionGroupingBehavior | undefined;
   _groupingBehavior?: Element | undefined;
@@ -70396,6 +71743,7 @@ export interface PlanDefinitionAction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -70448,6 +71796,7 @@ Modifier extensions
    * Defines whether the action should usually be preselected.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.precheckBehavior}
    * @see {@link ActionPrecheckBehavior}
+   * @fhirType code
    */
   precheckBehavior?: ActionPrecheckBehavior | undefined;
   _precheckBehavior?: Element | undefined;
@@ -70464,6 +71813,7 @@ Modifier extensions
    * actions.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.priority}
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -70491,6 +71841,7 @@ Modifier extensions
    * Defines the required behavior for the action.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.requiredBehavior}
    * @see {@link ActionRequiredBehavior}
+   * @fhirType code
    */
   requiredBehavior?: ActionRequiredBehavior | undefined;
   _requiredBehavior?: Element | undefined;
@@ -70499,6 +71850,7 @@ Modifier extensions
    * Defines the selection behavior for the action and its children.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.selectionBehavior}
    * @see {@link ActionSelectionBehavior}
+   * @fhirType code
    */
   selectionBehavior?: ActionSelectionBehavior | undefined;
   _selectionBehavior?: Element | undefined;
@@ -70559,6 +71911,7 @@ In addition, because the subject needs to
  * subjects supplied in context and by type (i.e. the patient subject would resolve
  * to a resource of type Patient).
  * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.subjectCanonical}
+ * @fhirType canonical
  */
   subjectCanonical?: string | undefined;
   _subjectCanonical?: Element | undefined;
@@ -70575,6 +71928,7 @@ In addition, because the subject needs to
   /**
    * An optional value describing when the action should be performed.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.timingDateTime}
+   * @fhirType dateTime
    */
   timingDateTime?: string | undefined;
   _timingDateTime?: Element | undefined;
@@ -70632,6 +71986,7 @@ In addition, because the subject needs to
    * transform and dynamic values are specific, the dynamic values are applied to the
    * result of the transform.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.transform}
+   * @fhirType canonical
    */
   transform?: string | undefined;
   _transform?: Element | undefined;
@@ -70689,6 +72044,7 @@ export interface PlanDefinitionActionCondition extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.condition.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -70700,6 +72056,7 @@ export interface PlanDefinitionActionCondition extends BackboneElement {
    * through application and used to describe enter/exit criteria for an action.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.condition.kind}
    * @see {@link ActionConditionKind}
+   * @fhirType code
    */
   kind: ActionConditionKind;
   _kind?: Element | undefined;
@@ -70770,6 +72127,7 @@ export interface PlanDefinitionActionDynamicValue extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.dynamicValue.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -70841,6 +72199,7 @@ export interface PlanDefinitionActionParticipant extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.participant.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -70879,6 +72238,7 @@ Modifier extensions
    * The type of participant in the action.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.participant.type}
    * @see {@link ActionParticipantType}
+   * @fhirType code
    */
   type: ActionParticipantType;
   _type?: Element | undefined;
@@ -70895,6 +72255,7 @@ export interface PlanDefinitionActionRelatedAction extends BackboneElement {
   /**
    * The element id of the related action.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.relatedAction.actionId}
+   * @fhirType id
    */
   actionId: string;
   _actionId?: Element | undefined;
@@ -70918,6 +72279,7 @@ export interface PlanDefinitionActionRelatedAction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.relatedAction.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -70965,6 +72327,7 @@ Modifier extensions
    * The relationship of this action to the related action.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.relatedAction.relationship}
    * @see {@link ActionRelationshipType}
+   * @fhirType code
    */
   relationship: ActionRelationshipType;
   _relationship?: Element | undefined;
@@ -71032,6 +72395,7 @@ export interface PlanDefinitionGoal extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.goal.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -71153,6 +72517,7 @@ export interface PlanDefinitionGoalTarget extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.goal.target.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -71225,6 +72590,7 @@ export interface PlanDefinition extends DomainResource {
    * The 'date' element may be more recent than the approval date because of minor
    * changes or editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -71251,6 +72617,7 @@ export interface PlanDefinition extends DomainResource {
    * Copyright statements are generally legal restrictions on the use and publishing
    * of the plan definition.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -71265,6 +72632,7 @@ export interface PlanDefinition extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -71280,6 +72648,7 @@ export interface PlanDefinition extends DomainResource {
    * available from context (e.g. the language of the plan definition is presumed to
    * be the predominant language in the place the plan definition was created).
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -71360,6 +72729,7 @@ export interface PlanDefinition extends DomainResource {
    * periodically after approval but does not change the original approval date.
    * If specified, this date follows the original approval date.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -71368,6 +72738,7 @@ export interface PlanDefinition extends DomainResource {
    * A reference to a Library resource containing any formal logic used by the plan
    * definition.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.library}
+   * @fhirType canonical
    */
   library?: Array<string> | undefined;
   _library?: Element[] | undefined;
@@ -71405,6 +72776,7 @@ export interface PlanDefinition extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this plan definition.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -71433,6 +72805,7 @@ export interface PlanDefinition extends DomainResource {
    * Allows filtering of plan definitions that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -71481,6 +72854,7 @@ export interface PlanDefinition extends DomainResource {
    * backwards-compatibility as possible, it is recommended to only use the new
    * canonical type with these use cases.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.subjectCanonical}
+   * @fhirType canonical
    */
   subjectCanonical?: string | undefined;
   _subjectCanonical?: Element | undefined;
@@ -71540,6 +72914,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -71661,6 +73036,7 @@ export interface PractitionerQualification extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Practitioner-definitions.html#Practitioner.qualification.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -71746,6 +73122,7 @@ Work addresses are not typically entered in this property as they are
   /**
    * The date of birth for the practitioner.
    * @see {@link http://hl7.org/fhir/R4B/Practitioner-definitions.html#Practitioner.birthDate}
+   * @fhirType date
    */
   birthDate?: string | undefined;
   _birthDate?: Element | undefined;
@@ -71765,6 +73142,7 @@ Work addresses are not typically entered in this property as they are
    * administration and record keeping purposes.
    * @see {@link http://hl7.org/fhir/R4B/Practitioner-definitions.html#Practitioner.gender}
    * @see {@link AdministrativeGender}
+   * @fhirType code
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -71847,6 +73225,7 @@ export interface PractitionerRoleAvailableTime extends BackboneElement {
    * ignored.
    * The timezone is expected to be for where this HealthcareService is provided at.
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.availableTime.availableEndTime}
+   * @fhirType time
    */
   availableEndTime?: string | undefined;
   _availableEndTime?: Element | undefined;
@@ -71856,6 +73235,7 @@ export interface PractitionerRoleAvailableTime extends BackboneElement {
    * ignored.
    * The timezone is expected to be for where this HealthcareService is provided at.
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.availableTime.availableStartTime}
+   * @fhirType time
    */
   availableStartTime?: string | undefined;
   _availableStartTime?: Element | undefined;
@@ -71864,6 +73244,7 @@ export interface PractitionerRoleAvailableTime extends BackboneElement {
    * Indicates which days of the week are available between the start and end Times.
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.availableTime.daysOfWeek}
    * @see {@link DaysOfWeek}
+   * @fhirType code
    */
   daysOfWeek?: Array<DaysOfWeek> | undefined;
   _daysOfWeek?: Element[] | undefined;
@@ -71887,6 +73268,7 @@ export interface PractitionerRoleAvailableTime extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.availableTime.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -71955,6 +73337,7 @@ export interface PractitionerRoleNotAvailable extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.notAvailable.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -72139,6 +73522,7 @@ export interface ProcedureFocalDevice extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.focalDevice.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -72213,6 +73597,7 @@ export interface ProcedurePerformer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.performer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -72371,6 +73756,7 @@ export interface Procedure extends DomainResource {
    * The URL pointing to a FHIR-defined protocol, guideline, order set or other
    * definition that is adhered to in whole or in part by this Procedure.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.instantiatesCanonical}
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -72381,6 +73767,7 @@ export interface Procedure extends DomainResource {
    * This might be an HTML page, PDF, etc. or could just be a non-resolvable URI
    * identifier.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -72435,6 +73822,7 @@ export interface Procedure extends DomainResource {
    * performed and documented during the encounter might have more precise UTC
    * timestamps with timezone.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.performedDateTime}
+   * @fhirType dateTime
    */
   performedDateTime?: string | undefined;
   _performedDateTime?: Element | undefined;
@@ -72577,6 +73965,7 @@ This element is labeled as a
  * currently valid.
  * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.status}
  * @see {@link EventStatus}
+ * @fhirType code
  */
   status: EventStatus;
   _status?: Element | undefined;
@@ -72787,6 +74176,7 @@ export interface ProvenanceAgent extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.agent.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -72872,6 +74262,7 @@ export interface ProvenanceEntity extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.entity.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -72903,6 +74294,7 @@ Modifier extensions
    * How the entity was used during the activity.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.entity.role}
    * @see {@link ProvenanceEntityRole}
+   * @fhirType code
    */
   role: ProvenanceEntityRole;
   _role?: Element | undefined;
@@ -72982,6 +74374,7 @@ export interface Provenance extends DomainResource {
    * The period can be a little arbitrary; where possible, the time should correspond
    * to human assessment of the activity time.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.occurredDateTime}
+   * @fhirType dateTime
    */
   occurredDateTime?: string | undefined;
   _occurredDateTime?: Element | undefined;
@@ -72995,6 +74388,7 @@ export interface Provenance extends DomainResource {
    * holds policy logic, the unique policy identifier is placed into the policy
    * element.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.policy}
+   * @fhirType uri
    */
   policy?: Array<string> | undefined;
   _policy?: Element[] | undefined;
@@ -73012,6 +74406,7 @@ export interface Provenance extends DomainResource {
    * delay between recording the event and updating the provenance and target
    * resource.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.recorded}
+   * @fhirType instant
    */
   recorded: string;
   _recorded?: Element | undefined;
@@ -73057,6 +74452,7 @@ export interface Quantity extends Element {
    * The preferred system is UCUM, but SNOMED CT can also be used (for customary
    * units) or ISO 4217 for currency.  The context of use may additionally require a
    * code from a particular system.
+   * @fhirType code
    */
   code?: string | undefined;
   _code?: Element | undefined;
@@ -73066,12 +74462,14 @@ export interface Quantity extends Element {
    * greater or less than the stated value due to measurement issues; e.g. if the
    * comparator is "<" , then the real value is < stated value.
    * @see {@link QuantityComparator}
+   * @fhirType code
    */
   comparator?: QuantityComparator | undefined;
   _comparator?: Element | undefined;
 
   /**
    * The identification of the system that provides the coded form of the unit.
+   * @fhirType uri
    */
   system?: string | undefined;
   _system?: Element | undefined;
@@ -73088,6 +74486,7 @@ export interface Quantity extends Element {
    * The implicit precision in the value should always be honored. Monetary values
    * have their own rules for handling precision (refer to standard accounting text
    * books).
+   * @fhirType decimal
    */
   value?: number | undefined;
   _value?: Element | undefined;
@@ -73118,6 +74517,7 @@ export interface QuestionnaireItem extends BackboneElement {
    * Answer Lists](loinc.html#alist). The value may come from the ElementDefinition
    * referred to by .definition.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.answerValueSet}
+   * @fhirType canonical
    */
   answerValueSet?: string | undefined;
   _answerValueSet?: Element | undefined;
@@ -73160,6 +74560,7 @@ export interface QuestionnaireItem extends BackboneElement {
  * In the absence of a fragment identifier, the first/root element definition in
  * the target is the matching element definition.
  * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.definition}
+ * @fhirType uri
  */
   definition?: string | undefined;
   _definition?: Element | undefined;
@@ -73170,6 +74571,7 @@ export interface QuestionnaireItem extends BackboneElement {
    * This element must be specified if more than one enableWhen value is provided.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.enableBehavior}
    * @see {@link EnableWhenBehavior}
+   * @fhirType code
    */
   enableBehavior?: EnableWhenBehavior | undefined;
   _enableBehavior?: Element | undefined;
@@ -73208,6 +74610,7 @@ export interface QuestionnaireItem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -73243,6 +74646,7 @@ export interface QuestionnaireItem extends BackboneElement {
    * data, not the number of bytes of the binary data. The value may come from the
    * ElementDefinition referred to by .definition.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.maxLength}
+   * @fhirType integer
    */
   maxLength?: number | undefined;
   _maxLength?: Element | undefined;
@@ -73352,6 +74756,7 @@ The resulting QuestionnaireResponse will be
    * value may come from the ElementDefinition referred to by .definition.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.type}
    * @see {@link QuestionnaireItemType}
+   * @fhirType code
    */
   type: QuestionnaireItemType;
   _type?: Element | undefined;
@@ -73384,6 +74789,7 @@ export interface QuestionnaireItemAnswerOption extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.answerOption.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -73424,6 +74830,7 @@ Modifier extensions
    * A potential answer that's allowed as the answer to this question.
    * The data type of the value must agree with the item.type.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.answerOption.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -73432,6 +74839,7 @@ Modifier extensions
    * A potential answer that's allowed as the answer to this question.
    * The data type of the value must agree with the item.type.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.answerOption.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -73440,6 +74848,7 @@ Modifier extensions
    * A potential answer that's allowed as the answer to this question.
    * The data type of the value must agree with the item.type.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.answerOption.valueTime}
+   * @fhirType time
    */
   valueTime?: string | undefined;
   _valueTime?: Element | undefined;
@@ -73494,6 +74903,7 @@ export interface QuestionnaireItemEnableWhen extends BackboneElement {
    * A value that the referenced question is tested using the specified operator in
    * order for the item to be enabled.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.enableWhen.answerDecimal}
+   * @fhirType decimal
    */
   answerDecimal?: number | undefined;
   _answerDecimal?: Element | undefined;
@@ -73502,6 +74912,7 @@ export interface QuestionnaireItemEnableWhen extends BackboneElement {
    * A value that the referenced question is tested using the specified operator in
    * order for the item to be enabled.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.enableWhen.answerInteger}
+   * @fhirType integer
    */
   answerInteger?: number | undefined;
   _answerInteger?: Element | undefined;
@@ -73510,6 +74921,7 @@ export interface QuestionnaireItemEnableWhen extends BackboneElement {
    * A value that the referenced question is tested using the specified operator in
    * order for the item to be enabled.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.enableWhen.answerDate}
+   * @fhirType date
    */
   answerDate?: string | undefined;
   _answerDate?: Element | undefined;
@@ -73518,6 +74930,7 @@ export interface QuestionnaireItemEnableWhen extends BackboneElement {
    * A value that the referenced question is tested using the specified operator in
    * order for the item to be enabled.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.enableWhen.answerDateTime}
+   * @fhirType dateTime
    */
   answerDateTime?: string | undefined;
   _answerDateTime?: Element | undefined;
@@ -73526,6 +74939,7 @@ export interface QuestionnaireItemEnableWhen extends BackboneElement {
    * A value that the referenced question is tested using the specified operator in
    * order for the item to be enabled.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.enableWhen.answerTime}
+   * @fhirType time
    */
   answerTime?: string | undefined;
   _answerTime?: Element | undefined;
@@ -73581,6 +74995,7 @@ export interface QuestionnaireItemEnableWhen extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.enableWhen.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -73612,6 +75027,7 @@ Modifier extensions
    * Specifies the criteria by which the question is enabled.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.enableWhen.operator}
    * @see {@link QuestionnaireItemOperator}
+   * @fhirType code
    */
   operator: QuestionnaireItemOperator;
   _operator?: Element | undefined;
@@ -73660,6 +75076,7 @@ export interface QuestionnaireItemInitial extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.initial.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -73699,6 +75116,7 @@ Modifier extensions
    * The actual value to for an initial answer.
    * The type of the initial value must be consistent with the type of the item.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.initial.valueDecimal}
+   * @fhirType decimal
    */
   valueDecimal?: number | undefined;
   _valueDecimal?: Element | undefined;
@@ -73707,6 +75125,7 @@ Modifier extensions
    * The actual value to for an initial answer.
    * The type of the initial value must be consistent with the type of the item.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.initial.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -73715,6 +75134,7 @@ Modifier extensions
    * The actual value to for an initial answer.
    * The type of the initial value must be consistent with the type of the item.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.initial.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -73723,6 +75143,7 @@ Modifier extensions
    * The actual value to for an initial answer.
    * The type of the initial value must be consistent with the type of the item.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.initial.valueDateTime}
+   * @fhirType dateTime
    */
   valueDateTime?: string | undefined;
   _valueDateTime?: Element | undefined;
@@ -73731,6 +75152,7 @@ Modifier extensions
    * The actual value to for an initial answer.
    * The type of the initial value must be consistent with the type of the item.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.initial.valueTime}
+   * @fhirType time
    */
   valueTime?: string | undefined;
   _valueTime?: Element | undefined;
@@ -73747,6 +75169,7 @@ Modifier extensions
    * The actual value to for an initial answer.
    * The type of the initial value must be consistent with the type of the item.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.initial.valueUri}
+   * @fhirType uri
    */
   valueUri?: string | undefined;
   _valueUri?: Element | undefined;
@@ -73802,6 +75225,7 @@ export interface Questionnaire extends DomainResource {
    * The 'date' element may be more recent than the approval date because of minor
    * changes or editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -73828,6 +75252,7 @@ export interface Questionnaire extends DomainResource {
    * Copyright statements are generally legal restrictions on the use and publishing
    * of the questionnaire.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -73842,6 +75267,7 @@ export interface Questionnaire extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -73849,6 +75275,7 @@ export interface Questionnaire extends DomainResource {
   /**
    * The URL of a Questionnaire that this Questionnaire is based on.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.derivedFrom}
+   * @fhirType canonical
    */
   derivedFrom?: Array<string> | undefined;
   _derivedFrom?: Element[] | undefined;
@@ -73864,6 +75291,7 @@ export interface Questionnaire extends DomainResource {
    * available from context (e.g. the language of the questionnaire is presumed to be
    * the predominant language in the place the questionnaire was created).
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -73926,6 +75354,7 @@ export interface Questionnaire extends DomainResource {
    * periodically after approval but does not change the original approval date.
    * If specified, this date follows the original approval date.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -73963,6 +75392,7 @@ export interface Questionnaire extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this questionnaire.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -73973,6 +75403,7 @@ export interface Questionnaire extends DomainResource {
    * Allows filtering of questionnaires that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -73983,6 +75414,7 @@ export interface Questionnaire extends DomainResource {
    * If none are specified, then the subject is unlimited.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.subjectType}
    * @see {@link ResourceType}
+   * @fhirType code
    */
   subjectType?: Array<ResourceType> | undefined;
   _subjectType?: Element[] | undefined;
@@ -74006,6 +75438,7 @@ export interface Questionnaire extends DomainResource {
    * The name of the referenced questionnaire can be conveyed using the
    * http://hl7.org/fhir/StructureDefinition/display extension.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.url}
+   * @fhirType uri
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -74071,6 +75504,7 @@ There
  * is no need for this element if the item pointed to by the linkId has a
  * definition listed.
  * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.definition}
+ * @fhirType uri
  */
   definition?: string | undefined;
   _definition?: Element | undefined;
@@ -74094,6 +75528,7 @@ There
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -74164,6 +75599,7 @@ export interface QuestionnaireResponseItemAnswer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.answer.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -74213,6 +75649,7 @@ Modifier extensions
    * datatype specified by Questionnaire.item.type in the corresponding
    * Questionnaire.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.answer.valueDecimal}
+   * @fhirType decimal
    */
   valueDecimal?: number | undefined;
   _valueDecimal?: Element | undefined;
@@ -74226,6 +75663,7 @@ Modifier extensions
    * datatype specified by Questionnaire.item.type in the corresponding
    * Questionnaire.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.answer.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -74239,6 +75677,7 @@ Modifier extensions
    * datatype specified by Questionnaire.item.type in the corresponding
    * Questionnaire.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.answer.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -74252,6 +75691,7 @@ Modifier extensions
    * datatype specified by Questionnaire.item.type in the corresponding
    * Questionnaire.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.answer.valueDateTime}
+   * @fhirType dateTime
    */
   valueDateTime?: string | undefined;
   _valueDateTime?: Element | undefined;
@@ -74265,6 +75705,7 @@ Modifier extensions
    * datatype specified by Questionnaire.item.type in the corresponding
    * Questionnaire.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.answer.valueTime}
+   * @fhirType time
    */
   valueTime?: string | undefined;
   _valueTime?: Element | undefined;
@@ -74291,6 +75732,7 @@ Modifier extensions
    * datatype specified by Questionnaire.item.type in the corresponding
    * Questionnaire.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.answer.valueUri}
+   * @fhirType uri
    */
   valueUri?: string | undefined;
   _valueUri?: Element | undefined;
@@ -74380,6 +75822,7 @@ export interface QuestionnaireResponse extends DomainResource {
 This element is optional to allow for systems that might not know the
  * value, however it SHOULD be populated if possible.
  * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.authored}
+ * @fhirType dateTime
  */
   authored?: string | undefined;
   _authored?: Element | undefined;
@@ -74445,6 +75888,7 @@ This element is optional to allow for systems that might not know the
    * questions must be organized into the same groups, nested questions must still be
    * nested, etc.).
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.questionnaire}
+   * @fhirType canonical
    */
   questionnaire?: string | undefined;
   _questionnaire?: Element | undefined;
@@ -74463,6 +75907,7 @@ This element is optional to allow for systems that might not know the
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.status}
    * @see {@link QuestionnaireResponseStatus}
+   * @fhirType code
    */
   status: QuestionnaireResponseStatus;
   _status?: Element | undefined;
@@ -74649,6 +76094,7 @@ The type is the Canonical URL of Resource Definition that
  * (e.g. a RESTful URL) or by resolving the target of the reference; if both the
  * type and a reference is provided, the reference SHALL resolve to a resource of
  * the same type as that specified.
+ * @fhirType uri
  */
   type?: string | undefined;
   _type?: Element | undefined;
@@ -74675,6 +76121,7 @@ export interface RegulatedAuthorizationCase extends BackboneElement {
   /**
    * Relevant date for this case.
    * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.case.dateDateTime}
+   * @fhirType dateTime
    */
   dateDateTime?: string | undefined;
   _dateDateTime?: Element | undefined;
@@ -74698,6 +76145,7 @@ export interface RegulatedAuthorizationCase extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.case.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -74784,6 +76232,7 @@ export interface RegulatedAuthorization extends DomainResource {
   /**
    * General textual supporting information.
    * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -74846,6 +76295,7 @@ export interface RegulatedAuthorization extends DomainResource {
   /**
    * The date at which the current status was assigned.
    * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.statusDate}
+   * @fhirType dateTime
    */
   statusDate?: string | undefined;
   _statusDate?: Element | undefined;
@@ -74889,6 +76339,7 @@ export interface RelatedArtifact extends Element {
    * according to an accepted citation format.
    * Additional structured information about citations should be captured as
    * extensions.
+   * @fhirType markdown
    */
   citation?: string | undefined;
   _citation?: Element | undefined;
@@ -74920,6 +76371,7 @@ export interface RelatedArtifact extends Element {
    * If the type is predecessor, this is a reference to the succeeding knowledge
    * resource. If the type is successor, this is a reference to the prior knowledge
    * resource.
+   * @fhirType canonical
    */
   resource?: string | undefined;
   _resource?: Element | undefined;
@@ -74927,6 +76379,7 @@ export interface RelatedArtifact extends Element {
   /**
    * The type of relationship to the related artifact.
    * @see {@link RelatedArtifactType}
+   * @fhirType code
    */
   type: RelatedArtifactType;
   _type?: Element | undefined;
@@ -74935,6 +76388,7 @@ export interface RelatedArtifact extends Element {
    * A url for the artifact that can be followed to access the actual content.
    * If a document or resource element is present, this element SHALL NOT be provided
    * (use the url or reference in the Attachment or resource reference).
+   * @fhirType url
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -74969,6 +76423,7 @@ export interface RelatedPersonCommunication extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/RelatedPerson-definitions.html#RelatedPerson.communication.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -75051,6 +76506,7 @@ export interface RelatedPerson extends DomainResource {
   /**
    * The date on which the related person was born.
    * @see {@link http://hl7.org/fhir/R4B/RelatedPerson-definitions.html#RelatedPerson.birthDate}
+   * @fhirType date
    */
   birthDate?: string | undefined;
   _birthDate?: Element | undefined;
@@ -75072,6 +76528,7 @@ export interface RelatedPerson extends DomainResource {
    * administration and record keeping purposes.
    * @see {@link http://hl7.org/fhir/R4B/RelatedPerson-definitions.html#RelatedPerson.gender}
    * @see {@link AdministrativeGender}
+   * @fhirType code
    */
   gender?: AdministrativeGender | undefined;
   _gender?: Element | undefined;
@@ -75142,6 +76599,7 @@ export interface Request {
   /**
    * For draft {{title}}s, indicates the date of initial creation.  For requests with
    * other statuses, indicates the date of activation.
+   * @fhirType dateTime
    */
   authoredOn?: string | undefined;
   _authoredOn?: Element | undefined;
@@ -75225,6 +76683,7 @@ Note: This is a
   /**
    * The URL pointing to a FHIR-defined protocol, guideline, orderset or other
    * definition that is adhered to in whole or in part by this {{title}}.
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -75234,6 +76693,7 @@ Note: This is a
    * other definition that is adhered to in whole or in part by this {{title}}.
    * This might be an HTML page, PDF, etc. or could just be a non-resolvable URI
    * identifier.
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -75265,6 +76725,7 @@ When resources map to this element,
  * "order".  Expectation is that the set of codes is mutually exclusive or a strict
  * all-encompassing hierarchy.
  * @see {@link RequestIntent}
+ * @fhirType code
  */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -75280,6 +76741,7 @@ When resources map to this element,
    * The date or time(s) at which the activity or service is desired to occur or not
    * occur.
    * [The list of types may be constrained as appropriate for the type of event].
+   * @fhirType dateTime
    */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -75323,6 +76785,7 @@ When resources map to this element,
    * Indicates how quickly the {{title}} should be addressed with respect to other
    * requests.
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -75406,6 +76869,7 @@ A status of completed for a "doNotPerform"
  * request indicates that the period of non-performance is now satisfied and the
  * request no longer holds.
  * @see {@link RequestStatus}
+ * @fhirType code
  */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -75449,6 +76913,7 @@ export interface RequestGroupAction extends BackboneElement {
    * Defines whether the action can be selected multiple times.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.cardinalityBehavior}
    * @see {@link ActionCardinalityBehavior}
+   * @fhirType code
    */
   cardinalityBehavior?: ActionCardinalityBehavior | undefined;
   _cardinalityBehavior?: Element | undefined;
@@ -75508,6 +76973,7 @@ export interface RequestGroupAction extends BackboneElement {
    * Defines the grouping behavior for the action and its children.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.groupingBehavior}
    * @see {@link ActionGroupingBehavior}
+   * @fhirType code
    */
   groupingBehavior?: ActionGroupingBehavior | undefined;
   _groupingBehavior?: Element | undefined;
@@ -75516,6 +76982,7 @@ export interface RequestGroupAction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -75554,6 +77021,7 @@ Modifier extensions
    * Defines whether the action should usually be preselected.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.precheckBehavior}
    * @see {@link ActionPrecheckBehavior}
+   * @fhirType code
    */
   precheckBehavior?: ActionPrecheckBehavior | undefined;
   _precheckBehavior?: Element | undefined;
@@ -75570,6 +77038,7 @@ Modifier extensions
    * actions.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.priority}
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -75586,6 +77055,7 @@ Modifier extensions
    * Defines expectations around whether an action is required.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.requiredBehavior}
    * @see {@link ActionRequiredBehavior}
+   * @fhirType code
    */
   requiredBehavior?: ActionRequiredBehavior | undefined;
   _requiredBehavior?: Element | undefined;
@@ -75603,6 +77073,7 @@ Modifier extensions
    * Defines the selection behavior for the action and its children.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.selectionBehavior}
    * @see {@link ActionSelectionBehavior}
+   * @fhirType code
    */
   selectionBehavior?: ActionSelectionBehavior | undefined;
   _selectionBehavior?: Element | undefined;
@@ -75619,6 +77090,7 @@ Modifier extensions
   /**
    * An optional value describing when the action should be performed.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.timingDateTime}
+   * @fhirType dateTime
    */
   timingDateTime?: string | undefined;
   _timingDateTime?: Element | undefined;
@@ -75711,6 +77183,7 @@ export interface RequestGroupActionCondition extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.condition.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -75722,6 +77195,7 @@ export interface RequestGroupActionCondition extends BackboneElement {
    * through application and used to describe enter/exit criteria for an action.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.condition.kind}
    * @see {@link ActionConditionKind}
+   * @fhirType code
    */
   kind: ActionConditionKind;
   _kind?: Element | undefined;
@@ -75759,6 +77233,7 @@ export interface RequestGroupActionRelatedAction extends BackboneElement {
   /**
    * The element id of the action this is related to.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.relatedAction.actionId}
+   * @fhirType id
    */
   actionId: string;
   _actionId?: Element | undefined;
@@ -75782,6 +77257,7 @@ export interface RequestGroupActionRelatedAction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.relatedAction.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -75829,6 +77305,7 @@ Modifier extensions
    * The relationship of this action to the related action.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.relatedAction.relationship}
    * @see {@link ActionRelationshipType}
+   * @fhirType code
    */
   relationship: ActionRelationshipType;
   _relationship?: Element | undefined;
@@ -75862,6 +77339,7 @@ export interface RequestGroup extends DomainResource {
   /**
    * Indicates when the request group was created.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.authoredOn}
+   * @fhirType dateTime
    */
   authoredOn?: string | undefined;
   _authoredOn?: Element | undefined;
@@ -75914,6 +77392,7 @@ export interface RequestGroup extends DomainResource {
    * A canonical URL referencing a FHIR-defined protocol, guideline, orderset or
    * other definition that is adhered to in whole or in part by this request.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.instantiatesCanonical}
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -75922,6 +77401,7 @@ export interface RequestGroup extends DomainResource {
    * A URL referencing an externally defined protocol, guideline, orderset or other
    * definition that is adhered to in whole or in part by this request.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -75931,6 +77411,7 @@ export interface RequestGroup extends DomainResource {
    * where the request fits into the workflow chain.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.intent}
    * @see {@link RequestIntent}
+   * @fhirType code
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -75947,6 +77428,7 @@ export interface RequestGroup extends DomainResource {
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.priority}
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -75980,6 +77462,7 @@ export interface RequestGroup extends DomainResource {
    * status of all the requests in the group.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.status}
    * @see {@link RequestStatus}
+   * @fhirType code
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -76010,6 +77493,7 @@ export interface ResearchDefinition extends DomainResource {
    * The 'date' element may be more recent than the approval date because of minor
    * changes or editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -76043,6 +77527,7 @@ export interface ResearchDefinition extends DomainResource {
    * Copyright statements are generally legal restrictions on the use and publishing
    * of the research definition.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -76057,6 +77542,7 @@ export interface ResearchDefinition extends DomainResource {
    * Additional specific dates may be added as extensions or be found by consulting
    * Provenances associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -76073,6 +77559,7 @@ export interface ResearchDefinition extends DomainResource {
    * to be the predominant language in the place the research definition was
    * created).
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -76159,6 +77646,7 @@ export interface ResearchDefinition extends DomainResource {
    * periodically after approval but does not change the original approval date.
    * If specified, this date follows the original approval date.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -76167,6 +77655,7 @@ export interface ResearchDefinition extends DomainResource {
    * A reference to a Library resource containing the formal logic used by the
    * ResearchDefinition.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.library}
+   * @fhirType canonical
    */
   library?: Array<string> | undefined;
   _library?: Element[] | undefined;
@@ -76221,6 +77710,7 @@ export interface ResearchDefinition extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this research definition.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -76258,6 +77748,7 @@ export interface ResearchDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -76338,6 +77829,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -76410,6 +77902,7 @@ export interface ResearchElementDefinitionCharacteristic
    * FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis onset in the
    * last year).
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.characteristic.definitionCanonical}
+   * @fhirType canonical
    */
   definitionCanonical?: string | undefined;
   _definitionCanonical?: Element | undefined;
@@ -76460,6 +77953,7 @@ export interface ResearchElementDefinitionCharacteristic
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.characteristic.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -76490,6 +77984,7 @@ Modifier extensions
   /**
    * Indicates what effective period the study covers.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.characteristic.participantEffectiveDateTime}
+   * @fhirType dateTime
    */
   participantEffectiveDateTime?: string | undefined;
   _participantEffectiveDateTime?: Element | undefined;
@@ -76526,6 +78021,7 @@ Modifier extensions
    * Indicates how elements are aggregated within the study effective period.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.characteristic.participantEffectiveGroupMeasure}
    * @see {@link GroupMeasure}
+   * @fhirType code
    */
   participantEffectiveGroupMeasure?: GroupMeasure | undefined;
   _participantEffectiveGroupMeasure?: Element | undefined;
@@ -76540,6 +78036,7 @@ Modifier extensions
   /**
    * Indicates what effective period the study covers.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.characteristic.studyEffectiveDateTime}
+   * @fhirType dateTime
    */
   studyEffectiveDateTime?: string | undefined;
   _studyEffectiveDateTime?: Element | undefined;
@@ -76576,6 +78073,7 @@ Modifier extensions
    * Indicates how elements are aggregated within the study effective period.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.characteristic.studyEffectiveGroupMeasure}
    * @see {@link GroupMeasure}
+   * @fhirType code
    */
   studyEffectiveGroupMeasure?: GroupMeasure | undefined;
   _studyEffectiveGroupMeasure?: Element | undefined;
@@ -76621,6 +78119,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * The 'date' element may be more recent than the approval date because of minor
    * changes or editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -76665,6 +78164,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * contents. Copyright statements are generally legal restrictions on the use and
    * publishing of the research element definition.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -76679,6 +78179,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * Additional specific dates may be added as extensions or be found by consulting
    * Provenances associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -76695,6 +78196,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * definition is presumed to be the predominant language in the place the research
    * element definition was created).
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -76765,6 +78267,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * periodically after approval but does not change the original approval date.
    * If specified, this date follows the original approval date.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -76773,6 +78276,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * A reference to a Library resource containing the formal logic used by the
    * ResearchElementDefinition.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.library}
+   * @fhirType canonical
    */
   library?: Array<string> | undefined;
   _library?: Element[] | undefined;
@@ -76811,6 +78315,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * ''why'' it is defined as it is.  This may be used to point to source materials
    * or specifications that drove the structure of this research element definition.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -76848,6 +78353,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * versus not.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -76912,6 +78418,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * The type of research element, a population, an exposure, or an outcome.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.type}
    * @see {@link ResearchElementType}
+   * @fhirType code
    */
   type: ResearchElementType;
   _type?: Element | undefined;
@@ -76938,6 +78445,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -76967,6 +78475,7 @@ In some cases, the resource can no longer
    * The type of the outcome (e.g. Dichotomous, Continuous, or Descriptive).
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.variableType}
    * @see {@link VariableType}
+   * @fhirType code
    */
   variableType?: VariableType | undefined;
   _variableType?: Element | undefined;
@@ -77026,6 +78535,7 @@ export interface ResearchStudyArm extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.arm.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -77094,6 +78604,7 @@ export interface ResearchStudyObjective extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.objective.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -77187,6 +78698,7 @@ export interface ResearchStudy extends DomainResource {
   /**
    * A full description of how the study is being conducted.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -77327,6 +78839,7 @@ export interface ResearchStudy extends DomainResource {
    * The current state of the study.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.status}
    * @see {@link ResearchStudyStatus}
+   * @fhirType code
    */
   status: ResearchStudyStatus;
   _status?: Element | undefined;
@@ -77398,6 +78911,7 @@ export interface ResearchSubject extends DomainResource {
    * The current state of the subject.
    * @see {@link http://hl7.org/fhir/R4B/ResearchSubject-definitions.html#ResearchSubject.status}
    * @see {@link ResearchSubjectStatus}
+   * @fhirType code
    */
   status: ResearchSubjectStatus;
   _status?: Element | undefined;
@@ -77426,6 +78940,7 @@ export interface Resource {
    * The only time that a resource does not have an id is when it is being submitted
    * to the server using a create operation.
    * @see {@link http://hl7.org/fhir/R4B/Resource-definitions.html#Resource.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -77444,6 +78959,7 @@ export interface Resource {
    * implementation guide that defines these special rules as part of it's narrative
    * along with other profiles, value sets, etc.
    * @see {@link http://hl7.org/fhir/R4B/Resource-definitions.html#Resource.implicitRules}
+   * @fhirType uri
    */
   implicitRules?: string | undefined;
   _implicitRules?: Element | undefined;
@@ -77460,6 +78976,7 @@ export interface Resource {
    * the html (see rules in HTML5 for information about the relationship between
    * xml:lang and the html lang attribute).
    * @see {@link http://hl7.org/fhir/R4B/Resource-definitions.html#Resource.language}
+   * @fhirType code
    */
   language?: string | undefined;
   _language?: Element | undefined;
@@ -77500,6 +79017,7 @@ export interface RiskAssessmentPrediction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.prediction.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -77540,6 +79058,7 @@ Modifier extensions
    * If range is used, it represents the lower and upper bounds of certainty; e.g.
    * 40-60%  Decimal values are expressed as percentages as well (max = 100).
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.prediction.probabilityDecimal}
+   * @fhirType decimal
    */
   probabilityDecimal?: number | undefined;
   _probabilityDecimal?: Element | undefined;
@@ -77574,6 +79093,7 @@ Modifier extensions
    * greater than 1 = higher risk than the population, numbers less than 1 = lower
    * risk.).
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.prediction.relativeRisk}
+   * @fhirType decimal
    */
   relativeRisk?: number | undefined;
   _relativeRisk?: Element | undefined;
@@ -77676,6 +79196,7 @@ export interface RiskAssessment extends DomainResource {
   /**
    * The date (and possibly time) the risk assessment was performed.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.occurrenceDateTime}
+   * @fhirType dateTime
    */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -77729,6 +79250,7 @@ export interface RiskAssessment extends DomainResource {
    * The status of the RiskAssessment, using the same statuses as an Observation.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.status}
    * @see {@link ObservationStatus}
+   * @fhirType code
    */
   status: ObservationStatus;
   _status?: Element | undefined;
@@ -77767,6 +79289,7 @@ export interface SampledData extends Element {
    * in time will be recorded at once.
    * If there is more than one dimension, the code for the type of data will define
    * the meaning of the dimensions (typically ECG data).
+   * @fhirType positiveInt
    */
   dimensions: number;
   _dimensions?: Element | undefined;
@@ -77774,6 +79297,7 @@ export interface SampledData extends Element {
   /**
    * A correction factor that is applied to the sampled data points before they are
    * added to the origin.
+   * @fhirType decimal
    */
   factor?: number | undefined;
   _factor?: Element | undefined;
@@ -77781,6 +79305,7 @@ export interface SampledData extends Element {
   /**
    * The lower limit of detection of the measured points. This is needed if any of
    * the data points have the value "L" (lower than detection limit).
+   * @fhirType decimal
    */
   lowerLimit?: number | undefined;
   _lowerLimit?: Element | undefined;
@@ -77795,6 +79320,7 @@ export interface SampledData extends Element {
   /**
    * The length of time between sampling times, measured in milliseconds.
    * This is usually a whole number.
+   * @fhirType decimal
    */
   period: number;
   _period?: Element | undefined;
@@ -77802,6 +79328,7 @@ export interface SampledData extends Element {
   /**
    * The upper limit of detection of the measured points. This is needed if any of
    * the data points have the value "U" (higher than detection limit).
+   * @fhirType decimal
    */
   upperLimit?: number | undefined;
   _upperLimit?: Element | undefined;
@@ -77898,6 +79425,7 @@ export interface SearchParameterComponent extends BackboneElement {
   /**
    * The definition of the search parameter that describes this part.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.component.definition}
+   * @fhirType canonical
    */
   definition: string;
   _definition?: Element | undefined;
@@ -77931,6 +79459,7 @@ export interface SearchParameterComponent extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.component.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -77978,6 +79507,7 @@ export interface SearchParameter extends DomainResource {
    * Search](http.html#xres-search)).
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.base}
    * @see {@link ResourceType}
+   * @fhirType code
    */
   base: Array<ResourceType>;
   _base?: Element[] | undefined;
@@ -78001,6 +79531,7 @@ export interface SearchParameter extends DomainResource {
    * search parameter.
    * For maximum compatibility, use only lowercase ASCII characters.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.code}
+   * @fhirType code
    */
   code: string;
   _code?: Element | undefined;
@@ -78011,6 +79542,7 @@ export interface SearchParameter extends DomainResource {
    * comparators.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.comparator}
    * @see {@link SearchComparator}
+   * @fhirType code
    */
   comparator?: Array<SearchComparator> | undefined;
   _comparator?: Element[] | undefined;
@@ -78041,6 +79573,7 @@ export interface SearchParameter extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -78056,6 +79589,7 @@ export interface SearchParameter extends DomainResource {
    * [`value-quantity`](http://hl7.org/fhir/SearchParameter/Observation-value-quantit
    * y), but detail how it is supported by the server.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.derivedFrom}
+   * @fhirType canonical
    */
   derivedFrom?: string | undefined;
   _derivedFrom?: Element | undefined;
@@ -78070,6 +79604,7 @@ export interface SearchParameter extends DomainResource {
    * available from context (e.g. the language of the search parameter is presumed to
    * be the predominant language in the place the search parameter was created).
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.description}
+   * @fhirType markdown
    */
   description: string;
   _description?: Element | undefined;
@@ -78111,6 +79646,7 @@ export interface SearchParameter extends DomainResource {
    * A modifier supported for the search parameter.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.modifier}
    * @see {@link SearchModifierCode}
+   * @fhirType code
    */
   modifier?: Array<SearchModifierCode> | undefined;
   _modifier?: Element[] | undefined;
@@ -78164,6 +79700,7 @@ export interface SearchParameter extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this search parameter.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -78174,6 +79711,7 @@ export interface SearchParameter extends DomainResource {
    * Allows filtering of search parameters that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -78182,6 +79720,7 @@ export interface SearchParameter extends DomainResource {
    * Types of resource (if a resource is referenced).
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.target}
    * @see {@link ResourceType}
+   * @fhirType code
    */
   target?: Array<ResourceType> | undefined;
   _target?: Element[] | undefined;
@@ -78191,6 +79730,7 @@ export interface SearchParameter extends DomainResource {
    * interpreted.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.type}
    * @see {@link SearchParamType}
+   * @fhirType code
    */
   type: SearchParamType;
   _type?: Element | undefined;
@@ -78216,6 +79756,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.url}
+ * @fhirType uri
  */
   url: string;
   _url?: Element | undefined;
@@ -78265,6 +79806,7 @@ In some cases, the resource can no longer
    * the xpath query.
    * @see {@link http://hl7.org/fhir/R4B/SearchParameter-definitions.html#SearchParameter.xpathUsage}
    * @see {@link XPathUsageType}
+   * @fhirType code
    */
   xpathUsage?: XPathUsageType | undefined;
   _xpathUsage?: Element | undefined;
@@ -78300,6 +79842,7 @@ export interface ServiceRequest extends DomainResource {
   /**
    * When the request transitioned to being actionable.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.authoredOn}
+   * @fhirType dateTime
    */
   authoredOn?: string | undefined;
   _authoredOn?: Element | undefined;
@@ -78390,6 +79933,7 @@ export interface ServiceRequest extends DomainResource {
    * example, multiple Patient and a Person resource instance might share the same
    * social insurance number.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.instantiatesCanonical}
+   * @fhirType canonical
    */
   instantiatesCanonical?: Array<string> | undefined;
   _instantiatesCanonical?: Element[] | undefined;
@@ -78400,6 +79944,7 @@ export interface ServiceRequest extends DomainResource {
    * This might be an HTML page, PDF, etc. or could just be a non-resolvable URI
    * identifier.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: Array<string> | undefined;
   _instantiatesUri?: Element[] | undefined;
@@ -78418,6 +79963,7 @@ export interface ServiceRequest extends DomainResource {
    * resource is actually applicable.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.intent}
    * @see {@link RequestIntent}
+   * @fhirType code
    */
   intent: RequestIntent;
   _intent?: Element | undefined;
@@ -78449,6 +79995,7 @@ export interface ServiceRequest extends DomainResource {
   /**
    * The date/time at which the requested service should occur.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.occurrenceDateTime}
+   * @fhirType dateTime
    */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -78514,6 +80061,7 @@ export interface ServiceRequest extends DomainResource {
    * other requests.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.priority}
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -78647,6 +80195,7 @@ All Provenances should have some historical version of this
    * general discussion) or using the [Task](task.html) resource.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.status}
    * @see {@link RequestStatus}
+   * @fhirType code
    */
   status: RequestStatus;
   _status?: Element | undefined;
@@ -78694,6 +80243,7 @@ export interface Signature extends Element {
    * Where the signature type is an XML DigSig, the signed content is a FHIR
    * Resource(s), the signature is of the XML form of the Resource(s) using
    * XML-Signature (XMLDIG) "Detached Signature" form.
+   * @fhirType base64Binary
    */
   data?: string | undefined;
   _data?: Element | undefined;
@@ -78711,6 +80261,7 @@ export interface Signature extends Element {
    * types are application/signature+xml for X ML DigSig, application/jose for JWS,
    * and image/* for a graphical image of a signature, etc.
    * @see {@link MimeTypes}
+   * @fhirType code
    */
   sigFormat?: MimeTypes | undefined;
   _sigFormat?: Element | undefined;
@@ -78722,6 +80273,7 @@ export interface Signature extends Element {
    * described in the specification (and imply appropriate bundle support).
    * Otherwise, mime types are legal here.
    * @see {@link MimeTypes}
+   * @fhirType code
    */
   targetFormat?: MimeTypes | undefined;
   _targetFormat?: Element | undefined;
@@ -78739,6 +80291,7 @@ export interface Signature extends Element {
   /**
    * When the digital signature was signed.
    * This should agree with the information in the signature.
+   * @fhirType instant
    */
   when: string;
   _when?: Element | undefined;
@@ -78781,6 +80334,7 @@ export interface Slot extends DomainResource {
   /**
    * Date/Time that the slot is to conclude.
    * @see {@link http://hl7.org/fhir/R4B/Slot-definitions.html#Slot.end}
+   * @fhirType instant
    */
   end: string;
   _end?: Element | undefined;
@@ -78836,6 +80390,7 @@ export interface Slot extends DomainResource {
   /**
    * Date/Time that the slot is to begin.
    * @see {@link http://hl7.org/fhir/R4B/Slot-definitions.html#Slot.start}
+   * @fhirType instant
    */
   start: string;
   _start?: Element | undefined;
@@ -78844,6 +80399,7 @@ export interface Slot extends DomainResource {
    * busy | free | busy-unavailable | busy-tentative | entered-in-error.
    * @see {@link http://hl7.org/fhir/R4B/Slot-definitions.html#Slot.status}
    * @see {@link SlotStatus}
+   * @fhirType code
    */
   status: SlotStatus;
   _status?: Element | undefined;
@@ -78870,6 +80426,7 @@ export interface SpecimenCollection extends BackboneElement {
    * Time when specimen was collected from subject - the physiologically relevant
    * time.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.collection.collectedDateTime}
+   * @fhirType dateTime
    */
   collectedDateTime?: string | undefined;
   _collectedDateTime?: Element | undefined;
@@ -78941,6 +80498,7 @@ export interface SpecimenCollection extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.collection.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -79039,6 +80597,7 @@ export interface SpecimenContainer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.container.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -79129,6 +80688,7 @@ export interface SpecimenProcessing extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.processing.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -79168,6 +80728,7 @@ Modifier extensions
    * example the time of sample fixation or the period of time the sample was in
    * formalin.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.processing.timeDateTime}
+   * @fhirType dateTime
    */
   timeDateTime?: string | undefined;
   _timeDateTime?: Element | undefined;
@@ -79263,6 +80824,7 @@ export interface Specimen extends DomainResource {
   /**
    * Time when specimen was received for processing or testing.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.receivedTime}
+   * @fhirType dateTime
    */
   receivedTime?: string | undefined;
   _receivedTime?: Element | undefined;
@@ -79282,6 +80844,7 @@ export interface Specimen extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.status}
    * @see {@link SpecimenStatus}
+   * @fhirType code
    */
   status?: SpecimenStatus | undefined;
   _status?: Element | undefined;
@@ -79345,6 +80908,7 @@ export interface SpecimenDefinitionTypeTested extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition-definitions.html#SpecimenDefinition.typeTested.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -79383,6 +80947,7 @@ Modifier extensions
    * The preference for this type of conditioned specimen.
    * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition-definitions.html#SpecimenDefinition.typeTested.preference}
    * @see {@link SpecimenContainedPreference}
+   * @fhirType code
    */
   preference: SpecimenContainedPreference;
   _preference?: Element | undefined;
@@ -79471,6 +81036,7 @@ export interface SpecimenDefinitionTypeTestedContainer extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition-definitions.html#SpecimenDefinition.typeTested.container.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -79577,6 +81143,7 @@ export interface SpecimenDefinitionTypeTestedContainerAdditive
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition-definitions.html#SpecimenDefinition.typeTested.container.additive.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -79630,6 +81197,7 @@ export interface SpecimenDefinitionTypeTestedHandling extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition-definitions.html#SpecimenDefinition.typeTested.handling.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -79774,6 +81342,7 @@ export interface StructureDefinitionContext extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.context.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -79806,6 +81375,7 @@ Modifier extensions
    * extension is.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.context.type}
    * @see {@link ExtensionContextType}
+   * @fhirType code
    */
   type: ExtensionContextType;
   _type?: Element | undefined;
@@ -79843,6 +81413,7 @@ export interface StructureDefinitionDifferential extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.differential.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -79903,6 +81474,7 @@ export interface StructureDefinitionMapping extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.mapping.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -79913,6 +81485,7 @@ export interface StructureDefinitionMapping extends BackboneElement {
    * The specification is described once, with general comments, and then specific
    * mappings are made that reference this declaration.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.mapping.identity}
+   * @fhirType id
    */
   identity: string;
   _identity?: Element | undefined;
@@ -79953,6 +81526,7 @@ Modifier extensions
    * A formal identity for the specification being mapped to helps with identifying
    * maps consistently.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.mapping.uri}
+   * @fhirType uri
    */
   uri?: string | undefined;
   _uri?: Element | undefined;
@@ -79990,6 +81564,7 @@ export interface StructureDefinitionSnapshot extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.snapshot.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -80058,6 +81633,7 @@ export interface StructureDefinition extends DomainResource {
    * populate snapshots from differential constraints. Logical Models have a base of
    * "Element" or another logical model.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.baseDefinition}
+   * @fhirType canonical
    */
   baseDefinition?: string | undefined;
   _baseDefinition?: Element | undefined;
@@ -80095,6 +81671,7 @@ export interface StructureDefinition extends DomainResource {
    * Copyright statements are generally legal restrictions on the use and publishing
    * of the structure definition.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -80109,6 +81686,7 @@ export interface StructureDefinition extends DomainResource {
    * Additional specific dates may be added as extensions or be found by consulting
    * Provenances associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -80122,6 +81700,7 @@ export interface StructureDefinition extends DomainResource {
    * Resources](profiling.html#resources)).
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.derivation}
    * @see {@link TypeDerivationRule}
+   * @fhirType code
    */
   derivation?: TypeDerivationRule | undefined;
   _derivation?: Element | undefined;
@@ -80138,6 +81717,7 @@ export interface StructureDefinition extends DomainResource {
    * presumed to be the predominant language in the place the structure definition
    * was created).
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -80171,6 +81751,7 @@ export interface StructureDefinition extends DomainResource {
    * particular StructureDefinition if desired.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.fhirVersion}
    * @see {@link FHIRVersion}
+   * @fhirType code
    */
   fhirVersion?: FHIRVersion | undefined;
   _fhirVersion?: Element | undefined;
@@ -80210,6 +81791,7 @@ export interface StructureDefinition extends DomainResource {
    * Defines the kind of structure that this definition is describing.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.kind}
    * @see {@link StructureDefinitionKind}
+   * @fhirType code
    */
   kind: StructureDefinitionKind;
   _kind?: Element | undefined;
@@ -80262,6 +81844,7 @@ export interface StructureDefinition extends DomainResource {
    * is defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this structure definition.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -80281,6 +81864,7 @@ export interface StructureDefinition extends DomainResource {
    * not.
    * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -80316,6 +81900,7 @@ The type must match the elements defined in the
  * element will start with the type name. For logical models, where the type is a
  * URL, the type name SHOULD start with the tail of the type URL where required.
  * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.type}
+ * @fhirType uri
  */
   type: string;
   _type?: Element | undefined;
@@ -80342,6 +81927,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/StructureDefinition-definitions.html#StructureDefinition.url}
+ * @fhirType uri
  */
   url: string;
   _url?: Element | undefined;
@@ -80393,6 +81979,7 @@ export interface StructureMapGroup extends BackboneElement {
   /**
    * Another group that this group adds rules to.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.extends}
+   * @fhirType id
    */
   extends?: string | undefined;
   _extends?: Element | undefined;
@@ -80416,6 +82003,7 @@ export interface StructureMapGroup extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -80455,6 +82043,7 @@ Modifier extensions
   /**
    * A unique name for the group for the convenience of human readers.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.name}
+   * @fhirType id
    */
   name: string;
   _name?: Element | undefined;
@@ -80473,6 +82062,7 @@ Modifier extensions
    * mapping for any particular type combination.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.typeMode}
    * @see {@link StructureMapGroupTypeMode}
+   * @fhirType code
    */
   typeMode: StructureMapGroupTypeMode;
   _typeMode?: Element | undefined;
@@ -80511,6 +82101,7 @@ export interface StructureMapGroupInput extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.input.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -80519,6 +82110,7 @@ export interface StructureMapGroupInput extends BackboneElement {
    * Mode for this instance of data.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.input.mode}
    * @see {@link StructureMapInputMode}
+   * @fhirType code
    */
   mode: StructureMapInputMode;
   _mode?: Element | undefined;
@@ -80549,6 +82141,7 @@ Modifier extensions
   /**
    * Name for this instance of data.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.input.name}
+   * @fhirType id
    */
   name: string;
   _name?: Element | undefined;
@@ -80599,6 +82192,7 @@ export interface StructureMapGroupRule extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -80629,6 +82223,7 @@ Modifier extensions
   /**
    * Name of the rule for internal references.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.name}
+   * @fhirType id
    */
   name: string;
   _name?: Element | undefined;
@@ -80672,6 +82267,7 @@ export interface StructureMapGroupRuleDependent extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.dependent.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -80702,6 +82298,7 @@ Modifier extensions
   /**
    * Name of a rule or group to apply.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.dependent.name}
+   * @fhirType id
    */
   name: string;
   _name?: Element | undefined;
@@ -80737,6 +82334,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
   /**
    * Type or variable this rule applies to.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.context}
+   * @fhirType id
    */
   context: string;
   _context?: Element | undefined;
@@ -80746,6 +82344,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueBase64Binary}
+   * @fhirType base64Binary
    */
   defaultValueBase64Binary?: string | undefined;
   _defaultValueBase64Binary?: Element | undefined;
@@ -80764,6 +82363,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueCanonical}
+   * @fhirType canonical
    */
   defaultValueCanonical?: string | undefined;
   _defaultValueCanonical?: Element | undefined;
@@ -80773,6 +82373,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueCode}
+   * @fhirType code
    */
   defaultValueCode?: string | undefined;
   _defaultValueCode?: Element | undefined;
@@ -80782,6 +82383,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueDate}
+   * @fhirType date
    */
   defaultValueDate?: string | undefined;
   _defaultValueDate?: Element | undefined;
@@ -80791,6 +82393,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueDateTime}
+   * @fhirType dateTime
    */
   defaultValueDateTime?: string | undefined;
   _defaultValueDateTime?: Element | undefined;
@@ -80800,6 +82403,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueDecimal}
+   * @fhirType decimal
    */
   defaultValueDecimal?: number | undefined;
   _defaultValueDecimal?: Element | undefined;
@@ -80809,6 +82413,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueId}
+   * @fhirType id
    */
   defaultValueId?: string | undefined;
   _defaultValueId?: Element | undefined;
@@ -80818,6 +82423,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueInstant}
+   * @fhirType instant
    */
   defaultValueInstant?: string | undefined;
   _defaultValueInstant?: Element | undefined;
@@ -80827,6 +82433,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueInteger}
+   * @fhirType integer
    */
   defaultValueInteger?: number | undefined;
   _defaultValueInteger?: Element | undefined;
@@ -80836,6 +82443,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueMarkdown}
+   * @fhirType markdown
    */
   defaultValueMarkdown?: string | undefined;
   _defaultValueMarkdown?: Element | undefined;
@@ -80845,6 +82453,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueOid}
+   * @fhirType oid
    */
   defaultValueOid?: string | undefined;
   _defaultValueOid?: Element | undefined;
@@ -80854,6 +82463,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValuePositiveInt}
+   * @fhirType positiveInt
    */
   defaultValuePositiveInt?: number | undefined;
   _defaultValuePositiveInt?: Element | undefined;
@@ -80872,6 +82482,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueTime}
+   * @fhirType time
    */
   defaultValueTime?: string | undefined;
   _defaultValueTime?: Element | undefined;
@@ -80881,6 +82492,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueUnsignedInt}
+   * @fhirType unsignedInt
    */
   defaultValueUnsignedInt?: number | undefined;
   _defaultValueUnsignedInt?: Element | undefined;
@@ -80890,6 +82502,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueUri}
+   * @fhirType uri
    */
   defaultValueUri?: string | undefined;
   _defaultValueUri?: Element | undefined;
@@ -80899,6 +82512,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueUrl}
+   * @fhirType url
    */
   defaultValueUrl?: string | undefined;
   _defaultValueUrl?: Element | undefined;
@@ -80908,6 +82522,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * If there's a default value on an item that can repeat, it will only be used
    * once.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.defaultValueUuid}
+   * @fhirType uuid
    */
   defaultValueUuid?: string | undefined;
   _defaultValueUuid?: Element | undefined;
@@ -81217,6 +82832,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -81225,6 +82841,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * How to handle the list mode for this element.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.listMode}
    * @see {@link StructureMapSourceListMode}
+   * @fhirType code
    */
   listMode?: StructureMapSourceListMode | undefined;
   _listMode?: Element | undefined;
@@ -81252,6 +82869,7 @@ export interface StructureMapGroupRuleSource extends BackboneElement {
    * Specified minimum cardinality for the element. This is optional; if present, it
    * acts an implicit check on the input content.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.min}
+   * @fhirType integer
    */
   min?: number | undefined;
   _min?: Element | undefined;
@@ -81290,6 +82908,7 @@ Modifier extensions
   /**
    * Named context for field, if a field is specified.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source.variable}
+   * @fhirType id
    */
   variable?: string | undefined;
   _variable?: Element | undefined;
@@ -81303,6 +82922,7 @@ export interface StructureMapGroupRuleTarget extends BackboneElement {
   /**
    * Type or variable this rule applies to.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.context}
+   * @fhirType id
    */
   context?: string | undefined;
   _context?: Element | undefined;
@@ -81311,6 +82931,7 @@ export interface StructureMapGroupRuleTarget extends BackboneElement {
    * How to interpret the context.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.contextType}
    * @see {@link StructureMapContextType}
+   * @fhirType code
    */
   contextType?: StructureMapContextType | undefined;
   _contextType?: Element | undefined;
@@ -81341,6 +82962,7 @@ export interface StructureMapGroupRuleTarget extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -81349,6 +82971,7 @@ export interface StructureMapGroupRuleTarget extends BackboneElement {
    * If field is a list, how to manage the list.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.listMode}
    * @see {@link StructureMapTargetListMode}
+   * @fhirType code
    */
   listMode?: Array<StructureMapTargetListMode> | undefined;
   _listMode?: Element[] | undefined;
@@ -81356,6 +82979,7 @@ export interface StructureMapGroupRuleTarget extends BackboneElement {
   /**
    * Internal rule reference for shared list items.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.listRuleId}
+   * @fhirType id
    */
   listRuleId?: string | undefined;
   _listRuleId?: Element | undefined;
@@ -81394,6 +83018,7 @@ Modifier extensions
    * How the data is copied / created.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.transform}
    * @see {@link StructureMapTransform}
+   * @fhirType code
    */
   transform?: StructureMapTransform | undefined;
   _transform?: Element | undefined;
@@ -81401,6 +83026,7 @@ Modifier extensions
   /**
    * Named context for field, if desired, and a field is specified.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.variable}
+   * @fhirType id
    */
   variable?: string | undefined;
   _variable?: Element | undefined;
@@ -81430,6 +83056,7 @@ export interface StructureMapGroupRuleTargetParameter extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.parameter.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -81460,6 +83087,7 @@ Modifier extensions
   /**
    * Parameter value - variable or literal.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.parameter.valueId}
+   * @fhirType id
    */
   valueId?: string | undefined;
   _valueId?: Element | undefined;
@@ -81481,6 +83109,7 @@ Modifier extensions
   /**
    * Parameter value - variable or literal.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.parameter.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -81488,6 +83117,7 @@ Modifier extensions
   /**
    * Parameter value - variable or literal.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.target.parameter.valueDecimal}
+   * @fhirType decimal
    */
   valueDecimal?: number | undefined;
   _valueDecimal?: Element | undefined;
@@ -81535,6 +83165,7 @@ export interface StructureMapStructure extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.structure.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -81543,6 +83174,7 @@ export interface StructureMapStructure extends BackboneElement {
    * How the referenced structure is used in this mapping.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.structure.mode}
    * @see {@link StructureMapModelMode}
+   * @fhirType code
    */
   mode: StructureMapModelMode;
   _mode?: Element | undefined;
@@ -81573,6 +83205,7 @@ Modifier extensions
   /**
    * The canonical reference to the structure.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.structure.url}
+   * @fhirType canonical
    */
   url: string;
   _url?: Element | undefined;
@@ -81602,6 +83235,7 @@ export interface StructureMap extends DomainResource {
    * Copyright statements are generally legal restrictions on the use and publishing
    * of the structure map.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -81616,6 +83250,7 @@ export interface StructureMap extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -81631,6 +83266,7 @@ export interface StructureMap extends DomainResource {
    * available from context (e.g. the language of the structure map is presumed to be
    * the predominant language in the place the structure map was created).
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -81668,6 +83304,7 @@ export interface StructureMap extends DomainResource {
   /**
    * Other maps used by this map (canonical URLs).
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.import}
+   * @fhirType canonical
    */
   import?: Array<string> | undefined;
   _import?: Element[] | undefined;
@@ -81714,6 +83351,7 @@ export interface StructureMap extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this structure map.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -81724,6 +83362,7 @@ export interface StructureMap extends DomainResource {
    * Allows filtering of structure maps that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -81768,6 +83407,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.url}
+ * @fhirType uri
  */
   url: string;
   _url?: Element | undefined;
@@ -81816,6 +83456,7 @@ export interface SubscriptionChannel extends BackboneElement {
    * allowed to be relative; in which case, it is relative to the server end-point
    * (since there may be more than one, clients should avoid using relative URIs).
    * @see {@link http://hl7.org/fhir/R4B/Subscription-definitions.html#Subscription.channel.endpoint}
+   * @fhirType url
    */
   endpoint?: string | undefined;
   _endpoint?: Element | undefined;
@@ -81850,6 +83491,7 @@ export interface SubscriptionChannel extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Subscription-definitions.html#Subscription.channel.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -81886,6 +83528,7 @@ Modifier extensions
    * for ensuring that the content is appropriately secured.
    * @see {@link http://hl7.org/fhir/R4B/Subscription-definitions.html#Subscription.channel.payload}
    * @see {@link MimeTypes}
+   * @fhirType code
    */
   payload?: MimeTypes | undefined;
   _payload?: Element | undefined;
@@ -81894,6 +83537,7 @@ Modifier extensions
    * The type of channel to send notifications on.
    * @see {@link http://hl7.org/fhir/R4B/Subscription-definitions.html#Subscription.channel.type}
    * @see {@link SubscriptionChannelType}
+   * @fhirType code
    */
   type: SubscriptionChannelType;
   _type?: Element | undefined;
@@ -81943,6 +83587,7 @@ export interface Subscription extends DomainResource {
    * The time for the server to turn the subscription off.
    * The server is permitted to deviate from this time but should observe it.
    * @see {@link http://hl7.org/fhir/R4B/Subscription-definitions.html#Subscription.end}
+   * @fhirType instant
    */
   end?: string | undefined;
   _end?: Element | undefined;
@@ -81974,6 +83619,7 @@ This
  * resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/Subscription-definitions.html#Subscription.status}
  * @see {@link SubscriptionStatusCodes}
+ * @fhirType code
  */
   status: SubscriptionStatusCodes;
   _status?: Element | undefined;
@@ -82028,6 +83674,7 @@ export interface SubscriptionStatusNotificationEvent extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.notificationEvent.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -82058,6 +83705,7 @@ Modifier extensions
   /**
    * The actual time this event occured on the server.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.notificationEvent.timestamp}
+   * @fhirType instant
    */
   timestamp?: string | undefined;
   _timestamp?: Element | undefined;
@@ -82104,6 +83752,7 @@ export interface SubscriptionStatus extends DomainResource {
    * subscription.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.status}
    * @see {@link SubscriptionStatusCodes}
+   * @fhirType code
    */
   status?: SubscriptionStatusCodes | undefined;
   _status?: Element | undefined;
@@ -82122,6 +83771,7 @@ export interface SubscriptionStatus extends DomainResource {
    * when using `id-only` payloads, and SHOULD be present when using `full-resource`
    * payloads.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.topic}
+   * @fhirType canonical
    */
   topic?: string | undefined;
   _topic?: Element | undefined;
@@ -82130,6 +83780,7 @@ export interface SubscriptionStatus extends DomainResource {
    * The type of event being conveyed with this notificaiton.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.type}
    * @see {@link SubscriptionNotificationType}
+   * @fhirType code
    */
   type: SubscriptionNotificationType;
   _type?: Element | undefined;
@@ -82145,6 +83796,7 @@ export interface SubscriptionTopicCanFilterBy extends BackboneElement {
   /**
    * Description of how this filtering parameter is intended to be used.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.canFilterBy.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -82172,6 +83824,7 @@ export interface SubscriptionTopicCanFilterBy extends BackboneElement {
    * Chained parameters are allowed (like "patient.gender") - but can not use colons
    * or modifiers.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.canFilterBy.filterDefinition}
+   * @fhirType uri
    */
   filterDefinition?: string | undefined;
   _filterDefinition?: Element | undefined;
@@ -82191,6 +83844,7 @@ export interface SubscriptionTopicCanFilterBy extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.canFilterBy.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -82201,6 +83855,7 @@ export interface SubscriptionTopicCanFilterBy extends BackboneElement {
    * strict subset of the modifiers defined on that SearchParameter.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.canFilterBy.modifier}
    * @see {@link SubscriptionSearchModifier}
+   * @fhirType code
    */
   modifier?: Array<SubscriptionSearchModifier> | undefined;
   _modifier?: Element[] | undefined;
@@ -82240,6 +83895,7 @@ Modifier extensions
    * href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDef
    * inition.type.code</a>.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.canFilterBy.resource}
+   * @fhirType uri
    */
   resource?: string | undefined;
   _resource?: Element | undefined;
@@ -82258,6 +83914,7 @@ export interface SubscriptionTopicEventTrigger extends BackboneElement {
    * Implementation of particular subscription topics might not use a computable
    * definition and instead base their design on the definition.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.eventTrigger.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -82289,6 +83946,7 @@ export interface SubscriptionTopicEventTrigger extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.eventTrigger.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -82325,6 +83983,7 @@ Modifier extensions
    * href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDef
    * inition.type.code</a>.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.eventTrigger.resource}
+   * @fhirType uri
    */
   resource: string;
   _resource?: Element | undefined;
@@ -82355,6 +84014,7 @@ export interface SubscriptionTopicNotificationShape extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.notificationShape.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -82405,6 +84065,7 @@ Modifier extensions
    * href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDef
    * inition.type.code</a>.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.notificationShape.resource}
+   * @fhirType uri
    */
   resource: string;
   _resource?: Element | undefined;
@@ -82435,6 +84096,7 @@ export interface SubscriptionTopicResourceTrigger extends BackboneElement {
    * Implementation of particular subscription topics might not use a computable
    * definition and instead base their design on the definition.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.resourceTrigger.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -82467,6 +84129,7 @@ export interface SubscriptionTopicResourceTrigger extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.resourceTrigger.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -82511,6 +84174,7 @@ Modifier extensions
    * href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDef
    * inition.type.code</a>.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.resourceTrigger.resource}
+   * @fhirType uri
    */
   resource: string;
   _resource?: Element | undefined;
@@ -82521,6 +84185,7 @@ Modifier extensions
    * UPDATE).
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.resourceTrigger.supportedInteraction}
    * @see {@link InteractionTrigger}
+   * @fhirType code
    */
   supportedInteraction?: Array<InteractionTrigger> | undefined;
   _supportedInteraction?: Element[] | undefined;
@@ -82562,6 +84227,7 @@ export interface SubscriptionTopicResourceTriggerQueryCriteria
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.resourceTrigger.queryCriteria.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -82613,6 +84279,7 @@ Modifier extensions
    * pass or an automatic fail.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.resourceTrigger.queryCriteria.resultForCreate}
    * @see {@link CriteriaNotExistsBehavior}
+   * @fhirType code
    */
   resultForCreate?: CriteriaNotExistsBehavior | undefined;
   _resultForCreate?: Element | undefined;
@@ -82622,6 +84289,7 @@ Modifier extensions
    * pass or an automatic fail.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.resourceTrigger.queryCriteria.resultForDelete}
    * @see {@link CriteriaNotExistsBehavior}
+   * @fhirType code
    */
   resultForDelete?: CriteriaNotExistsBehavior | undefined;
   _resultForDelete?: Element | undefined;
@@ -82644,6 +84312,7 @@ export interface SubscriptionTopic extends DomainResource {
    * The date may be more recent than the approval date because of minor changes /
    * editorial corrections.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.approvalDate}
+   * @fhirType date
    */
   approvalDate?: string | undefined;
   _approvalDate?: Element | undefined;
@@ -82671,6 +84340,7 @@ export interface SubscriptionTopic extends DomainResource {
    * Copyright statements are generally legal restrictions on the use and publishing
    * of the SubscriptionTopic.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -82680,6 +84350,7 @@ export interface SubscriptionTopic extends DomainResource {
    * definitions, represents the date of activation.  For withdrawn definitions,
    * indicates the date of withdrawal.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -82688,6 +84359,7 @@ export interface SubscriptionTopic extends DomainResource {
    * The canonical URL pointing to another FHIR-defined SubscriptionTopic that is
    * adhered to in whole or in part by this SubscriptionTopic.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.derivedFrom}
+   * @fhirType canonical
    */
   derivedFrom?: Array<string> | undefined;
   _derivedFrom?: Element[] | undefined;
@@ -82701,6 +84373,7 @@ export interface SubscriptionTopic extends DomainResource {
    * of the module as conveyed in the text field of the resource itself. This item
    * SHOULD be populated unless the information is available from context.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -82762,6 +84435,7 @@ export interface SubscriptionTopic extends DomainResource {
    * periodically after that, but doesn't change the original approval date.
    * If specified, this is usually after the approval date.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.lastReviewDate}
+   * @fhirType date
    */
   lastReviewDate?: string | undefined;
   _lastReviewDate?: Element | undefined;
@@ -82789,6 +84463,7 @@ export interface SubscriptionTopic extends DomainResource {
    * as it is.  This may be used to point to source materials or specifications that
    * drove the structure of this Topic.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -82814,6 +84489,7 @@ Unknown
  * used when the authoring system is not sure what the current status is.
  * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.status}
  * @see {@link PublicationStatus}
+ * @fhirType code
  */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -82848,6 +84524,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic-definitions.html#SubscriptionTopic.url}
+ * @fhirType uri
  */
   url: string;
   _url?: Element | undefined;
@@ -82902,6 +84579,7 @@ export interface SubstanceIngredient extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Substance-definitions.html#Substance.ingredient.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -82961,6 +84639,7 @@ export interface SubstanceInstance extends BackboneElement {
    * When the substance is no longer valid to use. For some substances, a single
    * arbitrary date is used for expiry.
    * @see {@link http://hl7.org/fhir/R4B/Substance-definitions.html#Substance.instance.expiry}
+   * @fhirType dateTime
    */
   expiry?: string | undefined;
   _expiry?: Element | undefined;
@@ -82984,6 +84663,7 @@ export interface SubstanceInstance extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Substance-definitions.html#Substance.instance.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -83094,6 +84774,7 @@ export interface Substance extends DomainResource {
    * A code to indicate if the substance is actively used.
    * @see {@link http://hl7.org/fhir/R4B/Substance-definitions.html#Substance.status}
    * @see {@link FHIRSubstanceStatus}
+   * @fhirType code
    */
   status?: FHIRSubstanceStatus | undefined;
   _status?: Element | undefined;
@@ -83130,6 +84811,7 @@ export interface SubstanceDefinitionCode extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.code.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -83182,6 +84864,7 @@ Modifier extensions
    * The date at which the code status was changed as part of the terminology
    * maintenance.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.code.statusDate}
+   * @fhirType dateTime
    */
   statusDate?: string | undefined;
   _statusDate?: Element | undefined;
@@ -83225,6 +84908,7 @@ export interface SubstanceDefinitionMoiety extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.moiety.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -83338,6 +85022,7 @@ export interface SubstanceDefinitionMolecularWeight extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.molecularWeight.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -83413,6 +85098,7 @@ export interface SubstanceDefinitionName extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.name.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -83512,6 +85198,7 @@ export interface SubstanceDefinitionNameOfficial extends BackboneElement {
   /**
    * Date of the official name change.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.name.official.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -83535,6 +85222,7 @@ export interface SubstanceDefinitionNameOfficial extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.name.official.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -83594,6 +85282,7 @@ export interface SubstanceDefinitionProperty extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.property.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -83645,6 +85334,7 @@ Modifier extensions
   /**
    * A value for the property.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.property.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -83722,6 +85412,7 @@ export interface SubstanceDefinitionRelationship extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.relationship.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -83835,6 +85526,7 @@ export interface SubstanceDefinitionSourceMaterial extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.sourceMaterial.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -83910,6 +85602,7 @@ export interface SubstanceDefinitionStructure extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.structure.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -84033,6 +85726,7 @@ export interface SubstanceDefinitionStructureRepresentation
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.structure.representation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -84106,6 +85800,7 @@ export interface SubstanceDefinition extends DomainResource {
   /**
    * Textual description of the substance.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -84250,6 +85945,7 @@ export interface SupplyDeliverySuppliedItem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.suppliedItem.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -84342,6 +86038,7 @@ export interface SupplyDelivery extends DomainResource {
    * The date or time(s) the activity occurred.
    * [The list of types may be constrained as appropriate for the type of event].
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.occurrenceDateTime}
+   * @fhirType dateTime
    */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -84394,6 +86091,7 @@ export interface SupplyDelivery extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.status}
    * @see {@link SupplyDeliveryStatus}
+   * @fhirType code
    */
   status?: SupplyDeliveryStatus | undefined;
   _status?: Element | undefined;
@@ -84454,6 +86152,7 @@ export interface SupplyRequestParameter extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.parameter.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -84532,6 +86231,7 @@ export interface SupplyRequest extends DomainResource {
   /**
    * When the request was made.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.authoredOn}
+   * @fhirType dateTime
    */
   authoredOn?: string | undefined;
   _authoredOn?: Element | undefined;
@@ -84596,6 +86296,7 @@ export interface SupplyRequest extends DomainResource {
   /**
    * When the request should be fulfilled.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.occurrenceDateTime}
+   * @fhirType dateTime
    */
   occurrenceDateTime?: string | undefined;
   _occurrenceDateTime?: Element | undefined;
@@ -84627,6 +86328,7 @@ export interface SupplyRequest extends DomainResource {
    * other requests.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.priority}
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -84663,6 +86365,7 @@ export interface SupplyRequest extends DomainResource {
    * Status of the supply request.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.status}
    * @see {@link SupplyRequestStatus}
+   * @fhirType code
    */
   status?: SupplyRequestStatus | undefined;
   _status?: Element | undefined;
@@ -84699,6 +86402,7 @@ export interface TaskInput extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -84739,6 +86443,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueBase64Binary}
+   * @fhirType base64Binary
    */
   valueBase64Binary?: string | undefined;
   _valueBase64Binary?: Element | undefined;
@@ -84753,6 +86458,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueCanonical}
+   * @fhirType canonical
    */
   valueCanonical?: string | undefined;
   _valueCanonical?: Element | undefined;
@@ -84760,6 +86466,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueCode}
+   * @fhirType code
    */
   valueCode?: string | undefined;
   _valueCode?: Element | undefined;
@@ -84767,6 +86474,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -84774,6 +86482,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueDateTime}
+   * @fhirType dateTime
    */
   valueDateTime?: string | undefined;
   _valueDateTime?: Element | undefined;
@@ -84781,6 +86490,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueDecimal}
+   * @fhirType decimal
    */
   valueDecimal?: number | undefined;
   _valueDecimal?: Element | undefined;
@@ -84788,6 +86498,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueId}
+   * @fhirType id
    */
   valueId?: string | undefined;
   _valueId?: Element | undefined;
@@ -84795,6 +86506,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueInstant}
+   * @fhirType instant
    */
   valueInstant?: string | undefined;
   _valueInstant?: Element | undefined;
@@ -84802,6 +86514,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -84809,6 +86522,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueMarkdown}
+   * @fhirType markdown
    */
   valueMarkdown?: string | undefined;
   _valueMarkdown?: Element | undefined;
@@ -84816,6 +86530,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueOid}
+   * @fhirType oid
    */
   valueOid?: string | undefined;
   _valueOid?: Element | undefined;
@@ -84823,6 +86538,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valuePositiveInt}
+   * @fhirType positiveInt
    */
   valuePositiveInt?: number | undefined;
   _valuePositiveInt?: Element | undefined;
@@ -84837,6 +86553,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueTime}
+   * @fhirType time
    */
   valueTime?: string | undefined;
   _valueTime?: Element | undefined;
@@ -84844,6 +86561,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueUnsignedInt}
+   * @fhirType unsignedInt
    */
   valueUnsignedInt?: number | undefined;
   _valueUnsignedInt?: Element | undefined;
@@ -84851,6 +86569,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueUri}
+   * @fhirType uri
    */
   valueUri?: string | undefined;
   _valueUri?: Element | undefined;
@@ -84858,6 +86577,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueUrl}
+   * @fhirType url
    */
   valueUrl?: string | undefined;
   _valueUrl?: Element | undefined;
@@ -84865,6 +86585,7 @@ Modifier extensions
   /**
    * The value of the input parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.input.valueUuid}
+   * @fhirType uuid
    */
   valueUuid?: string | undefined;
   _valueUuid?: Element | undefined;
@@ -85111,6 +86832,7 @@ export interface TaskOutput extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -85148,6 +86870,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueBase64Binary}
+   * @fhirType base64Binary
    */
   valueBase64Binary?: string | undefined;
   _valueBase64Binary?: Element | undefined;
@@ -85162,6 +86885,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueCanonical}
+   * @fhirType canonical
    */
   valueCanonical?: string | undefined;
   _valueCanonical?: Element | undefined;
@@ -85169,6 +86893,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueCode}
+   * @fhirType code
    */
   valueCode?: string | undefined;
   _valueCode?: Element | undefined;
@@ -85176,6 +86901,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueDate}
+   * @fhirType date
    */
   valueDate?: string | undefined;
   _valueDate?: Element | undefined;
@@ -85183,6 +86909,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueDateTime}
+   * @fhirType dateTime
    */
   valueDateTime?: string | undefined;
   _valueDateTime?: Element | undefined;
@@ -85190,6 +86917,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueDecimal}
+   * @fhirType decimal
    */
   valueDecimal?: number | undefined;
   _valueDecimal?: Element | undefined;
@@ -85197,6 +86925,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueId}
+   * @fhirType id
    */
   valueId?: string | undefined;
   _valueId?: Element | undefined;
@@ -85204,6 +86933,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueInstant}
+   * @fhirType instant
    */
   valueInstant?: string | undefined;
   _valueInstant?: Element | undefined;
@@ -85211,6 +86941,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -85218,6 +86949,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueMarkdown}
+   * @fhirType markdown
    */
   valueMarkdown?: string | undefined;
   _valueMarkdown?: Element | undefined;
@@ -85225,6 +86957,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueOid}
+   * @fhirType oid
    */
   valueOid?: string | undefined;
   _valueOid?: Element | undefined;
@@ -85232,6 +86965,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valuePositiveInt}
+   * @fhirType positiveInt
    */
   valuePositiveInt?: number | undefined;
   _valuePositiveInt?: Element | undefined;
@@ -85246,6 +86980,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueTime}
+   * @fhirType time
    */
   valueTime?: string | undefined;
   _valueTime?: Element | undefined;
@@ -85253,6 +86988,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueUnsignedInt}
+   * @fhirType unsignedInt
    */
   valueUnsignedInt?: number | undefined;
   _valueUnsignedInt?: Element | undefined;
@@ -85260,6 +86996,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueUri}
+   * @fhirType uri
    */
   valueUri?: string | undefined;
   _valueUri?: Element | undefined;
@@ -85267,6 +87004,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueUrl}
+   * @fhirType url
    */
   valueUrl?: string | undefined;
   _valueUrl?: Element | undefined;
@@ -85274,6 +87012,7 @@ Modifier extensions
   /**
    * The value of the Output parameter as a basic type.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.output.valueUuid}
+   * @fhirType uuid
    */
   valueUuid?: string | undefined;
   _valueUuid?: Element | undefined;
@@ -85522,6 +87261,7 @@ export interface TaskRestriction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.restriction.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -85569,6 +87309,7 @@ Modifier extensions
   /**
    * Indicates the number of times the requested action should occur.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.restriction.repetitions}
+   * @fhirType positiveInt
    */
   repetitions?: number | undefined;
   _repetitions?: Element | undefined;
@@ -85587,6 +87328,7 @@ export interface Task extends DomainResource {
   /**
    * The date and time this task was created.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.authoredOn}
+   * @fhirType dateTime
    */
   authoredOn?: string | undefined;
   _authoredOn?: Element | undefined;
@@ -85687,6 +87429,7 @@ export interface Task extends DomainResource {
    * The URL pointing to a *FHIR*-defined protocol, guideline, orderset or other
    * definition that is adhered to in whole or in part by this Task.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.instantiatesCanonical}
+   * @fhirType canonical
    */
   instantiatesCanonical?: string | undefined;
   _instantiatesCanonical?: Element | undefined;
@@ -85695,6 +87438,7 @@ export interface Task extends DomainResource {
    * The URL pointing to an *externally* maintained  protocol, guideline, orderset or
    * other definition that is adhered to in whole or in part by this Task.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.instantiatesUri}
+   * @fhirType uri
    */
   instantiatesUri?: string | undefined;
   _instantiatesUri?: Element | undefined;
@@ -85716,6 +87460,7 @@ export interface Task extends DomainResource {
 In most cases, Tasks will have an intent of "order".
  * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.intent}
  * @see {@link TaskIntent}
+ * @fhirType code
  */
   intent: TaskIntent;
   _intent?: Element | undefined;
@@ -85723,6 +87468,7 @@ In most cases, Tasks will have an intent of "order".
   /**
    * The date and time of last modification to this task.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.lastModified}
+   * @fhirType dateTime
    */
   lastModified?: string | undefined;
   _lastModified?: Element | undefined;
@@ -85776,6 +87522,7 @@ In most cases, Tasks will have an intent of "order".
    * requests.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.priority}
    * @see {@link RequestPriority}
+   * @fhirType code
    */
   priority?: RequestPriority | undefined;
   _priority?: Element | undefined;
@@ -85832,6 +87579,7 @@ In most cases, Tasks will have an intent of "order".
    * The current status of the task.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.status}
    * @see {@link TaskStatus}
+   * @fhirType code
    */
   status: TaskStatus;
   _status?: Element | undefined;
@@ -85870,6 +87618,7 @@ export interface TerminologyCapabilitiesClosure extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.closure.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -85933,6 +87682,7 @@ export interface TerminologyCapabilitiesCodeSystem extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -85970,6 +87720,7 @@ Modifier extensions
   /**
    * URI for the Code System.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem.uri}
+   * @fhirType canonical
    */
   uri?: string | undefined;
   _uri?: Element | undefined;
@@ -86031,6 +87782,7 @@ export interface TerminologyCapabilitiesCodeSystemVersion
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem.version.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -86045,6 +87797,7 @@ export interface TerminologyCapabilitiesCodeSystemVersion
   /**
    * Language Displays supported.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem.version.language}
+   * @fhirType code
    */
   language?: Array<string> | undefined;
   _language?: Element[] | undefined;
@@ -86075,6 +87828,7 @@ Modifier extensions
   /**
    * Properties supported for $lookup.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem.version.property}
+   * @fhirType code
    */
   property?: Array<string> | undefined;
   _property?: Element[] | undefined;
@@ -86089,6 +87843,7 @@ export interface TerminologyCapabilitiesCodeSystemVersionFilter
   /**
    * Code of the property supported.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem.version.filter.code}
+   * @fhirType code
    */
   code: string;
   _code?: Element | undefined;
@@ -86112,6 +87867,7 @@ export interface TerminologyCapabilitiesCodeSystemVersionFilter
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem.version.filter.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -86142,6 +87898,7 @@ Modifier extensions
   /**
    * Operations supported for the property.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSystem.version.filter.op}
+   * @fhirType code
    */
   op: Array<string>;
   _op?: Element[] | undefined;
@@ -86179,6 +87936,7 @@ export interface TerminologyCapabilitiesExpansion extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.expansion.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -86233,6 +87991,7 @@ Modifier extensions
    * punctuation if not ignored, what wild cards are supported (if any), whether text
    * is starts with or contains, and whether word order matters.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.expansion.textFilter}
+   * @fhirType markdown
    */
   textFilter?: string | undefined;
   _textFilter?: Element | undefined;
@@ -86270,6 +88029,7 @@ export interface TerminologyCapabilitiesExpansionParameter
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.expansion.parameter.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -86300,6 +88060,7 @@ Modifier extensions
   /**
    * Expansion Parameter name.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.expansion.parameter.name}
+   * @fhirType code
    */
   name: string;
   _name?: Element | undefined;
@@ -86339,6 +88100,7 @@ export interface TerminologyCapabilitiesImplementation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.implementation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -86369,6 +88131,7 @@ Modifier extensions
   /**
    * An absolute base URL for the implementation.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.implementation.url}
+   * @fhirType url
    */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -86400,6 +88163,7 @@ export interface TerminologyCapabilitiesSoftware extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.software.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -86469,6 +88233,7 @@ export interface TerminologyCapabilitiesTranslation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.translation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -86529,6 +88294,7 @@ export interface TerminologyCapabilitiesValidateCode extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.validateCode.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -86589,6 +88355,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * See notes on the [ValueSet](valueset.html#) resource.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.codeSearch}
    * @see {@link CodeSearchSupport}
+   * @fhirType code
    */
   codeSearch?: CodeSearchSupport | undefined;
   _codeSearch?: Element | undefined;
@@ -86618,6 +88385,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * contents. Copyright statements are generally legal restrictions on the use and
    * publishing of the terminology capabilities.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -86632,6 +88400,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * Additional specific dates may be added as extensions or be found by consulting
    * Provenances associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.date}
+   * @fhirType dateTime
    */
   date: string;
   _date?: Element | undefined;
@@ -86651,6 +88420,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * capabilities was created).This does not need to be populated if the description
    * is adequately implied by the software or implementation details.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -86699,6 +88469,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * software) or a class of implementation (e.g. a desired purchase).
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.kind}
    * @see {@link CapabilityStatementKind}
+   * @fhirType code
    */
   kind: CapabilityStatementKind;
   _kind?: Element | undefined;
@@ -86744,6 +88515,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * ''why'' it is defined as it is.  This may be used to point to source materials
    * or specifications that drove the structure of this terminology capabilities.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -86765,6 +88537,7 @@ export interface TerminologyCapabilities extends DomainResource {
    * where capability statements are used to describe possible or desired systems.
    * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -86808,6 +88581,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities-definitions.html#TerminologyCapabilities.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -86882,6 +88656,7 @@ export interface TestReportParticipant extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.participant.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -86913,6 +88688,7 @@ Modifier extensions
    * The type of participant.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.participant.type}
    * @see {@link TestReportParticipantType}
+   * @fhirType code
    */
   type: TestReportParticipantType;
   _type?: Element | undefined;
@@ -86920,6 +88696,7 @@ Modifier extensions
   /**
    * The uri of the participant. An absolute URL is preferred.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.participant.uri}
+   * @fhirType uri
    */
   uri: string;
   _uri?: Element | undefined;
@@ -86959,6 +88736,7 @@ export interface TestReportSetup extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87020,6 +88798,7 @@ export interface TestReportSetupAction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.action.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87086,6 +88865,7 @@ export interface TestReportSetupActionAssert extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.action.assert.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87093,6 +88873,7 @@ export interface TestReportSetupActionAssert extends BackboneElement {
   /**
    * An explanatory message associated with the result.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.action.assert.message}
+   * @fhirType markdown
    */
   message?: string | undefined;
   _message?: Element | undefined;
@@ -87124,6 +88905,7 @@ Modifier extensions
    * The result of this assertion.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.action.assert.result}
    * @see {@link TestReportActionResult}
+   * @fhirType code
    */
   result: TestReportActionResult;
   _result?: Element | undefined;
@@ -87137,6 +88919,7 @@ export interface TestReportSetupActionOperation extends BackboneElement {
   /**
    * A link to further details on the result.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.action.operation.detail}
+   * @fhirType uri
    */
   detail?: string | undefined;
   _detail?: Element | undefined;
@@ -87160,6 +88943,7 @@ export interface TestReportSetupActionOperation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.action.operation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87167,6 +88951,7 @@ export interface TestReportSetupActionOperation extends BackboneElement {
   /**
    * An explanatory message associated with the result.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.action.operation.message}
+   * @fhirType markdown
    */
   message?: string | undefined;
   _message?: Element | undefined;
@@ -87198,6 +88983,7 @@ Modifier extensions
    * The result of this operation.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.setup.action.operation.result}
    * @see {@link TestReportActionResult}
+   * @fhirType code
    */
   result: TestReportActionResult;
   _result?: Element | undefined;
@@ -87237,6 +89023,7 @@ export interface TestReportTeardown extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.teardown.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87291,6 +89078,7 @@ export interface TestReportTeardownAction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.teardown.action.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87360,6 +89148,7 @@ export interface TestReportTest extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.test.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87421,6 +89210,7 @@ export interface TestReportTestAction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.test.action.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87471,6 +89261,7 @@ export interface TestReport extends DomainResource {
    * When the TestScript was executed and this TestReport was generated.
    * Additional specific dates may be added as extensions.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.issued}
+   * @fhirType dateTime
    */
   issued?: string | undefined;
   _issued?: Element | undefined;
@@ -87498,6 +89289,7 @@ export interface TestReport extends DomainResource {
    * currently in progress.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.result}
    * @see {@link TestReportResult}
+   * @fhirType code
    */
   result: TestReportResult;
   _result?: Element | undefined;
@@ -87506,6 +89298,7 @@ export interface TestReport extends DomainResource {
    * The final score (percentage of tests passed) resulting from the execution of the
    * TestScript.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.score}
+   * @fhirType decimal
    */
   score?: number | undefined;
   _score?: Element | undefined;
@@ -87527,6 +89320,7 @@ This element is labeled as a modifier because the status
  * contains codes that mark the resource as not currently valid.
  * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.status}
  * @see {@link TestReportStatus}
+ * @fhirType code
  */
   status: TestReportStatus;
   _status?: Element | undefined;
@@ -87593,6 +89387,7 @@ export interface TestScriptDestination extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.destination.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87612,6 +89407,7 @@ Different destination indices could play the same actor in the
 The destination indices provided elsewhere in the test script
  * must be one of these destination indices.
  * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.destination.index}
+ * @fhirType integer
  */
   index: number;
   _index?: Element | undefined;
@@ -87693,6 +89489,7 @@ export interface TestScriptFixture extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.fixture.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87774,6 +89571,7 @@ export interface TestScriptMetadata extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87833,6 +89631,7 @@ export interface TestScriptMetadataCapability extends BackboneElement {
    * The conformance statement of the server has to contain at a minimum the contents
    * of the reference pointed to by this element.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata.capability.capabilities}
+   * @fhirType canonical
    */
   capabilities: string;
   _capabilities?: Element | undefined;
@@ -87848,6 +89647,7 @@ export interface TestScriptMetadataCapability extends BackboneElement {
   /**
    * Which server these requirements apply to.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata.capability.destination}
+   * @fhirType integer
    */
   destination?: number | undefined;
   _destination?: Element | undefined;
@@ -87871,6 +89671,7 @@ export interface TestScriptMetadataCapability extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata.capability.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87879,6 +89680,7 @@ export interface TestScriptMetadataCapability extends BackboneElement {
    * Links to the FHIR specification that describes this interaction and the
    * resources involved in more detail.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata.capability.link}
+   * @fhirType uri
    */
   link?: Array<string> | undefined;
   _link?: Element[] | undefined;
@@ -87909,6 +89711,7 @@ Modifier extensions
   /**
    * Which origin server these requirements apply to.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata.capability.origin}
+   * @fhirType integer
    */
   origin?: Array<number> | undefined;
   _origin?: Element[] | undefined;
@@ -87961,6 +89764,7 @@ export interface TestScriptMetadataLink extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata.link.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -87991,6 +89795,7 @@ Modifier extensions
   /**
    * URL to a particular requirement or feature within the FHIR specification.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.metadata.link.url}
+   * @fhirType uri
    */
   url: string;
   _url?: Element | undefined;
@@ -88025,6 +89830,7 @@ export interface TestScriptOrigin extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.origin.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -88042,6 +89848,7 @@ The
  * origin indices provided elsewhere in the test script must be one of these origin
  * indices.
  * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.origin.index}
+ * @fhirType integer
  */
   index: number;
   _index?: Element | undefined;
@@ -88111,6 +89918,7 @@ export interface TestScriptSetup extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -88175,6 +89983,7 @@ export interface TestScriptSetupAction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -88260,6 +90069,7 @@ export interface TestScriptSetupActionAssert extends BackboneElement {
    * more control over the string, then use 'assert.headerField' instead.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.assert.contentType}
    * @see {@link MimeTypes}
+   * @fhirType code
    */
   contentType?: MimeTypes | undefined;
   _contentType?: Element | undefined;
@@ -88281,6 +90091,7 @@ export interface TestScriptSetupActionAssert extends BackboneElement {
    * request message.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.assert.direction}
    * @see {@link AssertionDirectionType}
+   * @fhirType code
    */
   direction?: AssertionDirectionType | undefined;
   _direction?: Element | undefined;
@@ -88329,6 +90140,7 @@ export interface TestScriptSetupActionAssert extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.assert.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -88396,6 +90208,7 @@ Modifier extensions
    * </assert> </code> ```.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.assert.operator}
    * @see {@link AssertionOperatorType}
+   * @fhirType code
    */
   operator?: AssertionOperatorType | undefined;
   _operator?: Element | undefined;
@@ -88422,6 +90235,7 @@ Modifier extensions
    * operation.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.assert.requestMethod}
    * @see {@link TestScriptRequestMethodCode}
+   * @fhirType code
    */
   requestMethod?: TestScriptRequestMethodCode | undefined;
   _requestMethod?: Element | undefined;
@@ -88443,6 +90257,7 @@ Modifier extensions
    * resource types; e.g. <assert > <resourceType value="Patient" </assert>.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.assert.resource}
    * @see {@link FHIRDefinedType}
+   * @fhirType code
    */
   resource?: FHIRDefinedType | undefined;
   _resource?: Element | undefined;
@@ -88456,6 +90271,7 @@ Modifier extensions
    * </assert>.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.assert.response}
    * @see {@link AssertionResponseTypes}
+   * @fhirType code
    */
   response?: AssertionResponseTypes | undefined;
   _response?: Element | undefined;
@@ -88477,6 +90293,7 @@ Modifier extensions
    * This can be a statically defined fixture (at the top of the testscript) or a
    * dynamically set fixture created by responseId of the action.operation element.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.assert.sourceId}
+   * @fhirType id
    */
   sourceId?: string | undefined;
   _sourceId?: Element | undefined;
@@ -88486,6 +90303,7 @@ Modifier extensions
    * The ID of a Profile fixture. Asserts that the response is valid according to the
    * Profile specified by validateProfileId.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.assert.validateProfileId}
+   * @fhirType id
    */
   validateProfileId?: string | undefined;
   _validateProfileId?: Element | undefined;
@@ -88527,6 +90345,7 @@ export interface TestScriptSetupActionOperation extends BackboneElement {
    * value then use the 'requestHeader' element.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.accept}
    * @see {@link MimeTypes}
+   * @fhirType code
    */
   accept?: MimeTypes | undefined;
   _accept?: Element | undefined;
@@ -88538,6 +90357,7 @@ export interface TestScriptSetupActionOperation extends BackboneElement {
    * some other value then use the 'requestHeader' element.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.contentType}
    * @see {@link MimeTypes}
+   * @fhirType code
    */
   contentType?: MimeTypes | undefined;
   _contentType?: Element | undefined;
@@ -88558,6 +90378,7 @@ export interface TestScriptSetupActionOperation extends BackboneElement {
    * operation.destination is undefined, test engine will report an error as it
    * cannot determine what destination to use for the exchange.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.destination}
+   * @fhirType integer
    */
   destination?: number | undefined;
   _destination?: Element | undefined;
@@ -88590,6 +90411,7 @@ export interface TestScriptSetupActionOperation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -88610,6 +90432,7 @@ export interface TestScriptSetupActionOperation extends BackboneElement {
    * testing.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.method}
    * @see {@link TestScriptRequestMethodCode}
+   * @fhirType code
    */
   method?: TestScriptRequestMethodCode | undefined;
   _method?: Element | undefined;
@@ -88644,6 +90467,7 @@ Modifier extensions
    * not send the request message but will wait for the request message to be sent
    * from this origin server.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.origin}
+   * @fhirType integer
    */
   origin?: number | undefined;
   _origin?: Element | undefined;
@@ -88699,6 +90523,7 @@ Modifier extensions
    * subsequent assertions when assertion path and/or headerField is specified,
    * direction is equal to request, and the requestId in not specified.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.requestId}
+   * @fhirType id
    */
   requestId?: string | undefined;
   _requestId?: Element | undefined;
@@ -88717,6 +90542,7 @@ Modifier extensions
    * versionId value will also be used.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.resource}
    * @see {@link FHIRDefinedType}
+   * @fhirType code
    */
   resource?: FHIRDefinedType | undefined;
   _resource?: Element | undefined;
@@ -88730,6 +90556,7 @@ Modifier extensions
    * response and use it as the responseId in subsequent assertions when assertion
    * path and/or headerField is specified and the responseId is not specified.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.responseId}
+   * @fhirType id
    */
   responseId?: string | undefined;
   _responseId?: Element | undefined;
@@ -88737,6 +90564,7 @@ Modifier extensions
   /**
    * The id of the fixture used as the body of a PUT or POST request.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.sourceId}
+   * @fhirType id
    */
   sourceId?: string | undefined;
   _sourceId?: Element | undefined;
@@ -88754,6 +90582,7 @@ Modifier extensions
    * and used to construct the url.  For "vread" and "history" operations, the
    * versionId value will also be used.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.targetId}
+   * @fhirType id
    */
   targetId?: string | undefined;
   _targetId?: Element | undefined;
@@ -88819,6 +90648,7 @@ export interface TestScriptSetupActionOperationRequestHeader
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.setup.action.operation.requestHeader.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -88893,6 +90723,7 @@ export interface TestScriptTeardown extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.teardown.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -88947,6 +90778,7 @@ export interface TestScriptTeardownAction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.teardown.action.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -89016,6 +90848,7 @@ export interface TestScriptTest extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.test.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -89077,6 +90910,7 @@ export interface TestScriptTestAction extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.test.action.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -89193,6 +91027,7 @@ export interface TestScriptVariable extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.variable.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -89250,6 +91085,7 @@ Modifier extensions
    * This can be a statically defined fixture (at the top of the TestScript) or a
    * dynamically set fixture created by responseId of the `action.operation` element.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.variable.sourceId}
+   * @fhirType id
    */
   sourceId?: string | undefined;
   _sourceId?: Element | undefined;
@@ -89280,6 +91116,7 @@ export interface TestScript extends DomainResource {
    * statements are generally legal restrictions on the use and publishing of the
    * test script.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -89294,6 +91131,7 @@ export interface TestScript extends DomainResource {
    * specific dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -89309,6 +91147,7 @@ export interface TestScript extends DomainResource {
    * the language of the test script is presumed to be the predominant language in
    * the place the test script was created).
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -89425,6 +91264,7 @@ export interface TestScript extends DomainResource {
    * defined as it is.  This may be used to point to source materials or
    * specifications that drove the structure of this test script.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -89441,6 +91281,7 @@ export interface TestScript extends DomainResource {
    * Allows filtering of test scripts that are appropriate for use versus not.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -89490,6 +91331,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.url}
+ * @fhirType uri
  */
   url: string;
   _url?: Element | undefined;
@@ -89577,6 +91419,7 @@ export interface Timing extends BackboneElement {
 
   /**
    * Identifies specific times when the event occurs.
+   * @fhirType dateTime
    */
   event?: Array<string> | undefined;
   _event?: Element[] | undefined;
@@ -89651,12 +91494,14 @@ export interface TriggerDefinition extends Element {
 
   /**
    * The timing of the event (if this is a periodic trigger).
+   * @fhirType date
    */
   timingDate?: string | undefined;
   _timingDate?: Element | undefined;
 
   /**
    * The timing of the event (if this is a periodic trigger).
+   * @fhirType dateTime
    */
   timingDateTime?: string | undefined;
   _timingDateTime?: Element | undefined;
@@ -89664,6 +91509,7 @@ export interface TriggerDefinition extends Element {
   /**
    * The type of triggering event.
    * @see {@link TriggerType}
+   * @fhirType code
    */
   type: TriggerType;
   _type?: Element | undefined;
@@ -89743,6 +91589,7 @@ export interface ValueSetCompose extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -89792,6 +91639,7 @@ The Value Set Definition specification defines an
    * exclude statements, and also specifies a locked date, the specified versions
    * need to be available that date, or the value set will not be usable.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.lockedDate}
+   * @fhirType date
    */
   lockedDate?: string | undefined;
   _lockedDate?: Element | undefined;
@@ -89873,6 +91721,7 @@ export interface ValueSetComposeInclude extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -89908,6 +91757,7 @@ Modifier extensions
    * ''Coding.system'' for further documentation about the correct value for the
    * system element.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.system}
+   * @fhirType uri
    */
   system?: string | undefined;
   _system?: Element | undefined;
@@ -89924,6 +91774,7 @@ Modifier extensions
    * implicit definition of a value set that needs to be clear about how versions are
    * resolved.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.valueSet}
+   * @fhirType canonical
    */
   valueSet?: Array<string> | undefined;
   _valueSet?: Element[] | undefined;
@@ -89954,6 +91805,7 @@ export interface ValueSetComposeIncludeConcept extends BackboneElement {
    * Specifies a code for the concept to be included or excluded.
    * Expressions are allowed if defined by the underlying code system.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.concept.code}
+   * @fhirType code
    */
   code: string;
   _code?: Element | undefined;
@@ -90001,6 +91853,7 @@ export interface ValueSetComposeIncludeConcept extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.concept.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -90059,6 +91912,7 @@ export interface ValueSetComposeIncludeConceptDesignation
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.concept.designation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -90067,6 +91921,7 @@ export interface ValueSetComposeIncludeConceptDesignation
    * The language this designation is defined for.
    * In the absence of a language, the resource language applies.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.concept.designation.language}
+   * @fhirType code
    */
   language?: string | undefined;
   _language?: Element | undefined;
@@ -90142,6 +91997,7 @@ export interface ValueSetComposeIncludeFilter extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.filter.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -90177,6 +92033,7 @@ Modifier extensions
    * values.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.filter.op}
    * @see {@link FilterOperator}
+   * @fhirType code
    */
   op: FilterOperator;
   _op?: Element | undefined;
@@ -90184,6 +92041,7 @@ Modifier extensions
   /**
    * A code that identifies a property or a filter defined in the code system.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.include.filter.property}
+   * @fhirType code
    */
   property: string;
   _property?: Element | undefined;
@@ -90244,6 +92102,7 @@ export interface ValueSetExpansion extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -90257,6 +92116,7 @@ export interface ValueSetExpansion extends BackboneElement {
    * Typically, this uri is a UUID (e.g.
    * urn:uuid:8230ff20-c97a-4167-a59d-dc2cb9df16dd).
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.identifier}
+   * @fhirType uri
    */
   identifier?: string | undefined;
   _identifier?: Element | undefined;
@@ -90292,6 +92152,7 @@ Modifier extensions
    * number of concepts that matched the filter, not the number of concepts in an
    * unfiltered view of the expansion.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.offset}
+   * @fhirType integer
    */
   offset?: number | undefined;
   _offset?: Element | undefined;
@@ -90316,6 +92177,7 @@ Modifier extensions
    * This SHOULD be a fully populated instant, but in some circumstances, value sets
    * are expanded by hand, and the expansion is published without that precision.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.timestamp}
+   * @fhirType dateTime
    */
   timestamp: string;
   _timestamp?: Element | undefined;
@@ -90326,6 +92188,7 @@ Modifier extensions
    * using the offset parameter.
    * Paging only applies to flat expansions.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.total}
+   * @fhirType integer
    */
   total?: number | undefined;
   _total?: Element | undefined;
@@ -90352,6 +92215,7 @@ export interface ValueSetExpansionContains extends BackboneElement {
    * entry in the hierarchy is a place holder (abstract) and does not represent a
    * valid code in the value set.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.contains.code}
+   * @fhirType code
    */
   code?: string | undefined;
   _code?: Element | undefined;
@@ -90382,6 +92246,7 @@ export interface ValueSetExpansionContains extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.contains.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -90424,6 +92289,7 @@ Modifier extensions
    * An absolute URI which is the code system in which the code for this item in the
    * expansion is defined.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.contains.system}
+   * @fhirType uri
    */
   system?: string | undefined;
   _system?: Element | undefined;
@@ -90474,6 +92340,7 @@ export interface ValueSetExpansionParameter extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.parameter.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -90528,6 +92395,7 @@ Modifier extensions
   /**
    * The value of the parameter.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.parameter.valueInteger}
+   * @fhirType integer
    */
   valueInteger?: number | undefined;
   _valueInteger?: Element | undefined;
@@ -90535,6 +92403,7 @@ Modifier extensions
   /**
    * The value of the parameter.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.parameter.valueDecimal}
+   * @fhirType decimal
    */
   valueDecimal?: number | undefined;
   _valueDecimal?: Element | undefined;
@@ -90542,6 +92411,7 @@ Modifier extensions
   /**
    * The value of the parameter.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.parameter.valueUri}
+   * @fhirType uri
    */
   valueUri?: string | undefined;
   _valueUri?: Element | undefined;
@@ -90549,6 +92419,7 @@ Modifier extensions
   /**
    * The value of the parameter.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.parameter.valueCode}
+   * @fhirType code
    */
   valueCode?: string | undefined;
   _valueCode?: Element | undefined;
@@ -90556,6 +92427,7 @@ Modifier extensions
   /**
    * The value of the parameter.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.parameter.valueDateTime}
+   * @fhirType dateTime
    */
   valueDateTime?: string | undefined;
   _valueDateTime?: Element | undefined;
@@ -90600,6 +92472,7 @@ export interface ValueSet extends DomainResource {
    * are included. The copyright statement should clearly differentiate between these
    * when required.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.copyright}
+   * @fhirType markdown
    */
   copyright?: string | undefined;
   _copyright?: Element | undefined;
@@ -90612,6 +92485,7 @@ export interface ValueSet extends DomainResource {
    * dates may be added as extensions or be found by consulting Provenances
    * associated with past versions of the resource.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.date}
+   * @fhirType dateTime
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -90635,6 +92509,7 @@ export interface ValueSet extends DomainResource {
    * resource (e.g. an anonymous value set in a profile). Most registries will
    * require a description.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.description}
+   * @fhirType markdown
    */
   description?: string | undefined;
   _description?: Element | undefined;
@@ -90739,6 +92614,7 @@ Expansion.parameter is  a simplified list of parameters - a subset
    * as it is.  This may be used to point to source materials or specifications that
    * drove the structure of this value set.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.purpose}
+   * @fhirType markdown
    */
   purpose?: string | undefined;
   _purpose?: Element | undefined;
@@ -90753,6 +92629,7 @@ Expansion.parameter is  a simplified list of parameters - a subset
    * for additional status information related to the editorial process.
    * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.status}
    * @see {@link PublicationStatus}
+   * @fhirType code
    */
   status: PublicationStatus;
   _status?: Element | undefined;
@@ -90787,6 +92664,7 @@ In some cases, the resource can no longer
  * can use the [meta.source](resource.html#meta) element to indicate where the
  * current master source of the resource can be found.
  * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.url}
+ * @fhirType uri
  */
   url?: string | undefined;
   _url?: Element | undefined;
@@ -90837,6 +92715,7 @@ export interface VerificationResultAttestation extends BackboneElement {
   /**
    * The date the information was attested to.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.attestation.date}
+   * @fhirType date
    */
   date?: string | undefined;
   _date?: Element | undefined;
@@ -90860,6 +92739,7 @@ export interface VerificationResultAttestation extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.attestation.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -90971,6 +92851,7 @@ export interface VerificationResultPrimarySource extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.primarySource.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -91018,6 +92899,7 @@ Modifier extensions
   /**
    * When the target was validated against the primary source.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.primarySource.validationDate}
+   * @fhirType dateTime
    */
   validationDate?: string | undefined;
   _validationDate?: Element | undefined;
@@ -91069,6 +92951,7 @@ export interface VerificationResultValidator extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.validator.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -91146,6 +93029,7 @@ export interface VerificationResult extends DomainResource {
   /**
    * The date/time validation was last completed (including failed validations).
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.lastPerformed}
+   * @fhirType dateTime
    */
   lastPerformed?: string | undefined;
   _lastPerformed?: Element | undefined;
@@ -91160,6 +93044,7 @@ export interface VerificationResult extends DomainResource {
   /**
    * The date when target is next validated, if appropriate.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.nextScheduled}
+   * @fhirType date
    */
   nextScheduled?: string | undefined;
   _nextScheduled?: Element | undefined;
@@ -91176,6 +93061,7 @@ export interface VerificationResult extends DomainResource {
    * revalidation; validation failed; revalidation failed).
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.status}
    * @see {@link status}
+   * @fhirType code
    */
   status: status;
   _status?: Element | undefined;
@@ -91183,6 +93069,7 @@ export interface VerificationResult extends DomainResource {
   /**
    * When the validation status was updated.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.statusDate}
+   * @fhirType dateTime
    */
   statusDate?: string | undefined;
   _statusDate?: Element | undefined;
@@ -91234,6 +93121,7 @@ export interface VisionPrescriptionLensSpecification extends BackboneElement {
   /**
    * Power adjustment for multifocal lenses measured in dioptres (0.25 units).
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.add}
+   * @fhirType decimal
    */
   add?: number | undefined;
   _add?: Element | undefined;
@@ -91242,6 +93130,7 @@ export interface VisionPrescriptionLensSpecification extends BackboneElement {
    * Adjustment for astigmatism measured in integer degrees.
    * The limits are +180 and -180 degrees.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.axis}
+   * @fhirType integer
    */
   axis?: number | undefined;
   _axis?: Element | undefined;
@@ -91249,6 +93138,7 @@ export interface VisionPrescriptionLensSpecification extends BackboneElement {
   /**
    * Back curvature measured in millimetres.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.backCurve}
+   * @fhirType decimal
    */
   backCurve?: number | undefined;
   _backCurve?: Element | undefined;
@@ -91270,6 +93160,7 @@ export interface VisionPrescriptionLensSpecification extends BackboneElement {
   /**
    * Power adjustment for astigmatism measured in dioptres (0.25 units).
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.cylinder}
+   * @fhirType decimal
    */
   cylinder?: number | undefined;
   _cylinder?: Element | undefined;
@@ -91277,6 +93168,7 @@ export interface VisionPrescriptionLensSpecification extends BackboneElement {
   /**
    * Contact lens diameter measured in millimetres.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.diameter}
+   * @fhirType decimal
    */
   diameter?: number | undefined;
   _diameter?: Element | undefined;
@@ -91309,6 +93201,7 @@ export interface VisionPrescriptionLensSpecification extends BackboneElement {
    * for the left eye.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.eye}
    * @see {@link VisionEyes}
+   * @fhirType code
    */
   eye: VisionEyes;
   _eye?: Element | undefined;
@@ -91317,6 +93210,7 @@ export interface VisionPrescriptionLensSpecification extends BackboneElement {
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -91354,6 +93248,7 @@ Modifier extensions
   /**
    * Contact lens power measured in dioptres (0.25 units).
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.power}
+   * @fhirType decimal
    */
   power?: number | undefined;
   _power?: Element | undefined;
@@ -91379,6 +93274,7 @@ Modifier extensions
 Often
  * insurance will not cover a lens with power between +75 and -75.
  * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.sphere}
+ * @fhirType decimal
  */
   sphere?: number | undefined;
   _sphere?: Element | undefined;
@@ -91393,6 +93289,7 @@ export interface VisionPrescriptionLensSpecificationPrism
   /**
    * Amount of prism to compensate for eye alignment in fractional units.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.prism.amount}
+   * @fhirType decimal
    */
   amount: number;
   _amount?: Element | undefined;
@@ -91401,6 +93298,7 @@ export interface VisionPrescriptionLensSpecificationPrism
    * The relative base, or reference lens edge, for the prism.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.prism.base}
    * @see {@link VisionBase}
+   * @fhirType code
    */
   base: VisionBase;
   _base?: Element | undefined;
@@ -91424,6 +93322,7 @@ export interface VisionPrescriptionLensSpecificationPrism
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.lensSpecification.prism.id}
+   * @fhirType http://hl7.org/fhirpath/System.String
    */
   id?: string | undefined;
   _id?: Element | undefined;
@@ -91466,6 +93365,7 @@ export interface VisionPrescription extends DomainResource {
   /**
    * The date this resource was created.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.created}
+   * @fhirType dateTime
    */
   created: string;
   _created?: Element | undefined;
@@ -91475,6 +93375,7 @@ export interface VisionPrescription extends DomainResource {
    * Jurisdictions determine the valid lifetime of a prescription. Typically vision
    * prescriptions are valid for two years from the date written.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.dateWritten}
+   * @fhirType dateTime
    */
   dateWritten: string;
   _dateWritten?: Element | undefined;
@@ -91523,6 +93424,7 @@ export interface VisionPrescription extends DomainResource {
    * mark the resource as not currently valid.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.status}
    * @see {@link FinancialResourceStatusCodes}
+   * @fhirType code
    */
   status: FinancialResourceStatusCodes;
   _status?: Element | undefined;

@@ -18,13 +18,13 @@ export interface ValueFormatter<TType extends string, TValue, TOptions> {
 }
 
 /**
- * Extends the base Formatter type with an overload of the format function that fit the ValueFormatter.
+ * Extends the base Formatter type with an overload of the format function that fits the ValueFormatter.
  */
 export type WithValueFormatter<
-  TThis extends Formatter,
   TType,
   TValue,
-  TOptions
+  TOptions,
+  TThis extends Formatter = Formatter
 > = {
   format(
     type: TType,
@@ -79,7 +79,7 @@ export class Formatter {
    */
   public register<TType extends string, TValue, TOptions>(
     valueFormatter: ValueFormatter<TType, TValue, TOptions>
-  ): WithValueFormatter<this, TType, TValue, TOptions> {
+  ): WithValueFormatter<TType, TValue, TOptions, this> {
     const newFormatters = new Map(this._formatters);
     newFormatters.set(
       valueFormatter.type,

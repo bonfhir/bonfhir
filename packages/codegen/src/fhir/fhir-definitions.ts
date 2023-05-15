@@ -333,6 +333,33 @@ export class ElementDefinition {
     });
   }
 
+  public get isPrimitiveType(): boolean {
+    return (this as any).type?.some((t: any) =>
+      [
+        "base64Binary",
+        "canonical",
+        "code",
+        "date",
+        "dateTime",
+        "http://hl7.org/fhirpath/System.String",
+        "id",
+        "instant",
+        "markdown",
+        "oid",
+        "time",
+        "uri",
+        "url",
+        "uuid",
+        "xhtml",
+        "integer",
+        "integer64",
+        "decimal",
+        "positiveInt",
+        "unsignedInt",
+      ].includes(t.code)
+    );
+  }
+
   /**
    * The TypeScript type for this element
    */
@@ -388,6 +415,11 @@ export class ElementDefinition {
                 (this as any).binding.valueSet.split("|")[0]
               )?.safeName
             }}`
+          : undefined,
+        this.isPrimitiveType
+          ? `@fhirType ${(this as any).type
+              .map((x: any) => x.code)
+              .join(" | ")}`
           : undefined,
       ].filter(Boolean) as string[]
     );
