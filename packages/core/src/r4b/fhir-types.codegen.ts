@@ -10387,7 +10387,7 @@ A coverage may only be responsible for
  * could be important when processing billing.
  * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.coverage.coverage}
  */
-  coverage: Reference;
+  coverage: Reference<Coverage>;
   _coverage?: Element | undefined;
 
   /**
@@ -10514,7 +10514,7 @@ Modifier extensions
    * The entity who is responsible.
    * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.guarantor.party}
    */
-  party: Reference;
+  party: Reference<Patient | RelatedPerson | Organization>;
   _party?: Element | undefined;
 
   /**
@@ -10533,6 +10533,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Account.html}
  */
+
 export interface Account extends DomainResource {
   readonly resourceType: "Account";
 
@@ -10588,14 +10589,14 @@ Where the order is important, a local/jurisdictional extension may be
    * managing the Account.
    * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.owner}
    */
-  owner?: Reference | undefined;
+  owner?: Reference<Organization> | undefined;
   _owner?: Element | undefined;
 
   /**
    * Reference to a parent Account.
    * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.partOf}
    */
-  partOf?: Reference | undefined;
+  partOf?: Reference<Account> | undefined;
   _partOf?: Element | undefined;
 
   /**
@@ -10627,7 +10628,19 @@ Where the order is important, a local/jurisdictional extension may be
    * another body), or might not be allocated.
    * @see {@link http://hl7.org/fhir/R4B/Account-definitions.html#Account.subject}
    */
-  subject?: Array<Reference> | undefined;
+  subject?:
+    | Array<
+        Reference<
+          | Patient
+          | Device
+          | Practitioner
+          | PractitionerRole
+          | Location
+          | HealthcareService
+          | Organization
+        >
+      >
+    | undefined;
   _subject?: Element[] | undefined;
 
   /**
@@ -10800,6 +10813,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition.html}
  */
+
 export interface ActivityDefinition extends DomainResource {
   readonly resourceType: "ActivityDefinition";
 
@@ -11037,7 +11051,7 @@ export interface ActivityDefinition extends DomainResource {
    * location.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.location}
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -11056,14 +11070,16 @@ export interface ActivityDefinition extends DomainResource {
    * weight or surface area.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.observationRequirement}
    */
-  observationRequirement?: Array<Reference> | undefined;
+  observationRequirement?: Array<Reference<ObservationDefinition>> | undefined;
   _observationRequirement?: Element[] | undefined;
 
   /**
    * Defines the observations that are expected to be produced by the action.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.observationResultRequirement}
    */
-  observationResultRequirement?: Array<Reference> | undefined;
+  observationResultRequirement?:
+    | Array<Reference<ObservationDefinition>>
+    | undefined;
   _observationResultRequirement?: Element[] | undefined;
 
   /**
@@ -11088,7 +11104,7 @@ export interface ActivityDefinition extends DomainResource {
    * activity.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.productReference}
    */
-  productReference?: Reference | undefined;
+  productReference?: Reference<Medication | Substance | Ingredient> | undefined;
   _productReference?: Element | undefined;
 
   /**
@@ -11166,7 +11182,7 @@ export interface ActivityDefinition extends DomainResource {
    * specimens for a lab test.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.specimenRequirement}
    */
-  specimenRequirement?: Array<Reference> | undefined;
+  specimenRequirement?: Array<Reference<SpecimenDefinition>> | undefined;
   _specimenRequirement?: Element[] | undefined;
 
   /**
@@ -11210,7 +11226,7 @@ export interface ActivityDefinition extends DomainResource {
    * canonical type with these use cases.
    * @see {@link http://hl7.org/fhir/R4B/ActivityDefinition-definitions.html#ActivityDefinition.subjectReference}
    */
-  subjectReference?: Reference | undefined;
+  subjectReference?: Reference<Group> | undefined;
   _subjectReference?: Element | undefined;
 
   /**
@@ -11391,6 +11407,7 @@ In some cases, the resource can no longer
  *
  * @see {@link http://hl7.org/fhir/R4B/Address.html}
  */
+
 export interface Address extends Element {
   /**
    * The name of the city, town, suburb, village or other community or delivery
@@ -11849,6 +11866,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition.html}
  */
+
 export interface AdministrableProductDefinition extends DomainResource {
   readonly resourceType: "AdministrableProductDefinition";
 
@@ -11869,7 +11887,7 @@ export interface AdministrableProductDefinition extends DomainResource {
    * that are just co-packaged.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.device}
    */
-  device?: Reference | undefined;
+  device?: Reference<DeviceDefinition> | undefined;
   _device?: Element | undefined;
 
   /**
@@ -11882,7 +11900,7 @@ export interface AdministrableProductDefinition extends DomainResource {
    * than the product as a whole.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.formOf}
    */
-  formOf?: Array<Reference> | undefined;
+  formOf?: Array<Reference<MedicinalProductDefinition>> | undefined;
   _formOf?: Element[] | undefined;
 
   /**
@@ -11915,7 +11933,7 @@ export interface AdministrableProductDefinition extends DomainResource {
    * supplied cream.
    * @see {@link http://hl7.org/fhir/R4B/AdministrableProductDefinition-definitions.html#AdministrableProductDefinition.producedFrom}
    */
-  producedFrom?: Array<Reference> | undefined;
+  producedFrom?: Array<Reference<ManufacturedItemDefinition>> | undefined;
   _producedFrom?: Element[] | undefined;
 
   /**
@@ -11999,7 +12017,15 @@ export interface AdverseEventSuspectEntity extends BackboneElement {
    * device.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.suspectEntity.instance}
    */
-  instance: Reference;
+  instance: Reference<
+    | Immunization
+    | Procedure
+    | Substance
+    | Medication
+    | MedicationAdministration
+    | MedicationStatement
+    | Device
+  >;
   _instance?: Element | undefined;
 
   /**
@@ -12042,7 +12068,7 @@ export interface AdverseEventSuspectEntityCausality extends BackboneElement {
    * AdverseEvent.suspectEntity.causalityAuthor.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.suspectEntity.causality.author}
    */
-  author?: Reference | undefined;
+  author?: Reference<Practitioner | PractitionerRole> | undefined;
   _author?: Element | undefined;
 
   /**
@@ -12117,6 +12143,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/AdverseEvent.html}
  */
+
 export interface AdverseEvent extends DomainResource {
   readonly resourceType: "AdverseEvent";
 
@@ -12146,7 +12173,9 @@ export interface AdverseEvent extends DomainResource {
    * activity was performed (e.g. informant witness).
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.contributor}
    */
-  contributor?: Array<Reference> | undefined;
+  contributor?:
+    | Array<Reference<Practitioner | PractitionerRole | Device>>
+    | undefined;
   _contributor?: Element[] | undefined;
 
   /**
@@ -12177,7 +12206,7 @@ export interface AdverseEvent extends DomainResource {
    * that second encounter is not the context.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -12208,7 +12237,7 @@ export interface AdverseEvent extends DomainResource {
    * The information about where the adverse event occurred.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.location}
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -12235,14 +12264,16 @@ export interface AdverseEvent extends DomainResource {
    * practitioner.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.recorder}
    */
-  recorder?: Reference | undefined;
+  recorder?:
+    | Reference<Patient | Practitioner | PractitionerRole | RelatedPerson>
+    | undefined;
   _recorder?: Element | undefined;
 
   /**
    * AdverseEvent.referenceDocument.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.referenceDocument}
    */
-  referenceDocument?: Array<Reference> | undefined;
+  referenceDocument?: Array<Reference<DocumentReference>> | undefined;
   _referenceDocument?: Element[] | undefined;
 
   /**
@@ -12250,7 +12281,7 @@ export interface AdverseEvent extends DomainResource {
    * a substance (for example, a drug or a chemical).
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.resultingCondition}
    */
-  resultingCondition?: Array<Reference> | undefined;
+  resultingCondition?: Array<Reference<Condition>> | undefined;
   _resultingCondition?: Element[] | undefined;
 
   /**
@@ -12274,7 +12305,7 @@ export interface AdverseEvent extends DomainResource {
    * AdverseEvent.study.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.study}
    */
-  study?: Array<Reference> | undefined;
+  study?: Array<Reference<ResearchStudy>> | undefined;
   _study?: Element[] | undefined;
 
   /**
@@ -12283,14 +12314,27 @@ export interface AdverseEvent extends DomainResource {
    * Patient as the subject.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group | Practitioner | RelatedPerson>;
   _subject?: Element | undefined;
 
   /**
    * AdverseEvent.subjectMedicalHistory.
    * @see {@link http://hl7.org/fhir/R4B/AdverseEvent-definitions.html#AdverseEvent.subjectMedicalHistory}
    */
-  subjectMedicalHistory?: Array<Reference> | undefined;
+  subjectMedicalHistory?:
+    | Array<
+        Reference<
+          | Condition
+          | Observation
+          | AllergyIntolerance
+          | FamilyMemberHistory
+          | Immunization
+          | Procedure
+          | Media
+          | DocumentReference
+        >
+      >
+    | undefined;
   _subjectMedicalHistory?: Element[] | undefined;
 
   /**
@@ -12309,6 +12353,7 @@ export interface AdverseEvent extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Age.html}
  */
+
 export interface Age extends Quantity {}
 
 /**
@@ -12466,6 +12511,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance.html}
  */
+
 export interface AllergyIntolerance extends DomainResource {
   readonly resourceType: "AllergyIntolerance";
 
@@ -12475,7 +12521,9 @@ export interface AllergyIntolerance extends DomainResource {
    * from where they got it.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.asserter}
    */
-  asserter?: Reference | undefined;
+  asserter?:
+    | Reference<Patient | RelatedPerson | Practitioner | PractitionerRole>
+    | undefined;
   _asserter?: Element | undefined;
 
   /**
@@ -12581,7 +12629,7 @@ The
    * The encounter when the allergy or intolerance was asserted.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -12672,7 +12720,7 @@ The
    * The patient who has the allergy or intolerance.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -12696,7 +12744,9 @@ The
    * Individual who recorded the record and takes responsibility for its content.
    * @see {@link http://hl7.org/fhir/R4B/AllergyIntolerance-definitions.html#AllergyIntolerance.recorder}
    */
-  recorder?: Reference | undefined;
+  recorder?:
+    | Reference<Practitioner | PractitionerRole | Patient | RelatedPerson>
+    | undefined;
   _recorder?: Element | undefined;
 
   /**
@@ -12745,13 +12795,16 @@ The
  *
  * @see {@link http://hl7.org/fhir/R4B/Annotation.html}
  */
+
 export interface Annotation extends Element {
   /**
    * The individual responsible for making the annotation.
    * Organization is used when there's no need for specific attribution as to who
    * made the comment.
    */
-  authorReference?: Reference | undefined;
+  authorReference?:
+    | Reference<Practitioner | Patient | RelatedPerson | Organization>
+    | undefined;
   _authorReference?: Element | undefined;
 
   /**
@@ -12787,7 +12840,17 @@ export interface AppointmentParticipant extends BackboneElement {
    * appointment.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.participant.actor}
    */
-  actor?: Reference | undefined;
+  actor?:
+    | Reference<
+        | Patient
+        | Practitioner
+        | PractitionerRole
+        | RelatedPerson
+        | Device
+        | HealthcareService
+        | Location
+      >
+    | undefined;
   _actor?: Element | undefined;
 
   /**
@@ -12890,6 +12953,7 @@ This
  *
  * @see {@link http://hl7.org/fhir/R4B/Appointment.html}
  */
+
 export interface Appointment extends DomainResource {
   readonly resourceType: "Appointment";
 
@@ -12906,7 +12970,7 @@ export interface Appointment extends DomainResource {
    * referral or procedure request).
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<ServiceRequest>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -13033,7 +13097,13 @@ Using an extension to record a CodeableConcept for named values may be
    * Procedure.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Procedure | Observation | ImmunizationRecommendation
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -13072,7 +13142,7 @@ The duration (usually in minutes) could also
    * appointment.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.slot}
    */
-  slot?: Array<Reference> | undefined;
+  slot?: Array<Reference<Slot>> | undefined;
   _slot?: Element[] | undefined;
 
   /**
@@ -13114,7 +13184,7 @@ This element is labeled as a
    * appointment.
    * @see {@link http://hl7.org/fhir/R4B/Appointment-definitions.html#Appointment.supportingInformation}
    */
-  supportingInformation?: Array<Reference> | undefined;
+  supportingInformation?: Array<Reference<Resource>> | undefined;
   _supportingInformation?: Element[] | undefined;
 }
 
@@ -13126,6 +13196,7 @@ This element is labeled as a
  *
  * @see {@link http://hl7.org/fhir/R4B/AppointmentResponse.html}
  */
+
 export interface AppointmentResponse extends DomainResource {
   readonly resourceType: "AppointmentResponse";
 
@@ -13134,14 +13205,24 @@ export interface AppointmentResponse extends DomainResource {
    * appointment.
    * @see {@link http://hl7.org/fhir/R4B/AppointmentResponse-definitions.html#AppointmentResponse.actor}
    */
-  actor?: Reference | undefined;
+  actor?:
+    | Reference<
+        | Patient
+        | Practitioner
+        | PractitionerRole
+        | RelatedPerson
+        | Device
+        | HealthcareService
+        | Location
+      >
+    | undefined;
   _actor?: Element | undefined;
 
   /**
    * Appointment that this response is replying to.
    * @see {@link http://hl7.org/fhir/R4B/AppointmentResponse-definitions.html#AppointmentResponse.appointment}
    */
-  appointment: Reference;
+  appointment: Reference<Appointment>;
   _appointment?: Element | undefined;
 
   /**
@@ -13223,6 +13304,7 @@ This value SHALL be the same as specified on the referenced
  *
  * @see {@link http://hl7.org/fhir/R4B/Attachment.html}
  */
+
 export interface Attachment extends Element {
   /**
    * Identifies the type of the data in the attachment and allows a method to be
@@ -13348,7 +13430,7 @@ export interface AuditEventAgent extends BackboneElement {
    * Where the event occurred.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.agent.location}
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -13457,7 +13539,16 @@ Modifier extensions
    * Where a User ID is available it will go into who.identifier.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.agent.who}
    */
-  who?: Reference | undefined;
+  who?:
+    | Reference<
+        | PractitionerRole
+        | Practitioner
+        | Organization
+        | Device
+        | Patient
+        | RelatedPerson
+      >
+    | undefined;
   _who?: Element | undefined;
 }
 
@@ -13669,7 +13760,7 @@ Modifier extensions
    * specific.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.entity.what}
    */
-  what?: Reference | undefined;
+  what?: Reference<Resource> | undefined;
   _what?: Element | undefined;
 }
 
@@ -13830,7 +13921,14 @@ Modifier extensions
    * Identifier of the source where the event was detected.
    * @see {@link http://hl7.org/fhir/R4B/AuditEvent-definitions.html#AuditEvent.source.observer}
    */
-  observer: Reference;
+  observer: Reference<
+    | PractitionerRole
+    | Practitioner
+    | Organization
+    | Device
+    | Patient
+    | RelatedPerson
+  >;
   _observer?: Element | undefined;
 
   /**
@@ -13858,6 +13956,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/AuditEvent.html}
  */
+
 export interface AuditEvent extends DomainResource {
   readonly resourceType: "AuditEvent";
 
@@ -13982,6 +14081,7 @@ For example, an activity may be initiated by one
  *
  * @see {@link http://hl7.org/fhir/R4B/BackboneElement.html}
  */
+
 export interface BackboneElement extends Element {
   /**
  * May be used to represent additional information that is not part of the basic
@@ -14015,6 +14115,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Basic.html}
  */
+
 export interface Basic extends DomainResource {
   readonly resourceType: "Basic";
 
@@ -14022,7 +14123,11 @@ export interface Basic extends DomainResource {
    * Indicates who was responsible for creating the resource instance.
    * @see {@link http://hl7.org/fhir/R4B/Basic-definitions.html#Basic.author}
    */
-  author?: Reference | undefined;
+  author?:
+    | Reference<
+        Practitioner | PractitionerRole | Patient | RelatedPerson | Organization
+      >
+    | undefined;
   _author?: Element | undefined;
 
   /**
@@ -14063,7 +14168,7 @@ This element is labeled as a modifier because it
    * associated with multiple subjects can handle this via extension.
    * @see {@link http://hl7.org/fhir/R4B/Basic-definitions.html#Basic.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Resource> | undefined;
   _subject?: Element | undefined;
 }
 
@@ -14076,6 +14181,7 @@ This element is labeled as a modifier because it
  *
  * @see {@link http://hl7.org/fhir/R4B/Binary.html}
  */
+
 export interface Binary extends Resource {
   readonly resourceType: string;
 
@@ -14118,7 +14224,7 @@ export interface Binary extends Resource {
    * resources that reference it.
    * @see {@link http://hl7.org/fhir/R4B/Binary-definitions.html#Binary.securityContext}
    */
-  securityContext?: Reference | undefined;
+  securityContext?: Reference<Resource> | undefined;
   _securityContext?: Element | undefined;
 }
 
@@ -14146,7 +14252,7 @@ export interface BiologicallyDerivedProductCollection extends BackboneElement {
    * Healthcare professional who is performing the collection.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.collection.collector}
    */
-  collector?: Reference | undefined;
+  collector?: Reference<Practitioner | PractitionerRole> | undefined;
   _collector?: Element | undefined;
 
   /**
@@ -14201,7 +14307,7 @@ Modifier extensions
    * processed/manipulated/manufactured product, providing the product.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.collection.source}
    */
-  source?: Reference | undefined;
+  source?: Reference<Patient | Organization> | undefined;
   _source?: Element | undefined;
 }
 
@@ -14294,7 +14400,7 @@ export interface BiologicallyDerivedProductProcessing extends BackboneElement {
    * Substance added during processing.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.processing.additive}
    */
-  additive?: Reference | undefined;
+  additive?: Reference<Substance> | undefined;
   _additive?: Element | undefined;
 
   /**
@@ -14467,6 +14573,7 @@ into another (possibly the same) biological entity.
  * 
  * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct.html}
  */
+
 export interface BiologicallyDerivedProduct extends DomainResource {
   readonly resourceType: "BiologicallyDerivedProduct";
 
@@ -14503,7 +14610,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
    * split into in multiple containers which must be linked to the parent donation.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.parent}
    */
-  parent?: Array<Reference> | undefined;
+  parent?: Array<Reference<BiologicallyDerivedProduct>> | undefined;
   _parent?: Element[] | undefined;
 
   /**
@@ -14544,7 +14651,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
    * Procedure request to obtain this biologically derived product.
    * @see {@link http://hl7.org/fhir/R4B/BiologicallyDerivedProduct-definitions.html#BiologicallyDerivedProduct.request}
    */
-  request?: Array<Reference> | undefined;
+  request?: Array<Reference<ServiceRequest>> | undefined;
   _request?: Element[] | undefined;
 
   /**
@@ -14572,6 +14679,7 @@ export interface BiologicallyDerivedProduct extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/BodyStructure.html}
  */
+
 export interface BodyStructure extends DomainResource {
   readonly resourceType: "BodyStructure";
 
@@ -14637,7 +14745,7 @@ export interface BodyStructure extends DomainResource {
    * The person to which the body site belongs.
    * @see {@link http://hl7.org/fhir/R4B/BodyStructure-definitions.html#BodyStructure.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 }
 
@@ -15151,6 +15259,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Bundle.html}
  */
+
 export interface Bundle extends Resource {
   readonly resourceType: string;
 
@@ -15366,7 +15475,7 @@ export interface CapabilityStatementImplementation extends BackboneElement {
    * the data on the server at the specified URL.
    * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.implementation.custodian}
    */
-  custodian?: Reference | undefined;
+  custodian?: Reference<Organization> | undefined;
   _custodian?: Element | undefined;
 
   /**
@@ -16586,6 +16695,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement.html}
  */
+
 export interface CapabilityStatement extends DomainResource {
   readonly resourceType: "CapabilityStatement";
 
@@ -17010,7 +17120,7 @@ Modifier extensions
    * measured.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.outcomeReference}
    */
-  outcomeReference?: Array<Reference> | undefined;
+  outcomeReference?: Array<Reference<Resource>> | undefined;
   _outcomeReference?: Element[] | undefined;
 
   /**
@@ -17036,7 +17146,19 @@ The goal should be visible when the resource
  * are part of a CarePlan are not "based on" the CarePlan.
  * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.reference}
  */
-  reference?: Reference | undefined;
+  reference?:
+    | Reference<
+        | Appointment
+        | CommunicationRequest
+        | DeviceRequest
+        | MedicationRequest
+        | NutritionOrder
+        | Task
+        | ServiceRequest
+        | VisionPrescription
+        | RequestGroup
+      >
+    | undefined;
   _reference?: Element | undefined;
 }
 
@@ -17105,7 +17227,7 @@ export interface CarePlanActivityDetail extends BackboneElement {
    * contribute towards meeting.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.detail.goal}
    */
-  goal?: Array<Reference> | undefined;
+  goal?: Array<Reference<Goal>> | undefined;
   _goal?: Element[] | undefined;
 
   /**
@@ -17156,7 +17278,7 @@ export interface CarePlanActivityDetail extends BackboneElement {
    * May reference a specific clinical location or may identify a type of location.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.detail.location}
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -17187,7 +17309,20 @@ Modifier extensions
    * A performer MAY also be a participant in the care plan.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.detail.performer}
    */
-  performer?: Array<Reference> | undefined;
+  performer?:
+    | Array<
+        Reference<
+          | Practitioner
+          | PractitionerRole
+          | Organization
+          | RelatedPerson
+          | Patient
+          | CareTeam
+          | HealthcareService
+          | Device
+        >
+      >
+    | undefined;
   _performer?: Element[] | undefined;
 
   /**
@@ -17203,7 +17338,7 @@ Modifier extensions
    * activity.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.detail.productReference}
    */
-  productReference?: Reference | undefined;
+  productReference?: Reference<Medication | Substance> | undefined;
   _productReference?: Element | undefined;
 
   /**
@@ -17232,7 +17367,13 @@ Modifier extensions
    * reasons for the overall plan.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.activity.detail.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -17291,6 +17432,7 @@ The unknown code is not to be used to convey other statuses.
  *
  * @see {@link http://hl7.org/fhir/R4B/CarePlan.html}
  */
+
 export interface CarePlan extends DomainResource {
   readonly resourceType: "CarePlan";
 
@@ -17311,7 +17453,7 @@ export interface CarePlan extends DomainResource {
    * intolerance condition needs to be represented as an AllergyIntolerance.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.addresses}
    */
-  addresses?: Array<Reference> | undefined;
+  addresses?: Array<Reference<Condition>> | undefined;
   _addresses?: Element[] | undefined;
 
   /**
@@ -17321,14 +17463,24 @@ export interface CarePlan extends DomainResource {
    * author, but not listed as a contributor.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.author}
    */
-  author?: Reference | undefined;
+  author?:
+    | Reference<
+        | Patient
+        | Practitioner
+        | PractitionerRole
+        | Device
+        | RelatedPerson
+        | Organization
+        | CareTeam
+      >
+    | undefined;
   _author?: Element | undefined;
 
   /**
    * A care plan that is fulfilled in whole or in part by this care plan.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<CarePlan>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -17336,7 +17488,7 @@ export interface CarePlan extends DomainResource {
    * care envisioned by this plan.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.careTeam}
    */
-  careTeam?: Array<Reference> | undefined;
+  careTeam?: Array<Reference<CareTeam>> | undefined;
   _careTeam?: Element[] | undefined;
 
   /**
@@ -17357,7 +17509,19 @@ export interface CarePlan extends DomainResource {
    * Collaborative care plans may have multiple contributors.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.contributor}
    */
-  contributor?: Array<Reference> | undefined;
+  contributor?:
+    | Array<
+        Reference<
+          | Patient
+          | Practitioner
+          | PractitionerRole
+          | Device
+          | RelatedPerson
+          | Organization
+          | CareTeam
+        >
+      >
+    | undefined;
   _contributor?: Element[] | undefined;
 
   /**
@@ -17386,7 +17550,7 @@ export interface CarePlan extends DomainResource {
    * encounters.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -17395,7 +17559,7 @@ export interface CarePlan extends DomainResource {
    * or even slowing a decline.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.goal}
    */
-  goal?: Array<Reference> | undefined;
+  goal?: Array<Reference<Goal>> | undefined;
   _goal?: Element[] | undefined;
 
   /**
@@ -17460,7 +17624,7 @@ export interface CarePlan extends DomainResource {
    * element is still being discussed.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.partOf}
    */
-  partOf?: Array<Reference> | undefined;
+  partOf?: Array<Reference<CarePlan>> | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -17481,7 +17645,7 @@ export interface CarePlan extends DomainResource {
    * for the action described by the care plan remains ongoing.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.replaces}
    */
-  replaces?: Array<Reference> | undefined;
+  replaces?: Array<Reference<CarePlan>> | undefined;
   _replaces?: Element[] | undefined;
 
   /**
@@ -17505,7 +17669,7 @@ This element is labeled as a
    * Identifies the patient or group whose intended care is described by the plan.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 
   /**
@@ -17515,7 +17679,7 @@ This element is labeled as a
    * Use "concern" to identify specific conditions addressed by the care plan.
    * @see {@link http://hl7.org/fhir/R4B/CarePlan-definitions.html#CarePlan.supportingInfo}
    */
-  supportingInfo?: Array<Reference> | undefined;
+  supportingInfo?: Array<Reference<Resource>> | undefined;
   _supportingInfo?: Element[] | undefined;
 
   /**
@@ -17566,7 +17730,16 @@ Member is optional because some participants may be known only by their
  * role, particularly in draft plans.
  * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.participant.member}
  */
-  member?: Reference | undefined;
+  member?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | RelatedPerson
+        | Patient
+        | Organization
+        | CareTeam
+      >
+    | undefined;
   _member?: Element | undefined;
 
   /**
@@ -17596,7 +17769,7 @@ Modifier extensions
    * The organization of the practitioner.
    * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.participant.onBehalfOf}
    */
-  onBehalfOf?: Reference | undefined;
+  onBehalfOf?: Reference<Organization> | undefined;
   _onBehalfOf?: Element | undefined;
 
   /**
@@ -17627,6 +17800,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/CareTeam.html}
  */
+
 export interface CareTeam extends DomainResource {
   readonly resourceType: "CareTeam";
 
@@ -17649,7 +17823,7 @@ export interface CareTeam extends DomainResource {
    * encounter but still be tied to the context of the encounter.
    * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -17672,7 +17846,7 @@ export interface CareTeam extends DomainResource {
    * The organization responsible for the care team.
    * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.managingOrganization}
    */
-  managingOrganization?: Array<Reference> | undefined;
+  managingOrganization?: Array<Reference<Organization>> | undefined;
   _managingOrganization?: Element[] | undefined;
 
   /**
@@ -17720,7 +17894,7 @@ export interface CareTeam extends DomainResource {
    * Condition(s) that this care team addresses.
    * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?: Array<Reference<Condition>> | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -17738,7 +17912,7 @@ export interface CareTeam extends DomainResource {
    * Identifies the patient or group whose intended care is handled by the team.
    * @see {@link http://hl7.org/fhir/R4B/CareTeam-definitions.html#CareTeam.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Patient | Group> | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -17785,7 +17959,7 @@ export interface CatalogEntryRelatedEntry extends BackboneElement {
    * The reference to the related item.
    * @see {@link http://hl7.org/fhir/R4B/CatalogEntry-definitions.html#CatalogEntry.relatedEntry.item}
    */
-  item: Reference;
+  item: Reference<CatalogEntry>;
   _item?: Element | undefined;
 
   /**
@@ -17829,6 +18003,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/CatalogEntry.html}
  */
+
 export interface CatalogEntry extends DomainResource {
   readonly resourceType: "CatalogEntry";
 
@@ -17889,7 +18064,19 @@ export interface CatalogEntry extends DomainResource {
    * The item in a catalog or definition.
    * @see {@link http://hl7.org/fhir/R4B/CatalogEntry-definitions.html#CatalogEntry.referencedItem}
    */
-  referencedItem: Reference;
+  referencedItem: Reference<
+    | Medication
+    | Device
+    | Organization
+    | Practitioner
+    | PractitionerRole
+    | HealthcareService
+    | ActivityDefinition
+    | PlanDefinition
+    | SpecimenDefinition
+    | ObservationDefinition
+    | Binary
+  >;
   _referencedItem?: Element | undefined;
 
   /**
@@ -17942,7 +18129,15 @@ export interface ChargeItemPerformer extends BackboneElement {
    * The device, practitioner, etc. who performed or participated in the service.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.performer.actor}
    */
-  actor: Reference;
+  actor: Reference<
+    | Practitioner
+    | PractitionerRole
+    | Organization
+    | CareTeam
+    | Patient
+    | Device
+    | RelatedPerson
+  >;
   _actor?: Element | undefined;
 
   /**
@@ -18012,6 +18207,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ChargeItem.html}
  */
+
 export interface ChargeItem extends DomainResource {
   readonly resourceType: "ChargeItem";
 
@@ -18024,7 +18220,7 @@ export interface ChargeItem extends DomainResource {
    * which Account is appropriate.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.account}
    */
-  account?: Array<Reference> | undefined;
+  account?: Array<Reference<Account>> | undefined;
   _account?: Element[] | undefined;
 
   /**
@@ -18050,7 +18246,7 @@ export interface ChargeItem extends DomainResource {
    * The encounter or episode of care that establishes the context for this event.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.context}
    */
-  context?: Reference | undefined;
+  context?: Reference<Encounter | EpisodeOfCare> | undefined;
   _context?: Element | undefined;
 
   /**
@@ -18061,7 +18257,7 @@ export interface ChargeItem extends DomainResource {
    * case requirements.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.costCenter}
    */
-  costCenter?: Reference | undefined;
+  costCenter?: Reference<Organization> | undefined;
   _costCenter?: Element | undefined;
 
   /**
@@ -18098,7 +18294,16 @@ export interface ChargeItem extends DomainResource {
    * if applicable.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.enterer}
    */
-  enterer?: Reference | undefined;
+  enterer?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | Organization
+        | Patient
+        | Device
+        | RelatedPerson
+      >
+    | undefined;
   _enterer?: Element | undefined;
 
   /**
@@ -18168,7 +18373,7 @@ export interface ChargeItem extends DomainResource {
    * ChargeItems can be grouped to larger ChargeItems covering the whole set.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.partOf}
    */
-  partOf?: Array<Reference> | undefined;
+  partOf?: Array<Reference<ChargeItem>> | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -18185,7 +18390,7 @@ export interface ChargeItem extends DomainResource {
    * rendered.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.performingOrganization}
    */
-  performingOrganization?: Reference | undefined;
+  performingOrganization?: Reference<Organization> | undefined;
   _performingOrganization?: Element | undefined;
 
   /**
@@ -18205,7 +18410,7 @@ export interface ChargeItem extends DomainResource {
    * code or reference to an instance.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.productReference}
    */
-  productReference?: Reference | undefined;
+  productReference?: Reference<Device | Medication | Substance> | undefined;
   _productReference?: Element | undefined;
 
   /**
@@ -18241,14 +18446,27 @@ export interface ChargeItem extends DomainResource {
    * cases, this may just be the Department associated with the Encounter.location).
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.requestingOrganization}
    */
-  requestingOrganization?: Reference | undefined;
+  requestingOrganization?: Reference<Organization> | undefined;
   _requestingOrganization?: Element | undefined;
 
   /**
    * Indicated the rendered service that caused this charge.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.service}
    */
-  service?: Array<Reference> | undefined;
+  service?:
+    | Array<
+        Reference<
+          | DiagnosticReport
+          | ImagingStudy
+          | Immunization
+          | MedicationAdministration
+          | MedicationDispense
+          | Observation
+          | Procedure
+          | SupplyDelivery
+        >
+      >
+    | undefined;
   _service?: Element[] | undefined;
 
   /**
@@ -18270,14 +18488,14 @@ This element is labeled as a modifier because the status contains the code
    * The individual or set of individuals the action is being or was performed on.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 
   /**
    * Further information supporting this charge.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItem-definitions.html#ChargeItem.supportingInformation}
    */
-  supportingInformation?: Array<Reference> | undefined;
+  supportingInformation?: Array<Reference<Resource>> | undefined;
   _supportingInformation?: Element[] | undefined;
 }
 
@@ -18541,6 +18759,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition.html}
  */
+
 export interface ChargeItemDefinition extends DomainResource {
   readonly resourceType: "ChargeItemDefinition";
 
@@ -18676,7 +18895,7 @@ export interface ChargeItemDefinition extends DomainResource {
    * instances.
    * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.instance}
    */
-  instance?: Array<Reference> | undefined;
+  instance?: Array<Reference<Medication | Substance | Device>> | undefined;
   _instance?: Element[] | undefined;
 
   /**
@@ -19222,14 +19441,14 @@ Modifier extensions
    * Organization who created the classification.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.classification.whoClassified.organization}
    */
-  organization?: Reference | undefined;
+  organization?: Reference<Organization> | undefined;
   _organization?: Element | undefined;
 
   /**
    * Person who created the classification.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.classification.whoClassified.person}
    */
-  person?: Reference | undefined;
+  person?: Reference<Person | Practitioner> | undefined;
   _person?: Element | undefined;
 
   /**
@@ -19237,7 +19456,7 @@ Modifier extensions
    * artifact being cited.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.classification.whoClassified.publisher}
    */
-  publisher?: Reference | undefined;
+  publisher?: Reference<Organization> | undefined;
   _publisher?: Element | undefined;
 }
 
@@ -19717,7 +19936,7 @@ export interface CitationCitedArtifactPart extends BackboneElement {
    * The citation for the full article or artifact.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.part.baseCitation}
    */
-  baseCitation?: Reference | undefined;
+  baseCitation?: Reference<Citation> | undefined;
   _baseCitation?: Element | undefined;
 
   /**
@@ -20178,7 +20397,7 @@ Modifier extensions
    * Name of the publisher.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.publicationForm.publishedIn.publisher}
    */
-  publisher?: Reference | undefined;
+  publisher?: Reference<Organization> | undefined;
   _publisher?: Element | undefined;
 
   /**
@@ -20283,7 +20502,7 @@ Modifier extensions
    * The article or artifact that the cited artifact is related to.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.relatesTo.targetReference}
    */
-  targetReference?: Reference | undefined;
+  targetReference?: Reference<Resource> | undefined;
   _targetReference?: Element | undefined;
 
   /**
@@ -20460,7 +20679,7 @@ export interface CitationCitedArtifactVersion extends BackboneElement {
    * Citation for the main version of the cited artifact.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.citedArtifact.version.baseCitation}
    */
-  baseCitation?: Reference | undefined;
+  baseCitation?: Reference<Citation> | undefined;
   _baseCitation?: Element | undefined;
 
   /**
@@ -20732,7 +20951,7 @@ Modifier extensions
    * The article or artifact that the Citation Resource is related to.
    * @see {@link http://hl7.org/fhir/R4B/Citation-definitions.html#Citation.relatesTo.targetReference}
    */
-  targetReference?: Reference | undefined;
+  targetReference?: Reference<Resource> | undefined;
   _targetReference?: Element | undefined;
 
   /**
@@ -20903,6 +21122,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Citation.html}
  */
+
 export interface Citation extends DomainResource {
   readonly resourceType: "Citation";
 
@@ -21248,7 +21468,7 @@ export interface ClaimAccident extends BackboneElement {
    * The physical location of the accident event.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.accident.locationReference}
    */
-  locationReference?: Reference | undefined;
+  locationReference?: Reference<Location> | undefined;
   _locationReference?: Element | undefined;
 
   /**
@@ -21340,7 +21560,7 @@ Modifier extensions
    * Member of the team who provided the product or service.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.careTeam.provider}
    */
-  provider: Reference;
+  provider: Reference<Practitioner | PractitionerRole | Organization>;
   _provider?: Element | undefined;
 
   /**
@@ -21395,7 +21615,7 @@ export interface ClaimDiagnosis extends BackboneElement {
    * external defined Condition.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.diagnosis.diagnosisReference}
    */
-  diagnosisReference?: Reference | undefined;
+  diagnosisReference?: Reference<Condition> | undefined;
   _diagnosisReference?: Element | undefined;
 
   /**
@@ -21513,7 +21733,7 @@ export interface ClaimInsurance extends BackboneElement {
    * Must not be specified when 'focal=true' for this insurance.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.insurance.claimResponse}
    */
-  claimResponse?: Reference | undefined;
+  claimResponse?: Reference<ClaimResponse> | undefined;
   _claimResponse?: Element | undefined;
 
   /**
@@ -21522,7 +21742,7 @@ export interface ClaimInsurance extends BackboneElement {
    * patient's actual coverage within the insurer's information system.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.insurance.coverage}
    */
-  coverage: Reference;
+  coverage: Reference<Coverage>;
   _coverage?: Element | undefined;
 
   /**
@@ -21675,7 +21895,7 @@ export interface ClaimItem extends BackboneElement {
    * encounter but still be tied to the context of the encounter.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.encounter}
    */
-  encounter?: Array<Reference> | undefined;
+  encounter?: Array<Reference<Encounter>> | undefined;
   _encounter?: Element[] | undefined;
 
   /**
@@ -21740,7 +21960,7 @@ export interface ClaimItem extends BackboneElement {
    * Where the product or service was provided.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.locationReference}
    */
-  locationReference?: Reference | undefined;
+  locationReference?: Reference<Location> | undefined;
   _locationReference?: Element | undefined;
 
   /**
@@ -21867,7 +22087,7 @@ Modifier extensions
    * Unique Device Identifiers associated with this line item.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.udi}
    */
-  udi?: Array<Reference> | undefined;
+  udi?: Array<Reference<Device>> | undefined;
   _udi?: Element[] | undefined;
 
   /**
@@ -22028,7 +22248,7 @@ Modifier extensions
    * Unique Device Identifiers associated with this line item.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.detail.udi}
    */
-  udi?: Array<Reference> | undefined;
+  udi?: Array<Reference<Device>> | undefined;
   _udi?: Element[] | undefined;
 
   /**
@@ -22181,7 +22401,7 @@ Modifier extensions
    * Unique Device Identifiers associated with this line item.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.item.detail.subDetail.udi}
    */
-  udi?: Array<Reference> | undefined;
+  udi?: Array<Reference<Device>> | undefined;
   _udi?: Element[] | undefined;
 
   /**
@@ -22254,7 +22474,11 @@ Modifier extensions
    * Not required if the payee is 'subscriber' or 'provider'.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.payee.party}
    */
-  party?: Reference | undefined;
+  party?:
+    | Reference<
+        Practitioner | PractitionerRole | Organization | Patient | RelatedPerson
+      >
+    | undefined;
   _party?: Element | undefined;
 
   /**
@@ -22339,7 +22563,7 @@ Modifier extensions
    * intervention performed.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.procedure.procedureReference}
    */
-  procedureReference?: Reference | undefined;
+  procedureReference?: Reference<Procedure> | undefined;
   _procedureReference?: Element | undefined;
 
   /**
@@ -22362,7 +22586,7 @@ Modifier extensions
    * Unique Device Identifiers associated with this line item.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.procedure.udi}
    */
-  udi?: Array<Reference> | undefined;
+  udi?: Array<Reference<Device>> | undefined;
   _udi?: Element[] | undefined;
 }
 
@@ -22377,7 +22601,7 @@ export interface ClaimRelated extends BackboneElement {
    * Reference to a related claim.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.related.claim}
    */
-  claim?: Reference | undefined;
+  claim?: Reference<Claim> | undefined;
   _claim?: Element | undefined;
 
   /**
@@ -22596,7 +22820,7 @@ Modifier extensions
    * could contain a PDF in an Attachment of the Police Report for an Accident.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.supportingInfo.valueReference}
    */
-  valueReference?: Reference | undefined;
+  valueReference?: Reference<Resource> | undefined;
   _valueReference?: Element | undefined;
 }
 
@@ -22609,6 +22833,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Claim.html}
  */
+
 export interface Claim extends DomainResource {
   readonly resourceType: "Claim";
 
@@ -22659,14 +22884,14 @@ export interface Claim extends DomainResource {
    * Individual who created the claim, predetermination or preauthorization.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.enterer}
    */
-  enterer?: Reference | undefined;
+  enterer?: Reference<Practitioner | PractitionerRole> | undefined;
   _enterer?: Element | undefined;
 
   /**
    * Facility where the services were provided.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.facility}
    */
-  facility?: Reference | undefined;
+  facility?: Reference<Location> | undefined;
   _facility?: Element | undefined;
 
   /**
@@ -22705,7 +22930,7 @@ export interface Claim extends DomainResource {
    * The Insurer who is target of the request.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.insurer}
    */
-  insurer?: Reference | undefined;
+  insurer?: Reference<Organization> | undefined;
   _insurer?: Element | undefined;
 
   /**
@@ -22726,7 +22951,9 @@ export interface Claim extends DomainResource {
    * 'prescription' and that from the physician becomes the 'original prescription'.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.originalPrescription}
    */
-  originalPrescription?: Reference | undefined;
+  originalPrescription?:
+    | Reference<DeviceRequest | MedicationRequest | VisionPrescription>
+    | undefined;
   _originalPrescription?: Element | undefined;
 
   /**
@@ -22734,7 +22961,7 @@ export interface Claim extends DomainResource {
    * or are being considered and for whom actual or forecast reimbursement is sought.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -22752,7 +22979,9 @@ export interface Claim extends DomainResource {
    * Prescription to support the dispensing of pharmacy, device or vision products.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.prescription}
    */
-  prescription?: Reference | undefined;
+  prescription?:
+    | Reference<DeviceRequest | MedicationRequest | VisionPrescription>
+    | undefined;
   _prescription?: Element | undefined;
 
   /**
@@ -22781,7 +23010,7 @@ export interface Claim extends DomainResource {
    * individual products and services listed below.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.provider}
    */
-  provider: Reference;
+  provider: Reference<Practitioner | PractitionerRole | Organization>;
   _provider?: Element | undefined;
 
   /**
@@ -22790,7 +23019,7 @@ export interface Claim extends DomainResource {
    * supporting information.
    * @see {@link http://hl7.org/fhir/R4B/Claim-definitions.html#Claim.referral}
    */
-  referral?: Reference | undefined;
+  referral?: Reference<ServiceRequest> | undefined;
   _referral?: Element | undefined;
 
   /**
@@ -22954,7 +23183,7 @@ export interface ClaimResponseAddItem extends BackboneElement {
    * Where the product or service was provided.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.locationReference}
    */
-  locationReference?: Reference | undefined;
+  locationReference?: Reference<Location> | undefined;
   _locationReference?: Element | undefined;
 
   /**
@@ -23036,7 +23265,9 @@ Modifier extensions
    * The providers who are authorized for the services rendered to the patient.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.provider}
    */
-  provider?: Array<Reference> | undefined;
+  provider?:
+    | Array<Reference<Practitioner | PractitionerRole | Organization>>
+    | undefined;
   _provider?: Element[] | undefined;
 
   /**
@@ -23459,7 +23690,7 @@ export interface ClaimResponseInsurance extends BackboneElement {
    * Must not be specified when 'focal=true' for this insurance.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.insurance.claimResponse}
    */
-  claimResponse?: Reference | undefined;
+  claimResponse?: Reference<ClaimResponse> | undefined;
   _claimResponse?: Element | undefined;
 
   /**
@@ -23468,7 +23699,7 @@ export interface ClaimResponseInsurance extends BackboneElement {
    * patient's actual coverage within the insurer's information system.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.insurance.coverage}
    */
-  coverage: Reference;
+  coverage: Reference<Coverage>;
   _coverage?: Element | undefined;
 
   /**
@@ -24140,6 +24371,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ClaimResponse.html}
  */
+
 export interface ClaimResponse extends DomainResource {
   readonly resourceType: "ClaimResponse";
 
@@ -24156,7 +24388,7 @@ export interface ClaimResponse extends DomainResource {
    * accident reports.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.communicationRequest}
    */
-  communicationRequest?: Array<Reference> | undefined;
+  communicationRequest?: Array<Reference<CommunicationRequest>> | undefined;
   _communicationRequest?: Element[] | undefined;
 
   /**
@@ -24236,7 +24468,7 @@ export interface ClaimResponse extends DomainResource {
    * The party responsible for authorization, adjudication and reimbursement.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.insurer}
    */
-  insurer: Reference;
+  insurer: Reference<Organization>;
   _insurer?: Element | undefined;
 
   /**
@@ -24265,7 +24497,7 @@ export interface ClaimResponse extends DomainResource {
    * or are being considered and for whom actual for facast reimbursement is sought.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -24309,7 +24541,7 @@ export interface ClaimResponse extends DomainResource {
    * Original request resource reference.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.request}
    */
-  request?: Reference | undefined;
+  request?: Reference<Claim> | undefined;
   _request?: Element | undefined;
 
   /**
@@ -24320,7 +24552,9 @@ export interface ClaimResponse extends DomainResource {
    * individual products and services listed below.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.requestor}
    */
-  requestor?: Reference | undefined;
+  requestor?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _requestor?: Element | undefined;
 
   /**
@@ -24426,7 +24660,7 @@ export interface ClinicalImpressionFinding extends BackboneElement {
    * resolved conditions.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.finding.itemReference}
    */
-  itemReference?: Reference | undefined;
+  itemReference?: Reference<Condition | Observation | Media> | undefined;
   _itemReference?: Element | undefined;
 
   /**
@@ -24502,7 +24736,19 @@ export interface ClinicalImpressionInvestigation extends BackboneElement {
    * specific types of data collection resources can also be used.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.investigation.item}
    */
-  item?: Array<Reference> | undefined;
+  item?:
+    | Array<
+        Reference<
+          | Observation
+          | QuestionnaireResponse
+          | FamilyMemberHistory
+          | DiagnosticReport
+          | RiskAssessment
+          | ImagingStudy
+          | Media
+        >
+      >
+    | undefined;
   _item?: Element[] | undefined;
 
   /**
@@ -24542,6 +24788,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression.html}
  */
+
 export interface ClinicalImpression extends DomainResource {
   readonly resourceType: "ClinicalImpression";
 
@@ -24549,7 +24796,7 @@ export interface ClinicalImpression extends DomainResource {
    * The clinician performing the assessment.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.assessor}
    */
-  assessor?: Reference | undefined;
+  assessor?: Reference<Practitioner | PractitionerRole> | undefined;
   _assessor?: Element | undefined;
 
   /**
@@ -24604,7 +24851,7 @@ export interface ClinicalImpression extends DomainResource {
    * encounter but still be tied to the context of the encounter.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -24662,7 +24909,7 @@ export interface ClinicalImpression extends DomainResource {
    * (see resolved).
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.previous}
    */
-  previous?: Reference | undefined;
+  previous?: Reference<ClinicalImpression> | undefined;
   _previous?: Element | undefined;
 
   /**
@@ -24671,7 +24918,7 @@ export interface ClinicalImpression extends DomainResource {
    * ‎Adenocarcinoma, and is allergic to penicillin.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.problem}
    */
-  problem?: Array<Reference> | undefined;
+  problem?: Array<Reference<Condition | AllergyIntolerance>> | undefined;
   _problem?: Element[] | undefined;
 
   /**
@@ -24685,7 +24932,7 @@ export interface ClinicalImpression extends DomainResource {
    * RiskAssessment expressing likely outcome.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.prognosisReference}
    */
-  prognosisReference?: Array<Reference> | undefined;
+  prognosisReference?: Array<Reference<RiskAssessment>> | undefined;
   _prognosisReference?: Element[] | undefined;
 
   /**
@@ -24724,7 +24971,7 @@ export interface ClinicalImpression extends DomainResource {
    * The patient or group of individuals assessed as part of this record.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 
   /**
@@ -24738,7 +24985,7 @@ export interface ClinicalImpression extends DomainResource {
    * Information supporting the clinical impression.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalImpression-definitions.html#ClinicalImpression.supportingInfo}
    */
-  supportingInfo?: Array<Reference> | undefined;
+  supportingInfo?: Array<Reference<Resource>> | undefined;
   _supportingInfo?: Element[] | undefined;
 }
 
@@ -24797,7 +25044,7 @@ export interface ClinicalUseDefinitionContraindication extends BackboneElement {
    * The indication which this is a contraidication for.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.contraindication.indication}
    */
-  indication?: Array<Reference> | undefined;
+  indication?: Array<Reference<ClinicalUseDefinition>> | undefined;
   _indication?: Element[] | undefined;
 
   /**
@@ -25011,7 +25258,7 @@ Modifier extensions
    * (or other subject of this resource) for this indication.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.indication.undesirableEffect}
    */
-  undesirableEffect?: Array<Reference> | undefined;
+  undesirableEffect?: Array<Reference<ClinicalUseDefinition>> | undefined;
   _undesirableEffect?: Element[] | undefined;
 }
 
@@ -25139,7 +25386,14 @@ export interface ClinicalUseDefinitionInteractionInteractant
    * The specific medication, food or laboratory test that interacts.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.interaction.interactant.itemReference}
    */
-  itemReference?: Reference | undefined;
+  itemReference?:
+    | Reference<
+        | MedicinalProductDefinition
+        | Medication
+        | Substance
+        | ObservationDefinition
+      >
+    | undefined;
   _itemReference?: Element | undefined;
 
   /**
@@ -25328,6 +25582,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition.html}
  */
+
 export interface ClinicalUseDefinition extends DomainResource {
   readonly resourceType: "ClinicalUseDefinition";
 
@@ -25372,7 +25627,7 @@ export interface ClinicalUseDefinition extends DomainResource {
    * The population group to which this applies.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.population}
    */
-  population?: Array<Reference> | undefined;
+  population?: Array<Reference<Group>> | undefined;
   _population?: Element[] | undefined;
 
   /**
@@ -25386,7 +25641,19 @@ export interface ClinicalUseDefinition extends DomainResource {
    * The medication or procedure for which this is an indication.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.subject}
    */
-  subject?: Array<Reference> | undefined;
+  subject?:
+    | Array<
+        Reference<
+          | MedicinalProductDefinition
+          | Medication
+          | ActivityDefinition
+          | PlanDefinition
+          | Device
+          | DeviceDefinition
+          | Substance
+        >
+      >
+    | undefined;
   _subject?: Element[] | undefined;
 
   /**
@@ -25425,6 +25692,7 @@ export interface ClinicalUseDefinition extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/CodeableConcept.html}
  */
+
 export interface CodeableConcept extends Element {
   /**
    * A reference to a code defined by a terminology system.
@@ -25456,6 +25724,7 @@ export interface CodeableConcept extends Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/CodeableReference.html}
  */
+
 export interface CodeableReference extends Element {
   /**
    * A reference to a concept - e.g. the information is identified by its general
@@ -25962,6 +26231,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/CodeSystem.html}
  */
+
 export interface CodeSystem extends DomainResource {
   readonly resourceType: "CodeSystem";
 
@@ -26299,6 +26569,7 @@ Most code
  *
  * @see {@link http://hl7.org/fhir/R4B/Coding.html}
  */
+
 export interface Coding extends Element {
   /**
    * A symbol in syntax defined by the system. The symbol may be a predefined code or
@@ -26379,7 +26650,7 @@ export interface CommunicationPayload extends BackboneElement {
    * communication).
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.payload.contentReference}
    */
-  contentReference?: Reference | undefined;
+  contentReference?: Reference<Resource> | undefined;
   _contentReference?: Element | undefined;
 
   /**
@@ -26439,6 +26710,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Communication.html}
  */
+
 export interface Communication extends DomainResource {
   readonly resourceType: "Communication";
 
@@ -26449,7 +26721,7 @@ export interface Communication extends DomainResource {
    * as basedOn or reasonReference.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.about}
    */
-  about?: Array<Reference> | undefined;
+  about?: Array<Reference<Resource>> | undefined;
   _about?: Element[] | undefined;
 
   /**
@@ -26458,7 +26730,7 @@ export interface Communication extends DomainResource {
    * CommunicationRequest, ServiceRequest, MedicationRequest, etc.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<Resource>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -26479,7 +26751,7 @@ export interface Communication extends DomainResource {
    * encounter but still be tied to the context of the encounter.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -26502,7 +26774,7 @@ export interface Communication extends DomainResource {
    * Prior communication that this communication is in response to.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.inResponseTo}
    */
-  inResponseTo?: Array<Reference> | undefined;
+  inResponseTo?: Array<Reference<Communication>> | undefined;
   _inResponseTo?: Element[] | undefined;
 
   /**
@@ -26544,7 +26816,7 @@ export interface Communication extends DomainResource {
    * Part of this action.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.partOf}
    */
-  partOf?: Array<Reference> | undefined;
+  partOf?: Array<Reference<Resource>> | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -26578,7 +26850,13 @@ export interface Communication extends DomainResource {
    * Indicates another resource whose existence justifies this communication.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -26598,7 +26876,21 @@ export interface Communication extends DomainResource {
    * aggregate (all emails confirmed received by a particular time).
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.recipient}
    */
-  recipient?: Array<Reference> | undefined;
+  recipient?:
+    | Array<
+        Reference<
+          | Device
+          | Organization
+          | Patient
+          | Practitioner
+          | PractitionerRole
+          | RelatedPerson
+          | Group
+          | CareTeam
+          | HealthcareService
+        >
+      >
+    | undefined;
   _recipient?: Element[] | undefined;
 
   /**
@@ -26606,7 +26898,17 @@ export interface Communication extends DomainResource {
    * which was the source of the communication.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.sender}
    */
-  sender?: Reference | undefined;
+  sender?:
+    | Reference<
+        | Device
+        | Organization
+        | Patient
+        | Practitioner
+        | PractitionerRole
+        | RelatedPerson
+        | HealthcareService
+      >
+    | undefined;
   _sender?: Element | undefined;
 
   /**
@@ -26642,7 +26944,7 @@ export interface Communication extends DomainResource {
    * The patient or group that was the focus of this communication.
    * @see {@link http://hl7.org/fhir/R4B/Communication-definitions.html#Communication.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Patient | Group> | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -26680,7 +26982,7 @@ export interface CommunicationRequestPayload extends BackboneElement {
    * communication).
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.payload.contentReference}
    */
-  contentReference?: Reference | undefined;
+  contentReference?: Reference<Resource> | undefined;
   _contentReference?: Element | undefined;
 
   /**
@@ -26740,6 +27042,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest.html}
  */
+
 export interface CommunicationRequest extends DomainResource {
   readonly resourceType: "CommunicationRequest";
 
@@ -26750,7 +27053,7 @@ export interface CommunicationRequest extends DomainResource {
    * exists, such as basedOn, reasonReference, or replaces.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.about}
    */
-  about?: Array<Reference> | undefined;
+  about?: Array<Reference<Resource>> | undefined;
   _about?: Element[] | undefined;
 
   /**
@@ -26766,7 +27069,7 @@ export interface CommunicationRequest extends DomainResource {
    * A plan or proposal that is fulfilled in whole or in part by this request.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<Resource>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -26796,7 +27099,7 @@ export interface CommunicationRequest extends DomainResource {
    * encounter but still be tied to the context of the encounter.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -26887,7 +27190,13 @@ export interface CommunicationRequest extends DomainResource {
    * Indicates another resource whose existence justifies this request.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -26895,7 +27204,21 @@ export interface CommunicationRequest extends DomainResource {
    * group, or care team) which is the intended target of the communication.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.recipient}
    */
-  recipient?: Array<Reference> | undefined;
+  recipient?:
+    | Array<
+        Reference<
+          | Device
+          | Organization
+          | Patient
+          | Practitioner
+          | PractitionerRole
+          | RelatedPerson
+          | Group
+          | CareTeam
+          | HealthcareService
+        >
+      >
+    | undefined;
   _recipient?: Element[] | undefined;
 
   /**
@@ -26905,7 +27228,7 @@ export interface CommunicationRequest extends DomainResource {
    * for the action described by the request remains ongoing.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.replaces}
    */
-  replaces?: Array<Reference> | undefined;
+  replaces?: Array<Reference<CommunicationRequest>> | undefined;
   _replaces?: Element[] | undefined;
 
   /**
@@ -26913,7 +27236,16 @@ export interface CommunicationRequest extends DomainResource {
    * responsibility for its activation.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.requester}
    */
-  requester?: Reference | undefined;
+  requester?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | Organization
+        | Patient
+        | RelatedPerson
+        | Device
+      >
+    | undefined;
   _requester?: Element | undefined;
 
   /**
@@ -26921,7 +27253,17 @@ export interface CommunicationRequest extends DomainResource {
    * which is to be the source of the communication.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.sender}
    */
-  sender?: Reference | undefined;
+  sender?:
+    | Reference<
+        | Device
+        | Organization
+        | Patient
+        | Practitioner
+        | PractitionerRole
+        | RelatedPerson
+        | HealthcareService
+      >
+    | undefined;
   _sender?: Element | undefined;
 
   /**
@@ -26948,7 +27290,7 @@ export interface CommunicationRequest extends DomainResource {
    * The patient or group that is the focus of this communication request.
    * @see {@link http://hl7.org/fhir/R4B/CommunicationRequest-definitions.html#CommunicationRequest.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Patient | Group> | undefined;
   _subject?: Element | undefined;
 }
 
@@ -27039,6 +27381,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/CompartmentDefinition.html}
  */
+
 export interface CompartmentDefinition extends DomainResource {
   readonly resourceType: "CompartmentDefinition";
 
@@ -27296,7 +27639,11 @@ Modifier extensions
    * Who attested the composition in the specified way.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.attester.party}
    */
-  party?: Reference | undefined;
+  party?:
+    | Reference<
+        Patient | RelatedPerson | Practitioner | PractitionerRole | Organization
+      >
+    | undefined;
   _party?: Element | undefined;
 
   /**
@@ -27337,7 +27684,7 @@ export interface CompositionEvent extends BackboneElement {
    * this could be used to document such a colonoscopy or an appendectomy.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.event.detail}
    */
-  detail?: Array<Reference> | undefined;
+  detail?: Array<Reference<Resource>> | undefined;
   _detail?: Element[] | undefined;
 
   /**
@@ -27474,7 +27821,7 @@ Modifier extensions
    * The target composition/document of this relationship.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.relatesTo.targetReference}
    */
-  targetReference?: Reference | undefined;
+  targetReference?: Reference<Composition> | undefined;
   _targetReference?: Element | undefined;
 }
 
@@ -27488,7 +27835,18 @@ export interface CompositionSection extends BackboneElement {
    * necessarily who typed it in.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.section.author}
    */
-  author?: Array<Reference> | undefined;
+  author?:
+    | Array<
+        Reference<
+          | Practitioner
+          | PractitionerRole
+          | Device
+          | Patient
+          | RelatedPerson
+          | Organization
+        >
+      >
+    | undefined;
   _author?: Element[] | undefined;
 
   /**
@@ -27525,7 +27883,7 @@ If the section has content (instead of sub-sections), the
    * If there are no entries in the list, an emptyReason SHOULD be provided.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.section.entry}
    */
-  entry?: Array<Reference> | undefined;
+  entry?: Array<Reference<Resource>> | undefined;
   _entry?: Element[] | undefined;
 
   /**
@@ -27560,7 +27918,7 @@ If the section has content (instead of sub-sections), the
    * family member, though there are many other examples.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.section.focus}
    */
-  focus?: Reference | undefined;
+  focus?: Reference<Resource> | undefined;
   _focus?: Element | undefined;
 
   /**
@@ -27662,6 +28020,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Composition.html}
  */
+
 export interface Composition extends DomainResource {
   readonly resourceType: "Composition";
 
@@ -27678,7 +28037,16 @@ export interface Composition extends DomainResource {
    * necessarily who typed it in.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.author}
    */
-  author: Array<Reference>;
+  author: Array<
+    Reference<
+      | Practitioner
+      | PractitionerRole
+      | Device
+      | Patient
+      | RelatedPerson
+      | Organization
+    >
+  >;
   _author?: Element[] | undefined;
 
   /**
@@ -27717,7 +28085,7 @@ export interface Composition extends DomainResource {
    * derived document, so providing a custodian is encouraged.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.custodian}
    */
-  custodian?: Reference | undefined;
+  custodian?: Reference<Organization> | undefined;
   _custodian?: Element | undefined;
 
   /**
@@ -27736,7 +28104,7 @@ export interface Composition extends DomainResource {
    * associated with.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -27803,7 +28171,7 @@ Some reporting work flows require that the original narrative of a
    * For clinical documents, this is usually the patient.
    * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Resource> | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -28334,6 +28702,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ConceptMap.html}
  */
+
 export interface ConceptMap extends DomainResource {
   readonly resourceType: "ConceptMap";
 
@@ -28606,7 +28975,7 @@ export interface ConditionEvidence extends BackboneElement {
    * Links to other relevant information, including pathology reports.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.evidence.detail}
    */
-  detail?: Array<Reference> | undefined;
+  detail?: Array<Reference<Resource>> | undefined;
   _detail?: Element[] | undefined;
 
   /**
@@ -28667,7 +29036,9 @@ export interface ConditionStage extends BackboneElement {
    * based.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.stage.assessment}
    */
-  assessment?: Array<Reference> | undefined;
+  assessment?:
+    | Array<Reference<ClinicalImpression | DiagnosticReport | Observation>>
+    | undefined;
   _assessment?: Element[] | undefined;
 
   /**
@@ -28741,6 +29112,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Condition.html}
  */
+
 export interface Condition extends DomainResource {
   readonly resourceType: "Condition";
 
@@ -28829,7 +29201,9 @@ export interface Condition extends DomainResource {
    * Individual who is making the condition statement.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.asserter}
    */
-  asserter?: Reference | undefined;
+  asserter?:
+    | Reference<Practitioner | PractitionerRole | Patient | RelatedPerson>
+    | undefined;
   _asserter?: Element | undefined;
 
   /**
@@ -28884,7 +29258,7 @@ export interface Condition extends DomainResource {
    * condition was first "known".
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -28985,7 +29359,9 @@ export interface Condition extends DomainResource {
    * Individual who recorded the record and takes responsibility for its content.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.recorder}
    */
-  recorder?: Reference | undefined;
+  recorder?:
+    | Reference<Practitioner | PractitionerRole | Patient | RelatedPerson>
+    | undefined;
   _recorder?: Element | undefined;
 
   /**
@@ -29008,7 +29384,7 @@ export interface Condition extends DomainResource {
    * Indicates the patient or group who the condition record is associated with.
    * @see {@link http://hl7.org/fhir/R4B/Condition-definitions.html#Condition.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 
   /**
@@ -29310,7 +29686,16 @@ Modifier extensions
    * officers').
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision.actor.reference}
    */
-  reference: Reference;
+  reference: Reference<
+    | Device
+    | Group
+    | CareTeam
+    | Organization
+    | Patient
+    | Practitioner
+    | RelatedPerson
+    | PractitionerRole
+  >;
   _reference?: Element | undefined;
 
   /**
@@ -29388,7 +29773,7 @@ Modifier extensions
    * this consent.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision.data.reference}
    */
-  reference: Reference;
+  reference: Reference<Resource>;
   _reference?: Element | undefined;
 }
 
@@ -29464,7 +29849,7 @@ Modifier extensions
    * Who verified the instruction (Patient, Relative or other Authorized Person).
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.verification.verifiedWith}
    */
-  verifiedWith?: Reference | undefined;
+  verifiedWith?: Reference<Patient | RelatedPerson> | undefined;
   _verifiedWith?: Element | undefined;
 }
 
@@ -29477,6 +29862,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Consent.html}
  */
+
 export interface Consent extends DomainResource {
   readonly resourceType: "Consent";
 
@@ -29513,7 +29899,7 @@ export interface Consent extends DomainResource {
    * executed.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.organization}
    */
-  organization?: Array<Reference> | undefined;
+  organization?: Array<Reference<Organization>> | undefined;
   _organization?: Element[] | undefined;
 
   /**
@@ -29522,7 +29908,7 @@ export interface Consent extends DomainResource {
    * old people, it may be some other person.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.patient}
    */
-  patient?: Reference | undefined;
+  patient?: Reference<Patient> | undefined;
   _patient?: Element | undefined;
 
   /**
@@ -29534,7 +29920,17 @@ export interface Consent extends DomainResource {
    * for young and old people, it may be some other person - e.g. a legal guardian.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.performer}
    */
-  performer?: Array<Reference> | undefined;
+  performer?:
+    | Array<
+        Reference<
+          | Organization
+          | Patient
+          | Practitioner
+          | RelatedPerson
+          | PractitionerRole
+        >
+      >
+    | undefined;
   _performer?: Element[] | undefined;
 
   /**
@@ -29593,7 +29989,9 @@ export interface Consent extends DomainResource {
    * identifier (Identifier), e.g. a CDA document id.
    * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.sourceReference}
    */
-  sourceReference?: Reference | undefined;
+  sourceReference?:
+    | Reference<Consent | DocumentReference | Contract | QuestionnaireResponse>
+    | undefined;
   _sourceReference?: Element | undefined;
 
   /**
@@ -29624,6 +30022,7 @@ export interface Consent extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/ContactDetail.html}
  */
+
 export interface ContactDetail extends Element {
   /**
    * The name of an individual to contact.
@@ -29650,6 +30049,7 @@ export interface ContactDetail extends Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/ContactPoint.html}
  */
+
 export interface ContactPoint extends Element {
   /**
    * Time period when the contact point was/is in use.
@@ -29786,7 +30186,9 @@ Modifier extensions
    * The  individual or organization that published the Contract precursor content.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.contentDefinition.publisher}
    */
-  publisher?: Reference | undefined;
+  publisher?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _publisher?: Element | undefined;
 
   /**
@@ -29829,7 +30231,9 @@ export interface ContractFriendly extends BackboneElement {
    * intended to enhance comprehension and ensure understandability.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.friendly.contentReference}
    */
-  contentReference?: Reference | undefined;
+  contentReference?:
+    | Reference<Composition | DocumentReference | QuestionnaireResponse>
+    | undefined;
   _contentReference?: Element | undefined;
 
   /**
@@ -29896,7 +30300,9 @@ export interface ContractLegal extends BackboneElement {
    * Contract legal text in human renderable form.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.legal.contentReference}
    */
-  contentReference?: Reference | undefined;
+  contentReference?:
+    | Reference<Composition | DocumentReference | QuestionnaireResponse>
+    | undefined;
   _contentReference?: Element | undefined;
 
   /**
@@ -29965,7 +30371,7 @@ export interface ContractRule extends BackboneElement {
    * SecPal).
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.rule.contentReference}
    */
-  contentReference?: Reference | undefined;
+  contentReference?: Reference<DocumentReference> | undefined;
   _contentReference?: Element | undefined;
 
   /**
@@ -30088,7 +30494,9 @@ Modifier extensions
    * Party which is a signator to this Contract.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.signer.party}
    */
-  party: Reference;
+  party: Reference<
+    Organization | Patient | Practitioner | PractitionerRole | RelatedPerson
+  >;
   _party?: Element | undefined;
 
   /**
@@ -30242,7 +30650,7 @@ Modifier extensions
    * The entity that the term applies to.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.topicReference}
    */
-  topicReference?: Reference | undefined;
+  topicReference?: Reference<Resource> | undefined;
   _topicReference?: Element | undefined;
 
   /**
@@ -30272,7 +30680,7 @@ export interface ContractTermAction extends BackboneElement {
    * Encounter or Episode with primary association to specified term activity.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.action.context}
    */
-  context?: Reference | undefined;
+  context?: Reference<Encounter | EpisodeOfCare> | undefined;
   _context?: Element | undefined;
 
   /**
@@ -30386,7 +30794,19 @@ Modifier extensions
    * Indicates who or what is being asked to perform (or not perform) the ction.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.action.performer}
    */
-  performer?: Reference | undefined;
+  performer?:
+    | Reference<
+        | RelatedPerson
+        | Patient
+        | Practitioner
+        | PractitionerRole
+        | CareTeam
+        | Device
+        | Substance
+        | Organization
+        | Location
+      >
+    | undefined;
   _performer?: Element | undefined;
 
   /**
@@ -30441,14 +30861,37 @@ Modifier extensions
    * permitting this action.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.action.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          | Condition
+          | Observation
+          | DiagnosticReport
+          | DocumentReference
+          | Questionnaire
+          | QuestionnaireResponse
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
    * Who or what initiated the action and has responsibility for its activation.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.action.requester}
    */
-  requester?: Array<Reference> | undefined;
+  requester?:
+    | Array<
+        Reference<
+          | Patient
+          | RelatedPerson
+          | Practitioner
+          | PractitionerRole
+          | Device
+          | Group
+          | Organization
+        >
+      >
+    | undefined;
   _requester?: Element[] | undefined;
 
   /**
@@ -30546,7 +30989,17 @@ Modifier extensions
    * The entity the action is performed or not performed on or for.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.action.subject.reference}
    */
-  reference: Array<Reference>;
+  reference: Array<
+    Reference<
+      | Patient
+      | RelatedPerson
+      | Practitioner
+      | PractitionerRole
+      | Device
+      | Group
+      | Organization
+    >
+  >;
   _reference?: Element[] | undefined;
 
   /**
@@ -30696,7 +31149,7 @@ Modifier extensions
    * Associated entities.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.typeReference}
    */
-  typeReference?: Array<Reference> | undefined;
+  typeReference?: Array<Reference<Resource>> | undefined;
   _typeReference?: Element[] | undefined;
 
   /**
@@ -30780,7 +31233,7 @@ Modifier extensions
    * jurisdiction.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.context.reference}
    */
-  reference?: Reference | undefined;
+  reference?: Reference<Resource> | undefined;
   _reference?: Element | undefined;
 
   /**
@@ -30816,7 +31269,7 @@ export interface ContractTermAssetValuedItem extends BackboneElement {
    * Specific type of Contract Valued Item that may be priced.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.valuedItem.entityReference}
    */
-  entityReference?: Reference | undefined;
+  entityReference?: Reference<Resource> | undefined;
   _entityReference?: Element | undefined;
 
   /**
@@ -30939,14 +31392,22 @@ Modifier extensions
    * Who will receive payment.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.valuedItem.recipient}
    */
-  recipient?: Reference | undefined;
+  recipient?:
+    | Reference<
+        Organization | Patient | Practitioner | PractitionerRole | RelatedPerson
+      >
+    | undefined;
   _recipient?: Element | undefined;
 
   /**
    * Who will make payment.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.valuedItem.responsible}
    */
-  responsible?: Reference | undefined;
+  responsible?:
+    | Reference<
+        Organization | Patient | Practitioner | PractitionerRole | RelatedPerson
+      >
+    | undefined;
   _responsible?: Element | undefined;
 
   /**
@@ -31108,7 +31569,7 @@ If the Contract.topic is considered an application or offer,
  * post-execution.
  * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.topic}
  */
-  topic?: Reference | undefined;
+  topic?: Reference<Resource> | undefined;
   _topic?: Element | undefined;
 
   /**
@@ -31295,7 +31756,7 @@ Modifier extensions
    * research.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.answer.valueReference}
    */
-  valueReference?: Reference | undefined;
+  valueReference?: Reference<Resource> | undefined;
   _valueReference?: Element | undefined;
 }
 
@@ -31355,7 +31816,17 @@ Modifier extensions
    * Participant in the offer.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.offer.party.reference}
    */
-  reference: Array<Reference>;
+  reference: Array<
+    Reference<
+      | Patient
+      | RelatedPerson
+      | Practitioner
+      | PractitionerRole
+      | Device
+      | Group
+      | Organization
+    >
+  >;
   _reference?: Element[] | undefined;
 
   /**
@@ -31460,6 +31931,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Contract.html}
  */
+
 export interface Contract extends DomainResource {
   readonly resourceType: "Contract";
 
@@ -31484,7 +31956,9 @@ export interface Contract extends DomainResource {
    * derivative, or instance in any legal state.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.author}
    */
-  author?: Reference | undefined;
+  author?:
+    | Reference<Patient | Practitioner | PractitionerRole | Organization>
+    | undefined;
   _author?: Element | undefined;
 
   /**
@@ -31494,7 +31968,7 @@ export interface Contract extends DomainResource {
    * contracts and policies.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.authority}
    */
-  authority?: Array<Reference> | undefined;
+  authority?: Array<Reference<Organization>> | undefined;
   _authority?: Element[] | undefined;
 
   /**
@@ -31521,7 +31995,7 @@ export interface Contract extends DomainResource {
    * resources.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.domain}
    */
-  domain?: Array<Reference> | undefined;
+  domain?: Array<Reference<Location>> | undefined;
   _domain?: Element[] | undefined;
 
   /**
@@ -31557,7 +32031,7 @@ export interface Contract extends DomainResource {
    * whole or part by this Contract.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.instantiatesCanonical}
    */
-  instantiatesCanonical?: Reference | undefined;
+  instantiatesCanonical?: Reference<Contract> | undefined;
   _instantiatesCanonical?: Element | undefined;
 
   /**
@@ -31601,7 +32075,11 @@ export interface Contract extends DomainResource {
    * Contract.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.legallyBindingReference}
    */
-  legallyBindingReference?: Reference | undefined;
+  legallyBindingReference?:
+    | Reference<
+        Composition | DocumentReference | QuestionnaireResponse | Contract
+      >
+    | undefined;
   _legallyBindingReference?: Element | undefined;
 
   /**
@@ -31634,7 +32112,7 @@ export interface Contract extends DomainResource {
    * update. http://build.fhir.org/provenance-definitions.html#Provenance.entity.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.relevantHistory}
    */
-  relevantHistory?: Array<Reference> | undefined;
+  relevantHistory?: Array<Reference<Provenance>> | undefined;
   _relevantHistory?: Element[] | undefined;
 
   /**
@@ -31679,7 +32157,7 @@ For example,
    * Sites in which the contract is complied with,  exercised, or in force.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.site}
    */
-  site?: Array<Reference> | undefined;
+  site?: Array<Reference<Location>> | undefined;
   _site?: Element[] | undefined;
 
   /**
@@ -31706,7 +32184,7 @@ In many cases, the
  * agreement.
  * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.subject}
  */
-  subject?: Array<Reference> | undefined;
+  subject?: Array<Reference<Resource>> | undefined;
   _subject?: Element[] | undefined;
 
   /**
@@ -31731,7 +32209,7 @@ In many cases, the
    * of this term action.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.supportingInfo}
    */
-  supportingInfo?: Array<Reference> | undefined;
+  supportingInfo?: Array<Reference<Resource>> | undefined;
   _supportingInfo?: Element[] | undefined;
 
   /**
@@ -31764,7 +32242,7 @@ In many cases, the
    * contractual objectives.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.topicReference}
    */
-  topicReference?: Reference | undefined;
+  topicReference?: Reference<Resource> | undefined;
   _topicReference?: Element | undefined;
 
   /**
@@ -31811,6 +32289,7 @@ Comments - There may be different
  *
  * @see {@link http://hl7.org/fhir/R4B/Contributor.html}
  */
+
 export interface Contributor extends Element {
   /**
    * Contact details to assist a user in finding and communicating with the
@@ -31844,6 +32323,7 @@ export interface Contributor extends Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/Count.html}
  */
+
 export interface Count extends Quantity {}
 
 /**
@@ -32091,6 +32571,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Coverage.html}
  */
+
 export interface Coverage extends DomainResource {
   readonly resourceType: "Coverage";
 
@@ -32099,7 +32580,7 @@ export interface Coverage extends DomainResource {
    * and/or services are provided.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.beneficiary}
    */
-  beneficiary: Reference;
+  beneficiary: Reference<Patient>;
   _beneficiary?: Element | undefined;
 
   /**
@@ -32115,7 +32596,7 @@ export interface Coverage extends DomainResource {
    * The policy(s) which constitute this insurance coverage.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.contract}
    */
-  contract?: Array<Reference> | undefined;
+  contract?: Array<Reference<Contract>> | undefined;
   _contract?: Element[] | undefined;
 
   /**
@@ -32177,7 +32658,7 @@ For selfpay it may provide multiple paying
  * persons and/or organizations.
  * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.payor}
  */
-  payor: Array<Reference>;
+  payor: Array<Reference<Organization | Patient | RelatedPerson>>;
   _payor?: Element[] | undefined;
 
   /**
@@ -32194,7 +32675,7 @@ For selfpay it may provide multiple paying
    * For example: may be an individual, corporation or the subscriber's employer.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.policyHolder}
    */
-  policyHolder?: Reference | undefined;
+  policyHolder?: Reference<Patient | RelatedPerson | Organization> | undefined;
   _policyHolder?: Element | undefined;
 
   /**
@@ -32235,7 +32716,7 @@ For selfpay it may provide multiple paying
    * May be self or a parent in the case of dependants.
    * @see {@link http://hl7.org/fhir/R4B/Coverage-definitions.html#Coverage.subscriber}
    */
-  subscriber?: Reference | undefined;
+  subscriber?: Reference<Patient | RelatedPerson> | undefined;
   _subscriber?: Element | undefined;
 
   /**
@@ -32282,7 +32763,7 @@ export interface CoverageEligibilityRequestInsurance extends BackboneElement {
    * patient's actual coverage within the insurer's information system.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.insurance.coverage}
    */
-  coverage: Reference;
+  coverage: Reference<Coverage>;
   _coverage?: Element | undefined;
 
   /**
@@ -32366,7 +32847,7 @@ export interface CoverageEligibilityRequestItem extends BackboneElement {
    * The plan/proposal/order describing the proposed service in detail.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.item.detail}
    */
-  detail?: Array<Reference> | undefined;
+  detail?: Array<Reference<Resource>> | undefined;
   _detail?: Element[] | undefined;
 
   /**
@@ -32395,7 +32876,7 @@ export interface CoverageEligibilityRequestItem extends BackboneElement {
    * Facility where the services will be provided.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.item.facility}
    */
-  facility?: Reference | undefined;
+  facility?: Reference<Location | Organization> | undefined;
   _facility?: Element | undefined;
 
   /**
@@ -32454,7 +32935,7 @@ Modifier extensions
    * the patient.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.item.provider}
    */
-  provider?: Reference | undefined;
+  provider?: Reference<Practitioner | PractitionerRole> | undefined;
   _provider?: Element | undefined;
 
   /**
@@ -32500,7 +32981,7 @@ export interface CoverageEligibilityRequestItemDiagnosis
    * external defined Condition.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.item.diagnosis.diagnosisReference}
    */
-  diagnosisReference?: Reference | undefined;
+  diagnosisReference?: Reference<Condition> | undefined;
   _diagnosisReference?: Element | undefined;
 
   /**
@@ -32598,7 +33079,7 @@ export interface CoverageEligibilityRequestSupportingInfo
    * could contain a PDF in an Attachment of the Police Report for an Accident.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.supportingInfo.information}
    */
-  information: Reference;
+  information: Reference<Resource>;
   _information?: Element | undefined;
 
   /**
@@ -32644,6 +33125,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest.html}
  */
+
 export interface CoverageEligibilityRequest extends DomainResource {
   readonly resourceType: "CoverageEligibilityRequest";
 
@@ -32659,14 +33141,14 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * Person who created the request.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.enterer}
    */
-  enterer?: Reference | undefined;
+  enterer?: Reference<Practitioner | PractitionerRole> | undefined;
   _enterer?: Element | undefined;
 
   /**
    * Facility where the services are intended to be provided.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.facility}
    */
-  facility?: Reference | undefined;
+  facility?: Reference<Location> | undefined;
   _facility?: Element | undefined;
 
   /**
@@ -32697,7 +33179,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * request.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.insurer}
    */
-  insurer: Reference;
+  insurer: Reference<Organization>;
   _insurer?: Element | undefined;
 
   /**
@@ -32714,7 +33196,7 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * 1..1.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -32731,7 +33213,9 @@ export interface CoverageEligibilityRequest extends DomainResource {
    * provision of the individual products and services listed below.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityRequest-definitions.html#CoverageEligibilityRequest.provider}
    */
-  provider?: Reference | undefined;
+  provider?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _provider?: Element | undefined;
 
   /**
@@ -32873,7 +33357,7 @@ export interface CoverageEligibilityResponseInsurance extends BackboneElement {
    * patient's actual coverage within the insurer's information system.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance.coverage}
    */
-  coverage: Reference;
+  coverage: Reference<Coverage>;
   _coverage?: Element | undefined;
 
   /**
@@ -33091,7 +33575,7 @@ Modifier extensions
    * The practitioner who is eligible for the provision of the product or service.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurance.item.provider}
    */
-  provider?: Reference | undefined;
+  provider?: Reference<Practitioner | PractitionerRole> | undefined;
   _provider?: Element | undefined;
 
   /**
@@ -33224,6 +33708,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse.html}
  */
+
 export interface CoverageEligibilityResponse extends DomainResource {
   readonly resourceType: "CoverageEligibilityResponse";
 
@@ -33285,7 +33770,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * response.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.insurer}
    */
-  insurer: Reference;
+  insurer: Reference<Organization>;
   _insurer?: Element | undefined;
 
   /**
@@ -33306,7 +33791,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * eligibility is sought.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -33334,7 +33819,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * Reference to the original request resource.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.request}
    */
-  request: Reference;
+  request: Reference<CoverageEligibilityRequest>;
   _request?: Element | undefined;
 
   /**
@@ -33344,7 +33829,9 @@ export interface CoverageEligibilityResponse extends DomainResource {
    * individual products and services listed below.
    * @see {@link http://hl7.org/fhir/R4B/CoverageEligibilityResponse-definitions.html#CoverageEligibilityResponse.requestor}
    */
-  requestor?: Reference | undefined;
+  requestor?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _requestor?: Element | undefined;
 
   /**
@@ -33385,6 +33872,7 @@ export interface CoverageEligibilityResponse extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/DataRequirement.html}
  */
+
 export interface DataRequirement extends Element {
   /**
    * Code filters specify additional constraints on the data, specifying the value
@@ -33465,7 +33953,7 @@ The value of mustSupport SHALL be a
    * relationship to the subject. In CQL, this corresponds to the context
    * declaration.
    */
-  subjectReference?: Reference | undefined;
+  subjectReference?: Reference<Group> | undefined;
   _subjectReference?: Element | undefined;
 
   /**
@@ -33486,6 +33974,7 @@ The value of mustSupport SHALL be a
  *
  * @see {@link http://hl7.org/fhir/R4B/DataType.html}
  */
+
 export interface DataType extends Element {}
 
 /**
@@ -33496,6 +33985,7 @@ export interface DataType extends Element {}
  *
  * @see {@link http://hl7.org/fhir/R4B/Definition.html}
  */
+
 export interface Definition {
   /**
    * The date on which the asset content was approved by the publisher. Approval
@@ -33632,7 +34122,9 @@ export interface Definition {
    * Helps establish the "authority/credibility" of the {{title}}.  May also allow
    * for contact.
    */
-  publisher?: Reference | undefined;
+  publisher?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _publisher?: Element | undefined;
 
   /**
@@ -33678,7 +34170,7 @@ Unknown
    * A code or group definition that describes the intended subject of instantiations
    * of this definition.
    */
-  subjectReference?: Reference | undefined;
+  subjectReference?: Reference<Group> | undefined;
   _subjectReference?: Element | undefined;
 
   /**
@@ -33741,7 +34233,7 @@ export interface DetectedIssueEvidence extends BackboneElement {
    * GuidanceResponse or MeasureReport.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.evidence.detail}
    */
-  detail?: Array<Reference> | undefined;
+  detail?: Array<Reference<Resource>> | undefined;
   _detail?: Element[] | undefined;
 
   /**
@@ -33814,7 +34306,7 @@ export interface DetectedIssueMitigation extends BackboneElement {
    * responsibility for the mitigation step occurring.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.mitigation.author}
    */
-  author?: Reference | undefined;
+  author?: Reference<Practitioner | PractitionerRole> | undefined;
   _author?: Element | undefined;
 
   /**
@@ -33883,6 +34375,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/DetectedIssue.html}
  */
+
 export interface DetectedIssue extends DomainResource {
   readonly resourceType: "DetectedIssue";
 
@@ -33891,7 +34384,7 @@ export interface DetectedIssue extends DomainResource {
    * decision support application or a pharmacist conducting a medication review.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.author}
    */
-  author?: Reference | undefined;
+  author?: Reference<Practitioner | PractitionerRole | Device> | undefined;
   _author?: Element | undefined;
 
   /**
@@ -33948,7 +34441,7 @@ export interface DetectedIssue extends DomainResource {
    * timing, there would typically only be one.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.implicated}
    */
-  implicated?: Array<Reference> | undefined;
+  implicated?: Array<Reference<Resource>> | undefined;
   _implicated?: Element[] | undefined;
 
   /**
@@ -33965,7 +34458,7 @@ export interface DetectedIssue extends DomainResource {
    * Indicates the patient whose record the detected issue is associated with.
    * @see {@link http://hl7.org/fhir/R4B/DetectedIssue-definitions.html#DetectedIssue.patient}
    */
-  patient?: Reference | undefined;
+  patient?: Reference<Patient> | undefined;
   _patient?: Element | undefined;
 
   /**
@@ -34433,6 +34926,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Device.html}
  */
+
 export interface Device extends DomainResource {
   readonly resourceType: "Device";
 
@@ -34449,7 +34943,7 @@ export interface Device extends DomainResource {
    * The reference to the definition for the device.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.definition}
    */
-  definition?: Reference | undefined;
+  definition?: Reference<DeviceDefinition> | undefined;
   _definition?: Element | undefined;
 
   /**
@@ -34497,7 +34991,7 @@ export interface Device extends DomainResource {
    * The place where the device can be found.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.location}
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -34542,14 +35036,14 @@ export interface Device extends DomainResource {
    * the device.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.owner}
    */
-  owner?: Reference | undefined;
+  owner?: Reference<Organization> | undefined;
   _owner?: Element | undefined;
 
   /**
    * The device that this device is attached to or is part of.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.parent}
    */
-  parent?: Reference | undefined;
+  parent?: Reference<Device> | undefined;
   _parent?: Element | undefined;
 
   /**
@@ -34564,7 +35058,7 @@ export interface Device extends DomainResource {
    * Patient information, If the device is affixed to a person.
    * @see {@link http://hl7.org/fhir/R4B/Device-definitions.html#Device.patient}
    */
-  patient?: Reference | undefined;
+  patient?: Reference<Patient> | undefined;
   _patient?: Element | undefined;
 
   /**
@@ -35100,6 +35594,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition.html}
  */
+
 export interface DeviceDefinition extends DomainResource {
   readonly resourceType: "DeviceDefinition";
 
@@ -35153,7 +35648,7 @@ export interface DeviceDefinition extends DomainResource {
    * A name of the manufacturer.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.manufacturerReference}
    */
-  manufacturerReference?: Reference | undefined;
+  manufacturerReference?: Reference<Organization> | undefined;
   _manufacturerReference?: Element | undefined;
 
   /**
@@ -35191,14 +35686,14 @@ export interface DeviceDefinition extends DomainResource {
    * the device.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.owner}
    */
-  owner?: Reference | undefined;
+  owner?: Reference<Organization> | undefined;
   _owner?: Element | undefined;
 
   /**
    * The parent device it can be part of.
    * @see {@link http://hl7.org/fhir/R4B/DeviceDefinition-definitions.html#DeviceDefinition.parentDevice}
    */
-  parentDevice?: Reference | undefined;
+  parentDevice?: Reference<DeviceDefinition> | undefined;
   _parentDevice?: Element | undefined;
 
   /**
@@ -35369,6 +35864,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/DeviceMetric.html}
  */
+
 export interface DeviceMetric extends DomainResource {
   readonly resourceType: "DeviceMetric";
 
@@ -35447,7 +35943,7 @@ export interface DeviceMetric extends DomainResource {
    * containment location.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.parent}
    */
-  parent?: Reference | undefined;
+  parent?: Reference<Device> | undefined;
   _parent?: Element | undefined;
 
   /**
@@ -35456,7 +35952,7 @@ export interface DeviceMetric extends DomainResource {
    * etc.
    * @see {@link http://hl7.org/fhir/R4B/DeviceMetric-definitions.html#DeviceMetric.source}
    */
-  source?: Reference | undefined;
+  source?: Reference<Device> | undefined;
   _source?: Element | undefined;
 
   /**
@@ -35582,6 +36078,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/DeviceRequest.html}
  */
+
 export interface DeviceRequest extends DomainResource {
   readonly resourceType: "DeviceRequest";
 
@@ -35597,14 +36094,14 @@ export interface DeviceRequest extends DomainResource {
    * Plan/proposal/order fulfilled by this request.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<Resource>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
    * The details of the device to be used.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.codeReference}
    */
-  codeReference?: Reference | undefined;
+  codeReference?: Reference<Device> | undefined;
   _codeReference?: Element | undefined;
 
   /**
@@ -35618,7 +36115,7 @@ export interface DeviceRequest extends DomainResource {
    * An encounter that provides additional context in which this request is made.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -35667,7 +36164,7 @@ export interface DeviceRequest extends DomainResource {
    * pre-determinations that may be required for delivering the requested service.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.insurance}
    */
-  insurance?: Array<Reference> | undefined;
+  insurance?: Array<Reference<Coverage | ClaimResponse>> | undefined;
   _insurance?: Element[] | undefined;
 
   /**
@@ -35731,7 +36228,18 @@ export interface DeviceRequest extends DomainResource {
    * The desired performer for doing the diagnostic testing.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.performer}
    */
-  performer?: Reference | undefined;
+  performer?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | Organization
+        | CareTeam
+        | HealthcareService
+        | Patient
+        | Device
+        | RelatedPerson
+      >
+    | undefined;
   _performer?: Element | undefined;
 
   /**
@@ -35756,7 +36264,7 @@ export interface DeviceRequest extends DomainResource {
    * request(s).
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.priorRequest}
    */
-  priorRequest?: Array<Reference> | undefined;
+  priorRequest?: Array<Reference<Resource>> | undefined;
   _priorRequest?: Element[] | undefined;
 
   /**
@@ -35770,7 +36278,13 @@ export interface DeviceRequest extends DomainResource {
    * Reason or justification for the use of this device.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -35786,7 +36300,7 @@ All Provenances should have some historical version of this
  * Request as their subject.
  * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.relevantHistory}
  */
-  relevantHistory?: Array<Reference> | undefined;
+  relevantHistory?: Array<Reference<Provenance>> | undefined;
   _relevantHistory?: Element[] | undefined;
 
   /**
@@ -35794,7 +36308,9 @@ All Provenances should have some historical version of this
    * activation.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.requester}
    */
-  requester?: Reference | undefined;
+  requester?:
+    | Reference<Device | Practitioner | PractitionerRole | Organization>
+    | undefined;
   _requester?: Element | undefined;
 
   /**
@@ -35812,7 +36328,7 @@ All Provenances should have some historical version of this
    * The patient who will use the device.
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group | Location | Device>;
   _subject?: Element | undefined;
 
   /**
@@ -35821,7 +36337,7 @@ All Provenances should have some historical version of this
    * device will be used (i.e. the target site).
    * @see {@link http://hl7.org/fhir/R4B/DeviceRequest-definitions.html#DeviceRequest.supportingInfo}
    */
-  supportingInfo?: Array<Reference> | undefined;
+  supportingInfo?: Array<Reference<Resource>> | undefined;
   _supportingInfo?: Element[] | undefined;
 }
 
@@ -35833,6 +36349,7 @@ All Provenances should have some historical version of this
  *
  * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement.html}
  */
+
 export interface DeviceUseStatement extends DomainResource {
   readonly resourceType: "DeviceUseStatement";
 
@@ -35841,7 +36358,7 @@ export interface DeviceUseStatement extends DomainResource {
    * DeviceUseStatement.
    * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement-definitions.html#DeviceUseStatement.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<ServiceRequest>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -35861,14 +36378,25 @@ export interface DeviceUseStatement extends DomainResource {
    * derive the DeviceUseStatement from.
    * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement-definitions.html#DeviceUseStatement.derivedFrom}
    */
-  derivedFrom?: Array<Reference> | undefined;
+  derivedFrom?:
+    | Array<
+        Reference<
+          | ServiceRequest
+          | Procedure
+          | Claim
+          | Observation
+          | QuestionnaireResponse
+          | DocumentReference
+        >
+      >
+    | undefined;
   _derivedFrom?: Element[] | undefined;
 
   /**
    * The details of the device used.
    * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement-definitions.html#DeviceUseStatement.device}
    */
-  device: Reference;
+  device: Reference<Device>;
   _device?: Element | undefined;
 
   /**
@@ -35898,7 +36426,13 @@ export interface DeviceUseStatement extends DomainResource {
    * Indicates another resource whose existence justifies this DeviceUseStatement.
    * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement-definitions.html#DeviceUseStatement.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | DiagnosticReport | DocumentReference | Media
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -35913,7 +36447,9 @@ export interface DeviceUseStatement extends DomainResource {
    * Who reported the device was being used by the patient.
    * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement-definitions.html#DeviceUseStatement.source}
    */
-  source?: Reference | undefined;
+  source?:
+    | Reference<Patient | Practitioner | PractitionerRole | RelatedPerson>
+    | undefined;
   _source?: Element | undefined;
 
   /**
@@ -35939,7 +36475,7 @@ This element is labeled as a modifier because the
    * The patient who used the device.
    * @see {@link http://hl7.org/fhir/R4B/DeviceUseStatement-definitions.html#DeviceUseStatement.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 
   /**
@@ -36012,7 +36548,7 @@ export interface DiagnosticReportMedia extends BackboneElement {
    * Reference to the image source.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.media.link}
    */
-  link: Reference;
+  link: Reference<Media>;
   _link?: Element | undefined;
 
   /**
@@ -36050,6 +36586,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport.html}
  */
+
 export interface DiagnosticReport extends DomainResource {
   readonly resourceType: "DiagnosticReport";
 
@@ -36061,7 +36598,17 @@ export interface DiagnosticReport extends DomainResource {
    * multiple reports.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?:
+    | Array<
+        Reference<
+          | CarePlan
+          | ImmunizationRecommendation
+          | MedicationRequest
+          | NutritionOrder
+          | ServiceRequest
+        >
+      >
+    | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -36140,7 +36687,7 @@ export interface DiagnosticReport extends DomainResource {
    * tests).
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -36163,7 +36710,7 @@ export interface DiagnosticReport extends DomainResource {
    * different types of purposes. Neither, either, or both may be provided.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.imagingStudy}
    */
-  imagingStudy?: Array<Reference> | undefined;
+  imagingStudy?: Array<Reference<ImagingStudy>> | undefined;
   _imagingStudy?: Element[] | undefined;
 
   /**
@@ -36194,7 +36741,11 @@ export interface DiagnosticReport extends DomainResource {
    * clinical report.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.performer}
    */
-  performer?: Array<Reference> | undefined;
+  performer?:
+    | Array<
+        Reference<Practitioner | PractitionerRole | Organization | CareTeam>
+      >
+    | undefined;
   _performer?: Element[] | undefined;
 
   /**
@@ -36212,7 +36763,7 @@ export interface DiagnosticReport extends DomainResource {
    * Observations can contain observations.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.result}
    */
-  result?: Array<Reference> | undefined;
+  result?: Array<Reference<Observation>> | undefined;
   _result?: Element[] | undefined;
 
   /**
@@ -36221,7 +36772,11 @@ export interface DiagnosticReport extends DomainResource {
    * Might not be the same entity that takes responsibility for the clinical report.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.resultsInterpreter}
    */
-  resultsInterpreter?: Array<Reference> | undefined;
+  resultsInterpreter?:
+    | Array<
+        Reference<Practitioner | PractitionerRole | Organization | CareTeam>
+      >
+    | undefined;
   _resultsInterpreter?: Element[] | undefined;
 
   /**
@@ -36231,7 +36786,7 @@ export interface DiagnosticReport extends DomainResource {
    * these may be represented per observation or group.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.specimen}
    */
-  specimen?: Array<Reference> | undefined;
+  specimen?: Array<Reference<Specimen>> | undefined;
   _specimen?: Element[] | undefined;
 
   /**
@@ -36249,7 +36804,19 @@ export interface DiagnosticReport extends DomainResource {
    * of other sources.
    * @see {@link http://hl7.org/fhir/R4B/DiagnosticReport-definitions.html#DiagnosticReport.subject}
    */
-  subject?: Reference | undefined;
+  subject?:
+    | Reference<
+        | Patient
+        | Group
+        | Device
+        | Location
+        | Organization
+        | Procedure
+        | Practitioner
+        | Medication
+        | Substance
+      >
+    | undefined;
   _subject?: Element | undefined;
 }
 
@@ -36261,6 +36828,7 @@ export interface DiagnosticReport extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Distance.html}
  */
+
 export interface Distance extends Quantity {}
 
 /**
@@ -36333,7 +36901,7 @@ Modifier extensions
    * thing.
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.related.ref}
    */
-  ref?: Reference | undefined;
+  ref?: Reference<Resource> | undefined;
   _ref?: Element | undefined;
 }
 
@@ -36345,6 +36913,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/DocumentManifest.html}
  */
+
 export interface DocumentManifest extends DomainResource {
   readonly resourceType: "DocumentManifest";
 
@@ -36355,7 +36924,18 @@ export interface DocumentManifest extends DomainResource {
    * source (informant).
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.author}
    */
-  author?: Array<Reference> | undefined;
+  author?:
+    | Array<
+        Reference<
+          | Practitioner
+          | PractitionerRole
+          | Organization
+          | Device
+          | Patient
+          | RelatedPerson
+        >
+      >
+    | undefined;
   _author?: Element[] | undefined;
 
   /**
@@ -36366,7 +36946,7 @@ export interface DocumentManifest extends DomainResource {
    * references  List and Composition resources.
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.content}
    */
-  content: Array<Reference>;
+  content: Array<Reference<Resource>>;
   _content?: Element[] | undefined;
 
   /**
@@ -36418,7 +36998,17 @@ export interface DocumentManifest extends DomainResource {
    * RelatedPerson would be the default choice.
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.recipient}
    */
-  recipient?: Array<Reference> | undefined;
+  recipient?:
+    | Array<
+        Reference<
+          | Patient
+          | Practitioner
+          | PractitionerRole
+          | RelatedPerson
+          | Organization
+        >
+      >
+    | undefined;
   _recipient?: Element[] | undefined;
 
   /**
@@ -36457,7 +37047,7 @@ export interface DocumentManifest extends DomainResource {
    * then more than one subject is allowed here (unusual use case).
    * @see {@link http://hl7.org/fhir/R4B/DocumentManifest-definitions.html#DocumentManifest.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Patient | Practitioner | Group | Device> | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -36557,7 +37147,7 @@ export interface DocumentReferenceContext extends BackboneElement {
    * associated with.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.context.encounter}
    */
-  encounter?: Array<Reference> | undefined;
+  encounter?: Array<Reference<Encounter | EpisodeOfCare>> | undefined;
   _encounter?: Element[] | undefined;
 
   /**
@@ -36654,7 +37244,7 @@ Modifier extensions
    * Document to be created.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.context.related}
    */
-  related?: Array<Reference> | undefined;
+  related?: Array<Reference<Resource>> | undefined;
   _related?: Element[] | undefined;
 
   /**
@@ -36662,7 +37252,7 @@ Modifier extensions
    * reference to a version specific, or contained.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.context.sourcePatientInfo}
    */
-  sourcePatientInfo?: Reference | undefined;
+  sourcePatientInfo?: Reference<Patient> | undefined;
   _sourcePatientInfo?: Element | undefined;
 }
 
@@ -36736,7 +37326,7 @@ Modifier extensions
    * The target document of this relationship.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.relatesTo.target}
    */
-  target: Reference;
+  target: Reference<DocumentReference>;
   _target?: Element | undefined;
 }
 
@@ -36751,6 +37341,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/DocumentReference.html}
  */
+
 export interface DocumentReference extends DomainResource {
   readonly resourceType: "DocumentReference";
 
@@ -36761,7 +37352,9 @@ export interface DocumentReference extends DomainResource {
    * document has been signed manually or electronically by the legal Authenticator.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.authenticator}
    */
-  authenticator?: Reference | undefined;
+  authenticator?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _authenticator?: Element | undefined;
 
   /**
@@ -36770,7 +37363,18 @@ export interface DocumentReference extends DomainResource {
    * source (informant).
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.author}
    */
-  author?: Array<Reference> | undefined;
+  author?:
+    | Array<
+        Reference<
+          | Practitioner
+          | PractitionerRole
+          | Organization
+          | Device
+          | Patient
+          | RelatedPerson
+        >
+      >
+    | undefined;
   _author?: Element[] | undefined;
 
   /**
@@ -36812,7 +37416,7 @@ export interface DocumentReference extends DomainResource {
    * management of some other organization.
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.custodian}
    */
-  custodian?: Reference | undefined;
+  custodian?: Reference<Organization> | undefined;
   _custodian?: Element | undefined;
 
   /**
@@ -36918,7 +37522,7 @@ This element is labeled as a modifier because the
    * that share a common exposure).
    * @see {@link http://hl7.org/fhir/R4B/DocumentReference-definitions.html#DocumentReference.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Patient | Practitioner | Group | Device> | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -36941,6 +37545,7 @@ This element is labeled as a modifier because the
  *
  * @see {@link http://hl7.org/fhir/R4B/DomainResource.html}
  */
+
 export interface DomainResource extends Resource {
   readonly resourceType: string;
 
@@ -37023,6 +37628,7 @@ Modifier
  *
  * @see {@link http://hl7.org/fhir/R4B/Dosage.html}
  */
+
 export interface Dosage extends BackboneElement {
   /**
    * Supplemental instructions to the patient on how to take the medication  (e.g.
@@ -37153,6 +37759,7 @@ export interface Dosage extends BackboneElement {
  *
  * @see {@link http://hl7.org/fhir/R4B/Duration.html}
  */
+
 export interface Duration extends Quantity {}
 
 /**
@@ -37163,6 +37770,7 @@ export interface Duration extends Quantity {}
  *
  * @see {@link http://hl7.org/fhir/R4B/Element.html}
  */
+
 export interface Element {
   /**
    * May be used to represent additional information that is not part of the basic
@@ -37195,6 +37803,7 @@ export interface Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/ElementDefinition.html}
  */
+
 export interface ElementDefinition extends BackboneElement {
   /**
    * Identifies additional names by which this element might also be known.
@@ -40939,7 +41548,7 @@ export interface EncounterDiagnosis extends BackboneElement {
    * rather than a flag, 1 = primary diagnosis).
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.diagnosis.condition}
    */
-  condition: Reference;
+  condition: Reference<Condition | Procedure>;
   _condition?: Element | undefined;
 
   /**
@@ -41028,7 +41637,7 @@ export interface EncounterHospitalization extends BackboneElement {
    * Location/organization to which the patient is discharged.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.hospitalization.destination}
    */
-  destination?: Reference | undefined;
+  destination?: Reference<Location | Organization> | undefined;
   _destination?: Element | undefined;
 
   /**
@@ -41098,7 +41707,7 @@ Modifier extensions
    * The location/organization from which the patient came before admission.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.hospitalization.origin}
    */
-  origin?: Reference | undefined;
+  origin?: Reference<Location | Organization> | undefined;
   _origin?: Element | undefined;
 
   /**
@@ -41167,7 +41776,7 @@ export interface EncounterLocation extends BackboneElement {
    * The location where the encounter takes place.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.location.location}
    */
-  location: Reference;
+  location: Reference<Location>;
   _location?: Element | undefined;
 
   /**
@@ -41261,7 +41870,9 @@ export interface EncounterParticipant extends BackboneElement {
    * Persons involved in the encounter other than the patient.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.participant.individual}
    */
-  individual?: Reference | undefined;
+  individual?:
+    | Reference<Practitioner | PractitionerRole | RelatedPerson>
+    | undefined;
   _individual?: Element | undefined;
 
   /**
@@ -41390,6 +42001,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Encounter.html}
  */
+
 export interface Encounter extends DomainResource {
   readonly resourceType: "Encounter";
 
@@ -41399,14 +42011,14 @@ export interface Encounter extends DomainResource {
    * Encounter to different referenced Accounts based on internal business rules.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.account}
    */
-  account?: Array<Reference> | undefined;
+  account?: Array<Reference<Account>> | undefined;
   _account?: Element[] | undefined;
 
   /**
    * The appointment that scheduled this encounter.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.appointment}
    */
-  appointment?: Array<Reference> | undefined;
+  appointment?: Array<Reference<Appointment>> | undefined;
   _appointment?: Element[] | undefined;
 
   /**
@@ -41414,7 +42026,7 @@ export interface Encounter extends DomainResource {
    * request).
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<ServiceRequest>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -41456,7 +42068,7 @@ export interface Encounter extends DomainResource {
    * to append another encounter to it (the episode of care could span years).
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.episodeOfCare}
    */
-  episodeOfCare?: Array<Reference> | undefined;
+  episodeOfCare?: Array<Reference<EpisodeOfCare>> | undefined;
   _episodeOfCare?: Element[] | undefined;
 
   /**
@@ -41516,7 +42128,7 @@ Refer to the Notes section in the Patient resource for further
  * details.
  * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.partOf}
  */
-  partOf?: Reference | undefined;
+  partOf?: Reference<Encounter> | undefined;
   _partOf?: Element | undefined;
 
   /**
@@ -41553,7 +42165,13 @@ Refer to the Notes section in the Patient resource for further
    * rather than a flag, 1 = primary diagnosis).
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Procedure | Observation | ImmunizationRecommendation
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -41565,7 +42183,7 @@ Refer to the Notes section in the Patient resource for further
    * colonoscopy.
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.serviceProvider}
    */
-  serviceProvider?: Reference | undefined;
+  serviceProvider?: Reference<Organization> | undefined;
   _serviceProvider?: Element | undefined;
 
   /**
@@ -41608,7 +42226,7 @@ Refer to the Notes section in the Patient resource for further
    * animals are not individually tracked).
    * @see {@link http://hl7.org/fhir/R4B/Encounter-definitions.html#Encounter.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Patient | Group> | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -41630,6 +42248,7 @@ Refer to the Notes section in the Patient resource for further
  *
  * @see {@link http://hl7.org/fhir/R4B/Endpoint.html}
  */
+
 export interface Endpoint extends DomainResource {
   readonly resourceType: "Endpoint";
 
@@ -41705,7 +42324,7 @@ and not
    * organizational hierarchy.
    * @see {@link http://hl7.org/fhir/R4B/Endpoint-definitions.html#Endpoint.managingOrganization}
    */
-  managingOrganization?: Reference | undefined;
+  managingOrganization?: Reference<Organization> | undefined;
   _managingOrganization?: Element | undefined;
 
   /**
@@ -41766,6 +42385,7 @@ and not
  *
  * @see {@link http://hl7.org/fhir/R4B/EnrollmentRequest.html}
  */
+
 export interface EnrollmentRequest extends DomainResource {
   readonly resourceType: "EnrollmentRequest";
 
@@ -41773,14 +42393,14 @@ export interface EnrollmentRequest extends DomainResource {
    * Patient Resource.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentRequest-definitions.html#EnrollmentRequest.candidate}
    */
-  candidate?: Reference | undefined;
+  candidate?: Reference<Patient> | undefined;
   _candidate?: Element | undefined;
 
   /**
    * Reference to the program or plan identification, underwriter or payor.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentRequest-definitions.html#EnrollmentRequest.coverage}
    */
-  coverage?: Reference | undefined;
+  coverage?: Reference<Coverage> | undefined;
   _coverage?: Element | undefined;
 
   /**
@@ -41802,14 +42422,16 @@ export interface EnrollmentRequest extends DomainResource {
    * The Insurer who is target  of the request.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentRequest-definitions.html#EnrollmentRequest.insurer}
    */
-  insurer?: Reference | undefined;
+  insurer?: Reference<Organization> | undefined;
   _insurer?: Element | undefined;
 
   /**
    * The practitioner who is responsible for the services rendered to the patient.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentRequest-definitions.html#EnrollmentRequest.provider}
    */
-  provider?: Reference | undefined;
+  provider?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _provider?: Element | undefined;
 
   /**
@@ -41832,6 +42454,7 @@ export interface EnrollmentRequest extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/EnrollmentResponse.html}
  */
+
 export interface EnrollmentResponse extends DomainResource {
   readonly resourceType: "EnrollmentResponse";
 
@@ -41861,7 +42484,7 @@ export interface EnrollmentResponse extends DomainResource {
    * The Insurer who produced this adjudicated response.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentResponse-definitions.html#EnrollmentResponse.organization}
    */
-  organization?: Reference | undefined;
+  organization?: Reference<Organization> | undefined;
   _organization?: Element | undefined;
 
   /**
@@ -41877,14 +42500,16 @@ export interface EnrollmentResponse extends DomainResource {
    * Original request resource reference.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentResponse-definitions.html#EnrollmentResponse.request}
    */
-  request?: Reference | undefined;
+  request?: Reference<EnrollmentRequest> | undefined;
   _request?: Element | undefined;
 
   /**
    * The practitioner who is responsible for the services rendered to the patient.
    * @see {@link http://hl7.org/fhir/R4B/EnrollmentResponse-definitions.html#EnrollmentResponse.requestProvider}
    */
-  requestProvider?: Reference | undefined;
+  requestProvider?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _requestProvider?: Element | undefined;
 
   /**
@@ -41909,7 +42534,7 @@ export interface EpisodeOfCareDiagnosis extends BackboneElement {
    * be providing care for.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.diagnosis.condition}
    */
-  condition: Reference;
+  condition: Reference<Condition>;
   _condition?: Element | undefined;
 
   /**
@@ -42055,6 +42680,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare.html}
  */
+
 export interface EpisodeOfCare extends DomainResource {
   readonly resourceType: "EpisodeOfCare";
 
@@ -42064,14 +42690,14 @@ export interface EpisodeOfCare extends DomainResource {
    * EpisodeOfCare to different referenced Accounts based on internal business rules.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.account}
    */
-  account?: Array<Reference> | undefined;
+  account?: Array<Reference<Account>> | undefined;
   _account?: Element[] | undefined;
 
   /**
    * The practitioner that is the care manager/care coordinator for this patient.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.careManager}
    */
-  careManager?: Reference | undefined;
+  careManager?: Reference<Practitioner | PractitionerRole> | undefined;
   _careManager?: Element | undefined;
 
   /**
@@ -42095,14 +42721,14 @@ export interface EpisodeOfCare extends DomainResource {
    * specified duration.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.managingOrganization}
    */
-  managingOrganization?: Reference | undefined;
+  managingOrganization?: Reference<Organization> | undefined;
   _managingOrganization?: Element | undefined;
 
   /**
    * The patient who is the focus of this episode of care.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -42118,7 +42744,7 @@ export interface EpisodeOfCare extends DomainResource {
    * referrals.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.referralRequest}
    */
-  referralRequest?: Array<Reference> | undefined;
+  referralRequest?: Array<Reference<ServiceRequest>> | undefined;
   _referralRequest?: Element[] | undefined;
 
   /**
@@ -42145,7 +42771,7 @@ export interface EpisodeOfCare extends DomainResource {
    * specific purposes.
    * @see {@link http://hl7.org/fhir/R4B/EpisodeOfCare-definitions.html#EpisodeOfCare.team}
    */
-  team?: Array<Reference> | undefined;
+  team?: Array<Reference<CareTeam>> | undefined;
   _team?: Element[] | undefined;
 
   /**
@@ -42169,6 +42795,7 @@ export interface EpisodeOfCare extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Event.html}
  */
+
 export interface Event {
   /**
    * A plan, proposal or order that is fulfilled in whole or in part by this
@@ -42176,7 +42803,28 @@ export interface Event {
    * [The allowed reference resources may be adjusted as appropriate for the event
    * resource].
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?:
+    | Array<
+        Reference<
+          | Appointment
+          | AppointmentResponse
+          | CarePlan
+          | Claim
+          | CommunicationRequest
+          | Contract
+          | CoverageEligibilityRequest
+          | DeviceRequest
+          | EnrollmentRequest
+          | ImmunizationRecommendation
+          | MedicationRequest
+          | NutritionOrder
+          | RequestGroup
+          | ServiceRequest
+          | SupplyRequest
+          | VisionPrescription
+        >
+      >
+    | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -42194,7 +42842,7 @@ export interface Event {
    * encounter but still be tied to the context of the encounter (e.g. pre-admission
    * lab tests).
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -42233,7 +42881,7 @@ export interface Event {
   /**
    * The principal physical location where the {{title}} was performed.
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -42300,7 +42948,48 @@ export interface Event {
 [The allowed reference resources may be adjusted as appropriate for the
  * event resource].
  */
-  partOf?: Array<Reference> | undefined;
+  partOf?:
+    | Array<
+        Reference<
+          | AuditEvent
+          | ChargeItem
+          | ClaimResponse
+          | ClinicalImpression
+          | Communication
+          | Composition
+          | Condition
+          | Consent
+          | Coverage
+          | CoverageEligibilityResponse
+          | DetectedIssue
+          | DeviceUseStatement
+          | DiagnosticReport
+          | DocumentManifest
+          | DocumentReference
+          | Encounter
+          | EnrollmentResponse
+          | EpisodeOfCare
+          | ExplanationOfBenefit
+          | FamilyMemberHistory
+          | GuidanceResponse
+          | ImagingStudy
+          | Immunization
+          | ImmunizationEvaluation
+          | Media
+          | MedicationAdministration
+          | MedicationDispense
+          | MedicationStatement
+          | Observation
+          | PaymentNotice
+          | PaymentReconciliation
+          | Procedure
+          | Provenance
+          | QuestionnaireResponse
+          | RiskAssessment
+          | SupplyDelivery
+        >
+      >
+    | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -42322,7 +43011,13 @@ export interface Event {
    * Indicates another resource whose existence justifies this {{title}}.
    * [Additional resources may be added as appropriate].
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | Media | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -42346,7 +43041,11 @@ export interface Event {
    * than as an original primary source-of-truth record.  It may also indicate the
    * source of the report.
    */
-  reportedReference?: Reference | undefined;
+  reportedReference?:
+    | Reference<
+        Patient | RelatedPerson | Practitioner | PractitionerRole | Organization
+      >
+    | undefined;
   _reportedReference?: Element | undefined;
 
   /**
@@ -42355,7 +43054,7 @@ export interface Event {
    * protocol, but can also include events that occurred outside the study but still
    * have relevance.
    */
-  researchStudy?: Array<Reference> | undefined;
+  researchStudy?: Array<Reference<ResearchStudy>> | undefined;
   _researchStudy?: Element[] | undefined;
 
   /**
@@ -42392,7 +43091,7 @@ Unknown does not represent "other" - one of the
    * health settings where Group may be necessary (e.g. this cage of rats/crate of
    * chickens, group of people in a 5 mile radious of the incident, etc.)].
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 }
 
@@ -42404,6 +43103,7 @@ Unknown does not represent "other" - one of the
  *
  * @see {@link http://hl7.org/fhir/R4B/EventDefinition.html}
  */
+
 export interface EventDefinition extends DomainResource {
   readonly resourceType: "EventDefinition";
 
@@ -42626,7 +43326,7 @@ export interface EventDefinition extends DomainResource {
    * definition.
    * @see {@link http://hl7.org/fhir/R4B/EventDefinition-definitions.html#EventDefinition.subjectReference}
    */
-  subjectReference?: Reference | undefined;
+  subjectReference?: Reference<Group> | undefined;
   _subjectReference?: Element | undefined;
 
   /**
@@ -43222,7 +43922,7 @@ Modifier extensions
    * Description of the variable.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.modelCharacteristic.variable.variableDefinition}
    */
-  variableDefinition: Reference;
+  variableDefinition: Reference<Group | EvidenceVariable>;
   _variableDefinition?: Element | undefined;
 }
 
@@ -43365,7 +44065,7 @@ export interface EvidenceVariableDefinition extends BackboneElement {
    * Definition of the intended variable related to the Evidence.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.variableDefinition.intended}
    */
-  intended?: Reference | undefined;
+  intended?: Reference<Group | EvidenceVariable> | undefined;
   _intended?: Element | undefined;
 
   /**
@@ -43402,7 +44102,7 @@ Modifier extensions
    * Definition of the actual variable related to the statistic(s).
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.variableDefinition.observed}
    */
-  observed?: Reference | undefined;
+  observed?: Reference<Group | EvidenceVariable> | undefined;
   _observed?: Element | undefined;
 
   /**
@@ -43424,6 +44124,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Evidence.html}
  */
+
 export interface Evidence extends DomainResource {
   readonly resourceType: "Evidence";
 
@@ -43469,7 +44170,7 @@ export interface Evidence extends DomainResource {
    * Citation Resource or display of suggested citation for this evidence.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.citeAsReference}
    */
-  citeAsReference?: Reference | undefined;
+  citeAsReference?: Reference<Citation> | undefined;
   _citeAsReference?: Element | undefined;
 
   /**
@@ -43774,7 +44475,7 @@ Modifier extensions
    * The target composition/document of this relationship.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.relatesTo.targetReference}
    */
-  targetReference?: Reference | undefined;
+  targetReference?: Reference<EvidenceReport> | undefined;
   _targetReference?: Element | undefined;
 }
 
@@ -43788,7 +44489,7 @@ export interface EvidenceReportSection extends BackboneElement {
    * necessarily who typed it in.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.section.author}
    */
-  author?: Array<Reference> | undefined;
+  author?: Array<Reference<Person | Device | Group | Organization>> | undefined;
   _author?: Element[] | undefined;
 
   /**
@@ -43824,7 +44525,7 @@ export interface EvidenceReportSection extends BackboneElement {
    * If there are no entries in the list, an emptyReason SHOULD be provided.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.section.entryReference}
    */
-  entryReference?: Array<Reference> | undefined;
+  entryReference?: Array<Reference<Resource>> | undefined;
   _entryReference?: Element[] | undefined;
 
   /**
@@ -43862,7 +44563,7 @@ If the section has content (instead of sub-sections), the
    * section. This should be consistent with the section title.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.section.focusReference}
    */
-  focusReference?: Reference | undefined;
+  focusReference?: Reference<Resource> | undefined;
   _focusReference?: Element | undefined;
 
   /**
@@ -44098,7 +44799,7 @@ Modifier extensions
    * is 1-year mortality.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.subject.characteristic.valueReference}
    */
-  valueReference?: Reference | undefined;
+  valueReference?: Reference<Resource> | undefined;
   _valueReference?: Element | undefined;
 
   /**
@@ -44147,6 +44848,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/EvidenceReport.html}
  */
+
 export interface EvidenceReport extends DomainResource {
   readonly resourceType: "EvidenceReport";
 
@@ -44167,7 +44869,7 @@ export interface EvidenceReport extends DomainResource {
    * of scholarly publications.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.citeAsReference}
    */
-  citeAsReference?: Reference | undefined;
+  citeAsReference?: Reference<Citation> | undefined;
   _citeAsReference?: Element | undefined;
 
   /**
@@ -44445,7 +45147,7 @@ export interface EvidenceVariableCharacteristic extends BackboneElement {
    * last year).
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristic.definitionReference}
    */
-  definitionReference?: Reference | undefined;
+  definitionReference?: Reference<Group | EvidenceVariable> | undefined;
   _definitionReference?: Element | undefined;
 
   /**
@@ -44491,7 +45193,7 @@ export interface EvidenceVariableCharacteristic extends BackboneElement {
    * Device used for determining characteristic.
    * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable-definitions.html#EvidenceVariable.characteristic.device}
    */
-  device?: Reference | undefined;
+  device?: Reference<Device | DeviceMetric> | undefined;
   _device?: Element | undefined;
 
   /**
@@ -44665,6 +45367,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/EvidenceVariable.html}
  */
+
 export interface EvidenceVariable extends DomainResource {
   readonly resourceType: "EvidenceVariable";
 
@@ -45628,6 +46331,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ExampleScenario.html}
  */
+
 export interface ExampleScenario extends DomainResource {
   readonly resourceType: "ExampleScenario";
 
@@ -45887,7 +46591,7 @@ export interface ExplanationOfBenefitAccident extends BackboneElement {
    * The physical location of the accident event.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.accident.locationReference}
    */
-  locationReference?: Reference | undefined;
+  locationReference?: Reference<Location> | undefined;
   _locationReference?: Element | undefined;
 
   /**
@@ -46014,7 +46718,7 @@ export interface ExplanationOfBenefitAddItem extends BackboneElement {
    * Where the product or service was provided.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.locationReference}
    */
-  locationReference?: Reference | undefined;
+  locationReference?: Reference<Location> | undefined;
   _locationReference?: Element | undefined;
 
   /**
@@ -46096,7 +46800,9 @@ Modifier extensions
    * The providers who are authorized for the services rendered to the patient.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.provider}
    */
-  provider?: Array<Reference> | undefined;
+  provider?:
+    | Array<Reference<Practitioner | PractitionerRole | Organization>>
+    | undefined;
   _provider?: Element[] | undefined;
 
   /**
@@ -46672,7 +47378,7 @@ Modifier extensions
    * Member of the team who provided the product or service.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.careTeam.provider}
    */
-  provider: Reference;
+  provider: Reference<Practitioner | PractitionerRole | Organization>;
   _provider?: Element | undefined;
 
   /**
@@ -46727,7 +47433,7 @@ export interface ExplanationOfBenefitDiagnosis extends BackboneElement {
    * external defined Condition.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.diagnosis.diagnosisReference}
    */
-  diagnosisReference?: Reference | undefined;
+  diagnosisReference?: Reference<Condition> | undefined;
   _diagnosisReference?: Element | undefined;
 
   /**
@@ -46836,7 +47542,7 @@ export interface ExplanationOfBenefitInsurance extends BackboneElement {
    * patient's actual coverage within the insurer's information system.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.insurance.coverage}
    */
-  coverage: Reference;
+  coverage: Reference<Coverage>;
   _coverage?: Element | undefined;
 
   /**
@@ -46973,7 +47679,7 @@ export interface ExplanationOfBenefitItem extends BackboneElement {
    * A billed item may include goods or services provided in multiple encounters.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.encounter}
    */
-  encounter?: Array<Reference> | undefined;
+  encounter?: Array<Reference<Encounter>> | undefined;
   _encounter?: Element[] | undefined;
 
   /**
@@ -47038,7 +47744,7 @@ export interface ExplanationOfBenefitItem extends BackboneElement {
    * Where the product or service was provided.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.locationReference}
    */
-  locationReference?: Reference | undefined;
+  locationReference?: Reference<Location> | undefined;
   _locationReference?: Element | undefined;
 
   /**
@@ -47174,7 +47880,7 @@ Modifier extensions
    * Unique Device Identifiers associated with this line item.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.udi}
    */
-  udi?: Array<Reference> | undefined;
+  udi?: Array<Reference<Device>> | undefined;
   _udi?: Element[] | undefined;
 
   /**
@@ -47439,7 +48145,7 @@ Modifier extensions
    * Unique Device Identifiers associated with this line item.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.udi}
    */
-  udi?: Array<Reference> | undefined;
+  udi?: Array<Reference<Device>> | undefined;
   _udi?: Element[] | undefined;
 
   /**
@@ -47603,7 +48309,7 @@ Modifier extensions
    * Unique Device Identifiers associated with this line item.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.subDetail.udi}
    */
-  udi?: Array<Reference> | undefined;
+  udi?: Array<Reference<Device>> | undefined;
   _udi?: Element[] | undefined;
 
   /**
@@ -47676,7 +48382,11 @@ Modifier extensions
    * Not required if the payee is 'subscriber' or 'provider'.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.payee.party}
    */
-  party?: Reference | undefined;
+  party?:
+    | Reference<
+        Practitioner | PractitionerRole | Organization | Patient | RelatedPerson
+      >
+    | undefined;
   _party?: Element | undefined;
 
   /**
@@ -47862,7 +48572,7 @@ Modifier extensions
    * intervention performed.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.procedure.procedureReference}
    */
-  procedureReference?: Reference | undefined;
+  procedureReference?: Reference<Procedure> | undefined;
   _procedureReference?: Element | undefined;
 
   /**
@@ -47884,7 +48594,7 @@ Modifier extensions
    * Unique Device Identifiers associated with this line item.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.procedure.udi}
    */
-  udi?: Array<Reference> | undefined;
+  udi?: Array<Reference<Device>> | undefined;
   _udi?: Element[] | undefined;
 }
 
@@ -47984,7 +48694,7 @@ export interface ExplanationOfBenefitRelated extends BackboneElement {
    * Reference to a related claim.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.related.claim}
    */
-  claim?: Reference | undefined;
+  claim?: Reference<Claim> | undefined;
   _claim?: Element | undefined;
 
   /**
@@ -48205,7 +48915,7 @@ Modifier extensions
    * could contain a PDF in an Attachment of the Police Report for an Accident.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.supportingInfo.valueReference}
    */
-  valueReference?: Reference | undefined;
+  valueReference?: Reference<Resource> | undefined;
   _valueReference?: Element | undefined;
 }
 
@@ -48291,6 +49001,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit.html}
  */
+
 export interface ExplanationOfBenefit extends DomainResource {
   readonly resourceType: "ExplanationOfBenefit";
 
@@ -48346,7 +49057,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * predetermination or preauthorization.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.claim}
    */
-  claim?: Reference | undefined;
+  claim?: Reference<Claim> | undefined;
   _claim?: Element | undefined;
 
   /**
@@ -48354,7 +49065,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * predetermination or preauthorization response.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.claimResponse}
    */
-  claimResponse?: Reference | undefined;
+  claimResponse?: Reference<ClaimResponse> | undefined;
   _claimResponse?: Element | undefined;
 
   /**
@@ -48386,14 +49097,14 @@ export interface ExplanationOfBenefit extends DomainResource {
    * Individual who created the claim, predetermination or preauthorization.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.enterer}
    */
-  enterer?: Reference | undefined;
+  enterer?: Reference<Practitioner | PractitionerRole> | undefined;
   _enterer?: Element | undefined;
 
   /**
    * Facility where the services were provided.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.facility}
    */
-  facility?: Reference | undefined;
+  facility?: Reference<Location> | undefined;
   _facility?: Element | undefined;
 
   /**
@@ -48458,7 +49169,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * The party responsible for authorization, adjudication and reimbursement.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.insurer}
    */
-  insurer: Reference;
+  insurer: Reference<Organization>;
   _insurer?: Element | undefined;
 
   /**
@@ -48479,7 +49190,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * 'prescription' and that from the physician becomes the 'original prescription'.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.originalPrescription}
    */
-  originalPrescription?: Reference | undefined;
+  originalPrescription?: Reference<MedicationRequest> | undefined;
   _originalPrescription?: Element | undefined;
 
   /**
@@ -48501,7 +49212,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * sought.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -48553,7 +49264,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * Prescription to support the dispensing of pharmacy, device or vision products.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.prescription}
    */
-  prescription?: Reference | undefined;
+  prescription?: Reference<MedicationRequest | VisionPrescription> | undefined;
   _prescription?: Element | undefined;
 
   /**
@@ -48589,7 +49300,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * individual products and services listed below.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.provider}
    */
-  provider: Reference;
+  provider: Reference<Practitioner | PractitionerRole | Organization>;
   _provider?: Element | undefined;
 
   /**
@@ -48598,7 +49309,7 @@ export interface ExplanationOfBenefit extends DomainResource {
    * supporting information.
    * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.referral}
    */
-  referral?: Reference | undefined;
+  referral?: Reference<ServiceRequest> | undefined;
   _referral?: Element | undefined;
 
   /**
@@ -48681,6 +49392,7 @@ export interface ExplanationOfBenefit extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Expression.html}
  */
+
 export interface Expression extends Element {
   /**
    * A brief, natural language description of the condition that effectively
@@ -48728,6 +49440,7 @@ export interface Expression extends Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/Extension.html}
  */
+
 export interface Extension extends Element {
   /**
    * Source of the definition for the extension code - a logical name or a URL.
@@ -49247,6 +49960,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory.html}
  */
+
 export interface FamilyMemberHistory extends DomainResource {
   readonly resourceType: "FamilyMemberHistory";
 
@@ -49433,7 +50147,7 @@ export interface FamilyMemberHistory extends DomainResource {
    * The person who this history concerns.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -49449,7 +50163,18 @@ export interface FamilyMemberHistory extends DomainResource {
    * that justifies this family member history event.
    * @see {@link http://hl7.org/fhir/R4B/FamilyMemberHistory-definitions.html#FamilyMemberHistory.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          | Condition
+          | Observation
+          | AllergyIntolerance
+          | QuestionnaireResponse
+          | DiagnosticReport
+          | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -49495,23 +50220,30 @@ export interface FamilyMemberHistory extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/FiveWs.html}
  */
+
 export interface FiveWs {
   /**
    * who did the work described the resource (or will do).
    */
-  actor?: Array<Reference> | undefined;
+  actor?:
+    | Array<Reference<Patient | Practitioner | RelatedPerson | Organization>>
+    | undefined;
   _actor?: Element[] | undefined;
 
   /**
    * who authored the content of the resource.
    */
-  author?: Array<Reference> | undefined;
+  author?:
+    | Array<Reference<Patient | Practitioner | RelatedPerson | Organization>>
+    | undefined;
   _author?: Element[] | undefined;
 
   /**
    * who prompted the work described in the resource.
    */
-  cause?: Array<Reference> | undefined;
+  cause?:
+    | Array<Reference<Patient | Practitioner | RelatedPerson | Organization>>
+    | undefined;
   _cause?: Element[] | undefined;
 
   /**
@@ -49524,7 +50256,7 @@ export interface FiveWs {
    * a resource that gives context for the work described in this resource (usually
    * Encounter or EpisodeOfCare).
    */
-  context?: Reference | undefined;
+  context?: Reference<Encounter | EpisodeOfCare> | undefined;
   _context?: Element | undefined;
 
   /**
@@ -49575,7 +50307,9 @@ export interface FiveWs {
   /**
    * Who provided the information in this resource.
    */
-  source?: Array<Reference> | undefined;
+  source?:
+    | Array<Reference<Patient | Practitioner | RelatedPerson | Organization>>
+    | undefined;
   _source?: Element[] | undefined;
 
   /**
@@ -49589,7 +50323,9 @@ export interface FiveWs {
   /**
    * Who this resource is about.
    */
-  subject?: Array<Reference> | undefined;
+  subject?:
+    | Array<Reference<Patient | Practitioner | RelatedPerson | Organization>>
+    | undefined;
   _subject?: Element[] | undefined;
 
   /**
@@ -49607,7 +50343,7 @@ export interface FiveWs {
   /**
    * what this resource is about.
    */
-  whatReference?: Reference | undefined;
+  whatReference?: Reference<Resource> | undefined;
   _whatReference?: Element | undefined;
 
   /**
@@ -49619,13 +50355,15 @@ export interface FiveWs {
   /**
    * The location of the work described.
    */
-  whereReference?: Array<Reference> | undefined;
+  whereReference?: Array<Reference<Location>> | undefined;
   _whereReference?: Element[] | undefined;
 
   /**
    * An actor involved in the work described by this resource.
    */
-  who?: Array<Reference> | undefined;
+  who?:
+    | Array<Reference<Patient | Practitioner | RelatedPerson | Organization>>
+    | undefined;
   _who?: Element[] | undefined;
 
   /**
@@ -49637,13 +50375,15 @@ export interface FiveWs {
   /**
    * Why this work was done.
    */
-  whyReference?: Array<Reference> | undefined;
+  whyReference?: Array<Reference<Resource>> | undefined;
   _whyReference?: Element[] | undefined;
 
   /**
    * who attests to the content of the resource (individual or org).
    */
-  witness?: Array<Reference> | undefined;
+  witness?:
+    | Array<Reference<Patient | Practitioner | RelatedPerson>>
+    | undefined;
   _witness?: Element[] | undefined;
 }
 
@@ -49654,6 +50394,7 @@ export interface FiveWs {
  *
  * @see {@link http://hl7.org/fhir/R4B/Flag.html}
  */
+
 export interface Flag extends DomainResource {
   readonly resourceType: "Flag";
 
@@ -49661,7 +50402,11 @@ export interface Flag extends DomainResource {
    * The person, organization or device that created the flag.
    * @see {@link http://hl7.org/fhir/R4B/Flag-definitions.html#Flag.author}
    */
-  author?: Reference | undefined;
+  author?:
+    | Reference<
+        Device | Organization | Patient | Practitioner | PractitionerRole
+      >
+    | undefined;
   _author?: Element | undefined;
 
   /**
@@ -49691,7 +50436,7 @@ export interface Flag extends DomainResource {
    * Encounter.period.end.
    * @see {@link http://hl7.org/fhir/R4B/Flag-definitions.html#Flag.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -49734,7 +50479,16 @@ export interface Flag extends DomainResource {
    * record this flag is associated with.
    * @see {@link http://hl7.org/fhir/R4B/Flag-definitions.html#Flag.subject}
    */
-  subject: Reference;
+  subject: Reference<
+    | Patient
+    | Location
+    | Group
+    | Organization
+    | Practitioner
+    | PlanDefinition
+    | Medication
+    | Procedure
+  >;
   _subject?: Element | undefined;
 }
 
@@ -49933,6 +50687,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Goal.html}
  */
+
 export interface Goal extends DomainResource {
   readonly resourceType: "Goal";
 
@@ -49948,7 +50703,18 @@ export interface Goal extends DomainResource {
    * be addressed by the goal.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.addresses}
    */
-  addresses?: Array<Reference> | undefined;
+  addresses?:
+    | Array<
+        Reference<
+          | Condition
+          | Observation
+          | MedicationStatement
+          | NutritionOrder
+          | ServiceRequest
+          | RiskAssessment
+        >
+      >
+    | undefined;
   _addresses?: Element[] | undefined;
 
   /**
@@ -49974,7 +50740,9 @@ export interface Goal extends DomainResource {
    * who recorded it.  (For that, use the Provenance resource.).
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.expressedBy}
    */
-  expressedBy?: Reference | undefined;
+  expressedBy?:
+    | Reference<Patient | Practitioner | PractitionerRole | RelatedPerson>
+    | undefined;
   _expressedBy?: Element | undefined;
 
   /**
@@ -50031,7 +50799,7 @@ export interface Goal extends DomainResource {
    * weight measured.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.outcomeReference}
    */
-  outcomeReference?: Array<Reference> | undefined;
+  outcomeReference?: Array<Reference<Observation>> | undefined;
   _outcomeReference?: Element[] | undefined;
 
   /**
@@ -50088,7 +50856,7 @@ The ordinal extension on Coding can
    * established.
    * @see {@link http://hl7.org/fhir/R4B/Goal-definitions.html#Goal.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group | Organization>;
   _subject?: Element | undefined;
 
   /**
@@ -50393,6 +51161,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/GraphDefinition.html}
  */
+
 export interface GraphDefinition extends DomainResource {
   readonly resourceType: "GraphDefinition";
 
@@ -50727,7 +51496,16 @@ export interface GroupMember extends BackboneElement {
    * Group.type. If the entity is another group, then the type must be the same.
    * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.member.entity}
    */
-  entity: Reference;
+  entity: Reference<
+    | Patient
+    | RelatedPerson
+    | Practitioner
+    | PractitionerRole
+    | Device
+    | Medication
+    | Substance
+    | Group
+  >;
   _entity?: Element | undefined;
 
   /**
@@ -50803,6 +51581,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Group.html}
  */
+
 export interface Group extends DomainResource {
   readonly resourceType: "Group";
 
@@ -50855,7 +51634,9 @@ export interface Group extends DomainResource {
    * an extension.
    * @see {@link http://hl7.org/fhir/R4B/Group-definitions.html#Group.managingEntity}
    */
-  managingEntity?: Reference | undefined;
+  managingEntity?:
+    | Reference<Organization | RelatedPerson | Practitioner | PractitionerRole>
+    | undefined;
   _managingEntity?: Element | undefined;
 
   /**
@@ -50903,6 +51684,7 @@ export interface Group extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse.html}
  */
+
 export interface GuidanceResponse extends DomainResource {
   readonly resourceType: "GuidanceResponse";
 
@@ -50924,7 +51706,7 @@ export interface GuidanceResponse extends DomainResource {
    * encounter but still be tied to the context of the encounter.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -50933,7 +51715,7 @@ export interface GuidanceResponse extends DomainResource {
    * messages. These messages will be provided by this element.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.evaluationMessage}
    */
-  evaluationMessage?: Array<Reference> | undefined;
+  evaluationMessage?: Array<Reference<OperationOutcome>> | undefined;
   _evaluationMessage?: Element[] | undefined;
 
   /**
@@ -50992,14 +51774,14 @@ export interface GuidanceResponse extends DomainResource {
    * these would be returned in this element.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.outputParameters}
    */
-  outputParameters?: Reference | undefined;
+  outputParameters?: Reference<Parameters> | undefined;
   _outputParameters?: Element | undefined;
 
   /**
    * Provides a reference to the device that performed the guidance.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.performer}
    */
-  performer?: Reference | undefined;
+  performer?: Reference<Device> | undefined;
   _performer?: Element | undefined;
 
   /**
@@ -51016,7 +51798,13 @@ export interface GuidanceResponse extends DomainResource {
    * indication of the cause for the response.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -51032,7 +51820,7 @@ export interface GuidanceResponse extends DomainResource {
    * The actions, if any, produced by the evaluation of the artifact.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.result}
    */
-  result?: Reference | undefined;
+  result?: Reference<CarePlan | RequestGroup> | undefined;
   _result?: Element | undefined;
 
   /**
@@ -51057,7 +51845,7 @@ export interface GuidanceResponse extends DomainResource {
    * The patient for which the request was processed.
    * @see {@link http://hl7.org/fhir/R4B/GuidanceResponse-definitions.html#GuidanceResponse.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Patient | Group> | undefined;
   _subject?: Element | undefined;
 }
 
@@ -51304,6 +52092,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/HealthcareService.html}
  */
+
 export interface HealthcareService extends DomainResource {
   readonly resourceType: "HealthcareService";
 
@@ -51397,7 +52186,7 @@ export interface HealthcareService extends DomainResource {
    * "in-home".
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.coverageArea}
    */
-  coverageArea?: Array<Reference> | undefined;
+  coverageArea?: Array<Reference<Location>> | undefined;
   _coverageArea?: Element[] | undefined;
 
   /**
@@ -51413,7 +52202,7 @@ export interface HealthcareService extends DomainResource {
    * healthcare services defined at this resource.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.endpoint}
    */
-  endpoint?: Array<Reference> | undefined;
+  endpoint?: Array<Reference<Endpoint>> | undefined;
   _endpoint?: Element[] | undefined;
 
   /**
@@ -51435,7 +52224,7 @@ export interface HealthcareService extends DomainResource {
    * The location(s) where this healthcare service may be provided.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.location}
    */
-  location?: Array<Reference> | undefined;
+  location?: Array<Reference<Location>> | undefined;
   _location?: Element[] | undefined;
 
   /**
@@ -51479,7 +52268,7 @@ export interface HealthcareService extends DomainResource {
    * populated.
    * @see {@link http://hl7.org/fhir/R4B/HealthcareService-definitions.html#HealthcareService.providedBy}
    */
-  providedBy?: Reference | undefined;
+  providedBy?: Reference<Organization> | undefined;
   _providedBy?: Element | undefined;
 
   /**
@@ -51533,6 +52322,7 @@ export interface HealthcareService extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/HumanName.html}
  */
+
 export interface HumanName extends Element {
   /**
    * The part of a name that links to the genealogy. In some cultures (e.g. Eritrea)
@@ -51603,6 +52393,7 @@ export interface HumanName extends Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/Identifier.html}
  */
+
 export interface Identifier extends Element {
   /**
    * Organization that issued/manages the identifier.
@@ -51610,7 +52401,7 @@ export interface Identifier extends Element {
    * .display element reflecting the name or other textual information about the
    * assigning organization.
    */
-  assigner?: Reference | undefined;
+  assigner?: Reference<Organization> | undefined;
   _assigner?: Element | undefined;
 
   /**
@@ -51702,7 +52493,7 @@ export interface ImagingStudySeries extends BackboneElement {
    * RESTful query for DICOM information without retrieving the actual instances.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.endpoint}
    */
-  endpoint?: Array<Reference> | undefined;
+  endpoint?: Array<Reference<Endpoint>> | undefined;
   _endpoint?: Element[] | undefined;
 
   /**
@@ -51808,7 +52599,7 @@ Modifier extensions
    * The specimen imaged, e.g., for whole slide imaging of a biopsy.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.specimen}
    */
-  specimen?: Array<Reference> | undefined;
+  specimen?: Array<Reference<Specimen>> | undefined;
   _specimen?: Element[] | undefined;
 
   /**
@@ -51931,7 +52722,15 @@ export interface ImagingStudySeriesPerformer extends BackboneElement {
    * Indicates who or what performed the series.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.series.performer.actor}
    */
-  actor: Reference;
+  actor: Reference<
+    | Practitioner
+    | PractitionerRole
+    | Organization
+    | CareTeam
+    | Patient
+    | Device
+    | RelatedPerson
+  >;
   _actor?: Element | undefined;
 
   /**
@@ -52000,6 +52799,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ImagingStudy.html}
  */
+
 export interface ImagingStudy extends DomainResource {
   readonly resourceType: "ImagingStudy";
 
@@ -52008,7 +52808,13 @@ export interface ImagingStudy extends DomainResource {
    * performed.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?:
+    | Array<
+        Reference<
+          CarePlan | ServiceRequest | Appointment | AppointmentResponse | Task
+        >
+      >
+    | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -52027,7 +52833,7 @@ export interface ImagingStudy extends DomainResource {
    * still be tied to the context of the encounter (e.g. pre-admission test).
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -52044,7 +52850,7 @@ export interface ImagingStudy extends DomainResource {
    * viewer.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.endpoint}
    */
-  endpoint?: Array<Reference> | undefined;
+  endpoint?: Array<Reference<Endpoint>> | undefined;
   _endpoint?: Element[] | undefined;
 
   /**
@@ -52062,14 +52868,14 @@ export interface ImagingStudy extends DomainResource {
    * Who read the study and interpreted the images or other content.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.interpreter}
    */
-  interpreter?: Array<Reference> | undefined;
+  interpreter?: Array<Reference<Practitioner | PractitionerRole>> | undefined;
   _interpreter?: Element[] | undefined;
 
   /**
    * The principal physical location where the ImagingStudy was performed.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.location}
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -52123,7 +52929,7 @@ export interface ImagingStudy extends DomainResource {
    * The procedure which this ImagingStudy was part of.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.procedureReference}
    */
-  procedureReference?: Reference | undefined;
+  procedureReference?: Reference<Procedure> | undefined;
   _procedureReference?: Element | undefined;
 
   /**
@@ -52137,14 +52943,20 @@ export interface ImagingStudy extends DomainResource {
    * Indicates another resource whose existence justifies this Study.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | Media | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
    * The requesting/referring physician.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.referrer}
    */
-  referrer?: Reference | undefined;
+  referrer?: Reference<Practitioner | PractitionerRole> | undefined;
   _referrer?: Element | undefined;
 
   /**
@@ -52180,7 +52992,7 @@ export interface ImagingStudy extends DomainResource {
    * be recorded with a Group.
    * @see {@link http://hl7.org/fhir/R4B/ImagingStudy-definitions.html#ImagingStudy.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Device | Group>;
   _subject?: Element | undefined;
 }
 
@@ -52281,7 +53093,7 @@ export interface ImmunizationPerformer extends BackboneElement {
    * to send.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.performer.actor}
    */
-  actor: Reference;
+  actor: Reference<Practitioner | PractitionerRole | Organization>;
   _actor?: Element | undefined;
 
   /**
@@ -52351,7 +53163,7 @@ export interface ImmunizationProtocolApplied extends BackboneElement {
    * followed.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.protocolApplied.authority}
    */
-  authority?: Reference | undefined;
+  authority?: Reference<Organization> | undefined;
   _authority?: Element | undefined;
 
   /**
@@ -52481,7 +53293,7 @@ export interface ImmunizationReaction extends BackboneElement {
    * Details of the reaction.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.reaction.detail}
    */
-  detail?: Reference | undefined;
+  detail?: Reference<Observation> | undefined;
   _detail?: Element | undefined;
 
   /**
@@ -52547,6 +53359,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Immunization.html}
  */
+
 export interface Immunization extends DomainResource {
   readonly resourceType: "Immunization";
 
@@ -52570,7 +53383,7 @@ export interface Immunization extends DomainResource {
    * the immunization was performed as part of.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -52616,7 +53429,7 @@ export interface Immunization extends DomainResource {
    * The service delivery location where the vaccine administration occurred.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.location}
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -52630,7 +53443,7 @@ export interface Immunization extends DomainResource {
    * Name of vaccine manufacturer.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.manufacturer}
    */
-  manufacturer?: Reference | undefined;
+  manufacturer?: Reference<Organization> | undefined;
   _manufacturer?: Element | undefined;
 
   /**
@@ -52678,7 +53491,7 @@ export interface Immunization extends DomainResource {
    * The patient who either received or did not receive the immunization.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -52737,7 +53550,9 @@ export interface Immunization extends DomainResource {
    * was administered.
    * @see {@link http://hl7.org/fhir/R4B/Immunization-definitions.html#Immunization.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<Reference<Condition | Observation | DiagnosticReport>>
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -52818,6 +53633,7 @@ export interface Immunization extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/ImmunizationEvaluation.html}
  */
+
 export interface ImmunizationEvaluation extends DomainResource {
   readonly resourceType: "ImmunizationEvaluation";
 
@@ -52825,7 +53641,7 @@ export interface ImmunizationEvaluation extends DomainResource {
    * Indicates the authority who published the protocol (e.g. ACIP).
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationEvaluation-definitions.html#ImmunizationEvaluation.authority}
    */
-  authority?: Reference | undefined;
+  authority?: Reference<Organization> | undefined;
   _authority?: Element | undefined;
 
   /**
@@ -52891,14 +53707,14 @@ export interface ImmunizationEvaluation extends DomainResource {
    * The vaccine administration event being evaluated.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationEvaluation-definitions.html#ImmunizationEvaluation.immunizationEvent}
    */
-  immunizationEvent: Reference;
+  immunizationEvent: Reference<Immunization>;
   _immunizationEvent?: Element | undefined;
 
   /**
    * The individual for whom the evaluation is being done.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationEvaluation-definitions.html#ImmunizationEvaluation.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -53098,7 +53914,9 @@ Modifier extensions
    * recommendation.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.recommendation.supportingImmunization}
    */
-  supportingImmunization?: Array<Reference> | undefined;
+  supportingImmunization?:
+    | Array<Reference<Immunization | ImmunizationEvaluation>>
+    | undefined;
   _supportingImmunization?: Element[] | undefined;
 
   /**
@@ -53106,7 +53924,7 @@ Modifier extensions
    * patient observations, adverse reactions and allergy/intolerance information.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.recommendation.supportingPatientInformation}
    */
-  supportingPatientInformation?: Array<Reference> | undefined;
+  supportingPatientInformation?: Array<Reference<Resource>> | undefined;
   _supportingPatientInformation?: Element[] | undefined;
 
   /**
@@ -53203,6 +54021,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation.html}
  */
+
 export interface ImmunizationRecommendation extends DomainResource {
   readonly resourceType: "ImmunizationRecommendation";
 
@@ -53210,7 +54029,7 @@ export interface ImmunizationRecommendation extends DomainResource {
    * Indicates the authority who published the protocol (e.g. ACIP).
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.authority}
    */
-  authority?: Reference | undefined;
+  authority?: Reference<Organization> | undefined;
   _authority?: Element | undefined;
 
   /**
@@ -53232,7 +54051,7 @@ export interface ImmunizationRecommendation extends DomainResource {
    * The patient the recommendation(s) are for.
    * @see {@link http://hl7.org/fhir/R4B/ImmunizationRecommendation-definitions.html#ImmunizationRecommendation.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -53492,7 +54311,7 @@ Modifier extensions
    * included implementations for include (source = uri of guide to include).
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.page.nameReference}
    */
-  nameReference?: Reference | undefined;
+  nameReference?: Reference<Binary> | undefined;
   _nameReference?: Element | undefined;
 
   /**
@@ -53718,7 +54537,7 @@ Modifier extensions
    * will convert this when it publishes it.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.resource.reference}
    */
-  reference: Reference;
+  reference: Reference<Resource>;
   _reference?: Element | undefined;
 }
 
@@ -54218,7 +55037,7 @@ Modifier extensions
    * will convert this when it publishes it.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.manifest.resource.reference}
    */
-  reference: Reference;
+  reference: Reference<Resource>;
   _reference?: Element | undefined;
 
   /**
@@ -54241,6 +55060,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide.html}
  */
+
 export interface ImplementationGuide extends DomainResource {
   readonly resourceType: "ImplementationGuide";
 
@@ -54537,7 +55357,7 @@ export interface IngredientManufacturer extends BackboneElement {
    * An organization that manufactures this ingredient.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.manufacturer.manufacturer}
    */
-  manufacturer: Reference;
+  manufacturer: Reference<Organization>;
   _manufacturer?: Element | undefined;
 
   /**
@@ -54886,6 +55706,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Ingredient.html}
  */
+
 export interface Ingredient extends DomainResource {
   readonly resourceType: "Ingredient";
 
@@ -54903,7 +55724,15 @@ export interface Ingredient extends DomainResource {
    * The product which this ingredient is a constituent part of.
    * @see {@link http://hl7.org/fhir/R4B/Ingredient-definitions.html#Ingredient.for}
    */
-  for?: Array<Reference> | undefined;
+  for?:
+    | Array<
+        Reference<
+          | MedicinalProductDefinition
+          | AdministrableProductDefinition
+          | ManufacturedItemDefinition
+        >
+      >
+    | undefined;
   _for?: Element[] | undefined;
 
   /**
@@ -55110,7 +55939,7 @@ Modifier extensions
    * Networks are represented as a hierarchy of organization resources.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.coverage.network}
    */
-  network?: Array<Reference> | undefined;
+  network?: Array<Reference<Organization>> | undefined;
   _network?: Element[] | undefined;
 
   /**
@@ -55276,7 +56105,7 @@ export interface InsurancePlanPlan extends BackboneElement {
    * The geographic region in which a health insurance plan's benefits apply.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.coverageArea}
    */
-  coverageArea?: Array<Reference> | undefined;
+  coverageArea?: Array<Reference<Location>> | undefined;
   _coverageArea?: Element[] | undefined;
 
   /**
@@ -55346,7 +56175,7 @@ Modifier extensions
    * Networks are represented as a hierarchy of organization resources.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.plan.network}
    */
-  network?: Array<Reference> | undefined;
+  network?: Array<Reference<Organization>> | undefined;
   _network?: Element[] | undefined;
 
   /**
@@ -55675,6 +56504,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/InsurancePlan.html}
  */
+
 export interface InsurancePlan extends DomainResource {
   readonly resourceType: "InsurancePlan";
 
@@ -55684,7 +56514,7 @@ export interface InsurancePlan extends DomainResource {
    * owner.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.administeredBy}
    */
-  administeredBy?: Reference | undefined;
+  administeredBy?: Reference<Organization> | undefined;
   _administeredBy?: Element | undefined;
 
   /**
@@ -55719,7 +56549,7 @@ export interface InsurancePlan extends DomainResource {
    * The geographic region in which a health insurance product's benefits apply.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.coverageArea}
    */
-  coverageArea?: Array<Reference> | undefined;
+  coverageArea?: Array<Reference<Location>> | undefined;
   _coverageArea?: Element[] | undefined;
 
   /**
@@ -55727,7 +56557,7 @@ export interface InsurancePlan extends DomainResource {
    * insurance product.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.endpoint}
    */
-  endpoint?: Array<Reference> | undefined;
+  endpoint?: Array<Reference<Endpoint>> | undefined;
   _endpoint?: Element[] | undefined;
 
   /**
@@ -55752,7 +56582,7 @@ export interface InsurancePlan extends DomainResource {
    * Networks are represented as a hierarchy of organization resources.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.network}
    */
-  network?: Array<Reference> | undefined;
+  network?: Array<Reference<Organization>> | undefined;
   _network?: Element[] | undefined;
 
   /**
@@ -55761,7 +56591,7 @@ export interface InsurancePlan extends DomainResource {
    * health plan sponsors comonly referred to as 'payers'.
    * @see {@link http://hl7.org/fhir/R4B/InsurancePlan-definitions.html#InsurancePlan.ownedBy}
    */
-  ownedBy?: Reference | undefined;
+  ownedBy?: Reference<Organization> | undefined;
   _ownedBy?: Element | undefined;
 
   /**
@@ -55807,7 +56637,7 @@ export interface InvoiceLineItem extends BackboneElement {
    * added using the CodeableConcept data type instead of the Reference.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.lineItem.chargeItemReference}
    */
-  chargeItemReference?: Reference | undefined;
+  chargeItemReference?: Reference<ChargeItem> | undefined;
   _chargeItemReference?: Element | undefined;
 
   /**
@@ -55997,7 +56827,14 @@ export interface InvoiceParticipant extends BackboneElement {
    * The device, practitioner, etc. who performed or participated in the service.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.participant.actor}
    */
-  actor: Reference;
+  actor: Reference<
+    | Practitioner
+    | Organization
+    | Patient
+    | PractitionerRole
+    | Device
+    | RelatedPerson
+  >;
   _actor?: Element | undefined;
 
   /**
@@ -56065,6 +56902,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Invoice.html}
  */
+
 export interface Invoice extends DomainResource {
   readonly resourceType: "Invoice";
 
@@ -56077,7 +56915,7 @@ export interface Invoice extends DomainResource {
    * which Account is appropriate.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.account}
    */
-  account?: Reference | undefined;
+  account?: Reference<Account> | undefined;
   _account?: Element | undefined;
 
   /**
@@ -56114,7 +56952,7 @@ export interface Invoice extends DomainResource {
    * rendered.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.issuer}
    */
-  issuer?: Reference | undefined;
+  issuer?: Reference<Organization> | undefined;
   _issuer?: Element | undefined;
 
   /**
@@ -56154,7 +56992,7 @@ export interface Invoice extends DomainResource {
    * The individual or Organization responsible for balancing of this invoice.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.recipient}
    */
-  recipient?: Reference | undefined;
+  recipient?: Reference<Organization | Patient | RelatedPerson> | undefined;
   _recipient?: Element | undefined;
 
   /**
@@ -56171,7 +57009,7 @@ export interface Invoice extends DomainResource {
    * this invoice.
    * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Patient | Group> | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -56217,6 +57055,7 @@ export interface Invoice extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Library.html}
  */
+
 export interface Library extends DomainResource {
   readonly resourceType: "Library";
 
@@ -56461,7 +57300,7 @@ export interface Library extends DomainResource {
    * of the library.
    * @see {@link http://hl7.org/fhir/R4B/Library-definitions.html#Library.subjectReference}
    */
-  subjectReference?: Reference | undefined;
+  subjectReference?: Reference<Group> | undefined;
   _subjectReference?: Element | undefined;
 
   /**
@@ -56622,7 +57461,7 @@ Modifier extensions
    * The resource instance being linked as part of the group.
    * @see {@link http://hl7.org/fhir/R4B/Linkage-definitions.html#Linkage.item.resource}
    */
-  resource: Reference;
+  resource: Reference<Resource>;
   _resource?: Element | undefined;
 
   /**
@@ -56644,6 +57483,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Linkage.html}
  */
+
 export interface Linkage extends DomainResource {
   readonly resourceType: "Linkage";
 
@@ -56662,7 +57502,9 @@ export interface Linkage extends DomainResource {
    * of each linkage is evaluated.
    * @see {@link http://hl7.org/fhir/R4B/Linkage-definitions.html#Linkage.author}
    */
-  author?: Reference | undefined;
+  author?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _author?: Element | undefined;
 
   /**
@@ -56740,7 +57582,7 @@ export interface ListEntry extends BackboneElement {
    * A reference to the actual resource from which data was derived.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.entry.item}
    */
-  item: Reference;
+  item: Reference<Resource>;
   _item?: Element | undefined;
 
   /**
@@ -56774,6 +57616,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/List.html}
  */
+
 export interface List extends DomainResource {
   readonly resourceType: "List";
 
@@ -56812,7 +57655,7 @@ export interface List extends DomainResource {
    * The encounter that is the context in which this list was created.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -56869,7 +57712,9 @@ export interface List extends DomainResource {
    * list. This may be software or user.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.source}
    */
-  source?: Reference | undefined;
+  source?:
+    | Reference<Practitioner | PractitionerRole | Patient | Device>
+    | undefined;
   _source?: Element | undefined;
 
   /**
@@ -56889,7 +57734,7 @@ export interface List extends DomainResource {
    * Some purely arbitrary lists do not have a common subject, so this is optional.
    * @see {@link http://hl7.org/fhir/R4B/List-definitions.html#List.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Patient | Group | Device | Location> | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -57081,6 +57926,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Location.html}
  */
+
 export interface Location extends DomainResource {
   readonly resourceType: "Location";
 
@@ -57124,7 +57970,7 @@ export interface Location extends DomainResource {
    * Technical endpoints providing access to services operated for the location.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.endpoint}
    */
-  endpoint?: Array<Reference> | undefined;
+  endpoint?: Array<Reference<Endpoint>> | undefined;
   _endpoint?: Element[] | undefined;
 
   /**
@@ -57154,7 +58000,7 @@ Specific services
    * HealthcareService resource.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.managingOrganization}
    */
-  managingOrganization?: Reference | undefined;
+  managingOrganization?: Reference<Organization> | undefined;
   _managingOrganization?: Element | undefined;
 
   /**
@@ -57192,7 +58038,7 @@ Specific services
    * Another Location of which this Location is physically a part of.
    * @see {@link http://hl7.org/fhir/R4B/Location-definitions.html#Location.partOf}
    */
-  partOf?: Reference | undefined;
+  partOf?: Reference<Location> | undefined;
   _partOf?: Element | undefined;
 
   /**
@@ -57342,6 +58188,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ManufacturedItemDefinition.html}
  */
+
 export interface ManufacturedItemDefinition extends DomainResource {
   readonly resourceType: "ManufacturedItemDefinition";
 
@@ -57374,7 +58221,7 @@ export interface ManufacturedItemDefinition extends DomainResource {
    * currently causes technical issues).
    * @see {@link http://hl7.org/fhir/R4B/ManufacturedItemDefinition-definitions.html#ManufacturedItemDefinition.manufacturer}
    */
-  manufacturer?: Array<Reference> | undefined;
+  manufacturer?: Array<Reference<Organization>> | undefined;
   _manufacturer?: Element[] | undefined;
 
   /**
@@ -57412,6 +58259,7 @@ export interface ManufacturedItemDefinition extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/MarketingStatus.html}
  */
+
 export interface MarketingStatus extends BackboneElement {
   /**
    * The country in which the marketing authorisation has been granted shall be
@@ -57901,6 +58749,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Measure.html}
  */
+
 export interface Measure extends DomainResource {
   readonly resourceType: "Measure";
 
@@ -58250,7 +59099,7 @@ export interface Measure extends DomainResource {
    * corresponds to the context declaration.
    * @see {@link http://hl7.org/fhir/R4B/Measure-definitions.html#Measure.subjectReference}
    */
-  subjectReference?: Reference | undefined;
+  subjectReference?: Reference<Group> | undefined;
   _subjectReference?: Element | undefined;
 
   /**
@@ -58523,7 +59372,7 @@ Modifier extensions
    * each subject in this population.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.population.subjectResults}
    */
-  subjectResults?: Reference | undefined;
+  subjectResults?: Reference<List> | undefined;
   _subjectResults?: Element | undefined;
 }
 
@@ -58826,7 +59675,7 @@ Modifier extensions
    * each subject in this population in this stratum.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.group.stratifier.stratum.population.subjectResults}
    */
-  subjectResults?: Reference | undefined;
+  subjectResults?: Reference<List> | undefined;
   _subjectResults?: Element | undefined;
 }
 
@@ -58838,6 +59687,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/MeasureReport.html}
  */
+
 export interface MeasureReport extends DomainResource {
   readonly resourceType: "MeasureReport";
 
@@ -58854,7 +59704,7 @@ export interface MeasureReport extends DomainResource {
    * calculation of this measure.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.evaluatedResource}
    */
-  evaluatedResource?: Array<Reference> | undefined;
+  evaluatedResource?: Array<Reference<Resource>> | undefined;
   _evaluatedResource?: Element[] | undefined;
 
   /**
@@ -58907,7 +59757,9 @@ export interface MeasureReport extends DomainResource {
    * The individual, location, or organization that is reporting the data.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.reporter}
    */
-  reporter?: Reference | undefined;
+  reporter?:
+    | Reference<Practitioner | PractitionerRole | Location | Organization>
+    | undefined;
   _reporter?: Element | undefined;
 
   /**
@@ -58926,7 +59778,17 @@ export interface MeasureReport extends DomainResource {
    * Optional subject identifying the individual or individuals the report is for.
    * @see {@link http://hl7.org/fhir/R4B/MeasureReport-definitions.html#MeasureReport.subject}
    */
-  subject?: Reference | undefined;
+  subject?:
+    | Reference<
+        | Patient
+        | Practitioner
+        | PractitionerRole
+        | Location
+        | Device
+        | RelatedPerson
+        | Group
+      >
+    | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -58955,6 +59817,7 @@ export interface MeasureReport extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Media.html}
  */
+
 export interface Media extends DomainResource {
   readonly resourceType: "Media";
 
@@ -58962,7 +59825,7 @@ export interface Media extends DomainResource {
    * A procedure that is fulfilled in whole or in part by the creation of this media.
    * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<ServiceRequest | CarePlan>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -59013,7 +59876,7 @@ export interface Media extends DomainResource {
    * either extension or through the Observation.related element.
    * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.device}
    */
-  device?: Reference | undefined;
+  device?: Reference<Device | DeviceMetric | Device> | undefined;
   _device?: Element | undefined;
 
   /**
@@ -59038,7 +59901,7 @@ export interface Media extends DomainResource {
    * This will typically be the encounter the media occurred within.
    * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -59111,7 +59974,17 @@ export interface Media extends DomainResource {
    * The person who administered the collection of the image.
    * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.operator}
    */
-  operator?: Reference | undefined;
+  operator?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | Organization
+        | CareTeam
+        | Patient
+        | Device
+        | RelatedPerson
+      >
+    | undefined;
   _operator?: Element | undefined;
 
   /**
@@ -59123,7 +59996,7 @@ export interface Media extends DomainResource {
  * event resource].
  * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.partOf}
  */
-  partOf?: Array<Reference> | undefined;
+  partOf?: Array<Reference<Resource>> | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -59153,7 +60026,17 @@ Unknown does not represent "other" - one of the
    * Who/What this Media is a record of.
    * @see {@link http://hl7.org/fhir/R4B/Media-definitions.html#Media.subject}
    */
-  subject?: Reference | undefined;
+  subject?:
+    | Reference<
+        | Patient
+        | Practitioner
+        | PractitionerRole
+        | Group
+        | Device
+        | Specimen
+        | Location
+      >
+    | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -59302,7 +60185,7 @@ export interface MedicationIngredient extends BackboneElement {
    * medication of a medication.
    * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.ingredient.itemReference}
    */
-  itemReference?: Reference | undefined;
+  itemReference?: Reference<Substance | Medication> | undefined;
   _itemReference?: Element | undefined;
 
   /**
@@ -59347,6 +60230,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Medication.html}
  */
+
 export interface Medication extends DomainResource {
   readonly resourceType: "Medication";
 
@@ -59420,7 +60304,7 @@ export interface Medication extends DomainResource {
    * not intended to represent the distributor of a medication product.
    * @see {@link http://hl7.org/fhir/R4B/Medication-definitions.html#Medication.manufacturer}
    */
-  manufacturer?: Reference | undefined;
+  manufacturer?: Reference<Organization> | undefined;
   _manufacturer?: Element | undefined;
 
   /**
@@ -59601,7 +60485,9 @@ export interface MedicationAdministrationPerformer extends BackboneElement {
    * Indicates who or what performed the medication administration.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.performer.actor}
    */
-  actor: Reference;
+  actor: Reference<
+    Practitioner | PractitionerRole | Patient | RelatedPerson | Device
+  >;
   _actor?: Element | undefined;
 
   /**
@@ -59671,6 +60557,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration.html}
  */
+
 export interface MedicationAdministration extends DomainResource {
   readonly resourceType: "MedicationAdministration";
 
@@ -59686,7 +60573,7 @@ export interface MedicationAdministration extends DomainResource {
    * during which the medication administration was performed.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.context}
    */
-  context?: Reference | undefined;
+  context?: Reference<Encounter | EpisodeOfCare> | undefined;
   _context?: Element | undefined;
 
   /**
@@ -59694,7 +60581,7 @@ export interface MedicationAdministration extends DomainResource {
    * particular infusion pump.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.device}
    */
-  device?: Array<Reference> | undefined;
+  device?: Array<Reference<Device>> | undefined;
   _device?: Element[] | undefined;
 
   /**
@@ -59738,7 +60625,7 @@ export interface MedicationAdministration extends DomainResource {
    * Request as their subject.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.eventHistory}
    */
-  eventHistory?: Array<Reference> | undefined;
+  eventHistory?: Array<Reference<Provenance>> | undefined;
   _eventHistory?: Element[] | undefined;
 
   /**
@@ -59785,7 +60672,7 @@ export interface MedicationAdministration extends DomainResource {
    * reference the Medication resource.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.medicationReference}
    */
-  medicationReference?: Reference | undefined;
+  medicationReference?: Reference<Medication> | undefined;
   _medicationReference?: Element | undefined;
 
   /**
@@ -59800,7 +60687,7 @@ export interface MedicationAdministration extends DomainResource {
    * A larger event of which this particular event is a component or step.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.partOf}
    */
-  partOf?: Array<Reference> | undefined;
+  partOf?: Array<Reference<MedicationAdministration | Procedure>> | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -59824,7 +60711,9 @@ export interface MedicationAdministration extends DomainResource {
    * request.  If only a code exists, use reasonCode.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<Reference<Condition | Observation | DiagnosticReport>>
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -59834,7 +60723,7 @@ export interface MedicationAdministration extends DomainResource {
    * is any other value.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.request}
    */
-  request?: Reference | undefined;
+  request?: Reference<MedicationRequest> | undefined;
   _request?: Element | undefined;
 
   /**
@@ -59862,7 +60751,7 @@ export interface MedicationAdministration extends DomainResource {
    * The person or animal or group receiving the medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 
   /**
@@ -59870,7 +60759,7 @@ export interface MedicationAdministration extends DomainResource {
    * the administration of the medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationAdministration-definitions.html#MedicationAdministration.supportingInformation}
    */
-  supportingInformation?: Array<Reference> | undefined;
+  supportingInformation?: Array<Reference<Resource>> | undefined;
   _supportingInformation?: Element[] | undefined;
 }
 
@@ -59884,7 +60773,14 @@ export interface MedicationDispensePerformer extends BackboneElement {
    * that the actor is the dispenser of the medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.performer.actor}
    */
-  actor: Reference;
+  actor: Reference<
+    | Practitioner
+    | PractitionerRole
+    | Organization
+    | Patient
+    | Device
+    | RelatedPerson
+  >;
   _actor?: Element | undefined;
 
   /**
@@ -60011,7 +60907,9 @@ Modifier extensions
    * The person or organization that has primary responsibility for the substitution.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.substitution.responsibleParty}
    */
-  responsibleParty?: Array<Reference> | undefined;
+  responsibleParty?:
+    | Array<Reference<Practitioner | PractitionerRole>>
+    | undefined;
   _responsibleParty?: Element[] | undefined;
 
   /**
@@ -60041,6 +60939,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/MedicationDispense.html}
  */
+
 export interface MedicationDispense extends DomainResource {
   readonly resourceType: "MedicationDispense";
 
@@ -60049,7 +60948,7 @@ export interface MedicationDispense extends DomainResource {
    * Maps to basedOn in Event logical model.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.authorizingPrescription}
    */
-  authorizingPrescription?: Array<Reference> | undefined;
+  authorizingPrescription?: Array<Reference<MedicationRequest>> | undefined;
   _authorizingPrescription?: Element[] | undefined;
 
   /**
@@ -60067,7 +60966,7 @@ export interface MedicationDispense extends DomainResource {
    * The encounter or episode of care that establishes the context for this event.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.context}
    */
-  context?: Reference | undefined;
+  context?: Reference<Encounter | EpisodeOfCare> | undefined;
   _context?: Element | undefined;
 
   /**
@@ -60082,7 +60981,7 @@ export interface MedicationDispense extends DomainResource {
    * part of the dispense event.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.destination}
    */
-  destination?: Reference | undefined;
+  destination?: Reference<Location> | undefined;
   _destination?: Element | undefined;
 
   /**
@@ -60094,7 +60993,7 @@ export interface MedicationDispense extends DomainResource {
    * steps that were taken to address the issue.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.detectedIssue}
    */
-  detectedIssue?: Array<Reference> | undefined;
+  detectedIssue?: Array<Reference<DetectedIssue>> | undefined;
   _detectedIssue?: Element[] | undefined;
 
   /**
@@ -60122,7 +61021,7 @@ The
    * Request as their subject.).
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.eventHistory}
    */
-  eventHistory?: Array<Reference> | undefined;
+  eventHistory?: Array<Reference<Provenance>> | undefined;
   _eventHistory?: Element[] | undefined;
 
   /**
@@ -60141,7 +61040,7 @@ The
    * The principal physical location where the dispense was performed.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.location}
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -60167,7 +61066,7 @@ The
    * reference the Medication resource.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.medicationReference}
    */
-  medicationReference?: Reference | undefined;
+  medicationReference?: Reference<Medication> | undefined;
   _medicationReference?: Element | undefined;
 
   /**
@@ -60182,7 +61081,7 @@ The
    * The procedure that trigger the dispense.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.partOf}
    */
-  partOf?: Array<Reference> | undefined;
+  partOf?: Array<Reference<Procedure>> | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -60205,7 +61104,7 @@ The
    * professional.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.receiver}
    */
-  receiver?: Array<Reference> | undefined;
+  receiver?: Array<Reference<Patient | Practitioner>> | undefined;
   _receiver?: Element[] | undefined;
 
   /**
@@ -60230,7 +61129,7 @@ The
    * Indicates the reason why a dispense was not performed.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.statusReasonReference}
    */
-  statusReasonReference?: Reference | undefined;
+  statusReasonReference?: Reference<DetectedIssue> | undefined;
   _statusReasonReference?: Element | undefined;
 
   /**
@@ -60239,7 +61138,7 @@ The
    * SubstanceAdministration->subject->Patient.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Patient | Group> | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -60257,7 +61156,7 @@ The
    * Additional information that supports the medication being dispensed.
    * @see {@link http://hl7.org/fhir/R4B/MedicationDispense-definitions.html#MedicationDispense.supportingInformation}
    */
-  supportingInformation?: Array<Reference> | undefined;
+  supportingInformation?: Array<Reference<Resource>> | undefined;
   _supportingInformation?: Element[] | undefined;
 
   /**
@@ -60334,7 +61233,7 @@ export interface MedicationKnowledgeAdministrationGuidelines
    * Indication for use that apply to the specific administration guidelines.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.administrationGuidelines.indicationReference}
    */
-  indicationReference?: Reference | undefined;
+  indicationReference?: Reference<ObservationDefinition> | undefined;
   _indicationReference?: Element | undefined;
 
   /**
@@ -60745,7 +61644,7 @@ export interface MedicationKnowledgeIngredient extends BackboneElement {
    * medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.ingredient.itemReference}
    */
-  itemReference?: Reference | undefined;
+  itemReference?: Reference<Substance> | undefined;
   _itemReference?: Element | undefined;
 
   /**
@@ -61050,7 +61949,7 @@ Modifier extensions
    * Associated documentation about the medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.monograph.source}
    */
-  source?: Reference | undefined;
+  source?: Reference<DocumentReference | Media> | undefined;
   _source?: Element | undefined;
 
   /**
@@ -61193,7 +62092,7 @@ Modifier extensions
    * The authority that is specifying the regulations.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.regulatory.regulatoryAuthority}
    */
-  regulatoryAuthority: Reference;
+  regulatoryAuthority: Reference<Organization>;
   _regulatoryAuthority?: Element | undefined;
 
   /**
@@ -61466,7 +62365,7 @@ Modifier extensions
    * Associated documentation about the associated medication knowledge.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.relatedMedicationKnowledge.reference}
    */
-  reference: Array<Reference>;
+  reference: Array<Reference<MedicationKnowledge>>;
   _reference?: Element[] | undefined;
 
   /**
@@ -61484,6 +62383,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge.html}
  */
+
 export interface MedicationKnowledge extends DomainResource {
   readonly resourceType: "MedicationKnowledge";
 
@@ -61515,7 +62415,7 @@ export interface MedicationKnowledge extends DomainResource {
    * product (e.g. Crestor).
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.associatedMedication}
    */
-  associatedMedication?: Array<Reference> | undefined;
+  associatedMedication?: Array<Reference<Medication>> | undefined;
   _associatedMedication?: Element[] | undefined;
 
   /**
@@ -61541,7 +62441,7 @@ export interface MedicationKnowledge extends DomainResource {
    * interaction, drug-disease contraindication, drug-allergy interaction, etc.).
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.contraindication}
    */
-  contraindication?: Array<Reference> | undefined;
+  contraindication?: Array<Reference<DetectedIssue>> | undefined;
   _contraindication?: Element[] | undefined;
 
   /**
@@ -61597,7 +62497,7 @@ export interface MedicationKnowledge extends DomainResource {
    * not intended to represent the distributor of a medication product.
    * @see {@link http://hl7.org/fhir/R4B/MedicationKnowledge-definitions.html#MedicationKnowledge.manufacturer}
    */
-  manufacturer?: Reference | undefined;
+  manufacturer?: Reference<Organization> | undefined;
   _manufacturer?: Element | undefined;
 
   /**
@@ -61797,7 +62697,7 @@ Modifier extensions
    * Indicates the intended dispensing Organization specified by the prescriber.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.dispenseRequest.performer}
    */
-  performer?: Reference | undefined;
+  performer?: Reference<Organization> | undefined;
   _performer?: Element | undefined;
 
   /**
@@ -61987,6 +62887,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/MedicationRequest.html}
  */
+
 export interface MedicationRequest extends DomainResource {
   readonly resourceType: "MedicationRequest";
 
@@ -62004,7 +62905,16 @@ export interface MedicationRequest extends DomainResource {
    * request.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?:
+    | Array<
+        Reference<
+          | CarePlan
+          | MedicationRequest
+          | ServiceRequest
+          | ImmunizationRecommendation
+        >
+      >
+    | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -62035,7 +62945,7 @@ export interface MedicationRequest extends DomainResource {
    * steps that were taken to address the issue.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.detectedIssue}
    */
-  detectedIssue?: Array<Reference> | undefined;
+  detectedIssue?: Array<Reference<DetectedIssue>> | undefined;
   _detectedIssue?: Element[] | undefined;
 
   /**
@@ -62082,7 +62992,7 @@ export interface MedicationRequest extends DomainResource {
    * need to link to episodes of care they will be handled with an extension.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -62099,7 +63009,7 @@ export interface MedicationRequest extends DomainResource {
    * Request as their subject.).
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.eventHistory}
    */
-  eventHistory?: Array<Reference> | undefined;
+  eventHistory?: Array<Reference<Provenance>> | undefined;
   _eventHistory?: Element[] | undefined;
 
   /**
@@ -62147,7 +63057,7 @@ export interface MedicationRequest extends DomainResource {
    * pre-determinations that may be required for delivering the requested service.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.insurance}
    */
-  insurance?: Array<Reference> | undefined;
+  insurance?: Array<Reference<Coverage | ClaimResponse>> | undefined;
   _insurance?: Element[] | undefined;
 
   /**
@@ -62198,7 +63108,7 @@ This element is labeled as a modifier because the intent alters when
    * the Medication resource.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.medicationReference}
    */
-  medicationReference?: Reference | undefined;
+  medicationReference?: Reference<Medication> | undefined;
   _medicationReference?: Element | undefined;
 
   /**
@@ -62214,7 +63124,17 @@ This element is labeled as a modifier because the intent alters when
    * of the medication administration).
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.performer}
    */
-  performer?: Reference | undefined;
+  performer?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | Organization
+        | Patient
+        | Device
+        | RelatedPerson
+        | CareTeam
+      >
+    | undefined;
   _performer?: Element | undefined;
 
   /**
@@ -62242,7 +63162,7 @@ This element is labeled as a modifier because the intent alters when
    * prescription.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.priorPrescription}
    */
-  priorPrescription?: Reference | undefined;
+  priorPrescription?: Reference<MedicationRequest> | undefined;
   _priorPrescription?: Element | undefined;
 
   /**
@@ -62260,7 +63180,7 @@ This element is labeled as a modifier because the intent alters when
    * medication order.  If only a code exists, use reasonCode.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?: Array<Reference<Condition | Observation>> | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -62268,7 +63188,7 @@ This element is labeled as a modifier because the intent alters when
    * the case of a verbal or a telephone order.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.recorder}
    */
-  recorder?: Reference | undefined;
+  recorder?: Reference<Practitioner | PractitionerRole> | undefined;
   _recorder?: Element | undefined;
 
   /**
@@ -62286,7 +63206,11 @@ This element is labeled as a modifier because the intent alters when
    * source of the report.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.reportedReference}
    */
-  reportedReference?: Reference | undefined;
+  reportedReference?:
+    | Reference<
+        Patient | Practitioner | PractitionerRole | RelatedPerson | Organization
+      >
+    | undefined;
   _reportedReference?: Element | undefined;
 
   /**
@@ -62294,7 +63218,16 @@ This element is labeled as a modifier because the intent alters when
    * responsibility for its activation.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.requester}
    */
-  requester?: Reference | undefined;
+  requester?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | Organization
+        | Patient
+        | RelatedPerson
+        | Device
+      >
+    | undefined;
   _requester?: Element | undefined;
 
   /**
@@ -62327,7 +63260,7 @@ This element is labeled as a modifier because the intent alters when
    * subject specified.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 
   /**
@@ -62345,7 +63278,7 @@ This element is labeled as a modifier because the intent alters when
    * supports the ordering of the medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationRequest-definitions.html#MedicationRequest.supportingInformation}
    */
-  supportingInformation?: Array<Reference> | undefined;
+  supportingInformation?: Array<Reference<Resource>> | undefined;
   _supportingInformation?: Element[] | undefined;
 }
 
@@ -62378,6 +63311,7 @@ The primary
  * 
  * @see {@link http://hl7.org/fhir/R4B/MedicationStatement.html}
  */
+
 export interface MedicationStatement extends DomainResource {
   readonly resourceType: "MedicationStatement";
 
@@ -62385,7 +63319,9 @@ export interface MedicationStatement extends DomainResource {
    * A plan, proposal or order that is fulfilled in whole or in part by this event.
    * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?:
+    | Array<Reference<MedicationRequest | CarePlan | ServiceRequest>>
+    | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -62400,7 +63336,7 @@ export interface MedicationStatement extends DomainResource {
    * MedicationStatement.
    * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.context}
    */
-  context?: Reference | undefined;
+  context?: Reference<Encounter | EpisodeOfCare> | undefined;
   _context?: Element | undefined;
 
   /**
@@ -62422,7 +63358,7 @@ export interface MedicationStatement extends DomainResource {
    * you derive the MedicationStatement from.
    * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.derivedFrom}
    */
-  derivedFrom?: Array<Reference> | undefined;
+  derivedFrom?: Array<Reference<Resource>> | undefined;
   _derivedFrom?: Element[] | undefined;
 
   /**
@@ -62487,7 +63423,11 @@ export interface MedicationStatement extends DomainResource {
    * from other resources, e.g. Claim or MedicationRequest.
    * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.informationSource}
    */
-  informationSource?: Reference | undefined;
+  informationSource?:
+    | Reference<
+        Patient | Practitioner | PractitionerRole | RelatedPerson | Organization
+      >
+    | undefined;
   _informationSource?: Element | undefined;
 
   /**
@@ -62513,7 +63453,7 @@ export interface MedicationStatement extends DomainResource {
    * reference the Medication resource.
    * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.medicationReference}
    */
-  medicationReference?: Reference | undefined;
+  medicationReference?: Reference<Medication> | undefined;
   _medicationReference?: Element | undefined;
 
   /**
@@ -62528,7 +63468,17 @@ export interface MedicationStatement extends DomainResource {
    * A larger event of which this particular event is a component or step.
    * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.partOf}
    */
-  partOf?: Array<Reference> | undefined;
+  partOf?:
+    | Array<
+        Reference<
+          | MedicationAdministration
+          | MedicationDispense
+          | MedicationStatement
+          | Procedure
+          | Observation
+        >
+      >
+    | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -62546,7 +63496,9 @@ export interface MedicationStatement extends DomainResource {
    * being/was taken.  If only a code exists, use reasonForUseCode.
    * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<Reference<Condition | Observation | DiagnosticReport>>
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -62583,7 +63535,7 @@ This element is labeled as a modifier because the status contains
    * The person, animal or group who is/was taking the medication.
    * @see {@link http://hl7.org/fhir/R4B/MedicationStatement-definitions.html#MedicationStatement.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 }
 
@@ -62694,7 +63646,7 @@ export interface MedicinalProductDefinitionContact extends BackboneElement {
    * A product specific contact, person (in a role), or an organization.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.contact.contact}
    */
-  contact: Reference;
+  contact: Reference<Organization | PractitionerRole>;
   _contact?: Element | undefined;
 
   /**
@@ -63125,7 +64077,7 @@ Modifier extensions
    * particular process or step, examples include the manufacturer, importer, agent.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.operation.organization}
    */
-  organization?: Array<Reference> | undefined;
+  organization?: Array<Reference<Organization>> | undefined;
   _organization?: Element[] | undefined;
 
   /**
@@ -63147,6 +64099,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition.html}
  */
+
 export interface MedicinalProductDefinition extends DomainResource {
   readonly resourceType: "MedicinalProductDefinition";
 
@@ -63162,7 +64115,7 @@ export interface MedicinalProductDefinition extends DomainResource {
    * Additional information or supporting documentation about the medicinal product.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.attachedDocument}
    */
-  attachedDocument?: Array<Reference> | undefined;
+  attachedDocument?: Array<Reference<DocumentReference>> | undefined;
   _attachedDocument?: Element[] | undefined;
 
   /**
@@ -63184,7 +64137,7 @@ export interface MedicinalProductDefinition extends DomainResource {
    * Clinical trials or studies that this product is involved in.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.clinicalTrial}
    */
-  clinicalTrial?: Array<Reference> | undefined;
+  clinicalTrial?: Array<Reference<ResearchStudy>> | undefined;
   _clinicalTrial?: Element[] | undefined;
 
   /**
@@ -63308,7 +64261,7 @@ export interface MedicinalProductDefinition extends DomainResource {
    * products.
    * @see {@link http://hl7.org/fhir/R4B/MedicinalProductDefinition-definitions.html#MedicinalProductDefinition.masterFile}
    */
-  masterFile?: Array<Reference> | undefined;
+  masterFile?: Array<Reference<DocumentReference>> | undefined;
   _masterFile?: Element[] | undefined;
 
   /**
@@ -63573,6 +64526,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/MessageDefinition.html}
  */
+
 export interface MessageDefinition extends DomainResource {
   readonly resourceType: "MessageDefinition";
 
@@ -63943,7 +64897,9 @@ Modifier extensions
    * department when routing to a specific application isn't sufficient.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.destination.receiver}
    */
-  receiver?: Reference | undefined;
+  receiver?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _receiver?: Element | undefined;
 
   /**
@@ -63951,7 +64907,7 @@ Modifier extensions
    * transmission is to an intermediary system.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.destination.target}
    */
-  target?: Reference | undefined;
+  target?: Reference<Device> | undefined;
   _target?: Element | undefined;
 }
 
@@ -63979,7 +64935,7 @@ export interface MessageHeaderResponse extends BackboneElement {
    * response code SHALL be an error.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.response.details}
    */
-  details?: Reference | undefined;
+  details?: Reference<OperationOutcome> | undefined;
   _details?: Element | undefined;
 
   /**
@@ -64141,6 +65097,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/MessageHeader.html}
  */
+
 export interface MessageHeader extends DomainResource {
   readonly resourceType: "MessageHeader";
 
@@ -64151,7 +65108,7 @@ export interface MessageHeader extends DomainResource {
    * Usually only for the request but can be used in a response.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.author}
    */
-  author?: Reference | undefined;
+  author?: Reference<Practitioner | PractitionerRole> | undefined;
   _author?: Element | undefined;
 
   /**
@@ -64178,7 +65135,7 @@ export interface MessageHeader extends DomainResource {
    * Usually only for the request but can be used in a response.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.enterer}
    */
-  enterer?: Reference | undefined;
+  enterer?: Reference<Practitioner | PractitionerRole> | undefined;
   _enterer?: Element | undefined;
 
   /**
@@ -64218,7 +65175,7 @@ export interface MessageHeader extends DomainResource {
    * for merges and other situations with multiple focal targets.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.focus}
    */
-  focus?: Array<Reference> | undefined;
+  focus?: Array<Reference<Resource>> | undefined;
   _focus?: Element[] | undefined;
 
   /**
@@ -64244,7 +65201,9 @@ export interface MessageHeader extends DomainResource {
    * Usually only for the request but can be used in a response.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.responsible}
    */
-  responsible?: Reference | undefined;
+  responsible?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _responsible?: Element | undefined;
 
   /**
@@ -64254,7 +65213,9 @@ export interface MessageHeader extends DomainResource {
    * authentication alone.
    * @see {@link http://hl7.org/fhir/R4B/MessageHeader-definitions.html#MessageHeader.sender}
    */
-  sender?: Reference | undefined;
+  sender?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _sender?: Element | undefined;
 
   /**
@@ -64274,6 +65235,7 @@ export interface MessageHeader extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Meta.html}
  */
+
 export interface Meta extends Element {
   /**
    * When the resource last changed - e.g. when the version changed.
@@ -64754,7 +65716,7 @@ Modifier extensions
    * A pointer to another MolecularSequence entity as reference sequence.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.referenceSeq.referenceSeqPointer}
    */
-  referenceSeqPointer?: Reference | undefined;
+  referenceSeqPointer?: Reference<MolecularSequence> | undefined;
   _referenceSeqPointer?: Element | undefined;
 
   /**
@@ -65250,7 +66212,7 @@ Modifier extensions
    * A pointer to an Observation containing variant information.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.variant.variantPointer}
    */
-  variantPointer?: Reference | undefined;
+  variantPointer?: Reference<Observation> | undefined;
   _variantPointer?: Element | undefined;
 }
 
@@ -65261,6 +66223,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/MolecularSequence.html}
  */
+
 export interface MolecularSequence extends DomainResource {
   readonly resourceType: "MolecularSequence";
 
@@ -65278,7 +66241,7 @@ export interface MolecularSequence extends DomainResource {
    * The method for sequencing, for example, chip information.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.device}
    */
-  device?: Reference | undefined;
+  device?: Reference<Device> | undefined;
   _device?: Element | undefined;
 
   /**
@@ -65302,21 +66265,21 @@ export interface MolecularSequence extends DomainResource {
    * The patient whose sequencing results are described by this resource.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.patient}
    */
-  patient?: Reference | undefined;
+  patient?: Reference<Patient> | undefined;
   _patient?: Element | undefined;
 
   /**
    * The organization or lab that should be responsible for this result.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.performer}
    */
-  performer?: Reference | undefined;
+  performer?: Reference<Organization> | undefined;
   _performer?: Element | undefined;
 
   /**
    * Pointer to next atomic sequence which at most contains one variant.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.pointer}
    */
-  pointer?: Array<Reference> | undefined;
+  pointer?: Array<Reference<MolecularSequence>> | undefined;
   _pointer?: Element[] | undefined;
 
   /**
@@ -65365,7 +66328,7 @@ export interface MolecularSequence extends DomainResource {
    * Specimen used for sequencing.
    * @see {@link http://hl7.org/fhir/R4B/MolecularSequence-definitions.html#MolecularSequence.specimen}
    */
-  specimen?: Reference | undefined;
+  specimen?: Reference<Specimen> | undefined;
   _specimen?: Element | undefined;
 
   /**
@@ -65404,6 +66367,7 @@ export interface MolecularSequence extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Money.html}
  */
+
 export interface Money extends Element {
   /**
    * ISO 4217 Currency Code.
@@ -65538,6 +66502,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/NamingSystem.html}
  */
+
 export interface NamingSystem extends DomainResource {
   readonly resourceType: "NamingSystem";
 
@@ -65699,6 +66664,7 @@ export interface NamingSystem extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Narrative.html}
  */
+
 export interface Narrative extends Element {
   /**
    * The actual narrative content, a stripped down version of XHTML.
@@ -66305,6 +67271,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/NutritionOrder.html}
  */
+
 export interface NutritionOrder extends DomainResource {
   readonly resourceType: "NutritionOrder";
 
@@ -66315,7 +67282,7 @@ export interface NutritionOrder extends DomainResource {
    * personnel about the type of foods that the patient shouldn't receive or consume.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.allergyIntolerance}
    */
-  allergyIntolerance?: Array<Reference> | undefined;
+  allergyIntolerance?: Array<Reference<AllergyIntolerance>> | undefined;
   _allergyIntolerance?: Element[] | undefined;
 
   /**
@@ -66331,7 +67298,7 @@ export interface NutritionOrder extends DomainResource {
    * in which this request is made.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -66456,7 +67423,7 @@ export interface NutritionOrder extends DomainResource {
    * nutritional supplement, or formula feedings.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.orderer}
    */
-  orderer?: Reference | undefined;
+  orderer?: Reference<Practitioner | PractitionerRole> | undefined;
   _orderer?: Element | undefined;
 
   /**
@@ -66464,7 +67431,7 @@ export interface NutritionOrder extends DomainResource {
    * supplement and/or enteral or formula feeding.
    * @see {@link http://hl7.org/fhir/R4B/NutritionOrder-definitions.html#NutritionOrder.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -66854,6 +67821,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/NutritionProduct.html}
  */
+
 export interface NutritionProduct extends DomainResource {
   readonly resourceType: "NutritionProduct";
 
@@ -66900,7 +67868,7 @@ export interface NutritionProduct extends DomainResource {
    * that is responsible for the device.
    * @see {@link http://hl7.org/fhir/R4B/NutritionProduct-definitions.html#NutritionProduct.manufacturer}
    */
-  manufacturer?: Array<Reference> | undefined;
+  manufacturer?: Array<Reference<Organization>> | undefined;
   _manufacturer?: Element[] | undefined;
 
   /**
@@ -67355,6 +68323,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Observation.html}
  */
+
 export interface Observation extends DomainResource {
   readonly resourceType: "Observation";
 
@@ -67364,7 +68333,18 @@ export interface Observation extends DomainResource {
    * performed before  it is dispensed.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?:
+    | Array<
+        Reference<
+          | CarePlan
+          | DeviceRequest
+          | ImmunizationRecommendation
+          | MedicationRequest
+          | NutritionOrder
+          | ServiceRequest
+        >
+      >
+    | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -67443,7 +68423,18 @@ export interface Observation extends DomainResource {
    * [Notes](observation.html#obsgrouping) below.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.derivedFrom}
    */
-  derivedFrom?: Array<Reference> | undefined;
+  derivedFrom?:
+    | Array<
+        Reference<
+          | DocumentReference
+          | ImagingStudy
+          | Media
+          | QuestionnaireResponse
+          | Observation
+          | MolecularSequence
+        >
+      >
+    | undefined;
   _derivedFrom?: Element[] | undefined;
 
   /**
@@ -67453,7 +68444,7 @@ export interface Observation extends DomainResource {
    * Provenance resource where relevant.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.device}
    */
-  device?: Reference | undefined;
+  device?: Reference<Device | DeviceMetric> | undefined;
   _device?: Element | undefined;
 
   /**
@@ -67527,7 +68518,7 @@ export interface Observation extends DomainResource {
    * tests).
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -67549,7 +68540,7 @@ export interface Observation extends DomainResource {
    * or the standard extension [focusCode](extension-observation-focuscode.html).
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.focus}
    */
-  focus?: Array<Reference> | undefined;
+  focus?: Array<Reference<Resource>> | undefined;
   _focus?: Element[] | undefined;
 
   /**
@@ -67563,7 +68554,9 @@ export interface Observation extends DomainResource {
    * score and represent the score as an Observation.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.hasMember}
    */
-  hasMember?: Array<Reference> | undefined;
+  hasMember?:
+    | Array<Reference<Observation | QuestionnaireResponse | MolecularSequence>>
+    | undefined;
   _hasMember?: Element[] | undefined;
 
   /**
@@ -67627,14 +68620,36 @@ export interface Observation extends DomainResource {
    * Observation.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.partOf}
    */
-  partOf?: Array<Reference> | undefined;
+  partOf?:
+    | Array<
+        Reference<
+          | MedicationAdministration
+          | MedicationDispense
+          | MedicationStatement
+          | Procedure
+          | Immunization
+          | ImagingStudy
+        >
+      >
+    | undefined;
   _partOf?: Element[] | undefined;
 
   /**
    * Who was responsible for asserting the observed value as "true".
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.performer}
    */
-  performer?: Array<Reference> | undefined;
+  performer?:
+    | Array<
+        Reference<
+          | Practitioner
+          | PractitionerRole
+          | Organization
+          | CareTeam
+          | Patient
+          | RelatedPerson
+        >
+      >
+    | undefined;
   _performer?: Element[] | undefined;
 
   /**
@@ -67663,7 +68678,7 @@ export interface Observation extends DomainResource {
    * explicitly (e.g. Diagnostic Report).
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.specimen}
    */
-  specimen?: Reference | undefined;
+  specimen?: Reference<Specimen> | undefined;
   _specimen?: Element | undefined;
 
   /**
@@ -67690,7 +68705,19 @@ export interface Observation extends DomainResource {
    * the observation should be updated.
    * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.subject}
    */
-  subject?: Reference | undefined;
+  subject?:
+    | Reference<
+        | Patient
+        | Group
+        | Device
+        | Location
+        | Organization
+        | Procedure
+        | Practitioner
+        | Medication
+        | Substance
+      >
+    | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -68080,6 +69107,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition.html}
  */
+
 export interface ObservationDefinition extends DomainResource {
   readonly resourceType: "ObservationDefinition";
 
@@ -68088,7 +69116,7 @@ export interface ObservationDefinition extends DomainResource {
    * ObservationDefinition.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.abnormalCodedValueSet}
    */
-  abnormalCodedValueSet?: Reference | undefined;
+  abnormalCodedValueSet?: Reference<ValueSet> | undefined;
   _abnormalCodedValueSet?: Element | undefined;
 
   /**
@@ -68115,7 +69143,7 @@ export interface ObservationDefinition extends DomainResource {
    * ObservationDefinition.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.criticalCodedValueSet}
    */
-  criticalCodedValueSet?: Reference | undefined;
+  criticalCodedValueSet?: Reference<ValueSet> | undefined;
   _criticalCodedValueSet?: Element | undefined;
 
   /**
@@ -68149,7 +69177,7 @@ export interface ObservationDefinition extends DomainResource {
    * ObservationDefinition.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.normalCodedValueSet}
    */
-  normalCodedValueSet?: Reference | undefined;
+  normalCodedValueSet?: Reference<ValueSet> | undefined;
   _normalCodedValueSet?: Element | undefined;
 
   /**
@@ -68190,7 +69218,7 @@ export interface ObservationDefinition extends DomainResource {
    * ObservationDefinition.
    * @see {@link http://hl7.org/fhir/R4B/ObservationDefinition-definitions.html#ObservationDefinition.validCodedValueSet}
    */
-  validCodedValueSet?: Reference | undefined;
+  validCodedValueSet?: Reference<ValueSet> | undefined;
   _validCodedValueSet?: Element | undefined;
 }
 
@@ -68578,6 +69606,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/OperationDefinition.html}
  */
+
 export interface OperationDefinition extends DomainResource {
   readonly resourceType: "OperationDefinition";
 
@@ -69027,6 +70056,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/OperationOutcome.html}
  */
+
 export interface OperationOutcome extends DomainResource {
   readonly resourceType: "OperationOutcome";
 
@@ -69133,6 +70163,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Organization.html}
  */
+
 export interface Organization extends DomainResource {
   readonly resourceType: "Organization";
 
@@ -69185,7 +70216,7 @@ This element is labeled as a modifier because it may be used to mark that
    * Technical endpoints providing access to services operated for the organization.
    * @see {@link http://hl7.org/fhir/R4B/Organization-definitions.html#Organization.endpoint}
    */
-  endpoint?: Array<Reference> | undefined;
+  endpoint?: Array<Reference<Endpoint>> | undefined;
   _endpoint?: Element[] | undefined;
 
   /**
@@ -69209,7 +70240,7 @@ This element is labeled as a modifier because it may be used to mark that
    * The organization of which this organization forms a part.
    * @see {@link http://hl7.org/fhir/R4B/Organization-definitions.html#Organization.partOf}
    */
-  partOf?: Reference | undefined;
+  partOf?: Reference<Organization> | undefined;
   _partOf?: Element | undefined;
 
   /**
@@ -69252,6 +70283,7 @@ We expect that some
  *
  * @see {@link http://hl7.org/fhir/R4B/OrganizationAffiliation.html}
  */
+
 export interface OrganizationAffiliation extends DomainResource {
   readonly resourceType: "OrganizationAffiliation";
 
@@ -69276,14 +70308,14 @@ export interface OrganizationAffiliation extends DomainResource {
    * Technical endpoints providing access to services operated for this role.
    * @see {@link http://hl7.org/fhir/R4B/OrganizationAffiliation-definitions.html#OrganizationAffiliation.endpoint}
    */
-  endpoint?: Array<Reference> | undefined;
+  endpoint?: Array<Reference<Endpoint>> | undefined;
   _endpoint?: Element[] | undefined;
 
   /**
    * Healthcare services provided through the role.
    * @see {@link http://hl7.org/fhir/R4B/OrganizationAffiliation-definitions.html#OrganizationAffiliation.healthcareService}
    */
-  healthcareService?: Array<Reference> | undefined;
+  healthcareService?: Array<Reference<HealthcareService>> | undefined;
   _healthcareService?: Element[] | undefined;
 
   /**
@@ -69297,7 +70329,7 @@ export interface OrganizationAffiliation extends DomainResource {
    * The location(s) at which the role occurs.
    * @see {@link http://hl7.org/fhir/R4B/OrganizationAffiliation-definitions.html#OrganizationAffiliation.location}
    */
-  location?: Array<Reference> | undefined;
+  location?: Array<Reference<Location>> | undefined;
   _location?: Element[] | undefined;
 
   /**
@@ -69306,14 +70338,14 @@ export interface OrganizationAffiliation extends DomainResource {
    * defined).
    * @see {@link http://hl7.org/fhir/R4B/OrganizationAffiliation-definitions.html#OrganizationAffiliation.network}
    */
-  network?: Array<Reference> | undefined;
+  network?: Array<Reference<Organization>> | undefined;
   _network?: Element[] | undefined;
 
   /**
    * Organization where the role is available (primary organization/has members).
    * @see {@link http://hl7.org/fhir/R4B/OrganizationAffiliation-definitions.html#OrganizationAffiliation.organization}
    */
-  organization?: Reference | undefined;
+  organization?: Reference<Organization> | undefined;
   _organization?: Element | undefined;
 
   /**
@@ -69321,7 +70353,7 @@ export interface OrganizationAffiliation extends DomainResource {
    * to the Primary Organization (e.g. providing services or is a member of).
    * @see {@link http://hl7.org/fhir/R4B/OrganizationAffiliation-definitions.html#OrganizationAffiliation.participatingOrganization}
    */
-  participatingOrganization?: Reference | undefined;
+  participatingOrganization?: Reference<Organization> | undefined;
   _participatingOrganization?: Element | undefined;
 
   /**
@@ -69479,7 +70511,7 @@ export interface PackagedProductDefinitionPackage extends BackboneElement {
    * all possible manufacturers.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.manufacturer}
    */
-  manufacturer?: Array<Reference> | undefined;
+  manufacturer?: Array<Reference<Organization>> | undefined;
   _manufacturer?: Element[] | undefined;
 
   /**
@@ -69818,6 +70850,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition.html}
  */
+
 export interface PackagedProductDefinition extends DomainResource {
   readonly resourceType: "PackagedProductDefinition";
 
@@ -69886,7 +70919,7 @@ export interface PackagedProductDefinition extends DomainResource {
    * all possible manufacturers.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.manufacturer}
    */
-  manufacturer?: Array<Reference> | undefined;
+  manufacturer?: Array<Reference<Organization>> | undefined;
   _manufacturer?: Element[] | undefined;
 
   /**
@@ -69918,7 +70951,7 @@ export interface PackagedProductDefinition extends DomainResource {
    * The product that this is a pack for.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.packageFor}
    */
-  packageFor?: Array<Reference> | undefined;
+  packageFor?: Array<Reference<MedicinalProductDefinition>> | undefined;
   _packageFor?: Element[] | undefined;
 
   /**
@@ -69957,6 +70990,7 @@ export interface PackagedProductDefinition extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/ParameterDefinition.html}
  */
+
 export interface ParameterDefinition extends Element {
   /**
    * A brief discussion of what the parameter is for and how it is used by the
@@ -70460,6 +71494,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Parameters.html}
  */
+
 export interface Parameters extends Resource {
   readonly resourceType: string;
 
@@ -70638,7 +71673,7 @@ Modifier extensions
    * is working.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.contact.organization}
    */
-  organization?: Reference | undefined;
+  organization?: Reference<Organization> | undefined;
   _organization?: Element | undefined;
 
   /**
@@ -70726,7 +71761,7 @@ Modifier extensions
    * associate a Patient and RelatedPerson as the same individual.
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.link.other}
    */
-  other: Reference;
+  other: Reference<Patient | RelatedPerson>;
   _other?: Element | undefined;
 
   /**
@@ -70747,6 +71782,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Patient.html}
  */
+
 export interface Patient extends DomainResource {
   readonly resourceType: "Patient";
 
@@ -70873,7 +71909,9 @@ Jurisdictions may decide that they can profile
  * this down to 1 if desired, or 1 per type.
  * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.generalPractitioner}
  */
-  generalPractitioner?: Array<Reference> | undefined;
+  generalPractitioner?:
+    | Array<Reference<Organization | Practitioner | PractitionerRole>>
+    | undefined;
   _generalPractitioner?: Element[] | undefined;
 
   /**
@@ -70899,7 +71937,7 @@ Jurisdictions may decide that they can profile
    * ratings for the association).
    * @see {@link http://hl7.org/fhir/R4B/Patient-definitions.html#Patient.managingOrganization}
    */
-  managingOrganization?: Reference | undefined;
+  managingOrganization?: Reference<Organization> | undefined;
   _managingOrganization?: Element | undefined;
 
   /**
@@ -70980,6 +72018,7 @@ Jurisdictions may decide that they can profile
  *
  * @see {@link http://hl7.org/fhir/R4B/PaymentNotice.html}
  */
+
 export interface PaymentNotice extends DomainResource {
   readonly resourceType: "PaymentNotice";
 
@@ -71010,14 +72049,14 @@ export interface PaymentNotice extends DomainResource {
    * notification.
    * @see {@link http://hl7.org/fhir/R4B/PaymentNotice-definitions.html#PaymentNotice.payee}
    */
-  payee?: Reference | undefined;
+  payee?: Reference<Practitioner | PractitionerRole | Organization> | undefined;
   _payee?: Element | undefined;
 
   /**
    * A reference to the payment which is the subject of this notice.
    * @see {@link http://hl7.org/fhir/R4B/PaymentNotice-definitions.html#PaymentNotice.payment}
    */
-  payment: Reference;
+  payment: Reference<PaymentReconciliation>;
   _payment?: Element | undefined;
 
   /**
@@ -71040,28 +72079,30 @@ export interface PaymentNotice extends DomainResource {
    * The practitioner who is responsible for the services rendered to the patient.
    * @see {@link http://hl7.org/fhir/R4B/PaymentNotice-definitions.html#PaymentNotice.provider}
    */
-  provider?: Reference | undefined;
+  provider?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _provider?: Element | undefined;
 
   /**
    * The party who is notified of the payment status.
    * @see {@link http://hl7.org/fhir/R4B/PaymentNotice-definitions.html#PaymentNotice.recipient}
    */
-  recipient: Reference;
+  recipient: Reference<Organization>;
   _recipient?: Element | undefined;
 
   /**
    * Reference of resource for which payment is being made.
    * @see {@link http://hl7.org/fhir/R4B/PaymentNotice-definitions.html#PaymentNotice.request}
    */
-  request?: Reference | undefined;
+  request?: Reference<Resource> | undefined;
   _request?: Element | undefined;
 
   /**
    * Reference of response to resource for which payment is being made.
    * @see {@link http://hl7.org/fhir/R4B/PaymentNotice-definitions.html#PaymentNotice.response}
    */
-  response?: Reference | undefined;
+  response?: Reference<Resource> | undefined;
   _response?: Element | undefined;
 
   /**
@@ -71154,7 +72195,7 @@ Modifier extensions
    * The party which is receiving the payment.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.detail.payee}
    */
-  payee?: Reference | undefined;
+  payee?: Reference<Practitioner | PractitionerRole | Organization> | undefined;
   _payee?: Element | undefined;
 
   /**
@@ -71168,14 +72209,14 @@ Modifier extensions
    * A resource, such as a Claim, the evaluation of which could lead to payment.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.detail.request}
    */
-  request?: Reference | undefined;
+  request?: Reference<Resource> | undefined;
   _request?: Element | undefined;
 
   /**
    * A resource, such as a ClaimResponse, which contains a commitment to payment.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.detail.response}
    */
-  response?: Reference | undefined;
+  response?: Reference<Resource> | undefined;
   _response?: Element | undefined;
 
   /**
@@ -71183,14 +72224,16 @@ Modifier extensions
    * response and its payment.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.detail.responsible}
    */
-  responsible?: Reference | undefined;
+  responsible?: Reference<PractitionerRole> | undefined;
   _responsible?: Element | undefined;
 
   /**
    * The party which submitted the claim or financial transaction.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.detail.submitter}
    */
-  submitter?: Reference | undefined;
+  submitter?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _submitter?: Element | undefined;
 
   /**
@@ -71279,6 +72322,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation.html}
  */
+
 export interface PaymentReconciliation extends DomainResource {
   readonly resourceType: "PaymentReconciliation";
 
@@ -71361,7 +72405,7 @@ export interface PaymentReconciliation extends DomainResource {
    * This party is also responsible for the reconciliation.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.paymentIssuer}
    */
-  paymentIssuer?: Reference | undefined;
+  paymentIssuer?: Reference<Organization> | undefined;
   _paymentIssuer?: Element | undefined;
 
   /**
@@ -71383,14 +72427,16 @@ export interface PaymentReconciliation extends DomainResource {
    * Original request resource reference.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.request}
    */
-  request?: Reference | undefined;
+  request?: Reference<Task> | undefined;
   _request?: Element | undefined;
 
   /**
    * The practitioner who is responsible for the services rendered to the patient.
    * @see {@link http://hl7.org/fhir/R4B/PaymentReconciliation-definitions.html#PaymentReconciliation.requestor}
    */
-  requestor?: Reference | undefined;
+  requestor?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _requestor?: Element | undefined;
 
   /**
@@ -71413,6 +72459,7 @@ export interface PaymentReconciliation extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Period.html}
  */
+
 export interface Period extends Element {
   /**
    * The end of the period. If the end of the period is missing, it means no end was
@@ -71501,7 +72548,7 @@ Modifier extensions
    * The resource to which this actual person is associated.
    * @see {@link http://hl7.org/fhir/R4B/Person-definitions.html#Person.link.target}
    */
-  target: Reference;
+  target: Reference<Patient | Practitioner | RelatedPerson | Person>;
   _target?: Element | undefined;
 }
 
@@ -71513,6 +72560,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Person.html}
  */
+
 export interface Person extends DomainResource {
   readonly resourceType: "Person";
 
@@ -71572,7 +72620,7 @@ export interface Person extends DomainResource {
    * The organization that is the custodian of the person record.
    * @see {@link http://hl7.org/fhir/R4B/Person-definitions.html#Person.managingOrganization}
    */
-  managingOrganization?: Reference | undefined;
+  managingOrganization?: Reference<Organization> | undefined;
   _managingOrganization?: Element | undefined;
 
   /**
@@ -71892,7 +72940,7 @@ In addition, because the subject needs to
  * to a resource of type Patient).
  * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.subjectReference}
  */
-  subjectReference?: Reference | undefined;
+  subjectReference?: Reference<Group> | undefined;
   _subjectReference?: Element | undefined;
 
   /**
@@ -72565,6 +73613,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/PlanDefinition.html}
  */
+
 export interface PlanDefinition extends DomainResource {
   readonly resourceType: "PlanDefinition";
 
@@ -72839,7 +73888,7 @@ export interface PlanDefinition extends DomainResource {
    * canonical type with these use cases.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.subjectReference}
    */
-  subjectReference?: Reference | undefined;
+  subjectReference?: Reference<Group> | undefined;
   _subjectReference?: Element | undefined;
 
   /**
@@ -72969,6 +74018,7 @@ In some cases, the resource can no longer
  *
  * @see {@link http://hl7.org/fhir/R4B/Population.html}
  */
+
 export interface Population extends BackboneElement {
   /**
    * The age of the specific population.
@@ -73052,7 +74102,7 @@ export interface PractitionerQualification extends BackboneElement {
    * Organization that regulates and issues the qualification.
    * @see {@link http://hl7.org/fhir/R4B/Practitioner-definitions.html#Practitioner.qualification.issuer}
    */
-  issuer?: Reference | undefined;
+  issuer?: Reference<Organization> | undefined;
   _issuer?: Element | undefined;
 
   /**
@@ -73094,6 +74144,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Practitioner.html}
  */
+
 export interface Practitioner extends DomainResource {
   readonly resourceType: "Practitioner";
 
@@ -73374,6 +74425,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/PractitionerRole.html}
  */
+
 export interface PractitionerRole extends DomainResource {
   readonly resourceType: "PractitionerRole";
 
@@ -73419,7 +74471,7 @@ export interface PractitionerRole extends DomainResource {
    * with this role.
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.endpoint}
    */
-  endpoint?: Array<Reference> | undefined;
+  endpoint?: Array<Reference<Endpoint>> | undefined;
   _endpoint?: Element[] | undefined;
 
   /**
@@ -73427,7 +74479,7 @@ export interface PractitionerRole extends DomainResource {
    * Organization/Location(s).
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.healthcareService}
    */
-  healthcareService?: Array<Reference> | undefined;
+  healthcareService?: Array<Reference<HealthcareService>> | undefined;
   _healthcareService?: Element[] | undefined;
 
   /**
@@ -73441,7 +74493,7 @@ export interface PractitionerRole extends DomainResource {
    * The location(s) at which this practitioner provides care.
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.location}
    */
-  location?: Array<Reference> | undefined;
+  location?: Array<Reference<Location>> | undefined;
   _location?: Element[] | undefined;
 
   /**
@@ -73456,7 +74508,7 @@ export interface PractitionerRole extends DomainResource {
    * The organization where the Practitioner performs the roles associated.
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.organization}
    */
-  organization?: Reference | undefined;
+  organization?: Reference<Organization> | undefined;
   _organization?: Element | undefined;
 
   /**
@@ -73471,7 +74523,7 @@ export interface PractitionerRole extends DomainResource {
    * Practitioner that is able to provide the defined services for the organization.
    * @see {@link http://hl7.org/fhir/R4B/PractitionerRole-definitions.html#PractitionerRole.practitioner}
    */
-  practitioner?: Reference | undefined;
+  practitioner?: Reference<Practitioner> | undefined;
   _practitioner?: Element | undefined;
 
   /**
@@ -73531,7 +74583,7 @@ export interface ProcedureFocalDevice extends BackboneElement {
    * The device that was manipulated (changed) during the procedure.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.focalDevice.manipulated}
    */
-  manipulated: Reference;
+  manipulated: Reference<Device>;
   _manipulated?: Element | undefined;
 
   /**
@@ -73567,7 +74619,14 @@ export interface ProcedurePerformer extends BackboneElement {
    * The practitioner who was involved in the procedure.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.performer.actor}
    */
-  actor: Reference;
+  actor: Reference<
+    | Practitioner
+    | PractitionerRole
+    | Organization
+    | Patient
+    | RelatedPerson
+    | Device
+  >;
   _actor?: Element | undefined;
 
   /**
@@ -73629,7 +74688,7 @@ Modifier extensions
    * The organization the device or practitioner was acting on behalf of.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.performer.onBehalfOf}
    */
-  onBehalfOf?: Reference | undefined;
+  onBehalfOf?: Reference<Organization> | undefined;
   _onBehalfOf?: Element | undefined;
 }
 
@@ -73642,6 +74701,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Procedure.html}
  */
+
 export interface Procedure extends DomainResource {
   readonly resourceType: "Procedure";
 
@@ -73649,7 +74709,9 @@ export interface Procedure extends DomainResource {
    * Individual who is making the procedure statement.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.asserter}
    */
-  asserter?: Reference | undefined;
+  asserter?:
+    | Reference<Patient | RelatedPerson | Practitioner | PractitionerRole>
+    | undefined;
   _asserter?: Element | undefined;
 
   /**
@@ -73657,7 +74719,7 @@ export interface Procedure extends DomainResource {
    * procedure.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<CarePlan | ServiceRequest>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -73704,7 +74766,7 @@ export interface Procedure extends DomainResource {
    * post-performance period.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.complicationDetail}
    */
-  complicationDetail?: Array<Reference> | undefined;
+  complicationDetail?: Array<Reference<Condition>> | undefined;
   _complicationDetail?: Element[] | undefined;
 
   /**
@@ -73715,7 +74777,7 @@ export interface Procedure extends DomainResource {
    * encounter but still be tied to the context of the encounter.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -73777,7 +74839,7 @@ export interface Procedure extends DomainResource {
    * tracheostomy at a restaurant.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.location}
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -73807,7 +74869,9 @@ export interface Procedure extends DomainResource {
    * administration (Procedure.partOf = MedicationAdministration).
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.partOf}
    */
-  partOf?: Array<Reference> | undefined;
+  partOf?:
+    | Array<Reference<Procedure | Observation | MedicationAdministration>>
+    | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -73934,14 +74998,26 @@ Use
  * describing different reasons for the procedure.
  * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.reasonReference}
  */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          | Condition
+          | Observation
+          | Procedure
+          | DiagnosticReport
+          | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
    * Individual who recorded the record and takes responsibility for its content.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.recorder}
    */
-  recorder?: Reference | undefined;
+  recorder?:
+    | Reference<Patient | RelatedPerson | Practitioner | PractitionerRole>
+    | undefined;
   _recorder?: Element | undefined;
 
   /**
@@ -73950,7 +75026,9 @@ Use
    * took multiple biopsies resulting in a number of anatomical pathology reports.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.report}
    */
-  report?: Array<Reference> | undefined;
+  report?:
+    | Array<Reference<DiagnosticReport | DocumentReference | Composition>>
+    | undefined;
   _report?: Element[] | undefined;
 
   /**
@@ -73984,7 +75062,7 @@ This element is labeled as a
    * The person, animal or group on which the procedure was performed.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 
   /**
@@ -74001,7 +75079,7 @@ This element is labeled as a
    * For devices actually implanted or removed, use Procedure.device.
    * @see {@link http://hl7.org/fhir/R4B/Procedure-definitions.html#Procedure.usedReference}
    */
-  usedReference?: Array<Reference> | undefined;
+  usedReference?: Array<Reference<Device | Medication | Substance>> | undefined;
   _usedReference?: Element[] | undefined;
 }
 
@@ -74014,6 +75092,7 @@ This element is labeled as a
  *
  * @see {@link http://hl7.org/fhir/R4B/ProdCharacteristic.html}
  */
+
 export interface ProdCharacteristic extends BackboneElement {
   /**
    * Where applicable, the color can be specified An appropriate controlled
@@ -74113,6 +75192,7 @@ export interface ProdCharacteristic extends BackboneElement {
  *
  * @see {@link http://hl7.org/fhir/R4B/ProductShelfLife.html}
  */
+
 export interface ProductShelfLife extends BackboneElement {
   /**
    * Unique identifier for the packaged Medicinal Product.
@@ -74209,7 +75289,16 @@ Modifier extensions
    * onBehalfOfIdentity should be used when the agent is not a Resource type.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.agent.onBehalfOf}
    */
-  onBehalfOf?: Reference | undefined;
+  onBehalfOf?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | RelatedPerson
+        | Patient
+        | Device
+        | Organization
+      >
+    | undefined;
   _onBehalfOf?: Element | undefined;
 
   /**
@@ -74234,7 +75323,14 @@ Modifier extensions
    * whoIdentity should be used when the agent is not a Resource type.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.agent.who}
    */
-  who: Reference;
+  who: Reference<
+    | Practitioner
+    | PractitionerRole
+    | RelatedPerson
+    | Patient
+    | Device
+    | Organization
+  >;
   _who?: Element | undefined;
 }
 
@@ -74305,7 +75401,7 @@ Modifier extensions
    * whatIdentity should be used for entities that are not a Resource type.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.entity.what}
    */
-  what: Reference;
+  what: Reference<Resource>;
   _what?: Element | undefined;
 }
 
@@ -74324,6 +75420,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Provenance.html}
  */
+
 export interface Provenance extends DomainResource {
   readonly resourceType: "Provenance";
 
@@ -74357,7 +75454,7 @@ export interface Provenance extends DomainResource {
    * Where the activity occurred, if relevant.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.location}
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -74432,7 +75529,7 @@ export interface Provenance extends DomainResource {
    * for further discussion.
    * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.target}
    */
-  target: Array<Reference>;
+  target: Array<Reference<Resource>>;
   _target?: Element[] | undefined;
 }
 
@@ -74446,6 +75543,7 @@ export interface Provenance extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Quantity.html}
  */
+
 export interface Quantity extends Element {
   /**
    * A computer processable form of the unit in some unit representation system.
@@ -74874,7 +75972,7 @@ Modifier extensions
    * The data type of the value must agree with the item.type.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.answerOption.valueReference}
    */
-  valueReference?: Reference | undefined;
+  valueReference?: Reference<Resource> | undefined;
   _valueReference?: Element | undefined;
 }
 
@@ -74973,7 +76071,7 @@ export interface QuestionnaireItemEnableWhen extends BackboneElement {
    * order for the item to be enabled.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.enableWhen.answerReference}
    */
-  answerReference?: Reference | undefined;
+  answerReference?: Reference<Resource> | undefined;
   _answerReference?: Element | undefined;
 
   /**
@@ -75203,7 +76301,7 @@ Modifier extensions
    * The type of the initial value must be consistent with the type of the item.
    * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.initial.valueReference}
    */
-  valueReference?: Reference | undefined;
+  valueReference?: Reference<Resource> | undefined;
   _valueReference?: Element | undefined;
 }
 
@@ -75216,6 +76314,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Questionnaire.html}
  */
+
 export interface Questionnaire extends DomainResource {
   readonly resourceType: "Questionnaire";
 
@@ -75786,7 +76885,7 @@ Modifier extensions
    * Questionnaire.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.answer.valueReference}
    */
-  valueReference?: Reference | undefined;
+  valueReference?: Reference<Resource> | undefined;
   _valueReference?: Element | undefined;
 }
 
@@ -75799,6 +76898,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse.html}
  */
+
 export interface QuestionnaireResponse extends DomainResource {
   readonly resourceType: "QuestionnaireResponse";
 
@@ -75810,7 +76910,16 @@ export interface QuestionnaireResponse extends DomainResource {
    * would indicate that some portion of the questionnaire had been auto-populated.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.author}
    */
-  author?: Reference | undefined;
+  author?:
+    | Reference<
+        | Device
+        | Practitioner
+        | PractitionerRole
+        | Patient
+        | RelatedPerson
+        | Organization
+      >
+    | undefined;
   _author?: Element | undefined;
 
   /**
@@ -75834,7 +76943,7 @@ This element is optional to allow for systems that might not know the
    * depression.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<CarePlan | ServiceRequest>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -75847,7 +76956,7 @@ This element is optional to allow for systems that might not know the
    * encounter would still generally be associated with the encounter.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -75877,7 +76986,7 @@ This element is optional to allow for systems that might not know the
    * relationships to referrals, and other types of requests, use basedOn.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.partOf}
    */
-  partOf?: Array<Reference> | undefined;
+  partOf?: Array<Reference<Observation | Procedure>> | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -75898,7 +77007,9 @@ This element is optional to allow for systems that might not know the
    * If not specified, no inference can be made about who provided the data.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.source}
    */
-  source?: Reference | undefined;
+  source?:
+    | Reference<Patient | Practitioner | PractitionerRole | RelatedPerson>
+    | undefined;
   _source?: Element | undefined;
 
   /**
@@ -75920,7 +77031,7 @@ This element is optional to allow for systems that might not know the
    * element must be an instance of one of the listed types.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Resource> | undefined;
   _subject?: Element | undefined;
 }
 
@@ -75932,6 +77043,7 @@ This element is optional to allow for systems that might not know the
  *
  * @see {@link http://hl7.org/fhir/R4B/Range.html}
  */
+
 export interface Range extends Element {
   /**
    * The high limit. The boundary is inclusive.
@@ -75956,6 +77068,7 @@ export interface Range extends Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/Ratio.html}
  */
+
 export interface Ratio extends Element {
   /**
    * The value of the denominator.
@@ -75978,6 +77091,7 @@ export interface Ratio extends Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/RatioRange.html}
  */
+
 export interface RatioRange extends Element {
   /**
    * The value of the denominator.
@@ -76008,7 +77122,12 @@ export interface RatioRange extends Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/Reference.html}
  */
-export interface Reference extends Element {
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export interface Reference<TTargetResource extends Resource = Resource>
+  extends Element {
   /**
    * Plain text narrative that identifies the resource in addition to the resource
    * reference.
@@ -76205,6 +77324,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization.html}
  */
+
 export interface RegulatedAuthorization extends DomainResource {
   readonly resourceType: "RegulatedAuthorization";
 
@@ -76242,7 +77362,7 @@ export interface RegulatedAuthorization extends DomainResource {
    * body (the 'regulator').
    * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.holder}
    */
-  holder?: Reference | undefined;
+  holder?: Reference<Organization> | undefined;
   _holder?: Element | undefined;
 
   /**
@@ -76281,7 +77401,7 @@ export interface RegulatedAuthorization extends DomainResource {
    * Health Canada (HC), etc.
    * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.regulator}
    */
-  regulator?: Reference | undefined;
+  regulator?: Reference<Organization> | undefined;
   _regulator?: Element | undefined;
 
   /**
@@ -76304,7 +77424,25 @@ export interface RegulatedAuthorization extends DomainResource {
    * The product type, treatment, facility or activity that is being authorized.
    * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.subject}
    */
-  subject?: Array<Reference> | undefined;
+  subject?:
+    | Array<
+        Reference<
+          | MedicinalProductDefinition
+          | BiologicallyDerivedProduct
+          | NutritionProduct
+          | PackagedProductDefinition
+          | SubstanceDefinition
+          | DeviceDefinition
+          | ResearchStudy
+          | ActivityDefinition
+          | PlanDefinition
+          | ObservationDefinition
+          | Practitioner
+          | Organization
+          | Location
+        >
+      >
+    | undefined;
   _subject?: Element[] | undefined;
 
   /**
@@ -76333,6 +77471,7 @@ export interface RegulatedAuthorization extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/RelatedArtifact.html}
  */
+
 export interface RelatedArtifact extends Element {
   /**
    * A bibliographic citation for the related artifact. This text SHOULD be formatted
@@ -76484,6 +77623,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/RelatedPerson.html}
  */
+
 export interface RelatedPerson extends DomainResource {
   readonly resourceType: "RelatedPerson";
 
@@ -76551,7 +77691,7 @@ export interface RelatedPerson extends DomainResource {
    * The patient this person is related to.
    * @see {@link http://hl7.org/fhir/R4B/RelatedPerson-definitions.html#RelatedPerson.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
@@ -76595,6 +77735,7 @@ export interface RelatedPerson extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Request.html}
  */
+
 export interface Request {
   /**
    * For draft {{title}}s, indicates the date of initial creation.  For requests with
@@ -76610,7 +77751,28 @@ export interface Request {
    * [The allowed reference resources may be adjusted as appropriate for the request
    * resource].
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?:
+    | Array<
+        Reference<
+          | Appointment
+          | AppointmentResponse
+          | CarePlan
+          | Claim
+          | CommunicationRequest
+          | Contract
+          | CoverageEligibilityRequest
+          | DeviceRequest
+          | EnrollmentRequest
+          | ImmunizationRecommendation
+          | MedicationRequest
+          | NutritionOrder
+          | RequestGroup
+          | ServiceRequest
+          | SupplyRequest
+          | VisionPrescription
+        >
+      >
+    | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -76646,7 +77808,7 @@ In some cases, the
    * encounter but still be tied to the context of the encounter (e.g. pre-admission
    * lab tests).
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -76702,7 +77864,7 @@ Note: This is a
    * Insurance plans, coverage extensions, pre-authorizations and/or
    * pre-determinations that may be relevant in delivering the requested service.
    */
-  insurance?: Array<Reference> | undefined;
+  insurance?: Array<Reference<Coverage | ClaimResponse>> | undefined;
   _insurance?: Element[] | undefined;
 
   /**
@@ -76766,7 +77928,18 @@ When resources map to this element,
    * Indicates who or what is being asked to perform (or not perform) the
    * {{request}}.
    */
-  performer?: Reference | undefined;
+  performer?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | Organization
+        | CareTeam
+        | HealthcareService
+        | Patient
+        | Device
+        | RelatedPerson
+      >
+    | undefined;
   _performer?: Element | undefined;
 
   /**
@@ -76802,7 +77975,13 @@ When resources map to this element,
    * Indicates another resource whose existence justifies this request.
    * [Additional resources may be added as appropriate].
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -76815,7 +77994,7 @@ When resources map to this element,
    * The Provenance for the current version can be retrieved with a _revinclude.
    * Referenced provenances should adhere to the provenance-relevant-history profile.
    */
-  relevantHistory?: Array<Reference> | undefined;
+  relevantHistory?: Array<Reference<Provenance>> | undefined;
   _relevantHistory?: Element[] | undefined;
 
   /**
@@ -76825,7 +78004,28 @@ When resources map to this element,
    * (due to an issue) or because the previous request was completed, but the need
    * for the action described by the request remains ongoing.
    */
-  replaces?: Array<Reference> | undefined;
+  replaces?:
+    | Array<
+        Reference<
+          | Appointment
+          | AppointmentResponse
+          | CarePlan
+          | Claim
+          | CommunicationRequest
+          | Contract
+          | CoverageEligibilityRequest
+          | DeviceRequest
+          | EnrollmentRequest
+          | ImmunizationRecommendation
+          | MedicationRequest
+          | NutritionOrder
+          | RequestGroup
+          | ServiceRequest
+          | SupplyRequest
+          | VisionPrescription
+        >
+      >
+    | undefined;
   _replaces?: Element[] | undefined;
 
   /**
@@ -76841,7 +78041,11 @@ When resources map to this element,
    * than as an original primary source-of-truth record.  It may also indicate the
    * source of the report.
    */
-  reportedReference?: Reference | undefined;
+  reportedReference?:
+    | Reference<
+        Patient | RelatedPerson | Practitioner | PractitionerRole | Organization
+      >
+    | undefined;
   _reportedReference?: Element | undefined;
 
   /**
@@ -76849,7 +78053,16 @@ When resources map to this element,
    * [Resources may choose to constrain potential requesters, though should consider
    * proposals and plans as well as orders].
    */
-  requester?: Reference | undefined;
+  requester?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | Organization
+        | Patient
+        | RelatedPerson
+        | Device
+      >
+    | undefined;
   _requester?: Element | undefined;
 
   /**
@@ -76893,14 +78106,14 @@ A status of completed for a "doNotPerform"
    * health settings where Group may be necessary (e.g. this cage of rats/crate of
    * chickens, group of people in a 5 mile radious of the incident, etc.)].
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 
   /**
    * Information that may be needed by/relevant to the performer in their execution
    * of this {{title}}.
    */
-  supportingInfo?: Array<Reference> | undefined;
+  supportingInfo?: Array<Reference<Resource>> | undefined;
   _supportingInfo?: Element[] | undefined;
 }
 
@@ -77014,7 +78227,13 @@ Modifier extensions
    * The participant that should perform or be responsible for this action.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.participant}
    */
-  participant?: Array<Reference> | undefined;
+  participant?:
+    | Array<
+        Reference<
+          Patient | Practitioner | PractitionerRole | RelatedPerson | Device
+        >
+      >
+    | undefined;
   _participant?: Element[] | undefined;
 
   /**
@@ -77066,7 +78285,7 @@ Modifier extensions
    * Request.intent set to "option".
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.resource}
    */
-  resource?: Reference | undefined;
+  resource?: Reference<Resource> | undefined;
   _resource?: Element | undefined;
 
   /**
@@ -77319,6 +78538,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/RequestGroup.html}
  */
+
 export interface RequestGroup extends DomainResource {
   readonly resourceType: "RequestGroup";
 
@@ -77333,7 +78553,7 @@ export interface RequestGroup extends DomainResource {
    * Provides a reference to the author of the request group.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.author}
    */
-  author?: Reference | undefined;
+  author?: Reference<Device | Practitioner | PractitionerRole> | undefined;
   _author?: Element | undefined;
 
   /**
@@ -77348,7 +78568,7 @@ export interface RequestGroup extends DomainResource {
    * A plan, proposal or order that is fulfilled in whole or in part by this request.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<Resource>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -77365,7 +78585,7 @@ export interface RequestGroup extends DomainResource {
    * Describes the context of the request group, if any.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -77444,7 +78664,13 @@ export interface RequestGroup extends DomainResource {
    * Indicates another resource whose existence justifies this request group.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -77454,7 +78680,7 @@ export interface RequestGroup extends DomainResource {
    * for the action described by the request remains ongoing.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.replaces}
    */
-  replaces?: Array<Reference> | undefined;
+  replaces?: Array<Reference<Resource>> | undefined;
   _replaces?: Element[] | undefined;
 
   /**
@@ -77471,7 +78697,7 @@ export interface RequestGroup extends DomainResource {
    * The subject for which the request group was created.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.subject}
    */
-  subject?: Reference | undefined;
+  subject?: Reference<Patient | Group> | undefined;
   _subject?: Element | undefined;
 }
 
@@ -77484,6 +78710,7 @@ export interface RequestGroup extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition.html}
  */
+
 export interface ResearchDefinition extends DomainResource {
   readonly resourceType: "ResearchDefinition";
 
@@ -77608,7 +78835,7 @@ export interface ResearchDefinition extends DomainResource {
    * for the research.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.exposure}
    */
-  exposure?: Reference | undefined;
+  exposure?: Reference<ResearchElementDefinition> | undefined;
   _exposure?: Element | undefined;
 
   /**
@@ -77616,7 +78843,7 @@ export interface ResearchDefinition extends DomainResource {
    * exposureAlternative for the research.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.exposureAlternative}
    */
-  exposureAlternative?: Reference | undefined;
+  exposureAlternative?: Reference<ResearchElementDefinition> | undefined;
   _exposureAlternative?: Element | undefined;
 
   /**
@@ -77676,7 +78903,7 @@ export interface ResearchDefinition extends DomainResource {
    * the research.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.outcome}
    */
-  outcome?: Reference | undefined;
+  outcome?: Reference<ResearchElementDefinition> | undefined;
   _outcome?: Element | undefined;
 
   /**
@@ -77684,7 +78911,7 @@ export interface ResearchDefinition extends DomainResource {
    * for the research.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.population}
    */
-  population: Reference;
+  population: Reference<ResearchElementDefinition>;
   _population?: Element | undefined;
 
   /**
@@ -77778,7 +79005,7 @@ export interface ResearchDefinition extends DomainResource {
    * subject. In CQL, this corresponds to the context declaration.
    * @see {@link http://hl7.org/fhir/R4B/ResearchDefinition-definitions.html#ResearchDefinition.subjectReference}
    */
-  subjectReference?: Reference | undefined;
+  subjectReference?: Reference<Group> | undefined;
   _subjectReference?: Element | undefined;
 
   /**
@@ -78110,6 +79337,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition.html}
  */
+
 export interface ResearchElementDefinition extends DomainResource {
   readonly resourceType: "ResearchElementDefinition";
 
@@ -78385,7 +79613,7 @@ export interface ResearchElementDefinition extends DomainResource {
    * declaration.
    * @see {@link http://hl7.org/fhir/R4B/ResearchElementDefinition-definitions.html#ResearchElementDefinition.subjectReference}
    */
-  subjectReference?: Reference | undefined;
+  subjectReference?: Reference<Group> | undefined;
   _subjectReference?: Element | undefined;
 
   /**
@@ -78659,6 +79887,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ResearchStudy.html}
  */
+
 export interface ResearchStudy extends DomainResource {
   readonly resourceType: "ResearchStudy";
 
@@ -78711,7 +79940,7 @@ export interface ResearchStudy extends DomainResource {
    * will be linked to the study using the ResearchSubject resource.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.enrollment}
    */
-  enrollment?: Array<Reference> | undefined;
+  enrollment?: Array<Reference<Group>> | undefined;
   _enrollment?: Element[] | undefined;
 
   /**
@@ -78762,7 +79991,7 @@ export interface ResearchStudy extends DomainResource {
    * A larger research study of which this particular study is a component or step.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.partOf}
    */
-  partOf?: Array<Reference> | undefined;
+  partOf?: Array<Reference<ResearchStudy>> | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -78796,14 +80025,16 @@ export interface ResearchStudy extends DomainResource {
    * interpretation and presentation.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.principalInvestigator}
    */
-  principalInvestigator?: Reference | undefined;
+  principalInvestigator?:
+    | Reference<Practitioner | PractitionerRole>
+    | undefined;
   _principalInvestigator?: Element | undefined;
 
   /**
    * The set of steps expected to be performed as part of the execution of the study.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.protocol}
    */
-  protocol?: Array<Reference> | undefined;
+  protocol?: Array<Reference<PlanDefinition>> | undefined;
   _protocol?: Element[] | undefined;
 
   /**
@@ -78824,7 +80055,7 @@ export interface ResearchStudy extends DomainResource {
    * A facility in which study activities are conducted.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.site}
    */
-  site?: Array<Reference> | undefined;
+  site?: Array<Reference<Location>> | undefined;
   _site?: Element[] | undefined;
 
   /**
@@ -78832,7 +80063,7 @@ export interface ResearchStudy extends DomainResource {
    * the study.
    * @see {@link http://hl7.org/fhir/R4B/ResearchStudy-definitions.html#ResearchStudy.sponsor}
    */
-  sponsor?: Reference | undefined;
+  sponsor?: Reference<Organization> | undefined;
   _sponsor?: Element | undefined;
 
   /**
@@ -78860,6 +80091,7 @@ export interface ResearchStudy extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/ResearchSubject.html}
  */
+
 export interface ResearchSubject extends DomainResource {
   readonly resourceType: "ResearchSubject";
 
@@ -78883,7 +80115,7 @@ export interface ResearchSubject extends DomainResource {
    * A record of the patient's informed agreement to participate in the study.
    * @see {@link http://hl7.org/fhir/R4B/ResearchSubject-definitions.html#ResearchSubject.consent}
    */
-  consent?: Reference | undefined;
+  consent?: Reference<Consent> | undefined;
   _consent?: Element | undefined;
 
   /**
@@ -78897,7 +80129,7 @@ export interface ResearchSubject extends DomainResource {
    * The record of the person or animal who is involved in the study.
    * @see {@link http://hl7.org/fhir/R4B/ResearchSubject-definitions.html#ResearchSubject.individual}
    */
-  individual: Reference;
+  individual: Reference<Patient>;
   _individual?: Element | undefined;
 
   /**
@@ -78920,7 +80152,7 @@ export interface ResearchSubject extends DomainResource {
    * Reference to the study the subject is participating in.
    * @see {@link http://hl7.org/fhir/R4B/ResearchSubject-definitions.html#ResearchSubject.study}
    */
-  study: Reference;
+  study: Reference<ResearchStudy>;
   _study?: Element | undefined;
 }
 
@@ -78931,6 +80163,7 @@ export interface ResearchSubject extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/Resource.html}
  */
+
 export interface Resource {
   readonly resourceType: string;
 
@@ -79125,6 +80358,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/RiskAssessment.html}
  */
+
 export interface RiskAssessment extends DomainResource {
   readonly resourceType: "RiskAssessment";
 
@@ -79132,7 +80366,7 @@ export interface RiskAssessment extends DomainResource {
    * A reference to the request that is fulfilled by this risk assessment.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.basedOn}
    */
-  basedOn?: Reference | undefined;
+  basedOn?: Reference<Resource> | undefined;
   _basedOn?: Element | undefined;
 
   /**
@@ -79140,7 +80374,7 @@ export interface RiskAssessment extends DomainResource {
    * FamilyHistory, Observations, Procedures, Conditions, etc.).
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.basis}
    */
-  basis?: Array<Reference> | undefined;
+  basis?: Array<Reference<Resource>> | undefined;
   _basis?: Element[] | undefined;
 
   /**
@@ -79155,14 +80389,14 @@ export interface RiskAssessment extends DomainResource {
    * condition being assessed.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.condition}
    */
-  condition?: Reference | undefined;
+  condition?: Reference<Condition> | undefined;
   _condition?: Element | undefined;
 
   /**
    * The encounter where the assessment was performed.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -79213,14 +80447,14 @@ export interface RiskAssessment extends DomainResource {
    * Procedure.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.parent}
    */
-  parent?: Reference | undefined;
+  parent?: Reference<Resource> | undefined;
   _parent?: Element | undefined;
 
   /**
    * The provider or software application that performed the assessment.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.performer}
    */
-  performer?: Reference | undefined;
+  performer?: Reference<Practitioner | PractitionerRole | Device> | undefined;
   _performer?: Element | undefined;
 
   /**
@@ -79243,7 +80477,13 @@ export interface RiskAssessment extends DomainResource {
    * Resources supporting the reason the risk assessment was performed.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -79259,7 +80499,7 @@ export interface RiskAssessment extends DomainResource {
    * The patient or group the risk assessment applies to.
    * @see {@link http://hl7.org/fhir/R4B/RiskAssessment-definitions.html#RiskAssessment.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group>;
   _subject?: Element | undefined;
 }
 
@@ -79272,6 +80512,7 @@ export interface RiskAssessment extends DomainResource {
  *
  * @see {@link http://hl7.org/fhir/R4B/SampledData.html}
  */
+
 export interface SampledData extends Element {
   /**
    * A series of data points which are decimal values separated by a single space
@@ -79341,6 +80582,7 @@ export interface SampledData extends Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/Schedule.html}
  */
+
 export interface Schedule extends DomainResource {
   readonly resourceType: "Schedule";
 
@@ -79364,7 +80606,17 @@ export interface Schedule extends DomainResource {
    * (Location) are always required by a system.
    * @see {@link http://hl7.org/fhir/R4B/Schedule-definitions.html#Schedule.actor}
    */
-  actor: Array<Reference>;
+  actor: Array<
+    Reference<
+      | Patient
+      | Practitioner
+      | PractitionerRole
+      | RelatedPerson
+      | Device
+      | HealthcareService
+      | Location
+    >
+  >;
   _actor?: Element[] | undefined;
 
   /**
@@ -79496,6 +80748,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/SearchParameter.html}
  */
+
 export interface SearchParameter extends DomainResource {
   readonly resourceType: "SearchParameter";
 
@@ -79820,6 +81073,7 @@ In some cases, the resource can no longer
  *
  * @see {@link http://hl7.org/fhir/R4B/ServiceRequest.html}
  */
+
 export interface ServiceRequest extends DomainResource {
   readonly resourceType: "ServiceRequest";
 
@@ -79851,7 +81105,9 @@ export interface ServiceRequest extends DomainResource {
    * Plan/proposal/order fulfilled by this request.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?:
+    | Array<Reference<CarePlan | ServiceRequest | MedicationRequest>>
+    | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -79907,7 +81163,7 @@ export interface ServiceRequest extends DomainResource {
    * in which this request is made.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -79954,7 +81210,7 @@ export interface ServiceRequest extends DomainResource {
    * pre-determinations that may be needed for delivering the requested service.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.insurance}
    */
-  insurance?: Array<Reference> | undefined;
+  insurance?: Array<Reference<Coverage | ClaimResponse>> | undefined;
   _insurance?: Element[] | undefined;
 
   /**
@@ -79981,7 +81237,7 @@ export interface ServiceRequest extends DomainResource {
    * happen. E.g. at home or nursing day care center.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.locationReference}
    */
-  locationReference?: Array<Reference> | undefined;
+  locationReference?: Array<Reference<Location>> | undefined;
   _locationReference?: Element[] | undefined;
 
   /**
@@ -80043,7 +81299,20 @@ export interface ServiceRequest extends DomainResource {
    * group of performers (for example, Practitioner A *and* Practitioner B).
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.performer}
    */
-  performer?: Array<Reference> | undefined;
+  performer?:
+    | Array<
+        Reference<
+          | Practitioner
+          | PractitionerRole
+          | Organization
+          | CareTeam
+          | HealthcareService
+          | Patient
+          | Device
+          | RelatedPerson
+        >
+      >
+    | undefined;
   _performer?: Element[] | undefined;
 
   /**
@@ -80122,7 +81391,13 @@ export interface ServiceRequest extends DomainResource {
    * example](servicerequest-example-di.html).
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
@@ -80138,7 +81413,7 @@ All Provenances should have some historical version of this
  * Request as their subject.
  * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.relevantHistory}
  */
-  relevantHistory?: Array<Reference> | undefined;
+  relevantHistory?: Array<Reference<Provenance>> | undefined;
   _relevantHistory?: Element[] | undefined;
 
   /**
@@ -80146,7 +81421,7 @@ All Provenances should have some historical version of this
    * request(s).
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.replaces}
    */
-  replaces?: Array<Reference> | undefined;
+  replaces?: Array<Reference<ServiceRequest>> | undefined;
   _replaces?: Element[] | undefined;
 
   /**
@@ -80157,7 +81432,16 @@ All Provenances should have some historical version of this
    * Provenance resource.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.requester}
    */
-  requester?: Reference | undefined;
+  requester?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | Organization
+        | Patient
+        | RelatedPerson
+        | Device
+      >
+    | undefined;
   _requester?: Element | undefined;
 
   /**
@@ -80183,7 +81467,7 @@ All Provenances should have some historical version of this
    * ServiceRequest.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.specimen}
    */
-  specimen?: Array<Reference> | undefined;
+  specimen?: Array<Reference<Specimen>> | undefined;
   _specimen?: Element[] | undefined;
 
   /**
@@ -80206,7 +81490,7 @@ All Provenances should have some historical version of this
    * as dialysis machines, or even locations (typically for environmental scans).
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.subject}
    */
-  subject: Reference;
+  subject: Reference<Patient | Group | Location | Device>;
   _subject?: Element | undefined;
 
   /**
@@ -80221,7 +81505,7 @@ All Provenances should have some historical version of this
    * `instructions` element.
    * @see {@link http://hl7.org/fhir/R4B/ServiceRequest-definitions.html#ServiceRequest.supportingInfo}
    */
-  supportingInfo?: Array<Reference> | undefined;
+  supportingInfo?: Array<Reference<Resource>> | undefined;
   _supportingInfo?: Element[] | undefined;
 }
 
@@ -80236,6 +81520,7 @@ All Provenances should have some historical version of this
  *
  * @see {@link http://hl7.org/fhir/R4B/Signature.html}
  */
+
 export interface Signature extends Element {
   /**
    * The base64 encoding of the Signature content. When signature is not recorded
@@ -80253,7 +81538,16 @@ export interface Signature extends Element {
    * represented by the signature.
    * The party that can't sign. For example a child.
    */
-  onBehalfOf?: Reference | undefined;
+  onBehalfOf?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | RelatedPerson
+        | Patient
+        | Device
+        | Organization
+      >
+    | undefined;
   _onBehalfOf?: Element | undefined;
 
   /**
@@ -80301,7 +81595,14 @@ export interface Signature extends Element {
    * (e.g. the signature used their private key).
    * This should agree with the information in the signature.
    */
-  who: Reference;
+  who: Reference<
+    | Practitioner
+    | PractitionerRole
+    | RelatedPerson
+    | Patient
+    | Device
+    | Organization
+  >;
   _who?: Element | undefined;
 }
 
@@ -80312,6 +81613,7 @@ export interface Signature extends Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/Slot.html}
  */
+
 export interface Slot extends DomainResource {
   readonly resourceType: "Slot";
 
@@ -80358,7 +81660,7 @@ export interface Slot extends DomainResource {
    * The schedule resource that this slot defines an interval of status information.
    * @see {@link http://hl7.org/fhir/R4B/Slot-definitions.html#Slot.schedule}
    */
-  schedule: Reference;
+  schedule: Reference<Schedule>;
   _schedule?: Element | undefined;
 
   /**
@@ -80443,7 +81745,7 @@ export interface SpecimenCollection extends BackboneElement {
    * Person who collected the specimen.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.collection.collector}
    */
-  collector?: Reference | undefined;
+  collector?: Reference<Practitioner | PractitionerRole> | undefined;
   _collector?: Element | undefined;
 
   /**
@@ -80561,7 +81863,7 @@ export interface SpecimenContainer extends BackboneElement {
    * Formalin, Citrate, EDTA.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.container.additiveReference}
    */
-  additiveReference?: Reference | undefined;
+  additiveReference?: Reference<Substance> | undefined;
   _additiveReference?: Element | undefined;
 
   /**
@@ -80659,7 +81961,7 @@ export interface SpecimenProcessing extends BackboneElement {
    * Material used in the processing step.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.processing.additive}
    */
-  additive?: Array<Reference> | undefined;
+  additive?: Array<Reference<Substance>> | undefined;
   _additive?: Element[] | undefined;
 
   /**
@@ -80750,6 +82052,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Specimen.html}
  */
+
 export interface Specimen extends DomainResource {
   readonly resourceType: "Specimen";
 
@@ -80811,7 +82114,7 @@ export interface Specimen extends DomainResource {
    * create a pooled sample.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.parent}
    */
-  parent?: Array<Reference> | undefined;
+  parent?: Array<Reference<Specimen>> | undefined;
   _parent?: Element[] | undefined;
 
   /**
@@ -80835,7 +82138,7 @@ export interface Specimen extends DomainResource {
    * a blood draw.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.request}
    */
-  request?: Array<Reference> | undefined;
+  request?: Array<Reference<ServiceRequest>> | undefined;
   _request?: Element[] | undefined;
 
   /**
@@ -80855,7 +82158,9 @@ export interface Specimen extends DomainResource {
    * device.
    * @see {@link http://hl7.org/fhir/R4B/Specimen-definitions.html#Specimen.subject}
    */
-  subject?: Reference | undefined;
+  subject?:
+    | Reference<Patient | Group | Device | Substance | Location>
+    | undefined;
   _subject?: Element | undefined;
 
   /**
@@ -81121,7 +82426,7 @@ export interface SpecimenDefinitionTypeTestedContainerAdditive
    * the specimen. Examples: Formalin, Citrate, EDTA.
    * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition-definitions.html#SpecimenDefinition.typeTested.container.additive.additiveReference}
    */
-  additiveReference?: Reference | undefined;
+  additiveReference?: Reference<Substance> | undefined;
   _additiveReference?: Element | undefined;
 
   /**
@@ -81264,6 +82569,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/SpecimenDefinition.html}
  */
+
 export interface SpecimenDefinition extends DomainResource {
   readonly resourceType: "SpecimenDefinition";
 
@@ -81602,6 +82908,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/StructureDefinition.html}
  */
+
 export interface StructureDefinition extends DomainResource {
   readonly resourceType: "StructureDefinition";
 
@@ -83218,6 +84525,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/StructureMap.html}
  */
+
 export interface StructureMap extends DomainResource {
   readonly resourceType: "StructureMap";
 
@@ -83554,6 +84862,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Subscription.html}
  */
+
 export interface Subscription extends DomainResource {
   readonly resourceType: "Subscription";
 
@@ -83636,7 +84945,7 @@ export interface SubscriptionStatusNotificationEvent extends BackboneElement {
    * relevant to an Encounter), however it MAY refer to non-FHIR objects.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.notificationEvent.additionalContext}
    */
-  additionalContext?: Array<Reference> | undefined;
+  additionalContext?: Array<Reference<Resource>> | undefined;
   _additionalContext?: Element[] | undefined;
 
   /**
@@ -83667,7 +84976,7 @@ export interface SubscriptionStatusNotificationEvent extends BackboneElement {
    * resource of the event, it MAY contain a reference to a non-FHIR object.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.notificationEvent.focus}
    */
-  focus?: Reference | undefined;
+  focus?: Reference<Resource> | undefined;
   _focus?: Element | undefined;
 
   /**
@@ -83719,6 +85028,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus.html}
  */
+
 export interface SubscriptionStatus extends DomainResource {
   readonly resourceType: "SubscriptionStatus";
 
@@ -83761,7 +85071,7 @@ export interface SubscriptionStatus extends DomainResource {
    * The reference to the Subscription which generated this notification.
    * @see {@link http://hl7.org/fhir/R4B/SubscriptionStatus-definitions.html#SubscriptionStatus.subscription}
    */
-  subscription: Reference;
+  subscription: Reference<Subscription>;
   _subscription?: Element | undefined;
 
   /**
@@ -84303,6 +85613,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/SubscriptionTopic.html}
  */
+
 export interface SubscriptionTopic extends DomainResource {
   readonly resourceType: "SubscriptionTopic";
 
@@ -84625,7 +85936,7 @@ Modifier extensions
    * Another substance that is a component of this substance.
    * @see {@link http://hl7.org/fhir/R4B/Substance-definitions.html#Substance.ingredient.substanceReference}
    */
-  substanceReference?: Reference | undefined;
+  substanceReference?: Reference<Substance> | undefined;
   _substanceReference?: Element | undefined;
 }
 
@@ -84714,6 +86025,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Substance.html}
  */
+
 export interface Substance extends DomainResource {
   readonly resourceType: "Substance";
 
@@ -84850,7 +86162,7 @@ Modifier extensions
    * Supporting literature.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.code.source}
    */
-  source?: Array<Reference> | undefined;
+  source?: Array<Reference<DocumentReference>> | undefined;
   _source?: Element[] | undefined;
 
   /**
@@ -85165,7 +86477,7 @@ Modifier extensions
    * Supporting literature.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.name.source}
    */
-  source?: Array<Reference> | undefined;
+  source?: Array<Reference<DocumentReference>> | undefined;
   _source?: Element[] | undefined;
 
   /**
@@ -85460,14 +86772,14 @@ Modifier extensions
    * Supporting literature.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.relationship.source}
    */
-  source?: Array<Reference> | undefined;
+  source?: Array<Reference<DocumentReference>> | undefined;
   _source?: Element[] | undefined;
 
   /**
    * A pointer to another substance, as a resource or just a representational code.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.relationship.substanceDefinitionReference}
    */
-  substanceDefinitionReference?: Reference | undefined;
+  substanceDefinitionReference?: Reference<SubstanceDefinition> | undefined;
   _substanceDefinitionReference?: Element | undefined;
 
   /**
@@ -85665,7 +86977,7 @@ Modifier extensions
    * The source of information about the structure.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.structure.sourceDocument}
    */
-  sourceDocument?: Array<Reference> | undefined;
+  sourceDocument?: Array<Reference<DocumentReference>> | undefined;
   _sourceDocument?: Element[] | undefined;
 
   /**
@@ -85695,7 +87007,7 @@ export interface SubstanceDefinitionStructureRepresentation
    * molecular structure graphic of the substance, a JCAMP or AnIML file.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.structure.representation.document}
    */
-  document?: Reference | undefined;
+  document?: Reference<DocumentReference> | undefined;
   _document?: Element | undefined;
 
   /**
@@ -85778,6 +87090,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition.html}
  */
+
 export interface SubstanceDefinition extends DomainResource {
   readonly resourceType: "SubstanceDefinition";
 
@@ -85831,7 +87144,7 @@ export interface SubstanceDefinition extends DomainResource {
    * Supporting literature.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.informationSource}
    */
-  informationSource?: Array<Reference> | undefined;
+  informationSource?: Array<Reference<Citation>> | undefined;
   _informationSource?: Element[] | undefined;
 
   /**
@@ -85839,7 +87152,7 @@ export interface SubstanceDefinition extends DomainResource {
    * set of potential manufacturers but is not necessarily comprehensive.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.manufacturer}
    */
-  manufacturer?: Array<Reference> | undefined;
+  manufacturer?: Array<Reference<Organization>> | undefined;
   _manufacturer?: Element[] | undefined;
 
   /**
@@ -85910,7 +87223,7 @@ export interface SubstanceDefinition extends DomainResource {
    * manufacturer. Supplier is synonymous to a distributor.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.supplier}
    */
-  supplier?: Array<Reference> | undefined;
+  supplier?: Array<Reference<Organization>> | undefined;
   _supplier?: Element[] | undefined;
 
   /**
@@ -85965,7 +87278,7 @@ export interface SupplyDeliverySuppliedItem extends BackboneElement {
    * identifies the item from a known list.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.suppliedItem.itemReference}
    */
-  itemReference?: Reference | undefined;
+  itemReference?: Reference<Medication | Substance | Device> | undefined;
   _itemReference?: Element | undefined;
 
   /**
@@ -86006,6 +87319,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery.html}
  */
+
 export interface SupplyDelivery extends DomainResource {
   readonly resourceType: "SupplyDelivery";
 
@@ -86013,7 +87327,7 @@ export interface SupplyDelivery extends DomainResource {
    * A plan, proposal or order that is fulfilled in whole or in part by this event.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<SupplyRequest>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -86021,7 +87335,7 @@ export interface SupplyDelivery extends DomainResource {
    * of the dispense event.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.destination}
    */
-  destination?: Reference | undefined;
+  destination?: Reference<Location> | undefined;
   _destination?: Element | undefined;
 
   /**
@@ -86068,21 +87382,21 @@ export interface SupplyDelivery extends DomainResource {
  * event resource].
  * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.partOf}
  */
-  partOf?: Array<Reference> | undefined;
+  partOf?: Array<Reference<SupplyDelivery | Contract>> | undefined;
   _partOf?: Element[] | undefined;
 
   /**
    * A link to a resource representing the person whom the delivered item is for.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.patient}
    */
-  patient?: Reference | undefined;
+  patient?: Reference<Patient> | undefined;
   _patient?: Element | undefined;
 
   /**
    * Identifies the person who picked up the Supply.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.receiver}
    */
-  receiver?: Array<Reference> | undefined;
+  receiver?: Array<Reference<Practitioner | PractitionerRole>> | undefined;
   _receiver?: Element[] | undefined;
 
   /**
@@ -86107,7 +87421,9 @@ export interface SupplyDelivery extends DomainResource {
    * The individual responsible for dispensing the medication, supplier or device.
    * @see {@link http://hl7.org/fhir/R4B/SupplyDelivery-definitions.html#SupplyDelivery.supplier}
    */
-  supplier?: Reference | undefined;
+  supplier?:
+    | Reference<Practitioner | PractitionerRole | Organization>
+    | undefined;
   _supplier?: Element | undefined;
 
   /**
@@ -86225,6 +87541,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/SupplyRequest.html}
  */
+
 export interface SupplyRequest extends DomainResource {
   readonly resourceType: "SupplyRequest";
 
@@ -86248,14 +87565,14 @@ export interface SupplyRequest extends DomainResource {
    * Where the supply is expected to come from.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.deliverFrom}
    */
-  deliverFrom?: Reference | undefined;
+  deliverFrom?: Reference<Organization | Location> | undefined;
   _deliverFrom?: Element | undefined;
 
   /**
    * Where the supply is destined to go.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.deliverTo}
    */
-  deliverTo?: Reference | undefined;
+  deliverTo?: Reference<Organization | Location | Patient> | undefined;
   _deliverTo?: Element | undefined;
 
   /**
@@ -86290,7 +87607,7 @@ export interface SupplyRequest extends DomainResource {
    * supply, with no explicit instructions.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.itemReference}
    */
-  itemReference?: Reference | undefined;
+  itemReference?: Reference<Medication | Substance | Device> | undefined;
   _itemReference?: Element | undefined;
 
   /**
@@ -86351,14 +87668,29 @@ export interface SupplyRequest extends DomainResource {
    * The reason why the supply item was requested.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.reasonReference}
    */
-  reasonReference?: Array<Reference> | undefined;
+  reasonReference?:
+    | Array<
+        Reference<
+          Condition | Observation | DiagnosticReport | DocumentReference
+        >
+      >
+    | undefined;
   _reasonReference?: Element[] | undefined;
 
   /**
    * The device, practitioner, etc. who initiated the request.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.requester}
    */
-  requester?: Reference | undefined;
+  requester?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | Organization
+        | Patient
+        | RelatedPerson
+        | Device
+      >
+    | undefined;
   _requester?: Element | undefined;
 
   /**
@@ -86374,7 +87706,7 @@ export interface SupplyRequest extends DomainResource {
    * Who is intended to fulfill the request.
    * @see {@link http://hl7.org/fhir/R4B/SupplyRequest-definitions.html#SupplyRequest.supplier}
    */
-  supplier?: Array<Reference> | undefined;
+  supplier?: Array<Reference<Organization | HealthcareService>> | undefined;
   _supplier?: Element[] | undefined;
 }
 
@@ -87303,7 +88635,18 @@ Modifier extensions
    * whom is fulfillment sought?
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.restriction.recipient}
    */
-  recipient?: Array<Reference> | undefined;
+  recipient?:
+    | Array<
+        Reference<
+          | Patient
+          | Practitioner
+          | PractitionerRole
+          | RelatedPerson
+          | Group
+          | Organization
+        >
+      >
+    | undefined;
   _recipient?: Element[] | undefined;
 
   /**
@@ -87322,6 +88665,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/Task.html}
  */
+
 export interface Task extends DomainResource {
   readonly resourceType: "Task";
 
@@ -87343,7 +88687,7 @@ export interface Task extends DomainResource {
    * specimen from a patient.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.basedOn}
    */
-  basedOn?: Array<Reference> | undefined;
+  basedOn?: Array<Reference<Resource>> | undefined;
   _basedOn?: Element[] | undefined;
 
   /**
@@ -87374,7 +88718,7 @@ export interface Task extends DomainResource {
    * during which this task was created.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -87392,7 +88736,7 @@ export interface Task extends DomainResource {
    * status can be tracked independently for each referenced resource.).
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.focus}
    */
-  focus?: Reference | undefined;
+  focus?: Reference<Resource> | undefined;
   _focus?: Element | undefined;
 
   /**
@@ -87400,7 +88744,7 @@ export interface Task extends DomainResource {
    * task (e.g., the patient).
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.for}
    */
-  for?: Reference | undefined;
+  for?: Reference<Resource> | undefined;
   _for?: Element | undefined;
 
   /**
@@ -87448,7 +88792,7 @@ export interface Task extends DomainResource {
    * pre-determinations that may be relevant to the Task.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.insurance}
    */
-  insurance?: Array<Reference> | undefined;
+  insurance?: Array<Reference<Coverage | ClaimResponse>> | undefined;
   _insurance?: Element[] | undefined;
 
   /**
@@ -87477,7 +88821,7 @@ In most cases, Tasks will have an intent of "order".
    * Principal physical location where the this task is performed.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.location}
    */
-  location?: Reference | undefined;
+  location?: Reference<Location> | undefined;
   _location?: Element | undefined;
 
   /**
@@ -87499,7 +88843,18 @@ In most cases, Tasks will have an intent of "order".
    * Tasks may be created with an owner not yet identified.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.owner}
    */
-  owner?: Reference | undefined;
+  owner?:
+    | Reference<
+        | Practitioner
+        | PractitionerRole
+        | Organization
+        | CareTeam
+        | HealthcareService
+        | Patient
+        | Device
+        | RelatedPerson
+      >
+    | undefined;
   _owner?: Element | undefined;
 
   /**
@@ -87507,7 +88862,7 @@ In most cases, Tasks will have an intent of "order".
    * This should usually be 0..1.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.partOf}
    */
-  partOf?: Array<Reference> | undefined;
+  partOf?: Array<Reference<Task>> | undefined;
   _partOf?: Element[] | undefined;
 
   /**
@@ -87544,7 +88899,7 @@ In most cases, Tasks will have an intent of "order".
    * element in `Task.reasonCode` if the data is free (uncoded) text.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.reasonReference}
    */
-  reasonReference?: Reference | undefined;
+  reasonReference?: Reference<Resource> | undefined;
   _reasonReference?: Element | undefined;
 
   /**
@@ -87556,14 +88911,23 @@ In most cases, Tasks will have an intent of "order".
    * The Provenance for the current version can be retrieved with a _revinclude.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.relevantHistory}
    */
-  relevantHistory?: Array<Reference> | undefined;
+  relevantHistory?: Array<Reference<Provenance>> | undefined;
   _relevantHistory?: Element[] | undefined;
 
   /**
    * The creator of the task.
    * @see {@link http://hl7.org/fhir/R4B/Task-definitions.html#Task.requester}
    */
-  requester?: Reference | undefined;
+  requester?:
+    | Reference<
+        | Device
+        | Organization
+        | Patient
+        | Practitioner
+        | PractitionerRole
+        | RelatedPerson
+      >
+    | undefined;
   _requester?: Element | undefined;
 
   /**
@@ -88339,6 +89703,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/TerminologyCapabilities.html}
  */
+
 export interface TerminologyCapabilities extends DomainResource {
   readonly resourceType: "TerminologyCapabilities";
 
@@ -89246,6 +90611,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/TestReport.html}
  */
+
 export interface TestReport extends DomainResource {
   readonly resourceType: "TestReport";
 
@@ -89354,7 +90720,7 @@ This element is labeled as a modifier because the status
    * TestScript that was executed, matching the `TestScript.url`.
    * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.testScript}
    */
-  testScript: Reference;
+  testScript: Reference<TestScript>;
   _testScript?: Element | undefined;
 }
 
@@ -89523,7 +90889,7 @@ Modifier extensions
    * See http://build.fhir.org/resourcelist.html for complete list of resource types.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.fixture.resource}
    */
-  resource?: Reference | undefined;
+  resource?: Reference<Resource> | undefined;
   _resource?: Element | undefined;
 }
 
@@ -91099,6 +92465,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/TestScript.html}
  */
+
 export interface TestScript extends DomainResource {
   readonly resourceType: "TestScript";
 
@@ -91239,7 +92606,7 @@ export interface TestScript extends DomainResource {
    * See http://build.fhir.org/resourcelist.html for complete list of resource types.
    * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.profile}
    */
-  profile?: Array<Reference> | undefined;
+  profile?: Array<Reference<Resource>> | undefined;
   _profile?: Element[] | undefined;
 
   /**
@@ -91399,6 +92766,7 @@ In some cases, the resource can no longer
  *
  * @see {@link http://hl7.org/fhir/R4B/Timing.html}
  */
+
 export interface Timing extends BackboneElement {
   /**
    * A code for the timing schedule (or just text in code.text). Some codes such as
@@ -91440,6 +92808,7 @@ export interface Timing extends BackboneElement {
  *
  * @see {@link http://hl7.org/fhir/R4B/TriggerDefinition.html}
  */
+
 export interface TriggerDefinition extends Element {
   /**
    * A boolean-valued expression that is evaluated in the context of the container of
@@ -91489,7 +92858,7 @@ export interface TriggerDefinition extends Element {
   /**
    * The timing of the event (if this is a periodic trigger).
    */
-  timingReference?: Reference | undefined;
+  timingReference?: Reference<Schedule> | undefined;
   _timingReference?: Element | undefined;
 
   /**
@@ -91526,6 +92895,7 @@ export interface TriggerDefinition extends Element {
  *
  * @see {@link http://hl7.org/fhir/R4B/UsageContext.html}
  */
+
 export interface UsageContext extends Element {
   /**
    * A code that identifies the type of context being specified by this usage
@@ -91559,7 +92929,17 @@ export interface UsageContext extends Element {
    * A value that defines the context specified in this context of use. The
    * interpretation of the value is defined by the code.
    */
-  valueReference?: Reference | undefined;
+  valueReference?:
+    | Reference<
+        | PlanDefinition
+        | ResearchStudy
+        | InsurancePlan
+        | HealthcareService
+        | Group
+        | Location
+        | Organization
+      >
+    | undefined;
   _valueReference?: Element | undefined;
 }
 
@@ -92443,6 +93823,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/ValueSet.html}
  */
+
 export interface ValueSet extends DomainResource {
   readonly resourceType: "ValueSet";
 
@@ -92771,7 +94152,9 @@ Modifier extensions
    * When the who is asserting on behalf of another (organization or individual).
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.attestation.onBehalfOf}
    */
-  onBehalfOf?: Reference | undefined;
+  onBehalfOf?:
+    | Reference<Organization | Practitioner | PractitionerRole>
+    | undefined;
   _onBehalfOf?: Element | undefined;
 
   /**
@@ -92809,7 +94192,7 @@ Modifier extensions
    * The individual or organization attesting to information.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.attestation.who}
    */
-  who?: Reference | undefined;
+  who?: Reference<Practitioner | PractitionerRole | Organization> | undefined;
   _who?: Element | undefined;
 }
 
@@ -92916,7 +94299,7 @@ Modifier extensions
    * Reference to the primary source.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.primarySource.who}
    */
-  who?: Reference | undefined;
+  who?: Reference<Organization | Practitioner | PractitionerRole> | undefined;
   _who?: Element | undefined;
 }
 
@@ -92990,7 +94373,7 @@ Modifier extensions
    * Reference to the organization validating information.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.validator.organization}
    */
-  organization: Reference;
+  organization: Reference<Organization>;
   _organization?: Element | undefined;
 }
 
@@ -93002,6 +94385,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/VerificationResult.html}
  */
+
 export interface VerificationResult extends DomainResource {
   readonly resourceType: "VerificationResult";
 
@@ -93078,7 +94462,7 @@ export interface VerificationResult extends DomainResource {
    * A resource that was validated.
    * @see {@link http://hl7.org/fhir/R4B/VerificationResult-definitions.html#VerificationResult.target}
    */
-  target?: Array<Reference> | undefined;
+  target?: Array<Reference<Resource>> | undefined;
   _target?: Element[] | undefined;
 
   /**
@@ -93359,6 +94743,7 @@ Modifier extensions
  *
  * @see {@link http://hl7.org/fhir/R4B/VisionPrescription.html}
  */
+
 export interface VisionPrescription extends DomainResource {
   readonly resourceType: "VisionPrescription";
 
@@ -93386,7 +94771,7 @@ export interface VisionPrescription extends DomainResource {
    * issued.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.encounter}
    */
-  encounter?: Reference | undefined;
+  encounter?: Reference<Encounter> | undefined;
   _encounter?: Element | undefined;
 
   /**
@@ -93408,14 +94793,14 @@ export interface VisionPrescription extends DomainResource {
    * A resource reference to the person to whom the vision prescription applies.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.patient}
    */
-  patient: Reference;
+  patient: Reference<Patient>;
   _patient?: Element | undefined;
 
   /**
    * The healthcare professional responsible for authorizing the prescription.
    * @see {@link http://hl7.org/fhir/R4B/VisionPrescription-definitions.html#VisionPrescription.prescriber}
    */
-  prescriber: Reference;
+  prescriber: Reference<Practitioner | PractitionerRole>;
   _prescriber?: Element | undefined;
 
   /**
@@ -93493,7 +94878,6 @@ export type FhirResource =
   | DiagnosticReport
   | DocumentManifest
   | DocumentReference
-  | DomainResource
   | Encounter
   | Endpoint
   | EnrollmentRequest
@@ -93567,7 +94951,6 @@ export type FhirResource =
   | ResearchElementDefinition
   | ResearchStudy
   | ResearchSubject
-  | Resource
   | RiskAssessment
   | Schedule
   | SearchParameter

@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
-import { splitLongLines, toJsComment, toTsType } from "../util-codegen";
+import {
+  splitLongLines,
+  targetProfileToTsTypes,
+  toJsComment,
+  toTsType,
+} from "../util-codegen";
 
 /**
  * Holds all FHIR definitions
@@ -365,7 +370,16 @@ export class ElementDefinition {
    */
   public get tsType(): string {
     let resolvedType = (this as any).type
-      ?.map((x: any) => toTsType(x.code))
+      ?.map((x: any) => {
+        const tsType = toTsType(x.code);
+        if (tsType === "Reference") {
+          const targetTypes = targetProfileToTsTypes(x.targetProfile);
+          if (targetTypes) {
+            return `Reference<${targetTypes}>`;
+          }
+        }
+        return tsType;
+      })
       .join(" | ");
 
     if (this.hasRequiredBinding) {

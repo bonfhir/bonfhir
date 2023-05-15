@@ -12,11 +12,11 @@ export interface ReferenceOptions {
 /**
  * Build a reference from a resource.
  */
-export function reference(
-  resource: Retrieved<FhirResource>,
+export function reference<TTargetResource extends FhirResource = FhirResource>(
+  resource: Retrieved<TTargetResource>,
   options?: ReferenceOptions | null | undefined
-): Reference {
-  const reference: Reference = {
+): Reference<TTargetResource> {
+  const reference: Reference<TTargetResource> = {
     reference: options?.versionSpecific
       ? `${resource.resourceType}/${resource.id}/_history/${resource.meta.versionId}`
       : `${resource.resourceType}/${resource.id}`,
