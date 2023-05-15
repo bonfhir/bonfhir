@@ -2,7 +2,7 @@ import { CodeFormatterOptions, codeFormatter } from "./code";
 
 describe("code", () => {
   const colorValueSetExpansion: CodeFormatterOptions = {
-    valueSetExpansions: [
+    expansions: [
       {
         code: "0",
         display: "red",

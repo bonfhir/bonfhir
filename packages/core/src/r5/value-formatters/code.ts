@@ -8,10 +8,10 @@ import { ValueFormatter } from "../formatters";
  * @see https://hl7.org/fhir/datatypes.html#code
  */
 export interface CodeFormatterOptions {
-  valueSetExpansions?:
-    | ReadonlyArray<ValueSetExpansionContains>
-    | null
-    | undefined;
+  /**
+   * The list of possible ValueSet expansions, to resolve the display name of the code.
+   */
+  expansions?: ReadonlyArray<ValueSetExpansionContains> | null | undefined;
 }
 
 export const codeFormatter: ValueFormatter<
@@ -24,9 +24,9 @@ export const codeFormatter: ValueFormatter<
     const trimmedValue = value?.trim() || "";
 
     if (!trimmedValue) return "";
-    if (!options?.valueSetExpansions) return trimmedValue;
+    if (!options?.expansions) return trimmedValue;
 
-    const matchingCode = options.valueSetExpansions.find((element) => {
+    const matchingCode = options.expansions.find((element) => {
       return element?.code === trimmedValue;
     });
 

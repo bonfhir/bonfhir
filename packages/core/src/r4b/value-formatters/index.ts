@@ -4,6 +4,7 @@ export * from "./code";
 export * from "./date";
 export * from "./datetime";
 export * from "./decimal";
+export * from "./distance";
 export * from "./fhirpath";
 export * from "./id";
 export * from "./instant";
