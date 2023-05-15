@@ -1,24 +1,13 @@
 import { Distance } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
-import { CodeFormatterOptions } from "./code";
-import { DecimalFormatterOptions } from "./decimal";
+import { ValueFormatter } from "../formatters";
+import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
 
 /**
  * A measured amount (or an amount that can potentially be measured).
  *
  * @see https://hl7.org/fhir/datatypes.html#distance
  */
-export interface DistanceFormatterOptions {
-  /**
-   * The list of possible ValueSet expansions for the code, to resolve the display name of the code.
-   */
-  expansions?: CodeFormatterOptions["expansions"];
-
-  /**
-   * The notation to use for the decimal value.
-   */
-  notation?: DecimalFormatterOptions["notation"];
-}
+export type DistanceFormatterOptions = QuantityFormatterOptions;
 
 export const distanceFormatter: ValueFormatter<
   "distance",
@@ -26,46 +15,5 @@ export const distanceFormatter: ValueFormatter<
   DistanceFormatterOptions | null | undefined
 > = {
   type: "distance",
-  format: (value, options, formatterOptions) => {
-    if (!value) return "";
-
-    const formattedValue = (
-      formatterOptions.formatter as WithValueFormatter<
-        "decimal",
-        number | undefined,
-        DecimalFormatterOptions
-      >
-    ).format("decimal", value.value, {
-      notation: options?.notation,
-    });
-
-    // comparator https://www.hl7.org/fhir/datatypes-definitions.html#Distance.comparator
-    const formattedComparator = value.comparator || "";
-
-    // unit https://www.hl7.org/fhir/datatypes-definitions.html#Distance.unit
-    const formattedUnit = value.unit?.trim() || "";
-
-    // system https://www.hl7.org/fhir/datatypes-definitions.html#Distance.system
-    const formattedSystem = value.system?.trim() || "";
-
-    // code https://www.hl7.org/fhir/datatypes-definitions.html#Distance.code
-    const formattedCode = (
-      formatterOptions.formatter as WithValueFormatter<
-        "code",
-        string | undefined,
-        CodeFormatterOptions
-      >
-    ).format("code", value.code, {
-      expansions: options?.expansions,
-    });
-
-    return [
-      formattedComparator,
-      formattedValue,
-      formattedCode || formattedUnit,
-      formattedSystem ? `(${formattedSystem})` : "",
-    ]
-      .filter(Boolean)
-      .join(" ");
-  },
+  format: quantityFormatter.format,
 };

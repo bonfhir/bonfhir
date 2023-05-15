@@ -1,6 +1,7 @@
 export * from "./boolean";
 export * from "./canonical";
 export * from "./code";
+export * from "./count";
 export * from "./date";
 export * from "./datetime";
 export * from "./decimal";
@@ -10,6 +11,7 @@ export * from "./fhirpath";
 export * from "./id";
 export * from "./instant";
 export * from "./oid";
+export * from "./quantity";
 export * from "./string";
 export * from "./uri";
 export * from "./url";
