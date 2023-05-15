@@ -1,4 +1,6 @@
+/* eslint-disable turbo/no-undeclared-env-vars, no-undef */
+
 export default async () => {
-  // eslint-disable-next-line turbo/no-undeclared-env-vars, no-undef
   process.env.TZ = "UTC";
+  process.env.LC_ALL = "en-us";
 };

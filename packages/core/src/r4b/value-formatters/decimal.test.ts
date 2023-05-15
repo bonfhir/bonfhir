@@ -14,8 +14,8 @@ describe("decimal", () => {
     ["987654321.00", { notation: "engineering" }, "987.654E6"],
     [undefined, undefined, ""],
   ])("given %p", (value, formatOptions, expected) => {
-    expect(
-      decimalFormatter.format(value, formatOptions, { locale: "en-us" } as any)
-    ).toEqual(expected);
+    expect(decimalFormatter.format(value, formatOptions, {} as any)).toEqual(
+      expected
+    );
   });
 });

@@ -81,7 +81,6 @@ describe("date", () => {
     expect(
       dateFormatter.format(value, options, {
         formatter: {} as Formatter,
-        locale: "en-us",
       })
     ).toEqual(expected);
   });
