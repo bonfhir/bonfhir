@@ -1,4 +1,5 @@
 export * from "./address";
+export * from "./age";
 export * from "./boolean";
 export * from "./canonical";
 export * from "./code";
@@ -12,6 +13,7 @@ export * from "./fhirpath";
 export * from "./human-name";
 export * from "./id";
 export * from "./instant";
+export * from "./integer";
 export * from "./oid";
 export * from "./period";
 export * from "./quantity";

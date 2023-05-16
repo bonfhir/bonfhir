@@ -95,6 +95,7 @@ export class Formatter {
 export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
   new Formatter(options)
     .register(valueFormatters.addressFormatter)
+    .register(valueFormatters.ageFormatter)
     .register(valueFormatters.booleanFormatter)
     .register(valueFormatters.canonicalFormatter)
     .register(valueFormatters.codeFormatter)
@@ -108,6 +109,7 @@ export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
     .register(valueFormatters.humanNameFormatter)
     .register(valueFormatters.idFormatter)
     .register(valueFormatters.instantFormatter)
+    .register(valueFormatters.integerFormatter)
     .register(valueFormatters.oidFormatter)
     .register(valueFormatters.periodFormatter)
     .register(valueFormatters.quantityFormatter)
