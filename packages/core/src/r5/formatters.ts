@@ -55,6 +55,44 @@ export interface FormatterOptions {
 }
 
 export class Formatter {
+  /** Build a new formatter with the default value formatters registered. */
+  public static build(options?: FormatterOptions | null | undefined) {
+    return new Formatter(options)
+      .register(valueFormatters.addressFormatter)
+      .register(valueFormatters.ageFormatter)
+      .register(valueFormatters.booleanFormatter)
+      .register(valueFormatters.canonicalFormatter)
+      .register(valueFormatters.codeFormatter)
+      .register(valueFormatters.codeableConceptFormatter)
+      .register(valueFormatters.codingFormatter)
+      .register(valueFormatters.contactPointFormatter)
+      .register(valueFormatters.countFormatter)
+      .register(valueFormatters.dateFormatter)
+      .register(valueFormatters.datetimeFormatter)
+      .register(valueFormatters.decimalFormatter)
+      .register(valueFormatters.distanceFormatter)
+      .register(valueFormatters.durationFormatter)
+      .register(valueFormatters.fhirPathFormatter)
+      .register(valueFormatters.humanNameFormatter)
+      .register(valueFormatters.idFormatter)
+      .register(valueFormatters.identifierFormatter)
+      .register(valueFormatters.instantFormatter)
+      .register(valueFormatters.integerFormatter)
+      .register(valueFormatters.oidFormatter)
+      .register(valueFormatters.periodFormatter)
+      .register(valueFormatters.quantityFormatter)
+      .register(valueFormatters.stringFormatter)
+      .register(valueFormatters.uriFormatter)
+      .register(valueFormatters.urlFormatter)
+      .register(valueFormatters.uuidFormatter);
+  }
+
+  /**
+   * Default instance of the formatter.
+   * Use the ambient locale and default options.
+   */
+  public static default = Formatter.build();
+
   constructor(
     private readonly _options?: FormatterOptions | null | undefined,
     private readonly _formatters = new Map<
@@ -99,43 +137,7 @@ export class Formatter {
   }
 }
 
-/** Build a new formatter with the default value formatters registered. */
-export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
-  new Formatter(options)
-    .register(valueFormatters.addressFormatter)
-    .register(valueFormatters.ageFormatter)
-    .register(valueFormatters.booleanFormatter)
-    .register(valueFormatters.canonicalFormatter)
-    .register(valueFormatters.codeFormatter)
-    .register(valueFormatters.codeableConceptFormatter)
-    .register(valueFormatters.codingFormatter)
-    .register(valueFormatters.contactPointFormatter)
-    .register(valueFormatters.countFormatter)
-    .register(valueFormatters.dateFormatter)
-    .register(valueFormatters.datetimeFormatter)
-    .register(valueFormatters.decimalFormatter)
-    .register(valueFormatters.distanceFormatter)
-    .register(valueFormatters.durationFormatter)
-    .register(valueFormatters.fhirPathFormatter)
-    .register(valueFormatters.humanNameFormatter)
-    .register(valueFormatters.idFormatter)
-    .register(valueFormatters.identifierFormatter)
-    .register(valueFormatters.instantFormatter)
-    .register(valueFormatters.integerFormatter)
-    .register(valueFormatters.oidFormatter)
-    .register(valueFormatters.periodFormatter)
-    .register(valueFormatters.quantityFormatter)
-    .register(valueFormatters.stringFormatter)
-    .register(valueFormatters.uriFormatter)
-    .register(valueFormatters.urlFormatter)
-    .register(valueFormatters.uuidFormatter);
-
 /**
  * The standard formatter type - with all the default value formatters registered.
  */
-export type StandardFormatter = ReturnType<typeof buildFormatter>;
-
-/**
- * A default formatter instance with all the default value formatters registered.
- */
-export const DEFAULT_FORMATTER: StandardFormatter = buildFormatter();
+export type StandardFormatter = ReturnType<(typeof Formatter)["build"]>;
