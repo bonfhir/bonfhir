@@ -8,7 +8,7 @@ export default ["cjs", "esm"].map((format) => ({
   input: "src/index.ts",
   output: [
     {
-      file: `dist/${format}/index.cjs`,
+      file: `dist/${format}/index.${format === "cjs" ? "c" : "m"}js`,
       format,
       sourcemap: true,
       banner: "#!/usr/bin/env node",

@@ -44,6 +44,7 @@
     "nodemon": "^2.0.22",
     "rimraf": "^5.0.0",
     "rollup": "^3.21.0",
+    "rollup-plugin-filesize": "^10.0.0",
     "typescript": "^5.0.4"
   },
   "prettier": "@bonfhir/prettier-config"
