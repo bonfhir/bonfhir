@@ -78,6 +78,7 @@ export class Formatter {
       .register(valueFormatters.identifierFormatter)
       .register(valueFormatters.instantFormatter)
       .register(valueFormatters.integerFormatter)
+      .register(valueFormatters.markdownFormatter)
       .register(valueFormatters.oidFormatter)
       .register(valueFormatters.periodFormatter)
       .register(valueFormatters.quantityFormatter)
