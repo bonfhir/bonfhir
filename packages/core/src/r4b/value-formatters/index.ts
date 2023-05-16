@@ -5,6 +5,7 @@ export * from "./canonical";
 export * from "./code";
 export * from "./codeable-concept";
 export * from "./coding";
+export * from "./contact-point";
 export * from "./count";
 export * from "./date";
 export * from "./datetime";

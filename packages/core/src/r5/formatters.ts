@@ -101,6 +101,7 @@ export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
     .register(valueFormatters.codeFormatter)
     .register(valueFormatters.codeableConceptFormatter)
     .register(valueFormatters.codingFormatter)
+    .register(valueFormatters.contactPointFormatter)
     .register(valueFormatters.countFormatter)
     .register(valueFormatters.dateFormatter)
     .register(valueFormatters.dateTimeFormatter)
