@@ -99,6 +99,7 @@ export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
     .register(valueFormatters.booleanFormatter)
     .register(valueFormatters.canonicalFormatter)
     .register(valueFormatters.codeFormatter)
+    .register(valueFormatters.codeableConceptFormatter)
     .register(valueFormatters.codingFormatter)
     .register(valueFormatters.countFormatter)
     .register(valueFormatters.dateFormatter)

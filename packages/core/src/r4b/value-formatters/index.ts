@@ -3,6 +3,7 @@ export * from "./age";
 export * from "./boolean";
 export * from "./canonical";
 export * from "./code";
+export * from "./codeable-concept";
 export * from "./coding";
 export * from "./count";
 export * from "./date";
