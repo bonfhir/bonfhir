@@ -15,6 +15,7 @@ export * from "./duration";
 export * from "./fhirpath";
 export * from "./human-name";
 export * from "./id";
+export * from "./identifier";
 export * from "./instant";
 export * from "./integer";
 export * from "./oid";

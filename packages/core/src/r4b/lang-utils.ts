@@ -163,6 +163,40 @@ export function formatRelativeDateTime(
   return relative.format(-Math.floor(diffSec / 31_104_000), "years");
 }
 
+/**
+ * Returns a formatted value based on the given `pattern` and `value`.
+ * If no pattern is provided, the value is returned as is.
+ * @param value - the value to format
+ * @param pattern - the pattern to use
+ * @returns the formatted value
+ */
+export function formatValueWithPattern(value: string, pattern: string): string {
+  if (!pattern) {
+    return value;
+  }
+
+  const patternChars = [...pattern];
+  const valueChars = [...value];
+
+  return patternChars
+    .map((char, i) => {
+      if (char === `\\` && patternChars[i + 1] === "#") {
+        return "#";
+      }
+      if (char === "#") {
+        const valueChar = valueChars.shift();
+        return valueChar;
+      }
+
+      if (char === valueChars[0]) {
+        return valueChars.shift();
+      }
+
+      return char;
+    })
+    .join("");
+}
+
 export interface WithPeriod {
   period?: Period | undefined;
 }

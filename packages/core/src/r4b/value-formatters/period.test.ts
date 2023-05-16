@@ -1,12 +1,12 @@
 import { Period } from "../fhir-types.codegen";
 import { Formatter } from "../formatters";
-import { dateTimeFormatter } from "./datetime";
+import { datetimeFormatter } from "./datetime";
 import { PeriodFormatterOptions, periodFormatter } from "./period";
 
 describe("period", () => {
   const formatter = new Formatter()
     .register(periodFormatter)
-    .register(dateTimeFormatter);
+    .register(datetimeFormatter);
 
   it.each(<
     Array<[Period | undefined, PeriodFormatterOptions | undefined, string]>

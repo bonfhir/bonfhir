@@ -1,8 +1,8 @@
 import { Period } from "../fhir-types.codegen";
 import { ValueFormatter, WithValueFormatter } from "../formatters";
-import { DateTimeFormatterOptions } from "./datetime";
+import { DatetimeFormatterOptions } from "./datetime";
 
-export type PeriodFormatterOptions = DateTimeFormatterOptions;
+export type PeriodFormatterOptions = DatetimeFormatterOptions;
 
 export const periodFormatter: ValueFormatter<
   "Period",
@@ -17,7 +17,7 @@ export const periodFormatter: ValueFormatter<
       formatterOptions.formatter as WithValueFormatter<
         "datetime",
         string | undefined,
-        DateTimeFormatterOptions
+        DatetimeFormatterOptions
       >;
     const formattedStartDateTime = withDateTimeFormatterOptions.format(
       "datetime",

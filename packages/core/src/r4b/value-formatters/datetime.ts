@@ -7,7 +7,7 @@ import { formatRelativeDateTime } from "../lang-utils";
  * @see https://hl7.org/fhir/datatypes.html#dateTime
  */
 
-export type DateTimeFormatterOptions =
+export type DatetimeFormatterOptions =
   | {
       dateStyle?: "full" | "long" | "medium" | "short" | null;
       timeStyle?: "full" | "long" | "medium" | "short" | null;
@@ -19,10 +19,10 @@ export type DateTimeFormatterOptions =
       relativeTo?: string | number | Date | null | undefined;
     };
 
-export const dateTimeFormatter: ValueFormatter<
+export const datetimeFormatter: ValueFormatter<
   "datetime",
   string | null | undefined,
-  DateTimeFormatterOptions | null | undefined
+  DatetimeFormatterOptions | null | undefined
 > = {
   type: "datetime",
   format: (value, options, formatterOptions) => {
@@ -115,7 +115,7 @@ export const dateTimeFormatter: ValueFormatter<
 };
 
 function convertDateStyleToMonthStyle(
-  style: DateTimeFormatterOptions["dateStyle"] | null | undefined
+  style: DatetimeFormatterOptions["dateStyle"] | null | undefined
 ): "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined {
   switch (style) {
     case "full":

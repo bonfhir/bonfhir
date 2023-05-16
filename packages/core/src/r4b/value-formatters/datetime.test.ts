@@ -1,10 +1,10 @@
 import { Formatter } from "../formatters";
-import { DateTimeFormatterOptions, dateTimeFormatter } from "./datetime";
+import { DatetimeFormatterOptions, datetimeFormatter } from "./datetime";
 
 describe("datetime", () => {
-  const formatter = new Formatter().register(dateTimeFormatter);
+  const formatter = new Formatter().register(datetimeFormatter);
 
-  it.each(<Array<[string, DateTimeFormatterOptions | undefined, string]>>[
+  it.each(<Array<[string, DatetimeFormatterOptions | undefined, string]>>[
     ["2023", undefined, "2023"],
     ["2023-02", undefined, "2023"],
     ["2023-02-08", undefined, "2/8/2023"],

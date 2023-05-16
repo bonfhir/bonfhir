@@ -1,12 +1,12 @@
 import { ValueFormatter } from "../formatters";
-import { DateTimeFormatterOptions, dateTimeFormatter } from "./datetime";
+import { DatetimeFormatterOptions, datetimeFormatter } from "./datetime";
 
 /**
  * A instant, or partial instant (e.g. just year or year + month) as used in human communication.
  *
  * @see https://hl7.org/fhir/datatypes.html#instant
  */
-export type InstantFormatterOptions = DateTimeFormatterOptions;
+export type InstantFormatterOptions = DatetimeFormatterOptions;
 
 export const instantFormatter: ValueFormatter<
   "instant",
@@ -14,5 +14,5 @@ export const instantFormatter: ValueFormatter<
   InstantFormatterOptions | null | undefined
 > = {
   type: "instant",
-  format: dateTimeFormatter.format,
+  format: datetimeFormatter.format,
 };

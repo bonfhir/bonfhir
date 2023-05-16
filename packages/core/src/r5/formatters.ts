@@ -44,6 +44,14 @@ export interface FormatterOptions {
    * The default labels to use for boolean values.
    */
   booleanLabels?: valueFormatters.BooleanLabels | null | undefined;
+
+  /**
+   * The default labels to use for system values.
+   */
+  systemsLabels?:
+    | valueFormatters.IdentifierFormatterOptions["systemsLabels"]
+    | null
+    | undefined;
 }
 
 export class Formatter {
@@ -104,13 +112,14 @@ export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
     .register(valueFormatters.contactPointFormatter)
     .register(valueFormatters.countFormatter)
     .register(valueFormatters.dateFormatter)
-    .register(valueFormatters.dateTimeFormatter)
+    .register(valueFormatters.datetimeFormatter)
     .register(valueFormatters.decimalFormatter)
     .register(valueFormatters.distanceFormatter)
     .register(valueFormatters.durationFormatter)
     .register(valueFormatters.fhirPathFormatter)
     .register(valueFormatters.humanNameFormatter)
     .register(valueFormatters.idFormatter)
+    .register(valueFormatters.identifierFormatter)
     .register(valueFormatters.instantFormatter)
     .register(valueFormatters.integerFormatter)
     .register(valueFormatters.oidFormatter)
