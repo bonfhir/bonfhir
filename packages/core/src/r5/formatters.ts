@@ -139,6 +139,6 @@ export class Formatter {
 }
 
 /**
- * The standard formatter type - with all the default value formatters registered.
+ * The default formatter type - with all the default value formatters registered.
  */
-export type StandardFormatter = ReturnType<(typeof Formatter)["build"]>;
+export type DefaultFormatter = ReturnType<(typeof Formatter)["build"]>;
