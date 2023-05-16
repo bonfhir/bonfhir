@@ -1,8 +1,15 @@
 import { Distance, ValueSetExpansionContains } from "../fhir-types.codegen";
-import { DEFAULT_FORMATTER } from "../formatters";
+import { Formatter } from "../formatters";
+import { codeFormatter } from "./code";
+import { decimalFormatter } from "./decimal";
 import { DistanceFormatterOptions, distanceFormatter } from "./distance";
 
 describe("distance", () => {
+  const formatter = new Formatter()
+    .register(distanceFormatter)
+    .register(decimalFormatter)
+    .register(codeFormatter);
+
   const expansions: ReadonlyArray<ValueSetExpansionContains> = [
     {
       code: "0",
@@ -29,11 +36,7 @@ describe("distance", () => {
       },
       "> -4.23E1 km",
     ],
-  ])("format %p", (value, options, expected) => {
-    expect(
-      distanceFormatter.format(value, options, {
-        formatter: DEFAULT_FORMATTER,
-      })
-    ).toEqual(expected);
+  ])("format %p %p => %p", (value, options, expected) => {
+    expect(formatter.format("Distance", value, options)).toEqual(expected);
   });
 });

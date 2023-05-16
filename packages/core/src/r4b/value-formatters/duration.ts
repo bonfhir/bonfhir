@@ -10,10 +10,10 @@ import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
 export type DurationFormatterOptions = QuantityFormatterOptions;
 
 export const durationFormatter: ValueFormatter<
-  "duration",
+  "Duration",
   Distance | null | undefined,
   DurationFormatterOptions | null | undefined
 > = {
-  type: "duration",
+  type: "Duration",
   format: quantityFormatter.format,
 };

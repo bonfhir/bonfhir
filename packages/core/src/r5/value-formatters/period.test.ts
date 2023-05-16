@@ -37,7 +37,7 @@ describe("period", () => {
       },
       "2/7/15, 6:28:17 PM UTC - 2/8/15, 6:28:17 PM UTC",
     ],
-  ])("format %p", (value, options, expected) => {
-    expect(formatter.format("period", value, options)).toEqual(expected);
+  ])("format %p %p => %p", (value, options, expected) => {
+    expect(formatter.format("Period", value, options)).toEqual(expected);
   });
 });

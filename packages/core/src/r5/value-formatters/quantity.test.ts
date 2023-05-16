@@ -1,8 +1,15 @@
 import { Quantity, ValueSetExpansionContains } from "../fhir-types.codegen";
-import { DEFAULT_FORMATTER } from "../formatters";
+import { Formatter } from "../formatters";
+import { codeFormatter } from "./code";
+import { decimalFormatter } from "./decimal";
 import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
 
 describe("quantity", () => {
+  const formatter = new Formatter()
+    .register(quantityFormatter)
+    .register(decimalFormatter)
+    .register(codeFormatter);
+
   const expansions: ReadonlyArray<ValueSetExpansionContains> = [
     {
       code: "0",
@@ -36,11 +43,7 @@ describe("quantity", () => {
       },
       "> -4.246E1 cat",
     ],
-  ])("format %p", (value, options, expected) => {
-    expect(
-      quantityFormatter.format(value, options, {
-        formatter: DEFAULT_FORMATTER,
-      })
-    ).toEqual(expected);
+  ])("format %p %p => %p", (value, options, expected) => {
+    expect(formatter.format("Quantity", value, options)).toEqual(expected);
   });
 });

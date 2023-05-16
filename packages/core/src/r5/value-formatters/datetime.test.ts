@@ -2,6 +2,8 @@ import { Formatter } from "../formatters";
 import { DateTimeFormatterOptions, dateTimeFormatter } from "./datetime";
 
 describe("datetime", () => {
+  const formatter = new Formatter().register(dateTimeFormatter);
+
   it.each(<Array<[string, DateTimeFormatterOptions | undefined, string]>>[
     ["2023", undefined, "2023"],
     ["2023-02", undefined, "2023"],
@@ -76,12 +78,7 @@ describe("datetime", () => {
       { dateStyle: "relative", relativeTo: "2015-02-07T10:25:20-05:00" },
       "in 4 hours",
     ],
-  ])("format %p %p", (value, options, expected) => {
-    expect(
-      dateTimeFormatter.format(value, options, {
-        formatter: {} as Formatter,
-        locale: "en-us",
-      })
-    ).toEqual(expected);
+  ])("format %p %p => %p", (value, options, expected) => {
+    expect(formatter.format("datetime", value, options)).toEqual(expected);
   });
 });

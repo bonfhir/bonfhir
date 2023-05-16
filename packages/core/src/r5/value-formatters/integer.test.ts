@@ -14,7 +14,7 @@ describe("integer", () => {
     [987_654_321, { notation: "engineering" }, "987.654E6"],
     [-123, undefined, "-123"],
     [undefined, undefined, ""],
-  ])("format %p", (value, options, expected) => {
+  ])("format %p %p => %p", (value, options, expected) => {
     expect(formatter.format("integer", value, options)).toEqual(expected);
   });
 });

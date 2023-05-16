@@ -5,11 +5,11 @@ import { DateTimeFormatterOptions } from "./datetime";
 export type PeriodFormatterOptions = DateTimeFormatterOptions;
 
 export const periodFormatter: ValueFormatter<
-  "period",
+  "Period",
   Period | null | undefined,
   PeriodFormatterOptions | null | undefined
 > = {
-  type: "period",
+  type: "Period",
   format: (value, options, formatterOptions) => {
     if (!value?.start) return "";
 

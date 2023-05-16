@@ -126,15 +126,15 @@ describe("address", () => {
         { style, preferText: false },
         expected,
       ]),
-    ])("parse %p with %p", (value, options, expected) => {
-      expect(formatter.format("address", value, options)).toEqual(
+    ])("format %p %p => %p", (value, options, expected) => {
+      expect(formatter.format("Address", value, options)).toEqual(
         expected.join(", ")
       );
     });
 
     it("allows to specify line separator", () => {
       expect(
-        formatter.format("address", address, {
+        formatter.format("Address", address, {
           preferText: false,
           lineSeparator: "\n ",
         })
@@ -187,7 +187,7 @@ describe("address", () => {
     ];
 
     it("sorts by period and type", () => {
-      expect(formatter.format("address", addresses)).toEqual(
+      expect(formatter.format("Address", addresses)).toEqual(
         "work, present, " +
           "temp, present, " +
           "home, past, " +
@@ -200,7 +200,7 @@ describe("address", () => {
 
     it("Allows custom sort and filter", () => {
       expect(
-        formatter.format("address", addresses, {
+        formatter.format("Address", addresses, {
           useFilterOrder: ["work", "home"],
         })
       ).toEqual(
@@ -213,7 +213,7 @@ describe("address", () => {
 
     it("Allows to only display a few", () => {
       expect(
-        formatter.format("address", addresses, {
+        formatter.format("Address", addresses, {
           useFilterOrder: ["work", "home"],
           max: 2,
         })

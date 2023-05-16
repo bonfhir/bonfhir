@@ -21,11 +21,11 @@ export interface QuantityFormatterOptions {
 }
 
 export const quantityFormatter: ValueFormatter<
-  "quantity",
+  "Quantity",
   Quantity | null | undefined,
   QuantityFormatterOptions | null | undefined
 > = {
-  type: "quantity",
+  type: "Quantity",
   format: (value, options, formatterOptions) => {
     if (!value) return "";
 

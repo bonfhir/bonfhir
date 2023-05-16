@@ -65,11 +65,11 @@ export interface AddressFormatterOptions {
 }
 
 export const addressFormatter: ValueFormatter<
-  "address",
+  "Address",
   Address | Address[] | null | undefined,
   AddressFormatterOptions | null | undefined
 > = {
-  type: "address",
+  type: "Address",
   format: (value, options, formatterOptions) => {
     if (!value) return "";
 
@@ -78,11 +78,11 @@ export const addressFormatter: ValueFormatter<
         (address) =>
           (
             formatterOptions.formatter as WithValueFormatter<
-              "address",
+              "Address",
               Address | null | undefined,
               AddressFormatterOptions | null | undefined
             >
-          ).format("address", address, options)
+          ).format("Address", address, options)
       );
 
       return new Intl.ListFormat(
@@ -126,11 +126,11 @@ export const addressFormatter: ValueFormatter<
       addressComponents.unshift(
         `(${(
           formatterOptions.formatter as WithValueFormatter<
-            "period",
+            "Period",
             Period | null | undefined,
             PeriodFormatterOptions | null | undefined
           >
-        ).format("period", value.period)})`
+        ).format("Period", value.period)})`
       );
 
     // add country

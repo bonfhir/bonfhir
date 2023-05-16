@@ -2,6 +2,8 @@ import { Formatter } from "../formatters";
 import { DateFormatterOptions, dateFormatter } from "./date";
 
 describe("date", () => {
+  const formatter = new Formatter().register(dateFormatter);
+
   it.each(<Array<[string, DateFormatterOptions | undefined, string]>>[
     ["2023-12-31", undefined, "12/31/2023"],
     ["2023-02-08", { dateStyle: "full" }, "Wednesday, February 8, 2023"],
@@ -77,11 +79,7 @@ describe("date", () => {
     ],
     ["2023-02", { dateStyle: "medium" }, "Feb 2023"],
     ["2023", undefined, "2023"],
-  ])("format %p", (value, options, expected) => {
-    expect(
-      dateFormatter.format(value, options, {
-        formatter: {} as Formatter,
-      })
-    ).toEqual(expected);
+  ])("format %p %p => %p", (value, options, expected) => {
+    expect(formatter.format("date", value, options)).toEqual(expected);
   });
 });

@@ -10,10 +10,10 @@ import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
 export type CountFormatterOptions = QuantityFormatterOptions;
 
 export const countFormatter: ValueFormatter<
-  "count",
+  "Count",
   Count | null | undefined,
   CountFormatterOptions | null | undefined
 > = {
-  type: "count",
+  type: "Count",
   format: quantityFormatter.format,
 };

@@ -63,11 +63,11 @@ export interface HumanNameFormatterOptions {
 }
 
 export const humanNameFormatter: ValueFormatter<
-  "humanName",
+  "HumanName",
   HumanName | HumanName[] | null | undefined,
   HumanNameFormatterOptions | null | undefined
 > = {
-  type: "humanName",
+  type: "HumanName",
   format: (value, options, formatterOptions) => {
     if (!value) return "";
 
@@ -78,11 +78,11 @@ export const humanNameFormatter: ValueFormatter<
       ).map((humanName) =>
         (
           formatterOptions.formatter as WithValueFormatter<
-            "humanName",
+            "HumanName",
             HumanName | null | undefined,
             HumanNameFormatterOptions
           >
-        ).format("humanName", humanName, options)
+        ).format("HumanName", humanName, options)
       );
 
       return new Intl.ListFormat(

@@ -1,8 +1,15 @@
 import { Duration, ValueSetExpansionContains } from "../fhir-types.codegen";
-import { DEFAULT_FORMATTER } from "../formatters";
+import { Formatter } from "../formatters";
+import { codeFormatter } from "./code";
+import { decimalFormatter } from "./decimal";
 import { DurationFormatterOptions, durationFormatter } from "./duration";
 
 describe("duration", () => {
+  const formatter = new Formatter()
+    .register(durationFormatter)
+    .register(decimalFormatter)
+    .register(codeFormatter);
+
   const expansions: ReadonlyArray<ValueSetExpansionContains> = [
     {
       code: "0",
@@ -29,11 +36,7 @@ describe("duration", () => {
       },
       "> -4.23E1 milliseconds",
     ],
-  ])("format %p", (value, options, expected) => {
-    expect(
-      durationFormatter.format(value, options, {
-        formatter: DEFAULT_FORMATTER,
-      })
-    ).toEqual(expected);
+  ])("format %p %p => %p", (value, options, expected) => {
+    expect(formatter.format("Duration", value, options)).toEqual(expected);
   });
 });

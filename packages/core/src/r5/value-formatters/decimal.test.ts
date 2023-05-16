@@ -1,7 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Formatter } from "../formatters";
 import { DecimalFormatterOptions, decimalFormatter } from "./decimal";
 
 describe("decimal", () => {
+  const formatter = new Formatter().register(decimalFormatter);
+
   it.each(<
     Array<[string | undefined, DecimalFormatterOptions | undefined, string]>
   >[
@@ -13,9 +15,7 @@ describe("decimal", () => {
     ["987654321.00", { notation: "scientific" }, "9.877E8"],
     ["987654321.00", { notation: "engineering" }, "987.654E6"],
     [undefined, undefined, ""],
-  ])("given %p", (value, formatOptions, expected) => {
-    expect(decimalFormatter.format(value, formatOptions, {} as any)).toEqual(
-      expected
-    );
+  ])("format %p %p => %p", (value, options, expected) => {
+    expect(formatter.format("decimal", value, options)).toEqual(expected);
   });
 });

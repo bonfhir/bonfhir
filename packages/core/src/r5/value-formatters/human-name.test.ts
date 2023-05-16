@@ -4,7 +4,6 @@ import { codeFormatter } from "./code";
 import { HumanNameFormatterOptions, humanNameFormatter } from "./human-name";
 
 describe("human-name", () => {
-  // We use a complete formatter as the humanName formatter is re-entrant to allow arrays.
   const formatter = new Formatter()
     .register(humanNameFormatter)
     .register(codeFormatter);
@@ -71,7 +70,7 @@ describe("human-name", () => {
         full: "Mr Dr Bonisseur de la Bath Hubert Léandre jr",
       }).map(([style, expected]) => [name, { style }, expected]),
     ])("format %p with %p", (value, options, expected) => {
-      expect(formatter.format("humanName", value, options)).toEqual(expected);
+      expect(formatter.format("HumanName", value, options)).toEqual(expected);
     });
   });
 
@@ -96,14 +95,14 @@ describe("human-name", () => {
     ];
 
     it("sorts by use", () => {
-      expect(formatter.format("humanName", addresses)).toEqual(
+      expect(formatter.format("HumanName", addresses)).toEqual(
         "usual, " + "official, " + "temp, " + "and maiden"
       );
     });
 
     it("Allows custom sort and filter", () => {
       expect(
-        formatter.format("humanName", addresses, {
+        formatter.format("HumanName", addresses, {
           useFilterOrder: ["temp", "official"],
         })
       ).toEqual("temp and official");
@@ -111,7 +110,7 @@ describe("human-name", () => {
 
     it("Allows to only display a few", () => {
       expect(
-        formatter.format("humanName", addresses, {
+        formatter.format("HumanName", addresses, {
           useFilterOrder: ["temp", "official"],
           max: 1,
         })

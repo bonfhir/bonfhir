@@ -2,6 +2,8 @@ import { Formatter } from "../formatters";
 import { InstantFormatterOptions, instantFormatter } from "./instant";
 
 describe("instant", () => {
+  const formatter = new Formatter().register(instantFormatter);
+
   it.each(<Array<[string, InstantFormatterOptions | undefined, string]>>[
     [
       "2015-02-07T13:28:17-05:00",
@@ -64,12 +66,7 @@ describe("instant", () => {
       { dateStyle: "relative", relativeTo: "2015-02-07T10:25:20-05:00" },
       "in 4 hours",
     ],
-  ])("format %p %p", (value, options, expected) => {
-    expect(
-      instantFormatter.format(value, options, {
-        formatter: {} as Formatter,
-        locale: "en-us",
-      })
-    ).toEqual(expected);
+  ])("format %p %p => %p", (value, options, expected) => {
+    expect(formatter.format("instant", value, options)).toEqual(expected);
   });
 });

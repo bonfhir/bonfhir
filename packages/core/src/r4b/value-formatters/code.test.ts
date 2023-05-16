@@ -1,7 +1,10 @@
+import { Formatter } from "../formatters";
 import { CodeFormatterOptions, codeFormatter } from "./code";
 
 describe("code", () => {
-  const colorValueSetExpansion: CodeFormatterOptions = {
+  const formatter = new Formatter().register(codeFormatter);
+
+  const options: CodeFormatterOptions = {
     expansions: [
       {
         code: "0",
@@ -19,10 +22,9 @@ describe("code", () => {
     [undefined, undefined, ""],
     // eslint-disable-next-line unicorn/no-null
     [null, undefined, ""],
-    ["0", colorValueSetExpansion, "red"],
-    ["3", colorValueSetExpansion, "3"],
-  ])("parse %p", (value, options, expected) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect(codeFormatter.format(value, options, {} as any)).toEqual(expected);
+    ["0", options, "red"],
+    ["3", options, "3"],
+  ])("format %p %p => %p", (value, options, expected) => {
+    expect(formatter.format("code", value, options)).toEqual(expected);
   });
 });
