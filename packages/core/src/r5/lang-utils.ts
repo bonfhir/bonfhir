@@ -2,6 +2,8 @@
  * This module is used to provide a set of utility functions for typescript
  */
 
+import { Period } from "./fhir-types.codegen";
+
 /**
  * Returns the given `value` as is if it satisfies `Array.isArray` or otherwise
  * wraps the given `value` in an array.
@@ -159,4 +161,30 @@ export function formatRelativeDateTime(
   }
 
   return relative.format(-Math.floor(diffSec / 31_104_000), "years");
+}
+
+export interface WithPeriod {
+  period?: Period | undefined;
+}
+
+export function comparePeriods(
+  element1: WithPeriod,
+  element2: WithPeriod
+): number {
+  const element1EndDate = element1?.period?.end
+    ? new Date(element1.period.end)
+    : undefined;
+  const element2EndDate = element2?.period?.end
+    ? new Date(element2.period.end)
+    : undefined;
+
+  // sort by period
+  if (!element1EndDate && element2EndDate) return -1;
+  if (!element2EndDate && element1EndDate) return 1;
+  if (element1EndDate && element2EndDate) {
+    if (element1EndDate > element2EndDate) return -1;
+    if (element2EndDate > element1EndDate) return 1;
+  }
+
+  return 0;
 }

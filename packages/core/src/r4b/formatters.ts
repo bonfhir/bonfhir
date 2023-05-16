@@ -94,6 +94,7 @@ export class Formatter {
 /** Build a new formatter with the default value formatters registered. */
 export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
   new Formatter(options)
+    .register(valueFormatters.addressFormatter)
     .register(valueFormatters.booleanFormatter)
     .register(valueFormatters.canonicalFormatter)
     .register(valueFormatters.codeFormatter)
@@ -108,6 +109,7 @@ export const buildFormatter = (options?: FormatterOptions | null | undefined) =>
     .register(valueFormatters.idFormatter)
     .register(valueFormatters.instantFormatter)
     .register(valueFormatters.oidFormatter)
+    .register(valueFormatters.periodFormatter)
     .register(valueFormatters.quantityFormatter)
     .register(valueFormatters.stringFormatter)
     .register(valueFormatters.uriFormatter)

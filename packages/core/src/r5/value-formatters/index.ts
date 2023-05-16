@@ -1,3 +1,4 @@
+export * from "./address";
 export * from "./boolean";
 export * from "./canonical";
 export * from "./code";
@@ -12,6 +13,7 @@ export * from "./human-name";
 export * from "./id";
 export * from "./instant";
 export * from "./oid";
+export * from "./period";
 export * from "./quantity";
 export * from "./string";
 export * from "./uri";
