@@ -125,13 +125,12 @@ export class Formatter {
     this._default = value;
   }
 
-  constructor(
-    private readonly _options?: FormatterOptions | null | undefined,
-    private readonly _formatters = new Map<
-      string,
-      ValueFormatter<string, unknown, unknown>
-    >()
-  ) {}
+  private readonly _formatters = new Map<
+    string,
+    ValueFormatter<string, unknown, unknown>
+  >();
+
+  constructor(public readonly options?: FormatterOptions | null | undefined) {}
 
   /**
    * Format a value using the specified type and options.
@@ -148,7 +147,7 @@ export class Formatter {
 
     return valueFormatter.format(value, options, {
       formatter: this,
-      ...this._options,
+      ...this.options,
     });
   }
 
