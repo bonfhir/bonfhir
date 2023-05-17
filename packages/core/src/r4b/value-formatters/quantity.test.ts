@@ -1,4 +1,4 @@
-import { Quantity, ValueSetExpansionContains } from "../fhir-types.codegen";
+import { Quantity } from "../fhir-types.codegen";
 import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import { decimalFormatter } from "./decimal";
@@ -9,17 +9,6 @@ describe("quantity", () => {
     .register(quantityFormatter)
     .register(decimalFormatter)
     .register(codeFormatter);
-
-  const expansions: ReadonlyArray<ValueSetExpansionContains> = [
-    {
-      code: "0",
-      display: "cat",
-    },
-    {
-      code: "1",
-      display: "dog",
-    },
-  ];
 
   it.each(<
     Array<[Quantity | undefined, QuantityFormatterOptions | undefined, string]>
@@ -34,14 +23,14 @@ describe("quantity", () => {
     [
       {
         value: -42.46,
-        code: "0",
+        code: "ml",
         comparator: ">",
+        system: "http://unitsofmeasure.org",
       },
       {
-        expansions: expansions,
         notation: "scientific",
       },
-      "> -4.246E1 cat",
+      "> -4.246E1 ml",
     ],
   ])("format %p %p => %p", (value, options, expected) => {
     expect(formatter.format("Quantity", value, options)).toEqual(expected);

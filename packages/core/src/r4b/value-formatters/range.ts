@@ -1,16 +1,23 @@
-import { Range } from "../fhir-types.codegen";
+import { Quantity, Range } from "../fhir-types.codegen";
 import { ValueFormatter, WithValueFormatter } from "../formatters";
 import { CodeFormatterOptions } from "./code";
 import { DecimalFormatterOptions } from "./decimal";
+import { QuantityFormatterOptions } from "./quantity";
 
 /**
  * A set of ordered Quantity values defined by a low and high limit.
  *
- * @see https://hl7.org/fhir/datatypes.html#range
+ * @see https://hl7.org/fhir/datatypes.html#Range
  */
 export type RangeFormatterOptions = {
   expansions?: CodeFormatterOptions["expansions"];
+
   notation?: DecimalFormatterOptions["notation"];
+
+  quantitySeparator?: QuantityFormatterOptions["separator"];
+
+  /** Defaults to " … " */
+  rangeSeparator?: string | null | undefined;
 };
 
 export const rangeFormatter: ValueFormatter<
@@ -27,39 +34,30 @@ export const rangeFormatter: ValueFormatter<
       number | undefined,
       DecimalFormatterOptions
     >;
-    const formattedLow = decimalFormatter.format("decimal", value.low.value, {
+
+    const quantityFormatter = formatterOptions.formatter as WithValueFormatter<
+      "Quantity",
+      Quantity | undefined,
+      QuantityFormatterOptions
+    >;
+
+    let formattedLow = quantityFormatter.format("Quantity", value.low, {
       notation: options?.notation,
+      expansions: options?.expansions,
+      separator: options?.quantitySeparator,
     });
-    const formattedHigh = decimalFormatter.format("decimal", value.high.value, {
+    const formattedHigh = quantityFormatter.format("Quantity", value.high, {
       notation: options?.notation,
+      expansions: options?.expansions,
+      separator: options?.quantitySeparator,
     });
 
-    const formattedUnit =
-      value.low.unit?.trim() || value.high.unit?.trim() || "";
-
-    // system https://www.hl7.org/fhir/datatypes-definitions.html#Quantity.system
-    const formattedSystem =
-      value.low.system?.trim() || value.high.system?.trim() || "";
-
-    // code https://www.hl7.org/fhir/datatypes-definitions.html#Quantity.code
-    let formattedCode: string;
-    if (value.low.code || value.high.code)
-      formattedCode = (
-        formatterOptions.formatter as WithValueFormatter<
-          "code",
-          string | undefined,
-          CodeFormatterOptions
-        >
-      ).format("code", value.low.code || value.high.code, {
-        expansions: options?.expansions,
+    if (value.low?.unit === value.high?.unit) {
+      formattedLow = decimalFormatter.format("decimal", value.low.value, {
+        notation: options?.notation,
       });
-    formattedCode ||= "";
+    }
 
-    return [
-      `[${formattedLow} ... ${formattedHigh}]${formattedCode || formattedUnit}`,
-      formattedSystem ? `(${formattedSystem})` : "",
-    ]
-      .filter(Boolean)
-      .join(" ");
+    return `${formattedLow}${options?.rangeSeparator ?? " … "}${formattedHigh}`;
   },
 };

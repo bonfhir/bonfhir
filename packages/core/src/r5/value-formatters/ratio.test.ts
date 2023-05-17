@@ -37,7 +37,7 @@ describe("ratio", () => {
         },
       },
       {
-        separator: ":",
+        denominatorSeparator: ":",
       },
       "1:128",
     ],

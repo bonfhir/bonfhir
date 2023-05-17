@@ -18,6 +18,9 @@ export interface QuantityFormatterOptions {
    * The notation to use for the decimal value.
    */
   notation?: DecimalFormatterOptions["notation"];
+
+  /** Between the number of the unit. Default to " " */
+  separator?: string | null | undefined;
 }
 
 export const quantityFormatter: ValueFormatter<
@@ -39,16 +42,8 @@ export const quantityFormatter: ValueFormatter<
       notation: options?.notation,
     });
 
-    // comparator https://www.hl7.org/fhir/datatypes-definitions.html#Quantity.comparator
     const formattedComparator = value.comparator || "";
 
-    // unit https://www.hl7.org/fhir/datatypes-definitions.html#Quantity.unit
-    const formattedUnit = value.unit?.trim() || "";
-
-    // system https://www.hl7.org/fhir/datatypes-definitions.html#Quantity.system
-    const formattedSystem = value.system?.trim() || "";
-
-    // code https://www.hl7.org/fhir/datatypes-definitions.html#Quantity.code
     const formattedCode = (
       formatterOptions.formatter as WithValueFormatter<
         "code",
@@ -59,13 +54,10 @@ export const quantityFormatter: ValueFormatter<
       expansions: options?.expansions,
     });
 
-    return [
-      formattedComparator,
-      formattedValue,
-      formattedCode || formattedUnit,
-      formattedSystem ? `(${formattedSystem})` : "",
-    ]
-      .filter(Boolean)
-      .join(" ");
+    const formattedUnit = value.unit?.trim() || formattedCode || "";
+
+    return `${formattedComparator + " "}${formattedValue}${
+      options?.separator ?? " "
+    }${formattedCode || formattedUnit}`.trim();
   },
 };

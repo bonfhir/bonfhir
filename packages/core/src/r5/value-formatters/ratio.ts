@@ -1,5 +1,6 @@
 import { Quantity, Ratio } from "../fhir-types.codegen";
 import { ValueFormatter, WithValueFormatter } from "../formatters";
+import { CodeFormatterOptions } from "./code";
 import { QuantityFormatterOptions } from "./quantity";
 
 /**
@@ -14,8 +15,10 @@ export interface RatioFormatterOptions {
 
   notation?: QuantityFormatterOptions["notation"];
 
+  quantitySeparator?: QuantityFormatterOptions["separator"];
+
   /** Default to "/" */
-  separator?: string | null | undefined;
+  denominatorSeparator?: string | null | undefined;
 
   /**
    * If set to true, denominator with a value of 1 will not output the value.
@@ -48,6 +51,7 @@ export const ratioFormatter: ValueFormatter<
       {
         expansions: options?.numeratorExpansions,
         notation: options?.notation,
+        separator: options?.quantitySeparator,
       }
     );
 
@@ -57,6 +61,7 @@ export const ratioFormatter: ValueFormatter<
       {
         expansions: options?.denominatorExpansions,
         notation: options?.notation,
+        separator: options?.quantitySeparator,
       }
     );
 
@@ -64,11 +69,20 @@ export const ratioFormatter: ValueFormatter<
       value.denominator?.value === 1 &&
       options?.reduceSingleDenominator !== false
     ) {
-      formattedDenominator = formattedDenominator.replace(/^1 /, "");
+      const formattedCode = (
+        formatterOptions.formatter as WithValueFormatter<
+          "code",
+          string | undefined,
+          CodeFormatterOptions
+        >
+      ).format("code", value.denominator.code, {
+        expansions: options?.denominatorExpansions,
+      });
+      formattedDenominator = value.denominator.unit || formattedCode || "";
     }
 
     return `${formattedNumerator}${
-      options?.separator ?? "/"
+      options?.denominatorSeparator ?? "/"
     }${formattedDenominator}`;
   },
 };

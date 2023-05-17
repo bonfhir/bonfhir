@@ -1,14 +1,15 @@
-import { Quantity, Ratio } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
-import { CodeFormatterOptions } from "./code";
-import { QuantityFormatterOptions } from "./quantity";
-
 /**
- * A relationship between two Quantity values expressed as a numerator and a denominator.
+ * A set of ordered Quantity values defined by a low and high limit.
  *
- * @see https://hl7.org/fhir/datatypes.html#ratio
+ * @see https://hl7.org/fhir/datatypes.html#RatioRange
  */
-export interface RatioFormatterOptions {
+
+import { Quantity, Range, RatioRange } from "../fhir-types.codegen";
+import { ValueFormatter, WithValueFormatter } from "../formatters";
+import { QuantityFormatterOptions } from "./quantity";
+import { RangeFormatterOptions } from "./range";
+
+export type RatioRangeFormatterOptions = {
   numeratorExpansions?: QuantityFormatterOptions["expansions"];
 
   denominatorExpansions?: QuantityFormatterOptions["expansions"];
@@ -16,6 +17,8 @@ export interface RatioFormatterOptions {
   notation?: QuantityFormatterOptions["notation"];
 
   quantitySeparator?: QuantityFormatterOptions["separator"];
+
+  rangeSeparator?: RangeFormatterOptions["rangeSeparator"];
 
   /** Default to "/" */
   denominatorSeparator?: string | null | undefined;
@@ -27,14 +30,14 @@ export interface RatioFormatterOptions {
    * Default to true
    */
   reduceSingleDenominator?: boolean | null | undefined;
-}
+};
 
-export const ratioFormatter: ValueFormatter<
-  "Ratio",
-  Ratio | null | undefined,
-  RatioFormatterOptions | null | undefined
+export const ratioRangeFormatter: ValueFormatter<
+  "RatioRange",
+  RatioRange | null | undefined,
+  RatioRangeFormatterOptions | null | undefined
 > = {
-  type: "Ratio",
+  type: "RatioRange",
   format: (value, options, formatterOptions) => {
     if (!value) {
       return "";
@@ -45,13 +48,21 @@ export const ratioFormatter: ValueFormatter<
       Quantity | undefined,
       QuantityFormatterOptions
     >;
-    const formattedNumerator = quantityFormatter.format(
-      "Quantity",
-      value.numerator,
+
+    const rangeFormatter = formatterOptions.formatter as WithValueFormatter<
+      "Range",
+      Range | undefined,
+      RangeFormatterOptions
+    >;
+
+    const formattedRange = rangeFormatter.format(
+      "Range",
+      { low: value.lowNumerator, high: value.highNumerator },
       {
         expansions: options?.numeratorExpansions,
         notation: options?.notation,
-        separator: options?.quantitySeparator,
+        quantitySeparator: options?.quantitySeparator,
+        rangeSeparator: options?.rangeSeparator,
       }
     );
 
@@ -69,19 +80,10 @@ export const ratioFormatter: ValueFormatter<
       value.denominator?.value === 1 &&
       options?.reduceSingleDenominator !== false
     ) {
-      const formattedCode = (
-        formatterOptions.formatter as WithValueFormatter<
-          "code",
-          string | undefined,
-          CodeFormatterOptions
-        >
-      ).format("code", value.denominator.code, {
-        expansions: options?.denominatorExpansions,
-      });
-      formattedDenominator = value.denominator.unit || formattedCode || "";
+      formattedDenominator = formattedDenominator.replace(/^1 /, "");
     }
 
-    return `${formattedNumerator}${
+    return `${formattedRange}${
       options?.denominatorSeparator ?? "/"
     }${formattedDenominator}`;
   },
