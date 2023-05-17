@@ -84,7 +84,9 @@ export const ratioRangeFormatter: ValueFormatter<
     }
 
     return `${formattedRange}${
-      options?.denominatorSeparator ?? "/"
+      options?.denominatorSeparator ??
+      formatterOptions.denominatorSeparator ??
+      "/"
     }${formattedDenominator}`;
   },
 };

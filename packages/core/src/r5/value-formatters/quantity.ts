@@ -57,7 +57,7 @@ export const quantityFormatter: ValueFormatter<
     const formattedUnit = value.unit?.trim() || formattedCode || "";
 
     return `${formattedComparator + " "}${formattedValue}${
-      options?.separator ?? " "
+      options?.separator ?? formatterOptions.quantitySeparator ?? " "
     }${formattedCode || formattedUnit}`.trim();
   },
 };

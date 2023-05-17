@@ -52,6 +52,21 @@ export interface FormatterOptions {
     | valueFormatters.IdentifierFormatterOptions["systemsLabels"]
     | null
     | undefined;
+
+  /**
+   * The default quantity separator to use.
+   */
+  quantitySeparator?: string | null | undefined;
+
+  /**
+   * The default range separator to use.
+   */
+  rangeSeparator?: string | null | undefined;
+
+  /**
+   * The default denominator separator to use.
+   */
+  denominatorSeparator?: string | null | undefined;
 }
 
 export class Formatter {

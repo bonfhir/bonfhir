@@ -82,7 +82,9 @@ export const ratioFormatter: ValueFormatter<
     }
 
     return `${formattedNumerator}${
-      options?.denominatorSeparator ?? "/"
+      options?.denominatorSeparator ??
+      formatterOptions.denominatorSeparator ??
+      "/"
     }${formattedDenominator}`;
   },
 };

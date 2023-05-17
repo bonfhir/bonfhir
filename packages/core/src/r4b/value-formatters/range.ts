@@ -58,6 +58,8 @@ export const rangeFormatter: ValueFormatter<
       });
     }
 
-    return `${formattedLow}${options?.rangeSeparator ?? " … "}${formattedHigh}`;
+    return `${formattedLow}${
+      options?.rangeSeparator ?? formatterOptions.rangeSeparator ?? " … "
+    }${formattedHigh}`;
   },
 };
