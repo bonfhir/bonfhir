@@ -1,7 +1,7 @@
-import { Quantity, Ratio } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
-import { CodeFormatterOptions } from "./code";
-import { QuantityFormatterOptions } from "./quantity";
+import { Ratio } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { codeFormatter } from "./code";
+import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
 
 /**
  * A relationship between two Quantity values expressed as a numerator and a denominator.
@@ -40,41 +40,28 @@ export const ratioFormatter: ValueFormatter<
       return "";
     }
 
-    const quantityFormatter = formatterOptions.formatter as WithValueFormatter<
-      "Quantity",
-      Quantity | undefined,
-      QuantityFormatterOptions
-    >;
-    const formattedNumerator = quantityFormatter.format(
-      "Quantity",
-      value.numerator,
-      {
-        expansions: options?.numeratorExpansions,
-        notation: options?.notation,
-        separator: options?.quantitySeparator,
-      }
-    );
+    const formattedNumerator = withValueFormatter<typeof quantityFormatter>(
+      formatterOptions.formatter
+    ).format("Quantity", value.numerator, {
+      expansions: options?.numeratorExpansions,
+      notation: options?.notation,
+      separator: options?.quantitySeparator,
+    });
 
-    let formattedDenominator = quantityFormatter.format(
-      "Quantity",
-      value.denominator,
-      {
-        expansions: options?.denominatorExpansions,
-        notation: options?.notation,
-        separator: options?.quantitySeparator,
-      }
-    );
+    let formattedDenominator = withValueFormatter<typeof quantityFormatter>(
+      formatterOptions.formatter
+    ).format("Quantity", value.denominator, {
+      expansions: options?.denominatorExpansions,
+      notation: options?.notation,
+      separator: options?.quantitySeparator,
+    });
 
     if (
       value.denominator?.value === 1 &&
       options?.reduceSingleDenominator !== false
     ) {
-      const formattedCode = (
-        formatterOptions.formatter as WithValueFormatter<
-          "code",
-          string | undefined,
-          CodeFormatterOptions
-        >
+      const formattedCode = withValueFormatter<typeof codeFormatter>(
+        formatterOptions.formatter
       ).format("code", value.denominator.code, {
         expansions: options?.denominatorExpansions,
       });

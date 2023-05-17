@@ -1,9 +1,9 @@
-import { CodeableConcept, Identifier, Period } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
+import { Identifier } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
 import { comparePeriods, formatValueWithPattern } from "../lang-utils";
-import { CodeFormatterOptions } from "./code";
-import { CodeableConceptFormatterOptions } from "./codeable-concept";
-import { PeriodFormatterOptions } from "./period";
+import { CodeFormatterOptions, codeFormatter } from "./code";
+import { codeableConceptFormatter } from "./codeable-concept";
+import { periodFormatter } from "./period";
 
 /**
  * A numeric or alphanumeric string that is associated with a single object or entity within a given system.
@@ -87,12 +87,8 @@ export const identifierFormatter: ValueFormatter<
         value,
         options
       ).map((identifier) =>
-        (
-          formatterOptions.formatter as WithValueFormatter<
-            "Identifier",
-            Identifier | undefined,
-            IdentifierFormatterOptions
-          >
+        withValueFormatter<typeof identifierFormatter>(
+          formatterOptions.formatter
         ).format("Identifier", identifier, options)
       );
 
@@ -104,30 +100,18 @@ export const identifierFormatter: ValueFormatter<
 
     if (!value?.value) return "";
 
-    const use = (
-      formatterOptions.formatter as WithValueFormatter<
-        "code",
-        string | null | undefined,
-        CodeFormatterOptions | null | undefined
-      >
+    const use = withValueFormatter<typeof codeFormatter>(
+      formatterOptions.formatter
     ).format("code", value.use, {
       expansions: options?.expansions,
     });
 
-    const type = (
-      formatterOptions.formatter as WithValueFormatter<
-        "CodeableConcept",
-        CodeableConcept | null | undefined,
-        CodeableConceptFormatterOptions | null | undefined
-      >
+    const type = withValueFormatter<typeof codeableConceptFormatter>(
+      formatterOptions.formatter
     ).format("CodeableConcept", value.type);
 
-    const period = (
-      formatterOptions.formatter as WithValueFormatter<
-        "Period",
-        Period | null | undefined,
-        PeriodFormatterOptions | null | undefined
-      >
+    const period = withValueFormatter<typeof periodFormatter>(
+      formatterOptions.formatter
     ).format("Period", value.period);
 
     const finalSystemsLabels =

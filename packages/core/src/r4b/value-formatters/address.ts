@@ -1,9 +1,9 @@
 import { formatAddress } from "localized-address-format";
-import { Address, Period } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
+import { Address } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
 import { comparePeriods } from "../lang-utils";
-import { CodeFormatterOptions } from "./code";
-import { PeriodFormatterOptions } from "./period";
+import { CodeFormatterOptions, codeFormatter } from "./code";
+import { periodFormatter } from "./period";
 
 /**
  * An address expressed using postal conventions
@@ -76,12 +76,8 @@ export const addressFormatter: ValueFormatter<
     if (Array.isArray(value)) {
       const formattedAddressList = filterAndSortAddresses(value, options).map(
         (address) =>
-          (
-            formatterOptions.formatter as WithValueFormatter<
-              "Address",
-              Address | null | undefined,
-              AddressFormatterOptions | null | undefined
-            >
+          withValueFormatter<typeof addressFormatter>(
+            formatterOptions.formatter
           ).format("Address", address, options)
       );
 
@@ -92,15 +88,14 @@ export const addressFormatter: ValueFormatter<
     }
 
     const country = value.country || options?.defaultCountry || undefined;
-    const withCodeFormatter = formatterOptions.formatter as WithValueFormatter<
-      "code",
-      string | undefined,
-      CodeFormatterOptions | null | undefined
-    >;
-    const use = withCodeFormatter.format("code", value.use, {
+    const use = withValueFormatter<typeof codeFormatter>(
+      formatterOptions.formatter
+    ).format("code", value.use, {
       expansions: options?.useValueSetExpansions,
     });
-    const type = withCodeFormatter.format("code", value.type, {
+    const type = withValueFormatter<typeof codeFormatter>(
+      formatterOptions.formatter
+    ).format("code", value.type, {
       expansions: options?.typeValueSetExpansions,
     });
 
@@ -124,12 +119,8 @@ export const addressFormatter: ValueFormatter<
     // add period
     if (["full", "extended"].includes(options?.style || ""))
       addressComponents.unshift(
-        `(${(
-          formatterOptions.formatter as WithValueFormatter<
-            "Period",
-            Period | null | undefined,
-            PeriodFormatterOptions | null | undefined
-          >
+        `(${withValueFormatter<typeof periodFormatter>(
+          formatterOptions.formatter
         ).format("Period", value.period)})`
       );
 

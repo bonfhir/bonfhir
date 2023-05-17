@@ -1,8 +1,8 @@
 import { Formatter } from "../formatters";
-import { DatetimeFormatterOptions, datetimeFormatter } from "./date-time";
+import { DatetimeFormatterOptions, dateTimeFormatter } from "./date-time";
 
 describe("date-time", () => {
-  const formatter = new Formatter().register(datetimeFormatter);
+  const formatter = new Formatter().register(dateTimeFormatter);
 
   it.each(<Array<[string, DatetimeFormatterOptions | undefined, string]>>[
     ["2023", undefined, "2023"],

@@ -1,5 +1,5 @@
 import { ValueFormatter } from "../formatters";
-import { DatetimeFormatterOptions, datetimeFormatter } from "./date-time";
+import { DatetimeFormatterOptions, dateTimeFormatter } from "./date-time";
 
 /**
  * A instant, or partial instant (e.g. just year or year + month) as used in human communication.
@@ -14,5 +14,5 @@ export const instantFormatter: ValueFormatter<
   InstantFormatterOptions | null | undefined
 > = {
   type: "instant",
-  format: datetimeFormatter.format,
+  format: dateTimeFormatter.format,
 };

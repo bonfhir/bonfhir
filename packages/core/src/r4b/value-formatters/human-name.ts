@@ -1,6 +1,6 @@
 import { HumanName, NameUse } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
-import { CodeFormatterOptions } from "./code";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { CodeFormatterOptions, codeFormatter } from "./code";
 
 /**
  * A name of a human with text, parts and usage information.
@@ -76,12 +76,8 @@ export const humanNameFormatter: ValueFormatter<
         value,
         options
       ).map((humanName) =>
-        (
-          formatterOptions.formatter as WithValueFormatter<
-            "HumanName",
-            HumanName | null | undefined,
-            HumanNameFormatterOptions
-          >
+        withValueFormatter<typeof humanNameFormatter>(
+          formatterOptions.formatter
         ).format("HumanName", humanName, options)
       );
 
@@ -142,12 +138,8 @@ export const humanNameFormatter: ValueFormatter<
     }
 
     if (options?.includeUse) {
-      const use = (
-        formatterOptions.formatter as WithValueFormatter<
-          "code",
-          string | undefined,
-          CodeFormatterOptions
-        >
+      const use = withValueFormatter<typeof codeFormatter>(
+        formatterOptions.formatter
       ).format("code", value.use, {
         expansions: options?.expansions,
       });

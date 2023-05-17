@@ -1,8 +1,8 @@
-import { Quantity, Range } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
+import { Range } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
 import { CodeFormatterOptions } from "./code";
-import { DecimalFormatterOptions } from "./decimal";
-import { QuantityFormatterOptions } from "./quantity";
+import { DecimalFormatterOptions, decimalFormatter } from "./decimal";
+import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
 
 /**
  * A set of ordered Quantity values defined by a low and high limit.
@@ -29,31 +29,25 @@ export const rangeFormatter: ValueFormatter<
   format: (value, options, formatterOptions) => {
     if (!value?.low || !value?.high) return "";
 
-    const decimalFormatter = formatterOptions.formatter as WithValueFormatter<
-      "decimal",
-      number | undefined,
-      DecimalFormatterOptions
-    >;
-
-    const quantityFormatter = formatterOptions.formatter as WithValueFormatter<
-      "Quantity",
-      Quantity | undefined,
-      QuantityFormatterOptions
-    >;
-
-    let formattedLow = quantityFormatter.format("Quantity", value.low, {
+    let formattedLow = withValueFormatter<typeof quantityFormatter>(
+      formatterOptions.formatter
+    ).format("Quantity", value.low, {
       notation: options?.notation,
       expansions: options?.expansions,
       separator: options?.quantitySeparator,
     });
-    const formattedHigh = quantityFormatter.format("Quantity", value.high, {
+    const formattedHigh = withValueFormatter<typeof quantityFormatter>(
+      formatterOptions.formatter
+    ).format("Quantity", value.high, {
       notation: options?.notation,
       expansions: options?.expansions,
       separator: options?.quantitySeparator,
     });
 
     if (value.low?.unit === value.high?.unit) {
-      formattedLow = decimalFormatter.format("decimal", value.low.value, {
+      formattedLow = withValueFormatter<typeof decimalFormatter>(
+        formatterOptions.formatter
+      ).format("decimal", value.low.value, {
         notation: options?.notation,
       });
     }

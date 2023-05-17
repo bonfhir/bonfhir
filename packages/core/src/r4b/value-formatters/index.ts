@@ -27,6 +27,7 @@ export * from "./positive-int";
 export * from "./quantity";
 export * from "./range";
 export * from "./ratio";
+export * from "./reference";
 export * from "./string";
 export * from "./time";
 export * from "./uri";

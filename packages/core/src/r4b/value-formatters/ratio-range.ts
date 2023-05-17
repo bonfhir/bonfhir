@@ -4,10 +4,10 @@
  * @see https://hl7.org/fhir/datatypes.html#RatioRange
  */
 
-import { Quantity, Range, RatioRange } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
-import { QuantityFormatterOptions } from "./quantity";
-import { RangeFormatterOptions } from "./range";
+import { RatioRange } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
+import { RangeFormatterOptions, rangeFormatter } from "./range";
 
 export type RatioRangeFormatterOptions = {
   numeratorExpansions?: QuantityFormatterOptions["expansions"];
@@ -43,19 +43,9 @@ export const ratioRangeFormatter: ValueFormatter<
       return "";
     }
 
-    const quantityFormatter = formatterOptions.formatter as WithValueFormatter<
-      "Quantity",
-      Quantity | undefined,
-      QuantityFormatterOptions
-    >;
-
-    const rangeFormatter = formatterOptions.formatter as WithValueFormatter<
-      "Range",
-      Range | undefined,
-      RangeFormatterOptions
-    >;
-
-    const formattedRange = rangeFormatter.format(
+    const formattedRange = withValueFormatter<typeof rangeFormatter>(
+      formatterOptions.formatter
+    ).format(
       "Range",
       { low: value.lowNumerator, high: value.highNumerator },
       {
@@ -66,15 +56,13 @@ export const ratioRangeFormatter: ValueFormatter<
       }
     );
 
-    let formattedDenominator = quantityFormatter.format(
-      "Quantity",
-      value.denominator,
-      {
-        expansions: options?.denominatorExpansions,
-        notation: options?.notation,
-        separator: options?.quantitySeparator,
-      }
-    );
+    let formattedDenominator = withValueFormatter<typeof quantityFormatter>(
+      formatterOptions.formatter
+    ).format("Quantity", value.denominator, {
+      expansions: options?.denominatorExpansions,
+      notation: options?.notation,
+      separator: options?.quantitySeparator,
+    });
 
     if (
       value.denominator?.value === 1 &&

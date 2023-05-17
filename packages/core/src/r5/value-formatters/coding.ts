@@ -1,6 +1,6 @@
 import { Coding } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
-import { CodeFormatterOptions } from "./code";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { CodeFormatterOptions, codeFormatter } from "./code";
 
 export interface CodingFormatterOptions {
   /** Default to "display". */
@@ -31,12 +31,8 @@ export const codingFormatter: ValueFormatter<
 
     const display =
       value.display?.trim() ||
-      (
-        formatterOptions.formatter as WithValueFormatter<
-          "code",
-          string | undefined,
-          CodeFormatterOptions
-        >
+      withValueFormatter<typeof codeFormatter>(
+        formatterOptions.formatter
       ).format("code", value.code, { expansions: options?.expansions });
 
     let formattedValue;

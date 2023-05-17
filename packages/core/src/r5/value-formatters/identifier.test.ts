@@ -3,7 +3,7 @@ import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import { codeableConceptFormatter } from "./codeable-concept";
 import { codingFormatter } from "./coding";
-import { datetimeFormatter } from "./date-time";
+import { dateTimeFormatter } from "./date-time";
 import { IdentifierFormatterOptions, identifierFormatter } from "./identifier";
 import { periodFormatter } from "./period";
 
@@ -14,7 +14,7 @@ describe("identifier", () => {
     .register(codingFormatter)
     .register(codeableConceptFormatter)
     .register(periodFormatter)
-    .register(datetimeFormatter);
+    .register(dateTimeFormatter);
 
   describe("format", () => {
     const expansions: ReadonlyArray<ValueSetExpansionContains> = [

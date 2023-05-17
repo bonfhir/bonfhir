@@ -1,6 +1,6 @@
-import { CodingFormatterOptions } from "../../r5/value-formatters/coding";
-import { CodeableConcept, Coding } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
+import { CodeableConcept } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { CodingFormatterOptions, codingFormatter } from "./coding";
 
 /**
  * A CodeableConcept represents a value that is usually supplied by
@@ -42,12 +42,8 @@ export const codeableConceptFormatter: ValueFormatter<
     if (codings.length === 0) {
       return value.text || "";
     } else if (codings.length === 1) {
-      return (
-        formatterOptions.formatter as WithValueFormatter<
-          "Coding",
-          Coding | undefined,
-          CodingFormatterOptions | null | undefined
-        >
+      return withValueFormatter<typeof codingFormatter>(
+        formatterOptions.formatter
       ).format("Coding", codings[0], options);
     }
 
@@ -56,12 +52,8 @@ export const codeableConceptFormatter: ValueFormatter<
       options?.listFormatOptions
     ).format(
       codings.map((coding) =>
-        (
-          formatterOptions.formatter as WithValueFormatter<
-            "Coding",
-            Coding | undefined,
-            CodingFormatterOptions | null | undefined
-          >
+        withValueFormatter<typeof codingFormatter>(
+          formatterOptions.formatter
         ).format("Coding", coding, options)
       )
     );

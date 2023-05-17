@@ -5,7 +5,7 @@ import {
   ContactPointFormatterOptions,
   contactPointFormatter,
 } from "./contact-point";
-import { datetimeFormatter } from "./date-time";
+import { dateTimeFormatter } from "./date-time";
 import { periodFormatter } from "./period";
 
 describe("contact-point", () => {
@@ -13,7 +13,7 @@ describe("contact-point", () => {
     .register(contactPointFormatter)
     .register(codeFormatter)
     .register(periodFormatter)
-    .register(datetimeFormatter);
+    .register(dateTimeFormatter);
 
   describe("format", () => {
     const contactPoint: ContactPoint = {

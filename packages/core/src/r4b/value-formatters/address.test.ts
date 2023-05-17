@@ -2,7 +2,7 @@ import { Address, ValueSetExpansionContains } from "../fhir-types.codegen";
 import { Formatter } from "../formatters";
 import { AddressFormatterOptions, addressFormatter } from "./address";
 import { codeFormatter } from "./code";
-import { datetimeFormatter } from "./date-time";
+import { dateTimeFormatter } from "./date-time";
 import { periodFormatter } from "./period";
 
 describe("address", () => {
@@ -10,7 +10,7 @@ describe("address", () => {
     .register(addressFormatter)
     .register(codeFormatter)
     .register(periodFormatter)
-    .register(datetimeFormatter);
+    .register(dateTimeFormatter);
 
   describe("format", () => {
     const address: Address = {

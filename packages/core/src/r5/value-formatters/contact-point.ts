@@ -1,7 +1,7 @@
-import { ContactPoint, Period } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
-import { CodeFormatterOptions } from "./code";
-import { PeriodFormatterOptions } from "./period";
+import { ContactPoint } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { CodeFormatterOptions, codeFormatter } from "./code";
+import { periodFormatter } from "./period";
 
 /**
  * Details for all kinds of technology-mediated contact points for a person or organization, including telephone, email, etc.
@@ -59,12 +59,8 @@ export const contactPointFormatter: ValueFormatter<
         value,
         options
       ).map((contactPoint) =>
-        (
-          formatterOptions.formatter as WithValueFormatter<
-            "ContactPoint",
-            ContactPoint,
-            ContactPointFormatterOptions
-          >
+        withValueFormatter<typeof contactPointFormatter>(
+          formatterOptions.formatter
         ).format("ContactPoint", contactPoint, options)
       );
 
@@ -76,16 +72,14 @@ export const contactPointFormatter: ValueFormatter<
 
     if (!value?.value) return "";
 
-    const codeFormatter = formatterOptions.formatter as WithValueFormatter<
-      "code",
-      string | null | undefined,
-      CodeFormatterOptions | null | undefined
-    >;
-
-    const use = codeFormatter.format("code", value.use, {
+    const use = withValueFormatter<typeof codeFormatter>(
+      formatterOptions.formatter
+    ).format("code", value.use, {
       expansions: options?.useExpansions,
     });
-    const system = codeFormatter.format("code", value.system, {
+    const system = withValueFormatter<typeof codeFormatter>(
+      formatterOptions.formatter
+    ).format("code", value.system, {
       expansions: options?.systemExpansions,
     });
 
@@ -104,12 +98,8 @@ export const contactPointFormatter: ValueFormatter<
       }
       case "full": {
         return [
-          `${value.rank} - ${(
-            formatterOptions.formatter as WithValueFormatter<
-              "Period",
-              Period | undefined,
-              PeriodFormatterOptions | undefined
-            >
+          `${value.rank} - ${withValueFormatter<typeof periodFormatter>(
+            formatterOptions.formatter
           ).format("Period", value.period)}`,
           `${system}: ${value.value} (${use})`,
         ].join(options?.lineSeparator || ", ");

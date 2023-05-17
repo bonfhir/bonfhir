@@ -20,18 +20,29 @@ export interface ValueFormatter<TType extends string, TValue, TOptions> {
 /**
  * Extends the base Formatter type with an overload of the format function that fits the ValueFormatter.
  */
-export type WithValueFormatter<
-  TType,
-  TValue,
-  TOptions,
+export type WithTypedFormatFunction<
+  TValueFormatter,
   TThis extends Formatter = Formatter
-> = {
-  format(
-    type: TType,
-    value: TValue,
-    options?: TOptions | null | undefined
-  ): string;
-} & TThis;
+> = TValueFormatter extends ValueFormatter<
+  infer TType,
+  infer TValue,
+  infer TOptions
+>
+  ? {
+      format(
+        type: TType,
+        value: TValue,
+        options?: TOptions | null | undefined
+      ): string;
+    } & TThis
+  : never;
+
+/** Cast the formatter as if it has the format overload of TValueParameter format. */
+export function withValueFormatter<TValueFormatter>(
+  formatter: Formatter
+): WithTypedFormatFunction<TValueFormatter> {
+  return formatter as WithTypedFormatFunction<TValueFormatter>;
+}
 
 export interface FormatterOptions {
   /**
@@ -83,7 +94,7 @@ export class Formatter {
       .register(valueFormatters.contactPointFormatter)
       .register(valueFormatters.countFormatter)
       .register(valueFormatters.dateFormatter)
-      .register(valueFormatters.datetimeFormatter)
+      .register(valueFormatters.dateTimeFormatter)
       .register(valueFormatters.decimalFormatter)
       .register(valueFormatters.distanceFormatter)
       .register(valueFormatters.durationFormatter)
@@ -102,6 +113,7 @@ export class Formatter {
       .register(valueFormatters.quantityFormatter)
       .register(valueFormatters.rangeFormatter)
       .register(valueFormatters.ratioFormatter)
+      .register(valueFormatters.referenceFormatter)
       .register(valueFormatters.stringFormatter)
       .register(valueFormatters.timeFormatter)
       .register(valueFormatters.uriFormatter)
@@ -163,14 +175,14 @@ export class Formatter {
    * Register an additional {@link ValueFormatter} with this formatter,
    * and return this instance with the added format signature.
    */
-  public register<TType extends string, TValue, TOptions>(
-    valueFormatter: ValueFormatter<TType, TValue, TOptions>
-  ): WithValueFormatter<TType, TValue, TOptions, this> {
+  public register<TValueFormatter>(
+    valueFormatter: TValueFormatter
+  ): WithTypedFormatFunction<TValueFormatter, this> {
     this._formatters.set(
-      valueFormatter.type,
+      (valueFormatter as ValueFormatter<string, unknown, unknown>).type,
       valueFormatter as ValueFormatter<string, unknown, unknown>
     );
-    return this;
+    return this as WithTypedFormatFunction<TValueFormatter, this>;
   }
 }
 

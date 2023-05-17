@@ -19,7 +19,7 @@ export type DatetimeFormatterOptions =
       relativeTo?: string | number | Date | null | undefined;
     };
 
-export const datetimeFormatter: ValueFormatter<
+export const dateTimeFormatter: ValueFormatter<
   "dateTime",
   string | null | undefined,
   DatetimeFormatterOptions | null | undefined

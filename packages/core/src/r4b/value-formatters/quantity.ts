@@ -1,7 +1,7 @@
 import { Quantity } from "../fhir-types.codegen";
-import { ValueFormatter, WithValueFormatter } from "../formatters";
-import { CodeFormatterOptions } from "./code";
-import { DecimalFormatterOptions } from "./decimal";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { CodeFormatterOptions, codeFormatter } from "./code";
+import { DecimalFormatterOptions, decimalFormatter } from "./decimal";
 
 /**
  * A measured amount (or an amount that can potentially be measured).
@@ -32,24 +32,16 @@ export const quantityFormatter: ValueFormatter<
   format: (value, options, formatterOptions) => {
     if (!value) return "";
 
-    const formattedValue = (
-      formatterOptions.formatter as WithValueFormatter<
-        "decimal",
-        number | undefined,
-        DecimalFormatterOptions
-      >
+    const formattedValue = withValueFormatter<typeof decimalFormatter>(
+      formatterOptions.formatter
     ).format("decimal", value.value, {
       notation: options?.notation,
     });
 
     const formattedComparator = value.comparator || "";
 
-    const formattedCode = (
-      formatterOptions.formatter as WithValueFormatter<
-        "code",
-        string | undefined,
-        CodeFormatterOptions
-      >
+    const formattedCode = withValueFormatter<typeof codeFormatter>(
+      formatterOptions.formatter
     ).format("code", value.code, {
       expansions: options?.expansions,
     });
