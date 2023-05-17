@@ -38,9 +38,9 @@ function narrative<%= domainResource.type %>(resource: <%= domainResource.type %
   return buildNarrative(
     resource,
     [
-    <% for (const element of domainResource.ownRootElementsWithChoices.filter(x => x.isSummary)) {%>
+    <% for (const element of domainResource.ownRootElementsWithChoices.filter(x => x.isSummary)) {-%>
     ["<%= element.type.map((x) => x.code).join(" | ") %>", "<%= element.name %>"],
-    <% } %>
+    <% } -%>
   ], options);
 }
 <% } %>
@@ -53,8 +53,13 @@ function buildNarrative<TResource extends FhirDomainResource>(
   const formatter = options?.formatter ?? Formatter.default;
   return {
     status: "generated",
-    div: `<div xmlns="http://www.w3.org/1999/xhtml"><dl>${(elements
-      .map((element) => [element[1], safeFormat(formatter, element[0], resource[element[1]])]) as Array<[string, string]>)
+    div: `<div xmlns="http://www.w3.org/1999/xhtml"><dl>${(
+      elements.map((element) => [
+        (element[1] as string)?.[0]?.toUpperCase() +
+          (element[1] as string).slice(1),
+        safeFormat(formatter, element[0], resource[element[1]]),
+      ]) as Array<[string, string]>
+    )
       .filter((element) => !!element[1])
       .map((element) => `<dt>${element[0]}</dt><dd>${element[1]}</dd>`)
       .filter((x) => !!x)
@@ -70,11 +75,18 @@ function safeFormat(
 ): string {
   if (formatter.canFormat(type)) {
     try {
-      return formatter.format(type, value as never);
+      return htmlEncode(formatter.format(type, value as never));
     } catch {
       // Ignore
     }
   }
 
   return "";
+}
+
+function htmlEncode(value: string): string {
+  return value.replace(
+    /[&<>\u00A0-\u9999]/g,
+    (i) => "&#" + i.codePointAt(0) + ";"
+  );
 }

@@ -822,27 +822,16 @@ function narrativeAccount(
     resource,
     [
       ["CodeableConcept", "billingStatus"],
-
       ["BackboneElement", "coverage"],
-
       ["markdown", "description"],
-
       ["BackboneElement", "diagnosis"],
-
       ["Identifier", "identifier"],
-
       ["string", "name"],
-
       ["Reference", "owner"],
-
       ["BackboneElement", "procedure"],
-
       ["Period", "servicePeriod"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -857,45 +846,25 @@ function narrativeActivityDefinition(
     resource,
     [
       ["boolean", "asNeededBoolean"],
-
       ["CodeableConcept", "asNeededCodeableConcept"],
-
       ["CodeableConcept", "code"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["markdown", "description"],
-
       ["boolean", "doNotPerform"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["code", "kind"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -910,33 +879,19 @@ function narrativeActorDefinition(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["code", "type"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -951,23 +906,14 @@ function narrativeAdministrableProductDefinition(
     resource,
     [
       ["CodeableConcept", "administrableDoseForm"],
-
       ["Reference", "device"],
-
       ["Reference", "formOf"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "ingredient"],
-
       ["Reference", "producedFrom"],
-
       ["BackboneElement", "property"],
-
       ["BackboneElement", "routeOfAdministration"],
-
       ["code", "status"],
-
       ["CodeableConcept", "unitOfPresentation"],
     ],
     options
@@ -982,53 +928,29 @@ function narrativeAdverseEvent(
     resource,
     [
       ["code", "actuality"],
-
       ["CodeableConcept", "category"],
-
       ["CodeableConcept", "code"],
-
       ["BackboneElement", "contributingFactor"],
-
       ["dateTime", "detected"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "location"],
-
       ["BackboneElement", "mitigatingAction"],
-
       ["Annotation", "note"],
-
       ["dateTime", "occurrenceDateTime"],
-
       ["Period", "occurrencePeriod"],
-
       ["Timing", "occurrenceTiming"],
-
       ["CodeableConcept", "outcome"],
-
       ["BackboneElement", "participant"],
-
       ["BackboneElement", "preventiveAction"],
-
       ["dateTime", "recordedDate"],
-
       ["Reference", "recorder"],
-
       ["Reference", "resultingEffect"],
-
       ["CodeableConcept", "seriousness"],
-
       ["code", "status"],
-
       ["Reference", "study"],
-
       ["Reference", "subject"],
-
       ["BackboneElement", "supportingInfo"],
-
       ["BackboneElement", "suspectEntity"],
     ],
     options
@@ -1043,21 +965,13 @@ function narrativeAllergyIntolerance(
     resource,
     [
       ["code", "category"],
-
       ["CodeableConcept", "clinicalStatus"],
-
       ["CodeableConcept", "code"],
-
       ["code", "criticality"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "participant"],
-
       ["Reference", "patient"],
-
       ["CodeableConcept", "type"],
-
       ["CodeableConcept", "verificationStatus"],
     ],
     options
@@ -1072,27 +986,16 @@ function narrativeAppointment(
     resource,
     [
       ["CodeableConcept", "appointmentType"],
-
       ["CodeableConcept", "cancellationReason"],
-
       ["CodeableConcept", "class"],
-
       ["instant", "end"],
-
       ["Identifier", "identifier"],
-
       ["CodeableReference", "reason"],
-
       ["CodeableConcept", "serviceCategory"],
-
       ["CodeableReference", "serviceType"],
-
       ["CodeableConcept", "specialty"],
-
       ["instant", "start"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -1107,15 +1010,10 @@ function narrativeAppointmentResponse(
     resource,
     [
       ["Reference", "actor"],
-
       ["Reference", "appointment"],
-
       ["Identifier", "identifier"],
-
       ["code", "participantStatus"],
-
       ["CodeableConcept", "participantType"],
-
       ["boolean", "proposedNewTime"],
     ],
     options
@@ -1130,21 +1028,13 @@ function narrativeArtifactAssessment(
     resource,
     [
       ["Reference", "artifactReference"],
-
       ["canonical", "artifactCanonical"],
-
       ["uri", "artifactUri"],
-
       ["dateTime", "date"],
-
       ["code", "disposition"],
-
       ["Identifier", "identifier"],
-
       ["date", "lastReviewDate"],
-
       ["string", "title"],
-
       ["code", "workflowStatus"],
     ],
     options
@@ -1159,23 +1049,14 @@ function narrativeAuditEvent(
     resource,
     [
       ["code", "action"],
-
       ["BackboneElement", "agent"],
-
       ["CodeableConcept", "authorization"],
-
       ["CodeableConcept", "category"],
-
       ["CodeableConcept", "code"],
-
       ["BackboneElement", "entity"],
-
       ["BackboneElement", "outcome"],
-
       ["instant", "recorded"],
-
       ["code", "severity"],
-
       ["BackboneElement", "source"],
     ],
     options
@@ -1190,13 +1071,9 @@ function narrativeBasic(
     resource,
     [
       ["Reference", "author"],
-
       ["CodeableConcept", "code"],
-
       ["dateTime", "created"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "subject"],
     ],
     options
@@ -1211,7 +1088,6 @@ function narrativeBiologicallyDerivedProduct(
     resource,
     [
       ["Identifier", "biologicalSourceEvent"],
-
       ["Identifier", "identifier"],
     ],
     options
@@ -1226,35 +1102,20 @@ function narrativeBiologicallyDerivedProductDispense(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["Reference", "destination"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "location"],
-
       ["CodeableConcept", "matchStatus"],
-
       ["Annotation", "note"],
-
       ["CodeableConcept", "originRelationshipType"],
-
       ["Reference", "partOf"],
-
       ["Reference", "patient"],
-
       ["BackboneElement", "performer"],
-
       ["dateTime", "preparedDate"],
-
       ["Reference", "product"],
-
       ["Quantity", "quantity"],
-
       ["code", "status"],
-
       ["string", "usageInstruction"],
-
       ["dateTime", "whenHandedOver"],
     ],
     options
@@ -1269,13 +1130,9 @@ function narrativeBodyStructure(
     resource,
     [
       ["boolean", "active"],
-
       ["markdown", "description"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "morphology"],
-
       ["Reference", "patient"],
     ],
     options
@@ -1290,31 +1147,18 @@ function narrativeCanonicalResource(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -1329,57 +1173,31 @@ function narrativeCapabilityStatement(
     resource,
     [
       ["code", "acceptLanguage"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["BackboneElement", "document"],
-
       ["boolean", "experimental"],
-
       ["code", "fhirVersion"],
-
       ["code", "format"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "implementation"],
-
       ["canonical", "implementationGuide"],
-
       ["canonical", "imports"],
-
       ["canonical", "instantiates"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["code", "kind"],
-
       ["BackboneElement", "messaging"],
-
       ["string", "name"],
-
       ["code", "patchFormat"],
-
       ["string", "publisher"],
-
       ["BackboneElement", "rest"],
-
       ["BackboneElement", "software"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -1394,37 +1212,21 @@ function narrativeCarePlan(
     resource,
     [
       ["CodeableReference", "addresses"],
-
       ["Reference", "basedOn"],
-
       ["CodeableConcept", "category"],
-
       ["dateTime", "created"],
-
       ["Reference", "custodian"],
-
       ["string", "description"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "identifier"],
-
       ["canonical", "instantiatesCanonical"],
-
       ["uri", "instantiatesUri"],
-
       ["code", "intent"],
-
       ["Reference", "partOf"],
-
       ["Period", "period"],
-
       ["Reference", "replaces"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["string", "title"],
     ],
     options
@@ -1439,17 +1241,11 @@ function narrativeCareTeam(
     resource,
     [
       ["CodeableConcept", "category"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "managingOrganization"],
-
       ["string", "name"],
-
       ["Period", "period"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -1464,29 +1260,17 @@ function narrativeChargeItem(
     resource,
     [
       ["Reference", "account"],
-
       ["CodeableConcept", "bodysite"],
-
       ["CodeableConcept", "code"],
-
       ["Reference", "encounter"],
-
       ["dateTime", "enteredDate"],
-
       ["Reference", "enterer"],
-
       ["Identifier", "identifier"],
-
       ["dateTime", "occurrenceDateTime"],
-
       ["Period", "occurrencePeriod"],
-
       ["Timing", "occurrenceTiming"],
-
       ["Quantity", "quantity"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -1501,41 +1285,23 @@ function narrativeChargeItemDefinition(
     resource,
     [
       ["CodeableConcept", "code"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["uri", "derivedFromUri"],
-
       ["markdown", "description"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["canonical", "partOf"],
-
       ["string", "publisher"],
-
       ["canonical", "replaces"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -1550,33 +1316,19 @@ function narrativeCitation(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -1591,23 +1343,14 @@ function narrativeClaim(
     resource,
     [
       ["Period", "billablePeriod"],
-
       ["dateTime", "created"],
-
       ["BackboneElement", "insurance"],
-
       ["Reference", "insurer"],
-
       ["Reference", "patient"],
-
       ["CodeableConcept", "priority"],
-
       ["Reference", "provider"],
-
       ["code", "status"],
-
       ["CodeableConcept", "type"],
-
       ["code", "use"],
     ],
     options
@@ -1622,23 +1365,14 @@ function narrativeClaimResponse(
     resource,
     [
       ["dateTime", "created"],
-
       ["CodeableConcept", "decision"],
-
       ["Reference", "insurer"],
-
       ["code", "outcome"],
-
       ["Reference", "patient"],
-
       ["Reference", "request"],
-
       ["code", "status"],
-
       ["BackboneElement", "total"],
-
       ["CodeableConcept", "type"],
-
       ["code", "use"],
     ],
     options
@@ -1653,23 +1387,14 @@ function narrativeClinicalImpression(
     resource,
     [
       ["dateTime", "date"],
-
       ["string", "description"],
-
       ["dateTime", "effectiveDateTime"],
-
       ["Period", "effectivePeriod"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "performer"],
-
       ["Reference", "problem"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -1684,27 +1409,16 @@ function narrativeClinicalUseDefinition(
     resource,
     [
       ["CodeableConcept", "category"],
-
       ["BackboneElement", "contraindication"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "indication"],
-
       ["BackboneElement", "interaction"],
-
       ["canonical", "library"],
-
       ["Reference", "population"],
-
       ["CodeableConcept", "status"],
-
       ["Reference", "subject"],
-
       ["code", "type"],
-
       ["BackboneElement", "undesirableEffect"],
-
       ["BackboneElement", "warning"],
     ],
     options
@@ -1719,53 +1433,29 @@ function narrativeCodeSystem(
     resource,
     [
       ["boolean", "caseSensitive"],
-
       ["boolean", "compositional"],
-
       ["ContactDetail", "contact"],
-
       ["code", "content"],
-
       ["unsignedInt", "count"],
-
       ["dateTime", "date"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["BackboneElement", "filter"],
-
       ["code", "hierarchyMeaning"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["BackboneElement", "property"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["canonical", "supplements"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["canonical", "valueSet"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
-
       ["boolean", "versionNeeded"],
     ],
     options
@@ -1780,25 +1470,15 @@ function narrativeCommunication(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "identifier"],
-
       ["canonical", "instantiatesCanonical"],
-
       ["uri", "instantiatesUri"],
-
       ["Reference", "partOf"],
-
       ["code", "priority"],
-
       ["CodeableReference", "reason"],
-
       ["code", "status"],
-
       ["CodeableConcept", "statusReason"],
-
       ["Reference", "subject"],
     ],
     options
@@ -1813,33 +1493,19 @@ function narrativeCommunicationRequest(
     resource,
     [
       ["dateTime", "authoredOn"],
-
       ["Reference", "basedOn"],
-
       ["boolean", "doNotPerform"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "groupIdentifier"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "informationProvider"],
-
       ["code", "intent"],
-
       ["dateTime", "occurrenceDateTime"],
-
       ["Period", "occurrencePeriod"],
-
       ["code", "priority"],
-
       ["CodeableReference", "reason"],
-
       ["Reference", "replaces"],
-
       ["Reference", "requester"],
-
       ["code", "status"],
     ],
     options
@@ -1854,33 +1520,19 @@ function narrativeCompartmentDefinition(
     resource,
     [
       ["code", "code"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["boolean", "experimental"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["BackboneElement", "resource"],
-
       ["boolean", "search"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -1895,33 +1547,19 @@ function narrativeComposition(
     resource,
     [
       ["Reference", "author"],
-
       ["CodeableConcept", "category"],
-
       ["Reference", "custodian"],
-
       ["dateTime", "date"],
-
       ["Reference", "encounter"],
-
       ["BackboneElement", "event"],
-
       ["Identifier", "identifier"],
-
       ["string", "name"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["string", "title"],
-
       ["CodeableConcept", "type"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
     ],
     options
@@ -1936,45 +1574,25 @@ function narrativeConceptMap(
     resource,
     [
       ["BackboneElement", "additionalAttribute"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["BackboneElement", "property"],
-
       ["string", "publisher"],
-
       ["uri", "sourceScopeUri"],
-
       ["canonical", "sourceScopeCanonical"],
-
       ["code", "status"],
-
       ["uri", "targetScopeUri"],
-
       ["canonical", "targetScopeCanonical"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -1989,33 +1607,19 @@ function narrativeCondition(
     resource,
     [
       ["CodeableConcept", "bodySite"],
-
       ["CodeableConcept", "clinicalStatus"],
-
       ["CodeableConcept", "code"],
-
       ["Reference", "encounter"],
-
       ["CodeableReference", "evidence"],
-
       ["Identifier", "identifier"],
-
       ["dateTime", "onsetDateTime"],
-
       ["Age", "onsetAge"],
-
       ["Period", "onsetPeriod"],
-
       ["Range", "onsetRange"],
-
       ["string", "onsetString"],
-
       ["BackboneElement", "participant"],
-
       ["dateTime", "recordedDate"],
-
       ["Reference", "subject"],
-
       ["CodeableConcept", "verificationStatus"],
     ],
     options
@@ -2030,39 +1634,22 @@ function narrativeConditionDefinition(
     resource,
     [
       ["CodeableConcept", "bodySite"],
-
       ["CodeableConcept", "code"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["CodeableConcept", "severity"],
-
       ["CodeableConcept", "stage"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -2077,25 +1664,15 @@ function narrativeConsent(
     resource,
     [
       ["CodeableConcept", "category"],
-
       ["date", "date"],
-
       ["code", "decision"],
-
       ["Reference", "grantee"],
-
       ["Reference", "grantor"],
-
       ["Identifier", "identifier"],
-
       ["Period", "period"],
-
       ["BackboneElement", "provision"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["BackboneElement", "verification"],
     ],
     options
@@ -2110,23 +1687,14 @@ function narrativeContract(
     resource,
     [
       ["Period", "applies"],
-
       ["Identifier", "identifier"],
-
       ["dateTime", "issued"],
-
       ["string", "name"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["CodeableConcept", "subType"],
-
       ["string", "title"],
-
       ["CodeableConcept", "type"],
-
       ["string", "version"],
     ],
     options
@@ -2141,29 +1709,17 @@ function narrativeCoverage(
     resource,
     [
       ["Reference", "beneficiary"],
-
       ["string", "dependent"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "insurer"],
-
       ["code", "kind"],
-
       ["string", "network"],
-
       ["positiveInt", "order"],
-
       ["Period", "period"],
-
       ["Reference", "policyHolder"],
-
       ["code", "status"],
-
       ["Reference", "subscriber"],
-
       ["Identifier", "subscriberId"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -2178,13 +1734,9 @@ function narrativeCoverageEligibilityRequest(
     resource,
     [
       ["dateTime", "created"],
-
       ["Reference", "insurer"],
-
       ["Reference", "patient"],
-
       ["code", "purpose"],
-
       ["code", "status"],
     ],
     options
@@ -2199,17 +1751,11 @@ function narrativeCoverageEligibilityResponse(
     resource,
     [
       ["dateTime", "created"],
-
       ["Reference", "insurer"],
-
       ["code", "outcome"],
-
       ["Reference", "patient"],
-
       ["code", "purpose"],
-
       ["Reference", "request"],
-
       ["code", "status"],
     ],
     options
@@ -2224,23 +1770,14 @@ function narrativeDetectedIssue(
     resource,
     [
       ["Reference", "author"],
-
       ["CodeableConcept", "code"],
-
       ["Reference", "encounter"],
-
       ["dateTime", "identifiedDateTime"],
-
       ["Period", "identifiedPeriod"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "implicated"],
-
       ["code", "severity"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -2255,9 +1792,7 @@ function narrativeDevice(
     resource,
     [
       ["CodeableConcept", "safety"],
-
       ["code", "status"],
-
       ["BackboneElement", "udiCarrier"],
     ],
     options
@@ -2272,21 +1807,13 @@ function narrativeDeviceAssociation(
     resource,
     [
       ["Reference", "bodyStructure"],
-
       ["CodeableConcept", "category"],
-
       ["Reference", "device"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "operation"],
-
       ["Period", "period"],
-
       ["CodeableConcept", "status"],
-
       ["CodeableConcept", "statusReason"],
-
       ["Reference", "subject"],
     ],
     options
@@ -2301,19 +1828,12 @@ function narrativeDeviceDefinition(
     resource,
     [
       ["BackboneElement", "classification"],
-
       ["BackboneElement", "conformsTo"],
-
       ["BackboneElement", "deviceName"],
-
       ["BackboneElement", "hasPart"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "manufacturer"],
-
       ["string", "modelNumber"],
-
       ["CodeableConcept", "safety"],
     ],
     options
@@ -2328,13 +1848,9 @@ function narrativeDeviceDispense(
     resource,
     [
       ["CodeableReference", "device"],
-
       ["Identifier", "identifier"],
-
       ["dateTime", "preparedDate"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -2349,15 +1865,10 @@ function narrativeDeviceMetric(
     resource,
     [
       ["code", "category"],
-
       ["Reference", "device"],
-
       ["Identifier", "identifier"],
-
       ["code", "operationalStatus"],
-
       ["CodeableConcept", "type"],
-
       ["CodeableConcept", "unit"],
     ],
     options
@@ -2372,43 +1883,24 @@ function narrativeDeviceRequest(
     resource,
     [
       ["dateTime", "authoredOn"],
-
       ["Reference", "basedOn"],
-
       ["CodeableReference", "code"],
-
       ["boolean", "doNotPerform"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "groupIdentifier"],
-
       ["Identifier", "identifier"],
-
       ["canonical", "instantiatesCanonical"],
-
       ["uri", "instantiatesUri"],
-
       ["code", "intent"],
-
       ["dateTime", "occurrenceDateTime"],
-
       ["Period", "occurrencePeriod"],
-
       ["Timing", "occurrenceTiming"],
-
       ["CodeableReference", "performer"],
-
       ["code", "priority"],
-
       ["CodeableReference", "reason"],
-
       ["Reference", "replaces"],
-
       ["Reference", "requester"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -2423,31 +1915,18 @@ function narrativeDeviceUsage(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["CodeableReference", "bodySite"],
-
       ["Reference", "context"],
-
       ["dateTime", "dateAsserted"],
-
       ["Reference", "derivedFrom"],
-
       ["CodeableReference", "device"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "informationSource"],
-
       ["Reference", "patient"],
-
       ["CodeableReference", "reason"],
-
       ["code", "status"],
-
       ["Timing", "timingTiming"],
-
       ["Period", "timingPeriod"],
-
       ["dateTime", "timingDateTime"],
     ],
     options
@@ -2462,27 +1941,16 @@ function narrativeDiagnosticReport(
     resource,
     [
       ["CodeableConcept", "category"],
-
       ["CodeableConcept", "code"],
-
       ["dateTime", "effectiveDateTime"],
-
       ["Period", "effectivePeriod"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "identifier"],
-
       ["instant", "issued"],
-
       ["BackboneElement", "media"],
-
       ["Reference", "performer"],
-
       ["Reference", "resultsInterpreter"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -2497,35 +1965,20 @@ function narrativeDocumentReference(
     resource,
     [
       ["Reference", "author"],
-
       ["CodeableReference", "bodySite"],
-
       ["CodeableConcept", "category"],
-
       ["BackboneElement", "content"],
-
       ["instant", "date"],
-
       ["markdown", "description"],
-
       ["code", "docStatus"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "modality"],
-
       ["Period", "period"],
-
       ["BackboneElement", "relatesTo"],
-
       ["CodeableConcept", "securityLabel"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["CodeableConcept", "type"],
-
       ["string", "version"],
     ],
     options
@@ -2540,25 +1993,15 @@ function narrativeEncounter(
     resource,
     [
       ["Reference", "appointment"],
-
       ["CodeableConcept", "class"],
-
       ["BackboneElement", "diagnosis"],
-
       ["Reference", "episodeOfCare"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "participant"],
-
       ["BackboneElement", "reason"],
-
       ["CodeableReference", "serviceType"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -2573,15 +2016,10 @@ function narrativeEncounterHistory(
     resource,
     [
       ["CodeableConcept", "class"],
-
       ["Identifier", "identifier"],
-
       ["CodeableReference", "serviceType"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -2596,21 +2034,13 @@ function narrativeEndpoint(
     resource,
     [
       ["url", "address"],
-
       ["CodeableConcept", "connectionType"],
-
       ["string", "description"],
-
       ["CodeableConcept", "environmentType"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "managingOrganization"],
-
       ["string", "name"],
-
       ["Period", "period"],
-
       ["code", "status"],
     ],
     options
@@ -2639,17 +2069,11 @@ function narrativeEpisodeOfCare(
     resource,
     [
       ["BackboneElement", "diagnosis"],
-
       ["Reference", "managingOrganization"],
-
       ["Reference", "patient"],
-
       ["Period", "period"],
-
       ["BackboneElement", "reason"],
-
       ["code", "status"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -2664,39 +2088,22 @@ function narrativeEventDefinition(
     resource,
     [
       ["date", "approvalDate"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["date", "lastReviewDate"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["TriggerDefinition", "trigger"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -2711,29 +2118,17 @@ function narrativeEvidence(
     resource,
     [
       ["ContactDetail", "author"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["ContactDetail", "endorser"],
-
       ["Identifier", "identifier"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -2748,23 +2143,14 @@ function narrativeEvidenceReport(
     resource,
     [
       ["ContactDetail", "author"],
-
       ["ContactDetail", "contact"],
-
       ["ContactDetail", "endorser"],
-
       ["Identifier", "identifier"],
-
       ["string", "publisher"],
-
       ["Identifier", "relatedIdentifier"],
-
       ["code", "status"],
-
       ["BackboneElement", "subject"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
     ],
     options
@@ -2779,33 +2165,19 @@ function narrativeEvidenceVariable(
     resource,
     [
       ["BackboneElement", "characteristic"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["markdown", "description"],
-
       ["Identifier", "identifier"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["string", "shortTitle"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -2820,33 +2192,19 @@ function narrativeExampleScenario(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["markdown", "description"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -2861,27 +2219,16 @@ function narrativeExplanationOfBenefit(
     resource,
     [
       ["Period", "billablePeriod"],
-
       ["dateTime", "created"],
-
       ["CodeableConcept", "decision"],
-
       ["BackboneElement", "insurance"],
-
       ["Reference", "insurer"],
-
       ["code", "outcome"],
-
       ["Reference", "patient"],
-
       ["Reference", "provider"],
-
       ["code", "status"],
-
       ["BackboneElement", "total"],
-
       ["CodeableConcept", "type"],
-
       ["code", "use"],
     ],
     options
@@ -2896,45 +2243,25 @@ function narrativeFamilyMemberHistory(
     resource,
     [
       ["Age", "ageAge"],
-
       ["Range", "ageRange"],
-
       ["string", "ageString"],
-
       ["CodeableConcept", "dataAbsentReason"],
-
       ["dateTime", "date"],
-
       ["boolean", "deceasedBoolean"],
-
       ["Age", "deceasedAge"],
-
       ["Range", "deceasedRange"],
-
       ["date", "deceasedDate"],
-
       ["string", "deceasedString"],
-
       ["boolean", "estimatedAge"],
-
       ["Identifier", "identifier"],
-
       ["canonical", "instantiatesCanonical"],
-
       ["uri", "instantiatesUri"],
-
       ["string", "name"],
-
       ["BackboneElement", "participant"],
-
       ["Reference", "patient"],
-
       ["CodeableReference", "reason"],
-
       ["CodeableConcept", "relationship"],
-
       ["CodeableConcept", "sex"],
-
       ["code", "status"],
     ],
     options
@@ -2949,19 +2276,12 @@ function narrativeFlag(
     resource,
     [
       ["Reference", "author"],
-
       ["CodeableConcept", "category"],
-
       ["CodeableConcept", "code"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "identifier"],
-
       ["Period", "period"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -2976,9 +2296,7 @@ function narrativeFormularyItem(
     resource,
     [
       ["CodeableConcept", "code"],
-
       ["Identifier", "identifier"],
-
       ["code", "status"],
     ],
     options
@@ -2993,13 +2311,9 @@ function narrativeGenomicStudy(
     resource,
     [
       ["Reference", "encounter"],
-
       ["Identifier", "identifier"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -3014,23 +2328,14 @@ function narrativeGoal(
     resource,
     [
       ["CodeableConcept", "achievementStatus"],
-
       ["CodeableConcept", "category"],
-
       ["CodeableConcept", "description"],
-
       ["code", "lifecycleStatus"],
-
       ["CodeableConcept", "priority"],
-
       ["Reference", "source"],
-
       ["date", "startDate"],
-
       ["CodeableConcept", "startCodeableConcept"],
-
       ["date", "statusDate"],
-
       ["Reference", "subject"],
     ],
     options
@@ -3045,31 +2350,18 @@ function narrativeGraphDefinition(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -3084,21 +2376,13 @@ function narrativeGroup(
     resource,
     [
       ["boolean", "active"],
-
       ["BackboneElement", "characteristic"],
-
       ["CodeableConcept", "code"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "managingEntity"],
-
       ["code", "membership"],
-
       ["string", "name"],
-
       ["unsignedInt", "quantity"],
-
       ["code", "type"],
     ],
     options
@@ -3113,15 +2397,10 @@ function narrativeGuidanceResponse(
     resource,
     [
       ["Identifier", "identifier"],
-
       ["uri", "moduleUri"],
-
       ["canonical", "moduleCanonical"],
-
       ["CodeableConcept", "moduleCodeableConcept"],
-
       ["Identifier", "requestIdentifier"],
-
       ["code", "status"],
     ],
     options
@@ -3136,23 +2415,14 @@ function narrativeHealthcareService(
     resource,
     [
       ["boolean", "active"],
-
       ["CodeableConcept", "category"],
-
       ["markdown", "comment"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "location"],
-
       ["string", "name"],
-
       ["Attachment", "photo"],
-
       ["Reference", "providedBy"],
-
       ["CodeableConcept", "specialty"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -3167,37 +2437,21 @@ function narrativeImagingSelection(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["CodeableReference", "bodySite"],
-
       ["CodeableConcept", "category"],
-
       ["CodeableConcept", "code"],
-
       ["Reference", "derivedFrom"],
-
       ["Reference", "endpoint"],
-
       ["Reference", "focus"],
-
       ["id", "frameOfReferenceUid"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "instance"],
-
       ["instant", "issued"],
-
       ["BackboneElement", "performer"],
-
       ["unsignedInt", "seriesNumber"],
-
       ["id", "seriesUid"],
-
       ["code", "status"],
-
       ["id", "studyUid"],
-
       ["Reference", "subject"],
     ],
     options
@@ -3212,39 +2466,22 @@ function narrativeImagingStudy(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["string", "description"],
-
       ["Reference", "encounter"],
-
       ["Reference", "endpoint"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "location"],
-
       ["CodeableConcept", "modality"],
-
       ["Annotation", "note"],
-
       ["unsignedInt", "numberOfInstances"],
-
       ["unsignedInt", "numberOfSeries"],
-
       ["Reference", "partOf"],
-
       ["CodeableReference", "procedure"],
-
       ["CodeableReference", "reason"],
-
       ["Reference", "referrer"],
-
       ["BackboneElement", "series"],
-
       ["dateTime", "started"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -3259,23 +2496,14 @@ function narrativeImmunization(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["boolean", "isSubpotent"],
-
       ["Annotation", "note"],
-
       ["dateTime", "occurrenceDateTime"],
-
       ["string", "occurrenceString"],
-
       ["Reference", "patient"],
-
       ["BackboneElement", "performer"],
-
       ["boolean", "primarySource"],
-
       ["code", "status"],
-
       ["CodeableConcept", "vaccineCode"],
     ],
     options
@@ -3290,13 +2518,9 @@ function narrativeImmunizationEvaluation(
     resource,
     [
       ["CodeableConcept", "doseStatus"],
-
       ["Reference", "immunizationEvent"],
-
       ["Reference", "patient"],
-
       ["code", "status"],
-
       ["CodeableConcept", "targetDisease"],
     ],
     options
@@ -3311,11 +2535,8 @@ function narrativeImmunizationRecommendation(
     resource,
     [
       ["dateTime", "date"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "patient"],
-
       ["BackboneElement", "recommendation"],
     ],
     options
@@ -3330,41 +2551,23 @@ function narrativeImplementationGuide(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["BackboneElement", "dependsOn"],
-
       ["boolean", "experimental"],
-
       ["code", "fhirVersion"],
-
       ["BackboneElement", "global"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["code", "license"],
-
       ["string", "name"],
-
       ["id", "packageId"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -3379,21 +2582,13 @@ function narrativeIngredient(
     resource,
     [
       ["boolean", "allergenicIndicator"],
-
       ["Reference", "for"],
-
       ["CodeableConcept", "function"],
-
       ["CodeableConcept", "group"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "manufacturer"],
-
       ["CodeableConcept", "role"],
-
       ["code", "status"],
-
       ["BackboneElement", "substance"],
     ],
     options
@@ -3408,17 +2603,11 @@ function narrativeInsurancePlan(
     resource,
     [
       ["Reference", "administeredBy"],
-
       ["Reference", "coverageArea"],
-
       ["Identifier", "identifier"],
-
       ["string", "name"],
-
       ["Reference", "ownedBy"],
-
       ["code", "status"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -3433,19 +2622,12 @@ function narrativeInventoryItem(
     resource,
     [
       ["CodeableConcept", "baseUnit"],
-
       ["CodeableConcept", "category"],
-
       ["CodeableConcept", "code"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "inventoryStatus"],
-
       ["BackboneElement", "name"],
-
       ["Quantity", "netContent"],
-
       ["code", "status"],
     ],
     options
@@ -3460,17 +2642,11 @@ function narrativeInventoryReport(
     resource,
     [
       ["code", "countType"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "inventoryListing"],
-
       ["CodeableConcept", "operationType"],
-
       ["CodeableConcept", "operationTypeReason"],
-
       ["dateTime", "reportedDateTime"],
-
       ["code", "status"],
     ],
     options
@@ -3485,23 +2661,14 @@ function narrativeInvoice(
     resource,
     [
       ["dateTime", "creation"],
-
       ["Identifier", "identifier"],
-
       ["date", "periodDate"],
-
       ["Period", "periodPeriod"],
-
       ["Reference", "recipient"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["Money", "totalGross"],
-
       ["Money", "totalNet"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -3516,39 +2683,22 @@ function narrativeLibrary(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["Attachment", "content"],
-
       ["dateTime", "date"],
-
       ["markdown", "description"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["CodeableConcept", "type"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -3563,9 +2713,7 @@ function narrativeLinkage(
     resource,
     [
       ["boolean", "active"],
-
       ["Reference", "author"],
-
       ["BackboneElement", "item"],
     ],
     options
@@ -3580,17 +2728,11 @@ function narrativeList(
     resource,
     [
       ["CodeableConcept", "code"],
-
       ["dateTime", "date"],
-
       ["code", "mode"],
-
       ["Reference", "source"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["string", "title"],
     ],
     options
@@ -3605,21 +2747,13 @@ function narrativeLocation(
     resource,
     [
       ["markdown", "description"],
-
       ["CodeableConcept", "form"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "managingOrganization"],
-
       ["code", "mode"],
-
       ["string", "name"],
-
       ["Coding", "operationalStatus"],
-
       ["code", "status"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -3634,23 +2768,14 @@ function narrativeManufacturedItemDefinition(
     resource,
     [
       ["BackboneElement", "component"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "ingredient"],
-
       ["CodeableConcept", "manufacturedDoseForm"],
-
       ["Reference", "manufacturer"],
-
       ["MarketingStatus", "marketingStatus"],
-
       ["string", "name"],
-
       ["BackboneElement", "property"],
-
       ["code", "status"],
-
       ["CodeableConcept", "unitOfPresentation"],
     ],
     options
@@ -3665,59 +2790,32 @@ function narrativeMeasure(
     resource,
     [
       ["code", "basis"],
-
       ["markdown", "clinicalRecommendationStatement"],
-
       ["CodeableConcept", "compositeScoring"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["markdown", "description"],
-
       ["markdown", "disclaimer"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["markdown", "guidance"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "improvementNotation"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["markdown", "rateAggregation"],
-
       ["markdown", "rationale"],
-
       ["markdown", "riskAdjustment"],
-
       ["CodeableConcept", "scoring"],
-
       ["CodeableConcept", "scoringUnit"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["CodeableConcept", "type"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -3732,25 +2830,15 @@ function narrativeMeasureReport(
     resource,
     [
       ["code", "dataUpdateType"],
-
       ["dateTime", "date"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "improvementNotation"],
-
       ["canonical", "measure"],
-
       ["Period", "period"],
-
       ["Reference", "reporter"],
-
       ["CodeableConcept", "scoring"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["code", "type"],
     ],
     options
@@ -3765,13 +2853,9 @@ function narrativeMedication(
     resource,
     [
       ["CodeableConcept", "code"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "marketingAuthorizationHolder"],
-
       ["code", "status"],
-
       ["Quantity", "totalVolume"],
     ],
     options
@@ -3786,21 +2870,13 @@ function narrativeMedicationAdministration(
     resource,
     [
       ["CodeableReference", "medication"],
-
       ["dateTime", "occurenceDateTime"],
-
       ["Period", "occurencePeriod"],
-
       ["Timing", "occurenceTiming"],
-
       ["Reference", "partOf"],
-
       ["BackboneElement", "performer"],
-
       ["dateTime", "recorded"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -3815,11 +2891,8 @@ function narrativeMedicationDispense(
     resource,
     [
       ["CodeableReference", "medication"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["dateTime", "whenPrepared"],
     ],
     options
@@ -3834,13 +2907,9 @@ function narrativeMedicationKnowledge(
     resource,
     [
       ["CodeableConcept", "code"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "monitoringProgram"],
-
       ["string", "name"],
-
       ["code", "status"],
     ],
     options
@@ -3855,27 +2924,16 @@ function narrativeMedicationRequest(
     resource,
     [
       ["dateTime", "authoredOn"],
-
       ["Reference", "basedOn"],
-
       ["boolean", "doNotPerform"],
-
       ["Identifier", "groupIdentifier"],
-
       ["code", "intent"],
-
       ["CodeableReference", "medication"],
-
       ["CodeableConcept", "performerType"],
-
       ["code", "priority"],
-
       ["boolean", "reported"],
-
       ["Reference", "requester"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -3890,25 +2948,15 @@ function narrativeMedicationStatement(
     resource,
     [
       ["BackboneElement", "adherence"],
-
       ["CodeableConcept", "category"],
-
       ["dateTime", "dateAsserted"],
-
       ["dateTime", "effectiveDateTime"],
-
       ["Period", "effectivePeriod"],
-
       ["Timing", "effectiveTiming"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "identifier"],
-
       ["CodeableReference", "medication"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -3923,61 +2971,33 @@ function narrativeMedicinalProductDefinition(
     resource,
     [
       ["CodeableConcept", "additionalMonitoringIndicator"],
-
       ["Reference", "attachedDocument"],
-
       ["BackboneElement", "characteristic"],
-
       ["CodeableConcept", "classification"],
-
       ["Reference", "clinicalTrial"],
-
       ["Coding", "code"],
-
       ["CodeableConcept", "combinedPharmaceuticalDoseForm"],
-
       ["Reference", "comprisedOf"],
-
       ["BackboneElement", "contact"],
-
       ["BackboneElement", "crossReference"],
-
       ["markdown", "description"],
-
       ["CodeableConcept", "domain"],
-
       ["Identifier", "identifier"],
-
       ["CodeableReference", "impurity"],
-
       ["markdown", "indication"],
-
       ["CodeableConcept", "ingredient"],
-
       ["CodeableConcept", "legalStatusOfSupply"],
-
       ["MarketingStatus", "marketingStatus"],
-
       ["Reference", "masterFile"],
-
       ["BackboneElement", "name"],
-
       ["BackboneElement", "operation"],
-
       ["CodeableConcept", "packagedMedicinalProduct"],
-
       ["CodeableConcept", "pediatricUseIndicator"],
-
       ["CodeableConcept", "route"],
-
       ["CodeableConcept", "specialMeasures"],
-
       ["CodeableConcept", "status"],
-
       ["dateTime", "statusDate"],
-
       ["CodeableConcept", "type"],
-
       ["string", "version"],
     ],
     options
@@ -3992,49 +3012,27 @@ function narrativeMessageDefinition(
     resource,
     [
       ["canonical", "base"],
-
       ["code", "category"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["markdown", "description"],
-
       ["Coding", "eventCoding"],
-
       ["uri", "eventUri"],
-
       ["boolean", "experimental"],
-
       ["BackboneElement", "focus"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["canonical", "parent"],
-
       ["string", "publisher"],
-
       ["markdown", "purpose"],
-
       ["canonical", "replaces"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -4049,25 +3047,15 @@ function narrativeMessageHeader(
     resource,
     [
       ["Reference", "author"],
-
       ["canonical", "definition"],
-
       ["BackboneElement", "destination"],
-
       ["Coding", "eventCoding"],
-
       ["canonical", "eventCanonical"],
-
       ["Reference", "focus"],
-
       ["CodeableConcept", "reason"],
-
       ["BackboneElement", "response"],
-
       ["Reference", "responsible"],
-
       ["Reference", "sender"],
-
       ["BackboneElement", "source"],
     ],
     options
@@ -4089,23 +3077,14 @@ function narrativeMolecularSequence(
     resource,
     [
       ["Reference", "device"],
-
       ["Reference", "focus"],
-
       ["Attachment", "formatted"],
-
       ["Identifier", "identifier"],
-
       ["string", "literal"],
-
       ["Reference", "performer"],
-
       ["BackboneElement", "relative"],
-
       ["Reference", "specimen"],
-
       ["Reference", "subject"],
-
       ["code", "type"],
     ],
     options
@@ -4120,37 +3099,21 @@ function narrativeNamingSystem(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["code", "kind"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["BackboneElement", "uniqueId"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -4165,23 +3128,14 @@ function narrativeNutritionIntake(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["CodeableConcept", "code"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "identifier"],
-
       ["dateTime", "occurrenceDateTime"],
-
       ["Period", "occurrencePeriod"],
-
       ["Reference", "partOf"],
-
       ["dateTime", "recorded"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -4196,19 +3150,12 @@ function narrativeNutritionOrder(
     resource,
     [
       ["dateTime", "dateTime"],
-
       ["Identifier", "groupIdentifier"],
-
       ["canonical", "instantiatesCanonical"],
-
       ["uri", "instantiatesUri"],
-
       ["code", "intent"],
-
       ["Reference", "orderer"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -4223,13 +3170,9 @@ function narrativeNutritionProduct(
     resource,
     [
       ["CodeableConcept", "category"],
-
       ["CodeableConcept", "code"],
-
       ["Reference", "manufacturer"],
-
       ["BackboneElement", "nutrient"],
-
       ["code", "status"],
     ],
     options
@@ -4244,67 +3187,36 @@ function narrativeObservation(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["CodeableConcept", "code"],
-
       ["BackboneElement", "component"],
-
       ["Reference", "derivedFrom"],
-
       ["dateTime", "effectiveDateTime"],
-
       ["Period", "effectivePeriod"],
-
       ["Timing", "effectiveTiming"],
-
       ["instant", "effectiveInstant"],
-
       ["Reference", "encounter"],
-
       ["Reference", "focus"],
-
       ["Reference", "hasMember"],
-
       ["Identifier", "identifier"],
-
       ["canonical", "instantiatesCanonical"],
-
       ["Reference", "instantiatesReference"],
-
       ["instant", "issued"],
-
       ["Reference", "partOf"],
-
       ["Reference", "performer"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["Quantity", "valueQuantity"],
-
       ["CodeableConcept", "valueCodeableConcept"],
-
       ["string", "valueString"],
-
       ["boolean", "valueBoolean"],
-
       ["integer", "valueInteger"],
-
       ["Range", "valueRange"],
-
       ["Ratio", "valueRatio"],
-
       ["SampledData", "valueSampledData"],
-
       ["time", "valueTime"],
-
       ["dateTime", "valueDateTime"],
-
       ["Period", "valuePeriod"],
-
       ["Attachment", "valueAttachment"],
-
       ["Reference", "valueReference"],
     ],
     options
@@ -4319,45 +3231,25 @@ function narrativeObservationDefinition(
     resource,
     [
       ["CodeableConcept", "category"],
-
       ["CodeableConcept", "code"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["canonical", "derivedFromCanonical"],
-
       ["uri", "derivedFromUri"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["CodeableConcept", "performerType"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["CodeableConcept", "subject"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -4372,47 +3264,26 @@ function narrativeOperationDefinition(
     resource,
     [
       ["boolean", "affectsState"],
-
       ["canonical", "base"],
-
       ["code", "code"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["boolean", "instance"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["code", "kind"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "resource"],
-
       ["code", "status"],
-
       ["boolean", "system"],
-
       ["string", "title"],
-
       ["boolean", "type"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -4434,15 +3305,10 @@ function narrativeOrganization(
     resource,
     [
       ["boolean", "active"],
-
       ["markdown", "description"],
-
       ["Identifier", "identifier"],
-
       ["string", "name"],
-
       ["Reference", "partOf"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -4457,21 +3323,13 @@ function narrativeOrganizationAffiliation(
     resource,
     [
       ["boolean", "active"],
-
       ["CodeableConcept", "code"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "location"],
-
       ["Reference", "network"],
-
       ["Reference", "organization"],
-
       ["Reference", "participatingOrganization"],
-
       ["Period", "period"],
-
       ["CodeableConcept", "specialty"],
     ],
     options
@@ -4486,31 +3344,18 @@ function narrativePackagedProductDefinition(
     resource,
     [
       ["Reference", "attachedDocument"],
-
       ["Quantity", "containedItemQuantity"],
-
       ["boolean", "copackagedIndicator"],
-
       ["markdown", "description"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "legalStatusOfSupply"],
-
       ["Reference", "manufacturer"],
-
       ["MarketingStatus", "marketingStatus"],
-
       ["string", "name"],
-
       ["Reference", "packageFor"],
-
       ["BackboneElement", "packaging"],
-
       ["CodeableConcept", "status"],
-
       ["dateTime", "statusDate"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -4525,25 +3370,15 @@ function narrativePatient(
     resource,
     [
       ["boolean", "active"],
-
       ["Address", "address"],
-
       ["date", "birthDate"],
-
       ["boolean", "deceasedBoolean"],
-
       ["dateTime", "deceasedDateTime"],
-
       ["code", "gender"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "link"],
-
       ["Reference", "managingOrganization"],
-
       ["HumanName", "name"],
-
       ["ContactPoint", "telecom"],
     ],
     options
@@ -4558,13 +3393,9 @@ function narrativePaymentNotice(
     resource,
     [
       ["Money", "amount"],
-
       ["dateTime", "created"],
-
       ["Reference", "payment"],
-
       ["Reference", "recipient"],
-
       ["code", "status"],
     ],
     options
@@ -4579,17 +3410,11 @@ function narrativePaymentReconciliation(
     resource,
     [
       ["Money", "amount"],
-
       ["dateTime", "created"],
-
       ["date", "date"],
-
       ["Reference", "paymentIssuer"],
-
       ["Period", "period"],
-
       ["code", "status"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -4604,17 +3429,11 @@ function narrativePermission(
     resource,
     [
       ["Reference", "asserter"],
-
       ["code", "combining"],
-
       ["dateTime", "date"],
-
       ["BackboneElement", "justification"],
-
       ["BackboneElement", "rule"],
-
       ["code", "status"],
-
       ["Period", "validity"],
     ],
     options
@@ -4629,23 +3448,14 @@ function narrativePerson(
     resource,
     [
       ["boolean", "active"],
-
       ["Address", "address"],
-
       ["date", "birthDate"],
-
       ["boolean", "deceasedBoolean"],
-
       ["dateTime", "deceasedDateTime"],
-
       ["code", "gender"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "managingOrganization"],
-
       ["HumanName", "name"],
-
       ["ContactPoint", "telecom"],
     ],
     options
@@ -4660,41 +3470,23 @@ function narrativePlanDefinition(
     resource,
     [
       ["boolean", "asNeededBoolean"],
-
       ["CodeableConcept", "asNeededCodeableConcept"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["markdown", "description"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["CodeableConcept", "type"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -4709,21 +3501,13 @@ function narrativePractitioner(
     resource,
     [
       ["boolean", "active"],
-
       ["Address", "address"],
-
       ["date", "birthDate"],
-
       ["boolean", "deceasedBoolean"],
-
       ["dateTime", "deceasedDateTime"],
-
       ["code", "gender"],
-
       ["Identifier", "identifier"],
-
       ["HumanName", "name"],
-
       ["ContactPoint", "telecom"],
     ],
     options
@@ -4738,19 +3522,12 @@ function narrativePractitionerRole(
     resource,
     [
       ["boolean", "active"],
-
       ["CodeableConcept", "code"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "location"],
-
       ["Reference", "organization"],
-
       ["Period", "period"],
-
       ["Reference", "practitioner"],
-
       ["CodeableConcept", "specialty"],
     ],
     options
@@ -4765,57 +3542,31 @@ function narrativeProcedure(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["CodeableConcept", "bodySite"],
-
       ["CodeableConcept", "category"],
-
       ["CodeableConcept", "code"],
-
       ["Reference", "encounter"],
-
       ["Reference", "focus"],
-
       ["Identifier", "identifier"],
-
       ["canonical", "instantiatesCanonical"],
-
       ["uri", "instantiatesUri"],
-
       ["Reference", "location"],
-
       ["dateTime", "occurrenceDateTime"],
-
       ["Period", "occurrencePeriod"],
-
       ["string", "occurrenceString"],
-
       ["Age", "occurrenceAge"],
-
       ["Range", "occurrenceRange"],
-
       ["Timing", "occurrenceTiming"],
-
       ["CodeableConcept", "outcome"],
-
       ["Reference", "partOf"],
-
       ["BackboneElement", "performer"],
-
       ["CodeableReference", "reason"],
-
       ["dateTime", "recorded"],
-
       ["Reference", "recorder"],
-
       ["boolean", "reportedBoolean"],
-
       ["Reference", "reportedReference"],
-
       ["code", "status"],
-
       ["CodeableConcept", "statusReason"],
-
       ["Reference", "subject"],
     ],
     options
@@ -4830,11 +3581,8 @@ function narrativeProvenance(
     resource,
     [
       ["BackboneElement", "agent"],
-
       ["BackboneElement", "entity"],
-
       ["instant", "recorded"],
-
       ["Reference", "target"],
     ],
     options
@@ -4849,41 +3597,23 @@ function narrativeQuestionnaire(
     resource,
     [
       ["Coding", "code"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["canonical", "derivedFrom"],
-
       ["markdown", "description"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["code", "subjectType"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -4898,23 +3628,14 @@ function narrativeQuestionnaireResponse(
     resource,
     [
       ["Reference", "author"],
-
       ["dateTime", "authored"],
-
       ["Reference", "basedOn"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "partOf"],
-
       ["canonical", "questionnaire"],
-
       ["Reference", "source"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -4929,33 +3650,19 @@ function narrativeRegulatedAuthorization(
     resource,
     [
       ["Reference", "attachedDocument"],
-
       ["CodeableConcept", "basis"],
-
       ["BackboneElement", "case"],
-
       ["markdown", "description"],
-
       ["Reference", "holder"],
-
       ["Identifier", "identifier"],
-
       ["CodeableReference", "indication"],
-
       ["CodeableConcept", "intendedUse"],
-
       ["CodeableConcept", "region"],
-
       ["Reference", "regulator"],
-
       ["CodeableConcept", "status"],
-
       ["dateTime", "statusDate"],
-
       ["Reference", "subject"],
-
       ["CodeableConcept", "type"],
-
       ["Period", "validityPeriod"],
     ],
     options
@@ -4970,21 +3677,13 @@ function narrativeRelatedPerson(
     resource,
     [
       ["boolean", "active"],
-
       ["Address", "address"],
-
       ["date", "birthDate"],
-
       ["code", "gender"],
-
       ["Identifier", "identifier"],
-
       ["HumanName", "name"],
-
       ["Reference", "patient"],
-
       ["CodeableConcept", "relationship"],
-
       ["ContactPoint", "telecom"],
     ],
     options
@@ -4999,19 +3698,12 @@ function narrativeRequestOrchestration(
     resource,
     [
       ["CodeableConcept", "code"],
-
       ["Identifier", "groupIdentifier"],
-
       ["Identifier", "identifier"],
-
       ["canonical", "instantiatesCanonical"],
-
       ["uri", "instantiatesUri"],
-
       ["code", "intent"],
-
       ["code", "priority"],
-
       ["code", "status"],
     ],
     options
@@ -5026,33 +3718,19 @@ function narrativeRequirements(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["canonical", "derivedFrom"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -5067,35 +3745,20 @@ function narrativeResearchStudy(
     resource,
     [
       ["CodeableConcept", "condition"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "keyword"],
-
       ["Reference", "partOf"],
-
       ["Period", "period"],
-
       ["CodeableConcept", "phase"],
-
       ["CodeableConcept", "primaryPurposeType"],
-
       ["Reference", "protocol"],
-
       ["BackboneElement", "recruitment"],
-
       ["CodeableConcept", "region"],
-
       ["Reference", "result"],
-
       ["Reference", "site"],
-
       ["code", "status"],
-
       ["CodeableConcept", "studyDesign"],
-
       ["string", "title"],
-
       ["CodeableConcept", "whyStopped"],
     ],
     options
@@ -5110,13 +3773,9 @@ function narrativeResearchSubject(
     resource,
     [
       ["Identifier", "identifier"],
-
       ["Period", "period"],
-
       ["code", "status"],
-
       ["Reference", "study"],
-
       ["Reference", "subject"],
     ],
     options
@@ -5131,23 +3790,14 @@ function narrativeRiskAssessment(
     resource,
     [
       ["CodeableConcept", "code"],
-
       ["Reference", "condition"],
-
       ["Reference", "encounter"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "method"],
-
       ["dateTime", "occurrenceDateTime"],
-
       ["Period", "occurrencePeriod"],
-
       ["Reference", "performer"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -5162,19 +3812,12 @@ function narrativeSchedule(
     resource,
     [
       ["boolean", "active"],
-
       ["Reference", "actor"],
-
       ["Identifier", "identifier"],
-
       ["string", "name"],
-
       ["Period", "planningHorizon"],
-
       ["CodeableConcept", "serviceCategory"],
-
       ["CodeableReference", "serviceType"],
-
       ["CodeableConcept", "specialty"],
     ],
     options
@@ -5189,39 +3832,22 @@ function narrativeSearchParameter(
     resource,
     [
       ["code", "base"],
-
       ["code", "code"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["markdown", "description"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["code", "type"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -5236,69 +3862,37 @@ function narrativeServiceRequest(
     resource,
     [
       ["boolean", "asNeededBoolean"],
-
       ["CodeableConcept", "asNeededCodeableConcept"],
-
       ["dateTime", "authoredOn"],
-
       ["Reference", "basedOn"],
-
       ["CodeableConcept", "bodySite"],
-
       ["Reference", "bodyStructure"],
-
       ["CodeableConcept", "category"],
-
       ["CodeableReference", "code"],
-
       ["boolean", "doNotPerform"],
-
       ["Reference", "encounter"],
-
       ["Reference", "focus"],
-
       ["Identifier", "identifier"],
-
       ["canonical", "instantiatesCanonical"],
-
       ["uri", "instantiatesUri"],
-
       ["code", "intent"],
-
       ["CodeableReference", "location"],
-
       ["dateTime", "occurrenceDateTime"],
-
       ["Period", "occurrencePeriod"],
-
       ["Timing", "occurrenceTiming"],
-
       ["BackboneElement", "orderDetail"],
-
       ["Reference", "performer"],
-
       ["CodeableConcept", "performerType"],
-
       ["code", "priority"],
-
       ["Quantity", "quantityQuantity"],
-
       ["Ratio", "quantityRatio"],
-
       ["Range", "quantityRange"],
-
       ["CodeableReference", "reason"],
-
       ["Reference", "replaces"],
-
       ["Reference", "requester"],
-
       ["Identifier", "requisition"],
-
       ["Reference", "specimen"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
     ],
     options
@@ -5313,21 +3907,13 @@ function narrativeSlot(
     resource,
     [
       ["CodeableConcept", "appointmentType"],
-
       ["instant", "end"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "schedule"],
-
       ["CodeableConcept", "serviceCategory"],
-
       ["CodeableReference", "serviceType"],
-
       ["CodeableConcept", "specialty"],
-
       ["instant", "start"],
-
       ["code", "status"],
     ],
     options
@@ -5342,19 +3928,12 @@ function narrativeSpecimen(
     resource,
     [
       ["Identifier", "accessionIdentifier"],
-
       ["code", "combined"],
-
       ["CodeableConcept", "condition"],
-
       ["Identifier", "identifier"],
-
       ["dateTime", "receivedTime"],
-
       ["code", "status"],
-
       ["Reference", "subject"],
-
       ["CodeableConcept", "type"],
     ],
     options
@@ -5369,47 +3948,26 @@ function narrativeSpecimenDefinition(
     resource,
     [
       ["CodeableConcept", "collection"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["canonical", "derivedFromCanonical"],
-
       ["uri", "derivedFromUri"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["CodeableConcept", "patientPreparation"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["CodeableConcept", "subjectCodeableConcept"],
-
       ["Reference", "subjectReference"],
-
       ["string", "timeAspect"],
-
       ["string", "title"],
-
       ["CodeableConcept", "typeCollected"],
-
       ["uri", "url"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -5424,49 +3982,27 @@ function narrativeStructureDefinition(
     resource,
     [
       ["boolean", "abstract"],
-
       ["canonical", "baseDefinition"],
-
       ["ContactDetail", "contact"],
-
       ["BackboneElement", "context"],
-
       ["string", "contextInvariant"],
-
       ["dateTime", "date"],
-
       ["code", "derivation"],
-
       ["boolean", "experimental"],
-
       ["code", "fhirVersion"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["Coding", "keyword"],
-
       ["code", "kind"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "type"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -5481,39 +4017,22 @@ function narrativeStructureMap(
     resource,
     [
       ["BackboneElement", "const"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["boolean", "experimental"],
-
       ["BackboneElement", "group"],
-
       ["Identifier", "identifier"],
-
       ["canonical", "import"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["BackboneElement", "structure"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -5528,35 +4047,20 @@ function narrativeSubscription(
     resource,
     [
       ["Coding", "channelType"],
-
       ["ContactPoint", "contact"],
-
       ["code", "content"],
-
       ["code", "contentType"],
-
       ["instant", "end"],
-
       ["url", "endpoint"],
-
       ["BackboneElement", "filterBy"],
-
       ["unsignedInt", "heartbeatPeriod"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "managingEntity"],
-
       ["positiveInt", "maxCount"],
-
       ["string", "name"],
-
       ["string", "reason"],
-
       ["code", "status"],
-
       ["unsignedInt", "timeout"],
-
       ["canonical", "topic"],
     ],
     options
@@ -5571,15 +4075,10 @@ function narrativeSubscriptionStatus(
     resource,
     [
       ["CodeableConcept", "error"],
-
       ["integer64", "eventsSinceSubscriptionStart"],
-
       ["code", "status"],
-
       ["Reference", "subscription"],
-
       ["canonical", "topic"],
-
       ["code", "type"],
     ],
     options
@@ -5594,43 +4093,24 @@ function narrativeSubscriptionTopic(
     resource,
     [
       ["BackboneElement", "canFilterBy"],
-
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["canonical", "derivedFrom"],
-
       ["Period", "effectivePeriod"],
-
       ["BackboneElement", "eventTrigger"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["BackboneElement", "notificationShape"],
-
       ["string", "publisher"],
-
       ["BackboneElement", "resourceTrigger"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -5645,21 +4125,13 @@ function narrativeSubstance(
     resource,
     [
       ["CodeableConcept", "category"],
-
       ["CodeableReference", "code"],
-
       ["markdown", "description"],
-
       ["dateTime", "expiry"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "ingredient"],
-
       ["boolean", "instance"],
-
       ["Quantity", "quantity"],
-
       ["code", "status"],
     ],
     options
@@ -5674,51 +4146,28 @@ function narrativeSubstanceDefinition(
     resource,
     [
       ["BackboneElement", "characterization"],
-
       ["CodeableConcept", "classification"],
-
       ["BackboneElement", "code"],
-
       ["markdown", "description"],
-
       ["CodeableConcept", "domain"],
-
       ["CodeableConcept", "grade"],
-
       ["Identifier", "identifier"],
-
       ["Reference", "informationSource"],
-
       ["Reference", "manufacturer"],
-
       ["BackboneElement", "moiety"],
-
       ["BackboneElement", "molecularWeight"],
-
       ["BackboneElement", "name"],
-
       ["Annotation", "note"],
-
       ["Reference", "nucleicAcid"],
-
       ["Reference", "polymer"],
-
       ["BackboneElement", "property"],
-
       ["Reference", "protein"],
-
       ["Reference", "referenceInformation"],
-
       ["BackboneElement", "relationship"],
-
       ["BackboneElement", "sourceMaterial"],
-
       ["CodeableConcept", "status"],
-
       ["BackboneElement", "structure"],
-
       ["Reference", "supplier"],
-
       ["string", "version"],
     ],
     options
@@ -5733,13 +4182,9 @@ function narrativeSubstanceNucleicAcid(
     resource,
     [
       ["string", "areaOfHybridisation"],
-
       ["integer", "numberOfSubunits"],
-
       ["CodeableConcept", "oligoNucleotideType"],
-
       ["CodeableConcept", "sequenceType"],
-
       ["BackboneElement", "subunit"],
     ],
     options
@@ -5754,17 +4199,11 @@ function narrativeSubstancePolymer(
     resource,
     [
       ["CodeableConcept", "class"],
-
       ["CodeableConcept", "copolymerConnectivity"],
-
       ["CodeableConcept", "geometry"],
-
       ["Identifier", "identifier"],
-
       ["string", "modification"],
-
       ["BackboneElement", "monomerSet"],
-
       ["BackboneElement", "repeat"],
     ],
     options
@@ -5779,11 +4218,8 @@ function narrativeSubstanceProtein(
     resource,
     [
       ["string", "disulfideLinkage"],
-
       ["integer", "numberOfSubunits"],
-
       ["CodeableConcept", "sequenceType"],
-
       ["BackboneElement", "subunit"],
     ],
     options
@@ -5798,11 +4234,8 @@ function narrativeSubstanceReferenceInformation(
     resource,
     [
       ["string", "comment"],
-
       ["BackboneElement", "gene"],
-
       ["BackboneElement", "geneElement"],
-
       ["BackboneElement", "target"],
     ],
     options
@@ -5817,29 +4250,17 @@ function narrativeSubstanceSourceMaterial(
     resource,
     [
       ["CodeableConcept", "countryOfOrigin"],
-
       ["CodeableConcept", "developmentStage"],
-
       ["BackboneElement", "fractionDescription"],
-
       ["string", "geographicalLocation"],
-
       ["BackboneElement", "organism"],
-
       ["Identifier", "organismId"],
-
       ["string", "organismName"],
-
       ["Identifier", "parentSubstanceId"],
-
       ["string", "parentSubstanceName"],
-
       ["BackboneElement", "partDescription"],
-
       ["CodeableConcept", "sourceMaterialClass"],
-
       ["CodeableConcept", "sourceMaterialState"],
-
       ["CodeableConcept", "sourceMaterialType"],
     ],
     options
@@ -5854,15 +4275,10 @@ function narrativeSupplyDelivery(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["dateTime", "occurrenceDateTime"],
-
       ["Period", "occurrencePeriod"],
-
       ["Timing", "occurrenceTiming"],
-
       ["Reference", "partOf"],
-
       ["code", "status"],
     ],
     options
@@ -5877,29 +4293,17 @@ function narrativeSupplyRequest(
     resource,
     [
       ["dateTime", "authoredOn"],
-
       ["Reference", "basedOn"],
-
       ["CodeableConcept", "category"],
-
       ["Identifier", "identifier"],
-
       ["CodeableReference", "item"],
-
       ["dateTime", "occurrenceDateTime"],
-
       ["Period", "occurrencePeriod"],
-
       ["Timing", "occurrenceTiming"],
-
       ["code", "priority"],
-
       ["Quantity", "quantity"],
-
       ["Reference", "requester"],
-
       ["code", "status"],
-
       ["Reference", "supplier"],
     ],
     options
@@ -5914,47 +4318,26 @@ function narrativeTask(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["CodeableConcept", "businessStatus"],
-
       ["CodeableConcept", "code"],
-
       ["string", "description"],
-
       ["boolean", "doNotPerform"],
-
       ["Reference", "encounter"],
-
       ["Period", "executionPeriod"],
-
       ["Reference", "focus"],
-
       ["Reference", "for"],
-
       ["Identifier", "groupIdentifier"],
-
       ["canonical", "instantiatesCanonical"],
-
       ["uri", "instantiatesUri"],
-
       ["code", "intent"],
-
       ["dateTime", "lastModified"],
-
       ["Reference", "location"],
-
       ["Reference", "owner"],
-
       ["Reference", "partOf"],
-
       ["BackboneElement", "performer"],
-
       ["Period", "requestedPeriod"],
-
       ["Reference", "requester"],
-
       ["code", "status"],
-
       ["CodeableReference", "statusReason"],
     ],
     options
@@ -5969,41 +4352,23 @@ function narrativeTerminologyCapabilities(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["markdown", "copyright"],
-
       ["dateTime", "date"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["BackboneElement", "implementation"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["code", "kind"],
-
       ["boolean", "lockedDate"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["BackboneElement", "software"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -6018,29 +4383,17 @@ function narrativeTestPlan(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -6055,19 +4408,12 @@ function narrativeTestReport(
     resource,
     [
       ["Identifier", "identifier"],
-
       ["dateTime", "issued"],
-
       ["string", "name"],
-
       ["code", "result"],
-
       ["decimal", "score"],
-
       ["code", "status"],
-
       ["string", "tester"],
-
       ["canonical", "testScript"],
     ],
     options
@@ -6082,31 +4428,18 @@ function narrativeTestScript(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -6121,43 +4454,24 @@ function narrativeTransport(
     resource,
     [
       ["Reference", "basedOn"],
-
       ["CodeableConcept", "code"],
-
       ["dateTime", "completionTime"],
-
       ["Reference", "currentLocation"],
-
       ["string", "description"],
-
       ["Reference", "encounter"],
-
       ["Reference", "focus"],
-
       ["Reference", "for"],
-
       ["Identifier", "groupIdentifier"],
-
       ["canonical", "instantiatesCanonical"],
-
       ["uri", "instantiatesUri"],
-
       ["code", "intent"],
-
       ["dateTime", "lastModified"],
-
       ["Reference", "location"],
-
       ["Reference", "owner"],
-
       ["Reference", "partOf"],
-
       ["Reference", "requestedLocation"],
-
       ["Reference", "requester"],
-
       ["code", "status"],
-
       ["CodeableConcept", "statusReason"],
     ],
     options
@@ -6172,35 +4486,20 @@ function narrativeValueSet(
     resource,
     [
       ["ContactDetail", "contact"],
-
       ["dateTime", "date"],
-
       ["Period", "effectivePeriod"],
-
       ["boolean", "experimental"],
-
       ["Identifier", "identifier"],
-
       ["boolean", "immutable"],
-
       ["CodeableConcept", "jurisdiction"],
-
       ["string", "name"],
-
       ["string", "publisher"],
-
       ["code", "status"],
-
       ["string", "title"],
-
       ["uri", "url"],
-
       ["UsageContext", "useContext"],
-
       ["string", "version"],
-
       ["string", "versionAlgorithmString"],
-
       ["Coding", "versionAlgorithmCoding"],
     ],
     options
@@ -6215,19 +4514,12 @@ function narrativeVerificationResult(
     resource,
     [
       ["CodeableConcept", "failureAction"],
-
       ["CodeableConcept", "need"],
-
       ["code", "status"],
-
       ["dateTime", "statusDate"],
-
       ["Reference", "target"],
-
       ["string", "targetLocation"],
-
       ["CodeableConcept", "validationProcess"],
-
       ["CodeableConcept", "validationType"],
     ],
     options
@@ -6242,15 +4534,10 @@ function narrativeVisionPrescription(
     resource,
     [
       ["dateTime", "created"],
-
       ["dateTime", "dateWritten"],
-
       ["BackboneElement", "lensSpecification"],
-
       ["Reference", "patient"],
-
       ["Reference", "prescriber"],
-
       ["code", "status"],
     ],
     options
@@ -6267,7 +4554,8 @@ function buildNarrative<TResource extends FhirDomainResource>(
     status: "generated",
     div: `<div xmlns="http://www.w3.org/1999/xhtml"><dl>${(
       elements.map((element) => [
-        element[1],
+        (element[1] as string)?.[0]?.toUpperCase() +
+          (element[1] as string).slice(1),
         safeFormat(formatter, element[0], resource[element[1]]),
       ]) as Array<[string, string]>
     )
@@ -6286,11 +4574,18 @@ function safeFormat(
 ): string {
   if (formatter.canFormat(type)) {
     try {
-      return formatter.format(type, value as never);
+      return htmlEncode(formatter.format(type, value as never));
     } catch {
       // Ignore
     }
   }
 
   return "";
+}
+
+function htmlEncode(value: string): string {
+  return value.replace(
+    /[&<>\u00A0-\u9999]/g,
+    (i) => "&#" + i.codePointAt(0) + ";"
+  );
 }
