@@ -25,6 +25,7 @@ export * from "./oid";
 export * from "./period";
 export * from "./positive-int";
 export * from "./quantity";
+export * from "./range";
 export * from "./string";
 export * from "./uri";
 export * from "./url";

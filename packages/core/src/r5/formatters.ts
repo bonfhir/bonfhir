@@ -85,6 +85,7 @@ export class Formatter {
       .register(valueFormatters.periodFormatter)
       .register(valueFormatters.positiveIntFormatter)
       .register(valueFormatters.quantityFormatter)
+      .register(valueFormatters.rangeFormatter)
       .register(valueFormatters.stringFormatter)
       .register(valueFormatters.uriFormatter)
       .register(valueFormatters.urlFormatter)
