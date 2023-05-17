@@ -103,6 +103,7 @@ export class Formatter {
       .register(valueFormatters.rangeFormatter)
       .register(valueFormatters.ratioFormatter)
       .register(valueFormatters.stringFormatter)
+      .register(valueFormatters.timeFormatter)
       .register(valueFormatters.uriFormatter)
       .register(valueFormatters.urlFormatter)
       .register(valueFormatters.uuidFormatter);

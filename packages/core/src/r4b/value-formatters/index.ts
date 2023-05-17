@@ -28,6 +28,7 @@ export * from "./quantity";
 export * from "./range";
 export * from "./ratio";
 export * from "./string";
+export * from "./time";
 export * from "./uri";
 export * from "./url";
 export * from "./uuid";
