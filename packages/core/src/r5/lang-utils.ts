@@ -228,8 +228,14 @@ export function comparePeriods(
  *
  * @see {@link https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage}
  */
-export function startCase(str: string) {
-  return str
+export function startCase(value: null | undefined): undefined;
+export function startCase(value: string): string;
+export function startCase(value: string | null | undefined): string | undefined;
+export function startCase(
+  value: string | null | undefined
+): string | undefined {
+  if (value == undefined) return undefined;
+  return value
     .match(/[A-Z]?[a-z]+|\d+|[A-Z]+(?![a-z])/g)
     ?.reduce(
       (result, word, index) =>
