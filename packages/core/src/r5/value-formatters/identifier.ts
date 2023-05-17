@@ -83,14 +83,13 @@ export const identifierFormatter: ValueFormatter<
   type: "Identifier",
   format: (value, options, formatterOptions) => {
     if (Array.isArray(value)) {
-      const formattedIdentifierList = filterAndSortIdentifiers(
-        value,
-        options
-      ).map((identifier) =>
-        withValueFormatter<typeof identifierFormatter>(
-          formatterOptions.formatter
-        ).format("Identifier", identifier, options)
-      );
+      const formattedIdentifierList = filterAndSortIdentifiers(value, options)
+        .map((identifier) =>
+          withValueFormatter<typeof identifierFormatter>(
+            formatterOptions.formatter
+          ).format("Identifier", identifier, options)
+        )
+        .filter(Boolean);
 
       return new Intl.ListFormat(
         formatterOptions.locale,
@@ -238,8 +237,8 @@ const filterAndSortIdentifiers = (
  * The default order use to sort identifiers.
  */
 export const DEFAULT_IDENTIFIER_USE_ORDER = [
-  "usual",
   "official",
+  "usual",
   "temp",
   "secondary",
   "old",

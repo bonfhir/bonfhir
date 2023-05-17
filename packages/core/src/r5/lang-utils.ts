@@ -222,3 +222,21 @@ export function comparePeriods(
 
   return 0;
 }
+
+/**
+ * Convert the string to start case (First letter of each word capitalized).
+ *
+ * @see {@link https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage}
+ */
+export function startCase(str: string) {
+  return str
+    .match(/[A-Z]?[a-z]+|\d+|[A-Z]+(?![a-z])/g)
+    ?.reduce(
+      (result, word, index) =>
+        result +
+        (index ? " " : "") +
+        word.charAt(0).toUpperCase() +
+        word.slice(1),
+      ""
+    );
+}

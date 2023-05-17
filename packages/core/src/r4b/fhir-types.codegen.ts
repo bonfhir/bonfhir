@@ -94830,9 +94830,9 @@ export type Retrieved<TDomainResource extends DomainResource> = WithRequired<
 > & { meta: WithRequired<Meta, "versionId" | "lastUpdated"> };
 
 /**
- * All the possible resource types
+ * Any of the possible resource types
  */
-export type FhirResource =
+export type AnyResource =
   | Account
   | ActivityDefinition
   | AdministrableProductDefinition
@@ -94976,31 +94976,33 @@ export type FhirResource =
   | VisionPrescription;
 
 /**
- * All the possible resource types as string
+ * Any of the possible resource types as string
  */
-export type FhirResourceType = FhirResource["resourceType"];
+export type AnyResourceType = AnyResource["resourceType"];
 
 /**
- * Allow referencing a resource type from its string {@link FhirResourceType} representation.
+ * Allow referencing a resource type from its string {@link AnyResourceType} representation.
  */
-export type ExtractFhirResource<TResourceType extends FhirResourceType> =
-  Extract<FhirResource, { resourceType: TResourceType }>;
+export type ExtractResource<TResourceType extends AnyResourceType> = Extract<
+  AnyResource,
+  { resourceType: TResourceType }
+>;
 
 /**
  * Return true if the object is a FhirResource of a specific type.
  */
-export function isFhirResource<TResourceType extends FhirResourceType>(
+export function isResource<TResourceType extends AnyResourceType>(
   type: TResourceType,
   object: unknown | null | undefined
-): object is ExtractFhirResource<TResourceType> {
+): object is ExtractResource<TResourceType> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (object as any)?.resourceType === type;
 }
 
 /**
- * All the possible domain resource types
+ * Any of the possible domain resource types
  */
-export type FhirDomainResource =
+export type AnyDomainResource =
   | Account
   | ActivityDefinition
   | AdministrableProductDefinition
@@ -95141,26 +95143,26 @@ export type FhirDomainResource =
   | VisionPrescription;
 
 /**
- * All the possible domain resource types as string
+ * Any of the possible domain resource types as string
  */
-export type FhirDomainResourceType = FhirDomainResource["resourceType"];
+export type AnyDomainResourceType = AnyDomainResource["resourceType"];
 
 /**
  * Allow referencing domain resource type from its string {@link FhirDomainResourceType} representation.
  */
-export type ExtractFhirDomainResource<
-  TDomainResourceType extends FhirDomainResourceType
-> = Extract<FhirDomainResource, { resourceType: TDomainResourceType }>;
+export type ExtractDomainResource<
+  TDomainResourceType extends AnyDomainResourceType
+> = Extract<AnyDomainResource, { resourceType: TDomainResourceType }>;
 
 /**
  * Return true if the object is a FhirDomainResource of a specific type.
  */
-export function isFhirDomainResource<
-  TDomainResourceType extends FhirDomainResourceType
+export function isDomainResource<
+  TDomainResourceType extends AnyDomainResourceType
 >(
   type: TDomainResourceType,
   object: unknown | null | undefined
-): object is ExtractFhirDomainResource<TDomainResourceType> {
+): object is ExtractDomainResource<TDomainResourceType> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (object as any)?.resourceType === type;
 }

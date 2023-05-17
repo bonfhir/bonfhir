@@ -74,12 +74,13 @@ export const addressFormatter: ValueFormatter<
     if (!value) return "";
 
     if (Array.isArray(value)) {
-      const formattedAddressList = filterAndSortAddresses(value, options).map(
-        (address) =>
+      const formattedAddressList = filterAndSortAddresses(value, options)
+        .map((address) =>
           withValueFormatter<typeof addressFormatter>(
             formatterOptions.formatter
           ).format("Address", address, options)
-      );
+        )
+        .filter(Boolean);
 
       return new Intl.ListFormat(
         formatterOptions.locale,

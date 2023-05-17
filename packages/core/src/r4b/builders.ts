@@ -1,5 +1,5 @@
 import {
-  FhirResource,
+  AnyDomainResource,
   HumanName,
   Reference,
   Retrieved,
@@ -12,7 +12,9 @@ export interface ReferenceOptions {
 /**
  * Build a reference from a resource.
  */
-export function reference<TTargetResource extends FhirResource = FhirResource>(
+export function reference<
+  TTargetResource extends AnyDomainResource = AnyDomainResource
+>(
   resource: Retrieved<TTargetResource>,
   options?: ReferenceOptions | null | undefined
 ): Reference<TTargetResource> {

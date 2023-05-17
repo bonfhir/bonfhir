@@ -8,6 +8,7 @@ import {
   AdministrableProductDefinition,
   AdverseEvent,
   AllergyIntolerance,
+  AnyDomainResource,
   Appointment,
   AppointmentResponse,
   AuditEvent,
@@ -58,7 +59,6 @@ import {
   ExampleScenario,
   ExplanationOfBenefit,
   FamilyMemberHistory,
-  FhirDomainResource,
   Flag,
   Goal,
   GraphDefinition,
@@ -145,13 +145,14 @@ import {
   VisionPrescription,
 } from "./fhir-types.codegen";
 import { DefaultFormatter, Formatter } from "./formatters";
+import { startCase } from "./lang-utils";
 
 export interface NarrativeOptions {
   /** The formatter to use. Will use the `Formatter.default` if not provided. */
   formatter?: DefaultFormatter | null | undefined;
 }
 
-export function narrative<TResourceType extends FhirDomainResource>(
+export function narrative<TResourceType extends AnyDomainResource>(
   resource: TResourceType,
   options?: NarrativeOptions | null | undefined
 ): Narrative {
@@ -726,7 +727,6 @@ function narrativeAccount(
   return buildNarrative(
     resource,
     [
-      ["BackboneElement", "coverage"],
       ["string", "description"],
       ["Identifier", "identifier"],
       ["string", "name"],
@@ -782,8 +782,6 @@ function narrativeAdministrableProductDefinition(
       ["Identifier", "identifier"],
       ["CodeableConcept", "ingredient"],
       ["Reference", "producedFrom"],
-      ["BackboneElement", "property"],
-      ["BackboneElement", "routeOfAdministration"],
       ["code", "status"],
       ["CodeableConcept", "unitOfPresentation"],
     ],
@@ -817,7 +815,6 @@ function narrativeAdverseEvent(
       ["Reference", "study"],
       ["Reference", "subject"],
       ["Reference", "subjectMedicalHistory"],
-      ["BackboneElement", "suspectEntity"],
     ],
     options
   );
@@ -953,22 +950,17 @@ function narrativeCapabilityStatement(
     [
       ["ContactDetail", "contact"],
       ["dateTime", "date"],
-      ["BackboneElement", "document"],
       ["boolean", "experimental"],
       ["code", "fhirVersion"],
       ["code", "format"],
-      ["BackboneElement", "implementation"],
       ["canonical", "implementationGuide"],
       ["canonical", "imports"],
       ["canonical", "instantiates"],
       ["CodeableConcept", "jurisdiction"],
       ["code", "kind"],
-      ["BackboneElement", "messaging"],
       ["string", "name"],
       ["code", "patchFormat"],
       ["string", "publisher"],
-      ["BackboneElement", "rest"],
-      ["BackboneElement", "software"],
       ["code", "status"],
       ["string", "title"],
       ["uri", "url"],
@@ -1131,7 +1123,6 @@ function narrativeClaim(
     [
       ["Period", "billablePeriod"],
       ["dateTime", "created"],
-      ["BackboneElement", "insurance"],
       ["Reference", "insurer"],
       ["Reference", "patient"],
       ["CodeableConcept", "priority"],
@@ -1157,7 +1148,6 @@ function narrativeClaimResponse(
       ["Reference", "patient"],
       ["Reference", "request"],
       ["code", "status"],
-      ["BackboneElement", "total"],
       ["CodeableConcept", "type"],
       ["code", "use"],
     ],
@@ -1196,16 +1186,11 @@ function narrativeClinicalUseDefinition(
     resource,
     [
       ["CodeableConcept", "category"],
-      ["BackboneElement", "contraindication"],
       ["Identifier", "identifier"],
-      ["BackboneElement", "indication"],
-      ["BackboneElement", "interaction"],
       ["Reference", "population"],
       ["CodeableConcept", "status"],
       ["Reference", "subject"],
       ["code", "type"],
-      ["BackboneElement", "undesirableEffect"],
-      ["BackboneElement", "warning"],
     ],
     options
   );
@@ -1225,12 +1210,10 @@ function narrativeCodeSystem(
       ["unsignedInt", "count"],
       ["dateTime", "date"],
       ["boolean", "experimental"],
-      ["BackboneElement", "filter"],
       ["code", "hierarchyMeaning"],
       ["Identifier", "identifier"],
       ["CodeableConcept", "jurisdiction"],
       ["string", "name"],
-      ["BackboneElement", "property"],
       ["string", "publisher"],
       ["code", "status"],
       ["canonical", "supplements"],
@@ -1309,7 +1292,6 @@ function narrativeCompartmentDefinition(
       ["boolean", "experimental"],
       ["string", "name"],
       ["string", "publisher"],
-      ["BackboneElement", "resource"],
       ["boolean", "search"],
       ["code", "status"],
       ["uri", "url"],
@@ -1333,7 +1315,6 @@ function narrativeComposition(
       ["Reference", "custodian"],
       ["dateTime", "date"],
       ["Reference", "encounter"],
-      ["BackboneElement", "event"],
       ["Identifier", "identifier"],
       ["code", "status"],
       ["Reference", "subject"],
@@ -1413,12 +1394,10 @@ function narrativeConsent(
       ["Reference", "patient"],
       ["Reference", "performer"],
       ["CodeableConcept", "policyRule"],
-      ["BackboneElement", "provision"],
       ["CodeableConcept", "scope"],
       ["Attachment", "sourceAttachment"],
       ["Reference", "sourceReference"],
       ["code", "status"],
-      ["BackboneElement", "verification"],
     ],
     options
   );
@@ -1536,7 +1515,6 @@ function narrativeDevice(
     [
       ["CodeableConcept", "safety"],
       ["code", "status"],
-      ["BackboneElement", "udiCarrier"],
     ],
     options
   );
@@ -1563,7 +1541,6 @@ function narrativeDeviceMetric(
   return buildNarrative(
     resource,
     [
-      ["BackboneElement", "calibration"],
       ["code", "category"],
       ["code", "color"],
       ["Identifier", "identifier"],
@@ -1652,7 +1629,6 @@ function narrativeDiagnosticReport(
       ["Reference", "encounter"],
       ["Identifier", "identifier"],
       ["instant", "issued"],
-      ["BackboneElement", "media"],
       ["Reference", "performer"],
       ["Reference", "resultsInterpreter"],
       ["code", "status"],
@@ -1691,14 +1667,11 @@ function narrativeDocumentReference(
     [
       ["Reference", "author"],
       ["CodeableConcept", "category"],
-      ["BackboneElement", "content"],
-      ["BackboneElement", "context"],
       ["instant", "date"],
       ["string", "description"],
       ["code", "docStatus"],
       ["Identifier", "identifier"],
       ["Identifier", "masterIdentifier"],
-      ["BackboneElement", "relatesTo"],
       ["CodeableConcept", "securityLabel"],
       ["code", "status"],
       ["Reference", "subject"],
@@ -1717,10 +1690,8 @@ function narrativeEncounter(
     [
       ["Reference", "appointment"],
       ["Coding", "class"],
-      ["BackboneElement", "diagnosis"],
       ["Reference", "episodeOfCare"],
       ["Identifier", "identifier"],
-      ["BackboneElement", "participant"],
       ["CodeableConcept", "reasonCode"],
       ["Reference", "reasonReference"],
       ["CodeableConcept", "serviceType"],
@@ -1774,7 +1745,6 @@ function narrativeEpisodeOfCare(
   return buildNarrative(
     resource,
     [
-      ["BackboneElement", "diagnosis"],
       ["Reference", "managingOrganization"],
       ["Reference", "patient"],
       ["Period", "period"],
@@ -1850,7 +1820,6 @@ function narrativeEvidenceReport(
       ["string", "publisher"],
       ["Identifier", "relatedIdentifier"],
       ["code", "status"],
-      ["BackboneElement", "subject"],
       ["uri", "url"],
       ["UsageContext", "useContext"],
     ],
@@ -1865,7 +1834,6 @@ function narrativeEvidenceVariable(
   return buildNarrative(
     resource,
     [
-      ["BackboneElement", "characteristic"],
       ["ContactDetail", "contact"],
       ["dateTime", "date"],
       ["markdown", "description"],
@@ -1916,13 +1884,11 @@ function narrativeExplanationOfBenefit(
     [
       ["Period", "billablePeriod"],
       ["dateTime", "created"],
-      ["BackboneElement", "insurance"],
       ["Reference", "insurer"],
       ["code", "outcome"],
       ["Reference", "patient"],
       ["Reference", "provider"],
       ["code", "status"],
-      ["BackboneElement", "total"],
       ["CodeableConcept", "type"],
       ["code", "use"],
     ],
@@ -2111,7 +2077,6 @@ function narrativeImagingStudy(
       ["CodeableConcept", "reasonCode"],
       ["Reference", "reasonReference"],
       ["Reference", "referrer"],
-      ["BackboneElement", "series"],
       ["dateTime", "started"],
       ["code", "status"],
       ["Reference", "subject"],
@@ -2132,7 +2097,6 @@ function narrativeImmunization(
       ["dateTime", "occurrenceDateTime"],
       ["string", "occurrenceString"],
       ["Reference", "patient"],
-      ["BackboneElement", "performer"],
       ["boolean", "primarySource"],
       ["code", "status"],
       ["CodeableConcept", "vaccineCode"],
@@ -2168,7 +2132,6 @@ function narrativeImmunizationRecommendation(
       ["dateTime", "date"],
       ["Identifier", "identifier"],
       ["Reference", "patient"],
-      ["BackboneElement", "recommendation"],
     ],
     options
   );
@@ -2183,10 +2146,8 @@ function narrativeImplementationGuide(
     [
       ["ContactDetail", "contact"],
       ["dateTime", "date"],
-      ["BackboneElement", "dependsOn"],
       ["boolean", "experimental"],
       ["code", "fhirVersion"],
-      ["BackboneElement", "global"],
       ["CodeableConcept", "jurisdiction"],
       ["code", "license"],
       ["string", "name"],
@@ -2213,10 +2174,8 @@ function narrativeIngredient(
       ["Reference", "for"],
       ["CodeableConcept", "function"],
       ["Identifier", "identifier"],
-      ["BackboneElement", "manufacturer"],
       ["CodeableConcept", "role"],
       ["code", "status"],
-      ["BackboneElement", "substance"],
     ],
     options
   );
@@ -2298,7 +2257,6 @@ function narrativeLinkage(
     [
       ["boolean", "active"],
       ["Reference", "author"],
-      ["BackboneElement", "item"],
     ],
     options
   );
@@ -2355,7 +2313,6 @@ function narrativeManufacturedItemDefinition(
       ["CodeableConcept", "ingredient"],
       ["CodeableConcept", "manufacturedDoseForm"],
       ["Reference", "manufacturer"],
-      ["BackboneElement", "property"],
       ["code", "status"],
       ["CodeableConcept", "unitOfPresentation"],
     ],
@@ -2485,7 +2442,6 @@ function narrativeMedicationAdministration(
       ["CodeableConcept", "medicationCodeableConcept"],
       ["Reference", "medicationReference"],
       ["Reference", "partOf"],
-      ["BackboneElement", "performer"],
       ["code", "status"],
       ["Reference", "subject"],
     ],
@@ -2588,13 +2544,10 @@ function narrativeMedicinalProductDefinition(
     [
       ["CodeableConcept", "additionalMonitoringIndicator"],
       ["Reference", "attachedDocument"],
-      ["BackboneElement", "characteristic"],
       ["CodeableConcept", "classification"],
       ["Reference", "clinicalTrial"],
       ["Coding", "code"],
       ["CodeableConcept", "combinedPharmaceuticalDoseForm"],
-      ["BackboneElement", "contact"],
-      ["BackboneElement", "crossReference"],
       ["markdown", "description"],
       ["CodeableConcept", "domain"],
       ["Identifier", "identifier"],
@@ -2604,8 +2557,6 @@ function narrativeMedicinalProductDefinition(
       ["CodeableConcept", "legalStatusOfSupply"],
       ["MarketingStatus", "marketingStatus"],
       ["Reference", "masterFile"],
-      ["BackboneElement", "name"],
-      ["BackboneElement", "operation"],
       ["CodeableConcept", "packagedMedicinalProduct"],
       ["CodeableConcept", "pediatricUseIndicator"],
       ["CodeableConcept", "route"],
@@ -2634,7 +2585,6 @@ function narrativeMessageDefinition(
       ["Coding", "eventCoding"],
       ["uri", "eventUri"],
       ["boolean", "experimental"],
-      ["BackboneElement", "focus"],
       ["Identifier", "identifier"],
       ["CodeableConcept", "jurisdiction"],
       ["string", "name"],
@@ -2661,16 +2611,13 @@ function narrativeMessageHeader(
     [
       ["Reference", "author"],
       ["canonical", "definition"],
-      ["BackboneElement", "destination"],
       ["Reference", "enterer"],
       ["Coding", "eventCoding"],
       ["uri", "eventUri"],
       ["Reference", "focus"],
       ["CodeableConcept", "reason"],
-      ["BackboneElement", "response"],
       ["Reference", "responsible"],
       ["Reference", "sender"],
-      ["BackboneElement", "source"],
     ],
     options
   );
@@ -2690,15 +2637,10 @@ function narrativeMolecularSequence(
       ["Reference", "patient"],
       ["Reference", "performer"],
       ["Reference", "pointer"],
-      ["BackboneElement", "quality"],
       ["Quantity", "quantity"],
       ["integer", "readCoverage"],
-      ["BackboneElement", "referenceSeq"],
-      ["BackboneElement", "repository"],
       ["Reference", "specimen"],
-      ["BackboneElement", "structureVariant"],
       ["code", "type"],
-      ["BackboneElement", "variant"],
     ],
     options
   );
@@ -2718,7 +2660,6 @@ function narrativeNamingSystem(
       ["string", "name"],
       ["string", "publisher"],
       ["code", "status"],
-      ["BackboneElement", "uniqueId"],
       ["UsageContext", "useContext"],
     ],
     options
@@ -2754,7 +2695,6 @@ function narrativeNutritionProduct(
       ["CodeableConcept", "category"],
       ["CodeableConcept", "code"],
       ["Reference", "manufacturer"],
-      ["BackboneElement", "nutrient"],
       ["code", "status"],
     ],
     options
@@ -2770,7 +2710,6 @@ function narrativeObservation(
     [
       ["Reference", "basedOn"],
       ["CodeableConcept", "code"],
-      ["BackboneElement", "component"],
       ["Reference", "derivedFrom"],
       ["dateTime", "effectiveDateTime"],
       ["Period", "effectivePeriod"],
@@ -2851,7 +2790,7 @@ function narrativeOperationOutcome(
   resource: OperationOutcome,
   options?: NarrativeOptions | null | undefined
 ): Narrative {
-  return buildNarrative(resource, [["BackboneElement", "issue"]], options);
+  return buildNarrative(resource, [], options);
 }
 
 function narrativeOrganization(
@@ -2905,11 +2844,9 @@ function narrativePackagedProductDefinition(
       ["boolean", "copackagedIndicator"],
       ["markdown", "description"],
       ["Identifier", "identifier"],
-      ["BackboneElement", "legalStatusOfSupply"],
       ["Reference", "manufacturer"],
       ["MarketingStatus", "marketingStatus"],
       ["string", "name"],
-      ["BackboneElement", "package"],
       ["Reference", "packageFor"],
       ["CodeableConcept", "status"],
       ["dateTime", "statusDate"],
@@ -2933,7 +2870,6 @@ function narrativePatient(
       ["dateTime", "deceasedDateTime"],
       ["code", "gender"],
       ["Identifier", "identifier"],
-      ["BackboneElement", "link"],
       ["Reference", "managingOrganization"],
       ["HumanName", "name"],
       ["ContactPoint", "telecom"],
@@ -3086,7 +3022,6 @@ function narrativeProcedure(
       ["string", "performedString"],
       ["Age", "performedAge"],
       ["Range", "performedRange"],
-      ["BackboneElement", "performer"],
       ["CodeableConcept", "reasonCode"],
       ["Reference", "reasonReference"],
       ["Reference", "recorder"],
@@ -3169,7 +3104,6 @@ function narrativeRegulatedAuthorization(
     resource,
     [
       ["CodeableConcept", "basis"],
-      ["BackboneElement", "case"],
       ["markdown", "description"],
       ["Reference", "holder"],
       ["Identifier", "identifier"],
@@ -3265,7 +3199,6 @@ function narrativeResearchElementDefinition(
   return buildNarrative(
     resource,
     [
-      ["BackboneElement", "characteristic"],
       ["ContactDetail", "contact"],
       ["dateTime", "date"],
       ["markdown", "description"],
@@ -3515,7 +3448,6 @@ function narrativeStructureDefinition(
       ["boolean", "abstract"],
       ["canonical", "baseDefinition"],
       ["ContactDetail", "contact"],
-      ["BackboneElement", "context"],
       ["string", "contextInvariant"],
       ["dateTime", "date"],
       ["code", "derivation"],
@@ -3548,14 +3480,12 @@ function narrativeStructureMap(
       ["ContactDetail", "contact"],
       ["dateTime", "date"],
       ["boolean", "experimental"],
-      ["BackboneElement", "group"],
       ["Identifier", "identifier"],
       ["canonical", "import"],
       ["CodeableConcept", "jurisdiction"],
       ["string", "name"],
       ["string", "publisher"],
       ["code", "status"],
-      ["BackboneElement", "structure"],
       ["string", "title"],
       ["uri", "url"],
       ["UsageContext", "useContext"],
@@ -3572,7 +3502,6 @@ function narrativeSubscription(
   return buildNarrative(
     resource,
     [
-      ["BackboneElement", "channel"],
       ["ContactPoint", "contact"],
       ["string", "criteria"],
       ["instant", "end"],
@@ -3609,18 +3538,14 @@ function narrativeSubscriptionTopic(
   return buildNarrative(
     resource,
     [
-      ["BackboneElement", "canFilterBy"],
       ["ContactDetail", "contact"],
       ["dateTime", "date"],
       ["canonical", "derivedFrom"],
       ["Period", "effectivePeriod"],
-      ["BackboneElement", "eventTrigger"],
       ["boolean", "experimental"],
       ["Identifier", "identifier"],
       ["CodeableConcept", "jurisdiction"],
-      ["BackboneElement", "notificationShape"],
       ["string", "publisher"],
-      ["BackboneElement", "resourceTrigger"],
       ["code", "status"],
       ["string", "title"],
       ["uri", "url"],
@@ -3642,8 +3567,6 @@ function narrativeSubstance(
       ["CodeableConcept", "code"],
       ["string", "description"],
       ["Identifier", "identifier"],
-      ["BackboneElement", "ingredient"],
-      ["BackboneElement", "instance"],
       ["code", "status"],
     ],
     options
@@ -3658,22 +3581,14 @@ function narrativeSubstanceDefinition(
     resource,
     [
       ["CodeableConcept", "classification"],
-      ["BackboneElement", "code"],
       ["markdown", "description"],
       ["CodeableConcept", "domain"],
       ["CodeableConcept", "grade"],
       ["Identifier", "identifier"],
       ["Reference", "informationSource"],
       ["Reference", "manufacturer"],
-      ["BackboneElement", "moiety"],
-      ["BackboneElement", "molecularWeight"],
-      ["BackboneElement", "name"],
       ["Annotation", "note"],
-      ["BackboneElement", "property"],
-      ["BackboneElement", "relationship"],
-      ["BackboneElement", "sourceMaterial"],
       ["CodeableConcept", "status"],
-      ["BackboneElement", "structure"],
       ["Reference", "supplier"],
       ["string", "version"],
     ],
@@ -3766,13 +3681,11 @@ function narrativeTerminologyCapabilities(
       ["markdown", "copyright"],
       ["dateTime", "date"],
       ["boolean", "experimental"],
-      ["BackboneElement", "implementation"],
       ["CodeableConcept", "jurisdiction"],
       ["code", "kind"],
       ["boolean", "lockedDate"],
       ["string", "name"],
       ["string", "publisher"],
-      ["BackboneElement", "software"],
       ["code", "status"],
       ["string", "title"],
       ["uri", "url"],
@@ -3881,7 +3794,6 @@ function narrativeVisionPrescription(
     [
       ["dateTime", "created"],
       ["dateTime", "dateWritten"],
-      ["BackboneElement", "lensSpecification"],
       ["Reference", "patient"],
       ["Reference", "prescriber"],
       ["code", "status"],
@@ -3890,7 +3802,7 @@ function narrativeVisionPrescription(
   );
 }
 
-function buildNarrative<TResource extends FhirDomainResource>(
+function buildNarrative<TResource extends AnyDomainResource>(
   resource: TResource,
   elements: Array<[string, keyof TResource]>,
   options?: NarrativeOptions | null | undefined
@@ -3898,17 +3810,16 @@ function buildNarrative<TResource extends FhirDomainResource>(
   const formatter = options?.formatter ?? Formatter.default;
   return {
     status: "generated",
-    div: `<div xmlns="http://www.w3.org/1999/xhtml"><dl>${(
+    div: `<div xmlns="http://www.w3.org/1999/xhtml"><ul>${(
       elements.map((element) => [
-        (element[1] as string)?.[0]?.toUpperCase() +
-          (element[1] as string).slice(1),
+        startCase(element[1] as string).replace(" Boolean", ""),
         safeFormat(formatter, element[0], resource[element[1]]),
       ]) as Array<[string, string]>
     )
       .filter((element) => !!element[1])
-      .map((element) => `<dt>${element[0]}</dt><dd>${element[1]}</dd>`)
+      .map((element) => `<li><span>${element[0]}: </span>${element[1]}</li>`)
       .filter((x) => !!x)
-      .join("")}</dl></div>`,
+      .join("")}</ul></div>`,
   };
 }
 

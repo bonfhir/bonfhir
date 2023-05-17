@@ -55,7 +55,8 @@
     "*.mjs": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
     "*.ts": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
     "*.tsx": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
-    "*.ts.ejs": "${capture}.ts"
+    "*.ts.ejs": "${capture}.ts",
+    "*.codegen.ts": "${capture}.spec.ts, ${capture}.stories.ts, ${capture}.test.ts"
   },
   "files.associations": {
     "*.ts.ejs": "ejs"

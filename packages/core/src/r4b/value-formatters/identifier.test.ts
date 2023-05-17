@@ -131,8 +131,8 @@ describe("identifier", () => {
       ).toEqual(
         "usual, present, " +
           "temp, present, " +
-          "usual, past, " +
           "official, past, " +
+          "usual, past, " +
           "a long time ago, usual, " +
           "a long time ago, secondary, " +
           "and a long time ago, no use"
@@ -157,9 +157,7 @@ describe("identifier", () => {
         formatter.format("Identifier", identifiers, {
           systemFilterOrder: ["ID", "NAS"],
         })
-      ).toEqual(
-        "ID: temp, present, " + "ID: usual, past, and " + "NAS: official, past"
-      );
+      ).toEqual("ID: temp, present, NAS: official, past, and ID: usual, past");
     });
 
     it("Allows to only display a few", () => {

@@ -72,14 +72,13 @@ export const humanNameFormatter: ValueFormatter<
     if (!value) return "";
 
     if (Array.isArray(value)) {
-      const formattedHumanNameList = filterAndSortHumanNames(
-        value,
-        options
-      ).map((humanName) =>
-        withValueFormatter<typeof humanNameFormatter>(
-          formatterOptions.formatter
-        ).format("HumanName", humanName, options)
-      );
+      const formattedHumanNameList = filterAndSortHumanNames(value, options)
+        .map((humanName) =>
+          withValueFormatter<typeof humanNameFormatter>(
+            formatterOptions.formatter
+          ).format("HumanName", humanName, options)
+        )
+        .filter(Boolean);
 
       return new Intl.ListFormat(
         formatterOptions.locale,

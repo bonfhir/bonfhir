@@ -2,16 +2,17 @@
  * Narrative generators for <%= fhir.release %>/<%= fhir.version %>
  */
 
-import { DomainResource, FhirDomainResource, Narrative } from "./fhir-types.codegen";
+import { DomainResource, AnyDomainResource, Narrative } from "./fhir-types.codegen";
 import { <% for (domainResource of fhir.domainResources) { %> <%= domainResource.type %>, <% } %> } from "./fhir-types.codegen";
 import { DefaultFormatter, Formatter } from "./formatters";
+import { startCase } from "./lang-utils";
 
 export interface NarrativeOptions {
   /** The formatter to use. Will use the `Formatter.default` if not provided. */
   formatter?: DefaultFormatter | null | undefined;
 }
 
-export function narrative<TResourceType extends FhirDomainResource>(
+export function narrative<TResourceType extends AnyDomainResource>(
   resource: TResourceType,
   options?: NarrativeOptions | null | undefined
 ): Narrative {
@@ -38,14 +39,14 @@ function narrative<%= domainResource.type %>(resource: <%= domainResource.type %
   return buildNarrative(
     resource,
     [
-    <% for (const element of domainResource.ownRootElementsWithChoices.filter(x => x.isSummary)) {-%>
+    <% for (const element of domainResource.ownRootElementsWithChoices.filter(x => x.isSummary && !x.backboneElementName)) {-%>
     ["<%= element.type.map((x) => x.code).join(" | ") %>", "<%= element.name %>"],
     <% } -%>
   ], options);
 }
 <% } %>
 
-function buildNarrative<TResource extends FhirDomainResource>(
+function buildNarrative<TResource extends AnyDomainResource>(
   resource: TResource,
   elements: Array<[string, keyof TResource]>,
   options?: NarrativeOptions | null | undefined
@@ -53,17 +54,16 @@ function buildNarrative<TResource extends FhirDomainResource>(
   const formatter = options?.formatter ?? Formatter.default;
   return {
     status: "generated",
-    div: `<div xmlns="http://www.w3.org/1999/xhtml"><dl>${(
+    div: `<div xmlns="http://www.w3.org/1999/xhtml"><ul>${(
       elements.map((element) => [
-        (element[1] as string)?.[0]?.toUpperCase() +
-          (element[1] as string).slice(1),
+        startCase(element[1] as string).replace(" Boolean", ""),
         safeFormat(formatter, element[0], resource[element[1]]),
       ]) as Array<[string, string]>
     )
       .filter((element) => !!element[1])
-      .map((element) => `<dt>${element[0]}</dt><dd>${element[1]}</dd>`)
+      .map((element) => `<li><span>${element[0]}: </span>${element[1]}</li>`)
       .filter((x) => !!x)
-      .join("")}</dl></div>`,
+      .join("")}</ul></div>`,
   };
 }
 

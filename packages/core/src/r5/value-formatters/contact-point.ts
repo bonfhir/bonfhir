@@ -58,11 +58,13 @@ export const contactPointFormatter: ValueFormatter<
       const formattedContactPointList = filterAndSortContactPoints(
         value,
         options
-      ).map((contactPoint) =>
-        withValueFormatter<typeof contactPointFormatter>(
-          formatterOptions.formatter
-        ).format("ContactPoint", contactPoint, options)
-      );
+      )
+        .map((contactPoint) =>
+          withValueFormatter<typeof contactPointFormatter>(
+            formatterOptions.formatter
+          ).format("ContactPoint", contactPoint, options)
+        )
+        .filter(Boolean);
 
       return new Intl.ListFormat(
         formatterOptions.locale,
