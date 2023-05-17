@@ -79,6 +79,7 @@ export class Formatter {
       .register(valueFormatters.instantFormatter)
       .register(valueFormatters.integerFormatter)
       .register(valueFormatters.markdownFormatter)
+      .register(valueFormatters.moneyFormatter)
       .register(valueFormatters.oidFormatter)
       .register(valueFormatters.periodFormatter)
       .register(valueFormatters.quantityFormatter)
@@ -88,11 +89,22 @@ export class Formatter {
       .register(valueFormatters.uuidFormatter);
   }
 
+  private static _default: Formatter | undefined;
+
   /**
    * Default instance of the formatter.
    * Use the ambient locale and default options.
    */
-  public static default = Formatter.build();
+  public static get default() {
+    return this._default ?? (this._default = this.build());
+  }
+
+  /**
+   * Modify the default instance of the formatter.
+   */
+  public static set default(value: Formatter | undefined) {
+    this._default = value;
+  }
 
   constructor(
     private readonly _options?: FormatterOptions | null | undefined,
@@ -122,19 +134,17 @@ export class Formatter {
   }
 
   /**
-   * Register an additional {@link ValueFormatter} with this formatter.
+   * Register an additional {@link ValueFormatter} with this formatter,
+   * and return this instance with the added format signature.
    */
   public register<TType extends string, TValue, TOptions>(
     valueFormatter: ValueFormatter<TType, TValue, TOptions>
   ): WithValueFormatter<TType, TValue, TOptions, this> {
-    const newFormatters = new Map(this._formatters);
-    newFormatters.set(
+    this._formatters.set(
       valueFormatter.type,
       valueFormatter as ValueFormatter<string, unknown, unknown>
     );
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return new Formatter(this._options, newFormatters) as any;
+    return this;
   }
 }
 

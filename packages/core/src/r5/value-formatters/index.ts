@@ -19,6 +19,7 @@ export * from "./identifier";
 export * from "./instant";
 export * from "./integer";
 export * from "./markdown";
+export * from "./money";
 export * from "./oid";
 export * from "./period";
 export * from "./quantity";
