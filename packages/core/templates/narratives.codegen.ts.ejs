@@ -1,0 +1,80 @@
+/**
+ * Narrative generators for <%= fhir.release %>/<%= fhir.version %>
+ */
+
+import { DomainResource, FhirDomainResource, Narrative } from "./fhir-types.codegen";
+import { <% for (domainResource of fhir.domainResources) { %> <%= domainResource.type %>, <% } %> } from "./fhir-types.codegen";
+import { DefaultFormatter, Formatter } from "./formatters";
+
+export interface NarrativeOptions {
+  /** The formatter to use. Will use the `Formatter.default` if not provided. */
+  formatter?: DefaultFormatter | null | undefined;
+}
+
+export function narrative<TResourceType extends FhirDomainResource>(
+  resource: TResourceType,
+  options?: NarrativeOptions | null | undefined
+): Narrative {
+
+  switch(resource.resourceType) {
+    <% for (domainResource of fhir.domainResources) { %>
+    case "<%= domainResource.type %>": {
+      return narrative<%= domainResource.type %>(resource, options);
+    }
+    <% } %>
+    default: {
+      throw new Error(
+        `Unsupported resource type for narrative generation: ${
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (resource as any).resourceType
+        }`
+      );
+    }
+  }
+}
+
+<% for (domainResource of fhir.domainResources) { %>
+function narrative<%= domainResource.type %>(resource: <%= domainResource.type %>, options?: NarrativeOptions | null | undefined): Narrative {
+  return buildNarrative(
+    resource,
+    [
+    <% for (const element of domainResource.ownRootElementsWithChoices.filter(x => x.isSummary)) {%>
+    ["<%= element.type.map((x) => x.code).join(" | ") %>", "<%= element.name %>"],
+    <% } %>
+  ], options);
+}
+<% } %>
+
+function buildNarrative<TResource extends FhirDomainResource>(
+  resource: TResource,
+  elements: Array<[string, keyof TResource]>,
+  options?: NarrativeOptions | null | undefined
+): Narrative {
+  const formatter = options?.formatter ?? Formatter.default;
+  return {
+    status: "generated",
+    div: `<div xmlns="http://www.w3.org/1999/xhtml"><dl>${(elements
+      .map((element) => [element[1], safeFormat(formatter, element[0], resource[element[1]])]) as Array<[string, string]>)
+      .filter((element) => !!element[1])
+      .map((element) => `<dt>${element[0]}</dt><dd>${element[1]}</dd>`)
+      .filter((x) => !!x)
+      .join("")}</dl></div>`,
+  };
+}
+
+function safeFormat(
+  formatter: Formatter,
+  type: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  value: any | null | undefined
+): string {
+  if (formatter.canFormat(type)) {
+    try {
+      return formatter.format(type, value as never);
+    } catch {
+      // Ignore
+    }
+  }
+
+  return "";
+}

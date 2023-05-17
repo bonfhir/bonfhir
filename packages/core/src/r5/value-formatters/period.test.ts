@@ -1,6 +1,6 @@
 import { Period } from "../fhir-types.codegen";
 import { Formatter } from "../formatters";
-import { datetimeFormatter } from "./datetime";
+import { datetimeFormatter } from "./date-time";
 import { PeriodFormatterOptions, periodFormatter } from "./period";
 
 describe("period", () => {

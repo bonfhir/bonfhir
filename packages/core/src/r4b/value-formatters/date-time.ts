@@ -20,11 +20,11 @@ export type DatetimeFormatterOptions =
     };
 
 export const datetimeFormatter: ValueFormatter<
-  "datetime",
+  "dateTime",
   string | null | undefined,
   DatetimeFormatterOptions | null | undefined
 > = {
-  type: "datetime",
+  type: "dateTime",
   format: (value, options, formatterOptions) => {
     if (!value) {
       return "";

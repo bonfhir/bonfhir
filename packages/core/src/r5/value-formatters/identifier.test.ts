@@ -3,7 +3,7 @@ import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import { codeableConceptFormatter } from "./codeable-concept";
 import { codingFormatter } from "./coding";
-import { datetimeFormatter } from "./datetime";
+import { datetimeFormatter } from "./date-time";
 import { IdentifierFormatterOptions, identifierFormatter } from "./identifier";
 import { periodFormatter } from "./period";
 

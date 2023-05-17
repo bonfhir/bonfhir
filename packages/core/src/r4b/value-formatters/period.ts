@@ -1,6 +1,6 @@
 import { Period } from "../fhir-types.codegen";
 import { ValueFormatter, WithValueFormatter } from "../formatters";
-import { DatetimeFormatterOptions } from "./datetime";
+import { DatetimeFormatterOptions } from "./date-time";
 
 export type PeriodFormatterOptions = DatetimeFormatterOptions;
 
@@ -15,17 +15,17 @@ export const periodFormatter: ValueFormatter<
 
     const withDateTimeFormatterOptions =
       formatterOptions.formatter as WithValueFormatter<
-        "datetime",
+        "dateTime",
         string | undefined,
         DatetimeFormatterOptions
       >;
     const formattedStartDateTime = withDateTimeFormatterOptions.format(
-      "datetime",
+      "dateTime",
       value.start,
       options
     );
     const formattedEndDateTime = value.end
-      ? withDateTimeFormatterOptions.format("datetime", value.end, options)
+      ? withDateTimeFormatterOptions.format("dateTime", value.end, options)
       : "ongoing";
 
     return [formattedStartDateTime, "-", formattedEndDateTime]

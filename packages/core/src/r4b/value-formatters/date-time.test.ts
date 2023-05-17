@@ -1,7 +1,7 @@
 import { Formatter } from "../formatters";
-import { DatetimeFormatterOptions, datetimeFormatter } from "./datetime";
+import { DatetimeFormatterOptions, datetimeFormatter } from "./date-time";
 
-describe("datetime", () => {
+describe("date-time", () => {
   const formatter = new Formatter().register(datetimeFormatter);
 
   it.each(<Array<[string, DatetimeFormatterOptions | undefined, string]>>[
@@ -79,6 +79,6 @@ describe("datetime", () => {
       "in 4 hours",
     ],
   ])("format %p %p => %p", (value, options, expected) => {
-    expect(formatter.format("datetime", value, options)).toEqual(expected);
+    expect(formatter.format("dateTime", value, options)).toEqual(expected);
   });
 });

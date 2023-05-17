@@ -114,7 +114,7 @@ export class Formatter {
    * Default instance of the formatter.
    * Use the ambient locale and default options.
    */
-  public static get default() {
+  public static get default(): DefaultFormatter {
     return this._default ?? (this._default = this.build());
   }
 
@@ -149,6 +149,13 @@ export class Formatter {
       formatter: this,
       ...this.options,
     });
+  }
+
+  /**
+   * Return true if this formatter can format the specified type.
+   */
+  public canFormat(type: string) {
+    return this._formatters.has(type);
   }
 
   /**

@@ -275,6 +275,11 @@ export class ElementDefinition {
     return (this as any).id.split(".").pop() || "";
   }
 
+  /** The title to use in summary generation. */
+  public get summaryTitle(): string {
+    return this.name[0]?.toUpperCase() + this.name.slice(1);
+  }
+
   /**
    * True if this is an array (e.g. max = "*")
    */

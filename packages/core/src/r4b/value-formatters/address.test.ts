@@ -2,7 +2,7 @@ import { Address, ValueSetExpansionContains } from "../fhir-types.codegen";
 import { Formatter } from "../formatters";
 import { AddressFormatterOptions, addressFormatter } from "./address";
 import { codeFormatter } from "./code";
-import { datetimeFormatter } from "./datetime";
+import { datetimeFormatter } from "./date-time";
 import { periodFormatter } from "./period";
 
 describe("address", () => {

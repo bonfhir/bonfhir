@@ -5,7 +5,7 @@ import {
   ContactPointFormatterOptions,
   contactPointFormatter,
 } from "./contact-point";
-import { datetimeFormatter } from "./datetime";
+import { datetimeFormatter } from "./date-time";
 import { periodFormatter } from "./period";
 
 describe("contact-point", () => {
