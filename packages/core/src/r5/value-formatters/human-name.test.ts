@@ -96,7 +96,7 @@ describe("human-name", () => {
 
     it("sorts by use", () => {
       expect(formatter.format("HumanName", addresses)).toEqual(
-        "usual, " + "official, " + "temp, " + "and maiden"
+        "official, usual, temp, and maiden"
       );
     });
 

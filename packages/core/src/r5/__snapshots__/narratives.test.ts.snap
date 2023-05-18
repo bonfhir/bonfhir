@@ -1,13 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`narrative narrative Organization 1`] = `
+exports[`narrative generate (ConceptMap) 1`] = `
+{
+  "div": "<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Contact: </span><ul></ul></li><li><span>Date: </span>6/13/2012</li><li><span>Experimental: </span>yes</li><li><span>Identifier: </span><ul><li>URI: urn:oid:2.16.840.1.113883.4.642.14.1</li><li>URI: urn:uuid:53cd62ee-033e-414c-9f58-3ca97b5ffc3b</li></ul></li><li><span>Jurisdiction: </span><ul><li>US</li></ul></li><li><span>Name: </span>FHIRv3AddressUse</li><li><span>Publisher: </span>HL7, Inc</li><li><span>Source Scope Uri: </span>http://hl7.org/fhir/ValueSet/address-use</li><li><span>Status: </span>draft</li><li><span>Target Scope Uri: </span>http://terminology.hl7.org/ValueSet/v3-AddressUse</li><li><span>Title: </span>FHIR/v3 Address Use Mapping</li><li><span>Url: </span>http://hl7.org/fhir/ConceptMap/101</li><li><span>Use Context: </span><ul></ul></li><li><span>Version: </span>5.0.0</li></ul></div>",
+  "status": "generated",
+}
+`;
+
+exports[`narrative generate (Organization) 1`] = `
 {
   "div": "<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Name: </span>Health Level Seven International</li></ul></div>",
   "status": "generated",
 }
 `;
 
-exports[`narrative narrative Patient 1`] = `
+exports[`narrative generate (Patient) 1`] = `
 {
   "div": "<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Active: </span>yes</li><li><span>Address: </span><ul><li>534 Erewhon St PeasantVille, Rainbow, Vic  3999</li></ul></li><li><span>Birth Date: </span>12/25/1974</li><li><span>Deceased: </span>no</li><li><span>Gender: </span>male</li><li><span>Identifier: </span><ul><li>urn:oid:1.2.36.146.595.217.0.1: 12345</li></ul></li><li><span>Managing Organization: </span>Organization/1</li><li><span>Name: </span><ul><li>Peter Chalmers</li><li>Jim</li><li>Peter Windsor</li></ul></li><li><span>Telecom: </span><ul><li>(03) 5555 6473</li><li>(03) 3410 5613</li><li>(03) 5555 8834</li></ul></li></ul></div>",
   "status": "generated",

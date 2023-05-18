@@ -185,8 +185,8 @@ const filterAndSortHumanNames = (
 };
 
 const DEFAULT_HUMAN_NAME_USE_ORDER_FILTER: HumanName["use"][] = [
-  "usual",
   "official",
+  "usual",
   "temp",
   "nickname",
   "anonymous",

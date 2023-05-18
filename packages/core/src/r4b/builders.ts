@@ -1,9 +1,5 @@
-import {
-  AnyDomainResource,
-  HumanName,
-  Reference,
-  Retrieved,
-} from "./fhir-types.codegen";
+import { AnyDomainResource, Reference, Retrieved } from "./fhir-types.codegen";
+import { ReferenceDecorators } from "./reference-decorators.codegen";
 
 export interface ReferenceOptions {
   versionSpecific?: boolean | null | undefined;
@@ -18,25 +14,20 @@ export function reference<
   resource: Retrieved<TTargetResource>,
   options?: ReferenceOptions | null | undefined
 ): Reference<TTargetResource> {
-  const reference: Reference<TTargetResource> = {
+  let reference: Reference<TTargetResource> = {
     reference: options?.versionSpecific
       ? `${resource.resourceType}/${resource.id}/_history/${resource.meta.versionId}`
       : `${resource.resourceType}/${resource.id}`,
     type: resource.resourceType,
   };
 
-  // TODO: leverage formatters for HumanName.
-  if (hasName(resource) && typeof resource.name === "string") {
-    reference.display = resource.name;
+  if (ReferenceDecorators[resource.resourceType]) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    reference = ReferenceDecorators[resource.resourceType]!(
+      resource,
+      reference
+    ) as Reference<TTargetResource>;
   }
 
   return reference;
-}
-
-export interface HasName {
-  name: string | HumanName;
-}
-
-export function hasName(resource: unknown): resource is HasName {
-  return !!(resource as HasName).name;
 }

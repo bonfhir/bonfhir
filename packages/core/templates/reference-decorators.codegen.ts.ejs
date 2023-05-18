@@ -1,0 +1,36 @@
+/**
+ * Reference decorators for <%= fhir.release %>/<%= fhir.version %>
+ */
+ /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { Formatter, withValueFormatter } from "./formatters";
+import { humanNameFormatter } from "./value-formatters";
+import { DomainResource, Reference } from "./fhir-types.codegen";
+<% const domainResourcesThatCanBeDecorated = fhir.domainResources
+    .filter(x => x.ownRootElementsWithChoices.some(x => x.name === "title" || (x.name === "name" && (x.tsType.includes("string") || x.tsType.includes("HumanName")))));
+-%>
+import { <% for (domainResource of domainResourcesThatCanBeDecorated) { %> <%= domainResource.type %>, <% } %> } from "./fhir-types.codegen";
+
+/**
+ * Mapping of domain resource type and decorator function that are used to augment references created by the 
+ * reference function.
+ */
+export const ReferenceDecorators: Record<string, (resource: DomainResource, reference: Reference) => Reference> = {
+  <% for (domainResource of domainResourcesThatCanBeDecorated) { -%>
+  "<%= domainResource.type %>": decorate,
+  <% } -%>
+};
+
+function decorate(resource: DomainResource, reference: Reference): Reference {
+  const name = (resource as any).name;
+  const title: string = (resource as any).title;
+  if (typeof name === "string" && name.length > 0) {
+    reference.display = name.trim();
+  } else if (typeof name === "object") {
+    reference.display = withValueFormatter<typeof humanNameFormatter>(Formatter.default).format("HumanName", name, { max: 1 });
+  } else if (title) {
+    reference.display = title;
+  }
+
+  return reference;
+}
