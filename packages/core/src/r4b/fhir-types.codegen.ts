@@ -77217,6 +77217,14 @@ The type is the Canonical URL of Resource Definition that
  */
   type?: string | undefined;
   _type?: Element | undefined;
+
+  _extension?: Element["extension"] & {
+    /**
+     * This attribute only exists to allow strong typings of resource in typescript.
+     * It is NOT a part of the FHIR specification, and you should never use it or set a value to it.
+     */
+    _targetTypeDoNotUse?: TTargetResource | undefined;
+  };
 }
 
 /**
