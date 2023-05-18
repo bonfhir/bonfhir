@@ -1,6 +1,7 @@
 import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
+import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import filesize from "rollup-plugin-filesize";
@@ -15,6 +16,7 @@ export default ["r4b", "r5"].flatMap((release) =>
         }js`,
         format,
         sourcemap: true,
+        compact: true,
       },
     ],
     plugins: [
@@ -35,6 +37,13 @@ export default ["r4b", "r5"].flatMap((release) =>
         declaration: false,
         declarationMap: false,
         exclude: ["**/*.test.ts"],
+      }),
+      terser({
+        compress: false,
+        mangle: false,
+        output: {
+          comments: false,
+        },
       }),
       {
         buildEnd: () => {
