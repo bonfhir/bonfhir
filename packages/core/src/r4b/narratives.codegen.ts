@@ -2,3842 +2,1810 @@
  * Narrative generators for r4b/4.3.0
  */
 
-import {
-  Account,
-  ActivityDefinition,
-  AdministrableProductDefinition,
-  AdverseEvent,
-  AllergyIntolerance,
-  AnyDomainResource,
-  Appointment,
-  AppointmentResponse,
-  AuditEvent,
-  Basic,
-  BiologicallyDerivedProduct,
-  BodyStructure,
-  CapabilityStatement,
-  CarePlan,
-  CareTeam,
-  CatalogEntry,
-  ChargeItem,
-  ChargeItemDefinition,
-  Citation,
-  Claim,
-  ClaimResponse,
-  ClinicalImpression,
-  ClinicalUseDefinition,
-  CodeSystem,
-  Communication,
-  CommunicationRequest,
-  CompartmentDefinition,
-  Composition,
-  ConceptMap,
-  Condition,
-  Consent,
-  Contract,
-  Coverage,
-  CoverageEligibilityRequest,
-  CoverageEligibilityResponse,
-  DetectedIssue,
-  Device,
-  DeviceDefinition,
-  DeviceMetric,
-  DeviceRequest,
-  DeviceUseStatement,
-  DiagnosticReport,
-  DocumentManifest,
-  DocumentReference,
-  Encounter,
-  Endpoint,
-  EnrollmentRequest,
-  EnrollmentResponse,
-  EpisodeOfCare,
-  EventDefinition,
-  Evidence,
-  EvidenceReport,
-  EvidenceVariable,
-  ExampleScenario,
-  ExplanationOfBenefit,
-  FamilyMemberHistory,
-  Flag,
-  Goal,
-  GraphDefinition,
-  Group,
-  GuidanceResponse,
-  HealthcareService,
-  ImagingStudy,
-  Immunization,
-  ImmunizationEvaluation,
-  ImmunizationRecommendation,
-  ImplementationGuide,
-  Ingredient,
-  InsurancePlan,
-  Invoice,
-  Library,
-  Linkage,
-  List,
-  Location,
-  ManufacturedItemDefinition,
-  Measure,
-  MeasureReport,
-  Media,
-  Medication,
-  MedicationAdministration,
-  MedicationDispense,
-  MedicationKnowledge,
-  MedicationRequest,
-  MedicationStatement,
-  MedicinalProductDefinition,
-  MessageDefinition,
-  MessageHeader,
-  MolecularSequence,
-  NamingSystem,
-  Narrative,
-  NutritionOrder,
-  NutritionProduct,
-  Observation,
-  ObservationDefinition,
-  OperationDefinition,
-  OperationOutcome,
-  Organization,
-  OrganizationAffiliation,
-  PackagedProductDefinition,
-  Patient,
-  PaymentNotice,
-  PaymentReconciliation,
-  Person,
-  PlanDefinition,
-  Practitioner,
-  PractitionerRole,
-  Procedure,
-  Provenance,
-  Questionnaire,
-  QuestionnaireResponse,
-  RegulatedAuthorization,
-  RelatedPerson,
-  RequestGroup,
-  ResearchDefinition,
-  ResearchElementDefinition,
-  ResearchStudy,
-  ResearchSubject,
-  RiskAssessment,
-  Schedule,
-  SearchParameter,
-  ServiceRequest,
-  Slot,
-  Specimen,
-  SpecimenDefinition,
-  StructureDefinition,
-  StructureMap,
-  Subscription,
-  SubscriptionStatus,
-  SubscriptionTopic,
-  Substance,
-  SubstanceDefinition,
-  SupplyDelivery,
-  SupplyRequest,
-  Task,
-  TerminologyCapabilities,
-  TestReport,
-  TestScript,
-  ValueSet,
-  VerificationResult,
-  VisionPrescription,
-} from "./fhir-types.codegen";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { AnyDomainResource, Narrative } from "./fhir-types.codegen";
 import { DefaultFormatter, Formatter } from "./formatters";
 import { startCase } from "./lang-utils";
+
+/** FHIR Type, attribute name, isArray? */
+export type NarrativeItemGenerator = [string, string, boolean];
+
+export type NarrativeGenerator =
+  | NarrativeItemGenerator[]
+  | ((resource: any) => Narrative | string);
+
+export const NARRATIVE_GENERATORS: Record<string, NarrativeGenerator> = {
+  Account: [
+    ["string", "description", false],
+    ["Identifier", "identifier", true],
+    ["string", "name", false],
+    ["Reference", "owner", false],
+    ["Period", "servicePeriod", false],
+    ["code", "status", false],
+    ["Reference", "subject", true],
+    ["CodeableConcept", "type", false],
+  ],
+  ActivityDefinition: [
+    ["CodeableConcept", "code", false],
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["markdown", "description", false],
+    ["boolean", "doNotPerform", false],
+    ["Period", "effectivePeriod", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["code", "kind", false],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  AdministrableProductDefinition: [
+    ["CodeableConcept", "administrableDoseForm", false],
+    ["Reference", "device", false],
+    ["Reference", "formOf", true],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "ingredient", true],
+    ["Reference", "producedFrom", true],
+    ["code", "status", false],
+    ["CodeableConcept", "unitOfPresentation", false],
+  ],
+  AdverseEvent: [
+    ["code", "actuality", false],
+    ["CodeableConcept", "category", true],
+    ["Reference", "contributor", true],
+    ["dateTime", "date", false],
+    ["dateTime", "detected", false],
+    ["Reference", "encounter", false],
+    ["CodeableConcept", "event", false],
+    ["Identifier", "identifier", false],
+    ["Reference", "location", false],
+    ["CodeableConcept", "outcome", false],
+    ["dateTime", "recordedDate", false],
+    ["Reference", "recorder", false],
+    ["Reference", "referenceDocument", true],
+    ["Reference", "resultingCondition", true],
+    ["CodeableConcept", "seriousness", false],
+    ["CodeableConcept", "severity", false],
+    ["Reference", "study", true],
+    ["Reference", "subject", false],
+    ["Reference", "subjectMedicalHistory", true],
+  ],
+  AllergyIntolerance: [
+    ["Reference", "asserter", false],
+    ["code", "category", true],
+    ["CodeableConcept", "clinicalStatus", false],
+    ["CodeableConcept", "code", false],
+    ["code", "criticality", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "patient", false],
+    ["code", "type", false],
+    ["CodeableConcept", "verificationStatus", false],
+  ],
+  Appointment: [
+    ["CodeableConcept", "appointmentType", false],
+    ["CodeableConcept", "cancelationReason", false],
+    ["instant", "end", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "reasonCode", true],
+    ["CodeableConcept", "serviceCategory", true],
+    ["CodeableConcept", "serviceType", true],
+    ["CodeableConcept", "specialty", true],
+    ["instant", "start", false],
+    ["code", "status", false],
+  ],
+  AppointmentResponse: [
+    ["Reference", "actor", false],
+    ["Reference", "appointment", false],
+    ["Identifier", "identifier", true],
+    ["code", "participantStatus", false],
+    ["CodeableConcept", "participantType", true],
+  ],
+  AuditEvent: [
+    ["code", "action", false],
+    ["code", "outcome", false],
+    ["string", "outcomeDesc", false],
+    ["CodeableConcept", "purposeOfEvent", true],
+    ["instant", "recorded", false],
+    ["Coding", "subtype", true],
+    ["Coding", "type", false],
+  ],
+  Basic: [
+    ["Reference", "author", false],
+    ["CodeableConcept", "code", false],
+    ["date", "created", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "subject", false],
+  ],
+  BiologicallyDerivedProduct: [["Identifier", "identifier", true]],
+  BodyStructure: [
+    ["boolean", "active", false],
+    ["string", "description", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "location", false],
+    ["CodeableConcept", "morphology", false],
+    ["Reference", "patient", false],
+  ],
+  CapabilityStatement: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["code", "fhirVersion", false],
+    ["code", "format", true],
+    ["canonical", "implementationGuide", true],
+    ["canonical", "imports", true],
+    ["canonical", "instantiates", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["code", "kind", false],
+    ["string", "name", false],
+    ["code", "patchFormat", true],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  CarePlan: [
+    ["Reference", "addresses", true],
+    ["Reference", "author", false],
+    ["Reference", "basedOn", true],
+    ["CodeableConcept", "category", true],
+    ["dateTime", "created", false],
+    ["string", "description", false],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", true],
+    ["canonical", "instantiatesCanonical", true],
+    ["uri", "instantiatesUri", true],
+    ["code", "intent", false],
+    ["Reference", "partOf", true],
+    ["Period", "period", false],
+    ["Reference", "replaces", true],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["string", "title", false],
+  ],
+  CareTeam: [
+    ["CodeableConcept", "category", true],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "managingOrganization", true],
+    ["string", "name", false],
+    ["Period", "period", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  CatalogEntry: [
+    ["Identifier", "identifier", true],
+    ["boolean", "orderable", false],
+    ["Reference", "referencedItem", false],
+  ],
+  ChargeItem: [
+    ["Reference", "account", true],
+    ["CodeableConcept", "bodysite", true],
+    ["CodeableConcept", "code", false],
+    ["Reference", "context", false],
+    ["dateTime", "enteredDate", false],
+    ["Reference", "enterer", false],
+    ["Identifier", "identifier", true],
+    ["dateTime", "occurrenceDateTime", false],
+    ["Period", "occurrencePeriod", false],
+    ["Timing", "occurrenceTiming", false],
+    ["Quantity", "quantity", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  ChargeItemDefinition: [
+    ["CodeableConcept", "code", false],
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["uri", "derivedFromUri", true],
+    ["markdown", "description", false],
+    ["Period", "effectivePeriod", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["canonical", "partOf", true],
+    ["string", "publisher", false],
+    ["canonical", "replaces", true],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  Citation: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["Period", "effectivePeriod", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  Claim: [
+    ["Period", "billablePeriod", false],
+    ["dateTime", "created", false],
+    ["Reference", "insurer", false],
+    ["Reference", "patient", false],
+    ["CodeableConcept", "priority", false],
+    ["Reference", "provider", false],
+    ["code", "status", false],
+    ["CodeableConcept", "type", false],
+    ["code", "use", false],
+  ],
+  ClaimResponse: [
+    ["dateTime", "created", false],
+    ["Reference", "insurer", false],
+    ["code", "outcome", false],
+    ["Reference", "patient", false],
+    ["Reference", "request", false],
+    ["code", "status", false],
+    ["CodeableConcept", "type", false],
+    ["code", "use", false],
+  ],
+  ClinicalImpression: [
+    ["Reference", "assessor", false],
+    ["CodeableConcept", "code", false],
+    ["dateTime", "date", false],
+    ["string", "description", false],
+    ["dateTime", "effectiveDateTime", false],
+    ["Period", "effectivePeriod", false],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "problem", true],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  ClinicalUseDefinition: [
+    ["CodeableConcept", "category", true],
+    ["Identifier", "identifier", true],
+    ["Reference", "population", true],
+    ["CodeableConcept", "status", false],
+    ["Reference", "subject", true],
+    ["code", "type", false],
+  ],
+  CodeSystem: [
+    ["boolean", "caseSensitive", false],
+    ["boolean", "compositional", false],
+    ["ContactDetail", "contact", true],
+    ["code", "content", false],
+    ["unsignedInt", "count", false],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["code", "hierarchyMeaning", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["canonical", "supplements", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["canonical", "valueSet", false],
+    ["string", "version", false],
+    ["boolean", "versionNeeded", false],
+  ],
+  Communication: [
+    ["Reference", "basedOn", true],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", true],
+    ["canonical", "instantiatesCanonical", true],
+    ["uri", "instantiatesUri", true],
+    ["Reference", "partOf", true],
+    ["code", "priority", false],
+    ["CodeableConcept", "reasonCode", true],
+    ["Reference", "reasonReference", true],
+    ["code", "status", false],
+    ["CodeableConcept", "statusReason", false],
+    ["Reference", "subject", false],
+  ],
+  CommunicationRequest: [
+    ["dateTime", "authoredOn", false],
+    ["Reference", "basedOn", true],
+    ["boolean", "doNotPerform", false],
+    ["Reference", "encounter", false],
+    ["Identifier", "groupIdentifier", false],
+    ["Identifier", "identifier", true],
+    ["dateTime", "occurrenceDateTime", false],
+    ["Period", "occurrencePeriod", false],
+    ["code", "priority", false],
+    ["CodeableConcept", "reasonCode", true],
+    ["Reference", "reasonReference", true],
+    ["Reference", "replaces", true],
+    ["Reference", "requester", false],
+    ["Reference", "sender", false],
+    ["code", "status", false],
+  ],
+  CompartmentDefinition: [
+    ["code", "code", false],
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["boolean", "search", false],
+    ["code", "status", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  Composition: [
+    ["Reference", "author", true],
+    ["CodeableConcept", "category", true],
+    ["code", "confidentiality", false],
+    ["Reference", "custodian", false],
+    ["dateTime", "date", false],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["string", "title", false],
+    ["CodeableConcept", "type", false],
+  ],
+  ConceptMap: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", false],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["uri", "sourceUri", false],
+    ["canonical", "sourceCanonical", false],
+    ["code", "status", false],
+    ["uri", "targetUri", false],
+    ["canonical", "targetCanonical", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  Condition: [
+    ["Reference", "asserter", false],
+    ["CodeableConcept", "bodySite", true],
+    ["CodeableConcept", "clinicalStatus", false],
+    ["CodeableConcept", "code", false],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", true],
+    ["dateTime", "onsetDateTime", false],
+    ["Age", "onsetAge", false],
+    ["Period", "onsetPeriod", false],
+    ["Range", "onsetRange", false],
+    ["string", "onsetString", false],
+    ["dateTime", "recordedDate", false],
+    ["Reference", "recorder", false],
+    ["Reference", "subject", false],
+    ["CodeableConcept", "verificationStatus", false],
+  ],
+  Consent: [
+    ["CodeableConcept", "category", true],
+    ["dateTime", "dateTime", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "organization", true],
+    ["Reference", "patient", false],
+    ["Reference", "performer", true],
+    ["CodeableConcept", "policyRule", false],
+    ["CodeableConcept", "scope", false],
+    ["Attachment", "sourceAttachment", false],
+    ["Reference", "sourceReference", false],
+    ["code", "status", false],
+  ],
+  Contract: [
+    ["Period", "applies", false],
+    ["Identifier", "identifier", true],
+    ["dateTime", "issued", false],
+    ["string", "name", false],
+    ["code", "status", false],
+    ["Reference", "subject", true],
+    ["CodeableConcept", "subType", true],
+    ["string", "title", false],
+    ["CodeableConcept", "type", false],
+    ["string", "version", false],
+  ],
+  Coverage: [
+    ["Reference", "beneficiary", false],
+    ["string", "dependent", false],
+    ["Identifier", "identifier", true],
+    ["string", "network", false],
+    ["positiveInt", "order", false],
+    ["Reference", "payor", true],
+    ["Period", "period", false],
+    ["Reference", "policyHolder", false],
+    ["code", "status", false],
+    ["Reference", "subscriber", false],
+    ["string", "subscriberId", false],
+    ["CodeableConcept", "type", false],
+  ],
+  CoverageEligibilityRequest: [
+    ["dateTime", "created", false],
+    ["Reference", "insurer", false],
+    ["Reference", "patient", false],
+    ["code", "purpose", true],
+    ["code", "status", false],
+  ],
+  CoverageEligibilityResponse: [
+    ["dateTime", "created", false],
+    ["Reference", "insurer", false],
+    ["code", "outcome", false],
+    ["Reference", "patient", false],
+    ["code", "purpose", true],
+    ["Reference", "request", false],
+    ["code", "status", false],
+  ],
+  DetectedIssue: [
+    ["Reference", "author", false],
+    ["CodeableConcept", "code", false],
+    ["dateTime", "identifiedDateTime", false],
+    ["Period", "identifiedPeriod", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "implicated", true],
+    ["Reference", "patient", false],
+    ["code", "severity", false],
+    ["code", "status", false],
+  ],
+  Device: [
+    ["CodeableConcept", "safety", true],
+    ["code", "status", false],
+  ],
+  DeviceDefinition: [
+    ["Reference", "parentDevice", false],
+    ["CodeableConcept", "safety", true],
+  ],
+  DeviceMetric: [
+    ["code", "category", false],
+    ["code", "color", false],
+    ["Identifier", "identifier", true],
+    ["Timing", "measurementPeriod", false],
+    ["code", "operationalStatus", false],
+    ["Reference", "parent", false],
+    ["Reference", "source", false],
+    ["CodeableConcept", "type", false],
+    ["CodeableConcept", "unit", false],
+  ],
+  DeviceRequest: [
+    ["dateTime", "authoredOn", false],
+    ["Reference", "basedOn", true],
+    ["Reference", "codeReference", false],
+    ["CodeableConcept", "codeCodeableConcept", false],
+    ["Reference", "encounter", false],
+    ["Identifier", "groupIdentifier", false],
+    ["Identifier", "identifier", true],
+    ["canonical", "instantiatesCanonical", true],
+    ["uri", "instantiatesUri", true],
+    ["code", "intent", false],
+    ["dateTime", "occurrenceDateTime", false],
+    ["Period", "occurrencePeriod", false],
+    ["Timing", "occurrenceTiming", false],
+    ["Reference", "performer", false],
+    ["CodeableConcept", "performerType", false],
+    ["code", "priority", false],
+    ["Reference", "priorRequest", true],
+    ["CodeableConcept", "reasonCode", true],
+    ["Reference", "reasonReference", true],
+    ["Reference", "requester", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  DeviceUseStatement: [
+    ["Reference", "basedOn", true],
+    ["CodeableConcept", "bodySite", false],
+    ["Reference", "derivedFrom", true],
+    ["Reference", "device", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "reasonCode", true],
+    ["Reference", "reasonReference", true],
+    ["dateTime", "recordedOn", false],
+    ["Reference", "source", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["Timing", "timingTiming", false],
+    ["Period", "timingPeriod", false],
+    ["dateTime", "timingDateTime", false],
+  ],
+  DiagnosticReport: [
+    ["CodeableConcept", "category", true],
+    ["CodeableConcept", "code", false],
+    ["dateTime", "effectiveDateTime", false],
+    ["Period", "effectivePeriod", false],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", true],
+    ["instant", "issued", false],
+    ["Reference", "performer", true],
+    ["Reference", "resultsInterpreter", true],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  DocumentManifest: [
+    ["Reference", "author", true],
+    ["Reference", "content", true],
+    ["string", "description", false],
+    ["Identifier", "identifier", true],
+    ["Identifier", "masterIdentifier", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["CodeableConcept", "type", false],
+  ],
+  DocumentReference: [
+    ["Reference", "author", true],
+    ["CodeableConcept", "category", true],
+    ["instant", "date", false],
+    ["string", "description", false],
+    ["code", "docStatus", false],
+    ["Identifier", "identifier", true],
+    ["Identifier", "masterIdentifier", false],
+    ["CodeableConcept", "securityLabel", true],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["CodeableConcept", "type", false],
+  ],
+  Encounter: [
+    ["Reference", "appointment", true],
+    ["Coding", "class", false],
+    ["Reference", "episodeOfCare", true],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "reasonCode", true],
+    ["Reference", "reasonReference", true],
+    ["CodeableConcept", "serviceType", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["CodeableConcept", "type", true],
+  ],
+  Endpoint: [
+    ["url", "address", false],
+    ["Coding", "connectionType", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "managingOrganization", false],
+    ["string", "name", false],
+    ["code", "payloadMimeType", true],
+    ["CodeableConcept", "payloadType", true],
+    ["Period", "period", false],
+    ["code", "status", false],
+  ],
+  EnrollmentRequest: [["code", "status", false]],
+  EnrollmentResponse: [["code", "status", false]],
+  EpisodeOfCare: [
+    ["Reference", "managingOrganization", false],
+    ["Reference", "patient", false],
+    ["Period", "period", false],
+    ["code", "status", false],
+    ["CodeableConcept", "type", true],
+  ],
+  EventDefinition: [
+    ["date", "approvalDate", false],
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["Period", "effectivePeriod", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["date", "lastReviewDate", false],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["TriggerDefinition", "trigger", true],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  Evidence: [
+    ["ContactDetail", "author", true],
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["ContactDetail", "endorser", true],
+    ["Identifier", "identifier", true],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  EvidenceReport: [
+    ["ContactDetail", "author", true],
+    ["ContactDetail", "contact", true],
+    ["ContactDetail", "endorser", true],
+    ["Identifier", "identifier", true],
+    ["string", "publisher", false],
+    ["Identifier", "relatedIdentifier", true],
+    ["code", "status", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+  ],
+  EvidenceVariable: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["markdown", "description", false],
+    ["code", "handling", false],
+    ["Identifier", "identifier", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["string", "shortTitle", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  ExampleScenario: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  ExplanationOfBenefit: [
+    ["Period", "billablePeriod", false],
+    ["dateTime", "created", false],
+    ["Reference", "insurer", false],
+    ["code", "outcome", false],
+    ["Reference", "patient", false],
+    ["Reference", "provider", false],
+    ["code", "status", false],
+    ["CodeableConcept", "type", false],
+    ["code", "use", false],
+  ],
+  FamilyMemberHistory: [
+    ["Age", "ageAge", false],
+    ["Range", "ageRange", false],
+    ["string", "ageString", false],
+    ["CodeableConcept", "dataAbsentReason", false],
+    ["dateTime", "date", false],
+    ["boolean", "deceasedBoolean", false],
+    ["Age", "deceasedAge", false],
+    ["Range", "deceasedRange", false],
+    ["date", "deceasedDate", false],
+    ["string", "deceasedString", false],
+    ["boolean", "estimatedAge", false],
+    ["Identifier", "identifier", true],
+    ["canonical", "instantiatesCanonical", true],
+    ["uri", "instantiatesUri", true],
+    ["string", "name", false],
+    ["Reference", "patient", false],
+    ["CodeableConcept", "reasonCode", true],
+    ["Reference", "reasonReference", true],
+    ["CodeableConcept", "relationship", false],
+    ["CodeableConcept", "sex", false],
+    ["code", "status", false],
+  ],
+  Flag: [
+    ["Reference", "author", false],
+    ["CodeableConcept", "category", true],
+    ["CodeableConcept", "code", false],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", true],
+    ["Period", "period", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  Goal: [
+    ["CodeableConcept", "achievementStatus", false],
+    ["CodeableConcept", "category", true],
+    ["CodeableConcept", "description", false],
+    ["Reference", "expressedBy", false],
+    ["code", "lifecycleStatus", false],
+    ["CodeableConcept", "priority", false],
+    ["date", "startDate", false],
+    ["CodeableConcept", "startCodeableConcept", false],
+    ["date", "statusDate", false],
+    ["Reference", "subject", false],
+  ],
+  GraphDefinition: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "start", false],
+    ["code", "status", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  Group: [
+    ["boolean", "active", false],
+    ["boolean", "actual", false],
+    ["CodeableConcept", "code", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "managingEntity", false],
+    ["string", "name", false],
+    ["unsignedInt", "quantity", false],
+    ["code", "type", false],
+  ],
+  GuidanceResponse: [
+    ["Identifier", "identifier", true],
+    ["uri", "moduleUri", false],
+    ["canonical", "moduleCanonical", false],
+    ["CodeableConcept", "moduleCodeableConcept", false],
+    ["Identifier", "requestIdentifier", false],
+    ["code", "status", false],
+  ],
+  HealthcareService: [
+    ["boolean", "active", false],
+    ["CodeableConcept", "category", true],
+    ["string", "comment", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "location", true],
+    ["string", "name", false],
+    ["Attachment", "photo", false],
+    ["Reference", "providedBy", false],
+    ["CodeableConcept", "specialty", true],
+    ["CodeableConcept", "type", true],
+  ],
+  ImagingStudy: [
+    ["Reference", "basedOn", true],
+    ["string", "description", false],
+    ["Reference", "encounter", false],
+    ["Reference", "endpoint", true],
+    ["Identifier", "identifier", true],
+    ["Reference", "interpreter", true],
+    ["Reference", "location", false],
+    ["Coding", "modality", true],
+    ["Annotation", "note", true],
+    ["unsignedInt", "numberOfInstances", false],
+    ["unsignedInt", "numberOfSeries", false],
+    ["CodeableConcept", "procedureCode", true],
+    ["Reference", "procedureReference", false],
+    ["CodeableConcept", "reasonCode", true],
+    ["Reference", "reasonReference", true],
+    ["Reference", "referrer", false],
+    ["dateTime", "started", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  Immunization: [
+    ["boolean", "isSubpotent", false],
+    ["Annotation", "note", true],
+    ["dateTime", "occurrenceDateTime", false],
+    ["string", "occurrenceString", false],
+    ["Reference", "patient", false],
+    ["boolean", "primarySource", false],
+    ["code", "status", false],
+    ["CodeableConcept", "vaccineCode", false],
+  ],
+  ImmunizationEvaluation: [
+    ["CodeableConcept", "doseStatus", false],
+    ["Reference", "immunizationEvent", false],
+    ["Reference", "patient", false],
+    ["code", "status", false],
+    ["CodeableConcept", "targetDisease", false],
+  ],
+  ImmunizationRecommendation: [
+    ["dateTime", "date", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "patient", false],
+  ],
+  ImplementationGuide: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["code", "fhirVersion", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["code", "license", false],
+    ["string", "name", false],
+    ["id", "packageId", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  Ingredient: [
+    ["boolean", "allergenicIndicator", false],
+    ["Reference", "for", true],
+    ["CodeableConcept", "function", true],
+    ["Identifier", "identifier", false],
+    ["CodeableConcept", "role", false],
+    ["code", "status", false],
+  ],
+  InsurancePlan: [
+    ["Reference", "administeredBy", false],
+    ["Reference", "coverageArea", true],
+    ["Identifier", "identifier", true],
+    ["string", "name", false],
+    ["Reference", "ownedBy", false],
+    ["code", "status", false],
+    ["CodeableConcept", "type", true],
+  ],
+  Invoice: [
+    ["dateTime", "date", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "recipient", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["Money", "totalGross", false],
+    ["Money", "totalNet", false],
+    ["CodeableConcept", "type", false],
+  ],
+  Library: [
+    ["ContactDetail", "contact", true],
+    ["Attachment", "content", true],
+    ["dateTime", "date", false],
+    ["markdown", "description", false],
+    ["Period", "effectivePeriod", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["CodeableConcept", "type", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  Linkage: [
+    ["boolean", "active", false],
+    ["Reference", "author", false],
+  ],
+  List: [
+    ["CodeableConcept", "code", false],
+    ["dateTime", "date", false],
+    ["code", "mode", false],
+    ["Reference", "source", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["string", "title", false],
+  ],
+  Location: [
+    ["string", "description", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "managingOrganization", false],
+    ["code", "mode", false],
+    ["string", "name", false],
+    ["Coding", "operationalStatus", false],
+    ["CodeableConcept", "physicalType", false],
+    ["code", "status", false],
+    ["CodeableConcept", "type", true],
+  ],
+  ManufacturedItemDefinition: [
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "ingredient", true],
+    ["CodeableConcept", "manufacturedDoseForm", false],
+    ["Reference", "manufacturer", true],
+    ["code", "status", false],
+    ["CodeableConcept", "unitOfPresentation", false],
+  ],
+  Measure: [
+    ["markdown", "clinicalRecommendationStatement", false],
+    ["CodeableConcept", "compositeScoring", false],
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["markdown", "definition", true],
+    ["markdown", "description", false],
+    ["markdown", "disclaimer", false],
+    ["Period", "effectivePeriod", false],
+    ["boolean", "experimental", false],
+    ["markdown", "guidance", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "improvementNotation", false],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["string", "rateAggregation", false],
+    ["markdown", "rationale", false],
+    ["string", "riskAdjustment", false],
+    ["CodeableConcept", "scoring", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["CodeableConcept", "type", true],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  MeasureReport: [
+    ["dateTime", "date", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "improvementNotation", false],
+    ["canonical", "measure", false],
+    ["Period", "period", false],
+    ["Reference", "reporter", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["code", "type", false],
+  ],
+  Media: [
+    ["Reference", "basedOn", true],
+    ["CodeableConcept", "bodySite", false],
+    ["Attachment", "content", false],
+    ["dateTime", "createdDateTime", false],
+    ["Period", "createdPeriod", false],
+    ["Reference", "device", false],
+    ["string", "deviceName", false],
+    ["decimal", "duration", false],
+    ["Reference", "encounter", false],
+    ["positiveInt", "frames", false],
+    ["positiveInt", "height", false],
+    ["Identifier", "identifier", true],
+    ["instant", "issued", false],
+    ["CodeableConcept", "modality", false],
+    ["Reference", "operator", false],
+    ["Reference", "partOf", true],
+    ["CodeableConcept", "reasonCode", true],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["CodeableConcept", "type", false],
+    ["CodeableConcept", "view", false],
+    ["positiveInt", "width", false],
+  ],
+  Medication: [
+    ["Ratio", "amount", false],
+    ["CodeableConcept", "code", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "manufacturer", false],
+    ["code", "status", false],
+  ],
+  MedicationAdministration: [
+    ["dateTime", "effectiveDateTime", false],
+    ["Period", "effectivePeriod", false],
+    ["uri", "instantiates", true],
+    ["CodeableConcept", "medicationCodeableConcept", false],
+    ["Reference", "medicationReference", false],
+    ["Reference", "partOf", true],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  MedicationDispense: [
+    ["CodeableConcept", "medicationCodeableConcept", false],
+    ["Reference", "medicationReference", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["dateTime", "whenPrepared", false],
+  ],
+  MedicationKnowledge: [
+    ["Quantity", "amount", false],
+    ["CodeableConcept", "code", false],
+    ["Reference", "manufacturer", false],
+    ["code", "status", false],
+    ["string", "synonym", true],
+  ],
+  MedicationRequest: [
+    ["dateTime", "authoredOn", false],
+    ["Reference", "basedOn", true],
+    ["boolean", "doNotPerform", false],
+    ["Identifier", "groupIdentifier", false],
+    ["canonical", "instantiatesCanonical", true],
+    ["uri", "instantiatesUri", true],
+    ["code", "intent", false],
+    ["CodeableConcept", "medicationCodeableConcept", false],
+    ["Reference", "medicationReference", false],
+    ["CodeableConcept", "performerType", false],
+    ["code", "priority", false],
+    ["boolean", "reportedBoolean", false],
+    ["Reference", "reportedReference", false],
+    ["Reference", "requester", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  MedicationStatement: [
+    ["Reference", "basedOn", true],
+    ["CodeableConcept", "category", false],
+    ["Reference", "context", false],
+    ["dateTime", "dateAsserted", false],
+    ["dateTime", "effectiveDateTime", false],
+    ["Period", "effectivePeriod", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "medicationCodeableConcept", false],
+    ["Reference", "medicationReference", false],
+    ["Reference", "partOf", true],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  MedicinalProductDefinition: [
+    ["CodeableConcept", "additionalMonitoringIndicator", false],
+    ["Reference", "attachedDocument", true],
+    ["CodeableConcept", "classification", true],
+    ["Reference", "clinicalTrial", true],
+    ["Coding", "code", true],
+    ["CodeableConcept", "combinedPharmaceuticalDoseForm", false],
+    ["markdown", "description", false],
+    ["CodeableConcept", "domain", false],
+    ["Identifier", "identifier", true],
+    ["CodeableReference", "impurity", true],
+    ["markdown", "indication", false],
+    ["CodeableConcept", "ingredient", true],
+    ["CodeableConcept", "legalStatusOfSupply", false],
+    ["MarketingStatus", "marketingStatus", true],
+    ["Reference", "masterFile", true],
+    ["CodeableConcept", "packagedMedicinalProduct", true],
+    ["CodeableConcept", "pediatricUseIndicator", false],
+    ["CodeableConcept", "route", true],
+    ["CodeableConcept", "specialMeasures", true],
+    ["CodeableConcept", "status", false],
+    ["dateTime", "statusDate", false],
+    ["CodeableConcept", "type", false],
+    ["string", "version", false],
+  ],
+  MessageDefinition: [
+    ["canonical", "base", false],
+    ["code", "category", false],
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["markdown", "description", false],
+    ["Coding", "eventCoding", false],
+    ["uri", "eventUri", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["canonical", "parent", true],
+    ["string", "publisher", false],
+    ["markdown", "purpose", false],
+    ["canonical", "replaces", true],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  MessageHeader: [
+    ["Reference", "author", false],
+    ["canonical", "definition", false],
+    ["Reference", "enterer", false],
+    ["Coding", "eventCoding", false],
+    ["uri", "eventUri", false],
+    ["Reference", "focus", true],
+    ["CodeableConcept", "reason", false],
+    ["Reference", "responsible", false],
+    ["Reference", "sender", false],
+  ],
+  MolecularSequence: [
+    ["integer", "coordinateSystem", false],
+    ["Reference", "device", false],
+    ["Identifier", "identifier", true],
+    ["string", "observedSeq", false],
+    ["Reference", "patient", false],
+    ["Reference", "performer", false],
+    ["Reference", "pointer", true],
+    ["Quantity", "quantity", false],
+    ["integer", "readCoverage", false],
+    ["Reference", "specimen", false],
+    ["code", "type", false],
+  ],
+  NamingSystem: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["CodeableConcept", "jurisdiction", true],
+    ["code", "kind", false],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["UsageContext", "useContext", true],
+  ],
+  NutritionOrder: [
+    ["dateTime", "dateTime", false],
+    ["canonical", "instantiatesCanonical", true],
+    ["uri", "instantiatesUri", true],
+    ["code", "intent", false],
+    ["Reference", "orderer", false],
+    ["Reference", "patient", false],
+    ["code", "status", false],
+  ],
+  NutritionProduct: [
+    ["CodeableConcept", "category", true],
+    ["CodeableConcept", "code", false],
+    ["Reference", "manufacturer", true],
+    ["code", "status", false],
+  ],
+  Observation: [
+    ["Reference", "basedOn", true],
+    ["CodeableConcept", "code", false],
+    ["Reference", "derivedFrom", true],
+    ["dateTime", "effectiveDateTime", false],
+    ["Period", "effectivePeriod", false],
+    ["Timing", "effectiveTiming", false],
+    ["instant", "effectiveInstant", false],
+    ["Reference", "encounter", false],
+    ["Reference", "focus", true],
+    ["Reference", "hasMember", true],
+    ["Identifier", "identifier", true],
+    ["instant", "issued", false],
+    ["Reference", "partOf", true],
+    ["Reference", "performer", true],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["Quantity", "valueQuantity", false],
+    ["CodeableConcept", "valueCodeableConcept", false],
+    ["string", "valueString", false],
+    ["boolean", "valueBoolean", false],
+    ["integer", "valueInteger", false],
+    ["Range", "valueRange", false],
+    ["Ratio", "valueRatio", false],
+    ["SampledData", "valueSampledData", false],
+    ["time", "valueTime", false],
+    ["dateTime", "valueDateTime", false],
+    ["Period", "valuePeriod", false],
+  ],
+  ObservationDefinition: [
+    ["CodeableConcept", "category", true],
+    ["CodeableConcept", "code", false],
+    ["Identifier", "identifier", true],
+  ],
+  OperationDefinition: [
+    ["boolean", "affectsState", false],
+    ["canonical", "base", false],
+    ["code", "code", false],
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["boolean", "instance", false],
+    ["CodeableConcept", "jurisdiction", true],
+    ["code", "kind", false],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "resource", true],
+    ["code", "status", false],
+    ["boolean", "system", false],
+    ["string", "title", false],
+    ["boolean", "type", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  OperationOutcome: [],
+  Organization: [
+    ["boolean", "active", false],
+    ["Identifier", "identifier", true],
+    ["string", "name", false],
+    ["Reference", "partOf", false],
+    ["CodeableConcept", "type", true],
+  ],
+  OrganizationAffiliation: [
+    ["boolean", "active", false],
+    ["CodeableConcept", "code", true],
+    ["Identifier", "identifier", true],
+    ["Reference", "location", true],
+    ["Reference", "network", true],
+    ["Reference", "organization", false],
+    ["Reference", "participatingOrganization", false],
+    ["Period", "period", false],
+    ["CodeableConcept", "specialty", true],
+    ["ContactPoint", "telecom", true],
+  ],
+  PackagedProductDefinition: [
+    ["CodeableConcept", "characteristic", true],
+    ["Quantity", "containedItemQuantity", true],
+    ["boolean", "copackagedIndicator", false],
+    ["markdown", "description", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "manufacturer", true],
+    ["MarketingStatus", "marketingStatus", true],
+    ["string", "name", false],
+    ["Reference", "packageFor", true],
+    ["CodeableConcept", "status", false],
+    ["dateTime", "statusDate", false],
+    ["CodeableConcept", "type", false],
+  ],
+  Patient: [
+    ["boolean", "active", false],
+    ["Address", "address", true],
+    ["date", "birthDate", false],
+    ["boolean", "deceasedBoolean", false],
+    ["dateTime", "deceasedDateTime", false],
+    ["code", "gender", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "managingOrganization", false],
+    ["HumanName", "name", true],
+    ["ContactPoint", "telecom", true],
+  ],
+  PaymentNotice: [
+    ["Money", "amount", false],
+    ["dateTime", "created", false],
+    ["Reference", "payment", false],
+    ["Reference", "recipient", false],
+    ["code", "status", false],
+  ],
+  PaymentReconciliation: [
+    ["dateTime", "created", false],
+    ["Money", "paymentAmount", false],
+    ["date", "paymentDate", false],
+    ["Reference", "paymentIssuer", false],
+    ["Period", "period", false],
+    ["code", "status", false],
+  ],
+  Person: [
+    ["boolean", "active", false],
+    ["date", "birthDate", false],
+    ["code", "gender", false],
+    ["Reference", "managingOrganization", false],
+    ["HumanName", "name", true],
+    ["ContactPoint", "telecom", true],
+  ],
+  PlanDefinition: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["markdown", "description", false],
+    ["Period", "effectivePeriod", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["CodeableConcept", "type", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  Practitioner: [
+    ["boolean", "active", false],
+    ["Address", "address", true],
+    ["date", "birthDate", false],
+    ["code", "gender", false],
+    ["Identifier", "identifier", true],
+    ["HumanName", "name", true],
+    ["ContactPoint", "telecom", true],
+  ],
+  PractitionerRole: [
+    ["boolean", "active", false],
+    ["CodeableConcept", "code", true],
+    ["Identifier", "identifier", true],
+    ["Reference", "location", true],
+    ["Reference", "organization", false],
+    ["Period", "period", false],
+    ["Reference", "practitioner", false],
+    ["CodeableConcept", "specialty", true],
+    ["ContactPoint", "telecom", true],
+  ],
+  Procedure: [
+    ["Reference", "asserter", false],
+    ["Reference", "basedOn", true],
+    ["CodeableConcept", "bodySite", true],
+    ["CodeableConcept", "category", false],
+    ["CodeableConcept", "code", false],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", true],
+    ["canonical", "instantiatesCanonical", true],
+    ["uri", "instantiatesUri", true],
+    ["Reference", "location", false],
+    ["CodeableConcept", "outcome", false],
+    ["Reference", "partOf", true],
+    ["dateTime", "performedDateTime", false],
+    ["Period", "performedPeriod", false],
+    ["string", "performedString", false],
+    ["Age", "performedAge", false],
+    ["Range", "performedRange", false],
+    ["CodeableConcept", "reasonCode", true],
+    ["Reference", "reasonReference", true],
+    ["Reference", "recorder", false],
+    ["code", "status", false],
+    ["CodeableConcept", "statusReason", false],
+    ["Reference", "subject", false],
+  ],
+  Provenance: [
+    ["instant", "recorded", false],
+    ["Reference", "target", true],
+  ],
+  Questionnaire: [
+    ["Coding", "code", true],
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["Period", "effectivePeriod", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["code", "subjectType", true],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  QuestionnaireResponse: [
+    ["Reference", "author", false],
+    ["dateTime", "authored", false],
+    ["Reference", "basedOn", true],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", false],
+    ["Reference", "partOf", true],
+    ["canonical", "questionnaire", false],
+    ["Reference", "source", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  RegulatedAuthorization: [
+    ["CodeableConcept", "basis", true],
+    ["markdown", "description", false],
+    ["Reference", "holder", false],
+    ["Identifier", "identifier", true],
+    ["CodeableReference", "indication", false],
+    ["CodeableConcept", "intendedUse", false],
+    ["CodeableConcept", "region", true],
+    ["Reference", "regulator", false],
+    ["CodeableConcept", "status", false],
+    ["dateTime", "statusDate", false],
+    ["Reference", "subject", true],
+    ["CodeableConcept", "type", false],
+    ["Period", "validityPeriod", false],
+  ],
+  RelatedPerson: [
+    ["boolean", "active", false],
+    ["Address", "address", true],
+    ["date", "birthDate", false],
+    ["code", "gender", false],
+    ["Identifier", "identifier", true],
+    ["HumanName", "name", true],
+    ["Reference", "patient", false],
+    ["CodeableConcept", "relationship", true],
+    ["ContactPoint", "telecom", true],
+  ],
+  RequestGroup: [
+    ["CodeableConcept", "code", false],
+    ["Identifier", "groupIdentifier", false],
+    ["Identifier", "identifier", true],
+    ["canonical", "instantiatesCanonical", true],
+    ["uri", "instantiatesUri", true],
+    ["code", "intent", false],
+    ["code", "priority", false],
+    ["code", "status", false],
+  ],
+  ResearchDefinition: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["markdown", "description", false],
+    ["Period", "effectivePeriod", false],
+    ["boolean", "experimental", false],
+    ["Reference", "exposure", false],
+    ["Reference", "exposureAlternative", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["Reference", "outcome", false],
+    ["Reference", "population", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  ResearchElementDefinition: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["markdown", "description", false],
+    ["Period", "effectivePeriod", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["string", "shortTitle", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["code", "type", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  ResearchStudy: [
+    ["CodeableConcept", "category", true],
+    ["CodeableConcept", "condition", true],
+    ["ContactDetail", "contact", true],
+    ["Reference", "enrollment", true],
+    ["CodeableConcept", "focus", true],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "keyword", true],
+    ["CodeableConcept", "location", true],
+    ["Reference", "partOf", true],
+    ["Period", "period", false],
+    ["CodeableConcept", "phase", false],
+    ["CodeableConcept", "primaryPurposeType", false],
+    ["Reference", "principalInvestigator", false],
+    ["Reference", "protocol", true],
+    ["CodeableConcept", "reasonStopped", false],
+    ["Reference", "site", true],
+    ["Reference", "sponsor", false],
+    ["code", "status", false],
+    ["string", "title", false],
+  ],
+  ResearchSubject: [
+    ["Identifier", "identifier", true],
+    ["Reference", "individual", false],
+    ["Period", "period", false],
+    ["code", "status", false],
+    ["Reference", "study", false],
+  ],
+  RiskAssessment: [
+    ["CodeableConcept", "code", false],
+    ["Reference", "condition", false],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "method", false],
+    ["dateTime", "occurrenceDateTime", false],
+    ["Period", "occurrencePeriod", false],
+    ["Reference", "performer", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  Schedule: [
+    ["boolean", "active", false],
+    ["Reference", "actor", true],
+    ["Identifier", "identifier", true],
+    ["Period", "planningHorizon", false],
+    ["CodeableConcept", "serviceCategory", true],
+    ["CodeableConcept", "serviceType", true],
+    ["CodeableConcept", "specialty", true],
+  ],
+  SearchParameter: [
+    ["code", "base", true],
+    ["code", "code", false],
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["markdown", "description", false],
+    ["boolean", "experimental", false],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["code", "type", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  ServiceRequest: [
+    ["boolean", "asNeededBoolean", false],
+    ["CodeableConcept", "asNeededCodeableConcept", false],
+    ["dateTime", "authoredOn", false],
+    ["Reference", "basedOn", true],
+    ["CodeableConcept", "bodySite", true],
+    ["CodeableConcept", "category", true],
+    ["CodeableConcept", "code", false],
+    ["boolean", "doNotPerform", false],
+    ["Reference", "encounter", false],
+    ["Identifier", "identifier", true],
+    ["canonical", "instantiatesCanonical", true],
+    ["uri", "instantiatesUri", true],
+    ["code", "intent", false],
+    ["CodeableConcept", "locationCode", true],
+    ["Reference", "locationReference", true],
+    ["dateTime", "occurrenceDateTime", false],
+    ["Period", "occurrencePeriod", false],
+    ["Timing", "occurrenceTiming", false],
+    ["CodeableConcept", "orderDetail", true],
+    ["string", "patientInstruction", false],
+    ["Reference", "performer", true],
+    ["CodeableConcept", "performerType", false],
+    ["code", "priority", false],
+    ["Quantity", "quantityQuantity", false],
+    ["Ratio", "quantityRatio", false],
+    ["Range", "quantityRange", false],
+    ["CodeableConcept", "reasonCode", true],
+    ["Reference", "reasonReference", true],
+    ["Reference", "replaces", true],
+    ["Reference", "requester", false],
+    ["Identifier", "requisition", false],
+    ["Reference", "specimen", true],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+  ],
+  Slot: [
+    ["CodeableConcept", "appointmentType", false],
+    ["instant", "end", false],
+    ["Identifier", "identifier", true],
+    ["Reference", "schedule", false],
+    ["CodeableConcept", "serviceCategory", true],
+    ["CodeableConcept", "serviceType", true],
+    ["CodeableConcept", "specialty", true],
+    ["instant", "start", false],
+    ["code", "status", false],
+  ],
+  Specimen: [
+    ["Identifier", "accessionIdentifier", false],
+    ["CodeableConcept", "condition", true],
+    ["Identifier", "identifier", true],
+    ["dateTime", "receivedTime", false],
+    ["code", "status", false],
+    ["Reference", "subject", false],
+    ["CodeableConcept", "type", false],
+  ],
+  SpecimenDefinition: [
+    ["CodeableConcept", "collection", true],
+    ["Identifier", "identifier", false],
+    ["CodeableConcept", "patientPreparation", true],
+    ["string", "timeAspect", false],
+    ["CodeableConcept", "typeCollected", false],
+  ],
+  StructureDefinition: [
+    ["boolean", "abstract", false],
+    ["canonical", "baseDefinition", false],
+    ["ContactDetail", "contact", true],
+    ["string", "contextInvariant", true],
+    ["dateTime", "date", false],
+    ["code", "derivation", false],
+    ["boolean", "experimental", false],
+    ["code", "fhirVersion", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["Coding", "keyword", true],
+    ["code", "kind", false],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "type", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  StructureMap: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["canonical", "import", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  Subscription: [
+    ["ContactPoint", "contact", true],
+    ["string", "criteria", false],
+    ["instant", "end", false],
+    ["string", "error", false],
+    ["string", "reason", false],
+    ["code", "status", false],
+  ],
+  SubscriptionStatus: [
+    ["CodeableConcept", "error", true],
+    ["string", "eventsSinceSubscriptionStart", false],
+    ["code", "status", false],
+    ["Reference", "subscription", false],
+    ["canonical", "topic", false],
+    ["code", "type", false],
+  ],
+  SubscriptionTopic: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["canonical", "derivedFrom", true],
+    ["Period", "effectivePeriod", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  Substance: [
+    ["CodeableConcept", "category", true],
+    ["CodeableConcept", "code", false],
+    ["string", "description", false],
+    ["Identifier", "identifier", true],
+    ["code", "status", false],
+  ],
+  SubstanceDefinition: [
+    ["CodeableConcept", "classification", true],
+    ["markdown", "description", false],
+    ["CodeableConcept", "domain", false],
+    ["CodeableConcept", "grade", true],
+    ["Identifier", "identifier", true],
+    ["Reference", "informationSource", true],
+    ["Reference", "manufacturer", true],
+    ["Annotation", "note", true],
+    ["CodeableConcept", "status", false],
+    ["Reference", "supplier", true],
+    ["string", "version", false],
+  ],
+  SupplyDelivery: [
+    ["Reference", "basedOn", true],
+    ["dateTime", "occurrenceDateTime", false],
+    ["Period", "occurrencePeriod", false],
+    ["Timing", "occurrenceTiming", false],
+    ["Reference", "partOf", true],
+    ["code", "status", false],
+  ],
+  SupplyRequest: [
+    ["dateTime", "authoredOn", false],
+    ["CodeableConcept", "category", false],
+    ["Identifier", "identifier", true],
+    ["CodeableConcept", "itemCodeableConcept", false],
+    ["Reference", "itemReference", false],
+    ["dateTime", "occurrenceDateTime", false],
+    ["Period", "occurrencePeriod", false],
+    ["Timing", "occurrenceTiming", false],
+    ["code", "priority", false],
+    ["Quantity", "quantity", false],
+    ["Reference", "requester", false],
+    ["code", "status", false],
+    ["Reference", "supplier", true],
+  ],
+  Task: [
+    ["Reference", "basedOn", true],
+    ["CodeableConcept", "businessStatus", false],
+    ["CodeableConcept", "code", false],
+    ["string", "description", false],
+    ["Reference", "encounter", false],
+    ["Period", "executionPeriod", false],
+    ["Reference", "focus", false],
+    ["Reference", "for", false],
+    ["Identifier", "groupIdentifier", false],
+    ["canonical", "instantiatesCanonical", false],
+    ["uri", "instantiatesUri", false],
+    ["code", "intent", false],
+    ["dateTime", "lastModified", false],
+    ["Reference", "location", false],
+    ["Reference", "owner", false],
+    ["Reference", "partOf", true],
+    ["Reference", "requester", false],
+    ["code", "status", false],
+    ["CodeableConcept", "statusReason", false],
+  ],
+  TerminologyCapabilities: [
+    ["ContactDetail", "contact", true],
+    ["markdown", "copyright", false],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["CodeableConcept", "jurisdiction", true],
+    ["code", "kind", false],
+    ["boolean", "lockedDate", false],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  TestReport: [
+    ["Identifier", "identifier", false],
+    ["dateTime", "issued", false],
+    ["string", "name", false],
+    ["code", "result", false],
+    ["decimal", "score", false],
+    ["code", "status", false],
+    ["string", "tester", false],
+    ["Reference", "testScript", false],
+  ],
+  TestScript: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", false],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  ValueSet: [
+    ["ContactDetail", "contact", true],
+    ["dateTime", "date", false],
+    ["boolean", "experimental", false],
+    ["Identifier", "identifier", true],
+    ["boolean", "immutable", false],
+    ["CodeableConcept", "jurisdiction", true],
+    ["string", "name", false],
+    ["string", "publisher", false],
+    ["code", "status", false],
+    ["string", "title", false],
+    ["uri", "url", false],
+    ["UsageContext", "useContext", true],
+    ["string", "version", false],
+  ],
+  VerificationResult: [
+    ["CodeableConcept", "failureAction", false],
+    ["CodeableConcept", "need", false],
+    ["code", "status", false],
+    ["dateTime", "statusDate", false],
+    ["Reference", "target", true],
+    ["string", "targetLocation", true],
+    ["CodeableConcept", "validationProcess", true],
+    ["CodeableConcept", "validationType", false],
+  ],
+  VisionPrescription: [
+    ["dateTime", "created", false],
+    ["dateTime", "dateWritten", false],
+    ["Reference", "patient", false],
+    ["Reference", "prescriber", false],
+    ["code", "status", false],
+  ],
+};
 
 export interface NarrativeOptions {
   /** The formatter to use. Will use the `Formatter.default` if not provided. */
   formatter?: DefaultFormatter | null | undefined;
 }
 
-export function narrative<TResourceType extends AnyDomainResource>(
-  resource: TResourceType,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  switch (resource.resourceType) {
-    case "Account": {
-      return narrativeAccount(resource, options);
-    }
-
-    case "ActivityDefinition": {
-      return narrativeActivityDefinition(resource, options);
-    }
-
-    case "AdministrableProductDefinition": {
-      return narrativeAdministrableProductDefinition(resource, options);
-    }
-
-    case "AdverseEvent": {
-      return narrativeAdverseEvent(resource, options);
-    }
-
-    case "AllergyIntolerance": {
-      return narrativeAllergyIntolerance(resource, options);
-    }
-
-    case "Appointment": {
-      return narrativeAppointment(resource, options);
-    }
-
-    case "AppointmentResponse": {
-      return narrativeAppointmentResponse(resource, options);
-    }
-
-    case "AuditEvent": {
-      return narrativeAuditEvent(resource, options);
-    }
-
-    case "Basic": {
-      return narrativeBasic(resource, options);
-    }
-
-    case "BiologicallyDerivedProduct": {
-      return narrativeBiologicallyDerivedProduct(resource, options);
-    }
-
-    case "BodyStructure": {
-      return narrativeBodyStructure(resource, options);
-    }
-
-    case "CapabilityStatement": {
-      return narrativeCapabilityStatement(resource, options);
-    }
-
-    case "CarePlan": {
-      return narrativeCarePlan(resource, options);
-    }
-
-    case "CareTeam": {
-      return narrativeCareTeam(resource, options);
-    }
-
-    case "CatalogEntry": {
-      return narrativeCatalogEntry(resource, options);
-    }
-
-    case "ChargeItem": {
-      return narrativeChargeItem(resource, options);
-    }
-
-    case "ChargeItemDefinition": {
-      return narrativeChargeItemDefinition(resource, options);
-    }
-
-    case "Citation": {
-      return narrativeCitation(resource, options);
-    }
-
-    case "Claim": {
-      return narrativeClaim(resource, options);
-    }
-
-    case "ClaimResponse": {
-      return narrativeClaimResponse(resource, options);
-    }
-
-    case "ClinicalImpression": {
-      return narrativeClinicalImpression(resource, options);
-    }
-
-    case "ClinicalUseDefinition": {
-      return narrativeClinicalUseDefinition(resource, options);
-    }
-
-    case "CodeSystem": {
-      return narrativeCodeSystem(resource, options);
-    }
-
-    case "Communication": {
-      return narrativeCommunication(resource, options);
-    }
-
-    case "CommunicationRequest": {
-      return narrativeCommunicationRequest(resource, options);
-    }
-
-    case "CompartmentDefinition": {
-      return narrativeCompartmentDefinition(resource, options);
-    }
-
-    case "Composition": {
-      return narrativeComposition(resource, options);
-    }
-
-    case "ConceptMap": {
-      return narrativeConceptMap(resource, options);
-    }
-
-    case "Condition": {
-      return narrativeCondition(resource, options);
-    }
-
-    case "Consent": {
-      return narrativeConsent(resource, options);
-    }
-
-    case "Contract": {
-      return narrativeContract(resource, options);
-    }
-
-    case "Coverage": {
-      return narrativeCoverage(resource, options);
-    }
-
-    case "CoverageEligibilityRequest": {
-      return narrativeCoverageEligibilityRequest(resource, options);
-    }
-
-    case "CoverageEligibilityResponse": {
-      return narrativeCoverageEligibilityResponse(resource, options);
-    }
-
-    case "DetectedIssue": {
-      return narrativeDetectedIssue(resource, options);
-    }
-
-    case "Device": {
-      return narrativeDevice(resource, options);
-    }
-
-    case "DeviceDefinition": {
-      return narrativeDeviceDefinition(resource, options);
-    }
-
-    case "DeviceMetric": {
-      return narrativeDeviceMetric(resource, options);
-    }
-
-    case "DeviceRequest": {
-      return narrativeDeviceRequest(resource, options);
-    }
-
-    case "DeviceUseStatement": {
-      return narrativeDeviceUseStatement(resource, options);
-    }
-
-    case "DiagnosticReport": {
-      return narrativeDiagnosticReport(resource, options);
-    }
-
-    case "DocumentManifest": {
-      return narrativeDocumentManifest(resource, options);
-    }
-
-    case "DocumentReference": {
-      return narrativeDocumentReference(resource, options);
-    }
-
-    case "Encounter": {
-      return narrativeEncounter(resource, options);
-    }
-
-    case "Endpoint": {
-      return narrativeEndpoint(resource, options);
-    }
-
-    case "EnrollmentRequest": {
-      return narrativeEnrollmentRequest(resource, options);
-    }
-
-    case "EnrollmentResponse": {
-      return narrativeEnrollmentResponse(resource, options);
-    }
-
-    case "EpisodeOfCare": {
-      return narrativeEpisodeOfCare(resource, options);
-    }
-
-    case "EventDefinition": {
-      return narrativeEventDefinition(resource, options);
-    }
-
-    case "Evidence": {
-      return narrativeEvidence(resource, options);
-    }
-
-    case "EvidenceReport": {
-      return narrativeEvidenceReport(resource, options);
-    }
-
-    case "EvidenceVariable": {
-      return narrativeEvidenceVariable(resource, options);
-    }
-
-    case "ExampleScenario": {
-      return narrativeExampleScenario(resource, options);
-    }
-
-    case "ExplanationOfBenefit": {
-      return narrativeExplanationOfBenefit(resource, options);
-    }
-
-    case "FamilyMemberHistory": {
-      return narrativeFamilyMemberHistory(resource, options);
-    }
-
-    case "Flag": {
-      return narrativeFlag(resource, options);
-    }
-
-    case "Goal": {
-      return narrativeGoal(resource, options);
-    }
-
-    case "GraphDefinition": {
-      return narrativeGraphDefinition(resource, options);
-    }
-
-    case "Group": {
-      return narrativeGroup(resource, options);
-    }
-
-    case "GuidanceResponse": {
-      return narrativeGuidanceResponse(resource, options);
-    }
-
-    case "HealthcareService": {
-      return narrativeHealthcareService(resource, options);
-    }
-
-    case "ImagingStudy": {
-      return narrativeImagingStudy(resource, options);
-    }
-
-    case "Immunization": {
-      return narrativeImmunization(resource, options);
-    }
-
-    case "ImmunizationEvaluation": {
-      return narrativeImmunizationEvaluation(resource, options);
-    }
-
-    case "ImmunizationRecommendation": {
-      return narrativeImmunizationRecommendation(resource, options);
-    }
-
-    case "ImplementationGuide": {
-      return narrativeImplementationGuide(resource, options);
-    }
-
-    case "Ingredient": {
-      return narrativeIngredient(resource, options);
-    }
-
-    case "InsurancePlan": {
-      return narrativeInsurancePlan(resource, options);
-    }
-
-    case "Invoice": {
-      return narrativeInvoice(resource, options);
-    }
-
-    case "Library": {
-      return narrativeLibrary(resource, options);
-    }
-
-    case "Linkage": {
-      return narrativeLinkage(resource, options);
-    }
-
-    case "List": {
-      return narrativeList(resource, options);
-    }
-
-    case "Location": {
-      return narrativeLocation(resource, options);
-    }
-
-    case "ManufacturedItemDefinition": {
-      return narrativeManufacturedItemDefinition(resource, options);
-    }
-
-    case "Measure": {
-      return narrativeMeasure(resource, options);
-    }
-
-    case "MeasureReport": {
-      return narrativeMeasureReport(resource, options);
-    }
-
-    case "Media": {
-      return narrativeMedia(resource, options);
-    }
-
-    case "Medication": {
-      return narrativeMedication(resource, options);
-    }
-
-    case "MedicationAdministration": {
-      return narrativeMedicationAdministration(resource, options);
-    }
-
-    case "MedicationDispense": {
-      return narrativeMedicationDispense(resource, options);
-    }
-
-    case "MedicationKnowledge": {
-      return narrativeMedicationKnowledge(resource, options);
-    }
-
-    case "MedicationRequest": {
-      return narrativeMedicationRequest(resource, options);
-    }
-
-    case "MedicationStatement": {
-      return narrativeMedicationStatement(resource, options);
-    }
-
-    case "MedicinalProductDefinition": {
-      return narrativeMedicinalProductDefinition(resource, options);
-    }
-
-    case "MessageDefinition": {
-      return narrativeMessageDefinition(resource, options);
-    }
-
-    case "MessageHeader": {
-      return narrativeMessageHeader(resource, options);
-    }
-
-    case "MolecularSequence": {
-      return narrativeMolecularSequence(resource, options);
-    }
-
-    case "NamingSystem": {
-      return narrativeNamingSystem(resource, options);
-    }
-
-    case "NutritionOrder": {
-      return narrativeNutritionOrder(resource, options);
-    }
-
-    case "NutritionProduct": {
-      return narrativeNutritionProduct(resource, options);
-    }
-
-    case "Observation": {
-      return narrativeObservation(resource, options);
-    }
-
-    case "ObservationDefinition": {
-      return narrativeObservationDefinition(resource, options);
-    }
-
-    case "OperationDefinition": {
-      return narrativeOperationDefinition(resource, options);
-    }
-
-    case "OperationOutcome": {
-      return narrativeOperationOutcome(resource, options);
-    }
-
-    case "Organization": {
-      return narrativeOrganization(resource, options);
-    }
-
-    case "OrganizationAffiliation": {
-      return narrativeOrganizationAffiliation(resource, options);
-    }
-
-    case "PackagedProductDefinition": {
-      return narrativePackagedProductDefinition(resource, options);
-    }
-
-    case "Patient": {
-      return narrativePatient(resource, options);
-    }
-
-    case "PaymentNotice": {
-      return narrativePaymentNotice(resource, options);
-    }
-
-    case "PaymentReconciliation": {
-      return narrativePaymentReconciliation(resource, options);
-    }
-
-    case "Person": {
-      return narrativePerson(resource, options);
-    }
-
-    case "PlanDefinition": {
-      return narrativePlanDefinition(resource, options);
-    }
-
-    case "Practitioner": {
-      return narrativePractitioner(resource, options);
-    }
-
-    case "PractitionerRole": {
-      return narrativePractitionerRole(resource, options);
-    }
-
-    case "Procedure": {
-      return narrativeProcedure(resource, options);
-    }
-
-    case "Provenance": {
-      return narrativeProvenance(resource, options);
-    }
-
-    case "Questionnaire": {
-      return narrativeQuestionnaire(resource, options);
-    }
-
-    case "QuestionnaireResponse": {
-      return narrativeQuestionnaireResponse(resource, options);
-    }
-
-    case "RegulatedAuthorization": {
-      return narrativeRegulatedAuthorization(resource, options);
-    }
-
-    case "RelatedPerson": {
-      return narrativeRelatedPerson(resource, options);
-    }
-
-    case "RequestGroup": {
-      return narrativeRequestGroup(resource, options);
-    }
-
-    case "ResearchDefinition": {
-      return narrativeResearchDefinition(resource, options);
-    }
-
-    case "ResearchElementDefinition": {
-      return narrativeResearchElementDefinition(resource, options);
-    }
-
-    case "ResearchStudy": {
-      return narrativeResearchStudy(resource, options);
-    }
-
-    case "ResearchSubject": {
-      return narrativeResearchSubject(resource, options);
-    }
-
-    case "RiskAssessment": {
-      return narrativeRiskAssessment(resource, options);
-    }
-
-    case "Schedule": {
-      return narrativeSchedule(resource, options);
-    }
-
-    case "SearchParameter": {
-      return narrativeSearchParameter(resource, options);
-    }
-
-    case "ServiceRequest": {
-      return narrativeServiceRequest(resource, options);
-    }
-
-    case "Slot": {
-      return narrativeSlot(resource, options);
-    }
-
-    case "Specimen": {
-      return narrativeSpecimen(resource, options);
-    }
-
-    case "SpecimenDefinition": {
-      return narrativeSpecimenDefinition(resource, options);
-    }
-
-    case "StructureDefinition": {
-      return narrativeStructureDefinition(resource, options);
-    }
-
-    case "StructureMap": {
-      return narrativeStructureMap(resource, options);
-    }
-
-    case "Subscription": {
-      return narrativeSubscription(resource, options);
-    }
-
-    case "SubscriptionStatus": {
-      return narrativeSubscriptionStatus(resource, options);
-    }
-
-    case "SubscriptionTopic": {
-      return narrativeSubscriptionTopic(resource, options);
-    }
-
-    case "Substance": {
-      return narrativeSubstance(resource, options);
-    }
-
-    case "SubstanceDefinition": {
-      return narrativeSubstanceDefinition(resource, options);
-    }
-
-    case "SupplyDelivery": {
-      return narrativeSupplyDelivery(resource, options);
-    }
-
-    case "SupplyRequest": {
-      return narrativeSupplyRequest(resource, options);
-    }
-
-    case "Task": {
-      return narrativeTask(resource, options);
-    }
-
-    case "TerminologyCapabilities": {
-      return narrativeTerminologyCapabilities(resource, options);
-    }
-
-    case "TestReport": {
-      return narrativeTestReport(resource, options);
-    }
-
-    case "TestScript": {
-      return narrativeTestScript(resource, options);
-    }
-
-    case "ValueSet": {
-      return narrativeValueSet(resource, options);
-    }
-
-    case "VerificationResult": {
-      return narrativeVerificationResult(resource, options);
-    }
-
-    case "VisionPrescription": {
-      return narrativeVisionPrescription(resource, options);
-    }
-
-    default: {
-      throw new Error(
-        `Unsupported resource type for narrative generation: ${
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (resource as any).resourceType
-        }`
-      );
-    }
-  }
-}
-
-function narrativeAccount(
-  resource: Account,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["string", "description"],
-      ["Identifier", "identifier"],
-      ["string", "name"],
-      ["Reference", "owner"],
-      ["Period", "servicePeriod"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeActivityDefinition(
-  resource: ActivityDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "code"],
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["markdown", "description"],
-      ["boolean", "doNotPerform"],
-      ["Period", "effectivePeriod"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["code", "kind"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeAdministrableProductDefinition(
-  resource: AdministrableProductDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "administrableDoseForm"],
-      ["Reference", "device"],
-      ["Reference", "formOf"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "ingredient"],
-      ["Reference", "producedFrom"],
-      ["code", "status"],
-      ["CodeableConcept", "unitOfPresentation"],
-    ],
-    options
-  );
-}
-
-function narrativeAdverseEvent(
-  resource: AdverseEvent,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["code", "actuality"],
-      ["CodeableConcept", "category"],
-      ["Reference", "contributor"],
-      ["dateTime", "date"],
-      ["dateTime", "detected"],
-      ["Reference", "encounter"],
-      ["CodeableConcept", "event"],
-      ["Identifier", "identifier"],
-      ["Reference", "location"],
-      ["CodeableConcept", "outcome"],
-      ["dateTime", "recordedDate"],
-      ["Reference", "recorder"],
-      ["Reference", "referenceDocument"],
-      ["Reference", "resultingCondition"],
-      ["CodeableConcept", "seriousness"],
-      ["CodeableConcept", "severity"],
-      ["Reference", "study"],
-      ["Reference", "subject"],
-      ["Reference", "subjectMedicalHistory"],
-    ],
-    options
-  );
-}
-
-function narrativeAllergyIntolerance(
-  resource: AllergyIntolerance,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "asserter"],
-      ["code", "category"],
-      ["CodeableConcept", "clinicalStatus"],
-      ["CodeableConcept", "code"],
-      ["code", "criticality"],
-      ["Identifier", "identifier"],
-      ["Reference", "patient"],
-      ["code", "type"],
-      ["CodeableConcept", "verificationStatus"],
-    ],
-    options
-  );
-}
-
-function narrativeAppointment(
-  resource: Appointment,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "appointmentType"],
-      ["CodeableConcept", "cancelationReason"],
-      ["instant", "end"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "reasonCode"],
-      ["CodeableConcept", "serviceCategory"],
-      ["CodeableConcept", "serviceType"],
-      ["CodeableConcept", "specialty"],
-      ["instant", "start"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeAppointmentResponse(
-  resource: AppointmentResponse,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "actor"],
-      ["Reference", "appointment"],
-      ["Identifier", "identifier"],
-      ["code", "participantStatus"],
-      ["CodeableConcept", "participantType"],
-    ],
-    options
-  );
-}
-
-function narrativeAuditEvent(
-  resource: AuditEvent,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["code", "action"],
-      ["code", "outcome"],
-      ["string", "outcomeDesc"],
-      ["CodeableConcept", "purposeOfEvent"],
-      ["instant", "recorded"],
-      ["Coding", "subtype"],
-      ["Coding", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeBasic(
-  resource: Basic,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "author"],
-      ["CodeableConcept", "code"],
-      ["date", "created"],
-      ["Identifier", "identifier"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeBiologicallyDerivedProduct(
-  resource: BiologicallyDerivedProduct,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(resource, [["Identifier", "identifier"]], options);
-}
-
-function narrativeBodyStructure(
-  resource: BodyStructure,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["string", "description"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "location"],
-      ["CodeableConcept", "morphology"],
-      ["Reference", "patient"],
-    ],
-    options
-  );
-}
-
-function narrativeCapabilityStatement(
-  resource: CapabilityStatement,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["code", "fhirVersion"],
-      ["code", "format"],
-      ["canonical", "implementationGuide"],
-      ["canonical", "imports"],
-      ["canonical", "instantiates"],
-      ["CodeableConcept", "jurisdiction"],
-      ["code", "kind"],
-      ["string", "name"],
-      ["code", "patchFormat"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeCarePlan(
-  resource: CarePlan,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "addresses"],
-      ["Reference", "author"],
-      ["Reference", "basedOn"],
-      ["CodeableConcept", "category"],
-      ["dateTime", "created"],
-      ["string", "description"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["canonical", "instantiatesCanonical"],
-      ["uri", "instantiatesUri"],
-      ["code", "intent"],
-      ["Reference", "partOf"],
-      ["Period", "period"],
-      ["Reference", "replaces"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["string", "title"],
-    ],
-    options
-  );
-}
-
-function narrativeCareTeam(
-  resource: CareTeam,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "category"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["Reference", "managingOrganization"],
-      ["string", "name"],
-      ["Period", "period"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeCatalogEntry(
-  resource: CatalogEntry,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Identifier", "identifier"],
-      ["boolean", "orderable"],
-      ["Reference", "referencedItem"],
-    ],
-    options
-  );
-}
-
-function narrativeChargeItem(
-  resource: ChargeItem,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "account"],
-      ["CodeableConcept", "bodysite"],
-      ["CodeableConcept", "code"],
-      ["Reference", "context"],
-      ["dateTime", "enteredDate"],
-      ["Reference", "enterer"],
-      ["Identifier", "identifier"],
-      ["dateTime", "occurrenceDateTime"],
-      ["Period", "occurrencePeriod"],
-      ["Timing", "occurrenceTiming"],
-      ["Quantity", "quantity"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeChargeItemDefinition(
-  resource: ChargeItemDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "code"],
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["uri", "derivedFromUri"],
-      ["markdown", "description"],
-      ["Period", "effectivePeriod"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["canonical", "partOf"],
-      ["string", "publisher"],
-      ["canonical", "replaces"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeCitation(
-  resource: Citation,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["Period", "effectivePeriod"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeClaim(
-  resource: Claim,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Period", "billablePeriod"],
-      ["dateTime", "created"],
-      ["Reference", "insurer"],
-      ["Reference", "patient"],
-      ["CodeableConcept", "priority"],
-      ["Reference", "provider"],
-      ["code", "status"],
-      ["CodeableConcept", "type"],
-      ["code", "use"],
-    ],
-    options
-  );
-}
-
-function narrativeClaimResponse(
-  resource: ClaimResponse,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "created"],
-      ["Reference", "insurer"],
-      ["code", "outcome"],
-      ["Reference", "patient"],
-      ["Reference", "request"],
-      ["code", "status"],
-      ["CodeableConcept", "type"],
-      ["code", "use"],
-    ],
-    options
-  );
-}
-
-function narrativeClinicalImpression(
-  resource: ClinicalImpression,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "assessor"],
-      ["CodeableConcept", "code"],
-      ["dateTime", "date"],
-      ["string", "description"],
-      ["dateTime", "effectiveDateTime"],
-      ["Period", "effectivePeriod"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["Reference", "problem"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeClinicalUseDefinition(
-  resource: ClinicalUseDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "category"],
-      ["Identifier", "identifier"],
-      ["Reference", "population"],
-      ["CodeableConcept", "status"],
-      ["Reference", "subject"],
-      ["code", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeCodeSystem(
-  resource: CodeSystem,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "caseSensitive"],
-      ["boolean", "compositional"],
-      ["ContactDetail", "contact"],
-      ["code", "content"],
-      ["unsignedInt", "count"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["code", "hierarchyMeaning"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["canonical", "supplements"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["canonical", "valueSet"],
-      ["string", "version"],
-      ["boolean", "versionNeeded"],
-    ],
-    options
-  );
-}
-
-function narrativeCommunication(
-  resource: Communication,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "basedOn"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["canonical", "instantiatesCanonical"],
-      ["uri", "instantiatesUri"],
-      ["Reference", "partOf"],
-      ["code", "priority"],
-      ["CodeableConcept", "reasonCode"],
-      ["Reference", "reasonReference"],
-      ["code", "status"],
-      ["CodeableConcept", "statusReason"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeCommunicationRequest(
-  resource: CommunicationRequest,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "authoredOn"],
-      ["Reference", "basedOn"],
-      ["boolean", "doNotPerform"],
-      ["Reference", "encounter"],
-      ["Identifier", "groupIdentifier"],
-      ["Identifier", "identifier"],
-      ["dateTime", "occurrenceDateTime"],
-      ["Period", "occurrencePeriod"],
-      ["code", "priority"],
-      ["CodeableConcept", "reasonCode"],
-      ["Reference", "reasonReference"],
-      ["Reference", "replaces"],
-      ["Reference", "requester"],
-      ["Reference", "sender"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeCompartmentDefinition(
-  resource: CompartmentDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["code", "code"],
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["boolean", "search"],
-      ["code", "status"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeComposition(
-  resource: Composition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "author"],
-      ["CodeableConcept", "category"],
-      ["code", "confidentiality"],
-      ["Reference", "custodian"],
-      ["dateTime", "date"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["string", "title"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeConceptMap(
-  resource: ConceptMap,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["uri", "sourceUri"],
-      ["canonical", "sourceCanonical"],
-      ["code", "status"],
-      ["uri", "targetUri"],
-      ["canonical", "targetCanonical"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeCondition(
-  resource: Condition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "asserter"],
-      ["CodeableConcept", "bodySite"],
-      ["CodeableConcept", "clinicalStatus"],
-      ["CodeableConcept", "code"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["dateTime", "onsetDateTime"],
-      ["Age", "onsetAge"],
-      ["Period", "onsetPeriod"],
-      ["Range", "onsetRange"],
-      ["string", "onsetString"],
-      ["dateTime", "recordedDate"],
-      ["Reference", "recorder"],
-      ["Reference", "subject"],
-      ["CodeableConcept", "verificationStatus"],
-    ],
-    options
-  );
-}
-
-function narrativeConsent(
-  resource: Consent,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "category"],
-      ["dateTime", "dateTime"],
-      ["Identifier", "identifier"],
-      ["Reference", "organization"],
-      ["Reference", "patient"],
-      ["Reference", "performer"],
-      ["CodeableConcept", "policyRule"],
-      ["CodeableConcept", "scope"],
-      ["Attachment", "sourceAttachment"],
-      ["Reference", "sourceReference"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeContract(
-  resource: Contract,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Period", "applies"],
-      ["Identifier", "identifier"],
-      ["dateTime", "issued"],
-      ["string", "name"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["CodeableConcept", "subType"],
-      ["string", "title"],
-      ["CodeableConcept", "type"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeCoverage(
-  resource: Coverage,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "beneficiary"],
-      ["string", "dependent"],
-      ["Identifier", "identifier"],
-      ["string", "network"],
-      ["positiveInt", "order"],
-      ["Reference", "payor"],
-      ["Period", "period"],
-      ["Reference", "policyHolder"],
-      ["code", "status"],
-      ["Reference", "subscriber"],
-      ["string", "subscriberId"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeCoverageEligibilityRequest(
-  resource: CoverageEligibilityRequest,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "created"],
-      ["Reference", "insurer"],
-      ["Reference", "patient"],
-      ["code", "purpose"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeCoverageEligibilityResponse(
-  resource: CoverageEligibilityResponse,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "created"],
-      ["Reference", "insurer"],
-      ["code", "outcome"],
-      ["Reference", "patient"],
-      ["code", "purpose"],
-      ["Reference", "request"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeDetectedIssue(
-  resource: DetectedIssue,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "author"],
-      ["CodeableConcept", "code"],
-      ["dateTime", "identifiedDateTime"],
-      ["Period", "identifiedPeriod"],
-      ["Identifier", "identifier"],
-      ["Reference", "implicated"],
-      ["Reference", "patient"],
-      ["code", "severity"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeDevice(
-  resource: Device,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "safety"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeDeviceDefinition(
-  resource: DeviceDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "parentDevice"],
-      ["CodeableConcept", "safety"],
-    ],
-    options
-  );
-}
-
-function narrativeDeviceMetric(
-  resource: DeviceMetric,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["code", "category"],
-      ["code", "color"],
-      ["Identifier", "identifier"],
-      ["Timing", "measurementPeriod"],
-      ["code", "operationalStatus"],
-      ["Reference", "parent"],
-      ["Reference", "source"],
-      ["CodeableConcept", "type"],
-      ["CodeableConcept", "unit"],
-    ],
-    options
-  );
-}
-
-function narrativeDeviceRequest(
-  resource: DeviceRequest,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "authoredOn"],
-      ["Reference", "basedOn"],
-      ["Reference", "codeReference"],
-      ["CodeableConcept", "codeCodeableConcept"],
-      ["Reference", "encounter"],
-      ["Identifier", "groupIdentifier"],
-      ["Identifier", "identifier"],
-      ["canonical", "instantiatesCanonical"],
-      ["uri", "instantiatesUri"],
-      ["code", "intent"],
-      ["dateTime", "occurrenceDateTime"],
-      ["Period", "occurrencePeriod"],
-      ["Timing", "occurrenceTiming"],
-      ["Reference", "performer"],
-      ["CodeableConcept", "performerType"],
-      ["code", "priority"],
-      ["Reference", "priorRequest"],
-      ["CodeableConcept", "reasonCode"],
-      ["Reference", "reasonReference"],
-      ["Reference", "requester"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeDeviceUseStatement(
-  resource: DeviceUseStatement,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "basedOn"],
-      ["CodeableConcept", "bodySite"],
-      ["Reference", "derivedFrom"],
-      ["Reference", "device"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "reasonCode"],
-      ["Reference", "reasonReference"],
-      ["dateTime", "recordedOn"],
-      ["Reference", "source"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["Timing", "timingTiming"],
-      ["Period", "timingPeriod"],
-      ["dateTime", "timingDateTime"],
-    ],
-    options
-  );
-}
-
-function narrativeDiagnosticReport(
-  resource: DiagnosticReport,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "category"],
-      ["CodeableConcept", "code"],
-      ["dateTime", "effectiveDateTime"],
-      ["Period", "effectivePeriod"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["instant", "issued"],
-      ["Reference", "performer"],
-      ["Reference", "resultsInterpreter"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeDocumentManifest(
-  resource: DocumentManifest,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "author"],
-      ["Reference", "content"],
-      ["string", "description"],
-      ["Identifier", "identifier"],
-      ["Identifier", "masterIdentifier"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeDocumentReference(
-  resource: DocumentReference,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "author"],
-      ["CodeableConcept", "category"],
-      ["instant", "date"],
-      ["string", "description"],
-      ["code", "docStatus"],
-      ["Identifier", "identifier"],
-      ["Identifier", "masterIdentifier"],
-      ["CodeableConcept", "securityLabel"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeEncounter(
-  resource: Encounter,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "appointment"],
-      ["Coding", "class"],
-      ["Reference", "episodeOfCare"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "reasonCode"],
-      ["Reference", "reasonReference"],
-      ["CodeableConcept", "serviceType"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeEndpoint(
-  resource: Endpoint,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["url", "address"],
-      ["Coding", "connectionType"],
-      ["Identifier", "identifier"],
-      ["Reference", "managingOrganization"],
-      ["string", "name"],
-      ["code", "payloadMimeType"],
-      ["CodeableConcept", "payloadType"],
-      ["Period", "period"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeEnrollmentRequest(
-  resource: EnrollmentRequest,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(resource, [["code", "status"]], options);
-}
-
-function narrativeEnrollmentResponse(
-  resource: EnrollmentResponse,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(resource, [["code", "status"]], options);
-}
-
-function narrativeEpisodeOfCare(
-  resource: EpisodeOfCare,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "managingOrganization"],
-      ["Reference", "patient"],
-      ["Period", "period"],
-      ["code", "status"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeEventDefinition(
-  resource: EventDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["date", "approvalDate"],
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["Period", "effectivePeriod"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["date", "lastReviewDate"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["TriggerDefinition", "trigger"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeEvidence(
-  resource: Evidence,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "author"],
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["ContactDetail", "endorser"],
-      ["Identifier", "identifier"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeEvidenceReport(
-  resource: EvidenceReport,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "author"],
-      ["ContactDetail", "contact"],
-      ["ContactDetail", "endorser"],
-      ["Identifier", "identifier"],
-      ["string", "publisher"],
-      ["Identifier", "relatedIdentifier"],
-      ["code", "status"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-    ],
-    options
-  );
-}
-
-function narrativeEvidenceVariable(
-  resource: EvidenceVariable,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["markdown", "description"],
-      ["code", "handling"],
-      ["Identifier", "identifier"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["string", "shortTitle"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeExampleScenario(
-  resource: ExampleScenario,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeExplanationOfBenefit(
-  resource: ExplanationOfBenefit,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Period", "billablePeriod"],
-      ["dateTime", "created"],
-      ["Reference", "insurer"],
-      ["code", "outcome"],
-      ["Reference", "patient"],
-      ["Reference", "provider"],
-      ["code", "status"],
-      ["CodeableConcept", "type"],
-      ["code", "use"],
-    ],
-    options
-  );
-}
-
-function narrativeFamilyMemberHistory(
-  resource: FamilyMemberHistory,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Age", "ageAge"],
-      ["Range", "ageRange"],
-      ["string", "ageString"],
-      ["CodeableConcept", "dataAbsentReason"],
-      ["dateTime", "date"],
-      ["boolean", "deceasedBoolean"],
-      ["Age", "deceasedAge"],
-      ["Range", "deceasedRange"],
-      ["date", "deceasedDate"],
-      ["string", "deceasedString"],
-      ["boolean", "estimatedAge"],
-      ["Identifier", "identifier"],
-      ["canonical", "instantiatesCanonical"],
-      ["uri", "instantiatesUri"],
-      ["string", "name"],
-      ["Reference", "patient"],
-      ["CodeableConcept", "reasonCode"],
-      ["Reference", "reasonReference"],
-      ["CodeableConcept", "relationship"],
-      ["CodeableConcept", "sex"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeFlag(
-  resource: Flag,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "author"],
-      ["CodeableConcept", "category"],
-      ["CodeableConcept", "code"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["Period", "period"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeGoal(
-  resource: Goal,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "achievementStatus"],
-      ["CodeableConcept", "category"],
-      ["CodeableConcept", "description"],
-      ["Reference", "expressedBy"],
-      ["code", "lifecycleStatus"],
-      ["CodeableConcept", "priority"],
-      ["date", "startDate"],
-      ["CodeableConcept", "startCodeableConcept"],
-      ["date", "statusDate"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeGraphDefinition(
-  resource: GraphDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "start"],
-      ["code", "status"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeGroup(
-  resource: Group,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["boolean", "actual"],
-      ["CodeableConcept", "code"],
-      ["Identifier", "identifier"],
-      ["Reference", "managingEntity"],
-      ["string", "name"],
-      ["unsignedInt", "quantity"],
-      ["code", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeGuidanceResponse(
-  resource: GuidanceResponse,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Identifier", "identifier"],
-      ["uri", "moduleUri"],
-      ["canonical", "moduleCanonical"],
-      ["CodeableConcept", "moduleCodeableConcept"],
-      ["Identifier", "requestIdentifier"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeHealthcareService(
-  resource: HealthcareService,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["CodeableConcept", "category"],
-      ["string", "comment"],
-      ["Identifier", "identifier"],
-      ["Reference", "location"],
-      ["string", "name"],
-      ["Attachment", "photo"],
-      ["Reference", "providedBy"],
-      ["CodeableConcept", "specialty"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeImagingStudy(
-  resource: ImagingStudy,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "basedOn"],
-      ["string", "description"],
-      ["Reference", "encounter"],
-      ["Reference", "endpoint"],
-      ["Identifier", "identifier"],
-      ["Reference", "interpreter"],
-      ["Reference", "location"],
-      ["Coding", "modality"],
-      ["Annotation", "note"],
-      ["unsignedInt", "numberOfInstances"],
-      ["unsignedInt", "numberOfSeries"],
-      ["CodeableConcept", "procedureCode"],
-      ["Reference", "procedureReference"],
-      ["CodeableConcept", "reasonCode"],
-      ["Reference", "reasonReference"],
-      ["Reference", "referrer"],
-      ["dateTime", "started"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeImmunization(
-  resource: Immunization,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "isSubpotent"],
-      ["Annotation", "note"],
-      ["dateTime", "occurrenceDateTime"],
-      ["string", "occurrenceString"],
-      ["Reference", "patient"],
-      ["boolean", "primarySource"],
-      ["code", "status"],
-      ["CodeableConcept", "vaccineCode"],
-    ],
-    options
-  );
-}
-
-function narrativeImmunizationEvaluation(
-  resource: ImmunizationEvaluation,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "doseStatus"],
-      ["Reference", "immunizationEvent"],
-      ["Reference", "patient"],
-      ["code", "status"],
-      ["CodeableConcept", "targetDisease"],
-    ],
-    options
-  );
-}
-
-function narrativeImmunizationRecommendation(
-  resource: ImmunizationRecommendation,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "date"],
-      ["Identifier", "identifier"],
-      ["Reference", "patient"],
-    ],
-    options
-  );
-}
-
-function narrativeImplementationGuide(
-  resource: ImplementationGuide,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["code", "fhirVersion"],
-      ["CodeableConcept", "jurisdiction"],
-      ["code", "license"],
-      ["string", "name"],
-      ["id", "packageId"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeIngredient(
-  resource: Ingredient,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "allergenicIndicator"],
-      ["Reference", "for"],
-      ["CodeableConcept", "function"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "role"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeInsurancePlan(
-  resource: InsurancePlan,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "administeredBy"],
-      ["Reference", "coverageArea"],
-      ["Identifier", "identifier"],
-      ["string", "name"],
-      ["Reference", "ownedBy"],
-      ["code", "status"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeInvoice(
-  resource: Invoice,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "date"],
-      ["Identifier", "identifier"],
-      ["Reference", "recipient"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["Money", "totalGross"],
-      ["Money", "totalNet"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeLibrary(
-  resource: Library,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["Attachment", "content"],
-      ["dateTime", "date"],
-      ["markdown", "description"],
-      ["Period", "effectivePeriod"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["CodeableConcept", "type"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeLinkage(
-  resource: Linkage,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["Reference", "author"],
-    ],
-    options
-  );
-}
-
-function narrativeList(
-  resource: List,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "code"],
-      ["dateTime", "date"],
-      ["code", "mode"],
-      ["Reference", "source"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["string", "title"],
-    ],
-    options
-  );
-}
-
-function narrativeLocation(
-  resource: Location,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["string", "description"],
-      ["Identifier", "identifier"],
-      ["Reference", "managingOrganization"],
-      ["code", "mode"],
-      ["string", "name"],
-      ["Coding", "operationalStatus"],
-      ["CodeableConcept", "physicalType"],
-      ["code", "status"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeManufacturedItemDefinition(
-  resource: ManufacturedItemDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "ingredient"],
-      ["CodeableConcept", "manufacturedDoseForm"],
-      ["Reference", "manufacturer"],
-      ["code", "status"],
-      ["CodeableConcept", "unitOfPresentation"],
-    ],
-    options
-  );
-}
-
-function narrativeMeasure(
-  resource: Measure,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["markdown", "clinicalRecommendationStatement"],
-      ["CodeableConcept", "compositeScoring"],
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["markdown", "definition"],
-      ["markdown", "description"],
-      ["markdown", "disclaimer"],
-      ["Period", "effectivePeriod"],
-      ["boolean", "experimental"],
-      ["markdown", "guidance"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "improvementNotation"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["string", "rateAggregation"],
-      ["markdown", "rationale"],
-      ["string", "riskAdjustment"],
-      ["CodeableConcept", "scoring"],
-      ["code", "status"],
-      ["string", "title"],
-      ["CodeableConcept", "type"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeMeasureReport(
-  resource: MeasureReport,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "date"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "improvementNotation"],
-      ["canonical", "measure"],
-      ["Period", "period"],
-      ["Reference", "reporter"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["code", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeMedia(
-  resource: Media,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "basedOn"],
-      ["CodeableConcept", "bodySite"],
-      ["Attachment", "content"],
-      ["dateTime", "createdDateTime"],
-      ["Period", "createdPeriod"],
-      ["Reference", "device"],
-      ["string", "deviceName"],
-      ["decimal", "duration"],
-      ["Reference", "encounter"],
-      ["positiveInt", "frames"],
-      ["positiveInt", "height"],
-      ["Identifier", "identifier"],
-      ["instant", "issued"],
-      ["CodeableConcept", "modality"],
-      ["Reference", "operator"],
-      ["Reference", "partOf"],
-      ["CodeableConcept", "reasonCode"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["CodeableConcept", "type"],
-      ["CodeableConcept", "view"],
-      ["positiveInt", "width"],
-    ],
-    options
-  );
-}
-
-function narrativeMedication(
-  resource: Medication,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Ratio", "amount"],
-      ["CodeableConcept", "code"],
-      ["Identifier", "identifier"],
-      ["Reference", "manufacturer"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeMedicationAdministration(
-  resource: MedicationAdministration,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "effectiveDateTime"],
-      ["Period", "effectivePeriod"],
-      ["uri", "instantiates"],
-      ["CodeableConcept", "medicationCodeableConcept"],
-      ["Reference", "medicationReference"],
-      ["Reference", "partOf"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeMedicationDispense(
-  resource: MedicationDispense,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "medicationCodeableConcept"],
-      ["Reference", "medicationReference"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["dateTime", "whenPrepared"],
-    ],
-    options
-  );
-}
-
-function narrativeMedicationKnowledge(
-  resource: MedicationKnowledge,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Quantity", "amount"],
-      ["CodeableConcept", "code"],
-      ["Reference", "manufacturer"],
-      ["code", "status"],
-      ["string", "synonym"],
-    ],
-    options
-  );
-}
-
-function narrativeMedicationRequest(
-  resource: MedicationRequest,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "authoredOn"],
-      ["Reference", "basedOn"],
-      ["boolean", "doNotPerform"],
-      ["Identifier", "groupIdentifier"],
-      ["canonical", "instantiatesCanonical"],
-      ["uri", "instantiatesUri"],
-      ["code", "intent"],
-      ["CodeableConcept", "medicationCodeableConcept"],
-      ["Reference", "medicationReference"],
-      ["CodeableConcept", "performerType"],
-      ["code", "priority"],
-      ["boolean", "reportedBoolean"],
-      ["Reference", "reportedReference"],
-      ["Reference", "requester"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeMedicationStatement(
-  resource: MedicationStatement,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "basedOn"],
-      ["CodeableConcept", "category"],
-      ["Reference", "context"],
-      ["dateTime", "dateAsserted"],
-      ["dateTime", "effectiveDateTime"],
-      ["Period", "effectivePeriod"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "medicationCodeableConcept"],
-      ["Reference", "medicationReference"],
-      ["Reference", "partOf"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeMedicinalProductDefinition(
-  resource: MedicinalProductDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "additionalMonitoringIndicator"],
-      ["Reference", "attachedDocument"],
-      ["CodeableConcept", "classification"],
-      ["Reference", "clinicalTrial"],
-      ["Coding", "code"],
-      ["CodeableConcept", "combinedPharmaceuticalDoseForm"],
-      ["markdown", "description"],
-      ["CodeableConcept", "domain"],
-      ["Identifier", "identifier"],
-      ["CodeableReference", "impurity"],
-      ["markdown", "indication"],
-      ["CodeableConcept", "ingredient"],
-      ["CodeableConcept", "legalStatusOfSupply"],
-      ["MarketingStatus", "marketingStatus"],
-      ["Reference", "masterFile"],
-      ["CodeableConcept", "packagedMedicinalProduct"],
-      ["CodeableConcept", "pediatricUseIndicator"],
-      ["CodeableConcept", "route"],
-      ["CodeableConcept", "specialMeasures"],
-      ["CodeableConcept", "status"],
-      ["dateTime", "statusDate"],
-      ["CodeableConcept", "type"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeMessageDefinition(
-  resource: MessageDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["canonical", "base"],
-      ["code", "category"],
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["markdown", "description"],
-      ["Coding", "eventCoding"],
-      ["uri", "eventUri"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["canonical", "parent"],
-      ["string", "publisher"],
-      ["markdown", "purpose"],
-      ["canonical", "replaces"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeMessageHeader(
-  resource: MessageHeader,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "author"],
-      ["canonical", "definition"],
-      ["Reference", "enterer"],
-      ["Coding", "eventCoding"],
-      ["uri", "eventUri"],
-      ["Reference", "focus"],
-      ["CodeableConcept", "reason"],
-      ["Reference", "responsible"],
-      ["Reference", "sender"],
-    ],
-    options
-  );
-}
-
-function narrativeMolecularSequence(
-  resource: MolecularSequence,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["integer", "coordinateSystem"],
-      ["Reference", "device"],
-      ["Identifier", "identifier"],
-      ["string", "observedSeq"],
-      ["Reference", "patient"],
-      ["Reference", "performer"],
-      ["Reference", "pointer"],
-      ["Quantity", "quantity"],
-      ["integer", "readCoverage"],
-      ["Reference", "specimen"],
-      ["code", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeNamingSystem(
-  resource: NamingSystem,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["CodeableConcept", "jurisdiction"],
-      ["code", "kind"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["UsageContext", "useContext"],
-    ],
-    options
-  );
-}
-
-function narrativeNutritionOrder(
-  resource: NutritionOrder,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "dateTime"],
-      ["canonical", "instantiatesCanonical"],
-      ["uri", "instantiatesUri"],
-      ["code", "intent"],
-      ["Reference", "orderer"],
-      ["Reference", "patient"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeNutritionProduct(
-  resource: NutritionProduct,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "category"],
-      ["CodeableConcept", "code"],
-      ["Reference", "manufacturer"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeObservation(
-  resource: Observation,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "basedOn"],
-      ["CodeableConcept", "code"],
-      ["Reference", "derivedFrom"],
-      ["dateTime", "effectiveDateTime"],
-      ["Period", "effectivePeriod"],
-      ["Timing", "effectiveTiming"],
-      ["instant", "effectiveInstant"],
-      ["Reference", "encounter"],
-      ["Reference", "focus"],
-      ["Reference", "hasMember"],
-      ["Identifier", "identifier"],
-      ["instant", "issued"],
-      ["Reference", "partOf"],
-      ["Reference", "performer"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["Quantity", "valueQuantity"],
-      ["CodeableConcept", "valueCodeableConcept"],
-      ["string", "valueString"],
-      ["boolean", "valueBoolean"],
-      ["integer", "valueInteger"],
-      ["Range", "valueRange"],
-      ["Ratio", "valueRatio"],
-      ["SampledData", "valueSampledData"],
-      ["time", "valueTime"],
-      ["dateTime", "valueDateTime"],
-      ["Period", "valuePeriod"],
-    ],
-    options
-  );
-}
-
-function narrativeObservationDefinition(
-  resource: ObservationDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "category"],
-      ["CodeableConcept", "code"],
-      ["Identifier", "identifier"],
-    ],
-    options
-  );
-}
-
-function narrativeOperationDefinition(
-  resource: OperationDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "affectsState"],
-      ["canonical", "base"],
-      ["code", "code"],
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["boolean", "instance"],
-      ["CodeableConcept", "jurisdiction"],
-      ["code", "kind"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "resource"],
-      ["code", "status"],
-      ["boolean", "system"],
-      ["string", "title"],
-      ["boolean", "type"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeOperationOutcome(
-  resource: OperationOutcome,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(resource, [], options);
-}
-
-function narrativeOrganization(
-  resource: Organization,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["Identifier", "identifier"],
-      ["string", "name"],
-      ["Reference", "partOf"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeOrganizationAffiliation(
-  resource: OrganizationAffiliation,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["CodeableConcept", "code"],
-      ["Identifier", "identifier"],
-      ["Reference", "location"],
-      ["Reference", "network"],
-      ["Reference", "organization"],
-      ["Reference", "participatingOrganization"],
-      ["Period", "period"],
-      ["CodeableConcept", "specialty"],
-      ["ContactPoint", "telecom"],
-    ],
-    options
-  );
-}
-
-function narrativePackagedProductDefinition(
-  resource: PackagedProductDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "characteristic"],
-      ["Quantity", "containedItemQuantity"],
-      ["boolean", "copackagedIndicator"],
-      ["markdown", "description"],
-      ["Identifier", "identifier"],
-      ["Reference", "manufacturer"],
-      ["MarketingStatus", "marketingStatus"],
-      ["string", "name"],
-      ["Reference", "packageFor"],
-      ["CodeableConcept", "status"],
-      ["dateTime", "statusDate"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativePatient(
-  resource: Patient,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["Address", "address"],
-      ["date", "birthDate"],
-      ["boolean", "deceasedBoolean"],
-      ["dateTime", "deceasedDateTime"],
-      ["code", "gender"],
-      ["Identifier", "identifier"],
-      ["Reference", "managingOrganization"],
-      ["HumanName", "name"],
-      ["ContactPoint", "telecom"],
-    ],
-    options
-  );
-}
-
-function narrativePaymentNotice(
-  resource: PaymentNotice,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Money", "amount"],
-      ["dateTime", "created"],
-      ["Reference", "payment"],
-      ["Reference", "recipient"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativePaymentReconciliation(
-  resource: PaymentReconciliation,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "created"],
-      ["Money", "paymentAmount"],
-      ["date", "paymentDate"],
-      ["Reference", "paymentIssuer"],
-      ["Period", "period"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativePerson(
-  resource: Person,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["date", "birthDate"],
-      ["code", "gender"],
-      ["Reference", "managingOrganization"],
-      ["HumanName", "name"],
-      ["ContactPoint", "telecom"],
-    ],
-    options
-  );
-}
-
-function narrativePlanDefinition(
-  resource: PlanDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["markdown", "description"],
-      ["Period", "effectivePeriod"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["CodeableConcept", "type"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativePractitioner(
-  resource: Practitioner,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["Address", "address"],
-      ["date", "birthDate"],
-      ["code", "gender"],
-      ["Identifier", "identifier"],
-      ["HumanName", "name"],
-      ["ContactPoint", "telecom"],
-    ],
-    options
-  );
-}
-
-function narrativePractitionerRole(
-  resource: PractitionerRole,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["CodeableConcept", "code"],
-      ["Identifier", "identifier"],
-      ["Reference", "location"],
-      ["Reference", "organization"],
-      ["Period", "period"],
-      ["Reference", "practitioner"],
-      ["CodeableConcept", "specialty"],
-      ["ContactPoint", "telecom"],
-    ],
-    options
-  );
-}
-
-function narrativeProcedure(
-  resource: Procedure,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "asserter"],
-      ["Reference", "basedOn"],
-      ["CodeableConcept", "bodySite"],
-      ["CodeableConcept", "category"],
-      ["CodeableConcept", "code"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["canonical", "instantiatesCanonical"],
-      ["uri", "instantiatesUri"],
-      ["Reference", "location"],
-      ["CodeableConcept", "outcome"],
-      ["Reference", "partOf"],
-      ["dateTime", "performedDateTime"],
-      ["Period", "performedPeriod"],
-      ["string", "performedString"],
-      ["Age", "performedAge"],
-      ["Range", "performedRange"],
-      ["CodeableConcept", "reasonCode"],
-      ["Reference", "reasonReference"],
-      ["Reference", "recorder"],
-      ["code", "status"],
-      ["CodeableConcept", "statusReason"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeProvenance(
-  resource: Provenance,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["instant", "recorded"],
-      ["Reference", "target"],
-    ],
-    options
-  );
-}
-
-function narrativeQuestionnaire(
-  resource: Questionnaire,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Coding", "code"],
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["Period", "effectivePeriod"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["code", "subjectType"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeQuestionnaireResponse(
-  resource: QuestionnaireResponse,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "author"],
-      ["dateTime", "authored"],
-      ["Reference", "basedOn"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["Reference", "partOf"],
-      ["canonical", "questionnaire"],
-      ["Reference", "source"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeRegulatedAuthorization(
-  resource: RegulatedAuthorization,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "basis"],
-      ["markdown", "description"],
-      ["Reference", "holder"],
-      ["Identifier", "identifier"],
-      ["CodeableReference", "indication"],
-      ["CodeableConcept", "intendedUse"],
-      ["CodeableConcept", "region"],
-      ["Reference", "regulator"],
-      ["CodeableConcept", "status"],
-      ["dateTime", "statusDate"],
-      ["Reference", "subject"],
-      ["CodeableConcept", "type"],
-      ["Period", "validityPeriod"],
-    ],
-    options
-  );
-}
-
-function narrativeRelatedPerson(
-  resource: RelatedPerson,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["Address", "address"],
-      ["date", "birthDate"],
-      ["code", "gender"],
-      ["Identifier", "identifier"],
-      ["HumanName", "name"],
-      ["Reference", "patient"],
-      ["CodeableConcept", "relationship"],
-      ["ContactPoint", "telecom"],
-    ],
-    options
-  );
-}
-
-function narrativeRequestGroup(
-  resource: RequestGroup,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "code"],
-      ["Identifier", "groupIdentifier"],
-      ["Identifier", "identifier"],
-      ["canonical", "instantiatesCanonical"],
-      ["uri", "instantiatesUri"],
-      ["code", "intent"],
-      ["code", "priority"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeResearchDefinition(
-  resource: ResearchDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["markdown", "description"],
-      ["Period", "effectivePeriod"],
-      ["boolean", "experimental"],
-      ["Reference", "exposure"],
-      ["Reference", "exposureAlternative"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["Reference", "outcome"],
-      ["Reference", "population"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeResearchElementDefinition(
-  resource: ResearchElementDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["markdown", "description"],
-      ["Period", "effectivePeriod"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["string", "shortTitle"],
-      ["code", "status"],
-      ["string", "title"],
-      ["code", "type"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeResearchStudy(
-  resource: ResearchStudy,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "category"],
-      ["CodeableConcept", "condition"],
-      ["ContactDetail", "contact"],
-      ["Reference", "enrollment"],
-      ["CodeableConcept", "focus"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "keyword"],
-      ["CodeableConcept", "location"],
-      ["Reference", "partOf"],
-      ["Period", "period"],
-      ["CodeableConcept", "phase"],
-      ["CodeableConcept", "primaryPurposeType"],
-      ["Reference", "principalInvestigator"],
-      ["Reference", "protocol"],
-      ["CodeableConcept", "reasonStopped"],
-      ["Reference", "site"],
-      ["Reference", "sponsor"],
-      ["code", "status"],
-      ["string", "title"],
-    ],
-    options
-  );
-}
-
-function narrativeResearchSubject(
-  resource: ResearchSubject,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Identifier", "identifier"],
-      ["Reference", "individual"],
-      ["Period", "period"],
-      ["code", "status"],
-      ["Reference", "study"],
-    ],
-    options
-  );
-}
-
-function narrativeRiskAssessment(
-  resource: RiskAssessment,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "code"],
-      ["Reference", "condition"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "method"],
-      ["dateTime", "occurrenceDateTime"],
-      ["Period", "occurrencePeriod"],
-      ["Reference", "performer"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeSchedule(
-  resource: Schedule,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "active"],
-      ["Reference", "actor"],
-      ["Identifier", "identifier"],
-      ["Period", "planningHorizon"],
-      ["CodeableConcept", "serviceCategory"],
-      ["CodeableConcept", "serviceType"],
-      ["CodeableConcept", "specialty"],
-    ],
-    options
-  );
-}
-
-function narrativeSearchParameter(
-  resource: SearchParameter,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["code", "base"],
-      ["code", "code"],
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["markdown", "description"],
-      ["boolean", "experimental"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["code", "type"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeServiceRequest(
-  resource: ServiceRequest,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "asNeededBoolean"],
-      ["CodeableConcept", "asNeededCodeableConcept"],
-      ["dateTime", "authoredOn"],
-      ["Reference", "basedOn"],
-      ["CodeableConcept", "bodySite"],
-      ["CodeableConcept", "category"],
-      ["CodeableConcept", "code"],
-      ["boolean", "doNotPerform"],
-      ["Reference", "encounter"],
-      ["Identifier", "identifier"],
-      ["canonical", "instantiatesCanonical"],
-      ["uri", "instantiatesUri"],
-      ["code", "intent"],
-      ["CodeableConcept", "locationCode"],
-      ["Reference", "locationReference"],
-      ["dateTime", "occurrenceDateTime"],
-      ["Period", "occurrencePeriod"],
-      ["Timing", "occurrenceTiming"],
-      ["CodeableConcept", "orderDetail"],
-      ["string", "patientInstruction"],
-      ["Reference", "performer"],
-      ["CodeableConcept", "performerType"],
-      ["code", "priority"],
-      ["Quantity", "quantityQuantity"],
-      ["Ratio", "quantityRatio"],
-      ["Range", "quantityRange"],
-      ["CodeableConcept", "reasonCode"],
-      ["Reference", "reasonReference"],
-      ["Reference", "replaces"],
-      ["Reference", "requester"],
-      ["Identifier", "requisition"],
-      ["Reference", "specimen"],
-      ["code", "status"],
-      ["Reference", "subject"],
-    ],
-    options
-  );
-}
-
-function narrativeSlot(
-  resource: Slot,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "appointmentType"],
-      ["instant", "end"],
-      ["Identifier", "identifier"],
-      ["Reference", "schedule"],
-      ["CodeableConcept", "serviceCategory"],
-      ["CodeableConcept", "serviceType"],
-      ["CodeableConcept", "specialty"],
-      ["instant", "start"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeSpecimen(
-  resource: Specimen,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Identifier", "accessionIdentifier"],
-      ["CodeableConcept", "condition"],
-      ["Identifier", "identifier"],
-      ["dateTime", "receivedTime"],
-      ["code", "status"],
-      ["Reference", "subject"],
-      ["CodeableConcept", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeSpecimenDefinition(
-  resource: SpecimenDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "collection"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "patientPreparation"],
-      ["string", "timeAspect"],
-      ["CodeableConcept", "typeCollected"],
-    ],
-    options
-  );
-}
-
-function narrativeStructureDefinition(
-  resource: StructureDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["boolean", "abstract"],
-      ["canonical", "baseDefinition"],
-      ["ContactDetail", "contact"],
-      ["string", "contextInvariant"],
-      ["dateTime", "date"],
-      ["code", "derivation"],
-      ["boolean", "experimental"],
-      ["code", "fhirVersion"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["Coding", "keyword"],
-      ["code", "kind"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "type"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeStructureMap(
-  resource: StructureMap,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["canonical", "import"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeSubscription(
-  resource: Subscription,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactPoint", "contact"],
-      ["string", "criteria"],
-      ["instant", "end"],
-      ["string", "error"],
-      ["string", "reason"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeSubscriptionStatus(
-  resource: SubscriptionStatus,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "error"],
-      ["string", "eventsSinceSubscriptionStart"],
-      ["code", "status"],
-      ["Reference", "subscription"],
-      ["canonical", "topic"],
-      ["code", "type"],
-    ],
-    options
-  );
-}
-
-function narrativeSubscriptionTopic(
-  resource: SubscriptionTopic,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["canonical", "derivedFrom"],
-      ["Period", "effectivePeriod"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeSubstance(
-  resource: Substance,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "category"],
-      ["CodeableConcept", "code"],
-      ["string", "description"],
-      ["Identifier", "identifier"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeSubstanceDefinition(
-  resource: SubstanceDefinition,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "classification"],
-      ["markdown", "description"],
-      ["CodeableConcept", "domain"],
-      ["CodeableConcept", "grade"],
-      ["Identifier", "identifier"],
-      ["Reference", "informationSource"],
-      ["Reference", "manufacturer"],
-      ["Annotation", "note"],
-      ["CodeableConcept", "status"],
-      ["Reference", "supplier"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeSupplyDelivery(
-  resource: SupplyDelivery,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "basedOn"],
-      ["dateTime", "occurrenceDateTime"],
-      ["Period", "occurrencePeriod"],
-      ["Timing", "occurrenceTiming"],
-      ["Reference", "partOf"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function narrativeSupplyRequest(
-  resource: SupplyRequest,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "authoredOn"],
-      ["CodeableConcept", "category"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "itemCodeableConcept"],
-      ["Reference", "itemReference"],
-      ["dateTime", "occurrenceDateTime"],
-      ["Period", "occurrencePeriod"],
-      ["Timing", "occurrenceTiming"],
-      ["code", "priority"],
-      ["Quantity", "quantity"],
-      ["Reference", "requester"],
-      ["code", "status"],
-      ["Reference", "supplier"],
-    ],
-    options
-  );
-}
-
-function narrativeTask(
-  resource: Task,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Reference", "basedOn"],
-      ["CodeableConcept", "businessStatus"],
-      ["CodeableConcept", "code"],
-      ["string", "description"],
-      ["Reference", "encounter"],
-      ["Period", "executionPeriod"],
-      ["Reference", "focus"],
-      ["Reference", "for"],
-      ["Identifier", "groupIdentifier"],
-      ["canonical", "instantiatesCanonical"],
-      ["uri", "instantiatesUri"],
-      ["code", "intent"],
-      ["dateTime", "lastModified"],
-      ["Reference", "location"],
-      ["Reference", "owner"],
-      ["Reference", "partOf"],
-      ["Reference", "requester"],
-      ["code", "status"],
-      ["CodeableConcept", "statusReason"],
-    ],
-    options
-  );
-}
-
-function narrativeTerminologyCapabilities(
-  resource: TerminologyCapabilities,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["markdown", "copyright"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["CodeableConcept", "jurisdiction"],
-      ["code", "kind"],
-      ["boolean", "lockedDate"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeTestReport(
-  resource: TestReport,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["Identifier", "identifier"],
-      ["dateTime", "issued"],
-      ["string", "name"],
-      ["code", "result"],
-      ["decimal", "score"],
-      ["code", "status"],
-      ["string", "tester"],
-      ["Reference", "testScript"],
-    ],
-    options
-  );
-}
-
-function narrativeTestScript(
-  resource: TestScript,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeValueSet(
-  resource: ValueSet,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["ContactDetail", "contact"],
-      ["dateTime", "date"],
-      ["boolean", "experimental"],
-      ["Identifier", "identifier"],
-      ["boolean", "immutable"],
-      ["CodeableConcept", "jurisdiction"],
-      ["string", "name"],
-      ["string", "publisher"],
-      ["code", "status"],
-      ["string", "title"],
-      ["uri", "url"],
-      ["UsageContext", "useContext"],
-      ["string", "version"],
-    ],
-    options
-  );
-}
-
-function narrativeVerificationResult(
-  resource: VerificationResult,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["CodeableConcept", "failureAction"],
-      ["CodeableConcept", "need"],
-      ["code", "status"],
-      ["dateTime", "statusDate"],
-      ["Reference", "target"],
-      ["string", "targetLocation"],
-      ["CodeableConcept", "validationProcess"],
-      ["CodeableConcept", "validationType"],
-    ],
-    options
-  );
-}
-
-function narrativeVisionPrescription(
-  resource: VisionPrescription,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-  return buildNarrative(
-    resource,
-    [
-      ["dateTime", "created"],
-      ["dateTime", "dateWritten"],
-      ["Reference", "patient"],
-      ["Reference", "prescriber"],
-      ["code", "status"],
-    ],
-    options
-  );
-}
-
-function buildNarrative<TResource extends AnyDomainResource>(
+export function narrative<TResource extends AnyDomainResource>(
   resource: TResource,
-  elements: Array<[string, keyof TResource]>,
   options?: NarrativeOptions | null | undefined
-): Narrative {
-  const formatter = options?.formatter ?? Formatter.default;
+): Narrative | undefined {
+  const generator = NARRATIVE_GENERATORS[resource.resourceType];
+  if (!generator) {
+    return;
+  }
+
+  if (typeof generator === "function") {
+    const result = generator(resource);
+    if (typeof result === "string") {
+      return {
+        status: "generated",
+        div: result,
+      };
+    }
+
+    return result;
+  }
+
   return {
     status: "generated",
-    div: `<div xmlns="http://www.w3.org/1999/xhtml"><ul>${(
-      elements.map((element) => [
-        startCase(element[1] as string).replace(" Boolean", ""),
-        safeFormat(formatter, element[0], resource[element[1]]),
-      ]) as Array<[string, string]>
-    )
-      .filter((element) => !!element[1])
-      .map((element) => `<li><span>${element[0]}: </span>${element[1]}</li>`)
-      .filter((x) => !!x)
-      .join("")}</ul></div>`,
+    div: `<div xmlns="http://www.w3.org/1999/xhtml">${render(
+      resource,
+      generator,
+      options
+    )}</div>`,
   };
 }
 
-function safeFormat(
-  formatter: Formatter,
-  type: string,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  value: any | null | undefined
+function render(
+  item: object,
+  components: Array<NarrativeItemGenerator>,
+  options: NarrativeOptions | null | undefined
 ): string {
-  if (formatter.canFormat(type)) {
-    try {
-      return htmlEncode(formatter.format(type, value as never));
-    } catch {
-      // Ignore
-    }
-  }
+  const formatter = options?.formatter ?? Formatter.default;
 
-  return "";
+  return `<ul>${components
+    .map((component) => {
+      const [type, attribute] = component;
+      const value = (item as any)[attribute];
+
+      if (value == undefined) {
+        return;
+      }
+
+      let renderedValue;
+      const narrativeGenerator = NARRATIVE_GENERATORS[type];
+      if (typeof narrativeGenerator === "function") {
+        renderedValue = narrativeGenerator(value);
+      } else if (typeof narrativeGenerator === "object") {
+        renderedValue = render(value, narrativeGenerator, options);
+      } else if (formatter.canFormat(type)) {
+        renderedValue = htmlEncode(formatter.format(type, value as never));
+      } else {
+        return;
+      }
+
+      return `<li><span>${startCase(attribute).replace(
+        " Boolean",
+        ""
+      )}: </span>${renderedValue}</li>`;
+    })
+    .filter(Boolean)
+    .join("")}</ul>`;
 }
 
 function htmlEncode(value: string): string {

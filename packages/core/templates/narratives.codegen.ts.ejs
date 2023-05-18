@@ -2,86 +2,95 @@
  * Narrative generators for <%= fhir.release %>/<%= fhir.version %>
  */
 
-import { DomainResource, AnyDomainResource, Narrative } from "./fhir-types.codegen";
-import { <% for (domainResource of fhir.domainResources) { %> <%= domainResource.type %>, <% } %> } from "./fhir-types.codegen";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { AnyDomainResource, Narrative } from "./fhir-types.codegen";
 import { DefaultFormatter, Formatter } from "./formatters";
 import { startCase } from "./lang-utils";
+import { <% for (domainResource of fhir.domainResources) { %> <%= domainResource.type %>, <% } %> } from "./fhir-types.codegen";
+
+/** FHIR Type, attribute name, isArray? */
+export type NarrativeItemGenerator = [string, string, boolean];
+
+export type NarrativeGenerator =
+  | NarrativeItemGenerator[]
+  | ((resource: any) => Narrative | string);
+
+export const NARRATIVE_GENERATORS: Record<string, NarrativeGenerator> = {
+  <% for (domainResource of fhir.domainResources) { -%>
+  "<%= domainResource.type %>": [
+    <% for (const element of domainResource.ownRootElementsWithChoices.filter(x => x.isSummary && !x.backboneElementName)) {-%>["<%= element.type.map((x) => x.code).join(" | ") %>", "<%= element.name %>", <%= element.isArray %>],<% } -%>
+  ],
+  <% } -%>
+};
 
 export interface NarrativeOptions {
   /** The formatter to use. Will use the `Formatter.default` if not provided. */
   formatter?: DefaultFormatter | null | undefined;
 }
 
-export function narrative<TResourceType extends AnyDomainResource>(
-  resource: TResourceType,
-  options?: NarrativeOptions | null | undefined
-): Narrative {
-
-  switch(resource.resourceType) {
-    <% for (domainResource of fhir.domainResources) { %>
-    case "<%= domainResource.type %>": {
-      return narrative<%= domainResource.type %>(resource, options);
-    }
-    <% } %>
-    default: {
-      throw new Error(
-        `Unsupported resource type for narrative generation: ${
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (resource as any).resourceType
-        }`
-      );
-    }
-  }
-}
-
-<% for (domainResource of fhir.domainResources) { %>
-function narrative<%= domainResource.type %>(resource: <%= domainResource.type %>, options?: NarrativeOptions | null | undefined): Narrative {
-  return buildNarrative(
-    resource,
-    [
-    <% for (const element of domainResource.ownRootElementsWithChoices.filter(x => x.isSummary && !x.backboneElementName)) {-%>
-    ["<%= element.type.map((x) => x.code).join(" | ") %>", "<%= element.name %>"],
-    <% } -%>
-  ], options);
-}
-<% } %>
-
-function buildNarrative<TResource extends AnyDomainResource>(
+export function narrative<TResource extends AnyDomainResource>(
   resource: TResource,
-  elements: Array<[string, keyof TResource]>,
   options?: NarrativeOptions | null | undefined
-): Narrative {
-  const formatter = options?.formatter ?? Formatter.default;
+): Narrative | undefined {
+  const generator = NARRATIVE_GENERATORS[resource.resourceType];
+  if (!generator) {
+    return;
+  }
+
+  if (typeof generator === "function") {
+    const result = generator(resource);
+    if (typeof result === "string") {
+      return {
+        status: "generated",
+        div: result,
+      };
+    }
+
+    return result;
+  }
+
   return {
     status: "generated",
-    div: `<div xmlns="http://www.w3.org/1999/xhtml"><ul>${(
-      elements.map((element) => [
-        startCase(element[1] as string).replace(" Boolean", ""),
-        safeFormat(formatter, element[0], resource[element[1]]),
-      ]) as Array<[string, string]>
-    )
-      .filter((element) => !!element[1])
-      .map((element) => `<li><span>${element[0]}: </span>${element[1]}</li>`)
-      .filter((x) => !!x)
-      .join("")}</ul></div>`,
+    div: `<div xmlns="http://www.w3.org/1999/xhtml">${render(
+      resource,
+      generator,
+      options
+    )}</div>`,
   };
 }
 
-function safeFormat(
-  formatter: Formatter,
-  type: string,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  value: any | null | undefined
+function render(
+  item: object,
+  components: Array<NarrativeItemGenerator>,
+  options: NarrativeOptions | null | undefined
 ): string {
-  if (formatter.canFormat(type)) {
-    try {
-      return htmlEncode(formatter.format(type, value as never));
-    } catch {
-      // Ignore
-    }
-  }
+  const formatter = options?.formatter ?? Formatter.default;
 
-  return "";
+  return `<ul>${components
+    .map((component) => {
+      const [type, attribute, ] = component;
+      const value = (item as any)[attribute];
+
+      if (value == undefined) {
+        return;
+      }
+
+      let renderedValue;
+      const narrativeGenerator = NARRATIVE_GENERATORS[type];
+      if (typeof narrativeGenerator === "function") {
+        renderedValue = narrativeGenerator(value);
+      } else if (typeof narrativeGenerator === "object") {
+        renderedValue = render(value, narrativeGenerator, options);
+      } else if (formatter.canFormat(type)) {
+        renderedValue = htmlEncode(formatter.format(type, value as never));
+      } else {
+        return;
+      }
+
+      return `<li><span>${startCase(attribute).replace(" Boolean", "")}: </span>${renderedValue}</li>`;
+    })
+    .filter(Boolean)
+    .join("")}</ul>`;
 }
 
 function htmlEncode(value: string): string {
