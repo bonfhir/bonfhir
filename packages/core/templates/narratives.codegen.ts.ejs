@@ -8,8 +8,8 @@ import { DefaultFormatter, Formatter } from "./formatters";
 import { startCase } from "./lang-utils";
 import { <% for (domainResource of fhir.domainResources) { %> <%= domainResource.type %>, <% } %> } from "./fhir-types.codegen";
 
-/** FHIR Type, attribute name, isArray? */
-export type NarrativeItemGenerator = [string, string, boolean];
+/** Attribute name, FHIR Type */
+export type NarrativeItemGenerator = [string, string];
 
 export type NarrativeGenerator =
   | NarrativeItemGenerator[]
@@ -18,8 +18,13 @@ export type NarrativeGenerator =
 export const NARRATIVE_GENERATORS: Record<string, NarrativeGenerator> = {
   <% for (domainResource of fhir.domainResources) { -%>
   "<%= domainResource.type %>": [
-    <% for (const element of domainResource.ownRootElementsWithChoices.filter(x => x.isSummary && !x.backboneElementName)) {-%>["<%= element.type.map((x) => x.code).join(" | ") %>", "<%= element.name %>", <%= element.isArray %>],<% } -%>
+    <% for (const element of domainResource.ownRootElementsWithChoices.filter(x => x.isSummary)) {-%>["<%= element.name %>", "<%= element.backboneElementName ?? element.type.map((x) => x.code).join(" | ") %>"],<% } -%>
   ],
+  <% for (const backboneElement of domainResource.backboneElements.filter(x => x.rootElement.isSummary)) { -%>
+  "<%= backboneElement.rootElement.backboneElementName %>": [
+    <% for (const element of backboneElement.ownRootElementsWithChoices.filter(x => x.isSummary)) {-%>["<%= element.name %>", "<%= element.backboneElementName ?? element.type.map((x) => x.code).join(" | ") %>"],<% } -%>
+  ],
+  <% } -%>
   <% } -%>
 };
 
@@ -64,33 +69,52 @@ function render(
   components: Array<NarrativeItemGenerator>,
   options: NarrativeOptions | null | undefined
 ): string {
-  const formatter = options?.formatter ?? Formatter.default;
-
   return `<ul>${components
     .map((component) => {
-      const [type, attribute, ] = component;
+      const [attribute, type] = component;
+
       const value = (item as any)[attribute];
 
       if (value == undefined) {
         return;
       }
 
-      let renderedValue;
-      const narrativeGenerator = NARRATIVE_GENERATORS[type];
-      if (typeof narrativeGenerator === "function") {
-        renderedValue = narrativeGenerator(value);
-      } else if (typeof narrativeGenerator === "object") {
-        renderedValue = render(value, narrativeGenerator, options);
-      } else if (formatter.canFormat(type)) {
-        renderedValue = htmlEncode(formatter.format(type, value as never));
-      } else {
-        return;
+      if (Array.isArray(value)) {
+        if (value.length === 0) {
+          return;
+        }
+
+        return `<li><span>${startCase(attribute)}: </span><ul>${value
+          .map((i) => renderValue(i, type, options))
+          .filter(Boolean)
+          .map((r) => `<li>${r}</li>`)
+          .join("")}</ul></li>`;
       }
 
-      return `<li><span>${startCase(attribute).replace(" Boolean", "")}: </span>${renderedValue}</li>`;
+      return `<li><span>${startCase(attribute).replace(
+        " Boolean",
+        ""
+      )}: </span>${renderValue(value, type, options)}</li>`;
     })
     .filter(Boolean)
     .join("")}</ul>`;
+}
+
+function renderValue(
+  value: any,
+  type: string,
+  options: NarrativeOptions | null | undefined
+): string | undefined {
+  const formatter = options?.formatter ?? Formatter.default;
+  const narrativeGenerator = NARRATIVE_GENERATORS[type];
+  if (typeof narrativeGenerator === "function") {
+    const generated = narrativeGenerator(value);
+    return typeof generated === "string" ? generated : generated.div;
+  } else if (typeof narrativeGenerator === "object") {
+    return render(value, narrativeGenerator, options);
+  } else if (formatter.canFormat(type)) {
+    return htmlEncode(formatter.format(type, value as never));
+  }
 }
 
 function htmlEncode(value: string): string {

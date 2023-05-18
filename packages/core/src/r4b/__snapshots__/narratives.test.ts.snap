@@ -9,7 +9,7 @@ exports[`narrative narrative Organization 1`] = `
 
 exports[`narrative narrative Patient 1`] = `
 {
-  "div": "<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Active: </span>yes</li><li><span>Address: </span>534 Erewhon St PeasantVille, Rainbow, Vic  3999</li><li><span>Birth Date: </span>12/25/1974</li><li><span>Deceased: </span>no</li><li><span>Gender: </span>male</li><li><span>Identifier: </span>urn:oid:1.2.36.146.595.217.0.1: 12345</li><li><span>Managing Organization: </span>Organization/1</li><li><span>Name: </span>Jim, Peter Chalmers, and Peter Windsor</li><li><span>Telecom: </span>(03) 5555 6473, (03) 3410 5613, and (03) 5555 8834</li></ul></div>",
+  "div": "<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Active: </span>yes</li><li><span>Address: </span><ul><li>534 Erewhon St PeasantVille, Rainbow, Vic  3999</li></ul></li><li><span>Birth Date: </span>12/25/1974</li><li><span>Deceased: </span>no</li><li><span>Gender: </span>male</li><li><span>Identifier: </span><ul><li>urn:oid:1.2.36.146.595.217.0.1: 12345</li></ul></li><li><span>Managing Organization: </span>Organization/1</li><li><span>Name: </span><ul><li>Peter Chalmers</li><li>Jim</li><li>Peter Windsor</li></ul></li><li><span>Telecom: </span><ul><li>(03) 5555 6473</li><li>(03) 3410 5613</li><li>(03) 5555 8834</li></ul></li></ul></div>",
   "status": "generated",
 }
 `;
