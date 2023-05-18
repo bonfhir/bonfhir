@@ -7,6 +7,13 @@ exports[`narrative generate (ConceptMap) 1`] = `
 }
 `;
 
+exports[`narrative generate (Medication) 1`] = `
+{
+  "div": "<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Code: </span>Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE)</li><li><span>Identifier: </span><ul></ul></li><li><span>Marketing Authorization Holder: </span>#mmanu</li><li><span>Status: </span>active</li></ul></div>",
+  "status": "generated",
+}
+`;
+
 exports[`narrative generate (Organization) 1`] = `
 {
   "div": "<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Name: </span>Health Level Seven International</li></ul></div>",
@@ -17,6 +24,13 @@ exports[`narrative generate (Organization) 1`] = `
 exports[`narrative generate (Patient) 1`] = `
 {
   "div": "<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Active: </span>yes</li><li><span>Address: </span><ul><li>534 Erewhon St PeasantVille, Rainbow, Vic  3999</li></ul></li><li><span>Birth Date: </span>12/25/1974</li><li><span>Deceased: </span>no</li><li><span>Gender: </span>male</li><li><span>Identifier: </span><ul><li>urn:oid:1.2.36.146.595.217.0.1: 12345</li></ul></li><li><span>Managing Organization: </span>Organization/1</li><li><span>Name: </span><ul><li>Peter Chalmers</li><li>Jim</li><li>Peter Windsor</li></ul></li><li><span>Telecom: </span><ul><li>(03) 5555 6473</li><li>(03) 3410 5613</li><li>(03) 5555 8834</li></ul></li></ul></div>",
+  "status": "generated",
+}
+`;
+
+exports[`narrative generate (RiskAssessment) 1`] = `
+{
+  "div": "<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Code: </span>Assessment of risk for disease (procedure)</li><li><span>Method: </span>BRCAPRO</li><li><span>Occurrence Date Time: </span>1/13/06, 11:01 PM</li><li><span>Status: </span>final</li><li><span>Subject: </span>Patient/b248b1b2-1686-4b94-9936-37d7a5f94b51</li></ul></div>",
   "status": "generated",
 }
 `;

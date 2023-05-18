@@ -3,9 +3,16 @@
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { DomainResource, Reference } from "./fhir-types.codegen";
+import {
+  CodeableConcept,
+  DomainResource,
+  Reference,
+} from "./fhir-types.codegen";
 import { Formatter, withValueFormatter } from "./formatters";
-import { humanNameFormatter } from "./value-formatters";
+import {
+  codeableConceptFormatter,
+  humanNameFormatter,
+} from "./value-formatters";
 
 /**
  * Mapping of domain resource type and decorator function that are used to augment references created by the
@@ -17,22 +24,30 @@ export const ReferenceDecorators: Record<
 > = {
   Account: decorate,
   ActivityDefinition: decorate,
+  AllergyIntolerance: decorate,
+  Basic: decorate,
   CapabilityStatement: decorate,
   CarePlan: decorate,
   CareTeam: decorate,
+  ChargeItem: decorate,
   ChargeItemDefinition: decorate,
   Citation: decorate,
+  ClinicalImpression: decorate,
   CodeSystem: decorate,
   CompartmentDefinition: decorate,
   Composition: decorate,
   ConceptMap: decorate,
+  Condition: decorate,
   Contract: decorate,
+  DetectedIssue: decorate,
+  DiagnosticReport: decorate,
   Endpoint: decorate,
   EventDefinition: decorate,
   Evidence: decorate,
   EvidenceVariable: decorate,
   ExampleScenario: decorate,
   FamilyMemberHistory: decorate,
+  Flag: decorate,
   GraphDefinition: decorate,
   Group: decorate,
   HealthcareService: decorate,
@@ -42,24 +57,37 @@ export const ReferenceDecorators: Record<
   List: decorate,
   Location: decorate,
   Measure: decorate,
+  Medication: decorate,
+  MedicationKnowledge: decorate,
   MessageDefinition: decorate,
   NamingSystem: decorate,
+  NutritionProduct: decorate,
+  Observation: decorate,
+  ObservationDefinition: decorate,
   OperationDefinition: decorate,
   Organization: decorate,
+  OrganizationAffiliation: decorate,
   PackagedProductDefinition: decorate,
   Patient: decorate,
   Person: decorate,
   PlanDefinition: decorate,
   Practitioner: decorate,
+  PractitionerRole: decorate,
+  Procedure: decorate,
   Questionnaire: decorate,
   RelatedPerson: decorate,
+  RequestGroup: decorate,
   ResearchDefinition: decorate,
   ResearchElementDefinition: decorate,
   ResearchStudy: decorate,
+  RiskAssessment: decorate,
   SearchParameter: decorate,
+  ServiceRequest: decorate,
   StructureDefinition: decorate,
   StructureMap: decorate,
   SubscriptionTopic: decorate,
+  Substance: decorate,
+  Task: decorate,
   TerminologyCapabilities: decorate,
   TestReport: decorate,
   TestScript: decorate,
@@ -69,6 +97,7 @@ export const ReferenceDecorators: Record<
 function decorate(resource: DomainResource, reference: Reference): Reference {
   const name = (resource as any).name;
   const title: string = (resource as any).title;
+  const code: CodeableConcept = (resource as any).code;
   if (typeof name === "string" && name.length > 0) {
     reference.display = name.trim();
   } else if (typeof name === "object") {
@@ -77,6 +106,10 @@ function decorate(resource: DomainResource, reference: Reference): Reference {
     ).format("HumanName", name, { max: 1 });
   } else if (title) {
     reference.display = title;
+  } else if (code) {
+    reference.display = withValueFormatter<typeof codeableConceptFormatter>(
+      Formatter.default
+    ).format("CodeableConcept", code);
   }
 
   return reference;
