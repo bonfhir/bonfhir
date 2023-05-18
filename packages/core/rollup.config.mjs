@@ -34,6 +34,7 @@ export default ["r4b", "r5"].flatMap((release) =>
         outDir: `dist/${format}`,
         declaration: false,
         declarationMap: false,
+        exclude: ["**/*.test.ts"],
       }),
       {
         buildEnd: () => {

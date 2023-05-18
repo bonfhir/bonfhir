@@ -31,6 +31,7 @@ export default ["cjs", "esm"].map((format) => ({
       outDir: `dist/${format}`,
       declaration: false,
       declarationMap: false,
+      exclude: ["**/*.test.ts"],
     }),
     {
       buildEnd: () => {
