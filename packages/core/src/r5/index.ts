@@ -5,4 +5,4 @@ export * from "./lang-utils";
 export * from "./narratives.codegen";
 export * from "./references.codegen";
 export * from "./search";
-export * from "./search-types.codegen";
+export * from "./search.codegen";
