@@ -1,0 +1,69 @@
+/**
+ * Typed search builders for <%= fhir.release %>/<%= fhir.version %>
+ */
+
+import { AnyDomainResourceType } from "./fhir-types.codegen";
+import { FhirSearchBuilder } from "./search";
+
+/**
+ * Return a search query builder, whether for a specific resource or a generic one.
+ * 
+ * @example
+ * > fhirSearch().addString("name", "John").href 
+ * > "name=John"
+ * 
+ * > fhirSearch("Patient").name("John").active("true").href
+ * > "name=John&active=true"
+ */
+export function fhirSearch(
+  resourceType?: null | undefined
+): FhirSearchBuilder;
+export function fhirSearch<
+  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
+>(
+  resourceType: TDomainResourceType
+): ExtractSearchBuilder<TDomainResourceType>;
+export function fhirSearch<
+  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
+>(
+  resourceType?: TDomainResourceType | null | undefined
+): FhirSearchBuilder | ExtractSearchBuilder<TDomainResourceType>;
+export function fhirSearch<
+  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
+>(
+  resourceType?: TDomainResourceType | null | undefined
+): FhirSearchBuilder | ExtractSearchBuilder<TDomainResourceType> {
+  if (!resourceType) {
+    return new FhirSearchBuilder();
+  }
+
+  switch(resourceType) {
+    <% for (const domainResource of fhir.domainResources) { -%>
+    case "<%= domainResource.type %>": { return new <%= domainResource.type %>FhirSearchBuilder(); }
+    <% } -%>
+    default: { throw new Error(`Unsupported fhirSearch for resource type ${resourceType}`); }
+  }
+}
+
+<% for (const domainResource of fhir.domainResources) { -%>
+
+class <%= domainResource.type %>FhirSearchBuilder extends FhirSearchBuilder {
+  readonly resourceType = "<%= domainResource.type %>";
+
+  <%= domainResource.type %>(): this {
+    return this;
+  }
+}
+
+<% } -%>
+
+export type AnyFhirSearchBuilder = 
+  <% for (const domainResource of fhir.domainResources) { -%>
+  | <%= domainResource.type %>FhirSearchBuilder
+  <% } -%>;
+
+/**
+ * Allow referencing a search builder type from its string ResourceType representation.
+ */
+export type ExtractSearchBuilder<TDomainResourceType extends AnyDomainResourceType> =
+  Extract<AnyFhirSearchBuilder, { resourceType: TDomainResourceType }>;
