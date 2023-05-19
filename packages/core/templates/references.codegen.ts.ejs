@@ -1,0 +1,85 @@
+/**
+ * Reference decorators for <%= fhir.release %>/<%= fhir.version %>
+ */
+ /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { Formatter, withValueFormatter } from "./formatters";
+import { codeableConceptFormatter, humanNameFormatter } from "./value-formatters";
+import { AnyDomainResource, CodeableConcept, DomainResource, Reference, Retrieved } from "./fhir-types.codegen";
+<% const domainResourcesThatCanBeDecorated = fhir.domainResources
+    .filter(x => x.ownRootElementsWithChoices.some(x => x.name === "title" || (x.name === "code" && x.tsType.includes("CodeableConcept")) || (x.name === "name" && (x.tsType.includes("string") || x.tsType.includes("HumanName")))));
+-%>
+import { <% for (domainResource of domainResourcesThatCanBeDecorated) { %> <%= domainResource.type %>, <% } %> } from "./fhir-types.codegen";
+
+export interface ReferenceOptions {
+  versionSpecific?: boolean | null | undefined;
+}
+
+export type ReferenceFunction = {
+  <TTargetResource extends AnyDomainResource = AnyDomainResource>(
+    resource: Retrieved<TTargetResource>,
+    options?: ReferenceOptions | null | undefined
+  ): Reference<TTargetResource>;
+
+  /**
+   * Mapping of domain resource type and decorator function that are used to augment references created by the
+   * reference function.
+   */
+  decorators?: Record<
+    string,
+    (resource: DomainResource, reference: Reference) => Reference
+  >;
+}
+
+/**
+ * Build a reference from a resource.
+ */
+let reference: ReferenceFunction = function<
+  TTargetResource extends AnyDomainResource = AnyDomainResource
+>(
+  this: ReferenceFunction,
+  resource: Retrieved<TTargetResource>,
+  options?: ReferenceOptions | null | undefined
+): Reference<TTargetResource> {
+  let reference: Reference<TTargetResource> = {
+    reference: options?.versionSpecific
+      ? `${resource.resourceType}/${resource.id}/_history/${resource.meta.versionId}`
+      : `${resource.resourceType}/${resource.id}`,
+    type: resource.resourceType,
+  };
+
+  const decorator = this.decorators?.[resource.resourceType];
+
+  if (decorator) {
+    reference = decorator(resource, reference) as Reference<TTargetResource>;
+  }
+
+  return reference;
+}
+
+reference.decorators = {
+<% for (domainResource of domainResourcesThatCanBeDecorated) { -%>
+  "<%= domainResource.type %>": decorate,
+  <% } -%>
+};
+
+reference = reference.bind(reference);
+
+export { reference };
+
+function decorate(resource: DomainResource, reference: Reference): Reference {
+  const name = (resource as any).name;
+  const title: string = (resource as any).title;
+  const code: CodeableConcept = (resource as any).code;
+  if (typeof name === "string" && name.length > 0) {
+    reference.display = name.trim();
+  } else if (typeof name === "object") {
+    reference.display = withValueFormatter<typeof humanNameFormatter>(Formatter.default).format("HumanName", name, { max: 1 });
+  } else if (title) {
+    reference.display = title;
+  } else if (code) {
+    reference.display = withValueFormatter<typeof codeableConceptFormatter>(Formatter.default).format("CodeableConcept", code);
+  }
+
+  return reference;
+}
