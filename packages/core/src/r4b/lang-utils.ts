@@ -246,3 +246,10 @@ export function startCase(
       ""
     );
 }
+
+/**
+ * Type that drop the first element of a type array.
+ */
+export type DropFirst<T extends unknown[]> = T extends [infer _, ...infer U]
+  ? U
+  : never;

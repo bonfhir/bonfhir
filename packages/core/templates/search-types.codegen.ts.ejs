@@ -3,7 +3,8 @@
  */
 
 import { AnyDomainResourceType } from "./fhir-types.codegen";
-import { FhirSearchBuilder } from "./search";
+import { FhirSearchBuilder, Prefix, StringModifier, TokenModifier } from "./search";
+import { DropFirst } from "./lang-utils";
 
 /**
  * Return a search query builder, whether for a specific resource or a generic one.
@@ -64,9 +65,9 @@ export class <%= resource.type %>FhirSearchBuilder extends <%= resource.base?.ty
 
   <% for (const searchParameter of resource.ownSearchParameters.filter(x => !x.experimental)) { -%>
   <%= searchParameter.jsDoc %>
-  <%= searchParameter.safeName %>(): this {
-    return this;
-  }
+  <%= searchParameter.safeName %>(...args: DropFirst<Parameters<FhirSearchBuilder["<%= searchParameter.type %>Param"]>>): this {
+    return this.<%= searchParameter.type %>Param("<%= searchParameter.code %>", ...args);
+  } 
   <% } -%>
 }
 

@@ -3,6 +3,7 @@
  */
 
 import { AnyDomainResourceType } from "./fhir-types.codegen";
+import { DropFirst } from "./lang-utils";
 import { FhirSearchBuilder } from "./search";
 
 /**
@@ -461,16 +462,20 @@ export class ResourceFhirSearchBuilder extends FhirSearchBuilder {
    * Search on the entire content of the resource
    * @fhirSearchType `string`
    */
-  _content(): this {
-    return this;
+  _content(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("_content", ...args);
   }
   /**
    * Filter search parameter which supports a more sophisticated grammar for
    * searching. See [documentation](search_filter.html) for further details
    * @fhirSearchType `token`
    */
-  _filter(): this {
-    return this;
+  _filter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("_filter", ...args);
   }
   /**
    * Provides limited support for reverse chaining - that is, selecting resources
@@ -479,78 +484,90 @@ export class ResourceFhirSearchBuilder extends FhirSearchBuilder {
    * refer to). See the FHIR search page for further documentation
    * @fhirSearchType `string`
    */
-  _has(): this {
-    return this;
+  _has(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("_has", ...args);
   }
   /**
    * Logical id of this artifact
    * @fhirSearchType `token`
    * @fhirPath `Resource.id`
    */
-  _id(): this {
-    return this;
+  _id(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("_id", ...args);
   }
   /**
    * When the resource version last changed
    * @fhirSearchType `date`
    * @fhirPath `Resource.meta.lastUpdated`
    */
-  _lastUpdated(): this {
-    return this;
+  _lastUpdated(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("_lastUpdated", ...args);
   }
   /**
    * All resources in nominated list (by id, Type/id, url or one of the magic List
    * types)
    * @fhirSearchType `string`
    */
-  _list(): this {
-    return this;
+  _list(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("_list", ...args);
   }
   /**
    * Profiles this resource claims to conform to
    * @fhirSearchType `uri`
    * @fhirPath `Resource.meta.profile`
    */
-  _profile(): this {
-    return this;
+  _profile(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("_profile", ...args);
   }
   /**
    * A custom search profile that describes a specific defined query operation
    * @fhirSearchType `token`
    */
-  _query(): this {
-    return this;
+  _query(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("_query", ...args);
   }
   /**
    * Security Labels applied to this resource
    * @fhirSearchType `token`
    * @fhirPath `Resource.meta.security`
    */
-  _security(): this {
-    return this;
+  _security(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("_security", ...args);
   }
   /**
    * Identifies where the resource comes from
    * @fhirSearchType `uri`
    * @fhirPath `Resource.meta.source`
    */
-  _source(): this {
-    return this;
+  _source(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("_source", ...args);
   }
   /**
    * Tags applied to this resource
    * @fhirSearchType `token`
    * @fhirPath `Resource.meta.tag`
    */
-  _tag(): this {
-    return this;
+  _tag(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("_tag", ...args);
   }
   /**
    * Search on the narrative text (html) of the resource
    * @fhirSearchType `string`
    */
-  _text(): this {
-    return this;
+  _text(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("_text", ...args);
   }
   /**
    * Used when a search is performed in a context which doesn't limit the search to
@@ -558,16 +575,18 @@ export class ResourceFhirSearchBuilder extends FhirSearchBuilder {
    * discussion
    * @fhirSearchType `token`
    */
-  _type(): this {
-    return this;
+  _type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("_type", ...args);
   }
   /**
    * This is the formal declaration for the _filter parameter, documented at
    * [http://hl7.org/fhir/search_filter.html](http://hl7.org/fhir/search_filter.html)
    * @fhirSearchType `special`
    */
-  filterSearchParameter(): this {
-    return this;
+  filterSearchParameter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["specialParam"]>>
+  ): this {
+    return this.specialParam("_filter", ...args);
   }
 }
 
@@ -576,8 +595,10 @@ export class DomainResourceFhirSearchBuilder extends ResourceFhirSearchBuilder {
    * Search on the narrative of the resource
    * @fhirSearchType `string`
    */
-  _text(): this {
-    return this;
+  _text(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("_text", ...args);
   }
 }
 
@@ -589,64 +610,74 @@ export class AccountFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Account.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Human-readable label
    * @fhirSearchType `string`
    * @fhirPath `Account.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * Entity managing the Account
    * @fhirSearchType `reference`
    * @fhirPath `Account.owner`
    */
-  owner(): this {
-    return this;
+  owner(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("owner", ...args);
   }
   /**
    * The entity that caused the expenses
    * @fhirSearchType `reference`
    * @fhirPath `Account.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * Transaction window
    * @fhirSearchType `date`
    * @fhirPath `Account.servicePeriod`
    */
-  period(): this {
-    return this;
+  period(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("period", ...args);
   }
   /**
    * active | inactive | entered-in-error | on-hold | unknown
    * @fhirSearchType `token`
    * @fhirPath `Account.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The entity that caused the expenses
    * @fhirSearchType `reference`
    * @fhirPath `Account.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * E.g. patient, expense, depreciation
    * @fhirSearchType `token`
    * @fhirPath `Account.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -658,16 +689,20 @@ export class ActivityDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `reference`
    * @fhirPath `ActivityDefinition.relatedArtifact.where(type='composed-of').resource`
    */
-  composedOf(): this {
-    return this;
+  composedOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("composed-of", ...args);
   }
   /**
    * A quantity- or range-valued use context assigned to the activity definition
    * @fhirSearchType `quantity`
    * @fhirPath `(ActivityDefinition.useContext.value as Quantity) | (ActivityDefinition.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the activity
@@ -675,160 +710,192 @@ export class ActivityDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `composite`
    * @fhirPath `ActivityDefinition.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the activity definition
    * @fhirSearchType `composite`
    * @fhirPath `ActivityDefinition.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the activity definition
    * @fhirSearchType `token`
    * @fhirPath `ActivityDefinition.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the activity definition
    * @fhirSearchType `token`
    * @fhirPath `(ActivityDefinition.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The activity definition publication date
    * @fhirSearchType `date`
    * @fhirPath `ActivityDefinition.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ActivityDefinition.relatedArtifact.where(type='depends-on').resource | ActivityDefinition.library`
    */
-  dependsOn(): this {
-    return this;
+  dependsOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("depends-on", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ActivityDefinition.relatedArtifact.where(type='derived-from').resource`
    */
-  derivedFrom(): this {
-    return this;
+  derivedFrom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("derived-from", ...args);
   }
   /**
    * The description of the activity definition
    * @fhirSearchType `string`
    * @fhirPath `ActivityDefinition.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * The time during which the activity definition is intended to be in use
    * @fhirSearchType `date`
    * @fhirPath `ActivityDefinition.effectivePeriod`
    */
-  effective(): this {
-    return this;
+  effective(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective", ...args);
   }
   /**
    * External identifier for the activity definition
    * @fhirSearchType `token`
    * @fhirPath `ActivityDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the activity definition
    * @fhirSearchType `token`
    * @fhirPath `ActivityDefinition.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Computationally friendly name of the activity definition
    * @fhirSearchType `string`
    * @fhirPath `ActivityDefinition.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ActivityDefinition.relatedArtifact.where(type='predecessor').resource`
    */
-  predecessor(): this {
-    return this;
+  predecessor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("predecessor", ...args);
   }
   /**
    * Name of the publisher of the activity definition
    * @fhirSearchType `string`
    * @fhirPath `ActivityDefinition.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the activity definition
    * @fhirSearchType `token`
    * @fhirPath `ActivityDefinition.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ActivityDefinition.relatedArtifact.where(type='successor').resource`
    */
-  successor(): this {
-    return this;
+  successor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("successor", ...args);
   }
   /**
    * The human-friendly name of the activity definition
    * @fhirSearchType `string`
    * @fhirPath `ActivityDefinition.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * Topics associated with the module
    * @fhirSearchType `token`
    * @fhirPath `ActivityDefinition.topic`
    */
-  topic(): this {
-    return this;
+  topic(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("topic", ...args);
   }
   /**
    * The uri that identifies the activity definition
    * @fhirSearchType `uri`
    * @fhirPath `ActivityDefinition.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the activity definition
    * @fhirSearchType `token`
    * @fhirPath `ActivityDefinition.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -842,8 +909,10 @@ export class AdministrableProductDefinitionFhirSearchBuilder extends DomainResou
    * @fhirSearchType `reference`
    * @fhirPath `AdministrableProductDefinition.device`
    */
-  device(): this {
-    return this;
+  device(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("device", ...args);
   }
   /**
    * The administrable dose form, i.e. the dose form of the final product after
@@ -851,8 +920,10 @@ export class AdministrableProductDefinitionFhirSearchBuilder extends DomainResou
    * @fhirSearchType `token`
    * @fhirPath `AdministrableProductDefinition.administrableDoseForm`
    */
-  doseForm(): this {
-    return this;
+  doseForm(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("dose-form", ...args);
   }
   /**
    * The medicinal product that this is an administrable form of. This is not a
@@ -861,24 +932,30 @@ export class AdministrableProductDefinitionFhirSearchBuilder extends DomainResou
    * @fhirSearchType `reference`
    * @fhirPath `AdministrableProductDefinition.formOf`
    */
-  formOf(): this {
-    return this;
+  formOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("form-of", ...args);
   }
   /**
    * An identifier for the administrable product
    * @fhirSearchType `token`
    * @fhirPath `AdministrableProductDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The ingredients of this administrable medicinal product
    * @fhirSearchType `token`
    * @fhirPath `AdministrableProductDefinition.ingredient`
    */
-  ingredient(): this {
-    return this;
+  ingredient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("ingredient", ...args);
   }
   /**
    * The manufactured item(s) that this administrable product is produced from.
@@ -887,24 +964,28 @@ export class AdministrableProductDefinitionFhirSearchBuilder extends DomainResou
    * @fhirSearchType `reference`
    * @fhirPath `AdministrableProductDefinition.producedFrom`
    */
-  manufacturedItem(): this {
-    return this;
+  manufacturedItem(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("manufactured-item", ...args);
   }
   /**
    * Coded expression for the route
    * @fhirSearchType `token`
    * @fhirPath `AdministrableProductDefinition.routeOfAdministration.code`
    */
-  route(): this {
-    return this;
+  route(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("route", ...args);
   }
   /**
    * Coded expression for the species
    * @fhirSearchType `token`
    * @fhirPath `AdministrableProductDefinition.routeOfAdministration.targetSpecies.code`
    */
-  targetSpecies(): this {
-    return this;
+  targetSpecies(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("target-species", ...args);
   }
 }
 
@@ -916,8 +997,10 @@ export class AdverseEventFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `token`
    * @fhirPath `AdverseEvent.actuality`
    */
-  actuality(): this {
-    return this;
+  actuality(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("actuality", ...args);
   }
   /**
    * product-problem | product-quality | product-use-error | wrong-dose |
@@ -928,88 +1011,106 @@ export class AdverseEventFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `token`
    * @fhirPath `AdverseEvent.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * When the event occurred
    * @fhirSearchType `date`
    * @fhirPath `AdverseEvent.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * Type of the event itself in relation to the subject
    * @fhirSearchType `token`
    * @fhirPath `AdverseEvent.event`
    */
-  event(): this {
-    return this;
+  event(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("event", ...args);
   }
   /**
    * Location where adverse event occurred
    * @fhirSearchType `reference`
    * @fhirPath `AdverseEvent.location`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("location", ...args);
   }
   /**
    * Who recorded the adverse event
    * @fhirSearchType `reference`
    * @fhirPath `AdverseEvent.recorder`
    */
-  recorder(): this {
-    return this;
+  recorder(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("recorder", ...args);
   }
   /**
    * Effect on the subject due to this event
    * @fhirSearchType `reference`
    * @fhirPath `AdverseEvent.resultingCondition`
    */
-  resultingcondition(): this {
-    return this;
+  resultingcondition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("resultingcondition", ...args);
   }
   /**
    * Seriousness of the event
    * @fhirSearchType `token`
    * @fhirPath `AdverseEvent.seriousness`
    */
-  seriousness(): this {
-    return this;
+  seriousness(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("seriousness", ...args);
   }
   /**
    * mild | moderate | severe
    * @fhirSearchType `token`
    * @fhirPath `AdverseEvent.severity`
    */
-  severity(): this {
-    return this;
+  severity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("severity", ...args);
   }
   /**
    * AdverseEvent.study
    * @fhirSearchType `reference`
    * @fhirPath `AdverseEvent.study`
    */
-  study(): this {
-    return this;
+  study(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("study", ...args);
   }
   /**
    * Subject impacted by event
    * @fhirSearchType `reference`
    * @fhirPath `AdverseEvent.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * Refers to the specific entity that caused the adverse event
    * @fhirSearchType `reference`
    * @fhirPath `AdverseEvent.suspectEntity.instance`
    */
-  substance(): this {
-    return this;
+  substance(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("substance", ...args);
   }
 }
 
@@ -1021,88 +1122,106 @@ export class AllergyIntoleranceFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `reference`
    * @fhirPath `AllergyIntolerance.asserter`
    */
-  asserter(): this {
-    return this;
+  asserter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("asserter", ...args);
   }
   /**
    * food | medication | environment | biologic
    * @fhirSearchType `token`
    * @fhirPath `AllergyIntolerance.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * active | inactive | resolved
    * @fhirSearchType `token`
    * @fhirPath `AllergyIntolerance.clinicalStatus`
    */
-  clinicalStatus(): this {
-    return this;
+  clinicalStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("clinical-status", ...args);
   }
   /**
    * low | high | unable-to-assess
    * @fhirSearchType `token`
    * @fhirPath `AllergyIntolerance.criticality`
    */
-  criticality(): this {
-    return this;
+  criticality(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("criticality", ...args);
   }
   /**
    * Date(/time) of last known occurrence of a reaction
    * @fhirSearchType `date`
    * @fhirPath `AllergyIntolerance.lastOccurrence`
    */
-  lastDate(): this {
-    return this;
+  lastDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("last-date", ...args);
   }
   /**
    * Clinical symptoms/signs associated with the Event
    * @fhirSearchType `token`
    * @fhirPath `AllergyIntolerance.reaction.manifestation`
    */
-  manifestation(): this {
-    return this;
+  manifestation(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("manifestation", ...args);
   }
   /**
    * Date(/time) when manifestations showed
    * @fhirSearchType `date`
    * @fhirPath `AllergyIntolerance.reaction.onset`
    */
-  onset(): this {
-    return this;
+  onset(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("onset", ...args);
   }
   /**
    * Who recorded the sensitivity
    * @fhirSearchType `reference`
    * @fhirPath `AllergyIntolerance.recorder`
    */
-  recorder(): this {
-    return this;
+  recorder(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("recorder", ...args);
   }
   /**
    * How the subject was exposed to the substance
    * @fhirSearchType `token`
    * @fhirPath `AllergyIntolerance.reaction.exposureRoute`
    */
-  route(): this {
-    return this;
+  route(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("route", ...args);
   }
   /**
    * mild | moderate | severe (of event as a whole)
    * @fhirSearchType `token`
    * @fhirPath `AllergyIntolerance.reaction.severity`
    */
-  severity(): this {
-    return this;
+  severity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("severity", ...args);
   }
   /**
    * unconfirmed | confirmed | refuted | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `AllergyIntolerance.verificationStatus`
    */
-  verificationStatus(): this {
-    return this;
+  verificationStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("verification-status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -1141,8 +1260,8 @@ export class AllergyIntoleranceFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -1185,8 +1304,8 @@ export class AllergyIntoleranceFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -1257,8 +1376,10 @@ export class AllergyIntoleranceFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -1333,8 +1454,10 @@ export class AllergyIntoleranceFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
  * Multiple Resources: 
@@ -1355,8 +1478,8 @@ export class AllergyIntoleranceFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.type | Composition.type | DocumentManifest.type | DocumentReference.type | Encounter.type | EpisodeOfCare.type`
  */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -1368,8 +1491,10 @@ export class AppointmentFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `reference`
    * @fhirPath `Appointment.participant.actor`
    */
-  actor(): this {
-    return this;
+  actor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("actor", ...args);
   }
   /**
    * The style of appointment or patient that has been booked in the slot (not
@@ -1377,40 +1502,48 @@ export class AppointmentFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `token`
    * @fhirPath `Appointment.appointmentType`
    */
-  appointmentType(): this {
-    return this;
+  appointmentType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("appointment-type", ...args);
   }
   /**
    * The service request this appointment is allocated to assess
    * @fhirSearchType `reference`
    * @fhirPath `Appointment.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * Appointment date/time.
    * @fhirSearchType `date`
    * @fhirPath `Appointment.start`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * An Identifier of the Appointment
    * @fhirSearchType `token`
    * @fhirPath `Appointment.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * This location is listed in the participants of the appointment
    * @fhirSearchType `reference`
    * @fhirPath `Appointment.participant.actor.where(resolve() is Location)`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("location", ...args);
   }
   /**
    * The Participation status of the subject, or other participant on the
@@ -1419,40 +1552,50 @@ export class AppointmentFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `token`
    * @fhirPath `Appointment.participant.status`
    */
-  partStatus(): this {
-    return this;
+  partStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("part-status", ...args);
   }
   /**
    * One of the individuals of the appointment is this patient
    * @fhirSearchType `reference`
    * @fhirPath `Appointment.participant.actor.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * One of the individuals of the appointment is this practitioner
    * @fhirSearchType `reference`
    * @fhirPath `Appointment.participant.actor.where(resolve() is Practitioner)`
    */
-  practitioner(): this {
-    return this;
+  practitioner(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("practitioner", ...args);
   }
   /**
    * Coded reason this appointment is scheduled
    * @fhirSearchType `token`
    * @fhirPath `Appointment.reasonCode`
    */
-  reasonCode(): this {
-    return this;
+  reasonCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("reason-code", ...args);
   }
   /**
    * Reason the appointment is to take place (resource)
    * @fhirSearchType `reference`
    * @fhirPath `Appointment.reasonReference`
    */
-  reasonReference(): this {
-    return this;
+  reasonReference(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("reason-reference", ...args);
   }
   /**
    * A broad categorization of the service that is to be performed during this
@@ -1460,24 +1603,30 @@ export class AppointmentFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `token`
    * @fhirPath `Appointment.serviceCategory`
    */
-  serviceCategory(): this {
-    return this;
+  serviceCategory(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("service-category", ...args);
   }
   /**
    * The specific service that is to be performed during this appointment
    * @fhirSearchType `token`
    * @fhirPath `Appointment.serviceType`
    */
-  serviceType(): this {
-    return this;
+  serviceType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("service-type", ...args);
   }
   /**
    * The slots that this appointment is filling
    * @fhirSearchType `reference`
    * @fhirPath `Appointment.slot`
    */
-  slot(): this {
-    return this;
+  slot(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("slot", ...args);
   }
   /**
    * The specialty of a practitioner that would be required to perform the service
@@ -1485,24 +1634,30 @@ export class AppointmentFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `token`
    * @fhirPath `Appointment.specialty`
    */
-  specialty(): this {
-    return this;
+  specialty(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("specialty", ...args);
   }
   /**
    * The overall status of the appointment
    * @fhirSearchType `token`
    * @fhirPath `Appointment.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Additional information to support the appointment
    * @fhirSearchType `reference`
    * @fhirPath `Appointment.supportingInformation`
    */
-  supportingInfo(): this {
-    return this;
+  supportingInfo(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("supporting-info", ...args);
   }
 }
 
@@ -1515,56 +1670,70 @@ export class AppointmentResponseFhirSearchBuilder extends DomainResourceFhirSear
    * @fhirSearchType `reference`
    * @fhirPath `AppointmentResponse.actor`
    */
-  actor(): this {
-    return this;
+  actor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("actor", ...args);
   }
   /**
    * The appointment that the response is attached to
    * @fhirSearchType `reference`
    * @fhirPath `AppointmentResponse.appointment`
    */
-  appointment(): this {
-    return this;
+  appointment(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("appointment", ...args);
   }
   /**
    * An Identifier in this appointment response
    * @fhirSearchType `token`
    * @fhirPath `AppointmentResponse.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * This Response is for this Location
    * @fhirSearchType `reference`
    * @fhirPath `AppointmentResponse.actor.where(resolve() is Location)`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("location", ...args);
   }
   /**
    * The participants acceptance status for this appointment
    * @fhirSearchType `token`
    * @fhirPath `AppointmentResponse.participantStatus`
    */
-  partStatus(): this {
-    return this;
+  partStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("part-status", ...args);
   }
   /**
    * This Response is for this Patient
    * @fhirSearchType `reference`
    * @fhirPath `AppointmentResponse.actor.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * This Response is for this Practitioner
    * @fhirSearchType `reference`
    * @fhirPath `AppointmentResponse.actor.where(resolve() is Practitioner)`
    */
-  practitioner(): this {
-    return this;
+  practitioner(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("practitioner", ...args);
   }
 }
 
@@ -1576,144 +1745,170 @@ export class AuditEventFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `token`
    * @fhirPath `AuditEvent.action`
    */
-  action(): this {
-    return this;
+  action(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("action", ...args);
   }
   /**
    * Identifier for the network access point of the user device
    * @fhirSearchType `string`
    * @fhirPath `AuditEvent.agent.network.address`
    */
-  address(): this {
-    return this;
+  address(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address", ...args);
   }
   /**
    * Human friendly name for the agent
    * @fhirSearchType `string`
    * @fhirPath `AuditEvent.agent.name`
    */
-  agentName(): this {
-    return this;
+  agentName(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("agent-name", ...args);
   }
   /**
    * Agent role in the event
    * @fhirSearchType `token`
    * @fhirPath `AuditEvent.agent.role`
    */
-  agentRole(): this {
-    return this;
+  agentRole(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("agent-role", ...args);
   }
   /**
    * Identifier of who
    * @fhirSearchType `reference`
    * @fhirPath `AuditEvent.agent.who`
    */
-  agent(): this {
-    return this;
+  agent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("agent", ...args);
   }
   /**
    * Alternative User identity
    * @fhirSearchType `token`
    * @fhirPath `AuditEvent.agent.altId`
    */
-  altid(): this {
-    return this;
+  altid(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("altid", ...args);
   }
   /**
    * Time when the event was recorded
    * @fhirSearchType `date`
    * @fhirPath `AuditEvent.recorded`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * Descriptor for entity
    * @fhirSearchType `string`
    * @fhirPath `AuditEvent.entity.name`
    */
-  entityName(): this {
-    return this;
+  entityName(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("entity-name", ...args);
   }
   /**
    * What role the entity played
    * @fhirSearchType `token`
    * @fhirPath `AuditEvent.entity.role`
    */
-  entityRole(): this {
-    return this;
+  entityRole(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("entity-role", ...args);
   }
   /**
    * Type of entity involved
    * @fhirSearchType `token`
    * @fhirPath `AuditEvent.entity.type`
    */
-  entityType(): this {
-    return this;
+  entityType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("entity-type", ...args);
   }
   /**
    * Specific instance of resource
    * @fhirSearchType `reference`
    * @fhirPath `AuditEvent.entity.what`
    */
-  entity(): this {
-    return this;
+  entity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("entity", ...args);
   }
   /**
    * Whether the event succeeded or failed
    * @fhirSearchType `token`
    * @fhirPath `AuditEvent.outcome`
    */
-  outcome(): this {
-    return this;
+  outcome(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("outcome", ...args);
   }
   /**
    * Identifier of who
    * @fhirSearchType `reference`
    * @fhirPath `AuditEvent.agent.who.where(resolve() is Patient) | AuditEvent.entity.what.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * Policy that authorized event
    * @fhirSearchType `uri`
    * @fhirPath `AuditEvent.agent.policy`
    */
-  policy(): this {
-    return this;
+  policy(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("policy", ...args);
   }
   /**
    * Logical source location within the enterprise
    * @fhirSearchType `token`
    * @fhirPath `AuditEvent.source.site`
    */
-  site(): this {
-    return this;
+  site(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("site", ...args);
   }
   /**
    * The identity of source detecting the event
    * @fhirSearchType `reference`
    * @fhirPath `AuditEvent.source.observer`
    */
-  source(): this {
-    return this;
+  source(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("source", ...args);
   }
   /**
    * More specific type/id for the event
    * @fhirSearchType `token`
    * @fhirPath `AuditEvent.subtype`
    */
-  subtype(): this {
-    return this;
+  subtype(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("subtype", ...args);
   }
   /**
    * Type/identifier of event
    * @fhirSearchType `token`
    * @fhirPath `AuditEvent.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -1725,48 +1920,58 @@ export class BasicFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Basic.author`
    */
-  author(): this {
-    return this;
+  author(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("author", ...args);
   }
   /**
    * Kind of Resource
    * @fhirSearchType `token`
    * @fhirPath `Basic.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * When created
    * @fhirSearchType `date`
    * @fhirPath `Basic.created`
    */
-  created(): this {
-    return this;
+  created(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("created", ...args);
   }
   /**
    * Business identifier
    * @fhirSearchType `token`
    * @fhirPath `Basic.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Identifies the focus of this resource
    * @fhirSearchType `reference`
    * @fhirPath `Basic.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * Identifies the focus of this resource
    * @fhirSearchType `reference`
    * @fhirPath `Basic.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
 }
 
@@ -1784,32 +1989,40 @@ export class BodyStructureFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `token`
    * @fhirPath `BodyStructure.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Body site
    * @fhirSearchType `token`
    * @fhirPath `BodyStructure.location`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("location", ...args);
   }
   /**
    * Kind of Structure
    * @fhirSearchType `token`
    * @fhirPath `BodyStructure.morphology`
    */
-  morphology(): this {
-    return this;
+  morphology(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("morphology", ...args);
   }
   /**
    * Who this is about
    * @fhirSearchType `reference`
    * @fhirPath `BodyStructure.patient`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -1820,16 +2033,20 @@ export class BundleFhirSearchBuilder extends ResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Bundle.entry[0].resource`
    */
-  composition(): this {
-    return this;
+  composition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("composition", ...args);
   }
   /**
    * Persistent identifier for the bundle
    * @fhirSearchType `token`
    * @fhirPath `Bundle.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The first resource in the bundle, if the bundle type is "message" - this is a
@@ -1837,16 +2054,20 @@ export class BundleFhirSearchBuilder extends ResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Bundle.entry[0].resource`
    */
-  message(): this {
-    return this;
+  message(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("message", ...args);
   }
   /**
    * When the bundle was assembled
    * @fhirSearchType `date`
    * @fhirPath `Bundle.timestamp`
    */
-  timestamp(): this {
-    return this;
+  timestamp(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("timestamp", ...args);
   }
   /**
    * document | message | transaction | transaction-response | batch | batch-response
@@ -1854,8 +2075,8 @@ export class BundleFhirSearchBuilder extends ResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Bundle.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -1867,72 +2088,88 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
    * @fhirSearchType `token`
    * @fhirPath `CapabilityStatement.version`
    */
-  fhirversion(): this {
-    return this;
+  fhirversion(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("fhirversion", ...args);
   }
   /**
    * formats supported (xml | json | ttl | mime type)
    * @fhirSearchType `token`
    * @fhirPath `CapabilityStatement.format`
    */
-  format(): this {
-    return this;
+  format(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("format", ...args);
   }
   /**
    * Implementation guides supported
    * @fhirSearchType `reference`
    * @fhirPath `CapabilityStatement.implementationGuide`
    */
-  guide(): this {
-    return this;
+  guide(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("guide", ...args);
   }
   /**
    * Mode - restful (server/client) or messaging (sender/receiver)
    * @fhirSearchType `token`
    * @fhirPath `CapabilityStatement.rest.mode`
    */
-  mode(): this {
-    return this;
+  mode(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("mode", ...args);
   }
   /**
    * A profile id invoked in a capability statement
    * @fhirSearchType `reference`
    * @fhirPath `CapabilityStatement.rest.resource.profile`
    */
-  resourceProfile(): this {
-    return this;
+  resourceProfile(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("resource-profile", ...args);
   }
   /**
    * Name of a resource mentioned in a capability statement
    * @fhirSearchType `token`
    * @fhirPath `CapabilityStatement.rest.resource.type`
    */
-  resource(): this {
-    return this;
+  resource(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("resource", ...args);
   }
   /**
    * OAuth | SMART-on-FHIR | NTLM | Basic | Kerberos | Certificates
    * @fhirSearchType `token`
    * @fhirPath `CapabilityStatement.rest.security.service`
    */
-  securityService(): this {
-    return this;
+  securityService(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("security-service", ...args);
   }
   /**
    * Part of the name of a software application
    * @fhirSearchType `string`
    * @fhirPath `CapabilityStatement.software.name`
    */
-  software(): this {
-    return this;
+  software(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("software", ...args);
   }
   /**
    * Profiles for use cases supported
    * @fhirSearchType `reference`
    * @fhirPath `CapabilityStatement.rest.resource.supportedProfile`
    */
-  supportedProfile(): this {
-    return this;
+  supportedProfile(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("supported-profile", ...args);
   }
   /**
  * Multiple Resources: 
@@ -1978,8 +2215,10 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2027,8 +2266,10 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2071,8 +2312,10 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2114,8 +2357,10 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2156,8 +2401,10 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2195,8 +2442,8 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2235,8 +2482,10 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2274,8 +2523,10 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2317,8 +2568,8 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2358,8 +2609,10 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2398,8 +2651,10 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2430,8 +2685,10 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title`
  */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2470,8 +2727,8 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2508,8 +2765,10 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -2521,8 +2780,10 @@ export class CarePlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `CarePlan.activity.detail.code`
    */
-  activityCode(): this {
-    return this;
+  activityCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("activity-code", ...args);
   }
   /**
    * Specified date occurs within period specified by
@@ -2530,96 +2791,120 @@ export class CarePlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `date`
    * @fhirPath `CarePlan.activity.detail.scheduled`
    */
-  activityDate(): this {
-    return this;
+  activityDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("activity-date", ...args);
   }
   /**
    * Activity details defined in specific resource
    * @fhirSearchType `reference`
    * @fhirPath `CarePlan.activity.reference`
    */
-  activityReference(): this {
-    return this;
+  activityReference(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("activity-reference", ...args);
   }
   /**
    * Fulfills CarePlan
    * @fhirSearchType `reference`
    * @fhirPath `CarePlan.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * Who's involved in plan?
    * @fhirSearchType `reference`
    * @fhirPath `CarePlan.careTeam`
    */
-  careTeam(): this {
-    return this;
+  careTeam(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("care-team", ...args);
   }
   /**
    * Type of plan
    * @fhirSearchType `token`
    * @fhirPath `CarePlan.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Health issues this plan addresses
    * @fhirSearchType `reference`
    * @fhirPath `CarePlan.addresses`
    */
-  condition(): this {
-    return this;
+  condition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("condition", ...args);
   }
   /**
    * Encounter created as part of
    * @fhirSearchType `reference`
    * @fhirPath `CarePlan.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * Desired outcome of plan
    * @fhirSearchType `reference`
    * @fhirPath `CarePlan.goal`
    */
-  goal(): this {
-    return this;
+  goal(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("goal", ...args);
   }
   /**
    * Instantiates FHIR protocol or definition
    * @fhirSearchType `reference`
    * @fhirPath `CarePlan.instantiatesCanonical`
    */
-  instantiatesCanonical(): this {
-    return this;
+  instantiatesCanonical(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("instantiates-canonical", ...args);
   }
   /**
    * Instantiates external protocol or definition
    * @fhirSearchType `uri`
    * @fhirPath `CarePlan.instantiatesUri`
    */
-  instantiatesUri(): this {
-    return this;
+  instantiatesUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("instantiates-uri", ...args);
   }
   /**
    * proposal | plan | order | option
    * @fhirSearchType `token`
    * @fhirPath `CarePlan.intent`
    */
-  intent(): this {
-    return this;
+  intent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("intent", ...args);
   }
   /**
    * Part of referenced CarePlan
    * @fhirSearchType `reference`
    * @fhirPath `CarePlan.partOf`
    */
-  partOf(): this {
-    return this;
+  partOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("part-of", ...args);
   }
   /**
    * Matches if the practitioner is listed as a performer in any of the "simple"
@@ -2628,32 +2913,40 @@ export class CarePlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `CarePlan.activity.detail.performer`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer", ...args);
   }
   /**
    * CarePlan replaced by this CarePlan
    * @fhirSearchType `reference`
    * @fhirPath `CarePlan.replaces`
    */
-  replaces(): this {
-    return this;
+  replaces(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("replaces", ...args);
   }
   /**
    * draft | active | on-hold | revoked | completed | entered-in-error | unknown
    * @fhirSearchType `token`
    * @fhirPath `CarePlan.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Who the care plan is for
    * @fhirSearchType `reference`
    * @fhirPath `CarePlan.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2696,8 +2989,8 @@ export class CarePlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2768,8 +3061,10 @@ export class CarePlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2844,8 +3139,10 @@ export class CarePlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -2857,40 +3154,50 @@ export class CareTeamFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `CareTeam.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Encounter created as part of
    * @fhirSearchType `reference`
    * @fhirPath `CareTeam.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * Who is involved
    * @fhirSearchType `reference`
    * @fhirPath `CareTeam.participant.member`
    */
-  participant(): this {
-    return this;
+  participant(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("participant", ...args);
   }
   /**
    * proposed | active | suspended | inactive | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `CareTeam.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Who care team is for
    * @fhirSearchType `reference`
    * @fhirPath `CareTeam.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -2933,8 +3240,8 @@ export class CareTeamFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -3005,8 +3312,10 @@ export class CareTeamFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -3081,8 +3390,10 @@ export class CareTeamFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -3098,136 +3409,168 @@ export class ChargeItemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `reference`
    * @fhirPath `ChargeItem.account`
    */
-  account(): this {
-    return this;
+  account(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("account", ...args);
   }
   /**
    * A code that identifies the charge, like a billing code
    * @fhirSearchType `token`
    * @fhirPath `ChargeItem.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * Encounter / Episode associated with event
    * @fhirSearchType `reference`
    * @fhirPath `ChargeItem.context`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("context", ...args);
   }
   /**
    * Date the charge item was entered
    * @fhirSearchType `date`
    * @fhirPath `ChargeItem.enteredDate`
    */
-  enteredDate(): this {
-    return this;
+  enteredDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("entered-date", ...args);
   }
   /**
    * Individual who was entering
    * @fhirSearchType `reference`
    * @fhirPath `ChargeItem.enterer`
    */
-  enterer(): this {
-    return this;
+  enterer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("enterer", ...args);
   }
   /**
    * Factor overriding the associated rules
    * @fhirSearchType `number`
    * @fhirPath `ChargeItem.factorOverride`
    */
-  factorOverride(): this {
-    return this;
+  factorOverride(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["numberParam"]>>
+  ): this {
+    return this.numberParam("factor-override", ...args);
   }
   /**
    * Business Identifier for item
    * @fhirSearchType `token`
    * @fhirPath `ChargeItem.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * When the charged service was applied
    * @fhirSearchType `date`
    * @fhirPath `ChargeItem.occurrence`
    */
-  occurrence(): this {
-    return this;
+  occurrence(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("occurrence", ...args);
   }
   /**
    * Individual service was done for/to
    * @fhirSearchType `reference`
    * @fhirPath `ChargeItem.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * Individual who was performing
    * @fhirSearchType `reference`
    * @fhirPath `ChargeItem.performer.actor`
    */
-  performerActor(): this {
-    return this;
+  performerActor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer-actor", ...args);
   }
   /**
    * What type of performance was done
    * @fhirSearchType `token`
    * @fhirPath `ChargeItem.performer.function`
    */
-  performerFunction(): this {
-    return this;
+  performerFunction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("performer-function", ...args);
   }
   /**
    * Organization providing the charged service
    * @fhirSearchType `reference`
    * @fhirPath `ChargeItem.performingOrganization`
    */
-  performingOrganization(): this {
-    return this;
+  performingOrganization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performing-organization", ...args);
   }
   /**
    * Price overriding the associated rules
    * @fhirSearchType `quantity`
    * @fhirPath `ChargeItem.priceOverride`
    */
-  priceOverride(): this {
-    return this;
+  priceOverride(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("price-override", ...args);
   }
   /**
    * Quantity of which the charge item has been serviced
    * @fhirSearchType `quantity`
    * @fhirPath `ChargeItem.quantity`
    */
-  quantity(): this {
-    return this;
+  quantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("quantity", ...args);
   }
   /**
    * Organization requesting the charged service
    * @fhirSearchType `reference`
    * @fhirPath `ChargeItem.requestingOrganization`
    */
-  requestingOrganization(): this {
-    return this;
+  requestingOrganization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("requesting-organization", ...args);
   }
   /**
    * Which rendered service is being charged?
    * @fhirSearchType `reference`
    * @fhirPath `ChargeItem.service`
    */
-  service(): this {
-    return this;
+  service(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("service", ...args);
   }
   /**
    * Individual service was done for/to
    * @fhirSearchType `reference`
    * @fhirPath `ChargeItem.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
 }
 
@@ -3239,8 +3582,10 @@ export class ChargeItemDefinitionFhirSearchBuilder extends DomainResourceFhirSea
    * @fhirSearchType `quantity`
    * @fhirPath `(ChargeItemDefinition.useContext.value as Quantity) | (ChargeItemDefinition.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the charge
@@ -3248,112 +3593,136 @@ export class ChargeItemDefinitionFhirSearchBuilder extends DomainResourceFhirSea
    * @fhirSearchType `composite`
    * @fhirPath `ChargeItemDefinition.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the charge item definition
    * @fhirSearchType `composite`
    * @fhirPath `ChargeItemDefinition.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the charge item definition
    * @fhirSearchType `token`
    * @fhirPath `ChargeItemDefinition.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the charge item definition
    * @fhirSearchType `token`
    * @fhirPath `(ChargeItemDefinition.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The charge item definition publication date
    * @fhirSearchType `date`
    * @fhirPath `ChargeItemDefinition.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * The description of the charge item definition
    * @fhirSearchType `string`
    * @fhirPath `ChargeItemDefinition.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * The time during which the charge item definition is intended to be in use
    * @fhirSearchType `date`
    * @fhirPath `ChargeItemDefinition.effectivePeriod`
    */
-  effective(): this {
-    return this;
+  effective(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective", ...args);
   }
   /**
    * External identifier for the charge item definition
    * @fhirSearchType `token`
    * @fhirPath `ChargeItemDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the charge item definition
    * @fhirSearchType `token`
    * @fhirPath `ChargeItemDefinition.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Name of the publisher of the charge item definition
    * @fhirSearchType `string`
    * @fhirPath `ChargeItemDefinition.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the charge item definition
    * @fhirSearchType `token`
    * @fhirPath `ChargeItemDefinition.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The human-friendly name of the charge item definition
    * @fhirSearchType `string`
    * @fhirPath `ChargeItemDefinition.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * The uri that identifies the charge item definition
    * @fhirSearchType `uri`
    * @fhirPath `ChargeItemDefinition.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the charge item definition
    * @fhirSearchType `token`
    * @fhirPath `ChargeItemDefinition.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -3365,128 +3734,154 @@ export class CitationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `quantity`
    * @fhirPath `(Citation.useContext.value as Quantity) | (Citation.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the citation
    * @fhirSearchType `composite`
    * @fhirPath `Citation.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the citation
    * @fhirSearchType `composite`
    * @fhirPath `Citation.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the citation
    * @fhirSearchType `token`
    * @fhirPath `Citation.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the citation
    * @fhirSearchType `token`
    * @fhirPath `(Citation.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The citation publication date
    * @fhirSearchType `date`
    * @fhirPath `Citation.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * The description of the citation
    * @fhirSearchType `string`
    * @fhirPath `Citation.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * The time during which the citation is intended to be in use
    * @fhirSearchType `date`
    * @fhirPath `Citation.effectivePeriod`
    */
-  effective(): this {
-    return this;
+  effective(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective", ...args);
   }
   /**
    * External identifier for the citation
    * @fhirSearchType `token`
    * @fhirPath `Citation.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the citation
    * @fhirSearchType `token`
    * @fhirPath `Citation.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Computationally friendly name of the citation
    * @fhirSearchType `string`
    * @fhirPath `Citation.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * Name of the publisher of the citation
    * @fhirSearchType `string`
    * @fhirPath `Citation.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the citation
    * @fhirSearchType `token`
    * @fhirPath `Citation.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The human-friendly name of the citation
    * @fhirSearchType `string`
    * @fhirPath `Citation.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * The uri that identifies the citation
    * @fhirSearchType `uri`
    * @fhirPath `Citation.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the citation
    * @fhirSearchType `token`
    * @fhirPath `Citation.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -3498,136 +3893,168 @@ export class ClaimFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Claim.careTeam.provider`
    */
-  careTeam(): this {
-    return this;
+  careTeam(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("care-team", ...args);
   }
   /**
    * The creation date for the Claim
    * @fhirSearchType `date`
    * @fhirPath `Claim.created`
    */
-  created(): this {
-    return this;
+  created(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("created", ...args);
   }
   /**
    * UDI associated with a line item, detail product or service
    * @fhirSearchType `reference`
    * @fhirPath `Claim.item.detail.udi`
    */
-  detailUdi(): this {
-    return this;
+  detailUdi(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("detail-udi", ...args);
   }
   /**
    * Encounters associated with a billed line item
    * @fhirSearchType `reference`
    * @fhirPath `Claim.item.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * The party responsible for the entry of the Claim
    * @fhirSearchType `reference`
    * @fhirPath `Claim.enterer`
    */
-  enterer(): this {
-    return this;
+  enterer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("enterer", ...args);
   }
   /**
    * Facility where the products or services have been or will be provided
    * @fhirSearchType `reference`
    * @fhirPath `Claim.facility`
    */
-  facility(): this {
-    return this;
+  facility(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("facility", ...args);
   }
   /**
    * The primary identifier of the financial resource
    * @fhirSearchType `token`
    * @fhirPath `Claim.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The target payor/insurer for the Claim
    * @fhirSearchType `reference`
    * @fhirPath `Claim.insurer`
    */
-  insurer(): this {
-    return this;
+  insurer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("insurer", ...args);
   }
   /**
    * UDI associated with a line item product or service
    * @fhirSearchType `reference`
    * @fhirPath `Claim.item.udi`
    */
-  itemUdi(): this {
-    return this;
+  itemUdi(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("item-udi", ...args);
   }
   /**
    * Patient receiving the products or services
    * @fhirSearchType `reference`
    * @fhirPath `Claim.patient`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The party receiving any payment for the Claim
    * @fhirSearchType `reference`
    * @fhirPath `Claim.payee.party`
    */
-  payee(): this {
-    return this;
+  payee(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("payee", ...args);
   }
   /**
    * Processing priority requested
    * @fhirSearchType `token`
    * @fhirPath `Claim.priority`
    */
-  priority(): this {
-    return this;
+  priority(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("priority", ...args);
   }
   /**
    * UDI associated with a procedure
    * @fhirSearchType `reference`
    * @fhirPath `Claim.procedure.udi`
    */
-  procedureUdi(): this {
-    return this;
+  procedureUdi(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("procedure-udi", ...args);
   }
   /**
    * Provider responsible for the Claim
    * @fhirSearchType `reference`
    * @fhirPath `Claim.provider`
    */
-  provider(): this {
-    return this;
+  provider(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("provider", ...args);
   }
   /**
    * The status of the Claim instance.
    * @fhirSearchType `token`
    * @fhirPath `Claim.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * UDI associated with a line item, detail, subdetail product or service
    * @fhirSearchType `reference`
    * @fhirPath `Claim.item.detail.subDetail.udi`
    */
-  subdetailUdi(): this {
-    return this;
+  subdetailUdi(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subdetail-udi", ...args);
   }
   /**
    * The kind of financial resource
    * @fhirSearchType `token`
    * @fhirPath `Claim.use`
    */
-  use(): this {
-    return this;
+  use(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("use", ...args);
   }
 }
 
@@ -3639,88 +4066,108 @@ export class ClaimResponseFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `date`
    * @fhirPath `ClaimResponse.created`
    */
-  created(): this {
-    return this;
+  created(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("created", ...args);
   }
   /**
    * The contents of the disposition message
    * @fhirSearchType `string`
    * @fhirPath `ClaimResponse.disposition`
    */
-  disposition(): this {
-    return this;
+  disposition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("disposition", ...args);
   }
   /**
    * The identity of the ClaimResponse
    * @fhirSearchType `token`
    * @fhirPath `ClaimResponse.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The organization which generated this resource
    * @fhirSearchType `reference`
    * @fhirPath `ClaimResponse.insurer`
    */
-  insurer(): this {
-    return this;
+  insurer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("insurer", ...args);
   }
   /**
    * The processing outcome
    * @fhirSearchType `token`
    * @fhirPath `ClaimResponse.outcome`
    */
-  outcome(): this {
-    return this;
+  outcome(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("outcome", ...args);
   }
   /**
    * The subject of care
    * @fhirSearchType `reference`
    * @fhirPath `ClaimResponse.patient`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The expected payment date
    * @fhirSearchType `date`
    * @fhirPath `ClaimResponse.payment.date`
    */
-  paymentDate(): this {
-    return this;
+  paymentDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("payment-date", ...args);
   }
   /**
    * The claim reference
    * @fhirSearchType `reference`
    * @fhirPath `ClaimResponse.request`
    */
-  request(): this {
-    return this;
+  request(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("request", ...args);
   }
   /**
    * The Provider of the claim
    * @fhirSearchType `reference`
    * @fhirPath `ClaimResponse.requestor`
    */
-  requestor(): this {
-    return this;
+  requestor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("requestor", ...args);
   }
   /**
    * The status of the ClaimResponse
    * @fhirSearchType `token`
    * @fhirPath `ClaimResponse.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The type of claim
    * @fhirSearchType `token`
    * @fhirPath `ClaimResponse.use`
    */
-  use(): this {
-    return this;
+  use(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("use", ...args);
   }
 }
 
@@ -3732,88 +4179,110 @@ export class ClinicalImpressionFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalImpression.assessor`
    */
-  assessor(): this {
-    return this;
+  assessor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("assessor", ...args);
   }
   /**
    * Encounter created as part of
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalImpression.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * What was found
    * @fhirSearchType `token`
    * @fhirPath `ClinicalImpression.finding.itemCodeableConcept`
    */
-  findingCode(): this {
-    return this;
+  findingCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("finding-code", ...args);
   }
   /**
    * What was found
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalImpression.finding.itemReference`
    */
-  findingRef(): this {
-    return this;
+  findingRef(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("finding-ref", ...args);
   }
   /**
    * Business identifier
    * @fhirSearchType `token`
    * @fhirPath `ClinicalImpression.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Record of a specific investigation
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalImpression.investigation.item`
    */
-  investigation(): this {
-    return this;
+  investigation(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("investigation", ...args);
   }
   /**
    * Reference to last assessment
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalImpression.previous`
    */
-  previous(): this {
-    return this;
+  previous(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("previous", ...args);
   }
   /**
    * Relevant impressions of patient state
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalImpression.problem`
    */
-  problem(): this {
-    return this;
+  problem(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("problem", ...args);
   }
   /**
    * in-progress | completed | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `ClinicalImpression.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Patient or group assessed
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalImpression.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * Information supporting the clinical impression
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalImpression.supportingInfo`
    */
-  supportingInfo(): this {
-    return this;
+  supportingInfo(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("supporting-info", ...args);
   }
   /**
  * Multiple Resources: 
@@ -3856,8 +4325,8 @@ export class ClinicalImpressionFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -3932,8 +4401,10 @@ export class ClinicalImpressionFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -3946,8 +4417,10 @@ export class ClinicalUseDefinitionFhirSearchBuilder extends DomainResourceFhirSe
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalUseDefinition.contraindication.diseaseSymptomProcedure`
    */
-  contraindicationReference(): this {
-    return this;
+  contraindicationReference(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("contraindication-reference", ...args);
   }
   /**
    * The situation that is being documented as contraindicating against this item, as
@@ -3955,32 +4428,40 @@ export class ClinicalUseDefinitionFhirSearchBuilder extends DomainResourceFhirSe
    * @fhirSearchType `token`
    * @fhirPath `ClinicalUseDefinition.contraindication.diseaseSymptomProcedure`
    */
-  contraindication(): this {
-    return this;
+  contraindication(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("contraindication", ...args);
   }
   /**
    * The situation in which the undesirable effect may manifest, as a reference
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalUseDefinition.undesirableEffect.symptomConditionEffect`
    */
-  effectReference(): this {
-    return this;
+  effectReference(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("effect-reference", ...args);
   }
   /**
    * The situation in which the undesirable effect may manifest, as a code
    * @fhirSearchType `token`
    * @fhirPath `ClinicalUseDefinition.undesirableEffect.symptomConditionEffect`
    */
-  effect(): this {
-    return this;
+  effect(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("effect", ...args);
   }
   /**
    * Business identifier for this issue
    * @fhirSearchType `token`
    * @fhirPath `ClinicalUseDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The situation that is being documented as an indicaton for this item, as a
@@ -3988,16 +4469,20 @@ export class ClinicalUseDefinitionFhirSearchBuilder extends DomainResourceFhirSe
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalUseDefinition.indication.diseaseSymptomProcedure`
    */
-  indicationReference(): this {
-    return this;
+  indicationReference(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("indication-reference", ...args);
   }
   /**
    * The situation that is being documented as an indicaton for this item, as a code
    * @fhirSearchType `token`
    * @fhirPath `ClinicalUseDefinition.indication.diseaseSymptomProcedure`
    */
-  indication(): this {
-    return this;
+  indication(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("indication", ...args);
   }
   /**
    * The type of the interaction e.g. drug-drug interaction, drug-food interaction,
@@ -4005,32 +4490,38 @@ export class ClinicalUseDefinitionFhirSearchBuilder extends DomainResourceFhirSe
    * @fhirSearchType `token`
    * @fhirPath `ClinicalUseDefinition.interaction.type`
    */
-  interaction(): this {
-    return this;
+  interaction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("interaction", ...args);
   }
   /**
    * The medicinal product for which this is a clinical usage issue
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalUseDefinition.subject.where(resolve() is MedicinalProductDefinition)`
    */
-  product(): this {
-    return this;
+  product(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("product", ...args);
   }
   /**
    * The resource for which this is a clinical usage issue
    * @fhirSearchType `reference`
    * @fhirPath `ClinicalUseDefinition.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * indication | contraindication | interaction | undesirable-effect | warning
    * @fhirSearchType `token`
    * @fhirPath `ClinicalUseDefinition.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -4042,40 +4533,46 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `token`
    * @fhirPath `CodeSystem.concept.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * not-present | example | fragment | complete | supplement
    * @fhirSearchType `token`
    * @fhirPath `CodeSystem.content`
    */
-  contentMode(): this {
-    return this;
+  contentMode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("content-mode", ...args);
   }
   /**
    * A language in which a designation is provided
    * @fhirSearchType `token`
    * @fhirPath `CodeSystem.concept.designation.language`
    */
-  language(): this {
-    return this;
+  language(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("language", ...args);
   }
   /**
    * Find code system supplements for the referenced code system
    * @fhirSearchType `reference`
    * @fhirPath `CodeSystem.supplements`
    */
-  supplements(): this {
-    return this;
+  supplements(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("supplements", ...args);
   }
   /**
    * The system for any codes defined by this code system (same as 'url')
    * @fhirSearchType `uri`
    * @fhirPath `CodeSystem.url`
    */
-  system(): this {
-    return this;
+  system(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("system", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4121,8 +4618,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4170,8 +4669,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4214,8 +4715,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4257,8 +4760,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4299,8 +4804,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4338,8 +4845,8 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4378,8 +4885,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4399,8 +4908,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `CodeSystem.identifier | ConceptMap.identifier | MessageDefinition.identifier | StructureDefinition.identifier | StructureMap.identifier | ValueSet.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4438,8 +4949,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4481,8 +4994,8 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4522,8 +5035,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4562,8 +5077,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4594,8 +5111,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title`
  */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4634,8 +5153,8 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4672,8 +5191,10 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -4685,104 +5206,128 @@ export class CommunicationFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `reference`
    * @fhirPath `Communication.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * Message category
    * @fhirSearchType `token`
    * @fhirPath `Communication.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Encounter created as part of
    * @fhirSearchType `reference`
    * @fhirPath `Communication.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * Unique identifier
    * @fhirSearchType `token`
    * @fhirPath `Communication.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Instantiates FHIR protocol or definition
    * @fhirSearchType `reference`
    * @fhirPath `Communication.instantiatesCanonical`
    */
-  instantiatesCanonical(): this {
-    return this;
+  instantiatesCanonical(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("instantiates-canonical", ...args);
   }
   /**
    * Instantiates external protocol or definition
    * @fhirSearchType `uri`
    * @fhirPath `Communication.instantiatesUri`
    */
-  instantiatesUri(): this {
-    return this;
+  instantiatesUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("instantiates-uri", ...args);
   }
   /**
    * A channel of communication
    * @fhirSearchType `token`
    * @fhirPath `Communication.medium`
    */
-  medium(): this {
-    return this;
+  medium(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("medium", ...args);
   }
   /**
    * Part of this action
    * @fhirSearchType `reference`
    * @fhirPath `Communication.partOf`
    */
-  partOf(): this {
-    return this;
+  partOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("part-of", ...args);
   }
   /**
    * Focus of message
    * @fhirSearchType `reference`
    * @fhirPath `Communication.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * When received
    * @fhirSearchType `date`
    * @fhirPath `Communication.received`
    */
-  received(): this {
-    return this;
+  received(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("received", ...args);
   }
   /**
    * Message recipient
    * @fhirSearchType `reference`
    * @fhirPath `Communication.recipient`
    */
-  recipient(): this {
-    return this;
+  recipient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("recipient", ...args);
   }
   /**
    * Message sender
    * @fhirSearchType `reference`
    * @fhirPath `Communication.sender`
    */
-  sender(): this {
-    return this;
+  sender(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("sender", ...args);
   }
   /**
    * When sent
    * @fhirSearchType `date`
    * @fhirPath `Communication.sent`
    */
-  sent(): this {
-    return this;
+  sent(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("sent", ...args);
   }
   /**
    * preparation | in-progress | not-done | on-hold | stopped | completed |
@@ -4790,16 +5335,20 @@ export class CommunicationFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `token`
    * @fhirPath `Communication.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Focus of message
    * @fhirSearchType `reference`
    * @fhirPath `Communication.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
 }
 
@@ -4811,128 +5360,160 @@ export class CommunicationRequestFhirSearchBuilder extends DomainResourceFhirSea
    * @fhirSearchType `date`
    * @fhirPath `CommunicationRequest.authoredOn`
    */
-  authored(): this {
-    return this;
+  authored(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("authored", ...args);
   }
   /**
    * Fulfills plan or proposal
    * @fhirSearchType `reference`
    * @fhirPath `CommunicationRequest.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * Message category
    * @fhirSearchType `token`
    * @fhirPath `CommunicationRequest.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Encounter created as part of
    * @fhirSearchType `reference`
    * @fhirPath `CommunicationRequest.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * Composite request this is part of
    * @fhirSearchType `token`
    * @fhirPath `CommunicationRequest.groupIdentifier`
    */
-  groupIdentifier(): this {
-    return this;
+  groupIdentifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("group-identifier", ...args);
   }
   /**
    * Unique identifier
    * @fhirSearchType `token`
    * @fhirPath `CommunicationRequest.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * A channel of communication
    * @fhirSearchType `token`
    * @fhirPath `CommunicationRequest.medium`
    */
-  medium(): this {
-    return this;
+  medium(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("medium", ...args);
   }
   /**
    * When scheduled
    * @fhirSearchType `date`
    * @fhirPath `(CommunicationRequest.occurrence as dateTime)`
    */
-  occurrence(): this {
-    return this;
+  occurrence(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("occurrence", ...args);
   }
   /**
    * Focus of message
    * @fhirSearchType `reference`
    * @fhirPath `CommunicationRequest.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * routine | urgent | asap | stat
    * @fhirSearchType `token`
    * @fhirPath `CommunicationRequest.priority`
    */
-  priority(): this {
-    return this;
+  priority(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("priority", ...args);
   }
   /**
    * Message recipient
    * @fhirSearchType `reference`
    * @fhirPath `CommunicationRequest.recipient`
    */
-  recipient(): this {
-    return this;
+  recipient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("recipient", ...args);
   }
   /**
    * Request(s) replaced by this request
    * @fhirSearchType `reference`
    * @fhirPath `CommunicationRequest.replaces`
    */
-  replaces(): this {
-    return this;
+  replaces(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("replaces", ...args);
   }
   /**
    * Who/what is requesting service
    * @fhirSearchType `reference`
    * @fhirPath `CommunicationRequest.requester`
    */
-  requester(): this {
-    return this;
+  requester(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("requester", ...args);
   }
   /**
    * Message sender
    * @fhirSearchType `reference`
    * @fhirPath `CommunicationRequest.sender`
    */
-  sender(): this {
-    return this;
+  sender(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("sender", ...args);
   }
   /**
    * draft | active | on-hold | revoked | completed | entered-in-error | unknown
    * @fhirSearchType `token`
    * @fhirPath `CommunicationRequest.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Focus of message
    * @fhirSearchType `reference`
    * @fhirPath `CommunicationRequest.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
 }
 
@@ -4944,16 +5525,18 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
    * @fhirSearchType `token`
    * @fhirPath `CompartmentDefinition.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * Name of resource type
    * @fhirSearchType `token`
    * @fhirPath `CompartmentDefinition.resource.code`
    */
-  resource(): this {
-    return this;
+  resource(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("resource", ...args);
   }
   /**
  * Multiple Resources: 
@@ -4999,8 +5582,10 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5048,8 +5633,10 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5092,8 +5679,10 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5135,8 +5724,10 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5177,8 +5768,10 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5216,8 +5809,8 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5256,8 +5849,10 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5299,8 +5894,8 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5340,8 +5935,10 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5380,8 +5977,10 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5420,8 +6019,8 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5458,8 +6057,10 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -5471,104 +6072,128 @@ export class CompositionFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `reference`
    * @fhirPath `Composition.attester.party`
    */
-  attester(): this {
-    return this;
+  attester(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("attester", ...args);
   }
   /**
    * Who and/or what authored the composition
    * @fhirSearchType `reference`
    * @fhirPath `Composition.author`
    */
-  author(): this {
-    return this;
+  author(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("author", ...args);
   }
   /**
    * Categorization of Composition
    * @fhirSearchType `token`
    * @fhirPath `Composition.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * As defined by affinity domain
    * @fhirSearchType `token`
    * @fhirPath `Composition.confidentiality`
    */
-  confidentiality(): this {
-    return this;
+  confidentiality(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("confidentiality", ...args);
   }
   /**
    * Code(s) that apply to the event being documented
    * @fhirSearchType `token`
    * @fhirPath `Composition.event.code`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * A reference to data that supports this section
    * @fhirSearchType `reference`
    * @fhirPath `Composition.section.entry`
    */
-  entry(): this {
-    return this;
+  entry(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("entry", ...args);
   }
   /**
    * The period covered by the documentation
    * @fhirSearchType `date`
    * @fhirPath `Composition.event.period`
    */
-  period(): this {
-    return this;
+  period(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("period", ...args);
   }
   /**
    * Target of the relationship
    * @fhirSearchType `token`
    * @fhirPath `(Composition.relatesTo.target as Identifier)`
    */
-  relatedId(): this {
-    return this;
+  relatedId(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("related-id", ...args);
   }
   /**
    * Target of the relationship
    * @fhirSearchType `reference`
    * @fhirPath `(Composition.relatesTo.target as Reference)`
    */
-  relatedRef(): this {
-    return this;
+  relatedRef(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("related-ref", ...args);
   }
   /**
    * Classification of section (recommended)
    * @fhirSearchType `token`
    * @fhirPath `Composition.section.code`
    */
-  section(): this {
-    return this;
+  section(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("section", ...args);
   }
   /**
    * preliminary | final | amended | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `Composition.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Who and/or what the composition is about
    * @fhirSearchType `reference`
    * @fhirPath `Composition.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * Human Readable name/title
    * @fhirSearchType `string`
    * @fhirPath `Composition.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5611,8 +6236,8 @@ export class CompositionFhirSearchBuilder extends DomainResourceFhirSearchBuilde
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5644,8 +6269,10 @@ export class CompositionFhirSearchBuilder extends DomainResourceFhirSearchBuilde
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5716,8 +6343,10 @@ export class CompositionFhirSearchBuilder extends DomainResourceFhirSearchBuilde
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5792,8 +6421,10 @@ export class CompositionFhirSearchBuilder extends DomainResourceFhirSearchBuilde
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5814,8 +6445,8 @@ export class CompositionFhirSearchBuilder extends DomainResourceFhirSearchBuilde
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.type | Composition.type | DocumentManifest.type | DocumentReference.type | Encounter.type | EpisodeOfCare.type`
  */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -5827,8 +6458,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `uri`
    * @fhirPath `ConceptMap.group.element.target.dependsOn.property`
    */
-  dependson(): this {
-    return this;
+  dependson(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("dependson", ...args);
   }
   /**
    * canonical reference to an additional ConceptMap to use for mapping if the source
@@ -5836,80 +6469,98 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `reference`
    * @fhirPath `ConceptMap.group.unmapped.url`
    */
-  other(): this {
-    return this;
+  other(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("other", ...args);
   }
   /**
    * Reference to property mapping depends on
    * @fhirSearchType `uri`
    * @fhirPath `ConceptMap.group.element.target.product.property`
    */
-  product(): this {
-    return this;
+  product(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("product", ...args);
   }
   /**
    * Identifies element being mapped
    * @fhirSearchType `token`
    * @fhirPath `ConceptMap.group.element.code`
    */
-  sourceCode(): this {
-    return this;
+  sourceCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("source-code", ...args);
   }
   /**
    * Source system where concepts to be mapped are defined
    * @fhirSearchType `uri`
    * @fhirPath `ConceptMap.group.source`
    */
-  sourceSystem(): this {
-    return this;
+  sourceSystem(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("source-system", ...args);
   }
   /**
    * The source value set that contains the concepts that are being mapped
    * @fhirSearchType `reference`
    * @fhirPath `(ConceptMap.source as uri)`
    */
-  sourceUri(): this {
-    return this;
+  sourceUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("source-uri", ...args);
   }
   /**
    * The source value set that contains the concepts that are being mapped
    * @fhirSearchType `reference`
    * @fhirPath `(ConceptMap.source as canonical)`
    */
-  source(): this {
-    return this;
+  source(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("source", ...args);
   }
   /**
    * Code that identifies the target element
    * @fhirSearchType `token`
    * @fhirPath `ConceptMap.group.element.target.code`
    */
-  targetCode(): this {
-    return this;
+  targetCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("target-code", ...args);
   }
   /**
    * Target system that the concepts are to be mapped to
    * @fhirSearchType `uri`
    * @fhirPath `ConceptMap.group.target`
    */
-  targetSystem(): this {
-    return this;
+  targetSystem(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("target-system", ...args);
   }
   /**
    * The target value set which provides context for the mappings
    * @fhirSearchType `reference`
    * @fhirPath `(ConceptMap.target as uri)`
    */
-  targetUri(): this {
-    return this;
+  targetUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("target-uri", ...args);
   }
   /**
    * The target value set which provides context for the mappings
    * @fhirSearchType `reference`
    * @fhirPath `(ConceptMap.target as canonical)`
    */
-  target(): this {
-    return this;
+  target(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("target", ...args);
   }
   /**
  * Multiple Resources: 
@@ -5955,8 +6606,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6004,8 +6657,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6048,8 +6703,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6091,8 +6748,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6133,8 +6792,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6172,8 +6833,8 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6212,8 +6873,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6233,8 +6896,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `CodeSystem.identifier | ConceptMap.identifier | MessageDefinition.identifier | StructureDefinition.identifier | StructureMap.identifier | ValueSet.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6272,8 +6937,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6315,8 +6982,8 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6356,8 +7023,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6396,8 +7065,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6428,8 +7099,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title`
  */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6468,8 +7141,8 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6506,8 +7179,10 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -6519,136 +7194,168 @@ export class ConditionFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
    * @fhirSearchType `quantity`
    * @fhirPath `Condition.abatement.as(Age) | Condition.abatement.as(Range)`
    */
-  abatementAge(): this {
-    return this;
+  abatementAge(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("abatement-age", ...args);
   }
   /**
    * Date-related abatements (dateTime and period)
    * @fhirSearchType `date`
    * @fhirPath `Condition.abatement.as(dateTime) | Condition.abatement.as(Period)`
    */
-  abatementDate(): this {
-    return this;
+  abatementDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("abatement-date", ...args);
   }
   /**
    * Abatement as a string
    * @fhirSearchType `string`
    * @fhirPath `Condition.abatement.as(string)`
    */
-  abatementString(): this {
-    return this;
+  abatementString(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("abatement-string", ...args);
   }
   /**
    * Person who asserts this condition
    * @fhirSearchType `reference`
    * @fhirPath `Condition.asserter`
    */
-  asserter(): this {
-    return this;
+  asserter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("asserter", ...args);
   }
   /**
    * Anatomical location, if relevant
    * @fhirSearchType `token`
    * @fhirPath `Condition.bodySite`
    */
-  bodySite(): this {
-    return this;
+  bodySite(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("body-site", ...args);
   }
   /**
    * The category of the condition
    * @fhirSearchType `token`
    * @fhirPath `Condition.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * The clinical status of the condition
    * @fhirSearchType `token`
    * @fhirPath `Condition.clinicalStatus`
    */
-  clinicalStatus(): this {
-    return this;
+  clinicalStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("clinical-status", ...args);
   }
   /**
    * Encounter created as part of
    * @fhirSearchType `reference`
    * @fhirPath `Condition.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * Supporting information found elsewhere
    * @fhirSearchType `reference`
    * @fhirPath `Condition.evidence.detail`
    */
-  evidenceDetail(): this {
-    return this;
+  evidenceDetail(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("evidence-detail", ...args);
   }
   /**
    * Manifestation/symptom
    * @fhirSearchType `token`
    * @fhirPath `Condition.evidence.code`
    */
-  evidence(): this {
-    return this;
+  evidence(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("evidence", ...args);
   }
   /**
    * Onsets as age or age range
    * @fhirSearchType `quantity`
    * @fhirPath `Condition.onset.as(Age) | Condition.onset.as(Range)`
    */
-  onsetAge(): this {
-    return this;
+  onsetAge(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("onset-age", ...args);
   }
   /**
    * Date related onsets (dateTime and Period)
    * @fhirSearchType `date`
    * @fhirPath `Condition.onset.as(dateTime) | Condition.onset.as(Period)`
    */
-  onsetDate(): this {
-    return this;
+  onsetDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("onset-date", ...args);
   }
   /**
    * Onsets as a string
    * @fhirSearchType `string`
    * @fhirPath `Condition.onset.as(string)`
    */
-  onsetInfo(): this {
-    return this;
+  onsetInfo(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("onset-info", ...args);
   }
   /**
    * Date record was first recorded
    * @fhirSearchType `date`
    * @fhirPath `Condition.recordedDate`
    */
-  recordedDate(): this {
-    return this;
+  recordedDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("recorded-date", ...args);
   }
   /**
    * The severity of the condition
    * @fhirSearchType `token`
    * @fhirPath `Condition.severity`
    */
-  severity(): this {
-    return this;
+  severity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("severity", ...args);
   }
   /**
    * Simple summary (disease specific)
    * @fhirSearchType `token`
    * @fhirPath `Condition.stage.summary`
    */
-  stage(): this {
-    return this;
+  stage(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("stage", ...args);
   }
   /**
    * Who has the condition?
    * @fhirSearchType `reference`
    * @fhirPath `Condition.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * unconfirmed | provisional | differential | confirmed | refuted |
@@ -6656,8 +7363,10 @@ export class ConditionFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
    * @fhirSearchType `token`
    * @fhirPath `Condition.verificationStatus`
    */
-  verificationStatus(): this {
-    return this;
+  verificationStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("verification-status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6696,8 +7405,8 @@ export class ConditionFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6768,8 +7477,10 @@ export class ConditionFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6844,8 +7555,10 @@ export class ConditionFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -6857,80 +7570,96 @@ export class ConsentFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Consent.provision.action`
    */
-  action(): this {
-    return this;
+  action(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("action", ...args);
   }
   /**
    * Resource for the actor (or group, by role)
    * @fhirSearchType `reference`
    * @fhirPath `Consent.provision.actor.reference`
    */
-  actor(): this {
-    return this;
+  actor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("actor", ...args);
   }
   /**
    * Classification of the consent statement - for indexing/retrieval
    * @fhirSearchType `token`
    * @fhirPath `Consent.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Who is agreeing to the policy and rules
    * @fhirSearchType `reference`
    * @fhirPath `Consent.performer`
    */
-  consentor(): this {
-    return this;
+  consentor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("consentor", ...args);
   }
   /**
    * The actual data reference
    * @fhirSearchType `reference`
    * @fhirPath `Consent.provision.data.reference`
    */
-  data(): this {
-    return this;
+  data(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("data", ...args);
   }
   /**
    * Custodian of the consent
    * @fhirSearchType `reference`
    * @fhirPath `Consent.organization`
    */
-  organization(): this {
-    return this;
+  organization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("organization", ...args);
   }
   /**
    * Timeframe for this rule
    * @fhirSearchType `date`
    * @fhirPath `Consent.provision.period`
    */
-  period(): this {
-    return this;
+  period(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("period", ...args);
   }
   /**
    * Context of activities covered by this rule
    * @fhirSearchType `token`
    * @fhirPath `Consent.provision.purpose`
    */
-  purpose(): this {
-    return this;
+  purpose(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("purpose", ...args);
   }
   /**
    * Which of the four areas this resource covers (extensible)
    * @fhirSearchType `token`
    * @fhirPath `Consent.scope`
    */
-  scope(): this {
-    return this;
+  scope(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("scope", ...args);
   }
   /**
    * Security Labels that define affected resources
    * @fhirSearchType `token`
    * @fhirPath `Consent.provision.securityLabel`
    */
-  securityLabel(): this {
-    return this;
+  securityLabel(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("security-label", ...args);
   }
   /**
    * Search by reference to a Consent, DocumentReference, Contract  or
@@ -6938,16 +7667,20 @@ export class ConsentFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Consent.source`
    */
-  sourceReference(): this {
-    return this;
+  sourceReference(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("source-reference", ...args);
   }
   /**
    * draft | proposed | active | rejected | inactive | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `Consent.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -6990,8 +7723,8 @@ export class ConsentFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -7062,8 +7795,10 @@ export class ConsentFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -7138,8 +7873,10 @@ export class ConsentFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -7151,80 +7888,96 @@ export class ContractFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Contract.authority`
    */
-  authority(): this {
-    return this;
+  authority(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("authority", ...args);
   }
   /**
    * The domain of the contract
    * @fhirSearchType `reference`
    * @fhirPath `Contract.domain`
    */
-  domain(): this {
-    return this;
+  domain(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("domain", ...args);
   }
   /**
    * The identity of the contract
    * @fhirSearchType `token`
    * @fhirPath `Contract.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * A source definition of the contract
    * @fhirSearchType `uri`
    * @fhirPath `Contract.instantiatesUri`
    */
-  instantiates(): this {
-    return this;
+  instantiates(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("instantiates", ...args);
   }
   /**
    * The date/time the contract was issued
    * @fhirSearchType `date`
    * @fhirPath `Contract.issued`
    */
-  issued(): this {
-    return this;
+  issued(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("issued", ...args);
   }
   /**
    * The identity of the subject of the contract (if a patient)
    * @fhirSearchType `reference`
    * @fhirPath `Contract.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * Contract Signatory Party
    * @fhirSearchType `reference`
    * @fhirPath `Contract.signer.party`
    */
-  signer(): this {
-    return this;
+  signer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("signer", ...args);
   }
   /**
    * The status of the contract
    * @fhirSearchType `token`
    * @fhirPath `Contract.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The identity of the subject of the contract
    * @fhirSearchType `reference`
    * @fhirPath `Contract.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * The basal contract definition
    * @fhirSearchType `uri`
    * @fhirPath `Contract.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
 }
 
@@ -7236,88 +7989,108 @@ export class CoverageFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Coverage.beneficiary`
    */
-  beneficiary(): this {
-    return this;
+  beneficiary(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("beneficiary", ...args);
   }
   /**
    * Coverage class (eg. plan, group)
    * @fhirSearchType `token`
    * @fhirPath `Coverage.class.type`
    */
-  classType(): this {
-    return this;
+  classType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("class-type", ...args);
   }
   /**
    * Value of the class (eg. Plan number, group number)
    * @fhirSearchType `string`
    * @fhirPath `Coverage.class.value`
    */
-  classValue(): this {
-    return this;
+  classValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("class-value", ...args);
   }
   /**
    * Dependent number
    * @fhirSearchType `string`
    * @fhirPath `Coverage.dependent`
    */
-  dependent(): this {
-    return this;
+  dependent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("dependent", ...args);
   }
   /**
    * The primary identifier of the insured and the coverage
    * @fhirSearchType `token`
    * @fhirPath `Coverage.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Retrieve coverages for a patient
    * @fhirSearchType `reference`
    * @fhirPath `Coverage.beneficiary`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The identity of the insurer or party paying for services
    * @fhirSearchType `reference`
    * @fhirPath `Coverage.payor`
    */
-  payor(): this {
-    return this;
+  payor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("payor", ...args);
   }
   /**
    * Reference to the policyholder
    * @fhirSearchType `reference`
    * @fhirPath `Coverage.policyHolder`
    */
-  policyHolder(): this {
-    return this;
+  policyHolder(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("policy-holder", ...args);
   }
   /**
    * The status of the Coverage
    * @fhirSearchType `token`
    * @fhirPath `Coverage.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Reference to the subscriber
    * @fhirSearchType `reference`
    * @fhirPath `Coverage.subscriber`
    */
-  subscriber(): this {
-    return this;
+  subscriber(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subscriber", ...args);
   }
   /**
    * The kind of coverage (health plan, auto, Workers Compensation)
    * @fhirSearchType `token`
    * @fhirPath `Coverage.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -7329,56 +8102,70 @@ export class CoverageEligibilityRequestFhirSearchBuilder extends DomainResourceF
    * @fhirSearchType `date`
    * @fhirPath `CoverageEligibilityRequest.created`
    */
-  created(): this {
-    return this;
+  created(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("created", ...args);
   }
   /**
    * The party who is responsible for the request
    * @fhirSearchType `reference`
    * @fhirPath `CoverageEligibilityRequest.enterer`
    */
-  enterer(): this {
-    return this;
+  enterer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("enterer", ...args);
   }
   /**
    * Facility responsible for the goods and services
    * @fhirSearchType `reference`
    * @fhirPath `CoverageEligibilityRequest.facility`
    */
-  facility(): this {
-    return this;
+  facility(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("facility", ...args);
   }
   /**
    * The business identifier of the Eligibility
    * @fhirSearchType `token`
    * @fhirPath `CoverageEligibilityRequest.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The reference to the patient
    * @fhirSearchType `reference`
    * @fhirPath `CoverageEligibilityRequest.patient`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The reference to the provider
    * @fhirSearchType `reference`
    * @fhirPath `CoverageEligibilityRequest.provider`
    */
-  provider(): this {
-    return this;
+  provider(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("provider", ...args);
   }
   /**
    * The status of the EligibilityRequest
    * @fhirSearchType `token`
    * @fhirPath `CoverageEligibilityRequest.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -7390,72 +8177,90 @@ export class CoverageEligibilityResponseFhirSearchBuilder extends DomainResource
    * @fhirSearchType `date`
    * @fhirPath `CoverageEligibilityResponse.created`
    */
-  created(): this {
-    return this;
+  created(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("created", ...args);
   }
   /**
    * The contents of the disposition message
    * @fhirSearchType `string`
    * @fhirPath `CoverageEligibilityResponse.disposition`
    */
-  disposition(): this {
-    return this;
+  disposition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("disposition", ...args);
   }
   /**
    * The business identifier
    * @fhirSearchType `token`
    * @fhirPath `CoverageEligibilityResponse.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The organization which generated this resource
    * @fhirSearchType `reference`
    * @fhirPath `CoverageEligibilityResponse.insurer`
    */
-  insurer(): this {
-    return this;
+  insurer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("insurer", ...args);
   }
   /**
    * The processing outcome
    * @fhirSearchType `token`
    * @fhirPath `CoverageEligibilityResponse.outcome`
    */
-  outcome(): this {
-    return this;
+  outcome(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("outcome", ...args);
   }
   /**
    * The reference to the patient
    * @fhirSearchType `reference`
    * @fhirPath `CoverageEligibilityResponse.patient`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The EligibilityRequest reference
    * @fhirSearchType `reference`
    * @fhirPath `CoverageEligibilityResponse.request`
    */
-  request(): this {
-    return this;
+  request(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("request", ...args);
   }
   /**
    * The EligibilityRequest provider
    * @fhirSearchType `reference`
    * @fhirPath `CoverageEligibilityResponse.requestor`
    */
-  requestor(): this {
-    return this;
+  requestor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("requestor", ...args);
   }
   /**
    * The EligibilityRequest status
    * @fhirSearchType `token`
    * @fhirPath `CoverageEligibilityResponse.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -7467,32 +8272,38 @@ export class DetectedIssueFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `reference`
    * @fhirPath `DetectedIssue.author`
    */
-  author(): this {
-    return this;
+  author(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("author", ...args);
   }
   /**
    * Issue Category, e.g. drug-drug, duplicate therapy, etc.
    * @fhirSearchType `token`
    * @fhirPath `DetectedIssue.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * When identified
    * @fhirSearchType `date`
    * @fhirPath `DetectedIssue.identified`
    */
-  identified(): this {
-    return this;
+  identified(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("identified", ...args);
   }
   /**
    * Problem resource
    * @fhirSearchType `reference`
    * @fhirPath `DetectedIssue.implicated`
    */
-  implicated(): this {
-    return this;
+  implicated(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("implicated", ...args);
   }
   /**
  * Multiple Resources: 
@@ -7563,8 +8374,10 @@ export class DetectedIssueFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -7639,8 +8452,10 @@ export class DetectedIssueFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -7653,96 +8468,116 @@ export class DeviceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `string`
    * @fhirPath `Device.deviceName.name | Device.type.coding.display | Device.type.text`
    */
-  deviceName(): this {
-    return this;
+  deviceName(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("device-name", ...args);
   }
   /**
    * Instance id from manufacturer, owner, and others
    * @fhirSearchType `token`
    * @fhirPath `Device.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * A location, where the resource is found
    * @fhirSearchType `reference`
    * @fhirPath `Device.location`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("location", ...args);
   }
   /**
    * The manufacturer of the device
    * @fhirSearchType `string`
    * @fhirPath `Device.manufacturer`
    */
-  manufacturer(): this {
-    return this;
+  manufacturer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("manufacturer", ...args);
   }
   /**
    * The model of the device
    * @fhirSearchType `string`
    * @fhirPath `Device.modelNumber`
    */
-  model(): this {
-    return this;
+  model(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("model", ...args);
   }
   /**
    * The organization responsible for the device
    * @fhirSearchType `reference`
    * @fhirPath `Device.owner`
    */
-  organization(): this {
-    return this;
+  organization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("organization", ...args);
   }
   /**
    * Patient information, if the resource is affixed to a person
    * @fhirSearchType `reference`
    * @fhirPath `Device.patient`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * active | inactive | entered-in-error | unknown
    * @fhirSearchType `token`
    * @fhirPath `Device.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The type of the device
    * @fhirSearchType `token`
    * @fhirPath `Device.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
   /**
    * UDI Barcode (RFID or other technology) string in *HRF* format.
    * @fhirSearchType `string`
    * @fhirPath `Device.udiCarrier.carrierHRF`
    */
-  udiCarrier(): this {
-    return this;
+  udiCarrier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("udi-carrier", ...args);
   }
   /**
    * The udi Device Identifier (DI)
    * @fhirSearchType `string`
    * @fhirPath `Device.udiCarrier.deviceIdentifier`
    */
-  udiDi(): this {
-    return this;
+  udiDi(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("udi-di", ...args);
   }
   /**
    * Network address to contact device
    * @fhirSearchType `uri`
    * @fhirPath `Device.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
 }
 
@@ -7754,24 +8589,28 @@ export class DeviceDefinitionFhirSearchBuilder extends DomainResourceFhirSearchB
    * @fhirSearchType `token`
    * @fhirPath `DeviceDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The parent DeviceDefinition resource
    * @fhirSearchType `reference`
    * @fhirPath `DeviceDefinition.parentDevice`
    */
-  parent(): this {
-    return this;
+  parent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("parent", ...args);
   }
   /**
    * The device component type
    * @fhirSearchType `token`
    * @fhirPath `DeviceDefinition.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -7783,40 +8622,48 @@ export class DeviceMetricFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `token`
    * @fhirPath `DeviceMetric.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * The identifier of the metric
    * @fhirSearchType `token`
    * @fhirPath `DeviceMetric.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The parent DeviceMetric resource
    * @fhirSearchType `reference`
    * @fhirPath `DeviceMetric.parent`
    */
-  parent(): this {
-    return this;
+  parent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("parent", ...args);
   }
   /**
    * The device resource
    * @fhirSearchType `reference`
    * @fhirPath `DeviceMetric.source`
    */
-  source(): this {
-    return this;
+  source(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("source", ...args);
   }
   /**
    * The component type
    * @fhirSearchType `token`
    * @fhirPath `DeviceMetric.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -7828,112 +8675,140 @@ export class DeviceRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `date`
    * @fhirPath `DeviceRequest.authoredOn`
    */
-  authoredOn(): this {
-    return this;
+  authoredOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("authored-on", ...args);
   }
   /**
    * Plan/proposal/order fulfilled by this request
    * @fhirSearchType `reference`
    * @fhirPath `DeviceRequest.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * Reference to resource that is being requested/ordered
    * @fhirSearchType `reference`
    * @fhirPath `(DeviceRequest.code as Reference)`
    */
-  device(): this {
-    return this;
+  device(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("device", ...args);
   }
   /**
    * When service should occur
    * @fhirSearchType `date`
    * @fhirPath `(DeviceRequest.occurrence as dateTime) | (DeviceRequest.occurrence as Period)`
    */
-  eventDate(): this {
-    return this;
+  eventDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("event-date", ...args);
   }
   /**
    * Composite request this is part of
    * @fhirSearchType `token`
    * @fhirPath `DeviceRequest.groupIdentifier`
    */
-  groupIdentifier(): this {
-    return this;
+  groupIdentifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("group-identifier", ...args);
   }
   /**
    * Instantiates FHIR protocol or definition
    * @fhirSearchType `reference`
    * @fhirPath `DeviceRequest.instantiatesCanonical`
    */
-  instantiatesCanonical(): this {
-    return this;
+  instantiatesCanonical(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("instantiates-canonical", ...args);
   }
   /**
    * Instantiates external protocol or definition
    * @fhirSearchType `uri`
    * @fhirPath `DeviceRequest.instantiatesUri`
    */
-  instantiatesUri(): this {
-    return this;
+  instantiatesUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("instantiates-uri", ...args);
   }
   /**
    * Associated insurance coverage
    * @fhirSearchType `reference`
    * @fhirPath `DeviceRequest.insurance`
    */
-  insurance(): this {
-    return this;
+  insurance(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("insurance", ...args);
   }
   /**
    * proposal | plan | original-order |reflex-order
    * @fhirSearchType `token`
    * @fhirPath `DeviceRequest.intent`
    */
-  intent(): this {
-    return this;
+  intent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("intent", ...args);
   }
   /**
    * Desired performer for service
    * @fhirSearchType `reference`
    * @fhirPath `DeviceRequest.performer`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer", ...args);
   }
   /**
    * Request takes the place of referenced completed or terminated requests
    * @fhirSearchType `reference`
    * @fhirPath `DeviceRequest.priorRequest`
    */
-  priorRequest(): this {
-    return this;
+  priorRequest(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("prior-request", ...args);
   }
   /**
    * Who/what is requesting service
    * @fhirSearchType `reference`
    * @fhirPath `DeviceRequest.requester`
    */
-  requester(): this {
-    return this;
+  requester(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("requester", ...args);
   }
   /**
    * entered-in-error | draft | active |suspended | completed
    * @fhirSearchType `token`
    * @fhirPath `DeviceRequest.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Individual the service is ordered for
    * @fhirSearchType `reference`
    * @fhirPath `DeviceRequest.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -7972,8 +8847,8 @@ export class DeviceRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8005,8 +8880,10 @@ export class DeviceRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8077,8 +8954,10 @@ export class DeviceRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8153,8 +9032,10 @@ export class DeviceRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -8166,24 +9047,30 @@ export class DeviceUseStatementFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `reference`
    * @fhirPath `DeviceUseStatement.device`
    */
-  device(): this {
-    return this;
+  device(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("device", ...args);
   }
   /**
    * Search by identifier
    * @fhirSearchType `token`
    * @fhirPath `DeviceUseStatement.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Search by subject
    * @fhirSearchType `reference`
    * @fhirPath `DeviceUseStatement.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8258,8 +9145,10 @@ export class DeviceUseStatementFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -8271,88 +9160,108 @@ export class DiagnosticReportFhirSearchBuilder extends DomainResourceFhirSearchB
    * @fhirSearchType `reference`
    * @fhirPath `DiagnosticReport.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * Which diagnostic discipline/department created the report
    * @fhirSearchType `token`
    * @fhirPath `DiagnosticReport.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * A coded conclusion (interpretation/impression) on the report
    * @fhirSearchType `token`
    * @fhirPath `DiagnosticReport.conclusionCode`
    */
-  conclusion(): this {
-    return this;
+  conclusion(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("conclusion", ...args);
   }
   /**
    * When the report was issued
    * @fhirSearchType `date`
    * @fhirPath `DiagnosticReport.issued`
    */
-  issued(): this {
-    return this;
+  issued(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("issued", ...args);
   }
   /**
    * A reference to the image source.
    * @fhirSearchType `reference`
    * @fhirPath `DiagnosticReport.media.link`
    */
-  media(): this {
-    return this;
+  media(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("media", ...args);
   }
   /**
    * Who is responsible for the report
    * @fhirSearchType `reference`
    * @fhirPath `DiagnosticReport.performer`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer", ...args);
   }
   /**
    * Link to an atomic result (observation resource)
    * @fhirSearchType `reference`
    * @fhirPath `DiagnosticReport.result`
    */
-  result(): this {
-    return this;
+  result(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("result", ...args);
   }
   /**
    * Who was the source of the report
    * @fhirSearchType `reference`
    * @fhirPath `DiagnosticReport.resultsInterpreter`
    */
-  resultsInterpreter(): this {
-    return this;
+  resultsInterpreter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("results-interpreter", ...args);
   }
   /**
    * The specimen details
    * @fhirSearchType `reference`
    * @fhirPath `DiagnosticReport.specimen`
    */
-  specimen(): this {
-    return this;
+  specimen(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("specimen", ...args);
   }
   /**
    * The status of the report
    * @fhirSearchType `token`
    * @fhirPath `DiagnosticReport.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The subject of the report
    * @fhirSearchType `reference`
    * @fhirPath `DiagnosticReport.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8391,8 +9300,8 @@ export class DiagnosticReportFhirSearchBuilder extends DomainResourceFhirSearchB
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8435,8 +9344,8 @@ export class DiagnosticReportFhirSearchBuilder extends DomainResourceFhirSearchB
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8468,8 +9377,10 @@ export class DiagnosticReportFhirSearchBuilder extends DomainResourceFhirSearchB
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8540,8 +9451,10 @@ export class DiagnosticReportFhirSearchBuilder extends DomainResourceFhirSearchB
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8616,8 +9529,10 @@ export class DiagnosticReportFhirSearchBuilder extends DomainResourceFhirSearchB
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -8629,80 +9544,98 @@ export class DocumentManifestFhirSearchBuilder extends DomainResourceFhirSearchB
    * @fhirSearchType `reference`
    * @fhirPath `DocumentManifest.author`
    */
-  author(): this {
-    return this;
+  author(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("author", ...args);
   }
   /**
    * When this document manifest created
    * @fhirSearchType `date`
    * @fhirPath `DocumentManifest.created`
    */
-  created(): this {
-    return this;
+  created(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("created", ...args);
   }
   /**
    * Human-readable description (title)
    * @fhirSearchType `string`
    * @fhirPath `DocumentManifest.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * Items in manifest
    * @fhirSearchType `reference`
    * @fhirPath `DocumentManifest.content`
    */
-  item(): this {
-    return this;
+  item(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("item", ...args);
   }
   /**
    * Intended to get notified about this set of documents
    * @fhirSearchType `reference`
    * @fhirPath `DocumentManifest.recipient`
    */
-  recipient(): this {
-    return this;
+  recipient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("recipient", ...args);
   }
   /**
    * Identifiers of things that are related
    * @fhirSearchType `token`
    * @fhirPath `DocumentManifest.related.identifier`
    */
-  relatedId(): this {
-    return this;
+  relatedId(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("related-id", ...args);
   }
   /**
    * Related Resource
    * @fhirSearchType `reference`
    * @fhirPath `DocumentManifest.related.ref`
    */
-  relatedRef(): this {
-    return this;
+  relatedRef(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("related-ref", ...args);
   }
   /**
    * The source system/application/software
    * @fhirSearchType `uri`
    * @fhirPath `DocumentManifest.source`
    */
-  source(): this {
-    return this;
+  source(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("source", ...args);
   }
   /**
    * current | superseded | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `DocumentManifest.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The subject of the set of documents
    * @fhirSearchType `reference`
    * @fhirPath `DocumentManifest.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8773,8 +9706,10 @@ export class DocumentManifestFhirSearchBuilder extends DomainResourceFhirSearchB
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8849,8 +9784,10 @@ export class DocumentManifestFhirSearchBuilder extends DomainResourceFhirSearchB
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
  * Multiple Resources: 
@@ -8871,8 +9808,8 @@ export class DocumentManifestFhirSearchBuilder extends DomainResourceFhirSearchB
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.type | Composition.type | DocumentManifest.type | DocumentReference.type | Encounter.type | EpisodeOfCare.type`
  */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -8884,168 +9821,204 @@ export class DocumentReferenceFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `reference`
    * @fhirPath `DocumentReference.authenticator`
    */
-  authenticator(): this {
-    return this;
+  authenticator(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("authenticator", ...args);
   }
   /**
    * Who and/or what authored the document
    * @fhirSearchType `reference`
    * @fhirPath `DocumentReference.author`
    */
-  author(): this {
-    return this;
+  author(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("author", ...args);
   }
   /**
    * Categorization of document
    * @fhirSearchType `token`
    * @fhirPath `DocumentReference.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Mime type of the content, with charset etc.
    * @fhirSearchType `token`
    * @fhirPath `DocumentReference.content.attachment.contentType`
    */
-  contenttype(): this {
-    return this;
+  contenttype(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("contenttype", ...args);
   }
   /**
    * Organization which maintains the document
    * @fhirSearchType `reference`
    * @fhirPath `DocumentReference.custodian`
    */
-  custodian(): this {
-    return this;
+  custodian(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("custodian", ...args);
   }
   /**
    * When this document reference was created
    * @fhirSearchType `date`
    * @fhirPath `DocumentReference.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * Human-readable description
    * @fhirSearchType `string`
    * @fhirPath `DocumentReference.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * Main clinical acts documented
    * @fhirSearchType `token`
    * @fhirPath `DocumentReference.context.event`
    */
-  event(): this {
-    return this;
+  event(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("event", ...args);
   }
   /**
    * Kind of facility where patient was seen
    * @fhirSearchType `token`
    * @fhirPath `DocumentReference.context.facilityType`
    */
-  facility(): this {
-    return this;
+  facility(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("facility", ...args);
   }
   /**
    * Format/content rules for the document
    * @fhirSearchType `token`
    * @fhirPath `DocumentReference.content.format`
    */
-  format(): this {
-    return this;
+  format(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("format", ...args);
   }
   /**
    * Human language of the content (BCP-47)
    * @fhirSearchType `token`
    * @fhirPath `DocumentReference.content.attachment.language`
    */
-  language(): this {
-    return this;
+  language(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("language", ...args);
   }
   /**
    * Uri where the data can be found
    * @fhirSearchType `uri`
    * @fhirPath `DocumentReference.content.attachment.url`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("location", ...args);
   }
   /**
    * Time of service that is being documented
    * @fhirSearchType `date`
    * @fhirPath `DocumentReference.context.period`
    */
-  period(): this {
-    return this;
+  period(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("period", ...args);
   }
   /**
    * Related identifiers or resources
    * @fhirSearchType `reference`
    * @fhirPath `DocumentReference.context.related`
    */
-  related(): this {
-    return this;
+  related(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("related", ...args);
   }
   /**
    * Target of the relationship
    * @fhirSearchType `reference`
    * @fhirPath `DocumentReference.relatesTo.target`
    */
-  relatesto(): this {
-    return this;
+  relatesto(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("relatesto", ...args);
   }
   /**
    * replaces | transforms | signs | appends
    * @fhirSearchType `token`
    * @fhirPath `DocumentReference.relatesTo.code`
    */
-  relation(): this {
-    return this;
+  relation(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("relation", ...args);
   }
   /**
    * Combination of relation and relatesTo
    * @fhirSearchType `composite`
    * @fhirPath `DocumentReference.relatesTo`
    */
-  relationship(): this {
-    return this;
+  relationship(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("relationship", ...args);
   }
   /**
    * Document security-tags
    * @fhirSearchType `token`
    * @fhirPath `DocumentReference.securityLabel`
    */
-  securityLabel(): this {
-    return this;
+  securityLabel(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("security-label", ...args);
   }
   /**
    * Additional details about where the content was created (e.g. clinical specialty)
    * @fhirSearchType `token`
    * @fhirPath `DocumentReference.context.practiceSetting`
    */
-  setting(): this {
-    return this;
+  setting(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("setting", ...args);
   }
   /**
    * current | superseded | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `DocumentReference.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Who/what is the subject of the document
    * @fhirSearchType `reference`
    * @fhirPath `DocumentReference.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9077,8 +10050,10 @@ export class DocumentReferenceFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9149,8 +10124,10 @@ export class DocumentReferenceFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9225,8 +10202,10 @@ export class DocumentReferenceFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9247,8 +10226,8 @@ export class DocumentReferenceFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.type | Composition.type | DocumentManifest.type | DocumentReference.type | Encounter.type | EpisodeOfCare.type`
  */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -9260,152 +10239,188 @@ export class EncounterFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.account`
    */
-  account(): this {
-    return this;
+  account(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("account", ...args);
   }
   /**
    * The appointment that scheduled this encounter
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.appointment`
    */
-  appointment(): this {
-    return this;
+  appointment(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("appointment", ...args);
   }
   /**
    * The ServiceRequest that initiated this encounter
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * Classification of patient encounter
    * @fhirSearchType `token`
    * @fhirPath `Encounter.class`
    */
-  class(): this {
-    return this;
+  class(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("class", ...args);
   }
   /**
    * The diagnosis or procedure relevant to the encounter
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.diagnosis.condition`
    */
-  diagnosis(): this {
-    return this;
+  diagnosis(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("diagnosis", ...args);
   }
   /**
    * Episode(s) of care that this encounter should be recorded against
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.episodeOfCare`
    */
-  episodeOfCare(): this {
-    return this;
+  episodeOfCare(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("episode-of-care", ...args);
   }
   /**
    * Length of encounter in days
    * @fhirSearchType `quantity`
    * @fhirPath `Encounter.length`
    */
-  length(): this {
-    return this;
+  length(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("length", ...args);
   }
   /**
    * Time period during which the patient was present at the location
    * @fhirSearchType `date`
    * @fhirPath `Encounter.location.period`
    */
-  locationPeriod(): this {
-    return this;
+  locationPeriod(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("location-period", ...args);
   }
   /**
    * Location the encounter takes place
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.location.location`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("location", ...args);
   }
   /**
    * Another Encounter this encounter is part of
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.partOf`
    */
-  partOf(): this {
-    return this;
+  partOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("part-of", ...args);
   }
   /**
    * Role of participant in encounter
    * @fhirSearchType `token`
    * @fhirPath `Encounter.participant.type`
    */
-  participantType(): this {
-    return this;
+  participantType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("participant-type", ...args);
   }
   /**
    * Persons involved in the encounter other than the patient
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.participant.individual`
    */
-  participant(): this {
-    return this;
+  participant(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("participant", ...args);
   }
   /**
    * Persons involved in the encounter other than the patient
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.participant.individual.where(resolve() is Practitioner)`
    */
-  practitioner(): this {
-    return this;
+  practitioner(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("practitioner", ...args);
   }
   /**
    * Coded reason the encounter takes place
    * @fhirSearchType `token`
    * @fhirPath `Encounter.reasonCode`
    */
-  reasonCode(): this {
-    return this;
+  reasonCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("reason-code", ...args);
   }
   /**
    * Reason the encounter takes place (reference)
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.reasonReference`
    */
-  reasonReference(): this {
-    return this;
+  reasonReference(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("reason-reference", ...args);
   }
   /**
    * The organization (facility) responsible for this encounter
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.serviceProvider`
    */
-  serviceProvider(): this {
-    return this;
+  serviceProvider(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("service-provider", ...args);
   }
   /**
    * Wheelchair, translator, stretcher, etc.
    * @fhirSearchType `token`
    * @fhirPath `Encounter.hospitalization.specialArrangement`
    */
-  specialArrangement(): this {
-    return this;
+  specialArrangement(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("special-arrangement", ...args);
   }
   /**
    * planned | arrived | triaged | in-progress | onleave | finished | cancelled +
    * @fhirSearchType `token`
    * @fhirPath `Encounter.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The patient or group present at the encounter
    * @fhirSearchType `reference`
    * @fhirPath `Encounter.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9448,8 +10463,8 @@ export class EncounterFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9520,8 +10535,10 @@ export class EncounterFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9596,8 +10613,10 @@ export class EncounterFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9618,8 +10637,8 @@ export class EncounterFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.type | Composition.type | DocumentManifest.type | DocumentReference.type | Encounter.type | EpisodeOfCare.type`
  */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -9631,32 +10650,38 @@ export class EndpointFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Endpoint.connectionType`
    */
-  connectionType(): this {
-    return this;
+  connectionType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("connection-type", ...args);
   }
   /**
    * Identifies this endpoint across multiple systems
    * @fhirSearchType `token`
    * @fhirPath `Endpoint.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * A name that this endpoint can be identified by
    * @fhirSearchType `string`
    * @fhirPath `Endpoint.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * The organization that is managing the endpoint
    * @fhirSearchType `reference`
    * @fhirPath `Endpoint.managingOrganization`
    */
-  organization(): this {
-    return this;
+  organization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("organization", ...args);
   }
   /**
    * The type of content that may be used at this endpoint (e.g. XDS Discharge
@@ -9664,16 +10689,20 @@ export class EndpointFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Endpoint.payloadType`
    */
-  payloadType(): this {
-    return this;
+  payloadType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("payload-type", ...args);
   }
   /**
    * The current status of the Endpoint (usually expected to be active)
    * @fhirSearchType `token`
    * @fhirPath `Endpoint.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -9685,32 +10714,40 @@ export class EnrollmentRequestFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `token`
    * @fhirPath `EnrollmentRequest.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The party to be enrolled
    * @fhirSearchType `reference`
    * @fhirPath `EnrollmentRequest.candidate`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The status of the enrollment
    * @fhirSearchType `token`
    * @fhirPath `EnrollmentRequest.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The party to be enrolled
    * @fhirSearchType `reference`
    * @fhirPath `EnrollmentRequest.candidate`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
 }
 
@@ -9722,24 +10759,30 @@ export class EnrollmentResponseFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `token`
    * @fhirPath `EnrollmentResponse.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The reference to the claim
    * @fhirSearchType `reference`
    * @fhirPath `EnrollmentResponse.request`
    */
-  request(): this {
-    return this;
+  request(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("request", ...args);
   }
   /**
    * The status of the enrollment response
    * @fhirSearchType `token`
    * @fhirPath `EnrollmentResponse.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -9751,24 +10794,30 @@ export class EpisodeOfCareFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `reference`
    * @fhirPath `EpisodeOfCare.careManager.where(resolve() is Practitioner)`
    */
-  careManager(): this {
-    return this;
+  careManager(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("care-manager", ...args);
   }
   /**
    * Conditions/problems/diagnoses this episode of care is for
    * @fhirSearchType `reference`
    * @fhirPath `EpisodeOfCare.diagnosis.condition`
    */
-  condition(): this {
-    return this;
+  condition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("condition", ...args);
   }
   /**
    * Incoming Referral Request
    * @fhirSearchType `reference`
    * @fhirPath `EpisodeOfCare.referralRequest`
    */
-  incomingReferral(): this {
-    return this;
+  incomingReferral(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("incoming-referral", ...args);
   }
   /**
    * The organization that has assumed the specific responsibilities of this
@@ -9776,8 +10825,10 @@ export class EpisodeOfCareFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `reference`
    * @fhirPath `EpisodeOfCare.managingOrganization`
    */
-  organization(): this {
-    return this;
+  organization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("organization", ...args);
   }
   /**
    * The current status of the Episode of Care as provided (does not check the status
@@ -9785,8 +10836,10 @@ export class EpisodeOfCareFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `token`
    * @fhirPath `EpisodeOfCare.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9829,8 +10882,8 @@ export class EpisodeOfCareFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9901,8 +10954,10 @@ export class EpisodeOfCareFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9977,8 +11032,10 @@ export class EpisodeOfCareFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
  * Multiple Resources: 
@@ -9999,8 +11056,8 @@ export class EpisodeOfCareFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.type | Composition.type | DocumentManifest.type | DocumentReference.type | Encounter.type | EpisodeOfCare.type`
  */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -10012,16 +11069,20 @@ export class EventDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
    * @fhirSearchType `reference`
    * @fhirPath `EventDefinition.relatedArtifact.where(type='composed-of').resource`
    */
-  composedOf(): this {
-    return this;
+  composedOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("composed-of", ...args);
   }
   /**
    * A quantity- or range-valued use context assigned to the event definition
    * @fhirSearchType `quantity`
    * @fhirPath `(EventDefinition.useContext.value as Quantity) | (EventDefinition.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the event
@@ -10029,160 +11090,192 @@ export class EventDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
    * @fhirSearchType `composite`
    * @fhirPath `EventDefinition.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the event definition
    * @fhirSearchType `composite`
    * @fhirPath `EventDefinition.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the event definition
    * @fhirSearchType `token`
    * @fhirPath `EventDefinition.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the event definition
    * @fhirSearchType `token`
    * @fhirPath `(EventDefinition.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The event definition publication date
    * @fhirSearchType `date`
    * @fhirPath `EventDefinition.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `EventDefinition.relatedArtifact.where(type='depends-on').resource`
    */
-  dependsOn(): this {
-    return this;
+  dependsOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("depends-on", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `EventDefinition.relatedArtifact.where(type='derived-from').resource`
    */
-  derivedFrom(): this {
-    return this;
+  derivedFrom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("derived-from", ...args);
   }
   /**
    * The description of the event definition
    * @fhirSearchType `string`
    * @fhirPath `EventDefinition.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * The time during which the event definition is intended to be in use
    * @fhirSearchType `date`
    * @fhirPath `EventDefinition.effectivePeriod`
    */
-  effective(): this {
-    return this;
+  effective(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective", ...args);
   }
   /**
    * External identifier for the event definition
    * @fhirSearchType `token`
    * @fhirPath `EventDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the event definition
    * @fhirSearchType `token`
    * @fhirPath `EventDefinition.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Computationally friendly name of the event definition
    * @fhirSearchType `string`
    * @fhirPath `EventDefinition.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `EventDefinition.relatedArtifact.where(type='predecessor').resource`
    */
-  predecessor(): this {
-    return this;
+  predecessor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("predecessor", ...args);
   }
   /**
    * Name of the publisher of the event definition
    * @fhirSearchType `string`
    * @fhirPath `EventDefinition.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the event definition
    * @fhirSearchType `token`
    * @fhirPath `EventDefinition.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `EventDefinition.relatedArtifact.where(type='successor').resource`
    */
-  successor(): this {
-    return this;
+  successor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("successor", ...args);
   }
   /**
    * The human-friendly name of the event definition
    * @fhirSearchType `string`
    * @fhirPath `EventDefinition.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * Topics associated with the module
    * @fhirSearchType `token`
    * @fhirPath `EventDefinition.topic`
    */
-  topic(): this {
-    return this;
+  topic(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("topic", ...args);
   }
   /**
    * The uri that identifies the event definition
    * @fhirSearchType `uri`
    * @fhirPath `EventDefinition.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the event definition
    * @fhirSearchType `token`
    * @fhirPath `EventDefinition.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -10194,104 +11287,126 @@ export class EvidenceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `quantity`
    * @fhirPath `(Evidence.useContext.value as Quantity) | (Evidence.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the evidence
    * @fhirSearchType `composite`
    * @fhirPath `Evidence.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the evidence
    * @fhirSearchType `composite`
    * @fhirPath `Evidence.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the evidence
    * @fhirSearchType `token`
    * @fhirPath `Evidence.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the evidence
    * @fhirSearchType `token`
    * @fhirPath `(Evidence.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The evidence publication date
    * @fhirSearchType `date`
    * @fhirPath `Evidence.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * The description of the evidence
    * @fhirSearchType `string`
    * @fhirPath `Evidence.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * External identifier for the evidence
    * @fhirSearchType `token`
    * @fhirPath `Evidence.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Name of the publisher of the evidence
    * @fhirSearchType `string`
    * @fhirPath `Evidence.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the evidence
    * @fhirSearchType `token`
    * @fhirPath `Evidence.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The human-friendly name of the evidence
    * @fhirSearchType `string`
    * @fhirPath `Evidence.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * The uri that identifies the evidence
    * @fhirSearchType `uri`
    * @fhirPath `Evidence.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the evidence
    * @fhirSearchType `token`
    * @fhirPath `Evidence.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -10303,8 +11418,10 @@ export class EvidenceReportFhirSearchBuilder extends DomainResourceFhirSearchBui
    * @fhirSearchType `quantity`
    * @fhirPath `(EvidenceReport.useContext.value as Quantity) | (EvidenceReport.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the evidence
@@ -10312,64 +11429,78 @@ export class EvidenceReportFhirSearchBuilder extends DomainResourceFhirSearchBui
    * @fhirSearchType `composite`
    * @fhirPath `EvidenceReport.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the evidence report
    * @fhirSearchType `composite`
    * @fhirPath `EvidenceReport.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the evidence report
    * @fhirSearchType `token`
    * @fhirPath `EvidenceReport.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the evidence report
    * @fhirSearchType `token`
    * @fhirPath `(EvidenceReport.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * External identifier for the evidence report
    * @fhirSearchType `token`
    * @fhirPath `EvidenceReport.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Name of the publisher of the evidence report
    * @fhirSearchType `string`
    * @fhirPath `EvidenceReport.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the evidence report
    * @fhirSearchType `token`
    * @fhirPath `EvidenceReport.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The uri that identifies the evidence report
    * @fhirSearchType `uri`
    * @fhirPath `EvidenceReport.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
 }
 
@@ -10381,8 +11512,10 @@ export class EvidenceVariableFhirSearchBuilder extends DomainResourceFhirSearchB
    * @fhirSearchType `quantity`
    * @fhirPath `(EvidenceVariable.useContext.value as Quantity) | (EvidenceVariable.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the evidence
@@ -10390,104 +11523,124 @@ export class EvidenceVariableFhirSearchBuilder extends DomainResourceFhirSearchB
    * @fhirSearchType `composite`
    * @fhirPath `EvidenceVariable.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the evidence variable
    * @fhirSearchType `composite`
    * @fhirPath `EvidenceVariable.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the evidence variable
    * @fhirSearchType `token`
    * @fhirPath `EvidenceVariable.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the evidence variable
    * @fhirSearchType `token`
    * @fhirPath `(EvidenceVariable.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The evidence variable publication date
    * @fhirSearchType `date`
    * @fhirPath `EvidenceVariable.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * The description of the evidence variable
    * @fhirSearchType `string`
    * @fhirPath `EvidenceVariable.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * External identifier for the evidence variable
    * @fhirSearchType `token`
    * @fhirPath `EvidenceVariable.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Computationally friendly name of the evidence variable
    * @fhirSearchType `string`
    * @fhirPath `EvidenceVariable.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * Name of the publisher of the evidence variable
    * @fhirSearchType `string`
    * @fhirPath `EvidenceVariable.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the evidence variable
    * @fhirSearchType `token`
    * @fhirPath `EvidenceVariable.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The human-friendly name of the evidence variable
    * @fhirSearchType `string`
    * @fhirPath `EvidenceVariable.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * The uri that identifies the evidence variable
    * @fhirSearchType `uri`
    * @fhirPath `EvidenceVariable.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the evidence variable
    * @fhirSearchType `token`
    * @fhirPath `EvidenceVariable.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -10499,8 +11652,10 @@ export class ExampleScenarioFhirSearchBuilder extends DomainResourceFhirSearchBu
    * @fhirSearchType `quantity`
    * @fhirPath `(ExampleScenario.useContext.value as Quantity) | (ExampleScenario.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the example
@@ -10508,96 +11663,114 @@ export class ExampleScenarioFhirSearchBuilder extends DomainResourceFhirSearchBu
    * @fhirSearchType `composite`
    * @fhirPath `ExampleScenario.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the example scenario
    * @fhirSearchType `composite`
    * @fhirPath `ExampleScenario.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the example scenario
    * @fhirSearchType `token`
    * @fhirPath `ExampleScenario.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the example scenario
    * @fhirSearchType `token`
    * @fhirPath `(ExampleScenario.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The example scenario publication date
    * @fhirSearchType `date`
    * @fhirPath `ExampleScenario.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * External identifier for the example scenario
    * @fhirSearchType `token`
    * @fhirPath `ExampleScenario.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the example scenario
    * @fhirSearchType `token`
    * @fhirPath `ExampleScenario.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Computationally friendly name of the example scenario
    * @fhirSearchType `string`
    * @fhirPath `ExampleScenario.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * Name of the publisher of the example scenario
    * @fhirSearchType `string`
    * @fhirPath `ExampleScenario.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the example scenario
    * @fhirSearchType `token`
    * @fhirPath `ExampleScenario.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The uri that identifies the example scenario
    * @fhirSearchType `uri`
    * @fhirPath `ExampleScenario.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the example scenario
    * @fhirSearchType `token`
    * @fhirPath `ExampleScenario.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -10609,136 +11782,170 @@ export class ExplanationOfBenefitFhirSearchBuilder extends DomainResourceFhirSea
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.careTeam.provider`
    */
-  careTeam(): this {
-    return this;
+  careTeam(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("care-team", ...args);
   }
   /**
    * The reference to the claim
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.claim`
    */
-  claim(): this {
-    return this;
+  claim(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("claim", ...args);
   }
   /**
    * The plan under which the claim was adjudicated
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.insurance.coverage`
    */
-  coverage(): this {
-    return this;
+  coverage(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("coverage", ...args);
   }
   /**
    * The creation date for the EOB
    * @fhirSearchType `date`
    * @fhirPath `ExplanationOfBenefit.created`
    */
-  created(): this {
-    return this;
+  created(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("created", ...args);
   }
   /**
    * UDI associated with a line item detail product or service
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.item.detail.udi`
    */
-  detailUdi(): this {
-    return this;
+  detailUdi(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("detail-udi", ...args);
   }
   /**
    * The contents of the disposition message
    * @fhirSearchType `string`
    * @fhirPath `ExplanationOfBenefit.disposition`
    */
-  disposition(): this {
-    return this;
+  disposition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("disposition", ...args);
   }
   /**
    * Encounters associated with a billed line item
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.item.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * The party responsible for the entry of the Claim
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.enterer`
    */
-  enterer(): this {
-    return this;
+  enterer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("enterer", ...args);
   }
   /**
    * Facility responsible for the goods and services
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.facility`
    */
-  facility(): this {
-    return this;
+  facility(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("facility", ...args);
   }
   /**
    * The business identifier of the Explanation of Benefit
    * @fhirSearchType `token`
    * @fhirPath `ExplanationOfBenefit.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * UDI associated with a line item product or service
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.item.udi`
    */
-  itemUdi(): this {
-    return this;
+  itemUdi(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("item-udi", ...args);
   }
   /**
    * The reference to the patient
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.patient`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The party receiving any payment for the Claim
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.payee.party`
    */
-  payee(): this {
-    return this;
+  payee(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("payee", ...args);
   }
   /**
    * UDI associated with a procedure
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.procedure.udi`
    */
-  procedureUdi(): this {
-    return this;
+  procedureUdi(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("procedure-udi", ...args);
   }
   /**
    * The reference to the provider
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.provider`
    */
-  provider(): this {
-    return this;
+  provider(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("provider", ...args);
   }
   /**
    * Status of the instance
    * @fhirSearchType `token`
    * @fhirPath `ExplanationOfBenefit.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * UDI associated with a line item detail subdetail product or service
    * @fhirSearchType `reference`
    * @fhirPath `ExplanationOfBenefit.item.detail.subDetail.udi`
    */
-  subdetailUdi(): this {
-    return this;
+  subdetailUdi(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subdetail-udi", ...args);
   }
 }
 
@@ -10750,40 +11957,48 @@ export class FamilyMemberHistoryFhirSearchBuilder extends DomainResourceFhirSear
    * @fhirSearchType `reference`
    * @fhirPath `FamilyMemberHistory.instantiatesCanonical`
    */
-  instantiatesCanonical(): this {
-    return this;
+  instantiatesCanonical(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("instantiates-canonical", ...args);
   }
   /**
    * Instantiates external protocol or definition
    * @fhirSearchType `uri`
    * @fhirPath `FamilyMemberHistory.instantiatesUri`
    */
-  instantiatesUri(): this {
-    return this;
+  instantiatesUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("instantiates-uri", ...args);
   }
   /**
    * A search by a relationship type
    * @fhirSearchType `token`
    * @fhirPath `FamilyMemberHistory.relationship`
    */
-  relationship(): this {
-    return this;
+  relationship(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("relationship", ...args);
   }
   /**
    * A search by a sex code of a family member
    * @fhirSearchType `token`
    * @fhirPath `FamilyMemberHistory.sex`
    */
-  sex(): this {
-    return this;
+  sex(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("sex", ...args);
   }
   /**
    * partial | completed | entered-in-error | health-unknown
    * @fhirSearchType `token`
    * @fhirPath `FamilyMemberHistory.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -10822,8 +12037,8 @@ export class FamilyMemberHistoryFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -10866,8 +12081,8 @@ export class FamilyMemberHistoryFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -10938,8 +12153,10 @@ export class FamilyMemberHistoryFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11014,8 +12231,10 @@ export class FamilyMemberHistoryFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -11027,24 +12246,30 @@ export class FlagFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Flag.author`
    */
-  author(): this {
-    return this;
+  author(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("author", ...args);
   }
   /**
    * Business identifier
    * @fhirSearchType `token`
    * @fhirPath `Flag.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The identity of a subject to list flags for
    * @fhirSearchType `reference`
    * @fhirPath `Flag.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11087,8 +12312,8 @@ export class FlagFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11120,8 +12345,10 @@ export class FlagFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11196,8 +12423,10 @@ export class FlagFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -11210,16 +12439,20 @@ export class GoalFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Goal.achievementStatus`
    */
-  achievementStatus(): this {
-    return this;
+  achievementStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("achievement-status", ...args);
   }
   /**
    * E.g. Treatment, dietary, behavioral, etc.
    * @fhirSearchType `token`
    * @fhirPath `Goal.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * proposed | planned | accepted | active | on-hold | completed | cancelled |
@@ -11227,32 +12460,40 @@ export class GoalFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Goal.lifecycleStatus`
    */
-  lifecycleStatus(): this {
-    return this;
+  lifecycleStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("lifecycle-status", ...args);
   }
   /**
    * When goal pursuit begins
    * @fhirSearchType `date`
    * @fhirPath `(Goal.start as date)`
    */
-  startDate(): this {
-    return this;
+  startDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("start-date", ...args);
   }
   /**
    * Who this goal is intended for
    * @fhirSearchType `reference`
    * @fhirPath `Goal.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * Reach goal on or before
    * @fhirSearchType `date`
    * @fhirPath `(Goal.target.due as date)`
    */
-  targetDate(): this {
-    return this;
+  targetDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("target-date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11323,8 +12564,10 @@ export class GoalFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11399,8 +12642,10 @@ export class GoalFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -11412,8 +12657,8 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
    * @fhirSearchType `token`
    * @fhirPath `GraphDefinition.start`
    */
-  start(): this {
-    return this;
+  start(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("start", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11459,8 +12704,10 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11508,8 +12755,10 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11552,8 +12801,10 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11595,8 +12846,10 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11637,8 +12890,10 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11676,8 +12931,8 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11716,8 +12971,10 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11755,8 +13012,10 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11798,8 +13057,8 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11839,8 +13098,10 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11879,8 +13140,10 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11919,8 +13182,8 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -11957,8 +13220,10 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -11970,80 +13235,94 @@ export class GroupFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Group.actual`
    */
-  actual(): this {
-    return this;
+  actual(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("actual", ...args);
   }
   /**
    * A composite of both characteristic and value
    * @fhirSearchType `composite`
    * @fhirPath `Group.characteristic`
    */
-  characteristicValue(): this {
-    return this;
+  characteristicValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("characteristic-value", ...args);
   }
   /**
    * Kind of characteristic
    * @fhirSearchType `token`
    * @fhirPath `Group.characteristic.code`
    */
-  characteristic(): this {
-    return this;
+  characteristic(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("characteristic", ...args);
   }
   /**
    * The kind of resources contained
    * @fhirSearchType `token`
    * @fhirPath `Group.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * Group includes or excludes
    * @fhirSearchType `token`
    * @fhirPath `Group.characteristic.exclude`
    */
-  exclude(): this {
-    return this;
+  exclude(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("exclude", ...args);
   }
   /**
    * Unique id
    * @fhirSearchType `token`
    * @fhirPath `Group.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Entity that is the custodian of the Group's definition
    * @fhirSearchType `reference`
    * @fhirPath `Group.managingEntity`
    */
-  managingEntity(): this {
-    return this;
+  managingEntity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("managing-entity", ...args);
   }
   /**
    * Reference to the group member
    * @fhirSearchType `reference`
    * @fhirPath `Group.member.entity`
    */
-  member(): this {
-    return this;
+  member(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("member", ...args);
   }
   /**
    * The type of resources the group contains
    * @fhirSearchType `token`
    * @fhirPath `Group.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
   /**
    * Value held by characteristic
    * @fhirSearchType `token`
    * @fhirPath `(Group.characteristic.value as CodeableConcept) | (Group.characteristic.value as boolean)`
    */
-  value(): this {
-    return this;
+  value(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("value", ...args);
   }
 }
 
@@ -12055,32 +13334,40 @@ export class GuidanceResponseFhirSearchBuilder extends DomainResourceFhirSearchB
    * @fhirSearchType `token`
    * @fhirPath `GuidanceResponse.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The identity of a patient to search for guidance response results
    * @fhirSearchType `reference`
    * @fhirPath `GuidanceResponse.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The identifier of the request associated with the response
    * @fhirSearchType `token`
    * @fhirPath `GuidanceResponse.requestIdentifier`
    */
-  request(): this {
-    return this;
+  request(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("request", ...args);
   }
   /**
    * The subject that the guidance response is about
    * @fhirSearchType `reference`
    * @fhirPath `GuidanceResponse.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
 }
 
@@ -12092,24 +13379,30 @@ export class HealthcareServiceFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `token`
    * @fhirPath `HealthcareService.active`
    */
-  active(): this {
-    return this;
+  active(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("active", ...args);
   }
   /**
    * One of the HealthcareService's characteristics
    * @fhirSearchType `token`
    * @fhirPath `HealthcareService.characteristic`
    */
-  characteristic(): this {
-    return this;
+  characteristic(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("characteristic", ...args);
   }
   /**
    * Location(s) service is intended for/available to
    * @fhirSearchType `reference`
    * @fhirPath `HealthcareService.coverageArea`
    */
-  coverageArea(): this {
-    return this;
+  coverageArea(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("coverage-area", ...args);
   }
   /**
    * Technical endpoints providing access to electronic services operated for the
@@ -12117,72 +13410,88 @@ export class HealthcareServiceFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `reference`
    * @fhirPath `HealthcareService.endpoint`
    */
-  endpoint(): this {
-    return this;
+  endpoint(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("endpoint", ...args);
   }
   /**
    * External identifiers for this item
    * @fhirSearchType `token`
    * @fhirPath `HealthcareService.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The location of the Healthcare Service
    * @fhirSearchType `reference`
    * @fhirPath `HealthcareService.location`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("location", ...args);
   }
   /**
    * A portion of the Healthcare service name
    * @fhirSearchType `string`
    * @fhirPath `HealthcareService.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * The organization that provides this Healthcare Service
    * @fhirSearchType `reference`
    * @fhirPath `HealthcareService.providedBy`
    */
-  organization(): this {
-    return this;
+  organization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("organization", ...args);
   }
   /**
    * One of the Programs supported by this HealthcareService
    * @fhirSearchType `token`
    * @fhirPath `HealthcareService.program`
    */
-  program(): this {
-    return this;
+  program(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("program", ...args);
   }
   /**
    * Service Category of the Healthcare Service
    * @fhirSearchType `token`
    * @fhirPath `HealthcareService.category`
    */
-  serviceCategory(): this {
-    return this;
+  serviceCategory(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("service-category", ...args);
   }
   /**
    * The type of service provided by this healthcare service
    * @fhirSearchType `token`
    * @fhirPath `HealthcareService.type`
    */
-  serviceType(): this {
-    return this;
+  serviceType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("service-type", ...args);
   }
   /**
    * The specialty of the service provided by this healthcare service
    * @fhirSearchType `token`
    * @fhirPath `HealthcareService.specialty`
    */
-  specialty(): this {
-    return this;
+  specialty(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("specialty", ...args);
   }
 }
 
@@ -12194,120 +13503,150 @@ export class ImagingStudyFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `reference`
    * @fhirPath `ImagingStudy.basedOn`
    */
-  basedon(): this {
-    return this;
+  basedon(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("basedon", ...args);
   }
   /**
    * The body site studied
    * @fhirSearchType `token`
    * @fhirPath `ImagingStudy.series.bodySite`
    */
-  bodysite(): this {
-    return this;
+  bodysite(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("bodysite", ...args);
   }
   /**
    * The type of the instance
    * @fhirSearchType `token`
    * @fhirPath `ImagingStudy.series.instance.sopClass`
    */
-  dicomClass(): this {
-    return this;
+  dicomClass(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("dicom-class", ...args);
   }
   /**
    * The context of the study
    * @fhirSearchType `reference`
    * @fhirPath `ImagingStudy.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * The endpoint for the study or series
    * @fhirSearchType `reference`
    * @fhirPath `ImagingStudy.endpoint | ImagingStudy.series.endpoint`
    */
-  endpoint(): this {
-    return this;
+  endpoint(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("endpoint", ...args);
   }
   /**
    * SOP Instance UID for an instance
    * @fhirSearchType `token`
    * @fhirPath `ImagingStudy.series.instance.uid`
    */
-  instance(): this {
-    return this;
+  instance(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("instance", ...args);
   }
   /**
    * Who interpreted the images
    * @fhirSearchType `reference`
    * @fhirPath `ImagingStudy.interpreter`
    */
-  interpreter(): this {
-    return this;
+  interpreter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("interpreter", ...args);
   }
   /**
    * The modality of the series
    * @fhirSearchType `token`
    * @fhirPath `ImagingStudy.series.modality`
    */
-  modality(): this {
-    return this;
+  modality(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("modality", ...args);
   }
   /**
    * The person who performed the study
    * @fhirSearchType `reference`
    * @fhirPath `ImagingStudy.series.performer.actor`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer", ...args);
   }
   /**
    * The reason for the study
    * @fhirSearchType `token`
    * @fhirPath `ImagingStudy.reasonCode`
    */
-  reason(): this {
-    return this;
+  reason(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("reason", ...args);
   }
   /**
    * The referring physician
    * @fhirSearchType `reference`
    * @fhirPath `ImagingStudy.referrer`
    */
-  referrer(): this {
-    return this;
+  referrer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("referrer", ...args);
   }
   /**
    * DICOM Series Instance UID for a series
    * @fhirSearchType `token`
    * @fhirPath `ImagingStudy.series.uid`
    */
-  series(): this {
-    return this;
+  series(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("series", ...args);
   }
   /**
    * When the study was started
    * @fhirSearchType `date`
    * @fhirPath `ImagingStudy.started`
    */
-  started(): this {
-    return this;
+  started(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("started", ...args);
   }
   /**
    * The status of the study
    * @fhirSearchType `token`
    * @fhirPath `ImagingStudy.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Who the study is about
    * @fhirSearchType `reference`
    * @fhirPath `ImagingStudy.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -12378,8 +13717,10 @@ export class ImagingStudyFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -12454,8 +13795,10 @@ export class ImagingStudyFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -12468,104 +13811,130 @@ export class ImmunizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `reference`
    * @fhirPath `Immunization.location`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("location", ...args);
   }
   /**
    * Vaccine Lot Number
    * @fhirSearchType `string`
    * @fhirPath `Immunization.lotNumber`
    */
-  lotNumber(): this {
-    return this;
+  lotNumber(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("lot-number", ...args);
   }
   /**
    * Vaccine Manufacturer
    * @fhirSearchType `reference`
    * @fhirPath `Immunization.manufacturer`
    */
-  manufacturer(): this {
-    return this;
+  manufacturer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("manufacturer", ...args);
   }
   /**
    * The practitioner or organization who played a role in the vaccination
    * @fhirSearchType `reference`
    * @fhirPath `Immunization.performer.actor`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer", ...args);
   }
   /**
    * When reaction started
    * @fhirSearchType `date`
    * @fhirPath `Immunization.reaction.date`
    */
-  reactionDate(): this {
-    return this;
+  reactionDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("reaction-date", ...args);
   }
   /**
    * Additional information on reaction
    * @fhirSearchType `reference`
    * @fhirPath `Immunization.reaction.detail`
    */
-  reaction(): this {
-    return this;
+  reaction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("reaction", ...args);
   }
   /**
    * Reason why the vaccine was administered
    * @fhirSearchType `token`
    * @fhirPath `Immunization.reasonCode`
    */
-  reasonCode(): this {
-    return this;
+  reasonCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("reason-code", ...args);
   }
   /**
    * Why immunization occurred
    * @fhirSearchType `reference`
    * @fhirPath `Immunization.reasonReference`
    */
-  reasonReference(): this {
-    return this;
+  reasonReference(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("reason-reference", ...args);
   }
   /**
    * The series being followed by the provider
    * @fhirSearchType `string`
    * @fhirPath `Immunization.protocolApplied.series`
    */
-  series(): this {
-    return this;
+  series(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("series", ...args);
   }
   /**
    * Reason why the vaccine was not administered
    * @fhirSearchType `token`
    * @fhirPath `Immunization.statusReason`
    */
-  statusReason(): this {
-    return this;
+  statusReason(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status-reason", ...args);
   }
   /**
    * Immunization event status
    * @fhirSearchType `token`
    * @fhirPath `Immunization.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The target disease the dose is being administered against
    * @fhirSearchType `token`
    * @fhirPath `Immunization.protocolApplied.targetDisease`
    */
-  targetDisease(): this {
-    return this;
+  targetDisease(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("target-disease", ...args);
   }
   /**
    * Vaccine Product Administered
    * @fhirSearchType `token`
    * @fhirPath `Immunization.vaccineCode`
    */
-  vaccineCode(): this {
-    return this;
+  vaccineCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("vaccine-code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -12608,8 +13977,8 @@ export class ImmunizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -12680,8 +14049,10 @@ export class ImmunizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -12756,8 +14127,10 @@ export class ImmunizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -12769,56 +14142,68 @@ export class ImmunizationEvaluationFhirSearchBuilder extends DomainResourceFhirS
    * @fhirSearchType `date`
    * @fhirPath `ImmunizationEvaluation.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * The status of the dose relative to published recommendations
    * @fhirSearchType `token`
    * @fhirPath `ImmunizationEvaluation.doseStatus`
    */
-  doseStatus(): this {
-    return this;
+  doseStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("dose-status", ...args);
   }
   /**
    * ID of the evaluation
    * @fhirSearchType `token`
    * @fhirPath `ImmunizationEvaluation.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The vaccine administration event being evaluated
    * @fhirSearchType `reference`
    * @fhirPath `ImmunizationEvaluation.immunizationEvent`
    */
-  immunizationEvent(): this {
-    return this;
+  immunizationEvent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("immunization-event", ...args);
   }
   /**
    * The patient being evaluated
    * @fhirSearchType `reference`
    * @fhirPath `ImmunizationEvaluation.patient`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * Immunization evaluation status
    * @fhirSearchType `token`
    * @fhirPath `ImmunizationEvaluation.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The vaccine preventable disease being evaluated against
    * @fhirSearchType `token`
    * @fhirPath `ImmunizationEvaluation.targetDisease`
    */
-  targetDisease(): this {
-    return this;
+  targetDisease(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("target-disease", ...args);
   }
 }
 
@@ -12830,64 +14215,78 @@ export class ImmunizationRecommendationFhirSearchBuilder extends DomainResourceF
    * @fhirSearchType `date`
    * @fhirPath `ImmunizationRecommendation.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * Business identifier
    * @fhirSearchType `token`
    * @fhirPath `ImmunizationRecommendation.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Patient observations supporting recommendation
    * @fhirSearchType `reference`
    * @fhirPath `ImmunizationRecommendation.recommendation.supportingPatientInformation`
    */
-  information(): this {
-    return this;
+  information(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("information", ...args);
   }
   /**
    * Who this profile is for
    * @fhirSearchType `reference`
    * @fhirPath `ImmunizationRecommendation.patient`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * Vaccine recommendation status
    * @fhirSearchType `token`
    * @fhirPath `ImmunizationRecommendation.recommendation.forecastStatus`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Past immunizations supporting recommendation
    * @fhirSearchType `reference`
    * @fhirPath `ImmunizationRecommendation.recommendation.supportingImmunization`
    */
-  support(): this {
-    return this;
+  support(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("support", ...args);
   }
   /**
    * Disease to be immunized against
    * @fhirSearchType `token`
    * @fhirPath `ImmunizationRecommendation.recommendation.targetDisease`
    */
-  targetDisease(): this {
-    return this;
+  targetDisease(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("target-disease", ...args);
   }
   /**
    * Vaccine  or vaccine group recommendation applies to
    * @fhirSearchType `token`
    * @fhirPath `ImmunizationRecommendation.recommendation.vaccineCode`
    */
-  vaccineType(): this {
-    return this;
+  vaccineType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("vaccine-type", ...args);
   }
 }
 
@@ -12899,32 +14298,40 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
    * @fhirSearchType `reference`
    * @fhirPath `ImplementationGuide.dependsOn.uri`
    */
-  dependsOn(): this {
-    return this;
+  dependsOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("depends-on", ...args);
   }
   /**
    * For testing purposes, not real usage
    * @fhirSearchType `token`
    * @fhirPath `ImplementationGuide.experimental`
    */
-  experimental(): this {
-    return this;
+  experimental(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("experimental", ...args);
   }
   /**
    * Profile that all resources must conform to
    * @fhirSearchType `reference`
    * @fhirPath `ImplementationGuide.global.profile`
    */
-  global(): this {
-    return this;
+  global(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("global", ...args);
   }
   /**
    * Location of the resource
    * @fhirSearchType `reference`
    * @fhirPath `ImplementationGuide.definition.resource.reference`
    */
-  resource(): this {
-    return this;
+  resource(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("resource", ...args);
   }
   /**
  * Multiple Resources: 
@@ -12970,8 +14377,10 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13019,8 +14428,10 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13063,8 +14474,10 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13106,8 +14519,10 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13148,8 +14563,10 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13187,8 +14604,8 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13227,8 +14644,10 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13266,8 +14685,10 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13309,8 +14730,8 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13350,8 +14771,10 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13390,8 +14813,10 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13422,8 +14847,10 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title`
  */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13462,8 +14889,8 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -13500,8 +14927,10 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -13513,8 +14942,10 @@ export class IngredientFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `reference`
    * @fhirPath `Ingredient.for`
    */
-  for(): this {
-    return this;
+  for(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("for", ...args);
   }
   /**
    * A classification of the ingredient identifying its precise purpose(s) in the
@@ -13523,24 +14954,30 @@ export class IngredientFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `token`
    * @fhirPath `Ingredient.function`
    */
-  function(): this {
-    return this;
+  function(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("function", ...args);
   }
   /**
    * An identifier or code by which the ingredient can be referenced
    * @fhirSearchType `token`
    * @fhirPath `Ingredient.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The organization that manufactures this ingredient
    * @fhirSearchType `reference`
    * @fhirPath `Ingredient.manufacturer`
    */
-  manufacturer(): this {
-    return this;
+  manufacturer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("manufacturer", ...args);
   }
   /**
    * A classification of the ingredient identifying its purpose within the product,
@@ -13548,32 +14985,38 @@ export class IngredientFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `token`
    * @fhirPath `Ingredient.role`
    */
-  role(): this {
-    return this;
+  role(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("role", ...args);
   }
   /**
    * Reference to a concept (by class)
    * @fhirSearchType `token`
    * @fhirPath `Ingredient.substance.code.concept`
    */
-  substanceCode(): this {
-    return this;
+  substanceCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("substance-code", ...args);
   }
   /**
    * Reference to a resource (by instance)
    * @fhirSearchType `reference`
    * @fhirPath `Ingredient.substance.code.reference`
    */
-  substanceDefinition(): this {
-    return this;
+  substanceDefinition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("substance-definition", ...args);
   }
   /**
    * Reference to a resource (by instance)
    * @fhirSearchType `reference`
    * @fhirPath `Ingredient.substance.code.reference`
    */
-  substance(): this {
-    return this;
+  substance(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("substance", ...args);
   }
 }
 
@@ -13585,40 +15028,50 @@ export class InsurancePlanFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `string`
    * @fhirPath `InsurancePlan.contact.address.city`
    */
-  addressCity(): this {
-    return this;
+  addressCity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-city", ...args);
   }
   /**
    * A country specified in an address
    * @fhirSearchType `string`
    * @fhirPath `InsurancePlan.contact.address.country`
    */
-  addressCountry(): this {
-    return this;
+  addressCountry(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-country", ...args);
   }
   /**
    * A postal code specified in an address
    * @fhirSearchType `string`
    * @fhirPath `InsurancePlan.contact.address.postalCode`
    */
-  addressPostalcode(): this {
-    return this;
+  addressPostalcode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-postalcode", ...args);
   }
   /**
    * A state specified in an address
    * @fhirSearchType `string`
    * @fhirPath `InsurancePlan.contact.address.state`
    */
-  addressState(): this {
-    return this;
+  addressState(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-state", ...args);
   }
   /**
    * A use code specified in an address
    * @fhirSearchType `token`
    * @fhirPath `InsurancePlan.contact.address.use`
    */
-  addressUse(): this {
-    return this;
+  addressUse(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("address-use", ...args);
   }
   /**
    * A server defined search that may match any of the string fields in the Address,
@@ -13626,48 +15079,58 @@ export class InsurancePlanFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `string`
    * @fhirPath `InsurancePlan.contact.address`
    */
-  address(): this {
-    return this;
+  address(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address", ...args);
   }
   /**
    * Product administrator
    * @fhirSearchType `reference`
    * @fhirPath `InsurancePlan.administeredBy`
    */
-  administeredBy(): this {
-    return this;
+  administeredBy(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("administered-by", ...args);
   }
   /**
    * Technical endpoint
    * @fhirSearchType `reference`
    * @fhirPath `InsurancePlan.endpoint`
    */
-  endpoint(): this {
-    return this;
+  endpoint(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("endpoint", ...args);
   }
   /**
    * Any identifier for the organization (not the accreditation issuer's identifier)
    * @fhirSearchType `token`
    * @fhirPath `InsurancePlan.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * A portion of the organization's name or alias
    * @fhirSearchType `string`
    * @fhirPath `name | alias`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * An organization of which this organization forms a part
    * @fhirSearchType `reference`
    * @fhirPath `InsurancePlan.ownedBy`
    */
-  ownedBy(): this {
-    return this;
+  ownedBy(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("owned-by", ...args);
   }
   /**
    * A portion of the organization's name using some kind of phonetic matching
@@ -13675,24 +15138,28 @@ export class InsurancePlanFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `string`
    * @fhirPath `InsurancePlan.name`
    */
-  phonetic(): this {
-    return this;
+  phonetic(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("phonetic", ...args);
   }
   /**
    * Is the Organization record active
    * @fhirSearchType `token`
    * @fhirPath `InsurancePlan.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * A code for the type of organization
    * @fhirSearchType `token`
    * @fhirPath `InsurancePlan.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -13704,104 +15171,126 @@ export class InvoiceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Invoice.account`
    */
-  account(): this {
-    return this;
+  account(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("account", ...args);
   }
   /**
    * Invoice date / posting date
    * @fhirSearchType `date`
    * @fhirPath `Invoice.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * Business Identifier for item
    * @fhirSearchType `token`
    * @fhirPath `Invoice.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Issuing Organization of Invoice
    * @fhirSearchType `reference`
    * @fhirPath `Invoice.issuer`
    */
-  issuer(): this {
-    return this;
+  issuer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("issuer", ...args);
   }
   /**
    * Type of involvement in creation of this Invoice
    * @fhirSearchType `token`
    * @fhirPath `Invoice.participant.role`
    */
-  participantRole(): this {
-    return this;
+  participantRole(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("participant-role", ...args);
   }
   /**
    * Individual who was involved
    * @fhirSearchType `reference`
    * @fhirPath `Invoice.participant.actor`
    */
-  participant(): this {
-    return this;
+  participant(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("participant", ...args);
   }
   /**
    * Recipient(s) of goods and services
    * @fhirSearchType `reference`
    * @fhirPath `Invoice.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * Recipient of this invoice
    * @fhirSearchType `reference`
    * @fhirPath `Invoice.recipient`
    */
-  recipient(): this {
-    return this;
+  recipient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("recipient", ...args);
   }
   /**
    * draft | issued | balanced | cancelled | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `Invoice.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Recipient(s) of goods and services
    * @fhirSearchType `reference`
    * @fhirPath `Invoice.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * Gross total of this Invoice
    * @fhirSearchType `quantity`
    * @fhirPath `Invoice.totalGross`
    */
-  totalgross(): this {
-    return this;
+  totalgross(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("totalgross", ...args);
   }
   /**
    * Net total of this Invoice
    * @fhirSearchType `quantity`
    * @fhirPath `Invoice.totalNet`
    */
-  totalnet(): this {
-    return this;
+  totalnet(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("totalnet", ...args);
   }
   /**
    * Type of Invoice
    * @fhirSearchType `token`
    * @fhirPath `Invoice.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -13813,168 +15302,204 @@ export class LibraryFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Library.relatedArtifact.where(type='composed-of').resource`
    */
-  composedOf(): this {
-    return this;
+  composedOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("composed-of", ...args);
   }
   /**
    * The type of content in the library (e.g. text/cql)
    * @fhirSearchType `token`
    * @fhirPath `Library.content.contentType`
    */
-  contentType(): this {
-    return this;
+  contentType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("content-type", ...args);
   }
   /**
    * A quantity- or range-valued use context assigned to the library
    * @fhirSearchType `quantity`
    * @fhirPath `(Library.useContext.value as Quantity) | (Library.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the library
    * @fhirSearchType `composite`
    * @fhirPath `Library.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the library
    * @fhirSearchType `composite`
    * @fhirPath `Library.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the library
    * @fhirSearchType `token`
    * @fhirPath `Library.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the library
    * @fhirSearchType `token`
    * @fhirPath `(Library.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The library publication date
    * @fhirSearchType `date`
    * @fhirPath `Library.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `Library.relatedArtifact.where(type='depends-on').resource`
    */
-  dependsOn(): this {
-    return this;
+  dependsOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("depends-on", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `Library.relatedArtifact.where(type='derived-from').resource`
    */
-  derivedFrom(): this {
-    return this;
+  derivedFrom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("derived-from", ...args);
   }
   /**
    * The description of the library
    * @fhirSearchType `string`
    * @fhirPath `Library.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * The time during which the library is intended to be in use
    * @fhirSearchType `date`
    * @fhirPath `Library.effectivePeriod`
    */
-  effective(): this {
-    return this;
+  effective(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective", ...args);
   }
   /**
    * External identifier for the library
    * @fhirSearchType `token`
    * @fhirPath `Library.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the library
    * @fhirSearchType `token`
    * @fhirPath `Library.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Computationally friendly name of the library
    * @fhirSearchType `string`
    * @fhirPath `Library.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `Library.relatedArtifact.where(type='predecessor').resource`
    */
-  predecessor(): this {
-    return this;
+  predecessor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("predecessor", ...args);
   }
   /**
    * Name of the publisher of the library
    * @fhirSearchType `string`
    * @fhirPath `Library.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the library
    * @fhirSearchType `token`
    * @fhirPath `Library.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `Library.relatedArtifact.where(type='successor').resource`
    */
-  successor(): this {
-    return this;
+  successor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("successor", ...args);
   }
   /**
    * The human-friendly name of the library
    * @fhirSearchType `string`
    * @fhirPath `Library.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * Topics associated with the module
    * @fhirSearchType `token`
    * @fhirPath `Library.topic`
    */
-  topic(): this {
-    return this;
+  topic(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("topic", ...args);
   }
   /**
    * The type of the library (e.g. logic-library, model-definition, asset-collection,
@@ -13982,24 +15507,26 @@ export class LibraryFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Library.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
   /**
    * The uri that identifies the library
    * @fhirSearchType `uri`
    * @fhirPath `Library.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the library
    * @fhirSearchType `token`
    * @fhirPath `Library.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -14011,24 +15538,30 @@ export class LinkageFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Linkage.author`
    */
-  author(): this {
-    return this;
+  author(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("author", ...args);
   }
   /**
    * Matches on any item in the Linkage
    * @fhirSearchType `reference`
    * @fhirPath `Linkage.item.resource`
    */
-  item(): this {
-    return this;
+  item(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("item", ...args);
   }
   /**
    * Matches on any item in the Linkage with a type of 'source'
    * @fhirSearchType `reference`
    * @fhirPath `Linkage.item.resource`
    */
-  source(): this {
-    return this;
+  source(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("source", ...args);
   }
 }
 
@@ -14040,56 +15573,70 @@ export class ListFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `List.emptyReason`
    */
-  emptyReason(): this {
-    return this;
+  emptyReason(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("empty-reason", ...args);
   }
   /**
    * Actual entry
    * @fhirSearchType `reference`
    * @fhirPath `List.entry.item`
    */
-  item(): this {
-    return this;
+  item(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("item", ...args);
   }
   /**
    * The annotation  - text content (as markdown)
    * @fhirSearchType `string`
    * @fhirPath `List.note.text`
    */
-  notes(): this {
-    return this;
+  notes(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("notes", ...args);
   }
   /**
    * Who and/or what defined the list contents (aka Author)
    * @fhirSearchType `reference`
    * @fhirPath `List.source`
    */
-  source(): this {
-    return this;
+  source(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("source", ...args);
   }
   /**
    * current | retired | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `List.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * If all resources have the same subject
    * @fhirSearchType `reference`
    * @fhirPath `List.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * Descriptive name for the list
    * @fhirSearchType `string`
    * @fhirPath `List.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -14128,8 +15675,8 @@ export class ListFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -14172,8 +15719,8 @@ export class ListFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -14205,8 +15752,10 @@ export class ListFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -14277,8 +15826,10 @@ export class ListFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -14353,8 +15904,10 @@ export class ListFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -14366,72 +15919,88 @@ export class LocationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `string`
    * @fhirPath `Location.address.city`
    */
-  addressCity(): this {
-    return this;
+  addressCity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-city", ...args);
   }
   /**
    * A country specified in an address
    * @fhirSearchType `string`
    * @fhirPath `Location.address.country`
    */
-  addressCountry(): this {
-    return this;
+  addressCountry(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-country", ...args);
   }
   /**
    * A postal code specified in an address
    * @fhirSearchType `string`
    * @fhirPath `Location.address.postalCode`
    */
-  addressPostalcode(): this {
-    return this;
+  addressPostalcode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-postalcode", ...args);
   }
   /**
    * A state specified in an address
    * @fhirSearchType `string`
    * @fhirPath `Location.address.state`
    */
-  addressState(): this {
-    return this;
+  addressState(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-state", ...args);
   }
   /**
    * A use code specified in an address
    * @fhirSearchType `token`
    * @fhirPath `Location.address.use`
    */
-  addressUse(): this {
-    return this;
+  addressUse(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("address-use", ...args);
   }
   /**
    * A (part of the) address of the location
    * @fhirSearchType `string`
    * @fhirPath `Location.address`
    */
-  address(): this {
-    return this;
+  address(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address", ...args);
   }
   /**
    * Technical endpoints providing access to services operated for the location
    * @fhirSearchType `reference`
    * @fhirPath `Location.endpoint`
    */
-  endpoint(): this {
-    return this;
+  endpoint(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("endpoint", ...args);
   }
   /**
    * An identifier for the location
    * @fhirSearchType `token`
    * @fhirPath `Location.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * A portion of the location's name or alias
    * @fhirSearchType `string`
    * @fhirPath `Location.name | Location.alias`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Search for locations where the location.position is near to, or within a
@@ -14450,8 +16019,10 @@ Requires the near-distance parameter to be provided also
  * @fhirSearchType `special`
  * @fhirPath `Location.position`
  */
-  near(): this {
-    return this;
+  near(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["specialParam"]>>
+  ): this {
+    return this.specialParam("near", ...args);
   }
   /**
    * Searches for locations (typically bed/room) that have an operational status
@@ -14459,40 +16030,48 @@ Requires the near-distance parameter to be provided also
    * @fhirSearchType `token`
    * @fhirPath `Location.operationalStatus`
    */
-  operationalStatus(): this {
-    return this;
+  operationalStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("operational-status", ...args);
   }
   /**
    * Searches for locations that are managed by the provided organization
    * @fhirSearchType `reference`
    * @fhirPath `Location.managingOrganization`
    */
-  organization(): this {
-    return this;
+  organization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("organization", ...args);
   }
   /**
    * A location of which this location is a part
    * @fhirSearchType `reference`
    * @fhirPath `Location.partOf`
    */
-  partof(): this {
-    return this;
+  partof(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("partof", ...args);
   }
   /**
    * Searches for locations with a specific kind of status
    * @fhirSearchType `token`
    * @fhirPath `Location.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * A code for the type of location
    * @fhirSearchType `token`
    * @fhirPath `Location.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -14505,24 +16084,30 @@ export class ManufacturedItemDefinitionFhirSearchBuilder extends DomainResourceF
    * @fhirSearchType `token`
    * @fhirPath `ManufacturedItemDefinition.manufacturedDoseForm`
    */
-  doseForm(): this {
-    return this;
+  doseForm(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("dose-form", ...args);
   }
   /**
    * Unique identifier
    * @fhirSearchType `token`
    * @fhirPath `ManufacturedItemDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * An ingredient of this item
    * @fhirSearchType `token`
    * @fhirPath `ManufacturedItemDefinition.ingredient`
    */
-  ingredient(): this {
-    return this;
+  ingredient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("ingredient", ...args);
   }
 }
 
@@ -14534,176 +16119,212 @@ export class MeasureFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Measure.relatedArtifact.where(type='composed-of').resource`
    */
-  composedOf(): this {
-    return this;
+  composedOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("composed-of", ...args);
   }
   /**
    * A quantity- or range-valued use context assigned to the measure
    * @fhirSearchType `quantity`
    * @fhirPath `(Measure.useContext.value as Quantity) | (Measure.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the measure
    * @fhirSearchType `composite`
    * @fhirPath `Measure.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the measure
    * @fhirSearchType `composite`
    * @fhirPath `Measure.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the measure
    * @fhirSearchType `token`
    * @fhirPath `Measure.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the measure
    * @fhirSearchType `token`
    * @fhirPath `(Measure.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The measure publication date
    * @fhirSearchType `date`
    * @fhirPath `Measure.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `Measure.relatedArtifact.where(type='depends-on').resource | Measure.library`
    */
-  dependsOn(): this {
-    return this;
+  dependsOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("depends-on", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `Measure.relatedArtifact.where(type='derived-from').resource`
    */
-  derivedFrom(): this {
-    return this;
+  derivedFrom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("derived-from", ...args);
   }
   /**
    * The description of the measure
    * @fhirSearchType `string`
    * @fhirPath `Measure.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * The time during which the measure is intended to be in use
    * @fhirSearchType `date`
    * @fhirPath `Measure.effectivePeriod`
    */
-  effective(): this {
-    return this;
+  effective(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective", ...args);
   }
   /**
    * External identifier for the measure
    * @fhirSearchType `token`
    * @fhirPath `Measure.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the measure
    * @fhirSearchType `token`
    * @fhirPath `Measure.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Computationally friendly name of the measure
    * @fhirSearchType `string`
    * @fhirPath `Measure.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `Measure.relatedArtifact.where(type='predecessor').resource`
    */
-  predecessor(): this {
-    return this;
+  predecessor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("predecessor", ...args);
   }
   /**
    * Name of the publisher of the measure
    * @fhirSearchType `string`
    * @fhirPath `Measure.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the measure
    * @fhirSearchType `token`
    * @fhirPath `Measure.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `Measure.relatedArtifact.where(type='successor').resource`
    */
-  successor(): this {
-    return this;
+  successor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("successor", ...args);
   }
   /**
    * The human-friendly name of the measure
    * @fhirSearchType `string`
    * @fhirPath `Measure.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * Topics associated with the measure
    * @fhirSearchType `token`
    * @fhirPath `Measure.topic`
    */
-  topic(): this {
-    return this;
+  topic(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("topic", ...args);
   }
   /**
    * The uri that identifies the measure
    * @fhirSearchType `uri`
    * @fhirPath `Measure.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the measure
    * @fhirSearchType `token`
    * @fhirPath `Measure.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -14715,72 +16336,86 @@ export class MeasureReportFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `date`
    * @fhirPath `MeasureReport.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * An evaluated resource referenced by the measure report
    * @fhirSearchType `reference`
    * @fhirPath `MeasureReport.evaluatedResource`
    */
-  evaluatedResource(): this {
-    return this;
+  evaluatedResource(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("evaluated-resource", ...args);
   }
   /**
    * External identifier of the measure report to be returned
    * @fhirSearchType `token`
    * @fhirPath `MeasureReport.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The measure to return measure report results for
    * @fhirSearchType `reference`
    * @fhirPath `MeasureReport.measure`
    */
-  measure(): this {
-    return this;
+  measure(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("measure", ...args);
   }
   /**
    * The identity of a patient to search for individual measure report results for
    * @fhirSearchType `reference`
    * @fhirPath `MeasureReport.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The period of the measure report
    * @fhirSearchType `date`
    * @fhirPath `MeasureReport.period`
    */
-  period(): this {
-    return this;
+  period(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("period", ...args);
   }
   /**
    * The reporter to return measure report results for
    * @fhirSearchType `reference`
    * @fhirPath `MeasureReport.reporter`
    */
-  reporter(): this {
-    return this;
+  reporter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("reporter", ...args);
   }
   /**
    * The status of the measure report
    * @fhirSearchType `token`
    * @fhirPath `MeasureReport.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The identity of a subject to search for individual measure report results for
    * @fhirSearchType `reference`
    * @fhirPath `MeasureReport.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
 }
 
@@ -14792,72 +16427,88 @@ export class MediaFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Media.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * When Media was collected
    * @fhirSearchType `date`
    * @fhirPath `Media.created`
    */
-  created(): this {
-    return this;
+  created(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("created", ...args);
   }
   /**
    * Observing Device
    * @fhirSearchType `reference`
    * @fhirPath `Media.device`
    */
-  device(): this {
-    return this;
+  device(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("device", ...args);
   }
   /**
    * Encounter associated with media
    * @fhirSearchType `reference`
    * @fhirPath `Media.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * Identifier(s) for the image
    * @fhirSearchType `token`
    * @fhirPath `Media.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The type of acquisition equipment/process
    * @fhirSearchType `token`
    * @fhirPath `Media.modality`
    */
-  modality(): this {
-    return this;
+  modality(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("modality", ...args);
   }
   /**
    * The person who generated the image
    * @fhirSearchType `reference`
    * @fhirPath `Media.operator`
    */
-  operator(): this {
-    return this;
+  operator(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("operator", ...args);
   }
   /**
    * Who/What this Media is a record of
    * @fhirSearchType `reference`
    * @fhirPath `Media.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * Observed body part
    * @fhirSearchType `token`
    * @fhirPath `Media.bodySite`
    */
-  site(): this {
-    return this;
+  site(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("site", ...args);
   }
   /**
    * preparation | in-progress | not-done | on-hold | stopped | completed |
@@ -14865,32 +16516,36 @@ export class MediaFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Media.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Who/What this Media is a record of
    * @fhirSearchType `reference`
    * @fhirPath `Media.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * Classification of media as image, video, or audio
    * @fhirSearchType `token`
    * @fhirPath `Media.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
   /**
    * Imaging view, e.g. Lateral or Antero-posterior
    * @fhirSearchType `token`
    * @fhirPath `Media.view`
    */
-  view(): this {
-    return this;
+  view(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("view", ...args);
   }
 }
 
@@ -14902,64 +16557,78 @@ export class MedicationFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `date`
    * @fhirPath `Medication.batch.expirationDate`
    */
-  expirationDate(): this {
-    return this;
+  expirationDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("expiration-date", ...args);
   }
   /**
    * Returns medications for a specific dose form
    * @fhirSearchType `token`
    * @fhirPath `Medication.form`
    */
-  form(): this {
-    return this;
+  form(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("form", ...args);
   }
   /**
    * Returns medications with this external identifier
    * @fhirSearchType `token`
    * @fhirPath `Medication.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Returns medications for this ingredient code
    * @fhirSearchType `token`
    * @fhirPath `(Medication.ingredient.item as CodeableConcept)`
    */
-  ingredientCode(): this {
-    return this;
+  ingredientCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("ingredient-code", ...args);
   }
   /**
    * Returns medications for this ingredient reference
    * @fhirSearchType `reference`
    * @fhirPath `(Medication.ingredient.item as Reference)`
    */
-  ingredient(): this {
-    return this;
+  ingredient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("ingredient", ...args);
   }
   /**
    * Returns medications in a batch with this lot number
    * @fhirSearchType `token`
    * @fhirPath `Medication.batch.lotNumber`
    */
-  lotNumber(): this {
-    return this;
+  lotNumber(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("lot-number", ...args);
   }
   /**
    * Returns medications made or sold for this manufacturer
    * @fhirSearchType `reference`
    * @fhirPath `Medication.manufacturer`
    */
-  manufacturer(): this {
-    return this;
+  manufacturer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("manufacturer", ...args);
   }
   /**
    * Returns medications for this status
    * @fhirSearchType `token`
    * @fhirPath `Medication.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -14998,8 +16667,8 @@ export class MedicationFhirSearchBuilder extends DomainResourceFhirSearchBuilder
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
 }
 
@@ -15011,64 +16680,80 @@ export class MedicationAdministrationFhirSearchBuilder extends DomainResourceFhi
    * @fhirSearchType `reference`
    * @fhirPath `MedicationAdministration.context`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("context", ...args);
   }
   /**
    * Return administrations with this administration device identity
    * @fhirSearchType `reference`
    * @fhirPath `MedicationAdministration.device`
    */
-  device(): this {
-    return this;
+  device(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("device", ...args);
   }
   /**
    * Date administration happened (or did not happen)
    * @fhirSearchType `date`
    * @fhirPath `MedicationAdministration.effective`
    */
-  effectiveTime(): this {
-    return this;
+  effectiveTime(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective-time", ...args);
   }
   /**
    * The identity of the individual who administered the medication
    * @fhirSearchType `reference`
    * @fhirPath `MedicationAdministration.performer.actor`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer", ...args);
   }
   /**
    * Reasons for administering the medication
    * @fhirSearchType `token`
    * @fhirPath `MedicationAdministration.reasonCode`
    */
-  reasonGiven(): this {
-    return this;
+  reasonGiven(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("reason-given", ...args);
   }
   /**
    * Reasons for not administering the medication
    * @fhirSearchType `token`
    * @fhirPath `MedicationAdministration.statusReason`
    */
-  reasonNotGiven(): this {
-    return this;
+  reasonNotGiven(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("reason-not-given", ...args);
   }
   /**
    * The identity of a request to list administrations from
    * @fhirSearchType `reference`
    * @fhirPath `MedicationAdministration.request`
    */
-  request(): this {
-    return this;
+  request(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("request", ...args);
   }
   /**
    * The identity of the individual or group to list administrations for
    * @fhirSearchType `reference`
    * @fhirPath `MedicationAdministration.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15107,8 +16792,8 @@ export class MedicationAdministrationFhirSearchBuilder extends DomainResourceFhi
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15179,8 +16864,10 @@ export class MedicationAdministrationFhirSearchBuilder extends DomainResourceFhi
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15255,8 +16942,10 @@ export class MedicationAdministrationFhirSearchBuilder extends DomainResourceFhi
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15275,8 +16964,10 @@ export class MedicationAdministrationFhirSearchBuilder extends DomainResourceFhi
  * @fhirSearchType `reference`
  * @fhirPath `(MedicationAdministration.medication as Reference) | (MedicationDispense.medication as Reference) | (MedicationRequest.medication as Reference) | (MedicationStatement.medication as Reference)`
  */
-  medication(): this {
-    return this;
+  medication(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("medication", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15295,8 +16986,10 @@ export class MedicationAdministrationFhirSearchBuilder extends DomainResourceFhi
  * @fhirSearchType `token`
  * @fhirPath `MedicationAdministration.status | MedicationDispense.status | MedicationRequest.status | MedicationStatement.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -15308,72 +17001,88 @@ export class MedicationDispenseFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `reference`
    * @fhirPath `MedicationDispense.context`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("context", ...args);
   }
   /**
    * Returns dispenses that should be sent to a specific destination
    * @fhirSearchType `reference`
    * @fhirPath `MedicationDispense.destination`
    */
-  destination(): this {
-    return this;
+  destination(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("destination", ...args);
   }
   /**
    * Returns dispenses performed by a specific individual
    * @fhirSearchType `reference`
    * @fhirPath `MedicationDispense.performer.actor`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer", ...args);
   }
   /**
    * The identity of a receiver to list dispenses for
    * @fhirSearchType `reference`
    * @fhirPath `MedicationDispense.receiver`
    */
-  receiver(): this {
-    return this;
+  receiver(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("receiver", ...args);
   }
   /**
    * Returns dispenses with the specified responsible party
    * @fhirSearchType `reference`
    * @fhirPath `MedicationDispense.substitution.responsibleParty`
    */
-  responsibleparty(): this {
-    return this;
+  responsibleparty(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("responsibleparty", ...args);
   }
   /**
    * The identity of a patient for whom to list dispenses
    * @fhirSearchType `reference`
    * @fhirPath `MedicationDispense.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * Returns dispenses of a specific type
    * @fhirSearchType `token`
    * @fhirPath `MedicationDispense.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
   /**
    * Returns dispenses handed over on this date
    * @fhirSearchType `date`
    * @fhirPath `MedicationDispense.whenHandedOver`
    */
-  whenhandedover(): this {
-    return this;
+  whenhandedover(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("whenhandedover", ...args);
   }
   /**
    * Returns dispenses prepared on this date
    * @fhirSearchType `date`
    * @fhirPath `MedicationDispense.whenPrepared`
    */
-  whenprepared(): this {
-    return this;
+  whenprepared(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("whenprepared", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15412,8 +17121,8 @@ export class MedicationDispenseFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15484,8 +17193,10 @@ export class MedicationDispenseFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15560,8 +17271,10 @@ export class MedicationDispenseFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15580,8 +17293,10 @@ export class MedicationDispenseFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `reference`
  * @fhirPath `(MedicationAdministration.medication as Reference) | (MedicationDispense.medication as Reference) | (MedicationRequest.medication as Reference) | (MedicationStatement.medication as Reference)`
  */
-  medication(): this {
-    return this;
+  medication(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("medication", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15591,8 +17306,10 @@ export class MedicationDispenseFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `reference`
  * @fhirPath `MedicationDispense.authorizingPrescription`
  */
-  prescription(): this {
-    return this;
+  prescription(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("prescription", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15611,8 +17328,10 @@ export class MedicationDispenseFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `token`
  * @fhirPath `MedicationAdministration.status | MedicationDispense.status | MedicationRequest.status | MedicationStatement.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -15625,104 +17344,128 @@ export class MedicationKnowledgeFhirSearchBuilder extends DomainResourceFhirSear
    * @fhirSearchType `token`
    * @fhirPath `MedicationKnowledge.medicineClassification.type`
    */
-  classificationType(): this {
-    return this;
+  classificationType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("classification-type", ...args);
   }
   /**
    * Specific category assigned to the medication
    * @fhirSearchType `token`
    * @fhirPath `MedicationKnowledge.medicineClassification.classification`
    */
-  classification(): this {
-    return this;
+  classification(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("classification", ...args);
   }
   /**
    * Code that identifies this medication
    * @fhirSearchType `token`
    * @fhirPath `MedicationKnowledge.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * powder | tablets | capsule +
    * @fhirSearchType `token`
    * @fhirPath `MedicationKnowledge.doseForm`
    */
-  doseform(): this {
-    return this;
+  doseform(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("doseform", ...args);
   }
   /**
    * Medication(s) or substance(s) contained in the medication
    * @fhirSearchType `token`
    * @fhirPath `(MedicationKnowledge.ingredient.item as CodeableConcept)`
    */
-  ingredientCode(): this {
-    return this;
+  ingredientCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("ingredient-code", ...args);
   }
   /**
    * Medication(s) or substance(s) contained in the medication
    * @fhirSearchType `reference`
    * @fhirPath `(MedicationKnowledge.ingredient.item as Reference)`
    */
-  ingredient(): this {
-    return this;
+  ingredient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("ingredient", ...args);
   }
   /**
    * Manufacturer of the item
    * @fhirSearchType `reference`
    * @fhirPath `MedicationKnowledge.manufacturer`
    */
-  manufacturer(): this {
-    return this;
+  manufacturer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("manufacturer", ...args);
   }
   /**
    * Name of the reviewing program
    * @fhirSearchType `token`
    * @fhirPath `MedicationKnowledge.monitoringProgram.name`
    */
-  monitoringProgramName(): this {
-    return this;
+  monitoringProgramName(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("monitoring-program-name", ...args);
   }
   /**
    * Type of program under which the medication is monitored
    * @fhirSearchType `token`
    * @fhirPath `MedicationKnowledge.monitoringProgram.type`
    */
-  monitoringProgramType(): this {
-    return this;
+  monitoringProgramType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("monitoring-program-type", ...args);
   }
   /**
    * The category of medication document
    * @fhirSearchType `token`
    * @fhirPath `MedicationKnowledge.monograph.type`
    */
-  monographType(): this {
-    return this;
+  monographType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("monograph-type", ...args);
   }
   /**
    * Associated documentation about the medication
    * @fhirSearchType `reference`
    * @fhirPath `MedicationKnowledge.monograph.source`
    */
-  monograph(): this {
-    return this;
+  monograph(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("monograph", ...args);
   }
   /**
    * The source or owner for the price information
    * @fhirSearchType `token`
    * @fhirPath `MedicationKnowledge.cost.source`
    */
-  sourceCost(): this {
-    return this;
+  sourceCost(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("source-cost", ...args);
   }
   /**
    * active | inactive | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `MedicationKnowledge.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -15734,72 +17477,90 @@ export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `date`
    * @fhirPath `MedicationRequest.authoredOn`
    */
-  authoredon(): this {
-    return this;
+  authoredon(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("authoredon", ...args);
   }
   /**
    * Returns prescriptions with different categories
    * @fhirSearchType `token`
    * @fhirPath `MedicationRequest.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Returns prescriptions intended to be dispensed by this Organization
    * @fhirSearchType `reference`
    * @fhirPath `MedicationRequest.dispenseRequest.performer`
    */
-  intendedDispenser(): this {
-    return this;
+  intendedDispenser(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("intended-dispenser", ...args);
   }
   /**
    * Returns the intended performer of the administration of the medication request
    * @fhirSearchType `reference`
    * @fhirPath `MedicationRequest.performer`
    */
-  intendedPerformer(): this {
-    return this;
+  intendedPerformer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("intended-performer", ...args);
   }
   /**
    * Returns requests for a specific type of performer
    * @fhirSearchType `token`
    * @fhirPath `MedicationRequest.performerType`
    */
-  intendedPerformertype(): this {
-    return this;
+  intendedPerformertype(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("intended-performertype", ...args);
   }
   /**
    * Returns prescriptions with different intents
    * @fhirSearchType `token`
    * @fhirPath `MedicationRequest.intent`
    */
-  intent(): this {
-    return this;
+  intent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("intent", ...args);
   }
   /**
    * Returns prescriptions with different priorities
    * @fhirSearchType `token`
    * @fhirPath `MedicationRequest.priority`
    */
-  priority(): this {
-    return this;
+  priority(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("priority", ...args);
   }
   /**
    * Returns prescriptions prescribed by this prescriber
    * @fhirSearchType `reference`
    * @fhirPath `MedicationRequest.requester`
    */
-  requester(): this {
-    return this;
+  requester(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("requester", ...args);
   }
   /**
    * The identity of a patient to list orders  for
    * @fhirSearchType `reference`
    * @fhirPath `MedicationRequest.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15838,8 +17599,8 @@ export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15910,8 +17671,10 @@ export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15986,8 +17749,10 @@ export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
  * Multiple Resources: 
@@ -15997,8 +17762,8 @@ export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `date`
  * @fhirPath `MedicationRequest.dosageInstruction.timing.event`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16008,8 +17773,10 @@ export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `reference`
  * @fhirPath `MedicationRequest.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16028,8 +17795,10 @@ export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `reference`
  * @fhirPath `(MedicationAdministration.medication as Reference) | (MedicationDispense.medication as Reference) | (MedicationRequest.medication as Reference) | (MedicationStatement.medication as Reference)`
  */
-  medication(): this {
-    return this;
+  medication(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("medication", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16048,8 +17817,10 @@ export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `token`
  * @fhirPath `MedicationAdministration.status | MedicationDispense.status | MedicationRequest.status | MedicationStatement.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -16061,48 +17832,60 @@ export class MedicationStatementFhirSearchBuilder extends DomainResourceFhirSear
    * @fhirSearchType `token`
    * @fhirPath `MedicationStatement.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Returns statements for a specific context (episode or episode of Care).
    * @fhirSearchType `reference`
    * @fhirPath `MedicationStatement.context`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("context", ...args);
   }
   /**
    * Date when patient was taking (or not taking) the medication
    * @fhirSearchType `date`
    * @fhirPath `MedicationStatement.effective`
    */
-  effective(): this {
-    return this;
+  effective(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective", ...args);
   }
   /**
    * Returns statements that are part of another event.
    * @fhirSearchType `reference`
    * @fhirPath `MedicationStatement.partOf`
    */
-  partOf(): this {
-    return this;
+  partOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("part-of", ...args);
   }
   /**
    * Who or where the information in the statement came from
    * @fhirSearchType `reference`
    * @fhirPath `MedicationStatement.informationSource`
    */
-  source(): this {
-    return this;
+  source(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("source", ...args);
   }
   /**
    * The identity of a patient, animal or group to list statements for
    * @fhirSearchType `reference`
    * @fhirPath `MedicationStatement.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16141,8 +17924,8 @@ export class MedicationStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16213,8 +17996,10 @@ export class MedicationStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16289,8 +18074,10 @@ export class MedicationStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16309,8 +18096,10 @@ export class MedicationStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `reference`
  * @fhirPath `(MedicationAdministration.medication as Reference) | (MedicationDispense.medication as Reference) | (MedicationRequest.medication as Reference) | (MedicationStatement.medication as Reference)`
  */
-  medication(): this {
-    return this;
+  medication(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("medication", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16329,8 +18118,10 @@ export class MedicationStatementFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `MedicationAdministration.status | MedicationDispense.status | MedicationRequest.status | MedicationStatement.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -16342,8 +18133,10 @@ export class MedicinalProductDefinitionFhirSearchBuilder extends DomainResourceF
    * @fhirSearchType `token`
    * @fhirPath `MedicinalProductDefinition.characteristic.type`
    */
-  characteristicType(): this {
-    return this;
+  characteristicType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("characteristic-type", ...args);
   }
   /**
    * Allows the key product features to be recorded, such as "sugar free", "modified
@@ -16351,40 +18144,50 @@ export class MedicinalProductDefinitionFhirSearchBuilder extends DomainResourceF
    * @fhirSearchType `token`
    * @fhirPath `MedicinalProductDefinition.characteristic.value`
    */
-  characteristic(): this {
-    return this;
+  characteristic(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("characteristic", ...args);
   }
   /**
    * A product specific contact, person (in a role), or an organization
    * @fhirSearchType `reference`
    * @fhirPath `MedicinalProductDefinition.contact.contact`
    */
-  contact(): this {
-    return this;
+  contact(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("contact", ...args);
   }
   /**
    * If this medicine applies to human or veterinary uses
    * @fhirSearchType `token`
    * @fhirPath `MedicinalProductDefinition.domain`
    */
-  domain(): this {
-    return this;
+  domain(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("domain", ...args);
   }
   /**
    * Business identifier for this product. Could be an MPID
    * @fhirSearchType `token`
    * @fhirPath `MedicinalProductDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * An ingredient of this product
    * @fhirSearchType `token`
    * @fhirPath `MedicinalProductDefinition.ingredient`
    */
-  ingredient(): this {
-    return this;
+  ingredient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("ingredient", ...args);
   }
   /**
    * A master file for to the medicinal product (e.g. Pharmacovigilance System Master
@@ -16392,32 +18195,38 @@ export class MedicinalProductDefinitionFhirSearchBuilder extends DomainResourceF
    * @fhirSearchType `reference`
    * @fhirPath `MedicinalProductDefinition.masterFile`
    */
-  masterFile(): this {
-    return this;
+  masterFile(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("master-file", ...args);
   }
   /**
    * Language code for this name
    * @fhirSearchType `token`
    * @fhirPath `MedicinalProductDefinition.name.countryLanguage.language`
    */
-  nameLanguage(): this {
-    return this;
+  nameLanguage(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("name-language", ...args);
   }
   /**
    * The full product name
    * @fhirSearchType `string`
    * @fhirPath `MedicinalProductDefinition.name.productName`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * Allows the product to be classified by various systems
    * @fhirSearchType `token`
    * @fhirPath `MedicinalProductDefinition.classification`
    */
-  productClassification(): this {
-    return this;
+  productClassification(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("product-classification", ...args);
   }
   /**
    * The status within the lifecycle of this product record. A high-level status,
@@ -16426,16 +18235,18 @@ export class MedicinalProductDefinitionFhirSearchBuilder extends DomainResourceF
    * @fhirSearchType `token`
    * @fhirPath `MedicinalProductDefinition.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Regulatory type, e.g. Investigational or Authorized
    * @fhirSearchType `token`
    * @fhirPath `MedicinalProductDefinition.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -16447,32 +18258,36 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `token`
    * @fhirPath `MessageDefinition.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * The event that triggers the message or link to the event definition.
    * @fhirSearchType `token`
    * @fhirPath `MessageDefinition.event`
    */
-  event(): this {
-    return this;
+  event(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("event", ...args);
   }
   /**
    * A resource that is a permitted focus of the message
    * @fhirSearchType `token`
    * @fhirPath `MessageDefinition.focus.code`
    */
-  focus(): this {
-    return this;
+  focus(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("focus", ...args);
   }
   /**
    * A resource that is the parent of the definition
    * @fhirSearchType `reference`
    * @fhirPath `MessageDefinition.parent`
    */
-  parent(): this {
-    return this;
+  parent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("parent", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16518,8 +18333,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16567,8 +18384,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16611,8 +18430,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16654,8 +18475,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16696,8 +18519,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16735,8 +18560,8 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16775,8 +18600,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16796,8 +18623,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `token`
  * @fhirPath `CodeSystem.identifier | ConceptMap.identifier | MessageDefinition.identifier | StructureDefinition.identifier | StructureMap.identifier | ValueSet.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16835,8 +18664,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16878,8 +18709,8 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16919,8 +18750,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16959,8 +18792,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -16991,8 +18826,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title`
  */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17031,8 +18868,8 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17069,8 +18906,10 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -17082,112 +18921,136 @@ export class MessageHeaderFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `reference`
    * @fhirPath `MessageHeader.author`
    */
-  author(): this {
-    return this;
+  author(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("author", ...args);
   }
   /**
    * ok | transient-error | fatal-error
    * @fhirSearchType `token`
    * @fhirPath `MessageHeader.response.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * Actual destination address or id
    * @fhirSearchType `uri`
    * @fhirPath `MessageHeader.destination.endpoint`
    */
-  destinationUri(): this {
-    return this;
+  destinationUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("destination-uri", ...args);
   }
   /**
    * Name of system
    * @fhirSearchType `string`
    * @fhirPath `MessageHeader.destination.name`
    */
-  destination(): this {
-    return this;
+  destination(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("destination", ...args);
   }
   /**
    * The source of the data entry
    * @fhirSearchType `reference`
    * @fhirPath `MessageHeader.enterer`
    */
-  enterer(): this {
-    return this;
+  enterer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("enterer", ...args);
   }
   /**
    * Code for the event this message represents or link to event definition
    * @fhirSearchType `token`
    * @fhirPath `MessageHeader.event`
    */
-  event(): this {
-    return this;
+  event(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("event", ...args);
   }
   /**
    * The actual content of the message
    * @fhirSearchType `reference`
    * @fhirPath `MessageHeader.focus`
    */
-  focus(): this {
-    return this;
+  focus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("focus", ...args);
   }
   /**
    * Intended "real-world" recipient for the data
    * @fhirSearchType `reference`
    * @fhirPath `MessageHeader.destination.receiver`
    */
-  receiver(): this {
-    return this;
+  receiver(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("receiver", ...args);
   }
   /**
    * Id of original message
    * @fhirSearchType `token`
    * @fhirPath `MessageHeader.response.identifier`
    */
-  responseId(): this {
-    return this;
+  responseId(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("response-id", ...args);
   }
   /**
    * Final responsibility for event
    * @fhirSearchType `reference`
    * @fhirPath `MessageHeader.responsible`
    */
-  responsible(): this {
-    return this;
+  responsible(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("responsible", ...args);
   }
   /**
    * Real world sender of the message
    * @fhirSearchType `reference`
    * @fhirPath `MessageHeader.sender`
    */
-  sender(): this {
-    return this;
+  sender(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("sender", ...args);
   }
   /**
    * Actual message source address or id
    * @fhirSearchType `uri`
    * @fhirPath `MessageHeader.source.endpoint`
    */
-  sourceUri(): this {
-    return this;
+  sourceUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("source-uri", ...args);
   }
   /**
    * Name of system
    * @fhirSearchType `string`
    * @fhirPath `MessageHeader.source.name`
    */
-  source(): this {
-    return this;
+  source(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("source", ...args);
   }
   /**
    * Particular delivery destination within the destination
    * @fhirSearchType `reference`
    * @fhirPath `MessageHeader.destination.target`
    */
-  target(): this {
-    return this;
+  target(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("target", ...args);
   }
 }
 
@@ -17210,8 +19073,10 @@ export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `composite`
    * @fhirPath `MolecularSequence.variant`
    */
-  chromosomeVariantCoordinate(): this {
-    return this;
+  chromosomeVariantCoordinate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("chromosome-variant-coordinate", ...args);
   }
   /**
    * Search parameter by chromosome and window. This will refer to part of a locus or
@@ -17228,32 +19093,40 @@ export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `composite`
    * @fhirPath `MolecularSequence.referenceSeq`
    */
-  chromosomeWindowCoordinate(): this {
-    return this;
+  chromosomeWindowCoordinate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("chromosome-window-coordinate", ...args);
   }
   /**
    * Chromosome number of the reference sequence
    * @fhirSearchType `token`
    * @fhirPath `MolecularSequence.referenceSeq.chromosome`
    */
-  chromosome(): this {
-    return this;
+  chromosome(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("chromosome", ...args);
   }
   /**
    * The unique identity for a particular sequence
    * @fhirSearchType `token`
    * @fhirPath `MolecularSequence.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The subject that the observation is about
    * @fhirSearchType `reference`
    * @fhirPath `MolecularSequence.patient`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * Search parameter by reference sequence and variant coordinate. This will refer
@@ -17271,8 +19144,10 @@ export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `composite`
    * @fhirPath `MolecularSequence.variant`
    */
-  referenceseqidVariantCoordinate(): this {
-    return this;
+  referenceseqidVariantCoordinate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("referenceseqid-variant-coordinate", ...args);
   }
   /**
    * Search parameter by reference sequence and window. This will refer to part of a
@@ -17290,24 +19165,28 @@ export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `composite`
    * @fhirPath `MolecularSequence.referenceSeq`
    */
-  referenceseqidWindowCoordinate(): this {
-    return this;
+  referenceseqidWindowCoordinate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("referenceseqid-window-coordinate", ...args);
   }
   /**
    * Reference Sequence of the sequence
    * @fhirSearchType `token`
    * @fhirPath `MolecularSequence.referenceSeq.referenceSeqId`
    */
-  referenceseqid(): this {
-    return this;
+  referenceseqid(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("referenceseqid", ...args);
   }
   /**
    * Amino Acid Sequence/ DNA Sequence / RNA Sequence
    * @fhirSearchType `token`
    * @fhirPath `MolecularSequence.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
   /**
    * End position (0-based exclusive, which menas the acid at this position will not
@@ -17316,8 +19195,10 @@ export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `number`
    * @fhirPath `MolecularSequence.variant.end`
    */
-  variantEnd(): this {
-    return this;
+  variantEnd(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["numberParam"]>>
+  ): this {
+    return this.numberParam("variant-end", ...args);
   }
   /**
    * Start position (0-based inclusive, 1-based inclusive, that means the nucleic
@@ -17325,8 +19206,10 @@ export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `number`
    * @fhirPath `MolecularSequence.variant.start`
    */
-  variantStart(): this {
-    return this;
+  variantStart(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["numberParam"]>>
+  ): this {
+    return this.numberParam("variant-start", ...args);
   }
   /**
    * End position (0-based exclusive, which menas the acid at this position will not
@@ -17335,8 +19218,10 @@ export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `number`
    * @fhirPath `MolecularSequence.referenceSeq.windowEnd`
    */
-  windowEnd(): this {
-    return this;
+  windowEnd(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["numberParam"]>>
+  ): this {
+    return this.numberParam("window-end", ...args);
   }
   /**
    * Start position (0-based inclusive, 1-based inclusive, that means the nucleic
@@ -17344,8 +19229,10 @@ export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `number`
    * @fhirPath `MolecularSequence.referenceSeq.windowStart`
    */
-  windowStart(): this {
-    return this;
+  windowStart(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["numberParam"]>>
+  ): this {
+    return this.numberParam("window-start", ...args);
   }
 }
 
@@ -17357,64 +19244,74 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `string`
    * @fhirPath `NamingSystem.contact.name`
    */
-  contact(): this {
-    return this;
+  contact(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("contact", ...args);
   }
   /**
    * oid | uuid | uri | other
    * @fhirSearchType `token`
    * @fhirPath `NamingSystem.uniqueId.type`
    */
-  idType(): this {
-    return this;
+  idType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("id-type", ...args);
   }
   /**
    * codesystem | identifier | root
    * @fhirSearchType `token`
    * @fhirPath `NamingSystem.kind`
    */
-  kind(): this {
-    return this;
+  kind(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("kind", ...args);
   }
   /**
    * When is identifier valid?
    * @fhirSearchType `date`
    * @fhirPath `NamingSystem.uniqueId.period`
    */
-  period(): this {
-    return this;
+  period(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("period", ...args);
   }
   /**
    * Who maintains system namespace?
    * @fhirSearchType `string`
    * @fhirPath `NamingSystem.responsible`
    */
-  responsible(): this {
-    return this;
+  responsible(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("responsible", ...args);
   }
   /**
    * Contact details for individual or organization
    * @fhirSearchType `token`
    * @fhirPath `NamingSystem.contact.telecom`
    */
-  telecom(): this {
-    return this;
+  telecom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("telecom", ...args);
   }
   /**
    * e.g. driver,  provider,  patient, bank etc.
    * @fhirSearchType `token`
    * @fhirPath `NamingSystem.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
   /**
    * The unique identifier
    * @fhirSearchType `string`
    * @fhirPath `NamingSystem.uniqueId.value`
    */
-  value(): this {
-    return this;
+  value(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17460,8 +19357,10 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17509,8 +19408,10 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17553,8 +19454,10 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17596,8 +19499,10 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17638,8 +19543,10 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17677,8 +19584,8 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17717,8 +19624,10 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17756,8 +19665,10 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17799,8 +19710,8 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17840,8 +19751,10 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17880,8 +19793,10 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -17893,72 +19808,90 @@ export class NutritionOrderFhirSearchBuilder extends DomainResourceFhirSearchBui
    * @fhirSearchType `token`
    * @fhirPath `NutritionOrder.enteralFormula.additiveType`
    */
-  additive(): this {
-    return this;
+  additive(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("additive", ...args);
   }
   /**
    * Return nutrition orders requested on this date
    * @fhirSearchType `date`
    * @fhirPath `NutritionOrder.dateTime`
    */
-  datetime(): this {
-    return this;
+  datetime(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("datetime", ...args);
   }
   /**
    * Type of enteral or infant formula
    * @fhirSearchType `token`
    * @fhirPath `NutritionOrder.enteralFormula.baseFormulaType`
    */
-  formula(): this {
-    return this;
+  formula(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("formula", ...args);
   }
   /**
    * Instantiates FHIR protocol or definition
    * @fhirSearchType `reference`
    * @fhirPath `NutritionOrder.instantiatesCanonical`
    */
-  instantiatesCanonical(): this {
-    return this;
+  instantiatesCanonical(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("instantiates-canonical", ...args);
   }
   /**
    * Instantiates external protocol or definition
    * @fhirSearchType `uri`
    * @fhirPath `NutritionOrder.instantiatesUri`
    */
-  instantiatesUri(): this {
-    return this;
+  instantiatesUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("instantiates-uri", ...args);
   }
   /**
    * Type of diet that can be consumed orally (i.e., take via the mouth).
    * @fhirSearchType `token`
    * @fhirPath `NutritionOrder.oralDiet.type`
    */
-  oraldiet(): this {
-    return this;
+  oraldiet(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("oraldiet", ...args);
   }
   /**
    * The identity of the provider who placed the nutrition order
    * @fhirSearchType `reference`
    * @fhirPath `NutritionOrder.orderer`
    */
-  provider(): this {
-    return this;
+  provider(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("provider", ...args);
   }
   /**
    * Status of the nutrition order.
    * @fhirSearchType `token`
    * @fhirPath `NutritionOrder.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Type of supplement product requested
    * @fhirSearchType `token`
    * @fhirPath `NutritionOrder.supplement.type`
    */
-  supplement(): this {
-    return this;
+  supplement(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("supplement", ...args);
   }
   /**
  * Multiple Resources: 
@@ -17990,8 +19923,10 @@ export class NutritionOrderFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18062,8 +19997,10 @@ export class NutritionOrderFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18138,8 +20075,10 @@ export class NutritionOrderFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -18151,16 +20090,20 @@ export class NutritionProductFhirSearchBuilder extends DomainResourceFhirSearchB
    * @fhirSearchType `token`
    * @fhirPath `NutritionProduct.instance.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * active | inactive | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `NutritionProduct.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -18172,72 +20115,90 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `reference`
    * @fhirPath `Observation.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * The classification of the type of observation
    * @fhirSearchType `token`
    * @fhirPath `Observation.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Code and coded value parameter pair
    * @fhirSearchType `composite`
    * @fhirPath `Observation`
    */
-  codeValueConcept(): this {
-    return this;
+  codeValueConcept(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("code-value-concept", ...args);
   }
   /**
    * Code and date/time value parameter pair
    * @fhirSearchType `composite`
    * @fhirPath `Observation`
    */
-  codeValueDate(): this {
-    return this;
+  codeValueDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("code-value-date", ...args);
   }
   /**
    * Code and quantity value parameter pair
    * @fhirSearchType `composite`
    * @fhirPath `Observation`
    */
-  codeValueQuantity(): this {
-    return this;
+  codeValueQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("code-value-quantity", ...args);
   }
   /**
    * Code and string value parameter pair
    * @fhirSearchType `composite`
    * @fhirPath `Observation`
    */
-  codeValueString(): this {
-    return this;
+  codeValueString(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("code-value-string", ...args);
   }
   /**
    * Code and coded value parameter pair, including in components
    * @fhirSearchType `composite`
    * @fhirPath `Observation | Observation.component`
    */
-  comboCodeValueConcept(): this {
-    return this;
+  comboCodeValueConcept(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("combo-code-value-concept", ...args);
   }
   /**
    * Code and quantity value parameter pair, including in components
    * @fhirSearchType `composite`
    * @fhirPath `Observation | Observation.component`
    */
-  comboCodeValueQuantity(): this {
-    return this;
+  comboCodeValueQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("combo-code-value-quantity", ...args);
   }
   /**
    * The code of the observation type or component type
    * @fhirSearchType `token`
    * @fhirPath `Observation.code | Observation.component.code`
    */
-  comboCode(): this {
-    return this;
+  comboCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("combo-code", ...args);
   }
   /**
    * The reason why the expected value in the element Observation.value[x] or
@@ -18245,8 +20206,10 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `token`
    * @fhirPath `Observation.dataAbsentReason | Observation.component.dataAbsentReason`
    */
-  comboDataAbsentReason(): this {
-    return this;
+  comboDataAbsentReason(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("combo-data-absent-reason", ...args);
   }
   /**
    * The value or component value of the observation, if the value is a
@@ -18254,8 +20217,10 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `token`
    * @fhirPath `(Observation.value as CodeableConcept) | (Observation.component.value as CodeableConcept)`
    */
-  comboValueConcept(): this {
-    return this;
+  comboValueConcept(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("combo-value-concept", ...args);
   }
   /**
    * The value or component value of the observation, if the value is a Quantity, or
@@ -18263,32 +20228,40 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `quantity`
    * @fhirPath `(Observation.value as Quantity) | (Observation.value as SampledData) | (Observation.component.value as Quantity) | (Observation.component.value as SampledData)`
    */
-  comboValueQuantity(): this {
-    return this;
+  comboValueQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("combo-value-quantity", ...args);
   }
   /**
    * Component code and component coded value parameter pair
    * @fhirSearchType `composite`
    * @fhirPath `Observation.component`
    */
-  componentCodeValueConcept(): this {
-    return this;
+  componentCodeValueConcept(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("component-code-value-concept", ...args);
   }
   /**
    * Component code and component quantity value parameter pair
    * @fhirSearchType `composite`
    * @fhirPath `Observation.component`
    */
-  componentCodeValueQuantity(): this {
-    return this;
+  componentCodeValueQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("component-code-value-quantity", ...args);
   }
   /**
    * The component code of the observation type
    * @fhirSearchType `token`
    * @fhirPath `Observation.component.code`
    */
-  componentCode(): this {
-    return this;
+  componentCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("component-code", ...args);
   }
   /**
    * The reason why the expected value in the element Observation.component.value[x]
@@ -18296,16 +20269,20 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `token`
    * @fhirPath `Observation.component.dataAbsentReason`
    */
-  componentDataAbsentReason(): this {
-    return this;
+  componentDataAbsentReason(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("component-data-absent-reason", ...args);
   }
   /**
    * The value of the component observation, if the value is a CodeableConcept
    * @fhirSearchType `token`
    * @fhirPath `(Observation.component.value as CodeableConcept)`
    */
-  componentValueConcept(): this {
-    return this;
+  componentValueConcept(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("component-value-concept", ...args);
   }
   /**
    * The value of the component observation, if the value is a Quantity, or a
@@ -18313,8 +20290,10 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `quantity`
    * @fhirPath `(Observation.component.value as Quantity) | (Observation.component.value as SampledData)`
    */
-  componentValueQuantity(): this {
-    return this;
+  componentValueQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("component-value-quantity", ...args);
   }
   /**
    * The reason why the expected value in the element Observation.value[x] is
@@ -18322,104 +20301,130 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `token`
    * @fhirPath `Observation.dataAbsentReason`
    */
-  dataAbsentReason(): this {
-    return this;
+  dataAbsentReason(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("data-absent-reason", ...args);
   }
   /**
    * Related measurements the observation is made from
    * @fhirSearchType `reference`
    * @fhirPath `Observation.derivedFrom`
    */
-  derivedFrom(): this {
-    return this;
+  derivedFrom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("derived-from", ...args);
   }
   /**
    * The Device that generated the observation data.
    * @fhirSearchType `reference`
    * @fhirPath `Observation.device`
    */
-  device(): this {
-    return this;
+  device(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("device", ...args);
   }
   /**
    * The focus of an observation when the focus is not the patient of record.
    * @fhirSearchType `reference`
    * @fhirPath `Observation.focus`
    */
-  focus(): this {
-    return this;
+  focus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("focus", ...args);
   }
   /**
    * Related resource that belongs to the Observation group
    * @fhirSearchType `reference`
    * @fhirPath `Observation.hasMember`
    */
-  hasMember(): this {
-    return this;
+  hasMember(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("has-member", ...args);
   }
   /**
    * The method used for the observation
    * @fhirSearchType `token`
    * @fhirPath `Observation.method`
    */
-  method(): this {
-    return this;
+  method(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("method", ...args);
   }
   /**
    * Part of referenced event
    * @fhirSearchType `reference`
    * @fhirPath `Observation.partOf`
    */
-  partOf(): this {
-    return this;
+  partOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("part-of", ...args);
   }
   /**
    * Who performed the observation
    * @fhirSearchType `reference`
    * @fhirPath `Observation.performer`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer", ...args);
   }
   /**
    * Specimen used for this observation
    * @fhirSearchType `reference`
    * @fhirPath `Observation.specimen`
    */
-  specimen(): this {
-    return this;
+  specimen(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("specimen", ...args);
   }
   /**
    * The status of the observation
    * @fhirSearchType `token`
    * @fhirPath `Observation.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The subject that the observation is about
    * @fhirSearchType `reference`
    * @fhirPath `Observation.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * The value of the observation, if the value is a CodeableConcept
    * @fhirSearchType `token`
    * @fhirPath `(Observation.value as CodeableConcept)`
    */
-  valueConcept(): this {
-    return this;
+  valueConcept(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("value-concept", ...args);
   }
   /**
    * The value of the observation, if the value is a date or period of time
    * @fhirSearchType `date`
    * @fhirPath `(Observation.value as dateTime) | (Observation.value as Period)`
    */
-  valueDate(): this {
-    return this;
+  valueDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("value-date", ...args);
   }
   /**
    * The value of the observation, if the value is a Quantity, or a SampledData (just
@@ -18427,8 +20432,10 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `quantity`
    * @fhirPath `(Observation.value as Quantity) | (Observation.value as SampledData)`
    */
-  valueQuantity(): this {
-    return this;
+  valueQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("value-quantity", ...args);
   }
   /**
    * The value of the observation, if the value is a string, and also searches in
@@ -18436,8 +20443,10 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @fhirSearchType `string`
    * @fhirPath `(Observation.value as string) | (Observation.value as CodeableConcept).text`
    */
-  valueString(): this {
-    return this;
+  valueString(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("value-string", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18476,8 +20485,8 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18520,8 +20529,8 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18553,8 +20562,10 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18625,8 +20636,10 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18701,8 +20714,10 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -18718,64 +20733,74 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
    * @fhirSearchType `reference`
    * @fhirPath `OperationDefinition.base`
    */
-  base(): this {
-    return this;
+  base(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("base", ...args);
   }
   /**
    * Name used to invoke the operation
    * @fhirSearchType `token`
    * @fhirPath `OperationDefinition.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * Validation information for in parameters
    * @fhirSearchType `reference`
    * @fhirPath `OperationDefinition.inputProfile`
    */
-  inputProfile(): this {
-    return this;
+  inputProfile(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("input-profile", ...args);
   }
   /**
    * Invoke on an instance?
    * @fhirSearchType `token`
    * @fhirPath `OperationDefinition.instance`
    */
-  instance(): this {
-    return this;
+  instance(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("instance", ...args);
   }
   /**
    * operation | query
    * @fhirSearchType `token`
    * @fhirPath `OperationDefinition.kind`
    */
-  kind(): this {
-    return this;
+  kind(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("kind", ...args);
   }
   /**
    * Validation information for out parameters
    * @fhirSearchType `reference`
    * @fhirPath `OperationDefinition.outputProfile`
    */
-  outputProfile(): this {
-    return this;
+  outputProfile(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("output-profile", ...args);
   }
   /**
    * Invoke at the system level?
    * @fhirSearchType `token`
    * @fhirPath `OperationDefinition.system`
    */
-  system(): this {
-    return this;
+  system(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("system", ...args);
   }
   /**
    * Invoke at the type level?
    * @fhirSearchType `token`
    * @fhirPath `OperationDefinition.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18821,8 +20846,10 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18870,8 +20897,10 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18914,8 +20943,10 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18957,8 +20988,10 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -18999,8 +21032,10 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19038,8 +21073,8 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19078,8 +21113,10 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19117,8 +21154,10 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19160,8 +21199,8 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19201,8 +21240,10 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19241,8 +21282,10 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19273,8 +21316,10 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title`
  */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19313,8 +21358,8 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19351,8 +21396,10 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -19368,48 +21415,60 @@ export class OrganizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `token`
    * @fhirPath `Organization.active`
    */
-  active(): this {
-    return this;
+  active(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("active", ...args);
   }
   /**
    * A city specified in an address
    * @fhirSearchType `string`
    * @fhirPath `Organization.address.city`
    */
-  addressCity(): this {
-    return this;
+  addressCity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-city", ...args);
   }
   /**
    * A country specified in an address
    * @fhirSearchType `string`
    * @fhirPath `Organization.address.country`
    */
-  addressCountry(): this {
-    return this;
+  addressCountry(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-country", ...args);
   }
   /**
    * A postal code specified in an address
    * @fhirSearchType `string`
    * @fhirPath `Organization.address.postalCode`
    */
-  addressPostalcode(): this {
-    return this;
+  addressPostalcode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-postalcode", ...args);
   }
   /**
    * A state specified in an address
    * @fhirSearchType `string`
    * @fhirPath `Organization.address.state`
    */
-  addressState(): this {
-    return this;
+  addressState(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-state", ...args);
   }
   /**
    * A use code specified in an address
    * @fhirSearchType `token`
    * @fhirPath `Organization.address.use`
    */
-  addressUse(): this {
-    return this;
+  addressUse(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("address-use", ...args);
   }
   /**
    * A server defined search that may match any of the string fields in the Address,
@@ -19417,40 +21476,48 @@ export class OrganizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `string`
    * @fhirPath `Organization.address`
    */
-  address(): this {
-    return this;
+  address(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address", ...args);
   }
   /**
    * Technical endpoints providing access to services operated for the organization
    * @fhirSearchType `reference`
    * @fhirPath `Organization.endpoint`
    */
-  endpoint(): this {
-    return this;
+  endpoint(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("endpoint", ...args);
   }
   /**
    * Any identifier for the organization (not the accreditation issuer's identifier)
    * @fhirSearchType `token`
    * @fhirPath `Organization.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * A portion of the organization's name or alias
    * @fhirSearchType `string`
    * @fhirPath `Organization.name | Organization.alias`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * An organization of which this organization forms a part
    * @fhirSearchType `reference`
    * @fhirPath `Organization.partOf`
    */
-  partof(): this {
-    return this;
+  partof(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("partof", ...args);
   }
   /**
    * A portion of the organization's name using some kind of phonetic matching
@@ -19458,16 +21525,18 @@ export class OrganizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `string`
    * @fhirPath `Organization.name`
    */
-  phonetic(): this {
-    return this;
+  phonetic(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("phonetic", ...args);
   }
   /**
    * A code for the type of organization
    * @fhirSearchType `token`
    * @fhirPath `Organization.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -19479,8 +21548,10 @@ export class OrganizationAffiliationFhirSearchBuilder extends DomainResourceFhir
    * @fhirSearchType `token`
    * @fhirPath `OrganizationAffiliation.active`
    */
-  active(): this {
-    return this;
+  active(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("active", ...args);
   }
   /**
    * The period during which the participatingOrganization is affiliated with the
@@ -19488,40 +21559,46 @@ export class OrganizationAffiliationFhirSearchBuilder extends DomainResourceFhir
    * @fhirSearchType `date`
    * @fhirPath `OrganizationAffiliation.period`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * A value in an email contact
    * @fhirSearchType `token`
    * @fhirPath `OrganizationAffiliation.telecom.where(system='email')`
    */
-  email(): this {
-    return this;
+  email(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("email", ...args);
   }
   /**
    * Technical endpoints providing access to services operated for this role
    * @fhirSearchType `reference`
    * @fhirPath `OrganizationAffiliation.endpoint`
    */
-  endpoint(): this {
-    return this;
+  endpoint(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("endpoint", ...args);
   }
   /**
    * An organization affiliation's Identifier
    * @fhirSearchType `token`
    * @fhirPath `OrganizationAffiliation.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The location(s) at which the role occurs
    * @fhirSearchType `reference`
    * @fhirPath `OrganizationAffiliation.location`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("location", ...args);
   }
   /**
    * Health insurance provider network in which the participatingOrganization
@@ -19530,64 +21607,76 @@ export class OrganizationAffiliationFhirSearchBuilder extends DomainResourceFhir
    * @fhirSearchType `reference`
    * @fhirPath `OrganizationAffiliation.network`
    */
-  network(): this {
-    return this;
+  network(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("network", ...args);
   }
   /**
    * The organization that provides services to the primary organization
    * @fhirSearchType `reference`
    * @fhirPath `OrganizationAffiliation.participatingOrganization`
    */
-  participatingOrganization(): this {
-    return this;
+  participatingOrganization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("participating-organization", ...args);
   }
   /**
    * A value in a phone contact
    * @fhirSearchType `token`
    * @fhirPath `OrganizationAffiliation.telecom.where(system='phone')`
    */
-  phone(): this {
-    return this;
+  phone(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("phone", ...args);
   }
   /**
    * The organization that receives the services from the participating organization
    * @fhirSearchType `reference`
    * @fhirPath `OrganizationAffiliation.organization`
    */
-  primaryOrganization(): this {
-    return this;
+  primaryOrganization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("primary-organization", ...args);
   }
   /**
    * Definition of the role the participatingOrganization plays
    * @fhirSearchType `token`
    * @fhirPath `OrganizationAffiliation.code`
    */
-  role(): this {
-    return this;
+  role(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("role", ...args);
   }
   /**
    * Healthcare services provided through the role
    * @fhirSearchType `reference`
    * @fhirPath `OrganizationAffiliation.healthcareService`
    */
-  service(): this {
-    return this;
+  service(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("service", ...args);
   }
   /**
    * Specific specialty of the participatingOrganization in the context of the role
    * @fhirSearchType `token`
    * @fhirPath `OrganizationAffiliation.specialty`
    */
-  specialty(): this {
-    return this;
+  specialty(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("specialty", ...args);
   }
   /**
    * The value in any kind of contact
    * @fhirSearchType `token`
    * @fhirPath `OrganizationAffiliation.telecom`
    */
-  telecom(): this {
-    return this;
+  telecom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("telecom", ...args);
   }
 }
 
@@ -19599,48 +21688,60 @@ export class PackagedProductDefinitionFhirSearchBuilder extends DomainResourceFh
    * @fhirSearchType `reference`
    * @fhirPath `PackagedProductDefinition.package.containedItem.item.reference`
    */
-  biological(): this {
-    return this;
+  biological(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("biological", ...args);
   }
   /**
    * Any of the contained items within this packaged product
    * @fhirSearchType `reference`
    * @fhirPath `PackagedProductDefinition.package.containedItem.item.reference`
    */
-  containedItem(): this {
-    return this;
+  containedItem(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("contained-item", ...args);
   }
   /**
    * A device within this packaged product
    * @fhirSearchType `reference`
    * @fhirPath `PackagedProductDefinition.package.containedItem.item.reference`
    */
-  device(): this {
-    return this;
+  device(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("device", ...args);
   }
   /**
    * Unique identifier
    * @fhirSearchType `token`
    * @fhirPath `PackagedProductDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * A manufactured item of medication within this packaged product
    * @fhirSearchType `reference`
    * @fhirPath `PackagedProductDefinition.package.containedItem.item.reference`
    */
-  manufacturedItem(): this {
-    return this;
+  manufacturedItem(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("manufactured-item", ...args);
   }
   /**
    * A manufactured item of medication within this packaged product
    * @fhirSearchType `reference`
    * @fhirPath `PackagedProductDefinition.package.containedItem.item.reference`
    */
-  medication(): this {
-    return this;
+  medication(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("medication", ...args);
   }
   /**
    * A name for this package. Typically what it would be listed as in a drug
@@ -19648,32 +21749,38 @@ export class PackagedProductDefinitionFhirSearchBuilder extends DomainResourceFh
    * @fhirSearchType `token`
    * @fhirPath `PackagedProductDefinition.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("name", ...args);
   }
   /**
    * A nutrition product within this packaged product
    * @fhirSearchType `reference`
    * @fhirPath `PackagedProductDefinition.package.containedItem.item.reference`
    */
-  nutrition(): this {
-    return this;
+  nutrition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("nutrition", ...args);
   }
   /**
    * The product that this is a pack for
    * @fhirSearchType `reference`
    * @fhirPath `PackagedProductDefinition.packageFor`
    */
-  packageFor(): this {
-    return this;
+  packageFor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("package-for", ...args);
   }
   /**
    * A complete packaged product within this packaged product
    * @fhirSearchType `reference`
    * @fhirPath `PackagedProductDefinition.package.containedItem.item.reference`
    */
-  package(): this {
-    return this;
+  package(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("package", ...args);
   }
   /**
    * The status within the lifecycle of this item. A high level status, this is not
@@ -19682,8 +21789,10 @@ export class PackagedProductDefinitionFhirSearchBuilder extends DomainResourceFh
    * @fhirSearchType `token`
    * @fhirPath `PackagedProductDefinition.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -19697,24 +21806,30 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Patient.active`
    */
-  active(): this {
-    return this;
+  active(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("active", ...args);
   }
   /**
    * The date of death has been provided and satisfies this search value
    * @fhirSearchType `date`
    * @fhirPath `(Patient.deceased as dateTime)`
    */
-  deathDate(): this {
-    return this;
+  deathDate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("death-date", ...args);
   }
   /**
    * This patient has been marked as deceased, or has a death date entered
    * @fhirSearchType `token`
    * @fhirPath `Patient.deceased.exists() and Patient.deceased != false`
    */
-  deceased(): this {
-    return this;
+  deceased(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("deceased", ...args);
   }
   /**
    * Patient's nominated general practitioner, not the organization that manages the
@@ -19722,32 +21837,40 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Patient.generalPractitioner`
    */
-  generalPractitioner(): this {
-    return this;
+  generalPractitioner(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("general-practitioner", ...args);
   }
   /**
    * A patient identifier
    * @fhirSearchType `token`
    * @fhirPath `Patient.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Language code (irrespective of use value)
    * @fhirSearchType `token`
    * @fhirPath `Patient.communication.language`
    */
-  language(): this {
-    return this;
+  language(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("language", ...args);
   }
   /**
    * All patients linked to the given patient
    * @fhirSearchType `reference`
    * @fhirPath `Patient.link.other`
    */
-  link(): this {
-    return this;
+  link(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("link", ...args);
   }
   /**
    * A server defined search that may match any of the string fields in the
@@ -19755,16 +21878,18 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `string`
    * @fhirPath `Patient.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * The organization that is the custodian of the patient record
    * @fhirSearchType `reference`
    * @fhirPath `Patient.managingOrganization`
    */
-  organization(): this {
-    return this;
+  organization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("organization", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19779,8 +21904,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.city | Person.address.city | Practitioner.address.city | RelatedPerson.address.city`
  */
-  addressCity(): this {
-    return this;
+  addressCity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-city", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19795,8 +21922,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.country | Person.address.country | Practitioner.address.country | RelatedPerson.address.country`
  */
-  addressCountry(): this {
-    return this;
+  addressCountry(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-country", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19811,8 +21940,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.postalCode | Person.address.postalCode | Practitioner.address.postalCode | RelatedPerson.address.postalCode`
  */
-  addressPostalcode(): this {
-    return this;
+  addressPostalcode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-postalcode", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19827,8 +21958,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.state | Person.address.state | Practitioner.address.state | RelatedPerson.address.state`
  */
-  addressState(): this {
-    return this;
+  addressState(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-state", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19843,8 +21976,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `Patient.address.use | Person.address.use | Practitioner.address.use | RelatedPerson.address.use`
  */
-  addressUse(): this {
-    return this;
+  addressUse(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("address-use", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19865,8 +22000,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.address | Person.address | Practitioner.address | RelatedPerson.address`
  */
-  address(): this {
-    return this;
+  address(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19879,8 +22016,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `date`
  * @fhirPath `Patient.birthDate | Person.birthDate | RelatedPerson.birthDate`
  */
-  birthdate(): this {
-    return this;
+  birthdate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("birthdate", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19897,8 +22036,8 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom.where(system='email') | Person.telecom.where(system='email') | Practitioner.telecom.where(system='email') | PractitionerRole.telecom.where(system='email') | RelatedPerson.telecom.where(system='email')`
  */
-  email(): this {
-    return this;
+  email(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("email", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19910,8 +22049,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.name.family | Practitioner.name.family`
  */
-  family(): this {
-    return this;
+  family(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("family", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19926,8 +22067,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `Patient.gender | Person.gender | Practitioner.gender | RelatedPerson.gender`
  */
-  gender(): this {
-    return this;
+  gender(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("gender", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19939,8 +22082,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.name.given | Practitioner.name.given`
  */
-  given(): this {
-    return this;
+  given(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("given", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19957,8 +22102,8 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom.where(system='phone') | Person.telecom.where(system='phone') | Practitioner.telecom.where(system='phone') | PractitionerRole.telecom.where(system='phone') | RelatedPerson.telecom.where(system='phone')`
  */
-  phone(): this {
-    return this;
+  phone(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("phone", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19976,8 +22121,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.name | Person.name | Practitioner.name | RelatedPerson.name`
  */
-  phonetic(): this {
-    return this;
+  phonetic(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("phonetic", ...args);
   }
   /**
  * Multiple Resources: 
@@ -19995,8 +22142,10 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom | Person.telecom | Practitioner.telecom | PractitionerRole.telecom | RelatedPerson.telecom`
  */
-  telecom(): this {
-    return this;
+  telecom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("telecom", ...args);
   }
 }
 
@@ -20008,56 +22157,70 @@ export class PaymentNoticeFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `date`
    * @fhirPath `PaymentNotice.created`
    */
-  created(): this {
-    return this;
+  created(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("created", ...args);
   }
   /**
    * The business identifier of the notice
    * @fhirSearchType `token`
    * @fhirPath `PaymentNotice.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The type of payment notice
    * @fhirSearchType `token`
    * @fhirPath `PaymentNotice.paymentStatus`
    */
-  paymentStatus(): this {
-    return this;
+  paymentStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("payment-status", ...args);
   }
   /**
    * The reference to the provider
    * @fhirSearchType `reference`
    * @fhirPath `PaymentNotice.provider`
    */
-  provider(): this {
-    return this;
+  provider(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("provider", ...args);
   }
   /**
    * The Claim
    * @fhirSearchType `reference`
    * @fhirPath `PaymentNotice.request`
    */
-  request(): this {
-    return this;
+  request(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("request", ...args);
   }
   /**
    * The ClaimResponse
    * @fhirSearchType `reference`
    * @fhirPath `PaymentNotice.response`
    */
-  response(): this {
-    return this;
+  response(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("response", ...args);
   }
   /**
    * The status of the payment notice
    * @fhirSearchType `token`
    * @fhirPath `PaymentNotice.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -20069,64 +22232,80 @@ export class PaymentReconciliationFhirSearchBuilder extends DomainResourceFhirSe
    * @fhirSearchType `date`
    * @fhirPath `PaymentReconciliation.created`
    */
-  created(): this {
-    return this;
+  created(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("created", ...args);
   }
   /**
    * The contents of the disposition message
    * @fhirSearchType `string`
    * @fhirPath `PaymentReconciliation.disposition`
    */
-  disposition(): this {
-    return this;
+  disposition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("disposition", ...args);
   }
   /**
    * The business identifier of the ExplanationOfBenefit
    * @fhirSearchType `token`
    * @fhirPath `PaymentReconciliation.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The processing outcome
    * @fhirSearchType `token`
    * @fhirPath `PaymentReconciliation.outcome`
    */
-  outcome(): this {
-    return this;
+  outcome(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("outcome", ...args);
   }
   /**
    * The organization which generated this resource
    * @fhirSearchType `reference`
    * @fhirPath `PaymentReconciliation.paymentIssuer`
    */
-  paymentIssuer(): this {
-    return this;
+  paymentIssuer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("payment-issuer", ...args);
   }
   /**
    * The reference to the claim
    * @fhirSearchType `reference`
    * @fhirPath `PaymentReconciliation.request`
    */
-  request(): this {
-    return this;
+  request(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("request", ...args);
   }
   /**
    * The reference to the provider who submitted the claim
    * @fhirSearchType `reference`
    * @fhirPath `PaymentReconciliation.requestor`
    */
-  requestor(): this {
-    return this;
+  requestor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("requestor", ...args);
   }
   /**
    * The status of the payment reconciliation
    * @fhirSearchType `token`
    * @fhirPath `PaymentReconciliation.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -20138,16 +22317,20 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Person.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Any link has this Patient, Person, RelatedPerson or Practitioner reference
    * @fhirSearchType `reference`
    * @fhirPath `Person.link.target`
    */
-  link(): this {
-    return this;
+  link(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("link", ...args);
   }
   /**
    * A server defined search that may match any of the string fields in the
@@ -20155,40 +22338,48 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `string`
    * @fhirPath `Person.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * The organization at which this person record is being managed
    * @fhirSearchType `reference`
    * @fhirPath `Person.managingOrganization`
    */
-  organization(): this {
-    return this;
+  organization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("organization", ...args);
   }
   /**
    * The Person links to this Patient
    * @fhirSearchType `reference`
    * @fhirPath `Person.link.target.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The Person links to this Practitioner
    * @fhirSearchType `reference`
    * @fhirPath `Person.link.target.where(resolve() is Practitioner)`
    */
-  practitioner(): this {
-    return this;
+  practitioner(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("practitioner", ...args);
   }
   /**
    * The Person links to this RelatedPerson
    * @fhirSearchType `reference`
    * @fhirPath `Person.link.target.where(resolve() is RelatedPerson)`
    */
-  relatedperson(): this {
-    return this;
+  relatedperson(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("relatedperson", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20203,8 +22394,10 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.city | Person.address.city | Practitioner.address.city | RelatedPerson.address.city`
  */
-  addressCity(): this {
-    return this;
+  addressCity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-city", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20219,8 +22412,10 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.country | Person.address.country | Practitioner.address.country | RelatedPerson.address.country`
  */
-  addressCountry(): this {
-    return this;
+  addressCountry(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-country", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20235,8 +22430,10 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.postalCode | Person.address.postalCode | Practitioner.address.postalCode | RelatedPerson.address.postalCode`
  */
-  addressPostalcode(): this {
-    return this;
+  addressPostalcode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-postalcode", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20251,8 +22448,10 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.state | Person.address.state | Practitioner.address.state | RelatedPerson.address.state`
  */
-  addressState(): this {
-    return this;
+  addressState(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-state", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20267,8 +22466,10 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `Patient.address.use | Person.address.use | Practitioner.address.use | RelatedPerson.address.use`
  */
-  addressUse(): this {
-    return this;
+  addressUse(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("address-use", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20289,8 +22490,10 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.address | Person.address | Practitioner.address | RelatedPerson.address`
  */
-  address(): this {
-    return this;
+  address(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20303,8 +22506,10 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `date`
  * @fhirPath `Patient.birthDate | Person.birthDate | RelatedPerson.birthDate`
  */
-  birthdate(): this {
-    return this;
+  birthdate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("birthdate", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20321,8 +22526,8 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom.where(system='email') | Person.telecom.where(system='email') | Practitioner.telecom.where(system='email') | PractitionerRole.telecom.where(system='email') | RelatedPerson.telecom.where(system='email')`
  */
-  email(): this {
-    return this;
+  email(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("email", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20337,8 +22542,10 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `Patient.gender | Person.gender | Practitioner.gender | RelatedPerson.gender`
  */
-  gender(): this {
-    return this;
+  gender(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("gender", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20355,8 +22562,8 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom.where(system='phone') | Person.telecom.where(system='phone') | Practitioner.telecom.where(system='phone') | PractitionerRole.telecom.where(system='phone') | RelatedPerson.telecom.where(system='phone')`
  */
-  phone(): this {
-    return this;
+  phone(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("phone", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20374,8 +22581,10 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `Patient.name | Person.name | Practitioner.name | RelatedPerson.name`
  */
-  phonetic(): this {
-    return this;
+  phonetic(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("phonetic", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20393,8 +22602,10 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom | Person.telecom | Practitioner.telecom | PractitionerRole.telecom | RelatedPerson.telecom`
  */
-  telecom(): this {
-    return this;
+  telecom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("telecom", ...args);
   }
 }
 
@@ -20406,16 +22617,20 @@ export class PlanDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBui
    * @fhirSearchType `reference`
    * @fhirPath `PlanDefinition.relatedArtifact.where(type='composed-of').resource`
    */
-  composedOf(): this {
-    return this;
+  composedOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("composed-of", ...args);
   }
   /**
    * A quantity- or range-valued use context assigned to the plan definition
    * @fhirSearchType `quantity`
    * @fhirPath `(PlanDefinition.useContext.value as Quantity) | (PlanDefinition.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the plan
@@ -20423,176 +22638,210 @@ export class PlanDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBui
    * @fhirSearchType `composite`
    * @fhirPath `PlanDefinition.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the plan definition
    * @fhirSearchType `composite`
    * @fhirPath `PlanDefinition.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the plan definition
    * @fhirSearchType `token`
    * @fhirPath `PlanDefinition.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the plan definition
    * @fhirSearchType `token`
    * @fhirPath `(PlanDefinition.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The plan definition publication date
    * @fhirSearchType `date`
    * @fhirPath `PlanDefinition.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * Activity or plan definitions used by plan definition
    * @fhirSearchType `reference`
    * @fhirPath `PlanDefinition.action.definition`
    */
-  definition(): this {
-    return this;
+  definition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("definition", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `PlanDefinition.relatedArtifact.where(type='depends-on').resource | PlanDefinition.library`
    */
-  dependsOn(): this {
-    return this;
+  dependsOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("depends-on", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `PlanDefinition.relatedArtifact.where(type='derived-from').resource`
    */
-  derivedFrom(): this {
-    return this;
+  derivedFrom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("derived-from", ...args);
   }
   /**
    * The description of the plan definition
    * @fhirSearchType `string`
    * @fhirPath `PlanDefinition.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * The time during which the plan definition is intended to be in use
    * @fhirSearchType `date`
    * @fhirPath `PlanDefinition.effectivePeriod`
    */
-  effective(): this {
-    return this;
+  effective(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective", ...args);
   }
   /**
    * External identifier for the plan definition
    * @fhirSearchType `token`
    * @fhirPath `PlanDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the plan definition
    * @fhirSearchType `token`
    * @fhirPath `PlanDefinition.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Computationally friendly name of the plan definition
    * @fhirSearchType `string`
    * @fhirPath `PlanDefinition.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `PlanDefinition.relatedArtifact.where(type='predecessor').resource`
    */
-  predecessor(): this {
-    return this;
+  predecessor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("predecessor", ...args);
   }
   /**
    * Name of the publisher of the plan definition
    * @fhirSearchType `string`
    * @fhirPath `PlanDefinition.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the plan definition
    * @fhirSearchType `token`
    * @fhirPath `PlanDefinition.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `PlanDefinition.relatedArtifact.where(type='successor').resource`
    */
-  successor(): this {
-    return this;
+  successor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("successor", ...args);
   }
   /**
    * The human-friendly name of the plan definition
    * @fhirSearchType `string`
    * @fhirPath `PlanDefinition.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * Topics associated with the module
    * @fhirSearchType `token`
    * @fhirPath `PlanDefinition.topic`
    */
-  topic(): this {
-    return this;
+  topic(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("topic", ...args);
   }
   /**
    * The type of artifact the plan (e.g. order-set, eca-rule, protocol)
    * @fhirSearchType `token`
    * @fhirPath `PlanDefinition.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
   /**
    * The uri that identifies the plan definition
    * @fhirSearchType `uri`
    * @fhirPath `PlanDefinition.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the plan definition
    * @fhirSearchType `token`
    * @fhirPath `PlanDefinition.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -20604,24 +22853,30 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `token`
    * @fhirPath `Practitioner.active`
    */
-  active(): this {
-    return this;
+  active(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("active", ...args);
   }
   /**
    * One of the languages that the practitioner can communicate with
    * @fhirSearchType `token`
    * @fhirPath `Practitioner.communication`
    */
-  communication(): this {
-    return this;
+  communication(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("communication", ...args);
   }
   /**
    * A practitioner's Identifier
    * @fhirSearchType `token`
    * @fhirPath `Practitioner.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * A server defined search that may match any of the string fields in the
@@ -20629,8 +22884,8 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `string`
    * @fhirPath `Practitioner.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20645,8 +22900,10 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.city | Person.address.city | Practitioner.address.city | RelatedPerson.address.city`
  */
-  addressCity(): this {
-    return this;
+  addressCity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-city", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20661,8 +22918,10 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.country | Person.address.country | Practitioner.address.country | RelatedPerson.address.country`
  */
-  addressCountry(): this {
-    return this;
+  addressCountry(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-country", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20677,8 +22936,10 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.postalCode | Person.address.postalCode | Practitioner.address.postalCode | RelatedPerson.address.postalCode`
  */
-  addressPostalcode(): this {
-    return this;
+  addressPostalcode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-postalcode", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20693,8 +22954,10 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.state | Person.address.state | Practitioner.address.state | RelatedPerson.address.state`
  */
-  addressState(): this {
-    return this;
+  addressState(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-state", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20709,8 +22972,10 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `Patient.address.use | Person.address.use | Practitioner.address.use | RelatedPerson.address.use`
  */
-  addressUse(): this {
-    return this;
+  addressUse(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("address-use", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20731,8 +22996,10 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `Patient.address | Person.address | Practitioner.address | RelatedPerson.address`
  */
-  address(): this {
-    return this;
+  address(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20749,8 +23016,8 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom.where(system='email') | Person.telecom.where(system='email') | Practitioner.telecom.where(system='email') | PractitionerRole.telecom.where(system='email') | RelatedPerson.telecom.where(system='email')`
  */
-  email(): this {
-    return this;
+  email(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("email", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20762,8 +23029,10 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `Patient.name.family | Practitioner.name.family`
  */
-  family(): this {
-    return this;
+  family(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("family", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20778,8 +23047,10 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `Patient.gender | Person.gender | Practitioner.gender | RelatedPerson.gender`
  */
-  gender(): this {
-    return this;
+  gender(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("gender", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20791,8 +23062,10 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `Patient.name.given | Practitioner.name.given`
  */
-  given(): this {
-    return this;
+  given(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("given", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20809,8 +23082,8 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom.where(system='phone') | Person.telecom.where(system='phone') | Practitioner.telecom.where(system='phone') | PractitionerRole.telecom.where(system='phone') | RelatedPerson.telecom.where(system='phone')`
  */
-  phone(): this {
-    return this;
+  phone(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("phone", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20828,8 +23101,10 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `Patient.name | Person.name | Practitioner.name | RelatedPerson.name`
  */
-  phonetic(): this {
-    return this;
+  phonetic(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("phonetic", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20847,8 +23122,10 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom | Person.telecom | Practitioner.telecom | PractitionerRole.telecom | RelatedPerson.telecom`
  */
-  telecom(): this {
-    return this;
+  telecom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("telecom", ...args);
   }
 }
 
@@ -20860,8 +23137,10 @@ export class PractitionerRoleFhirSearchBuilder extends DomainResourceFhirSearchB
    * @fhirSearchType `token`
    * @fhirPath `PractitionerRole.active`
    */
-  active(): this {
-    return this;
+  active(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("active", ...args);
   }
   /**
    * The period during which the practitioner is authorized to perform in these
@@ -20869,8 +23148,8 @@ export class PractitionerRoleFhirSearchBuilder extends DomainResourceFhirSearchB
    * @fhirSearchType `date`
    * @fhirPath `PractitionerRole.period`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * Technical endpoints providing access to services operated for the practitioner
@@ -20878,48 +23157,58 @@ export class PractitionerRoleFhirSearchBuilder extends DomainResourceFhirSearchB
    * @fhirSearchType `reference`
    * @fhirPath `PractitionerRole.endpoint`
    */
-  endpoint(): this {
-    return this;
+  endpoint(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("endpoint", ...args);
   }
   /**
    * A practitioner's Identifier
    * @fhirSearchType `token`
    * @fhirPath `PractitionerRole.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * One of the locations at which this practitioner provides care
    * @fhirSearchType `reference`
    * @fhirPath `PractitionerRole.location`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("location", ...args);
   }
   /**
    * The identity of the organization the practitioner represents / acts on behalf of
    * @fhirSearchType `reference`
    * @fhirPath `PractitionerRole.organization`
    */
-  organization(): this {
-    return this;
+  organization(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("organization", ...args);
   }
   /**
    * Practitioner that is able to provide the defined services for the organization
    * @fhirSearchType `reference`
    * @fhirPath `PractitionerRole.practitioner`
    */
-  practitioner(): this {
-    return this;
+  practitioner(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("practitioner", ...args);
   }
   /**
    * The practitioner can perform this role at for the organization
    * @fhirSearchType `token`
    * @fhirPath `PractitionerRole.code`
    */
-  role(): this {
-    return this;
+  role(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("role", ...args);
   }
   /**
    * The list of healthcare services that this worker provides for this role's
@@ -20927,16 +23216,20 @@ export class PractitionerRoleFhirSearchBuilder extends DomainResourceFhirSearchB
    * @fhirSearchType `reference`
    * @fhirPath `PractitionerRole.healthcareService`
    */
-  service(): this {
-    return this;
+  service(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("service", ...args);
   }
   /**
    * The practitioner has this specialty at an organization
    * @fhirSearchType `token`
    * @fhirPath `PractitionerRole.specialty`
    */
-  specialty(): this {
-    return this;
+  specialty(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("specialty", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20953,8 +23246,8 @@ export class PractitionerRoleFhirSearchBuilder extends DomainResourceFhirSearchB
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom.where(system='email') | Person.telecom.where(system='email') | Practitioner.telecom.where(system='email') | PractitionerRole.telecom.where(system='email') | RelatedPerson.telecom.where(system='email')`
  */
-  email(): this {
-    return this;
+  email(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("email", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20971,8 +23264,8 @@ export class PractitionerRoleFhirSearchBuilder extends DomainResourceFhirSearchB
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom.where(system='phone') | Person.telecom.where(system='phone') | Practitioner.telecom.where(system='phone') | PractitionerRole.telecom.where(system='phone') | RelatedPerson.telecom.where(system='phone')`
  */
-  phone(): this {
-    return this;
+  phone(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("phone", ...args);
   }
   /**
  * Multiple Resources: 
@@ -20990,8 +23283,10 @@ export class PractitionerRoleFhirSearchBuilder extends DomainResourceFhirSearchB
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom | Person.telecom | Practitioner.telecom | PractitionerRole.telecom | RelatedPerson.telecom`
  */
-  telecom(): this {
-    return this;
+  telecom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("telecom", ...args);
   }
 }
 
@@ -21003,72 +23298,90 @@ export class ProcedureFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
    * @fhirSearchType `reference`
    * @fhirPath `Procedure.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * Classification of the procedure
    * @fhirSearchType `token`
    * @fhirPath `Procedure.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Instantiates FHIR protocol or definition
    * @fhirSearchType `reference`
    * @fhirPath `Procedure.instantiatesCanonical`
    */
-  instantiatesCanonical(): this {
-    return this;
+  instantiatesCanonical(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("instantiates-canonical", ...args);
   }
   /**
    * Instantiates external protocol or definition
    * @fhirSearchType `uri`
    * @fhirPath `Procedure.instantiatesUri`
    */
-  instantiatesUri(): this {
-    return this;
+  instantiatesUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("instantiates-uri", ...args);
   }
   /**
    * Where the procedure happened
    * @fhirSearchType `reference`
    * @fhirPath `Procedure.location`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("location", ...args);
   }
   /**
    * Part of referenced event
    * @fhirSearchType `reference`
    * @fhirPath `Procedure.partOf`
    */
-  partOf(): this {
-    return this;
+  partOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("part-of", ...args);
   }
   /**
    * The reference to the practitioner
    * @fhirSearchType `reference`
    * @fhirPath `Procedure.performer.actor`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer", ...args);
   }
   /**
    * Coded reason procedure performed
    * @fhirSearchType `token`
    * @fhirPath `Procedure.reasonCode`
    */
-  reasonCode(): this {
-    return this;
+  reasonCode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("reason-code", ...args);
   }
   /**
    * The justification that the procedure was performed
    * @fhirSearchType `reference`
    * @fhirPath `Procedure.reasonReference`
    */
-  reasonReference(): this {
-    return this;
+  reasonReference(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("reason-reference", ...args);
   }
   /**
    * preparation | in-progress | not-done | on-hold | stopped | completed |
@@ -21076,16 +23389,20 @@ export class ProcedureFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
    * @fhirSearchType `token`
    * @fhirPath `Procedure.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Search by subject
    * @fhirSearchType `reference`
    * @fhirPath `Procedure.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21124,8 +23441,8 @@ export class ProcedureFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21168,8 +23485,8 @@ export class ProcedureFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21201,8 +23518,10 @@ export class ProcedureFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21273,8 +23592,10 @@ export class ProcedureFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21349,8 +23670,10 @@ export class ProcedureFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -21362,80 +23685,98 @@ export class ProvenanceFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `token`
    * @fhirPath `Provenance.agent.role`
    */
-  agentRole(): this {
-    return this;
+  agentRole(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("agent-role", ...args);
   }
   /**
    * How the agent participated
    * @fhirSearchType `token`
    * @fhirPath `Provenance.agent.type`
    */
-  agentType(): this {
-    return this;
+  agentType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("agent-type", ...args);
   }
   /**
    * Who participated
    * @fhirSearchType `reference`
    * @fhirPath `Provenance.agent.who`
    */
-  agent(): this {
-    return this;
+  agent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("agent", ...args);
   }
   /**
    * Identity of entity
    * @fhirSearchType `reference`
    * @fhirPath `Provenance.entity.what`
    */
-  entity(): this {
-    return this;
+  entity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("entity", ...args);
   }
   /**
    * Where the activity occurred, if relevant
    * @fhirSearchType `reference`
    * @fhirPath `Provenance.location`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("location", ...args);
   }
   /**
    * Target Reference(s) (usually version specific)
    * @fhirSearchType `reference`
    * @fhirPath `Provenance.target.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * When the activity was recorded / updated
    * @fhirSearchType `date`
    * @fhirPath `Provenance.recorded`
    */
-  recorded(): this {
-    return this;
+  recorded(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("recorded", ...args);
   }
   /**
    * Indication of the reason the entity signed the object(s)
    * @fhirSearchType `token`
    * @fhirPath `Provenance.signature.type`
    */
-  signatureType(): this {
-    return this;
+  signatureType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("signature-type", ...args);
   }
   /**
    * Target Reference(s) (usually version specific)
    * @fhirSearchType `reference`
    * @fhirPath `Provenance.target`
    */
-  target(): this {
-    return this;
+  target(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("target", ...args);
   }
   /**
    * When the activity occurred
    * @fhirSearchType `date`
    * @fhirPath `(Provenance.occurred as dateTime)`
    */
-  when(): this {
-    return this;
+  when(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("when", ...args);
   }
 }
 
@@ -21447,16 +23788,18 @@ export class QuestionnaireFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `token`
    * @fhirPath `Questionnaire.item.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * A quantity- or range-valued use context assigned to the questionnaire
    * @fhirSearchType `quantity`
    * @fhirPath `(Questionnaire.useContext.value as Quantity) | (Questionnaire.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the
@@ -21464,136 +23807,164 @@ export class QuestionnaireFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `composite`
    * @fhirPath `Questionnaire.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the questionnaire
    * @fhirSearchType `composite`
    * @fhirPath `Questionnaire.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the questionnaire
    * @fhirSearchType `token`
    * @fhirPath `Questionnaire.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the questionnaire
    * @fhirSearchType `token`
    * @fhirPath `(Questionnaire.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The questionnaire publication date
    * @fhirSearchType `date`
    * @fhirPath `Questionnaire.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * ElementDefinition - details for the item
    * @fhirSearchType `uri`
    * @fhirPath `Questionnaire.item.definition`
    */
-  definition(): this {
-    return this;
+  definition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("definition", ...args);
   }
   /**
    * The description of the questionnaire
    * @fhirSearchType `string`
    * @fhirPath `Questionnaire.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * The time during which the questionnaire is intended to be in use
    * @fhirSearchType `date`
    * @fhirPath `Questionnaire.effectivePeriod`
    */
-  effective(): this {
-    return this;
+  effective(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective", ...args);
   }
   /**
    * External identifier for the questionnaire
    * @fhirSearchType `token`
    * @fhirPath `Questionnaire.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the questionnaire
    * @fhirSearchType `token`
    * @fhirPath `Questionnaire.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Computationally friendly name of the questionnaire
    * @fhirSearchType `string`
    * @fhirPath `Questionnaire.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * Name of the publisher of the questionnaire
    * @fhirSearchType `string`
    * @fhirPath `Questionnaire.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the questionnaire
    * @fhirSearchType `token`
    * @fhirPath `Questionnaire.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Resource that can be subject of QuestionnaireResponse
    * @fhirSearchType `token`
    * @fhirPath `Questionnaire.subjectType`
    */
-  subjectType(): this {
-    return this;
+  subjectType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("subject-type", ...args);
   }
   /**
    * The human-friendly name of the questionnaire
    * @fhirSearchType `string`
    * @fhirPath `Questionnaire.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * The uri that identifies the questionnaire
    * @fhirSearchType `uri`
    * @fhirPath `Questionnaire.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the questionnaire
    * @fhirSearchType `token`
    * @fhirPath `Questionnaire.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -21605,88 +23976,110 @@ export class QuestionnaireResponseFhirSearchBuilder extends DomainResourceFhirSe
    * @fhirSearchType `reference`
    * @fhirPath `QuestionnaireResponse.author`
    */
-  author(): this {
-    return this;
+  author(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("author", ...args);
   }
   /**
    * When the questionnaire response was last changed
    * @fhirSearchType `date`
    * @fhirPath `QuestionnaireResponse.authored`
    */
-  authored(): this {
-    return this;
+  authored(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("authored", ...args);
   }
   /**
    * Plan/proposal/order fulfilled by this questionnaire response
    * @fhirSearchType `reference`
    * @fhirPath `QuestionnaireResponse.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * Encounter associated with the questionnaire response
    * @fhirSearchType `reference`
    * @fhirPath `QuestionnaireResponse.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * The unique identifier for the questionnaire response
    * @fhirSearchType `token`
    * @fhirPath `QuestionnaireResponse.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Procedure or observation this questionnaire response was performed as a part of
    * @fhirSearchType `reference`
    * @fhirPath `QuestionnaireResponse.partOf`
    */
-  partOf(): this {
-    return this;
+  partOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("part-of", ...args);
   }
   /**
    * The patient that is the subject of the questionnaire response
    * @fhirSearchType `reference`
    * @fhirPath `QuestionnaireResponse.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The questionnaire the answers are provided for
    * @fhirSearchType `reference`
    * @fhirPath `QuestionnaireResponse.questionnaire`
    */
-  questionnaire(): this {
-    return this;
+  questionnaire(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("questionnaire", ...args);
   }
   /**
    * The individual providing the information reflected in the questionnaire respose
    * @fhirSearchType `reference`
    * @fhirPath `QuestionnaireResponse.source`
    */
-  source(): this {
-    return this;
+  source(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("source", ...args);
   }
   /**
    * The status of the questionnaire response
    * @fhirSearchType `token`
    * @fhirPath `QuestionnaireResponse.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The subject of the questionnaire response
    * @fhirSearchType `reference`
    * @fhirPath `QuestionnaireResponse.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
 }
 
@@ -21698,24 +24091,28 @@ export class RegulatedAuthorizationFhirSearchBuilder extends DomainResourceFhirS
    * @fhirSearchType `token`
    * @fhirPath `RegulatedAuthorization.case.type`
    */
-  caseType(): this {
-    return this;
+  caseType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("case-type", ...args);
   }
   /**
    * The case or procedure number
    * @fhirSearchType `token`
    * @fhirPath `RegulatedAuthorization.case.identifier`
    */
-  case(): this {
-    return this;
+  case(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("case", ...args);
   }
   /**
    * The organization that holds the granted authorization
    * @fhirSearchType `reference`
    * @fhirPath `RegulatedAuthorization.holder`
    */
-  holder(): this {
-    return this;
+  holder(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("holder", ...args);
   }
   /**
    * Business identifier for the authorization, typically assigned by the authorizing
@@ -21723,8 +24120,10 @@ export class RegulatedAuthorizationFhirSearchBuilder extends DomainResourceFhirS
    * @fhirSearchType `token`
    * @fhirPath `RegulatedAuthorization.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The territory (e.g., country, jurisdiction etc.) in which the authorization has
@@ -21732,8 +24131,10 @@ export class RegulatedAuthorizationFhirSearchBuilder extends DomainResourceFhirS
    * @fhirSearchType `token`
    * @fhirPath `RegulatedAuthorization.region`
    */
-  region(): this {
-    return this;
+  region(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("region", ...args);
   }
   /**
    * The status that is authorised e.g. approved. Intermediate states can be tracked
@@ -21741,8 +24142,10 @@ export class RegulatedAuthorizationFhirSearchBuilder extends DomainResourceFhirS
    * @fhirSearchType `token`
    * @fhirPath `RegulatedAuthorization.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The type of regulated product, treatment, facility or activity that is being
@@ -21750,8 +24153,10 @@ export class RegulatedAuthorizationFhirSearchBuilder extends DomainResourceFhirS
    * @fhirSearchType `reference`
    * @fhirPath `RegulatedAuthorization.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
 }
 
@@ -21763,16 +24168,20 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `token`
    * @fhirPath `RelatedPerson.active`
    */
-  active(): this {
-    return this;
+  active(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("active", ...args);
   }
   /**
    * An Identifier of the RelatedPerson
    * @fhirSearchType `token`
    * @fhirPath `RelatedPerson.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * A server defined search that may match any of the string fields in the
@@ -21780,24 +24189,28 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `string`
    * @fhirPath `RelatedPerson.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * The patient this related person is related to
    * @fhirSearchType `reference`
    * @fhirPath `RelatedPerson.patient`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The relationship between the patient and the relatedperson
    * @fhirSearchType `token`
    * @fhirPath `RelatedPerson.relationship`
    */
-  relationship(): this {
-    return this;
+  relationship(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("relationship", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21812,8 +24225,10 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.city | Person.address.city | Practitioner.address.city | RelatedPerson.address.city`
  */
-  addressCity(): this {
-    return this;
+  addressCity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-city", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21828,8 +24243,10 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.country | Person.address.country | Practitioner.address.country | RelatedPerson.address.country`
  */
-  addressCountry(): this {
-    return this;
+  addressCountry(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-country", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21844,8 +24261,10 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.postalCode | Person.address.postalCode | Practitioner.address.postalCode | RelatedPerson.address.postalCode`
  */
-  addressPostalcode(): this {
-    return this;
+  addressPostalcode(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-postalcode", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21860,8 +24279,10 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `string`
  * @fhirPath `Patient.address.state | Person.address.state | Practitioner.address.state | RelatedPerson.address.state`
  */
-  addressState(): this {
-    return this;
+  addressState(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address-state", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21876,8 +24297,10 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `token`
  * @fhirPath `Patient.address.use | Person.address.use | Practitioner.address.use | RelatedPerson.address.use`
  */
-  addressUse(): this {
-    return this;
+  addressUse(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("address-use", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21898,8 +24321,10 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `string`
  * @fhirPath `Patient.address | Person.address | Practitioner.address | RelatedPerson.address`
  */
-  address(): this {
-    return this;
+  address(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("address", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21912,8 +24337,10 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `date`
  * @fhirPath `Patient.birthDate | Person.birthDate | RelatedPerson.birthDate`
  */
-  birthdate(): this {
-    return this;
+  birthdate(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("birthdate", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21930,8 +24357,8 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom.where(system='email') | Person.telecom.where(system='email') | Practitioner.telecom.where(system='email') | PractitionerRole.telecom.where(system='email') | RelatedPerson.telecom.where(system='email')`
  */
-  email(): this {
-    return this;
+  email(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("email", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21946,8 +24373,10 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `token`
  * @fhirPath `Patient.gender | Person.gender | Practitioner.gender | RelatedPerson.gender`
  */
-  gender(): this {
-    return this;
+  gender(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("gender", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21964,8 +24393,8 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom.where(system='phone') | Person.telecom.where(system='phone') | Practitioner.telecom.where(system='phone') | PractitionerRole.telecom.where(system='phone') | RelatedPerson.telecom.where(system='phone')`
  */
-  phone(): this {
-    return this;
+  phone(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("phone", ...args);
   }
   /**
  * Multiple Resources: 
@@ -21983,8 +24412,10 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `string`
  * @fhirPath `Patient.name | Person.name | Practitioner.name | RelatedPerson.name`
  */
-  phonetic(): this {
-    return this;
+  phonetic(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("phonetic", ...args);
   }
   /**
  * Multiple Resources: 
@@ -22002,8 +24433,10 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `token`
  * @fhirPath `Patient.telecom | Person.telecom | Practitioner.telecom | PractitionerRole.telecom | RelatedPerson.telecom`
  */
-  telecom(): this {
-    return this;
+  telecom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("telecom", ...args);
   }
 }
 
@@ -22015,112 +24448,138 @@ export class RequestGroupFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `reference`
    * @fhirPath `RequestGroup.author`
    */
-  author(): this {
-    return this;
+  author(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("author", ...args);
   }
   /**
    * The date the request group was authored
    * @fhirSearchType `date`
    * @fhirPath `RequestGroup.authoredOn`
    */
-  authored(): this {
-    return this;
+  authored(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("authored", ...args);
   }
   /**
    * The code of the request group
    * @fhirSearchType `token`
    * @fhirPath `RequestGroup.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * The encounter the request group applies to
    * @fhirSearchType `reference`
    * @fhirPath `RequestGroup.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * The group identifier for the request group
    * @fhirSearchType `token`
    * @fhirPath `RequestGroup.groupIdentifier`
    */
-  groupIdentifier(): this {
-    return this;
+  groupIdentifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("group-identifier", ...args);
   }
   /**
    * External identifiers for the request group
    * @fhirSearchType `token`
    * @fhirPath `RequestGroup.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The FHIR-based definition from which the request group is realized
    * @fhirSearchType `reference`
    * @fhirPath `RequestGroup.instantiatesCanonical`
    */
-  instantiatesCanonical(): this {
-    return this;
+  instantiatesCanonical(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("instantiates-canonical", ...args);
   }
   /**
    * The external definition from which the request group is realized
    * @fhirSearchType `uri`
    * @fhirPath `RequestGroup.instantiatesUri`
    */
-  instantiatesUri(): this {
-    return this;
+  instantiatesUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("instantiates-uri", ...args);
   }
   /**
    * The intent of the request group
    * @fhirSearchType `token`
    * @fhirPath `RequestGroup.intent`
    */
-  intent(): this {
-    return this;
+  intent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("intent", ...args);
   }
   /**
    * The participant in the requests in the group
    * @fhirSearchType `reference`
    * @fhirPath `RequestGroup.action.participant`
    */
-  participant(): this {
-    return this;
+  participant(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("participant", ...args);
   }
   /**
    * The identity of a patient to search for request groups
    * @fhirSearchType `reference`
    * @fhirPath `RequestGroup.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * The priority of the request group
    * @fhirSearchType `token`
    * @fhirPath `RequestGroup.priority`
    */
-  priority(): this {
-    return this;
+  priority(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("priority", ...args);
   }
   /**
    * The status of the request group
    * @fhirSearchType `token`
    * @fhirPath `RequestGroup.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The subject that the request group is about
    * @fhirSearchType `reference`
    * @fhirPath `RequestGroup.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
 }
 
@@ -22132,16 +24591,20 @@ export class ResearchDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `reference`
    * @fhirPath `ResearchDefinition.relatedArtifact.where(type='composed-of').resource`
    */
-  composedOf(): this {
-    return this;
+  composedOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("composed-of", ...args);
   }
   /**
    * A quantity- or range-valued use context assigned to the research definition
    * @fhirSearchType `quantity`
    * @fhirPath `(ResearchDefinition.useContext.value as Quantity) | (ResearchDefinition.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the research
@@ -22149,160 +24612,192 @@ export class ResearchDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `composite`
    * @fhirPath `ResearchDefinition.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the research definition
    * @fhirSearchType `composite`
    * @fhirPath `ResearchDefinition.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the research definition
    * @fhirSearchType `token`
    * @fhirPath `ResearchDefinition.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the research definition
    * @fhirSearchType `token`
    * @fhirPath `(ResearchDefinition.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The research definition publication date
    * @fhirSearchType `date`
    * @fhirPath `ResearchDefinition.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ResearchDefinition.relatedArtifact.where(type='depends-on').resource | ResearchDefinition.library`
    */
-  dependsOn(): this {
-    return this;
+  dependsOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("depends-on", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ResearchDefinition.relatedArtifact.where(type='derived-from').resource`
    */
-  derivedFrom(): this {
-    return this;
+  derivedFrom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("derived-from", ...args);
   }
   /**
    * The description of the research definition
    * @fhirSearchType `string`
    * @fhirPath `ResearchDefinition.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * The time during which the research definition is intended to be in use
    * @fhirSearchType `date`
    * @fhirPath `ResearchDefinition.effectivePeriod`
    */
-  effective(): this {
-    return this;
+  effective(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective", ...args);
   }
   /**
    * External identifier for the research definition
    * @fhirSearchType `token`
    * @fhirPath `ResearchDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the research definition
    * @fhirSearchType `token`
    * @fhirPath `ResearchDefinition.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Computationally friendly name of the research definition
    * @fhirSearchType `string`
    * @fhirPath `ResearchDefinition.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ResearchDefinition.relatedArtifact.where(type='predecessor').resource`
    */
-  predecessor(): this {
-    return this;
+  predecessor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("predecessor", ...args);
   }
   /**
    * Name of the publisher of the research definition
    * @fhirSearchType `string`
    * @fhirPath `ResearchDefinition.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the research definition
    * @fhirSearchType `token`
    * @fhirPath `ResearchDefinition.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ResearchDefinition.relatedArtifact.where(type='successor').resource`
    */
-  successor(): this {
-    return this;
+  successor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("successor", ...args);
   }
   /**
    * The human-friendly name of the research definition
    * @fhirSearchType `string`
    * @fhirPath `ResearchDefinition.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * Topics associated with the ResearchDefinition
    * @fhirSearchType `token`
    * @fhirPath `ResearchDefinition.topic`
    */
-  topic(): this {
-    return this;
+  topic(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("topic", ...args);
   }
   /**
    * The uri that identifies the research definition
    * @fhirSearchType `uri`
    * @fhirPath `ResearchDefinition.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the research definition
    * @fhirSearchType `token`
    * @fhirPath `ResearchDefinition.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -22314,8 +24809,10 @@ export class ResearchElementDefinitionFhirSearchBuilder extends DomainResourceFh
    * @fhirSearchType `reference`
    * @fhirPath `ResearchElementDefinition.relatedArtifact.where(type='composed-of').resource`
    */
-  composedOf(): this {
-    return this;
+  composedOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("composed-of", ...args);
   }
   /**
    * A quantity- or range-valued use context assigned to the research element
@@ -22323,8 +24820,10 @@ export class ResearchElementDefinitionFhirSearchBuilder extends DomainResourceFh
    * @fhirSearchType `quantity`
    * @fhirPath `(ResearchElementDefinition.useContext.value as Quantity) | (ResearchElementDefinition.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the research
@@ -22332,160 +24831,192 @@ export class ResearchElementDefinitionFhirSearchBuilder extends DomainResourceFh
    * @fhirSearchType `composite`
    * @fhirPath `ResearchElementDefinition.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the research element definition
    * @fhirSearchType `composite`
    * @fhirPath `ResearchElementDefinition.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the research element definition
    * @fhirSearchType `token`
    * @fhirPath `ResearchElementDefinition.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the research element definition
    * @fhirSearchType `token`
    * @fhirPath `(ResearchElementDefinition.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The research element definition publication date
    * @fhirSearchType `date`
    * @fhirPath `ResearchElementDefinition.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ResearchElementDefinition.relatedArtifact.where(type='depends-on').resource | ResearchElementDefinition.library`
    */
-  dependsOn(): this {
-    return this;
+  dependsOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("depends-on", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ResearchElementDefinition.relatedArtifact.where(type='derived-from').resource`
    */
-  derivedFrom(): this {
-    return this;
+  derivedFrom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("derived-from", ...args);
   }
   /**
    * The description of the research element definition
    * @fhirSearchType `string`
    * @fhirPath `ResearchElementDefinition.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * The time during which the research element definition is intended to be in use
    * @fhirSearchType `date`
    * @fhirPath `ResearchElementDefinition.effectivePeriod`
    */
-  effective(): this {
-    return this;
+  effective(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("effective", ...args);
   }
   /**
    * External identifier for the research element definition
    * @fhirSearchType `token`
    * @fhirPath `ResearchElementDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the research element definition
    * @fhirSearchType `token`
    * @fhirPath `ResearchElementDefinition.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Computationally friendly name of the research element definition
    * @fhirSearchType `string`
    * @fhirPath `ResearchElementDefinition.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ResearchElementDefinition.relatedArtifact.where(type='predecessor').resource`
    */
-  predecessor(): this {
-    return this;
+  predecessor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("predecessor", ...args);
   }
   /**
    * Name of the publisher of the research element definition
    * @fhirSearchType `string`
    * @fhirPath `ResearchElementDefinition.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the research element definition
    * @fhirSearchType `token`
    * @fhirPath `ResearchElementDefinition.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * What resource is being referenced
    * @fhirSearchType `reference`
    * @fhirPath `ResearchElementDefinition.relatedArtifact.where(type='successor').resource`
    */
-  successor(): this {
-    return this;
+  successor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("successor", ...args);
   }
   /**
    * The human-friendly name of the research element definition
    * @fhirSearchType `string`
    * @fhirPath `ResearchElementDefinition.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * Topics associated with the ResearchElementDefinition
    * @fhirSearchType `token`
    * @fhirPath `ResearchElementDefinition.topic`
    */
-  topic(): this {
-    return this;
+  topic(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("topic", ...args);
   }
   /**
    * The uri that identifies the research element definition
    * @fhirSearchType `uri`
    * @fhirPath `ResearchElementDefinition.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the research element definition
    * @fhirSearchType `token`
    * @fhirPath `ResearchElementDefinition.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -22497,88 +25028,106 @@ export class ResearchStudyFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `token`
    * @fhirPath `ResearchStudy.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * When the study began and ended
    * @fhirSearchType `date`
    * @fhirPath `ResearchStudy.period`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * Drugs, devices, etc. under study
    * @fhirSearchType `token`
    * @fhirPath `ResearchStudy.focus`
    */
-  focus(): this {
-    return this;
+  focus(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("focus", ...args);
   }
   /**
    * Business Identifier for study
    * @fhirSearchType `token`
    * @fhirPath `ResearchStudy.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Used to search for the study
    * @fhirSearchType `token`
    * @fhirPath `ResearchStudy.keyword`
    */
-  keyword(): this {
-    return this;
+  keyword(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("keyword", ...args);
   }
   /**
    * Geographic region(s) for study
    * @fhirSearchType `token`
    * @fhirPath `ResearchStudy.location`
    */
-  location(): this {
-    return this;
+  location(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("location", ...args);
   }
   /**
    * Part of larger study
    * @fhirSearchType `reference`
    * @fhirPath `ResearchStudy.partOf`
    */
-  partof(): this {
-    return this;
+  partof(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("partof", ...args);
   }
   /**
    * Researcher who oversees multiple aspects of the study
    * @fhirSearchType `reference`
    * @fhirPath `ResearchStudy.principalInvestigator`
    */
-  principalinvestigator(): this {
-    return this;
+  principalinvestigator(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("principalinvestigator", ...args);
   }
   /**
    * Steps followed in executing study
    * @fhirSearchType `reference`
    * @fhirPath `ResearchStudy.protocol`
    */
-  protocol(): this {
-    return this;
+  protocol(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("protocol", ...args);
   }
   /**
    * Facility where study activities are conducted
    * @fhirSearchType `reference`
    * @fhirPath `ResearchStudy.site`
    */
-  site(): this {
-    return this;
+  site(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("site", ...args);
   }
   /**
    * Organization that initiates and is legally responsible for the study
    * @fhirSearchType `reference`
    * @fhirPath `ResearchStudy.sponsor`
    */
-  sponsor(): this {
-    return this;
+  sponsor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("sponsor", ...args);
   }
   /**
    * active | administratively-completed | approved | closed-to-accrual |
@@ -22588,16 +25137,20 @@ export class ResearchStudyFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `token`
    * @fhirPath `ResearchStudy.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Name for this study
    * @fhirSearchType `string`
    * @fhirPath `ResearchStudy.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
 }
 
@@ -22609,32 +25162,38 @@ export class ResearchSubjectFhirSearchBuilder extends DomainResourceFhirSearchBu
    * @fhirSearchType `date`
    * @fhirPath `ResearchSubject.period`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * Business Identifier for research subject in a study
    * @fhirSearchType `token`
    * @fhirPath `ResearchSubject.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Who is part of study
    * @fhirSearchType `reference`
    * @fhirPath `ResearchSubject.individual`
    */
-  individual(): this {
-    return this;
+  individual(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("individual", ...args);
   }
   /**
    * Who is part of study
    * @fhirSearchType `reference`
    * @fhirPath `ResearchSubject.individual`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * candidate | eligible | follow-up | ineligible | not-registered | off-study |
@@ -22643,16 +25202,20 @@ export class ResearchSubjectFhirSearchBuilder extends DomainResourceFhirSearchBu
    * @fhirSearchType `token`
    * @fhirPath `ResearchSubject.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Study subject is part of
    * @fhirSearchType `reference`
    * @fhirPath `ResearchSubject.study`
    */
-  study(): this {
-    return this;
+  study(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("study", ...args);
   }
 }
 
@@ -22664,48 +25227,58 @@ export class RiskAssessmentFhirSearchBuilder extends DomainResourceFhirSearchBui
    * @fhirSearchType `reference`
    * @fhirPath `RiskAssessment.condition`
    */
-  condition(): this {
-    return this;
+  condition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("condition", ...args);
   }
   /**
    * Evaluation mechanism
    * @fhirSearchType `token`
    * @fhirPath `RiskAssessment.method`
    */
-  method(): this {
-    return this;
+  method(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("method", ...args);
   }
   /**
    * Who did assessment?
    * @fhirSearchType `reference`
    * @fhirPath `RiskAssessment.performer`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer", ...args);
   }
   /**
    * Likelihood of specified outcome
    * @fhirSearchType `number`
    * @fhirPath `RiskAssessment.prediction.probability`
    */
-  probability(): this {
-    return this;
+  probability(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["numberParam"]>>
+  ): this {
+    return this.numberParam("probability", ...args);
   }
   /**
    * Likelihood of specified outcome as a qualitative value
    * @fhirSearchType `token`
    * @fhirPath `RiskAssessment.prediction.qualitativeRisk`
    */
-  risk(): this {
-    return this;
+  risk(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("risk", ...args);
   }
   /**
    * Who/what does assessment apply to?
    * @fhirSearchType `reference`
    * @fhirPath `RiskAssessment.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -22748,8 +25321,8 @@ export class RiskAssessmentFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -22781,8 +25354,10 @@ export class RiskAssessmentFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -22853,8 +25428,10 @@ export class RiskAssessmentFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -22929,8 +25506,10 @@ export class RiskAssessmentFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -22942,8 +25521,10 @@ export class ScheduleFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Schedule.active`
    */
-  active(): this {
-    return this;
+  active(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("active", ...args);
   }
   /**
    * The individual(HealthcareService, Practitioner, Location, ...) to find a
@@ -22951,8 +25532,10 @@ export class ScheduleFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `reference`
    * @fhirPath `Schedule.actor`
    */
-  actor(): this {
-    return this;
+  actor(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("actor", ...args);
   }
   /**
    * Search for Schedule resources that have a period that contains this date
@@ -22960,40 +25543,48 @@ export class ScheduleFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `date`
    * @fhirPath `Schedule.planningHorizon`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * A Schedule Identifier
    * @fhirSearchType `token`
    * @fhirPath `Schedule.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * High-level category
    * @fhirSearchType `token`
    * @fhirPath `Schedule.serviceCategory`
    */
-  serviceCategory(): this {
-    return this;
+  serviceCategory(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("service-category", ...args);
   }
   /**
    * The type of appointments that can be booked into associated slot(s)
    * @fhirSearchType `token`
    * @fhirPath `Schedule.serviceType`
    */
-  serviceType(): this {
-    return this;
+  serviceType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("service-type", ...args);
   }
   /**
    * Type of specialty needed
    * @fhirSearchType `token`
    * @fhirPath `Schedule.specialty`
    */
-  specialty(): this {
-    return this;
+  specialty(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("specialty", ...args);
   }
 }
 
@@ -23005,40 +25596,46 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
    * @fhirSearchType `token`
    * @fhirPath `SearchParameter.base`
    */
-  base(): this {
-    return this;
+  base(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("base", ...args);
   }
   /**
    * Code used in URL
    * @fhirSearchType `token`
    * @fhirPath `SearchParameter.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * Defines how the part works
    * @fhirSearchType `reference`
    * @fhirPath `SearchParameter.component.definition`
    */
-  component(): this {
-    return this;
+  component(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("component", ...args);
   }
   /**
    * Original definition for the search parameter
    * @fhirSearchType `reference`
    * @fhirPath `SearchParameter.derivedFrom`
    */
-  derivedFrom(): this {
-    return this;
+  derivedFrom(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("derived-from", ...args);
   }
   /**
    * Types of resource (if a resource reference)
    * @fhirSearchType `token`
    * @fhirPath `SearchParameter.target`
    */
-  target(): this {
-    return this;
+  target(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("target", ...args);
   }
   /**
    * number | date | string | token | reference | composite | quantity | uri |
@@ -23046,8 +25643,8 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
    * @fhirSearchType `token`
    * @fhirPath `SearchParameter.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23093,8 +25690,10 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23142,8 +25741,10 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23186,8 +25787,10 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23229,8 +25832,10 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23271,8 +25876,10 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23310,8 +25917,8 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23350,8 +25957,10 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23389,8 +25998,10 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23432,8 +26043,8 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23473,8 +26084,10 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23513,8 +26126,10 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23553,8 +26168,8 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23591,8 +26206,10 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -23604,48 +26221,60 @@ export class ServiceRequestFhirSearchBuilder extends DomainResourceFhirSearchBui
    * @fhirSearchType `date`
    * @fhirPath `ServiceRequest.authoredOn`
    */
-  authored(): this {
-    return this;
+  authored(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("authored", ...args);
   }
   /**
    * What request fulfills
    * @fhirSearchType `reference`
    * @fhirPath `ServiceRequest.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * Where procedure is going to be done
    * @fhirSearchType `token`
    * @fhirPath `ServiceRequest.bodySite`
    */
-  bodySite(): this {
-    return this;
+  bodySite(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("body-site", ...args);
   }
   /**
    * Classification of service
    * @fhirSearchType `token`
    * @fhirPath `ServiceRequest.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Instantiates FHIR protocol or definition
    * @fhirSearchType `reference`
    * @fhirPath `ServiceRequest.instantiatesCanonical`
    */
-  instantiatesCanonical(): this {
-    return this;
+  instantiatesCanonical(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("instantiates-canonical", ...args);
   }
   /**
    * Instantiates external protocol or definition
    * @fhirSearchType `uri`
    * @fhirPath `ServiceRequest.instantiatesUri`
    */
-  instantiatesUri(): this {
-    return this;
+  instantiatesUri(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("instantiates-uri", ...args);
   }
   /**
    * proposal | plan | directive | order | original-order | reflex-order |
@@ -23653,88 +26282,110 @@ export class ServiceRequestFhirSearchBuilder extends DomainResourceFhirSearchBui
    * @fhirSearchType `token`
    * @fhirPath `ServiceRequest.intent`
    */
-  intent(): this {
-    return this;
+  intent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("intent", ...args);
   }
   /**
    * When service should occur
    * @fhirSearchType `date`
    * @fhirPath `ServiceRequest.occurrence`
    */
-  occurrence(): this {
-    return this;
+  occurrence(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("occurrence", ...args);
   }
   /**
    * Performer role
    * @fhirSearchType `token`
    * @fhirPath `ServiceRequest.performerType`
    */
-  performerType(): this {
-    return this;
+  performerType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("performer-type", ...args);
   }
   /**
    * Requested performer
    * @fhirSearchType `reference`
    * @fhirPath `ServiceRequest.performer`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("performer", ...args);
   }
   /**
    * routine | urgent | asap | stat
    * @fhirSearchType `token`
    * @fhirPath `ServiceRequest.priority`
    */
-  priority(): this {
-    return this;
+  priority(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("priority", ...args);
   }
   /**
    * What request replaces
    * @fhirSearchType `reference`
    * @fhirPath `ServiceRequest.replaces`
    */
-  replaces(): this {
-    return this;
+  replaces(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("replaces", ...args);
   }
   /**
    * Who/what is requesting service
    * @fhirSearchType `reference`
    * @fhirPath `ServiceRequest.requester`
    */
-  requester(): this {
-    return this;
+  requester(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("requester", ...args);
   }
   /**
    * Composite Request ID
    * @fhirSearchType `token`
    * @fhirPath `ServiceRequest.requisition`
    */
-  requisition(): this {
-    return this;
+  requisition(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("requisition", ...args);
   }
   /**
    * Specimen to be tested
    * @fhirSearchType `reference`
    * @fhirPath `ServiceRequest.specimen`
    */
-  specimen(): this {
-    return this;
+  specimen(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("specimen", ...args);
   }
   /**
    * draft | active | on-hold | revoked | completed | entered-in-error | unknown
    * @fhirSearchType `token`
    * @fhirPath `ServiceRequest.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Search by subject
    * @fhirSearchType `reference`
    * @fhirPath `ServiceRequest.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23773,8 +26424,8 @@ export class ServiceRequestFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code`
  */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23806,8 +26457,10 @@ export class ServiceRequestFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23878,8 +26531,10 @@ export class ServiceRequestFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -23954,8 +26609,10 @@ export class ServiceRequestFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -23968,24 +26625,30 @@ export class SlotFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Slot.appointmentType`
    */
-  appointmentType(): this {
-    return this;
+  appointmentType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("appointment-type", ...args);
   }
   /**
    * A Slot Identifier
    * @fhirSearchType `token`
    * @fhirPath `Slot.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The Schedule Resource that we are seeking a slot within
    * @fhirSearchType `reference`
    * @fhirPath `Slot.schedule`
    */
-  schedule(): this {
-    return this;
+  schedule(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("schedule", ...args);
   }
   /**
    * A broad categorization of the service that is to be performed during this
@@ -23993,16 +26656,20 @@ export class SlotFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Slot.serviceCategory`
    */
-  serviceCategory(): this {
-    return this;
+  serviceCategory(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("service-category", ...args);
   }
   /**
    * The type of appointments that can be booked into the slot
    * @fhirSearchType `token`
    * @fhirPath `Slot.serviceType`
    */
-  serviceType(): this {
-    return this;
+  serviceType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("service-type", ...args);
   }
   /**
    * The specialty of a practitioner that would be required to perform the service
@@ -24010,24 +26677,28 @@ export class SlotFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Slot.specialty`
    */
-  specialty(): this {
-    return this;
+  specialty(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("specialty", ...args);
   }
   /**
    * Appointment date/time.
    * @fhirSearchType `date`
    * @fhirPath `Slot.start`
    */
-  start(): this {
-    return this;
+  start(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("start", ...args);
   }
   /**
    * The free/busy status of the appointment
    * @fhirSearchType `token`
    * @fhirPath `Slot.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
 }
 
@@ -24039,96 +26710,118 @@ export class SpecimenFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `Specimen.accessionIdentifier`
    */
-  accession(): this {
-    return this;
+  accession(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("accession", ...args);
   }
   /**
    * The code for the body site from where the specimen originated
    * @fhirSearchType `token`
    * @fhirPath `Specimen.collection.bodySite`
    */
-  bodysite(): this {
-    return this;
+  bodysite(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("bodysite", ...args);
   }
   /**
    * The date the specimen was collected
    * @fhirSearchType `date`
    * @fhirPath `Specimen.collection.collected`
    */
-  collected(): this {
-    return this;
+  collected(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("collected", ...args);
   }
   /**
    * Who collected the specimen
    * @fhirSearchType `reference`
    * @fhirPath `Specimen.collection.collector`
    */
-  collector(): this {
-    return this;
+  collector(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("collector", ...args);
   }
   /**
    * The unique identifier associated with the specimen container
    * @fhirSearchType `token`
    * @fhirPath `Specimen.container.identifier`
    */
-  containerId(): this {
-    return this;
+  containerId(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("container-id", ...args);
   }
   /**
    * The kind of specimen container
    * @fhirSearchType `token`
    * @fhirPath `Specimen.container.type`
    */
-  container(): this {
-    return this;
+  container(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("container", ...args);
   }
   /**
    * The unique identifier associated with the specimen
    * @fhirSearchType `token`
    * @fhirPath `Specimen.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The parent of the specimen
    * @fhirSearchType `reference`
    * @fhirPath `Specimen.parent`
    */
-  parent(): this {
-    return this;
+  parent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("parent", ...args);
   }
   /**
    * The patient the specimen comes from
    * @fhirSearchType `reference`
    * @fhirPath `Specimen.subject.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * available | unavailable | unsatisfactory | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `Specimen.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The subject of the specimen
    * @fhirSearchType `reference`
    * @fhirPath `Specimen.subject`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * The specimen type
    * @fhirSearchType `token`
    * @fhirPath `Specimen.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -24140,24 +26833,28 @@ export class SpecimenDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `token`
    * @fhirPath `SpecimenDefinition.typeTested.container.type`
    */
-  container(): this {
-    return this;
+  container(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("container", ...args);
   }
   /**
    * The unique identifier associated with the specimen
    * @fhirSearchType `token`
    * @fhirPath `SpecimenDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The type of collected specimen
    * @fhirSearchType `token`
    * @fhirPath `SpecimenDefinition.typeCollected`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
 }
 
@@ -24169,40 +26866,50 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
    * @fhirSearchType `token`
    * @fhirPath `StructureDefinition.abstract`
    */
-  abstract(): this {
-    return this;
+  abstract(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("abstract", ...args);
   }
   /**
    * Path that identifies the base element
    * @fhirSearchType `token`
    * @fhirPath `StructureDefinition.snapshot.element.base.path | StructureDefinition.differential.element.base.path`
    */
-  basePath(): this {
-    return this;
+  basePath(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("base-path", ...args);
   }
   /**
    * Definition that this type is constrained/specialized from
    * @fhirSearchType `reference`
    * @fhirPath `StructureDefinition.baseDefinition`
    */
-  base(): this {
-    return this;
+  base(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("base", ...args);
   }
   /**
    * specialization | constraint - How relates to base definition
    * @fhirSearchType `token`
    * @fhirPath `StructureDefinition.derivation`
    */
-  derivation(): this {
-    return this;
+  derivation(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("derivation", ...args);
   }
   /**
    * For testing purposes, not real usage
    * @fhirSearchType `token`
    * @fhirPath `StructureDefinition.experimental`
    */
-  experimental(): this {
-    return this;
+  experimental(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("experimental", ...args);
   }
   /**
    * The system is the URL for the context-type: e.g.
@@ -24210,48 +26917,54 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
    * @fhirSearchType `token`
    * @fhirPath `StructureDefinition.context.type`
    */
-  extContext(): this {
-    return this;
+  extContext(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("ext-context", ...args);
   }
   /**
    * A code for the StructureDefinition
    * @fhirSearchType `token`
    * @fhirPath `StructureDefinition.keyword`
    */
-  keyword(): this {
-    return this;
+  keyword(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("keyword", ...args);
   }
   /**
    * primitive-type | complex-type | resource | logical
    * @fhirSearchType `token`
    * @fhirPath `StructureDefinition.kind`
    */
-  kind(): this {
-    return this;
+  kind(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("kind", ...args);
   }
   /**
    * A path that is constrained in the StructureDefinition
    * @fhirSearchType `token`
    * @fhirPath `StructureDefinition.snapshot.element.path | StructureDefinition.differential.element.path`
    */
-  path(): this {
-    return this;
+  path(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("path", ...args);
   }
   /**
    * Type defined or constrained by this structure
    * @fhirSearchType `uri`
    * @fhirPath `StructureDefinition.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("type", ...args);
   }
   /**
    * A vocabulary binding reference
    * @fhirSearchType `reference`
    * @fhirPath `StructureDefinition.snapshot.element.binding.valueSet`
    */
-  valueset(): this {
-    return this;
+  valueset(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("valueset", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24297,8 +27010,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24346,8 +27061,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24390,8 +27107,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24433,8 +27152,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24475,8 +27196,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24514,8 +27237,8 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24554,8 +27277,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24575,8 +27300,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CodeSystem.identifier | ConceptMap.identifier | MessageDefinition.identifier | StructureDefinition.identifier | StructureMap.identifier | ValueSet.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24614,8 +27341,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24657,8 +27386,8 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24698,8 +27427,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24738,8 +27469,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24770,8 +27503,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title`
  */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24810,8 +27545,8 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24848,8 +27583,10 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -24900,8 +27637,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24949,8 +27688,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -24993,8 +27734,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25036,8 +27779,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25078,8 +27823,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25117,8 +27864,8 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25157,8 +27904,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25178,8 +27927,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `CodeSystem.identifier | ConceptMap.identifier | MessageDefinition.identifier | StructureDefinition.identifier | StructureMap.identifier | ValueSet.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25217,8 +27968,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25260,8 +28013,8 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25301,8 +28054,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25341,8 +28096,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25373,8 +28130,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title`
  */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25413,8 +28172,8 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25451,8 +28210,10 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -25464,48 +28225,56 @@ export class SubscriptionFhirSearchBuilder extends DomainResourceFhirSearchBuild
    * @fhirSearchType `token`
    * @fhirPath `Subscription.contact`
    */
-  contact(): this {
-    return this;
+  contact(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("contact", ...args);
   }
   /**
    * The search rules used to determine when to send a notification
    * @fhirSearchType `string`
    * @fhirPath `Subscription.criteria`
    */
-  criteria(): this {
-    return this;
+  criteria(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("criteria", ...args);
   }
   /**
    * The mime-type of the notification payload
    * @fhirSearchType `token`
    * @fhirPath `Subscription.channel.payload`
    */
-  payload(): this {
-    return this;
+  payload(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("payload", ...args);
   }
   /**
    * The current state of the subscription
    * @fhirSearchType `token`
    * @fhirPath `Subscription.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The type of channel for the sent notifications
    * @fhirSearchType `token`
    * @fhirPath `Subscription.channel.type`
    */
-  type(): this {
-    return this;
+  type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("type", ...args);
   }
   /**
    * The uri that will receive the notifications
    * @fhirSearchType `uri`
    * @fhirPath `Subscription.channel.endpoint`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
 }
 
@@ -25521,24 +28290,28 @@ export class SubscriptionTopicFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `date`
    * @fhirPath `SubscriptionTopic.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * A server defined search that matches either the url or derivedFrom
    * @fhirSearchType `uri`
    * @fhirPath `SubscriptionTopic.url | SubscriptionTopic.derivedFrom`
    */
-  derivedOrSelf(): this {
-    return this;
+  derivedOrSelf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("derived-or-self", ...args);
   }
   /**
    * Business Identifier for SubscriptionTopic
    * @fhirSearchType `token`
    * @fhirPath `SubscriptionTopic.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Allowed Data type or Resource (reference to definition) for this definition,
@@ -25546,48 +28319,58 @@ export class SubscriptionTopicFhirSearchBuilder extends DomainResourceFhirSearch
    * @fhirSearchType `uri`
    * @fhirPath `SubscriptionTopic.resourceTrigger.resource`
    */
-  resource(): this {
-    return this;
+  resource(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("resource", ...args);
   }
   /**
    * draft | active | retired | unknown
    * @fhirSearchType `token`
    * @fhirPath `SubscriptionTopic.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Name for this SubscriptionTopic (Human friendly)
    * @fhirSearchType `string`
    * @fhirPath `SubscriptionTopic.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * Text representation of the trigger
    * @fhirSearchType `string`
    * @fhirPath `SubscriptionTopic.resourceTrigger.description`
    */
-  triggerDescription(): this {
-    return this;
+  triggerDescription(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("trigger-description", ...args);
   }
   /**
    * Logical canonical URL to reference this SubscriptionTopic (globally unique)
    * @fhirSearchType `uri`
    * @fhirPath `SubscriptionTopic.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * Business version of the SubscriptionTopic
    * @fhirSearchType `token`
    * @fhirPath `SubscriptionTopic.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -25599,64 +28382,76 @@ export class SubstanceFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
    * @fhirSearchType `token`
    * @fhirPath `Substance.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * The code of the substance or ingredient
    * @fhirSearchType `token`
    * @fhirPath `Substance.code | (Substance.ingredient.substance as CodeableConcept)`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * Identifier of the package/container
    * @fhirSearchType `token`
    * @fhirPath `Substance.instance.identifier`
    */
-  containerIdentifier(): this {
-    return this;
+  containerIdentifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("container-identifier", ...args);
   }
   /**
    * Expiry date of package or container of substance
    * @fhirSearchType `date`
    * @fhirPath `Substance.instance.expiry`
    */
-  expiry(): this {
-    return this;
+  expiry(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("expiry", ...args);
   }
   /**
    * Unique identifier for the substance
    * @fhirSearchType `token`
    * @fhirPath `Substance.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Amount of substance in the package
    * @fhirSearchType `quantity`
    * @fhirPath `Substance.instance.quantity`
    */
-  quantity(): this {
-    return this;
+  quantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("quantity", ...args);
   }
   /**
    * active | inactive | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `Substance.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * A component of the substance
    * @fhirSearchType `reference`
    * @fhirPath `(Substance.ingredient.substance as Reference)`
    */
-  substanceReference(): this {
-    return this;
+  substanceReference(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("substance-reference", ...args);
   }
 }
 
@@ -25669,40 +28464,46 @@ export class SubstanceDefinitionFhirSearchBuilder extends DomainResourceFhirSear
    * @fhirSearchType `token`
    * @fhirPath `SubstanceDefinition.classification`
    */
-  classification(): this {
-    return this;
+  classification(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("classification", ...args);
   }
   /**
    * The specific code
    * @fhirSearchType `token`
    * @fhirPath `SubstanceDefinition.code.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * If the substance applies to only human or veterinary use
    * @fhirSearchType `token`
    * @fhirPath `SubstanceDefinition.domain`
    */
-  domain(): this {
-    return this;
+  domain(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("domain", ...args);
   }
   /**
    * Identifier by which this substance is known
    * @fhirSearchType `token`
    * @fhirPath `SubstanceDefinition.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The actual name
    * @fhirSearchType `string`
    * @fhirPath `SubstanceDefinition.name.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
 }
 
@@ -25714,24 +28515,30 @@ export class SupplyDeliveryFhirSearchBuilder extends DomainResourceFhirSearchBui
    * @fhirSearchType `reference`
    * @fhirPath `SupplyDelivery.receiver`
    */
-  receiver(): this {
-    return this;
+  receiver(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("receiver", ...args);
   }
   /**
    * in-progress | completed | abandoned | entered-in-error
    * @fhirSearchType `token`
    * @fhirPath `SupplyDelivery.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Dispenser
    * @fhirSearchType `reference`
    * @fhirPath `SupplyDelivery.supplier`
    */
-  supplier(): this {
-    return this;
+  supplier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("supplier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25802,8 +28609,10 @@ export class SupplyDeliveryFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25878,8 +28687,10 @@ export class SupplyDeliveryFhirSearchBuilder extends DomainResourceFhirSearchBui
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 
@@ -25891,40 +28702,50 @@ export class SupplyRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
    * @fhirSearchType `token`
    * @fhirPath `SupplyRequest.category`
    */
-  category(): this {
-    return this;
+  category(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("category", ...args);
   }
   /**
    * Individual making the request
    * @fhirSearchType `reference`
    * @fhirPath `SupplyRequest.requester`
    */
-  requester(): this {
-    return this;
+  requester(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("requester", ...args);
   }
   /**
    * draft | active | suspended +
    * @fhirSearchType `token`
    * @fhirPath `SupplyRequest.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * The destination of the supply
    * @fhirSearchType `reference`
    * @fhirPath `SupplyRequest.deliverTo`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
   /**
    * Who is intended to fulfill the request
    * @fhirSearchType `reference`
    * @fhirPath `SupplyRequest.supplier`
    */
-  supplier(): this {
-    return this;
+  supplier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("supplier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -25967,8 +28788,8 @@ export class SupplyRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `date`
  * @fhirPath `AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26039,8 +28860,10 @@ export class SupplyRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
 }
 
@@ -26052,152 +28875,186 @@ export class TaskFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `date`
    * @fhirPath `Task.authoredOn`
    */
-  authoredOn(): this {
-    return this;
+  authoredOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("authored-on", ...args);
   }
   /**
    * Search by requests this task is based on
    * @fhirSearchType `reference`
    * @fhirPath `Task.basedOn`
    */
-  basedOn(): this {
-    return this;
+  basedOn(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("based-on", ...args);
   }
   /**
    * Search by business status
    * @fhirSearchType `token`
    * @fhirPath `Task.businessStatus`
    */
-  businessStatus(): this {
-    return this;
+  businessStatus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("business-status", ...args);
   }
   /**
    * Search by task code
    * @fhirSearchType `token`
    * @fhirPath `Task.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * Search by encounter
    * @fhirSearchType `reference`
    * @fhirPath `Task.encounter`
    */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
    * Search by task focus
    * @fhirSearchType `reference`
    * @fhirPath `Task.focus`
    */
-  focus(): this {
-    return this;
+  focus(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("focus", ...args);
   }
   /**
    * Search by group identifier
    * @fhirSearchType `token`
    * @fhirPath `Task.groupIdentifier`
    */
-  groupIdentifier(): this {
-    return this;
+  groupIdentifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("group-identifier", ...args);
   }
   /**
    * Search for a task instance by its business identifier
    * @fhirSearchType `token`
    * @fhirPath `Task.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Search by task intent
    * @fhirSearchType `token`
    * @fhirPath `Task.intent`
    */
-  intent(): this {
-    return this;
+  intent(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("intent", ...args);
   }
   /**
    * Search by last modification date
    * @fhirSearchType `date`
    * @fhirPath `Task.lastModified`
    */
-  modified(): this {
-    return this;
+  modified(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("modified", ...args);
   }
   /**
    * Search by task owner
    * @fhirSearchType `reference`
    * @fhirPath `Task.owner`
    */
-  owner(): this {
-    return this;
+  owner(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("owner", ...args);
   }
   /**
    * Search by task this task is part of
    * @fhirSearchType `reference`
    * @fhirPath `Task.partOf`
    */
-  partOf(): this {
-    return this;
+  partOf(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("part-of", ...args);
   }
   /**
    * Search by patient
    * @fhirSearchType `reference`
    * @fhirPath `Task.for.where(resolve() is Patient)`
    */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
   /**
    * Search by recommended type of performer (e.g., Requester, Performer, Scheduler).
    * @fhirSearchType `token`
    * @fhirPath `Task.performerType`
    */
-  performer(): this {
-    return this;
+  performer(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("performer", ...args);
   }
   /**
    * Search by period Task is/was underway
    * @fhirSearchType `date`
    * @fhirPath `Task.executionPeriod`
    */
-  period(): this {
-    return this;
+  period(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("period", ...args);
   }
   /**
    * Search by task priority
    * @fhirSearchType `token`
    * @fhirPath `Task.priority`
    */
-  priority(): this {
-    return this;
+  priority(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("priority", ...args);
   }
   /**
    * Search by task requester
    * @fhirSearchType `reference`
    * @fhirPath `Task.requester`
    */
-  requester(): this {
-    return this;
+  requester(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("requester", ...args);
   }
   /**
    * Search by task status
    * @fhirSearchType `token`
    * @fhirPath `Task.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * Search by subject
    * @fhirSearchType `reference`
    * @fhirPath `Task.for`
    */
-  subject(): this {
-    return this;
+  subject(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("subject", ...args);
   }
 }
 
@@ -26248,8 +29105,10 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26297,8 +29156,10 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26341,8 +29202,10 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26384,8 +29247,10 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26426,8 +29291,10 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26465,8 +29332,8 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26505,8 +29372,10 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26544,8 +29413,10 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26587,8 +29458,8 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26628,8 +29499,10 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26668,8 +29541,10 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26700,8 +29575,10 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title`
  */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26740,8 +29617,8 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -26778,8 +29655,10 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -26791,48 +29670,58 @@ export class TestReportFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `token`
    * @fhirPath `TestReport.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * The test report generation date
    * @fhirSearchType `date`
    * @fhirPath `TestReport.issued`
    */
-  issued(): this {
-    return this;
+  issued(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("issued", ...args);
   }
   /**
    * The reference to a participant in the test execution
    * @fhirSearchType `uri`
    * @fhirPath `TestReport.participant.uri`
    */
-  participant(): this {
-    return this;
+  participant(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("participant", ...args);
   }
   /**
    * The result disposition of the test execution
    * @fhirSearchType `token`
    * @fhirPath `TestReport.result`
    */
-  result(): this {
-    return this;
+  result(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("result", ...args);
   }
   /**
    * The name of the testing organization
    * @fhirSearchType `string`
    * @fhirPath `TestReport.tester`
    */
-  tester(): this {
-    return this;
+  tester(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("tester", ...args);
   }
   /**
    * The test script executed to produce this report
    * @fhirSearchType `reference`
    * @fhirPath `TestReport.testScript`
    */
-  testscript(): this {
-    return this;
+  testscript(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("testscript", ...args);
   }
 }
 
@@ -26844,8 +29733,10 @@ export class TestScriptFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `quantity`
    * @fhirPath `(TestScript.useContext.value as Quantity) | (TestScript.useContext.value as Range)`
    */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
    * A use context type and quantity- or range-based value assigned to the test
@@ -26853,120 +29744,144 @@ export class TestScriptFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @fhirSearchType `composite`
    * @fhirPath `TestScript.useContext`
    */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
    * A use context type and value assigned to the test script
    * @fhirSearchType `composite`
    * @fhirPath `TestScript.useContext`
    */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
    * A type of use context assigned to the test script
    * @fhirSearchType `token`
    * @fhirPath `TestScript.useContext.code`
    */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
    * A use context assigned to the test script
    * @fhirSearchType `token`
    * @fhirPath `(TestScript.useContext.value as CodeableConcept)`
    */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
    * The test script publication date
    * @fhirSearchType `date`
    * @fhirPath `TestScript.date`
    */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
    * The description of the test script
    * @fhirSearchType `string`
    * @fhirPath `TestScript.description`
    */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
    * External identifier for the test script
    * @fhirSearchType `token`
    * @fhirPath `TestScript.identifier`
    */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
    * Intended jurisdiction for the test script
    * @fhirSearchType `token`
    * @fhirPath `TestScript.jurisdiction`
    */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
    * Computationally friendly name of the test script
    * @fhirSearchType `string`
    * @fhirPath `TestScript.name`
    */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
    * Name of the publisher of the test script
    * @fhirSearchType `string`
    * @fhirPath `TestScript.publisher`
    */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
    * The current status of the test script
    * @fhirSearchType `token`
    * @fhirPath `TestScript.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
    * TestScript required and validated capability
    * @fhirSearchType `string`
    * @fhirPath `TestScript.metadata.capability.description`
    */
-  testscriptCapability(): this {
-    return this;
+  testscriptCapability(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("testscript-capability", ...args);
   }
   /**
    * The human-friendly name of the test script
    * @fhirSearchType `string`
    * @fhirPath `TestScript.title`
    */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
    * The uri that identifies the test script
    * @fhirSearchType `uri`
    * @fhirPath `TestScript.url`
    */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
    * The business version of the test script
    * @fhirSearchType `token`
    * @fhirPath `TestScript.version`
    */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -26979,24 +29894,28 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @fhirSearchType `token`
    * @fhirPath `ValueSet.expansion.contains.code | ValueSet.compose.include.concept.code`
    */
-  code(): this {
-    return this;
+  code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
+    return this.tokenParam("code", ...args);
   }
   /**
    * Identifies the value set expansion (business identifier)
    * @fhirSearchType `uri`
    * @fhirPath `ValueSet.expansion.identifier`
    */
-  expansion(): this {
-    return this;
+  expansion(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("expansion", ...args);
   }
   /**
    * A code system included or excluded in the value set or an imported value set
    * @fhirSearchType `uri`
    * @fhirPath `ValueSet.compose.include.system`
    */
-  reference(): this {
-    return this;
+  reference(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>
+  ): this {
+    return this.uriParam("reference", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27042,8 +29961,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `quantity`
  * @fhirPath `(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)`
  */
-  contextQuantity(): this {
-    return this;
+  contextQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["quantityParam"]>>
+  ): this {
+    return this.quantityParam("context-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27091,8 +30012,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeQuantity(): this {
-    return this;
+  contextTypeQuantity(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-quantity", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27135,8 +30058,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `composite`
  * @fhirPath `CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext`
  */
-  contextTypeValue(): this {
-    return this;
+  contextTypeValue(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["compositeParam"]>>
+  ): this {
+    return this.compositeParam("context-type-value", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27178,8 +30103,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code`
  */
-  contextType(): this {
-    return this;
+  contextType(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context-type", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27220,8 +30147,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)`
  */
-  context(): this {
-    return this;
+  context(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("context", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27259,8 +30188,8 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `date`
  * @fhirPath `CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date`
  */
-  date(): this {
-    return this;
+  date(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
+    return this.dateParam("date", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27299,8 +30228,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description`
  */
-  description(): this {
-    return this;
+  description(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("description", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27320,8 +30251,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `CodeSystem.identifier | ConceptMap.identifier | MessageDefinition.identifier | StructureDefinition.identifier | StructureMap.identifier | ValueSet.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27359,8 +30292,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction`
  */
-  jurisdiction(): this {
-    return this;
+  jurisdiction(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("jurisdiction", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27402,8 +30337,8 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name`
  */
-  name(): this {
-    return this;
+  name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
+    return this.stringParam("name", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27443,8 +30378,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher`
  */
-  publisher(): this {
-    return this;
+  publisher(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("publisher", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27483,8 +30420,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status`
  */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27515,8 +30454,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `string`
  * @fhirPath `CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title`
  */
-  title(): this {
-    return this;
+  title(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>
+  ): this {
+    return this.stringParam("title", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27555,8 +30496,8 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `uri`
  * @fhirPath `CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url`
  */
-  url(): this {
-    return this;
+  url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
+    return this.uriParam("url", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27593,8 +30534,10 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
  * @fhirSearchType `token`
  * @fhirPath `CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version`
  */
-  version(): this {
-    return this;
+  version(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("version", ...args);
   }
 }
 
@@ -27606,8 +30549,10 @@ export class VerificationResultFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `reference`
    * @fhirPath `VerificationResult.target`
    */
-  target(): this {
-    return this;
+  target(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("target", ...args);
   }
 }
 
@@ -27619,24 +30564,30 @@ export class VisionPrescriptionFhirSearchBuilder extends DomainResourceFhirSearc
    * @fhirSearchType `date`
    * @fhirPath `VisionPrescription.dateWritten`
    */
-  datewritten(): this {
-    return this;
+  datewritten(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>
+  ): this {
+    return this.dateParam("datewritten", ...args);
   }
   /**
    * Who authorized the vision prescription
    * @fhirSearchType `reference`
    * @fhirPath `VisionPrescription.prescriber`
    */
-  prescriber(): this {
-    return this;
+  prescriber(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("prescriber", ...args);
   }
   /**
    * The status of the vision prescription
    * @fhirSearchType `token`
    * @fhirPath `VisionPrescription.status`
    */
-  status(): this {
-    return this;
+  status(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("status", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27668,8 +30619,10 @@ export class VisionPrescriptionFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `reference`
  * @fhirPath `Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter.where(resolve() is Encounter) | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter`
  */
-  encounter(): this {
-    return this;
+  encounter(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("encounter", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27740,8 +30693,10 @@ export class VisionPrescriptionFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `token`
  * @fhirPath `AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier`
  */
-  identifier(): this {
-    return this;
+  identifier(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>
+  ): this {
+    return this.tokenParam("identifier", ...args);
   }
   /**
  * Multiple Resources: 
@@ -27816,8 +30771,10 @@ export class VisionPrescriptionFhirSearchBuilder extends DomainResourceFhirSearc
  * @fhirSearchType `reference`
  * @fhirPath `AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject.where(resolve() is Patient) | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient`
  */
-  patient(): this {
-    return this;
+  patient(
+    ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
+  ): this {
+    return this.referenceParam("patient", ...args);
   }
 }
 

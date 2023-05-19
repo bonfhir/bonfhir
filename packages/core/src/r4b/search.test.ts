@@ -288,6 +288,27 @@ describe("FhirSearchBuilder", () => {
 
   it.each(<Array<[FhirSearchBuilder, string]>>[
     [
+      new FhirSearchBuilder().compositeParam(
+        "component-code-value-quantity",
+        "http://loinc.org|8480-6$lt60"
+      ),
+      "component-code-value-quantity=http://loinc.org|8480-6$lt60",
+    ],
+  ])("composite/%s", (builder, expected) => {
+    expect(builder.href).toBe(expected);
+  });
+
+  it.each(<Array<[FhirSearchBuilder, string]>>[
+    [
+      new FhirSearchBuilder().specialParam("near", "11.45522|152.22460"),
+      "near=11.45522|152.22460",
+    ],
+  ])("special/%s", (builder, expected) => {
+    expect(builder.href).toBe(expected);
+  });
+
+  it.each(<Array<[FhirSearchBuilder, string]>>[
+    [
       new FhirSearchBuilder().tokenParam("identifier", {
         system: "http://acme.org/patient",
         value: "2345",

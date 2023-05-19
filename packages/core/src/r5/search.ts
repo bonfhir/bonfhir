@@ -385,6 +385,50 @@ export class FhirSearchBuilder {
   }
 
   /**
+   * Composite search parameters support joining single values with a $
+   *
+   * @param parameter the search parameter name
+   * @param value - the value of the parameter. It will be constructed as-is in the final search query
+   * @returns the modified builder instance
+   *
+   * @example
+   *    > fhirSearch().compositeParam("component-code-value-quantity", "http://loinc.org|8480-6$lt60").href
+   *    > "component-code-value-quantity=http://loinc.org|8480-6$lt60"
+   */
+  public compositeParam(
+    parameter: string,
+    value: string | null | undefined
+  ): this {
+    if (!value) {
+      return this;
+    }
+
+    return this.push(parameter, value);
+  }
+
+  /**
+   * That indicates that the way this parameter works is unique to the parameter and described with the parameter.
+   *
+   * @param parameter the search parameter name
+   * @param value - the value of the parameter. It will be constructed as-is in the final search query
+   * @returns the modified builder instance
+   *
+   * @example
+   *    > fhirSearch().specialParam("near", "11.45522|152.22460").href
+   *    > "near=11.45522|152.22460"
+   */
+  public specialParam(
+    parameter: string,
+    value: string | null | undefined
+  ): this {
+    if (!value) {
+      return this;
+    }
+
+    return this.push(parameter, value);
+  }
+
+  /**
    * Add a search parameter of type token: https://hl7.org/fhir/search.html#token
    * @param parameter the search parameter name
    * @param value the value, or the system/code/value, or an array of values, or empty/null/undefined to ignore the search parameter. Values are URL-encoded automatically.
