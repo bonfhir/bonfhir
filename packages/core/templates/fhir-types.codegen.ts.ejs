@@ -118,20 +118,16 @@ export type AnyDomainResource =
 export type AnyDomainResourceType = AnyDomainResource["resourceType"];
 
 /**
+ * All the domain resource types as string.
+ */
+export const DomainResourceTypes: AnyDomainResourceType[] = [
+  <% for (const structureDef of fhir.domainResources) { %> "<%= structureDef.type %>", <% } %>
+];
+
+/**
  * Allow referencing domain resource type from its string {@link FhirDomainResourceType} representation.
  */
 export type ExtractDomainResource<TDomainResourceType extends AnyDomainResourceType> = Extract<
   AnyDomainResource,
   { resourceType: TDomainResourceType }
 >;
-
-/**
- * Return true if the object is a FhirDomainResource of a specific type.
- */
-export function isDomainResource<TDomainResourceType extends AnyDomainResourceType>(
-  type: TDomainResourceType,
-  object: unknown | null | undefined
-): object is ExtractDomainResource<TDomainResourceType> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (object as any)?.resourceType === type;
-}
