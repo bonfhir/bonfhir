@@ -1,16 +1,8 @@
-import { AnyResourceType } from "./fhir-types.codegen";
-
-/**
- * Create a new FHIR Search builder
- * https://hl7.org/fhir/search.html
- *
- * @example
- *   > fhirSearch().token("identifier", "152345235").href
- *   > "identifier=152345235"
- */
-export function fhirSearch(): FhirSearchBuilder {
-  return new FhirSearchBuilder();
-}
+import {
+  AnyDomainResourceType,
+  AnyResourceType,
+  ExtractResource,
+} from "./fhir-types.codegen";
 
 /**
  * The builder for FHIR Search URLs.
@@ -544,6 +536,76 @@ export class FhirSearchBuilder {
       : this._searchParams.map(([key, value]) => `${key}=${value}`).join("&");
   }
 
+  /**
+   * The number of primary resources to return by page.
+   *
+   * @see https://hl7.org/fhir/search.html#count
+   */
+  _count(value: number): this {
+    return this.stringParam("_count", `${value}`, undefined, "replace");
+  }
+
+  /**
+   * Include a related resource directly referenced by the main resource.
+   *
+   * @see https://hl7.org/fhir/search.html#include
+   */
+  _include<TDomainResourceType extends AnyDomainResourceType>(
+    sourceResource: TDomainResourceType,
+    searchParameter: keyof ExtractResource<TDomainResourceType>,
+    options?: {
+      targetResourceType?: TDomainResourceType | null | undefined;
+      iterate?: boolean | null | undefined;
+    }
+  ): this {
+    return this.stringParam(
+      `_include${options?.iterate == undefined ? "" : ":iterate"}`,
+      `${sourceResource}:${String(searchParameter)}${
+        options?.targetResourceType ? `:${options.targetResourceType}` : ""
+      }`
+    );
+  }
+
+  /**
+   * Include a related resource referencing the main resource.
+   *
+   * @see https://hl7.org/fhir/search.html#revinclude
+   */
+  _revinclude<TDomainResourceType extends AnyDomainResourceType>(
+    sourceResource: TDomainResourceType,
+    searchParameter: keyof ExtractResource<TDomainResourceType>,
+    options?: {
+      targetResourceType?: TDomainResourceType | null | undefined;
+      iterate?: boolean | null | undefined;
+    }
+  ): this {
+    return this.stringParam(
+      `_revinclude${options?.iterate == undefined ? "" : ":iterate"}`,
+      `${sourceResource}:${String(searchParameter)}${
+        options?.targetResourceType ? `:${options.targetResourceType}` : ""
+      }`
+    );
+  }
+
+  /**
+   *  Return only a portion of the resources.
+   *
+   * @see https://hl7.org/fhir/search.html#summary
+   */
+  _summary(value: SummaryValue): this {
+    return this.stringParam("_summary", `${value}`, undefined, "replace");
+  }
+
+  /**
+   * Add a `total` element to the returned `Bundle` which is the number of resources that match the search parameters.
+   * Note that `Bundle.total` represents the total number of matches, not how many resources are returned in a particular response
+   *
+   * @see https://hl7.org/fhir/search.html#total
+   */
+  _total(value: "none" | "estimate" | "accurate"): this {
+    return this.stringParam("_total", value, undefined, "replace");
+  }
+
   private push(
     parameter: string,
     value: string,
@@ -755,3 +817,5 @@ export const UriModifier = {
 } as const;
 
 export type UriModifier = (typeof UriModifier)[keyof typeof UriModifier];
+
+export type SummaryValue = "true" | "text" | "data" | "count" | "false";

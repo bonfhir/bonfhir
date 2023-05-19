@@ -39,20 +39,35 @@ export function fhirSearch<
 
   switch(resourceType) {
     <% for (const domainResource of fhir.domainResources) { -%>
-    case "<%= domainResource.type %>": { return new <%= domainResource.type %>FhirSearchBuilder(); }
+    case "<%= domainResource.type %>": { return new <%= domainResource.type %>FhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>; }
     <% } -%>
     default: { throw new Error(`Unsupported fhirSearch for resource type ${resourceType}`); }
   }
 }
 
-<% for (const domainResource of fhir.domainResources) { -%>
+<% for (const resource of fhir.resources.sort((resource1, resource2) => {
+  if ((resource1.base?.type === resource2.type) || (resource1.base?.base?.type === resource2.type)) {
+    return 1;
+  }
 
-class <%= domainResource.type %>FhirSearchBuilder extends FhirSearchBuilder {
-  readonly resourceType = "<%= domainResource.type %>";
+  if ((resource2.base?.type === resource1.type) || (resource2.base?.base?.type === resource1.type)) {
+    return -1;
+  }
 
-  <%= domainResource.type %>(): this {
+  return 0;
+})) { -%>
+
+export class <%= resource.type %>FhirSearchBuilder extends <%= resource.base?.type === "Base" ? undefined : resource.base?.type %>FhirSearchBuilder {
+  <% if (resource.isDomainResource) { -%>
+  readonly resourceType = "<%= resource.type %>";
+  <% } -%>
+
+  <% for (const searchParameter of resource.ownSearchParameters.filter(x => !x.experimental)) { -%>
+  <%= searchParameter.jsDoc %>
+  <%= searchParameter.safeName %>(): this {
     return this;
   }
+  <% } -%>
 }
 
 <% } -%>

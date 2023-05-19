@@ -45,10 +45,27 @@ export class FhirDefinitions {
             );
             break;
           }
+
           case "ValueSet": {
             const valueSet = Object.assign(new ValueSet(definitions), parsed);
             definitions.valueSetsByUrl.set(valueSet.url, valueSet);
             break;
+          }
+
+          case "SearchParameter": {
+            const searchParameter = Object.assign(
+              new SearchParameter(),
+              parsed
+            );
+            definitions.searchParameters.push(searchParameter);
+            for (const base of (searchParameter as any).base || []) {
+              if (!definitions.searchParametersByResourceType.has(base)) {
+                definitions.searchParametersByResourceType.set(base, []);
+              }
+              definitions.searchParametersByResourceType
+                .get(base)
+                ?.push(searchParameter);
+            }
           }
         }
       } catch (error) {
@@ -63,6 +80,8 @@ export class FhirDefinitions {
 
   public structureDefinitionsByUrl = new Map<string, StructureDefinition>();
   public valueSetsByUrl = new Map<string, ValueSet>();
+  public searchParameters: SearchParameter[] = [];
+  public searchParametersByResourceType = new Map<string, SearchParameter[]>();
 
   /**
    * All structure definitions sorted by name
@@ -214,6 +233,21 @@ export class StructureDefinition {
     return this.ownRootElements.flatMap((x) =>
       x.hasDataTypeChoiceVariants ? x.dataTypeChoiceVariants : x
     );
+  }
+
+  public get ownSearchParameters(): SearchParameter[] {
+    return (
+      this._definitions.searchParametersByResourceType.get(
+        (this as any).type
+      ) || []
+    );
+  }
+
+  public get allSearchParameters(): SearchParameter[] {
+    return [
+      ...(this.base?.allSearchParameters || []),
+      ...this.ownSearchParameters,
+    ];
   }
 
   /**
@@ -547,6 +581,36 @@ export class BackboneElement {
   public get ownRootElementsWithChoices(): ElementDefinition[] {
     return this.ownRootElements.flatMap((x) =>
       x.hasDataTypeChoiceVariants ? x.dataTypeChoiceVariants : x
+    );
+  }
+}
+
+export class SearchParameter {
+  public get safeName(): string {
+    return (this as any).name
+      .split(/[\s-]/g)
+      .map((word: string, index: number) => {
+        return (
+          (index === 0
+            ? word.charAt(0).toLowerCase()
+            : word.charAt(0).toUpperCase()) + word.slice(1)
+        );
+      })
+      .join("");
+  }
+
+  /**
+   * A JSDoc comment for this value set
+   */
+  public get jsDoc(): string {
+    return toJsComment(
+      [
+        ...splitLongLines([(this as any).description]),
+        `@fhirSearchType \`${(this as any).type}\``,
+        (this as any).expression
+          ? `@fhirPath \`${(this as any).expression}\``
+          : undefined,
+      ].filter(Boolean) as string[]
     );
   }
 }
