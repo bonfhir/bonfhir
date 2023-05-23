@@ -457,6 +457,37 @@ export function fhirSearch<
   }
 }
 
+export type ResourceSortOrder =
+  | "_content"
+  | "-_content"
+  | "_filter"
+  | "-_filter"
+  | "_has"
+  | "-_has"
+  | "_id"
+  | "-_id"
+  | "_lastUpdated"
+  | "-_lastUpdated"
+  | "_list"
+  | "-_list"
+  | "_profile"
+  | "-_profile"
+  | "_query"
+  | "-_query"
+  | "_security"
+  | "-_security"
+  | "_source"
+  | "-_source"
+  | "_tag"
+  | "-_tag"
+  | "_text"
+  | "-_text"
+  | "_type"
+  | "-_type"
+  | "_filter"
+  | "-_filter"
+  | "_score";
+
 export class ResourceFhirSearchBuilder extends FhirSearchBuilder {
   /**
    * Search on the entire content of the resource
@@ -588,7 +619,25 @@ export class ResourceFhirSearchBuilder extends FhirSearchBuilder {
   ): this {
     return this.specialParam("_filter", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ResourceSortOrder | ResourceSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type DomainResourceSortOrder = ResourceSortOrder | "_text" | "-_text";
 
 export class DomainResourceFhirSearchBuilder extends ResourceFhirSearchBuilder {
   /**
@@ -600,7 +649,46 @@ export class DomainResourceFhirSearchBuilder extends ResourceFhirSearchBuilder {
   ): this {
     return this.stringParam("_text", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | DomainResourceSortOrder
+      | DomainResourceSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type AccountSortOrder =
+  | DomainResourceSortOrder
+  | "identifier"
+  | "-identifier"
+  | "name"
+  | "-name"
+  | "owner"
+  | "-owner"
+  | "patient"
+  | "-patient"
+  | "period"
+  | "-period"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "type"
+  | "-type";
 
 export class AccountFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Account";
@@ -679,7 +767,70 @@ export class AccountFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: AccountSortOrder | AccountSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ActivityDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "composed-of"
+  | "-composed-of"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "depends-on"
+  | "-depends-on"
+  | "derived-from"
+  | "-derived-from"
+  | "description"
+  | "-description"
+  | "effective"
+  | "-effective"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "predecessor"
+  | "-predecessor"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "successor"
+  | "-successor"
+  | "title"
+  | "-title"
+  | "topic"
+  | "-topic"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class ActivityDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ActivityDefinition";
@@ -897,7 +1048,46 @@ export class ActivityDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ActivityDefinitionSortOrder
+      | ActivityDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type AdministrableProductDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "device"
+  | "-device"
+  | "dose-form"
+  | "-dose-form"
+  | "form-of"
+  | "-form-of"
+  | "identifier"
+  | "-identifier"
+  | "ingredient"
+  | "-ingredient"
+  | "manufactured-item"
+  | "-manufactured-item"
+  | "route"
+  | "-route"
+  | "target-species"
+  | "-target-species";
 
 export class AdministrableProductDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "AdministrableProductDefinition";
@@ -987,7 +1177,54 @@ export class AdministrableProductDefinitionFhirSearchBuilder extends DomainResou
   ): this {
     return this.tokenParam("target-species", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | AdministrableProductDefinitionSortOrder
+      | AdministrableProductDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type AdverseEventSortOrder =
+  | DomainResourceSortOrder
+  | "actuality"
+  | "-actuality"
+  | "category"
+  | "-category"
+  | "date"
+  | "-date"
+  | "event"
+  | "-event"
+  | "location"
+  | "-location"
+  | "recorder"
+  | "-recorder"
+  | "resultingcondition"
+  | "-resultingcondition"
+  | "seriousness"
+  | "-seriousness"
+  | "severity"
+  | "-severity"
+  | "study"
+  | "-study"
+  | "subject"
+  | "-subject"
+  | "substance"
+  | "-substance";
 
 export class AdverseEventFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "AdverseEvent";
@@ -1112,7 +1349,62 @@ export class AdverseEventFhirSearchBuilder extends DomainResourceFhirSearchBuild
   ): this {
     return this.referenceParam("substance", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | AdverseEventSortOrder
+      | AdverseEventSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type AllergyIntoleranceSortOrder =
+  | DomainResourceSortOrder
+  | "asserter"
+  | "-asserter"
+  | "category"
+  | "-category"
+  | "clinical-status"
+  | "-clinical-status"
+  | "criticality"
+  | "-criticality"
+  | "last-date"
+  | "-last-date"
+  | "manifestation"
+  | "-manifestation"
+  | "onset"
+  | "-onset"
+  | "recorder"
+  | "-recorder"
+  | "route"
+  | "-route"
+  | "severity"
+  | "-severity"
+  | "verification-status"
+  | "-verification-status"
+  | "code"
+  | "-code"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "type"
+  | "-type";
 
 export class AllergyIntoleranceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "AllergyIntolerance";
@@ -1481,7 +1773,64 @@ export class AllergyIntoleranceFhirSearchBuilder extends DomainResourceFhirSearc
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | AllergyIntoleranceSortOrder
+      | AllergyIntoleranceSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type AppointmentSortOrder =
+  | DomainResourceSortOrder
+  | "actor"
+  | "-actor"
+  | "appointment-type"
+  | "-appointment-type"
+  | "based-on"
+  | "-based-on"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "location"
+  | "-location"
+  | "part-status"
+  | "-part-status"
+  | "patient"
+  | "-patient"
+  | "practitioner"
+  | "-practitioner"
+  | "reason-code"
+  | "-reason-code"
+  | "reason-reference"
+  | "-reason-reference"
+  | "service-category"
+  | "-service-category"
+  | "service-type"
+  | "-service-type"
+  | "slot"
+  | "-slot"
+  | "specialty"
+  | "-specialty"
+  | "status"
+  | "-status"
+  | "supporting-info"
+  | "-supporting-info";
 
 export class AppointmentFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Appointment";
@@ -1659,7 +2008,40 @@ export class AppointmentFhirSearchBuilder extends DomainResourceFhirSearchBuilde
   ): this {
     return this.referenceParam("supporting-info", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: AppointmentSortOrder | AppointmentSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type AppointmentResponseSortOrder =
+  | DomainResourceSortOrder
+  | "actor"
+  | "-actor"
+  | "appointment"
+  | "-appointment"
+  | "identifier"
+  | "-identifier"
+  | "location"
+  | "-location"
+  | "part-status"
+  | "-part-status"
+  | "patient"
+  | "-patient"
+  | "practitioner"
+  | "-practitioner";
 
 export class AppointmentResponseFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "AppointmentResponse";
@@ -1735,7 +2117,66 @@ export class AppointmentResponseFhirSearchBuilder extends DomainResourceFhirSear
   ): this {
     return this.referenceParam("practitioner", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | AppointmentResponseSortOrder
+      | AppointmentResponseSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type AuditEventSortOrder =
+  | DomainResourceSortOrder
+  | "action"
+  | "-action"
+  | "address"
+  | "-address"
+  | "agent-name"
+  | "-agent-name"
+  | "agent-role"
+  | "-agent-role"
+  | "agent"
+  | "-agent"
+  | "altid"
+  | "-altid"
+  | "date"
+  | "-date"
+  | "entity-name"
+  | "-entity-name"
+  | "entity-role"
+  | "-entity-role"
+  | "entity-type"
+  | "-entity-type"
+  | "entity"
+  | "-entity"
+  | "outcome"
+  | "-outcome"
+  | "patient"
+  | "-patient"
+  | "policy"
+  | "-policy"
+  | "site"
+  | "-site"
+  | "source"
+  | "-source"
+  | "subtype"
+  | "-subtype"
+  | "type"
+  | "-type";
 
 export class AuditEventFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "AuditEvent";
@@ -1910,7 +2351,38 @@ export class AuditEventFhirSearchBuilder extends DomainResourceFhirSearchBuilder
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: AuditEventSortOrder | AuditEventSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type BasicSortOrder =
+  | DomainResourceSortOrder
+  | "author"
+  | "-author"
+  | "code"
+  | "-code"
+  | "created"
+  | "-created"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "subject"
+  | "-subject";
 
 export class BasicFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Basic";
@@ -1973,13 +2445,80 @@ export class BasicFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.referenceParam("subject", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: BasicSortOrder | BasicSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
 
-export class BinaryFhirSearchBuilder extends ResourceFhirSearchBuilder {}
+export type BinarySortOrder = ResourceSortOrder;
+
+export class BinaryFhirSearchBuilder extends ResourceFhirSearchBuilder {
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: BinarySortOrder | BinarySortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
+}
+
+export type BiologicallyDerivedProductSortOrder = DomainResourceSortOrder;
 
 export class BiologicallyDerivedProductFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "BiologicallyDerivedProduct";
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | BiologicallyDerivedProductSortOrder
+      | BiologicallyDerivedProductSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type BodyStructureSortOrder =
+  | DomainResourceSortOrder
+  | "identifier"
+  | "-identifier"
+  | "location"
+  | "-location"
+  | "morphology"
+  | "-morphology"
+  | "patient"
+  | "-patient";
 
 export class BodyStructureFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "BodyStructure";
@@ -2024,7 +2563,40 @@ export class BodyStructureFhirSearchBuilder extends DomainResourceFhirSearchBuil
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | BodyStructureSortOrder
+      | BodyStructureSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type BundleSortOrder =
+  | ResourceSortOrder
+  | "composition"
+  | "-composition"
+  | "identifier"
+  | "-identifier"
+  | "message"
+  | "-message"
+  | "timestamp"
+  | "-timestamp"
+  | "type"
+  | "-type";
 
 export class BundleFhirSearchBuilder extends ResourceFhirSearchBuilder {
   /**
@@ -2078,7 +2650,72 @@ export class BundleFhirSearchBuilder extends ResourceFhirSearchBuilder {
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: BundleSortOrder | BundleSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CapabilityStatementSortOrder =
+  | DomainResourceSortOrder
+  | "fhirversion"
+  | "-fhirversion"
+  | "format"
+  | "-format"
+  | "guide"
+  | "-guide"
+  | "mode"
+  | "-mode"
+  | "resource-profile"
+  | "-resource-profile"
+  | "resource"
+  | "-resource"
+  | "security-service"
+  | "-security-service"
+  | "software"
+  | "-software"
+  | "supported-profile"
+  | "-supported-profile"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "CapabilityStatement";
@@ -2770,7 +3407,70 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | CapabilityStatementSortOrder
+      | CapabilityStatementSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CarePlanSortOrder =
+  | DomainResourceSortOrder
+  | "activity-code"
+  | "-activity-code"
+  | "activity-date"
+  | "-activity-date"
+  | "activity-reference"
+  | "-activity-reference"
+  | "based-on"
+  | "-based-on"
+  | "care-team"
+  | "-care-team"
+  | "category"
+  | "-category"
+  | "condition"
+  | "-condition"
+  | "encounter"
+  | "-encounter"
+  | "goal"
+  | "-goal"
+  | "instantiates-canonical"
+  | "-instantiates-canonical"
+  | "instantiates-uri"
+  | "-instantiates-uri"
+  | "intent"
+  | "-intent"
+  | "part-of"
+  | "-part-of"
+  | "performer"
+  | "-performer"
+  | "replaces"
+  | "-replaces"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class CarePlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "CarePlan";
@@ -3144,7 +3844,42 @@ export class CarePlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: CarePlanSortOrder | CarePlanSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CareTeamSortOrder =
+  | DomainResourceSortOrder
+  | "category"
+  | "-category"
+  | "encounter"
+  | "-encounter"
+  | "participant"
+  | "-participant"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class CareTeamFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "CareTeam";
@@ -3395,11 +4130,86 @@ export class CareTeamFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: CareTeamSortOrder | CareTeamSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CatalogEntrySortOrder = DomainResourceSortOrder;
 
 export class CatalogEntryFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "CatalogEntry";
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | CatalogEntrySortOrder
+      | CatalogEntrySortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ChargeItemSortOrder =
+  | DomainResourceSortOrder
+  | "account"
+  | "-account"
+  | "code"
+  | "-code"
+  | "context"
+  | "-context"
+  | "entered-date"
+  | "-entered-date"
+  | "enterer"
+  | "-enterer"
+  | "factor-override"
+  | "-factor-override"
+  | "identifier"
+  | "-identifier"
+  | "occurrence"
+  | "-occurrence"
+  | "patient"
+  | "-patient"
+  | "performer-actor"
+  | "-performer-actor"
+  | "performer-function"
+  | "-performer-function"
+  | "performing-organization"
+  | "-performing-organization"
+  | "price-override"
+  | "-price-override"
+  | "quantity"
+  | "-quantity"
+  | "requesting-organization"
+  | "-requesting-organization"
+  | "service"
+  | "-service"
+  | "subject"
+  | "-subject";
 
 export class ChargeItemFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ChargeItem";
@@ -3572,7 +4382,56 @@ export class ChargeItemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
   ): this {
     return this.referenceParam("subject", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ChargeItemSortOrder | ChargeItemSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ChargeItemDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "effective"
+  | "-effective"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class ChargeItemDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ChargeItemDefinition";
@@ -3724,7 +4583,62 @@ export class ChargeItemDefinitionFhirSearchBuilder extends DomainResourceFhirSea
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ChargeItemDefinitionSortOrder
+      | ChargeItemDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CitationSortOrder =
+  | DomainResourceSortOrder
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "effective"
+  | "-effective"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class CitationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Citation";
@@ -3883,7 +4797,60 @@ export class CitationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: CitationSortOrder | CitationSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ClaimSortOrder =
+  | DomainResourceSortOrder
+  | "care-team"
+  | "-care-team"
+  | "created"
+  | "-created"
+  | "detail-udi"
+  | "-detail-udi"
+  | "encounter"
+  | "-encounter"
+  | "enterer"
+  | "-enterer"
+  | "facility"
+  | "-facility"
+  | "identifier"
+  | "-identifier"
+  | "insurer"
+  | "-insurer"
+  | "item-udi"
+  | "-item-udi"
+  | "patient"
+  | "-patient"
+  | "payee"
+  | "-payee"
+  | "priority"
+  | "-priority"
+  | "procedure-udi"
+  | "-procedure-udi"
+  | "provider"
+  | "-provider"
+  | "status"
+  | "-status"
+  | "subdetail-udi"
+  | "-subdetail-udi"
+  | "use"
+  | "-use";
 
 export class ClaimFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Claim";
@@ -4056,7 +5023,48 @@ export class ClaimFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   use(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("use", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ClaimSortOrder | ClaimSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ClaimResponseSortOrder =
+  | DomainResourceSortOrder
+  | "created"
+  | "-created"
+  | "disposition"
+  | "-disposition"
+  | "identifier"
+  | "-identifier"
+  | "insurer"
+  | "-insurer"
+  | "outcome"
+  | "-outcome"
+  | "patient"
+  | "-patient"
+  | "payment-date"
+  | "-payment-date"
+  | "request"
+  | "-request"
+  | "requestor"
+  | "-requestor"
+  | "status"
+  | "-status"
+  | "use"
+  | "-use";
 
 export class ClaimResponseFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ClaimResponse";
@@ -4169,7 +5177,56 @@ export class ClaimResponseFhirSearchBuilder extends DomainResourceFhirSearchBuil
   use(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("use", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ClaimResponseSortOrder
+      | ClaimResponseSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ClinicalImpressionSortOrder =
+  | DomainResourceSortOrder
+  | "assessor"
+  | "-assessor"
+  | "encounter"
+  | "-encounter"
+  | "finding-code"
+  | "-finding-code"
+  | "finding-ref"
+  | "-finding-ref"
+  | "identifier"
+  | "-identifier"
+  | "investigation"
+  | "-investigation"
+  | "previous"
+  | "-previous"
+  | "problem"
+  | "-problem"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "supporting-info"
+  | "-supporting-info"
+  | "date"
+  | "-date"
+  | "patient"
+  | "-patient";
 
 export class ClinicalImpressionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ClinicalImpression";
@@ -4406,7 +5463,52 @@ export class ClinicalImpressionFhirSearchBuilder extends DomainResourceFhirSearc
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ClinicalImpressionSortOrder
+      | ClinicalImpressionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ClinicalUseDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "contraindication-reference"
+  | "-contraindication-reference"
+  | "contraindication"
+  | "-contraindication"
+  | "effect-reference"
+  | "-effect-reference"
+  | "effect"
+  | "-effect"
+  | "identifier"
+  | "-identifier"
+  | "indication-reference"
+  | "-indication-reference"
+  | "indication"
+  | "-indication"
+  | "interaction"
+  | "-interaction"
+  | "product"
+  | "-product"
+  | "subject"
+  | "-subject"
+  | "type"
+  | "-type";
 
 export class ClinicalUseDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ClinicalUseDefinition";
@@ -4523,7 +5625,70 @@ export class ClinicalUseDefinitionFhirSearchBuilder extends DomainResourceFhirSe
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ClinicalUseDefinitionSortOrder
+      | ClinicalUseDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CodeSystemSortOrder =
+  | DomainResourceSortOrder
+  | "code"
+  | "-code"
+  | "content-mode"
+  | "-content-mode"
+  | "language"
+  | "-language"
+  | "supplements"
+  | "-supplements"
+  | "system"
+  | "-system"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "CodeSystem";
@@ -5196,7 +6361,56 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: CodeSystemSortOrder | CodeSystemSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CommunicationSortOrder =
+  | DomainResourceSortOrder
+  | "based-on"
+  | "-based-on"
+  | "category"
+  | "-category"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "instantiates-canonical"
+  | "-instantiates-canonical"
+  | "instantiates-uri"
+  | "-instantiates-uri"
+  | "medium"
+  | "-medium"
+  | "part-of"
+  | "-part-of"
+  | "patient"
+  | "-patient"
+  | "received"
+  | "-received"
+  | "recipient"
+  | "-recipient"
+  | "sender"
+  | "-sender"
+  | "sent"
+  | "-sent"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject";
 
 export class CommunicationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Communication";
@@ -5350,7 +6564,62 @@ export class CommunicationFhirSearchBuilder extends DomainResourceFhirSearchBuil
   ): this {
     return this.referenceParam("subject", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | CommunicationSortOrder
+      | CommunicationSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CommunicationRequestSortOrder =
+  | DomainResourceSortOrder
+  | "authored"
+  | "-authored"
+  | "based-on"
+  | "-based-on"
+  | "category"
+  | "-category"
+  | "encounter"
+  | "-encounter"
+  | "group-identifier"
+  | "-group-identifier"
+  | "identifier"
+  | "-identifier"
+  | "medium"
+  | "-medium"
+  | "occurrence"
+  | "-occurrence"
+  | "patient"
+  | "-patient"
+  | "priority"
+  | "-priority"
+  | "recipient"
+  | "-recipient"
+  | "replaces"
+  | "-replaces"
+  | "requester"
+  | "-requester"
+  | "sender"
+  | "-sender"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject";
 
 export class CommunicationRequestFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "CommunicationRequest";
@@ -5515,7 +6784,58 @@ export class CommunicationRequestFhirSearchBuilder extends DomainResourceFhirSea
   ): this {
     return this.referenceParam("subject", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | CommunicationRequestSortOrder
+      | CommunicationRequestSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CompartmentDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "code"
+  | "-code"
+  | "resource"
+  | "-resource"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "CompartmentDefinition";
@@ -6062,7 +7382,66 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | CompartmentDefinitionSortOrder
+      | CompartmentDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CompositionSortOrder =
+  | DomainResourceSortOrder
+  | "attester"
+  | "-attester"
+  | "author"
+  | "-author"
+  | "category"
+  | "-category"
+  | "confidentiality"
+  | "-confidentiality"
+  | "context"
+  | "-context"
+  | "entry"
+  | "-entry"
+  | "period"
+  | "-period"
+  | "related-id"
+  | "-related-id"
+  | "related-ref"
+  | "-related-ref"
+  | "section"
+  | "-section"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "title"
+  | "-title"
+  | "date"
+  | "-date"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "type"
+  | "-type";
 
 export class CompositionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Composition";
@@ -6448,7 +7827,78 @@ export class CompositionFhirSearchBuilder extends DomainResourceFhirSearchBuilde
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: CompositionSortOrder | CompositionSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ConceptMapSortOrder =
+  | DomainResourceSortOrder
+  | "dependson"
+  | "-dependson"
+  | "other"
+  | "-other"
+  | "product"
+  | "-product"
+  | "source-code"
+  | "-source-code"
+  | "source-system"
+  | "-source-system"
+  | "source-uri"
+  | "-source-uri"
+  | "source"
+  | "-source"
+  | "target-code"
+  | "-target-code"
+  | "target-system"
+  | "-target-system"
+  | "target-uri"
+  | "-target-uri"
+  | "target"
+  | "-target"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ConceptMap";
@@ -7184,7 +8634,68 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ConceptMapSortOrder | ConceptMapSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ConditionSortOrder =
+  | DomainResourceSortOrder
+  | "abatement-age"
+  | "-abatement-age"
+  | "abatement-date"
+  | "-abatement-date"
+  | "abatement-string"
+  | "-abatement-string"
+  | "asserter"
+  | "-asserter"
+  | "body-site"
+  | "-body-site"
+  | "category"
+  | "-category"
+  | "clinical-status"
+  | "-clinical-status"
+  | "encounter"
+  | "-encounter"
+  | "evidence-detail"
+  | "-evidence-detail"
+  | "evidence"
+  | "-evidence"
+  | "onset-age"
+  | "-onset-age"
+  | "onset-date"
+  | "-onset-date"
+  | "onset-info"
+  | "-onset-info"
+  | "recorded-date"
+  | "-recorded-date"
+  | "severity"
+  | "-severity"
+  | "stage"
+  | "-stage"
+  | "subject"
+  | "-subject"
+  | "verification-status"
+  | "-verification-status"
+  | "code"
+  | "-code"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class ConditionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Condition";
@@ -7560,7 +9071,56 @@ export class ConditionFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ConditionSortOrder | ConditionSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ConsentSortOrder =
+  | DomainResourceSortOrder
+  | "action"
+  | "-action"
+  | "actor"
+  | "-actor"
+  | "category"
+  | "-category"
+  | "consentor"
+  | "-consentor"
+  | "data"
+  | "-data"
+  | "organization"
+  | "-organization"
+  | "period"
+  | "-period"
+  | "purpose"
+  | "-purpose"
+  | "scope"
+  | "-scope"
+  | "security-label"
+  | "-security-label"
+  | "source-reference"
+  | "-source-reference"
+  | "status"
+  | "-status"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class ConsentFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Consent";
@@ -7878,7 +9438,46 @@ export class ConsentFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ConsentSortOrder | ConsentSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ContractSortOrder =
+  | DomainResourceSortOrder
+  | "authority"
+  | "-authority"
+  | "domain"
+  | "-domain"
+  | "identifier"
+  | "-identifier"
+  | "instantiates"
+  | "-instantiates"
+  | "issued"
+  | "-issued"
+  | "patient"
+  | "-patient"
+  | "signer"
+  | "-signer"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "url"
+  | "-url";
 
 export class ContractFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Contract";
@@ -7979,7 +9578,48 @@ export class ContractFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
     return this.uriParam("url", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ContractSortOrder | ContractSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CoverageSortOrder =
+  | DomainResourceSortOrder
+  | "beneficiary"
+  | "-beneficiary"
+  | "class-type"
+  | "-class-type"
+  | "class-value"
+  | "-class-value"
+  | "dependent"
+  | "-dependent"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "payor"
+  | "-payor"
+  | "policy-holder"
+  | "-policy-holder"
+  | "status"
+  | "-status"
+  | "subscriber"
+  | "-subscriber"
+  | "type"
+  | "-type";
 
 export class CoverageFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Coverage";
@@ -8092,7 +9732,40 @@ export class CoverageFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: CoverageSortOrder | CoverageSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CoverageEligibilityRequestSortOrder =
+  | DomainResourceSortOrder
+  | "created"
+  | "-created"
+  | "enterer"
+  | "-enterer"
+  | "facility"
+  | "-facility"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "provider"
+  | "-provider"
+  | "status"
+  | "-status";
 
 export class CoverageEligibilityRequestFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "CoverageEligibilityRequest";
@@ -8167,7 +9840,48 @@ export class CoverageEligibilityRequestFhirSearchBuilder extends DomainResourceF
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | CoverageEligibilityRequestSortOrder
+      | CoverageEligibilityRequestSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type CoverageEligibilityResponseSortOrder =
+  | DomainResourceSortOrder
+  | "created"
+  | "-created"
+  | "disposition"
+  | "-disposition"
+  | "identifier"
+  | "-identifier"
+  | "insurer"
+  | "-insurer"
+  | "outcome"
+  | "-outcome"
+  | "patient"
+  | "-patient"
+  | "request"
+  | "-request"
+  | "requestor"
+  | "-requestor"
+  | "status"
+  | "-status";
 
 export class CoverageEligibilityResponseFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "CoverageEligibilityResponse";
@@ -8262,7 +9976,42 @@ export class CoverageEligibilityResponseFhirSearchBuilder extends DomainResource
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | CoverageEligibilityResponseSortOrder
+      | CoverageEligibilityResponseSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type DetectedIssueSortOrder =
+  | DomainResourceSortOrder
+  | "author"
+  | "-author"
+  | "code"
+  | "-code"
+  | "identified"
+  | "-identified"
+  | "implicated"
+  | "-implicated"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class DetectedIssueFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "DetectedIssue";
@@ -8457,7 +10206,54 @@ export class DetectedIssueFhirSearchBuilder extends DomainResourceFhirSearchBuil
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | DetectedIssueSortOrder
+      | DetectedIssueSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type DeviceSortOrder =
+  | DomainResourceSortOrder
+  | "device-name"
+  | "-device-name"
+  | "identifier"
+  | "-identifier"
+  | "location"
+  | "-location"
+  | "manufacturer"
+  | "-manufacturer"
+  | "model"
+  | "-model"
+  | "organization"
+  | "-organization"
+  | "patient"
+  | "-patient"
+  | "status"
+  | "-status"
+  | "type"
+  | "-type"
+  | "udi-carrier"
+  | "-udi-carrier"
+  | "udi-di"
+  | "-udi-di"
+  | "url"
+  | "-url";
 
 export class DeviceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Device";
@@ -8579,7 +10375,32 @@ export class DeviceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
     return this.uriParam("url", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: DeviceSortOrder | DeviceSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type DeviceDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "identifier"
+  | "-identifier"
+  | "parent"
+  | "-parent"
+  | "type"
+  | "-type";
 
 export class DeviceDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "DeviceDefinition";
@@ -8612,7 +10433,40 @@ export class DeviceDefinitionFhirSearchBuilder extends DomainResourceFhirSearchB
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | DeviceDefinitionSortOrder
+      | DeviceDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type DeviceMetricSortOrder =
+  | DomainResourceSortOrder
+  | "category"
+  | "-category"
+  | "identifier"
+  | "-identifier"
+  | "parent"
+  | "-parent"
+  | "source"
+  | "-source"
+  | "type"
+  | "-type";
 
 export class DeviceMetricFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "DeviceMetric";
@@ -8665,7 +10519,66 @@ export class DeviceMetricFhirSearchBuilder extends DomainResourceFhirSearchBuild
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | DeviceMetricSortOrder
+      | DeviceMetricSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type DeviceRequestSortOrder =
+  | DomainResourceSortOrder
+  | "authored-on"
+  | "-authored-on"
+  | "based-on"
+  | "-based-on"
+  | "device"
+  | "-device"
+  | "event-date"
+  | "-event-date"
+  | "group-identifier"
+  | "-group-identifier"
+  | "instantiates-canonical"
+  | "-instantiates-canonical"
+  | "instantiates-uri"
+  | "-instantiates-uri"
+  | "insurance"
+  | "-insurance"
+  | "intent"
+  | "-intent"
+  | "performer"
+  | "-performer"
+  | "prior-request"
+  | "-prior-request"
+  | "requester"
+  | "-requester"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "code"
+  | "-code"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class DeviceRequestFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "DeviceRequest";
@@ -9037,7 +10950,38 @@ export class DeviceRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | DeviceRequestSortOrder
+      | DeviceRequestSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type DeviceUseStatementSortOrder =
+  | DomainResourceSortOrder
+  | "device"
+  | "-device"
+  | "identifier"
+  | "-identifier"
+  | "subject"
+  | "-subject"
+  | "patient"
+  | "-patient";
 
 export class DeviceUseStatementFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "DeviceUseStatement";
@@ -9150,7 +11094,62 @@ export class DeviceUseStatementFhirSearchBuilder extends DomainResourceFhirSearc
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | DeviceUseStatementSortOrder
+      | DeviceUseStatementSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type DiagnosticReportSortOrder =
+  | DomainResourceSortOrder
+  | "based-on"
+  | "-based-on"
+  | "category"
+  | "-category"
+  | "conclusion"
+  | "-conclusion"
+  | "issued"
+  | "-issued"
+  | "media"
+  | "-media"
+  | "performer"
+  | "-performer"
+  | "result"
+  | "-result"
+  | "results-interpreter"
+  | "-results-interpreter"
+  | "specimen"
+  | "-specimen"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "code"
+  | "-code"
+  | "date"
+  | "-date"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class DiagnosticReportFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "DiagnosticReport";
@@ -9534,7 +11533,56 @@ export class DiagnosticReportFhirSearchBuilder extends DomainResourceFhirSearchB
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | DiagnosticReportSortOrder
+      | DiagnosticReportSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type DocumentManifestSortOrder =
+  | DomainResourceSortOrder
+  | "author"
+  | "-author"
+  | "created"
+  | "-created"
+  | "description"
+  | "-description"
+  | "item"
+  | "-item"
+  | "recipient"
+  | "-recipient"
+  | "related-id"
+  | "-related-id"
+  | "related-ref"
+  | "-related-ref"
+  | "source"
+  | "-source"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "type"
+  | "-type";
 
 export class DocumentManifestFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "DocumentManifest";
@@ -9811,7 +11859,80 @@ export class DocumentManifestFhirSearchBuilder extends DomainResourceFhirSearchB
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | DocumentManifestSortOrder
+      | DocumentManifestSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type DocumentReferenceSortOrder =
+  | DomainResourceSortOrder
+  | "authenticator"
+  | "-authenticator"
+  | "author"
+  | "-author"
+  | "category"
+  | "-category"
+  | "contenttype"
+  | "-contenttype"
+  | "custodian"
+  | "-custodian"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "event"
+  | "-event"
+  | "facility"
+  | "-facility"
+  | "format"
+  | "-format"
+  | "language"
+  | "-language"
+  | "location"
+  | "-location"
+  | "period"
+  | "-period"
+  | "related"
+  | "-related"
+  | "relatesto"
+  | "-relatesto"
+  | "relation"
+  | "-relation"
+  | "relationship"
+  | "-relationship"
+  | "security-label"
+  | "-security-label"
+  | "setting"
+  | "-setting"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "type"
+  | "-type";
 
 export class DocumentReferenceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "DocumentReference";
@@ -10229,7 +12350,76 @@ export class DocumentReferenceFhirSearchBuilder extends DomainResourceFhirSearch
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | DocumentReferenceSortOrder
+      | DocumentReferenceSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type EncounterSortOrder =
+  | DomainResourceSortOrder
+  | "account"
+  | "-account"
+  | "appointment"
+  | "-appointment"
+  | "based-on"
+  | "-based-on"
+  | "class"
+  | "-class"
+  | "diagnosis"
+  | "-diagnosis"
+  | "episode-of-care"
+  | "-episode-of-care"
+  | "length"
+  | "-length"
+  | "location-period"
+  | "-location-period"
+  | "location"
+  | "-location"
+  | "part-of"
+  | "-part-of"
+  | "participant-type"
+  | "-participant-type"
+  | "participant"
+  | "-participant"
+  | "practitioner"
+  | "-practitioner"
+  | "reason-code"
+  | "-reason-code"
+  | "reason-reference"
+  | "-reason-reference"
+  | "service-provider"
+  | "-service-provider"
+  | "special-arrangement"
+  | "-special-arrangement"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "type"
+  | "-type";
 
 export class EncounterFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Encounter";
@@ -10640,7 +12830,38 @@ export class EncounterFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: EncounterSortOrder | EncounterSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type EndpointSortOrder =
+  | DomainResourceSortOrder
+  | "connection-type"
+  | "-connection-type"
+  | "identifier"
+  | "-identifier"
+  | "name"
+  | "-name"
+  | "organization"
+  | "-organization"
+  | "payload-type"
+  | "-payload-type"
+  | "status"
+  | "-status";
 
 export class EndpointFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Endpoint";
@@ -10704,7 +12925,34 @@ export class EndpointFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: EndpointSortOrder | EndpointSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type EnrollmentRequestSortOrder =
+  | DomainResourceSortOrder
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject";
 
 export class EnrollmentRequestFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "EnrollmentRequest";
@@ -10749,7 +12997,36 @@ export class EnrollmentRequestFhirSearchBuilder extends DomainResourceFhirSearch
   ): this {
     return this.referenceParam("subject", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | EnrollmentRequestSortOrder
+      | EnrollmentRequestSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type EnrollmentResponseSortOrder =
+  | DomainResourceSortOrder
+  | "identifier"
+  | "-identifier"
+  | "request"
+  | "-request"
+  | "status"
+  | "-status";
 
 export class EnrollmentResponseFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "EnrollmentResponse";
@@ -10784,7 +13061,48 @@ export class EnrollmentResponseFhirSearchBuilder extends DomainResourceFhirSearc
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | EnrollmentResponseSortOrder
+      | EnrollmentResponseSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type EpisodeOfCareSortOrder =
+  | DomainResourceSortOrder
+  | "care-manager"
+  | "-care-manager"
+  | "condition"
+  | "-condition"
+  | "incoming-referral"
+  | "-incoming-referral"
+  | "organization"
+  | "-organization"
+  | "status"
+  | "-status"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "type"
+  | "-type";
 
 export class EpisodeOfCareFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "EpisodeOfCare";
@@ -11059,7 +13377,74 @@ export class EpisodeOfCareFhirSearchBuilder extends DomainResourceFhirSearchBuil
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | EpisodeOfCareSortOrder
+      | EpisodeOfCareSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type EventDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "composed-of"
+  | "-composed-of"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "depends-on"
+  | "-depends-on"
+  | "derived-from"
+  | "-derived-from"
+  | "description"
+  | "-description"
+  | "effective"
+  | "-effective"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "predecessor"
+  | "-predecessor"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "successor"
+  | "-successor"
+  | "title"
+  | "-title"
+  | "topic"
+  | "-topic"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class EventDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "EventDefinition";
@@ -11277,7 +13662,56 @@ export class EventDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | EventDefinitionSortOrder
+      | EventDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type EvidenceSortOrder =
+  | DomainResourceSortOrder
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "identifier"
+  | "-identifier"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class EvidenceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Evidence";
@@ -11408,7 +13842,44 @@ export class EvidenceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: EvidenceSortOrder | EvidenceSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type EvidenceReportSortOrder =
+  | DomainResourceSortOrder
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "identifier"
+  | "-identifier"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "url"
+  | "-url";
 
 export class EvidenceReportFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "EvidenceReport";
@@ -11502,7 +13973,58 @@ export class EvidenceReportFhirSearchBuilder extends DomainResourceFhirSearchBui
   url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
     return this.uriParam("url", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | EvidenceReportSortOrder
+      | EvidenceReportSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type EvidenceVariableSortOrder =
+  | DomainResourceSortOrder
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "identifier"
+  | "-identifier"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class EvidenceVariableFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "EvidenceVariable";
@@ -11642,7 +14164,56 @@ export class EvidenceVariableFhirSearchBuilder extends DomainResourceFhirSearchB
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | EvidenceVariableSortOrder
+      | EvidenceVariableSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ExampleScenarioSortOrder =
+  | DomainResourceSortOrder
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class ExampleScenarioFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ExampleScenario";
@@ -11772,7 +14343,64 @@ export class ExampleScenarioFhirSearchBuilder extends DomainResourceFhirSearchBu
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ExampleScenarioSortOrder
+      | ExampleScenarioSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ExplanationOfBenefitSortOrder =
+  | DomainResourceSortOrder
+  | "care-team"
+  | "-care-team"
+  | "claim"
+  | "-claim"
+  | "coverage"
+  | "-coverage"
+  | "created"
+  | "-created"
+  | "detail-udi"
+  | "-detail-udi"
+  | "disposition"
+  | "-disposition"
+  | "encounter"
+  | "-encounter"
+  | "enterer"
+  | "-enterer"
+  | "facility"
+  | "-facility"
+  | "identifier"
+  | "-identifier"
+  | "item-udi"
+  | "-item-udi"
+  | "patient"
+  | "-patient"
+  | "payee"
+  | "-payee"
+  | "procedure-udi"
+  | "-procedure-udi"
+  | "provider"
+  | "-provider"
+  | "status"
+  | "-status"
+  | "subdetail-udi"
+  | "-subdetail-udi";
 
 export class ExplanationOfBenefitFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ExplanationOfBenefit";
@@ -11947,7 +14575,48 @@ export class ExplanationOfBenefitFhirSearchBuilder extends DomainResourceFhirSea
   ): this {
     return this.referenceParam("subdetail-udi", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ExplanationOfBenefitSortOrder
+      | ExplanationOfBenefitSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type FamilyMemberHistorySortOrder =
+  | DomainResourceSortOrder
+  | "instantiates-canonical"
+  | "-instantiates-canonical"
+  | "instantiates-uri"
+  | "-instantiates-uri"
+  | "relationship"
+  | "-relationship"
+  | "sex"
+  | "-sex"
+  | "status"
+  | "-status"
+  | "code"
+  | "-code"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class FamilyMemberHistoryFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "FamilyMemberHistory";
@@ -12236,7 +14905,42 @@ export class FamilyMemberHistoryFhirSearchBuilder extends DomainResourceFhirSear
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | FamilyMemberHistorySortOrder
+      | FamilyMemberHistorySortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type FlagSortOrder =
+  | DomainResourceSortOrder
+  | "author"
+  | "-author"
+  | "identifier"
+  | "-identifier"
+  | "subject"
+  | "-subject"
+  | "date"
+  | "-date"
+  | "encounter"
+  | "-encounter"
+  | "patient"
+  | "-patient";
 
 export class FlagFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Flag";
@@ -12428,7 +15132,40 @@ export class FlagFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(parameters: FlagSortOrder | FlagSortOrder[] | null | undefined): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type GoalSortOrder =
+  | DomainResourceSortOrder
+  | "achievement-status"
+  | "-achievement-status"
+  | "category"
+  | "-category"
+  | "lifecycle-status"
+  | "-lifecycle-status"
+  | "start-date"
+  | "-start-date"
+  | "subject"
+  | "-subject"
+  | "target-date"
+  | "-target-date"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class GoalFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Goal";
@@ -12647,7 +15384,52 @@ export class GoalFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(parameters: GoalSortOrder | GoalSortOrder[] | null | undefined): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type GraphDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "start"
+  | "-start"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "GraphDefinition";
@@ -13225,7 +16007,50 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | GraphDefinitionSortOrder
+      | GraphDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type GroupSortOrder =
+  | DomainResourceSortOrder
+  | "actual"
+  | "-actual"
+  | "characteristic-value"
+  | "-characteristic-value"
+  | "characteristic"
+  | "-characteristic"
+  | "code"
+  | "-code"
+  | "exclude"
+  | "-exclude"
+  | "identifier"
+  | "-identifier"
+  | "managing-entity"
+  | "-managing-entity"
+  | "member"
+  | "-member"
+  | "type"
+  | "-type"
+  | "value"
+  | "-value";
 
 export class GroupFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Group";
@@ -13324,7 +16149,34 @@ export class GroupFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   value(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("value", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: GroupSortOrder | GroupSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type GuidanceResponseSortOrder =
+  | DomainResourceSortOrder
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "request"
+  | "-request"
+  | "subject"
+  | "-subject";
 
 export class GuidanceResponseFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "GuidanceResponse";
@@ -13369,7 +16221,54 @@ export class GuidanceResponseFhirSearchBuilder extends DomainResourceFhirSearchB
   ): this {
     return this.referenceParam("subject", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | GuidanceResponseSortOrder
+      | GuidanceResponseSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type HealthcareServiceSortOrder =
+  | DomainResourceSortOrder
+  | "active"
+  | "-active"
+  | "characteristic"
+  | "-characteristic"
+  | "coverage-area"
+  | "-coverage-area"
+  | "endpoint"
+  | "-endpoint"
+  | "identifier"
+  | "-identifier"
+  | "location"
+  | "-location"
+  | "name"
+  | "-name"
+  | "organization"
+  | "-organization"
+  | "program"
+  | "-program"
+  | "service-category"
+  | "-service-category"
+  | "service-type"
+  | "-service-type"
+  | "specialty"
+  | "-specialty";
 
 export class HealthcareServiceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "HealthcareService";
@@ -13493,7 +16392,64 @@ export class HealthcareServiceFhirSearchBuilder extends DomainResourceFhirSearch
   ): this {
     return this.tokenParam("specialty", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | HealthcareServiceSortOrder
+      | HealthcareServiceSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ImagingStudySortOrder =
+  | DomainResourceSortOrder
+  | "basedon"
+  | "-basedon"
+  | "bodysite"
+  | "-bodysite"
+  | "dicom-class"
+  | "-dicom-class"
+  | "encounter"
+  | "-encounter"
+  | "endpoint"
+  | "-endpoint"
+  | "instance"
+  | "-instance"
+  | "interpreter"
+  | "-interpreter"
+  | "modality"
+  | "-modality"
+  | "performer"
+  | "-performer"
+  | "reason"
+  | "-reason"
+  | "referrer"
+  | "-referrer"
+  | "series"
+  | "-series"
+  | "started"
+  | "-started"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class ImagingStudyFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ImagingStudy";
@@ -13800,7 +16756,62 @@ export class ImagingStudyFhirSearchBuilder extends DomainResourceFhirSearchBuild
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ImagingStudySortOrder
+      | ImagingStudySortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ImmunizationSortOrder =
+  | DomainResourceSortOrder
+  | "location"
+  | "-location"
+  | "lot-number"
+  | "-lot-number"
+  | "manufacturer"
+  | "-manufacturer"
+  | "performer"
+  | "-performer"
+  | "reaction-date"
+  | "-reaction-date"
+  | "reaction"
+  | "-reaction"
+  | "reason-code"
+  | "-reason-code"
+  | "reason-reference"
+  | "-reason-reference"
+  | "series"
+  | "-series"
+  | "status-reason"
+  | "-status-reason"
+  | "status"
+  | "-status"
+  | "target-disease"
+  | "-target-disease"
+  | "vaccine-code"
+  | "-vaccine-code"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class ImmunizationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Immunization";
@@ -14132,7 +17143,44 @@ export class ImmunizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ImmunizationSortOrder
+      | ImmunizationSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ImmunizationEvaluationSortOrder =
+  | DomainResourceSortOrder
+  | "date"
+  | "-date"
+  | "dose-status"
+  | "-dose-status"
+  | "identifier"
+  | "-identifier"
+  | "immunization-event"
+  | "-immunization-event"
+  | "patient"
+  | "-patient"
+  | "status"
+  | "-status"
+  | "target-disease"
+  | "-target-disease";
 
 export class ImmunizationEvaluationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ImmunizationEvaluation";
@@ -14205,7 +17253,46 @@ export class ImmunizationEvaluationFhirSearchBuilder extends DomainResourceFhirS
   ): this {
     return this.tokenParam("target-disease", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ImmunizationEvaluationSortOrder
+      | ImmunizationEvaluationSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ImmunizationRecommendationSortOrder =
+  | DomainResourceSortOrder
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "information"
+  | "-information"
+  | "patient"
+  | "-patient"
+  | "status"
+  | "-status"
+  | "support"
+  | "-support"
+  | "target-disease"
+  | "-target-disease"
+  | "vaccine-type"
+  | "-vaccine-type";
 
 export class ImmunizationRecommendationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ImmunizationRecommendation";
@@ -14288,7 +17375,66 @@ export class ImmunizationRecommendationFhirSearchBuilder extends DomainResourceF
   ): this {
     return this.tokenParam("vaccine-type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ImmunizationRecommendationSortOrder
+      | ImmunizationRecommendationSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ImplementationGuideSortOrder =
+  | DomainResourceSortOrder
+  | "depends-on"
+  | "-depends-on"
+  | "experimental"
+  | "-experimental"
+  | "global"
+  | "-global"
+  | "resource"
+  | "-resource"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ImplementationGuide";
@@ -14932,7 +18078,46 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ImplementationGuideSortOrder
+      | ImplementationGuideSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type IngredientSortOrder =
+  | DomainResourceSortOrder
+  | "for"
+  | "-for"
+  | "function"
+  | "-function"
+  | "identifier"
+  | "-identifier"
+  | "manufacturer"
+  | "-manufacturer"
+  | "role"
+  | "-role"
+  | "substance-code"
+  | "-substance-code"
+  | "substance-definition"
+  | "-substance-definition"
+  | "substance"
+  | "-substance";
 
 export class IngredientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Ingredient";
@@ -15018,7 +18203,54 @@ export class IngredientFhirSearchBuilder extends DomainResourceFhirSearchBuilder
   ): this {
     return this.referenceParam("substance", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: IngredientSortOrder | IngredientSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type InsurancePlanSortOrder =
+  | DomainResourceSortOrder
+  | "address-city"
+  | "-address-city"
+  | "address-country"
+  | "-address-country"
+  | "address-postalcode"
+  | "-address-postalcode"
+  | "address-state"
+  | "-address-state"
+  | "address-use"
+  | "-address-use"
+  | "address"
+  | "-address"
+  | "administered-by"
+  | "-administered-by"
+  | "endpoint"
+  | "-endpoint"
+  | "identifier"
+  | "-identifier"
+  | "name"
+  | "-name"
+  | "owned-by"
+  | "-owned-by"
+  | "phonetic"
+  | "-phonetic"
+  | "status"
+  | "-status"
+  | "type"
+  | "-type";
 
 export class InsurancePlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "InsurancePlan";
@@ -15161,7 +18393,56 @@ export class InsurancePlanFhirSearchBuilder extends DomainResourceFhirSearchBuil
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | InsurancePlanSortOrder
+      | InsurancePlanSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type InvoiceSortOrder =
+  | DomainResourceSortOrder
+  | "account"
+  | "-account"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "issuer"
+  | "-issuer"
+  | "participant-role"
+  | "-participant-role"
+  | "participant"
+  | "-participant"
+  | "patient"
+  | "-patient"
+  | "recipient"
+  | "-recipient"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "totalgross"
+  | "-totalgross"
+  | "totalnet"
+  | "-totalnet"
+  | "type"
+  | "-type";
 
 export class InvoiceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Invoice";
@@ -15292,7 +18573,74 @@ export class InvoiceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: InvoiceSortOrder | InvoiceSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type LibrarySortOrder =
+  | DomainResourceSortOrder
+  | "composed-of"
+  | "-composed-of"
+  | "content-type"
+  | "-content-type"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "depends-on"
+  | "-depends-on"
+  | "derived-from"
+  | "-derived-from"
+  | "description"
+  | "-description"
+  | "effective"
+  | "-effective"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "predecessor"
+  | "-predecessor"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "successor"
+  | "-successor"
+  | "title"
+  | "-title"
+  | "topic"
+  | "-topic"
+  | "type"
+  | "-type"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class LibraryFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Library";
@@ -15528,7 +18876,32 @@ export class LibraryFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: LibrarySortOrder | LibrarySortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type LinkageSortOrder =
+  | DomainResourceSortOrder
+  | "author"
+  | "-author"
+  | "item"
+  | "-item"
+  | "source"
+  | "-source";
 
 export class LinkageFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Linkage";
@@ -15563,7 +18936,50 @@ export class LinkageFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.referenceParam("source", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: LinkageSortOrder | LinkageSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ListSortOrder =
+  | DomainResourceSortOrder
+  | "empty-reason"
+  | "-empty-reason"
+  | "item"
+  | "-item"
+  | "notes"
+  | "-notes"
+  | "source"
+  | "-source"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "title"
+  | "-title"
+  | "code"
+  | "-code"
+  | "date"
+  | "-date"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class ListFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "List";
@@ -15909,7 +19325,54 @@ export class ListFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(parameters: ListSortOrder | ListSortOrder[] | null | undefined): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type LocationSortOrder =
+  | DomainResourceSortOrder
+  | "address-city"
+  | "-address-city"
+  | "address-country"
+  | "-address-country"
+  | "address-postalcode"
+  | "-address-postalcode"
+  | "address-state"
+  | "-address-state"
+  | "address-use"
+  | "-address-use"
+  | "address"
+  | "-address"
+  | "endpoint"
+  | "-endpoint"
+  | "identifier"
+  | "-identifier"
+  | "name"
+  | "-name"
+  | "near"
+  | "-near"
+  | "operational-status"
+  | "-operational-status"
+  | "organization"
+  | "-organization"
+  | "partof"
+  | "-partof"
+  | "status"
+  | "-status"
+  | "type"
+  | "-type";
 
 export class LocationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Location";
@@ -16073,7 +19536,32 @@ Requires the near-distance parameter to be provided also
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: LocationSortOrder | LocationSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ManufacturedItemDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "dose-form"
+  | "-dose-form"
+  | "identifier"
+  | "-identifier"
+  | "ingredient"
+  | "-ingredient";
 
 export class ManufacturedItemDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ManufacturedItemDefinition";
@@ -16109,7 +19597,74 @@ export class ManufacturedItemDefinitionFhirSearchBuilder extends DomainResourceF
   ): this {
     return this.tokenParam("ingredient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ManufacturedItemDefinitionSortOrder
+      | ManufacturedItemDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MeasureSortOrder =
+  | DomainResourceSortOrder
+  | "composed-of"
+  | "-composed-of"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "depends-on"
+  | "-depends-on"
+  | "derived-from"
+  | "-derived-from"
+  | "description"
+  | "-description"
+  | "effective"
+  | "-effective"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "predecessor"
+  | "-predecessor"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "successor"
+  | "-successor"
+  | "title"
+  | "-title"
+  | "topic"
+  | "-topic"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class MeasureFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Measure";
@@ -16326,7 +19881,44 @@ export class MeasureFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: MeasureSortOrder | MeasureSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MeasureReportSortOrder =
+  | DomainResourceSortOrder
+  | "date"
+  | "-date"
+  | "evaluated-resource"
+  | "-evaluated-resource"
+  | "identifier"
+  | "-identifier"
+  | "measure"
+  | "-measure"
+  | "patient"
+  | "-patient"
+  | "period"
+  | "-period"
+  | "reporter"
+  | "-reporter"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject";
 
 export class MeasureReportFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "MeasureReport";
@@ -16417,7 +20009,56 @@ export class MeasureReportFhirSearchBuilder extends DomainResourceFhirSearchBuil
   ): this {
     return this.referenceParam("subject", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | MeasureReportSortOrder
+      | MeasureReportSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MediaSortOrder =
+  | DomainResourceSortOrder
+  | "based-on"
+  | "-based-on"
+  | "created"
+  | "-created"
+  | "device"
+  | "-device"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "modality"
+  | "-modality"
+  | "operator"
+  | "-operator"
+  | "patient"
+  | "-patient"
+  | "site"
+  | "-site"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "type"
+  | "-type"
+  | "view"
+  | "-view";
 
 export class MediaFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Media";
@@ -16547,7 +20188,44 @@ export class MediaFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   view(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("view", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: MediaSortOrder | MediaSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MedicationSortOrder =
+  | DomainResourceSortOrder
+  | "expiration-date"
+  | "-expiration-date"
+  | "form"
+  | "-form"
+  | "identifier"
+  | "-identifier"
+  | "ingredient-code"
+  | "-ingredient-code"
+  | "ingredient"
+  | "-ingredient"
+  | "lot-number"
+  | "-lot-number"
+  | "manufacturer"
+  | "-manufacturer"
+  | "status"
+  | "-status"
+  | "code"
+  | "-code";
 
 export class MedicationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Medication";
@@ -16670,7 +20348,52 @@ export class MedicationFhirSearchBuilder extends DomainResourceFhirSearchBuilder
   code(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("code", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: MedicationSortOrder | MedicationSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MedicationAdministrationSortOrder =
+  | DomainResourceSortOrder
+  | "context"
+  | "-context"
+  | "device"
+  | "-device"
+  | "effective-time"
+  | "-effective-time"
+  | "performer"
+  | "-performer"
+  | "reason-given"
+  | "-reason-given"
+  | "reason-not-given"
+  | "-reason-not-given"
+  | "request"
+  | "-request"
+  | "subject"
+  | "-subject"
+  | "code"
+  | "-code"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "medication"
+  | "-medication"
+  | "status"
+  | "-status";
 
 export class MedicationAdministrationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "MedicationAdministration";
@@ -16991,7 +20714,60 @@ export class MedicationAdministrationFhirSearchBuilder extends DomainResourceFhi
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | MedicationAdministrationSortOrder
+      | MedicationAdministrationSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MedicationDispenseSortOrder =
+  | DomainResourceSortOrder
+  | "context"
+  | "-context"
+  | "destination"
+  | "-destination"
+  | "performer"
+  | "-performer"
+  | "receiver"
+  | "-receiver"
+  | "responsibleparty"
+  | "-responsibleparty"
+  | "subject"
+  | "-subject"
+  | "type"
+  | "-type"
+  | "whenhandedover"
+  | "-whenhandedover"
+  | "whenprepared"
+  | "-whenprepared"
+  | "code"
+  | "-code"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "medication"
+  | "-medication"
+  | "prescription"
+  | "-prescription"
+  | "status"
+  | "-status";
 
 export class MedicationDispenseFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "MedicationDispense";
@@ -17333,7 +21109,56 @@ export class MedicationDispenseFhirSearchBuilder extends DomainResourceFhirSearc
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | MedicationDispenseSortOrder
+      | MedicationDispenseSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MedicationKnowledgeSortOrder =
+  | DomainResourceSortOrder
+  | "classification-type"
+  | "-classification-type"
+  | "classification"
+  | "-classification"
+  | "code"
+  | "-code"
+  | "doseform"
+  | "-doseform"
+  | "ingredient-code"
+  | "-ingredient-code"
+  | "ingredient"
+  | "-ingredient"
+  | "manufacturer"
+  | "-manufacturer"
+  | "monitoring-program-name"
+  | "-monitoring-program-name"
+  | "monitoring-program-type"
+  | "-monitoring-program-type"
+  | "monograph-type"
+  | "-monograph-type"
+  | "monograph"
+  | "-monograph"
+  | "source-cost"
+  | "-source-cost"
+  | "status"
+  | "-status";
 
 export class MedicationKnowledgeFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "MedicationKnowledge";
@@ -17467,7 +21292,62 @@ export class MedicationKnowledgeFhirSearchBuilder extends DomainResourceFhirSear
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | MedicationKnowledgeSortOrder
+      | MedicationKnowledgeSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MedicationRequestSortOrder =
+  | DomainResourceSortOrder
+  | "authoredon"
+  | "-authoredon"
+  | "category"
+  | "-category"
+  | "intended-dispenser"
+  | "-intended-dispenser"
+  | "intended-performer"
+  | "-intended-performer"
+  | "intended-performertype"
+  | "-intended-performertype"
+  | "intent"
+  | "-intent"
+  | "priority"
+  | "-priority"
+  | "requester"
+  | "-requester"
+  | "subject"
+  | "-subject"
+  | "code"
+  | "-code"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "date"
+  | "-date"
+  | "encounter"
+  | "-encounter"
+  | "medication"
+  | "-medication"
+  | "status"
+  | "-status";
 
 export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "MedicationRequest";
@@ -17822,7 +21702,52 @@ export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearch
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | MedicationRequestSortOrder
+      | MedicationRequestSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MedicationStatementSortOrder =
+  | DomainResourceSortOrder
+  | "category"
+  | "-category"
+  | "context"
+  | "-context"
+  | "effective"
+  | "-effective"
+  | "part-of"
+  | "-part-of"
+  | "source"
+  | "-source"
+  | "subject"
+  | "-subject"
+  | "code"
+  | "-code"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "medication"
+  | "-medication"
+  | "status"
+  | "-status";
 
 export class MedicationStatementFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "MedicationStatement";
@@ -18123,7 +22048,54 @@ export class MedicationStatementFhirSearchBuilder extends DomainResourceFhirSear
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | MedicationStatementSortOrder
+      | MedicationStatementSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MedicinalProductDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "characteristic-type"
+  | "-characteristic-type"
+  | "characteristic"
+  | "-characteristic"
+  | "contact"
+  | "-contact"
+  | "domain"
+  | "-domain"
+  | "identifier"
+  | "-identifier"
+  | "ingredient"
+  | "-ingredient"
+  | "master-file"
+  | "-master-file"
+  | "name-language"
+  | "-name-language"
+  | "name"
+  | "-name"
+  | "product-classification"
+  | "-product-classification"
+  | "status"
+  | "-status"
+  | "type"
+  | "-type";
 
 export class MedicinalProductDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "MedicinalProductDefinition";
@@ -18248,7 +22220,68 @@ export class MedicinalProductDefinitionFhirSearchBuilder extends DomainResourceF
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | MedicinalProductDefinitionSortOrder
+      | MedicinalProductDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MessageDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "category"
+  | "-category"
+  | "event"
+  | "-event"
+  | "focus"
+  | "-focus"
+  | "parent"
+  | "-parent"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "MessageDefinition";
@@ -18911,7 +22944,58 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | MessageDefinitionSortOrder
+      | MessageDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MessageHeaderSortOrder =
+  | DomainResourceSortOrder
+  | "author"
+  | "-author"
+  | "code"
+  | "-code"
+  | "destination-uri"
+  | "-destination-uri"
+  | "destination"
+  | "-destination"
+  | "enterer"
+  | "-enterer"
+  | "event"
+  | "-event"
+  | "focus"
+  | "-focus"
+  | "receiver"
+  | "-receiver"
+  | "response-id"
+  | "-response-id"
+  | "responsible"
+  | "-responsible"
+  | "sender"
+  | "-sender"
+  | "source-uri"
+  | "-source-uri"
+  | "source"
+  | "-source"
+  | "target"
+  | "-target";
 
 export class MessageHeaderFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "MessageHeader";
@@ -19052,7 +23136,56 @@ export class MessageHeaderFhirSearchBuilder extends DomainResourceFhirSearchBuil
   ): this {
     return this.referenceParam("target", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | MessageHeaderSortOrder
+      | MessageHeaderSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type MolecularSequenceSortOrder =
+  | DomainResourceSortOrder
+  | "chromosome-variant-coordinate"
+  | "-chromosome-variant-coordinate"
+  | "chromosome-window-coordinate"
+  | "-chromosome-window-coordinate"
+  | "chromosome"
+  | "-chromosome"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient"
+  | "referenceseqid-variant-coordinate"
+  | "-referenceseqid-variant-coordinate"
+  | "referenceseqid-window-coordinate"
+  | "-referenceseqid-window-coordinate"
+  | "referenceseqid"
+  | "-referenceseqid"
+  | "type"
+  | "-type"
+  | "variant-end"
+  | "-variant-end"
+  | "variant-start"
+  | "-variant-start"
+  | "window-end"
+  | "-window-end"
+  | "window-start"
+  | "-window-start";
 
 export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "MolecularSequence";
@@ -19234,7 +23367,68 @@ export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearch
   ): this {
     return this.numberParam("window-start", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | MolecularSequenceSortOrder
+      | MolecularSequenceSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type NamingSystemSortOrder =
+  | DomainResourceSortOrder
+  | "contact"
+  | "-contact"
+  | "id-type"
+  | "-id-type"
+  | "kind"
+  | "-kind"
+  | "period"
+  | "-period"
+  | "responsible"
+  | "-responsible"
+  | "telecom"
+  | "-telecom"
+  | "type"
+  | "-type"
+  | "value"
+  | "-value"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status";
 
 export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "NamingSystem";
@@ -19798,7 +23992,54 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | NamingSystemSortOrder
+      | NamingSystemSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type NutritionOrderSortOrder =
+  | DomainResourceSortOrder
+  | "additive"
+  | "-additive"
+  | "datetime"
+  | "-datetime"
+  | "formula"
+  | "-formula"
+  | "instantiates-canonical"
+  | "-instantiates-canonical"
+  | "instantiates-uri"
+  | "-instantiates-uri"
+  | "oraldiet"
+  | "-oraldiet"
+  | "provider"
+  | "-provider"
+  | "status"
+  | "-status"
+  | "supplement"
+  | "-supplement"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class NutritionOrderFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "NutritionOrder";
@@ -20080,7 +24321,34 @@ export class NutritionOrderFhirSearchBuilder extends DomainResourceFhirSearchBui
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | NutritionOrderSortOrder
+      | NutritionOrderSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type NutritionProductSortOrder =
+  | DomainResourceSortOrder
+  | "identifier"
+  | "-identifier"
+  | "status"
+  | "-status";
 
 export class NutritionProductFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "NutritionProduct";
@@ -20105,7 +24373,106 @@ export class NutritionProductFhirSearchBuilder extends DomainResourceFhirSearchB
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | NutritionProductSortOrder
+      | NutritionProductSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ObservationSortOrder =
+  | DomainResourceSortOrder
+  | "based-on"
+  | "-based-on"
+  | "category"
+  | "-category"
+  | "code-value-concept"
+  | "-code-value-concept"
+  | "code-value-date"
+  | "-code-value-date"
+  | "code-value-quantity"
+  | "-code-value-quantity"
+  | "code-value-string"
+  | "-code-value-string"
+  | "combo-code-value-concept"
+  | "-combo-code-value-concept"
+  | "combo-code-value-quantity"
+  | "-combo-code-value-quantity"
+  | "combo-code"
+  | "-combo-code"
+  | "combo-data-absent-reason"
+  | "-combo-data-absent-reason"
+  | "combo-value-concept"
+  | "-combo-value-concept"
+  | "combo-value-quantity"
+  | "-combo-value-quantity"
+  | "component-code-value-concept"
+  | "-component-code-value-concept"
+  | "component-code-value-quantity"
+  | "-component-code-value-quantity"
+  | "component-code"
+  | "-component-code"
+  | "component-data-absent-reason"
+  | "-component-data-absent-reason"
+  | "component-value-concept"
+  | "-component-value-concept"
+  | "component-value-quantity"
+  | "-component-value-quantity"
+  | "data-absent-reason"
+  | "-data-absent-reason"
+  | "derived-from"
+  | "-derived-from"
+  | "device"
+  | "-device"
+  | "focus"
+  | "-focus"
+  | "has-member"
+  | "-has-member"
+  | "method"
+  | "-method"
+  | "part-of"
+  | "-part-of"
+  | "performer"
+  | "-performer"
+  | "specimen"
+  | "-specimen"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "value-concept"
+  | "-value-concept"
+  | "value-date"
+  | "-value-date"
+  | "value-quantity"
+  | "-value-quantity"
+  | "value-string"
+  | "-value-string"
+  | "code"
+  | "-code"
+  | "date"
+  | "-date"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Observation";
@@ -20719,11 +25086,96 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ObservationSortOrder | ObservationSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ObservationDefinitionSortOrder = DomainResourceSortOrder;
 
 export class ObservationDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ObservationDefinition";
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ObservationDefinitionSortOrder
+      | ObservationDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type OperationDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "base"
+  | "-base"
+  | "code"
+  | "-code"
+  | "input-profile"
+  | "-input-profile"
+  | "instance"
+  | "-instance"
+  | "kind"
+  | "-kind"
+  | "output-profile"
+  | "-output-profile"
+  | "system"
+  | "-system"
+  | "type"
+  | "-type"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "OperationDefinition";
@@ -21401,11 +25853,82 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | OperationDefinitionSortOrder
+      | OperationDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type OperationOutcomeSortOrder = DomainResourceSortOrder;
 
 export class OperationOutcomeFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "OperationOutcome";
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | OperationOutcomeSortOrder
+      | OperationOutcomeSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type OrganizationSortOrder =
+  | DomainResourceSortOrder
+  | "active"
+  | "-active"
+  | "address-city"
+  | "-address-city"
+  | "address-country"
+  | "-address-country"
+  | "address-postalcode"
+  | "-address-postalcode"
+  | "address-state"
+  | "-address-state"
+  | "address-use"
+  | "-address-use"
+  | "address"
+  | "-address"
+  | "endpoint"
+  | "-endpoint"
+  | "identifier"
+  | "-identifier"
+  | "name"
+  | "-name"
+  | "partof"
+  | "-partof"
+  | "phonetic"
+  | "-phonetic"
+  | "type"
+  | "-type";
 
 export class OrganizationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Organization";
@@ -21538,7 +26061,58 @@ export class OrganizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | OrganizationSortOrder
+      | OrganizationSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type OrganizationAffiliationSortOrder =
+  | DomainResourceSortOrder
+  | "active"
+  | "-active"
+  | "date"
+  | "-date"
+  | "email"
+  | "-email"
+  | "endpoint"
+  | "-endpoint"
+  | "identifier"
+  | "-identifier"
+  | "location"
+  | "-location"
+  | "network"
+  | "-network"
+  | "participating-organization"
+  | "-participating-organization"
+  | "phone"
+  | "-phone"
+  | "primary-organization"
+  | "-primary-organization"
+  | "role"
+  | "-role"
+  | "service"
+  | "-service"
+  | "specialty"
+  | "-specialty"
+  | "telecom"
+  | "-telecom";
 
 export class OrganizationAffiliationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "OrganizationAffiliation";
@@ -21678,7 +26252,52 @@ export class OrganizationAffiliationFhirSearchBuilder extends DomainResourceFhir
   ): this {
     return this.tokenParam("telecom", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | OrganizationAffiliationSortOrder
+      | OrganizationAffiliationSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type PackagedProductDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "biological"
+  | "-biological"
+  | "contained-item"
+  | "-contained-item"
+  | "device"
+  | "-device"
+  | "identifier"
+  | "-identifier"
+  | "manufactured-item"
+  | "-manufactured-item"
+  | "medication"
+  | "-medication"
+  | "name"
+  | "-name"
+  | "nutrition"
+  | "-nutrition"
+  | "package-for"
+  | "-package-for"
+  | "package"
+  | "-package"
+  | "status"
+  | "-status";
 
 export class PackagedProductDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "PackagedProductDefinition";
@@ -21794,9 +26413,96 @@ export class PackagedProductDefinitionFhirSearchBuilder extends DomainResourceFh
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | PackagedProductDefinitionSortOrder
+      | PackagedProductDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
 
-export class ParametersFhirSearchBuilder extends ResourceFhirSearchBuilder {}
+export type ParametersSortOrder = ResourceSortOrder;
+
+export class ParametersFhirSearchBuilder extends ResourceFhirSearchBuilder {
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ParametersSortOrder | ParametersSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
+}
+
+export type PatientSortOrder =
+  | DomainResourceSortOrder
+  | "active"
+  | "-active"
+  | "death-date"
+  | "-death-date"
+  | "deceased"
+  | "-deceased"
+  | "general-practitioner"
+  | "-general-practitioner"
+  | "identifier"
+  | "-identifier"
+  | "language"
+  | "-language"
+  | "link"
+  | "-link"
+  | "name"
+  | "-name"
+  | "organization"
+  | "-organization"
+  | "address-city"
+  | "-address-city"
+  | "address-country"
+  | "-address-country"
+  | "address-postalcode"
+  | "-address-postalcode"
+  | "address-state"
+  | "-address-state"
+  | "address-use"
+  | "-address-use"
+  | "address"
+  | "-address"
+  | "birthdate"
+  | "-birthdate"
+  | "email"
+  | "-email"
+  | "family"
+  | "-family"
+  | "gender"
+  | "-gender"
+  | "given"
+  | "-given"
+  | "phone"
+  | "-phone"
+  | "phonetic"
+  | "-phonetic"
+  | "telecom"
+  | "-telecom";
 
 export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Patient";
@@ -22147,7 +26853,40 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.tokenParam("telecom", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: PatientSortOrder | PatientSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type PaymentNoticeSortOrder =
+  | DomainResourceSortOrder
+  | "created"
+  | "-created"
+  | "identifier"
+  | "-identifier"
+  | "payment-status"
+  | "-payment-status"
+  | "provider"
+  | "-provider"
+  | "request"
+  | "-request"
+  | "response"
+  | "-response"
+  | "status"
+  | "-status";
 
 export class PaymentNoticeFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "PaymentNotice";
@@ -22222,7 +26961,46 @@ export class PaymentNoticeFhirSearchBuilder extends DomainResourceFhirSearchBuil
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | PaymentNoticeSortOrder
+      | PaymentNoticeSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type PaymentReconciliationSortOrder =
+  | DomainResourceSortOrder
+  | "created"
+  | "-created"
+  | "disposition"
+  | "-disposition"
+  | "identifier"
+  | "-identifier"
+  | "outcome"
+  | "-outcome"
+  | "payment-issuer"
+  | "-payment-issuer"
+  | "request"
+  | "-request"
+  | "requestor"
+  | "-requestor"
+  | "status"
+  | "-status";
 
 export class PaymentReconciliationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "PaymentReconciliation";
@@ -22307,7 +27085,68 @@ export class PaymentReconciliationFhirSearchBuilder extends DomainResourceFhirSe
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | PaymentReconciliationSortOrder
+      | PaymentReconciliationSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type PersonSortOrder =
+  | DomainResourceSortOrder
+  | "identifier"
+  | "-identifier"
+  | "link"
+  | "-link"
+  | "name"
+  | "-name"
+  | "organization"
+  | "-organization"
+  | "patient"
+  | "-patient"
+  | "practitioner"
+  | "-practitioner"
+  | "relatedperson"
+  | "-relatedperson"
+  | "address-city"
+  | "-address-city"
+  | "address-country"
+  | "-address-country"
+  | "address-postalcode"
+  | "-address-postalcode"
+  | "address-state"
+  | "-address-state"
+  | "address-use"
+  | "-address-use"
+  | "address"
+  | "-address"
+  | "birthdate"
+  | "-birthdate"
+  | "email"
+  | "-email"
+  | "gender"
+  | "-gender"
+  | "phone"
+  | "-phone"
+  | "phonetic"
+  | "-phonetic"
+  | "telecom"
+  | "-telecom";
 
 export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Person";
@@ -22607,7 +27446,74 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.tokenParam("telecom", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: PersonSortOrder | PersonSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type PlanDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "composed-of"
+  | "-composed-of"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "definition"
+  | "-definition"
+  | "depends-on"
+  | "-depends-on"
+  | "derived-from"
+  | "-derived-from"
+  | "description"
+  | "-description"
+  | "effective"
+  | "-effective"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "predecessor"
+  | "-predecessor"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "successor"
+  | "-successor"
+  | "title"
+  | "-title"
+  | "topic"
+  | "-topic"
+  | "type"
+  | "-type"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class PlanDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "PlanDefinition";
@@ -22843,7 +27749,64 @@ export class PlanDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBui
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | PlanDefinitionSortOrder
+      | PlanDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type PractitionerSortOrder =
+  | DomainResourceSortOrder
+  | "active"
+  | "-active"
+  | "communication"
+  | "-communication"
+  | "identifier"
+  | "-identifier"
+  | "name"
+  | "-name"
+  | "address-city"
+  | "-address-city"
+  | "address-country"
+  | "-address-country"
+  | "address-postalcode"
+  | "-address-postalcode"
+  | "address-state"
+  | "-address-state"
+  | "address-use"
+  | "-address-use"
+  | "address"
+  | "-address"
+  | "email"
+  | "-email"
+  | "family"
+  | "-family"
+  | "gender"
+  | "-gender"
+  | "given"
+  | "-given"
+  | "phone"
+  | "-phone"
+  | "phonetic"
+  | "-phonetic"
+  | "telecom"
+  | "-telecom";
 
 export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Practitioner";
@@ -23127,7 +28090,56 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
   ): this {
     return this.tokenParam("telecom", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | PractitionerSortOrder
+      | PractitionerSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type PractitionerRoleSortOrder =
+  | DomainResourceSortOrder
+  | "active"
+  | "-active"
+  | "date"
+  | "-date"
+  | "endpoint"
+  | "-endpoint"
+  | "identifier"
+  | "-identifier"
+  | "location"
+  | "-location"
+  | "organization"
+  | "-organization"
+  | "practitioner"
+  | "-practitioner"
+  | "role"
+  | "-role"
+  | "service"
+  | "-service"
+  | "specialty"
+  | "-specialty"
+  | "email"
+  | "-email"
+  | "phone"
+  | "-phone"
+  | "telecom"
+  | "-telecom";
 
 export class PractitionerRoleFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "PractitionerRole";
@@ -23288,7 +28300,62 @@ export class PractitionerRoleFhirSearchBuilder extends DomainResourceFhirSearchB
   ): this {
     return this.tokenParam("telecom", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | PractitionerRoleSortOrder
+      | PractitionerRoleSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ProcedureSortOrder =
+  | DomainResourceSortOrder
+  | "based-on"
+  | "-based-on"
+  | "category"
+  | "-category"
+  | "instantiates-canonical"
+  | "-instantiates-canonical"
+  | "instantiates-uri"
+  | "-instantiates-uri"
+  | "location"
+  | "-location"
+  | "part-of"
+  | "-part-of"
+  | "performer"
+  | "-performer"
+  | "reason-code"
+  | "-reason-code"
+  | "reason-reference"
+  | "-reason-reference"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "code"
+  | "-code"
+  | "date"
+  | "-date"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class ProcedureFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Procedure";
@@ -23675,7 +28742,46 @@ export class ProcedureFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ProcedureSortOrder | ProcedureSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ProvenanceSortOrder =
+  | DomainResourceSortOrder
+  | "agent-role"
+  | "-agent-role"
+  | "agent-type"
+  | "-agent-type"
+  | "agent"
+  | "-agent"
+  | "entity"
+  | "-entity"
+  | "location"
+  | "-location"
+  | "patient"
+  | "-patient"
+  | "recorded"
+  | "-recorded"
+  | "signature-type"
+  | "-signature-type"
+  | "target"
+  | "-target"
+  | "when"
+  | "-when";
 
 export class ProvenanceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Provenance";
@@ -23778,7 +28884,64 @@ export class ProvenanceFhirSearchBuilder extends DomainResourceFhirSearchBuilder
   when(...args: DropFirst<Parameters<FhirSearchBuilder["dateParam"]>>): this {
     return this.dateParam("when", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ProvenanceSortOrder | ProvenanceSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type QuestionnaireSortOrder =
+  | DomainResourceSortOrder
+  | "code"
+  | "-code"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "definition"
+  | "-definition"
+  | "description"
+  | "-description"
+  | "effective"
+  | "-effective"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "subject-type"
+  | "-subject-type"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class QuestionnaireFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Questionnaire";
@@ -23966,7 +29129,52 @@ export class QuestionnaireFhirSearchBuilder extends DomainResourceFhirSearchBuil
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | QuestionnaireSortOrder
+      | QuestionnaireSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type QuestionnaireResponseSortOrder =
+  | DomainResourceSortOrder
+  | "author"
+  | "-author"
+  | "authored"
+  | "-authored"
+  | "based-on"
+  | "-based-on"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "part-of"
+  | "-part-of"
+  | "patient"
+  | "-patient"
+  | "questionnaire"
+  | "-questionnaire"
+  | "source"
+  | "-source"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject";
 
 export class QuestionnaireResponseFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "QuestionnaireResponse";
@@ -24081,7 +29289,44 @@ export class QuestionnaireResponseFhirSearchBuilder extends DomainResourceFhirSe
   ): this {
     return this.referenceParam("subject", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | QuestionnaireResponseSortOrder
+      | QuestionnaireResponseSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type RegulatedAuthorizationSortOrder =
+  | DomainResourceSortOrder
+  | "case-type"
+  | "-case-type"
+  | "case"
+  | "-case"
+  | "holder"
+  | "-holder"
+  | "identifier"
+  | "-identifier"
+  | "region"
+  | "-region"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject";
 
 export class RegulatedAuthorizationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "RegulatedAuthorization";
@@ -24158,7 +29403,64 @@ export class RegulatedAuthorizationFhirSearchBuilder extends DomainResourceFhirS
   ): this {
     return this.referenceParam("subject", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | RegulatedAuthorizationSortOrder
+      | RegulatedAuthorizationSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type RelatedPersonSortOrder =
+  | DomainResourceSortOrder
+  | "active"
+  | "-active"
+  | "identifier"
+  | "-identifier"
+  | "name"
+  | "-name"
+  | "patient"
+  | "-patient"
+  | "relationship"
+  | "-relationship"
+  | "address-city"
+  | "-address-city"
+  | "address-country"
+  | "-address-country"
+  | "address-postalcode"
+  | "-address-postalcode"
+  | "address-state"
+  | "-address-state"
+  | "address-use"
+  | "-address-use"
+  | "address"
+  | "-address"
+  | "birthdate"
+  | "-birthdate"
+  | "email"
+  | "-email"
+  | "gender"
+  | "-gender"
+  | "phone"
+  | "-phone"
+  | "phonetic"
+  | "-phonetic"
+  | "telecom"
+  | "-telecom";
 
 export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "RelatedPerson";
@@ -24438,7 +29740,58 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
   ): this {
     return this.tokenParam("telecom", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | RelatedPersonSortOrder
+      | RelatedPersonSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type RequestGroupSortOrder =
+  | DomainResourceSortOrder
+  | "author"
+  | "-author"
+  | "authored"
+  | "-authored"
+  | "code"
+  | "-code"
+  | "encounter"
+  | "-encounter"
+  | "group-identifier"
+  | "-group-identifier"
+  | "identifier"
+  | "-identifier"
+  | "instantiates-canonical"
+  | "-instantiates-canonical"
+  | "instantiates-uri"
+  | "-instantiates-uri"
+  | "intent"
+  | "-intent"
+  | "participant"
+  | "-participant"
+  | "patient"
+  | "-patient"
+  | "priority"
+  | "-priority"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject";
 
 export class RequestGroupFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "RequestGroup";
@@ -24581,7 +29934,74 @@ export class RequestGroupFhirSearchBuilder extends DomainResourceFhirSearchBuild
   ): this {
     return this.referenceParam("subject", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | RequestGroupSortOrder
+      | RequestGroupSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ResearchDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "composed-of"
+  | "-composed-of"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "depends-on"
+  | "-depends-on"
+  | "derived-from"
+  | "-derived-from"
+  | "description"
+  | "-description"
+  | "effective"
+  | "-effective"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "predecessor"
+  | "-predecessor"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "successor"
+  | "-successor"
+  | "title"
+  | "-title"
+  | "topic"
+  | "-topic"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class ResearchDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ResearchDefinition";
@@ -24799,7 +30219,74 @@ export class ResearchDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ResearchDefinitionSortOrder
+      | ResearchDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ResearchElementDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "composed-of"
+  | "-composed-of"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "depends-on"
+  | "-depends-on"
+  | "derived-from"
+  | "-derived-from"
+  | "description"
+  | "-description"
+  | "effective"
+  | "-effective"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "predecessor"
+  | "-predecessor"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "successor"
+  | "-successor"
+  | "title"
+  | "-title"
+  | "topic"
+  | "-topic"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class ResearchElementDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ResearchElementDefinition";
@@ -25018,7 +30505,56 @@ export class ResearchElementDefinitionFhirSearchBuilder extends DomainResourceFh
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ResearchElementDefinitionSortOrder
+      | ResearchElementDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ResearchStudySortOrder =
+  | DomainResourceSortOrder
+  | "category"
+  | "-category"
+  | "date"
+  | "-date"
+  | "focus"
+  | "-focus"
+  | "identifier"
+  | "-identifier"
+  | "keyword"
+  | "-keyword"
+  | "location"
+  | "-location"
+  | "partof"
+  | "-partof"
+  | "principalinvestigator"
+  | "-principalinvestigator"
+  | "protocol"
+  | "-protocol"
+  | "site"
+  | "-site"
+  | "sponsor"
+  | "-sponsor"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title";
 
 export class ResearchStudyFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ResearchStudy";
@@ -25152,7 +30688,42 @@ export class ResearchStudyFhirSearchBuilder extends DomainResourceFhirSearchBuil
   ): this {
     return this.stringParam("title", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ResearchStudySortOrder
+      | ResearchStudySortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ResearchSubjectSortOrder =
+  | DomainResourceSortOrder
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "individual"
+  | "-individual"
+  | "patient"
+  | "-patient"
+  | "status"
+  | "-status"
+  | "study"
+  | "-study";
 
 export class ResearchSubjectFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ResearchSubject";
@@ -25217,7 +30788,50 @@ export class ResearchSubjectFhirSearchBuilder extends DomainResourceFhirSearchBu
   ): this {
     return this.referenceParam("study", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ResearchSubjectSortOrder
+      | ResearchSubjectSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type RiskAssessmentSortOrder =
+  | DomainResourceSortOrder
+  | "condition"
+  | "-condition"
+  | "method"
+  | "-method"
+  | "performer"
+  | "-performer"
+  | "probability"
+  | "-probability"
+  | "risk"
+  | "-risk"
+  | "subject"
+  | "-subject"
+  | "date"
+  | "-date"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class RiskAssessmentFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "RiskAssessment";
@@ -25511,7 +31125,44 @@ export class RiskAssessmentFhirSearchBuilder extends DomainResourceFhirSearchBui
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | RiskAssessmentSortOrder
+      | RiskAssessmentSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ScheduleSortOrder =
+  | DomainResourceSortOrder
+  | "active"
+  | "-active"
+  | "actor"
+  | "-actor"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier"
+  | "service-category"
+  | "-service-category"
+  | "service-type"
+  | "-service-type"
+  | "specialty"
+  | "-specialty";
 
 export class ScheduleFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Schedule";
@@ -25586,7 +31237,64 @@ export class ScheduleFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.tokenParam("specialty", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ScheduleSortOrder | ScheduleSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type SearchParameterSortOrder =
+  | DomainResourceSortOrder
+  | "base"
+  | "-base"
+  | "code"
+  | "-code"
+  | "component"
+  | "-component"
+  | "derived-from"
+  | "-derived-from"
+  | "target"
+  | "-target"
+  | "type"
+  | "-type"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "SearchParameter";
@@ -26211,7 +31919,72 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | SearchParameterSortOrder
+      | SearchParameterSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ServiceRequestSortOrder =
+  | DomainResourceSortOrder
+  | "authored"
+  | "-authored"
+  | "based-on"
+  | "-based-on"
+  | "body-site"
+  | "-body-site"
+  | "category"
+  | "-category"
+  | "instantiates-canonical"
+  | "-instantiates-canonical"
+  | "instantiates-uri"
+  | "-instantiates-uri"
+  | "intent"
+  | "-intent"
+  | "occurrence"
+  | "-occurrence"
+  | "performer-type"
+  | "-performer-type"
+  | "performer"
+  | "-performer"
+  | "priority"
+  | "-priority"
+  | "replaces"
+  | "-replaces"
+  | "requester"
+  | "-requester"
+  | "requisition"
+  | "-requisition"
+  | "specimen"
+  | "-specimen"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "code"
+  | "-code"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class ServiceRequestFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ServiceRequest";
@@ -26614,7 +32387,46 @@ export class ServiceRequestFhirSearchBuilder extends DomainResourceFhirSearchBui
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | ServiceRequestSortOrder
+      | ServiceRequestSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type SlotSortOrder =
+  | DomainResourceSortOrder
+  | "appointment-type"
+  | "-appointment-type"
+  | "identifier"
+  | "-identifier"
+  | "schedule"
+  | "-schedule"
+  | "service-category"
+  | "-service-category"
+  | "service-type"
+  | "-service-type"
+  | "specialty"
+  | "-specialty"
+  | "start"
+  | "-start"
+  | "status"
+  | "-status";
 
 export class SlotFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Slot";
@@ -26700,7 +32512,48 @@ export class SlotFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.tokenParam("status", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(parameters: SlotSortOrder | SlotSortOrder[] | null | undefined): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type SpecimenSortOrder =
+  | DomainResourceSortOrder
+  | "accession"
+  | "-accession"
+  | "bodysite"
+  | "-bodysite"
+  | "collected"
+  | "-collected"
+  | "collector"
+  | "-collector"
+  | "container-id"
+  | "-container-id"
+  | "container"
+  | "-container"
+  | "identifier"
+  | "-identifier"
+  | "parent"
+  | "-parent"
+  | "patient"
+  | "-patient"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "type"
+  | "-type";
 
 export class SpecimenFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Specimen";
@@ -26823,7 +32676,32 @@ export class SpecimenFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: SpecimenSortOrder | SpecimenSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type SpecimenDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "container"
+  | "-container"
+  | "identifier"
+  | "-identifier"
+  | "type"
+  | "-type";
 
 export class SpecimenDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "SpecimenDefinition";
@@ -26856,7 +32734,82 @@ export class SpecimenDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
   type(...args: DropFirst<Parameters<FhirSearchBuilder["tokenParam"]>>): this {
     return this.tokenParam("type", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | SpecimenDefinitionSortOrder
+      | SpecimenDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type StructureDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "abstract"
+  | "-abstract"
+  | "base-path"
+  | "-base-path"
+  | "base"
+  | "-base"
+  | "derivation"
+  | "-derivation"
+  | "experimental"
+  | "-experimental"
+  | "ext-context"
+  | "-ext-context"
+  | "keyword"
+  | "-keyword"
+  | "kind"
+  | "-kind"
+  | "path"
+  | "-path"
+  | "type"
+  | "-type"
+  | "valueset"
+  | "-valueset"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "StructureDefinition";
@@ -27588,7 +33541,60 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | StructureDefinitionSortOrder
+      | StructureDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type StructureMapSortOrder =
+  | DomainResourceSortOrder
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "StructureMap";
@@ -28215,7 +34221,42 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | StructureMapSortOrder
+      | StructureMapSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type SubscriptionSortOrder =
+  | DomainResourceSortOrder
+  | "contact"
+  | "-contact"
+  | "criteria"
+  | "-criteria"
+  | "payload"
+  | "-payload"
+  | "status"
+  | "-status"
+  | "type"
+  | "-type"
+  | "url"
+  | "-url";
 
 export class SubscriptionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Subscription";
@@ -28276,11 +34317,74 @@ export class SubscriptionFhirSearchBuilder extends DomainResourceFhirSearchBuild
   url(...args: DropFirst<Parameters<FhirSearchBuilder["uriParam"]>>): this {
     return this.uriParam("url", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | SubscriptionSortOrder
+      | SubscriptionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type SubscriptionStatusSortOrder = DomainResourceSortOrder;
 
 export class SubscriptionStatusFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "SubscriptionStatus";
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | SubscriptionStatusSortOrder
+      | SubscriptionStatusSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type SubscriptionTopicSortOrder =
+  | DomainResourceSortOrder
+  | "date"
+  | "-date"
+  | "derived-or-self"
+  | "-derived-or-self"
+  | "identifier"
+  | "-identifier"
+  | "resource"
+  | "-resource"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "trigger-description"
+  | "-trigger-description"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class SubscriptionTopicFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "SubscriptionTopic";
@@ -28372,7 +34476,46 @@ export class SubscriptionTopicFhirSearchBuilder extends DomainResourceFhirSearch
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | SubscriptionTopicSortOrder
+      | SubscriptionTopicSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type SubstanceSortOrder =
+  | DomainResourceSortOrder
+  | "category"
+  | "-category"
+  | "code"
+  | "-code"
+  | "container-identifier"
+  | "-container-identifier"
+  | "expiry"
+  | "-expiry"
+  | "identifier"
+  | "-identifier"
+  | "quantity"
+  | "-quantity"
+  | "status"
+  | "-status"
+  | "substance-reference"
+  | "-substance-reference";
 
 export class SubstanceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Substance";
@@ -28453,7 +34596,36 @@ export class SubstanceFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
   ): this {
     return this.referenceParam("substance-reference", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: SubstanceSortOrder | SubstanceSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type SubstanceDefinitionSortOrder =
+  | DomainResourceSortOrder
+  | "classification"
+  | "-classification"
+  | "code"
+  | "-code"
+  | "domain"
+  | "-domain"
+  | "identifier"
+  | "-identifier"
+  | "name"
+  | "-name";
 
 export class SubstanceDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "SubstanceDefinition";
@@ -28505,7 +34677,40 @@ export class SubstanceDefinitionFhirSearchBuilder extends DomainResourceFhirSear
   name(...args: DropFirst<Parameters<FhirSearchBuilder["stringParam"]>>): this {
     return this.stringParam("name", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | SubstanceDefinitionSortOrder
+      | SubstanceDefinitionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type SupplyDeliverySortOrder =
+  | DomainResourceSortOrder
+  | "receiver"
+  | "-receiver"
+  | "status"
+  | "-status"
+  | "supplier"
+  | "-supplier"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class SupplyDeliveryFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "SupplyDelivery";
@@ -28692,7 +34897,44 @@ export class SupplyDeliveryFhirSearchBuilder extends DomainResourceFhirSearchBui
   ): this {
     return this.referenceParam("patient", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | SupplyDeliverySortOrder
+      | SupplyDeliverySortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type SupplyRequestSortOrder =
+  | DomainResourceSortOrder
+  | "category"
+  | "-category"
+  | "requester"
+  | "-requester"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject"
+  | "supplier"
+  | "-supplier"
+  | "date"
+  | "-date"
+  | "identifier"
+  | "-identifier";
 
 export class SupplyRequestFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "SupplyRequest";
@@ -28865,7 +35107,68 @@ export class SupplyRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
   ): this {
     return this.tokenParam("identifier", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | SupplyRequestSortOrder
+      | SupplyRequestSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type TaskSortOrder =
+  | DomainResourceSortOrder
+  | "authored-on"
+  | "-authored-on"
+  | "based-on"
+  | "-based-on"
+  | "business-status"
+  | "-business-status"
+  | "code"
+  | "-code"
+  | "encounter"
+  | "-encounter"
+  | "focus"
+  | "-focus"
+  | "group-identifier"
+  | "-group-identifier"
+  | "identifier"
+  | "-identifier"
+  | "intent"
+  | "-intent"
+  | "modified"
+  | "-modified"
+  | "owner"
+  | "-owner"
+  | "part-of"
+  | "-part-of"
+  | "patient"
+  | "-patient"
+  | "performer"
+  | "-performer"
+  | "period"
+  | "-period"
+  | "priority"
+  | "-priority"
+  | "requester"
+  | "-requester"
+  | "status"
+  | "-status"
+  | "subject"
+  | "-subject";
 
 export class TaskFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "Task";
@@ -29056,7 +35359,52 @@ export class TaskFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.referenceParam("subject", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(parameters: TaskSortOrder | TaskSortOrder[] | null | undefined): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type TerminologyCapabilitiesSortOrder =
+  | DomainResourceSortOrder
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "TerminologyCapabilities";
@@ -29660,7 +36008,42 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | TerminologyCapabilitiesSortOrder
+      | TerminologyCapabilitiesSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type TestReportSortOrder =
+  | DomainResourceSortOrder
+  | "identifier"
+  | "-identifier"
+  | "issued"
+  | "-issued"
+  | "participant"
+  | "-participant"
+  | "result"
+  | "-result"
+  | "tester"
+  | "-tester"
+  | "testscript"
+  | "-testscript";
 
 export class TestReportFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "TestReport";
@@ -29723,7 +36106,58 @@ export class TestReportFhirSearchBuilder extends DomainResourceFhirSearchBuilder
   ): this {
     return this.referenceParam("testscript", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: TestReportSortOrder | TestReportSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type TestScriptSortOrder =
+  | DomainResourceSortOrder
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "testscript-capability"
+  | "-testscript-capability"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class TestScriptFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "TestScript";
@@ -29883,7 +36317,62 @@ export class TestScriptFhirSearchBuilder extends DomainResourceFhirSearchBuilder
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: TestScriptSortOrder | TestScriptSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type ValueSetSortOrder =
+  | DomainResourceSortOrder
+  | "code"
+  | "-code"
+  | "expansion"
+  | "-expansion"
+  | "reference"
+  | "-reference"
+  | "context-quantity"
+  | "-context-quantity"
+  | "context-type-quantity"
+  | "-context-type-quantity"
+  | "context-type-value"
+  | "-context-type-value"
+  | "context-type"
+  | "-context-type"
+  | "context"
+  | "-context"
+  | "date"
+  | "-date"
+  | "description"
+  | "-description"
+  | "identifier"
+  | "-identifier"
+  | "jurisdiction"
+  | "-jurisdiction"
+  | "name"
+  | "-name"
+  | "publisher"
+  | "-publisher"
+  | "status"
+  | "-status"
+  | "title"
+  | "-title"
+  | "url"
+  | "-url"
+  | "version"
+  | "-version";
 
 export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "ValueSet";
@@ -30539,7 +37028,28 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   ): this {
     return this.tokenParam("version", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters: ValueSetSortOrder | ValueSetSortOrder[] | null | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type VerificationResultSortOrder =
+  | DomainResourceSortOrder
+  | "target"
+  | "-target";
 
 export class VerificationResultFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "VerificationResult";
@@ -30554,7 +37064,42 @@ export class VerificationResultFhirSearchBuilder extends DomainResourceFhirSearc
   ): this {
     return this.referenceParam("target", ...args);
   }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | VerificationResultSortOrder
+      | VerificationResultSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
+  }
 }
+
+export type VisionPrescriptionSortOrder =
+  | DomainResourceSortOrder
+  | "datewritten"
+  | "-datewritten"
+  | "prescriber"
+  | "-prescriber"
+  | "status"
+  | "-status"
+  | "encounter"
+  | "-encounter"
+  | "identifier"
+  | "-identifier"
+  | "patient"
+  | "-patient";
 
 export class VisionPrescriptionFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
   readonly resourceType = "VisionPrescription";
@@ -30775,6 +37320,26 @@ export class VisionPrescriptionFhirSearchBuilder extends DomainResourceFhirSearc
     ...args: DropFirst<Parameters<FhirSearchBuilder["referenceParam"]>>
   ): this {
     return this.referenceParam("patient", ...args);
+  }
+
+  /**
+   * Indicate the sort order.
+   *
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(
+    parameters:
+      | VisionPrescriptionSortOrder
+      | VisionPrescriptionSortOrder[]
+      | null
+      | undefined
+  ): this {
+    return this.stringParam(
+      "_sort",
+      parameters,
+      undefined,
+      parameters ? "remove" : "replace"
+    );
   }
 }
 

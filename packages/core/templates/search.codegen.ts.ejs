@@ -58,6 +58,22 @@ export function fhirSearch<
   return 0;
 })) { -%>
 
+export type <%= resource.type %>SortOrder = <% if (resource.base?.type && resource.base?.type !== "Base") { -%><%= resource.base?.type %>SortOrder <% } -%>
+  <% if (resource.allSearchParameters.filter(x => !x.experimental).length === 0) { -%>
+    Record<string, never>
+  <% } else { -%>
+    <% for (const searchParameter of resource.ownSearchParameters.filter(x => !x.experimental)) { -%>
+      | "<%= searchParameter.code %>" | "-<%= searchParameter.code %>"
+      <% if (fhir.release >= "r5" && ["reference", "token"].includes(searchParameter.type)) { -%>
+        | "<%= searchParameter.code %>:text" | "-<%= searchParameter.code %>:text"
+      <% } -%>
+    <% } -%>
+    <% if (!resource.base?.type || resource.base?.type === "Base") { -%>
+      | "_score"
+    <% } -%>
+  <% } -%>
+;
+
 export class <%= resource.type %>FhirSearchBuilder extends <%= resource.base?.type === "Base" ? undefined : resource.base?.type %>FhirSearchBuilder {
   <% if (resource.isDomainResource) { -%>
   readonly resourceType = "<%= resource.type %>";
@@ -69,6 +85,15 @@ export class <%= resource.type %>FhirSearchBuilder extends <%= resource.base?.ty
     return this.<%= searchParameter.type %>Param("<%= searchParameter.code %>", ...args);
   } 
   <% } -%>
+
+  /**
+   * Indicate the sort order.
+   * 
+   * @see https://hl7.org/fhir/search.html#sort
+   */
+  _sort(parameters: <%= resource.type %>SortOrder | <%= resource.type %>SortOrder[] | null | undefined): this {
+    return this.stringParam("_sort", parameters, undefined, parameters ? "remove" : "replace");
+  }
 }
 
 <% } -%>
