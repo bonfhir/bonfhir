@@ -60,6 +60,6 @@
     "*.codegen.ts": "${capture}.spec.ts, ${capture}.stories.ts, ${capture}.test.ts"
   },
   "files.associations": {
-    "*.ts.ejs": "ejs"
+    "*.codegen.ts.ejs": "html"
   }
 }

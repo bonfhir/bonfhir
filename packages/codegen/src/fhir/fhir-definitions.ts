@@ -235,6 +235,13 @@ export class StructureDefinition {
     );
   }
 
+  public get allRootElementsWithChoices(): ElementDefinition[] {
+    return [
+      ...(this.base?.ownRootElementsWithChoices || []),
+      ...this.ownRootElementsWithChoices,
+    ];
+  }
+
   public get ownSearchParameters(): SearchParameter[] {
     return (
       this._definitions.searchParametersByResourceType.get(
