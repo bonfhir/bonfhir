@@ -14754,7 +14754,8 @@ export interface BodyStructure extends DomainResource {
  * about a resource (transactions and history only).
  * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry}
  */
-export interface BundleEntry extends BackboneElement {
+export interface BundleEntry<TTargetResource extends Resource = Resource>
+  extends BackboneElement {
   /**
    * May be used to represent additional information that is not part of the basic
    * definition of the element. To make the use of extensions safe and manageable,
@@ -14844,7 +14845,7 @@ Modifier extensions
    * the Bundle.type.
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.resource}
    */
-  resource?: Resource | undefined;
+  resource?: TTargetResource | undefined;
   _resource?: Element | undefined;
 
   /**
@@ -15260,7 +15261,8 @@ Modifier extensions
  * @see {@link http://hl7.org/fhir/R4B/Bundle.html}
  */
 
-export interface Bundle extends Resource {
+export interface Bundle<TTargetResource extends Resource = Resource>
+  extends Resource {
   readonly resourceType: string;
 
   /**
@@ -15268,7 +15270,7 @@ export interface Bundle extends Resource {
    * about a resource (transactions and history only).
    * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry}
    */
-  entry?: Array<BundleEntry> | undefined;
+  entry?: Array<BundleEntry<TTargetResource>> | undefined;
   _entry?: Element[] | undefined;
 
   /**

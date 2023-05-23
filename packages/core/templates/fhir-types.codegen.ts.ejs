@@ -26,7 +26,7 @@
 
   <% for (const backboneElement of structureDef.backboneElements) { %>
     <%= backboneElement.rootElement.jsDoc %>
-    export interface <%= backboneElement.rootElement.backboneElementName %> extends BackboneElement {
+    export interface <%= backboneElement.rootElement.backboneElementName %><% if (["BundleEntry"].includes(backboneElement.rootElement.backboneElementName)) { %><TTargetResource extends Resource = Resource> <% } %> extends BackboneElement {
 
       <% for (const element of backboneElement.ownRootElementsWithChoices) { %>
         <%= renderElement(element) %>
@@ -41,7 +41,7 @@
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     // eslint-disable-next-line @typescript-eslint/no-unused-vars <% } %>
-    export interface <%= structureDef.type %><% if (structureDef.type === "Reference") { %><TTargetResource extends Resource = Resource> <% } %> <% if (structureDef.base?.type) { %>extends <%= structureDef.base.type %> <% } %>{
+    export interface <%= structureDef.type %><% if (["Bundle", "Reference"].includes(structureDef.type)) { %><TTargetResource extends Resource = Resource> <% } %> <% if (structureDef.base?.type) { %>extends <%= structureDef.base.type %> <% } %>{
       <% if (structureDef.isDomainResource) { %>
       readonly resourceType: "<%= structureDef.type %>";
       <% } else if (structureDef.isResource) { %>

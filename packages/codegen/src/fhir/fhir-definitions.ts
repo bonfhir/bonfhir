@@ -424,6 +424,15 @@ export class ElementDefinition {
             return `Reference<${targetTypes}>`;
           }
         }
+
+        if (
+          (this._structureDefinition as any).type === "Bundle" &&
+          this.name === "resource" &&
+          tsType === "Resource"
+        ) {
+          return "TTargetResource";
+        }
+
         return tsType;
       })
       .join(" | ");
@@ -436,6 +445,13 @@ export class ElementDefinition {
 
     if (this.backboneElementName) {
       resolvedType = this.backboneElementName;
+      if (
+        (this._structureDefinition as any).type === "Bundle" &&
+        this.name === "entry" &&
+        resolvedType === "BundleEntry"
+      ) {
+        resolvedType = "BundleEntry<TTargetResource>";
+      }
     }
 
     if (this.isArray) {

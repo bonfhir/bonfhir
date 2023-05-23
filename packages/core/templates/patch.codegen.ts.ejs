@@ -66,7 +66,7 @@ export function fhirJSONPatch<
          *
          * <%= element.short %>
          */
-        add(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
+        add(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "").replace("<TTargetResource>", "") %>): this;
         /**
          * [Adds](https://jsonpatch.com/#add) a value to an object or inserts it into an array.
          * In the case of an array, the value is inserted before the given index.
@@ -74,7 +74,7 @@ export function fhirJSONPatch<
          *
          * <%= element.short %>
          */
-        add(path: `/<%= element.name %>/${number | "-"}`, value: <%= element.tsType.replace(" | undefined", "").slice(6, -1) %>): this;
+        add(path: `/<%= element.name %>/${number | "-"}`, value: <%= element.tsType.replace(" | undefined", "").replace("<TTargetResource>", "").slice(6, -1) %>): this;
       <% } else {-%>
         /**
          * [Adds](https://jsonpatch.com/#add) a value to an object or inserts it into an array.
@@ -83,7 +83,7 @@ export function fhirJSONPatch<
          *
          * <%= element.short %>
          */
-        add(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
+        add(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "").replace("<TTargetResource>", "") %>): this;
       <% } -%>
       /**
        * [Adds](https://jsonpatch.com/#add) a value to an object or inserts it into an array.
@@ -123,20 +123,20 @@ export function fhirJSONPatch<
 
     <% for (const element of resource.ownRootElementsWithChoices.filter(x => !["id", "meta"].includes(x.name))) { -%>
       <% if (element.isArray) { -%>
-        replace(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
+        replace(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "").replace("<TTargetResource>", "") %>): this;
         /**
          * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
          * 
          * <%= element.short %>
          */
-        replace(path: `/<%= element.name %>/${number | "-"}`, value: <%= element.tsType.replace(" | undefined", "").slice(6, -1) %>): this;
+        replace(path: `/<%= element.name %>/${number | "-"}`, value: <%= element.tsType.replace(" | undefined", "").replace("<TTargetResource>", "").slice(6, -1) %>): this;
       <% } else {-%>
         /**
          * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
          * 
          * <%= element.short %>
          */
-        replace(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
+        replace(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "").replace("<TTargetResource>", "") %>): this;
       <% } -%>
 
       /**
