@@ -1,4 +1,5 @@
 export * from "./builders";
+export * from "./bundle-navigator";
 export * from "./fhir-types.codegen";
 export * from "./formatters";
 export * from "./lang-utils";
