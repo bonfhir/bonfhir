@@ -2,7 +2,7 @@
  * Typed patch builders for <%= fhir.release %>/<%= fhir.version %>
  */
 
- import { FhirPatchBuilder } from "./patch";
+ import { FhirJSONPatchBuilder } from "./patch";
  import {
   <% for (const valueSet of fhir.requiredBindingValueSets) { -%>
     <%= valueSet.safeName %>,
@@ -19,25 +19,25 @@
 /**
  * Return a typed patch builder for a specific resource.
  */
- export function fhirPatch(resourceType?: null | undefined): FhirPatchBuilder;
-export function fhirPatch<
+export function fhirJSONPatch(resourceType?: null | undefined): FhirJSONPatchBuilder;
+export function fhirJSONPatch<
   TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
 >(resourceType: TDomainResourceType): ExtractPatchBuilder<TDomainResourceType>;
-export function fhirPatch<
+export function fhirJSONPatch<
   TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
 >(
   resourceType?: TDomainResourceType | null | undefined
-): FhirPatchBuilder | ExtractPatchBuilder<TDomainResourceType>;
-export function fhirPatch<
+): FhirJSONPatchBuilder | ExtractPatchBuilder<TDomainResourceType>;
+export function fhirJSONPatch<
   TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
 >(
   resourceType?: TDomainResourceType | null | undefined
-): FhirPatchBuilder | ExtractPatchBuilder<TDomainResourceType> {
+): FhirJSONPatchBuilder | ExtractPatchBuilder<TDomainResourceType> {
   if (!resourceType) {
-    return new FhirPatchBuilder();
+    return new FhirJSONPatchBuilder();
   }
 
-  return new FhirPatchBuilder() as unknown as ExtractPatchBuilder<TDomainResourceType>;
+  return new FhirJSONPatchBuilder() as unknown as ExtractPatchBuilder<TDomainResourceType>;
 }
 
 
@@ -52,7 +52,7 @@ export function fhirPatch<
 
   return 0;
 })) { -%>
-  export interface <%= resource.type %>FhirPatchBuilder<%= (!resource.base || resource.base.type === "Base") ? undefined : ` extends ${resource.base.type}FhirPatchBuilder` %> {
+  export interface <%= resource.type %>FhirJSONPatchBuilder<%= (!resource.base || resource.base.type === "Base") ? undefined : ` extends ${resource.base.type}FhirJSONPatchBuilder` %> {
     <% if (resource.isDomainResource) { -%>
       resourceType: "<%= resource.type %>";
     <% } -%>
@@ -73,18 +73,55 @@ export function fhirPatch<
          * In the case of an array, the value is inserted before the given index.
          * The - character can be used instead of an index to insert at the end of an array.
          *
-         * {{short}}
+         * <%= element.short %>
          */
         add(path: `/<%= element.name %>/${number | "-"}`, value: <%= element.tsType.replace(" | undefined", "").slice(6, -1) %>): this;
+
+        /**
+         * [Removes](https://jsonpatch.com/#remove) a value from an object or array.
+         * 
+         * <%= element.short %>
+         */
+        remove(path: "/<%= element.name %>"): this;
+        /**
+         * [Removes](https://jsonpatch.com/#remove) a value from an object or array.
+         * 
+         * <%= element.short %>
+         */
+        remove(path: `/<%= element.name %>/${number}`): this;
+        /**
+         * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
+         * 
+         * <%= element.short %>
+         */
+         replace(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
+        /**
+         * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
+         * 
+         * <%= element.short %>
+         */
+        replace(path: `/<%= element.name %>/${number | "-"}`, value: <%= element.tsType.replace(" | undefined", "").slice(6, -1) %>): this;
       <% } else {-%>
         /**
          * [Adds](https://jsonpatch.com/#add) a value to an object or inserts it into an array.
          * In the case of an array, the value is inserted before the given index.
          * The - character can be used instead of an index to insert at the end of an array.
          *
-         * {{short}}
+         * <%= element.short %>
          */
         add(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
+        /**
+         * [Removes](https://jsonpatch.com/#remove) a value from an object or array.
+         * 
+         * <%= element.short %>
+         */
+        remove(path: "/<%= element.name %>"): this;
+        /**
+         * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
+         * 
+         * <%= element.short %>
+         */
+        replace(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
       <% } -%>
     <% } -%>
     
@@ -94,16 +131,31 @@ export function fhirPatch<
      * The - character can be used instead of an index to insert at the end of an array.
      */
     add(path: string, value: unknown): this;
+
+    /**
+     * [Removes](https://jsonpatch.com/#remove) a value from an object or array.
+     */
+    remove(path: string): this;
+
+    /**
+     * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
+     */
+    replace(path: string, value: unknown): this;
+
+    /**
+     * The underlying {@link JSONPatchBody}, that can be used directly if needed.
+     */
+    patch: JSONPatchBody;
   }
 <% } -%>
 
-export type AnyFhirPatchBuilder = 
+export type AnyFhirJSONPatchBuilder = 
   <% for (const domainResource of fhir.domainResources) { -%>
-  | <%= domainResource.type %>FhirPatchBuilder
+  | <%= domainResource.type %>FhirJSONPatchBuilder
   <% } -%>;
 
 /**
  * Allow referencing a patch builder type from its string ResourceType representation.
  */
 export type ExtractPatchBuilder<TDomainResourceType extends AnyDomainResourceType> =
-  Extract<AnyFhirPatchBuilder, { resourceType: TDomainResourceType }>;
+  Extract<AnyFhirJSONPatchBuilder, { resourceType: TDomainResourceType }>;

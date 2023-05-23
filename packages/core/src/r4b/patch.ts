@@ -43,7 +43,7 @@ export interface JSONPatchOperationTest {
   value: unknown;
 }
 
-export class FhirPatchBuilder {
+export class FhirJSONPatchBuilder {
   /**
    * The underlying {@link JSONPatchBody}, that can be used directly if needed.
    */
@@ -68,6 +68,29 @@ export class FhirPatchBuilder {
   public add(path: string, value: unknown): this {
     this.patch.push({
       op: "add",
+      path,
+      value,
+    });
+    return this;
+  }
+
+  /**
+   * [Removes](https://jsonpatch.com/#remove) a value from an object or array.
+   */
+  public remove(path: string): this {
+    this.patch.push({
+      op: "remove",
+      path,
+    });
+    return this;
+  }
+
+  /**
+   * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
+   */
+  public replace(path: string, value: unknown): this {
+    this.patch.push({
+      op: "replace",
       path,
       value,
     });
