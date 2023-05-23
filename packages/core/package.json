@@ -4,8 +4,8 @@
   "scripts": {
     "build": "pnpm clean && pnpm codegen && pnpm copyfiles && rollup --config rollup.config.mjs",
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
-    "clean": "rimraf dist",
-    "copyfiles": "copyfiles -e \"**/*.codegen.ts\" -u 2 \"src/r4b/**/*.ts\" \"src/r5\"",
+    "clean": "rimraf dist && rimraf src/r4b/[!__]**",
+    "copyfiles": "copyfiles -e \"**/*.codegen.ts\" -u 2 \"src/r5/**/*.ts\" \"src/r4b\"",
     "codegen": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r4b,r5 -t \"${PWD}/templates/**/*.ejs\" -b \"${PWD}/templates\" -p 'prettier --write %files%' -o \"${PWD}/src/<%= fhir.release %>\"",
     "dev-watch": "nodemon --watch templates --watch src/r4b --ext ejs,ts --ignore '**/*.codegen.ts' --exec \"pnpm codegen && pnpm copyfiles\"",
     "format": "prettier --loglevel warn --write ./**/*.ts && eslint --fix ./**/*.ts",
