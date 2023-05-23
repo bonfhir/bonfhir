@@ -2,7 +2,7 @@
   "name": "@bonfhir/core",
   "version": "2.0.0",
   "scripts": {
-    "build": "pnpm clean && pnpm codegen && pnpm copyfiles && tsc --project tsconfig.build.r4b.json && tsc --project tsconfig.build.r5.json && rollup --config rollup.config.mjs",
+    "build": "pnpm clean && pnpm codegen && pnpm copyfiles && rollup --config rollup.config.mjs",
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
     "clean": "rimraf dist",
     "copyfiles": "copyfiles -e \"**/*.codegen.ts\" -u 2 \"src/r4b/**/*.ts\" \"src/r5\"",
@@ -47,6 +47,7 @@
     "nodemon": "^2.0.22",
     "rimraf": "^5.0.0",
     "rollup": "^3.21.0",
+    "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-filesize": "^10.0.0",
     "typescript": "^5.0.4"
   },

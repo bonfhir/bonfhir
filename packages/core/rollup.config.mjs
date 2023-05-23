@@ -3,11 +3,12 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import dts from "rollup-plugin-dts";
 import filesize from "rollup-plugin-filesize";
 
-export default ["r4b", "r5"].flatMap((release) =>
-  ["cjs", "esm"].map((format) => ({
+export default ["r4b", "r5"].flatMap((release) => [
+  ...["cjs", "esm"].map((format) => ({
     input: `src/${release}/index.ts`,
     output: [
       {
@@ -33,8 +34,10 @@ export default ["r4b", "r5"].flatMap((release) =>
       }),
       commonjs(),
       typescript({
+        include: [`src/${release}/**/*`],
         outDir: `dist/${format}`,
-        declaration: false,
+        declaration: format === "esm",
+        declarationDir: format === "esm" ? `dts` : undefined,
         declarationMap: false,
         exclude: ["**/*.test.ts"],
       }),
@@ -50,7 +53,7 @@ export default ["r4b", "r5"].flatMap((release) =>
           mkdirSync(`./dist/${release}/${format}`, { recursive: true });
           writeFileSync(
             `./dist/${release}/${format}/package.json`,
-            `{"type": "${format === "cjs" ? "commonjs" : "module"}}"}`
+            `{"type": "${format === "cjs" ? "commonjs" : "module"}"}`
           );
         },
       },
@@ -61,5 +64,17 @@ export default ["r4b", "r5"].flatMap((release) =>
         return;
       warn(warning);
     },
-  }))
-);
+  })),
+  {
+    input: `dist/${release}/esm/dts/index.d.ts`,
+    output: [{ file: `dist/${release}/types/index.d.ts`, format: "m" }],
+    plugins: [
+      dts(),
+      {
+        buildEnd: () => {
+          rmSync(`dist/${release}/esm/dts`, { recursive: true, force: true });
+        },
+      },
+    ],
+  },
+]);
