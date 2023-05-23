@@ -1,9 +1,9 @@
 import { FhirJSONPatchBuilder, JSONPatchBody } from "./patch";
-import { ResourceFhirJSONPatchBuilder, fhirJSONPatch } from "./patch.codegen";
+import { ResourceJSONPatchBuilder, fhirJSONPatch } from "./patch.codegen";
 
 describe("patch", () => {
   it.each(<
-    Array<[FhirJSONPatchBuilder | ResourceFhirJSONPatchBuilder, JSONPatchBody]>
+    Array<[FhirJSONPatchBuilder | ResourceJSONPatchBuilder, JSONPatchBody]>
   >[
     [fhirJSONPatch(), []],
     [fhirJSONPatch("Patient"), []],

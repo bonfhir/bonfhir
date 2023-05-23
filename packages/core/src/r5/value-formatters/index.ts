@@ -18,7 +18,9 @@ export * from "./id";
 export * from "./identifier";
 export * from "./instant";
 export * from "./integer";
+// #if fhir >= r5
 export * from "./integer64";
+// #endif
 export * from "./markdown";
 export * from "./money";
 export * from "./oid";

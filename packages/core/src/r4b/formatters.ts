@@ -104,7 +104,6 @@ export class Formatter {
       .register(valueFormatters.identifierFormatter)
       .register(valueFormatters.instantFormatter)
       .register(valueFormatters.integerFormatter)
-      .register(valueFormatters.integer64Formatter)
       .register(valueFormatters.markdownFormatter)
       .register(valueFormatters.moneyFormatter)
       .register(valueFormatters.oidFormatter)

@@ -18,7 +18,6 @@ export * from "./id";
 export * from "./identifier";
 export * from "./instant";
 export * from "./integer";
-export * from "./integer64";
 export * from "./markdown";
 export * from "./money";
 export * from "./oid";

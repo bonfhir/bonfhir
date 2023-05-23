@@ -1,3 +1,4 @@
+// #if fhir >= r5
 import { ValueFormatter } from "../formatters";
 import { IntegerFormatterOptions, integerFormatter } from "./integer";
 
@@ -16,3 +17,4 @@ export const integer64Formatter: ValueFormatter<
   type: "integer64",
   format: integerFormatter.format,
 };
+// #endif
