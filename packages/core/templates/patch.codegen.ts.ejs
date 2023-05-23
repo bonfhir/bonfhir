@@ -2,7 +2,7 @@
  * Typed patch builders for <%= fhir.release %>/<%= fhir.version %>
  */
 
- import { FhirJSONPatchBuilder } from "./patch";
+ import { FhirJSONPatchBuilder, JSONPatchBody } from "./patch";
  import {
   <% for (const valueSet of fhir.requiredBindingValueSets) { -%>
     <%= valueSet.safeName %>,
@@ -52,7 +52,7 @@ export function fhirJSONPatch<
 
   return 0;
 })) { -%>
-  export interface <%= resource.type %>FhirJSONPatchBuilder<%= (!resource.base || resource.base.type === "Base") ? undefined : ` extends ${resource.base.type}FhirJSONPatchBuilder` %> {
+  export interface <%= resource.type %>JSONPatchBuilder<%= (!resource.base || resource.base.type === "Base") ? undefined : ` extends ${resource.base.type}JSONPatchBuilder` %> {
     <% if (resource.isDomainResource) { -%>
       resourceType: "<%= resource.type %>";
     <% } -%>
@@ -67,7 +67,6 @@ export function fhirJSONPatch<
          * <%= element.short %>
          */
         add(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
-
         /**
          * [Adds](https://jsonpatch.com/#add) a value to an object or inserts it into an array.
          * In the case of an array, the value is inserted before the given index.
@@ -76,7 +75,26 @@ export function fhirJSONPatch<
          * <%= element.short %>
          */
         add(path: `/<%= element.name %>/${number | "-"}`, value: <%= element.tsType.replace(" | undefined", "").slice(6, -1) %>): this;
+      <% } else {-%>
+        /**
+         * [Adds](https://jsonpatch.com/#add) a value to an object or inserts it into an array.
+         * In the case of an array, the value is inserted before the given index.
+         * The - character can be used instead of an index to insert at the end of an array.
+         *
+         * <%= element.short %>
+         */
+        add(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
+      <% } -%>
+      /**
+       * [Adds](https://jsonpatch.com/#add) a value to an object or inserts it into an array.
+       * In the case of an array, the value is inserted before the given index.
+       * The - character can be used instead of an index to insert at the end of an array.
+       */
+        add(path: string, value: unknown): this;
+    <% } -%>
 
+    <% for (const element of resource.ownRootElementsWithChoices.filter(x => !["id", "meta"].includes(x.name))) { -%>
+      <% if (element.isArray) { -%>
         /**
          * [Removes](https://jsonpatch.com/#remove) a value from an object or array.
          * 
@@ -89,12 +107,23 @@ export function fhirJSONPatch<
          * <%= element.short %>
          */
         remove(path: `/<%= element.name %>/${number}`): this;
+      <% } else {-%>
         /**
-         * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
+         * [Removes](https://jsonpatch.com/#remove) a value from an object or array.
          * 
          * <%= element.short %>
          */
-         replace(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
+        remove(path: "/<%= element.name %>"): this;
+      <% } -%>
+      /**
+       * [Removes](https://jsonpatch.com/#remove) a value from an object or array.
+       */
+        remove(path: string): this;
+    <% } -%>
+
+    <% for (const element of resource.ownRootElementsWithChoices.filter(x => !["id", "meta"].includes(x.name))) { -%>
+      <% if (element.isArray) { -%>
+        replace(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
         /**
          * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
          * 
@@ -103,44 +132,18 @@ export function fhirJSONPatch<
         replace(path: `/<%= element.name %>/${number | "-"}`, value: <%= element.tsType.replace(" | undefined", "").slice(6, -1) %>): this;
       <% } else {-%>
         /**
-         * [Adds](https://jsonpatch.com/#add) a value to an object or inserts it into an array.
-         * In the case of an array, the value is inserted before the given index.
-         * The - character can be used instead of an index to insert at the end of an array.
-         *
-         * <%= element.short %>
-         */
-        add(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
-        /**
-         * [Removes](https://jsonpatch.com/#remove) a value from an object or array.
-         * 
-         * <%= element.short %>
-         */
-        remove(path: "/<%= element.name %>"): this;
-        /**
          * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
          * 
          * <%= element.short %>
          */
         replace(path: "/<%= element.name %>", value: <%= element.tsType.replace(" | undefined", "") %>): this;
       <% } -%>
+
+      /**
+       * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
+       */
+      replace(path: string, value: unknown): this;
     <% } -%>
-    
-    /**
-     * [Adds](https://jsonpatch.com/#add) a value to an object or inserts it into an array.
-     * In the case of an array, the value is inserted before the given index.
-     * The - character can be used instead of an index to insert at the end of an array.
-     */
-    add(path: string, value: unknown): this;
-
-    /**
-     * [Removes](https://jsonpatch.com/#remove) a value from an object or array.
-     */
-    remove(path: string): this;
-
-    /**
-     * [Replaces](https://jsonpatch.com/#replace) a value. Equivalent to a “remove” followed by an “add”.
-     */
-    replace(path: string, value: unknown): this;
 
     /**
      * The underlying {@link JSONPatchBody}, that can be used directly if needed.
@@ -151,7 +154,7 @@ export function fhirJSONPatch<
 
 export type AnyFhirJSONPatchBuilder = 
   <% for (const domainResource of fhir.domainResources) { -%>
-  | <%= domainResource.type %>FhirJSONPatchBuilder
+  | <%= domainResource.type %>JSONPatchBuilder
   <% } -%>;
 
 /**
