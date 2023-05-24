@@ -2,7 +2,7 @@
  * Typed search builders for <%= fhir.release %>/<%= fhir.version %>
  */
 
-import { AnyDomainResourceType } from "./fhir-types.codegen";
+import { AnyResourceType } from "./fhir-types.codegen";
 import { FhirSearchBuilder, Prefix, StringModifier, TokenModifier } from "./search";
 import { DropFirst } from "./lang-utils";
 
@@ -20,27 +20,27 @@ export function fhirSearch(
   resourceType?: null | undefined
 ): FhirSearchBuilder;
 export function fhirSearch<
-  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
+TResourceType extends AnyResourceType = AnyResourceType
 >(
-  resourceType: TDomainResourceType
-): ExtractSearchBuilder<TDomainResourceType>;
+  resourceType: TResourceType
+): ExtractSearchBuilder<TResourceType>;
 export function fhirSearch<
-  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
+  TResourceType extends AnyResourceType = AnyResourceType
 >(
-  resourceType?: TDomainResourceType | null | undefined
-): FhirSearchBuilder | ExtractSearchBuilder<TDomainResourceType>;
+  resourceType?: TResourceType | null | undefined
+): FhirSearchBuilder | ExtractSearchBuilder<TResourceType>;
 export function fhirSearch<
-  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
+  TResourceType extends AnyResourceType = AnyResourceType
 >(
-  resourceType?: TDomainResourceType | null | undefined
-): FhirSearchBuilder | ExtractSearchBuilder<TDomainResourceType> {
+  resourceType?: TResourceType | null | undefined
+): FhirSearchBuilder | ExtractSearchBuilder<TResourceType> {
   if (!resourceType) {
     return new FhirSearchBuilder();
   }
 
   switch(resourceType) {
-    <% for (const domainResource of fhir.domainResources) { -%>
-    case "<%= domainResource.type %>": { return new <%= domainResource.type %>FhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>; }
+    <% for (const resource of fhir.resources.filter(x => !x.abstract)) { -%>
+    case "<%= resource.type %>": { return new <%= resource.type %>FhirSearchBuilder() as ExtractSearchBuilder<TResourceType>; }
     <% } -%>
     default: { throw new Error(`Unsupported fhirSearch for resource type ${resourceType}`); }
   }
@@ -75,7 +75,7 @@ export type <%= resource.type %>SortOrder = <% if (resource.base?.type && resour
 ;
 
 export class <%= resource.type %>FhirSearchBuilder extends <%= resource.base?.type === "Base" ? undefined : resource.base?.type %>FhirSearchBuilder {
-  <% if (resource.isDomainResource) { -%>
+  <% if (!resource.abstract) { -%>
   readonly resourceType = "<%= resource.type %>";
   <% } -%>
 
@@ -99,12 +99,12 @@ export class <%= resource.type %>FhirSearchBuilder extends <%= resource.base?.ty
 <% } -%>
 
 export type AnyFhirSearchBuilder = 
-  <% for (const domainResource of fhir.domainResources) { -%>
-  | <%= domainResource.type %>FhirSearchBuilder
+  <% for (const resource of fhir.resources.filter(x => !x.abstract)) { -%>
+  | <%= resource.type %>FhirSearchBuilder
   <% } -%>;
 
 /**
  * Allow referencing a search builder type from its string ResourceType representation.
  */
-export type ExtractSearchBuilder<TDomainResourceType extends AnyDomainResourceType> =
-  Extract<AnyFhirSearchBuilder, { resourceType: TDomainResourceType }>;
+export type ExtractSearchBuilder<TResourceType extends AnyResourceType> =
+  Extract<AnyFhirSearchBuilder, { resourceType: TResourceType }>;

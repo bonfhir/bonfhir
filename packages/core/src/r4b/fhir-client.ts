@@ -1,10 +1,10 @@
 import { BundleNavigator } from "./bundle-navigator";
 import {
-  AnyDomainResource,
-  AnyDomainResourceType,
+  AnyResource,
+  AnyResourceType,
   Bundle,
   CapabilityStatement,
-  ExtractDomainResource,
+  ExtractResource,
   ResourceType,
   Retrieved,
 } from "./fhir-types.codegen";
@@ -23,64 +23,60 @@ export interface FhirClient {
    * The read interaction accesses the current contents of a resource.
    * https://hl7.org/fhir/http.html#read
    */
-  read: <TDomainResourceType extends AnyDomainResourceType>(
-    type: TDomainResourceType,
+  read: <TResourceType extends AnyResourceType>(
+    type: TResourceType,
     id: string,
     options?: GeneralParameters | null | undefined
-  ) => Promise<
-    Retrieved<ExtractDomainResource<TDomainResourceType>> | undefined
-  >;
+  ) => Promise<Retrieved<ExtractResource<TResourceType>> | undefined>;
 
   /**
    * The vread interaction performs a version specific read of the resource.
    * https://hl7.org/fhir/http.html#vread
    */
-  vread: <TDomainResourceType extends AnyDomainResourceType>(
-    type: TDomainResourceType,
+  vread: <TResourceType extends AnyResourceType>(
+    type: TResourceType,
     id: string,
     vid: string,
     options?: GeneralParameters | null | undefined
-  ) => Promise<
-    Retrieved<ExtractDomainResource<TDomainResourceType>> | undefined
-  >;
+  ) => Promise<Retrieved<ExtractResource<TResourceType>> | undefined>;
 
   /**
    * The update interaction creates a new current version for an existing resource or creates an initial version
    * if no resource already exists for the given id.
    * https://hl7.org/fhir/http.html#update
    */
-  update: <TDomainResource extends AnyDomainResource>(
-    body: TDomainResource,
+  update: <TResource extends AnyResource>(
+    body: TResource,
     options?:
       | (GeneralParameters &
           ConcurrencyParameters &
           ConditionalSearchParameters)
       | null
       | undefined
-  ) => Promise<Retrieved<TDomainResource>>;
+  ) => Promise<Retrieved<TResource>>;
 
   /**
    * As an alternative to updating an entire resource, clients can perform a patch operation.
    * https://hl7.org/fhir/http.html#patch
    */
-  patch: <TDomainResourceType extends AnyDomainResourceType>(
-    type: TDomainResourceType,
+  patch: <TResourceType extends AnyResourceType>(
+    type: TResourceType,
     id: string,
-    body: FhirClientPatchBody<TDomainResourceType>,
+    body: FhirClientPatchBody<TResourceType>,
     options?:
       | (GeneralParameters &
           ConcurrencyParameters &
           ConditionalSearchParameters)
       | null
       | undefined
-  ) => Promise<Retrieved<ExtractDomainResource<TDomainResourceType>>>;
+  ) => Promise<Retrieved<ExtractResource<TResourceType>>>;
 
   /**
    * The delete interaction removes an existing resource.
    * https://hl7.org/fhir/http.html#delete
    */
   delete: (
-    type: AnyDomainResourceType,
+    type: AnyResourceType,
     id: string,
     options?:
       | (GeneralParameters & ConditionalSearchParameters)
@@ -92,17 +88,17 @@ export interface FhirClient {
    * The history interaction retrieves the history of either a particular resource, all resources of a given type, or all resources supported by the system.
    * https://hl7.org/fhir/http.html#history
    */
-  history: <TDomainResourceType extends AnyDomainResourceType>(
-    type?: TDomainResourceType | null | undefined,
+  history: <TResourceType extends AnyResourceType>(
+    type?: TResourceType | null | undefined,
     id?: string | null | undefined,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
-  ) => Promise<Bundle<Retrieved<ExtractDomainResource<TDomainResourceType>>>>;
+  ) => Promise<Bundle<Retrieved<ExtractResource<TResourceType>>>>;
 
   /**
    * The create interaction creates a new resource in a server-assigned location.
    * https://hl7.org/fhir/http.html#create
    */
-  create: <TResource extends AnyDomainResource>(
+  create: <TResource extends AnyResource>(
     body: TResource,
     options?:
       | (GeneralParameters & ConditionalSearchParameters)
@@ -114,16 +110,11 @@ export interface FhirClient {
    * This interaction searches a set of resources based on some filter criteria.
    * https://hl7.org/fhir/http.html#search
    */
-  search: <TDomainResourceType extends AnyDomainResourceType>(
-    type?: TDomainResourceType | null | undefined,
-    parameters?:
-      | FhirClientSearchParameters<TDomainResourceType>
-      | null
-      | undefined,
+  search: <TResourceType extends AnyResourceType>(
+    type?: TResourceType | null | undefined,
+    parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
     options?: GeneralParameters | null | undefined
-  ) => Promise<
-    BundleNavigator<Retrieved<ExtractDomainResource<TDomainResourceType>>>
-  >;
+  ) => Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
 
   /**
    * The capabilities interaction retrieves the information about a server's capabilities - which portions of this specification it supports.
@@ -168,20 +159,16 @@ export interface FhirClient {
   ) => Promise<T>;
 }
 
-export type FhirClientPatchBody<
-  TDomainResourceType extends AnyDomainResourceType
-> =
+export type FhirClientPatchBody<TResourceType extends AnyResourceType> =
   | ((
-      patch: ExtractPatchBuilder<TDomainResourceType>
-    ) => ExtractPatchBuilder<TDomainResourceType> | JSONPatchBody)
+      patch: ExtractPatchBuilder<TResourceType>
+    ) => ExtractPatchBuilder<TResourceType> | JSONPatchBody)
   | JSONPatchBody;
 
-export type FhirClientSearchParameters<
-  TDomainResource extends AnyDomainResourceType
-> =
+export type FhirClientSearchParameters<TResource extends AnyResourceType> =
   | ((
-      search: ExtractSearchBuilder<TDomainResource>
-    ) => ExtractSearchBuilder<TDomainResource> | string)
+      search: ExtractSearchBuilder<TResource>
+    ) => ExtractSearchBuilder<TResource> | string)
   | string;
 
 /**

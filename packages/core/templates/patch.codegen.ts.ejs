@@ -13,7 +13,7 @@
       <%= backboneElement.rootElement.backboneElementName %>,
     <% } -%>
   <% } -%>
-  AnyDomainResourceType
+  AnyResourceType
 } from "./fhir-types.codegen";
 
 /**
@@ -21,23 +21,23 @@
  */
 export function fhirJSONPatch(resourceType?: null | undefined): FhirJSONPatchBuilder;
 export function fhirJSONPatch<
-  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
->(resourceType: TDomainResourceType): ExtractPatchBuilder<TDomainResourceType>;
+  TResourceType extends AnyResourceType = AnyResourceType
+>(resourceType: TResourceType): ExtractPatchBuilder<TResourceType>;
 export function fhirJSONPatch<
-  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
+  TResourceType extends AnyResourceType = AnyResourceType
 >(
-  resourceType?: TDomainResourceType | null | undefined
-): FhirJSONPatchBuilder | ExtractPatchBuilder<TDomainResourceType>;
+  resourceType?: TResourceType | null | undefined
+): FhirJSONPatchBuilder | ExtractPatchBuilder<TResourceType>;
 export function fhirJSONPatch<
-  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
+  TResourceType extends AnyResourceType = AnyResourceType
 >(
-  resourceType?: TDomainResourceType | null | undefined
-): FhirJSONPatchBuilder | ExtractPatchBuilder<TDomainResourceType> {
+  resourceType?: TResourceType | null | undefined
+): FhirJSONPatchBuilder | ExtractPatchBuilder<TResourceType> {
   if (!resourceType) {
     return new FhirJSONPatchBuilder();
   }
 
-  return new FhirJSONPatchBuilder() as unknown as ExtractPatchBuilder<TDomainResourceType>;
+  return new FhirJSONPatchBuilder() as unknown as ExtractPatchBuilder<TResourceType>;
 }
 
 
@@ -53,7 +53,7 @@ export function fhirJSONPatch<
   return 0;
 })) { -%>
   export interface <%= resource.type %>JSONPatchBuilder<%= (!resource.base || resource.base.type === "Base") ? undefined : ` extends ${resource.base.type}JSONPatchBuilder` %> {
-    <% if (resource.isDomainResource) { -%>
+    <% if (!resource.abstract) { -%>
       resourceType: "<%= resource.type %>";
     <% } -%>
 
@@ -153,12 +153,12 @@ export function fhirJSONPatch<
 <% } -%>
 
 export type AnyFhirJSONPatchBuilder = 
-  <% for (const domainResource of fhir.domainResources) { -%>
-  | <%= domainResource.type %>JSONPatchBuilder
+  <% for (const resource of fhir.resources.filter(x => !x.abstract)) { -%>
+  | <%= resource.type %>JSONPatchBuilder
   <% } -%>;
 
 /**
  * Allow referencing a patch builder type from its string ResourceType representation.
  */
-export type ExtractPatchBuilder<TDomainResourceType extends AnyDomainResourceType> =
-  Extract<AnyFhirJSONPatchBuilder, { resourceType: TDomainResourceType }>;
+export type ExtractPatchBuilder<TResourceType extends AnyResourceType> =
+  Extract<AnyFhirJSONPatchBuilder, { resourceType: TResourceType }>;

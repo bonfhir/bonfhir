@@ -2,7 +2,7 @@
  * Typed search builders for r4b/4.3.0
  */
 
-import { AnyDomainResourceType } from "./fhir-types.codegen";
+import { AnyResourceType } from "./fhir-types.codegen";
 import { DropFirst } from "./lang-utils";
 import { FhirSearchBuilder } from "./search";
 
@@ -18,436 +18,445 @@ import { FhirSearchBuilder } from "./search";
  */
 export function fhirSearch(resourceType?: null | undefined): FhirSearchBuilder;
 export function fhirSearch<
-  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
->(resourceType: TDomainResourceType): ExtractSearchBuilder<TDomainResourceType>;
+  TResourceType extends AnyResourceType = AnyResourceType
+>(resourceType: TResourceType): ExtractSearchBuilder<TResourceType>;
 export function fhirSearch<
-  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
+  TResourceType extends AnyResourceType = AnyResourceType
 >(
-  resourceType?: TDomainResourceType | null | undefined
-): FhirSearchBuilder | ExtractSearchBuilder<TDomainResourceType>;
+  resourceType?: TResourceType | null | undefined
+): FhirSearchBuilder | ExtractSearchBuilder<TResourceType>;
 export function fhirSearch<
-  TDomainResourceType extends AnyDomainResourceType = AnyDomainResourceType
+  TResourceType extends AnyResourceType = AnyResourceType
 >(
-  resourceType?: TDomainResourceType | null | undefined
-): FhirSearchBuilder | ExtractSearchBuilder<TDomainResourceType> {
+  resourceType?: TResourceType | null | undefined
+): FhirSearchBuilder | ExtractSearchBuilder<TResourceType> {
   if (!resourceType) {
     return new FhirSearchBuilder();
   }
 
   switch (resourceType) {
     case "Account": {
-      return new AccountFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new AccountFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ActivityDefinition": {
-      return new ActivityDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ActivityDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "AdministrableProductDefinition": {
-      return new AdministrableProductDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new AdministrableProductDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "AdverseEvent": {
-      return new AdverseEventFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new AdverseEventFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "AllergyIntolerance": {
-      return new AllergyIntoleranceFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new AllergyIntoleranceFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Appointment": {
-      return new AppointmentFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new AppointmentFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "AppointmentResponse": {
-      return new AppointmentResponseFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new AppointmentResponseFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "AuditEvent": {
-      return new AuditEventFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new AuditEventFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Basic": {
-      return new BasicFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new BasicFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
+    }
+    case "Binary": {
+      return new BinaryFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "BiologicallyDerivedProduct": {
-      return new BiologicallyDerivedProductFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new BiologicallyDerivedProductFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "BodyStructure": {
-      return new BodyStructureFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new BodyStructureFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
+    }
+    case "Bundle": {
+      return new BundleFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "CapabilityStatement": {
-      return new CapabilityStatementFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CapabilityStatementFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "CarePlan": {
-      return new CarePlanFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CarePlanFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "CareTeam": {
-      return new CareTeamFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CareTeamFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "CatalogEntry": {
-      return new CatalogEntryFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CatalogEntryFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ChargeItem": {
-      return new ChargeItemFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ChargeItemFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ChargeItemDefinition": {
-      return new ChargeItemDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ChargeItemDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Citation": {
-      return new CitationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CitationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Claim": {
-      return new ClaimFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ClaimFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ClaimResponse": {
-      return new ClaimResponseFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ClaimResponseFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ClinicalImpression": {
-      return new ClinicalImpressionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ClinicalImpressionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ClinicalUseDefinition": {
-      return new ClinicalUseDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ClinicalUseDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "CodeSystem": {
-      return new CodeSystemFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CodeSystemFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Communication": {
-      return new CommunicationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CommunicationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "CommunicationRequest": {
-      return new CommunicationRequestFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CommunicationRequestFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "CompartmentDefinition": {
-      return new CompartmentDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CompartmentDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Composition": {
-      return new CompositionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CompositionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ConceptMap": {
-      return new ConceptMapFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ConceptMapFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Condition": {
-      return new ConditionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ConditionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Consent": {
-      return new ConsentFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ConsentFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Contract": {
-      return new ContractFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ContractFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Coverage": {
-      return new CoverageFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CoverageFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "CoverageEligibilityRequest": {
-      return new CoverageEligibilityRequestFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CoverageEligibilityRequestFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "CoverageEligibilityResponse": {
-      return new CoverageEligibilityResponseFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new CoverageEligibilityResponseFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "DetectedIssue": {
-      return new DetectedIssueFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new DetectedIssueFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Device": {
-      return new DeviceFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new DeviceFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "DeviceDefinition": {
-      return new DeviceDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new DeviceDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "DeviceMetric": {
-      return new DeviceMetricFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new DeviceMetricFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "DeviceRequest": {
-      return new DeviceRequestFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new DeviceRequestFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "DeviceUseStatement": {
-      return new DeviceUseStatementFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new DeviceUseStatementFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "DiagnosticReport": {
-      return new DiagnosticReportFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new DiagnosticReportFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "DocumentManifest": {
-      return new DocumentManifestFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new DocumentManifestFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "DocumentReference": {
-      return new DocumentReferenceFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new DocumentReferenceFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Encounter": {
-      return new EncounterFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new EncounterFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Endpoint": {
-      return new EndpointFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new EndpointFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "EnrollmentRequest": {
-      return new EnrollmentRequestFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new EnrollmentRequestFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "EnrollmentResponse": {
-      return new EnrollmentResponseFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new EnrollmentResponseFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "EpisodeOfCare": {
-      return new EpisodeOfCareFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new EpisodeOfCareFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "EventDefinition": {
-      return new EventDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new EventDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Evidence": {
-      return new EvidenceFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new EvidenceFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "EvidenceReport": {
-      return new EvidenceReportFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new EvidenceReportFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "EvidenceVariable": {
-      return new EvidenceVariableFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new EvidenceVariableFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ExampleScenario": {
-      return new ExampleScenarioFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ExampleScenarioFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ExplanationOfBenefit": {
-      return new ExplanationOfBenefitFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ExplanationOfBenefitFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "FamilyMemberHistory": {
-      return new FamilyMemberHistoryFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new FamilyMemberHistoryFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Flag": {
-      return new FlagFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new FlagFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Goal": {
-      return new GoalFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new GoalFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "GraphDefinition": {
-      return new GraphDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new GraphDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Group": {
-      return new GroupFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new GroupFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "GuidanceResponse": {
-      return new GuidanceResponseFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new GuidanceResponseFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "HealthcareService": {
-      return new HealthcareServiceFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new HealthcareServiceFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ImagingStudy": {
-      return new ImagingStudyFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ImagingStudyFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Immunization": {
-      return new ImmunizationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ImmunizationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ImmunizationEvaluation": {
-      return new ImmunizationEvaluationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ImmunizationEvaluationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ImmunizationRecommendation": {
-      return new ImmunizationRecommendationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ImmunizationRecommendationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ImplementationGuide": {
-      return new ImplementationGuideFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ImplementationGuideFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Ingredient": {
-      return new IngredientFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new IngredientFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "InsurancePlan": {
-      return new InsurancePlanFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new InsurancePlanFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Invoice": {
-      return new InvoiceFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new InvoiceFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Library": {
-      return new LibraryFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new LibraryFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Linkage": {
-      return new LinkageFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new LinkageFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "List": {
-      return new ListFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ListFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Location": {
-      return new LocationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new LocationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ManufacturedItemDefinition": {
-      return new ManufacturedItemDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ManufacturedItemDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Measure": {
-      return new MeasureFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MeasureFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "MeasureReport": {
-      return new MeasureReportFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MeasureReportFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Media": {
-      return new MediaFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MediaFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Medication": {
-      return new MedicationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MedicationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "MedicationAdministration": {
-      return new MedicationAdministrationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MedicationAdministrationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "MedicationDispense": {
-      return new MedicationDispenseFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MedicationDispenseFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "MedicationKnowledge": {
-      return new MedicationKnowledgeFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MedicationKnowledgeFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "MedicationRequest": {
-      return new MedicationRequestFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MedicationRequestFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "MedicationStatement": {
-      return new MedicationStatementFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MedicationStatementFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "MedicinalProductDefinition": {
-      return new MedicinalProductDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MedicinalProductDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "MessageDefinition": {
-      return new MessageDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MessageDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "MessageHeader": {
-      return new MessageHeaderFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MessageHeaderFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "MolecularSequence": {
-      return new MolecularSequenceFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new MolecularSequenceFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "NamingSystem": {
-      return new NamingSystemFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new NamingSystemFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "NutritionOrder": {
-      return new NutritionOrderFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new NutritionOrderFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "NutritionProduct": {
-      return new NutritionProductFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new NutritionProductFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Observation": {
-      return new ObservationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ObservationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ObservationDefinition": {
-      return new ObservationDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ObservationDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "OperationDefinition": {
-      return new OperationDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new OperationDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "OperationOutcome": {
-      return new OperationOutcomeFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new OperationOutcomeFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Organization": {
-      return new OrganizationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new OrganizationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "OrganizationAffiliation": {
-      return new OrganizationAffiliationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new OrganizationAffiliationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "PackagedProductDefinition": {
-      return new PackagedProductDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new PackagedProductDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
+    }
+    case "Parameters": {
+      return new ParametersFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Patient": {
-      return new PatientFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new PatientFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "PaymentNotice": {
-      return new PaymentNoticeFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new PaymentNoticeFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "PaymentReconciliation": {
-      return new PaymentReconciliationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new PaymentReconciliationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Person": {
-      return new PersonFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new PersonFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "PlanDefinition": {
-      return new PlanDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new PlanDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Practitioner": {
-      return new PractitionerFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new PractitionerFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "PractitionerRole": {
-      return new PractitionerRoleFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new PractitionerRoleFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Procedure": {
-      return new ProcedureFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ProcedureFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Provenance": {
-      return new ProvenanceFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ProvenanceFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Questionnaire": {
-      return new QuestionnaireFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new QuestionnaireFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "QuestionnaireResponse": {
-      return new QuestionnaireResponseFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new QuestionnaireResponseFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "RegulatedAuthorization": {
-      return new RegulatedAuthorizationFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new RegulatedAuthorizationFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "RelatedPerson": {
-      return new RelatedPersonFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new RelatedPersonFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "RequestGroup": {
-      return new RequestGroupFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new RequestGroupFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ResearchDefinition": {
-      return new ResearchDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ResearchDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ResearchElementDefinition": {
-      return new ResearchElementDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ResearchElementDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ResearchStudy": {
-      return new ResearchStudyFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ResearchStudyFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ResearchSubject": {
-      return new ResearchSubjectFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ResearchSubjectFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "RiskAssessment": {
-      return new RiskAssessmentFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new RiskAssessmentFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Schedule": {
-      return new ScheduleFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ScheduleFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "SearchParameter": {
-      return new SearchParameterFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new SearchParameterFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ServiceRequest": {
-      return new ServiceRequestFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ServiceRequestFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Slot": {
-      return new SlotFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new SlotFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Specimen": {
-      return new SpecimenFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new SpecimenFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "SpecimenDefinition": {
-      return new SpecimenDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new SpecimenDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "StructureDefinition": {
-      return new StructureDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new StructureDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "StructureMap": {
-      return new StructureMapFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new StructureMapFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Subscription": {
-      return new SubscriptionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new SubscriptionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "SubscriptionStatus": {
-      return new SubscriptionStatusFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new SubscriptionStatusFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "SubscriptionTopic": {
-      return new SubscriptionTopicFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new SubscriptionTopicFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Substance": {
-      return new SubstanceFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new SubstanceFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "SubstanceDefinition": {
-      return new SubstanceDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new SubstanceDefinitionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "SupplyDelivery": {
-      return new SupplyDeliveryFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new SupplyDeliveryFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "SupplyRequest": {
-      return new SupplyRequestFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new SupplyRequestFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "Task": {
-      return new TaskFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new TaskFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "TerminologyCapabilities": {
-      return new TerminologyCapabilitiesFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new TerminologyCapabilitiesFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "TestReport": {
-      return new TestReportFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new TestReportFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "TestScript": {
-      return new TestScriptFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new TestScriptFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "ValueSet": {
-      return new ValueSetFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new ValueSetFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "VerificationResult": {
-      return new VerificationResultFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new VerificationResultFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     case "VisionPrescription": {
-      return new VisionPrescriptionFhirSearchBuilder() as ExtractSearchBuilder<TDomainResourceType>;
+      return new VisionPrescriptionFhirSearchBuilder() as ExtractSearchBuilder<TResourceType>;
     }
     default: {
       throw new Error(
@@ -2466,6 +2475,8 @@ export class BasicFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
 export type BinarySortOrder = ResourceSortOrder;
 
 export class BinaryFhirSearchBuilder extends ResourceFhirSearchBuilder {
+  readonly resourceType = "Binary";
+
   /**
    * Indicate the sort order.
    *
@@ -2599,6 +2610,8 @@ export type BundleSortOrder =
   | "-type";
 
 export class BundleFhirSearchBuilder extends ResourceFhirSearchBuilder {
+  readonly resourceType = "Bundle";
+
   /**
    * The first resource in the bundle, if the bundle type is "document" - this is a
    * composition, and this parameter provides access to search its contents
@@ -26438,6 +26451,8 @@ export class PackagedProductDefinitionFhirSearchBuilder extends DomainResourceFh
 export type ParametersSortOrder = ResourceSortOrder;
 
 export class ParametersFhirSearchBuilder extends ResourceFhirSearchBuilder {
+  readonly resourceType = "Parameters";
+
   /**
    * Indicate the sort order.
    *
@@ -37353,8 +37368,10 @@ export type AnyFhirSearchBuilder =
   | AppointmentResponseFhirSearchBuilder
   | AuditEventFhirSearchBuilder
   | BasicFhirSearchBuilder
+  | BinaryFhirSearchBuilder
   | BiologicallyDerivedProductFhirSearchBuilder
   | BodyStructureFhirSearchBuilder
+  | BundleFhirSearchBuilder
   | CapabilityStatementFhirSearchBuilder
   | CarePlanFhirSearchBuilder
   | CareTeamFhirSearchBuilder
@@ -37441,6 +37458,7 @@ export type AnyFhirSearchBuilder =
   | OrganizationFhirSearchBuilder
   | OrganizationAffiliationFhirSearchBuilder
   | PackagedProductDefinitionFhirSearchBuilder
+  | ParametersFhirSearchBuilder
   | PatientFhirSearchBuilder
   | PaymentNoticeFhirSearchBuilder
   | PaymentReconciliationFhirSearchBuilder
@@ -37486,6 +37504,5 @@ export type AnyFhirSearchBuilder =
 /**
  * Allow referencing a search builder type from its string ResourceType representation.
  */
-export type ExtractSearchBuilder<
-  TDomainResourceType extends AnyDomainResourceType
-> = Extract<AnyFhirSearchBuilder, { resourceType: TDomainResourceType }>;
+export type ExtractSearchBuilder<TResourceType extends AnyResourceType> =
+  Extract<AnyFhirSearchBuilder, { resourceType: TResourceType }>;
