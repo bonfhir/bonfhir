@@ -283,6 +283,21 @@ describe("BundleNavigator", () => {
       expect(org).toBeUndefined();
     });
 
+    it("resolve revincluded when found", () => {
+      const navigator = bundleNavigator(patientsListBundle);
+      const patient = navigator.firstSearchMatch()!;
+      const provenance = patient.firstRevIncluded<Provenance>(
+        (provenance) => provenance.target
+      );
+      expect(provenance).toBeDefined();
+      expect(provenance?.resourceType).toBe("Provenance");
+      const org = patient.firstRevIncluded<Provenance>(
+        (provenance) => provenance.target
+      )?.agent[0]?.who?.included;
+      expect(org).toBeDefined();
+      expect(org?.resourceType).toBe("Organization");
+    });
+
     it("should still support JSON serialization", () => {
       const navigator = bundleNavigator(patientsListBundle);
       const provenance = navigator.type("Provenance")[0]!;

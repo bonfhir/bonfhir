@@ -46,7 +46,8 @@ export type ResolvableReference<TTargetResource extends Resource = Resource> =
   };
 
 /**
- * Defines a new type from T where all the Reference<> properties are replaced by ResolvableReference<>.
+ * Defines a new type from T where all the Reference<> properties are replaced by ResolvableReference<>,
+ * and with revIncluded method added at the root.
  */
 export type WithResolvableReferences<T> = {
   [K in keyof T]: T[K] extends Reference<infer TTargetResource>
@@ -54,6 +55,17 @@ export type WithResolvableReferences<T> = {
     : T[K] extends Reference<infer TTargetResource> | undefined
     ? ResolvableReference<TTargetResource> | undefined
     : WithResolvableReferences<T[K]>;
+} & {
+  revIncluded: <TReferencedType extends AnyResource>(
+    select: (
+      resource: TReferencedType
+    ) => Reference | Reference[] | null | undefined
+  ) => WithResolvableReferences<TReferencedType>[];
+  firstRevIncluded: <TReferencedType extends AnyResource>(
+    select: (
+      resource: TReferencedType
+    ) => Reference | Reference[] | null | undefined
+  ) => WithResolvableReferences<TReferencedType> | undefined;
 };
 
 export class BundleNavigator<TResource extends Resource = Resource> {
@@ -233,7 +245,10 @@ export class BundleNavigator<TResource extends Resource = Resource> {
 
       for (const entry of (this.bundle.entry || []).filter(Boolean) || []) {
         if (entry.resource) {
-          const resolvableResource = withResolvableProxy(entry.resource, this);
+          const resolvableResource = withResolvableProxy(
+            entry.resource,
+            this
+          ) as WithResolvableReferences<Resource>;
           if (entry.resource?.id?.length) {
             this._resourcesByRelativeReference.set(
               `${entry.resource.resourceType}/${entry.resource.id}`,
@@ -305,6 +320,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   }
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 function withResolvableProxy<T extends Resource>(
   resource: T,
   navigator: BundleNavigator<T>
@@ -319,8 +335,20 @@ function withResolvableProxy<T extends Resource>(
         return navigator.reference((target as Reference)?.reference);
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (prop === "revIncluded" && (target as Resource).resourceType) {
+        return (
+          select: (resource: any) => Reference | Reference[] | null | undefined
+        ) => navigator.revReference(select, target as any);
+      }
+
+      if (prop === "firstRevIncluded" && (target as Resource).resourceType) {
+        return (
+          select: (resource: any) => Reference | Reference[] | null | undefined
+        ) => navigator.firstRevReference(select, target as any);
+      }
+
       return withResolvableProxy(Reflect.get(target, prop) as any, navigator);
     },
-  }) as WithResolvableReferences<T>;
+  }) as unknown as WithResolvableReferences<T>;
 }
+/* eslint-enable */
