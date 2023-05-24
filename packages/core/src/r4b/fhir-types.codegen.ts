@@ -94831,11 +94831,11 @@ export interface VisionPrescription extends DomainResource {
 export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 
 /**
- * Create a new type from a {@link DomainResource} that contains additional guaranteed properties when the resource
+ * Create a new type from a {@link Resource} that contains additional guaranteed properties when the resource
  * is retrieved from the server.
  */
-export type Retrieved<TDomainResource extends DomainResource> = WithRequired<
-  TDomainResource,
+export type Retrieved<TResource extends Resource> = WithRequired<
+  TResource,
   "id"
 > & { meta: WithRequired<Meta, "versionId" | "lastUpdated"> };
 

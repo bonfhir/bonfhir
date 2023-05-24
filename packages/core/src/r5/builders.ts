@@ -1,6 +1,6 @@
 import {
-  AnyDomainResource,
   AnyDomainResourceType,
+  AnyResource,
   ExtractDomainResource,
   Reference,
   Retrieved,
@@ -30,12 +30,12 @@ export function build<TDomainResourceType extends AnyDomainResourceType>(
 /**
  * Returns the id of a resource, a reference, or an id itself.
  */
-export function id(value: Retrieved<AnyDomainResource>): string;
+export function id(value: Retrieved<AnyResource>): string;
 export function id(
-  value: Reference | Retrieved<AnyDomainResource> | string | null | undefined
+  value: Reference | Retrieved<AnyResource> | string | null | undefined
 ): string | undefined;
 export function id(
-  value: Reference | Retrieved<AnyDomainResource> | string | null | undefined
+  value: Reference | Retrieved<AnyResource> | string | null | undefined
 ): string | undefined {
   if (!value) {
     return undefined;
@@ -45,7 +45,7 @@ export function id(
     return value.trim().split("/").pop() || undefined;
   }
 
-  const valueAsDomainResource = value as Retrieved<AnyDomainResource>;
+  const valueAsDomainResource = value as Retrieved<AnyResource>;
   if (valueAsDomainResource.resourceType) {
     return valueAsDomainResource.id?.split("/").pop() || undefined;
   }

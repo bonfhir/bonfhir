@@ -1,8 +1,4 @@
 {
   "extends": "@bonfhir/typescript-config/tsconfig.json",
-  "include": ["src/**/*"],
-  "ts-node": {
-    "esm": true,
-    "swc": true
-  }
+  "include": ["src/**/*"]
 }
