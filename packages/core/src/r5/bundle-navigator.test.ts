@@ -3,7 +3,7 @@
 import patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
 import { bundleNavigator } from "./bundle-navigator";
 import {
-  AnyDomainResource,
+  AnyResource,
   Bundle,
   Organization,
   Patient,
@@ -53,11 +53,10 @@ describe("BundleNavigator", () => {
         reference(matches[0]!.resource as Retrieved<Organization>)
       );
       const search2 = navigator.reference(
-        reference(matches[1]!.resource as Retrieved<AnyDomainResource>)
-          .reference
+        reference(matches[1]!.resource as Retrieved<AnyResource>).reference
       );
       const include1 = navigator.reference(
-        reference(include!.resource as Retrieved<AnyDomainResource>).reference
+        reference(include!.resource as Retrieved<AnyResource>).reference
       );
 
       expect(search1).toMatchObject(matches[0]!.resource);

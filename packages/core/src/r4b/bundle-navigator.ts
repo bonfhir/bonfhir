@@ -26,7 +26,7 @@ import { asArray } from "./lang-utils";
  *       const provenanceOrganization = provenance?.agent[0]?.who?.included
  *    }
  */
-export function bundleNavigator<TResource extends AnyResource = AnyResource>(
+export function bundleNavigator<TResource extends Resource = Resource>(
   bundle: Bundle<TResource>
 ): BundleNavigator<TResource> {
   return new BundleNavigator<TResource>(bundle);
@@ -56,11 +56,11 @@ export type WithResolvableReferences<T> = {
     : WithResolvableReferences<T[K]>;
 };
 
-export class BundleNavigator<TResource extends AnyResource = AnyResource> {
+export class BundleNavigator<TResource extends Resource = Resource> {
   // Index of resources by their reference - e.g. Patient/982effa0-aa0f-4995-b380-c1621b1f0ffc -> Patient
   // Built by _ensurePrimaryIndices.
   private _resourcesByRelativeReference:
-    | Map<string, WithResolvableReferences<AnyResource>>
+    | Map<string, WithResolvableReferences<Resource>>
     | undefined;
 
   // Index of resources by their entry search mode - e.g. entry.search.mode = "search" or "include" - e.g.
@@ -69,7 +69,7 @@ export class BundleNavigator<TResource extends AnyResource = AnyResource> {
   private _resourcesBySearchMode:
     | Map<
         "match" | "include" | "outcome",
-        Array<WithResolvableReferences<AnyResource>>
+        Array<WithResolvableReferences<Resource>>
       >
     | undefined;
 
@@ -77,7 +77,7 @@ export class BundleNavigator<TResource extends AnyResource = AnyResource> {
   // "Organization" -> [Organization]
   // Built by _ensurePrimaryIndices.
   private _resourcesByType:
-    | Map<AnyResourceType, Array<WithResolvableReferences<AnyResource>>>
+    | Map<AnyResourceType, Array<WithResolvableReferences<Resource>>>
     | undefined;
 
   // Index resources first by a select function expression indicating a reverse reference
@@ -85,7 +85,7 @@ export class BundleNavigator<TResource extends AnyResource = AnyResource> {
   // `(res) => res.target` -> Patient/982effa0-aa0f-4995-b380-c1621b1f0ffc -> [Provenance]
   // Built by _ensureSelectIndex
   private _resourcesByRefSelectIndex:
-    | Map<string, Map<string, Array<WithResolvableReferences<AnyResource>>>>
+    | Map<string, Map<string, Array<WithResolvableReferences<Resource>>>>
     | undefined;
 
   /**
@@ -178,7 +178,7 @@ export class BundleNavigator<TResource extends AnyResource = AnyResource> {
    * This is useful to iterate over the primary resource for a search.
    */
   public searchMatch<
-    TResult extends AnyResource = TResource
+    TResult extends Resource = TResource
   >(): WithResolvableReferences<TResult>[] {
     this._ensurePrimaryIndices();
 
@@ -189,7 +189,7 @@ export class BundleNavigator<TResource extends AnyResource = AnyResource> {
   /**
    * Get the first entry in the bundle that has a search mode of match, or undefined if there isn't any.
    */
-  public firstSearchMatch<TResult extends AnyResource = TResource>():
+  public firstSearchMatch<TResult extends Resource = TResource>():
     | WithResolvableReferences<TResult>
     | undefined {
     this._ensurePrimaryIndices();
@@ -259,19 +259,12 @@ export class BundleNavigator<TResource extends AnyResource = AnyResource> {
           }
 
           if (entry.resource.resourceType?.length) {
-            if (
-              !this._resourcesByType.has(
-                entry.resource.resourceType as AnyResourceType
-              )
-            ) {
-              this._resourcesByType.set(
-                entry.resource.resourceType as AnyResourceType,
-                []
-              );
+            if (!this._resourcesByType.has(entry.resource.resourceType)) {
+              this._resourcesByType.set(entry.resource.resourceType, []);
             }
 
             this._resourcesByType
-              .get(entry.resource.resourceType as AnyResourceType)
+              .get(entry.resource.resourceType)
               ?.push(resolvableResource);
           }
         }
@@ -312,7 +305,7 @@ export class BundleNavigator<TResource extends AnyResource = AnyResource> {
   }
 }
 
-function withResolvableProxy<T extends AnyResource>(
+function withResolvableProxy<T extends Resource>(
   resource: T,
   navigator: BundleNavigator<T>
 ): WithResolvableReferences<T> {

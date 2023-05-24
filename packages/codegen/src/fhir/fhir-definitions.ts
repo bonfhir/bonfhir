@@ -181,7 +181,11 @@ export class StructureDefinition {
    * True if this is a domain resource
    */
   public get isDomainResource(): boolean {
-    return (this.base as any)?.name === "DomainResource";
+    return (
+      (this.base as any)?.name === "DomainResource" ||
+      this.base?.isDomainResource ||
+      false
+    );
   }
 
   /**

@@ -14183,7 +14183,7 @@ This element is labeled as a modifier because it
  */
 
 export interface Binary extends Resource {
-  readonly resourceType: string;
+  readonly resourceType: "Binary";
 
   /**
    * MimeType of the binary content represented as a standard MimeType (BCP 13).
@@ -15263,7 +15263,7 @@ Modifier extensions
 
 export interface Bundle<TTargetResource extends Resource = Resource>
   extends Resource {
-  readonly resourceType: string;
+  readonly resourceType: "Bundle";
 
   /**
    * An entry in a bundle resource - will either contain a resource or information
@@ -37549,8 +37549,6 @@ This element is labeled as a modifier because the
  */
 
 export interface DomainResource extends Resource {
-  readonly resourceType: string;
-
   /**
    * These resources do not have an independent existence apart from the resource
    * that contains them - they cannot be identified independently, and nor can they
@@ -71498,7 +71496,7 @@ Modifier extensions
  */
 
 export interface Parameters extends Resource {
-  readonly resourceType: string;
+  readonly resourceType: "Parameters";
 
   /**
    * A parameter passed to or received from the operation.
@@ -80175,7 +80173,7 @@ export interface ResearchSubject extends DomainResource {
  */
 
 export interface Resource {
-  readonly resourceType: string;
+  readonly resourceType: AnyResourceType;
 
   /**
    * The logical id of the resource, as used in the URL for the resource. Once

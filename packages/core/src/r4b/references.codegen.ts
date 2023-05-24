@@ -4,10 +4,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import {
-  AnyDomainResource,
+  AnyResource,
   CodeableConcept,
-  DomainResource,
   Reference,
+  Resource,
   Retrieved,
 } from "./fhir-types.codegen";
 import { Formatter, withValueFormatter } from "./formatters";
@@ -21,7 +21,7 @@ export interface ReferenceOptions {
 }
 
 export type ReferenceFunction = {
-  <TTargetResource extends AnyDomainResource = AnyDomainResource>(
+  <TTargetResource extends AnyResource = AnyResource>(
     resource: Retrieved<TTargetResource>,
     options?: ReferenceOptions | null | undefined
   ): Reference<TTargetResource>;
@@ -32,7 +32,7 @@ export type ReferenceFunction = {
    */
   decorators?: Record<
     string,
-    (resource: DomainResource, reference: Reference) => Reference
+    (resource: Resource, reference: Reference) => Reference
   >;
 };
 
@@ -40,7 +40,7 @@ export type ReferenceFunction = {
  * Build a reference from a resource.
  */
 let reference: ReferenceFunction = function <
-  TTargetResource extends AnyDomainResource = AnyDomainResource
+  TTargetResource extends AnyResource = AnyResource
 >(
   this: ReferenceFunction,
   resource: Retrieved<TTargetResource>,
@@ -139,7 +139,7 @@ reference = reference.bind(reference);
 
 export { reference };
 
-function decorate(resource: DomainResource, reference: Reference): Reference {
+function decorate(resource: Resource, reference: Reference): Reference {
   const name = (resource as any).name;
   const title: string = (resource as any).title;
   const code: CodeableConcept = (resource as any).code;
