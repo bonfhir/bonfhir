@@ -268,4 +268,28 @@ describe("BundleNavigator", () => {
       );
     });
   });
+
+  describe("resolvable proxies", () => {
+    it("resolve included when found", () => {
+      const navigator = bundleNavigator(patientsListBundle);
+      const provenance = navigator.type("Provenance")[0]!;
+      const patient = provenance.target[0]!.included;
+      expect(patient).toBeDefined();
+    });
+
+    it("does not resolve included when not found", () => {
+      const navigator = bundleNavigator(patientsListBundle);
+      const patient = navigator.firstSearchMatch()!;
+      const org = patient.managingOrganization?.included;
+      expect(org).toBeUndefined();
+    });
+
+    it("should still support JSON serialization", () => {
+      const navigator = bundleNavigator(patientsListBundle);
+      const provenance = navigator.type("Provenance")[0]!;
+      const serialized = JSON.stringify(provenance);
+      expect(typeof serialized).toBe("string");
+      expect(serialized).not.toContain("included");
+    });
+  });
 });
