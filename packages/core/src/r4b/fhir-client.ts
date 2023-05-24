@@ -114,18 +114,15 @@ export interface FhirClient {
    * This interaction searches a set of resources based on some filter criteria.
    * https://hl7.org/fhir/http.html#search
    */
-  search: <
-    TResourceType extends AnyDomainResourceType,
-    SecondaryResource extends AnyDomainResource = ExtractDomainResource<TResourceType>
-  >(
-    type?: TResourceType | null | undefined,
-    parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
+  search: <TDomainResourceType extends AnyDomainResourceType>(
+    type?: TDomainResourceType | null | undefined,
+    parameters?:
+      | FhirClientSearchParameters<TDomainResourceType>
+      | null
+      | undefined,
     options?: GeneralParameters | null | undefined
   ) => Promise<
-    BundleNavigator<
-      Retrieved<ExtractDomainResource<TResourceType>>,
-      SecondaryResource
-    >
+    BundleNavigator<Retrieved<ExtractDomainResource<TDomainResourceType>>>
   >;
 
   /**

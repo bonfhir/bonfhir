@@ -1,6 +1,8 @@
 import {
   AnyResource,
+  AnyResourceType,
   Bundle,
+  ExtractResource,
   Reference,
   Retrieved,
 } from "./fhir-types.codegen";
@@ -15,52 +17,36 @@ import { asArray } from "./lang-utils";
  *
  * @example
  *    // bundle from /Patient?_include=Patient:managingOrganization&_revinclude=Provenance:target&_include:iterate=Provenance:agent
- *    const navigator = bundleNavigator<Patient, Organization | Provenance>(bundle);
+ *    const navigator = bundleNavigator<Patient>(bundle);
  *    for(const patient of navigator.searchMatch()) {
  *       const managingOrganization = navigator.reference(patient?.managingOrganization);
  *       const provenance = navigator.firstRevReference<Provenance>((provenance) => provenance.target, patient);
  *       const provenanceOrganization = navigator.reference(provenance?.agent[0]?.who);
  *    }
  */
-export function bundleNavigator<
-  PrimaryResourceType extends AnyResource = AnyResource,
-  SecondaryResourceType extends AnyResource = PrimaryResourceType
->(
-  bundle: Bundle<PrimaryResourceType | SecondaryResourceType>
-): BundleNavigator<PrimaryResourceType, SecondaryResourceType> {
-  return new BundleNavigator<PrimaryResourceType, SecondaryResourceType>(
-    bundle
-  );
+export function bundleNavigator<TResource extends AnyResource = AnyResource>(
+  bundle: Bundle<TResource>
+): BundleNavigator<TResource> {
+  return new BundleNavigator<TResource>(bundle);
 }
 
-export class BundleNavigator<
-  PrimaryResourceType extends AnyResource = AnyResource,
-  SecondaryResourceType extends AnyResource = PrimaryResourceType
-> {
+export class BundleNavigator<TResource extends AnyResource = AnyResource> {
   // Index of resources by their reference - e.g. Patient/982effa0-aa0f-4995-b380-c1621b1f0ffc -> Patient
   // Built by _ensurePrimaryIndices.
-  private _resourcesByRelativeReference:
-    | Map<string, PrimaryResourceType | SecondaryResourceType>
-    | undefined;
+  private _resourcesByRelativeReference: Map<string, AnyResource> | undefined;
 
   // Index of resources by their entry search mode - e.g. entry.search.mode = "search" or "include" - e.g.
   // "search" -> [Patient]
   // Built by _ensurePrimaryIndices.
   private _resourcesBySearchMode:
-    | Map<
-        "match" | "include" | "outcome",
-        Array<PrimaryResourceType | SecondaryResourceType>
-      >
+    | Map<"match" | "include" | "outcome", Array<AnyResource>>
     | undefined;
 
   // Index of resources by their type - e.g. "Patient" or "Organization" - e.g.
   // "Organization" -> [Organization]
   // Built by _ensurePrimaryIndices.
   private _resourcesByType:
-    | Map<
-        (PrimaryResourceType | SecondaryResourceType)["resourceType"],
-        Array<PrimaryResourceType | SecondaryResourceType>
-      >
+    | Map<AnyResourceType, Array<AnyResource>>
     | undefined;
 
   // Index resources first by a select function expression indicating a reverse reference
@@ -68,43 +54,24 @@ export class BundleNavigator<
   // `(res) => res.target` -> Patient/982effa0-aa0f-4995-b380-c1621b1f0ffc -> [Provenance]
   // Built by _ensureSelectIndex
   private _resourcesByRefSelectIndex:
-    | Map<
-        string,
-        Map<string, Array<PrimaryResourceType | SecondaryResourceType>>
-      >
+    | Map<string, Map<string, Array<AnyResource>>>
     | undefined;
 
   /**
    * Initialize a new Bundle navigator, using an existing bundle.
    * Indexing is lazy and performed on-demand, so initialization is cheap.
    */
-  constructor(
-    public bundle: Bundle<PrimaryResourceType | SecondaryResourceType>
-  ) {}
+  constructor(public bundle: Bundle<TResource>) {}
 
   /**
    * Return a resource identifies by its unique reference, or undefined if not found.
    * If there are duplicates in the bundle, will return one of them.
    *
-   * @param reference: the relative resource reference - e.g. Patient/982effa0-aa0f-4995-b380-c1621b1f0ffc
+   * @param reference: the relative resource reference as a string or a Reference<> - e.g. Patient/982effa0-aa0f-4995-b380-c1621b1f0ffc
    */
-  public reference<
-    MatchType extends PrimaryResourceType | SecondaryResourceType
-  >(reference: Reference<MatchType>): MatchType | undefined;
-  public reference<
-    MatchType extends PrimaryResourceType | SecondaryResourceType =
-      | PrimaryResourceType
-      | SecondaryResourceType
-  >(
-    reference: string | Reference<MatchType> | null | undefined
-  ): MatchType | undefined;
-  public reference<
-    MatchType extends PrimaryResourceType | SecondaryResourceType =
-      | PrimaryResourceType
-      | SecondaryResourceType
-  >(
-    reference: string | Reference<MatchType> | null | undefined
-  ): MatchType | undefined {
+  public reference<TReferencedType extends AnyResource>(
+    reference: string | Reference<TReferencedType> | null | undefined
+  ): TReferencedType | undefined {
     const finalReference =
       typeof reference === "string" ? reference : reference?.reference;
     if (!finalReference?.length) {
@@ -114,7 +81,7 @@ export class BundleNavigator<
     this._ensurePrimaryIndices();
 
     return (this._resourcesByRelativeReference?.get(finalReference) ||
-      undefined) as MatchType | undefined;
+      undefined) as TReferencedType | undefined;
   }
 
   /**
@@ -128,14 +95,12 @@ export class BundleNavigator<
    *
    * @see http://hl7.org/fhir/fhirpath.html
    */
-  public revReference<
-    MatchType extends PrimaryResourceType | SecondaryResourceType =
-      | PrimaryResourceType
-      | SecondaryResourceType
-  >(
-    select: (resource: MatchType) => Reference | Reference[] | null | undefined,
+  public revReference<TReferencedType extends AnyResource>(
+    select: (
+      resource: TReferencedType
+    ) => Reference | Reference[] | null | undefined,
     reference: Retrieved<AnyResource> | string | null | undefined
-  ): MatchType[] {
+  ): TReferencedType[] {
     if (!reference) {
       return [];
     }
@@ -153,7 +118,7 @@ export class BundleNavigator<
 
     return (this._resourcesByRefSelectIndex
       ?.get(select.toString())
-      ?.get(finalReference) || []) as MatchType[];
+      ?.get(finalReference) || []) as TReferencedType[];
   }
 
   /**
@@ -167,40 +132,36 @@ export class BundleNavigator<
    *
    * @see http://hl7.org/fhir/fhirpath.html
    */
-  public firstRevReference<
-    MatchType extends PrimaryResourceType | SecondaryResourceType =
-      | PrimaryResourceType
-      | SecondaryResourceType
-  >(
-    select: (resource: MatchType) => Reference | Reference[] | null | undefined,
+  public firstRevReference<TReferencedType extends AnyResource>(
+    select: (
+      resource: TReferencedType
+    ) => Reference | Reference[] | null | undefined,
     reference: Retrieved<AnyResource> | string | null | undefined
-  ): MatchType | undefined {
-    return this.revReference<MatchType>(select, reference)?.[0];
+  ): TReferencedType | undefined {
+    return this.revReference<TReferencedType>(select, reference)?.[0];
   }
 
   /**
    * Get all the resources that have a search mode of match (e.g. the primary resource or the bundle).
    * This is useful to iterate over the primary resource for a search.
    */
-  public searchMatch<
-    MatchType extends PrimaryResourceType = PrimaryResourceType
-  >(): MatchType[] {
+  public searchMatch<TResult extends AnyResource = TResource>(): TResult[] {
     this._ensurePrimaryIndices();
 
     return (this._resourcesBySearchMode?.get("match") ||
-      []) as unknown as MatchType[];
+      []) as unknown as TResult[];
   }
 
   /**
    * Get the first entry in the bundle that has a search mode of match, or undefined if there isn't any.
    */
-  public firstSearchMatch<
-    MatchType extends PrimaryResourceType = PrimaryResourceType
-  >(): MatchType | undefined {
+  public firstSearchMatch<TResult extends AnyResource = TResource>():
+    | TResult
+    | undefined {
     this._ensurePrimaryIndices();
 
     return this._resourcesBySearchMode?.get("match")?.[0] as unknown as
-      | MatchType
+      | TResult
       | undefined;
   }
 
@@ -208,31 +169,18 @@ export class BundleNavigator<
    * Get all the resources of a specific type.
    */
   public type<
-    MatchResourceType extends (
-      | PrimaryResourceType
-      | SecondaryResourceType
-    )["resourceType"] = (
-      | PrimaryResourceType
-      | SecondaryResourceType
-    )["resourceType"]
-  >(
-    type: MatchResourceType
-  ): Extract<
-    PrimaryResourceType | SecondaryResourceType,
-    { resourceType: MatchResourceType }
-  >[] {
+    TResourceType extends AnyResourceType = TResource["resourceType"]
+  >(type: TResourceType): ExtractResource<TResourceType>[] {
     this._ensurePrimaryIndices();
 
-    return (this._resourcesByType?.get(type) || []) as Extract<
-      PrimaryResourceType | SecondaryResourceType,
-      { resourceType: MatchResourceType }
-    >[];
+    return (this._resourcesByType?.get(type) ||
+      []) as ExtractResource<TResourceType>[];
   }
 
   /**
-   * Return all unique resources across bundles.
+   * Return all unique resources in the bundle.
    **/
-  public get resources(): Array<PrimaryResourceType | SecondaryResourceType> {
+  public get resources(): Array<AnyResource> {
     this._ensurePrimaryIndices();
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return [...this._resourcesByRelativeReference!.values()];

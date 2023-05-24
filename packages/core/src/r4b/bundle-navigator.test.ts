@@ -18,9 +18,7 @@ describe("BundleNavigator", () => {
     type: "searchset",
   };
 
-  const patientsListBundle = patientsListFixture as Bundle<
-    Patient | Provenance | Organization
-  >;
+  const patientsListBundle = patientsListFixture as Bundle<Patient>;
 
   describe("reference", () => {
     it("returns undefined when not found", () => {
@@ -34,9 +32,7 @@ describe("BundleNavigator", () => {
     it.each([undefined, undefined, ""])(
       "returns undefined when reference is",
       (value) => {
-        const navigator = bundleNavigator<Patient, Provenance | Organization>(
-          patientsListBundle
-        );
+        const navigator = bundleNavigator(patientsListBundle);
 
         const result = navigator.reference(value);
 
@@ -45,9 +41,7 @@ describe("BundleNavigator", () => {
     );
 
     it("returns resources", () => {
-      const navigator = bundleNavigator<Patient, Provenance | Organization>(
-        patientsListBundle
-      );
+      const navigator = bundleNavigator(patientsListBundle);
       const matches = patientsListFixture.entry.filter(
         (x) => x.search.mode == "match"
       );
@@ -72,9 +66,7 @@ describe("BundleNavigator", () => {
     });
 
     it("returns from bundle references", () => {
-      const navigator = bundleNavigator<Patient, Provenance | Organization>(
-        patientsListBundle
-      );
+      const navigator = bundleNavigator(patientsListBundle);
 
       const provenance = navigator.type("Provenance")[0];
       const patientReference = provenance?.target[0]?.reference;
@@ -87,9 +79,7 @@ describe("BundleNavigator", () => {
 
   describe("revReference", () => {
     it("returns a revinclude reference", () => {
-      const navigator = bundleNavigator<Patient, Provenance | Organization>(
-        patientsListBundle
-      );
+      const navigator = bundleNavigator(patientsListBundle);
       const patientReference = "Patient/23af4168-fc91-4b4d-a498-4485ce5ebc6f";
       const expectedProvenance = patientsListFixture.entry.find(
         (x) =>
@@ -123,9 +113,7 @@ describe("BundleNavigator", () => {
     it.each([undefined, undefined, ""])(
       "returns an empty array when reference is",
       (patientReference) => {
-        const navigator = bundleNavigator<Patient, Provenance | Organization>(
-          patientsListBundle
-        );
+        const navigator = bundleNavigator(patientsListBundle);
 
         const result = navigator.revReference<Provenance>(
           (provenance) => provenance.target,
@@ -139,9 +127,7 @@ describe("BundleNavigator", () => {
 
   describe("firstRevReference", () => {
     it("returns a revinclude reference", () => {
-      const navigator = bundleNavigator<Patient, Provenance | Organization>(
-        patientsListBundle
-      );
+      const navigator = bundleNavigator(patientsListBundle);
       const patientReference = "Patient/23af4168-fc91-4b4d-a498-4485ce5ebc6f";
       const expectedProvenance = patientsListFixture.entry.find(
         (x) =>
@@ -175,9 +161,7 @@ describe("BundleNavigator", () => {
     it.each([undefined, undefined, ""])(
       "returns undefined when reference is",
       (patientReference) => {
-        const navigator = bundleNavigator<Patient, Provenance | Organization>(
-          patientsListBundle
-        );
+        const navigator = bundleNavigator(patientsListBundle);
 
         const result = navigator.firstRevReference<Provenance>(
           (provenance) => provenance.target,
@@ -199,9 +183,7 @@ describe("BundleNavigator", () => {
     });
 
     it("returns matches", () => {
-      const navigator = bundleNavigator<Patient, Provenance | Organization>(
-        patientsListBundle
-      );
+      const navigator = bundleNavigator(patientsListBundle);
 
       const matches = navigator.searchMatch();
 
@@ -227,9 +209,7 @@ describe("BundleNavigator", () => {
     });
 
     it("returns firstSearchMatch consistently", () => {
-      const navigator = bundleNavigator<Patient, Provenance | Organization>(
-        patientsListBundle
-      );
+      const navigator = bundleNavigator(patientsListBundle);
 
       const firstSearchMatch = navigator.firstSearchMatch();
       const firstSearchMatchSecondTime = navigator.firstSearchMatch();
@@ -254,9 +234,7 @@ describe("BundleNavigator", () => {
     });
 
     it("returns types appropriately", () => {
-      const navigator = bundleNavigator<Patient, Provenance | Organization>(
-        patientsListBundle
-      );
+      const navigator = bundleNavigator(patientsListBundle);
 
       const patients = navigator.type("Patient");
       const provenance = navigator.type("Provenance");
