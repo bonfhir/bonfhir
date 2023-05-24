@@ -1,8 +1,4 @@
-import {
-  AnyDomainResourceType,
-  AnyResourceType,
-  ExtractResource,
-} from "./fhir-types.codegen";
+import { AnyResourceType, ExtractResource } from "./fhir-types.codegen";
 
 /**
  * The builder for FHIR Search URLs.
@@ -594,11 +590,11 @@ export class FhirSearchBuilder {
    *
    * @see https://hl7.org/fhir/search.html#include
    */
-  _include<TDomainResourceType extends AnyDomainResourceType>(
-    sourceResource: TDomainResourceType,
-    searchParameter: keyof ExtractResource<TDomainResourceType>,
+  _include<TResourceType extends AnyResourceType>(
+    sourceResource: TResourceType,
+    searchParameter: keyof ExtractResource<TResourceType>,
     options?: {
-      targetResourceType?: TDomainResourceType | null | undefined;
+      targetResourceType?: TResourceType | null | undefined;
       iterate?: boolean | null | undefined;
     }
   ): this {
@@ -615,11 +611,11 @@ export class FhirSearchBuilder {
    *
    * @see https://hl7.org/fhir/search.html#revinclude
    */
-  _revinclude<TDomainResourceType extends AnyDomainResourceType>(
-    sourceResource: TDomainResourceType,
-    searchParameter: keyof ExtractResource<TDomainResourceType>,
+  _revinclude<TResourceType extends AnyResourceType>(
+    sourceResource: TResourceType,
+    searchParameter: keyof ExtractResource<TResourceType>,
     options?: {
-      targetResourceType?: TDomainResourceType | null | undefined;
+      targetResourceType?: TResourceType | null | undefined;
       iterate?: boolean | null | undefined;
     }
   ): this {

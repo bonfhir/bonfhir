@@ -259,12 +259,19 @@ export class BundleNavigator<TResource extends AnyResource = AnyResource> {
           }
 
           if (entry.resource.resourceType?.length) {
-            if (!this._resourcesByType.has(entry.resource.resourceType)) {
-              this._resourcesByType.set(entry.resource.resourceType, []);
+            if (
+              !this._resourcesByType.has(
+                entry.resource.resourceType as AnyResourceType
+              )
+            ) {
+              this._resourcesByType.set(
+                entry.resource.resourceType as AnyResourceType,
+                []
+              );
             }
 
             this._resourcesByType
-              .get(entry.resource.resourceType)
+              .get(entry.resource.resourceType as AnyResourceType)
               ?.push(resolvableResource);
           }
         }
