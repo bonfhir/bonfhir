@@ -17,9 +17,27 @@ import {
   Bundle,
   CapabilityStatement,
   ExtractResource,
+  OperationOutcome,
   ResourceType,
   Retrieved,
 } from "./fhir-types.codegen";
+
+/**
+ * Allows to set the `Authorization` header to a static value.
+ */
+export type FetchFhirClientStaticAuthHeaderOptions = string;
+
+/**
+ * This function is invoked before each fetch operation to return the value for the
+ * `Authorization` header.
+ */
+export type FetchFhirClientFunctionAuthHeaderOptions = (
+  ...args: Parameters<typeof fetch>
+) => Promise<string>;
+
+export type FetchFhirClientAuthOptions =
+  | FetchFhirClientStaticAuthHeaderOptions
+  | FetchFhirClientFunctionAuthHeaderOptions;
 
 export interface FetchFhirClientOptions {
   baseUrl: string | URL;
@@ -37,6 +55,11 @@ export interface FetchFhirClientOptions {
    * The fetch implementation to use. Defaults to the global fetch.
    */
   fetch?: typeof fetch | null | undefined;
+
+  /**
+   * Some options to setup authentication.
+   */
+  auth?: FetchFhirClientAuthOptions | null | undefined;
 }
 
 export class FetchFhirClient implements FhirClient {
@@ -46,7 +69,7 @@ export class FetchFhirClient implements FhirClient {
     type: TResourceType,
     id: string,
     options?: GeneralParameters | null | undefined
-  ): Promise<Retrieved<ExtractResource<TResourceType>> | undefined> {
+  ): Promise<Retrieved<ExtractResource<TResourceType>>> {
     const queryString = new URLSearchParams(
       options as Record<string, string>
     ).toString();
@@ -60,7 +83,7 @@ export class FetchFhirClient implements FhirClient {
     id: string,
     vid: string,
     options?: GeneralParameters | null | undefined
-  ): Promise<Retrieved<ExtractResource<TResourceType>> | undefined> {
+  ): Promise<Retrieved<ExtractResource<TResourceType>>> {
     const queryString = new URLSearchParams(
       options as Record<string, string>
     ).toString();
@@ -74,14 +97,22 @@ export class FetchFhirClient implements FhirClient {
     options?:
       | (GeneralParameters &
           ConcurrencyParameters &
-          ConditionalSearchParameters)
+          ConditionalSearchParameters<TResource["resourceType"]>)
       | null
       | undefined
   ): Promise<Retrieved<TResource>> {
-    const { preventConcurrentUpdates, ...remainingOptions } = options ?? {};
-    const queryString = new URLSearchParams(
+    const { preventConcurrentUpdates, search, ...remainingOptions } =
+      options ?? {};
+    const searchQueryString = normalizeSearchParameters(
+      body.resourceType,
+      search
+    );
+    const optionsQueryString = new URLSearchParams(
       remainingOptions as Record<string, string>
     ).toString();
+    const queryString = [searchQueryString, optionsQueryString]
+      .filter(Boolean)
+      .join("&");
 
     const headers: Record<string, string> = {};
     if (
@@ -91,14 +122,16 @@ export class FetchFhirClient implements FhirClient {
       headers["If-Match"] = `W/"${body.meta.versionId}"`;
     }
 
-    return (await this.fetch<Retrieved<TResource>>(
-      `${body.resourceType}/${body.id}${queryString ? `?${queryString}` : ""}`,
+    return this.fetch<Retrieved<TResource>>(
+      `${[body.resourceType, body.id].filter(Boolean).join("/")}${
+        queryString ? `?${queryString}` : ""
+      }`,
       {
         method: "PUT",
         body: JSON.stringify(body),
         headers,
       }
-    ))!;
+    );
   }
 
   public async patch<TResourceType extends AnyResourceType>(
@@ -109,15 +142,19 @@ export class FetchFhirClient implements FhirClient {
       | (GeneralParameters &
           ConcurrencyParameters & {
             versionId?: string | null | undefined;
-          } & ConditionalSearchParameters)
+          } & ConditionalSearchParameters<TResourceType>)
       | null
       | undefined
   ): Promise<Retrieved<ExtractResource<TResourceType>>> {
-    const { preventConcurrentUpdates, versionId, ...remainingOptions } =
+    const { preventConcurrentUpdates, versionId, search, ...remainingOptions } =
       options ?? {};
-    const queryString = new URLSearchParams(
+    const searchQueryString = normalizeSearchParameters(type, search);
+    const optionsQueryString = new URLSearchParams(
       remainingOptions as Record<string, string>
     ).toString();
+    const queryString = [searchQueryString, optionsQueryString]
+      .filter(Boolean)
+      .join("&");
 
     const headers: Record<string, string> = {};
     if (
@@ -127,50 +164,35 @@ export class FetchFhirClient implements FhirClient {
       headers["If-Match"] = `W/"${versionId}"`;
     }
 
-    return (await this.fetch<
-      Retrieved<Retrieved<ExtractResource<TResourceType>>>
-    >(`${type}/${id}${queryString ? `?${queryString}` : ""}`, {
-      method: "PATCH",
-      body: JSON.stringify(normalizePatchBody(type, body)),
-      headers,
-    }))!;
+    return this.fetch<Retrieved<Retrieved<ExtractResource<TResourceType>>>>(
+      `${type}/${id}${queryString ? `?${queryString}` : ""}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(normalizePatchBody(type, body)),
+        headers,
+      }
+    );
   }
 
   public delete(
     resource: Retrieved<AnyResource>,
-    options?:
-      | (GeneralParameters & ConditionalSearchParameters)
-      | null
-      | undefined
+    options?: GeneralParameters | null | undefined
   ): Promise<void>;
   public delete(
     type: AnyResourceType,
     id: string,
-    options?:
-      | (GeneralParameters & ConditionalSearchParameters)
-      | null
-      | undefined
+    options?: GeneralParameters | null | undefined
   ): Promise<void>;
   public async delete(
     type: AnyResourceType | Retrieved<AnyResource>,
-    id?:
-      | string
-      | null
-      | undefined
-      | (GeneralParameters & ConditionalSearchParameters),
-    options?:
-      | (GeneralParameters & ConditionalSearchParameters)
-      | null
-      | undefined
+    id?: string | null | undefined | GeneralParameters,
+    options?: GeneralParameters | null | undefined
   ): Promise<void> {
     if (typeof type !== "string") {
       return this.delete(
         type.resourceType,
         type.id,
-        id as
-          | null
-          | undefined
-          | (GeneralParameters & ConditionalSearchParameters)
+        id as null | undefined | GeneralParameters
       );
     }
 
@@ -182,40 +204,66 @@ export class FetchFhirClient implements FhirClient {
     });
   }
 
-  public async history<TResourceType extends AnyResourceType>(
+  history<TResource extends AnyResource>(
+    resource: Retrieved<TResource>,
+    options?: (GeneralParameters & HistoryParameters) | null | undefined
+  ): Promise<Bundle<Retrieved<TResource>>>;
+  history<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     id?: string | null | undefined,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
+  ): Promise<Bundle<Retrieved<ExtractResource<TResourceType>>>>;
+  public async history<TResourceType extends AnyResourceType>(
+    type?: TResourceType | Retrieved<AnyResource> | null | undefined,
+    id?: string | (GeneralParameters & HistoryParameters) | null | undefined,
+    options?: (GeneralParameters & HistoryParameters) | null | undefined
   ): Promise<Bundle<Retrieved<ExtractResource<TResourceType>>>> {
+    if (type && typeof type !== "string") {
+      return (await this.history(
+        type.resourceType,
+        type.id,
+        id as (GeneralParameters & HistoryParameters) | null | undefined
+      )) as Bundle<Retrieved<ExtractResource<TResourceType>>>;
+    }
+
     const queryString = new URLSearchParams(
       options as Record<string, string>
     ).toString();
 
-    return (await this.fetch<Bundle<Retrieved<ExtractResource<TResourceType>>>>(
+    return this.fetch<Bundle<Retrieved<ExtractResource<TResourceType>>>>(
       `${[type, id, "_history"].filter(Boolean).join("/")}${
         queryString ? `?${queryString}` : ""
       }`
-    ))!;
+    );
   }
 
   public async create<TResource extends AnyResource>(
     body: TResource,
     options?:
-      | (GeneralParameters & ConditionalSearchParameters)
+      | (GeneralParameters &
+          ConditionalSearchParameters<TResource["resourceType"]>)
       | null
       | undefined
   ): Promise<Retrieved<TResource>> {
-    const queryString = new URLSearchParams(
-      options as Record<string, string>
+    const { search, ...remainingOptions } = options ?? {};
+    const searchQueryString = normalizeSearchParameters(
+      body.resourceType,
+      search
+    );
+    const optionsQueryString = new URLSearchParams(
+      remainingOptions as Record<string, string>
     ).toString();
+    const queryString = [searchQueryString, optionsQueryString]
+      .filter(Boolean)
+      .join("&");
 
-    return (await this.fetch<Retrieved<TResource>>(
+    return this.fetch<Retrieved<TResource>>(
       `${body.resourceType}${queryString ? `?${queryString}` : ""}`,
       {
         method: "POST",
         body: JSON.stringify(body),
       }
-    ))!;
+    );
   }
 
   public async search<TResourceType extends AnyResourceType>(
@@ -227,10 +275,12 @@ export class FetchFhirClient implements FhirClient {
     const optionsQueryString = new URLSearchParams(
       options as Record<string, string>
     ).toString();
-    const queryString = [searchQueryString, optionsQueryString].join("&");
-    const response = (await this.fetch<
+    const queryString = [searchQueryString, optionsQueryString]
+      .filter(Boolean)
+      .join("&");
+    const response = await this.fetch<
       Bundle<Retrieved<ExtractResource<TResourceType>>>
-    >(`${type}${queryString ? `?${queryString}` : ""}`))!;
+    >(`${type || ""}${queryString ? `?${queryString}` : ""}`);
 
     return bundleNavigator(response);
   }
@@ -238,9 +288,9 @@ export class FetchFhirClient implements FhirClient {
   public async capabilities(
     mode?: "full" | "normative" | "terminology" | null | undefined
   ): Promise<CapabilityStatement> {
-    return (await this.fetch<CapabilityStatement>(
+    return this.fetch<CapabilityStatement>(
       `metadata${mode ? `?mode=${mode}` : ""}`
-    ))!;
+    );
   }
 
   public async batch(
@@ -251,10 +301,10 @@ export class FetchFhirClient implements FhirClient {
       options as Record<string, string>
     ).toString();
 
-    return (await this.fetch<Bundle>(queryString ? `?${queryString}` : "", {
+    return this.fetch<Bundle>(queryString ? `?${queryString}` : "", {
       method: "POST",
       body: JSON.stringify(body),
-    }))!;
+    });
   }
 
   public async execute<TOperationResult, TOperationParameters = unknown>(
@@ -268,21 +318,22 @@ export class FetchFhirClient implements FhirClient {
       | null
       | undefined
   ): Promise<TOperationResult> {
-    return (await this.fetch<TOperationResult>(
-      `${[options?.type, options?.id].filter(Boolean).join("/")}${operation}`,
+    const prefix = [options?.type, options?.id].filter(Boolean).join("/");
+    return this.fetch<TOperationResult>(
+      `${prefix ? `${prefix}/` : ""}${operation}`,
       {
-        method: options?.parameters ? "POST" : "GET",
+        method: "POST",
         body: options?.parameters
           ? JSON.stringify(options?.parameters)
           : undefined,
       }
-    ))!;
+    );
   }
 
   public async fetch<T = unknown>(
     resource: string | URL,
     init?: Parameters<typeof fetch>[1]
-  ): Promise<T | undefined> {
+  ): Promise<T> {
     let targetUrl = typeof resource === "string" ? resource : resource.href;
 
     if (
@@ -296,7 +347,7 @@ export class FetchFhirClient implements FhirClient {
       targetUrl = new URL(targetUrl, this.options.baseUrl).toString();
     }
 
-    const response = await (this.options.fetch || fetch)(targetUrl, {
+    const finalInit = {
       ...init,
       headers: {
         Accept: `application/fhir+json${
@@ -306,17 +357,54 @@ export class FetchFhirClient implements FhirClient {
         }`,
         "Content-Type": "application/fhir+json",
         ...init?.headers,
-      },
-    });
+      } as Record<string, string>,
+    };
 
-    if (response.status === 404) {
-      return undefined;
+    if (!finalInit.headers.Authorization && this.options.auth) {
+      finalInit.headers["Authorization"] =
+        typeof this.options.auth === "function"
+          ? await this.options.auth(targetUrl, finalInit)
+          : this.options.auth;
     }
+
+    const response = await (this.options.fetch || fetch)(targetUrl, finalInit);
 
     if (!response.ok) {
-      throw new Error(await response.text());
+      // We clone the response to allow the use code to re-read the body if need be.
+      const clonedResponse = response.clone();
+      let operationOutcome: OperationOutcome | undefined;
+      try {
+        const tryOperationOutcome = (await response.json()) as OperationOutcome;
+        if (tryOperationOutcome?.resourceType === "OperationOutcome") {
+          operationOutcome = tryOperationOutcome;
+        }
+      } catch {
+        // We ignore the deserialization error and return the original error.
+      }
+      throw new FetchFhirClientError(clonedResponse, operationOutcome);
     }
 
-    return (await response.json()) as T;
+    const responseText = await response.text();
+    return responseText ? JSON.parse(responseText) : undefined;
+  }
+}
+
+/**
+ * Custom error raised by a FhirClient fetch operations.
+ */
+export class FetchFhirClientError extends Error {
+  constructor(
+    public response: Response,
+    /** The OperationOutcome response, if it could be read / deserialized */
+    public operationOutcome: OperationOutcome | undefined
+  ) {
+    super();
+  }
+
+  /**
+   * The HTTP status code of the response.
+   */
+  public get status(): number {
+    return this.response.status;
   }
 }

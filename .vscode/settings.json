@@ -43,7 +43,8 @@
     "Formattable",
     "listr",
     "loglevel",
-    "onwarn"
+    "onwarn",
+    "vread"
   ],
   "eslint.workingDirectories": ["apps/*", "packages/*"],
   "explorer.excludeGitIgnore": true,

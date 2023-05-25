@@ -27,7 +27,7 @@ export interface FhirClient {
     type: TResourceType,
     id: string,
     options?: GeneralParameters | null | undefined
-  ): Promise<Retrieved<ExtractResource<TResourceType>> | undefined>;
+  ): Promise<Retrieved<ExtractResource<TResourceType>>>;
 
   /**
    * The vread interaction performs a version specific read of the resource.
@@ -38,7 +38,7 @@ export interface FhirClient {
     id: string,
     vid: string,
     options?: GeneralParameters | null | undefined
-  ): Promise<Retrieved<ExtractResource<TResourceType>> | undefined>;
+  ): Promise<Retrieved<ExtractResource<TResourceType>>>;
 
   /**
    * The update interaction creates a new current version for an existing resource or creates an initial version
@@ -50,7 +50,7 @@ export interface FhirClient {
     options?:
       | (GeneralParameters &
           ConcurrencyParameters &
-          ConditionalSearchParameters)
+          ConditionalSearchParameters<TResource["resourceType"]>)
       | null
       | undefined
   ): Promise<Retrieved<TResource>>;
@@ -67,7 +67,7 @@ export interface FhirClient {
       | (GeneralParameters &
           ConcurrencyParameters & {
             versionId?: string | null | undefined;
-          } & ConditionalSearchParameters)
+          } & ConditionalSearchParameters<TResourceType>)
       | null
       | undefined
   ): Promise<Retrieved<ExtractResource<TResourceType>>>;
@@ -78,24 +78,22 @@ export interface FhirClient {
    */
   delete(
     resource: Retrieved<AnyResource>,
-    options?:
-      | (GeneralParameters & ConditionalSearchParameters)
-      | null
-      | undefined
+    options?: GeneralParameters | null | undefined
   ): Promise<void>;
   delete(
     type: AnyResourceType,
     id: string,
-    options?:
-      | (GeneralParameters & ConditionalSearchParameters)
-      | null
-      | undefined
+    options?: GeneralParameters | null | undefined
   ): Promise<void>;
 
   /**
    * The history interaction retrieves the history of either a particular resource, all resources of a given type, or all resources supported by the system.
    * https://hl7.org/fhir/http.html#history
    */
+  history<TResource extends AnyResource>(
+    resource: Retrieved<TResource>,
+    options?: (GeneralParameters & HistoryParameters) | null | undefined
+  ): Promise<Bundle<Retrieved<TResource>>>;
   history<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     id?: string | null | undefined,
@@ -109,7 +107,8 @@ export interface FhirClient {
   create<TResource extends AnyResource>(
     body: TResource,
     options?:
-      | (GeneralParameters & ConditionalSearchParameters)
+      | (GeneralParameters &
+          ConditionalSearchParameters<TResource["resourceType"]>)
       | null
       | undefined
   ): Promise<Retrieved<TResource>>;
@@ -164,7 +163,7 @@ export interface FhirClient {
   fetch<T = unknown>(
     resource: string | URL,
     init?: Parameters<typeof fetch>[1]
-  ): Promise<T | undefined>;
+  ): Promise<T>;
 }
 
 export type FhirClientPatchBody<TResourceType extends AnyResourceType> =
@@ -259,7 +258,11 @@ export interface ConcurrencyParameters {
 /**
  * https://hl7.org/fhir/http.html#cond-update
  */
-export type ConditionalSearchParameters = Record<string, string>;
+export interface ConditionalSearchParameters<
+  TResourceType extends AnyResourceType
+> {
+  search?: FhirClientSearchParameters<TResourceType> | null | undefined;
+}
 
 /**
  * https://hl7.org/fhir/http.html#history
