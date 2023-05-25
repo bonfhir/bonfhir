@@ -9,8 +9,8 @@ import {
   Retrieved,
 } from "./fhir-types.codegen";
 import { JSONPatchBody } from "./patch";
-import { ExtractPatchBuilder } from "./patch.codegen";
-import { ExtractSearchBuilder } from "./search.codegen";
+import { ExtractPatchBuilder, fhirJSONPatch } from "./patch.codegen";
+import { ExtractSearchBuilder, fhirSearch } from "./search.codegen";
 
 /**
  * Abstract FHIR Restful Client that can be used as a dependency.
@@ -23,29 +23,29 @@ export interface FhirClient {
    * The read interaction accesses the current contents of a resource.
    * https://hl7.org/fhir/http.html#read
    */
-  read: <TResourceType extends AnyResourceType>(
+  read<TResourceType extends AnyResourceType>(
     type: TResourceType,
     id: string,
     options?: GeneralParameters | null | undefined
-  ) => Promise<Retrieved<ExtractResource<TResourceType>> | undefined>;
+  ): Promise<Retrieved<ExtractResource<TResourceType>> | undefined>;
 
   /**
    * The vread interaction performs a version specific read of the resource.
    * https://hl7.org/fhir/http.html#vread
    */
-  vread: <TResourceType extends AnyResourceType>(
+  vread<TResourceType extends AnyResourceType>(
     type: TResourceType,
     id: string,
     vid: string,
     options?: GeneralParameters | null | undefined
-  ) => Promise<Retrieved<ExtractResource<TResourceType>> | undefined>;
+  ): Promise<Retrieved<ExtractResource<TResourceType>> | undefined>;
 
   /**
    * The update interaction creates a new current version for an existing resource or creates an initial version
    * if no resource already exists for the given id.
    * https://hl7.org/fhir/http.html#update
    */
-  update: <TResource extends AnyResource>(
+  update<TResource extends AnyResource>(
     body: TResource,
     options?:
       | (GeneralParameters &
@@ -53,92 +53,100 @@ export interface FhirClient {
           ConditionalSearchParameters)
       | null
       | undefined
-  ) => Promise<Retrieved<TResource>>;
+  ): Promise<Retrieved<TResource>>;
 
   /**
    * As an alternative to updating an entire resource, clients can perform a patch operation.
    * https://hl7.org/fhir/http.html#patch
    */
-  patch: <TResourceType extends AnyResourceType>(
+  patch<TResourceType extends AnyResourceType>(
     type: TResourceType,
     id: string,
     body: FhirClientPatchBody<TResourceType>,
     options?:
       | (GeneralParameters &
-          ConcurrencyParameters &
-          ConditionalSearchParameters)
+          ConcurrencyParameters & {
+            versionId?: string | null | undefined;
+          } & ConditionalSearchParameters)
       | null
       | undefined
-  ) => Promise<Retrieved<ExtractResource<TResourceType>>>;
+  ): Promise<Retrieved<ExtractResource<TResourceType>>>;
 
   /**
    * The delete interaction removes an existing resource.
    * https://hl7.org/fhir/http.html#delete
    */
-  delete: (
+  delete(
+    resource: Retrieved<AnyResource>,
+    options?:
+      | (GeneralParameters & ConditionalSearchParameters)
+      | null
+      | undefined
+  ): Promise<void>;
+  delete(
     type: AnyResourceType,
     id: string,
     options?:
       | (GeneralParameters & ConditionalSearchParameters)
       | null
       | undefined
-  ) => Promise<void>;
+  ): Promise<void>;
 
   /**
    * The history interaction retrieves the history of either a particular resource, all resources of a given type, or all resources supported by the system.
    * https://hl7.org/fhir/http.html#history
    */
-  history: <TResourceType extends AnyResourceType>(
+  history<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     id?: string | null | undefined,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
-  ) => Promise<Bundle<Retrieved<ExtractResource<TResourceType>>>>;
+  ): Promise<Bundle<Retrieved<ExtractResource<TResourceType>>>>;
 
   /**
    * The create interaction creates a new resource in a server-assigned location.
    * https://hl7.org/fhir/http.html#create
    */
-  create: <TResource extends AnyResource>(
+  create<TResource extends AnyResource>(
     body: TResource,
     options?:
       | (GeneralParameters & ConditionalSearchParameters)
       | null
       | undefined
-  ) => Promise<Retrieved<TResource>>;
+  ): Promise<Retrieved<TResource>>;
 
   /**
    * This interaction searches a set of resources based on some filter criteria.
    * https://hl7.org/fhir/http.html#search
    */
-  search: <TResourceType extends AnyResourceType>(
+  search<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
     options?: GeneralParameters | null | undefined
-  ) => Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
+  ): Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
 
   /**
    * The capabilities interaction retrieves the information about a server's capabilities - which portions of this specification it supports.
    * https://hl7.org/fhir/http.html#capabilities
    */
-  capabilities: (
+  capabilities(
     mode?: "full" | "normative" | "terminology" | null | undefined
-  ) => Promise<CapabilityStatement>;
+  ): Promise<CapabilityStatement>;
 
   /**
    * The batch and transaction interactions submit a set of actions to perform on a server in a single HTTP request/response.
    * https://hl7.org/fhir/http.html#transaction
    */
-  batch: (
+  batch(
     body: Bundle,
     options?: GeneralParameters | null | undefined
-  ) => Promise<Bundle>;
+  ): Promise<Bundle>;
 
   /**
    * Execute a server operation.
    * https://www.hl7.org/fhir/operations.html
    * https://www.hl7.org/fhir/operationslist.html
    */
-  execute: <TOperationResult, TOperationParameters = unknown>(
+  execute<TOperationResult, TOperationParameters = unknown>(
     operation: string | null | undefined,
     options?:
       | {
@@ -148,15 +156,15 @@ export interface FhirClient {
         }
       | null
       | undefined
-  ) => Promise<TOperationResult>;
+  ): Promise<TOperationResult>;
 
   /**
    * Execute an HTTP fetch operation to the FHIR server.
    */
-  fetch: <T = unknown>(
-    input: Parameters<typeof fetch>[0],
+  fetch<T = unknown>(
+    resource: string | URL,
     init?: Parameters<typeof fetch>[1]
-  ) => Promise<T>;
+  ): Promise<T | undefined>;
 }
 
 export type FhirClientPatchBody<TResourceType extends AnyResourceType> =
@@ -165,11 +173,53 @@ export type FhirClientPatchBody<TResourceType extends AnyResourceType> =
     ) => ExtractPatchBuilder<TResourceType> | JSONPatchBody)
   | JSONPatchBody;
 
-export type FhirClientSearchParameters<TResource extends AnyResourceType> =
+/**
+ * This is a helper function that take either a function or a JSONPatchBody that represents a patch body,
+ * and normalize them as the final FHIR patch body as a JSONPatchBody.
+ */
+export function normalizePatchBody<TResource extends AnyResourceType>(
+  type: TResource,
+  patch: FhirClientPatchBody<TResource>
+): JSONPatchBody {
+  if (typeof patch === "function") {
+    const builtPatch = patch(fhirJSONPatch(type));
+    if (Array.isArray(builtPatch)) {
+      return builtPatch;
+    }
+
+    return builtPatch.patch;
+  }
+  return patch;
+}
+
+export type FhirClientSearchParameters<TResourceType extends AnyResourceType> =
   | ((
-      search: ExtractSearchBuilder<TResource>
-    ) => ExtractSearchBuilder<TResource> | string)
+      search: ExtractSearchBuilder<TResourceType>
+    ) => ExtractSearchBuilder<TResourceType> | string)
   | string;
+
+/**
+ * This is a helper function that take either a function or a string that represents search parameters,
+ * and normalize them as the final FHIR search parameters as a string.
+ */
+export function normalizeSearchParameters<
+  TResourceType extends AnyResourceType
+>(
+  type: TResourceType | null | undefined,
+  parameters: FhirClientSearchParameters<TResourceType> | null | undefined
+): string | undefined {
+  if (typeof parameters === "function") {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const builtParameters = parameters(fhirSearch(type) as any);
+    if (typeof builtParameters === "string") {
+      return builtParameters;
+    }
+
+    return builtParameters.href;
+  }
+
+  return parameters || undefined;
+}
 
 /**
  * https://hl7.org/fhir/http.html#parameters

@@ -177,7 +177,7 @@ export type FhirClientPatchBody<TResourceType extends AnyResourceType> =
  * This is a helper function that take either a function or a JSONPatchBody that represents a patch body,
  * and normalize them as the final FHIR patch body as a JSONPatchBody.
  */
-export function normalizePatchBody<TResource extends ResourceType>(
+export function normalizePatchBody<TResource extends AnyResourceType>(
   type: TResource,
   patch: FhirClientPatchBody<TResource>
 ): JSONPatchBody {
@@ -202,7 +202,9 @@ export type FhirClientSearchParameters<TResourceType extends AnyResourceType> =
  * This is a helper function that take either a function or a string that represents search parameters,
  * and normalize them as the final FHIR search parameters as a string.
  */
-export function normalizeSearchParameters<TResourceType extends ResourceType>(
+export function normalizeSearchParameters<
+  TResourceType extends AnyResourceType
+>(
   type: TResourceType | null | undefined,
   parameters: FhirClientSearchParameters<TResourceType> | null | undefined
 ): string | undefined {
