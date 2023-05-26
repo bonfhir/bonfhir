@@ -673,13 +673,13 @@ export class OperationDefinition {
   public get inParameters(): OperationParameter[] {
     return ((this as any).parameter || [])
       .filter((x: any) => x.use === "in")
-      .map((x: any) => Object.assign(new OperationParameter(), x));
+      .map((x: any) => Object.assign(new OperationParameter(this), x));
   }
 
   public get outParameters(): OperationParameter[] {
     return ((this as any).parameter || [])
       .filter((x: any) => x.use === "out")
-      .map((x: any) => Object.assign(new OperationParameter(), x));
+      .map((x: any) => Object.assign(new OperationParameter(this), x));
   }
 
   public get firstResource(): StructureDefinition | undefined {
@@ -692,9 +692,17 @@ export class OperationDefinition {
       (x: any) => x.type === resource
     );
   }
+
+  public get parts(): OperationParameterPart[] {
+    return [...this.inParameters, ...this.outParameters]
+      .filter((x) => x.partName)
+      .map((x) => new OperationParameterPart(this, x));
+  }
 }
 
 export class OperationParameter {
+  constructor(public _operationDefinition: OperationDefinition) {}
+
   /**
    * True if this is an array (e.g. max = "*")
    */
@@ -710,6 +718,20 @@ export class OperationParameter {
   }
 
   /**
+   * If this element is an OperationParameter part, return the name of the OperationParameterPart.
+   * Otherwise, return undefined.
+   */
+  public get partName(): string | undefined {
+    if (!(this as any).part?.length) {
+      return undefined;
+    }
+
+    return `${this._operationDefinition.safeName}Operation${(
+      this as any
+    ).name[0].toUpperCase()}${(this as any).name.slice(1)}`;
+  }
+
+  /**
    * The TypeScript type for this element
    */
   public get tsType(): string {
@@ -717,6 +739,10 @@ export class OperationParameter {
 
     if (resolvedType === "Any") {
       resolvedType = "any";
+    }
+
+    if (this.partName) {
+      resolvedType = this.partName;
     }
 
     if (this.isArray) {
@@ -746,6 +772,13 @@ export class OperationParameter {
       ].filter(Boolean) as string[]
     );
   }
+}
+
+export class OperationParameterPart {
+  constructor(
+    private _parent: OperationDefinition | OperationParameterPart,
+    public rootElement: OperationParameter
+  ) {}
 }
 
 export const PRIMITIVE_TYPES = [

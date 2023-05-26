@@ -625,7 +625,7 @@ export interface CodeSystemFindMatchesOperationParameters {
   /**
    * One or more properties that contain information to be composed into the code
    */
-  property?: Array<unknown> | undefined;
+  property?: Array<CodeSystemFindMatchesOperationProperty> | undefined;
   /**
    * Whether the operation is being used by a human ('false'), or a machine ('true').
    * If the operation is being used by a human, the terminology server can return a
@@ -639,6 +639,15 @@ export interface CodeSystemFindMatchesOperationParameters {
    */
   compositional?: boolean | undefined;
 }
+
+/**
+ * One or more properties that contain information to be composed into the code
+ */
+export interface CodeSystemFindMatchesOperationProperty {}
+/**
+ * Concepts returned by the server as a result of the inferencing operation
+ */
+export interface CodeSystemFindMatchesOperationMatch {}
 
 /**
  * Concept Look Up & Decomposition
@@ -747,14 +756,25 @@ export interface CodeSystemLookupOperationResult {
   /**
    * Additional representations for this concept
    */
-  designation?: Array<unknown> | undefined;
+  designation?: Array<CodeSystemLookupOperationDesignation> | undefined;
   /**
    * One or more properties that contain additional information about the code,
    * including status. For complex terminologies (e.g. SNOMED CT, LOINC,
    * medications), these properties serve to decompose the code
    */
-  property?: Array<unknown> | undefined;
+  property?: Array<CodeSystemLookupOperationProperty> | undefined;
 }
+
+/**
+ * Additional representations for this concept
+ */
+export interface CodeSystemLookupOperationDesignation {}
+/**
+ * One or more properties that contain additional information about the code,
+ * including status. For complex terminologies (e.g. SNOMED CT, LOINC,
+ * medications), these properties serve to decompose the code
+ */
+export interface CodeSystemLookupOperationProperty {}
 
 /**
  * Subsumption Testing
@@ -1256,7 +1276,7 @@ export interface ConceptMapTranslateOperationParameters {
   /**
    * Another element that may help produce the correct mapping
    */
-  dependency?: Array<unknown> | undefined;
+  dependency?: Array<ConceptMapTranslateOperationDependency> | undefined;
   /**
    * if this is true, then the operation should return all the codes that might be
    * mapped to this code. This parameter reverses the meaning of the source and
@@ -1283,8 +1303,19 @@ export interface ConceptMapTranslateOperationResult {
    * multiple matches of equal or differing equivalence, and the matches may include
    * equivalence values that mean that there is no match
    */
-  match?: Array<unknown> | undefined;
+  match?: Array<ConceptMapTranslateOperationMatch> | undefined;
 }
+
+/**
+ * Another element that may help produce the correct mapping
+ */
+export interface ConceptMapTranslateOperationDependency {}
+/**
+ * A concept in the target value set with an equivalence. Note that there may be
+ * multiple matches of equal or differing equivalence, and the matches may include
+ * equivalence values that mean that there is no match
+ */
+export interface ConceptMapTranslateOperationMatch {}
 
 /**
  * Submit an EligibilityRequest resource for assessment

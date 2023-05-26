@@ -115,6 +115,12 @@ export type ExtractOperationResultType<T extends Operation> = T extends Operatio
       "<%= parameter.name %>"<% if (parameter.isOptional) { %>?<% } %>: <%= parameter.tsType %>;
     <% } -%>
   }
-  <% } -%> 
+  <% } -%>
+
+  <% for (const part of operationDefinition.parts) { -%>
+    <%= part.rootElement.jsDoc %>
+    export interface <%= part.rootElement.partName %> {
+    }
+  <% } -%>
 
 <% } -%> 
