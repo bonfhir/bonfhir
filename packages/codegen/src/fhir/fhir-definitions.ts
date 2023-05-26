@@ -66,6 +66,16 @@ export class FhirDefinitions {
                 .get(base)
                 ?.push(searchParameter);
             }
+            break;
+          }
+
+          case "OperationDefinition": {
+            const operationDefinition = Object.assign(
+              new OperationDefinition(definitions),
+              parsed
+            );
+            definitions.operationDefinitions.push(operationDefinition);
+            break;
           }
         }
       } catch (error) {
@@ -82,6 +92,7 @@ export class FhirDefinitions {
   public valueSetsByUrl = new Map<string, ValueSet>();
   public searchParameters: SearchParameter[] = [];
   public searchParametersByResourceType = new Map<string, SearchParameter[]>();
+  public operationDefinitions: OperationDefinition[] = [];
 
   /**
    * All structure definitions sorted by name
@@ -152,6 +163,20 @@ export class FhirDefinitions {
         requiredBindingsValueSetUrls.has((valueSet as any).url)
       )
       .sort((a: any, b: any) => a.name.localeCompare(b.name));
+  }
+
+  public get operationDefinitionsWithResourceVariants(): OperationDefinition[] {
+    return this.operationDefinitions.flatMap((x: any) =>
+      x.resource.length === 1
+        ? x
+        : x.resource.map((resource: any) =>
+            Object.assign(new OperationDefinition(this), {
+              ...x,
+              id: `${resource}-${x.id}`,
+              resource: [resource],
+            })
+          )
+    );
   }
 }
 
@@ -390,28 +415,7 @@ export class ElementDefinition {
 
   public get isPrimitiveType(): boolean {
     return (this as any).type?.some((t: any) =>
-      [
-        "base64Binary",
-        "canonical",
-        "code",
-        "date",
-        "dateTime",
-        "http://hl7.org/fhirpath/System.String",
-        "id",
-        "instant",
-        "markdown",
-        "oid",
-        "time",
-        "uri",
-        "url",
-        "uuid",
-        "xhtml",
-        "integer",
-        "integer64",
-        "decimal",
-        "positiveInt",
-        "unsignedInt",
-      ].includes(t.code)
+      PRIMITIVE_TYPES.includes(t.code)
     );
   }
 
@@ -627,7 +631,7 @@ export class SearchParameter {
   }
 
   /**
-   * A JSDoc comment for this value set
+   * A JSDoc comment for this search parameters
    */
   public get jsDoc(): string {
     return toJsComment(
@@ -641,3 +645,128 @@ export class SearchParameter {
     );
   }
 }
+
+export class OperationDefinition {
+  constructor(private _definitions: FhirDefinitions) {}
+
+  public get safeName(): string {
+    return (this as any).id
+      .split(/[\s-]/g)
+      .map((word: string) => {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join("");
+  }
+
+  /**
+   * A JSDoc comment for this operation definition
+   */
+  public get jsDoc(): string {
+    return toJsComment([
+      (this as any).title,
+      "",
+      ...splitLongLines([(this as any).description]),
+      (this as any).url ? `@see {@link ${(this as any).url}}` : undefined,
+    ]);
+  }
+
+  public get inParameters(): OperationParameter[] {
+    return ((this as any).parameter || [])
+      .filter((x: any) => x.use === "in")
+      .map((x: any) => Object.assign(new OperationParameter(), x));
+  }
+
+  public get outParameters(): OperationParameter[] {
+    return ((this as any).parameter || [])
+      .filter((x: any) => x.use === "out")
+      .map((x: any) => Object.assign(new OperationParameter(), x));
+  }
+
+  public get firstResource(): StructureDefinition | undefined {
+    const resource = (this as any).resource?.[0];
+    if (!resource) {
+      return;
+    }
+
+    return this._definitions.structureDefinitions.find(
+      (x: any) => x.type === resource
+    );
+  }
+}
+
+export class OperationParameter {
+  /**
+   * True if this is an array (e.g. max = "*")
+   */
+  public get isArray(): boolean {
+    return (this as any).max === "*";
+  }
+
+  /**
+   * True if this is optional (e.g. min = 0)
+   */
+  public get isOptional(): boolean {
+    return (this as any).min === 0;
+  }
+
+  /**
+   * The TypeScript type for this element
+   */
+  public get tsType(): string {
+    let resolvedType = toTsType((this as any).type);
+
+    if (resolvedType === "Any") {
+      resolvedType = "any";
+    }
+
+    if (this.isArray) {
+      resolvedType = `Array<${resolvedType}>`;
+    }
+
+    if (this.isOptional) {
+      resolvedType = `${resolvedType} | undefined`;
+    }
+    return resolvedType;
+  }
+
+  public get isPrimitiveType(): boolean {
+    return PRIMITIVE_TYPES.includes((this as any).type);
+  }
+
+  /**
+   * A JSDoc comment for this element
+   */
+  public get jsDoc(): string {
+    return toJsComment(
+      [
+        ...splitLongLines(
+          [(this as any).documentation].filter((x) => !!x?.trim())
+        ),
+        this.isPrimitiveType ? `@fhirType ${(this as any).type}` : undefined,
+      ].filter(Boolean) as string[]
+    );
+  }
+}
+
+export const PRIMITIVE_TYPES = [
+  "base64Binary",
+  "canonical",
+  "code",
+  "date",
+  "dateTime",
+  "http://hl7.org/fhirpath/System.String",
+  "id",
+  "instant",
+  "markdown",
+  "oid",
+  "time",
+  "uri",
+  "url",
+  "uuid",
+  "xhtml",
+  "integer",
+  "integer64",
+  "decimal",
+  "positiveInt",
+  "unsignedInt",
+];

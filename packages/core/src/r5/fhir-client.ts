@@ -5,9 +5,9 @@ import {
   Bundle,
   CapabilityStatement,
   ExtractResource,
-  ResourceType,
   Retrieved,
 } from "./fhir-types.codegen";
+import { Operation, OperationParameters } from "./operations.codegen";
 import { JSONPatchBody } from "./patch";
 import { ExtractPatchBuilder, fhirJSONPatch } from "./patch.codegen";
 import { ExtractSearchBuilder, fhirSearch } from "./search.codegen";
@@ -145,16 +145,11 @@ export interface FhirClient {
    * https://www.hl7.org/fhir/operations.html
    * https://www.hl7.org/fhir/operationslist.html
    */
-  execute<TOperationResult, TOperationParameters = unknown>(
-    operation: string | null | undefined,
-    options?:
-      | {
-          type?: ResourceType | null | undefined;
-          id?: string | null | undefined;
-          parameters?: TOperationParameters | null | undefined;
-        }
-      | null
-      | undefined
+  execute<TOperationResult, TOperation extends Operation<TOperationResult>>(
+    operation: TOperation
+  ): Promise<TOperationResult>;
+  execute<TOperationResult>(
+    operation: OperationParameters
   ): Promise<TOperationResult>;
 
   /**

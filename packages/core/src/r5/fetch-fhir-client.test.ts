@@ -7,9 +7,14 @@ import { build } from "./builders";
 import { FetchFhirClient } from "./fetch-fhir-client";
 import {
   CapabilityStatement,
+  Claim,
   Organization,
   Patient,
 } from "./fhir-types.codegen";
+import {
+  ClaimSubmitOperation,
+  ValueSetExpandOperation,
+} from "./operations.codegen";
 
 describe("fetch-fhir-client", () => {
   const baseUrl = "http://example.com";
@@ -93,7 +98,7 @@ describe("fetch-fhir-client", () => {
       return res(ctx.json(patientsListFixture));
     }),
 
-    rest.post(`${baseUrl}/$convert`, (_req, res, ctx) => {
+    rest.get(`${baseUrl}/$convert`, (_req, res, ctx) => {
       return res(ctx.json(patientsListFixture));
     }),
 
@@ -106,7 +111,11 @@ describe("fetch-fhir-client", () => {
       (_req, res, ctx) => {
         return res(ctx.json(patientsListFixture));
       }
-    )
+    ),
+
+    rest.get(`${baseUrl}/ValueSet/$expand`, (_req, res, ctx) => {
+      return res(ctx.json(patientsListFixture));
+    })
   );
 
   beforeAll(() => server.listen());
@@ -343,31 +352,60 @@ describe("fetch-fhir-client", () => {
 
   describe("execute", () => {
     it("root operation", async () => {
-      const result = await client.execute("$convert");
+      const result = await client.execute({
+        operation: "$convert",
+        affectsState: false,
+      });
       expect(result).toBeDefined();
     });
 
     it("type operation", async () => {
-      const result = await client.execute("$submit", { type: "Claim" });
+      const result = await client.execute({
+        operation: "$submit",
+        resourceType: "Claim",
+        affectsState: true,
+      });
       expect(result).toBeDefined();
     });
 
     it("type and id operation", async () => {
-      const result = await client.execute("$document", {
-        type: "Composition",
-        id: "1234",
+      const result = await client.execute({
+        operation: "$document",
+        resourceType: "Composition",
+        resourceId: "1234",
+        affectsState: true,
       });
       expect(result).toBeDefined();
     });
 
     it("with parameters", async () => {
-      const result = await client.execute("$document", {
-        type: "Composition",
-        id: "1234",
+      const result = await client.execute({
+        operation: "$document",
+        resourceType: "Composition",
+        resourceId: "1234",
         parameters: {
           format: "application/pdf",
         },
+        affectsState: true,
       });
+      expect(result).toBeDefined();
+    });
+
+    it("with typed operation - affectsState false", async () => {
+      const result = await client.execute(
+        new ValueSetExpandOperation({
+          url: "http://hl7.org/fhir/ValueSet/example",
+        })
+      );
+      expect(result).toBeDefined();
+    });
+
+    it("with typed operation - affectsState true", async () => {
+      const result = await client.execute(
+        new ClaimSubmitOperation({
+          resource: build("Claim", {} as Claim),
+        })
+      );
       expect(result).toBeDefined();
     });
   });

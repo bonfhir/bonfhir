@@ -18,9 +18,9 @@ import {
   CapabilityStatement,
   ExtractResource,
   OperationOutcome,
-  ResourceType,
   Retrieved,
 } from "./fhir-types.codegen";
+import { Operation, OperationParameters } from "./operations.codegen";
 
 /**
  * Allows to set the `Authorization` header to a static value.
@@ -307,25 +307,45 @@ export class FetchFhirClient implements FhirClient {
     });
   }
 
-  public async execute<TOperationResult, TOperationParameters = unknown>(
-    operation: string | null | undefined,
-    options?:
-      | {
-          type?: ResourceType | null | undefined;
-          id?: string | null | undefined;
-          parameters?: TOperationParameters | null | undefined;
-        }
-      | null
-      | undefined
-  ): Promise<TOperationResult> {
-    const prefix = [options?.type, options?.id].filter(Boolean).join("/");
+  public async execute<
+    TOperationResult,
+    TOperation extends Operation<TOperationResult>
+  >(operation: TOperation): Promise<TOperationResult>;
+  public async execute<TOperationResult>(
+    operation: OperationParameters
+  ): Promise<TOperationResult>;
+  public async execute<
+    TOperationResult,
+    TOperation extends Operation<TOperationResult>
+  >(operation: TOperation | OperationParameters): Promise<TOperationResult> {
+    const operationParameters = (operation as Operation<TOperationResult>)
+      .getParameters
+      ? (operation as Operation<TOperationResult>).getParameters()
+      : (operation as OperationParameters);
+    const prefix = [
+      operationParameters.resourceType,
+      operationParameters.resourceId,
+    ]
+      .filter(Boolean)
+      .join("/");
+    const queryString =
+      !operationParameters.affectsState &&
+      operationParameters.parameters &&
+      Object.values(operationParameters.parameters).length > 0
+        ? new URLSearchParams(
+            operationParameters.parameters as Record<string, string>
+          ).toString()
+        : undefined;
     return this.fetch<TOperationResult>(
-      `${prefix ? `${prefix}/` : ""}${operation}`,
+      `${prefix ? `${prefix}/` : ""}${operationParameters.operation}${
+        queryString ? `?${queryString}` : ""
+      }`,
       {
-        method: "POST",
-        body: options?.parameters
-          ? JSON.stringify(options?.parameters)
-          : undefined,
+        method: operationParameters.affectsState ? "POST" : "GET",
+        body:
+          operationParameters.affectsState && operationParameters.parameters
+            ? JSON.stringify(operationParameters.parameters)
+            : undefined,
       }
     );
   }

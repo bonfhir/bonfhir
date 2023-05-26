@@ -1,0 +1,95 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  <% for (const valueSet of fhir.requiredBindingValueSets) { -%>
+    <%= valueSet.safeName %>,
+  <% } -%>
+  <% for (const structureDef of fhir.structureDefinitions) { -%>
+    <%= structureDef.type -%>,
+    <% for (const backboneElement of structureDef.backboneElements || []) { -%>
+      <%= backboneElement.rootElement.backboneElementName %>,
+    <% } -%>
+  <% } -%>
+  AnyResourceType,
+  ResourceType
+} from "./fhir-types.codegen";
+
+export interface OperationParameters {
+  operation: string | null | undefined;
+  resourceType?: ResourceType | null | undefined;
+  resourceId?: string | null | undefined;
+  parameters?: object | null | undefined;
+  affectsState: boolean;
+}
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export interface Operation<TOperationResult> {
+  getParameters(): OperationParameters;
+}
+
+<% for (const operationDefinition of fhir.operationDefinitionsWithResourceVariants.filter(x => x.affectsState != undefined)) { -%>
+  <%= operationDefinition.jsDoc %>
+  export class <%= operationDefinition.safeName %>Operation implements Operation<<% if (operationDefinition.outParameters.length > 0) { -%><%= operationDefinition.safeName %>OperationResult<% } else { -%>unknown<% } -%>> {
+
+    <%= operationDefinition.jsDoc %>
+    <% if (operationDefinition.instance || operationDefinition.inParameters.length > 0 || operationDefinition.firstResource?.abstract) { -%>
+      constructor(public parameters: <%= operationDefinition.safeName %>OperationParameters) {}
+    <% } -%>
+
+    public getParameters(): OperationParameters {
+      return {
+        operation: "$<%= operationDefinition.code %>",
+        <% if (operationDefinition.type || operationDefinition.instance) { -%>
+          <% if (operationDefinition.firstResource?.abstract) { -%>
+            resourceType: this.parameters.resourceType,
+          <% } else { -%>
+            resourceType: "<%= operationDefinition.resource[0] %>",
+          <% } -%>
+        <% } -%>
+        <% if (operationDefinition.instance) { -%>
+          resourceId: this.parameters.resourceId,
+        <% } -%>
+        <% if (operationDefinition.instance || operationDefinition.inParameters.length > 0) { -%>
+          parameters: this.parameters,
+        <% } -%>
+        affectsState: <%= operationDefinition.affectsState %>
+      }
+    }
+  }
+
+  <% if (operationDefinition.instance || operationDefinition.inParameters.length > 0 || operationDefinition.firstResource?.abstract) { -%>
+  export interface <%= operationDefinition.safeName %>OperationParameters {
+    <% if (operationDefinition.firstResource?.abstract) { -%>
+      resourceType: AnyResourceType,
+    <% } -%>
+    <% if (operationDefinition.instance) { -%>
+      <% if (operationDefinition.type || operationDefinition.system) { -%>
+        /**
+        * The id of the resource to perform the operation on.
+        */
+        resourceId?: string | null | undefined;
+      <% } else { -%>
+        /**
+          * The id of the resource to perform the operation on.
+          */
+        resourceId: string;
+      <% } -%>
+    <% } -%>
+    <% for (const parameter of operationDefinition.inParameters) { -%>
+      <%= parameter.jsDoc %>
+      "<%= parameter.name %>"<% if (parameter.isOptional) { %>?<% } %>: <%= parameter.tsType %>;
+    <% } -%>
+  }
+  <% } -%>
+
+  <% if (operationDefinition.outParameters.length > 0) { -%>
+  export interface <%= operationDefinition.safeName %>OperationResult {
+    <% for (const parameter of operationDefinition.outParameters) { -%>
+      <%= parameter.jsDoc %>
+      "<%= parameter.name %>"<% if (parameter.isOptional) { %>?<% } %>: <%= parameter.tsType %>;
+    <% } -%>
+  }
+  <% } -%> 
+
+<% } -%> 

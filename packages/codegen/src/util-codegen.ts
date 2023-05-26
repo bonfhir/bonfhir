@@ -42,7 +42,7 @@ export function toTsType(fhirType: string): string {
     case "unsignedInt":
       return "number";
     default:
-      return fhirType;
+      return fhirType || "unknown";
   }
   /* eslint-enable unicorn/switch-case-braces */
 }
