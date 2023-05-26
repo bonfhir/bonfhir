@@ -21,17 +21,40 @@ export interface OperationParameters {
   affectsState: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface Operation<TOperationResult> {
+/**
+ * Define what an operation is.
+ */
+export interface Operation<TOperationResult = unknown> {
+  /**
+   * Get the parameters of the operation.
+   */
   getParameters(): OperationParameters;
+
+  /**
+   * This methods is a placeholder to preserve type inference for TypeScript.
+   * It is necessary for the {@link ExtractOperationResultType} type helper to work properly, otherwise TypeScript
+   * erase the generic parameter type.
+   * It should systematically throw an error when called.
+   */
+  _resultTypeDoNotUse?: TOperationResult;
 }
 
-<% for (const operationDefinition of fhir.operationDefinitionsWithResourceVariants.filter(x => x.affectsState != undefined)) { -%>
-  <%= operationDefinition.jsDoc %>
-  export class <%= operationDefinition.safeName %>Operation implements Operation<<% if (operationDefinition.outParameters.length > 0) { -%><%= operationDefinition.safeName %>OperationResult<% } else { -%>unknown<% } -%>> {
+/**
+ * Extract the result type of an operation.
+ */
+export type ExtractOperationResultType<T extends Operation> = T extends Operation<infer TOperationResult>
+  ? TOperationResult
+  : never;
 
+<% for (const operationDefinition of fhir.operationDefinitionsWithResourceVariants.filter(x => x.affectsState != undefined)) {
+  let resultType = "unknown";
+  if (operationDefinition.outParameters.length >= 2) {
+    resultType = `${operationDefinition.safeName}OperationResult`
+  } else if (operationDefinition.outParameters.length === 1 && operationDefinition.outParameters[0].name === "return") {
+    resultType = operationDefinition.outParameters[0].tsType;
+  } -%>
+  <%= operationDefinition.jsDoc %>
+  export class <%= operationDefinition.safeName %>Operation implements Operation<<%= resultType %>> {
     <%= operationDefinition.jsDoc %>
     <% if (operationDefinition.instance || operationDefinition.inParameters.length > 0 || operationDefinition.firstResource?.abstract) { -%>
       constructor(public parameters: <%= operationDefinition.safeName %>OperationParameters) {}
@@ -56,6 +79,8 @@ export interface Operation<TOperationResult> {
         affectsState: <%= operationDefinition.affectsState %>
       }
     }
+
+    public _resultTypeDoNotUse?: <%= resultType %>;
   }
 
   <% if (operationDefinition.instance || operationDefinition.inParameters.length > 0 || operationDefinition.firstResource?.abstract) { -%>
@@ -83,7 +108,7 @@ export interface Operation<TOperationResult> {
   }
   <% } -%>
 
-  <% if (operationDefinition.outParameters.length > 0) { -%>
+  <% if (operationDefinition.outParameters.length >= 2) { -%>
   export interface <%= operationDefinition.safeName %>OperationResult {
     <% for (const parameter of operationDefinition.outParameters) { -%>
       <%= parameter.jsDoc %>

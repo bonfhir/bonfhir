@@ -2,7 +2,6 @@
 import {
   ActivityDefinition,
   AnyResourceType,
-  Binary,
   Bundle,
   CapabilityStatement,
   CarePlan,
@@ -33,12 +32,29 @@ export interface OperationParameters {
   affectsState: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface Operation<TOperationResult> {
+/**
+ * Define what an operation is.
+ */
+export interface Operation<TOperationResult = unknown> {
+  /**
+   * Get the parameters of the operation.
+   */
   getParameters(): OperationParameters;
+
+  /**
+   * This methods is a placeholder to preserve type inference for TypeScript.
+   * It is necessary for the {@link ExtractOperationResultType} type helper to work properly, otherwise TypeScript
+   * erase the generic parameter type.
+   * It should systematically throw an error when called.
+   */
+  _resultTypeDoNotUse?: TOperationResult;
 }
+
+/**
+ * Extract the result type of an operation.
+ */
+export type ExtractOperationResultType<T extends Operation> =
+  T extends Operation<infer TOperationResult> ? TOperationResult : never;
 
 /**
  * Apply
@@ -46,9 +62,7 @@ export interface Operation<TOperationResult> {
  * The apply operation applies a definition in a specific context
  * @see {@link http://hl7.org/fhir/OperationDefinition/ActivityDefinition-apply}
  */
-export class ActivityDefinitionApplyOperation
-  implements Operation<ActivityDefinitionApplyOperationResult>
-{
+export class ActivityDefinitionApplyOperation implements Operation<any> {
   /**
    * Apply
    *
@@ -66,6 +80,8 @@ export class ActivityDefinitionApplyOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: any;
 }
 
 export interface ActivityDefinitionApplyOperationParameters {
@@ -124,13 +140,6 @@ export interface ActivityDefinitionApplyOperationParameters {
   settingContext?: CodeableConcept | undefined;
 }
 
-export interface ActivityDefinitionApplyOperationResult {
-  /**
-   * The resource that is the result of applying the definition
-   */
-  return: any;
-}
-
 /**
  * Data Requirements
  *
@@ -140,7 +149,7 @@ export interface ActivityDefinitionApplyOperationResult {
  * @see {@link http://hl7.org/fhir/OperationDefinition/ActivityDefinition-data-requirements}
  */
 export class ActivityDefinitionDataRequirementsOperation
-  implements Operation<ActivityDefinitionDataRequirementsOperationResult>
+  implements Operation<Library>
 {
   /**
    * Data Requirements
@@ -163,6 +172,8 @@ export class ActivityDefinitionDataRequirementsOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Library;
 }
 
 export interface ActivityDefinitionDataRequirementsOperationParameters {
@@ -170,15 +181,6 @@ export interface ActivityDefinitionDataRequirementsOperationParameters {
    * The id of the resource to perform the operation on.
    */
   resourceId: string;
-}
-
-export interface ActivityDefinitionDataRequirementsOperationResult {
-  /**
-   * The result of the requirements gathering represented as a module-definition
-   * Library that describes the aggregate parameters, data requirements, and
-   * dependencies of the activity definition
-   */
-  return: Library;
 }
 
 /**
@@ -216,6 +218,8 @@ export class CapabilityStatementConformsOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: CapabilityStatementConformsOperationResult;
 }
 
 export interface CapabilityStatementConformsOperationParameters {
@@ -263,7 +267,7 @@ export interface CapabilityStatementConformsOperationResult {
  * @see {@link http://hl7.org/fhir/OperationDefinition/CapabilityStatement-implements}
  */
 export class CapabilityStatementImplementsOperation
-  implements Operation<CapabilityStatementImplementsOperationResult>
+  implements Operation<OperationOutcome>
 {
   /**
    * Test if a server implements a client's required operations
@@ -287,6 +291,8 @@ export class CapabilityStatementImplementsOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: OperationOutcome;
 }
 
 export interface CapabilityStatementImplementsOperationParameters {
@@ -312,13 +318,6 @@ export interface CapabilityStatementImplementsOperationParameters {
   resource?: CapabilityStatement | undefined;
 }
 
-export interface CapabilityStatementImplementsOperationResult {
-  /**
-   * Outcome of the CapabilityStatement test
-   */
-  return: OperationOutcome;
-}
-
 /**
  * Fetch a subset of the CapabilityStatement resource
  *
@@ -328,7 +327,7 @@ export interface CapabilityStatementImplementsOperationResult {
  * @see {@link http://hl7.org/fhir/OperationDefinition/CapabilityStatement-subset}
  */
 export class CapabilityStatementSubsetOperation
-  implements Operation<CapabilityStatementSubsetOperationResult>
+  implements Operation<CapabilityStatement>
 {
   /**
    * Fetch a subset of the CapabilityStatement resource
@@ -351,6 +350,8 @@ export class CapabilityStatementSubsetOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: CapabilityStatement;
 }
 
 export interface CapabilityStatementSubsetOperationParameters {
@@ -369,14 +370,6 @@ export interface CapabilityStatementSubsetOperationParameters {
    * @fhirType code
    */
   resource: Array<string>;
-}
-
-export interface CapabilityStatementSubsetOperationResult {
-  /**
-   * The subsetted CapabilityStatement resource that is returned. This should be
-   * tagged with the SUBSETTED code
-   */
-  return: CapabilityStatement;
 }
 
 /**
@@ -413,6 +406,8 @@ export class CapabilityStatementVersionsOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: CapabilityStatementVersionsOperationResult;
 }
 
 export interface CapabilityStatementVersionsOperationResult {
@@ -434,9 +429,7 @@ export interface CapabilityStatementVersionsOperationResult {
  * The apply operation applies a definition in a specific context
  * @see {@link http://hl7.org/fhir/OperationDefinition/ChargeItemDefinition-apply}
  */
-export class ChargeItemDefinitionApplyOperation
-  implements Operation<ChargeItemDefinitionApplyOperationResult>
-{
+export class ChargeItemDefinitionApplyOperation implements Operation<any> {
   /**
    * Apply
    *
@@ -456,6 +449,8 @@ export class ChargeItemDefinitionApplyOperation
       affectsState: true,
     };
   }
+
+  public _resultTypeDoNotUse?: any;
 }
 
 export interface ChargeItemDefinitionApplyOperationParameters {
@@ -473,13 +468,6 @@ export interface ChargeItemDefinitionApplyOperationParameters {
   account?: Reference | undefined;
 }
 
-export interface ChargeItemDefinitionApplyOperationResult {
-  /**
-   * The resource that is the result of applying the definition
-   */
-  return: any;
-}
-
 /**
  * Submit a Claim resource for adjudication
  *
@@ -492,9 +480,7 @@ export interface ChargeItemDefinitionApplyOperationResult {
  * ClaimResponse, Bundle of ClaimResponses or an OperationOutcome resource.
  * @see {@link http://hl7.org/fhir/OperationDefinition/Claim-submit}
  */
-export class ClaimSubmitOperation
-  implements Operation<ClaimSubmitOperationResult>
-{
+export class ClaimSubmitOperation implements Operation<Resource> {
   /**
    * Submit a Claim resource for adjudication
    *
@@ -517,6 +503,8 @@ export class ClaimSubmitOperation
       affectsState: true,
     };
   }
+
+  public _resultTypeDoNotUse?: Resource;
 }
 
 export interface ClaimSubmitOperationParameters {
@@ -525,15 +513,6 @@ export interface ClaimSubmitOperationParameters {
    * Bundles each containing a single Claim plus referenced resources.
    */
   resource: Resource;
-}
-
-export interface ClaimSubmitOperationResult {
-  /**
-   * A ClaimResponse resource or Bundle of claim responses, either as individual
-   * ClaimResponse resources or as Bundles each containing a single ClaimResponse
-   * plus referenced resources.
-   */
-  return: Resource;
 }
 
 /**
@@ -574,9 +553,7 @@ The find-matches operation is still preliminary. The interface can
  * be expected to change as more experience is gained from implementations.
  * @see {@link http://hl7.org/fhir/OperationDefinition/CodeSystem-find-matches}
  */
-export class CodeSystemFindMatchesOperation
-  implements Operation<CodeSystemFindMatchesOperationResult>
-{
+export class CodeSystemFindMatchesOperation implements Operation<unknown> {
   /**
  * Finding codes based on supplied properties
  * 
@@ -626,6 +603,8 @@ The find-matches operation is still preliminary. The interface can
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: unknown;
 }
 
 export interface CodeSystemFindMatchesOperationParameters {
@@ -659,13 +638,6 @@ export interface CodeSystemFindMatchesOperationParameters {
    * (mainly for SNOMED CT). Default = false
    */
   compositional?: boolean | undefined;
-}
-
-export interface CodeSystemFindMatchesOperationResult {
-  /**
-   * Concepts returned by the server as a result of the inferencing operation
-   */
-  match?: Array<unknown> | undefined;
 }
 
 /**
@@ -707,6 +679,8 @@ When invoking this operation, a client SHALL provide both a system
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: CodeSystemLookupOperationResult;
 }
 
 export interface CodeSystemLookupOperationParameters {
@@ -796,9 +770,7 @@ W
  * optional
  * @see {@link http://hl7.org/fhir/OperationDefinition/CodeSystem-subsumes}
  */
-export class CodeSystemSubsumesOperation
-  implements Operation<CodeSystemSubsumesOperationResult>
-{
+export class CodeSystemSubsumesOperation implements Operation<unknown> {
   /**
  * Subsumption Testing
  * 
@@ -824,6 +796,8 @@ W
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: unknown;
 }
 
 export interface CodeSystemSubsumesOperationParameters {
@@ -865,18 +839,6 @@ export interface CodeSystemSubsumesOperationParameters {
    * systems must be well established
    */
   codingB?: Coding | undefined;
-}
-
-export interface CodeSystemSubsumesOperationResult {
-  /**
-   * The subsumption relationship between code/Coding "A" and code/Coding "B". There
-   * are 4 possible codes to be returned (equivalent, subsumes, subsumed-by, and
-   * not-subsumed) as defined in the concept-subsumption-outcome value set.  If the
-   * server is unable to determine the relationship between the codes/Codings, then
-   * it returns an error response with an OperationOutcome.
-   * @fhirType code
-   */
-  outcome: string;
 }
 
 /**
@@ -921,6 +883,8 @@ When invoking this operation, a
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: CodeSystemValidateCodeOperationResult;
 }
 
 export interface CodeSystemValidateCodeOperationParameters {
@@ -1061,6 +1025,8 @@ export class CompositionDocumentOperation implements Operation<unknown> {
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: unknown;
 }
 
 export interface CompositionDocumentOperationParameters {
@@ -1115,9 +1081,7 @@ Notes:
  * [Maintaining a Closure Table](terminology-service.html#closure)
  * @see {@link http://hl7.org/fhir/OperationDefinition/ConceptMap-closure}
  */
-export class ConceptMapClosureOperation
-  implements Operation<ConceptMapClosureOperationResult>
-{
+export class ConceptMapClosureOperation implements Operation<ConceptMap> {
   /**
    * Closure Table Maintenance
    *
@@ -1137,6 +1101,8 @@ export class ConceptMapClosureOperation
       affectsState: true,
     };
   }
+
+  public _resultTypeDoNotUse?: ConceptMap;
 }
 
 export interface ConceptMapClosureOperationParameters {
@@ -1154,15 +1120,6 @@ export interface ConceptMapClosureOperationParameters {
    * version was sent by the server
    */
   version?: string | undefined;
-}
-
-export interface ConceptMapClosureOperationResult {
-  /**
-   * A list of new entries (code / system --> code/system) that the client should add
-   * to its closure table. The only kind of entry mapping equivalences that can be
-   * returned are equal, specializes, subsumes and unmatched
-   */
-  return: ConceptMap;
 }
 
 /**
@@ -1215,6 +1172,8 @@ export class ConceptMapTranslateOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: ConceptMapTranslateOperationResult;
 }
 
 export interface ConceptMapTranslateOperationParameters {
@@ -1341,7 +1300,7 @@ export interface ConceptMapTranslateOperationResult {
  * @see {@link http://hl7.org/fhir/OperationDefinition/CoverageEligibilityRequest-submit}
  */
 export class CoverageEligibilityRequestSubmitOperation
-  implements Operation<CoverageEligibilityRequestSubmitOperationResult>
+  implements Operation<Resource>
 {
   /**
    * Submit an EligibilityRequest resource for assessment
@@ -1368,6 +1327,8 @@ export class CoverageEligibilityRequestSubmitOperation
       affectsState: true,
     };
   }
+
+  public _resultTypeDoNotUse?: Resource;
 }
 
 export interface CoverageEligibilityRequestSubmitOperationParameters {
@@ -1377,15 +1338,6 @@ export interface CoverageEligibilityRequestSubmitOperationParameters {
    * EligibilityRequest plus referenced resources.
    */
   resource: Resource;
-}
-
-export interface CoverageEligibilityRequestSubmitOperationResult {
-  /**
-   * An EligibilityResponse resource or Bundle of EligibilityResponse responses,
-   * either as individual EligibilityResponse resources or as Bundles each containing
-   * a single EligibilityResponse plus referenced resources.
-   */
-  return: Resource;
 }
 
 /**
@@ -1425,9 +1377,7 @@ In the US
  * when it was initiated, or when it was reported?)
  * @see {@link http://hl7.org/fhir/OperationDefinition/Encounter-everything}
  */
-export class EncounterEverythingOperation
-  implements Operation<EncounterEverythingOperationResult>
-{
+export class EncounterEverythingOperation implements Operation<Bundle> {
   /**
  * Fetch Encounter Record
  * 
@@ -1476,6 +1426,8 @@ In the US
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Bundle;
 }
 
 export interface EncounterEverythingOperationParameters {
@@ -1506,13 +1458,6 @@ export interface EncounterEverythingOperationParameters {
   _count?: number | undefined;
 }
 
-export interface EncounterEverythingOperationResult {
-  /**
-   * The bundle type is "searchset"
-   */
-  return: Bundle;
-}
-
 /**
  * Fetch a group of Patient Records
  *
@@ -1533,9 +1478,7 @@ export interface EncounterEverythingOperationResult {
  * information that is returned.
  * @see {@link http://hl7.org/fhir/OperationDefinition/Group-everything}
  */
-export class GroupEverythingOperation
-  implements Operation<GroupEverythingOperationResult>
-{
+export class GroupEverythingOperation implements Operation<Bundle> {
   /**
    * Fetch a group of Patient Records
    *
@@ -1567,6 +1510,8 @@ export class GroupEverythingOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Bundle;
 }
 
 export interface GroupEverythingOperationParameters {
@@ -1611,13 +1556,6 @@ export interface GroupEverythingOperationParameters {
   _count?: number | undefined;
 }
 
-export interface GroupEverythingOperationResult {
-  /**
-   * The bundle type is "searchset"
-   */
-  return: Bundle;
-}
-
 /**
  * Data Requirements
  *
@@ -1626,9 +1564,7 @@ export interface GroupEverythingOperationResult {
  * definition
  * @see {@link http://hl7.org/fhir/OperationDefinition/Library-data-requirements}
  */
-export class LibraryDataRequirementsOperation
-  implements Operation<LibraryDataRequirementsOperationResult>
-{
+export class LibraryDataRequirementsOperation implements Operation<Library> {
   /**
    * Data Requirements
    *
@@ -1648,6 +1584,8 @@ export class LibraryDataRequirementsOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Library;
 }
 
 export interface LibraryDataRequirementsOperationParameters {
@@ -1659,13 +1597,6 @@ export interface LibraryDataRequirementsOperationParameters {
    * The target of the data requirements operation
    */
   target?: string | undefined;
-}
-
-export interface LibraryDataRequirementsOperationResult {
-  /**
-   * The result of the requirements gathering
-   */
-  return: Library;
 }
 
 /**
@@ -1707,6 +1638,8 @@ export class ListFindOperation implements Operation<unknown> {
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: unknown;
 }
 
 export interface ListFindOperationParameters {
@@ -1730,9 +1663,7 @@ export interface ListFindOperationParameters {
  * of quality measures
  * @see {@link http://hl7.org/fhir/OperationDefinition/Measure-care-gaps}
  */
-export class MeasureCareGapsOperation
-  implements Operation<MeasureCareGapsOperationResult>
-{
+export class MeasureCareGapsOperation implements Operation<Bundle> {
   /**
    * Care Gaps
    *
@@ -1750,6 +1681,8 @@ export class MeasureCareGapsOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Bundle;
 }
 
 export interface MeasureCareGapsOperationParameters {
@@ -1777,14 +1710,6 @@ export interface MeasureCareGapsOperationParameters {
    * Subject for which the care gaps report will be produced
    */
   subject: string;
-}
-
-export interface MeasureCareGapsOperationResult {
-  /**
-   * The result of the care gaps report will be returned as a document bundle with a
-   * MeasureReport entry for each included measure
-   */
-  return: Bundle;
 }
 
 /**
@@ -1815,6 +1740,8 @@ export class MeasureCollectDataOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: MeasureCollectDataOperationResult;
 }
 
 export interface MeasureCollectDataOperationParameters {
@@ -1883,9 +1810,7 @@ export interface MeasureCollectDataOperationResult {
  * definition
  * @see {@link http://hl7.org/fhir/OperationDefinition/Measure-data-requirements}
  */
-export class MeasureDataRequirementsOperation
-  implements Operation<MeasureDataRequirementsOperationResult>
-{
+export class MeasureDataRequirementsOperation implements Operation<Library> {
   /**
    * Data Requirements
    *
@@ -1905,6 +1830,8 @@ export class MeasureDataRequirementsOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Library;
 }
 
 export interface MeasureDataRequirementsOperationParameters {
@@ -1929,15 +1856,6 @@ export interface MeasureDataRequirementsOperationParameters {
   periodEnd: string;
 }
 
-export interface MeasureDataRequirementsOperationResult {
-  /**
-   * The result of the requirements gathering is a module-definition Library that
-   * describes the aggregate parameters, data requirements, and dependencies of the
-   * measure
-   */
-  return: Library;
-}
-
 /**
  * Evaluate Measure
  *
@@ -1946,7 +1864,7 @@ export interface MeasureDataRequirementsOperationResult {
  * @see {@link http://hl7.org/fhir/OperationDefinition/Measure-evaluate-measure}
  */
 export class MeasureEvaluateMeasureOperation
-  implements Operation<MeasureEvaluateMeasureOperationResult>
+  implements Operation<MeasureReport>
 {
   /**
    * Evaluate Measure
@@ -1966,6 +1884,8 @@ export class MeasureEvaluateMeasureOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: MeasureReport;
 }
 
 export interface MeasureEvaluateMeasureOperationParameters {
@@ -2023,18 +1943,6 @@ export interface MeasureEvaluateMeasureOperationParameters {
   lastReceivedOn?: string | undefined;
 }
 
-export interface MeasureEvaluateMeasureOperationResult {
-  /**
-   * The results of the measure calculation. See the MeasureReport resource for a
-   * complete description of the output of this operation. Note that implementations
-   * may choose to return a MeasureReport with a status of pending to indicate that
-   * the report is still being generated. In this case, the client can use a polling
-   * method to continually request the MeasureReport until the status is updated to
-   * complete
-   */
-  return: MeasureReport;
-}
-
 /**
  * Submit Data
  *
@@ -2065,6 +1973,8 @@ export class MeasureSubmitDataOperation implements Operation<unknown> {
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: unknown;
 }
 
 export interface MeasureSubmitDataOperationParameters {
@@ -2097,7 +2007,7 @@ export interface MeasureSubmitDataOperationParameters {
  * @see {@link http://hl7.org/fhir/OperationDefinition/MedicinalProductDefinition-everything}
  */
 export class MedicinalProductDefinitionEverythingOperation
-  implements Operation<MedicinalProductDefinitionEverythingOperationResult>
+  implements Operation<Bundle>
 {
   /**
    * Fetch Product Record
@@ -2126,6 +2036,8 @@ export class MedicinalProductDefinitionEverythingOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Bundle;
 }
 
 export interface MedicinalProductDefinitionEverythingOperationParameters {
@@ -2149,13 +2061,6 @@ export interface MedicinalProductDefinitionEverythingOperationParameters {
   _count?: number | undefined;
 }
 
-export interface MedicinalProductDefinitionEverythingOperationResult {
-  /**
-   * The bundle type is "searchset"
-   */
-  return: Bundle;
-}
-
 /**
  * Process Message
  *
@@ -2167,7 +2072,7 @@ export interface MedicinalProductDefinitionEverythingOperationResult {
  * @see {@link http://hl7.org/fhir/OperationDefinition/MessageHeader-process-message}
  */
 export class MessageHeaderProcessMessageOperation
-  implements Operation<MessageHeaderProcessMessageOperationResult>
+  implements Operation<Bundle | undefined>
 {
   /**
    * Process Message
@@ -2190,6 +2095,8 @@ export class MessageHeaderProcessMessageOperation
       affectsState: true,
     };
   }
+
+  public _resultTypeDoNotUse?: Bundle | undefined;
 }
 
 export interface MessageHeaderProcessMessageOperationParameters {
@@ -2209,14 +2116,6 @@ export interface MessageHeaderProcessMessageOperationParameters {
    * @fhirType url
    */
   "response-url"?: string | undefined;
-}
-
-export interface MessageHeaderProcessMessageOperationResult {
-  /**
-   * A response message, if synchronous messaging is being used (mandatory in this
-   * case). For asynchronous messaging, there is no return value
-   */
-  return?: Bundle | undefined;
 }
 
 /**
@@ -2241,9 +2140,7 @@ The principle use of this
  * metadata such as profiles.
  * @see {@link http://hl7.org/fhir/OperationDefinition/NamingSystem-preferred-id}
  */
-export class NamingSystemPreferredIdOperation
-  implements Operation<NamingSystemPreferredIdOperationResult>
-{
+export class NamingSystemPreferredIdOperation implements Operation<unknown> {
   /**
  * Fetch Preferred it
  * 
@@ -2276,6 +2173,8 @@ The principle use of this
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: unknown;
 }
 
 export interface NamingSystemPreferredIdOperationParameters {
@@ -2290,13 +2189,6 @@ export interface NamingSystemPreferredIdOperationParameters {
    * @fhirType code
    */
   type: string;
-}
-
-export interface NamingSystemPreferredIdOperationResult {
-  /**
-   * OIDs are return as plain OIDs (not the URI form).
-   */
-  result: string;
 }
 
 /**
@@ -2377,9 +2269,7 @@ The set of returned observations should represent distinct
  * advice.
  * @see {@link http://hl7.org/fhir/OperationDefinition/Observation-lastn}
  */
-export class ObservationLastnOperation
-  implements Operation<ObservationLastnOperationResult>
-{
+export class ObservationLastnOperation implements Operation<Bundle> {
   /**
  * Last N Observations Query
  * 
@@ -2468,6 +2358,8 @@ The set of returned observations should represent distinct
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Bundle;
 }
 
 export interface ObservationLastnOperationParameters {
@@ -2479,14 +2371,6 @@ export interface ObservationLastnOperationParameters {
    * @fhirType positiveInt
    */
   max?: number | undefined;
-}
-
-export interface ObservationLastnOperationResult {
-  /**
-   * The set of most recent N Observations that match the *lastn* query search
-   * criteria.
-   */
-  return: Bundle;
 }
 
 /**
@@ -2734,6 +2618,8 @@ The client can request that all the observations on which the
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: ObservationStatsOperationResult;
 }
 
 export interface ObservationStatsOperationParameters {
@@ -2834,9 +2720,7 @@ export interface ObservationStatsOperationResult {
  * rules about how much information that is returned.
  * @see {@link http://hl7.org/fhir/OperationDefinition/Patient-everything}
  */
-export class PatientEverythingOperation
-  implements Operation<PatientEverythingOperationResult>
-{
+export class PatientEverythingOperation implements Operation<Bundle> {
   /**
    * Fetch Patient Record
    *
@@ -2869,6 +2753,8 @@ export class PatientEverythingOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Bundle;
 }
 
 export interface PatientEverythingOperationParameters {
@@ -2913,13 +2799,6 @@ export interface PatientEverythingOperationParameters {
   _count?: number | undefined;
 }
 
-export interface PatientEverythingOperationResult {
-  /**
-   * The bundle type is "searchset"
-   */
-  return: Bundle;
-}
-
 /**
  * Find patient matches using MPI based logic
  * 
@@ -2949,9 +2828,7 @@ To ask an MPI to match a patient,
  * match against.
  * @see {@link http://hl7.org/fhir/OperationDefinition/Patient-match}
  */
-export class PatientMatchOperation
-  implements Operation<PatientMatchOperationResult>
-{
+export class PatientMatchOperation implements Operation<Bundle> {
   /**
  * Find patient matches using MPI based logic
  * 
@@ -2991,6 +2868,8 @@ To ask an MPI to match a patient,
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Bundle;
 }
 
 export interface PatientMatchOperationParameters {
@@ -3014,28 +2893,13 @@ export interface PatientMatchOperationParameters {
   count?: number | undefined;
 }
 
-export interface PatientMatchOperationResult {
-  /**
-   * A bundle contain a set of Patient records that represent possible matches,
-   * optionally it may also contain an OperationOutcome with further information
-   * about the search results (such as warnings or information messages, such as a
-   * count of records that were close but eliminated)  If the operation was
-   * unsuccessful, then an OperationOutcome may be returned along with a BadRequest
-   * status Code (e.g. security issue, or insufficient properties in patient fragment
-   * - check against profile)
-   */
-  return: Bundle;
-}
-
 /**
  * Apply
  *
  * The apply operation applies a PlanDefinition to a given context
  * @see {@link http://hl7.org/fhir/OperationDefinition/PlanDefinition-apply}
  */
-export class PlanDefinitionApplyOperation
-  implements Operation<PlanDefinitionApplyOperationResult>
-{
+export class PlanDefinitionApplyOperation implements Operation<CarePlan> {
   /**
    * Apply
    *
@@ -3053,6 +2917,8 @@ export class PlanDefinitionApplyOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: CarePlan;
 }
 
 export interface PlanDefinitionApplyOperationParameters {
@@ -3111,13 +2977,6 @@ export interface PlanDefinitionApplyOperationParameters {
   settingContext?: CodeableConcept | undefined;
 }
 
-export interface PlanDefinitionApplyOperationResult {
-  /**
-   * The CarePlan that is the result of applying the plan definition
-   */
-  return: CarePlan;
-}
-
 /**
  * Data Requirements
  *
@@ -3127,7 +2986,7 @@ export interface PlanDefinitionApplyOperationResult {
  * @see {@link http://hl7.org/fhir/OperationDefinition/PlanDefinition-data-requirements}
  */
 export class PlanDefinitionDataRequirementsOperation
-  implements Operation<PlanDefinitionDataRequirementsOperationResult>
+  implements Operation<Library>
 {
   /**
    * Data Requirements
@@ -3150,6 +3009,8 @@ export class PlanDefinitionDataRequirementsOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Library;
 }
 
 export interface PlanDefinitionDataRequirementsOperationParameters {
@@ -3157,15 +3018,6 @@ export interface PlanDefinitionDataRequirementsOperationParameters {
    * The id of the resource to perform the operation on.
    */
   resourceId: string;
-}
-
-export interface PlanDefinitionDataRequirementsOperationResult {
-  /**
-   * The result of the requirements gathering is a module-definition Library that
-   * describes the aggregate parameters, data requirements, and dependencies of the
-   * plan definition
-   */
-  return: Library;
 }
 
 /**
@@ -3176,9 +3028,7 @@ export interface PlanDefinitionDataRequirementsOperationResult {
  * is to convert between formats (e.g. (XML -> JSON or vice versa)
  * @see {@link http://hl7.org/fhir/OperationDefinition/Resource-convert}
  */
-export class ResourceConvertOperation
-  implements Operation<ResourceConvertOperationResult>
-{
+export class ResourceConvertOperation implements Operation<unknown> {
   /**
    * Convert from one form to another
    *
@@ -3196,6 +3046,8 @@ export class ResourceConvertOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: unknown;
 }
 
 export interface ResourceConvertOperationParameters {
@@ -3204,13 +3056,6 @@ export interface ResourceConvertOperationParameters {
    * The resource that is to be converted
    */
   input: Resource;
-}
-
-export interface ResourceConvertOperationResult {
-  /**
-   * The resource after conversion
-   */
-  output: Resource;
 }
 
 /**
@@ -3222,9 +3067,7 @@ export interface ResourceConvertOperationResult {
  * resources to return in the same packaage
  * @see {@link http://hl7.org/fhir/OperationDefinition/Resource-graph}
  */
-export class ResourceGraphOperation
-  implements Operation<ResourceGraphOperationResult>
-{
+export class ResourceGraphOperation implements Operation<unknown> {
   /**
    * Return a graph of resources
    *
@@ -3245,6 +3088,8 @@ export class ResourceGraphOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: unknown;
 }
 
 export interface ResourceGraphOperationParameters {
@@ -3263,13 +3108,6 @@ export interface ResourceGraphOperationParameters {
   graph: string;
 }
 
-export interface ResourceGraphOperationResult {
-  /**
-   * The set of resources that were in the graph based on the provided definition
-   */
-  result: Bundle;
-}
-
 /**
  * Execute a graphql statement
  * 
@@ -3282,9 +3120,7 @@ For
  * spec](http://graphql.org/) for details)
  * @see {@link http://hl7.org/fhir/OperationDefinition/Resource-graphql}
  */
-export class ResourceGraphqlOperation
-  implements Operation<ResourceGraphqlOperationResult>
-{
+export class ResourceGraphqlOperation implements Operation<unknown> {
   /**
  * Execute a graphql statement
  * 
@@ -3308,6 +3144,8 @@ For
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: unknown;
 }
 
 export interface ResourceGraphqlOperationParameters {
@@ -3322,14 +3160,6 @@ export interface ResourceGraphqlOperationParameters {
   query: string;
 }
 
-export interface ResourceGraphqlOperationResult {
-  /**
-   * The content is always returned as application/json; this SHOULD be specified in
-   * the Accept header
-   */
-  result: Binary;
-}
-
 /**
  * Add profiles, tags, and security labels to a resource
  *
@@ -3337,9 +3167,7 @@ export interface ResourceGraphqlOperationResult {
  * found in it to the nominated resource
  * @see {@link http://hl7.org/fhir/OperationDefinition/Resource-meta-add}
  */
-export class ResourceMetaAddOperation
-  implements Operation<ResourceMetaAddOperationResult>
-{
+export class ResourceMetaAddOperation implements Operation<Meta> {
   /**
    * Add profiles, tags, and security labels to a resource
    *
@@ -3358,6 +3186,8 @@ export class ResourceMetaAddOperation
       affectsState: true,
     };
   }
+
+  public _resultTypeDoNotUse?: Meta;
 }
 
 export interface ResourceMetaAddOperationParameters {
@@ -3376,13 +3206,6 @@ export interface ResourceMetaAddOperationParameters {
   meta: Meta;
 }
 
-export interface ResourceMetaAddOperationResult {
-  /**
-   * Resulting meta for the resource
-   */
-  return: Meta;
-}
-
 /**
  * Delete profiles, tags, and security labels for a resource
  *
@@ -3390,9 +3213,7 @@ export interface ResourceMetaAddOperationResult {
  * found in it from the nominated resource
  * @see {@link http://hl7.org/fhir/OperationDefinition/Resource-meta-delete}
  */
-export class ResourceMetaDeleteOperation
-  implements Operation<ResourceMetaDeleteOperationResult>
-{
+export class ResourceMetaDeleteOperation implements Operation<Meta> {
   /**
    * Delete profiles, tags, and security labels for a resource
    *
@@ -3411,6 +3232,8 @@ export class ResourceMetaDeleteOperation
       affectsState: true,
     };
   }
+
+  public _resultTypeDoNotUse?: Meta;
 }
 
 export interface ResourceMetaDeleteOperationParameters {
@@ -3427,13 +3250,6 @@ export interface ResourceMetaDeleteOperationParameters {
    * the full URL
    */
   meta: Meta;
-}
-
-export interface ResourceMetaDeleteOperationResult {
-  /**
-   * Resulting meta for the resource
-   */
-  return: Meta;
 }
 
 /**
@@ -3453,9 +3269,7 @@ export interface ResourceMetaDeleteOperationResult {
  * resource)
  * @see {@link http://hl7.org/fhir/OperationDefinition/Resource-meta}
  */
-export class ResourceMetaOperation
-  implements Operation<ResourceMetaOperationResult>
-{
+export class ResourceMetaOperation implements Operation<Meta> {
   /**
  * Access a list of profiles, tags, and security labels
  * 
@@ -3484,6 +3298,8 @@ export class ResourceMetaOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Meta;
 }
 
 export interface ResourceMetaOperationParameters {
@@ -3492,13 +3308,6 @@ export interface ResourceMetaOperationParameters {
    * The id of the resource to perform the operation on.
    */
   resourceId?: string | null | undefined;
-}
-
-export interface ResourceMetaOperationResult {
-  /**
-   * The meta returned by the operation
-   */
-  return: Meta;
 }
 
 /**
@@ -3532,9 +3341,7 @@ Note that this
  * Resources](validation.html) for further information.
  * @see {@link http://hl7.org/fhir/OperationDefinition/Resource-validate}
  */
-export class ResourceValidateOperation
-  implements Operation<ResourceValidateOperationResult>
-{
+export class ResourceValidateOperation implements Operation<OperationOutcome> {
   /**
  * Validate a resource
  * 
@@ -3577,6 +3384,8 @@ Note that this
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: OperationOutcome;
 }
 
 export interface ResourceValidateOperationParameters {
@@ -3601,15 +3410,6 @@ export interface ResourceValidateOperationParameters {
    * @fhirType canonical
    */
   profile?: string | undefined;
-}
-
-export interface ResourceValidateOperationResult {
-  /**
-   * If the operation outcome does not list any errors, and a mode was specified,
-   * then this is an indication that the operation would be expected to succeed
-   * (excepting for transactional integrity issues, see below)
-   */
-  return: OperationOutcome;
 }
 
 /**
@@ -3641,7 +3441,7 @@ This operation is intended to enable
  * @see {@link http://hl7.org/fhir/OperationDefinition/StructureDefinition-questionnaire}
  */
 export class StructureDefinitionQuestionnaireOperation
-  implements Operation<StructureDefinitionQuestionnaireOperationResult>
+  implements Operation<Questionnaire>
 {
   /**
  * Build Questionnaire
@@ -3684,6 +3484,8 @@ This operation is intended to enable
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Questionnaire;
 }
 
 export interface StructureDefinitionQuestionnaireOperationParameters {
@@ -3717,13 +3519,6 @@ export interface StructureDefinitionQuestionnaireOperationParameters {
   supportedOnly?: boolean | undefined;
 }
 
-export interface StructureDefinitionQuestionnaireOperationResult {
-  /**
-   * The questionnaire form generated based on the StructureDefinition.
-   */
-  return: Questionnaire;
-}
-
 /**
  * Generate Snapshot
  * 
@@ -3739,7 +3534,7 @@ If the operation is not
  * @see {@link http://hl7.org/fhir/OperationDefinition/StructureDefinition-snapshot}
  */
 export class StructureDefinitionSnapshotOperation
-  implements Operation<StructureDefinitionSnapshotOperationResult>
+  implements Operation<StructureDefinition>
 {
   /**
  * Generate Snapshot
@@ -3768,6 +3563,8 @@ If the operation is not
       affectsState: true,
     };
   }
+
+  public _resultTypeDoNotUse?: StructureDefinition;
 }
 
 export interface StructureDefinitionSnapshotOperationParameters {
@@ -3788,13 +3585,6 @@ export interface StructureDefinitionSnapshotOperationParameters {
   url?: string | undefined;
 }
 
-export interface StructureDefinitionSnapshotOperationResult {
-  /**
-   * The structure definition with a snapshot
-   */
-  return: StructureDefinition;
-}
-
 /**
  * Model Instance Transformation
  *
@@ -3802,9 +3592,7 @@ export interface StructureDefinitionSnapshotOperationResult {
  * and then returns the output.
  * @see {@link http://hl7.org/fhir/OperationDefinition/StructureMap-transform}
  */
-export class StructureMapTransformOperation
-  implements Operation<StructureMapTransformOperationResult>
-{
+export class StructureMapTransformOperation implements Operation<Resource> {
   /**
    * Model Instance Transformation
    *
@@ -3823,6 +3611,8 @@ export class StructureMapTransformOperation
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: Resource;
 }
 
 export interface StructureMapTransformOperationParameters {
@@ -3843,13 +3633,6 @@ export interface StructureMapTransformOperationParameters {
   content: Resource;
 }
 
-export interface StructureMapTransformOperationResult {
-  /**
-   * The result of the transform
-   */
-  return: Resource;
-}
-
 /**
  * Value Set Expansion
  * 
@@ -3862,9 +3645,7 @@ If the operation is not called
  * an error message.
  * @see {@link http://hl7.org/fhir/OperationDefinition/ValueSet-expand}
  */
-export class ValueSetExpandOperation
-  implements Operation<ValueSetExpandOperationResult>
-{
+export class ValueSetExpandOperation implements Operation<ValueSet> {
   /**
  * Value Set Expansion
  * 
@@ -3888,6 +3669,8 @@ If the operation is not called
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: ValueSet;
 }
 
 export interface ValueSetExpandOperationParameters {
@@ -4081,15 +3864,6 @@ Text Search engines such as Lucene or Solr, long with their
   "force-system-version"?: Array<string> | undefined;
 }
 
-export interface ValueSetExpandOperationResult {
-  /**
-   * The result of the expansion. Servers generating expansions SHOULD ensure that
-   * all the parameters that affect the contents of the expansion are recorded in the
-   * ValueSet.expansion.parameter list
-   */
-  return: ValueSet;
-}
-
 /**
  * Value Set based Validation
  * 
@@ -4130,6 +3904,8 @@ If
       affectsState: false,
     };
   }
+
+  public _resultTypeDoNotUse?: ValueSetValidateCodeOperationResult;
 }
 
 export interface ValueSetValidateCodeOperationParameters {

@@ -20,7 +20,11 @@ import {
   OperationOutcome,
   Retrieved,
 } from "./fhir-types.codegen";
-import { Operation, OperationParameters } from "./operations.codegen";
+import {
+  ExtractOperationResultType,
+  Operation,
+  OperationParameters,
+} from "./operations.codegen";
 
 /**
  * Allows to set the `Authorization` header to a static value.
@@ -307,10 +311,9 @@ export class FetchFhirClient implements FhirClient {
     });
   }
 
-  public async execute<
-    TOperationResult,
-    TOperation extends Operation<TOperationResult>
-  >(operation: TOperation): Promise<TOperationResult>;
+  execute<TOperation extends Operation>(
+    operation: TOperation
+  ): Promise<ExtractOperationResultType<TOperation>>;
   public async execute<TOperationResult>(
     operation: OperationParameters
   ): Promise<TOperationResult>;

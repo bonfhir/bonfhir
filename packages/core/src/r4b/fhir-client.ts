@@ -7,7 +7,11 @@ import {
   ExtractResource,
   Retrieved,
 } from "./fhir-types.codegen";
-import { Operation, OperationParameters } from "./operations.codegen";
+import {
+  ExtractOperationResultType,
+  Operation,
+  OperationParameters,
+} from "./operations.codegen";
 import { JSONPatchBody } from "./patch";
 import { ExtractPatchBuilder, fhirJSONPatch } from "./patch.codegen";
 import { ExtractSearchBuilder, fhirSearch } from "./search.codegen";
@@ -145,9 +149,9 @@ export interface FhirClient {
    * https://www.hl7.org/fhir/operations.html
    * https://www.hl7.org/fhir/operationslist.html
    */
-  execute<TOperationResult, TOperation extends Operation<TOperationResult>>(
+  execute<TOperation extends Operation>(
     operation: TOperation
-  ): Promise<TOperationResult>;
+  ): Promise<ExtractOperationResultType<TOperation>>;
   execute<TOperationResult>(
     operation: OperationParameters
   ): Promise<TOperationResult>;
