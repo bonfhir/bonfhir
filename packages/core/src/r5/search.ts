@@ -1,10 +1,6 @@
-import {
-  AnyResourceType,
-  ExtractResource,
-  Reference,
-} from "./fhir-types.codegen";
-import { DropUnderscoreKeys } from "./lang-utils";
-import { ExtractSearchBuilder } from "./search.codegen";
+import { AnyResourceType } from "./fhir-types.codegen";
+import { RemoveUnderscoreKeys } from "./lang-utils";
+import { AllResourcesReferenceSearchParameters } from "./search.codegen";
 
 /**
  * The builder for FHIR Search URLs.
@@ -596,9 +592,11 @@ export class FhirSearchBuilder {
    *
    * @see https://hl7.org/fhir/search.html#include
    */
-  _include<TResourceType extends AnyResourceType>(
+  _include<TResourceType extends keyof AllResourcesReferenceSearchParameters>(
     sourceResource: TResourceType,
-    searchParameter: Includeable<TResourceType>,
+    searchParameter: RemoveUnderscoreKeys<
+      AllResourcesReferenceSearchParameters[TResourceType]
+    >,
     options?: {
       targetResourceType?: TResourceType | null | undefined;
       iterate?: boolean | null | undefined;
@@ -617,9 +615,13 @@ export class FhirSearchBuilder {
    *
    * @see https://hl7.org/fhir/search.html#revinclude
    */
-  _revinclude<TResourceType extends AnyResourceType>(
+  _revinclude<
+    TResourceType extends keyof AllResourcesReferenceSearchParameters
+  >(
     sourceResource: TResourceType,
-    searchParameter: Includeable<TResourceType>,
+    searchParameter: RemoveUnderscoreKeys<
+      AllResourcesReferenceSearchParameters[TResourceType]
+    >,
     options?: {
       targetResourceType?: TResourceType | null | undefined;
       iterate?: boolean | null | undefined;
@@ -865,15 +867,3 @@ export const UriModifier = {
 export type UriModifier = (typeof UriModifier)[keyof typeof UriModifier];
 
 export type SummaryValue = "true" | "text" | "data" | "count" | "false";
-
-export type OnlyReferences<T> = {
-  [P in keyof T as T[P] extends
-    | (Reference | undefined)
-    | (Array<Reference> | undefined)
-    ? P
-    : never]: T[P];
-};
-
-export type Includeable<TResourceType extends AnyResourceType> =
-  | keyof OnlyReferences<ExtractResource<TResourceType>>
-  | keyof DropUnderscoreKeys<ExtractSearchBuilder<TResourceType>>;

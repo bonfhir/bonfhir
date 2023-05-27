@@ -265,3 +265,9 @@ export function startCase(
 export type DropFirst<T extends unknown[]> = T extends [infer _, ...infer U]
   ? U
   : never;
+
+/**
+ * Type that filter keys that start with an underscore.
+ */
+export type RemoveUnderscoreKeys<T extends PropertyKey> =
+  T extends `_${infer _U}` ? never : T;

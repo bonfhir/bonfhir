@@ -86299,6 +86299,796 @@ export class VisionPrescriptionFhirSearchBuilder extends DomainResourceFhirSearc
   }
 }
 
+/**
+ * Search parameters of type `reference` by their resource type..
+ */
+export type AllResourcesReferenceSearchParameters = {
+  Account:
+    | "_in"
+    | "_profile"
+    | "guarantor"
+    | "owner"
+    | "relatedaccount"
+    | "subject"
+    | "patient";
+  ActivityDefinition:
+    | "_in"
+    | "_profile"
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  ActorDefinition: "_in" | "_profile";
+  AdministrableProductDefinition:
+    | "_in"
+    | "_profile"
+    | "device"
+    | "formOf"
+    | "manufacturedItem";
+  AdverseEvent:
+    | "_in"
+    | "_profile"
+    | "location"
+    | "recorder"
+    | "resultingeffect"
+    | "study"
+    | "subject"
+    | "substance"
+    | "patient";
+  AllergyIntolerance:
+    | "_in"
+    | "_profile"
+    | "manifestationReference"
+    | "participant"
+    | "patient";
+  Appointment:
+    | "_in"
+    | "_profile"
+    | "actor"
+    | "basedOn"
+    | "group"
+    | "location"
+    | "practitioner"
+    | "reasonReference"
+    | "serviceTypeReference"
+    | "slot"
+    | "subject"
+    | "supportingInfo"
+    | "patient";
+  AppointmentResponse:
+    | "_in"
+    | "_profile"
+    | "actor"
+    | "appointment"
+    | "group"
+    | "location"
+    | "practitioner"
+    | "patient";
+  ArtifactAssessment: "_in" | "_profile";
+  AuditEvent:
+    | "_in"
+    | "_profile"
+    | "agent"
+    | "basedOn"
+    | "entity"
+    | "source"
+    | "encounter"
+    | "patient";
+  Basic: "_in" | "_profile" | "author" | "subject" | "patient";
+  Binary: "_in" | "_profile";
+  BiologicallyDerivedProduct: "_in" | "_profile" | "collector" | "request";
+  BiologicallyDerivedProductDispense: "_in" | "_profile";
+  BodyStructure: "_in" | "_profile" | "patient";
+  Bundle: "_in" | "_profile" | "composition" | "message";
+  CapabilityStatement:
+    | "_in"
+    | "_profile"
+    | "guide"
+    | "resourceProfile"
+    | "supportedProfile";
+  CarePlan:
+    | "_in"
+    | "_profile"
+    | "activityReference"
+    | "basedOn"
+    | "careTeam"
+    | "condition"
+    | "custodian"
+    | "goal"
+    | "instantiatesCanonical"
+    | "partOf"
+    | "replaces"
+    | "subject"
+    | "encounter"
+    | "patient";
+  CareTeam: "_in" | "_profile" | "participant" | "subject" | "patient";
+  ChargeItem:
+    | "_in"
+    | "_profile"
+    | "account"
+    | "enterer"
+    | "performerActor"
+    | "performingOrganization"
+    | "requestingOrganization"
+    | "service"
+    | "subject"
+    | "encounter"
+    | "patient";
+  ChargeItemDefinition: "_in" | "_profile";
+  Citation: "_in" | "_profile";
+  Claim:
+    | "_in"
+    | "_profile"
+    | "careTeam"
+    | "detailUdi"
+    | "enterer"
+    | "facility"
+    | "insurer"
+    | "itemUdi"
+    | "payee"
+    | "procedureUdi"
+    | "provider"
+    | "subdetailUdi"
+    | "encounter"
+    | "patient";
+  ClaimResponse:
+    | "_in"
+    | "_profile"
+    | "insurer"
+    | "request"
+    | "requestor"
+    | "patient";
+  ClinicalImpression:
+    | "_in"
+    | "_profile"
+    | "findingRef"
+    | "performer"
+    | "previous"
+    | "problem"
+    | "subject"
+    | "supportingInfo"
+    | "encounter"
+    | "patient";
+  ClinicalUseDefinition:
+    | "_in"
+    | "_profile"
+    | "contraindicationReference"
+    | "effectReference"
+    | "indicationReference"
+    | "product"
+    | "subject";
+  CodeSystem:
+    | "_in"
+    | "_profile"
+    | "supplements"
+    | "derivedFrom"
+    | "predecessor";
+  Communication:
+    | "_in"
+    | "_profile"
+    | "basedOn"
+    | "instantiatesCanonical"
+    | "partOf"
+    | "recipient"
+    | "sender"
+    | "subject"
+    | "encounter"
+    | "patient";
+  CommunicationRequest:
+    | "_in"
+    | "_profile"
+    | "basedOn"
+    | "informationProvider"
+    | "recipient"
+    | "replaces"
+    | "requester"
+    | "subject"
+    | "encounter"
+    | "patient";
+  CompartmentDefinition: "_in" | "_profile";
+  Composition:
+    | "_in"
+    | "_profile"
+    | "attester"
+    | "author"
+    | "entry"
+    | "eventReference"
+    | "related"
+    | "subject"
+    | "encounter"
+    | "patient";
+  ConceptMap:
+    | "_in"
+    | "_profile"
+    | "otherMap"
+    | "sourceGroupSystem"
+    | "sourceScope"
+    | "targetGroupSystem"
+    | "targetScope"
+    | "derivedFrom"
+    | "predecessor";
+  Condition:
+    | "_in"
+    | "_profile"
+    | "evidenceDetail"
+    | "participantActor"
+    | "subject"
+    | "encounter"
+    | "patient";
+  ConditionDefinition: "_in" | "_profile";
+  Consent:
+    | "_in"
+    | "_profile"
+    | "actor"
+    | "controller"
+    | "data"
+    | "grantee"
+    | "manager"
+    | "sourceReference"
+    | "subject"
+    | "patient";
+  Contract:
+    | "_in"
+    | "_profile"
+    | "authority"
+    | "domain"
+    | "signer"
+    | "subject"
+    | "patient";
+  Coverage:
+    | "_in"
+    | "_profile"
+    | "beneficiary"
+    | "insurer"
+    | "paymentbyParty"
+    | "policyHolder"
+    | "subscriber"
+    | "patient";
+  CoverageEligibilityRequest:
+    | "_in"
+    | "_profile"
+    | "enterer"
+    | "facility"
+    | "provider"
+    | "patient";
+  CoverageEligibilityResponse:
+    | "_in"
+    | "_profile"
+    | "insurer"
+    | "request"
+    | "requestor"
+    | "patient";
+  DetectedIssue:
+    | "_in"
+    | "_profile"
+    | "author"
+    | "implicated"
+    | "subject"
+    | "patient";
+  Device:
+    | "_in"
+    | "_profile"
+    | "definition"
+    | "location"
+    | "organization"
+    | "parent";
+  DeviceAssociation: "_in" | "_profile";
+  DeviceDefinition: "_in" | "_profile" | "manufacturer" | "organization";
+  DeviceDispense: "_in" | "_profile";
+  DeviceMetric: "_in" | "_profile" | "device";
+  DeviceRequest:
+    | "_in"
+    | "_profile"
+    | "basedOn"
+    | "device"
+    | "instantiatesCanonical"
+    | "insurance"
+    | "performer"
+    | "priorRequest"
+    | "requester"
+    | "subject"
+    | "encounter"
+    | "patient";
+  DeviceUsage: "_in" | "_profile" | "patient";
+  DiagnosticReport:
+    | "_in"
+    | "_profile"
+    | "basedOn"
+    | "media"
+    | "performer"
+    | "result"
+    | "resultsInterpreter"
+    | "specimen"
+    | "study"
+    | "subject"
+    | "encounter"
+    | "patient";
+  DocumentReference:
+    | "_in"
+    | "_profile"
+    | "attester"
+    | "author"
+    | "basedOn"
+    | "bodysiteReference"
+    | "context"
+    | "custodian"
+    | "eventReference"
+    | "formatCanonical"
+    | "relatesto"
+    | "subject"
+    | "patient";
+  Encounter:
+    | "_in"
+    | "_profile"
+    | "account"
+    | "appointment"
+    | "basedOn"
+    | "careteam"
+    | "diagnosisReference"
+    | "episodeOfCare"
+    | "location"
+    | "partOf"
+    | "participant"
+    | "practitioner"
+    | "reasonReference"
+    | "serviceProvider"
+    | "subject"
+    | "patient";
+  EncounterHistory: "_in" | "_profile" | "encounter";
+  Endpoint: "_in" | "_profile" | "organization";
+  EnrollmentRequest: "_in" | "_profile" | "patient";
+  EnrollmentResponse: "_in" | "_profile";
+  EpisodeOfCare:
+    | "_in"
+    | "_profile"
+    | "careManager"
+    | "diagnosisReference"
+    | "incomingReferral"
+    | "organization"
+    | "reasonReference"
+    | "patient";
+  EventDefinition:
+    | "_in"
+    | "_profile"
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  Evidence: "_in" | "_profile";
+  EvidenceReport: "_in" | "_profile";
+  EvidenceVariable:
+    | "_in"
+    | "_profile"
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  ExampleScenario: "_in" | "_profile";
+  ExplanationOfBenefit:
+    | "_in"
+    | "_profile"
+    | "careTeam"
+    | "claim"
+    | "coverage"
+    | "detailUdi"
+    | "enterer"
+    | "facility"
+    | "itemUdi"
+    | "payee"
+    | "procedureUdi"
+    | "provider"
+    | "subdetailUdi"
+    | "encounter"
+    | "patient";
+  FamilyMemberHistory: "_in" | "_profile" | "instantiatesCanonical" | "patient";
+  Flag: "_in" | "_profile" | "author" | "subject" | "encounter" | "patient";
+  FormularyItem: "_in" | "_profile";
+  GenomicStudy: "_in" | "_profile";
+  Goal: "_in" | "_profile" | "addresses" | "subject" | "patient";
+  GraphDefinition: "_in" | "_profile";
+  Group:
+    | "_in"
+    | "_profile"
+    | "characteristicReference"
+    | "managingEntity"
+    | "member";
+  GuidanceResponse: "_in" | "_profile" | "subject" | "patient";
+  HealthcareService:
+    | "_in"
+    | "_profile"
+    | "coverageArea"
+    | "endpoint"
+    | "location"
+    | "offeredIn"
+    | "organization";
+  ImagingSelection:
+    | "_in"
+    | "_profile"
+    | "basedOn"
+    | "bodyStructure"
+    | "derivedFrom"
+    | "subject"
+    | "patient";
+  ImagingStudy:
+    | "_in"
+    | "_profile"
+    | "basedOn"
+    | "bodyStructure"
+    | "endpoint"
+    | "performer"
+    | "referrer"
+    | "subject"
+    | "encounter"
+    | "patient";
+  Immunization:
+    | "_in"
+    | "_profile"
+    | "location"
+    | "manufacturer"
+    | "performer"
+    | "reaction"
+    | "reasonReference"
+    | "patient";
+  ImmunizationEvaluation: "_in" | "_profile" | "immunizationEvent" | "patient";
+  ImmunizationRecommendation:
+    | "_in"
+    | "_profile"
+    | "information"
+    | "support"
+    | "patient";
+  ImplementationGuide: "_in" | "_profile" | "dependsOn" | "global" | "resource";
+  Ingredient:
+    | "_in"
+    | "_profile"
+    | "for"
+    | "manufacturer"
+    | "substanceDefinition"
+    | "substance";
+  InsurancePlan: "_in" | "_profile";
+  InventoryItem: "_in" | "_profile";
+  InventoryReport: "_in" | "_profile";
+  Invoice: "_in" | "_profile" | "patient";
+  Library:
+    | "_in"
+    | "_profile"
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  Linkage: "_in" | "_profile";
+  List:
+    | "_in"
+    | "_profile"
+    | "item"
+    | "source"
+    | "subject"
+    | "encounter"
+    | "patient";
+  Location: "_in" | "_profile" | "endpoint" | "organization" | "partof";
+  ManufacturedItemDefinition: "_in" | "_profile";
+  Measure:
+    | "_in"
+    | "_profile"
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  MeasureReport:
+    | "_in"
+    | "_profile"
+    | "evaluatedResource"
+    | "location"
+    | "measure"
+    | "reporter"
+    | "subject"
+    | "patient";
+  Medication:
+    | "_in"
+    | "_profile"
+    | "ingredient"
+    | "marketingauthorizationholder";
+  MedicationAdministration:
+    | "_in"
+    | "_profile"
+    | "device"
+    | "performer"
+    | "reasonGiven"
+    | "request"
+    | "subject"
+    | "patient"
+    | "encounter"
+    | "medication";
+  MedicationDispense:
+    | "_in"
+    | "_profile"
+    | "destination"
+    | "location"
+    | "performer"
+    | "receiver"
+    | "responsibleparty"
+    | "subject"
+    | "encounter"
+    | "patient"
+    | "medication"
+    | "prescription";
+  MedicationKnowledge: "_in" | "_profile" | "ingredient" | "monograph";
+  MedicationRequest:
+    | "_in"
+    | "_profile"
+    | "intendedDispenser"
+    | "intendedPerformer"
+    | "requester"
+    | "subject"
+    | "patient"
+    | "encounter"
+    | "medication";
+  MedicationStatement:
+    | "_in"
+    | "_profile"
+    | "source"
+    | "subject"
+    | "encounter"
+    | "patient"
+    | "medication";
+  MedicinalProductDefinition: "_in" | "_profile" | "contact" | "masterFile";
+  MessageDefinition: "_in" | "_profile" | "parent";
+  MessageHeader:
+    | "_in"
+    | "_profile"
+    | "author"
+    | "focus"
+    | "receiver"
+    | "responsible"
+    | "sender"
+    | "target";
+  MolecularSequence: "_in" | "_profile" | "focus" | "subject" | "patient";
+  NamingSystem: "_in" | "_profile" | "derivedFrom" | "predecessor";
+  NutritionIntake:
+    | "_in"
+    | "_profile"
+    | "source"
+    | "subject"
+    | "encounter"
+    | "patient";
+  NutritionOrder:
+    | "_in"
+    | "_profile"
+    | "provider"
+    | "subject"
+    | "encounter"
+    | "patient";
+  NutritionProduct: "_in" | "_profile";
+  Observation:
+    | "_in"
+    | "_profile"
+    | "basedOn"
+    | "componentValueReference"
+    | "derivedFrom"
+    | "device"
+    | "focus"
+    | "hasMember"
+    | "partOf"
+    | "performer"
+    | "specimen"
+    | "subject"
+    | "valueReference"
+    | "encounter"
+    | "patient";
+  ObservationDefinition: "_in" | "_profile";
+  OperationDefinition:
+    | "_in"
+    | "_profile"
+    | "base"
+    | "inputProfile"
+    | "outputProfile";
+  OperationOutcome: "_in" | "_profile";
+  Organization: "_in" | "_profile" | "endpoint" | "partof";
+  OrganizationAffiliation:
+    | "_in"
+    | "_profile"
+    | "endpoint"
+    | "location"
+    | "network"
+    | "participatingOrganization"
+    | "primaryOrganization"
+    | "service";
+  PackagedProductDefinition:
+    | "_in"
+    | "_profile"
+    | "biological"
+    | "containedItem"
+    | "device"
+    | "manufacturedItem"
+    | "medication"
+    | "nutrition"
+    | "packageFor"
+    | "package";
+  Parameters: "_in" | "_profile";
+  Patient: "_in" | "_profile" | "generalPractitioner" | "link" | "organization";
+  PaymentNotice: "_in" | "_profile" | "reporter" | "request" | "response";
+  PaymentReconciliation:
+    | "_in"
+    | "_profile"
+    | "allocationAccount"
+    | "allocationEncounter"
+    | "paymentIssuer"
+    | "request"
+    | "requestor";
+  Permission: "_in" | "_profile";
+  Person:
+    | "_in"
+    | "_profile"
+    | "link"
+    | "organization"
+    | "practitioner"
+    | "relatedperson"
+    | "patient";
+  PlanDefinition:
+    | "_in"
+    | "_profile"
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor"
+    | "definition";
+  Practitioner: "_in" | "_profile";
+  PractitionerRole:
+    | "_in"
+    | "_profile"
+    | "endpoint"
+    | "location"
+    | "organization"
+    | "practitioner"
+    | "service";
+  Procedure:
+    | "_in"
+    | "_profile"
+    | "basedOn"
+    | "instantiatesCanonical"
+    | "location"
+    | "partOf"
+    | "performer"
+    | "reasonReference"
+    | "report"
+    | "subject"
+    | "encounter"
+    | "patient";
+  Provenance:
+    | "_in"
+    | "_profile"
+    | "agent"
+    | "basedOn"
+    | "entity"
+    | "location"
+    | "target"
+    | "encounter"
+    | "patient";
+  Questionnaire: "_in" | "_profile";
+  QuestionnaireResponse:
+    | "_in"
+    | "_profile"
+    | "author"
+    | "basedOn"
+    | "itemSubject"
+    | "partOf"
+    | "questionnaire"
+    | "source"
+    | "subject"
+    | "encounter"
+    | "patient";
+  RegulatedAuthorization: "_in" | "_profile" | "holder" | "subject";
+  RelatedPerson: "_in" | "_profile" | "patient";
+  RequestOrchestration:
+    | "_in"
+    | "_profile"
+    | "author"
+    | "basedOn"
+    | "instantiatesCanonical"
+    | "participant"
+    | "subject"
+    | "encounter"
+    | "patient";
+  Requirements: "_in" | "_profile" | "actor" | "derivedFrom";
+  ResearchStudy: "_in" | "_profile";
+  ResearchSubject: "_in" | "_profile" | "patient";
+  RiskAssessment:
+    | "_in"
+    | "_profile"
+    | "condition"
+    | "performer"
+    | "subject"
+    | "encounter"
+    | "patient";
+  Schedule: "_in" | "_profile" | "actor" | "serviceTypeReference";
+  SearchParameter: "_in" | "_profile" | "component" | "derivedFrom";
+  ServiceRequest:
+    | "_in"
+    | "_profile"
+    | "basedOn"
+    | "bodyStructure"
+    | "codeReference"
+    | "instantiatesCanonical"
+    | "performer"
+    | "replaces"
+    | "requester"
+    | "specimen"
+    | "subject"
+    | "encounter"
+    | "patient";
+  Slot: "_in" | "_profile" | "schedule" | "serviceTypeReference";
+  Specimen:
+    | "_in"
+    | "_profile"
+    | "bodysite"
+    | "collector"
+    | "containerDevice"
+    | "parent"
+    | "procedure"
+    | "subject"
+    | "patient";
+  SpecimenDefinition: "_in" | "_profile";
+  StructureDefinition: "_in" | "_profile" | "base" | "valueset";
+  StructureMap: "_in" | "_profile";
+  Subscription: "_in" | "_profile" | "owner";
+  SubscriptionStatus: "_in" | "_profile";
+  SubscriptionTopic: "_in" | "_profile";
+  Substance: "_in" | "_profile" | "codeReference" | "substanceReference";
+  SubstanceDefinition: "_in" | "_profile";
+  SubstanceNucleicAcid: "_in" | "_profile";
+  SubstancePolymer: "_in" | "_profile";
+  SubstanceProtein: "_in" | "_profile";
+  SubstanceReferenceInformation: "_in" | "_profile";
+  SubstanceSourceMaterial: "_in" | "_profile";
+  SupplyDelivery: "_in" | "_profile" | "receiver" | "supplier" | "patient";
+  SupplyRequest:
+    | "_in"
+    | "_profile"
+    | "requester"
+    | "subject"
+    | "supplier"
+    | "patient";
+  Task:
+    | "_in"
+    | "_profile"
+    | "actor"
+    | "basedOn"
+    | "focus"
+    | "output"
+    | "owner"
+    | "partOf"
+    | "requestedperformerReference"
+    | "requester"
+    | "subject"
+    | "encounter"
+    | "patient";
+  TerminologyCapabilities: "_in" | "_profile";
+  TestPlan: "_in" | "_profile";
+  TestReport: "_in" | "_profile" | "testscript";
+  TestScript: "_in" | "_profile" | "scopeArtifact";
+  Transport: "_in" | "_profile";
+  ValueSet: "_in" | "_profile" | "derivedFrom" | "predecessor";
+  VerificationResult:
+    | "_in"
+    | "_profile"
+    | "attestationOnbehalfof"
+    | "attestationWho"
+    | "primarysourceWho"
+    | "target"
+    | "validatorOrganization";
+  VisionPrescription:
+    | "_in"
+    | "_profile"
+    | "prescriber"
+    | "encounter"
+    | "patient";
+};
+
 export type AnyFhirSearchBuilder =
   | AccountFhirSearchBuilder
   | ActivityDefinitionFhirSearchBuilder

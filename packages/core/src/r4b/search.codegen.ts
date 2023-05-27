@@ -37358,6 +37358,481 @@ export class VisionPrescriptionFhirSearchBuilder extends DomainResourceFhirSearc
   }
 }
 
+/**
+ * Search parameters of type `reference` by their resource type..
+ */
+export type AllResourcesReferenceSearchParameters = {
+  Account: "owner" | "patient" | "subject";
+  ActivityDefinition:
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  AdministrableProductDefinition: "device" | "formOf" | "manufacturedItem";
+  AdverseEvent:
+    | "location"
+    | "recorder"
+    | "resultingcondition"
+    | "study"
+    | "subject"
+    | "substance";
+  AllergyIntolerance: "asserter" | "recorder" | "patient";
+  Appointment:
+    | "actor"
+    | "basedOn"
+    | "location"
+    | "patient"
+    | "practitioner"
+    | "reasonReference"
+    | "slot"
+    | "supportingInfo";
+  AppointmentResponse:
+    | "actor"
+    | "appointment"
+    | "location"
+    | "patient"
+    | "practitioner";
+  AuditEvent: "agent" | "entity" | "patient" | "source";
+  Basic: "author" | "patient" | "subject";
+  BodyStructure: "patient";
+  Bundle: "composition" | "message";
+  CapabilityStatement: "guide" | "resourceProfile" | "supportedProfile";
+  CarePlan:
+    | "activityReference"
+    | "basedOn"
+    | "careTeam"
+    | "condition"
+    | "encounter"
+    | "goal"
+    | "instantiatesCanonical"
+    | "partOf"
+    | "performer"
+    | "replaces"
+    | "subject"
+    | "patient";
+  CareTeam: "encounter" | "participant" | "subject" | "patient";
+  ChargeItem:
+    | "account"
+    | "context"
+    | "enterer"
+    | "patient"
+    | "performerActor"
+    | "performingOrganization"
+    | "requestingOrganization"
+    | "service"
+    | "subject";
+  Claim:
+    | "careTeam"
+    | "detailUdi"
+    | "encounter"
+    | "enterer"
+    | "facility"
+    | "insurer"
+    | "itemUdi"
+    | "patient"
+    | "payee"
+    | "procedureUdi"
+    | "provider"
+    | "subdetailUdi";
+  ClaimResponse: "insurer" | "patient" | "request" | "requestor";
+  ClinicalImpression:
+    | "assessor"
+    | "encounter"
+    | "findingRef"
+    | "investigation"
+    | "previous"
+    | "problem"
+    | "subject"
+    | "supportingInfo"
+    | "patient";
+  ClinicalUseDefinition:
+    | "contraindicationReference"
+    | "effectReference"
+    | "indicationReference"
+    | "product"
+    | "subject";
+  CodeSystem: "supplements";
+  Communication:
+    | "basedOn"
+    | "encounter"
+    | "instantiatesCanonical"
+    | "partOf"
+    | "patient"
+    | "recipient"
+    | "sender"
+    | "subject";
+  CommunicationRequest:
+    | "basedOn"
+    | "encounter"
+    | "patient"
+    | "recipient"
+    | "replaces"
+    | "requester"
+    | "sender"
+    | "subject";
+  Composition:
+    | "attester"
+    | "author"
+    | "entry"
+    | "relatedRef"
+    | "subject"
+    | "encounter"
+    | "patient";
+  ConceptMap: "other" | "sourceUri" | "source" | "targetUri" | "target";
+  Condition:
+    | "asserter"
+    | "encounter"
+    | "evidenceDetail"
+    | "subject"
+    | "patient";
+  Consent:
+    | "actor"
+    | "consentor"
+    | "data"
+    | "organization"
+    | "sourceReference"
+    | "patient";
+  Contract: "authority" | "domain" | "patient" | "signer" | "subject";
+  Coverage: "beneficiary" | "patient" | "payor" | "policyHolder" | "subscriber";
+  CoverageEligibilityRequest: "enterer" | "facility" | "patient" | "provider";
+  CoverageEligibilityResponse: "insurer" | "patient" | "request" | "requestor";
+  DetectedIssue: "author" | "implicated" | "patient";
+  Device: "location" | "organization" | "patient";
+  DeviceDefinition: "parent";
+  DeviceMetric: "parent" | "source";
+  DeviceRequest:
+    | "basedOn"
+    | "device"
+    | "instantiatesCanonical"
+    | "insurance"
+    | "performer"
+    | "priorRequest"
+    | "requester"
+    | "subject"
+    | "encounter"
+    | "patient";
+  DeviceUseStatement: "device" | "subject" | "patient";
+  DiagnosticReport:
+    | "basedOn"
+    | "media"
+    | "performer"
+    | "result"
+    | "resultsInterpreter"
+    | "specimen"
+    | "subject"
+    | "encounter"
+    | "patient";
+  DocumentManifest:
+    | "author"
+    | "item"
+    | "recipient"
+    | "relatedRef"
+    | "subject"
+    | "patient";
+  DocumentReference:
+    | "authenticator"
+    | "author"
+    | "custodian"
+    | "related"
+    | "relatesto"
+    | "subject"
+    | "encounter"
+    | "patient";
+  Encounter:
+    | "account"
+    | "appointment"
+    | "basedOn"
+    | "diagnosis"
+    | "episodeOfCare"
+    | "location"
+    | "partOf"
+    | "participant"
+    | "practitioner"
+    | "reasonReference"
+    | "serviceProvider"
+    | "subject"
+    | "patient";
+  Endpoint: "organization";
+  EnrollmentRequest: "patient" | "subject";
+  EnrollmentResponse: "request";
+  EpisodeOfCare:
+    | "careManager"
+    | "condition"
+    | "incomingReferral"
+    | "organization"
+    | "patient";
+  EventDefinition:
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  ExplanationOfBenefit:
+    | "careTeam"
+    | "claim"
+    | "coverage"
+    | "detailUdi"
+    | "encounter"
+    | "enterer"
+    | "facility"
+    | "itemUdi"
+    | "patient"
+    | "payee"
+    | "procedureUdi"
+    | "provider"
+    | "subdetailUdi";
+  FamilyMemberHistory: "instantiatesCanonical" | "patient";
+  Flag: "author" | "subject" | "encounter" | "patient";
+  Goal: "subject" | "patient";
+  Group: "managingEntity" | "member";
+  GuidanceResponse: "patient" | "subject";
+  HealthcareService: "coverageArea" | "endpoint" | "location" | "organization";
+  ImagingStudy:
+    | "basedon"
+    | "encounter"
+    | "endpoint"
+    | "interpreter"
+    | "performer"
+    | "referrer"
+    | "subject"
+    | "patient";
+  Immunization:
+    | "location"
+    | "manufacturer"
+    | "performer"
+    | "reaction"
+    | "reasonReference"
+    | "patient";
+  ImmunizationEvaluation: "immunizationEvent" | "patient";
+  ImmunizationRecommendation: "information" | "patient" | "support";
+  ImplementationGuide: "dependsOn" | "global" | "resource";
+  Ingredient: "for" | "manufacturer" | "substanceDefinition" | "substance";
+  InsurancePlan: "administeredBy" | "endpoint" | "ownedBy";
+  Invoice:
+    | "account"
+    | "issuer"
+    | "participant"
+    | "patient"
+    | "recipient"
+    | "subject";
+  Library:
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  Linkage: "author" | "item" | "source";
+  List: "item" | "source" | "subject" | "encounter" | "patient";
+  Location: "endpoint" | "organization" | "partof";
+  Measure:
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  MeasureReport:
+    | "evaluatedResource"
+    | "measure"
+    | "patient"
+    | "reporter"
+    | "subject";
+  Media:
+    | "basedOn"
+    | "device"
+    | "encounter"
+    | "operator"
+    | "patient"
+    | "subject";
+  Medication: "ingredient" | "manufacturer";
+  MedicationAdministration:
+    | "context"
+    | "device"
+    | "performer"
+    | "request"
+    | "subject"
+    | "patient"
+    | "medication";
+  MedicationDispense:
+    | "context"
+    | "destination"
+    | "performer"
+    | "receiver"
+    | "responsibleparty"
+    | "subject"
+    | "patient"
+    | "medication"
+    | "prescription";
+  MedicationKnowledge: "ingredient" | "manufacturer" | "monograph";
+  MedicationRequest:
+    | "intendedDispenser"
+    | "intendedPerformer"
+    | "requester"
+    | "subject"
+    | "patient"
+    | "encounter"
+    | "medication";
+  MedicationStatement:
+    | "context"
+    | "partOf"
+    | "source"
+    | "subject"
+    | "patient"
+    | "medication";
+  MedicinalProductDefinition: "contact" | "masterFile";
+  MessageDefinition: "parent";
+  MessageHeader:
+    | "author"
+    | "enterer"
+    | "focus"
+    | "receiver"
+    | "responsible"
+    | "sender"
+    | "target";
+  MolecularSequence: "patient";
+  NutritionOrder:
+    | "instantiatesCanonical"
+    | "provider"
+    | "encounter"
+    | "patient";
+  Observation:
+    | "basedOn"
+    | "derivedFrom"
+    | "device"
+    | "focus"
+    | "hasMember"
+    | "partOf"
+    | "performer"
+    | "specimen"
+    | "subject"
+    | "encounter"
+    | "patient";
+  OperationDefinition: "base" | "inputProfile" | "outputProfile";
+  Organization: "endpoint" | "partof";
+  OrganizationAffiliation:
+    | "endpoint"
+    | "location"
+    | "network"
+    | "participatingOrganization"
+    | "primaryOrganization"
+    | "service";
+  PackagedProductDefinition:
+    | "biological"
+    | "containedItem"
+    | "device"
+    | "manufacturedItem"
+    | "medication"
+    | "nutrition"
+    | "packageFor"
+    | "package";
+  Patient: "generalPractitioner" | "link" | "organization";
+  PaymentNotice: "provider" | "request" | "response";
+  PaymentReconciliation: "paymentIssuer" | "request" | "requestor";
+  Person:
+    | "link"
+    | "organization"
+    | "patient"
+    | "practitioner"
+    | "relatedperson";
+  PlanDefinition:
+    | "composedOf"
+    | "definition"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  PractitionerRole:
+    | "endpoint"
+    | "location"
+    | "organization"
+    | "practitioner"
+    | "service";
+  Procedure:
+    | "basedOn"
+    | "instantiatesCanonical"
+    | "location"
+    | "partOf"
+    | "performer"
+    | "reasonReference"
+    | "subject"
+    | "encounter"
+    | "patient";
+  Provenance: "agent" | "entity" | "location" | "patient" | "target";
+  QuestionnaireResponse:
+    | "author"
+    | "basedOn"
+    | "encounter"
+    | "partOf"
+    | "patient"
+    | "questionnaire"
+    | "source"
+    | "subject";
+  RegulatedAuthorization: "holder" | "subject";
+  RelatedPerson: "patient";
+  RequestGroup:
+    | "author"
+    | "encounter"
+    | "instantiatesCanonical"
+    | "participant"
+    | "patient"
+    | "subject";
+  ResearchDefinition:
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  ResearchElementDefinition:
+    | "composedOf"
+    | "dependsOn"
+    | "derivedFrom"
+    | "predecessor"
+    | "successor";
+  ResearchStudy:
+    | "partof"
+    | "principalinvestigator"
+    | "protocol"
+    | "site"
+    | "sponsor";
+  ResearchSubject: "individual" | "patient" | "study";
+  RiskAssessment:
+    | "condition"
+    | "performer"
+    | "subject"
+    | "encounter"
+    | "patient";
+  Schedule: "actor";
+  SearchParameter: "component" | "derivedFrom";
+  ServiceRequest:
+    | "basedOn"
+    | "instantiatesCanonical"
+    | "performer"
+    | "replaces"
+    | "requester"
+    | "specimen"
+    | "subject"
+    | "encounter"
+    | "patient";
+  Slot: "schedule";
+  Specimen: "collector" | "parent" | "patient" | "subject";
+  StructureDefinition: "base" | "valueset";
+  Substance: "substanceReference";
+  SupplyDelivery: "receiver" | "supplier" | "patient";
+  SupplyRequest: "requester" | "subject" | "supplier";
+  Task:
+    | "basedOn"
+    | "encounter"
+    | "focus"
+    | "owner"
+    | "partOf"
+    | "patient"
+    | "requester"
+    | "subject";
+  TestReport: "testscript";
+  VerificationResult: "target";
+  VisionPrescription: "prescriber" | "encounter" | "patient";
+};
+
 export type AnyFhirSearchBuilder =
   | AccountFhirSearchBuilder
   | ActivityDefinitionFhirSearchBuilder

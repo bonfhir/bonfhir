@@ -1,4 +1,6 @@
-import { AnyResourceType, ExtractResource } from "./fhir-types.codegen";
+import { AnyResourceType } from "./fhir-types.codegen";
+import { RemoveUnderscoreKeys } from "./lang-utils";
+import { AllResourcesReferenceSearchParameters } from "./search.codegen";
 
 /**
  * The builder for FHIR Search URLs.
@@ -590,9 +592,11 @@ export class FhirSearchBuilder {
    *
    * @see https://hl7.org/fhir/search.html#include
    */
-  _include<TResourceType extends AnyResourceType>(
+  _include<TResourceType extends keyof AllResourcesReferenceSearchParameters>(
     sourceResource: TResourceType,
-    searchParameter: keyof ExtractResource<TResourceType>,
+    searchParameter: RemoveUnderscoreKeys<
+      AllResourcesReferenceSearchParameters[TResourceType]
+    >,
     options?: {
       targetResourceType?: TResourceType | null | undefined;
       iterate?: boolean | null | undefined;
@@ -611,9 +615,13 @@ export class FhirSearchBuilder {
    *
    * @see https://hl7.org/fhir/search.html#revinclude
    */
-  _revinclude<TResourceType extends AnyResourceType>(
+  _revinclude<
+    TResourceType extends keyof AllResourcesReferenceSearchParameters
+  >(
     sourceResource: TResourceType,
-    searchParameter: keyof ExtractResource<TResourceType>,
+    searchParameter: RemoveUnderscoreKeys<
+      AllResourcesReferenceSearchParameters[TResourceType]
+    >,
     options?: {
       targetResourceType?: TResourceType | null | undefined;
       iterate?: boolean | null | undefined;
