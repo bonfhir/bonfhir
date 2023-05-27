@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { bundleNavigator, BundleNavigator } from "./bundle-navigator";
+import {
+  bundleNavigator,
+  BundleNavigator,
+  WithResolvableReferences,
+} from "./bundle-navigator";
 import {
   ConcurrencyParameters,
   ConditionalSearchParameters,
@@ -10,6 +14,7 @@ import {
   HistoryParameters,
   normalizePatchBody,
   normalizeSearchParameters,
+  searchAllPages,
   searchByPage,
 } from "./fhir-client";
 import {
@@ -292,6 +297,21 @@ export class FetchFhirClient implements FhirClient {
     return bundleNavigator(response);
   }
 
+  public async searchOne<TResourceType extends AnyResourceType>(
+    type?: TResourceType | null | undefined,
+    parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
+    options?: GeneralParameters | null | undefined
+  ): Promise<
+    WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
+  > {
+    const navigator = await this.search<TResourceType>(
+      type,
+      parameters,
+      options
+    );
+    return navigator.searchMatchOne<ExtractResource<TResourceType>>();
+  }
+
   public async searchByPage<TResourceType extends AnyResourceType>(
     type: TResourceType | null | undefined,
     search: FhirClientSearchParameters<TResourceType>,
@@ -300,6 +320,13 @@ export class FetchFhirClient implements FhirClient {
     ) => unknown | Promise<unknown>
   ): Promise<void> {
     return searchByPage(this, type, search, fn);
+  }
+
+  public async searchAllPages<TResourceType extends AnyResourceType>(
+    type: TResourceType | null | undefined,
+    search: FhirClientSearchParameters<TResourceType>
+  ): Promise<BundleNavigator<ExtractResource<TResourceType>>> {
+    return searchAllPages(this, type, search);
   }
 
   public async capabilities(

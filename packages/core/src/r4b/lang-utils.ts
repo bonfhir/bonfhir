@@ -27,6 +27,18 @@ export interface TruncateOptions {
 }
 
 /**
+ * Filter values by removing duplicates entries by an iteratee function.
+ */
+export function uniqBy<T>(
+  values: ReadonlyArray<T>,
+  iteratee: (value: T) => unknown
+): T[] {
+  return values.filter(
+    (x, i, self) => i === self.findIndex((y) => iteratee(x) === iteratee(y))
+  );
+}
+
+/**
  * Truncate a string to a given length and append an optional suffix.
  */
 export function truncate(

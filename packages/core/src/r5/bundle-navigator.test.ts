@@ -134,11 +134,10 @@ describe("BundleNavigator", () => {
           (x.resource as Provenance).target[0]!.reference === patientReference
       )!.resource;
 
-      const provenanceWithPatientTarget =
-        navigator.firstRevReference<Provenance>(
-          (provenance) => provenance.target,
-          patientReference
-        );
+      const provenanceWithPatientTarget = navigator.revReference<Provenance>(
+        (provenance) => provenance.target,
+        patientReference
+      )[0];
 
       expect(expectedProvenance).not.toBeUndefined();
       expect(provenanceWithPatientTarget).toMatchObject(expectedProvenance);
@@ -148,11 +147,10 @@ describe("BundleNavigator", () => {
       const navigator = bundleNavigator(emptyBundle);
       const patientReference = "Patient/23af4168-fc91-4b4d-a498-4485ce5ebc6f";
 
-      const provenanceWithPatientTarget =
-        navigator.firstRevReference<Provenance>(
-          (provenance) => provenance.target,
-          patientReference
-        );
+      const provenanceWithPatientTarget = navigator.revReference<Provenance>(
+        (provenance) => provenance.target,
+        patientReference
+      )[0];
 
       expect(provenanceWithPatientTarget).toBeUndefined();
     });
@@ -162,10 +160,10 @@ describe("BundleNavigator", () => {
       (patientReference) => {
         const navigator = bundleNavigator(patientsListBundle);
 
-        const result = navigator.firstRevReference<Provenance>(
+        const result = navigator.revReference<Provenance>(
           (provenance) => provenance.target,
           patientReference
-        );
+        )[0];
 
         expect(result).toBeUndefined();
       }
@@ -197,17 +195,27 @@ describe("BundleNavigator", () => {
     });
   });
 
-  describe("firstSearchMatch", () => {
-    it("throw on firstSearchMatch on empty bundles", () => {
+  describe("searchMatchOne", () => {
+    it("throw on searchMatchOne on empty bundles", () => {
       const navigator = bundleNavigator(emptyBundle);
-      expect(() => navigator.firstSearchMatch()).toThrow();
+      expect(() => navigator.searchMatchOne()).toThrow();
     });
 
-    it("returns firstSearchMatch consistently", () => {
-      const navigator = bundleNavigator(patientsListBundle);
+    it("returns searchMatchOne consistently", () => {
+      const navigator = bundleNavigator({
+        ...patientsListBundle,
+        entry: [
+          patientsListBundle.entry!.find(
+            (x) => x.resource?.resourceType === "Patient"
+          )!,
+          ...(patientsListBundle.entry?.filter(
+            (x) => x.resource?.resourceType !== "Patient"
+          ) || []),
+        ],
+      });
 
-      const firstSearchMatch = navigator.firstSearchMatch();
-      const firstSearchMatchSecondTime = navigator.firstSearchMatch();
+      const firstSearchMatch = navigator.searchMatchOne();
+      const firstSearchMatchSecondTime = navigator.searchMatchOne();
 
       expect(firstSearchMatch).toMatchObject<Patient>({
         resourceType: "Patient",
@@ -274,22 +282,22 @@ describe("BundleNavigator", () => {
 
     it("does not resolve included when not found", () => {
       const navigator = bundleNavigator(patientsListBundle);
-      const patient = navigator.firstSearchMatch()!;
+      const patient = navigator.searchMatch()[0]!;
       const org = patient.managingOrganization?.included;
       expect(org).toBeUndefined();
     });
 
     it("resolve revincluded when found", () => {
       const navigator = bundleNavigator(patientsListBundle);
-      const patient = navigator.firstSearchMatch()!;
-      const provenance = patient.firstRevIncluded<Provenance>(
+      const patient = navigator.searchMatch()[0]!;
+      const provenance = patient.revIncluded<Provenance>(
         (provenance) => provenance.target
-      );
+      )[0];
       expect(provenance).toBeDefined();
       expect(provenance?.resourceType).toBe("Provenance");
-      const org = patient.firstRevIncluded<Provenance>(
+      const org = patient.revIncluded<Provenance>(
         (provenance) => provenance.target
-      )?.agent[0]?.who?.included;
+      )[0]?.agent[0]?.who?.included;
       expect(org).toBeDefined();
       expect(org?.resourceType).toBe("Organization");
     });

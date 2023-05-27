@@ -323,6 +323,14 @@ describe("fetch-fhir-client", () => {
     });
   });
 
+  describe("searchOne", () => {
+    it("throw when multiple values are found", async () => {
+      await expect(
+        client.searchOne("Patient", (search) => search._id("1234"))
+      ).rejects.toThrow();
+    });
+  });
+
   describe("searchByPage", () => {
     it("search by page", async () => {
       await client.searchByPage(
@@ -332,6 +340,15 @@ describe("fetch-fhir-client", () => {
           expect(result).toBeDefined();
         }
       );
+    });
+  });
+
+  describe("searchAllPages", () => {
+    it("search all pages", async () => {
+      const result = await client.searchAllPages("Patient", (search) =>
+        search.name("John Doe")
+      );
+      expect(result).toBeDefined();
     });
   });
 

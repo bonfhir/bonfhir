@@ -1,4 +1,8 @@
-import { BundleNavigator, bundleNavigator } from "./bundle-navigator";
+import {
+  BundleNavigator,
+  WithResolvableReferences,
+  bundleNavigator,
+} from "./bundle-navigator";
 import {
   AnyResource,
   AnyResourceType,
@@ -128,6 +132,21 @@ export interface FhirClient {
   ): Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
 
   /**
+   * Execute a search operation, and return the first search match in the bundle.
+   * Throw if there are zero or more than one match.
+   *
+   * Included resources are still accessible with resolvable references.
+   * https://hl7.org/fhir/http.html#search
+   */
+  searchOne<TResourceType extends AnyResourceType>(
+    type?: TResourceType | null | undefined,
+    parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
+    options?: GeneralParameters | null | undefined
+  ): Promise<
+    WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
+  >;
+
+  /**
    * Execute a search operation and walk through all the search pages.
    * For each page, execute the `fn` callback by passing the current page bundle navigator.
    * https://hl7.org/fhir/http.html#search
@@ -139,6 +158,15 @@ export interface FhirClient {
       nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
     ) => unknown | Promise<unknown>
   ): Promise<void>;
+
+  /**
+   * Execute a search operation and retrieve all pages from the server, aggregating into a final {@link BundleNavigator}.
+   * Be careful, as this can be a very long / expensive operation.
+   */
+  searchAllPages<TResourceType extends AnyResourceType>(
+    type: TResourceType | null | undefined,
+    search: FhirClientSearchParameters<TResourceType>
+  ): Promise<BundleNavigator<ExtractResource<TResourceType>>>;
 
   /**
    * The capabilities interaction retrieves the information about a server's capabilities - which portions of this specification it supports.
@@ -329,4 +357,22 @@ export async function searchByPage<TResourceType extends AnyResourceType>(
 
     await fn(currentNavigator);
   }
+}
+
+/**
+ * Execute a search operation and retrieve all pages from the server, aggregating into a final {@link BundleNavigator}.
+ * Be careful, as this can be a very long / expensive operation.
+ */
+export async function searchAllPages<TResourceType extends AnyResourceType>(
+  client: FhirClient,
+  type: TResourceType | null | undefined,
+  search: FhirClientSearchParameters<TResourceType>
+): Promise<BundleNavigator<ExtractResource<TResourceType>>> {
+  const results: Array<BundleNavigator<ExtractResource<TResourceType>>> = [];
+
+  await searchByPage(client, type, search, (nav) => {
+    results.push(nav);
+  });
+
+  return new BundleNavigator(results);
 }

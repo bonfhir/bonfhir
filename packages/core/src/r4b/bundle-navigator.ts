@@ -3,11 +3,12 @@ import {
   AnyResourceType,
   Bundle,
   ExtractResource,
+  Meta,
   Reference,
   Resource,
   Retrieved,
 } from "./fhir-types.codegen";
-import { asArray } from "./lang-utils";
+import { asArray, uniqBy } from "./lang-utils";
 
 /**
  * Allows easy navigation inside a mixed bundle, principally returned by search operations.
@@ -61,11 +62,6 @@ export type WithResolvableReferences<T> = {
       resource: TReferencedType
     ) => Reference | Reference[] | null | undefined
   ) => WithResolvableReferences<TReferencedType>[];
-  firstRevIncluded: <TReferencedType extends AnyResource>(
-    select: (
-      resource: TReferencedType
-    ) => Reference | Reference[] | null | undefined
-  ) => WithResolvableReferences<TReferencedType> | undefined;
 };
 
 export class BundleNavigator<TResource extends Resource = Resource> {
@@ -104,7 +100,32 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    * Initialize a new Bundle navigator, using an existing bundle.
    * Indexing is lazy and performed on-demand, so initialization is cheap.
    */
-  constructor(public bundle: Bundle<TResource>) {}
+  constructor(
+    private _bundleOrNavigator:
+      | Bundle<TResource>
+      | Array<BundleNavigator<TResource>>
+  ) {}
+
+  /**
+   * Returns the current mode for this navigator:
+   *  - bundle: navigates a single bundle
+   *  - aggregator: navigates an array of bundle navigators
+   */
+  public get navigatorMode(): "bundle" | "aggregator" {
+    return Array.isArray(this._bundleOrNavigator) ? "aggregator" : "bundle";
+  }
+
+  /**
+   * Access the underlying bundle.
+   */
+  public get bundle(): Bundle<Retrieved<TResource>> {
+    if (Array.isArray(this._bundleOrNavigator)) {
+      throw new TypeError(
+        "Cannot access bundle on a bundle navigator that was created from an array of bundle navigators"
+      );
+    }
+    return this._bundleOrNavigator as Bundle<Retrieved<TResource>>;
+  }
 
   /**
    * Return a resource identifies by its unique reference, or undefined if not found.
@@ -114,7 +135,17 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    */
   public reference<TReferencedType extends AnyResource>(
     reference: string | Reference<TReferencedType> | null | undefined
-  ): WithResolvableReferences<TReferencedType> | undefined {
+  ): WithResolvableReferences<Retrieved<TReferencedType>> | undefined {
+    if (Array.isArray(this._bundleOrNavigator)) {
+      for (const navigator of this._bundleOrNavigator) {
+        const res = navigator.reference(reference);
+        if (res) {
+          return res;
+        }
+      }
+      return;
+    }
+
     const finalReference =
       typeof reference === "string" ? reference : reference?.reference;
     if (!finalReference?.length) {
@@ -124,7 +155,9 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     this._ensurePrimaryIndices();
 
     return (this._resourcesByRelativeReference?.get(finalReference) ||
-      undefined) as WithResolvableReferences<TReferencedType> | undefined;
+      undefined) as
+      | WithResolvableReferences<Retrieved<TReferencedType>>
+      | undefined;
   }
 
   /**
@@ -143,8 +176,18 @@ export class BundleNavigator<TResource extends Resource = Resource> {
       resource: TReferencedType
     ) => Reference | Reference[] | null | undefined,
     reference: Retrieved<AnyResource> | string | null | undefined
-  ): WithResolvableReferences<TReferencedType>[] {
+  ): WithResolvableReferences<Retrieved<TReferencedType>>[] {
     if (!reference) {
+      return [];
+    }
+
+    if (Array.isArray(this._bundleOrNavigator)) {
+      for (const navigator of this._bundleOrNavigator) {
+        const res = navigator.revReference(select, reference);
+        if (res.length > 0) {
+          return res;
+        }
+      }
       return [];
     }
 
@@ -161,28 +204,9 @@ export class BundleNavigator<TResource extends Resource = Resource> {
 
     return (this._resourcesByRefSelectIndex
       ?.get(select.toString())
-      ?.get(finalReference) ||
-      []) as WithResolvableReferences<TReferencedType>[];
-  }
-
-  /**
-   * Return the first matching resource that have the reference returned by the specified select expression, or undefined if there isn't any.
-   * This can be used to find associated resource returned as part of a revinclude search parameter.
-   * @param select - the select function to index the resources. - e.g. `claim => claim.patient`
-   * @param reference - the resource reference to match with the values returned by the select - e.g. "Patient/59ba0a80-035a-4a8e-930b-d9f6c523b97a"
-   *
-   * @example
-   *   navigator.firstRevReference<Appointment>(provenance => provenance.target.actor, "Patient/06549508-aae9-4d82-a937-0ddeb0f2de38");
-   *
-   * @see http://hl7.org/fhir/fhirpath.html
-   */
-  public firstRevReference<TReferencedType extends AnyResource>(
-    select: (
-      resource: TReferencedType
-    ) => Reference | Reference[] | null | undefined,
-    reference: Retrieved<AnyResource> | string | null | undefined
-  ): WithResolvableReferences<TReferencedType> | undefined {
-    return this.revReference<TReferencedType>(select, reference)?.[0];
+      ?.get(finalReference) || []) as WithResolvableReferences<
+      Retrieved<TReferencedType>
+    >[];
   }
 
   /**
@@ -191,28 +215,47 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    */
   public searchMatch<
     TResult extends Resource = TResource
-  >(): WithResolvableReferences<TResult>[] {
+  >(): WithResolvableReferences<Retrieved<TResult>>[] {
+    if (Array.isArray(this._bundleOrNavigator)) {
+      return this._bundleOrNavigator.flatMap((nav) => nav.searchMatch());
+    }
+
     this._ensurePrimaryIndices();
 
     return (this._resourcesBySearchMode?.get("match") ||
-      []) as unknown as WithResolvableReferences<TResult>[];
+      []) as unknown as WithResolvableReferences<Retrieved<TResult>>[];
   }
 
   /**
    * Get the first entry in the bundle that has a search mode of match.
-   * If there aren't, throw an error.
+   * If there aren't, or there are multiple results, throw an error.
    * If you want to return undefined on not found, you should use `searchMatch()[0]` instead.
    */
-  public firstSearchMatch<
+  public searchMatchOne<
     TResult extends Resource = TResource
-  >(): WithResolvableReferences<TResult> {
-    this._ensurePrimaryIndices();
+  >(): WithResolvableReferences<Retrieved<TResult>> {
+    if (Array.isArray(this._bundleOrNavigator)) {
+      if (this._bundleOrNavigator.length === 0) {
+        throw new Error(`No match found in bundle`);
+      }
 
-    const firstMatch = this.searchMatch<TResult>()[0];
-    if (!firstMatch) {
+      if (this._bundleOrNavigator.length > 1) {
+        throw new Error(`Cannot searchMatchOne on multiple bundles`);
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      return this._bundleOrNavigator[0]!.searchMatchOne<TResult>();
+    }
+    const searchMatches = this.searchMatch<TResult>();
+    if (searchMatches.length === 0) {
       throw new Error(`No match found in bundle`);
     }
-    return firstMatch;
+
+    if (searchMatches.length > 1) {
+      throw new Error(`Multiple search matches found in bundle`);
+    }
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return searchMatches[0]!;
   }
 
   /**
@@ -220,11 +263,18 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    */
   public type<TResourceType extends AnyResourceType = AnyResourceType>(
     type: TResourceType
-  ): WithResolvableReferences<ExtractResource<TResourceType>>[] {
+  ): WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>[] {
+    if (Array.isArray(this._bundleOrNavigator)) {
+      return uniqBy(
+        this._bundleOrNavigator.flatMap((nav) => nav.type(type)),
+        (res) => `${res.id}${(res.meta as Meta)?.versionId}`
+      );
+    }
+
     this._ensurePrimaryIndices();
 
     return (this._resourcesByType?.get(type) || []) as WithResolvableReferences<
-      ExtractResource<TResourceType>
+      Retrieved<ExtractResource<TResourceType>>
     >[];
   }
 
@@ -234,6 +284,13 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   public resources<TResource extends AnyResource = AnyResource>(): Array<
     WithResolvableReferences<TResource>
   > {
+    if (Array.isArray(this._bundleOrNavigator)) {
+      return uniqBy(
+        this._bundleOrNavigator.flatMap((nav) => nav.resources()),
+        (res) => `${res.id}${(res.meta as Meta)?.versionId}`
+      );
+    }
+
     this._ensurePrimaryIndices();
     return [
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -248,6 +305,10 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     relation: "self" | "first" | "next" | "previous"
   ): string | undefined;
   public linkUrl(relation: string): string | undefined {
+    if (Array.isArray(this._bundleOrNavigator)) {
+      return;
+    }
+
     return this.bundle.link?.find((link) => link.relation === relation)?.url;
   }
 
@@ -260,6 +321,16 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    * @fhirType unsignedInt
    */
   public get total(): number | undefined {
+    if (Array.isArray(this._bundleOrNavigator)) {
+      if (this._bundleOrNavigator[0]?.total == undefined) {
+        return undefined;
+      }
+
+      return this._bundleOrNavigator.reduce(
+        (sum, nav) => sum + (nav.total ?? 0),
+        0
+      );
+    }
     return this.bundle.total;
   }
 
@@ -365,12 +436,6 @@ function withResolvableProxy<T extends Resource>(
         return (
           select: (resource: any) => Reference | Reference[] | null | undefined
         ) => navigator.revReference(select, target as any);
-      }
-
-      if (prop === "firstRevIncluded" && (target as Resource).resourceType) {
-        return (
-          select: (resource: any) => Reference | Reference[] | null | undefined
-        ) => navigator.firstRevReference(select, target as any);
       }
 
       return withResolvableProxy(Reflect.get(target, prop) as any, navigator);
