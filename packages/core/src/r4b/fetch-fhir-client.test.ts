@@ -84,7 +84,10 @@ describe("fetch-fhir-client", () => {
       return res(ctx.json(patientsListFixture));
     }),
 
-    rest.get(`${baseUrl}/Patient`, (_req, res, ctx) => {
+    rest.get(`${baseUrl}/Patient`, (req, res, ctx) => {
+      if (req.url.searchParams.get("_page_token")) {
+        return res(ctx.json({ resourceType: "Bundle" }));
+      }
       return res(ctx.json(patientsListFixture));
     }),
 
@@ -317,6 +320,18 @@ describe("fetch-fhir-client", () => {
         { _summary: "true" }
       );
       expect(result.searchMatch().length).not.toBe(0);
+    });
+  });
+
+  describe("searchByPage", () => {
+    it("search by page", async () => {
+      await client.searchByPage(
+        "Patient",
+        (search) => search.name("John Doe"),
+        async (result) => {
+          expect(result).toBeDefined();
+        }
+      );
     });
   });
 

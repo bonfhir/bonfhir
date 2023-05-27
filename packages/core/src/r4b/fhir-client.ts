@@ -1,4 +1,4 @@
-import { BundleNavigator } from "./bundle-navigator";
+import { BundleNavigator, bundleNavigator } from "./bundle-navigator";
 import {
   AnyResource,
   AnyResourceType,
@@ -97,12 +97,12 @@ export interface FhirClient {
   history<TResource extends AnyResource>(
     resource: Retrieved<TResource>,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
-  ): Promise<Bundle<Retrieved<TResource>>>;
+  ): Promise<BundleNavigator<Retrieved<TResource>>>;
   history<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     id?: string | null | undefined,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
-  ): Promise<Bundle<Retrieved<ExtractResource<TResourceType>>>>;
+  ): Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
 
   /**
    * The create interaction creates a new resource in a server-assigned location.
@@ -126,6 +126,19 @@ export interface FhirClient {
     parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
     options?: GeneralParameters | null | undefined
   ): Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
+
+  /**
+   * Execute a search operation and walk through all the search pages.
+   * For each page, execute the `fn` callback by passing the current page bundle navigator.
+   * https://hl7.org/fhir/http.html#search
+   */
+  searchByPage<TResourceType extends AnyResourceType>(
+    type: TResourceType | null | undefined,
+    search: FhirClientSearchParameters<TResourceType>,
+    fn: (
+      nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
+    ) => unknown | Promise<unknown>
+  ): Promise<void>;
 
   /**
    * The capabilities interaction retrieves the information about a server's capabilities - which portions of this specification it supports.
@@ -286,4 +299,34 @@ export interface HistoryParameters {
    * https://hl7.org/fhir/http.html#history
    */
   _list?: string | null | undefined;
+}
+
+/**
+ * Execute a search operation and walk through all the search pages.
+ * For each page, execute the `fn` callback by passing the current page bundle navigator.
+ */
+export async function searchByPage<TResourceType extends AnyResourceType>(
+  client: FhirClient,
+  type: TResourceType | null | undefined,
+  search: FhirClientSearchParameters<TResourceType>,
+  fn: (
+    nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
+  ) => unknown | Promise<unknown>
+): Promise<void> {
+  let currentNavigator:
+    | BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
+    | undefined;
+
+  while (!currentNavigator || currentNavigator.linkUrl("next")) {
+    currentNavigator = currentNavigator
+      ? bundleNavigator(
+          await client.fetch<Bundle<Retrieved<ExtractResource<TResourceType>>>>(
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            currentNavigator.linkUrl("next")!
+          )
+        )
+      : await client.search<TResourceType>(type, search);
+
+    await fn(currentNavigator);
+  }
 }

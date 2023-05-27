@@ -202,16 +202,20 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   }
 
   /**
-   * Get the first entry in the bundle that has a search mode of match, or undefined if there isn't any.
+   * Get the first entry in the bundle that has a search mode of match.
+   * If there aren't, throw an error.
+   * If you want to return undefined on not found, you should use `searchMatch()[0]` instead.
    */
-  public firstSearchMatch<TResult extends Resource = TResource>():
-    | WithResolvableReferences<TResult>
-    | undefined {
+  public firstSearchMatch<
+    TResult extends Resource = TResource
+  >(): WithResolvableReferences<TResult> {
     this._ensurePrimaryIndices();
 
-    return this._resourcesBySearchMode?.get("match")?.[0] as unknown as
-      | WithResolvableReferences<TResult>
-      | undefined;
+    const firstMatch = this.searchMatch<TResult>()[0];
+    if (!firstMatch) {
+      throw new Error(`No match found in bundle`);
+    }
+    return firstMatch;
   }
 
   /**
@@ -251,6 +255,18 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   // #endif
   public linkUrl(relation: string): string | undefined {
     return this.bundle.link?.find((link) => link.relation === relation)?.url;
+  }
+
+  /**
+   * If a set of search matches, this is the (potentially estimated) total number of
+   * entries of type 'match' across all pages in the search.  It does not include
+   * search.mode = 'include' or 'outcome' entries and it does not provide a count of
+   * the number of entries in the Bundle.
+   * @see {@link http://hl7.org/fhir/Bundle-definitions.html#Bundle.total}
+   * @fhirType unsignedInt
+   */
+  public get total(): number | undefined {
+    return this.bundle.total;
   }
 
   private _ensurePrimaryIndices() {

@@ -20225,7 +20225,7 @@
     },
     {
       "relation": "next",
-      "url": "https://healthcare.googleapis.com/v1/projects/ensage-poc/locations/us-central1/datasets/ensage-test/fhirStores/synthea-sample-fhir/fhir/Patient/?_include=Patient%3AmanagingOrganization&_include%3Aiterate=Provenance%3Aagent&_revinclude=Provenance%3Atarget&_page_token=Cjj3Y0hn0v%2F%2F%2F%2F%2BABervkjbrwQD%2FAf%2F%2BZjQ3NmFiMzYwYTQ1OGY2MjVmZjQ0N2QxMDc4M2VhYzAAARBkIfp7n2jesxm7OQAAAAAtmLecSAFQAFoLCV7hANqsu8uHEANgurGlzQE%3D"
+      "url": "http://example.com/Patient/?_include=Patient%3AmanagingOrganization&_include%3Aiterate=Provenance%3Aagent&_revinclude=Provenance%3Atarget&_page_token=Cjj3Y0hn0v%2F%2F%2F%2F%2BABervkjbrwQD%2FAf%2F%2BZjQ3NmFiMzYwYTQ1OGY2MjVmZjQ0N2QxMDc4M2VhYzAAARBkIfp7n2jesxm7OQAAAAAtmLecSAFQAFoLCV7hANqsu8uHEANgurGlzQE%3D"
     },
     {
       "relation": "first",

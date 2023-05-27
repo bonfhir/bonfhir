@@ -10,6 +10,7 @@ import {
   HistoryParameters,
   normalizePatchBody,
   normalizeSearchParameters,
+  searchByPage,
 } from "./fhir-client";
 import {
   AnyResource,
@@ -211,33 +212,35 @@ export class FetchFhirClient implements FhirClient {
   history<TResource extends AnyResource>(
     resource: Retrieved<TResource>,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
-  ): Promise<Bundle<Retrieved<TResource>>>;
+  ): Promise<BundleNavigator<Retrieved<TResource>>>;
   history<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     id?: string | null | undefined,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
-  ): Promise<Bundle<Retrieved<ExtractResource<TResourceType>>>>;
+  ): Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
   public async history<TResourceType extends AnyResourceType>(
     type?: TResourceType | Retrieved<AnyResource> | null | undefined,
     id?: string | (GeneralParameters & HistoryParameters) | null | undefined,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
-  ): Promise<Bundle<Retrieved<ExtractResource<TResourceType>>>> {
+  ): Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>> {
     if (type && typeof type !== "string") {
       return (await this.history(
         type.resourceType,
         type.id,
         id as (GeneralParameters & HistoryParameters) | null | undefined
-      )) as Bundle<Retrieved<ExtractResource<TResourceType>>>;
+      )) as BundleNavigator<Retrieved<ExtractResource<TResourceType>>>;
     }
 
     const queryString = new URLSearchParams(
       options as Record<string, string>
     ).toString();
 
-    return this.fetch<Bundle<Retrieved<ExtractResource<TResourceType>>>>(
-      `${[type, id, "_history"].filter(Boolean).join("/")}${
-        queryString ? `?${queryString}` : ""
-      }`
+    return bundleNavigator(
+      await this.fetch<Bundle<Retrieved<ExtractResource<TResourceType>>>>(
+        `${[type, id, "_history"].filter(Boolean).join("/")}${
+          queryString ? `?${queryString}` : ""
+        }`
+      )
     );
   }
 
@@ -287,6 +290,16 @@ export class FetchFhirClient implements FhirClient {
     >(`${type || ""}${queryString ? `?${queryString}` : ""}`);
 
     return bundleNavigator(response);
+  }
+
+  public async searchByPage<TResourceType extends AnyResourceType>(
+    type: TResourceType | null | undefined,
+    search: FhirClientSearchParameters<TResourceType>,
+    fn: (
+      nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
+    ) => unknown | Promise<unknown>
+  ): Promise<void> {
+    return searchByPage(this, type, search, fn);
   }
 
   public async capabilities(

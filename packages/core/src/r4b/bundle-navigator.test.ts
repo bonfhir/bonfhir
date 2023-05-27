@@ -198,13 +198,9 @@ describe("BundleNavigator", () => {
   });
 
   describe("firstSearchMatch", () => {
-    it("returns undefined on firstSearchMatch on empty bundles", () => {
+    it("throw on firstSearchMatch on empty bundles", () => {
       const navigator = bundleNavigator(emptyBundle);
-
-      const firstSearchMatch = navigator.firstSearchMatch();
-
-      expect(firstSearchMatch).toBeUndefined();
-      expect(firstSearchMatch).toBeUndefined();
+      expect(() => navigator.firstSearchMatch()).toThrow();
     });
 
     it("returns firstSearchMatch consistently", () => {
