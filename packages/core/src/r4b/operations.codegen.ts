@@ -2,6 +2,7 @@
 import {
   ActivityDefinition,
   AnyResourceType,
+  Binary,
   Bundle,
   CapabilityStatement,
   CarePlan,
@@ -9,6 +10,7 @@ import {
   CodeableConcept,
   Coding,
   ConceptMap,
+  Element,
   Library,
   MeasureReport,
   Meta,
@@ -553,7 +555,9 @@ The find-matches operation is still preliminary. The interface can
  * be expected to change as more experience is gained from implementations.
  * @see {@link http://hl7.org/fhir/OperationDefinition/CodeSystem-find-matches}
  */
-export class CodeSystemFindMatchesOperation implements Operation<unknown> {
+export class CodeSystemFindMatchesOperation
+  implements Operation<CodeSystemFindMatchesOperationResult>
+{
   /**
  * Finding codes based on supplied properties
  * 
@@ -604,7 +608,7 @@ The find-matches operation is still preliminary. The interface can
     };
   }
 
-  public _resultTypeDoNotUse?: unknown;
+  public _resultTypeDoNotUse?: CodeSystemFindMatchesOperationResult;
 }
 
 export interface CodeSystemFindMatchesOperationParameters {
@@ -640,14 +644,108 @@ export interface CodeSystemFindMatchesOperationParameters {
   compositional?: boolean | undefined;
 }
 
+export interface CodeSystemFindMatchesOperationResult {
+  /**
+   * Concepts returned by the server as a result of the inferencing operation
+   */
+  match?: Array<CodeSystemFindMatchesOperationMatch> | undefined;
+}
+
 /**
  * One or more properties that contain information to be composed into the code
  */
-export interface CodeSystemFindMatchesOperationProperty {}
+export interface CodeSystemFindMatchesOperationProperty {
+  /**
+   * Identifies the property provided
+   * @fhirType code
+   */
+  code: string;
+  /**
+   * The value of the property provided
+   */
+  value?: Element | undefined;
+  /**
+   * Nested Properties (mainly used for SNOMED CT composition, for relationship
+   * Groups)
+   */
+  subproperty?:
+    | Array<CodeSystemFindMatchesOperationPropertySubproperty>
+    | undefined;
+}
+
+/**
+ * Nested Properties (mainly used for SNOMED CT composition, for relationship
+ * Groups)
+ */
+export interface CodeSystemFindMatchesOperationPropertySubproperty {
+  /**
+   * Identifies the sub-property provided
+   * @fhirType code
+   */
+  code: string;
+  /**
+   * The value of the sub-property provided
+   */
+  value: Element;
+}
+
 /**
  * Concepts returned by the server as a result of the inferencing operation
  */
-export interface CodeSystemFindMatchesOperationMatch {}
+export interface CodeSystemFindMatchesOperationMatch {
+  /**
+   * A code that matches the properties provided
+   */
+  code: Coding;
+  /**
+   * One or more properties that contain properties that could not be matched into
+   * the code
+   */
+  unmatched?: Array<CodeSystemFindMatchesOperationMatchUnmatched> | undefined;
+  /**
+   * Information about the quality of the match, if operation is for a human
+   */
+  comment?: string | undefined;
+}
+
+/**
+ * One or more properties that contain properties that could not be matched into
+ * the code
+ */
+export interface CodeSystemFindMatchesOperationMatchUnmatched {
+  /**
+   * Identifies the property provided
+   * @fhirType code
+   */
+  code: string;
+  /**
+   * The value of the property provided
+   */
+  value: Element;
+  /**
+   * Nested Properties (mainly used for SNOMED CT composition, for relationship
+   * Groups)
+   */
+  property?:
+    | Array<CodeSystemFindMatchesOperationMatchUnmatchedProperty>
+    | undefined;
+}
+
+/**
+ * Nested Properties (mainly used for SNOMED CT composition, for relationship
+ * Groups)
+ */
+export interface CodeSystemFindMatchesOperationMatchUnmatchedProperty {
+  /**
+   * Identifies the sub-property provided
+   * @fhirType code
+   */
+  code: string;
+  /**
+   * The value of the sub-property provided
+   */
+  value: Element;
+}
 
 /**
  * Concept Look Up & Decomposition
@@ -768,13 +866,67 @@ export interface CodeSystemLookupOperationResult {
 /**
  * Additional representations for this concept
  */
-export interface CodeSystemLookupOperationDesignation {}
+export interface CodeSystemLookupOperationDesignation {
+  /**
+   * The language this designation is defined for
+   * @fhirType code
+   */
+  language?: string | undefined;
+  /**
+   * A code that details how this designation would be used
+   */
+  use?: Coding | undefined;
+  /**
+   * The text value for this designation
+   */
+  value: string;
+}
+
 /**
  * One or more properties that contain additional information about the code,
  * including status. For complex terminologies (e.g. SNOMED CT, LOINC,
  * medications), these properties serve to decompose the code
  */
-export interface CodeSystemLookupOperationProperty {}
+export interface CodeSystemLookupOperationProperty {
+  /**
+   * Identifies the property returned
+   * @fhirType code
+   */
+  code: string;
+  /**
+   * The value of the property returned
+   */
+  value?: Element | undefined;
+  /**
+   * Human Readable representation of the property value (e.g. display for a code)
+   */
+  description?: string | undefined;
+  /**
+   * Nested Properties (mainly used for SNOMED CT decomposition, for relationship
+   * Groups)
+   */
+  subproperty?: Array<CodeSystemLookupOperationPropertySubproperty> | undefined;
+}
+
+/**
+ * Nested Properties (mainly used for SNOMED CT decomposition, for relationship
+ * Groups)
+ */
+export interface CodeSystemLookupOperationPropertySubproperty {
+  /**
+   * Identifies the sub-property returned
+   * @fhirType code
+   */
+  code: string;
+  /**
+   * The value of the sub-property returned
+   */
+  value: Element;
+  /**
+   * Human Readable representation of the property value (e.g. display for a code)
+   */
+  description?: string | undefined;
+}
 
 /**
  * Subsumption Testing
@@ -790,7 +942,9 @@ W
  * optional
  * @see {@link http://hl7.org/fhir/OperationDefinition/CodeSystem-subsumes}
  */
-export class CodeSystemSubsumesOperation implements Operation<unknown> {
+export class CodeSystemSubsumesOperation
+  implements Operation<CodeSystemSubsumesOperationResult>
+{
   /**
  * Subsumption Testing
  * 
@@ -817,7 +971,7 @@ W
     };
   }
 
-  public _resultTypeDoNotUse?: unknown;
+  public _resultTypeDoNotUse?: CodeSystemSubsumesOperationResult;
 }
 
 export interface CodeSystemSubsumesOperationParameters {
@@ -859,6 +1013,18 @@ export interface CodeSystemSubsumesOperationParameters {
    * systems must be well established
    */
   codingB?: Coding | undefined;
+}
+
+export interface CodeSystemSubsumesOperationResult {
+  /**
+   * The subsumption relationship between code/Coding "A" and code/Coding "B". There
+   * are 4 possible codes to be returned (equivalent, subsumes, subsumed-by, and
+   * not-subsumed) as defined in the concept-subsumption-outcome value set.  If the
+   * server is unable to determine the relationship between the codes/Codings, then
+   * it returns an error response with an OperationOutcome.
+   * @fhirType code
+   */
+  outcome: string;
 }
 
 /**
@@ -1309,13 +1475,61 @@ export interface ConceptMapTranslateOperationResult {
 /**
  * Another element that may help produce the correct mapping
  */
-export interface ConceptMapTranslateOperationDependency {}
+export interface ConceptMapTranslateOperationDependency {
+  /**
+   * The element for this dependency
+   * @fhirType uri
+   */
+  element?: string | undefined;
+  /**
+   * The value for this dependency
+   */
+  concept?: CodeableConcept | undefined;
+}
+
 /**
  * A concept in the target value set with an equivalence. Note that there may be
  * multiple matches of equal or differing equivalence, and the matches may include
  * equivalence values that mean that there is no match
  */
-export interface ConceptMapTranslateOperationMatch {}
+export interface ConceptMapTranslateOperationMatch {
+  /**
+   * A code indicating the equivalence of the translation, using values from
+   * [ConceptMapEquivalence](valueset-concept-map-equivalence.html)
+   * @fhirType code
+   */
+  equivalence?: string | undefined;
+  /**
+   * The translation outcome. Note that this would never have userSelected = true,
+   * since the process of translations implies that the user is not selecting the
+   * code (and only the client could know differently)
+   */
+  concept?: Coding | undefined;
+  /**
+   * Another element that is the product of this mapping
+   */
+  product?: Array<ConceptMapTranslateOperationMatchProduct> | undefined;
+  /**
+   * The canonical reference to the concept map from which this mapping comes from
+   * @fhirType uri
+   */
+  source?: string | undefined;
+}
+
+/**
+ * Another element that is the product of this mapping
+ */
+export interface ConceptMapTranslateOperationMatchProduct {
+  /**
+   * The element for this product
+   * @fhirType uri
+   */
+  element?: string | undefined;
+  /**
+   * The value for this product
+   */
+  concept?: Coding | undefined;
+}
 
 /**
  * Submit an EligibilityRequest resource for assessment
@@ -2171,7 +2385,9 @@ The principle use of this
  * metadata such as profiles.
  * @see {@link http://hl7.org/fhir/OperationDefinition/NamingSystem-preferred-id}
  */
-export class NamingSystemPreferredIdOperation implements Operation<unknown> {
+export class NamingSystemPreferredIdOperation
+  implements Operation<NamingSystemPreferredIdOperationResult>
+{
   /**
  * Fetch Preferred it
  * 
@@ -2205,7 +2421,7 @@ The principle use of this
     };
   }
 
-  public _resultTypeDoNotUse?: unknown;
+  public _resultTypeDoNotUse?: NamingSystemPreferredIdOperationResult;
 }
 
 export interface NamingSystemPreferredIdOperationParameters {
@@ -2220,6 +2436,13 @@ export interface NamingSystemPreferredIdOperationParameters {
    * @fhirType code
    */
   type: string;
+}
+
+export interface NamingSystemPreferredIdOperationResult {
+  /**
+   * OIDs are return as plain OIDs (not the URI form).
+   */
+  result: string;
 }
 
 /**
@@ -3059,7 +3282,9 @@ export interface PlanDefinitionDataRequirementsOperationParameters {
  * is to convert between formats (e.g. (XML -> JSON or vice versa)
  * @see {@link http://hl7.org/fhir/OperationDefinition/Resource-convert}
  */
-export class ResourceConvertOperation implements Operation<unknown> {
+export class ResourceConvertOperation
+  implements Operation<ResourceConvertOperationResult>
+{
   /**
    * Convert from one form to another
    *
@@ -3078,7 +3303,7 @@ export class ResourceConvertOperation implements Operation<unknown> {
     };
   }
 
-  public _resultTypeDoNotUse?: unknown;
+  public _resultTypeDoNotUse?: ResourceConvertOperationResult;
 }
 
 export interface ResourceConvertOperationParameters {
@@ -3087,6 +3312,13 @@ export interface ResourceConvertOperationParameters {
    * The resource that is to be converted
    */
   input: Resource;
+}
+
+export interface ResourceConvertOperationResult {
+  /**
+   * The resource after conversion
+   */
+  output: Resource;
 }
 
 /**
@@ -3098,7 +3330,9 @@ export interface ResourceConvertOperationParameters {
  * resources to return in the same packaage
  * @see {@link http://hl7.org/fhir/OperationDefinition/Resource-graph}
  */
-export class ResourceGraphOperation implements Operation<unknown> {
+export class ResourceGraphOperation
+  implements Operation<ResourceGraphOperationResult>
+{
   /**
    * Return a graph of resources
    *
@@ -3120,7 +3354,7 @@ export class ResourceGraphOperation implements Operation<unknown> {
     };
   }
 
-  public _resultTypeDoNotUse?: unknown;
+  public _resultTypeDoNotUse?: ResourceGraphOperationResult;
 }
 
 export interface ResourceGraphOperationParameters {
@@ -3139,6 +3373,13 @@ export interface ResourceGraphOperationParameters {
   graph: string;
 }
 
+export interface ResourceGraphOperationResult {
+  /**
+   * The set of resources that were in the graph based on the provided definition
+   */
+  result: Bundle;
+}
+
 /**
  * Execute a graphql statement
  * 
@@ -3151,7 +3392,9 @@ For
  * spec](http://graphql.org/) for details)
  * @see {@link http://hl7.org/fhir/OperationDefinition/Resource-graphql}
  */
-export class ResourceGraphqlOperation implements Operation<unknown> {
+export class ResourceGraphqlOperation
+  implements Operation<ResourceGraphqlOperationResult>
+{
   /**
  * Execute a graphql statement
  * 
@@ -3176,7 +3419,7 @@ For
     };
   }
 
-  public _resultTypeDoNotUse?: unknown;
+  public _resultTypeDoNotUse?: ResourceGraphqlOperationResult;
 }
 
 export interface ResourceGraphqlOperationParameters {
@@ -3189,6 +3432,14 @@ export interface ResourceGraphqlOperationParameters {
    *
    */
   query: string;
+}
+
+export interface ResourceGraphqlOperationResult {
+  /**
+   * The content is always returned as application/json; this SHOULD be specified in
+   * the Accept header
+   */
+  result: Binary;
 }
 
 /**

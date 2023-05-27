@@ -693,15 +693,19 @@ export class OperationDefinition {
     );
   }
 
-  public get parts(): OperationParameterPart[] {
-    return [...this.inParameters, ...this.outParameters]
-      .filter((x) => x.partName)
-      .map((x) => new OperationParameterPart(this, x));
+  public get allParts(): OperationParameter[] {
+    return [
+      ...new Set(
+        [...this.inParameters, ...this.outParameters]
+          .filter((x) => x.partName)
+          .flatMap((x) => [x, ...x.allParts])
+      ),
+    ];
   }
 }
 
 export class OperationParameter {
-  constructor(public _operationDefinition: OperationDefinition) {}
+  constructor(public _parent: OperationDefinition | OperationParameter) {}
 
   /**
    * True if this is an array (e.g. max = "*")
@@ -726,9 +730,26 @@ export class OperationParameter {
       return undefined;
     }
 
-    return `${this._operationDefinition.safeName}Operation${(
-      this as any
-    ).name[0].toUpperCase()}${(this as any).name.slice(1)}`;
+    return `${
+      (this._parent as OperationParameter).partName ||
+      (this._parent as OperationDefinition).safeName + "Operation"
+    }${(this as any).name[0].toUpperCase()}${(this as any).name.slice(1)}`;
+  }
+
+  public get parameters(): OperationParameter[] {
+    if ((this as any).part.length === 0) return [];
+
+    return (this as any).part.map((x: any) =>
+      Object.assign(new OperationParameter(this), x)
+    );
+  }
+
+  public get allParts(): OperationParameter[] {
+    if ((this as any).part.length === 0) return [];
+
+    return this.parameters
+      .filter((x) => x.partName)
+      .flatMap((x) => [x, ...x.allParts]);
   }
 
   /**
@@ -772,13 +793,6 @@ export class OperationParameter {
       ].filter(Boolean) as string[]
     );
   }
-}
-
-export class OperationParameterPart {
-  constructor(
-    private _parent: OperationDefinition | OperationParameterPart,
-    public rootElement: OperationParameter
-  ) {}
 }
 
 export const PRIMITIVE_TYPES = [

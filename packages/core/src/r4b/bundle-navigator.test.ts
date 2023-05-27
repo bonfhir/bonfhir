@@ -316,7 +316,7 @@ describe("BundleNavigator", () => {
 
     it("return undefined if not found", () => {
       const navigator = bundleNavigator(patientsListBundle);
-      const result = navigator.linkUrl("appendix");
+      const result = navigator.linkUrl("previous");
       expect(result).toBeUndefined();
     });
   });

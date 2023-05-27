@@ -48,7 +48,7 @@ export type ExtractOperationResultType<T extends Operation> = T extends Operatio
 
 <% for (const operationDefinition of fhir.operationDefinitionsWithResourceVariants.filter(x => x.affectsState != undefined)) {
   let resultType = "unknown";
-  if (operationDefinition.outParameters.length >= 2) {
+  if (operationDefinition.outParameters.length >= 2 || (operationDefinition.outParameters.length === 1 && operationDefinition.outParameters[0].name !== "return")) {
     resultType = `${operationDefinition.safeName}OperationResult`
   } else if (operationDefinition.outParameters.length === 1 && operationDefinition.outParameters[0].name === "return") {
     resultType = operationDefinition.outParameters[0].tsType;
@@ -108,7 +108,7 @@ export type ExtractOperationResultType<T extends Operation> = T extends Operatio
   }
   <% } -%>
 
-  <% if (operationDefinition.outParameters.length >= 2) { -%>
+  <% if (resultType.endsWith("OperationResult")) { -%>
   export interface <%= operationDefinition.safeName %>OperationResult {
     <% for (const parameter of operationDefinition.outParameters) { -%>
       <%= parameter.jsDoc %>
@@ -117,10 +117,15 @@ export type ExtractOperationResultType<T extends Operation> = T extends Operatio
   }
   <% } -%>
 
-  <% for (const part of operationDefinition.parts) { -%>
-    <%= part.rootElement.jsDoc %>
-    export interface <%= part.rootElement.partName %> {
+  <% for (const part of operationDefinition.allParts) { -%>
+    <%= part.jsDoc %>
+    export interface <%= part.partName %> {
+      <% for (const parameter of part.parameters) { -%>
+        <%= parameter.jsDoc %>
+        "<%= parameter.name %>"<% if (parameter.isOptional) { %>?<% } %>: <%= parameter.tsType %>;
+      <% } -%>
     }
+
   <% } -%>
 
 <% } -%> 
