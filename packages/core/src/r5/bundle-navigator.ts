@@ -3,6 +3,9 @@ import {
   AnyResourceType,
   Bundle,
   ExtractResource,
+  // #if fhir >= r5
+  LinkRelationTypes,
+  // #endif
   Reference,
   Resource,
   Retrieved,
@@ -235,6 +238,19 @@ export class BundleNavigator<TResource extends Resource = Resource> {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       ...this._resourcesByRelativeReference!.values(),
     ] as WithResolvableReferences<TResource>[];
+  }
+
+  /**
+   * Return the url associated with a link, characterized by a relation.
+   */
+  public linkUrl(
+    relation: "self" | "first" | "next" | "previous"
+  ): string | undefined;
+  // #if fhir >= r5
+  public linkUrl(relation: LinkRelationTypes): string | undefined;
+  // #endif
+  public linkUrl(relation: string): string | undefined {
+    return this.bundle.link?.find((link) => link.relation === relation)?.url;
   }
 
   private _ensurePrimaryIndices() {

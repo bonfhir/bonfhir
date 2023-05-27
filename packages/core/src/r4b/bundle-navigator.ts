@@ -237,6 +237,16 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     ] as WithResolvableReferences<TResource>[];
   }
 
+  /**
+   * Return the url associated with a link, characterized by a relation.
+   */
+  public linkUrl(
+    relation: "self" | "first" | "next" | "previous"
+  ): string | undefined;
+  public linkUrl(relation: string): string | undefined {
+    return this.bundle.link?.find((link) => link.relation === relation)?.url;
+  }
+
   private _ensurePrimaryIndices() {
     if (!this._resourcesByRelativeReference) {
       this._resourcesByRelativeReference = new Map();

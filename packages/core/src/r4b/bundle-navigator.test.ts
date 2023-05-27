@@ -306,4 +306,18 @@ describe("BundleNavigator", () => {
       expect(serialized).not.toContain("included");
     });
   });
+
+  describe("linkUrl", () => {
+    it("return the link", () => {
+      const navigator = bundleNavigator(patientsListBundle);
+      const result = navigator.linkUrl("next");
+      expect(result).toBeDefined();
+    });
+
+    it("return undefined if not found", () => {
+      const navigator = bundleNavigator(patientsListBundle);
+      const result = navigator.linkUrl("appendix");
+      expect(result).toBeUndefined();
+    });
+  });
 });
