@@ -1,4 +1,10 @@
-import { AnyResourceType, ExtractResource } from "./fhir-types.codegen";
+import {
+  AnyResourceType,
+  ExtractResource,
+  Reference,
+} from "./fhir-types.codegen";
+import { DropUnderscoreKeys } from "./lang-utils";
+import { ExtractSearchBuilder } from "./search.codegen";
 
 /**
  * The builder for FHIR Search URLs.
@@ -592,7 +598,7 @@ export class FhirSearchBuilder {
    */
   _include<TResourceType extends AnyResourceType>(
     sourceResource: TResourceType,
-    searchParameter: keyof ExtractResource<TResourceType>,
+    searchParameter: Includeable<TResourceType>,
     options?: {
       targetResourceType?: TResourceType | null | undefined;
       iterate?: boolean | null | undefined;
@@ -613,7 +619,7 @@ export class FhirSearchBuilder {
    */
   _revinclude<TResourceType extends AnyResourceType>(
     sourceResource: TResourceType,
-    searchParameter: keyof ExtractResource<TResourceType>,
+    searchParameter: Includeable<TResourceType>,
     options?: {
       targetResourceType?: TResourceType | null | undefined;
       iterate?: boolean | null | undefined;
@@ -859,3 +865,15 @@ export const UriModifier = {
 export type UriModifier = (typeof UriModifier)[keyof typeof UriModifier];
 
 export type SummaryValue = "true" | "text" | "data" | "count" | "false";
+
+export type OnlyReferences<T> = {
+  [P in keyof T as T[P] extends
+    | (Reference | undefined)
+    | (Array<Reference> | undefined)
+    ? P
+    : never]: T[P];
+};
+
+export type Includeable<TResourceType extends AnyResourceType> =
+  | keyof OnlyReferences<ExtractResource<TResourceType>>
+  | keyof DropUnderscoreKeys<ExtractSearchBuilder<TResourceType>>;

@@ -265,3 +265,10 @@ export function startCase(
 export type DropFirst<T extends unknown[]> = T extends [infer _, ...infer U]
   ? U
   : never;
+
+export type DropUnderscoreKeys<T> = {
+  [K in RemoveUnderscoreKey<keyof T>]: T[K];
+};
+
+export type RemoveUnderscoreKey<T extends PropertyKey> =
+  T extends `_${infer _U}` ? never : T;
