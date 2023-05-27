@@ -32,6 +32,7 @@ export * from "./ratio";
 export * from "./reference";
 export * from "./string";
 export * from "./time";
+export * from "./unsigned-int";
 export * from "./uri";
 export * from "./url";
 export * from "./uuid";

@@ -119,6 +119,7 @@ export class Formatter {
         .register(valueFormatters.referenceFormatter)
         .register(valueFormatters.stringFormatter)
         .register(valueFormatters.timeFormatter)
+        .register(valueFormatters.unsignedIntFormatter)
         .register(valueFormatters.uriFormatter)
         .register(valueFormatters.urlFormatter)
         .register(valueFormatters.uuidFormatter)
