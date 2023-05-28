@@ -99,14 +99,15 @@ export class <%= resource.type %>FhirSearchBuilder extends <%= resource.base?.ty
 <% } -%>
 
 /**
- * Search parameters of type `reference` by their resource type..
+ * Search parameters by their resource type..
  */
-export type AllResourcesReferenceSearchParameters = {
-  <% for (const resource of fhir.resources.filter(res => !res.abstract && res.allSearchParameters.some(x => !x.experimental && x.type === "reference"))) { -%>
-  <%= resource.type %>: 
-    <% for (const searchParameter of resource.allSearchParameters.filter(x => !x.experimental && x.type === "reference")) { -%>
-    | "<%= searchParameter.safeName %>"
-    <% } -%>;
+export type AllResourcesSearchParameters = {
+  <% for (const resource of fhir.resources.filter(res => !res.abstract && res.allSearchParameters.some(x => !x.experimental))) { -%>
+  <%= resource.type %>: {
+    <% for (const searchParameter of resource.allSearchParameters.filter(x => !x.experimental)) { -%>
+      "<%= searchParameter.safeName %>": "<%= searchParameter.type %>";
+    <% } -%>
+  }
   <% } -%>
 };
 

@@ -1,6 +1,6 @@
 import { AnyResourceType } from "./fhir-types.codegen";
 import { RemoveUnderscoreKeys } from "./lang-utils";
-import { AllResourcesReferenceSearchParameters } from "./search.codegen";
+import { AllResourcesSearchParameters } from "./search.codegen";
 
 /**
  * The builder for FHIR Search URLs.
@@ -592,10 +592,10 @@ export class FhirSearchBuilder {
    *
    * @see https://hl7.org/fhir/search.html#include
    */
-  _include<TResourceType extends keyof AllResourcesReferenceSearchParameters>(
+  _include<TResourceType extends keyof AllResourcesSearchParameters>(
     sourceResource: TResourceType,
-    searchParameter: RemoveUnderscoreKeys<
-      AllResourcesReferenceSearchParameters[TResourceType]
+    searchParameter: ReferencesOnlySearchParameters<
+      AllResourcesSearchParameters[TResourceType]
     >,
     options?: {
       targetResourceType?: TResourceType | null | undefined;
@@ -615,12 +615,10 @@ export class FhirSearchBuilder {
    *
    * @see https://hl7.org/fhir/search.html#revinclude
    */
-  _revinclude<
-    TResourceType extends keyof AllResourcesReferenceSearchParameters
-  >(
+  _revinclude<TResourceType extends keyof AllResourcesSearchParameters>(
     sourceResource: TResourceType,
-    searchParameter: RemoveUnderscoreKeys<
-      AllResourcesReferenceSearchParameters[TResourceType]
+    searchParameter: ReferencesOnlySearchParameters<
+      AllResourcesSearchParameters[TResourceType]
     >,
     options?: {
       targetResourceType?: TResourceType | null | undefined;
@@ -867,3 +865,9 @@ export const UriModifier = {
 export type UriModifier = (typeof UriModifier)[keyof typeof UriModifier];
 
 export type SummaryValue = "true" | "text" | "data" | "count" | "false";
+
+export type ReferencesOnlySearchParameters<T> = RemoveUnderscoreKeys<
+  keyof {
+    [K in keyof T as T[K] extends "reference" ? K : never]: T[K];
+  }
+>;
