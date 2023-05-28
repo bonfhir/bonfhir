@@ -9,8 +9,10 @@ import {
   Bundle,
   CapabilityStatement,
   ExtractResource,
+  OperationOutcome,
   Retrieved,
 } from "./fhir-types.codegen";
+import { Formatter } from "./formatters";
 import {
   ExtractOperationResultType,
   Operation,
@@ -258,6 +260,34 @@ export function normalizeSearchParameters<
   }
 
   return parameters || undefined;
+}
+
+/**
+ * Custom error raised by a FhirClient.
+ */
+export class FhirClientError extends Error {
+  constructor(
+    public status: number,
+    public operationOutcome: OperationOutcome | undefined,
+    public metadata?: Record<string, unknown> | undefined
+  ) {
+    const operationOutcomeMessage = operationOutcome?.issue
+      ?.map(
+        (issue) =>
+          `${Formatter.default.format(
+            "code",
+            issue.code
+          )}/${Formatter.default.format("CodeableConcept", issue.details)}${
+            issue.expression ? ` at ${issue.expression}` : ""
+          }`
+      )
+      .join(", ");
+    super(
+      `Error from FhirClient: ${status}${
+        operationOutcomeMessage ? ` - ${operationOutcomeMessage}` : ""
+      }`
+    );
+  }
 }
 
 /**

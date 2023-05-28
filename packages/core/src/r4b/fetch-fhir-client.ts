@@ -8,6 +8,7 @@ import {
   ConcurrencyParameters,
   ConditionalSearchParameters,
   FhirClient,
+  FhirClientError,
   FhirClientPatchBody,
   FhirClientSearchParameters,
   GeneralParameters,
@@ -444,30 +445,12 @@ export class FetchFhirClient implements FhirClient {
       } catch {
         // We ignore the deserialization error and return the original error.
       }
-      throw new FetchFhirClientError(clonedResponse, operationOutcome);
+      throw new FhirClientError(clonedResponse.status, operationOutcome, {
+        response: clonedResponse,
+      });
     }
 
     const responseText = await response.text();
     return responseText ? JSON.parse(responseText) : undefined;
-  }
-}
-
-/**
- * Custom error raised by a FhirClient fetch operations.
- */
-export class FetchFhirClientError extends Error {
-  constructor(
-    public response: Response,
-    /** The OperationOutcome response, if it could be read / deserialized */
-    public operationOutcome: OperationOutcome | undefined
-  ) {
-    super();
-  }
-
-  /**
-   * The HTTP status code of the response.
-   */
-  public get status(): number {
-    return this.response.status;
   }
 }
