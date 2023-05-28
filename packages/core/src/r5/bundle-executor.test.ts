@@ -1,6 +1,9 @@
 import { mock, mockReset } from "jest-mock-extended";
+import { randomUUID } from "node:crypto";
+import { build } from "./builders";
 import { BundleExecutor } from "./bundle-executor";
 import { FhirClient } from "./fhir-client";
+import { Patient, Retrieved } from "./fhir-types.codegen";
 
 describe("bundle-executor", () => {
   const client = mock<Pick<FhirClient, "batch">>();
@@ -20,7 +23,8 @@ describe("bundle-executor", () => {
     const futurePatient = executor.read("Patient", "123");
     const futureOrg = executor.read("Organization", "456");
 
-    expect(futurePatient.entry).toBeDefined();
+    expect(futurePatient.requestEntry).toBeDefined();
+    expect(futurePatient.responseEntry).toBeUndefined();
     expect(futurePatient.entryIndex).toEqual(0);
     expect(futurePatient.executor).toBe(executor);
     expect(futurePatient.sent).toBeFalsy();
@@ -59,13 +63,52 @@ describe("bundle-executor", () => {
 
   it("read", async () => {
     const executor = new BundleExecutor(client, "batch");
-    executor.read("Patient", "123");
+    const futureRequest = executor.read("Patient", "123");
+    expect(futureRequest.requestEntry.request?.method).toEqual("GET");
     await executor.send();
   });
 
   it("vread", async () => {
     const executor = new BundleExecutor(client, "batch");
-    executor.vread("Patient", "123", "1");
+    const futureRequest = executor.vread("Patient", "123", "1");
+    expect(futureRequest.requestEntry.request?.method).toEqual("GET");
+    await executor.send();
+  });
+
+  it("update", async () => {
+    const executor = new BundleExecutor(client, "transaction");
+    const futureRequest = executor.update(
+      build("Organization", {
+        id: randomUUID(),
+        name: "Acme, Inc.",
+      })
+    );
+    expect(futureRequest.requestEntry.request?.method).toEqual("PUT");
+    await executor.send();
+  });
+
+  it("patch", async () => {
+    const executor = new BundleExecutor(client, "transaction");
+    const futureRequest = executor.patch("Patient", "123", (patch) =>
+      patch.add("/active", false)
+    );
+    expect(futureRequest.requestEntry.request?.method).toEqual("PATCH");
+    await executor.send();
+  });
+
+  it("delete", async () => {
+    const executor = new BundleExecutor(client, "transaction");
+    const futureRequest = executor.delete(
+      build("Patient", { id: "123" }) as Retrieved<Patient>
+    );
+    expect(futureRequest.requestEntry.request?.method).toEqual("DELETE");
+    await executor.send();
+  });
+
+  it("history", async () => {
+    const executor = new BundleExecutor(client, "batch");
+    const futureRequest = executor.history("Patient", "123");
+    expect(futureRequest.requestEntry.request?.method).toEqual("GET");
     await executor.send();
   });
 });

@@ -215,11 +215,11 @@ export class FetchFhirClient implements FhirClient {
     });
   }
 
-  history<TResource extends AnyResource>(
+  public history<TResource extends AnyResource>(
     resource: Retrieved<TResource>,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
   ): Promise<BundleNavigator<Retrieved<TResource>>>;
-  history<TResourceType extends AnyResourceType>(
+  public history<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     id?: string | null | undefined,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
