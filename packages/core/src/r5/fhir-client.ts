@@ -332,9 +332,12 @@ export interface HistoryParameters {
 /**
  * Execute a search operation and walk through all the search pages.
  * For each page, execute the `fn` callback by passing the current page bundle navigator.
+ *
+ * This method is meant to be used by client implementations.
+ * Prefer using `client.searchByPage`.
  */
 export async function searchByPage<TResourceType extends AnyResourceType>(
-  client: FhirClient,
+  client: Pick<FhirClient, "search" | "fetch">,
   type: TResourceType | null | undefined,
   search: FhirClientSearchParameters<TResourceType>,
   fn: (
@@ -362,9 +365,12 @@ export async function searchByPage<TResourceType extends AnyResourceType>(
 /**
  * Execute a search operation and retrieve all pages from the server, aggregating into a final {@link BundleNavigator}.
  * Be careful, as this can be a very long / expensive operation.
+ *
+ * This method is meant to be used by client implementations.
+ * Prefer using `client.searchAllPages`.
  */
 export async function searchAllPages<TResourceType extends AnyResourceType>(
-  client: FhirClient,
+  client: Pick<FhirClient, "search" | "fetch">,
   type: TResourceType | null | undefined,
   search: FhirClientSearchParameters<TResourceType>
 ): Promise<BundleNavigator<ExtractResource<TResourceType>>> {
