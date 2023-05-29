@@ -4,6 +4,7 @@ import { build } from "./builders";
 import { BundleExecutor } from "./bundle-executor";
 import { FhirClient } from "./fhir-client";
 import { Patient, Retrieved } from "./fhir-types.codegen";
+import { ValueSetExpandOperation } from "./operations.codegen";
 
 describe("bundle-executor", () => {
   const client = mock<Pick<FhirClient, "batch">>();
@@ -108,6 +109,44 @@ describe("bundle-executor", () => {
   it("history", async () => {
     const executor = new BundleExecutor(client, "batch");
     const futureRequest = executor.history("Patient", "123");
+    expect(futureRequest.requestEntry.request?.method).toEqual("GET");
+    await executor.send();
+  });
+
+  it("create", async () => {
+    const executor = new BundleExecutor(client, "transaction");
+    const futureRequest = executor.create(
+      build("Organization", {
+        name: "Acme, Inc.",
+      })
+    );
+    expect(futureRequest.requestEntry.request?.method).toEqual("POST");
+    await executor.send();
+  });
+
+  it("search", async () => {
+    const executor = new BundleExecutor(client, "batch");
+    const futureRequest = executor.search("Medication", (search) =>
+      search.code("123")
+    );
+    expect(futureRequest.requestEntry.request?.method).toEqual("GET");
+    await executor.send();
+  });
+
+  it("capabilities", async () => {
+    const executor = new BundleExecutor(client, "batch");
+    const futureRequest = executor.capabilities();
+    expect(futureRequest.requestEntry.request?.method).toEqual("GET");
+    await executor.send();
+  });
+
+  it("execute", async () => {
+    const executor = new BundleExecutor(client, "batch");
+    const futureRequest = executor.execute(
+      new ValueSetExpandOperation({
+        url: "http://hl7.org/fhir/ValueSet/example",
+      })
+    );
     expect(futureRequest.requestEntry.request?.method).toEqual("GET");
     await executor.send();
   });

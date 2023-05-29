@@ -1,3 +1,4 @@
+import { v4 as uuid } from "uuid";
 import { BundleNavigator, bundleNavigator } from "./bundle-navigator";
 import {
   ConcurrencyParameters,
@@ -5,6 +6,7 @@ import {
   FhirClient,
   FhirClientError,
   FhirClientPatchBody,
+  FhirClientSearchParameters,
   GeneralParameters,
   HistoryParameters,
   normalizePatchBody,
@@ -16,12 +18,20 @@ import {
   Binary,
   Bundle,
   BundleEntry,
+  CapabilityStatement,
   ExtractResource,
+  Reference,
   Resource,
   Retrieved,
   WithRequired,
   isResource,
 } from "./fhir-types.codegen";
+import {
+  ExtractOperationResultType,
+  Operation,
+  OperationParameters,
+} from "./operations.codegen";
+import { reference } from "./references.codegen";
 
 export class BundleExecutor {
   private _entryIndex = 0;
@@ -86,7 +96,7 @@ export class BundleExecutor {
           ConditionalSearchParameters<TResource["resourceType"]>)
       | null
       | undefined
-  ): FutureRequest<Retrieved<TResource>> {
+  ): FutureRequestWithReference<Retrieved<TResource>> {
     const { preventConcurrentUpdates, search, ...remainingOptions } =
       options ?? {};
     const searchQueryString = normalizeSearchParameters(
@@ -100,7 +110,9 @@ export class BundleExecutor {
       .filter(Boolean)
       .join("&");
 
+    const fullUrl = `urn:uuid:${uuid()}`;
     const entry: BundleEntry = {
+      fullUrl,
       resource: body,
       request: {
         method: "PUT",
@@ -114,7 +126,14 @@ export class BundleExecutor {
       },
     };
     this.request.entry.push(entry);
-    return this._buildFutureRequest(entry);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const futureRequest: any = this._buildFutureRequest(entry);
+    futureRequest.reference = reference({
+      ...body,
+      id: fullUrl,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any);
+    return futureRequest;
   }
 
   public patch<TResourceType extends AnyResourceType>(
@@ -234,6 +253,129 @@ export class BundleExecutor {
     return this._buildFutureRequest(entry, true);
   }
 
+  public create<TResource extends AnyResource>(
+    body: TResource,
+    options?:
+      | (GeneralParameters &
+          ConditionalSearchParameters<TResource["resourceType"]>)
+      | null
+      | undefined
+  ): FutureRequestWithReference<Retrieved<TResource>> {
+    const { search, ...remainingOptions } = options ?? {};
+    const searchQueryString = normalizeSearchParameters(
+      body.resourceType,
+      search
+    );
+    const optionsQueryString = new URLSearchParams(
+      remainingOptions as Record<string, string>
+    ).toString();
+    const queryString = [searchQueryString, optionsQueryString]
+      .filter(Boolean)
+      .join("&");
+
+    const fullUrl = `urn:uuid:${uuid()}`;
+    const entry: BundleEntry = {
+      fullUrl,
+      resource: body,
+      request: {
+        method: "POST",
+        url: `${body.resourceType}${queryString ? `?${queryString}` : ""}`,
+      },
+    };
+    this.request.entry.push(entry);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const futureRequest: any = this._buildFutureRequest(entry);
+    futureRequest.reference = reference({
+      ...body,
+      id: fullUrl,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any);
+    return futureRequest;
+  }
+
+  public search<TResourceType extends AnyResourceType>(
+    type?: TResourceType | null | undefined,
+    parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
+    options?: GeneralParameters | null | undefined
+  ): FutureRequest<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>> {
+    const searchQueryString = normalizeSearchParameters(type, parameters);
+    const optionsQueryString = new URLSearchParams(
+      options as Record<string, string>
+    ).toString();
+    const queryString = [searchQueryString, optionsQueryString]
+      .filter(Boolean)
+      .join("&");
+
+    const entry: BundleEntry = {
+      request: {
+        method: "GET",
+        url: `${type || ""}${queryString ? `?${queryString}` : ""}`,
+      },
+    };
+    this.request.entry.push(entry);
+    return this._buildFutureRequest(entry, true);
+  }
+
+  public capabilities(
+    mode?: "full" | "normative" | "terminology" | null | undefined
+  ): FutureRequest<CapabilityStatement> {
+    const entry: BundleEntry = {
+      request: {
+        method: "GET",
+        url: `metadata${mode ? `?mode=${mode}` : ""}`,
+      },
+    };
+    this.request.entry.push(entry);
+    return this._buildFutureRequest(entry);
+  }
+
+  public execute<TOperation extends Operation>(
+    operation: TOperation
+  ): FutureRequest<ExtractOperationResultType<TOperation>>;
+  public execute<TOperationResult>(
+    operation: OperationParameters
+  ): FutureRequest<TOperationResult>;
+  public execute<
+    TOperationResult,
+    TOperation extends Operation<TOperationResult>
+  >(
+    operation: TOperation | OperationParameters
+  ): FutureRequest<TOperationResult> {
+    const operationParameters = (operation as Operation<TOperationResult>)
+      .getParameters
+      ? (operation as Operation<TOperationResult>).getParameters()
+      : (operation as OperationParameters);
+    const prefix = [
+      operationParameters.resourceType,
+      operationParameters.resourceId,
+    ]
+      .filter(Boolean)
+      .join("/");
+    const queryString =
+      !operationParameters.affectsState &&
+      operationParameters.parameters &&
+      Object.values(operationParameters.parameters).length > 0
+        ? new URLSearchParams(
+            operationParameters.parameters as Record<string, string>
+          ).toString()
+        : undefined;
+
+    const entry: BundleEntry = {
+      resource:
+        operationParameters.affectsState && operationParameters.parameters
+          ? (operationParameters.parameters as Resource)
+          : undefined,
+      request: {
+        method: operationParameters.affectsState ? "POST" : "GET",
+        url: `${prefix ? `${prefix}/` : ""}${operationParameters.operation}${
+          queryString ? `?${queryString}` : ""
+        }`,
+      },
+    };
+    this.request.entry.push(entry);
+    return this._buildFutureRequest(entry);
+  }
+
   /**
    * Send the batch / transaction for execution to the server.
    */
@@ -316,4 +458,11 @@ export interface FutureRequest<T> {
    * Throw if the request has not been executed.
    */
   resource: T;
+}
+
+export interface FutureRequestWithReference<T extends Resource>
+  extends FutureRequest<T> {
+  requestEntry: WithRequired<BundleEntry, "fullUrl">;
+  /** A temporary reference inside the bundle that can be used inside the batch or transaction. */
+  reference: Reference<T>;
 }

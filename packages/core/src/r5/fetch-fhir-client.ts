@@ -352,10 +352,10 @@ export class FetchFhirClient implements FhirClient {
     });
   }
 
-  execute<TOperation extends Operation>(
+  public execute<TOperation extends Operation>(
     operation: TOperation
   ): Promise<ExtractOperationResultType<TOperation>>;
-  public async execute<TOperationResult>(
+  public execute<TOperationResult>(
     operation: OperationParameters
   ): Promise<TOperationResult>;
   public async execute<
