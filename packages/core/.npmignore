@@ -1,7 +1,8 @@
+fixtures/
 src/
+templates/
 .eslintrc.cjs
 jest.config.mjs
+jest.setup.mjs
 rollup.config.mjs
-templates/
-tsconfig.build.json
 tsconfig.json

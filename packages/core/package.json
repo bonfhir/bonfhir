@@ -13,15 +13,25 @@
   },
   "type": "module",
   "exports": {
-    "r4b": {
-      "import": "./dist/r4b/esm/index.js",
-      "require": "./dist/r4b/cjs/index.cjs",
-      "types": "./dist/r4b/types/index.d.ts"
+    "./r4b": {
+      "import": {
+        "default": "./dist/r4b/esm/index.mjs",
+        "types": "./dist/r4b/esm/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/r4b/cjs/index.cjs",
+        "types": "./dist/r4b/cjs/index.d.ts"
+      }
     },
-    "r5": {
-      "import": "./dist/r5/esm/index.js",
-      "require": "./dist/r5/cjs/index.cjs",
-      "types": "./dist/r5/types/index.d.ts"
+    "./r5": {
+      "import": {
+        "default": "./dist/r5/esm/index.mjs",
+        "types": "./dist/r5/esm/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/r5/cjs/index.cjs",
+        "types": "./dist/r5/cjs/index.d.ts"
+      }
     }
   },
   "devDependencies": {

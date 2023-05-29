@@ -48,6 +48,11 @@ let reference: ReferenceFunction = function<
     type: resource.resourceType,
   };
 
+  // We handle the case of temporary bundle references as well.
+  if (resource.id?.startsWith("urn:uuid:")) {
+    reference.reference = reference.reference?.split("/").slice(1).join("/");
+  }
+
   const decorator = this.decorators?.[resource.resourceType];
 
   if (decorator) {

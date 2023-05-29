@@ -127,6 +127,10 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     return this._bundleOrNavigator as Bundle<Retrieved<TResource>>;
   }
 
+  public toJSON() {
+    return this._bundleOrNavigator;
+  }
+
   /**
    * Return a resource identifies by its unique reference, or undefined if not found.
    * If there are duplicates in the bundle, will return one of them.

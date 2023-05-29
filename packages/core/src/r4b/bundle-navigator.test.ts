@@ -324,4 +324,13 @@ describe("BundleNavigator", () => {
       expect(result).toBeUndefined();
     });
   });
+
+  describe("toJSON", () => {
+    it("returns the bundle", () => {
+      const navigator = bundleNavigator(patientsListBundle);
+      const stringified = JSON.stringify(navigator);
+      const parsed = JSON.parse(stringified);
+      expect(parsed.resourceType).toEqual("Bundle");
+    });
+  });
 });
