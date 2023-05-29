@@ -1,3 +1,4 @@
+import { BundleExecutor } from "./bundle-executor";
 import {
   BundleNavigator,
   WithResolvableReferences,
@@ -179,11 +180,24 @@ export interface FhirClient {
   ): Promise<CapabilityStatement>;
 
   /**
-   * The batch and transaction interactions submit a set of actions to perform on a server in a single HTTP request/response.
+   * The batch interaction submits a set of actions to perform on a server in a single HTTP request/response.
+   * Each entry executes in a different transaction on the server.
    * https://hl7.org/fhir/http.html#transaction
    */
+  batch(): BundleExecutor;
   batch(
-    body: Bundle,
+    body: Bundle & { type: "batch" },
+    options?: GeneralParameters | null | undefined
+  ): Promise<Bundle>;
+
+  /**
+   * The transaction interaction submits a set of actions to perform on a server in a single HTTP request/response.
+   * All entries execute in a single transaction on the server.
+   * https://hl7.org/fhir/http.html#transaction
+   */
+  transaction(): BundleExecutor;
+  transaction(
+    body: Bundle & { type: "transaction" },
     options?: GeneralParameters | null | undefined
   ): Promise<Bundle>;
 

@@ -39,7 +39,7 @@ export class BundleExecutor {
   public response: Bundle | undefined;
 
   constructor(
-    public client: Pick<FhirClient, "batch">,
+    public client: Pick<FhirClient, "batch" | "transaction">,
     type: "batch" | "transaction"
   ) {
     this.request = {
@@ -380,7 +380,12 @@ export class BundleExecutor {
    * Send the batch / transaction for execution to the server.
    */
   public async send(): Promise<void> {
-    this.response = await this.client.batch(this.request);
+    if (this.request.type === "transaction") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.response = await this.client.transaction(this.request as any);
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    this.response = await this.client.batch(this.request as any);
   }
 
   private _buildFutureRequest<T>(

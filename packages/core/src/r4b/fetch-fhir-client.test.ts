@@ -4,6 +4,7 @@ import { randomUUID } from "node:crypto";
 import patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
 import patientExample from "../../fixtures/patient-example.fhir.json";
 import { build } from "./builders";
+import { BundleExecutor } from "./bundle-executor";
 import { FetchFhirClient } from "./fetch-fhir-client";
 import {
   CapabilityStatement,
@@ -379,6 +380,41 @@ describe("fetch-fhir-client", () => {
         { _pretty: true }
       );
       expect(result).toBeDefined();
+    });
+
+    it("return builder", async () => {
+      const builder = client.batch();
+      expect(builder).toBeInstanceOf(BundleExecutor);
+      expect(builder.request.type).toEqual("batch");
+    });
+  });
+
+  describe("transaction", () => {
+    it("return", async () => {
+      const result = await client.transaction({
+        resourceType: "Bundle",
+        type: "transaction",
+        entry: [],
+      });
+      expect(result).toBeDefined();
+    });
+
+    it("return with options", async () => {
+      const result = await client.transaction(
+        {
+          resourceType: "Bundle",
+          type: "transaction",
+          entry: [],
+        },
+        { _pretty: true }
+      );
+      expect(result).toBeDefined();
+    });
+
+    it("return builder", async () => {
+      const builder = client.transaction();
+      expect(builder).toBeInstanceOf(BundleExecutor);
+      expect(builder.request.type).toEqual("transaction");
     });
   });
 

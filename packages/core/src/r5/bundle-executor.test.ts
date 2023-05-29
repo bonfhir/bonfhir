@@ -7,7 +7,7 @@ import { Patient, Retrieved } from "./fhir-types.codegen";
 import { ValueSetExpandOperation } from "./operations.codegen";
 
 describe("bundle-executor", () => {
-  const client = mock<Pick<FhirClient, "batch">>();
+  const client = mock<Pick<FhirClient, "batch" | "transaction">>();
 
   beforeEach(() => {
     mockReset(client);

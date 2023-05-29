@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { BundleExecutor } from "./bundle-executor";
 import {
   bundleNavigator,
   BundleNavigator,
@@ -338,10 +339,42 @@ export class FetchFhirClient implements FhirClient {
     );
   }
 
-  public async batch(
-    body: Bundle,
+  public batch(): BundleExecutor;
+  public batch(
+    body: Bundle & { type: "batch" },
     options?: GeneralParameters | null | undefined
-  ): Promise<Bundle> {
+  ): Promise<Bundle>;
+  public batch(
+    body?: Bundle & { type: "batch" },
+    options?: GeneralParameters | null | undefined
+  ): Promise<Bundle> | BundleExecutor {
+    if (!body) {
+      return new BundleExecutor(this, "batch");
+    }
+
+    const queryString = new URLSearchParams(
+      options as Record<string, string>
+    ).toString();
+
+    return this.fetch<Bundle>(queryString ? `?${queryString}` : "", {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  }
+
+  public transaction(): BundleExecutor;
+  public transaction(
+    body: Bundle & { type: "transaction" },
+    options?: GeneralParameters | null | undefined
+  ): Promise<Bundle>;
+  public transaction(
+    body?: Bundle & { type: "transaction" },
+    options?: GeneralParameters | null | undefined
+  ): Promise<Bundle> | BundleExecutor {
+    if (!body) {
+      return new BundleExecutor(this, "transaction");
+    }
+
     const queryString = new URLSearchParams(
       options as Record<string, string>
     ).toString();
