@@ -1,5 +1,9 @@
 import { v4 as uuid } from "uuid";
-import { BundleNavigator, bundleNavigator } from "./bundle-navigator";
+import {
+  BundleNavigator,
+  WithResolvableReferences,
+  bundleNavigator,
+} from "./bundle-navigator";
 import {
   ConcurrencyParameters,
   ConditionalSearchParameters,
@@ -250,7 +254,7 @@ export class BundleExecutor {
       },
     };
     this.request.entry.push(entry);
-    return this._buildFutureRequest(entry, true);
+    return this._buildFutureRequest(entry, (x) => bundleNavigator(x));
   }
 
   public create<TResource extends AnyResource>(
@@ -313,7 +317,34 @@ export class BundleExecutor {
       },
     };
     this.request.entry.push(entry);
-    return this._buildFutureRequest(entry, true);
+    return this._buildFutureRequest(entry, (x) => bundleNavigator(x));
+  }
+
+  public searchOne<TResourceType extends AnyResourceType>(
+    type?: TResourceType | null | undefined,
+    parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
+    options?: GeneralParameters | null | undefined
+  ): FutureRequest<
+    WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
+  > {
+    const searchQueryString = normalizeSearchParameters(type, parameters);
+    const optionsQueryString = new URLSearchParams(
+      options as Record<string, string>
+    ).toString();
+    const queryString = [searchQueryString, optionsQueryString]
+      .filter(Boolean)
+      .join("&");
+
+    const entry: BundleEntry = {
+      request: {
+        method: "GET",
+        url: `${type || ""}${queryString ? `?${queryString}` : ""}`,
+      },
+    };
+    this.request.entry.push(entry);
+    return this._buildFutureRequest(entry, (x) =>
+      bundleNavigator(x).searchMatchOne()
+    );
   }
 
   public capabilities(
@@ -390,7 +421,8 @@ export class BundleExecutor {
 
   private _buildFutureRequest<T>(
     requestEntry: BundleEntry,
-    wrapInNavigator = false
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    wrapResource?: (resource: any) => any
   ): FutureRequest<T> {
     return {
       executor: this,
@@ -414,8 +446,8 @@ export class BundleExecutor {
 
         if (this.responseEntry.resource) {
           return (
-            wrapInNavigator == true
-              ? bundleNavigator(this.responseEntry.resource as Bundle<Resource>)
+            wrapResource
+              ? wrapResource(this.responseEntry.resource)
               : this.responseEntry.resource
           ) as T;
         }

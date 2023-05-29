@@ -133,6 +133,15 @@ describe("bundle-executor", () => {
     await executor.send();
   });
 
+  it("searchOne", async () => {
+    const executor = new BundleExecutor(client, "batch");
+    const futureRequest = executor.searchOne("Encounter", (search) =>
+      search.status("finished")
+    );
+    expect(futureRequest.requestEntry.request?.method).toEqual("GET");
+    await executor.send();
+  });
+
   it("capabilities", async () => {
     const executor = new BundleExecutor(client, "batch");
     const futureRequest = executor.capabilities();
