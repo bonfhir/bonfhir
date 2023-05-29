@@ -165,6 +165,35 @@ export class Formatter {
   }
 
   /**
+   * Tag template option that can be used to format values.
+   */
+  public message(
+    strings: TemplateStringsArray,
+    ...expr: Array<DefaultFormatterParameters | string | number>
+  ): string {
+    const renderedExpressions = expr.map((value) => {
+      if (value == undefined) {
+        return "";
+      }
+
+      if (Array.isArray(value)) {
+        const formatterName = value[0];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const valueToFormat: any = value[1];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const options: any = value[2];
+
+        return this.format(formatterName, valueToFormat as never, options);
+      }
+
+      return value.toString();
+    });
+    return strings
+      .flatMap((str, idx) => [str, renderedExpressions[idx]])
+      .join("");
+  }
+
+  /**
    * Return true if this formatter can format the specified type.
    */
   public canFormat(type: string) {
@@ -190,3 +219,52 @@ export class Formatter {
  * The default formatter type - with all the default value formatters registered.
  */
 export type DefaultFormatter = ReturnType<(typeof Formatter)["build"]>;
+
+export type ValueFormatterParameters<TValueFormatter> =
+  TValueFormatter extends ValueFormatter<
+    infer TType,
+    infer TValue,
+    infer TOptions
+  >
+    ? [TType, TValue] | [TType, TValue, TOptions]
+    : never;
+
+/**
+ * Default formatters parameters as an array of tuples.
+ */
+export type DefaultFormatterParameters =
+  | ValueFormatterParameters<typeof valueFormatters.addressFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.ageFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.booleanFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.canonicalFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.codeFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.codeableConceptFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.codingFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.contactPointFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.countFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.dateFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.dateTimeFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.decimalFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.distanceFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.durationFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.fhirPathFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.humanNameFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.idFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.identifierFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.instantFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.integerFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.markdownFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.moneyFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.oidFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.periodFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.positiveIntFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.quantityFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.rangeFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.ratioFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.referenceFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.stringFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.timeFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.unsignedIntFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.uriFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.urlFormatter>
+  | ValueFormatterParameters<typeof valueFormatters.uuidFormatter>;

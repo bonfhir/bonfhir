@@ -288,12 +288,10 @@ export class FhirClientError extends Error {
     const operationOutcomeMessage = operationOutcome?.issue
       ?.map(
         (issue) =>
-          `${Formatter.default.format(
-            "code",
-            issue.code
-          )}/${Formatter.default.format("CodeableConcept", issue.details)}${
-            issue.expression ? ` at ${issue.expression}` : ""
-          }`
+          Formatter.default.message`${["code", issue.code]}/${[
+            "CodeableConcept",
+            issue.details,
+          ]}${issue.expression ? ` at ${issue.expression}` : ""}`
       )
       .join(", ");
     super(
