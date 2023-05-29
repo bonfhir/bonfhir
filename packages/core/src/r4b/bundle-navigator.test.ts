@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
+import * as patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
 import { bundleNavigator } from "./bundle-navigator";
 import {
   AnyResource,

@@ -1,8 +1,8 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { randomUUID } from "node:crypto";
-import patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
-import patientExample from "../../fixtures/patient-example.fhir.json";
+import { v4 as uuid } from "uuid";
+import * as patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
+import * as patientExample from "../../fixtures/patient-example.fhir.json";
 import { build } from "./builders";
 import { BundleExecutor } from "./bundle-executor";
 import { FetchFhirClient } from "./fetch-fhir-client";
@@ -45,9 +45,7 @@ describe("fetch-fhir-client", () => {
     ),
 
     rest.put(`${baseUrl}/Organization`, async (req, res, ctx) => {
-      return res(
-        ctx.json({ ...(await req.json<Organization>()), id: randomUUID() })
-      );
+      return res(ctx.json({ ...(await req.json<Organization>()), id: uuid() }));
     }),
 
     rest.put(
@@ -167,7 +165,7 @@ describe("fetch-fhir-client", () => {
 
     it("resource with an actual update", async () => {
       const organization = build("Organization", {
-        id: randomUUID(),
+        id: uuid(),
         name: "Acme, Inc.",
       });
       const result = await client.update(organization);
@@ -176,7 +174,7 @@ describe("fetch-fhir-client", () => {
 
     it("resource with concurrent update", async () => {
       const organization = build("Organization", {
-        id: randomUUID(),
+        id: uuid(),
         name: "Acme, Inc.",
         meta: {
           versionId: "1",
@@ -190,7 +188,7 @@ describe("fetch-fhir-client", () => {
 
     it("resource with conditional update", async () => {
       const organization = build("Organization", {
-        id: randomUUID(),
+        id: uuid(),
         name: "Acme, Inc.",
       });
       const result = await client.update(organization, {
@@ -281,7 +279,7 @@ describe("fetch-fhir-client", () => {
 
     it("resource with conditional create", async () => {
       const organization = build("Organization", {
-        id: randomUUID(),
+        id: uuid(),
         name: "Acme, Inc.",
       });
       const result = await client.create(organization, {

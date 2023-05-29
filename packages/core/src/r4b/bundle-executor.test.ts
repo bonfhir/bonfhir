@@ -1,5 +1,5 @@
 import { mock, mockReset } from "jest-mock-extended";
-import { randomUUID } from "node:crypto";
+import { v4 as uuid } from "uuid";
 import { build } from "./builders";
 import { BundleExecutor } from "./bundle-executor";
 import { FhirClient } from "./fhir-client";
@@ -80,7 +80,7 @@ describe("bundle-executor", () => {
     const executor = new BundleExecutor(client, "transaction");
     const futureRequest = executor.update(
       build("Organization", {
-        id: randomUUID(),
+        id: uuid(),
         name: "Acme, Inc.",
       })
     );
