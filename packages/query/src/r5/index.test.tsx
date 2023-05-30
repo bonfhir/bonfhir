@@ -8,6 +8,7 @@ import {
   FhirQueryProvider,
   useFhirClientQueryContext,
   useFhirHistory,
+  useFhirInfiniteSearch,
   useFhirRead,
   useFhirSearch,
   useFhirVRead,
@@ -166,6 +167,20 @@ describe("query", () => {
         expect(nextPageResult.current.isSuccess).toBeTruthy();
         expect(nextPageResult.current.data).toBeInstanceOf(BundleNavigator);
       });
+    });
+  });
+
+  it("infinite-search", async () => {
+    const { result } = renderHook(
+      () =>
+        useFhirInfiniteSearch("Patient", (search) => search.name("John Doe")),
+      { wrapper }
+    );
+
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.data?.pages.at(-1)).toBeInstanceOf(BundleNavigator);
+      expect(result.current.hasNextPage).toBeTruthy();
     });
   });
 });
