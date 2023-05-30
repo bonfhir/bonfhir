@@ -12,17 +12,17 @@ import {
 import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
-export interface UseFhirReadOptions<TResourceType extends AnyResourceType> {
+export interface UseFhirVReadOptions<TResourceType extends AnyResourceType> {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
-  fhir?: Parameters<FhirClient["read"]>[2] | null | undefined;
+  fhir?: Parameters<FhirClient["vread"]>[3] | null | undefined;
   query?:
     | Omit<
         UseQueryOptions<
           Retrieved<ExtractResource<TResourceType>>,
           unknown,
           Retrieved<ExtractResource<TResourceType>>,
-          ReturnType<(typeof FhirQueryKeys)["read"]>
+          ReturnType<(typeof FhirQueryKeys)["vread"]>
         >,
         "initialData" | "queryKey" | "queryFn"
       >
@@ -31,35 +31,29 @@ export interface UseFhirReadOptions<TResourceType extends AnyResourceType> {
 }
 
 /**
- * Return a [Query](https://tanstack.com/query/latest/docs/react/guides/queries) for a read request.
+ * Return a [Query](https://tanstack.com/query/latest/docs/react/guides/queries) for a vread request.
  *
- * @see https://hl7.org/fhir/http.html#read
+ * @see https://hl7.org/fhir/http.html#vread
  */
-export function useFhirRead<TResourceType extends AnyResourceType>(
+export function useFhirVRead<TResourceType extends AnyResourceType>(
   type: TResourceType,
   id: string,
-  options?: UseFhirReadOptions<TResourceType> | null | undefined
+  vid: string,
+  options?: UseFhirVReadOptions<TResourceType> | null | undefined
 ): UseQueryResult<Retrieved<ExtractResource<TResourceType>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
 
   return useQuery({
-    initialData: () =>
-      fhirQueryContext.manageCache
-        ? FhirQueryKeys.findInSearch(
-            fhirQueryContext.clientKey,
-            fhirQueryContext.queryClient,
-            type,
-            id
-          )
-        : undefined,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
-    queryKey: FhirQueryKeys.read(
+    queryKey: FhirQueryKeys.vread(
       fhirQueryContext.clientKey,
       type,
       id,
+      vid,
       options?.fhir
     ),
-    queryFn: () => fhirQueryContext.fhirClient.read(type, id, options?.fhir),
+    queryFn: () =>
+      fhirQueryContext.fhirClient.vread(type, id, vid, options?.fhir),
   });
 }

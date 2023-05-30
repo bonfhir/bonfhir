@@ -37,10 +37,18 @@ export const FhirQueryKeys = {
    */
   history: (
     clientKey: string,
-    type: AnyResourceType,
-    id: string,
+    type: AnyResourceType | null | undefined,
+    id: string | null | undefined,
     options?: Parameters<FhirClient["history"]>[2] | null | undefined
-  ) => [clientKey, type, id, "history", options] as const,
+  ) => {
+    if (!type && !id) {
+      return [clientKey, "history", options] as const;
+    }
+    if (!id) {
+      return [clientKey, type, "history", options] as const;
+    }
+    return [clientKey, type, id, "history", options] as const;
+  },
 
   /**
    * Get the query keys for a search request
@@ -131,5 +139,8 @@ export const FhirQueryKeys = {
     queryClient.invalidateQueries([clientKey, type, id]);
     queryClient.invalidateQueries([clientKey, type, "search"]);
     queryClient.invalidateQueries([clientKey, type, "infiniteSearch"]);
+    queryClient.invalidateQueries([clientKey, "history"]);
+    queryClient.invalidateQueries([clientKey, type, "history"]);
+    queryClient.invalidateQueries([clientKey, type, id, "history"]);
   },
 };
