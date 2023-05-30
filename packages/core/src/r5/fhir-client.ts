@@ -214,6 +214,18 @@ export interface FhirClient {
   ): Promise<TOperationResult>;
 
   /**
+   * Fetch a page from a bundle previously retrieved from a search or history operation.
+   * @see {@link https://www.hl7.org/fhir/bundle.html#pagination}.
+   * @see {@link BundleNavigator.linkUrl}.
+   *
+   * @see also {@link FhirClient.searchByPage}, {@link FhirClient.searchAllPages}
+   */
+  fetchPage<TResource extends AnyResource>(
+    resource: string | URL,
+    init?: Parameters<typeof fetch>[1]
+  ): Promise<BundleNavigator<Retrieved<TResource>>>;
+
+  /**
    * Execute an HTTP fetch operation to the FHIR server.
    */
   fetch<T = unknown>(
@@ -281,21 +293,24 @@ export function normalizeSearchParameters<
  */
 export class FhirClientError extends Error {
   constructor(
-    public status: number,
+    public status: number | undefined,
     public operationOutcome: OperationOutcome | undefined,
-    public metadata?: Record<string, unknown> | undefined
+    public metadata?: Record<string, unknown> | undefined,
+    message?: string | undefined
   ) {
-    const operationOutcomeMessage = operationOutcome?.issue
-      ?.map(
-        (issue) =>
-          Formatter.default.message`${["code", issue.code]}/${[
-            "CodeableConcept",
-            issue.details,
-          ]}${issue.expression ? ` at ${issue.expression}` : ""}`
-      )
-      .join(", ");
+    const operationOutcomeMessage =
+      message ||
+      operationOutcome?.issue
+        ?.map(
+          (issue) =>
+            Formatter.default.message`${["code", issue.code]}/${[
+              "CodeableConcept",
+              issue.details,
+            ]}${issue.expression ? ` at ${issue.expression}` : ""}`
+        )
+        .join(", ");
     super(
-      `Error from FhirClient: ${status}${
+      `Error from FhirClient: ${status || ""}${
         operationOutcomeMessage ? ` - ${operationOutcomeMessage}` : ""
       }`
     );

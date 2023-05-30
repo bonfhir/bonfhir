@@ -427,6 +427,29 @@ export class FetchFhirClient implements FhirClient {
     );
   }
 
+  public async fetchPage<TResource extends AnyResource>(
+    resource: string | URL,
+    init?: Parameters<typeof fetch>[1]
+  ): Promise<BundleNavigator<Retrieved<TResource>>> {
+    const response = await this.fetch<Bundle<Retrieved<TResource>>>(
+      resource,
+      init
+    );
+    if (response.resourceType !== "Bundle") {
+      throw new FhirClientError(
+        undefined,
+        undefined,
+        {
+          resource,
+          response,
+        },
+        `Page response for ${resource} does not appear to be a bundle - ${response.resourceType}`
+      );
+    }
+
+    return bundleNavigator(response);
+  }
+
   public async fetch<T = unknown>(
     resource: string | URL,
     init?: Parameters<typeof fetch>[1]

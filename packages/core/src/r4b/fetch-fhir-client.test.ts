@@ -5,6 +5,7 @@ import * as patientsListFixture from "../../fixtures/bundle-navigator.list-patie
 import * as patientExample from "../../fixtures/patient-example.fhir.json";
 import { build } from "./builders.js";
 import { BundleExecutor } from "./bundle-executor.js";
+import { BundleNavigator, bundleNavigator } from "./bundle-navigator.js";
 import { FetchFhirClient } from "./fetch-fhir-client.js";
 import {
   CapabilityStatement,
@@ -473,6 +474,18 @@ describe("fetch-fhir-client", () => {
         })
       );
       expect(result).toBeDefined();
+    });
+  });
+
+  describe("fetchPage", () => {
+    it("fetch page and return a bundleNavigator", async () => {
+      const nextPageUrl = bundleNavigator(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        patientsListFixture as any
+      ).linkUrl("next");
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const result = await client.fetchPage(nextPageUrl!);
+      expect(result).toBeInstanceOf(BundleNavigator);
     });
   });
 

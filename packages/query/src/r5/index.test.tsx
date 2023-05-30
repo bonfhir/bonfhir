@@ -1,4 +1,4 @@
-import { build } from "@bonfhir/core/r5";
+import { Bundle, BundleNavigator, build } from "@bonfhir/core/r5";
 import { renderHook, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
@@ -9,6 +9,7 @@ import {
   useFhirClientQueryContext,
   useFhirHistory,
   useFhirRead,
+  useFhirSearch,
   useFhirVRead,
 } from "./index.js";
 
@@ -43,7 +44,26 @@ describe("query", () => {
           ctx.json(build("Patient", { id: req.params.patientId as string }))
         );
       }
-    )
+    ),
+
+    rest.get(`${baseUrl}/Patient`, (req, res, ctx) => {
+      if (req.url.searchParams.get("_page_token")) {
+        return res(ctx.json({ resourceType: "Bundle" }));
+      }
+
+      const bundle: Bundle = {
+        resourceType: "Bundle",
+        type: "searchset",
+        entry: [],
+        link: [
+          {
+            relation: "next",
+            url: `${baseUrl}/Patient?_page_token=next`,
+          },
+        ],
+      };
+      return res(ctx.json(bundle));
+    })
   );
 
   const wrapper = ({ children }: PropsWithChildren) => (
@@ -105,6 +125,47 @@ describe("query", () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy();
       expect(result.current.data).toBeDefined();
+    });
+  });
+
+  describe("search", () => {
+    it("initial search", async () => {
+      const { result } = renderHook(
+        () => useFhirSearch("Patient", (search) => search.name("John Doe")),
+        { wrapper }
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data).toBeInstanceOf(BundleNavigator);
+      });
+    });
+
+    it("next page", async () => {
+      const { result } = renderHook(
+        () => useFhirSearch("Patient", (search) => search.name("John Doe")),
+        { wrapper }
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data?.linkUrl("next")).toBeDefined();
+      });
+
+      const { result: nextPageResult } = renderHook(
+        () =>
+          useFhirSearch(
+            "Patient",
+            (search) => search.name("John Doe"),
+            result.current.data?.linkUrl("next")
+          ),
+        { wrapper }
+      );
+
+      await waitFor(() => {
+        expect(nextPageResult.current.isSuccess).toBeTruthy();
+        expect(nextPageResult.current.data).toBeInstanceOf(BundleNavigator);
+      });
     });
   });
 });
