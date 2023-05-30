@@ -2,11 +2,16 @@ import { FhirClient } from "@bonfhir/core/r5";
 import { QueryClient } from "@tanstack/react-query";
 import { createContext, useContext } from "react";
 
+/**
+ * The name for the default {@link FhirClient}.
+ */
+export const DEFAULT_FHIR_CLIENT = "default";
+
 export interface FhirQueryContext {
   /**
    * The {@link FhirClient} to make FHIR HTTP requests.
    */
-  fhirClient: FhirClient;
+  fhirClient: Record<string | typeof DEFAULT_FHIR_CLIENT, FhirClient>;
 
   /**
    * The {@link QueryClient} used to manage the state.
@@ -31,7 +36,7 @@ export const FhirQueryContext = createContext<FhirQueryContext | undefined>(
  *
  * @throws Error if no parent context exists (a.k.a. no `FhirQueryProvider` was used in the parent tree).
  */
-export const useFhirQueryContext = (): FhirQueryContext => {
+export function useFhirQueryContext(): FhirQueryContext {
   const context = useContext(FhirQueryContext);
   if (!context) {
     throw new Error(
@@ -40,4 +45,32 @@ export const useFhirQueryContext = (): FhirQueryContext => {
   }
 
   return context;
-};
+}
+
+/**
+ * Get the current {@link FhirQueryContext} with a specific fhirClient.
+ *
+ * @throws Error if no parent context exists (a.k.a. no `FhirQueryProvider` was used in the parent tree).
+ */
+export function useFhirClientQueryContext(
+  client: string | null | undefined
+): Omit<FhirQueryContext, "fhirClient"> & {
+  fhirClient: FhirClient;
+  clientKey: string;
+} {
+  const context = useFhirQueryContext();
+  const clientKey = client ?? DEFAULT_FHIR_CLIENT;
+
+  const fhirClient = context.fhirClient[clientKey];
+  if (!fhirClient) {
+    throw new Error(
+      `Unable to find a FhirClient with name ${clientKey}. Did you forget to configure it in a parent FhirQueryProvider?`
+    );
+  }
+
+  return {
+    ...context,
+    fhirClient,
+    clientKey,
+  };
+}
