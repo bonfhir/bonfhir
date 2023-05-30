@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",
+    "@bonfhir/eslint-plugin": "workspace:*",
     "@bonfhir/prettier-config": "workspace:*",
     "@bonfhir/typescript-config": "workspace:*",
     "@rollup/plugin-commonjs": "^24.1.0",

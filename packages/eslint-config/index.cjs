@@ -14,7 +14,7 @@ module.exports = {
     "**/storybook-static",
   ],
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint/eslint-plugin"],
+  plugins: ["@typescript-eslint/eslint-plugin", "@bonfhir/eslint-plugin"],
   root: true,
   rules: {
     // https://stackoverflow.com/a/64067915/5397051
@@ -45,5 +45,6 @@ module.exports = {
     "unicorn/no-array-reduce": "off",
     "unicorn/no-nested-ternary": "off",
     "unicorn/prevent-abbreviations": "off",
+    "@bonfhir/ensure-correct-fhir-version": "error",
   },
 };

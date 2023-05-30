@@ -1,0 +1,9 @@
+{
+  "name": "@bonfhir/eslint-plugin",
+  "description": "ESLint for Bonfhir packages.",
+  "version": "2.0.0",
+  "main": "index.cjs",
+  "devDependencies": {
+    "@types/eslint": "^8.37.0"
+  }
+}
