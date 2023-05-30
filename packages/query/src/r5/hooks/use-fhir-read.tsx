@@ -9,7 +9,6 @@ import {
   UseQueryResult,
   useQuery,
 } from "@tanstack/react-query";
-import { useCallback } from "react";
 import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
@@ -43,19 +42,6 @@ export function useFhirRead<TResourceType extends AnyResourceType>(
 ): UseQueryResult<Retrieved<ExtractResource<TResourceType>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
 
-  const queryFn = useCallback(async () => {
-    const resource = await fhirQueryContext.fhirClient.read(
-      type,
-      id,
-      options?.fhir
-    );
-    if (!resource) {
-      throw new Error(`${type} with id ${id} cannot be found.`);
-    }
-
-    return resource;
-  }, [fhirQueryContext.fhirClient, type, id, options?.fhir]);
-
   return useQuery({
     initialData: () =>
       fhirQueryContext.manageCache
@@ -74,6 +60,6 @@ export function useFhirRead<TResourceType extends AnyResourceType>(
       id,
       options?.fhir
     ),
-    queryFn,
+    queryFn: () => fhirQueryContext.fhirClient.read(type, id, options?.fhir),
   });
 }
