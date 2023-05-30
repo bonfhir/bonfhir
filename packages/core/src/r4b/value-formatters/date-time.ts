@@ -1,5 +1,5 @@
-import { ValueFormatter } from "../formatters";
-import { formatRelativeDateTime } from "../lang-utils";
+import { ValueFormatter } from "../formatters.js";
+import { formatRelativeDateTime } from "../lang-utils.js";
 
 /**
  * A dateTime, or partial dateTime (e.g. just year or year + month) as used in human communication.

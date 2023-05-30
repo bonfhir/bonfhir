@@ -1,6 +1,9 @@
 {
   "extends": "@bonfhir/typescript-config/tsconfig.json",
   "include": ["src/**/*"],
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true
+  },
   "ts-node": {
     "esm": true,
     "swc": true,

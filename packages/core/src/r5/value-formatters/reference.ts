@@ -1,6 +1,6 @@
-import { Reference } from "../fhir-types.codegen";
-import { ValueFormatter, withValueFormatter } from "../formatters";
-import { identifierFormatter } from "./identifier";
+import { Reference } from "../fhir-types.codegen.js";
+import { ValueFormatter, withValueFormatter } from "../formatters.js";
+import { identifierFormatter } from "./identifier.js";
 
 export const referenceFormatter: ValueFormatter<
   "Reference",

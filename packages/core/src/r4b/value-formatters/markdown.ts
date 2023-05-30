@@ -1,5 +1,5 @@
 import { marked } from "marked";
-import { ValueFormatter } from "../formatters";
+import { ValueFormatter } from "../formatters.js";
 
 /**
  * A FHIR string (see above) that may contain markdown syntax for optional processing

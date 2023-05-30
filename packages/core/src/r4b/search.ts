@@ -1,6 +1,6 @@
-import { AnyResourceType } from "./fhir-types.codegen";
-import { RemoveUnderscoreKeys } from "./lang-utils";
-import { AllResourcesSearchParameters } from "./search.codegen";
+import { AnyResourceType } from "./fhir-types.codegen.js";
+import { RemoveUnderscoreKeys } from "./lang-utils.js";
+import { AllResourcesSearchParameters } from "./search.codegen.js";
 
 /**
  * The builder for FHIR Search URLs.

@@ -1,5 +1,5 @@
-import { Formatter } from "../formatters";
-import { booleanFormatter } from "./boolean";
+import { Formatter } from "../formatters.js";
+import { booleanFormatter } from "./boolean.js";
 
 describe("boolean", () => {
   const formatter = new Formatter().register(booleanFormatter);

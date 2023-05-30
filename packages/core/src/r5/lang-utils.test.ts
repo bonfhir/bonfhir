@@ -1,4 +1,4 @@
-import { asArray, truncate } from "./lang-utils";
+import { asArray, truncate } from "./lang-utils.js";
 
 describe("lang-utils", () => {
   describe("asArray", () => {

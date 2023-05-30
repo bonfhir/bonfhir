@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { BundleExecutor } from "./bundle-executor";
+import { BundleExecutor } from "./bundle-executor.js";
 import {
   bundleNavigator,
   BundleNavigator,
   WithResolvableReferences,
-} from "./bundle-navigator";
+} from "./bundle-navigator.js";
 import {
   ConcurrencyParameters,
   ConditionalSearchParameters,
@@ -18,7 +18,7 @@ import {
   normalizeSearchParameters,
   searchAllPages,
   searchByPage,
-} from "./fhir-client";
+} from "./fhir-client.js";
 import {
   AnyResource,
   AnyResourceType,
@@ -27,12 +27,12 @@ import {
   ExtractResource,
   OperationOutcome,
   Retrieved,
-} from "./fhir-types.codegen";
+} from "./fhir-types.codegen.js";
 import {
   ExtractOperationResultType,
   Operation,
   OperationParameters,
-} from "./operations.codegen";
+} from "./operations.codegen.js";
 
 /**
  * Allows to set the `Authorization` header to a static value.

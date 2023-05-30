@@ -1,6 +1,6 @@
-import { Count } from "../fhir-types.codegen";
-import { ValueFormatter } from "../formatters";
-import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
+import { Count } from "../fhir-types.codegen.js";
+import { ValueFormatter } from "../formatters.js";
+import { QuantityFormatterOptions, quantityFormatter } from "./quantity.js";
 
 /**
  * A measured amount (or an amount that can potentially be measured).

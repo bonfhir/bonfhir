@@ -3,19 +3,19 @@ import { setupServer } from "msw/node";
 import { v4 as uuid } from "uuid";
 import * as patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
 import * as patientExample from "../../fixtures/patient-example.fhir.json";
-import { build } from "./builders";
-import { BundleExecutor } from "./bundle-executor";
-import { FetchFhirClient } from "./fetch-fhir-client";
+import { build } from "./builders.js";
+import { BundleExecutor } from "./bundle-executor.js";
+import { FetchFhirClient } from "./fetch-fhir-client.js";
 import {
   CapabilityStatement,
   Claim,
   Organization,
   Patient,
-} from "./fhir-types.codegen";
+} from "./fhir-types.codegen.js";
 import {
   ClaimSubmitOperation,
   ValueSetExpandOperation,
-} from "./operations.codegen";
+} from "./operations.codegen.js";
 
 describe("fetch-fhir-client", () => {
   const baseUrl = "http://example.com";

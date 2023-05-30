@@ -1,5 +1,5 @@
-import { Formatter } from "../formatters";
-import { MarkdownFormatterOptions, markdownFormatter } from "./markdown";
+import { Formatter } from "../formatters.js";
+import { MarkdownFormatterOptions, markdownFormatter } from "./markdown.js";
 
 describe("markdown", () => {
   const formatter = new Formatter().register(markdownFormatter);

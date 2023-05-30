@@ -1,5 +1,5 @@
-import { ValueFormatter } from "../formatters";
-import { DatetimeFormatterOptions, dateTimeFormatter } from "./date-time";
+import { ValueFormatter } from "../formatters.js";
+import { DatetimeFormatterOptions, dateTimeFormatter } from "./date-time.js";
 
 /**
  * A instant, or partial instant (e.g. just year or year + month) as used in human communication.

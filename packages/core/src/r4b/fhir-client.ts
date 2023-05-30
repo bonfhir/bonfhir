@@ -1,9 +1,9 @@
-import { BundleExecutor } from "./bundle-executor";
+import { BundleExecutor } from "./bundle-executor.js";
 import {
   BundleNavigator,
   WithResolvableReferences,
   bundleNavigator,
-} from "./bundle-navigator";
+} from "./bundle-navigator.js";
 import {
   AnyResource,
   AnyResourceType,
@@ -12,16 +12,16 @@ import {
   ExtractResource,
   OperationOutcome,
   Retrieved,
-} from "./fhir-types.codegen";
-import { Formatter } from "./formatters";
+} from "./fhir-types.codegen.js";
+import { Formatter } from "./formatters.js";
 import {
   ExtractOperationResultType,
   Operation,
   OperationParameters,
-} from "./operations.codegen";
-import { JSONPatchBody } from "./patch";
-import { ExtractPatchBuilder, fhirJSONPatch } from "./patch.codegen";
-import { ExtractSearchBuilder, fhirSearch } from "./search.codegen";
+} from "./operations.codegen.js";
+import { ExtractPatchBuilder, fhirJSONPatch } from "./patch.codegen.js";
+import { JSONPatchBody } from "./patch.js";
+import { ExtractSearchBuilder, fhirSearch } from "./search.codegen.js";
 
 /**
  * Abstract FHIR Restful Client that can be used as a dependency.

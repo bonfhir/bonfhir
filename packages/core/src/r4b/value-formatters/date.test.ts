@@ -1,5 +1,5 @@
-import { Formatter } from "../formatters";
-import { DateFormatterOptions, dateFormatter } from "./date";
+import { Formatter } from "../formatters.js";
+import { DateFormatterOptions, dateFormatter } from "./date.js";
 
 describe("date", () => {
   const formatter = new Formatter().register(dateFormatter);

@@ -1,4 +1,4 @@
-import { ValueFormatter } from "../formatters";
+import { ValueFormatter } from "../formatters.js";
 
 /**
  * A time, or partial time (e.g. just year or year + month) as used in human communication.

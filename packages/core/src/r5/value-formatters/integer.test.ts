@@ -1,5 +1,5 @@
-import { Formatter } from "../formatters";
-import { IntegerFormatterOptions, integerFormatter } from "./integer";
+import { Formatter } from "../formatters.js";
+import { IntegerFormatterOptions, integerFormatter } from "./integer.js";
 
 describe("integer", () => {
   const formatter = new Formatter().register(integerFormatter);

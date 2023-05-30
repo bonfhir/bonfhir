@@ -24,7 +24,7 @@ import {
   ResourceType,
   StructureDefinition,
   ValueSet,
-} from "./fhir-types.codegen";
+} from "./fhir-types.codegen.js";
 
 export interface OperationParameters {
   operation: string | null | undefined;

@@ -1,8 +1,8 @@
-import { Count, ValueSetExpansionContains } from "../fhir-types.codegen";
-import { Formatter } from "../formatters";
-import { codeFormatter } from "./code";
-import { CountFormatterOptions, countFormatter } from "./count";
-import { decimalFormatter } from "./decimal";
+import { Count, ValueSetExpansionContains } from "../fhir-types.codegen.js";
+import { Formatter } from "../formatters.js";
+import { codeFormatter } from "./code.js";
+import { CountFormatterOptions, countFormatter } from "./count.js";
+import { decimalFormatter } from "./decimal.js";
 
 describe("count", () => {
   const formatter = new Formatter()

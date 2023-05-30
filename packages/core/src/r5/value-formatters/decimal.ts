@@ -1,5 +1,5 @@
-import Decimal from "decimal.js";
-import { ValueFormatter } from "../formatters";
+import decimaljs = require("decimal.js");
+import { ValueFormatter } from "../formatters.js";
 
 /**
  * Rational numbers that have a decimal representation.
@@ -28,7 +28,7 @@ export const decimalFormatter: ValueFormatter<
     let decimal;
     let significantDigits;
     if (typeof value === "number") {
-      decimal = new Decimal(value);
+      decimal = new decimaljs.Decimal(value);
       significantDigits = decimal.precision();
     } else {
       const trimmedValue = value?.trim();
@@ -40,7 +40,7 @@ export const decimalFormatter: ValueFormatter<
         return trimmedValue;
       }
 
-      decimal = new Decimal(trimmedValue);
+      decimal = new decimaljs.Decimal(trimmedValue);
       significantDigits = trimmedValue.includes("e")
         ? decimal.precision()
         : trimmedValue.replace(/\.|-/g, "").length;

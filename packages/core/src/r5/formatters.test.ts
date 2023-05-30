@@ -1,4 +1,4 @@
-import { Formatter } from "./formatters";
+import { Formatter } from "./formatters.js";
 
 describe("formatters", () => {
   describe("message", () => {

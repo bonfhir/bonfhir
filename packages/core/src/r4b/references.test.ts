@@ -5,7 +5,7 @@ import * as medication from "../../fixtures/medication-example.fhir.json";
 import * as organization from "../../fixtures/organization-example.fhir.json";
 import * as patient from "../../fixtures/patient-example.fhir.json";
 import * as riskAssessment from "../../fixtures/risk-assessment-example.fhir.json";
-import { reference } from "./references.codegen";
+import { reference } from "./references.codegen.js";
 
 describe("references", () => {
   it.each([conceptMap, medication, organization, patient, riskAssessment])(

@@ -4,4 +4,8 @@ export default {
   transform: {
     "^.+\\.tsx?$": ["esbuild-jest", { sourcemap: true }],
   },
+  moduleNameMapper: {
+    "^decimal.js$": "decimal.js",
+    "(.+)\\.js": "$1",
+  },
 };

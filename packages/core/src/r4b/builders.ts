@@ -4,8 +4,8 @@ import {
   ExtractDomainResource,
   Reference,
   Retrieved,
-} from "./fhir-types.codegen";
-import { narrative } from "./narratives.codegen";
+} from "./fhir-types.codegen.js";
+import { narrative } from "./narratives.codegen.js";
 
 /**
  * Build a specific FHIR resource.

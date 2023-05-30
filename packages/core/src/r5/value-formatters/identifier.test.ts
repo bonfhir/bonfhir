@@ -1,11 +1,17 @@
-import { Identifier, ValueSetExpansionContains } from "../fhir-types.codegen";
-import { Formatter } from "../formatters";
-import { codeFormatter } from "./code";
-import { codeableConceptFormatter } from "./codeable-concept";
-import { codingFormatter } from "./coding";
-import { dateTimeFormatter } from "./date-time";
-import { IdentifierFormatterOptions, identifierFormatter } from "./identifier";
-import { periodFormatter } from "./period";
+import {
+  Identifier,
+  ValueSetExpansionContains,
+} from "../fhir-types.codegen.js";
+import { Formatter } from "../formatters.js";
+import { codeFormatter } from "./code.js";
+import { codeableConceptFormatter } from "./codeable-concept.js";
+import { codingFormatter } from "./coding.js";
+import { dateTimeFormatter } from "./date-time.js";
+import {
+  IdentifierFormatterOptions,
+  identifierFormatter,
+} from "./identifier.js";
+import { periodFormatter } from "./period.js";
 
 describe("identifier", () => {
   const formatter = new Formatter()

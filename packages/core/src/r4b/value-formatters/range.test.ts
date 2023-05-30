@@ -1,9 +1,9 @@
-import { Range } from "../fhir-types.codegen";
-import { Formatter } from "../formatters";
-import { codeFormatter } from "./code";
-import { decimalFormatter } from "./decimal";
-import { quantityFormatter } from "./quantity";
-import { RangeFormatterOptions, rangeFormatter } from "./range";
+import { Range } from "../fhir-types.codegen.js";
+import { Formatter } from "../formatters.js";
+import { codeFormatter } from "./code.js";
+import { decimalFormatter } from "./decimal.js";
+import { quantityFormatter } from "./quantity.js";
+import { RangeFormatterOptions, rangeFormatter } from "./range.js";
 
 describe("range", () => {
   const formatter = new Formatter()

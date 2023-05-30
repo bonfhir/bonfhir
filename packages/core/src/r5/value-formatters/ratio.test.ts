@@ -1,9 +1,9 @@
-import { Ratio } from "../fhir-types.codegen";
-import { Formatter } from "../formatters";
-import { codeFormatter } from "./code";
-import { decimalFormatter } from "./decimal";
-import { quantityFormatter } from "./quantity";
-import { RatioFormatterOptions, ratioFormatter } from "./ratio";
+import { Ratio } from "../fhir-types.codegen.js";
+import { Formatter } from "../formatters.js";
+import { codeFormatter } from "./code.js";
+import { decimalFormatter } from "./decimal.js";
+import { quantityFormatter } from "./quantity.js";
+import { RatioFormatterOptions, ratioFormatter } from "./ratio.js";
 
 describe("ratio", () => {
   const formatter = new Formatter()

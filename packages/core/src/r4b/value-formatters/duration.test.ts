@@ -1,8 +1,8 @@
-import { Duration, ValueSetExpansionContains } from "../fhir-types.codegen";
-import { Formatter } from "../formatters";
-import { codeFormatter } from "./code";
-import { decimalFormatter } from "./decimal";
-import { DurationFormatterOptions, durationFormatter } from "./duration";
+import { Duration, ValueSetExpansionContains } from "../fhir-types.codegen.js";
+import { Formatter } from "../formatters.js";
+import { codeFormatter } from "./code.js";
+import { decimalFormatter } from "./decimal.js";
+import { DurationFormatterOptions, durationFormatter } from "./duration.js";
 
 describe("duration", () => {
   const formatter = new Formatter()

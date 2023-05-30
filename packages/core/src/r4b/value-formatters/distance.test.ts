@@ -1,8 +1,8 @@
-import { Distance, ValueSetExpansionContains } from "../fhir-types.codegen";
-import { Formatter } from "../formatters";
-import { codeFormatter } from "./code";
-import { decimalFormatter } from "./decimal";
-import { DistanceFormatterOptions, distanceFormatter } from "./distance";
+import { Distance, ValueSetExpansionContains } from "../fhir-types.codegen.js";
+import { Formatter } from "../formatters.js";
+import { codeFormatter } from "./code.js";
+import { decimalFormatter } from "./decimal.js";
+import { DistanceFormatterOptions, distanceFormatter } from "./distance.js";
 
 describe("distance", () => {
   const formatter = new Formatter()

@@ -1,9 +1,9 @@
-import { Identifier } from "../fhir-types.codegen";
-import { ValueFormatter, withValueFormatter } from "../formatters";
-import { comparePeriods, formatValueWithPattern } from "../lang-utils";
-import { CodeFormatterOptions, codeFormatter } from "./code";
-import { codeableConceptFormatter } from "./codeable-concept";
-import { periodFormatter } from "./period";
+import { Identifier } from "../fhir-types.codegen.js";
+import { ValueFormatter, withValueFormatter } from "../formatters.js";
+import { comparePeriods, formatValueWithPattern } from "../lang-utils.js";
+import { CodeFormatterOptions, codeFormatter } from "./code.js";
+import { codeableConceptFormatter } from "./codeable-concept.js";
+import { periodFormatter } from "./period.js";
 
 /**
  * A numeric or alphanumeric string that is associated with a single object or entity within a given system.

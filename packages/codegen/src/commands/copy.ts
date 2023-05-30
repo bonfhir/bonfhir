@@ -126,10 +126,12 @@ function preprocess(
     } else {
       if (
         preprocessorStack.every((condition) =>
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           evalCondition(source, lineNumber + 1, condition, options.targetFhir!)
         )
       ) {
         processedFileContent.push(
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           contentLine.replaceAll(options.sourceFhir!, options.targetFhir!)
         );
       }

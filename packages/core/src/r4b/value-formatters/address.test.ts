@@ -1,9 +1,9 @@
-import { Address, ValueSetExpansionContains } from "../fhir-types.codegen";
-import { Formatter } from "../formatters";
-import { AddressFormatterOptions, addressFormatter } from "./address";
-import { codeFormatter } from "./code";
-import { dateTimeFormatter } from "./date-time";
-import { periodFormatter } from "./period";
+import { Address, ValueSetExpansionContains } from "../fhir-types.codegen.js";
+import { Formatter } from "../formatters.js";
+import { AddressFormatterOptions, addressFormatter } from "./address.js";
+import { codeFormatter } from "./code.js";
+import { dateTimeFormatter } from "./date-time.js";
+import { periodFormatter } from "./period.js";
 
 describe("address", () => {
   const formatter = new Formatter()

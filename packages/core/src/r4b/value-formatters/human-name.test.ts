@@ -1,7 +1,7 @@
-import { HumanName, ValueSetExpansionContains } from "../fhir-types.codegen";
-import { Formatter } from "../formatters";
-import { codeFormatter } from "./code";
-import { HumanNameFormatterOptions, humanNameFormatter } from "./human-name";
+import { HumanName, ValueSetExpansionContains } from "../fhir-types.codegen.js";
+import { Formatter } from "../formatters.js";
+import { codeFormatter } from "./code.js";
+import { HumanNameFormatterOptions, humanNameFormatter } from "./human-name.js";
 
 describe("human-name", () => {
   const formatter = new Formatter()

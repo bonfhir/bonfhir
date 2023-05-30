@@ -1,11 +1,11 @@
-import { Reference } from "../fhir-types.codegen";
-import { Formatter } from "../formatters";
-import { codeFormatter } from "./code";
-import { codeableConceptFormatter } from "./codeable-concept";
-import { codingFormatter } from "./coding";
-import { identifierFormatter } from "./identifier";
-import { periodFormatter } from "./period";
-import { referenceFormatter } from "./reference";
+import { Reference } from "../fhir-types.codegen.js";
+import { Formatter } from "../formatters.js";
+import { codeFormatter } from "./code.js";
+import { codeableConceptFormatter } from "./codeable-concept.js";
+import { codingFormatter } from "./coding.js";
+import { identifierFormatter } from "./identifier.js";
+import { periodFormatter } from "./period.js";
+import { referenceFormatter } from "./reference.js";
 
 describe("reference", () => {
   const formatter = new Formatter()

@@ -2,7 +2,7 @@
  * This module is used to provide a set of utility functions for typescript
  */
 
-import { Period } from "./fhir-types.codegen";
+import { Period } from "./fhir-types.codegen.js";
 
 /**
  * Returns the given `value` as is if it satisfies `Array.isArray` or otherwise

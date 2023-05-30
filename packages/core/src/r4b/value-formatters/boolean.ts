@@ -1,4 +1,4 @@
-import { ValueFormatter } from "../formatters";
+import { ValueFormatter } from "../formatters.js";
 
 export interface BooleanLabels {
   true?: string | null | undefined;

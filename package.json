@@ -10,9 +10,10 @@
     "check": "turbo run check",
     "codegen": "turbo run codegen",
     "dev": "turbo run dev",
-    "format": "turbo run format"
+    "format": "turbo run format",
+    "test": "turbo run test"
   },
   "devDependencies": {
-    "turbo": "^1.9.3"
+    "turbo": "^1.9.9"
   }
 }

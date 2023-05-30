@@ -1,6 +1,6 @@
-import { Coding } from "../fhir-types.codegen";
-import { ValueFormatter, withValueFormatter } from "../formatters";
-import { CodeFormatterOptions, codeFormatter } from "./code";
+import { Coding } from "../fhir-types.codegen.js";
+import { ValueFormatter, withValueFormatter } from "../formatters.js";
+import { CodeFormatterOptions, codeFormatter } from "./code.js";
 
 export interface CodingFormatterOptions {
   /** Default to "display". */

@@ -1,4 +1,4 @@
-import { ValueFormatter } from "../formatters";
+import { ValueFormatter } from "../formatters.js";
 
 /**
  * An Integer

@@ -1,4 +1,43 @@
-import * as valueFormatters from "./value-formatters";
+import {
+  BooleanLabels,
+  IdentifierFormatterOptions,
+  addressFormatter,
+  ageFormatter,
+  booleanFormatter,
+  canonicalFormatter,
+  codeFormatter,
+  codeableConceptFormatter,
+  codingFormatter,
+  contactPointFormatter,
+  countFormatter,
+  dateFormatter,
+  dateTimeFormatter,
+  decimalFormatter,
+  distanceFormatter,
+  durationFormatter,
+  fhirPathFormatter,
+  humanNameFormatter,
+  idFormatter,
+  identifierFormatter,
+  instantFormatter,
+  integer64Formatter,
+  integerFormatter,
+  markdownFormatter,
+  moneyFormatter,
+  oidFormatter,
+  periodFormatter,
+  positiveIntFormatter,
+  quantityFormatter,
+  rangeFormatter,
+  ratioFormatter,
+  referenceFormatter,
+  stringFormatter,
+  timeFormatter,
+  unsignedIntFormatter,
+  uriFormatter,
+  urlFormatter,
+  uuidFormatter,
+} from "./value-formatters/index.js";
 
 /**
  * A value formatter is a function that takes a value and returns a string.
@@ -54,13 +93,13 @@ export interface FormatterOptions {
   /**
    * The default labels to use for boolean values.
    */
-  booleanLabels?: valueFormatters.BooleanLabels | null | undefined;
+  booleanLabels?: BooleanLabels | null | undefined;
 
   /**
    * The default labels to use for system values.
    */
   systemsLabels?:
-    | valueFormatters.IdentifierFormatterOptions["systemsLabels"]
+    | IdentifierFormatterOptions["systemsLabels"]
     | null
     | undefined;
 
@@ -85,44 +124,44 @@ export class Formatter {
   public static build(options?: FormatterOptions | null | undefined) {
     return (
       new Formatter(options)
-        .register(valueFormatters.addressFormatter)
-        .register(valueFormatters.ageFormatter)
-        .register(valueFormatters.booleanFormatter)
-        .register(valueFormatters.canonicalFormatter)
-        .register(valueFormatters.codeFormatter)
-        .register(valueFormatters.codeableConceptFormatter)
-        .register(valueFormatters.codingFormatter)
-        .register(valueFormatters.contactPointFormatter)
-        .register(valueFormatters.countFormatter)
-        .register(valueFormatters.dateFormatter)
-        .register(valueFormatters.dateTimeFormatter)
-        .register(valueFormatters.decimalFormatter)
-        .register(valueFormatters.distanceFormatter)
-        .register(valueFormatters.durationFormatter)
-        .register(valueFormatters.fhirPathFormatter)
-        .register(valueFormatters.humanNameFormatter)
-        .register(valueFormatters.idFormatter)
-        .register(valueFormatters.identifierFormatter)
-        .register(valueFormatters.instantFormatter)
-        .register(valueFormatters.integerFormatter)
+        .register(addressFormatter)
+        .register(ageFormatter)
+        .register(booleanFormatter)
+        .register(canonicalFormatter)
+        .register(codeFormatter)
+        .register(codeableConceptFormatter)
+        .register(codingFormatter)
+        .register(contactPointFormatter)
+        .register(countFormatter)
+        .register(dateFormatter)
+        .register(dateTimeFormatter)
+        .register(decimalFormatter)
+        .register(distanceFormatter)
+        .register(durationFormatter)
+        .register(fhirPathFormatter)
+        .register(humanNameFormatter)
+        .register(idFormatter)
+        .register(identifierFormatter)
+        .register(instantFormatter)
+        .register(integerFormatter)
         // #if fhir >= r5
-        .register(valueFormatters.integer64Formatter)
+        .register(integer64Formatter)
         // #endif
-        .register(valueFormatters.markdownFormatter)
-        .register(valueFormatters.moneyFormatter)
-        .register(valueFormatters.oidFormatter)
-        .register(valueFormatters.periodFormatter)
-        .register(valueFormatters.positiveIntFormatter)
-        .register(valueFormatters.quantityFormatter)
-        .register(valueFormatters.rangeFormatter)
-        .register(valueFormatters.ratioFormatter)
-        .register(valueFormatters.referenceFormatter)
-        .register(valueFormatters.stringFormatter)
-        .register(valueFormatters.timeFormatter)
-        .register(valueFormatters.unsignedIntFormatter)
-        .register(valueFormatters.uriFormatter)
-        .register(valueFormatters.urlFormatter)
-        .register(valueFormatters.uuidFormatter)
+        .register(markdownFormatter)
+        .register(moneyFormatter)
+        .register(oidFormatter)
+        .register(periodFormatter)
+        .register(positiveIntFormatter)
+        .register(quantityFormatter)
+        .register(rangeFormatter)
+        .register(ratioFormatter)
+        .register(referenceFormatter)
+        .register(stringFormatter)
+        .register(timeFormatter)
+        .register(unsignedIntFormatter)
+        .register(uriFormatter)
+        .register(urlFormatter)
+        .register(uuidFormatter)
     );
   }
 
@@ -238,41 +277,41 @@ export type ValueFormatterParameters<TValueFormatter> =
  * Default formatters parameters as an array of tuples.
  */
 export type DefaultFormatterParameters =
-  | ValueFormatterParameters<typeof valueFormatters.addressFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.ageFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.booleanFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.canonicalFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.codeFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.codeableConceptFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.codingFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.contactPointFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.countFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.dateFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.dateTimeFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.decimalFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.distanceFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.durationFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.fhirPathFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.humanNameFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.idFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.identifierFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.instantFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.integerFormatter>
+  | ValueFormatterParameters<typeof addressFormatter>
+  | ValueFormatterParameters<typeof ageFormatter>
+  | ValueFormatterParameters<typeof booleanFormatter>
+  | ValueFormatterParameters<typeof canonicalFormatter>
+  | ValueFormatterParameters<typeof codeFormatter>
+  | ValueFormatterParameters<typeof codeableConceptFormatter>
+  | ValueFormatterParameters<typeof codingFormatter>
+  | ValueFormatterParameters<typeof contactPointFormatter>
+  | ValueFormatterParameters<typeof countFormatter>
+  | ValueFormatterParameters<typeof dateFormatter>
+  | ValueFormatterParameters<typeof dateTimeFormatter>
+  | ValueFormatterParameters<typeof decimalFormatter>
+  | ValueFormatterParameters<typeof distanceFormatter>
+  | ValueFormatterParameters<typeof durationFormatter>
+  | ValueFormatterParameters<typeof fhirPathFormatter>
+  | ValueFormatterParameters<typeof humanNameFormatter>
+  | ValueFormatterParameters<typeof idFormatter>
+  | ValueFormatterParameters<typeof identifierFormatter>
+  | ValueFormatterParameters<typeof instantFormatter>
+  | ValueFormatterParameters<typeof integerFormatter>
   // #if fhir >= r5
-  | ValueFormatterParameters<typeof valueFormatters.integer64Formatter>
+  | ValueFormatterParameters<typeof integer64Formatter>
   // #endif
-  | ValueFormatterParameters<typeof valueFormatters.markdownFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.moneyFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.oidFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.periodFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.positiveIntFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.quantityFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.rangeFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.ratioFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.referenceFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.stringFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.timeFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.unsignedIntFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.uriFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.urlFormatter>
-  | ValueFormatterParameters<typeof valueFormatters.uuidFormatter>;
+  | ValueFormatterParameters<typeof markdownFormatter>
+  | ValueFormatterParameters<typeof moneyFormatter>
+  | ValueFormatterParameters<typeof oidFormatter>
+  | ValueFormatterParameters<typeof periodFormatter>
+  | ValueFormatterParameters<typeof positiveIntFormatter>
+  | ValueFormatterParameters<typeof quantityFormatter>
+  | ValueFormatterParameters<typeof rangeFormatter>
+  | ValueFormatterParameters<typeof ratioFormatter>
+  | ValueFormatterParameters<typeof referenceFormatter>
+  | ValueFormatterParameters<typeof stringFormatter>
+  | ValueFormatterParameters<typeof timeFormatter>
+  | ValueFormatterParameters<typeof unsignedIntFormatter>
+  | ValueFormatterParameters<typeof uriFormatter>
+  | ValueFormatterParameters<typeof urlFormatter>
+  | ValueFormatterParameters<typeof uuidFormatter>;

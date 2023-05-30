@@ -1,4 +1,4 @@
-import { ValueFormatter } from "../formatters";
+import { ValueFormatter } from "../formatters.js";
 
 export const canonicalFormatter: ValueFormatter<
   "canonical",

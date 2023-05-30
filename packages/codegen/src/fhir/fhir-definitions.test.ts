@@ -1,6 +1,6 @@
-import { FhirDefinitions } from "./fhir-definitions";
+import { FhirDefinitions } from "./fhir-definitions.js";
 
-describe("fhir-definitions2", () => {
+describe("fhir-definitions", () => {
   ["r4b", "r5"].map((release) =>
     describe(release, () => {
       it("load", async () => {

@@ -1,6 +1,6 @@
 // #if fhir >= r5
-import { ValueFormatter } from "../formatters";
-import { IntegerFormatterOptions, integerFormatter } from "./integer";
+import { ValueFormatter } from "../formatters.js";
+import { IntegerFormatterOptions, integerFormatter } from "./integer.js";
 
 /**
  * A signed 64-bit integer

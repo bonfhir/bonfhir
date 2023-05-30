@@ -3,9 +3,15 @@
   "globalEnv": ["PACKAGE_VERSION"],
   "pipeline": {
     "build": {
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
     },
-    "check": {},
+    "check": {
+      "dependsOn": ["build"]
+    },
+    "test": {
+      "dependsOn": ["build"]
+    },
     "codegen": {
       "cache": false
     },

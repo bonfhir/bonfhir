@@ -7,8 +7,8 @@ import {
   Reference,
   Resource,
   Retrieved,
-} from "./fhir-types.codegen";
-import { asArray, uniqBy } from "./lang-utils";
+} from "./fhir-types.codegen.js";
+import { asArray, uniqBy } from "./lang-utils.js";
 
 /**
  * Allows easy navigation inside a mixed bundle, principally returned by search operations.

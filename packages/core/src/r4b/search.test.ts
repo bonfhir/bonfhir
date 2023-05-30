@@ -6,7 +6,7 @@ import {
   StringModifier,
   TokenModifier,
   UriModifier,
-} from "./search";
+} from "./search.js";
 
 describe("FhirSearchBuilder", () => {
   it("build empty", () => {

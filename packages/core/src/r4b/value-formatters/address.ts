@@ -1,9 +1,9 @@
 import { formatAddress } from "localized-address-format";
-import { Address } from "../fhir-types.codegen";
-import { ValueFormatter, withValueFormatter } from "../formatters";
-import { comparePeriods } from "../lang-utils";
-import { CodeFormatterOptions, codeFormatter } from "./code";
-import { periodFormatter } from "./period";
+import { Address } from "../fhir-types.codegen.js";
+import { ValueFormatter, withValueFormatter } from "../formatters.js";
+import { comparePeriods } from "../lang-utils.js";
+import { CodeFormatterOptions, codeFormatter } from "./code.js";
+import { periodFormatter } from "./period.js";
 
 /**
  * An address expressed using postal conventions

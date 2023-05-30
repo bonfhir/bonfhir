@@ -3,7 +3,7 @@ import {
   BundleNavigator,
   WithResolvableReferences,
   bundleNavigator,
-} from "./bundle-navigator";
+} from "./bundle-navigator.js";
 import {
   ConcurrencyParameters,
   ConditionalSearchParameters,
@@ -15,7 +15,7 @@ import {
   HistoryParameters,
   normalizePatchBody,
   normalizeSearchParameters,
-} from "./fhir-client";
+} from "./fhir-client.js";
 import {
   AnyResource,
   AnyResourceType,
@@ -29,13 +29,13 @@ import {
   Retrieved,
   WithRequired,
   isResource,
-} from "./fhir-types.codegen";
+} from "./fhir-types.codegen.js";
 import {
   ExtractOperationResultType,
   Operation,
   OperationParameters,
-} from "./operations.codegen";
-import { reference } from "./references.codegen";
+} from "./operations.codegen.js";
+import { reference } from "./references.codegen.js";
 
 export class BundleExecutor {
   private _entryIndex = 0;

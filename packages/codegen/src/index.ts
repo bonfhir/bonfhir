@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import yargs from "yargs";
-import copy from "./commands/copy";
-import generate from "./commands/generate";
+import copy from "./commands/copy.js";
+import generate from "./commands/generate.js";
 
 try {
   yargs()

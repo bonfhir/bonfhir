@@ -1,7 +1,7 @@
-import { ContactPoint } from "../fhir-types.codegen";
-import { ValueFormatter, withValueFormatter } from "../formatters";
-import { CodeFormatterOptions, codeFormatter } from "./code";
-import { periodFormatter } from "./period";
+import { ContactPoint } from "../fhir-types.codegen.js";
+import { ValueFormatter, withValueFormatter } from "../formatters.js";
+import { CodeFormatterOptions, codeFormatter } from "./code.js";
+import { periodFormatter } from "./period.js";
 
 /**
  * Details for all kinds of technology-mediated contact points for a person or organization, including telephone, email, etc.

@@ -1,5 +1,5 @@
-import { Formatter } from "../formatters";
-import { DecimalFormatterOptions, decimalFormatter } from "./decimal";
+import { Formatter } from "../formatters.js";
+import { DecimalFormatterOptions, decimalFormatter } from "./decimal.js";
 
 describe("decimal", () => {
   const formatter = new Formatter().register(decimalFormatter);

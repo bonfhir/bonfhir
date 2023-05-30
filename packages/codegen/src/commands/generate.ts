@@ -8,7 +8,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join, parse } from "node:path";
 import { promisify } from "node:util";
 import { CommandModule } from "yargs";
-import { FhirDefinitions } from "../fhir";
+import { FhirDefinitions } from "../fhir/index.js";
 
 const execAsync = promisify(exec);
 

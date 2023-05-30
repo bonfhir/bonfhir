@@ -1,1 +1,1 @@
-export * from "./fhir-definitions";
+export * from "./fhir-definitions.js";

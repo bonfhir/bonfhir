@@ -1,5 +1,5 @@
-import { ValueFormatter } from "../formatters";
-import { TruncateOptions, truncate } from "../lang-utils";
+import { ValueFormatter } from "../formatters.js";
+import { TruncateOptions, truncate } from "../lang-utils.js";
 
 export interface StringFormatterOptions {
   /**

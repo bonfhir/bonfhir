@@ -1,0 +1,66 @@
+{
+  "name": "@bonfhir/query",
+  "version": "2.0.0",
+  "scripts": {
+    "build": "pnpm clean && pnpm copyfiles && rollup --config rollup.config.mjs",
+    "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
+    "clean": "rimraf dist && rimraf src/r4b/[!__]**",
+    "copyfiles": "pnpm --dir=\"${PWD}/../codegen\" dev copy -s \"${PWD}/src/r5\" -t \"${PWD}/src/r4b\" -i '**/*.ts(x)?' -e '**/*.codegen.ts' --source-fhir r5 --target-fhir r4b",
+    "dev-watch": "nodemon --watch templates --watch src/r4b --ext ejs,ts --ignore '**/*.codegen.ts' --exec \"pnpm copyfiles\"",
+    "format": "prettier --loglevel warn --write ./**/*.ts && eslint --fix ./**/*.ts",
+    "test": "jest"
+  },
+  "type": "module",
+  "exports": {
+    "./r4b": {
+      "import": {
+        "default": "./dist/r4b/esm/index.mjs",
+        "types": "./dist/r4b/esm/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/r4b/cjs/index.cjs",
+        "types": "./dist/r4b/cjs/index.d.ts"
+      }
+    },
+    "./r5": {
+      "import": {
+        "default": "./dist/r5/esm/index.mjs",
+        "types": "./dist/r5/esm/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/r5/cjs/index.cjs",
+        "types": "./dist/r5/cjs/index.d.ts"
+      }
+    }
+  },
+  "dependencies": {
+    "@bonfhir/core": "^2.0.0"
+  },
+  "devDependencies": {
+    "@bonfhir/eslint-config": "workspace:*",
+    "@bonfhir/prettier-config": "workspace:*",
+    "@bonfhir/typescript-config": "workspace:*",
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-typescript": "^11.1.1",
+    "@swc/core": "^1.3.55",
+    "@tanstack/react-query": "^4.29.12",
+    "@types/jest": "^29.5.1",
+    "@types/react": "^18.2.7",
+    "@types/react-dom": "^18.2.4",
+    "esbuild-jest": "^0.5.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "nodemon": "^2.0.22",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^5.0.0",
+    "rollup": "^3.21.0",
+    "rollup-plugin-dts": "^5.3.0",
+    "rollup-plugin-filesize": "^10.0.0",
+    "typescript": "^5.0.4"
+  },
+  "prettier": "@bonfhir/prettier-config"
+}

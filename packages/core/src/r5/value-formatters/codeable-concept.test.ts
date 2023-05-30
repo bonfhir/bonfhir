@@ -1,11 +1,11 @@
-import { CodeableConcept } from "../fhir-types.codegen";
-import { Formatter } from "../formatters";
-import { codeFormatter } from "./code";
+import { CodeableConcept } from "../fhir-types.codegen.js";
+import { Formatter } from "../formatters.js";
+import { codeFormatter } from "./code.js";
 import {
   CodeableConceptFormatterOptions,
   codeableConceptFormatter,
-} from "./codeable-concept";
-import { codingFormatter } from "./coding";
+} from "./codeable-concept.js";
+import { codingFormatter } from "./coding.js";
 
 describe("codeable-concept", () => {
   const formatter = new Formatter()
