@@ -2,6 +2,8 @@ import {
   Bundle,
   BundleNavigator,
   CapabilityStatement,
+  Patient,
+  Retrieved,
   ValueSetExpandOperation,
   build,
 } from "@bonfhir/core/r5";
@@ -14,9 +16,11 @@ import {
   FhirQueryProvider,
   useFhirCapabilities,
   useFhirClientQueryContext,
+  useFhirDeleteMutation,
   useFhirExecute,
   useFhirHistory,
   useFhirInfiniteSearch,
+  useFhirPatchMutation,
   useFhirRead,
   useFhirSearch,
   useFhirSearchOne,
@@ -107,7 +111,17 @@ describe("hooks", () => {
           )
         );
       }
-    )
+    ),
+
+    rest.patch(`${baseUrl}/Patient/:patientId`, async (req, res, ctx) => {
+      return res(
+        ctx.json({ resourceType: "Patient", id: req.params.patientId })
+      );
+    }),
+
+    rest.delete(`${baseUrl}/Patient/:patientId`, (_req, res, ctx) => {
+      return res(ctx.status(204));
+    })
   );
 
   const wrapper = ({ children }: PropsWithChildren) => (
@@ -290,6 +304,36 @@ describe("hooks", () => {
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();
         expect(result.current.data?.resourceType).toEqual("Organization");
+      });
+    });
+
+    it("patch", async () => {
+      const { result } = renderHook(() => useFhirPatchMutation("Patient"), {
+        wrapper,
+      });
+
+      result.current.mutate({
+        id: "123",
+        body: (patch) => patch.add("/active", true),
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data?.resourceType).toEqual("Patient");
+      });
+    });
+
+    it("delete", async () => {
+      const { result } = renderHook(() => useFhirDeleteMutation(), {
+        wrapper,
+      });
+
+      result.current.mutate(
+        build("Patient", { id: "123" }) as Retrieved<Patient>
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
       });
     });
   });
