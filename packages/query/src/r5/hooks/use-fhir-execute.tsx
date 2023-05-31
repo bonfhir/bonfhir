@@ -29,9 +29,13 @@ export interface UseFhirExecuteOptions<TOperationResult> {
 }
 
 /**
- * Return a [Query](https://tanstack.com/query/latest/docs/react/guides/queries) for a read request.
+ * Return a [Query](https://tanstack.com/query/latest/docs/react/guides/queries) for an operation request.
  *
- * @see https://hl7.org/fhir/http.html#read
+ * Will throw an error if the operation affects state.
+ * If  you want to execute an operation that affects state, you should use the {@link useFhirExecuteMutation} hook instead.
+ *
+ * @see https://hl7.org/fhir/operations.html
+ * @see https://www.hl7.org/fhir/operationslist.html
  */
 export function useFhirExecute<TOperation extends Operation>(
   operation: TOperation,

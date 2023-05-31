@@ -20,6 +20,7 @@ import {
   useFhirRead,
   useFhirSearch,
   useFhirSearchOne,
+  useFhirUpdateMutation,
   useFhirVRead,
 } from "./index.js";
 
@@ -95,7 +96,18 @@ describe("hooks", () => {
           url: req.url.searchParams.get("url"),
         })
       );
-    })
+    }),
+
+    rest.put(
+      `${baseUrl}/Organization/:organizationId`,
+      async (req, res, ctx) => {
+        return res(
+          ctx.json(
+            build("Organization", { id: req.params.organizationId as string })
+          )
+        );
+      }
+    )
   );
 
   const wrapper = ({ children }: PropsWithChildren) => (
@@ -256,6 +268,28 @@ describe("hooks", () => {
         expect(result.current.data?.url).toEqual(
           "http://hl7.org/fhir/ValueSet/example"
         );
+      });
+    });
+  });
+
+  describe("mutations", () => {
+    it("update", async () => {
+      const { result } = renderHook(
+        () => useFhirUpdateMutation("Organization"),
+        {
+          wrapper,
+        }
+      );
+
+      result.current.mutate(
+        build("Organization", {
+          id: "a942b3d5-19bc-4959-8b5d-f9aedd790a94",
+        })
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data?.resourceType).toEqual("Organization");
       });
     });
   });

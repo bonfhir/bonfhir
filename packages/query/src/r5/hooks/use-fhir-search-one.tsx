@@ -42,16 +42,7 @@ export interface UseFhirSearchOneOptions<
  * @param parameters - the initial search parameters can either be a function that manipulates a `resourceSearch` for the
  * primary resource type or a search parameters string
  *
- * @param pageUrl - a page url extracted from previous bundle to navigate to a subsequent page.
- *
  * @see https://hl7.org/fhir/http.html#search
- *
- * @example
- *  const [pageUrl, setPageUrl] = useState("");
- *  const patientQuery = useFhirSearch("Patient", (search) => search.name("John Doe")._sort("-organization"), pageUrl);
- *
- *  // To paginate
- *  setPageUrl(patientQuery.data?.linkUrl("next"));
  */
 export function useFhirSearchOne<TResourceType extends AnyResourceType>(
   type: TResourceType,

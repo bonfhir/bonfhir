@@ -68,7 +68,7 @@
 /**
  *  Create a new type from T with K attributes required.
  */
-export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
+export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: NonNullable<T[P]> };
 
 /**
 * Create a new type from a {@link Resource} that contains additional guaranteed properties when the resource

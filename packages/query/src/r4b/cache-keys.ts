@@ -3,6 +3,7 @@ import {
   BundleNavigator,
   ExtractResource,
   FhirClient,
+  OperationParameters,
 } from "@bonfhir/core/r4b";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -114,18 +115,21 @@ export const FhirQueryKeys = {
   /**
    * Get the query keys for a capabilities request
    */
-  capabilities: (clientKey: string) => [clientKey, "capabilities"] as const,
+  capabilities: (clientKey: string, mode: string | null | undefined) =>
+    [clientKey, "capabilities", mode] as const,
 
   /**
    * Get the query keys for an execute request
    */
-  execute: (
-    clientKey: string,
-    operation: string,
-    type: AnyResourceType | null | undefined,
-    id: string | null | undefined,
-    parameters: unknown | null | undefined
-  ) => [clientKey, type, id, "execute", operation, parameters] as const,
+  execute: (clientKey: string, parameters: OperationParameters) =>
+    [
+      clientKey,
+      parameters.resourceType,
+      parameters.resourceId,
+      "execute",
+      parameters.operation,
+      parameters.parameters,
+    ] as const,
 
   /**
    * Invalidate all queries that might be impacted by a change on a resource.
@@ -142,5 +146,7 @@ export const FhirQueryKeys = {
     queryClient.invalidateQueries([clientKey, "history"]);
     queryClient.invalidateQueries([clientKey, type, "history"]);
     queryClient.invalidateQueries([clientKey, type, id, "history"]);
+    queryClient.invalidateQueries([clientKey, type, id, "execute"]);
+    queryClient.invalidateQueries([clientKey, type, undefined, "execute"]);
   },
 };

@@ -65,5 +65,10 @@
     "rollup-plugin-filesize": "^10.0.0",
     "typescript": "^5.0.4"
   },
+  "peerDependencies": {
+    "@tanstack/react-query": "^4.0.0",
+    "react": "*",
+    "react-dom": "*"
+  },
   "prettier": "@bonfhir/prettier-config"
 }
