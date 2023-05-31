@@ -255,6 +255,13 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     }
     const searchMatches = this.searchMatch<TResult>();
     if (searchMatches.length === 0) {
+      // Let's be nice to non-compliant servers and check if they do not position the search mode properly.
+      if (this._bundleOrNavigator.entry?.[0]?.resource) {
+        return withResolvableProxy<Retrieved<TResult>>(
+          this._bundleOrNavigator.entry[0].resource as Retrieved<TResult>,
+          this as unknown as BundleNavigator<Retrieved<TResult>>
+        );
+      }
       throw new Error(`No match found in bundle`);
     }
 
