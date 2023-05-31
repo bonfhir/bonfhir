@@ -284,7 +284,8 @@ export class StructureDefinition {
       ...(this.base?.allSearchParameters || []),
       ...this.ownSearchParameters,
     ].filter(
-      (x, i, self) => i === self.findIndex((y) => x.safeName === y.safeName)
+      (x, i, self) =>
+        i === self.findIndex((y) => (x as any).code === (y as any).code)
     );
   }
 
