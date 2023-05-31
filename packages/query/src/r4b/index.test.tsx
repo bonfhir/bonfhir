@@ -2,7 +2,11 @@ import {
   Bundle,
   BundleNavigator,
   CapabilityStatement,
+  Claim,
+  ClaimSubmitOperation,
+  Organization,
   Patient,
+  Resource,
   Retrieved,
   ValueSetExpandOperation,
   build,
@@ -11,13 +15,16 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import React, { PropsWithChildren } from "react";
+import { v4 as uuid } from "uuid";
 import {
   DEFAULT_FHIR_CLIENT,
   FhirQueryProvider,
   useFhirCapabilities,
   useFhirClientQueryContext,
+  useFhirCreateMutation,
   useFhirDeleteMutation,
   useFhirExecute,
+  useFhirExecuteMutation,
   useFhirHistory,
   useFhirInfiniteSearch,
   useFhirPatchMutation,
@@ -121,6 +128,14 @@ describe("hooks", () => {
 
     rest.delete(`${baseUrl}/Patient/:patientId`, (_req, res, ctx) => {
       return res(ctx.status(204));
+    }),
+
+    rest.post(`${baseUrl}/Organization`, async (req, res, ctx) => {
+      return res(ctx.json({ ...(await req.json<Organization>()), id: uuid() }));
+    }),
+
+    rest.post(`${baseUrl}/Claim/$submit`, (_req, res, ctx) => {
+      return res(ctx.json({}));
     })
   );
 
@@ -334,6 +349,39 @@ describe("hooks", () => {
 
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();
+      });
+    });
+
+    it("create", async () => {
+      const { result } = renderHook(
+        () => useFhirCreateMutation("Organization"),
+        {
+          wrapper,
+        }
+      );
+
+      result.current.mutate(build("Organization", {}));
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data?.resourceType).toEqual("Organization");
+      });
+    });
+
+    it("execute", async () => {
+      const { result } = renderHook(() => useFhirExecuteMutation<Resource>(), {
+        wrapper,
+      });
+
+      result.current.mutate(
+        new ClaimSubmitOperation({
+          resource: build("Claim", {} as Claim),
+        })
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data).toBeDefined();
       });
     });
   });

@@ -1,5 +1,7 @@
 export * from "./use-fhir-capabilities.js";
+export * from "./use-fhir-create-mutation.js";
 export * from "./use-fhir-delete-mutation.js";
+export * from "./use-fhir-execute-mutation.js";
 export * from "./use-fhir-execute.js";
 export * from "./use-fhir-history.js";
 export * from "./use-fhir-infinite-search.js";
