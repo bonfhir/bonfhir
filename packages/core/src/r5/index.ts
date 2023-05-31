@@ -7,6 +7,7 @@ export * from "./fhir-types.codegen.js";
 export * from "./formatters.js";
 export * from "./lang-utils.js";
 export * from "./narratives.codegen.js";
+export * from "./operations.codegen.js";
 export * from "./patch.codegen.js";
 export * from "./patch.js";
 export * from "./references.codegen.js";

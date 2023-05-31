@@ -47,6 +47,7 @@
     "listr",
     "loglevel",
     "onwarn",
+    "searchset",
     "tanstack",
     "vread"
   ],
