@@ -46,6 +46,7 @@
     "Formattable",
     "listr",
     "loglevel",
+    "Mantine",
     "onwarn",
     "searchset",
     "tanstack",
