@@ -16,6 +16,7 @@ describe("bundle-executor", () => {
   it("runs with no requests", async () => {
     const executor = new BundleExecutor(client, "batch");
     await expect(executor.send()).resolves.not.toThrow();
+    expect(executor.futureRequests.length).toBeFalsy();
   });
 
   it("returns FutureRequests", async () => {
@@ -60,6 +61,7 @@ describe("bundle-executor", () => {
     expect(futureOrg.resource.resourceType).toEqual("Organization");
 
     expect(executor.response).toBeDefined();
+    expect(executor.futureRequests.length).toEqual(2);
   });
 
   it("read", async () => {

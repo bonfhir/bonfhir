@@ -39,8 +39,12 @@ import { reference } from "./references.codegen.js";
 
 export class BundleExecutor {
   private _entryIndex = 0;
+  /** The outgoing request sent to the server. */
   public request: WithRequired<Bundle, "entry">;
+  /** The response from the server once sent. */
   public response: Bundle | undefined;
+  /** All the {@link FutureRequest} issued by this executor individual methods. */
+  public futureRequests: FutureRequest<unknown>[] = [];
 
   constructor(
     public client: Pick<FhirClient, "batch" | "transaction">,
@@ -424,7 +428,7 @@ export class BundleExecutor {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     wrapResource?: (resource: any) => any
   ): FutureRequest<T> {
-    return {
+    const futureRequest = {
       executor: this,
       requestEntry,
       entryIndex: this._entryIndex++,
@@ -461,6 +465,9 @@ export class BundleExecutor {
         );
       },
     };
+
+    this.futureRequests.push(futureRequest);
+    return futureRequest;
   }
 }
 

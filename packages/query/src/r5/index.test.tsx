@@ -1,5 +1,6 @@
 import {
   Bundle,
+  BundleExecutor,
   BundleNavigator,
   CapabilityStatement,
   Claim,
@@ -19,6 +20,7 @@ import { v4 as uuid } from "uuid";
 import {
   DEFAULT_FHIR_CLIENT,
   FhirQueryProvider,
+  useFhirBatchMutation,
   useFhirCapabilities,
   useFhirClientQueryContext,
   useFhirCreateMutation,
@@ -31,6 +33,7 @@ import {
   useFhirRead,
   useFhirSearch,
   useFhirSearchOne,
+  useFhirTransactionMutation,
   useFhirUpdateMutation,
   useFhirVRead,
 } from "./index.js";
@@ -136,6 +139,20 @@ describe("hooks", () => {
 
     rest.post(`${baseUrl}/Claim/$submit`, (_req, res, ctx) => {
       return res(ctx.json({}));
+    }),
+
+    rest.post(`${baseUrl}/`, async (req, res, ctx) => {
+      const requestBundle = await req.json<Bundle>();
+      return res(
+        ctx.json({
+          resourceType: "Bundle",
+          type: `${requestBundle.type}-response`,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          entry: requestBundle.entry!.map(() => ({
+            resource: {},
+          })),
+        })
+      );
     })
   );
 
@@ -382,6 +399,44 @@ describe("hooks", () => {
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();
         expect(result.current.data).toBeDefined();
+      });
+    });
+
+    it("transaction", async () => {
+      const { result } = renderHook(() => useFhirTransactionMutation(), {
+        wrapper,
+      });
+
+      result.current.mutate((transaction) => {
+        transaction.update(build("Patient", { id: "123" }));
+        transaction.update(build("Organization", { id: "123" }));
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data).toBeInstanceOf(BundleExecutor);
+        expect(result.current.data?.request.type).toBe("transaction");
+        expect(result.current.data?.futureRequests).toHaveLength(2);
+        expect(result.current.data?.futureRequests[0]?.sent).toBeTruthy();
+      });
+    });
+
+    it("batch", async () => {
+      const { result } = renderHook(() => useFhirBatchMutation(), {
+        wrapper,
+      });
+
+      result.current.mutate((batch) => {
+        batch.update(build("Patient", { id: "123" }));
+        batch.update(build("Organization", { id: "123" }));
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data).toBeInstanceOf(BundleExecutor);
+        expect(result.current.data?.request.type).toBe("batch");
+        expect(result.current.data?.futureRequests).toHaveLength(2);
+        expect(result.current.data?.futureRequests[0]?.sent).toBeTruthy();
       });
     });
   });

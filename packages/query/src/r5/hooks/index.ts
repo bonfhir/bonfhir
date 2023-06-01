@@ -1,3 +1,4 @@
+export * from "./use-fhir-batch-mutation.js";
 export * from "./use-fhir-capabilities.js";
 export * from "./use-fhir-create-mutation.js";
 export * from "./use-fhir-delete-mutation.js";
@@ -9,5 +10,6 @@ export * from "./use-fhir-patch-mutation.js";
 export * from "./use-fhir-read.js";
 export * from "./use-fhir-search-one.js";
 export * from "./use-fhir-search.js";
+export * from "./use-fhir-transaction-mutation.js";
 export * from "./use-fhir-update-mutation.js";
 export * from "./use-fhir-vread.js";
