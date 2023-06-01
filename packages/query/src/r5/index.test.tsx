@@ -32,6 +32,7 @@ import {
   useFhirPatchMutation,
   useFhirRead,
   useFhirSearch,
+  useFhirSearchAllPages,
   useFhirSearchOne,
   useFhirTransactionMutation,
   useFhirUpdateMutation,
@@ -285,6 +286,19 @@ describe("hooks", () => {
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();
         expect(result.current.data?.resourceType).toEqual("Patient");
+      });
+    });
+
+    it("search-all-pages", async () => {
+      const { result } = renderHook(
+        () =>
+          useFhirSearchAllPages("Patient", (search) => search.name("The one")),
+        { wrapper }
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data).toBeInstanceOf(BundleNavigator);
       });
     });
 
