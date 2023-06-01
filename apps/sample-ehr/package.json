@@ -1,0 +1,31 @@
+{
+  "name": "@bonfhir/sample-ehr",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "check": "next lint && tsc --noEmit",
+    "dev": "next dev",
+    "format": "prettier --loglevel warn --write ./**/*.ts && eslint --fix ./**/*.ts",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@bonfhir/core": "^2.0.0",
+    "@bonfhir/eslint-config": "workspace:*",
+    "@bonfhir/eslint-plugin": "workspace:*",
+    "@bonfhir/prettier-config": "workspace:*",
+    "@bonfhir/query": "^2.0.0",
+    "@bonfhir/typescript-config": "workspace:*",
+    "@tanstack/react-query": "^4.29.12",
+    "@types/node": "^18.16.2",
+    "@types/react": "^18.2.7",
+    "@types/react-dom": "^18.2.4",
+    "eslint": "^8.39.0",
+    "eslint-config-next": "13.4.4",
+    "next": "13.4.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "5.0.4"
+  },
+  "prettier": "@bonfhir/prettier-config"
+}
