@@ -1,5 +1,5 @@
 {
-  "name": "@bonfhir/query",
+  "name": "@bonfhir/ui",
   "version": "2.0.0",
   "scripts": {
     "build": "pnpm clean && pnpm copyfiles && rollup --config rollup.config.mjs",
@@ -33,7 +33,8 @@
     }
   },
   "dependencies": {
-    "@bonfhir/core": "^2.0.0"
+    "@bonfhir/core": "^2.0.0",
+    "@bonfhir/query": "^2.0.0"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",
@@ -67,7 +68,6 @@
     "uuid": "^9.0.0"
   },
   "peerDependencies": {
-    "@tanstack/react-query": "^4.0.0",
     "react": "*",
     "react-dom": "*"
   },

@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "check": "next lint && tsc --noEmit",
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "format": "prettier --loglevel warn --write ./**/*.ts && eslint --fix ./**/*.ts",
     "start": "next start"
   },
@@ -16,6 +16,7 @@
     "@bonfhir/prettier-config": "workspace:*",
     "@bonfhir/query": "^2.0.0",
     "@bonfhir/typescript-config": "workspace:*",
+    "@bonfhir/ui": "^2.0.0",
     "@emotion/react": "^11.11.0",
     "@emotion/server": "^11.11.0",
     "@mantine/core": "^6.0.13",
