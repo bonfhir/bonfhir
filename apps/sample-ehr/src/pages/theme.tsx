@@ -7,6 +7,16 @@ const theme: MantineThemeOverride = {
   colorScheme: "light",
   fontFamily: montserrat.style.fontFamily,
   components: {
+    Grid: {
+      defaultProps: {
+        columns: 12,
+      },
+    },
+    Paper: {
+      defaultProps: {
+        p: "sm",
+      },
+    },
     Table: {
       defaultProps: {
         striped: true,
