@@ -19,7 +19,7 @@ export default function Patients() {
               type="string"
               value={patient.managingOrganization?.included?.name}
               rendererProps={{
-                c: "blue",
+                c: "gray",
               }}
             />
             )

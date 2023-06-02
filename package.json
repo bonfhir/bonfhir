@@ -11,7 +11,7 @@
     "codegen": "turbo run codegen",
     "dev": "turbo run dev",
     "format": "turbo run format",
-    "test": "turbo run test"
+    "test": "turbo run test -- --passWithNoTests"
   },
   "devDependencies": {
     "turbo": "^1.9.9"

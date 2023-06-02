@@ -1,10 +1,14 @@
 import { Formatter } from "@bonfhir/core/r4b";
-import { createContext, useContext } from "react";
+import { ReactElement, createContext, useContext } from "react";
 import { FhirUIRenderer } from "./renderer.js";
 
 export interface FhirUIContext {
   formatter: Formatter;
-  renderer: FhirUIRenderer;
+  renderer: Partial<FhirUIRenderer>;
+  render(
+    renderer: keyof FhirUIRenderer,
+    ...args: any[]
+  ): ReactElement<any, any> | null;
 }
 
 /**

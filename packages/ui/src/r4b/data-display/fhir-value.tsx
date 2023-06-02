@@ -1,4 +1,4 @@
-import { ReactElement, createElement } from "react";
+import { ReactElement } from "react";
 import { useFhirUIContext } from "../context.js";
 
 export interface FhirValueProps<TRendererProps = any> {
@@ -11,10 +11,7 @@ export interface FhirValueProps<TRendererProps = any> {
 export function FhirValue<TRendererProps = any>(
   props: FhirValueProps<TRendererProps>
 ): ReactElement | null {
-  const {
-    formatter,
-    renderer: { FhirValue },
-  } = useFhirUIContext();
+  const { formatter, render } = useFhirUIContext();
 
   const formattedValue = formatter.format(
     props.type,
@@ -22,7 +19,7 @@ export function FhirValue<TRendererProps = any>(
     props.options
   );
 
-  return createElement(FhirValue, {
+  return render("FhirValue", {
     ...props,
     formattedValue,
   });

@@ -1,11 +1,11 @@
 import { Formatter } from "@bonfhir/core/r4b";
-import { PropsWithChildren, useMemo } from "react";
+import { PropsWithChildren, createElement, useMemo } from "react";
 import { FhirUIContext } from "./context.js";
 import { FhirUIRenderer } from "./renderer.js";
 
 export type FhirUIProviderProps = PropsWithChildren<{
   formatter?: Formatter | null | undefined;
-  renderer: FhirUIRenderer;
+  renderer: Partial<FhirUIRenderer>;
 }>;
 
 /**
@@ -26,6 +26,13 @@ export function FhirUIProvider(props: FhirUIProviderProps) {
       value={{
         formatter,
         renderer: props.renderer,
+        render(rendererName, ...args) {
+          const renderer = props.renderer[rendererName];
+          if (!renderer) {
+            throw new Error(`Renderer "${renderer}" not found`);
+          }
+          return createElement(renderer, ...args);
+        },
       }}
     >
       {props.children}
