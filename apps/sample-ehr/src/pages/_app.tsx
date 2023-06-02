@@ -5,6 +5,7 @@ import { FhirUIProvider } from "@bonfhir/ui/r4b";
 import { AppShell, MantineProvider } from "@mantine/core";
 import { AppProps } from "next/app";
 import Head from "next/head";
+import Navbar from "../components/layout/navbar";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -33,7 +34,7 @@ export default function App(props: AppProps) {
       >
         <FhirQueryProvider fhirClient={client}>
           <FhirUIProvider renderer={MantineRenderer}>
-            <AppShell>
+            <AppShell navbar={<Navbar />}>
               <Component {...pageProps} />
             </AppShell>
           </FhirUIProvider>

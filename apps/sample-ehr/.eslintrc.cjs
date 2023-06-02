@@ -3,4 +3,7 @@
  */
 module.exports = {
   extends: ["@bonfhir/eslint-config", "plugin:@next/next/recommended"],
+  globals: {
+    "process"
+  }
 };
