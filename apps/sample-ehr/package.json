@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "check": "prettier --check ./src && next lint && tsc --noEmit",
-    "dev": "next dev --turbo",
+    "dev": "PORT=4000 next dev --turbo",
     "format": "prettier --loglevel warn --write ./**/*.ts && eslint --fix ./**/*.ts",
     "start": "next start"
   },

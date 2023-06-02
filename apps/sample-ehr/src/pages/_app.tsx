@@ -5,11 +5,9 @@ import { FhirUIProvider } from "@bonfhir/ui/r4b";
 import { AppShell, MantineProvider } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppProps } from "next/app";
-import { Montserrat } from "next/font/google";
 import Head from "next/head";
 import Navbar from "../components/layout/navbar";
-
-const montserrat = Montserrat({});
+import theme from "./theme";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -28,14 +26,7 @@ export default function App(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          colorScheme: "light",
-          fontFamily: montserrat.style.fontFamily,
-        }}
-      >
+      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
         <FhirQueryProvider fhirClient={client}>
           <FhirUIProvider renderer={MantineRenderer}>
             <AppShell
