@@ -226,8 +226,21 @@ export class BundleNavigator<TResource extends Resource = Resource> {
 
     this._ensurePrimaryIndices();
 
-    return (this._resourcesBySearchMode?.get("match") ||
+    const result = (this._resourcesBySearchMode?.get("match") ||
       []) as unknown as WithResolvableReferences<Retrieved<TResult>>[];
+
+    // Let's be nice to non-compliant servers and check if they do not position the search mode properly.
+    if (
+      result.length === 0 &&
+      this.bundle.entry?.[0] &&
+      !this.bundle.entry[0].search?.mode &&
+      this.bundle.entry[0].resource?.resourceType
+    ) {
+      return this.type(
+        this.bundle.entry[0].resource.resourceType
+      ) as WithResolvableReferences<Retrieved<TResult>>[];
+    }
+    return result;
   }
 
   /**
@@ -252,13 +265,6 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     }
     const searchMatches = this.searchMatch<TResult>();
     if (searchMatches.length === 0) {
-      // Let's be nice to non-compliant servers and check if they do not position the search mode properly.
-      if (this._bundleOrNavigator.entry?.[0]?.resource) {
-        return withResolvableProxy<Retrieved<TResult>>(
-          this._bundleOrNavigator.entry[0].resource as Retrieved<TResult>,
-          this as unknown as BundleNavigator<Retrieved<TResult>>
-        );
-      }
       throw new Error(`No match found in bundle`);
     }
 
