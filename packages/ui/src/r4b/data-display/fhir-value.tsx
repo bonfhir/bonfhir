@@ -10,7 +10,7 @@ export interface FhirValueProps<TRendererProps = any> {
 
 export function FhirValue<TRendererProps = any>(
   props: FhirValueProps<TRendererProps>
-): ReactElement | null {
+): ReactElement<any, any> | null {
   const { formatter, render } = useFhirUIContext();
 
   const formattedValue = formatter.format(

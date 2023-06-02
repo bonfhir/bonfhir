@@ -31,7 +31,7 @@ export function FhirUIProvider(props: FhirUIProviderProps) {
           if (!renderer) {
             throw new Error(`Renderer "${renderer}" not found`);
           }
-          return createElement(renderer, ...args);
+          return createElement(renderer as any, ...args);
         },
       }}
     >

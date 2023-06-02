@@ -1,5 +1,5 @@
-import { Title } from "@mantine/core";
+import MainPage from "@/components/layout/main-page";
 
 export default function Home() {
-  return <Title>Dashboard</Title>;
+  return <MainPage title="Dashboard" />;
 }

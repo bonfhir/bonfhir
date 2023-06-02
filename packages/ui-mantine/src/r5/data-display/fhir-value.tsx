@@ -6,10 +6,12 @@ export function MantineFhirValue(
   props: FhirValueRendererProps<MantineFhirValueProps>
 ): ReactElement | null {
   return (
-    <Text span {...props.rendererProps}>
+    <Text span {...props.rendererProps?.text}>
       {props.formattedValue}
     </Text>
   );
 }
 
-export type MantineFhirValueProps = TextProps;
+export interface MantineFhirValueProps {
+  text?: TextProps | null | undefined;
+}

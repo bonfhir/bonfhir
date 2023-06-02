@@ -3,9 +3,13 @@ import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { MantineRenderer } from "@bonfhir/ui-mantine/r4b";
 import { FhirUIProvider } from "@bonfhir/ui/r4b";
 import { AppShell, MantineProvider } from "@mantine/core";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppProps } from "next/app";
+import { Montserrat } from "next/font/google";
 import Head from "next/head";
 import Navbar from "../components/layout/navbar";
+
+const montserrat = Montserrat({});
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -28,15 +32,23 @@ export default function App(props: AppProps) {
         withGlobalStyles
         withNormalizeCSS
         theme={{
-          /** Put your mantine theme override here */
           colorScheme: "light",
+          fontFamily: montserrat.style.fontFamily,
         }}
       >
         <FhirQueryProvider fhirClient={client}>
           <FhirUIProvider renderer={MantineRenderer}>
-            <AppShell navbar={<Navbar />}>
+            <AppShell
+              navbar={<Navbar />}
+              styles={{
+                main: {
+                  backgroundColor: "#F1F1F1",
+                },
+              }}
+            >
               <Component {...pageProps} />
             </AppShell>
+            <ReactQueryDevtools position="bottom-right" />
           </FhirUIProvider>
         </FhirQueryProvider>
       </MantineProvider>

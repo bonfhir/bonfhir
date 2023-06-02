@@ -31,7 +31,7 @@ export default function CustomNavbar() {
       <Navbar.Section m="sm">
         <Stack>
           <Group spacing="xs">
-            <ThemeIcon radius="xl" size="xl" color="red">
+            <ThemeIcon radius="xl" size="lg" color="red">
               <IconFlame />
             </ThemeIcon>
             <Title order={3}>Sample EHR</Title>
