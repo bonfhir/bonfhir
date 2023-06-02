@@ -1,20 +1,38 @@
-import { Formatter } from "@bonfhir/core/r4b";
-import { ReactElement } from "react";
+import { ReactElement, createElement } from "react";
+import { useFhirUIContext } from "../context.js";
 
-export interface FhirValueProps {
+export interface FhirValueProps<TRendererProps = any> {
   type: string;
   value: unknown;
   options?: any;
+  rendererProps?: TRendererProps;
 }
 
-export function FhirValue(props: FhirValueProps): ReactElement | null {
-  return (
-    <>
-      {Formatter.default.format(
-        props.type,
-        props.value as never,
-        props.options
-      )}
-    </>
+export function FhirValue<TRendererProps = any>(
+  props: FhirValueProps<TRendererProps>
+): ReactElement | null {
+  const {
+    formatter,
+    renderer: { FhirValue },
+  } = useFhirUIContext();
+
+  const formattedValue = formatter.format(
+    props.type,
+    props.value as never,
+    props.options
   );
+
+  return createElement(FhirValue, {
+    ...props,
+    formattedValue,
+  });
 }
+
+export interface FhirValueRendererProps<TRendererProps = any>
+  extends FhirValueProps<TRendererProps> {
+  formattedValue: string;
+}
+
+export type FhirValueRenderer = (
+  props: FhirValueRendererProps
+) => ReactElement | null;

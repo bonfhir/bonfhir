@@ -1,5 +1,5 @@
 {
-  "name": "@bonfhir/ui",
+  "name": "@bonfhir/ui-mantine",
   "version": "2.0.0",
   "scripts": {
     "build": "pnpm clean && pnpm copyfiles && rollup --config rollup.config.mjs",
@@ -34,14 +34,14 @@
     }
   },
   "dependencies": {
-    "@bonfhir/core": "^2.0.0",
-    "@bonfhir/query": "^2.0.0"
+    "@bonfhir/ui": "^2.0.0"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
     "@bonfhir/prettier-config": "workspace:*",
     "@bonfhir/typescript-config": "workspace:*",
+    "@mantine/core": "^6.0.13",
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-replace": "^5.0.2",
@@ -68,6 +68,7 @@
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
+    "@mantine/core": "*",
     "react": "*",
     "react-dom": "*"
   },

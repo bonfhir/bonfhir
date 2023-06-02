@@ -3,8 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "check": "next lint && tsc --noEmit",
+    "check": "prettier --check ./src && next lint && tsc --noEmit",
     "dev": "next dev --turbo",
     "format": "prettier --loglevel warn --write ./**/*.ts && eslint --fix ./**/*.ts",
     "start": "next start"
@@ -17,6 +16,7 @@
     "@bonfhir/query": "^2.0.0",
     "@bonfhir/typescript-config": "workspace:*",
     "@bonfhir/ui": "^2.0.0",
+    "@bonfhir/ui-mantine": "^2.0.0",
     "@emotion/react": "^11.11.0",
     "@emotion/server": "^11.11.0",
     "@mantine/core": "^6.0.13",

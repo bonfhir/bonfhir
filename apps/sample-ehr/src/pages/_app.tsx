@@ -1,5 +1,7 @@
 import { FetchFhirClient } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
+import { MantineRenderer } from "@bonfhir/ui-mantine/r4b";
+import { FhirUIProvider } from "@bonfhir/ui/r4b";
 import { AppShell, MantineProvider } from "@mantine/core";
 import { AppProps } from "next/app";
 import Head from "next/head";
@@ -30,9 +32,11 @@ export default function App(props: AppProps) {
         }}
       >
         <FhirQueryProvider fhirClient={client}>
-          <AppShell>
-            <Component {...pageProps} />
-          </AppShell>
+          <FhirUIProvider renderer={MantineRenderer}>
+            <AppShell>
+              <Component {...pageProps} />
+            </AppShell>
+          </FhirUIProvider>
         </FhirQueryProvider>
       </MantineProvider>
     </>
