@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { FhirTableRendererProps } from "@bonfhir/ui/r5";
 import {
   Group,
@@ -5,6 +6,7 @@ import {
   LoadingOverlayProps,
   Pagination,
   Stack,
+  StackProps,
   Table,
   TableProps,
   Text,
@@ -20,7 +22,7 @@ export function MantineFhirTable(
   props: FhirTableRendererProps<MantineFhirTableProps>
 ): ReactElement | null {
   return (
-    <Stack>
+    <Stack {...props.rendererProps?.stack}>
       <LoadingOverlay
         visible={props.loading}
         {...props.rendererProps?.loadingOverlay}
@@ -59,6 +61,7 @@ export function MantineFhirTable(
 
 export interface MantineFhirTableProps {
   loadingOverlay?: LoadingOverlayProps | null | undefined;
+  stack?: StackProps | null | undefined;
   table?: TableProps | null | undefined;
   thead?:
     | DetailedHTMLProps<
