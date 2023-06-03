@@ -7,6 +7,7 @@ import { AppShell, MantineProvider } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppProps } from "next/app";
 import Head from "next/head";
+import { styleCache } from "./style-cache";
 import theme from "./theme";
 
 export default function App(props: AppProps) {
@@ -26,7 +27,12 @@ export default function App(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        emotionCache={styleCache}
+        theme={theme}
+      >
         <FhirQueryProvider fhirClient={client}>
           <FhirUIProvider renderer={MantineRenderer}>
             <AppShell

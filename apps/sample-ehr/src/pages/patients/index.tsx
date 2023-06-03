@@ -163,7 +163,7 @@ function PatientsList(): ReactElement {
               options={[
                 "Currently in ER",
                 "Inpatient",
-                "Inpatient",
+                "Discharged",
                 "Post-Discharge",
               ]}
             />
