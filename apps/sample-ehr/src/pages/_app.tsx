@@ -1,3 +1,4 @@
+import { Navbar } from "@/components";
 import { FetchFhirClient } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { MantineRenderer } from "@bonfhir/ui-mantine/r4b";
@@ -6,7 +7,6 @@ import { AppShell, MantineProvider } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import Navbar from "../components/layout/navbar";
 import theme from "./theme";
 
 export default function App(props: AppProps) {

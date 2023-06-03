@@ -2,8 +2,8 @@ import {
   Center,
   Code,
   Group,
+  Navbar as MantineNavbar,
   NavLink,
-  Navbar,
   Stack,
   ThemeIcon,
   Title,
@@ -24,11 +24,11 @@ const links = [
   { link: "/performance", label: "Performance", icon: <IconThumbUp /> },
 ];
 
-export default function CustomNavbar() {
+export function Navbar() {
   const router = useRouter();
   return (
-    <Navbar height="100vh" width={{ sm: 210 }}>
-      <Navbar.Section m="sm">
+    <MantineNavbar height="100vh" width={{ sm: 210 }}>
+      <MantineNavbar.Section m="sm">
         <Stack>
           <Group spacing="xs">
             <ThemeIcon radius="xl" size="lg" color="red">
@@ -37,8 +37,8 @@ export default function CustomNavbar() {
             <Title order={3}>Sample EHR</Title>
           </Group>
         </Stack>
-      </Navbar.Section>
-      <Navbar.Section grow>
+      </MantineNavbar.Section>
+      <MantineNavbar.Section grow>
         <Stack spacing="xs">
           {links.map((link) => (
             <NavLink
@@ -55,8 +55,8 @@ export default function CustomNavbar() {
             />
           ))}
         </Stack>
-      </Navbar.Section>
-      <Navbar.Section>
+      </MantineNavbar.Section>
+      <MantineNavbar.Section>
         <Stack>
           <NavLink
             component={Link}
@@ -68,7 +68,7 @@ export default function CustomNavbar() {
             <Center>version: {process.env.PACKAGE_VERSION || "local"}</Center>
           </Code>
         </Stack>
-      </Navbar.Section>
-    </Navbar>
+      </MantineNavbar.Section>
+    </MantineNavbar>
   );
 }
