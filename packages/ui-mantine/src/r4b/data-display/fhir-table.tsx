@@ -15,29 +15,33 @@ export function MantineFhirTable(
     <Table {...props.rendererProps?.table}>
       <thead {...props.rendererProps?.thead}>
         <tr>
-          {props.columns.map((column) => (
-            <th key={column.key} {...props.rendererProps?.th}>
-              {column.sortable ? (
-                <UnstyledButton
-                  onClick={() => props.onSortChange?.(column.key)}
-                >
-                  <Group position="apart">{column.title}</Group>
-                  {props.parsedSort &&
-                  props.parsedSort.columnKey === column.key ? (
-                    props.parsedSort.desc ? (
-                      <IconChevronDown />
-                    ) : (
-                      <IconChevronUp />
-                    )
-                  ) : (
-                    <IconSelector />
-                  )}
-                </UnstyledButton>
-              ) : (
-                column.title
-              )}
-            </th>
-          ))}
+          {props.columns.map((column) => {
+            return (
+              <th key={column.key} {...props.rendererProps?.th}>
+                {column.sortable ? (
+                  <UnstyledButton
+                    onClick={() => props.onSortChange?.(column.key)}
+                  >
+                    <Group position="apart">
+                      {column.title}
+                      {props.parsedSort &&
+                      props.parsedSort.columnKey === column.key ? (
+                        props.parsedSort.desc ? (
+                          <IconChevronDown />
+                        ) : (
+                          <IconChevronUp />
+                        )
+                      ) : (
+                        <IconSelector />
+                      )}
+                    </Group>
+                  </UnstyledButton>
+                ) : (
+                  column.title
+                )}
+              </th>
+            );
+          })}
         </tr>
       </thead>
       {Boolean(props.query.data) && (
