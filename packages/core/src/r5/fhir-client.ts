@@ -303,10 +303,15 @@ export class FhirClientError extends Error {
       operationOutcome?.issue
         ?.map(
           (issue) =>
-            Formatter.default.message`${["code", issue.code]}/${[
+            Formatter.default.message`${["code", issue.code]}${[
               "CodeableConcept",
               issue.details,
-            ]}${issue.expression ? ` at ${issue.expression}` : ""}`
+              { decorator: "/{}" },
+            ]}${[
+              "string",
+              issue.expression?.join(", "),
+              { decorator: " at {}" },
+            ]}`
         )
         .join(", ");
     super(

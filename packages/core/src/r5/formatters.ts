@@ -56,6 +56,22 @@ export interface ValueFormatter<TType extends string, TValue, TOptions> {
   ) => string;
 }
 
+export interface CommonFormatterOptions {
+  /**
+   * The value to return when the result of the formatting is falsy.
+   */
+  default?: string | null | undefined;
+
+  /**
+   * If the result of the formatter is truthy, this will decorate the result.
+   * Use {} as the placeholder for the result of the formatter.
+   *
+   * @example
+   * formatter.format("string", "foo", { decorator: "bar {} baz" }) // "bar foo baz"
+   */
+  decorator?: string | null | undefined;
+}
+
 /**
  * Extends the base Formatter type with an overload of the format function that fits the ValueFormatter.
  */
@@ -71,7 +87,7 @@ export type WithTypedFormatFunction<
       format(
         type: TType,
         value: TValue,
-        options?: TOptions | null | undefined
+        options?: (TOptions & CommonFormatterOptions) | null | undefined
       ): string;
     } & TThis
   : never;
@@ -195,17 +211,27 @@ export class Formatter {
   public format(
     type: string,
     value: never,
-    options?: never | null | undefined
+    options?: CommonFormatterOptions | null | undefined
   ): string {
     const valueFormatter = this._formatters.get(type);
     if (!valueFormatter) {
       throw new Error(`No formatter found for type '${type}'`);
     }
 
-    return valueFormatter.format(value, options, {
+    const formatterResult = valueFormatter.format(value, options, {
       formatter: this,
       ...this.options,
     });
+
+    if (options?.default && !formatterResult) {
+      return options.default;
+    }
+
+    if (options?.decorator) {
+      return options.decorator.replace("{}", formatterResult);
+    }
+
+    return formatterResult;
   }
 
   /**
@@ -270,7 +296,7 @@ export type ValueFormatterParameters<TValueFormatter> =
     infer TValue,
     infer TOptions
   >
-    ? [TType, TValue] | [TType, TValue, TOptions]
+    ? [TType, TValue] | [TType, TValue, TOptions & CommonFormatterOptions]
     : never;
 
 /**

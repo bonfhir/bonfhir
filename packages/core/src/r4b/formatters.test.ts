@@ -24,4 +24,25 @@ describe("formatters", () => {
       expect(expression).toEqual(expected);
     });
   });
+
+  describe("common options", () => {
+    it.each([
+      [
+        Formatter.default.format("string", "", { default: "unknown" }),
+        "unknown",
+      ],
+      [
+        Formatter.default.format("Identifier", [], { default: "unknown" }),
+        "unknown",
+      ],
+      [
+        Formatter.default.format("integer", 3, {
+          decorator: "Age: {} years old",
+        }),
+        "Age: 3 years old",
+      ],
+    ])("%p => %p", (expression, expected) => {
+      expect(expression).toEqual(expected);
+    });
+  });
 });
