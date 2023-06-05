@@ -13,3 +13,4 @@ export * from "./patch.js";
 export * from "./references.codegen.js";
 export * from "./search.codegen.js";
 export * from "./search.js";
+export * as valueFormatters from "./value-formatters/index.js";

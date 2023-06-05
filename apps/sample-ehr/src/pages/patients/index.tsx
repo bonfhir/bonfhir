@@ -12,7 +12,10 @@ import {
   WithResolvableReferences,
 } from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/query/r4b";
-import { MantineFhirTableProps } from "@bonfhir/ui-mantine/r4b";
+import {
+  MantineFhirTableProps,
+  MantineFhirValueProps,
+} from "@bonfhir/ui-mantine/r4b";
 import {
   FhirPagination,
   FhirTable,
@@ -186,10 +189,17 @@ function PatientsList(): ReactElement {
                 key: "organization",
                 title: "Clinic",
                 render: (row) => (
-                  <FhirValue
+                  <FhirValue<MantineFhirValueProps>
                     type="string"
                     value={row.managingOrganization?.included?.name}
-                    options={{ max: 1 }}
+                    options={{ default: "Unassigned" }}
+                    rendererProps={{
+                      text: {
+                        c: row.managingOrganization?.included
+                          ? undefined
+                          : "dimmed",
+                      },
+                    }}
                   />
                 ),
               },
@@ -236,7 +246,7 @@ function PatientsList(): ReactElement {
               {
                 key: "risk",
                 title: "Risk",
-                render: () => "unknown",
+                render: () => "Unknown",
               },
             ]}
           />
