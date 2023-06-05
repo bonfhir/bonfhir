@@ -322,7 +322,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    * Return the url associated with a link, characterized by a relation.
    */
   public linkUrl(
-    relation: "self" | "first" | "next" | "previous"
+    relation: "self" | "first" | "next" | "previous" | "last"
   ): string | undefined;
   // #if fhir >= r5
   public linkUrl(relation: LinkRelationTypes): string | undefined;

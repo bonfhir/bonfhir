@@ -209,6 +209,23 @@ export function formatValueWithPattern(value: string, pattern: string): string {
     .join("");
 }
 
+/**
+ * Substitute {{tokens}} in the given value with the given tokens.
+ */
+export function formatWithTokens(
+  value: string | null | undefined,
+  tokens: Record<string, string>
+): string {
+  if (!value) {
+    return "";
+  }
+
+  return value.replace(
+    /({{[^}]+}})/g,
+    (match) => tokens[match.slice(2, -2)] ?? match
+  );
+}
+
 export interface WithPeriod {
   period?: Period | undefined;
 }

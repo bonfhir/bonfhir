@@ -5,10 +5,20 @@ import {
   QuickFilter,
   TitleDivider,
 } from "@/components";
-import { Patient } from "@bonfhir/core/r4b";
+import {
+  Patient,
+  PatientSortOrder,
+  Retrieved,
+  WithResolvableReferences,
+} from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import { MantineFhirTableProps } from "@bonfhir/ui-mantine/r4b";
-import { FhirTable, FhirValue } from "@bonfhir/ui/r4b";
+import {
+  FhirPagination,
+  FhirTable,
+  FhirValue,
+  useFhirSearchController,
+} from "@bonfhir/ui/r4b";
 import { Drawer, Grid, Paper, SimpleGrid, Stack } from "@mantine/core";
 import { PropsWithChildren, ReactElement, useState } from "react";
 
@@ -139,15 +149,32 @@ function Indicators(): ReactElement {
 }
 
 function PatientsList(): ReactElement {
-  const patientsQuery = useFhirSearch("Patient", (search) =>
-    search._sort("name")._include("Patient", "organization")._total("accurate")
+  const searchController = useFhirSearchController<PatientSortOrder>({
+    pageSize: 2,
+    defaultSort: "name",
+  });
+
+  const patientsQuery = useFhirSearch(
+    "Patient",
+    (search) =>
+      search
+        ._sort(searchController.sort)
+        ._count(searchController.pageSize)
+        ._include("Patient", "organization")
+        ._total("accurate"),
+    searchController.pageUrl
   );
 
   return (
     <Grid>
       <Grid.Col span="auto">
         <Paper mih="100%">
-          <FhirTable<Patient, Patient, MantineFhirTableProps>
+          <FhirTable<
+            Patient,
+            WithResolvableReferences<Retrieved<Patient>>,
+            MantineFhirTableProps
+          >
+            {...searchController}
             rendererProps={{
               table: {
                 mih: "100%",
@@ -156,8 +183,20 @@ function PatientsList(): ReactElement {
             query={patientsQuery}
             columns={[
               {
+                key: "organization",
+                title: "Clinic",
+                render: (row) => (
+                  <FhirValue
+                    type="string"
+                    value={row.managingOrganization?.included?.name}
+                    options={{ max: 1 }}
+                  />
+                ),
+              },
+              {
                 key: "name",
                 title: "Name",
+                sortable: true,
                 render: (row) => (
                   <FhirValue
                     type="HumanName"
@@ -201,6 +240,7 @@ function PatientsList(): ReactElement {
               },
             ]}
           />
+          <FhirPagination query={patientsQuery} {...searchController} />
         </Paper>
       </Grid.Col>
       <Grid.Col span="content">

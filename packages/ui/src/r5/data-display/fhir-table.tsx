@@ -13,13 +13,15 @@ export interface FhirTableProps<
   querySelect?: (
     navigator: BundleNavigator<Retrieved<TResource>>
   ) => TRow[] | undefined;
-  loading?: boolean | null | undefined;
+  sort?: string | null | undefined;
+  onSortChange?: ((sort: string) => void) | null | undefined;
   rendererProps?: TRendererProps;
 }
 
 export interface FhirTableColumn<TResource extends AnyResource, TRow> {
   key: string;
   title: ReactNode;
+  sortable?: boolean | null | undefined;
   render: (
     row: TRow,
     index: number,
@@ -43,15 +45,27 @@ export function FhirTable<
 
   return render("FhirTable", {
     ...props,
-    loading: props.loading ?? props.query.isLoading,
     rows,
+    parsedSort: props.sort?.trim()
+      ? {
+          columKey: props.sort.startsWith("-")
+            ? props.sort.slice(1)
+            : props.sort,
+          desc: props.sort.startsWith("-"),
+        }
+      : undefined,
   });
 }
 
 export interface FhirTableRendererProps<TRendererProps = any>
   extends FhirTableProps<AnyResource, unknown, TRendererProps> {
-  loading: boolean;
   rows: unknown[] | undefined;
+  parsedSort:
+    | {
+        columnKey: string;
+        desc: boolean;
+      }
+    | undefined;
 }
 
 export type FhirTableRenderer = (
