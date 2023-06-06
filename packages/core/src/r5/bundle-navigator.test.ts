@@ -290,12 +290,12 @@ describe("BundleNavigator", () => {
     it("resolve revincluded when found", () => {
       const navigator = bundleNavigator(patientsListBundle);
       const patient = navigator.searchMatch()[0]!;
-      const provenance = patient.revIncluded<Provenance>(
+      const provenance = patient.revIncluded?.<Provenance>(
         (provenance) => provenance.target
       )[0];
       expect(provenance).toBeDefined();
       expect(provenance?.resourceType).toBe("Provenance");
-      const org = patient.revIncluded<Provenance>(
+      const org = patient.revIncluded?.<Provenance>(
         (provenance) => provenance.target
       )[0]?.agent[0]?.who?.included;
       expect(org).toBeDefined();

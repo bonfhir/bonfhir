@@ -1,5 +1,4 @@
 import { BundleNavigator, formatWithTokens } from "@bonfhir/core/r5";
-import { UseQueryResult } from "@tanstack/react-query";
 import { ReactElement } from "react";
 import { useFhirUIContext } from "../context.js";
 
@@ -10,7 +9,7 @@ export interface FhirPaginationProps<TRendererProps = any> {
   pageUrl: string | undefined;
   onPageChange: (pageUrl: string | undefined, pageNumber: number) => void;
 
-  query: UseQueryResult<BundleNavigator<any>>;
+  data?: BundleNavigator | null | undefined;
 
   /**
    * The text to display. Defaults to "{{pageFirstEntry}}-{{pageLastEntry}} of {{total}}"
@@ -30,7 +29,7 @@ export function FhirPagination<TRendererProps = any>(
   props: FhirPaginationProps<TRendererProps>
 ): ReactElement | null {
   const { formatter, render } = useFhirUIContext();
-  const total = props.query.data?.total ?? 0;
+  const total = props.data?.total ?? 0;
   const totalPages = Math.ceil(total / props.pageSize);
 
   const finalTextTemplate =

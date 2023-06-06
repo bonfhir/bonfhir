@@ -46,7 +46,7 @@ export type ResolvableReference<TTargetResource extends Resource = Resource> =
      * If the original bundle includes the reference (probably from a search query with _include instructions),
      * return the included resource, or undefined if it wasn't included or not found.
      */
-    included: TTargetResource | undefined;
+    included?: TTargetResource | undefined;
   };
 
 /**
@@ -54,17 +54,29 @@ export type ResolvableReference<TTargetResource extends Resource = Resource> =
  * and with revIncluded method added at the root.
  */
 export type WithResolvableReferences<T> = {
-  [K in keyof T]: T[K] extends Reference<infer TTargetResource>
+  [K in keyof T]: T[K] extends Array<Resource> | undefined
+    ? Array<Resource> | undefined
+    : T[K] extends Reference<infer TTargetResource>
     ? ResolvableReference<TTargetResource>
     : T[K] extends Reference<infer TTargetResource> | undefined
     ? ResolvableReference<TTargetResource> | undefined
-    : WithResolvableReferences<T[K]>;
+    : RecursiveResolvableReferences<T[K]>;
 } & {
-  revIncluded: <TReferencedType extends AnyResource>(
+  revIncluded?: <TReferencedType extends AnyResource>(
     select: (
       resource: TReferencedType
     ) => Reference | Reference[] | null | undefined
-  ) => WithResolvableReferences<TReferencedType>[];
+  ) => RecursiveResolvableReferences<TReferencedType>[];
+};
+
+export type RecursiveResolvableReferences<T> = {
+  [K in keyof T]: T[K] extends Array<Resource> | undefined
+    ? Array<Resource> | undefined
+    : T[K] extends Reference<infer TTargetResource>
+    ? ResolvableReference<TTargetResource>
+    : T[K] extends Reference<infer TTargetResource> | undefined
+    ? ResolvableReference<TTargetResource> | undefined
+    : RecursiveResolvableReferences<T[K]>;
 };
 
 export class BundleNavigator<TResource extends Resource = Resource> {

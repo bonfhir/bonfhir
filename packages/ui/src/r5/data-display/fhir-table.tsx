@@ -1,47 +1,46 @@
-import { AnyResource, BundleNavigator, Retrieved } from "@bonfhir/core/r5";
-import { UseQueryResult } from "@tanstack/react-query";
+import {
+  AnyResource,
+  BundleNavigator,
+  Retrieved,
+  WithResolvableReferences,
+} from "@bonfhir/core/r5";
 import { ReactElement, ReactNode } from "react";
 import { useFhirUIContext } from "../context.js";
 
 export interface FhirTableProps<
-  TResource extends AnyResource = AnyResource,
-  TRow = TResource,
-  TRendererProps = any
+  TResource extends AnyResource,
+  TRendererProps = any,
+  TRow = WithResolvableReferences<Retrieved<TResource>>
 > {
-  query: UseQueryResult<BundleNavigator<Retrieved<TResource>>>;
-  columns: FhirTableColumn<TResource, TRow>[];
-  querySelect?: (
-    navigator: BundleNavigator<Retrieved<TResource>>
-  ) => TRow[] | undefined;
+  data:
+    | BundleNavigator<TResource>
+    | BundleNavigator<Retrieved<TResource>>
+    | Array<TResource>
+    | null
+    | undefined;
+  columns: FhirTableColumn<TRow>[];
   sort?: string | null | undefined;
   onSortChange?: ((sort: string) => void) | null | undefined;
   rendererProps?: TRendererProps;
 }
 
-export interface FhirTableColumn<TResource extends AnyResource, TRow> {
+export interface FhirTableColumn<TRow> {
   key: string;
   title: ReactNode;
   sortable?: boolean | null | undefined;
-  render: (
-    row: TRow,
-    index: number,
-    data: BundleNavigator<Retrieved<TResource>>
-  ) => ReactNode;
+  render: (row: TRow, index: number) => ReactNode;
 }
 
 export function FhirTable<
   TResource extends AnyResource,
-  TRow = TResource,
-  TRendererProps = any
+  TRendererProps = any,
+  TRow = WithResolvableReferences<Retrieved<TResource>>
 >(
-  props: FhirTableProps<TResource, TRow, TRendererProps>
+  props: FhirTableProps<TResource, TRendererProps, TRow>
 ): ReactElement<any, any> | null {
   const { render } = useFhirUIContext();
 
-  const rows =
-    props.query.data && props.querySelect
-      ? props.querySelect(props.query.data)
-      : props.query.data?.searchMatch();
+  const rows = (props.data as any)?.searchMatch?.() ?? props.data;
 
   return render("FhirTable", {
     ...props,
@@ -57,8 +56,10 @@ export function FhirTable<
   });
 }
 
-export interface FhirTableRendererProps<TRendererProps = any>
-  extends FhirTableProps<AnyResource, unknown, TRendererProps> {
+export type FhirTableRendererProps<TRendererProps = any> = FhirTableProps<
+  AnyResource,
+  TRendererProps
+> & {
   rows: unknown[] | undefined;
   parsedSort:
     | {
@@ -66,7 +67,7 @@ export interface FhirTableRendererProps<TRendererProps = any>
         desc: boolean;
       }
     | undefined;
-}
+};
 
 export type FhirTableRenderer = (
   props: FhirTableRendererProps

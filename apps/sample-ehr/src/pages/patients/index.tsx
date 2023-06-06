@@ -5,17 +5,9 @@ import {
   QuickFilter,
   TitleDivider,
 } from "@/components";
-import {
-  Patient,
-  PatientSortOrder,
-  Retrieved,
-  WithResolvableReferences,
-} from "@bonfhir/core/r4b";
+import { PatientSortOrder } from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/query/r4b";
-import {
-  MantineFhirTableProps,
-  MantineFhirValueProps,
-} from "@bonfhir/ui-mantine/r4b";
+import { MantineFhirValueProps } from "@bonfhir/ui-mantine/r4b";
 import {
   FhirPagination,
   FhirTable,
@@ -172,18 +164,14 @@ function PatientsList(): ReactElement {
     <Grid>
       <Grid.Col span="auto">
         <Paper mih="100%">
-          <FhirTable<
-            Patient,
-            WithResolvableReferences<Retrieved<Patient>>,
-            MantineFhirTableProps
-          >
+          <FhirTable
             {...searchController}
+            {...patientsQuery}
             rendererProps={{
               table: {
                 mih: "100%",
               },
             }}
-            query={patientsQuery}
             columns={[
               {
                 key: "organization",
@@ -206,7 +194,6 @@ function PatientsList(): ReactElement {
               {
                 key: "name",
                 title: "Name",
-                sortable: true,
                 render: (row) => (
                   <FhirValue
                     type="HumanName"
@@ -250,7 +237,7 @@ function PatientsList(): ReactElement {
               },
             ]}
           />
-          <FhirPagination query={patientsQuery} {...searchController} />
+          <FhirPagination {...patientsQuery} {...searchController} />
         </Paper>
       </Grid.Col>
       <Grid.Col span="content">

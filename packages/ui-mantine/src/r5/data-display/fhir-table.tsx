@@ -1,11 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { FhirTableRendererProps } from "@bonfhir/ui/r5";
-import { Group, Table, TableProps, UnstyledButton } from "@mantine/core";
-import {
-  IconChevronDown,
-  IconChevronUp,
-  IconSelector,
-} from "@tabler/icons-react";
+import { FhirTableColumn, FhirTableRendererProps } from "@bonfhir/ui/r5";
+import { Table, TableProps } from "@mantine/core";
 import { DetailedHTMLProps, HTMLAttributes, ReactElement } from "react";
 
 export function MantineFhirTable(
@@ -17,40 +13,26 @@ export function MantineFhirTable(
         <tr>
           {props.columns.map((column) => {
             return (
-              <th key={column.key} {...props.rendererProps?.th}>
-                {column.sortable ? (
-                  <UnstyledButton
-                    onClick={() => props.onSortChange?.(column.key)}
-                  >
-                    <Group position="apart">
-                      {column.title}
-                      {props.parsedSort &&
-                      props.parsedSort.columnKey === column.key ? (
-                        props.parsedSort.desc ? (
-                          <IconChevronDown />
-                        ) : (
-                          <IconChevronUp />
-                        )
-                      ) : (
-                        <IconSelector />
-                      )}
-                    </Group>
-                  </UnstyledButton>
-                ) : (
-                  column.title
-                )}
+              <th
+                key={column.key}
+                {...propsOrFunction(props.rendererProps?.th, column)}
+              >
+                {column.title}
               </th>
             );
           })}
         </tr>
       </thead>
-      {Boolean(props.query.data) && (
+      {Boolean(props.rows) && (
         <tbody {...props.rendererProps?.tbody}>
           {props.rows?.map((row, index) => (
-            <tr key={index}>
+            <tr key={index} {...propsOrFunction(props.rendererProps?.tr, row)}>
               {props.columns.map((column) => (
-                <td key={column.key} {...props.rendererProps?.td}>
-                  {column.render(row, index, props.query.data!)}
+                <td
+                  key={column.key}
+                  {...propsOrFunction(props.rendererProps?.td, column, row)}
+                >
+                  {column.render(row as any, index)}
                 </td>
               ))}
             </tr>
@@ -59,6 +41,17 @@ export function MantineFhirTable(
       )}
     </Table>
   );
+}
+
+function propsOrFunction<TProps extends object>(
+  value: TProps | ((...arg: any[]) => TProps) | null | undefined,
+  ...arg: any[]
+): TProps | null | undefined {
+  if (typeof value === "function") {
+    return value(arg);
+  }
+
+  return value;
 }
 
 export interface MantineFhirTableProps {
@@ -82,6 +75,25 @@ export interface MantineFhirTableProps {
         HTMLAttributes<HTMLTableCellElement>,
         HTMLTableCellElement
       >
+    | ((
+        column: FhirTableColumn<any>
+      ) => DetailedHTMLProps<
+        HTMLAttributes<HTMLTableCellElement>,
+        HTMLTableCellElement
+      >)
+    | null
+    | undefined;
+  tr?:
+    | DetailedHTMLProps<
+        HTMLAttributes<HTMLTableRowElement>,
+        HTMLTableRowElement
+      >
+    | ((
+        row: any
+      ) => DetailedHTMLProps<
+        HTMLAttributes<HTMLTableRowElement>,
+        HTMLTableRowElement
+      >)
     | null
     | undefined;
   td?:
@@ -89,6 +101,13 @@ export interface MantineFhirTableProps {
         HTMLAttributes<HTMLTableCellElement>,
         HTMLTableCellElement
       >
+    | ((
+        column: FhirTableColumn<any>,
+        row: any
+      ) => DetailedHTMLProps<
+        HTMLAttributes<HTMLTableCellElement>,
+        HTMLTableCellElement
+      >)
     | null
     | undefined;
 }

@@ -13,26 +13,18 @@ export function MantineFhirPagination(
   return (
     <Pagination.Root
       total={props.totalPages}
-      onFirstPage={() =>
-        props.onPageChange?.(props.query.data?.linkUrl("first"), 1)
-      }
+      onFirstPage={() => props.onPageChange?.(props.data?.linkUrl("first"), 1)}
       onNextPage={() =>
-        props.onPageChange?.(
-          props.query.data?.linkUrl("next"),
-          props.pageNumber + 1
-        )
+        props.onPageChange?.(props.data?.linkUrl("next"), props.pageNumber + 1)
       }
       onPreviousPage={() =>
         props.onPageChange?.(
-          props.query.data?.linkUrl("previous"),
+          props.data?.linkUrl("previous"),
           props.pageNumber - 1
         )
       }
       onLastPage={() =>
-        props.onPageChange?.(
-          props.query.data?.linkUrl("last"),
-          props.totalPages
-        )
+        props.onPageChange?.(props.data?.linkUrl("last"), props.totalPages)
       }
       {...props.rendererProps?.root}
     >
