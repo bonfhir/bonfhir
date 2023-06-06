@@ -80,7 +80,9 @@ export function useFhirSearchController<
     pageUrl: state?.pageUrl || undefined,
     onPageChange: (pageUrl, pageNumber) => updateState({ pageNumber, pageUrl }),
     sort: state?.sort || args?.defaultSort || ("-_lastUpdated" as TSort),
-    onSortChange: (sort) => updateState({ sort: sort as TSort }),
+    onSortChange: (sort) => {
+      return updateState({ sort: sort as TSort });
+    },
     search: state?.search || args?.defaultSearch || undefined,
     onSearch: (search) => updateState({ search }),
   };

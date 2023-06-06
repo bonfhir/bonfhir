@@ -9,6 +9,7 @@ import filesize from "rollup-plugin-filesize";
 
 const external = [
   "@bonfhir/core",
+  "@bonfhir/query",
   "@tanstack/react-query",
   "react",
   "react-dom",

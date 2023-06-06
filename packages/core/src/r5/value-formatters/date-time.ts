@@ -33,7 +33,7 @@ export const dateTimeFormatter: ValueFormatter<
     const matchingData = value
       .trim()
       .match(
-        /^(?<year>\d(\d(\d[1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(?<month>0[1-9]|1[0-2])(-(?<day>0[1-9]|[12]\d|3[01]))?)?(T(?<timeWithTimezone>(?<hours>[01]\d|2[0-3]):(?<minutes>[0-5]\d):(?<seconds>[0-5]\d|60)(?<milliseconds>\\.\d{1,9})?(?<timezone>Z|(\\+|-)((0\d|1[0-3]):[0-5]\d|14:00))))?$/
+        /^(?<year>\d(\d(\d[1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(?<month>0[1-9]|1[0-2])(-(?<day>0[1-9]|[12]\d|3[01]))?)?(T(?<timeWithTimezone>(?<hours>[01]\d|2[0-3]):(?<minutes>[0-5]\d):(?<seconds>[0-5]\d|60)(?<milliseconds>\.\d{1,9})?(?<timezone>Z|(\\+|-)((0\d|1[0-3]):[0-5]\d|14:00))))?$/
       )?.groups as {
       year?: string;
       month?: string;

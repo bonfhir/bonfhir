@@ -78,6 +78,7 @@ describe("date-time", () => {
       { dateStyle: "relative", relativeTo: "2015-02-07T10:25:20-05:00" },
       "in 4 hours",
     ],
+    ["2023-06-03T15:39:52.888Z", undefined, "6/3/23, 3:39 PM"],
   ])("format %p %p => %p", (value, options, expected) => {
     expect(formatter.format("dateTime", value, options)).toEqual(expected);
   });

@@ -232,7 +232,7 @@ function PatientsList(): ReactElement {
                 ),
               },
               {
-                key: "lastUpdated",
+                key: "_lastUpdated",
                 title: "Last Updated",
                 sortable: true,
                 render: (row) => (
