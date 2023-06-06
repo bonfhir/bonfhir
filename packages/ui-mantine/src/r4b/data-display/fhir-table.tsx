@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { FhirTableColumn, FhirTableRendererProps } from "@bonfhir/ui/r4b";
-import { Table, TableProps } from "@mantine/core";
+import { Group, Table, TableProps, UnstyledButton } from "@mantine/core";
+import {
+  IconChevronDown,
+  IconChevronUp,
+  IconSelector,
+} from "@tabler/icons-react";
 import { DetailedHTMLProps, HTMLAttributes, ReactElement } from "react";
 
 export function MantineFhirTable(
@@ -11,16 +16,18 @@ export function MantineFhirTable(
     <Table {...props.rendererProps?.table}>
       <thead {...props.rendererProps?.thead}>
         <tr>
-          {props.columns.map((column) => {
-            return (
-              <th
-                key={column.key}
-                {...propsOrFunction(props.rendererProps?.th, column)}
-              >
-                {column.title}
-              </th>
-            );
-          })}
+          {props.columns.map((column) => (
+            <th
+              key={column.key}
+              {...propsOrFunction(props.rendererProps?.th, column)}
+            >
+              <MantineFhirTableHeader
+                column={column}
+                parsedSort={props.parsedSort}
+                onSortChange={props.onSortChange}
+              />
+            </th>
+          ))}
         </tr>
       </thead>
       {Boolean(props.rows) && (
@@ -40,6 +47,52 @@ export function MantineFhirTable(
         </tbody>
       )}
     </Table>
+  );
+}
+
+function MantineFhirTableHeader({
+  column,
+  parsedSort,
+  onSortChange,
+}: {
+  column: FhirTableColumn<any>;
+  parsedSort: FhirTableRendererProps["parsedSort"];
+  onSortChange: FhirTableRendererProps["onSortChange"];
+}) {
+  return column.sortable ? (
+    <UnstyledButton
+      onClick={() => {
+        return onSortChange?.(parsedSort?.desc ? column.key : `-${column.key}`);
+      }}
+      sx={{
+        fontSize: "inherit",
+        fontWeight: "inherit",
+        color: "inherit",
+        width: "100%",
+      }}
+    >
+      <Group
+        position="apart"
+        sx={{
+          fontSize: "inherit",
+          fontWeight: "inherit",
+          color: "inherit",
+        }}
+      >
+        {column.title}
+        {parsedSort?.columnKey === column.key ? (
+          parsedSort.desc ? (
+            <IconChevronDown />
+          ) : (
+            <IconChevronUp />
+          )
+        ) : (
+          <IconSelector />
+        )}
+      </Group>
+    </UnstyledButton>
+  ) : (
+    <>{column.title}</>
   );
 }
 

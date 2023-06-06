@@ -166,7 +166,7 @@ function PatientsList(): ReactElement {
         <Paper mih="100%">
           <FhirTable
             {...searchController}
-            {...patientsQuery}
+            data={patientsQuery.data}
             rendererProps={{
               table: {
                 mih: "100%",
@@ -194,6 +194,7 @@ function PatientsList(): ReactElement {
               {
                 key: "name",
                 title: "Name",
+                sortable: true,
                 render: (row) => (
                   <FhirValue
                     type="HumanName"
@@ -231,9 +232,16 @@ function PatientsList(): ReactElement {
                 ),
               },
               {
-                key: "risk",
-                title: "Risk",
-                render: () => "Unknown",
+                key: "lastUpdated",
+                title: "Last Updated",
+                sortable: true,
+                render: (row) => (
+                  <FhirValue
+                    type="instant"
+                    value={row.meta.lastUpdated}
+                    options={{ dateStyle: "relative" }}
+                  />
+                ),
               },
             ]}
           />

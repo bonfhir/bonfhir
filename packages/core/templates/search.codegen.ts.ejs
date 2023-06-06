@@ -92,7 +92,7 @@ export class <%= resource.type %>FhirSearchBuilder extends <%= resource.base?.ty
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(parameters: <%= resource.type %>SortOrder | <%= resource.type %>SortOrder[] | null | undefined): this {
-    return this.stringParam("_sort", parameters, undefined, parameters ? "remove" : "replace");
+    return this.stringParam("_sort", parameters, undefined, parameters ? "replace" : "remove");
   }
 }
 

@@ -641,7 +641,7 @@ export class ResourceFhirSearchBuilder extends FhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -675,7 +675,7 @@ export class DomainResourceFhirSearchBuilder extends ResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -789,7 +789,7 @@ export class AccountFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -1074,7 +1074,7 @@ export class ActivityDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -1203,7 +1203,7 @@ export class AdministrableProductDefinitionFhirSearchBuilder extends DomainResou
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -1375,7 +1375,7 @@ export class AdverseEventFhirSearchBuilder extends DomainResourceFhirSearchBuild
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -1799,7 +1799,7 @@ export class AllergyIntoleranceFhirSearchBuilder extends DomainResourceFhirSearc
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -2030,7 +2030,7 @@ export class AppointmentFhirSearchBuilder extends DomainResourceFhirSearchBuilde
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -2143,7 +2143,7 @@ export class AppointmentResponseFhirSearchBuilder extends DomainResourceFhirSear
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -2373,7 +2373,7 @@ export class AuditEventFhirSearchBuilder extends DomainResourceFhirSearchBuilder
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -2467,7 +2467,7 @@ export class BasicFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -2489,7 +2489,7 @@ export class BinaryFhirSearchBuilder extends ResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -2515,7 +2515,7 @@ export class BiologicallyDerivedProductFhirSearchBuilder extends DomainResourceF
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -2591,7 +2591,7 @@ export class BodyStructureFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -2676,7 +2676,7 @@ export class BundleFhirSearchBuilder extends ResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -3437,7 +3437,7 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -3870,7 +3870,7 @@ export class CarePlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -4156,7 +4156,7 @@ export class CareTeamFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -4182,7 +4182,7 @@ export class CatalogEntryFhirSearchBuilder extends DomainResourceFhirSearchBuild
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -4408,7 +4408,7 @@ export class ChargeItemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -4613,7 +4613,7 @@ export class ChargeItemDefinitionFhirSearchBuilder extends DomainResourceFhirSea
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -4823,7 +4823,7 @@ export class CitationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -5049,7 +5049,7 @@ export class ClaimFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -5207,7 +5207,7 @@ export class ClaimResponseFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -5493,7 +5493,7 @@ export class ClinicalImpressionFhirSearchBuilder extends DomainResourceFhirSearc
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -5655,7 +5655,7 @@ export class ClinicalUseDefinitionFhirSearchBuilder extends DomainResourceFhirSe
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -6387,7 +6387,7 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -6594,7 +6594,7 @@ export class CommunicationFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -6814,7 +6814,7 @@ export class CommunicationRequestFhirSearchBuilder extends DomainResourceFhirSea
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -7412,7 +7412,7 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -7853,7 +7853,7 @@ export class CompositionFhirSearchBuilder extends DomainResourceFhirSearchBuilde
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -8660,7 +8660,7 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -9097,7 +9097,7 @@ export class ConditionFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -9464,7 +9464,7 @@ export class ConsentFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -9604,7 +9604,7 @@ export class ContractFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -9758,7 +9758,7 @@ export class CoverageFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -9870,7 +9870,7 @@ export class CoverageEligibilityRequestFhirSearchBuilder extends DomainResourceF
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -10006,7 +10006,7 @@ export class CoverageEligibilityResponseFhirSearchBuilder extends DomainResource
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -10236,7 +10236,7 @@ export class DetectedIssueFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -10401,7 +10401,7 @@ export class DeviceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -10463,7 +10463,7 @@ export class DeviceDefinitionFhirSearchBuilder extends DomainResourceFhirSearchB
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -10549,7 +10549,7 @@ export class DeviceMetricFhirSearchBuilder extends DomainResourceFhirSearchBuild
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -10980,7 +10980,7 @@ export class DeviceRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -11124,7 +11124,7 @@ export class DeviceUseStatementFhirSearchBuilder extends DomainResourceFhirSearc
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -11563,7 +11563,7 @@ export class DiagnosticReportFhirSearchBuilder extends DomainResourceFhirSearchB
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -11889,7 +11889,7 @@ export class DocumentManifestFhirSearchBuilder extends DomainResourceFhirSearchB
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -12380,7 +12380,7 @@ export class DocumentReferenceFhirSearchBuilder extends DomainResourceFhirSearch
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -12856,7 +12856,7 @@ export class EncounterFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -12951,7 +12951,7 @@ export class EndpointFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -13027,7 +13027,7 @@ export class EnrollmentRequestFhirSearchBuilder extends DomainResourceFhirSearch
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -13091,7 +13091,7 @@ export class EnrollmentResponseFhirSearchBuilder extends DomainResourceFhirSearc
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -13407,7 +13407,7 @@ export class EpisodeOfCareFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -13692,7 +13692,7 @@ export class EventDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -13868,7 +13868,7 @@ export class EvidenceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -14003,7 +14003,7 @@ export class EvidenceReportFhirSearchBuilder extends DomainResourceFhirSearchBui
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -14194,7 +14194,7 @@ export class EvidenceVariableFhirSearchBuilder extends DomainResourceFhirSearchB
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -14373,7 +14373,7 @@ export class ExampleScenarioFhirSearchBuilder extends DomainResourceFhirSearchBu
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -14605,7 +14605,7 @@ export class ExplanationOfBenefitFhirSearchBuilder extends DomainResourceFhirSea
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -14935,7 +14935,7 @@ export class FamilyMemberHistoryFhirSearchBuilder extends DomainResourceFhirSear
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -15156,7 +15156,7 @@ export class FlagFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -15408,7 +15408,7 @@ export class GoalFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -16037,7 +16037,7 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -16175,7 +16175,7 @@ export class GroupFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -16251,7 +16251,7 @@ export class GuidanceResponseFhirSearchBuilder extends DomainResourceFhirSearchB
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -16422,7 +16422,7 @@ export class HealthcareServiceFhirSearchBuilder extends DomainResourceFhirSearch
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -16786,7 +16786,7 @@ export class ImagingStudyFhirSearchBuilder extends DomainResourceFhirSearchBuild
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -17173,7 +17173,7 @@ export class ImmunizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -17283,7 +17283,7 @@ export class ImmunizationEvaluationFhirSearchBuilder extends DomainResourceFhirS
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -17405,7 +17405,7 @@ export class ImmunizationRecommendationFhirSearchBuilder extends DomainResourceF
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -18108,7 +18108,7 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -18229,7 +18229,7 @@ export class IngredientFhirSearchBuilder extends DomainResourceFhirSearchBuilder
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -18423,7 +18423,7 @@ export class InsurancePlanFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -18599,7 +18599,7 @@ export class InvoiceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -18902,7 +18902,7 @@ export class LibraryFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -18962,7 +18962,7 @@ export class LinkageFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -19349,7 +19349,7 @@ export class ListFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -19562,7 +19562,7 @@ Requires the near-distance parameter to be provided also
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -19627,7 +19627,7 @@ export class ManufacturedItemDefinitionFhirSearchBuilder extends DomainResourceF
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -19907,7 +19907,7 @@ export class MeasureFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -20039,7 +20039,7 @@ export class MeasureReportFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -20214,7 +20214,7 @@ export class MediaFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -20374,7 +20374,7 @@ export class MedicationFhirSearchBuilder extends DomainResourceFhirSearchBuilder
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -20744,7 +20744,7 @@ export class MedicationAdministrationFhirSearchBuilder extends DomainResourceFhi
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -21139,7 +21139,7 @@ export class MedicationDispenseFhirSearchBuilder extends DomainResourceFhirSearc
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -21322,7 +21322,7 @@ export class MedicationKnowledgeFhirSearchBuilder extends DomainResourceFhirSear
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -21732,7 +21732,7 @@ export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearch
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -22078,7 +22078,7 @@ export class MedicationStatementFhirSearchBuilder extends DomainResourceFhirSear
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -22250,7 +22250,7 @@ export class MedicinalProductDefinitionFhirSearchBuilder extends DomainResourceF
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -22974,7 +22974,7 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -23166,7 +23166,7 @@ export class MessageHeaderFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -23397,7 +23397,7 @@ export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearch
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -24022,7 +24022,7 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -24351,7 +24351,7 @@ export class NutritionOrderFhirSearchBuilder extends DomainResourceFhirSearchBui
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -24403,7 +24403,7 @@ export class NutritionProductFhirSearchBuilder extends DomainResourceFhirSearchB
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -25112,7 +25112,7 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -25138,7 +25138,7 @@ export class ObservationDefinitionFhirSearchBuilder extends DomainResourceFhirSe
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -25883,7 +25883,7 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -25909,7 +25909,7 @@ export class OperationOutcomeFhirSearchBuilder extends DomainResourceFhirSearchB
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26091,7 +26091,7 @@ export class OrganizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26282,7 +26282,7 @@ export class OrganizationAffiliationFhirSearchBuilder extends DomainResourceFhir
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26443,7 +26443,7 @@ export class PackagedProductDefinitionFhirSearchBuilder extends DomainResourceFh
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26465,7 +26465,7 @@ export class ParametersFhirSearchBuilder extends ResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26881,7 +26881,7 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26993,7 +26993,7 @@ export class PaymentNoticeFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -27117,7 +27117,7 @@ export class PaymentReconciliationFhirSearchBuilder extends DomainResourceFhirSe
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -27474,7 +27474,7 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -27781,7 +27781,7 @@ export class PlanDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBui
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -28122,7 +28122,7 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -28332,7 +28332,7 @@ export class PractitionerRoleFhirSearchBuilder extends DomainResourceFhirSearchB
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -28770,7 +28770,7 @@ export class ProcedureFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -28912,7 +28912,7 @@ export class ProvenanceFhirSearchBuilder extends DomainResourceFhirSearchBuilder
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -29161,7 +29161,7 @@ export class QuestionnaireFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -29321,7 +29321,7 @@ export class QuestionnaireResponseFhirSearchBuilder extends DomainResourceFhirSe
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -29435,7 +29435,7 @@ export class RegulatedAuthorizationFhirSearchBuilder extends DomainResourceFhirS
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -29772,7 +29772,7 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -29966,7 +29966,7 @@ export class RequestGroupFhirSearchBuilder extends DomainResourceFhirSearchBuild
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -30251,7 +30251,7 @@ export class ResearchDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -30537,7 +30537,7 @@ export class ResearchElementDefinitionFhirSearchBuilder extends DomainResourceFh
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -30720,7 +30720,7 @@ export class ResearchStudyFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -30820,7 +30820,7 @@ export class ResearchSubjectFhirSearchBuilder extends DomainResourceFhirSearchBu
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -31157,7 +31157,7 @@ export class RiskAssessmentFhirSearchBuilder extends DomainResourceFhirSearchBui
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -31265,7 +31265,7 @@ export class ScheduleFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -31951,7 +31951,7 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -32419,7 +32419,7 @@ export class ServiceRequestFhirSearchBuilder extends DomainResourceFhirSearchBui
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -32538,7 +32538,7 @@ export class SlotFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -32704,7 +32704,7 @@ export class SpecimenFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -32766,7 +32766,7 @@ export class SpecimenDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -33573,7 +33573,7 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -34253,7 +34253,7 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -34349,7 +34349,7 @@ export class SubscriptionFhirSearchBuilder extends DomainResourceFhirSearchBuild
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -34375,7 +34375,7 @@ export class SubscriptionStatusFhirSearchBuilder extends DomainResourceFhirSearc
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -34508,7 +34508,7 @@ export class SubscriptionTopicFhirSearchBuilder extends DomainResourceFhirSearch
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -34624,7 +34624,7 @@ export class SubstanceFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -34709,7 +34709,7 @@ export class SubstanceDefinitionFhirSearchBuilder extends DomainResourceFhirSear
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -34929,7 +34929,7 @@ export class SupplyDeliveryFhirSearchBuilder extends DomainResourceFhirSearchBui
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -35139,7 +35139,7 @@ export class SupplyRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -35385,7 +35385,7 @@ export class TaskFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -36040,7 +36040,7 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -36134,7 +36134,7 @@ export class TestReportFhirSearchBuilder extends DomainResourceFhirSearchBuilder
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -36345,7 +36345,7 @@ export class TestScriptFhirSearchBuilder extends DomainResourceFhirSearchBuilder
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -37056,7 +37056,7 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -37096,7 +37096,7 @@ export class VerificationResultFhirSearchBuilder extends DomainResourceFhirSearc
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -37353,7 +37353,7 @@ export class VisionPrescriptionFhirSearchBuilder extends DomainResourceFhirSearc
       "_sort",
       parameters,
       undefined,
-      parameters ? "remove" : "replace"
+      parameters ? "replace" : "remove"
     );
   }
 }

@@ -47,7 +47,7 @@ export function FhirTable<
     rows,
     parsedSort: props.sort?.trim()
       ? {
-          columKey: props.sort.startsWith("-")
+          columnKey: props.sort.startsWith("-")
             ? props.sort.slice(1)
             : props.sort,
           desc: props.sort.startsWith("-"),

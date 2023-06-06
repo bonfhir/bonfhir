@@ -12,6 +12,7 @@ const external = [
   "@bonfhir/query",
   "@bonfhir/ui",
   "@mantine/core",
+  "@tabler/icons-react",
   "@tanstack/react-query",
   "react",
   "react-dom",
