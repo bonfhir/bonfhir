@@ -5,18 +5,14 @@ import {
   QuickFilter,
   TitleDivider,
 } from "@/components";
+import { useFhirUrlSearchController } from "@/hooks/use-fhir-url-search-controller";
 import { Patient, PatientSortOrder } from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
   MantineFhirTableProps,
   MantineFhirValueProps,
 } from "@bonfhir/ui-mantine/r4b";
-import {
-  FhirPagination,
-  FhirTable,
-  FhirValue,
-  useFhirSearchController,
-} from "@bonfhir/ui/r4b";
+import { FhirPagination, FhirTable, FhirValue } from "@bonfhir/ui/r4b";
 import { Drawer, Grid, Paper, SimpleGrid, Stack } from "@mantine/core";
 import { PropsWithChildren, ReactElement, useState } from "react";
 
@@ -147,9 +143,12 @@ function Indicators(): ReactElement {
 }
 
 function PatientsList(): ReactElement {
-  const searchController = useFhirSearchController<PatientSortOrder>({
-    pageSize: 2,
-  });
+  const searchController = useFhirUrlSearchController<PatientSortOrder>(
+    "search",
+    {
+      pageSize: 2,
+    }
+  );
 
   const patientsQuery = useFhirSearch(
     "Patient",

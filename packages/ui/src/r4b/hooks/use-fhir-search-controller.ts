@@ -1,6 +1,6 @@
 import { useFhirQueryContext } from "@bonfhir/query/r4b";
 import { QueryKey } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface UseFhirSearchControllerValue<
   TSort extends string = string,
@@ -55,7 +55,13 @@ export function useFhirSearchController<
 ): UseFhirSearchControllerValue<TSort, TSearch> {
   const [state, setState] = useState<
     UseFhirSearchControllerState<TSort, TSearch> | undefined
-  >(args?.stateManager?.[0]);
+  >();
+
+  useEffect(() => {
+    if (!state) {
+      setState(args?.stateManager?.[0]);
+    }
+  }, [state, args?.stateManager?.[0]]);
 
   const updateState = (
     newState: Partial<UseFhirSearchControllerState<TSort, TSearch>>
@@ -109,7 +115,7 @@ export function useURLSearchParamsStateManager<
   scope: string,
   [urlSearchParams, setURLSearchParams]: [
     URLSearchParams,
-    (value: Record<string, string | string[]> | URLSearchParams) => void
+    (value: URLSearchParams) => void
   ]
 ): UseFhirSearchControllerStateManager<TSort, TSearch> {
   return [
@@ -118,10 +124,12 @@ export function useURLSearchParamsStateManager<
         JSON.parse(atob(urlSearchParams.get(scope)!))
       : undefined,
     (value) => {
-      setURLSearchParams({
-        ...Object.fromEntries(urlSearchParams),
-        [scope]: btoa(JSON.stringify(value)),
-      });
+      setURLSearchParams(
+        new URLSearchParams({
+          ...Object.fromEntries(urlSearchParams),
+          [scope]: btoa(JSON.stringify(value)),
+        })
+      );
     },
   ];
 }
