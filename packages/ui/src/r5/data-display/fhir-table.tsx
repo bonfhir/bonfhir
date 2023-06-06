@@ -24,11 +24,12 @@ export interface FhirTableProps<
   rendererProps?: TRendererProps;
 }
 
-export interface FhirTableColumn<TRow> {
+export interface FhirTableColumn<TRow, TRendererProps = any> {
   key: string;
   title: ReactNode;
   sortable?: boolean | null | undefined;
   render: (row: TRow, index: number) => ReactNode;
+  rendererProps?: TRendererProps;
 }
 
 export function FhirTable<

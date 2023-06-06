@@ -5,9 +5,12 @@ import {
   QuickFilter,
   TitleDivider,
 } from "@/components";
-import { PatientSortOrder } from "@bonfhir/core/r4b";
+import { Patient, PatientSortOrder } from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/query/r4b";
-import { MantineFhirValueProps } from "@bonfhir/ui-mantine/r4b";
+import {
+  MantineFhirTableProps,
+  MantineFhirValueProps,
+} from "@bonfhir/ui-mantine/r4b";
 import {
   FhirPagination,
   FhirTable,
@@ -146,7 +149,6 @@ function Indicators(): ReactElement {
 function PatientsList(): ReactElement {
   const searchController = useFhirSearchController<PatientSortOrder>({
     pageSize: 2,
-    defaultSort: "name",
   });
 
   const patientsQuery = useFhirSearch(
@@ -164,12 +166,20 @@ function PatientsList(): ReactElement {
     <Grid>
       <Grid.Col span="auto">
         <Paper mih="100%">
-          <FhirTable
+          <FhirTable<Patient, MantineFhirTableProps>
             {...searchController}
             data={patientsQuery.data}
             rendererProps={{
               table: {
                 mih: "100%",
+              },
+              td(column) {
+                switch (column.key) {
+                  case "name": {
+                    return {};
+                  }
+                }
+                return { style: { width: 200 } };
               },
             }}
             columns={[
@@ -204,8 +214,9 @@ function PatientsList(): ReactElement {
                 ),
               },
               {
-                key: "birth-date",
+                key: "birthdate",
                 title: "Birth Date",
+                sortable: true,
                 render: (row) => (
                   <FhirValue
                     type="date"
@@ -227,6 +238,7 @@ function PatientsList(): ReactElement {
                       max: 1,
                       systemFilterOrder: ["http://hl7.org/fhir/sid/us-ssn"],
                       style: "value",
+                      default: "Unknown",
                     }}
                   />
                 ),
