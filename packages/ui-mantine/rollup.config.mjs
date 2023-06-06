@@ -4,20 +4,11 @@ import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { readFile } from "node:fs/promises";
 import dts from "rollup-plugin-dts";
 import filesize from "rollup-plugin-filesize";
 
-const external = [
-  "@bonfhir/core",
-  "@bonfhir/query",
-  "@bonfhir/ui",
-  "@mantine/core",
-  "@tabler/icons-react",
-  "@tanstack/react-query",
-  "react",
-  "react-dom",
-  "react-router-dom",
-];
+const packageJson = JSON.parse(await readFile("package.json", "utf8"));
 
 export default ["r4b", "r5"].flatMap((release) =>
   ["cjs", "esm"].flatMap((format) => [
@@ -33,7 +24,9 @@ export default ["r4b", "r5"].flatMap((release) =>
           compact: true,
         },
       ],
-      external,
+      external: (id) =>
+        id.startsWith("@bonfhir/") ||
+        Object.keys(packageJson.peerDependencies || {}).includes(id),
       plugins: [
         replace({
           preventAssignment: true,
@@ -85,7 +78,9 @@ export default ["r4b", "r5"].flatMap((release) =>
           format: format === "esm" ? "m" : "c",
         },
       ],
-      external,
+      external: (id) =>
+        id.startsWith("@bonfhir/") ||
+        Object.keys(packageJson.peerDependencies || {}).includes(id),
       plugins: [
         dts(),
         {
