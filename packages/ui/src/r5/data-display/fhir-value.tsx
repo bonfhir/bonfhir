@@ -82,7 +82,7 @@ export function FhirValue<TRendererProps = any>(
     props.options
   );
 
-  return render("FhirValue", {
+  return render<FhirValueRendererProps>("FhirValue", {
     ...props,
     formattedValue,
   });

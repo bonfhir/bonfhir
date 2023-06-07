@@ -12,7 +12,12 @@ import {
   MantineFhirTableProps,
   MantineFhirValueProps,
 } from "@bonfhir/ui-mantine/r4b";
-import { FhirPagination, FhirTable, FhirValue } from "@bonfhir/ui/r4b";
+import {
+  FhirPagination,
+  FhirQueryLoader,
+  FhirTable,
+  FhirValue,
+} from "@bonfhir/ui/r4b";
 import { Drawer, Grid, Paper, SimpleGrid, Stack } from "@mantine/core";
 import { PropsWithChildren, ReactElement, useState } from "react";
 
@@ -165,98 +170,100 @@ function PatientsList(): ReactElement {
     <Grid>
       <Grid.Col span="auto">
         <Paper mih="100%">
-          <FhirTable<Patient, MantineFhirTableProps>
-            {...searchController}
-            data={patientsQuery.data}
-            rendererProps={{
-              table: {
-                mih: "100%",
-              },
-              td(column) {
-                switch (column.key) {
-                  case "name": {
-                    return {};
+          <FhirQueryLoader query={patientsQuery}>
+            <FhirTable<Patient, MantineFhirTableProps>
+              {...searchController}
+              {...patientsQuery}
+              rendererProps={{
+                table: {
+                  mih: "100%",
+                },
+                td(column) {
+                  switch (column.key) {
+                    case "name": {
+                      return {};
+                    }
                   }
-                }
-                return { style: { width: 200 } };
-              },
-            }}
-            columns={[
-              {
-                key: "organization",
-                title: "Clinic",
-                render: (row) => (
-                  <FhirValue<MantineFhirValueProps>
-                    type="string"
-                    value={row.managingOrganization?.included?.name}
-                    options={{ default: "Unassigned" }}
-                    rendererProps={{
-                      text: {
-                        c: row.managingOrganization?.included
-                          ? undefined
-                          : "dimmed",
-                      },
-                    }}
-                  />
-                ),
-              },
-              {
-                key: "name",
-                title: "Name",
-                sortable: true,
-                render: (row) => (
-                  <FhirValue
-                    type="HumanName"
-                    value={row.name}
-                    options={{ max: 1 }}
-                  />
-                ),
-              },
-              {
-                key: "birthdate",
-                title: "Birth Date",
-                sortable: true,
-                render: (row) => (
-                  <FhirValue
-                    type="date"
-                    value={row.birthDate}
-                    options={{
-                      dateStyle: "medium",
-                    }}
-                  />
-                ),
-              },
-              {
-                key: "ssn",
-                title: "SSN",
-                render: (row) => (
-                  <FhirValue
-                    type="Identifier"
-                    value={row.identifier}
-                    options={{
-                      max: 1,
-                      systemFilterOrder: ["http://hl7.org/fhir/sid/us-ssn"],
-                      style: "value",
-                      default: "Unknown",
-                    }}
-                  />
-                ),
-              },
-              {
-                key: "_lastUpdated",
-                title: "Last Updated",
-                sortable: true,
-                render: (row) => (
-                  <FhirValue
-                    type="instant"
-                    value={row.meta.lastUpdated}
-                    options={{ dateStyle: "relative" }}
-                  />
-                ),
-              },
-            ]}
-          />
-          <FhirPagination {...patientsQuery} {...searchController} />
+                  return { style: { width: 200 } };
+                },
+              }}
+              columns={[
+                {
+                  key: "organization",
+                  title: "Clinic",
+                  render: (row) => (
+                    <FhirValue<MantineFhirValueProps>
+                      type="string"
+                      value={row.managingOrganization?.included?.name}
+                      options={{ default: "Unassigned" }}
+                      rendererProps={{
+                        text: {
+                          c: row.managingOrganization?.included
+                            ? undefined
+                            : "dimmed",
+                        },
+                      }}
+                    />
+                  ),
+                },
+                {
+                  key: "name",
+                  title: "Name",
+                  sortable: true,
+                  render: (row) => (
+                    <FhirValue
+                      type="HumanName"
+                      value={row.name}
+                      options={{ max: 1 }}
+                    />
+                  ),
+                },
+                {
+                  key: "birthdate",
+                  title: "Birth Date",
+                  sortable: true,
+                  render: (row) => (
+                    <FhirValue
+                      type="date"
+                      value={row.birthDate}
+                      options={{
+                        dateStyle: "medium",
+                      }}
+                    />
+                  ),
+                },
+                {
+                  key: "ssn",
+                  title: "SSN",
+                  render: (row) => (
+                    <FhirValue
+                      type="Identifier"
+                      value={row.identifier}
+                      options={{
+                        max: 1,
+                        systemFilterOrder: ["http://hl7.org/fhir/sid/us-ssn"],
+                        style: "value",
+                        default: "Unknown",
+                      }}
+                    />
+                  ),
+                },
+                {
+                  key: "_lastUpdated",
+                  title: "Last Updated",
+                  sortable: true,
+                  render: (row) => (
+                    <FhirValue
+                      type="instant"
+                      value={row.meta.lastUpdated}
+                      options={{ dateStyle: "relative" }}
+                    />
+                  ),
+                },
+              ]}
+            />
+            <FhirPagination {...patientsQuery} {...searchController} />
+          </FhirQueryLoader>
         </Paper>
       </Grid.Col>
       <Grid.Col span="content">

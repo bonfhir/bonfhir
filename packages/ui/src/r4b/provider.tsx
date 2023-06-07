@@ -26,12 +26,12 @@ export function FhirUIProvider(props: FhirUIProviderProps) {
       value={{
         formatter,
         renderer: props.renderer,
-        render(rendererName, ...args) {
+        render(rendererName, rendererProps) {
           const renderer = props.renderer[rendererName];
           if (!renderer) {
             throw new Error(`Renderer "${renderer}" not found`);
           }
-          return createElement(renderer as any, ...args);
+          return createElement(renderer as any, rendererProps as any);
         },
       }}
     >

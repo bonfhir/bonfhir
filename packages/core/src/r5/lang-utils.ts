@@ -15,6 +15,13 @@ export function asArray<T>(
   return Array.isArray(value) ? (value as any) : [value];
 }
 
+/**
+ * Return the given value as an Error if it's not already one.
+ */
+export function asError(value: unknown): Error {
+  return value instanceof Error ? value : new Error(String(value));
+}
+
 export interface TruncateOptions {
   /** The maximum string length. Defaults to 30. */
   length?: number | null | undefined;

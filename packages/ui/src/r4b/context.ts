@@ -5,9 +5,9 @@ import { FhirUIRenderer } from "./renderer.js";
 export interface FhirUIContext {
   formatter: DefaultFormatter;
   renderer: Partial<FhirUIRenderer>;
-  render(
+  render<TRendererProps>(
     renderer: keyof FhirUIRenderer,
-    ...args: any[]
+    props: TRendererProps
   ): ReactElement<any, any> | null;
 }
 

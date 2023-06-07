@@ -52,7 +52,7 @@ export function FhirPagination<TRendererProps = any>(
     totalPages: formatter.format("positiveInt", totalPages),
   });
 
-  return render("FhirPagination", {
+  return render<FhirPaginationRendererProps>("FhirPagination", {
     renderedTextTemplate,
     total,
     totalPages,

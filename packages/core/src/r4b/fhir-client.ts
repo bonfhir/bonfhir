@@ -322,6 +322,10 @@ export class FhirClientError extends Error {
   }
 }
 
+export function isFhirClientError(error: unknown): error is FhirClientError {
+  return error instanceof FhirClientError;
+}
+
 /**
  * https://hl7.org/fhir/http.html#parameters
  */
