@@ -5,6 +5,7 @@ import { FhirUIRenderer } from "./renderer.js";
 export interface FhirUIContext {
   formatter: DefaultFormatter;
   renderer: Partial<FhirUIRenderer>;
+  onNavigate?: (args: OnNavigateArgs) => void;
   render<TRendererProps>(
     renderer: keyof FhirUIRenderer,
     props: TRendererProps
@@ -33,3 +34,8 @@ export const useFhirUIContext = (): FhirUIContext => {
 
   return context;
 };
+
+export interface OnNavigateArgs {
+  target: string;
+  aux: boolean;
+}

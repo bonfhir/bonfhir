@@ -174,6 +174,7 @@ function PatientsList(): ReactElement {
             <FhirTable<Patient, MantineFhirTableProps>
               {...searchController}
               {...patientsQuery}
+              onRowNavigate={(patient) => `/patients/${patient.id}`}
               rendererProps={{
                 table: {
                   mih: "100%",

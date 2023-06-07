@@ -1,11 +1,12 @@
 import { Formatter } from "@bonfhir/core/r4b";
 import { PropsWithChildren, createElement, useMemo } from "react";
-import { FhirUIContext } from "./context.js";
+import { FhirUIContext, OnNavigateArgs } from "./context.js";
 import { FhirUIRenderer } from "./renderer.js";
 
 export type FhirUIProviderProps = PropsWithChildren<{
   formatter?: Formatter | null | undefined;
   renderer: Partial<FhirUIRenderer>;
+  onNavigate?: (args: OnNavigateArgs) => void;
 }>;
 
 /**
@@ -26,6 +27,7 @@ export function FhirUIProvider(props: FhirUIProviderProps) {
       value={{
         formatter,
         renderer: props.renderer,
+        onNavigate: props.onNavigate,
         render(rendererName, rendererProps) {
           const renderer = props.renderer[rendererName];
           if (!renderer) {

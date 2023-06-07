@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { FhirTableColumn, FhirTableRendererProps } from "@bonfhir/ui/r5";
+import {
+  FhirTableColumn,
+  FhirTableRendererProps,
+  useFhirUIContext,
+} from "@bonfhir/ui/r5";
 import { Group, Table, TableProps, UnstyledButton } from "@mantine/core";
 import {
   IconChevronDown,
@@ -12,6 +16,8 @@ import { DetailedHTMLProps, HTMLAttributes, ReactElement } from "react";
 export function MantineFhirTable(
   props: FhirTableRendererProps<MantineFhirTableProps>
 ): ReactElement | null {
+  const { onNavigate } = useFhirUIContext();
+
   return (
     <Table {...props.rendererProps?.table}>
       <thead {...props.rendererProps?.thead}>
@@ -33,7 +39,30 @@ export function MantineFhirTable(
       {Boolean(props.rows) && (
         <tbody {...props.rendererProps?.tbody}>
           {props.rows?.map((row, index) => (
-            <tr key={index} {...propsOrFunction(props.rendererProps?.tr, row)}>
+            <tr
+              key={index}
+              onClick={() => {
+                props.onRowClick?.(row as any, index);
+                const target = props.onRowNavigate?.(row as any, index);
+                if (target) {
+                  onNavigate?.({ target, aux: false });
+                }
+              }}
+              onAuxClick={() => {
+                props.onRowAuxClick?.(row as any, index);
+                const target = props.onRowNavigate?.(row as any, index);
+                if (target) {
+                  onNavigate?.({ target, aux: true });
+                }
+              }}
+              style={{
+                cursor:
+                  props.onRowClick || props.onRowNavigate
+                    ? "pointer"
+                    : "default",
+              }}
+              {...propsOrFunction(props.rendererProps?.tr, row)}
+            >
               {props.columns.map((column) => (
                 <td
                   key={column.key}

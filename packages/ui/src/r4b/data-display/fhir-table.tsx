@@ -21,6 +21,9 @@ export interface FhirTableProps<
   columns: FhirTableColumn<TRow>[];
   sort?: string | null | undefined;
   onSortChange?: ((sort: string) => void) | null | undefined;
+  onRowClick?: ((row: TRow, index: number) => void) | null | undefined;
+  onRowAuxClick?: ((row: TRow, index: number) => void) | null | undefined;
+  onRowNavigate?: ((row: TRow, index: number) => string) | null | undefined;
   rendererProps?: TRendererProps;
 }
 

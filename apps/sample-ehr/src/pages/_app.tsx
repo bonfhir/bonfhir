@@ -7,11 +7,13 @@ import { AppShell, MantineProvider } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppProps } from "next/app";
 import Head from "next/head";
+import { useRouter } from "next/navigation";
 import { styleCache } from "./style-cache";
 import theme from "./theme";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
+  const router = useRouter();
 
   const client = new FetchFhirClient({
     baseUrl: "http://localhost:8103/fhir/R4/",
@@ -34,7 +36,16 @@ export default function App(props: AppProps) {
         theme={theme}
       >
         <FhirQueryProvider fhirClient={client}>
-          <FhirUIProvider renderer={MantineRenderer}>
+          <FhirUIProvider
+            renderer={MantineRenderer}
+            onNavigate={({ target, aux }) => {
+              if (aux) {
+                window.open(target, "_blank");
+              } else {
+                router.push(target);
+              }
+            }}
+          >
             <AppShell
               navbar={<Navbar />}
               styles={{
