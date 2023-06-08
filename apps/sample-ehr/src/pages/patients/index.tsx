@@ -13,6 +13,7 @@ import {
   MantineFhirValueProps,
 } from "@bonfhir/ui-mantine/r4b";
 import {
+  FhirInput,
   FhirPagination,
   FhirQueryLoader,
   FhirTable,
@@ -148,17 +149,21 @@ function Indicators(): ReactElement {
 }
 
 function PatientsList(): ReactElement {
-  const searchController = useFhirUrlSearchController<PatientSortOrder>(
-    "search",
-    {
-      pageSize: 2,
-    }
-  );
+  const searchController = useFhirUrlSearchController<
+    PatientSortOrder,
+    { name: string | undefined }
+  >("search", {
+    pageSize: 2,
+    defaultSearch: {
+      name: undefined,
+    },
+  });
 
   const patientsQuery = useFhirSearch(
     "Patient",
     (search) =>
       search
+        .name(searchController.search?.name)
         ._sort(searchController.sort)
         ._count(searchController.pageSize)
         ._include("Patient", "organization")
@@ -271,6 +276,11 @@ function PatientsList(): ReactElement {
         <Paper>
           <Stack>
             <TitleDivider title="Quick Filters" />
+            <FhirInput
+              type="string"
+              label="Patient Name"
+              onChange={(name) => searchController.onSearch({ name })}
+            />
             <QuickFilter
               label="Patient Risk Stratification"
               options={["High Risk", "Medium Risk", "Low Risk"]}
