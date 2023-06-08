@@ -12,15 +12,13 @@ export function MantineFhirInputString(
       error={props.error}
       placeholder={props.placeholder}
       required={props.required}
-      value={props.value}
+      value={props.value || ""}
       onChange={(evt: FormEvent<HTMLInputElement>) =>
         props.onChange?.(evt.currentTarget.value || undefined)
       }
-      {...props.rendererProps?.input}
+      {...props.rendererProps}
     />
   );
 }
 
-export type MantineFhirInputStringProps = {
-  input: TextInputProps | null | undefined;
-};
+export type MantineFhirInputStringProps = TextInputProps;

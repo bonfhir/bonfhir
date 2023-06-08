@@ -9,6 +9,7 @@ import { useFhirUrlSearchController } from "@/hooks/use-fhir-url-search-controll
 import { Patient, PatientSortOrder } from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
+  MantineFhirInputDateProps,
   MantineFhirTableProps,
   MantineFhirValueProps,
 } from "@bonfhir/ui-mantine/r4b";
@@ -151,11 +152,12 @@ function Indicators(): ReactElement {
 function PatientsList(): ReactElement {
   const searchController = useFhirUrlSearchController<
     PatientSortOrder,
-    { name: string | undefined }
+    { name: string | undefined; birthDate: string | undefined }
   >("search", {
     pageSize: 2,
     defaultSearch: {
       name: undefined,
+      birthDate: undefined,
     },
   });
 
@@ -164,6 +166,7 @@ function PatientsList(): ReactElement {
     (search) =>
       search
         .name(searchController.search?.name)
+        .birthdate(searchController.search?.birthDate)
         ._sort(searchController.sort)
         ._count(searchController.pageSize)
         ._include("Patient", "organization")
@@ -279,7 +282,24 @@ function PatientsList(): ReactElement {
             <FhirInput
               type="string"
               label="Patient Name"
-              onChange={(name) => searchController.onSearch({ name })}
+              value={searchController.search?.name}
+              onChange={(name) =>
+                searchController.onSearch((search) => ({ ...search, name }))
+              }
+            />
+            <FhirInput<MantineFhirInputDateProps>
+              type="date"
+              label="Patient DOB"
+              value={searchController.search?.birthDate}
+              onChange={(birthDate) =>
+                searchController.onSearch((search) => ({
+                  ...search,
+                  birthDate,
+                }))
+              }
+              rendererProps={{
+                maxDate: new Date(),
+              }}
             />
             <QuickFilter
               label="Patient Risk Stratification"

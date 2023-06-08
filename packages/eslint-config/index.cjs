@@ -44,6 +44,7 @@ module.exports = {
     ],
     "unicorn/no-array-reduce": "off",
     "unicorn/no-nested-ternary": "off",
+    "unicorn/no-useless-undefined": ["error", { checkArguments: false }],
     "unicorn/prevent-abbreviations": "off",
     "@bonfhir/ensure-correct-fhir-version": "error",
   },

@@ -2,26 +2,26 @@ import { ReactElement } from "react";
 import { useFhirUIContext } from "../../context.js";
 import { FhirInputCommonProps } from "./common.js";
 
-export interface FhirInputStringProps<TRendererProps = any>
+export interface FhirInputDateProps<TRendererProps = any>
   extends FhirInputCommonProps {
-  type: "string";
+  type: "date";
   placeholder?: string | null | undefined;
   value?: string | null | undefined;
   onChange?: (value: string | undefined) => void;
   rendererProps?: TRendererProps;
 }
 
-export function FhirInputString<TRendererProps = any>(
-  props: FhirInputStringProps<TRendererProps>
+export function FhirInputDate<TRendererProps = any>(
+  props: FhirInputDateProps<TRendererProps>
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
-  return render("FhirInputString", { ...props });
+  return render("FhirInputDate", { ...props });
 }
 
-export type FhirInputStringRendererProps<TRendererProps = any> =
-  FhirInputStringProps<TRendererProps>;
+export type FhirInputDateRendererProps<TRendererProps = any> =
+  FhirInputDateProps<TRendererProps>;
 
-export type FhirInputStringRenderer = (
-  props: FhirInputStringRendererProps
+export type FhirInputDateRenderer = (
+  props: FhirInputDateRendererProps
 ) => ReactElement | null;

@@ -13,7 +13,7 @@ export interface UseFhirSearchControllerValue<
   sort: TSort;
   onSortChange: (sort: string) => void;
   search: TSearch | undefined;
-  onSearch: (search: TSearch) => void;
+  onSearch: (search: TSearch | ((search: TSearch) => TSearch)) => void;
 }
 
 export interface UseFhirSearchControllerState<
@@ -90,7 +90,13 @@ export function useFhirSearchController<
       return updateState({ sort: sort as TSort });
     },
     search: state?.search || args?.defaultSearch || undefined,
-    onSearch: (search) => updateState({ search }),
+    onSearch: (search) => {
+      if (typeof search === "function") {
+        return updateState({ search: (search as any)(state?.search || {}) });
+      }
+
+      return updateState({ search });
+    },
   };
 }
 

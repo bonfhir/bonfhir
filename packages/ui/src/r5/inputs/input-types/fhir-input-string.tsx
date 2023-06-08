@@ -1,13 +1,11 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement } from "react";
 import { useFhirUIContext } from "../../context.js";
+import { FhirInputCommonProps } from "./common.js";
 
-export interface FhirInputStringProps<TRendererProps = any> {
+export interface FhirInputStringProps<TRendererProps = any>
+  extends FhirInputCommonProps {
   type: "string";
-  label?: ReactNode | null | undefined;
-  description?: ReactNode | null | undefined;
-  error?: ReactNode | null | undefined;
   placeholder?: string | null | undefined;
-  required?: boolean | null | undefined;
   value?: string | null | undefined;
   onChange?: (value: string | undefined) => void;
   rendererProps?: TRendererProps;
