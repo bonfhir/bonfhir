@@ -11,6 +11,7 @@ import {
   Retrieved,
   ValueSetExpandOperation,
   build,
+  extendResource,
 } from "@bonfhir/core/r5";
 import { renderHook, waitFor } from "@testing-library/react";
 import { rest } from "msw";
@@ -42,6 +43,11 @@ import {
 globalThis.React = React;
 
 describe("hooks", () => {
+  const CustomPatient = extendResource("Patient", {
+    toto() {
+      return "aah";
+    },
+  });
   const baseUrl = "http://example.com";
 
   const server = setupServer(
@@ -74,7 +80,20 @@ describe("hooks", () => {
 
     rest.get(`${baseUrl}/Patient`, (req, res, ctx) => {
       if (req.url.searchParams.get("_page_token")) {
-        return res(ctx.json({ resourceType: "Bundle" }));
+        return res(
+          ctx.json({
+            resourceType: "Bundle",
+            type: "searchset",
+            entry: [
+              {
+                resource: build("Patient", {}),
+                search: {
+                  mode: "match",
+                },
+              },
+            ],
+          })
+        );
       }
 
       const bundle: Bundle = {
@@ -192,6 +211,19 @@ describe("hooks", () => {
       });
     });
 
+    it("read with custom type", async () => {
+      const { result } = renderHook(
+        () =>
+          useFhirRead(CustomPatient, "a942b3d5-19bc-4959-8b5d-f9aedd790a94"),
+        { wrapper }
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data).toBeInstanceOf(CustomPatient);
+      });
+    });
+
     it("vread", async () => {
       const { result } = renderHook(
         () =>
@@ -205,6 +237,23 @@ describe("hooks", () => {
           resourceType: "Patient",
           id: "a942b3d5-19bc-4959-8b5d-f9aedd790a94",
         });
+      });
+    });
+
+    it("vread with custom type", async () => {
+      const { result } = renderHook(
+        () =>
+          useFhirVRead(
+            CustomPatient,
+            "a942b3d5-19bc-4959-8b5d-f9aedd790a94",
+            "1"
+          ),
+        { wrapper }
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data).toBeInstanceOf(CustomPatient);
       });
     });
 
@@ -259,6 +308,53 @@ describe("hooks", () => {
           expect(nextPageResult.current.data).toBeInstanceOf(BundleNavigator);
         });
       });
+
+      it("initial search with custom type", async () => {
+        const { result } = renderHook(
+          () =>
+            useFhirSearch(CustomPatient, (search) => search.name("John Doe")),
+          { wrapper }
+        );
+
+        await waitFor(() => {
+          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.data).toBeInstanceOf(BundleNavigator);
+          for (const patient of result.current.data?.searchMatch() || []) {
+            expect(patient).toBeInstanceOf(CustomPatient);
+          }
+        });
+      });
+
+      it("next page with custom type", async () => {
+        const { result } = renderHook(
+          () =>
+            useFhirSearch(CustomPatient, (search) => search.name("John Doe")),
+          { wrapper }
+        );
+
+        await waitFor(() => {
+          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.data?.linkUrl("next")).toBeDefined();
+        });
+
+        const { result: nextPageResult } = renderHook(
+          () =>
+            useFhirSearch(
+              CustomPatient,
+              (search) => search.name("John Doe"),
+              result.current.data?.linkUrl("next")
+            ),
+          { wrapper }
+        );
+
+        await waitFor(() => {
+          expect(nextPageResult.current.isSuccess).toBeTruthy();
+          expect(nextPageResult.current.data).toBeInstanceOf(BundleNavigator);
+          for (const patient of result.current.data?.searchMatch() || []) {
+            expect(patient).toBeInstanceOf(CustomPatient);
+          }
+        });
+      });
     });
 
     it("infinite-search", async () => {
@@ -277,6 +373,29 @@ describe("hooks", () => {
       });
     });
 
+    it("infinite-search with custom type", async () => {
+      const { result } = renderHook(
+        () =>
+          useFhirInfiniteSearch(CustomPatient, (search) =>
+            search.name("John Doe")
+          ),
+        { wrapper }
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data?.pages.at(-1)).toBeInstanceOf(
+          BundleNavigator
+        );
+        expect(result.current.hasNextPage).toBeTruthy();
+        for (const patient of result.current.data?.pages.flatMap((page) =>
+          page.searchMatch()
+        ) || []) {
+          expect(patient).toBeInstanceOf(CustomPatient);
+        }
+      });
+    });
+
     it("search-one", async () => {
       const { result } = renderHook(
         () => useFhirSearchOne("Patient", (search) => search.name("The one")),
@@ -286,6 +405,20 @@ describe("hooks", () => {
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();
         expect(result.current.data?.resourceType).toEqual("Patient");
+      });
+    });
+
+    it("search-one with custom type", async () => {
+      const { result } = renderHook(
+        () =>
+          useFhirSearchOne(CustomPatient, (search) => search.name("The one")),
+        { wrapper }
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data?.resourceType).toEqual("Patient");
+        expect(result.current.data).toBeInstanceOf(CustomPatient);
       });
     });
 
@@ -299,6 +432,24 @@ describe("hooks", () => {
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();
         expect(result.current.data).toBeInstanceOf(BundleNavigator);
+      });
+    });
+
+    it("search-all-pages with custom type", async () => {
+      const { result } = renderHook(
+        () =>
+          useFhirSearchAllPages(CustomPatient, (search) =>
+            search.name("The one")
+          ),
+        { wrapper }
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data).toBeInstanceOf(BundleNavigator);
+        for (const patient of result.current.data?.searchMatch() || []) {
+          expect(patient).toBeInstanceOf(CustomPatient);
+        }
       });
     });
 

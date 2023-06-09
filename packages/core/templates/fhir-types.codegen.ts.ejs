@@ -2,8 +2,6 @@
  * FHIR Definitions for <%= fhir.release %>/<%= fhir.version %>
  */
 
-/* eslint-disable @typescript-eslint/no-empty-interface */
-
 <% for (const valueSet of fhir.requiredBindingValueSets) { %>
   <%= valueSet.jsDoc %>
   export type <%= valueSet.safeName %> =

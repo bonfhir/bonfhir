@@ -5,6 +5,7 @@ import {
   BundleNavigator,
   WithResolvableReferences,
 } from "./bundle-navigator.js";
+import { CustomResourceClass } from "./extensions.js";
 import {
   ConcurrencyParameters,
   ConditionalSearchParameters,
@@ -77,30 +78,74 @@ export interface FetchFhirClientOptions {
 export class FetchFhirClient implements FhirClient {
   constructor(public options: FetchFhirClientOptions) {}
 
-  public async read<TResourceType extends AnyResourceType>(
+  read<TResourceType extends AnyResourceType>(
     type: TResourceType,
     id: string,
     options?: GeneralParameters | null | undefined
-  ): Promise<Retrieved<ExtractResource<TResourceType>>> {
+  ): Promise<Retrieved<ExtractResource<TResourceType>>>;
+  read<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    id: string,
+    options?: GeneralParameters | null | undefined
+  ): Promise<Retrieved<InstanceType<TCustomResourceClass>>>;
+  public async read<
+    TResourceType extends AnyResourceType,
+    TCustomResourceClass extends CustomResourceClass
+  >(
+    type: TResourceType | TCustomResourceClass,
+    id: string,
+    options?: GeneralParameters | null | undefined
+  ): Promise<
+    | Retrieved<ExtractResource<TResourceType>>
+    | Retrieved<InstanceType<TCustomResourceClass>>
+  > {
     const queryString = new URLSearchParams(
       options as Record<string, string>
     ).toString();
-    return this.fetch<Retrieved<ExtractResource<TResourceType>>>(
-      `${type}/${id}${queryString ? `?${queryString}` : ""}`
+
+    const resourceType = typeof type === "string" ? type : type.resourceType;
+    return this.fetch(
+      `${resourceType}/${id}${queryString ? `?${queryString}` : ""}`,
+      undefined,
+      type
     );
   }
 
-  public async vread<TResourceType extends AnyResourceType>(
+  vread<TResourceType extends AnyResourceType>(
     type: TResourceType,
     id: string,
     vid: string,
     options?: GeneralParameters | null | undefined
-  ): Promise<Retrieved<ExtractResource<TResourceType>>> {
+  ): Promise<Retrieved<ExtractResource<TResourceType>>>;
+  vread<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    id: string,
+    vid: string,
+    options?: GeneralParameters | null | undefined
+  ): Promise<Retrieved<InstanceType<TCustomResourceClass>>>;
+  public async vread<
+    TResourceType extends AnyResourceType,
+    TCustomResourceClass extends CustomResourceClass
+  >(
+    type: TResourceType | TCustomResourceClass,
+    id: string,
+    vid: string,
+    options?: GeneralParameters | null | undefined
+  ): Promise<
+    | Retrieved<ExtractResource<TResourceType>>
+    | Retrieved<InstanceType<TCustomResourceClass>>
+  > {
     const queryString = new URLSearchParams(
       options as Record<string, string>
     ).toString();
-    return this.fetch<Retrieved<ExtractResource<TResourceType>>>(
-      `${type}/${id}/_history/${vid}${queryString ? `?${queryString}` : ""}`
+
+    const resourceType = typeof type === "string" ? type : type.resourceType;
+    return this.fetch(
+      `${resourceType}/${id}/_history/${vid}${
+        queryString ? `?${queryString}` : ""
+      }`,
+      undefined,
+      type
     );
   }
 
@@ -142,12 +187,40 @@ export class FetchFhirClient implements FhirClient {
         method: "PUT",
         body: JSON.stringify(body),
         headers,
-      }
+      },
+      body.constructor
     );
   }
 
-  public async patch<TResourceType extends AnyResourceType>(
+  patch<TResourceType extends AnyResourceType>(
     type: TResourceType,
+    id: string,
+    body: FhirClientPatchBody<TResourceType>,
+    options?:
+      | (GeneralParameters &
+          ConcurrencyParameters & {
+            versionId?: string | null | undefined;
+          } & ConditionalSearchParameters<TResourceType>)
+      | null
+      | undefined
+  ): Promise<Retrieved<ExtractResource<TResourceType>>>;
+  patch<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    id: string,
+    body: FhirClientPatchBody<TCustomResourceClass["resourceType"]>,
+    options?:
+      | (GeneralParameters &
+          ConcurrencyParameters & {
+            versionId?: string | null | undefined;
+          } & ConditionalSearchParameters<TCustomResourceClass["resourceType"]>)
+      | null
+      | undefined
+  ): Promise<Retrieved<InstanceType<TCustomResourceClass>>>;
+  public async patch<
+    TResourceType extends AnyResourceType,
+    TCustomResourceClass extends CustomResourceClass
+  >(
+    type: TResourceType | TCustomResourceClass,
     id: string,
     body: FhirClientPatchBody<TResourceType>,
     options?:
@@ -160,7 +233,11 @@ export class FetchFhirClient implements FhirClient {
   ): Promise<Retrieved<ExtractResource<TResourceType>>> {
     const { preventConcurrentUpdates, versionId, search, ...remainingOptions } =
       options ?? {};
-    const searchQueryString = normalizeSearchParameters(type, search);
+    const resourceType = typeof type === "string" ? type : type.resourceType;
+    const searchQueryString = normalizeSearchParameters(
+      resourceType as TResourceType,
+      search
+    );
     const optionsQueryString = new URLSearchParams(
       remainingOptions as Record<string, string>
     ).toString();
@@ -177,12 +254,15 @@ export class FetchFhirClient implements FhirClient {
     }
 
     return this.fetch<Retrieved<Retrieved<ExtractResource<TResourceType>>>>(
-      `${type}/${id}${queryString ? `?${queryString}` : ""}`,
+      `${resourceType}/${id}${queryString ? `?${queryString}` : ""}`,
       {
         method: "PATCH",
-        body: JSON.stringify(normalizePatchBody(type, body)),
+        body: JSON.stringify(
+          normalizePatchBody(resourceType as TResourceType, body)
+        ),
         headers,
-      }
+      },
+      type
     );
   }
 
@@ -276,59 +356,143 @@ export class FetchFhirClient implements FhirClient {
       {
         method: "POST",
         body: JSON.stringify(body),
-      }
+      },
+      body.constructor
     );
   }
 
-  public async search<TResourceType extends AnyResourceType>(
+  public search<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
     options?: GeneralParameters | null | undefined
-  ): Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>> {
-    const searchQueryString = normalizeSearchParameters(type, parameters);
+  ): Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
+  public search<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    parameters?:
+      | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+      | null
+      | undefined,
+    options?: GeneralParameters | null | undefined
+  ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
+  public async search<
+    TResourceType extends AnyResourceType,
+    TCustomResourceClass extends CustomResourceClass
+  >(
+    type?: TResourceType | TCustomResourceClass | null | undefined,
+    parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
+    options?: GeneralParameters | null | undefined
+  ): Promise<
+    | BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
+    | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
+  > {
+    const resourceType = typeof type === "string" ? type : type?.resourceType;
+
+    const searchQueryString = normalizeSearchParameters(
+      resourceType as TResourceType,
+      parameters
+    );
     const optionsQueryString = new URLSearchParams(
       options as Record<string, string>
     ).toString();
     const queryString = [searchQueryString, optionsQueryString]
       .filter(Boolean)
       .join("&");
+
     const response = await this.fetch<
       Bundle<Retrieved<ExtractResource<TResourceType>>>
-    >(`${type || ""}${queryString ? `?${queryString}` : ""}`);
+    >(`${resourceType || ""}${queryString ? `?${queryString}` : ""}`);
 
-    return bundleNavigator(response);
+    return bundleNavigator(
+      response,
+      typeof type === "string" ? undefined : (type as CustomResourceClass)
+    ) as BundleNavigator<Retrieved<ExtractResource<TResourceType>>>;
   }
 
-  public async searchOne<TResourceType extends AnyResourceType>(
+  public searchOne<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
     options?: GeneralParameters | null | undefined
   ): Promise<
     WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
+  >;
+  public searchOne<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    parameters?:
+      | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+      | null
+      | undefined,
+    options?: GeneralParameters | null | undefined
+  ): Promise<
+    WithResolvableReferences<Retrieved<InstanceType<TCustomResourceClass>>>
+  >;
+  public async searchOne<
+    TResourceType extends AnyResourceType,
+    TCustomResourceClass extends CustomResourceClass
+  >(
+    type?: TResourceType | TCustomResourceClass | null | undefined,
+    parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
+    options?: GeneralParameters | null | undefined
+  ): Promise<
+    | WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
+    | WithResolvableReferences<Retrieved<InstanceType<TCustomResourceClass>>>
   > {
     const navigator = await this.search<TResourceType>(
-      type,
+      type as TResourceType,
       parameters,
       options
     );
     return navigator.searchMatchOne<ExtractResource<TResourceType>>();
   }
 
-  public async searchByPage<TResourceType extends AnyResourceType>(
+  public searchByPage<TResourceType extends AnyResourceType>(
     type: TResourceType | null | undefined,
     search: FhirClientSearchParameters<TResourceType>,
     fn: (
       nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
     ) => unknown | Promise<unknown>
+  ): Promise<void>;
+  public searchByPage<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
+    fn: (
+      nav: BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
+    ) => unknown | Promise<unknown>
+  ): Promise<void>;
+  public async searchByPage<
+    TResourceType extends AnyResourceType,
+    TCustomResourceClass extends CustomResourceClass
+  >(
+    type: TResourceType | TCustomResourceClass | null | undefined,
+    search: FhirClientSearchParameters<TResourceType>,
+    fn: (
+      nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
+    ) => unknown | Promise<unknown>
   ): Promise<void> {
-    return searchByPage(this, type, search, fn);
+    return searchByPage(this, type as TResourceType, search, fn);
   }
 
   public async searchAllPages<TResourceType extends AnyResourceType>(
     type: TResourceType | null | undefined,
     search: FhirClientSearchParameters<TResourceType>
-  ): Promise<BundleNavigator<ExtractResource<TResourceType>>> {
-    return searchAllPages(this, type, search);
+  ): Promise<BundleNavigator<ExtractResource<TResourceType>>>;
+  public async searchAllPages<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+  ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
+  public async searchAllPages<
+    TResourceType extends AnyResourceType,
+    TCustomResourceClass extends CustomResourceClass
+  >(
+    type: TResourceType | TCustomResourceClass | null | undefined,
+    search:
+      | FhirClientSearchParameters<TResourceType>
+      | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+  ): Promise<
+    | BundleNavigator<ExtractResource<TResourceType>>
+    | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
+  > {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return searchAllPages(this, type as any, search as any) as any;
   }
 
   public async capabilities(
@@ -430,6 +594,16 @@ export class FetchFhirClient implements FhirClient {
   public async fetchPage<TResource extends AnyResource>(
     resource: string | URL,
     init?: Parameters<typeof fetch>[1]
+  ): Promise<BundleNavigator<Retrieved<TResource>>>;
+  fetchPage<TCustomResourceClass extends CustomResourceClass>(
+    resource: string | URL,
+    init?: Parameters<typeof fetch>[1],
+    customType?: TCustomResourceClass | null | undefined
+  ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
+  public async fetchPage<TResource extends AnyResource>(
+    resource: string | URL,
+    init?: Parameters<typeof fetch>[1],
+    customType?: CustomResourceClass | null | undefined
   ): Promise<BundleNavigator<Retrieved<TResource>>> {
     const response = await this.fetch<Bundle<Retrieved<TResource>>>(
       resource,
@@ -447,12 +621,21 @@ export class FetchFhirClient implements FhirClient {
       );
     }
 
-    return bundleNavigator(response);
+    return bundleNavigator(
+      response,
+      customType || undefined
+    ) as BundleNavigator<Retrieved<TResource>>;
   }
 
   public async fetch<T = unknown>(
     resource: string | URL,
-    init?: Parameters<typeof fetch>[1]
+    init?: Parameters<typeof fetch>[1],
+    customType?:
+      | string
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      | Function
+      | null
+      | undefined
   ): Promise<T> {
     let targetUrl = typeof resource === "string" ? resource : resource.href;
 
@@ -507,6 +690,12 @@ export class FetchFhirClient implements FhirClient {
     }
 
     const responseText = await response.text();
-    return responseText ? JSON.parse(responseText) : undefined;
+    const parsedResponse = responseText ? JSON.parse(responseText) : undefined;
+    if (customType && typeof customType !== "string") {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return new customType(parsedResponse);
+    }
+    return parsedResponse;
   }
 }

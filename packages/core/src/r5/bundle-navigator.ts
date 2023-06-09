@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CustomResourceClass } from "./extensions.js";
 import {
   AnyResource,
   AnyResourceType,
@@ -32,8 +35,19 @@ import { asArray, uniqBy } from "./lang-utils.js";
  */
 export function bundleNavigator<TResource extends Resource = Resource>(
   bundle: Bundle<TResource>
+): BundleNavigator<TResource>;
+export function bundleNavigator<
+  TResource extends Resource,
+  TCustomResourceClass extends CustomResourceClass<TResource>
+>(
+  bundle: Bundle<any>,
+  customResourceClass?: TCustomResourceClass
+): BundleNavigator<InstanceType<TCustomResourceClass>>;
+export function bundleNavigator<TResource extends Resource = Resource>(
+  bundle: Bundle<TResource>,
+  customResourceClass?: CustomResourceClass<TResource>
 ): BundleNavigator<TResource> {
-  return new BundleNavigator<TResource>(bundle);
+  return new BundleNavigator<TResource>(bundle, customResourceClass);
 }
 
 /**
@@ -46,7 +60,10 @@ export type ResolvableReference<TTargetResource extends Resource = Resource> =
      * If the original bundle includes the reference (probably from a search query with _include instructions),
      * return the included resource, or undefined if it wasn't included or not found.
      */
-    included?: TTargetResource | undefined;
+    included<TResult = TTargetResource>(): TResult | undefined;
+    included<TResult extends Resource = TTargetResource>(
+      customResourceClass?: CustomResourceClass<TResult> | null | undefined
+    ): TResult | undefined;
   };
 
 /**
@@ -62,11 +79,15 @@ export type WithResolvableReferences<T> = {
     ? ResolvableReference<TTargetResource> | undefined
     : RecursiveResolvableReferences<T[K]>;
 } & {
-  revIncluded?: <TReferencedType extends AnyResource>(
+  revIncluded<TResource extends AnyResource>(
+    select: (resource: TResource) => Reference | Reference[] | null | undefined
+  ): RecursiveResolvableReferences<TResource>[];
+  revIncluded<TCustomResourceClass extends CustomResourceClass>(
     select: (
-      resource: TReferencedType
-    ) => Reference | Reference[] | null | undefined
-  ) => RecursiveResolvableReferences<TReferencedType>[];
+      resource: ExtractResource<TCustomResourceClass["resourceType"]>
+    ) => Reference | Reference[] | null | undefined,
+    customResourceClass: TCustomResourceClass
+  ): RecursiveResolvableReferences<InstanceType<TCustomResourceClass>>[];
 };
 
 export type RecursiveResolvableReferences<T> = {
@@ -118,7 +139,8 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   constructor(
     private _bundleOrNavigator:
       | Bundle<TResource>
-      | Array<BundleNavigator<TResource>>
+      | Array<BundleNavigator<TResource>>,
+    private _customResourceClass?: CustomResourceClass<TResource>
   ) {}
 
   /**
@@ -152,12 +174,13 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    *
    * @param reference: the relative resource reference as a string or a Reference<> - e.g. Patient/982effa0-aa0f-4995-b380-c1621b1f0ffc
    */
-  public reference<TReferencedType extends AnyResource>(
-    reference: string | Reference<TReferencedType> | null | undefined
-  ): WithResolvableReferences<Retrieved<TReferencedType>> | undefined {
+  public reference<TResource extends AnyResource>(
+    reference: string | Reference<TResource> | null | undefined,
+    customResourceClass?: CustomResourceClass<TResource> | null | undefined
+  ): WithResolvableReferences<Retrieved<TResource>> | undefined {
     if (Array.isArray(this._bundleOrNavigator)) {
       for (const navigator of this._bundleOrNavigator) {
-        const res = navigator.reference(reference);
+        const res = navigator.reference(reference, customResourceClass);
         if (res) {
           return res;
         }
@@ -173,10 +196,16 @@ export class BundleNavigator<TResource extends Resource = Resource> {
 
     this._ensurePrimaryIndices();
 
-    return (this._resourcesByRelativeReference?.get(finalReference) ||
-      undefined) as
-      | WithResolvableReferences<Retrieved<TReferencedType>>
-      | undefined;
+    const result = (this._resourcesByRelativeReference?.get(finalReference) ||
+      undefined) as WithResolvableReferences<Retrieved<TResource>> | undefined;
+
+    if (result && (customResourceClass || this._customResourceClass)) {
+      return new (customResourceClass || this._customResourceClass)!(
+        result
+      ) as any;
+    }
+
+    return result;
   }
 
   /**
@@ -190,21 +219,38 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    *
    * @see http://hl7.org/fhir/fhirpath.html
    */
-  public revReference<TReferencedType extends AnyResource>(
-    select: (
-      resource: TReferencedType
-    ) => Reference | Reference[] | null | undefined,
+  public revReference<TResource extends AnyResource>(
+    select: (resource: TResource) => Reference | Reference[] | null | undefined,
     reference: Retrieved<AnyResource> | string | null | undefined
-  ): WithResolvableReferences<Retrieved<TReferencedType>>[] {
+  ): WithResolvableReferences<Retrieved<TResource>>[];
+  public revReference<TCustomResourceClass extends CustomResourceClass>(
+    select: (
+      resource: ExtractResource<TCustomResourceClass["resourceType"]>
+    ) => Reference | Reference[] | null | undefined,
+    reference: Retrieved<AnyResource> | string | null | undefined,
+    customResourceClass: TCustomResourceClass
+  ): WithResolvableReferences<Retrieved<InstanceType<TCustomResourceClass>>>[];
+  public revReference<
+    TResource extends AnyResource,
+    TCustomResourceClass extends CustomResourceClass
+  >(
+    select: (resource: TResource) => Reference | Reference[] | null | undefined,
+    reference: Retrieved<AnyResource> | string | null | undefined,
+    customResourceClass?: TCustomResourceClass
+  ): WithResolvableReferences<Retrieved<TResource>>[] {
     if (!reference) {
       return [];
     }
 
     if (Array.isArray(this._bundleOrNavigator)) {
       for (const navigator of this._bundleOrNavigator) {
-        const res = navigator.revReference(select, reference);
+        const res = navigator.revReference(
+          select as any,
+          reference,
+          customResourceClass as any
+        );
         if (res.length > 0) {
-          return res;
+          return res as any;
         }
       }
       return [];
@@ -221,11 +267,16 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this._ensureSelectIndex(select as any);
 
-    return (this._resourcesByRefSelectIndex
+    const result = (this._resourcesByRefSelectIndex
       ?.get(select.toString())
       ?.get(finalReference) || []) as WithResolvableReferences<
-      Retrieved<TReferencedType>
+      Retrieved<TResource>
     >[];
+
+    if (customResourceClass) {
+      return result.map((x) => new customResourceClass(x) as any);
+    }
+    return result;
   }
 
   /**
@@ -252,10 +303,14 @@ export class BundleNavigator<TResource extends Resource = Resource> {
       this.bundle.entry[0].resource?.resourceType
     ) {
       return this.type(
-        this.bundle.entry[0].resource.resourceType
+        (this._customResourceClass ||
+          this.bundle.entry[0].resource.resourceType) as any
       ) as WithResolvableReferences<Retrieved<TResult>>[];
     }
-    return result;
+
+    return this._customResourceClass
+      ? result.map((x) => new this._customResourceClass!(x) as any)
+      : result;
   }
 
   /**
@@ -293,41 +348,43 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   /**
    * Get all the resources of a specific type.
    */
-  public type<TResourceType extends AnyResourceType = AnyResourceType>(
+  type<TResourceType extends AnyResourceType = AnyResourceType>(
     type: TResourceType
-  ): WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>[] {
+  ): WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>[];
+  type<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass
+  ): WithResolvableReferences<Retrieved<InstanceType<TCustomResourceClass>>>[];
+  public type<
+    TCustomResourceClass extends CustomResourceClass,
+    TResourceType extends AnyResourceType = AnyResourceType
+  >(
+    type: TResourceType | CustomResourceClass
+  ):
+    | WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>[]
+    | WithResolvableReferences<
+        Retrieved<InstanceType<TCustomResourceClass>>
+      >[] {
     if (Array.isArray(this._bundleOrNavigator)) {
       return uniqBy(
-        this._bundleOrNavigator.flatMap((nav) => nav.type(type)),
+        this._bundleOrNavigator.flatMap((nav) =>
+          nav.type(type as TResourceType)
+        ),
         (res) => `${res.id}${(res.meta as Meta)?.versionId}`
       );
     }
 
     this._ensurePrimaryIndices();
 
-    return (this._resourcesByType?.get(type) || []) as WithResolvableReferences<
+    const resourceType = typeof type === "string" ? type : type.resourceType;
+
+    const matched = (this._resourcesByType?.get(resourceType) ||
+      []) as WithResolvableReferences<
       Retrieved<ExtractResource<TResourceType>>
     >[];
-  }
 
-  /**
-   * Return all unique resources in the bundle.
-   **/
-  public resources<TResource extends AnyResource = AnyResource>(): Array<
-    WithResolvableReferences<TResource>
-  > {
-    if (Array.isArray(this._bundleOrNavigator)) {
-      return uniqBy(
-        this._bundleOrNavigator.flatMap((nav) => nav.resources()),
-        (res) => `${res.id}${(res.meta as Meta)?.versionId}`
-      );
-    }
-
-    this._ensurePrimaryIndices();
-    return [
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      ...this._resourcesByRelativeReference!.values(),
-    ] as WithResolvableReferences<TResource>[];
+    return typeof type === "string"
+      ? matched
+      : matched.map((m) => new type(m) as any);
   }
 
   /**
@@ -452,7 +509,6 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   }
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 function withResolvableProxy<T extends Resource>(
   resource: T,
   navigator: BundleNavigator<T>
@@ -464,17 +520,21 @@ function withResolvableProxy<T extends Resource>(
   return new Proxy(resource, {
     get: (target, prop) => {
       if (prop === "included" && (target as Reference)?.reference) {
-        return navigator.reference((target as Reference)?.reference);
+        return (customResourceClass: any) =>
+          navigator.reference(
+            (target as Reference)?.reference,
+            customResourceClass
+          );
       }
 
       if (prop === "revIncluded" && (target as Resource).resourceType) {
         return (
-          select: (resource: any) => Reference | Reference[] | null | undefined
-        ) => navigator.revReference(select, target as any);
+          select: (resource: any) => Reference | Reference[] | null | undefined,
+          customResourceClass?: any
+        ) => navigator.revReference(select, target as any, customResourceClass);
       }
 
       return withResolvableProxy(Reflect.get(target, prop) as any, navigator);
     },
   }) as unknown as WithResolvableReferences<T>;
 }
-/* eslint-enable */

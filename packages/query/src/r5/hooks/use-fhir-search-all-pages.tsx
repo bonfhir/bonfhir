@@ -1,6 +1,7 @@
 import {
   AnyResourceType,
   BundleNavigator,
+  CustomResourceClass,
   ExtractResource,
   FhirClientSearchParameters,
   Retrieved,
@@ -33,6 +34,25 @@ export interface UseFhirSearchAllPAgesOptions<
     | undefined;
 }
 
+export interface UseFhirSearchAllPAgesOptionsCustom<
+  TCustomResourceClass extends CustomResourceClass
+> {
+  /** The FhirClient key to use to perform the query. */
+  fhirClient?: string | null | undefined;
+  query?:
+    | Omit<
+        UseQueryOptions<
+          BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>,
+          unknown,
+          BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>,
+          ReturnType<(typeof FhirQueryKeys)["search"]>
+        >,
+        "initialData" | "queryKey" | "queryFn" | "keepPreviousData"
+      >
+    | null
+    | undefined;
+}
+
 /**
  * Return a [Query](https://tanstack.com/query/latest/docs/react/guides/queries) for a search request.
  *
@@ -45,9 +65,39 @@ export function useFhirSearchAllPages<TResourceType extends AnyResourceType>(
   type: TResourceType,
   parameters: FhirClientSearchParameters<TResourceType>,
   options?: UseFhirSearchAllPAgesOptions<TResourceType> | null | undefined
-): UseQueryResult<BundleNavigator<ExtractResource<TResourceType>>> {
+): UseQueryResult<BundleNavigator<ExtractResource<TResourceType>>>;
+export function useFhirSearchAllPages<
+  TCustomResourceClass extends CustomResourceClass
+>(
+  type: TCustomResourceClass,
+  parameters: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
+  options?:
+    | UseFhirSearchAllPAgesOptionsCustom<TCustomResourceClass>
+    | null
+    | undefined
+): UseQueryResult<BundleNavigator<InstanceType<TCustomResourceClass>>>;
+export function useFhirSearchAllPages<
+  TResourceType extends AnyResourceType,
+  TCustomResourceClass extends CustomResourceClass
+>(
+  type: TResourceType | TCustomResourceClass,
+  parameters:
+    | FhirClientSearchParameters<TResourceType>
+    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
+  options?:
+    | UseFhirSearchAllPAgesOptions<TResourceType>
+    | UseFhirSearchAllPAgesOptionsCustom<TCustomResourceClass>
+    | null
+    | undefined
+):
+  | UseQueryResult<BundleNavigator<ExtractResource<TResourceType>>>
+  | UseQueryResult<BundleNavigator<InstanceType<TCustomResourceClass>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
-  const normalizedParameters = normalizeSearchParameters(type, parameters);
+  const resourceType = typeof type === "string" ? type : type.resourceType;
+  const normalizedParameters = normalizeSearchParameters(
+    resourceType as TResourceType,
+    parameters as FhirClientSearchParameters<TResourceType>
+  );
 
   return useQuery({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -57,6 +107,10 @@ export function useFhirSearchAllPages<TResourceType extends AnyResourceType>(
       type,
       normalizedParameters
     ),
-    queryFn: () => fhirQueryContext.fhirClient.searchAllPages(type, parameters),
-  });
+    queryFn: () =>
+      fhirQueryContext.fhirClient.searchAllPages(
+        type as TResourceType,
+        parameters as FhirClientSearchParameters<TResourceType>
+      ),
+  }) as UseQueryResult<BundleNavigator<ExtractResource<TResourceType>>>;
 }

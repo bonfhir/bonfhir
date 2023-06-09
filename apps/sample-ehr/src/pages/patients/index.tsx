@@ -203,11 +203,11 @@ function PatientsList(): ReactElement {
                   render: (row) => (
                     <FhirValue<MantineFhirValueProps>
                       type="string"
-                      value={row.managingOrganization?.included?.name}
+                      value={row.managingOrganization?.included()?.name}
                       options={{ default: "Unassigned" }}
                       rendererProps={{
                         text: {
-                          c: row.managingOrganization?.included
+                          c: row.managingOrganization?.included()
                             ? undefined
                             : "dimmed",
                         },

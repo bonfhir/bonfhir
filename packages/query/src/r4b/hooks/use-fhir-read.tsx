@@ -1,5 +1,6 @@
 import {
   AnyResourceType,
+  CustomResourceClass,
   ExtractResource,
   FhirClient,
   Retrieved,
@@ -30,6 +31,26 @@ export interface UseFhirReadOptions<TResourceType extends AnyResourceType> {
     | undefined;
 }
 
+export interface UseFhirReadOptionsCustom<
+  TCustomResourceClass extends CustomResourceClass
+> {
+  /** The FhirClient key to use to perform the query. */
+  fhirClient?: string | null | undefined;
+  fhir?: Parameters<FhirClient["read"]>[2] | null | undefined;
+  query?:
+    | Omit<
+        UseQueryOptions<
+          Retrieved<InstanceType<TCustomResourceClass>>,
+          unknown,
+          Retrieved<InstanceType<TCustomResourceClass>>,
+          ReturnType<(typeof FhirQueryKeys)["read"]>
+        >,
+        "initialData" | "queryKey" | "queryFn"
+      >
+    | null
+    | undefined;
+}
+
 /**
  * Return a [Query](https://tanstack.com/query/latest/docs/react/guides/queries) for a read request.
  *
@@ -39,19 +60,29 @@ export function useFhirRead<TResourceType extends AnyResourceType>(
   type: TResourceType,
   id: string,
   options?: UseFhirReadOptions<TResourceType> | null | undefined
-): UseQueryResult<Retrieved<ExtractResource<TResourceType>>> {
+): UseQueryResult<Retrieved<ExtractResource<TResourceType>>>;
+export function useFhirRead<TCustomResourceClass extends CustomResourceClass>(
+  type: TCustomResourceClass,
+  id: string,
+  options?: UseFhirReadOptionsCustom<TCustomResourceClass> | null | undefined
+): UseQueryResult<Retrieved<InstanceType<TCustomResourceClass>>>;
+export function useFhirRead<
+  TResourceType extends AnyResourceType,
+  TCustomResourceClass extends CustomResourceClass
+>(
+  type: TResourceType | TCustomResourceClass,
+  id: string,
+  options?:
+    | UseFhirReadOptions<TResourceType>
+    | UseFhirReadOptionsCustom<TCustomResourceClass>
+    | null
+    | undefined
+):
+  | UseQueryResult<Retrieved<ExtractResource<TResourceType>>>
+  | UseQueryResult<Retrieved<InstanceType<TCustomResourceClass>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
 
   return useQuery({
-    initialData: () =>
-      fhirQueryContext.manageCache
-        ? FhirQueryKeys.findInSearch(
-            fhirQueryContext.clientKey,
-            fhirQueryContext.queryClient,
-            type,
-            id
-          )
-        : undefined,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
     queryKey: FhirQueryKeys.read(
@@ -60,6 +91,11 @@ export function useFhirRead<TResourceType extends AnyResourceType>(
       id,
       options?.fhir
     ),
-    queryFn: () => fhirQueryContext.fhirClient.read(type, id, options?.fhir),
-  });
+    queryFn: () =>
+      fhirQueryContext.fhirClient.read(
+        type as TResourceType,
+        id,
+        options?.fhir
+      ),
+  }) as UseQueryResult<Retrieved<ExtractResource<TResourceType>>>;
 }

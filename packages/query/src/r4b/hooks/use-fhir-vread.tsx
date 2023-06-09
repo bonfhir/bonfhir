@@ -1,5 +1,6 @@
 import {
   AnyResourceType,
+  CustomResourceClass,
   ExtractResource,
   FhirClient,
   Retrieved,
@@ -30,6 +31,26 @@ export interface UseFhirVReadOptions<TResourceType extends AnyResourceType> {
     | undefined;
 }
 
+export interface UseFhirVReadOptionsCustom<
+  TCustomResourceClass extends CustomResourceClass
+> {
+  /** The FhirClient key to use to perform the query. */
+  fhirClient?: string | null | undefined;
+  fhir?: Parameters<FhirClient["vread"]>[3] | null | undefined;
+  query?:
+    | Omit<
+        UseQueryOptions<
+          Retrieved<InstanceType<TCustomResourceClass>>,
+          unknown,
+          Retrieved<InstanceType<TCustomResourceClass>>,
+          ReturnType<(typeof FhirQueryKeys)["vread"]>
+        >,
+        "initialData" | "queryKey" | "queryFn"
+      >
+    | null
+    | undefined;
+}
+
 /**
  * Return a [Query](https://tanstack.com/query/latest/docs/react/guides/queries) for a vread request.
  *
@@ -40,7 +61,28 @@ export function useFhirVRead<TResourceType extends AnyResourceType>(
   id: string,
   vid: string,
   options?: UseFhirVReadOptions<TResourceType> | null | undefined
-): UseQueryResult<Retrieved<ExtractResource<TResourceType>>> {
+): UseQueryResult<Retrieved<ExtractResource<TResourceType>>>;
+export function useFhirVRead<TCustomResourceClass extends CustomResourceClass>(
+  type: TCustomResourceClass,
+  id: string,
+  vid: string,
+  options?: UseFhirVReadOptionsCustom<TCustomResourceClass> | null | undefined
+): UseQueryResult<Retrieved<InstanceType<TCustomResourceClass>>>;
+export function useFhirVRead<
+  TResourceType extends AnyResourceType,
+  TCustomResourceClass extends CustomResourceClass
+>(
+  type: TResourceType | TCustomResourceClass,
+  id: string,
+  vid: string,
+  options?:
+    | UseFhirVReadOptions<TResourceType>
+    | UseFhirVReadOptionsCustom<TCustomResourceClass>
+    | null
+    | undefined
+):
+  | UseQueryResult<Retrieved<ExtractResource<TResourceType>>>
+  | UseQueryResult<Retrieved<InstanceType<TCustomResourceClass>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
 
   return useQuery({
@@ -54,6 +96,11 @@ export function useFhirVRead<TResourceType extends AnyResourceType>(
       options?.fhir
     ),
     queryFn: () =>
-      fhirQueryContext.fhirClient.vread(type, id, vid, options?.fhir),
-  });
+      fhirQueryContext.fhirClient.vread(
+        type as TResourceType,
+        id,
+        vid,
+        options?.fhir
+      ),
+  }) as UseQueryResult<Retrieved<ExtractResource<TResourceType>>>;
 }

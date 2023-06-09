@@ -48,6 +48,8 @@
     "loglevel",
     "Mantine",
     "onwarn",
+    "revinclude",
+    "revincluded",
     "searchset",
     "tabler",
     "tanstack",

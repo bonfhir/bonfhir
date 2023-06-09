@@ -1,8 +1,8 @@
 import {
   AnyResourceType,
-  BundleNavigator,
-  ExtractResource,
+  CustomResourceClass,
   FhirClient,
+  GeneralParameters,
   OperationParameters,
 } from "@bonfhir/core/r4b";
 import { QueryClient } from "@tanstack/react-query";
@@ -17,28 +17,29 @@ export const FhirQueryKeys = {
    */
   read: (
     clientKey: string,
-    type: AnyResourceType,
+    type: AnyResourceType | CustomResourceClass,
     id: string,
-    options?: Parameters<FhirClient["read"]>[2] | null | undefined
-  ) => [clientKey, type, id, "read", options] as const,
+    options?: GeneralParameters | null | undefined
+  ) => [clientKey, normalizeType(type), id, "read", type, options] as const,
 
   /**
    * Get the query keys for a vread request
    */
   vread: (
     clientKey: string,
-    type: AnyResourceType,
+    type: AnyResourceType | CustomResourceClass,
     id: string,
     vid: string,
     options?: Parameters<FhirClient["vread"]>[3] | null | undefined
-  ) => [clientKey, type, id, "vread", vid, options] as const,
+  ) =>
+    [clientKey, normalizeType(type), id, "vread", vid, type, options] as const,
 
   /**
    * Get the query keys for a history request
    */
   history: (
     clientKey: string,
-    type: AnyResourceType | null | undefined,
+    type: AnyResourceType | CustomResourceClass | null | undefined,
     id: string | null | undefined,
     options?: Parameters<FhirClient["history"]>[2] | null | undefined
   ) => {
@@ -46,9 +47,22 @@ export const FhirQueryKeys = {
       return [clientKey, "history", options] as const;
     }
     if (!id) {
-      return [clientKey, type, "history", options] as const;
+      return [
+        clientKey,
+        normalizeType(type),
+        "history",
+        type,
+        options,
+      ] as const;
     }
-    return [clientKey, type, id, "history", options] as const;
+    return [
+      clientKey,
+      normalizeType(type),
+      id,
+      "history",
+      type,
+      options,
+    ] as const;
   },
 
   /**
@@ -56,61 +70,38 @@ export const FhirQueryKeys = {
    */
   search: (
     clientKey: string,
-    type: AnyResourceType,
+    type: AnyResourceType | CustomResourceClass,
     parameters?: string | null | undefined,
     pageUrl?: string | null | undefined,
     options?: Parameters<FhirClient["search"]>[2] | null | undefined
-  ) => [clientKey, type, "search", parameters, pageUrl, options] as const,
+  ) =>
+    [
+      clientKey,
+      normalizeType(type),
+      "search",
+      type,
+      parameters,
+      pageUrl,
+      options,
+    ] as const,
 
   /**
    * Get the query keys for a infinite search request
    */
   infiniteSearch: (
     clientKey: string,
-    type: AnyResourceType,
+    type: AnyResourceType | CustomResourceClass,
     parameters?: string | null | undefined,
     options?: Parameters<FhirClient["search"]>[2] | null | undefined
-  ) => [clientKey, type, "infiniteSearch", parameters, options] as const,
-
-  /**
-   * Lookup the query cache and try to find an existing instance of a resource stored in a search request,
-   * by resource type and id.
-   *
-   * This enables an optimization to load initial data on read if it has been retrieved previously during a search
-   * (a.k.a. master-detail scenarios)
-   */
-  findInSearch: (
-    clientKey: string,
-    queryClient: QueryClient,
-    type: AnyResourceType,
-    id: string
-  ): ExtractResource<AnyResourceType> | undefined => {
-    try {
-      const inSearch = (
-        queryClient.getQueriesData([clientKey, type, "search"]) || []
-      )
-        .flatMap(([, result]) => result as BundleNavigator)
-        .find((navigator) => navigator.reference(`${type}/${id}`));
-      if (inSearch) {
-        return inSearch.reference(
-          `${type}/${id}`
-        ) as ExtractResource<AnyResourceType>;
-      }
-
-      return (
-        queryClient.getQueriesData<{
-          pages: Array<BundleNavigator>;
-        }>([clientKey, type, "infiniteSearch"]) || []
-      )
-        .flatMap(([, pages]) => pages?.pages || [])
-        .find((navigator) => navigator.reference(`${type}/${id}`))
-        ?.reference(`${type}/${id}`) as ExtractResource<AnyResourceType>;
-    } catch (error) {
-      // Just in case the cache is corrupted.
-      console.error(error);
-      return undefined;
-    }
-  },
+  ) =>
+    [
+      clientKey,
+      normalizeType(type),
+      "infiniteSearch",
+      type,
+      parameters,
+      options,
+    ] as const,
 
   /**
    * Get the query keys for a capabilities request
@@ -150,3 +141,23 @@ export const FhirQueryKeys = {
     queryClient.invalidateQueries([clientKey, type, undefined, "execute"]);
   },
 };
+
+function normalizeType(type: null | undefined): undefined;
+function normalizeType(
+  type: AnyResourceType | CustomResourceClass
+): AnyResourceType;
+function normalizeType(
+  type: AnyResourceType | CustomResourceClass | null | undefined
+): AnyResourceType | undefined;
+function normalizeType(
+  type: AnyResourceType | CustomResourceClass | null | undefined
+): AnyResourceType | undefined {
+  if (!type) {
+    return undefined;
+  }
+  if (typeof type === "string") {
+    return type;
+  }
+
+  return type.resourceType;
+}

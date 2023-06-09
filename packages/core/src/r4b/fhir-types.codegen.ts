@@ -2,8 +2,6 @@
  * FHIR Definitions for r4b/4.3.0
  */
 
-/* eslint-disable @typescript-eslint/no-empty-interface */
-
 /**
  * AccountStatus
  *

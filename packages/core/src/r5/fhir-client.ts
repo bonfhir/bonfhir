@@ -2,8 +2,8 @@ import { BundleExecutor } from "./bundle-executor.js";
 import {
   BundleNavigator,
   WithResolvableReferences,
-  bundleNavigator,
 } from "./bundle-navigator.js";
+import { CustomResourceClass } from "./extensions.js";
 import {
   AnyResource,
   AnyResourceType,
@@ -39,6 +39,11 @@ export interface FhirClient {
     id: string,
     options?: GeneralParameters | null | undefined
   ): Promise<Retrieved<ExtractResource<TResourceType>>>;
+  read<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    id: string,
+    options?: GeneralParameters | null | undefined
+  ): Promise<Retrieved<InstanceType<TCustomResourceClass>>>;
 
   /**
    * The vread interaction performs a version specific read of the resource.
@@ -50,6 +55,12 @@ export interface FhirClient {
     vid: string,
     options?: GeneralParameters | null | undefined
   ): Promise<Retrieved<ExtractResource<TResourceType>>>;
+  vread<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    id: string,
+    vid: string,
+    options?: GeneralParameters | null | undefined
+  ): Promise<Retrieved<InstanceType<TCustomResourceClass>>>;
 
   /**
    * The update interaction creates a new current version for an existing resource or creates an initial version
@@ -82,6 +93,18 @@ export interface FhirClient {
       | null
       | undefined
   ): Promise<Retrieved<ExtractResource<TResourceType>>>;
+  patch<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    id: string,
+    body: FhirClientPatchBody<TCustomResourceClass["resourceType"]>,
+    options?:
+      | (GeneralParameters &
+          ConcurrencyParameters & {
+            versionId?: string | null | undefined;
+          } & ConditionalSearchParameters<TCustomResourceClass["resourceType"]>)
+      | null
+      | undefined
+  ): Promise<Retrieved<InstanceType<TCustomResourceClass>>>;
 
   /**
    * The delete interaction removes an existing resource.
@@ -133,6 +156,14 @@ export interface FhirClient {
     parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
     options?: GeneralParameters | null | undefined
   ): Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
+  search<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    parameters?:
+      | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+      | null
+      | undefined,
+    options?: GeneralParameters | null | undefined
+  ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
 
   /**
    * Execute a search operation, and return the first search match in the bundle.
@@ -148,6 +179,16 @@ export interface FhirClient {
   ): Promise<
     WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
   >;
+  searchOne<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    parameters?:
+      | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+      | null
+      | undefined,
+    options?: GeneralParameters | null | undefined
+  ): Promise<
+    WithResolvableReferences<Retrieved<InstanceType<TCustomResourceClass>>>
+  >;
 
   /**
    * Execute a search operation and walk through all the search pages.
@@ -161,6 +202,13 @@ export interface FhirClient {
       nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
     ) => unknown | Promise<unknown>
   ): Promise<void>;
+  searchByPage<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
+    fn: (
+      nav: BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
+    ) => unknown | Promise<unknown>
+  ): Promise<void>;
 
   /**
    * Execute a search operation and retrieve all pages from the server, aggregating into a final {@link BundleNavigator}.
@@ -170,6 +218,10 @@ export interface FhirClient {
     type: TResourceType | null | undefined,
     search: FhirClientSearchParameters<TResourceType>
   ): Promise<BundleNavigator<ExtractResource<TResourceType>>>;
+  searchAllPages<TCustomResourceClass extends CustomResourceClass>(
+    type: TCustomResourceClass,
+    search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+  ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
 
   /**
    * The capabilities interaction retrieves the information about a server's capabilities - which portions of this specification it supports.
@@ -216,21 +268,34 @@ export interface FhirClient {
   /**
    * Fetch a page from a bundle previously retrieved from a search or history operation.
    * @see {@link https://www.hl7.org/fhir/bundle.html#pagination}.
-   * @see {@link BundleNavigator.linkUrl}.
+   * @see BundleNavigator.linkUrl
    *
-   * @see also {@link FhirClient.searchByPage}, {@link FhirClient.searchAllPages}
+   * @see also FhirClient.searchByPage, FhirClient.searchAllPages
    */
   fetchPage<TResource extends AnyResource>(
     resource: string | URL,
     init?: Parameters<typeof fetch>[1]
   ): Promise<BundleNavigator<Retrieved<TResource>>>;
+  fetchPage<TCustomResourceClass extends CustomResourceClass>(
+    resource: string | URL,
+    init?: Parameters<typeof fetch>[1],
+    customType?: TCustomResourceClass | null | undefined
+  ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
 
   /**
    * Execute an HTTP fetch operation to the FHIR server.
+   *
+   * @param customType - Custom class or constructor function that will be used to instantiate the resource.
    */
   fetch<T = unknown>(
     resource: string | URL,
-    init?: Parameters<typeof fetch>[1]
+    init?: Parameters<typeof fetch>[1],
+    customType?:
+      | string
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      | Function
+      | null
+      | undefined
   ): Promise<T>;
 }
 
@@ -403,26 +468,55 @@ export interface HistoryParameters {
  * Prefer using `client.searchByPage`.
  */
 export async function searchByPage<TResourceType extends AnyResourceType>(
-  client: Pick<FhirClient, "search" | "fetch">,
+  client: Pick<FhirClient, "search" | "fetchPage">,
   type: TResourceType | null | undefined,
   search: FhirClientSearchParameters<TResourceType>,
   fn: (
     nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
   ) => unknown | Promise<unknown>
+): Promise<void>;
+export async function searchByPage<
+  TCustomResourceClass extends CustomResourceClass
+>(
+  client: Pick<FhirClient, "search" | "fetchPage">,
+  type: TCustomResourceClass,
+  search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
+  fn: (
+    nav: BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
+  ) => unknown | Promise<unknown>
+): Promise<void>;
+export async function searchByPage<
+  TResourceType extends AnyResourceType,
+  TCustomResourceClass extends CustomResourceClass
+>(
+  client: Pick<FhirClient, "search" | "fetchPage">,
+  type: TResourceType | TCustomResourceClass | null | undefined,
+  search:
+    | FhirClientSearchParameters<TResourceType>
+    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
+  fn: (
+    nav:
+      | BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
+      | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
+  ) => unknown | Promise<unknown>
 ): Promise<void> {
   let currentNavigator:
     | BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
+    | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
     | undefined;
 
   while (!currentNavigator || currentNavigator.linkUrl("next")) {
     currentNavigator = currentNavigator
-      ? bundleNavigator(
-          await client.fetch<Bundle<Retrieved<ExtractResource<TResourceType>>>>(
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            currentNavigator.linkUrl("next")!
-          )
+      ? await client.fetchPage(
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          currentNavigator.linkUrl("next")!,
+          undefined,
+          typeof type === "string" ? undefined : type || undefined
         )
-      : await client.search<TResourceType>(type, search);
+      : await client.search<TResourceType>(
+          type as TResourceType,
+          search as FhirClientSearchParameters<TResourceType>
+        );
 
     await fn(currentNavigator);
   }
@@ -436,15 +530,44 @@ export async function searchByPage<TResourceType extends AnyResourceType>(
  * Prefer using `client.searchAllPages`.
  */
 export async function searchAllPages<TResourceType extends AnyResourceType>(
-  client: Pick<FhirClient, "search" | "fetch">,
+  client: Pick<FhirClient, "search" | "fetchPage">,
   type: TResourceType | null | undefined,
   search: FhirClientSearchParameters<TResourceType>
-): Promise<BundleNavigator<ExtractResource<TResourceType>>> {
-  const results: Array<BundleNavigator<ExtractResource<TResourceType>>> = [];
+): Promise<BundleNavigator<ExtractResource<TResourceType>>>;
+export async function searchAllPages<
+  TCustomResourceClass extends CustomResourceClass
+>(
+  client: Pick<FhirClient, "search" | "fetchPage">,
+  type: TCustomResourceClass,
+  search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
+export async function searchAllPages<
+  TResourceType extends AnyResourceType,
+  TCustomResourceClass extends CustomResourceClass
+>(
+  client: Pick<FhirClient, "search" | "fetchPage">,
+  type: TResourceType | TCustomResourceClass | null | undefined,
+  search:
+    | FhirClientSearchParameters<TResourceType>
+    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+): Promise<
+  | BundleNavigator<ExtractResource<TResourceType>>
+  | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
+> {
+  const results: Array<
+    | BundleNavigator<ExtractResource<TResourceType>>
+    | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
+  > = [];
 
-  await searchByPage(client, type, search, (nav) => {
-    results.push(nav);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  await searchByPage(client, type as any, search as any, (nav) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    results.push(nav as any);
   });
 
-  return new BundleNavigator(results);
+  return new BundleNavigator(
+    results,
+    typeof type === "string" ? undefined : type || undefined
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ) as any;
 }
