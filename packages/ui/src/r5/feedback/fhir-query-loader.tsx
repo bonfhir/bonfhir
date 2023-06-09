@@ -4,15 +4,21 @@ import {
   asError,
   isFhirClientError,
 } from "@bonfhir/core/r5";
-import { QueryObserverBaseResult } from "@tanstack/react-query";
-import { PropsWithChildren, ReactElement } from "react";
+import {
+  QueryObserverBaseResult,
+  UseBaseQueryResult,
+} from "@tanstack/react-query";
+import { ReactElement, ReactNode } from "react";
 import { useFhirUIContext } from "../context.js";
 
-export type FhirQueryLoaderProps<TRendererProps = any> = PropsWithChildren & {
-  query: QueryObserverBaseResult | Array<QueryObserverBaseResult>;
+export type FhirQueryLoaderProps<TRendererProps = any, TData = any> = {
+  query:
+    | UseBaseQueryResult<TData>
+    | [UseBaseQueryResult<TData>, ...QueryObserverBaseResult[]];
   allowRetry?: boolean | null | undefined;
   loader?: ReactElement | null | undefined;
   error?: ((error: FhirClientError | Error) => ReactElement) | null | undefined;
+  children?: ReactNode | ((data: TData) => ReactNode) | undefined;
   rendererProps?: TRendererProps;
 };
 
@@ -27,6 +33,12 @@ export function FhirQueryLoader<TRendererProps = any>(
 
   return render<FhirQueryLoaderRendererProps>("FhirQueryLoader", {
     ...props,
+    children:
+      typeof props.children === "function"
+        ? queries[0].data
+          ? props.children(queries[0].data)
+          : undefined
+        : props.children,
     isLoading,
     isError,
     errors: queries.map((query) =>
@@ -40,6 +52,7 @@ export function FhirQueryLoader<TRendererProps = any>(
 
 export interface FhirQueryLoaderRendererProps<TRendererProps = any>
   extends FhirQueryLoaderProps<TRendererProps> {
+  children?: ReactNode | undefined;
   isLoading: boolean;
   isError: boolean;
   errors: Array<FhirClientError | Error>;

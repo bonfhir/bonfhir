@@ -14,10 +14,11 @@ export default function Patient() {
   return (
     <MainPage title="Patients">
       <FhirQueryLoader query={patientQuery}>
-        <Stack>
-          {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
-          <PatientHeader patient={patientQuery.data!} />
-        </Stack>
+        {(patient) => (
+          <Stack>
+            <PatientHeader patient={patient} />
+          </Stack>
+        )}
       </FhirQueryLoader>
     </MainPage>
   );
