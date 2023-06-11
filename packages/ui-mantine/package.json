@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@bonfhir/core": "^2.0.0",
+    "@bonfhir/query": "^2.0.0",
     "@bonfhir/ui": "^2.0.0"
   },
   "devDependencies": {
@@ -44,6 +45,7 @@
     "@bonfhir/typescript-config": "workspace:*",
     "@mantine/core": "^6.0.13",
     "@mantine/dates": "^6.0.13",
+    "@mantine/form": "^6.0.13",
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-replace": "^5.0.2",
@@ -74,7 +76,9 @@
   "peerDependencies": {
     "@mantine/core": "*",
     "@mantine/dates": "*",
+    "@mantine/form": "*",
     "@tabler/icons-react": "*",
+    "@tanstack/react-query": "*",
     "dayjs": "*",
     "react": "*",
     "react-dom": "*"

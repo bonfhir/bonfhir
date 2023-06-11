@@ -1,6 +1,5 @@
 import { MainPage } from "@/components";
-import { Patient, build } from "@bonfhir/core/r4b";
-import { useFhirRead, useFhirSaveMutation } from "@bonfhir/query/r4b";
+import { useFhirResourceForm } from "@bonfhir/ui-mantine/r4b";
 import { FhirInput, useFhirUIContext } from "@bonfhir/ui/r4b";
 import {
   Box,
@@ -10,73 +9,54 @@ import {
   Paper,
   Stack,
 } from "@mantine/core";
-import { useForm } from "@mantine/form";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 export default function EditPatient() {
   const { formatter } = useFhirUIContext();
   const router = useRouter();
   const { patientId } = router.query as { patientId: "new" | string };
   const newPatient = patientId === "new";
-  const patientQuery = useFhirRead("Patient", patientId, {
-    query: { enabled: !newPatient },
-  });
 
-  const savePatient = useFhirSaveMutation("Patient", {
-    mutation: {
+  const formResource = useFhirResourceForm({
+    type: "Patient",
+    id: patientId,
+    mutationOptions: {
       onSuccess(data) {
         router.push(`/patients/${data.id}`);
       },
     },
   });
 
-  const form = useForm<Patient>({
-    initialValues: {
-      resourceType: "Patient",
-    },
-    transformValues: (values) => build("Patient", values),
-  });
-
-  useEffect(() => {
-    if (patientQuery.data) {
-      const { meta, text, ...clonedPatient } = structuredClone(
-        patientQuery.data
-      );
-      form.setValues(clonedPatient);
-      form.resetDirty(clonedPatient);
-    }
-  }, [patientQuery.data]);
-
   return (
     <MainPage title={newPatient ? `New Patient` : `Edit Patient`}>
       <Paper>
-        <form
-          onSubmit={form.onSubmit((newPatient) =>
-            savePatient.mutate(newPatient)
-          )}
-        >
-          <LoadingOverlay visible={patientQuery.isInitialLoading} />
+        <form onSubmit={formResource.onSubmit}>
+          <LoadingOverlay visible={formResource.query.isInitialLoading} />
           <Box maw={300}>
             <Stack align="flex-start">
               <FhirInput
                 type="string"
                 label="Name"
                 disabled={true}
-                value={formatter.format("HumanName", form.values.name)}
+                value={formatter.format(
+                  "HumanName",
+                  formResource.form.values.name
+                )}
               />
               <FhirInput
                 type="date"
                 label="Date of Birth"
-                {...form.getInputProps("birthDate")}
+                {...formResource.getInputProps("birthDate")}
               />
               <FhirInput
                 type="dateTime"
                 label="Deceased"
-                {...form.getInputProps("deceasedDateTime")}
+                {...formResource.getInputProps("deceasedDateTime")}
               />
               <Group mt="md">
-                <Button type="submit">Save</Button>
+                <Button type="submit" loading={formResource.mutation.isLoading}>
+                  Save
+                </Button>
                 <Button variant="outline" onClick={() => router.back()}>
                   Cancel
                 </Button>
