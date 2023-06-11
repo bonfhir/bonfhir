@@ -2,6 +2,7 @@
 import {
   IndicatorCard,
   MainPage,
+  NavButton,
   QuickFilter,
   TitleDivider,
 } from "@/components";
@@ -21,6 +22,7 @@ import {
   FhirValue,
 } from "@bonfhir/ui/r4b";
 import { Drawer, Grid, Paper, SimpleGrid, Stack } from "@mantine/core";
+import { IconPlus } from "@tabler/icons-react";
 import { PropsWithChildren, ReactElement, useState } from "react";
 
 export default function Patients() {
@@ -278,6 +280,12 @@ function PatientsList(): ReactElement {
       <Grid.Col span="content">
         <Paper>
           <Stack>
+            <NavButton
+              leftIcon={<IconPlus size="1rem" />}
+              target="/patients/new/edit"
+            >
+              New patient
+            </NavButton>
             <TitleDivider title="Quick Filters" />
             <FhirInput
               type="string"

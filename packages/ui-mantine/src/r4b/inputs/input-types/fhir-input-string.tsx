@@ -12,6 +12,8 @@ export function MantineFhirInputString(
       error={props.error}
       placeholder={props.placeholder}
       required={props.required}
+      disabled={props.disabled}
+      w="100%"
       value={props.value || ""}
       onChange={(evt: FormEvent<HTMLInputElement>) =>
         props.onChange?.(evt.currentTarget.value || undefined)

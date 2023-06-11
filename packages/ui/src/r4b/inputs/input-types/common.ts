@@ -5,4 +5,5 @@ export interface FhirInputCommonProps {
   description?: ReactNode | null | undefined;
   error?: ReactNode | null | undefined;
   required?: boolean | null | undefined;
+  disabled?: boolean | null | undefined;
 }

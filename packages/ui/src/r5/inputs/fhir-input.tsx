@@ -2,6 +2,8 @@ import { ReactElement } from "react";
 import {
   FhirInputDate,
   FhirInputDateProps,
+  FhirInputDateTime,
+  FhirInputDateTimeProps,
   FhirInputString,
   FhirInputStringProps,
 } from "./input-types/index.js";
@@ -12,6 +14,9 @@ export function FhirInput<TRendererProps = any>(
   switch (props.type) {
     case "date": {
       return <FhirInputDate {...props} />;
+    }
+    case "dateTime": {
+      return <FhirInputDateTime {...props} />;
     }
     case "string": {
       return <FhirInputString {...props} />;
@@ -24,4 +29,5 @@ export function FhirInput<TRendererProps = any>(
 
 export type FhirInputProps<TRendererProps = any> =
   | FhirInputDateProps<TRendererProps>
+  | FhirInputDateTimeProps<TRendererProps>
   | FhirInputStringProps<TRendererProps>;

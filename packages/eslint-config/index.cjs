@@ -25,6 +25,7 @@ module.exports = {
         argsIgnorePattern: "^_",
         varsIgnorePattern: "^_",
         caughtErrorsIgnorePattern: "^_",
+        ignoreRestSiblings: true,
       },
     ],
     // forbid usage of unused variables (marked with an _)

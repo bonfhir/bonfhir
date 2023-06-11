@@ -28,7 +28,7 @@ export function Navbar() {
   const router = useRouter();
   return (
     <MantineNavbar height="100vh" width={{ sm: 210 }}>
-      <MantineNavbar.Section m="sm">
+      <MantineNavbar.Section m="sm" mt="md">
         <Stack>
           <Group spacing="xs">
             <ThemeIcon radius="xl" size="lg" color="red">
@@ -38,8 +38,8 @@ export function Navbar() {
           </Group>
         </Stack>
       </MantineNavbar.Section>
-      <MantineNavbar.Section grow>
-        <Stack spacing="xs">
+      <MantineNavbar.Section grow mt="md">
+        <Stack spacing={0}>
           {links.map((link) => (
             <NavLink
               key={link.label}

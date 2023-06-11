@@ -1,8 +1,9 @@
-import { MainPage } from "@/components";
+import { MainPage, NavButton } from "@/components";
 import { Patient, Retrieved } from "@bonfhir/core/r4b";
 import { useFhirRead } from "@bonfhir/query/r4b";
 import { FhirQueryLoader, FhirValue } from "@bonfhir/ui/r4b";
 import { Avatar, Divider, Group, Paper, Stack, Title } from "@mantine/core";
+import { IconEdit } from "@tabler/icons-react";
 import { useRouter } from "next/router";
 import { ReactElement } from "react";
 
@@ -12,7 +13,18 @@ export default function Patient() {
   const patientQuery = useFhirRead("Patient", patientId);
 
   return (
-    <MainPage title="Patients">
+    <MainPage
+      title="Patients"
+      titleRight={
+        <NavButton
+          target={`/patients/${patientId}/edit`}
+          variant="outline"
+          leftIcon={<IconEdit size="1rem" />}
+        >
+          Edit
+        </NavButton>
+      }
+    >
       <FhirQueryLoader query={patientQuery}>
         {(patient) => (
           <Stack>

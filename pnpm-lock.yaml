@@ -50,6 +50,9 @@ importers:
       '@mantine/dates':
         specifier: ^6.0.13
         version: 6.0.13(@mantine/core@6.0.13)(@mantine/hooks@6.0.13)(dayjs@1.11.8)(react@18.2.0)
+      '@mantine/form':
+        specifier: ^6.0.13
+        version: 6.0.13(react@18.2.0)
       '@mantine/hooks':
         specifier: ^6.0.13
         version: 6.0.13(react@18.2.0)
@@ -1798,6 +1801,16 @@ packages:
       '@mantine/utils': 6.0.13(react@18.2.0)
       dayjs: 1.11.8
       react: 18.2.0
+
+  /@mantine/form@6.0.13(react@18.2.0):
+    resolution: {integrity: sha512-oR/bnnJEd6T42N5pUhXYZ5RaKC4EZozEFW2jHCWDKIAJDjIgGUQrLL/tCjclQ2NwtghaoCTz+9zu32CuXer7TA==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      fast-deep-equal: 3.1.3
+      klona: 2.0.6
+      react: 18.2.0
+    dev: false
 
   /@mantine/hooks@6.0.13(react@18.2.0):
     resolution: {integrity: sha512-fHuE3zXo5OP/Q1dMOTnegU6U+tI9GuhO2tgOz6szVuOxrrk0Hzuq1Na9NUSv27HShSRbAfQk+hvyIh+iVV7KXA==}
@@ -6716,6 +6729,11 @@ packages:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
     engines: {node: '>=6'}
     dev: true
+
+  /klona@2.0.6:
+    resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
+    engines: {node: '>= 8'}
+    dev: false
 
   /language-subtag-registry@0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}

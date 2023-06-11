@@ -36,7 +36,6 @@ export function MantineFhirInputDate(
       required={props.required}
       allowDeselect={!props.required}
       disabled={props.disabled}
-      w="100%"
       value={normalizedValue}
       onChange={(value: Date | undefined | null) => {
         if (!value) {
