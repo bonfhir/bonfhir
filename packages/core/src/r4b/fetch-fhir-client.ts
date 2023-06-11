@@ -361,6 +361,20 @@ export class FetchFhirClient implements FhirClient {
     );
   }
 
+  public save<TResource extends AnyResource>(
+    body: TResource,
+    options?:
+      | (GeneralParameters &
+          ConcurrencyParameters &
+          ConditionalSearchParameters<TResource["resourceType"]>)
+      | null
+      | undefined
+  ): Promise<Retrieved<TResource>> {
+    return body.id?.trim()
+      ? this.update(body, options)
+      : this.create(body, options);
+  }
+
   public search<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,

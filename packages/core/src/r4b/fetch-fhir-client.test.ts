@@ -341,47 +341,60 @@ describe("fetch-fhir-client", () => {
     });
   });
 
-  describe("search", () => {
-    it("root", async () => {
-      const result = await client.search();
-      expect(result.searchMatch().length).not.toBe(0);
-    });
+  describe("save", () => {
+    it("resource", async () => {
+      const organization = build("Organization", {});
+      let result = await client.save(organization);
+      expect(result.resourceType).toEqual("Organization");
+      expect(result.id).toBeTruthy();
 
-    it("type only", async () => {
-      const result = await client.search("Patient");
-      expect(result.searchMatch().length).not.toBe(0);
+      const resultId = result.id;
+      result = await client.save(result);
+      expect(result.resourceType).toEqual("Organization");
+      expect(result.id).toEqual(resultId);
     });
+  }),
+    describe("search", () => {
+      it("root", async () => {
+        const result = await client.search();
+        expect(result.searchMatch().length).not.toBe(0);
+      });
 
-    it("type and search builder", async () => {
-      const result = await client.search("Patient", (search) =>
-        search.name("John Doe")
-      );
-      expect(result.searchMatch().length).not.toBe(0);
-    });
+      it("type only", async () => {
+        const result = await client.search("Patient");
+        expect(result.searchMatch().length).not.toBe(0);
+      });
 
-    it("type and search string", async () => {
-      const result = await client.search("Patient", "name=John");
-      expect(result.searchMatch().length).not.toBe(0);
-    });
+      it("type and search builder", async () => {
+        const result = await client.search("Patient", (search) =>
+          search.name("John Doe")
+        );
+        expect(result.searchMatch().length).not.toBe(0);
+      });
 
-    it("type and search builder with options", async () => {
-      const result = await client.search(
-        "Patient",
-        (search) => search.name("John Doe"),
-        { _summary: "true" }
-      );
-      expect(result.searchMatch().length).not.toBe(0);
-    });
+      it("type and search string", async () => {
+        const result = await client.search("Patient", "name=John");
+        expect(result.searchMatch().length).not.toBe(0);
+      });
 
-    it("with a custom type", async () => {
-      const result = await client.search(CustomPatient, (search) =>
-        search.name("John Doe")
-      );
-      for (const patient of result.searchMatch()) {
-        expect(patient).toBeInstanceOf(CustomPatient);
-      }
+      it("type and search builder with options", async () => {
+        const result = await client.search(
+          "Patient",
+          (search) => search.name("John Doe"),
+          { _summary: "true" }
+        );
+        expect(result.searchMatch().length).not.toBe(0);
+      });
+
+      it("with a custom type", async () => {
+        const result = await client.search(CustomPatient, (search) =>
+          search.name("John Doe")
+        );
+        for (const patient of result.searchMatch()) {
+          expect(patient).toBeInstanceOf(CustomPatient);
+        }
+      });
     });
-  });
 
   describe("searchOne", () => {
     it("throw when multiple values are found", async () => {

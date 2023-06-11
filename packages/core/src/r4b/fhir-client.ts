@@ -148,6 +148,20 @@ export interface FhirClient {
   ): Promise<Retrieved<TResource>>;
 
   /**
+   * This is a basic create or update operation.
+   * It invokes create if the resource has no id, update otherwise.
+   */
+  save<TResource extends AnyResource>(
+    body: TResource,
+    options?:
+      | (GeneralParameters &
+          ConcurrencyParameters &
+          ConditionalSearchParameters<TResource["resourceType"]>)
+      | null
+      | undefined
+  ): Promise<Retrieved<TResource>>;
+
+  /**
    * This interaction searches a set of resources based on some filter criteria.
    * https://hl7.org/fhir/http.html#search
    */

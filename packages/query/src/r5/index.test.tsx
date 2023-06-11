@@ -32,6 +32,7 @@ import {
   useFhirInfiniteSearch,
   useFhirPatchMutation,
   useFhirRead,
+  useFhirSaveMutation,
   useFhirSearch,
   useFhirSearchAllPages,
   useFhirSearchOne,
@@ -541,6 +542,19 @@ describe("hooks", () => {
           wrapper,
         }
       );
+
+      result.current.mutate(build("Organization", {}));
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data?.resourceType).toEqual("Organization");
+      });
+    });
+
+    it("save", async () => {
+      const { result } = renderHook(() => useFhirSaveMutation("Organization"), {
+        wrapper,
+      });
 
       result.current.mutate(build("Organization", {}));
 

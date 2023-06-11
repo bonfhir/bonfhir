@@ -1,10 +1,6 @@
 import { MainPage } from "@/components";
 import { Patient, build } from "@bonfhir/core/r4b";
-import {
-  useFhirCreateMutation,
-  useFhirRead,
-  useFhirUpdateMutation,
-} from "@bonfhir/query/r4b";
+import { useFhirRead, useFhirSaveMutation } from "@bonfhir/query/r4b";
 import { FhirInput, useFhirUIContext } from "@bonfhir/ui/r4b";
 import {
   Box,
@@ -27,15 +23,7 @@ export default function EditPatient() {
     query: { enabled: !newPatient },
   });
 
-  const savePatient = useFhirUpdateMutation("Patient", {
-    mutation: {
-      onSuccess(data) {
-        router.push(`/patients/${data.id}`);
-      },
-    },
-  });
-
-  const createPatient = useFhirCreateMutation("Patient", {
+  const savePatient = useFhirSaveMutation("Patient", {
     mutation: {
       onSuccess(data) {
         router.push(`/patients/${data.id}`);
@@ -47,6 +35,7 @@ export default function EditPatient() {
     initialValues: {
       resourceType: "Patient",
     },
+    transformValues: (values) => build("Patient", values),
   });
 
   useEffect(() => {
@@ -64,9 +53,7 @@ export default function EditPatient() {
       <Paper>
         <form
           onSubmit={form.onSubmit((newPatient) =>
-            newPatient
-              ? createPatient.mutate(build("Patient", newPatient))
-              : savePatient.mutate(build("Patient", newPatient))
+            savePatient.mutate(newPatient)
           )}
         >
           <LoadingOverlay visible={patientQuery.isInitialLoading} />

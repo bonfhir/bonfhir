@@ -8,6 +8,7 @@ export * from "./use-fhir-history.js";
 export * from "./use-fhir-infinite-search.js";
 export * from "./use-fhir-patch-mutation.js";
 export * from "./use-fhir-read.js";
+export * from "./use-fhir-save-mutation.js";
 export * from "./use-fhir-search-all-pages.js";
 export * from "./use-fhir-search-one.js";
 export * from "./use-fhir-search.js";
