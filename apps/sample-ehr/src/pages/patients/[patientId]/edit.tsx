@@ -1,6 +1,10 @@
 import { MainPage } from "@/components";
 import { Patient, build } from "@bonfhir/core/r4b";
-import { useFhirRead } from "@bonfhir/query/r4b";
+import {
+  useFhirCreateMutation,
+  useFhirRead,
+  useFhirUpdateMutation,
+} from "@bonfhir/query/r4b";
 import { FhirInput, useFhirUIContext } from "@bonfhir/ui/r4b";
 import {
   Box,
@@ -21,6 +25,22 @@ export default function EditPatient() {
   const newPatient = patientId === "new";
   const patientQuery = useFhirRead("Patient", patientId, {
     query: { enabled: !newPatient },
+  });
+
+  const savePatient = useFhirUpdateMutation("Patient", {
+    mutation: {
+      onSuccess(data) {
+        router.push(`/patients/${data.id}`);
+      },
+    },
+  });
+
+  const createPatient = useFhirCreateMutation("Patient", {
+    mutation: {
+      onSuccess(data) {
+        router.push(`/patients/${data.id}`);
+      },
+    },
   });
 
   const form = useForm<Patient>({
@@ -44,7 +64,9 @@ export default function EditPatient() {
       <Paper>
         <form
           onSubmit={form.onSubmit((newPatient) =>
-            console.log(build("Patient", newPatient))
+            newPatient
+              ? createPatient.mutate(build("Patient", newPatient))
+              : savePatient.mutate(build("Patient", newPatient))
           )}
         >
           <LoadingOverlay visible={patientQuery.isInitialLoading} />
@@ -68,6 +90,9 @@ export default function EditPatient() {
               />
               <Group mt="md">
                 <Button type="submit">Save</Button>
+                <Button variant="outline" onClick={() => router.back()}>
+                  Cancel
+                </Button>
               </Group>
             </Stack>
           </Box>
