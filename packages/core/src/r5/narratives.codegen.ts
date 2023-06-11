@@ -14,58 +14,12 @@ export type NarrativeGenerator =
   | NarrativeItemGenerator[]
   | ((resource: any) => Narrative | string);
 
-export type NarrativeFunction = {
-  <TResource extends AnyDomainResource>(
-    resource: TResource,
-    options?: NarrativeOptions | null | undefined
-  ): Narrative | undefined;
-
-  /**
-   * The narrative generator configuration.
-   */
-  generators?: Record<string, NarrativeGenerator>;
-};
-
 export interface NarrativeOptions {
   /** The formatter to use. Will use the `Formatter.default` if not provided. */
   formatter?: DefaultFormatter | null | undefined;
 }
 
-let narrative: NarrativeFunction = function <
-  TResource extends AnyDomainResource
->(
-  this: NarrativeFunction,
-  resource: TResource,
-  options?: NarrativeOptions | null | undefined
-): Narrative | undefined {
-  const generator = this.generators?.[resource.resourceType];
-  if (!generator) {
-    return;
-  }
-
-  if (typeof generator === "function") {
-    const result = generator(resource);
-    if (typeof result === "string") {
-      return {
-        status: "generated",
-        div: result,
-      };
-    }
-
-    return result;
-  }
-
-  return {
-    status: "generated",
-    div: `<div xmlns="http://www.w3.org/1999/xhtml">${render(
-      resource,
-      generator,
-      options
-    )}</div>`,
-  };
-};
-
-narrative.generators = {
+export const NARRATIVE_GENERATORS: Record<string, NarrativeGenerator> = {
   Account: [
     ["billingStatus", "CodeableConcept"],
     ["coverage", "AccountCoverage"],
@@ -3459,9 +3413,36 @@ narrative.generators = {
   ],
 };
 
-narrative = narrative.bind(narrative);
+export function narrative<TResource extends AnyDomainResource>(
+  resource: TResource,
+  options?: NarrativeOptions | null | undefined
+): Narrative | undefined {
+  const generator = NARRATIVE_GENERATORS?.[resource.resourceType];
+  if (!generator) {
+    return;
+  }
 
-export { narrative };
+  if (typeof generator === "function") {
+    const result = generator(resource);
+    if (typeof result === "string") {
+      return {
+        status: "generated",
+        div: result,
+      };
+    }
+
+    return result;
+  }
+
+  return {
+    status: "generated",
+    div: `<div xmlns="http://www.w3.org/1999/xhtml">${render(
+      resource,
+      generator,
+      options
+    )}</div>`,
+  };
+}
 
 function render(
   item: object,
@@ -3505,7 +3486,7 @@ function renderValue(
   options: NarrativeOptions | null | undefined
 ): string | undefined {
   const formatter = options?.formatter ?? Formatter.default;
-  const narrativeGenerator = narrative.generators?.[type];
+  const narrativeGenerator = NARRATIVE_GENERATORS?.[type];
   if (typeof narrativeGenerator === "function") {
     const generated = narrativeGenerator(value);
     return typeof generated === "string" ? generated : generated.div;

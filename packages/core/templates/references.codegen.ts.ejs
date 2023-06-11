@@ -15,29 +15,18 @@ export interface ReferenceOptions {
   versionSpecific?: boolean | null | undefined;
 }
 
-export type ReferenceFunction = {
-  <TTargetResource extends AnyResource = AnyResource>(
-    resource: Retrieved<TTargetResource>,
-    options?: ReferenceOptions | null | undefined
-  ): Reference<TTargetResource>;
-
-  /**
-   * Mapping of domain resource type and decorator function that are used to augment references created by the
-   * reference function.
-   */
-  decorators?: Record<
-    string,
-    (resource: Resource, reference: Reference) => Reference
-  >;
-}
+export const REFERENCE_DECORATORS: Record<string, (resource: Resource, reference: Reference) => Reference> = {
+  <% for (domainResource of domainResourcesThatCanBeDecorated) { -%>
+    "<%= domainResource.type %>": decorate,
+  <% } -%>
+};
 
 /**
  * Build a reference from a resource.
  */
-let reference: ReferenceFunction = function<
+export function reference<
   TTargetResource extends AnyResource = AnyResource
 >(
-  this: ReferenceFunction,
   resource: Retrieved<TTargetResource>,
   options?: ReferenceOptions | null | undefined
 ): Reference<TTargetResource> {
@@ -53,7 +42,7 @@ let reference: ReferenceFunction = function<
     reference.reference = reference.reference?.split("/").slice(1).join("/");
   }
 
-  const decorator = this.decorators?.[resource.resourceType];
+  const decorator = REFERENCE_DECORATORS?.[resource.resourceType];
 
   if (decorator) {
     reference = decorator(resource, reference) as Reference<TTargetResource>;
@@ -61,16 +50,6 @@ let reference: ReferenceFunction = function<
 
   return reference;
 }
-
-reference.decorators = {
-<% for (domainResource of domainResourcesThatCanBeDecorated) { -%>
-  "<%= domainResource.type %>": decorate,
-  <% } -%>
-};
-
-reference = reference.bind(reference);
-
-export { reference };
 
 function decorate(resource: Resource, reference: Reference): Reference {
   const name = (resource as any).name;

@@ -1,5 +1,5 @@
 import { MainPage } from "@/components";
-import { build } from "@bonfhir/core/r4b";
+import { Patient, build } from "@bonfhir/core/r4b";
 import { useFhirRead } from "@bonfhir/query/r4b";
 import { FhirInput, useFhirUIContext } from "@bonfhir/ui/r4b";
 import {
@@ -23,8 +23,10 @@ export default function EditPatient() {
     query: { enabled: !newPatient },
   });
 
-  const form = useForm({
-    initialValues: build("Patient", {}),
+  const form = useForm<Patient>({
+    initialValues: {
+      resourceType: "Patient",
+    },
   });
 
   useEffect(() => {

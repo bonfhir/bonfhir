@@ -20,54 +20,10 @@ export interface ReferenceOptions {
   versionSpecific?: boolean | null | undefined;
 }
 
-export type ReferenceFunction = {
-  <TTargetResource extends AnyResource = AnyResource>(
-    resource: Retrieved<TTargetResource>,
-    options?: ReferenceOptions | null | undefined
-  ): Reference<TTargetResource>;
-
-  /**
-   * Mapping of domain resource type and decorator function that are used to augment references created by the
-   * reference function.
-   */
-  decorators?: Record<
-    string,
-    (resource: Resource, reference: Reference) => Reference
-  >;
-};
-
-/**
- * Build a reference from a resource.
- */
-let reference: ReferenceFunction = function <
-  TTargetResource extends AnyResource = AnyResource
->(
-  this: ReferenceFunction,
-  resource: Retrieved<TTargetResource>,
-  options?: ReferenceOptions | null | undefined
-): Reference<TTargetResource> {
-  let reference: Reference<TTargetResource> = {
-    reference: options?.versionSpecific
-      ? `${resource.resourceType}/${resource.id}/_history/${resource.meta.versionId}`
-      : `${resource.resourceType}/${resource.id}`,
-    type: resource.resourceType,
-  };
-
-  // We handle the case of temporary bundle references as well.
-  if (resource.id?.startsWith("urn:uuid:")) {
-    reference.reference = reference.reference?.split("/").slice(1).join("/");
-  }
-
-  const decorator = this.decorators?.[resource.resourceType];
-
-  if (decorator) {
-    reference = decorator(resource, reference) as Reference<TTargetResource>;
-  }
-
-  return reference;
-};
-
-reference.decorators = {
+export const REFERENCE_DECORATORS: Record<
+  string,
+  (resource: Resource, reference: Reference) => Reference
+> = {
   Account: decorate,
   ActivityDefinition: decorate,
   ActorDefinition: decorate,
@@ -152,9 +108,33 @@ reference.decorators = {
   ValueSet: decorate,
 };
 
-reference = reference.bind(reference);
+/**
+ * Build a reference from a resource.
+ */
+export function reference<TTargetResource extends AnyResource = AnyResource>(
+  resource: Retrieved<TTargetResource>,
+  options?: ReferenceOptions | null | undefined
+): Reference<TTargetResource> {
+  let reference: Reference<TTargetResource> = {
+    reference: options?.versionSpecific
+      ? `${resource.resourceType}/${resource.id}/_history/${resource.meta.versionId}`
+      : `${resource.resourceType}/${resource.id}`,
+    type: resource.resourceType,
+  };
 
-export { reference };
+  // We handle the case of temporary bundle references as well.
+  if (resource.id?.startsWith("urn:uuid:")) {
+    reference.reference = reference.reference?.split("/").slice(1).join("/");
+  }
+
+  const decorator = REFERENCE_DECORATORS?.[resource.resourceType];
+
+  if (decorator) {
+    reference = decorator(resource, reference) as Reference<TTargetResource>;
+  }
+
+  return reference;
+}
 
 function decorate(resource: Resource, reference: Reference): Reference {
   const name = (resource as any).name;
