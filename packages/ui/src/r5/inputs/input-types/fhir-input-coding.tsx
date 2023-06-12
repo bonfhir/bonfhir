@@ -1,36 +1,37 @@
 import {
+  Coding,
   ValueSet,
   ValueSetExpandOperation,
   ValueSetExpansionContains,
-} from "@bonfhir/core/r4b";
-import { useFhirExecute } from "@bonfhir/query/r4b";
+} from "@bonfhir/core/r5";
+import { useFhirExecute } from "@bonfhir/query/r5";
 import { UseQueryResult } from "@tanstack/react-query";
 import { ReactElement } from "react";
 import { useFhirUIContext } from "../../context.js";
 import { FhirInputCommonProps } from "./common.js";
 
-export type FhirInputCodeProps<TRendererProps = any> =
-  FhirInputCodeCommonProps<TRendererProps> & FhirInputCodeSelectProps;
+export type FhirInputCodingProps<TRendererProps = any> =
+  FhirInputCodingCommonProps<TRendererProps> & FhirInputCodingSelectProps;
 
-export interface FhirInputCodeSelectProps {
+export interface FhirInputCodingSelectProps {
   mode: "select";
   source: string | UseQueryResult<ValueSet> | Array<ValueSetExpansionContains>;
 }
 
-export interface FhirInputCodeCommonProps<TRendererProps = any>
+export interface FhirInputCodingCommonProps<TRendererProps = any>
   extends FhirInputCommonProps {
-  type: "code";
+  type: "Coding";
   placeholder?: string | null | undefined;
   fhirClient?: string | null | undefined;
   filter?: ((value: ValueSetExpansionContains) => boolean) | null | undefined;
   sort?: (a: ValueSetExpansionContains, b: ValueSetExpansionContains) => number;
-  value?: string | null | undefined;
-  onChange?: (value: string | undefined) => void;
+  value?: Coding | null | undefined;
+  onChange?: (value: Coding | undefined) => void;
   rendererProps?: TRendererProps;
 }
 
-export function FhirInputCode<TRendererProps = any>(
-  props: FhirInputCodeProps<TRendererProps>
+export function FhirInputCoding<TRendererProps = any>(
+  props: FhirInputCodingProps<TRendererProps>
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
@@ -65,27 +66,27 @@ export function FhirInputCode<TRendererProps = any>(
       loading = selectQuery.isLoading;
     }
 
-    return render("FhirInputCode", { data, loading, ...props });
+    return render("FhirInputCoding", { data, loading, ...props });
   }
 
   throw new TypeError(`Unsupported mode ${props.mode}.`);
 }
 
-export type FhirInputCodeRendererProps<TRendererProps = any> =
-  FhirInputCodeRendererCommonProps<TRendererProps> &
-    FhirInputCodeRendererSelectProps;
+export type FhirInputCodingRendererProps<TRendererProps = any> =
+  FhirInputCodingRendererCommonProps<TRendererProps> &
+    FhirInputCodingRendererSelectProps;
 
-export interface FhirInputCodeRendererCommonProps<TRendererProps = any>
-  extends FhirInputCodeCommonProps<TRendererProps> {}
+export interface FhirInputCodingRendererCommonProps<TRendererProps = any>
+  extends FhirInputCodingCommonProps<TRendererProps> {}
 
-export interface FhirInputCodeRendererSelectProps
-  extends FhirInputCodeSelectProps {
+export interface FhirInputCodingRendererSelectProps
+  extends FhirInputCodingSelectProps {
   data: Array<ValueSetExpansionContains>;
   loading: boolean;
 }
 
-export type FhirInputCodeRenderer = (
-  props: FhirInputCodeRendererProps
+export type FhirInputCodingRenderer = (
+  props: FhirInputCodingRendererProps
 ) => ReactElement | null;
 
 function sortContains(

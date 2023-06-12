@@ -1,4 +1,4 @@
-import { build, id } from "./builders.js";
+import { build, codeableConcept, id } from "./builders.js";
 import { DomainResourceTypes } from "./fhir-types.codegen.js";
 
 describe("builders", () => {
@@ -35,6 +35,43 @@ describe("builders", () => {
       ],
     ])("%p => %p", (value, expected) => {
       expect(id(value)).toEqual(expected);
+    });
+  });
+
+  describe("codeableConcept", () => {
+    it.each(<
+      Array<
+        [
+          Parameters<typeof codeableConcept>[0],
+          ReturnType<typeof codeableConcept>
+        ]
+      >
+    >[
+      [undefined, undefined],
+      [{ code: "M" }, { coding: [{ code: "M" }] }],
+      [
+        { code: "M", display: "Married" },
+        { coding: [{ code: "M", display: "Married" }], text: "Married" },
+      ],
+      [
+        [{ code: "M", display: "Married" }],
+        { coding: [{ code: "M", display: "Married" }], text: "Married" },
+      ],
+      [
+        [
+          { code: "M", display: "Married" },
+          { code: "M2", display: "Married2", userSelected: true },
+        ],
+        {
+          coding: [
+            { code: "M", display: "Married" },
+            { code: "M2", display: "Married2", userSelected: true },
+          ],
+          text: "Married2",
+        },
+      ],
+    ])("%p => %p", (value, expected) => {
+      expect(codeableConcept(value)).toEqual(expected);
     });
   });
 });

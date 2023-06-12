@@ -78,6 +78,13 @@ export default function EditPatient() {
                 // }}
                 {...resourceForm.getInputProps("gender")}
               />
+              <FhirInput
+                type="CodeableConcept"
+                label="Marital Status"
+                mode="select"
+                source="http://hl7.org/fhir/ValueSet/marital-status"
+                {...resourceForm.getInputProps("maritalStatus")}
+              />
               <Group mt="md">
                 <Button type="submit" loading={resourceForm.mutation.isLoading}>
                   Save

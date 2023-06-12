@@ -2,6 +2,10 @@ import { ReactElement } from "react";
 import {
   FhirInputCode,
   FhirInputCodeProps,
+  FhirInputCodeableConcept,
+  FhirInputCodeableConceptProps,
+  FhirInputCoding,
+  FhirInputCodingProps,
   FhirInputDate,
   FhirInputDateProps,
   FhirInputDateTime,
@@ -16,6 +20,12 @@ export function FhirInput<TRendererProps = any>(
   switch (props.type) {
     case "code": {
       return <FhirInputCode {...props} />;
+    }
+    case "Coding": {
+      return <FhirInputCoding {...props} />;
+    }
+    case "CodeableConcept": {
+      return <FhirInputCodeableConcept {...props} />;
     }
     case "date": {
       return <FhirInputDate {...props} />;
@@ -34,6 +44,8 @@ export function FhirInput<TRendererProps = any>(
 
 export type FhirInputProps<TRendererProps = any> =
   | FhirInputCodeProps<TRendererProps>
+  | FhirInputCodingProps<TRendererProps>
+  | FhirInputCodeableConceptProps<TRendererProps>
   | FhirInputDateProps<TRendererProps>
   | FhirInputDateTimeProps<TRendererProps>
   | FhirInputStringProps<TRendererProps>;

@@ -50,6 +50,7 @@ export function FhirInputCode<TRendererProps = any>(
                 fhirClient: props.fhirClient,
                 query: {
                   cacheTime: Number.POSITIVE_INFINITY,
+                  staleTime: Number.POSITIVE_INFINITY,
                 },
               }
             )

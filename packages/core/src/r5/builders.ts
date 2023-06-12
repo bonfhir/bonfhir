@@ -1,10 +1,13 @@
 import {
   AnyDomainResourceType,
   AnyResource,
+  CodeableConcept,
+  Coding,
   ExtractDomainResource,
   Reference,
   Retrieved,
 } from "./fhir-types.codegen.js";
+import { asArray } from "./lang-utils.js";
 import { narrative } from "./narratives.codegen.js";
 
 /**
@@ -57,4 +60,26 @@ export function id(
   }
 
   return valueAsReference.reference.split("/").pop() || undefined;
+}
+
+export function codeableConcept(coding: null | undefined): undefined;
+export function codeableConcept(coding: Coding): CodeableConcept;
+export function codeableConcept(coding: Coding[]): CodeableConcept;
+export function codeableConcept(
+  coding: Coding | Coding[] | null | undefined
+): CodeableConcept | undefined;
+export function codeableConcept(
+  coding: Coding | Coding[] | null | undefined
+): CodeableConcept | undefined {
+  if (!coding) {
+    return undefined;
+  }
+  const codings = asArray(coding);
+
+  const text =
+    codings.find((x) => x.userSelected)?.display || codings[0]?.display;
+  return {
+    coding: codings,
+    text,
+  };
 }
