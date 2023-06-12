@@ -1,14 +1,12 @@
 import {
   CodeableConcept,
   ValueSet,
-  ValueSetExpandOperation,
   ValueSetExpansionContains,
 } from "@bonfhir/core/r5";
-import { useFhirExecute } from "@bonfhir/query/r5";
 import { UseQueryResult } from "@tanstack/react-query";
 import { ReactElement } from "react";
 import { useFhirUIContext } from "../../context.js";
-import { FhirInputCommonProps } from "./common.js";
+import { FhirInputCommonProps, useFhirInputTerminologyData } from "./common.js";
 
 export type FhirInputCodeableConceptProps<TRendererProps = any> =
   FhirInputCodeableConceptCommonProps<TRendererProps> &
@@ -37,37 +35,15 @@ export function FhirInputCodeableConcept<TRendererProps = any>(
   const { render } = useFhirUIContext();
 
   if (props.mode === "select") {
-    let data: Array<ValueSetExpansionContains> = [];
-    let loading = false;
-    if (Array.isArray(props.source)) {
-      data = props.source;
-    } else {
-      const selectQuery =
-        typeof props.source === "string"
-          ? useFhirExecute(
-              new ValueSetExpandOperation({
-                url: props.source,
-              }),
-              {
-                fhirClient: props.fhirClient,
-                query: {
-                  cacheTime: Number.POSITIVE_INFINITY,
-                  staleTime: Number.POSITIVE_INFINITY,
-                },
-              }
-            )
-          : props.source;
-      data = selectQuery.data?.expansion?.contains || [];
-      if (props.filter) {
-        data = data.filter((element) => props.filter?.(element));
+    const { data, loading } = useFhirInputTerminologyData(props);
+    return render<FhirInputCodeableConceptRendererSelectProps>(
+      "FhirInputCode",
+      {
+        data,
+        loading,
+        ...props,
       }
-      data = props.sort
-        ? data.sort((a, b) => props.sort?.(a, b) || 0)
-        : data.sort(sortContains);
-      loading = selectQuery.isLoading;
-    }
-
-    return render("FhirInputCodeableConcept", { data, loading, ...props });
+    );
   }
 
   throw new TypeError(`Unsupported mode ${props.mode}.`);
@@ -90,17 +66,3 @@ export interface FhirInputCodeableConceptRendererSelectProps
 export type FhirInputCodeableConceptRenderer = (
   props: FhirInputCodeableConceptRendererProps
 ) => ReactElement | null;
-
-function sortContains(
-  a: ValueSetExpansionContains,
-  b: ValueSetExpansionContains
-) {
-  if (a.display && b.display) {
-    if (a.display > b.display) {
-      return 1;
-    } else if (a.display < b.display) {
-      return -1;
-    }
-  }
-  return 0;
-}

@@ -260,6 +260,28 @@ export function comparePeriods(
 }
 
 /**
+ * Build a compare function to be used inside a sort to sort by a property value.
+ */
+export function compareBy<T>(by: keyof T) {
+  return (a: T, b: T) => {
+    if (a[by] && b[by]) {
+      if (a[by] > b[by]) {
+        return 1;
+      } else if (a[by] < b[by]) {
+        return -1;
+      }
+    }
+    if (a[by]) {
+      return 1;
+    } else if (b[by]) {
+      return -1;
+    }
+
+    return 0;
+  };
+}
+
+/**
  * Convert the string to start case (First letter of each word capitalized).
  *
  * @see {@link https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage}
