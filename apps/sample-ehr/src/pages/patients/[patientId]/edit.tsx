@@ -9,6 +9,11 @@ import {
   Paper,
   Stack,
 } from "@mantine/core";
+import {
+  IconGenderFemale,
+  IconGenderMale,
+  IconGenderThird,
+} from "@tabler/icons-react";
 import { useRouter } from "next/router";
 
 export default function EditPatient() {
@@ -17,7 +22,7 @@ export default function EditPatient() {
   const { patientId } = router.query as { patientId: "new" | string };
   const newPatient = patientId === "new";
 
-  const formResource = useFhirResourceForm({
+  const resourceForm = useFhirResourceForm({
     type: "Patient",
     id: patientId,
     mutationOptions: {
@@ -30,8 +35,8 @@ export default function EditPatient() {
   return (
     <MainPage title={newPatient ? `New Patient` : `Edit Patient`}>
       <Paper>
-        <form onSubmit={formResource.onSubmit}>
-          <LoadingOverlay visible={formResource.query.isInitialLoading} />
+        <form onSubmit={resourceForm.onSubmit}>
+          <LoadingOverlay visible={resourceForm.query.isInitialLoading} />
           <Box maw={300}>
             <Stack align="flex-start">
               <FhirInput
@@ -40,21 +45,41 @@ export default function EditPatient() {
                 disabled={true}
                 value={formatter.format(
                   "HumanName",
-                  formResource.form.values.name
+                  resourceForm.form.values.name
                 )}
               />
               <FhirInput
                 type="date"
                 label="Date of Birth"
-                {...formResource.getInputProps("birthDate")}
+                {...resourceForm.getInputProps("birthDate")}
               />
               <FhirInput
                 type="dateTime"
                 label="Deceased"
-                {...formResource.getInputProps("deceasedDateTime")}
+                {...resourceForm.getInputProps("deceasedDateTime")}
+              />
+              <FhirInput
+                type="code"
+                label="Gender"
+                mode="select"
+                source="http://hl7.org/fhir/ValueSet/administrative-gender"
+                // rendererProps={{
+                //   itemComponent: forwardRef<
+                //     HTMLDivElement,
+                //     MantineFhirInputCodeRendererItemProps
+                //   >(({ item, ...others }, ref) => (
+                //     <div ref={ref} {...others}>
+                //       <Group noWrap>
+                //         <GenderIcon code={item.code} />
+                //         <Text>{item.display}</Text>
+                //       </Group>
+                //     </div>
+                //   )),
+                // }}
+                {...resourceForm.getInputProps("gender")}
               />
               <Group mt="md">
-                <Button type="submit" loading={formResource.mutation.isLoading}>
+                <Button type="submit" loading={resourceForm.mutation.isLoading}>
                   Save
                 </Button>
                 <Button variant="outline" onClick={() => router.back()}>
@@ -67,4 +92,21 @@ export default function EditPatient() {
       </Paper>
     </MainPage>
   );
+}
+
+function GenderIcon({ code }: { code: string | undefined }) {
+  switch (code) {
+    case "male": {
+      return <IconGenderMale size="1rem" />;
+    }
+    case "female": {
+      return <IconGenderFemale size="1rem" />;
+    }
+    case "other": {
+      return <IconGenderThird size="1rem" />;
+    }
+  }
+
+  // eslint-disable-next-line unicorn/no-null
+  return null;
 }
