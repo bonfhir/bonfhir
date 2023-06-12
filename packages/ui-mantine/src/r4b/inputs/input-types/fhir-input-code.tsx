@@ -7,17 +7,13 @@ import { MantineFhirInputTerminologyCommon } from "./fhir-input-terminology-comm
 export function MantineFhirInputCode(
   props: FhirInputCodeRendererProps<MantineFhirInputCodeProps>
 ): ReactElement | null {
-  if (props.mode === "select") {
-    return (
-      <MantineFhirInputTerminologyCommon
-        value={props.value || ""}
-        onChange={(value: string) => props.onChange?.(value || undefined)}
-        {...props}
-      />
-    );
-  }
-
-  throw new TypeError(`Unsupported mode ${props.mode}.`);
+  return (
+    <MantineFhirInputTerminologyCommon
+      value={props.value || ""}
+      onChange={(value: string) => props.onChange?.(value || undefined)}
+      {...props}
+    />
+  );
 }
 
 export type MantineFhirInputCodeProps = SelectProps;

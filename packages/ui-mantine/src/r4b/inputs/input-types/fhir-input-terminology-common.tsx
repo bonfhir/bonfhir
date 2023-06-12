@@ -1,11 +1,11 @@
 import { ValueSetExpansionContains } from "@bonfhir/core/r4b";
 import { FhirInputCommonProps } from "@bonfhir/ui/r4b";
-import { Loader, Select } from "@mantine/core";
+import { Loader, Radio, SegmentedControl, Select, Stack } from "@mantine/core";
 import { ReactElement } from "react";
 
 export interface MantineFhirInputTerminologyCommon
   extends FhirInputCommonProps {
-  mode: "select";
+  mode: "select" | "radio" | "segmented";
   placeholder?: string | null | undefined;
   loading: boolean;
   data: ValueSetExpansionContains[];
@@ -20,27 +20,49 @@ export function MantineFhirInputTerminologyCommon(
   props: MantineFhirInputTerminologyCommon
 ): ReactElement | null {
   if (props.mode === "select") {
-    const {
-      label,
-      description,
-      error,
-      placeholder,
-      required,
-      disabled,
-      loading,
-      data,
-      ...remainingProps
-    } = props;
+    const { loading, data, ...remainingProps } = props;
     return (
       <Select
-        label={label}
-        description={description}
-        error={error}
-        placeholder={placeholder}
-        required={required}
-        disabled={disabled}
         w="100%"
         rightSection={loading ? <Loader size="1rem" /> : null}
+        data={data.map(
+          (element) =>
+            ({
+              value: element.code,
+              label: element.display,
+              item: element,
+            } as MantineFhirInputTerminologyItemProps)
+        )}
+        {...remainingProps}
+        {...props.rendererProps}
+      />
+    );
+  }
+
+  if (props.mode === "radio") {
+    const { loading, data, ...remainingProps } = props;
+
+    return (
+      <Radio.Group {...remainingProps} {...props.rendererProps}>
+        <Stack spacing="xs" mt="xs">
+          {data.map((element) => (
+            <Radio
+              key={element.code}
+              value={element.code}
+              label={element.display}
+            />
+          ))}
+        </Stack>
+      </Radio.Group>
+    );
+  }
+
+  if (props.mode === "segmented") {
+    const { loading, data, ...remainingProps } = props;
+
+    return (
+      <SegmentedControl
+        fullWidth
         data={data.map(
           (element) =>
             ({

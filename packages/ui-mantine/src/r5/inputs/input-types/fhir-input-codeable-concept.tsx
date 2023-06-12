@@ -7,32 +7,28 @@ import { MantineFhirInputTerminologyCommon } from "./fhir-input-terminology-comm
 export function MantineFhirInputCodeableConcept(
   props: FhirInputCodeableConceptRendererProps<MantineFhirInputCodeableConceptProps>
 ): ReactElement | null {
-  if (props.mode === "select") {
-    return (
-      <MantineFhirInputTerminologyCommon
-        value={props.value?.coding?.[0]?.code || ""}
-        onChange={(code: string) => {
-          if (!code) {
-            return props.onChange?.(undefined);
-          }
+  return (
+    <MantineFhirInputTerminologyCommon
+      value={props.value?.coding?.[0]?.code || ""}
+      onChange={(code: string) => {
+        if (!code) {
+          return props.onChange?.(undefined);
+        }
 
-          const foundElement = props.data.find((x) => x.code === code);
+        const foundElement = props.data.find((x) => x.code === code);
 
-          const codeableConceptValue = codeableConcept({
-            code,
-            system: foundElement?.system,
-            display: foundElement?.display,
-            userSelected: true,
-          });
+        const codeableConceptValue = codeableConcept({
+          code,
+          system: foundElement?.system,
+          display: foundElement?.display,
+          userSelected: true,
+        });
 
-          return props.onChange?.(codeableConceptValue);
-        }}
-        {...props}
-      />
-    );
-  }
-
-  throw new TypeError(`Unsupported mode ${props.mode}.`);
+        return props.onChange?.(codeableConceptValue);
+      }}
+      {...props}
+    />
+  );
 }
 
 export type MantineFhirInputCodeableConceptProps = SelectProps;

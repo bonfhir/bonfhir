@@ -9,11 +9,6 @@ import {
   Paper,
   Stack,
 } from "@mantine/core";
-import {
-  IconGenderFemale,
-  IconGenderMale,
-  IconGenderThird,
-} from "@tabler/icons-react";
 import { useRouter } from "next/router";
 
 export default function EditPatient() {
@@ -61,7 +56,7 @@ export default function EditPatient() {
               <FhirInput
                 type="code"
                 label="Gender"
-                mode="select"
+                mode="segmented"
                 source="http://hl7.org/fhir/ValueSet/administrative-gender"
                 // rendererProps={{
                 //   itemComponent: forwardRef<
@@ -101,19 +96,19 @@ export default function EditPatient() {
   );
 }
 
-function GenderIcon({ code }: { code: string | undefined }) {
-  switch (code) {
-    case "male": {
-      return <IconGenderMale size="1rem" />;
-    }
-    case "female": {
-      return <IconGenderFemale size="1rem" />;
-    }
-    case "other": {
-      return <IconGenderThird size="1rem" />;
-    }
-  }
+// function GenderIcon({ code }: { code: string | undefined }) {
+//   switch (code) {
+//     case "male": {
+//       return <IconGenderMale size="1rem" />;
+//     }
+//     case "female": {
+//       return <IconGenderFemale size="1rem" />;
+//     }
+//     case "other": {
+//       return <IconGenderThird size="1rem" />;
+//     }
+//   }
 
-  // eslint-disable-next-line unicorn/no-null
-  return null;
-}
+//   // eslint-disable-next-line unicorn/no-null
+//   return null;
+// }
