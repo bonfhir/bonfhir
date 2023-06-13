@@ -37,7 +37,7 @@ export default function EditPatient() {
               <FhirInput
                 type="string"
                 label="Name"
-                disabled={true}
+                disabled
                 value={formatter.format(
                   "HumanName",
                   resourceForm.form.values.name

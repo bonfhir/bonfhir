@@ -35,10 +35,17 @@ export function FhirInput<TRendererProps = any>(
     case "date": {
       return <FhirInputDate {...props} />;
     }
-    case "dateTime": {
+    case "dateTime":
+    case "instant": {
       return <FhirInputDateTime {...props} />;
     }
-    case "string": {
+    case "string":
+    case "canonical":
+    case "id":
+    case "oid":
+    case "uri":
+    case "url":
+    case "uuid": {
       return <FhirInputString {...props} />;
     }
     default: {

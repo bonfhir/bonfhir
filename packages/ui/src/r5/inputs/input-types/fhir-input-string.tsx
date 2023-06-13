@@ -2,14 +2,16 @@ import { ReactElement } from "react";
 import { useFhirUIContext } from "../../context.js";
 import { FhirInputCommonProps } from "./common.js";
 
-export interface FhirInputStringProps<TRendererProps = any>
-  extends FhirInputCommonProps {
-  type: "string";
-  placeholder?: string | null | undefined;
-  value?: string | null | undefined;
-  onChange?: (value: string | undefined) => void;
-  rendererProps?: TRendererProps;
-}
+export type FhirInputStringProps<TRendererProps = any> =
+  FhirInputCommonProps & {
+    placeholder?: string | null | undefined;
+    value?: string | null | undefined;
+    onChange?: (value: string | undefined) => void;
+    rendererProps?: TRendererProps;
+  } & (
+      | { type: "canonical" | "id" | "oid" | "uri" | "url" | "uuid" }
+      | { type: "string"; mode?: "single" | "multiline" }
+    );
 
 export function FhirInputString<TRendererProps = any>(
   props: FhirInputStringProps<TRendererProps>

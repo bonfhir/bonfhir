@@ -4,7 +4,7 @@ import { FhirInputCommonProps } from "./common.js";
 
 export interface FhirInputDateTimeProps<TRendererProps = any>
   extends FhirInputCommonProps {
-  type: "dateTime";
+  type: "dateTime" | "instant";
   placeholder?: string | null | undefined;
   value?: string | null | undefined;
   onChange?: (value: string | undefined) => void;
