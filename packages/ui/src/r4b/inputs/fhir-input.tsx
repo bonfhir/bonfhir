@@ -2,12 +2,6 @@ import { ReactElement } from "react";
 import {
   FhirInputBoolean,
   FhirInputBooleanProps,
-  FhirInputCode,
-  FhirInputCodeProps,
-  FhirInputCodeableConcept,
-  FhirInputCodeableConceptProps,
-  FhirInputCoding,
-  FhirInputCodingProps,
   FhirInputDate,
   FhirInputDateProps,
   FhirInputDateTime,
@@ -18,6 +12,8 @@ import {
   FhirInputNumberProps,
   FhirInputString,
   FhirInputStringProps,
+  FhirInputTerminology,
+  FhirInputTerminologyProps,
 } from "./input-types/index.js";
 
 export function FhirInput<TRendererProps = any>(
@@ -26,15 +22,6 @@ export function FhirInput<TRendererProps = any>(
   switch (props.type) {
     case "boolean": {
       return <FhirInputBoolean {...props} />;
-    }
-    case "code": {
-      return <FhirInputCode {...props} />;
-    }
-    case "Coding": {
-      return <FhirInputCoding {...props} />;
-    }
-    case "CodeableConcept": {
-      return <FhirInputCodeableConcept {...props} />;
     }
     case "date": {
       return <FhirInputDate {...props} />;
@@ -62,6 +49,11 @@ export function FhirInput<TRendererProps = any>(
     case "uuid": {
       return <FhirInputString {...props} />;
     }
+    case "code":
+    case "Coding":
+    case "CodeableConcept": {
+      return <FhirInputTerminology {...props} />;
+    }
     default: {
       throw new Error(`Unknown FhirInput type: ${(props as any).type}`);
     }
@@ -70,11 +62,9 @@ export function FhirInput<TRendererProps = any>(
 
 export type FhirInputProps<TRendererProps = any> =
   | FhirInputBooleanProps<TRendererProps>
-  | FhirInputCodeProps<TRendererProps>
-  | FhirInputCodingProps<TRendererProps>
-  | FhirInputCodeableConceptProps<TRendererProps>
   | FhirInputDateProps<TRendererProps>
   | FhirInputDateTimeProps<TRendererProps>
   | FhirInputHumanNameProps<TRendererProps>
   | FhirInputNumberProps<TRendererProps>
-  | FhirInputStringProps<TRendererProps>;
+  | FhirInputStringProps<TRendererProps>
+  | FhirInputTerminologyProps<TRendererProps>;

@@ -43,7 +43,7 @@ export default function EditPatient() {
               <FhirInput<MantineFhirInputHumanNameProps>
                 type="HumanName"
                 label="Name"
-                mode="simple"
+                mode="full"
                 rendererProps={{
                   wrapper: {
                     sx: {
@@ -75,19 +75,6 @@ export default function EditPatient() {
                   label="Gender"
                   mode="select"
                   source="http://hl7.org/fhir/ValueSet/administrative-gender"
-                  // rendererProps={{
-                  //   itemComponent: forwardRef<
-                  //     HTMLDivElement,
-                  //     MantineFhirInputCodeRendererItemProps
-                  //   >(({ item, ...others }, ref) => (
-                  //     <div ref={ref} {...others}>
-                  //       <Group noWrap>
-                  //         <GenderIcon code={item.code} />
-                  //         <Text>{item.display}</Text>
-                  //       </Group>
-                  //     </div>
-                  //   )),
-                  // }}
                   {...resourceForm.getInputProps("gender")}
                 />
                 <FhirInput
@@ -113,20 +100,3 @@ export default function EditPatient() {
     </MainPage>
   );
 }
-
-// function GenderIcon({ code }: { code: string | undefined }) {
-//   switch (code) {
-//     case "male": {
-//       return <IconGenderMale size="1rem" />;
-//     }
-//     case "female": {
-//       return <IconGenderFemale size="1rem" />;
-//     }
-//     case "other": {
-//       return <IconGenderThird size="1rem" />;
-//     }
-//   }
-
-//   // eslint-disable-next-line unicorn/no-null
-//   return null;
-// }

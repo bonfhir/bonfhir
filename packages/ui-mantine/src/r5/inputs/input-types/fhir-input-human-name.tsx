@@ -1,9 +1,9 @@
 import { NameUse } from "@bonfhir/core/r5";
 import {
   FhirInput,
-  FhirInputCodeProps,
   FhirInputHumanNameRendererProps,
   FhirInputStringProps,
+  FhirInputTerminologyProps,
 } from "@bonfhir/ui/r5";
 import { Group, GroupProps, Input, InputWrapperProps } from "@mantine/core";
 import { ReactElement } from "react";
@@ -47,7 +47,8 @@ export function MantineFhirInputHumanName(
                   onChange={(use) =>
                     props.onChange?.({ ...props.value, use: use as NameUse })
                   }
-                  {...props.rendererProps?.use}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  {...(props.rendererProps?.use as any)}
                 />
               );
             }
@@ -97,7 +98,7 @@ export function MantineFhirInputHumanName(
 export type MantineFhirInputHumanNameProps = {
   wrapper?: Omit<InputWrapperProps, "children"> | null | undefined;
   group?: GroupProps | null | undefined;
-  use?: FhirInputCodeProps | null | undefined;
+  use?: FhirInputTerminologyProps | null | undefined;
   prefix?: FhirInputStringProps | null | undefined;
   given?: FhirInputStringProps | null | undefined;
   family?: FhirInputStringProps | null | undefined;
