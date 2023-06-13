@@ -1,5 +1,7 @@
 import { ReactElement } from "react";
 import {
+  FhirInputBoolean,
+  FhirInputBooleanProps,
   FhirInputCode,
   FhirInputCodeProps,
   FhirInputCodeableConcept,
@@ -18,6 +20,9 @@ export function FhirInput<TRendererProps = any>(
   props: FhirInputProps<TRendererProps>
 ): ReactElement | null {
   switch (props.type) {
+    case "boolean": {
+      return <FhirInputBoolean {...props} />;
+    }
     case "code": {
       return <FhirInputCode {...props} />;
     }
@@ -43,6 +48,7 @@ export function FhirInput<TRendererProps = any>(
 }
 
 export type FhirInputProps<TRendererProps = any> =
+  | FhirInputBooleanProps<TRendererProps>
   | FhirInputCodeProps<TRendererProps>
   | FhirInputCodingProps<TRendererProps>
   | FhirInputCodeableConceptProps<TRendererProps>

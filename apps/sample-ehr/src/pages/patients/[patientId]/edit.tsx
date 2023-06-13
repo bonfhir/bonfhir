@@ -48,15 +48,21 @@ export default function EditPatient() {
                 label="Date of Birth"
                 {...resourceForm.getInputProps("birthDate")}
               />
-              <FhirInput
+              {/* <FhirInput
                 type="dateTime"
                 label="Deceased"
                 {...resourceForm.getInputProps("deceasedDateTime")}
+              /> */}
+              <FhirInput
+                type="boolean"
+                label="Deceased"
+                mode="switch"
+                {...resourceForm.getInputProps("deceasedBoolean")}
               />
               <FhirInput
                 type="code"
                 label="Gender"
-                mode="segmented"
+                mode="radio"
                 source="http://hl7.org/fhir/ValueSet/administrative-gender"
                 // rendererProps={{
                 //   itemComponent: forwardRef<

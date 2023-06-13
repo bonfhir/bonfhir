@@ -5,7 +5,7 @@ import { ReactElement } from "react";
 
 export interface MantineFhirInputTerminologyCommon
   extends FhirInputCommonProps {
-  mode: "select" | "radio" | "segmented";
+  mode?: "select" | "radio" | "segmented";
   placeholder?: string | null | undefined;
   loading: boolean;
   data: ValueSetExpansionContains[];
@@ -19,7 +19,7 @@ export interface MantineFhirInputTerminologyCommon
 export function MantineFhirInputTerminologyCommon(
   props: MantineFhirInputTerminologyCommon
 ): ReactElement | null {
-  if (props.mode === "select") {
+  if (!props.mode || props.mode === "select") {
     const { loading, data, ...remainingProps } = props;
     return (
       <Select

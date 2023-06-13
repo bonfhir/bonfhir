@@ -8,7 +8,7 @@ export type FhirInputCodeProps<TRendererProps = any> =
   FhirInputCodeCommonProps<TRendererProps> & FhirInputCodeSelectProps;
 
 export interface FhirInputCodeSelectProps {
-  mode: "select" | "radio" | "segmented";
+  mode?: "select" | "radio" | "segmented";
   source: string | UseQueryResult<ValueSet> | Array<ValueSetExpansionContains>;
 }
 
@@ -29,7 +29,7 @@ export function FhirInputCode<TRendererProps = any>(
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
-  if (["select", "radio", "segmented"].includes(props.mode)) {
+  if (!props.mode || ["select", "radio", "segmented"].includes(props.mode)) {
     const { data, loading } = useFhirInputTerminologyData(props);
     return render<FhirInputCodeRendererSelectProps>("FhirInputCode", {
       data,
