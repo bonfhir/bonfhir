@@ -11,6 +11,7 @@ import { MantineFhirInputCodeableConcept } from "./inputs/input-types/fhir-input
 import { MantineFhirInputCoding } from "./inputs/input-types/fhir-input-coding.js";
 import { MantineFhirInputDateTime } from "./inputs/input-types/fhir-input-date-time.js";
 import { MantineFhirInputDate } from "./inputs/input-types/fhir-input-date.js";
+import { MantineFhirInputNumber } from "./inputs/input-types/fhir-input-number.js";
 import { MantineFhirInputString } from "./inputs/input-types/fhir-input-string.js";
 
 export const MantineRenderer: FhirUIRenderer = {
@@ -20,6 +21,7 @@ export const MantineRenderer: FhirUIRenderer = {
   FhirInputCodeableConcept: MantineFhirInputCodeableConcept,
   FhirInputDate: MantineFhirInputDate,
   FhirInputDateTime: MantineFhirInputDateTime,
+  FhirInputNumber: MantineFhirInputNumber,
   FhirInputString: MantineFhirInputString,
   FhirPagination: MantineFhirPagination,
   FhirQueryLoader: MantineFhirQueryLoader,
