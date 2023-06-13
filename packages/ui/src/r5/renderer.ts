@@ -8,6 +8,7 @@ import type {
   FhirInputCodingRenderer,
   FhirInputDateRenderer,
   FhirInputDateTimeRenderer,
+  FhirInputHumanNameRenderer,
   FhirInputNumberRenderer,
   FhirInputStringRenderer,
 } from "./inputs/input-types/index.js";
@@ -20,6 +21,7 @@ export interface FhirUIRenderer {
   FhirInputCodeableConcept: FhirInputCodeableConceptRenderer;
   FhirInputDate: FhirInputDateRenderer;
   FhirInputDateTime: FhirInputDateTimeRenderer;
+  FhirInputHumanName: FhirInputHumanNameRenderer;
   FhirInputNumber: FhirInputNumberRenderer;
   FhirInputString: FhirInputStringRenderer;
   FhirPagination: FhirPaginationRenderer;

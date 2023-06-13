@@ -1,18 +1,21 @@
 import { MainPage } from "@/components";
-import { useFhirResourceForm } from "@bonfhir/ui-mantine/r4b";
-import { FhirInput, useFhirUIContext } from "@bonfhir/ui/r4b";
+import {
+  MantineFhirInputHumanNameProps,
+  useFhirResourceForm,
+} from "@bonfhir/ui-mantine/r4b";
+import { FhirInput } from "@bonfhir/ui/r4b";
 import {
   Box,
   Button,
   Group,
   LoadingOverlay,
   Paper,
+  SimpleGrid,
   Stack,
 } from "@mantine/core";
 import { useRouter } from "next/router";
 
 export default function EditPatient() {
-  const { formatter } = useFhirUIContext();
   const router = useRouter();
   const { patientId } = router.query as { patientId: "new" | string };
   const newPatient = patientId === "new";
@@ -20,6 +23,9 @@ export default function EditPatient() {
   const resourceForm = useFhirResourceForm({
     type: "Patient",
     id: patientId,
+    defaultValues: {
+      name: [],
+    },
     mutationOptions: {
       onSuccess(data) {
         router.push(`/patients/${data.id}`);
@@ -32,60 +38,66 @@ export default function EditPatient() {
       <Paper>
         <form onSubmit={resourceForm.onSubmit}>
           <LoadingOverlay visible={resourceForm.query.isInitialLoading} />
-          <Box maw={300}>
+          <Box maw={600}>
             <Stack align="flex-start">
-              <FhirInput
-                type="string"
+              <FhirInput<MantineFhirInputHumanNameProps>
+                type="HumanName"
                 label="Name"
-                disabled
-                value={formatter.format(
-                  "HumanName",
-                  resourceForm.form.values.name
-                )}
+                mode="simple"
+                rendererProps={{
+                  wrapper: {
+                    sx: {
+                      width: "100%",
+                    },
+                  },
+                }}
+                {...resourceForm.getInputProps("name.0")}
               />
-              <FhirInput
-                type="date"
-                label="Date of Birth"
-                {...resourceForm.getInputProps("birthDate")}
-              />
-              {/* <FhirInput
-                type="dateTime"
-                label="Deceased"
-                {...resourceForm.getInputProps("deceasedDateTime")}
-              /> */}
-              <FhirInput
-                type="boolean"
-                label="Deceased"
-                mode="switch"
-                {...resourceForm.getInputProps("deceasedBoolean")}
-              />
-              <FhirInput
-                type="code"
-                label="Gender"
-                mode="radio"
-                source="http://hl7.org/fhir/ValueSet/administrative-gender"
-                // rendererProps={{
-                //   itemComponent: forwardRef<
-                //     HTMLDivElement,
-                //     MantineFhirInputCodeRendererItemProps
-                //   >(({ item, ...others }, ref) => (
-                //     <div ref={ref} {...others}>
-                //       <Group noWrap>
-                //         <GenderIcon code={item.code} />
-                //         <Text>{item.display}</Text>
-                //       </Group>
-                //     </div>
-                //   )),
-                // }}
-                {...resourceForm.getInputProps("gender")}
-              />
-              <FhirInput
-                type="CodeableConcept"
-                label="Marital Status"
-                mode="select"
-                source="http://hl7.org/fhir/ValueSet/marital-status"
-                {...resourceForm.getInputProps("maritalStatus")}
-              />
+              <SimpleGrid cols={2} spacing="md" w="100%">
+                <FhirInput
+                  type="date"
+                  label="Date of Birth"
+                  {...resourceForm.getInputProps("birthDate")}
+                />
+                <FhirInput
+                  type="dateTime"
+                  label="Deceased"
+                  {...resourceForm.getInputProps("deceasedDateTime")}
+                />
+                {/* <FhirInput
+                  type="boolean"
+                  label="Deceased"
+                  mode="checkbox"
+                  {...resourceForm.getInputProps("deceasedBoolean")}
+                /> */}
+                <FhirInput
+                  type="code"
+                  label="Gender"
+                  mode="select"
+                  source="http://hl7.org/fhir/ValueSet/administrative-gender"
+                  // rendererProps={{
+                  //   itemComponent: forwardRef<
+                  //     HTMLDivElement,
+                  //     MantineFhirInputCodeRendererItemProps
+                  //   >(({ item, ...others }, ref) => (
+                  //     <div ref={ref} {...others}>
+                  //       <Group noWrap>
+                  //         <GenderIcon code={item.code} />
+                  //         <Text>{item.display}</Text>
+                  //       </Group>
+                  //     </div>
+                  //   )),
+                  // }}
+                  {...resourceForm.getInputProps("gender")}
+                />
+                <FhirInput
+                  type="CodeableConcept"
+                  label="Marital Status"
+                  mode="select"
+                  source="http://hl7.org/fhir/ValueSet/marital-status"
+                  {...resourceForm.getInputProps("maritalStatus")}
+                />
+              </SimpleGrid>
               <Group mt="md">
                 <Button type="submit" loading={resourceForm.mutation.isLoading}>
                   Save

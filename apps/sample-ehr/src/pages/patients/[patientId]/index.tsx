@@ -52,7 +52,7 @@ export function PatientHeader({
                 <FhirValue
                   type="HumanName"
                   value={patient.name}
-                  options={{ max: 1 }}
+                  options={{ max: 1, style: "standard" }}
                 />
               </Title>
               <FhirValue

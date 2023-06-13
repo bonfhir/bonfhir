@@ -12,6 +12,8 @@ import {
   FhirInputDateProps,
   FhirInputDateTime,
   FhirInputDateTimeProps,
+  FhirInputHumanName,
+  FhirInputHumanNameProps,
   FhirInputNumber,
   FhirInputNumberProps,
   FhirInputString,
@@ -40,6 +42,9 @@ export function FhirInput<TRendererProps = any>(
     case "dateTime":
     case "instant": {
       return <FhirInputDateTime {...props} />;
+    }
+    case "HumanName": {
+      return <FhirInputHumanName {...props} />;
     }
     case "decimal":
     case "integer":
@@ -70,5 +75,6 @@ export type FhirInputProps<TRendererProps = any> =
   | FhirInputCodeableConceptProps<TRendererProps>
   | FhirInputDateProps<TRendererProps>
   | FhirInputDateTimeProps<TRendererProps>
+  | FhirInputHumanNameProps<TRendererProps>
   | FhirInputNumberProps<TRendererProps>
   | FhirInputStringProps<TRendererProps>;

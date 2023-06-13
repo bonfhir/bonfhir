@@ -1,18 +1,18 @@
 import { FhirUIRenderer } from "@bonfhir/ui/r4b";
-import { MantineFhirTable } from "./data-display/fhir-table.js";
-import { MantineFhirValue } from "./data-display/fhir-value.js";
+import { MantineFhirTable, MantineFhirValue } from "./data-display/index.js";
+import { MantineFhirQueryLoader } from "./feedback/index.js";
 import {
   MantineFhirInputBoolean,
-  MantineFhirPagination,
-  MantineFhirQueryLoader,
-} from "./index.js";
-import { MantineFhirInputCode } from "./inputs/input-types/fhir-input-code.js";
-import { MantineFhirInputCodeableConcept } from "./inputs/input-types/fhir-input-codeable-concept.js";
-import { MantineFhirInputCoding } from "./inputs/input-types/fhir-input-coding.js";
-import { MantineFhirInputDateTime } from "./inputs/input-types/fhir-input-date-time.js";
-import { MantineFhirInputDate } from "./inputs/input-types/fhir-input-date.js";
+  MantineFhirInputCode,
+  MantineFhirInputCodeableConcept,
+  MantineFhirInputCoding,
+  MantineFhirInputDate,
+  MantineFhirInputDateTime,
+  MantineFhirInputHumanName,
+  MantineFhirInputString,
+} from "./inputs/index.js";
 import { MantineFhirInputNumber } from "./inputs/input-types/fhir-input-number.js";
-import { MantineFhirInputString } from "./inputs/input-types/fhir-input-string.js";
+import { MantineFhirPagination } from "./navigation/index.js";
 
 export const MantineRenderer: FhirUIRenderer = {
   FhirInputBoolean: MantineFhirInputBoolean,
@@ -21,6 +21,7 @@ export const MantineRenderer: FhirUIRenderer = {
   FhirInputCodeableConcept: MantineFhirInputCodeableConcept,
   FhirInputDate: MantineFhirInputDate,
   FhirInputDateTime: MantineFhirInputDateTime,
+  FhirInputHumanName: MantineFhirInputHumanName,
   FhirInputNumber: MantineFhirInputNumber,
   FhirInputString: MantineFhirInputString,
   FhirPagination: MantineFhirPagination,

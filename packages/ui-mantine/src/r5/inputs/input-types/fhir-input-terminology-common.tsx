@@ -25,6 +25,7 @@ export function MantineFhirInputTerminologyCommon(
       <Select
         w="100%"
         rightSection={loading ? <Loader size="1rem" /> : null}
+        clearable={!props.required}
         data={data.map(
           (element) =>
             ({
