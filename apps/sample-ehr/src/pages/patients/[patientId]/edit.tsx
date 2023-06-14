@@ -3,7 +3,7 @@ import {
   MantineFhirInputHumanNameProps,
   useFhirResourceForm,
 } from "@bonfhir/ui-mantine/r4b";
-import { FhirInput } from "@bonfhir/ui/r4b";
+import { FhirInput, FhirInputArray } from "@bonfhir/ui/r4b";
 import {
   Box,
   Button,
@@ -40,19 +40,21 @@ export default function EditPatient() {
           <LoadingOverlay visible={resourceForm.query.isInitialLoading} />
           <Box maw={600}>
             <Stack align="flex-start">
-              <FhirInput<MantineFhirInputHumanNameProps>
-                type="HumanName"
+              <FhirInputArray
                 label="Name"
-                mode="full"
-                rendererProps={{
-                  wrapper: {
-                    sx: {
-                      width: "100%",
-                    },
-                  },
+                min={1}
+                {...resourceForm.getArrayInputProps("name", { newValue: {} })}
+              >
+                {({ index }) => {
+                  return (
+                    <FhirInput<MantineFhirInputHumanNameProps>
+                      type="HumanName"
+                      mode="simple"
+                      {...resourceForm.getInputProps(`name.${index}`)}
+                    />
+                  );
                 }}
-                {...resourceForm.getInputProps("name.0")}
-              />
+              </FhirInputArray>
               <SimpleGrid cols={2} spacing="md" w="100%">
                 <FhirInput
                   type="date"

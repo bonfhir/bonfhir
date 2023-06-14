@@ -13,7 +13,7 @@
       "export function ${1}<TRendererProps = any>(props: ${1}Props<TRendererProps>): ReactElement | null {",
       "  const { render } = useFhirUIContext();",
       "",
-      "  return render(\"${1}\", {...props});",
+      "  return render<${1}RendererProps>(\"${1}\", {...props});",
       "}",
       "",
       "export interface ${1}RendererProps<TRendererProps = any> extends ${1}Props<TRendererProps> {",

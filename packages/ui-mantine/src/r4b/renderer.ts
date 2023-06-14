@@ -2,17 +2,19 @@ import { FhirUIRenderer } from "@bonfhir/ui/r4b";
 import { MantineFhirTable, MantineFhirValue } from "./data-display/index.js";
 import { MantineFhirQueryLoader } from "./feedback/index.js";
 import {
+  MantineFhirInputArray,
   MantineFhirInputBoolean,
   MantineFhirInputDate,
   MantineFhirInputDateTime,
   MantineFhirInputHumanName,
+  MantineFhirInputNumber,
   MantineFhirInputString,
   MantineFhirInputTerminology,
 } from "./inputs/index.js";
-import { MantineFhirInputNumber } from "./inputs/input-types/fhir-input-number.js";
 import { MantineFhirPagination } from "./navigation/index.js";
 
 export const MantineRenderer: FhirUIRenderer = {
+  FhirInputArray: MantineFhirInputArray,
   FhirInputBoolean: MantineFhirInputBoolean,
   FhirInputDate: MantineFhirInputDate,
   FhirInputDateTime: MantineFhirInputDateTime,

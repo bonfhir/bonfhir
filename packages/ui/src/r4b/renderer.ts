@@ -1,7 +1,10 @@
-import type { FhirTableRenderer } from "./data-display/fhir-table.js";
-import type { FhirValueRenderer } from "./data-display/fhir-value.js";
-import type { FhirQueryLoaderRenderer } from "./feedback/fhir-query-loader.js";
 import type {
+  FhirTableRenderer,
+  FhirValueRenderer,
+} from "./data-display/index.js";
+import type { FhirQueryLoaderRenderer } from "./feedback/index.js";
+import type {
+  FhirInputArrayRenderer,
   FhirInputBooleanRenderer,
   FhirInputDateRenderer,
   FhirInputDateTimeRenderer,
@@ -9,10 +12,11 @@ import type {
   FhirInputNumberRenderer,
   FhirInputStringRenderer,
   FhirInputTerminologyRenderer,
-} from "./inputs/input-types/index.js";
-import type { FhirPaginationRenderer } from "./navigation/fhir-pagination.js";
+} from "./inputs/index.js";
+import type { FhirPaginationRenderer } from "./navigation/index.js";
 
 export interface FhirUIRenderer {
+  FhirInputArray: FhirInputArrayRenderer;
   FhirInputBoolean: FhirInputBooleanRenderer;
   FhirInputDate: FhirInputDateRenderer;
   FhirInputDateTime: FhirInputDateTimeRenderer;

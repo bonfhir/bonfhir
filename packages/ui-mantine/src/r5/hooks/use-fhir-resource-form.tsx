@@ -12,9 +12,10 @@ import {
   useFhirRead,
   useFhirSaveMutation,
 } from "@bonfhir/query/r5";
-import { UseFormReturnType, useForm } from "@mantine/form";
+import { UseFormReturnType } from "@mantine/form";
 import { UseMutationResult, UseQueryResult } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { UseFhirFormReturnType, useFhirForm } from "./use-fhir-form.js";
 
 export interface UseFhirResourceFormArgs<
   TResourceType extends AnyResourceType
@@ -26,7 +27,9 @@ export interface UseFhirResourceFormArgs<
     | UseFhirSaveMutationOptions<TResourceType>["mutation"]
     | null
     | undefined;
-  formOptions?: Parameters<typeof useForm<ExtractResource<TResourceType>>>[0];
+  formOptions?: Parameters<
+    typeof useFhirForm<ExtractResource<TResourceType>>
+  >[0];
 }
 
 export interface UseFhirResourceFormResult<
@@ -44,10 +47,14 @@ export interface UseFhirResourceFormResult<
     (values: { resourceType: TResourceType }) => ExtractResource<TResourceType>
   >;
   onSubmit: () => void;
-  getInputProps: UseFormReturnType<
+  getInputProps: UseFhirFormReturnType<
     ExtractResource<TResourceType>,
     (values: { resourceType: TResourceType }) => ExtractResource<TResourceType>
   >["getInputProps"];
+  getArrayInputProps: UseFhirFormReturnType<
+    ExtractResource<TResourceType>,
+    (values: { resourceType: TResourceType }) => ExtractResource<TResourceType>
+  >["getArrayInputProps"];
 }
 
 /**
@@ -65,7 +72,7 @@ export function useFhirResourceForm<TResourceType extends AnyResourceType>(
     mutation: args.mutationOptions,
   });
 
-  const form = useForm({
+  const form = useFhirForm({
     initialValues: {
       ...args.defaultValues,
       resourceType: args.type,
@@ -95,5 +102,6 @@ export function useFhirResourceForm<TResourceType extends AnyResourceType>(
     form: form as any,
     onSubmit: form.onSubmit((resource) => mutation.mutate(resource as any)),
     getInputProps: form.getInputProps,
+    getArrayInputProps: form.getArrayInputProps,
   };
 }
