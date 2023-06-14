@@ -156,7 +156,7 @@ function PatientsList(): ReactElement {
     PatientSortOrder,
     { name: string | undefined; birthDate: string | undefined }
   >("search", {
-    pageSize: 2,
+    pageSize: 5,
     defaultSearch: {
       name: undefined,
       birthDate: undefined,

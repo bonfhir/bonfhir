@@ -4,6 +4,7 @@ import { MantineFhirQueryLoader } from "./feedback/index.js";
 import {
   MantineFhirInputArray,
   MantineFhirInputBoolean,
+  MantineFhirInputContactPoint,
   MantineFhirInputDate,
   MantineFhirInputDateTime,
   MantineFhirInputHumanName,
@@ -16,6 +17,7 @@ import { MantineFhirPagination } from "./navigation/index.js";
 export const MantineRenderer: FhirUIRenderer = {
   FhirInputArray: MantineFhirInputArray,
   FhirInputBoolean: MantineFhirInputBoolean,
+  FhirInputContactPoint: MantineFhirInputContactPoint,
   FhirInputDate: MantineFhirInputDate,
   FhirInputDateTime: MantineFhirInputDateTime,
   FhirInputHumanName: MantineFhirInputHumanName,

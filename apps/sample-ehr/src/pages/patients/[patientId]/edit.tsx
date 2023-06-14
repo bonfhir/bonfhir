@@ -1,8 +1,5 @@
 import { MainPage } from "@/components";
-import {
-  MantineFhirInputHumanNameProps,
-  useFhirResourceForm,
-} from "@bonfhir/ui-mantine/r4b";
+import { useFhirResourceForm } from "@bonfhir/ui-mantine/r4b";
 import { FhirInput, FhirInputArray } from "@bonfhir/ui/r4b";
 import {
   Box,
@@ -20,12 +17,9 @@ export default function EditPatient() {
   const { patientId } = router.query as { patientId: "new" | string };
   const newPatient = patientId === "new";
 
-  const resourceForm = useFhirResourceForm({
+  const form = useFhirResourceForm({
     type: "Patient",
     id: patientId,
-    defaultValues: {
-      name: [],
-    },
     mutationOptions: {
       onSuccess(data) {
         router.push(`/patients/${data.id}`);
@@ -36,21 +30,21 @@ export default function EditPatient() {
   return (
     <MainPage title={newPatient ? `New Patient` : `Edit Patient`}>
       <Paper>
-        <form onSubmit={resourceForm.onSubmit}>
-          <LoadingOverlay visible={resourceForm.query.isInitialLoading} />
+        <form onSubmit={form.onSubmit}>
+          <LoadingOverlay visible={form.query.isInitialLoading} />
           <Box maw={600}>
-            <Stack align="flex-start">
+            <Stack>
               <FhirInputArray
                 label="Name"
                 min={1}
-                {...resourceForm.getArrayInputProps("name", { newValue: {} })}
+                {...form.getArrayInputProps("name", { newValue: {} })}
               >
                 {({ index }) => {
                   return (
-                    <FhirInput<MantineFhirInputHumanNameProps>
+                    <FhirInput
                       type="HumanName"
                       mode="simple"
-                      {...resourceForm.getInputProps(`name.${index}`)}
+                      {...form.getInputProps(`name.${index}`)}
                     />
                   );
                 }}
@@ -59,12 +53,12 @@ export default function EditPatient() {
                 <FhirInput
                   type="date"
                   label="Date of Birth"
-                  {...resourceForm.getInputProps("birthDate")}
+                  {...form.getInputProps("birthDate")}
                 />
                 <FhirInput
                   type="dateTime"
                   label="Deceased"
-                  {...resourceForm.getInputProps("deceasedDateTime")}
+                  {...form.getInputProps("deceasedDateTime")}
                 />
                 {/* <FhirInput
                   type="boolean"
@@ -77,18 +71,32 @@ export default function EditPatient() {
                   label="Gender"
                   mode="select"
                   source="http://hl7.org/fhir/ValueSet/administrative-gender"
-                  {...resourceForm.getInputProps("gender")}
+                  {...form.getInputProps("gender")}
                 />
                 <FhirInput
                   type="CodeableConcept"
                   label="Marital Status"
                   mode="select"
                   source="http://hl7.org/fhir/ValueSet/marital-status"
-                  {...resourceForm.getInputProps("maritalStatus")}
+                  {...form.getInputProps("maritalStatus")}
                 />
+                <FhirInputArray
+                  label="Contact"
+                  {...form.getArrayInputProps("telecom", { newValue: {} })}
+                >
+                  {({ index }) => {
+                    return (
+                      <FhirInput
+                        type="ContactPoint"
+                        mode="full"
+                        {...form.getInputProps(`telecom.${index}`)}
+                      />
+                    );
+                  }}
+                </FhirInputArray>
               </SimpleGrid>
               <Group mt="md">
-                <Button type="submit" loading={resourceForm.mutation.isLoading}>
+                <Button type="submit" loading={form.mutation.isLoading}>
                   Save
                 </Button>
                 <Button variant="outline" onClick={() => router.back()}>

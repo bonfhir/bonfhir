@@ -6,6 +6,7 @@ import type { FhirQueryLoaderRenderer } from "./feedback/index.js";
 import type {
   FhirInputArrayRenderer,
   FhirInputBooleanRenderer,
+  FhirInputContactPointRenderer,
   FhirInputDateRenderer,
   FhirInputDateTimeRenderer,
   FhirInputHumanNameRenderer,
@@ -18,6 +19,7 @@ import type { FhirPaginationRenderer } from "./navigation/index.js";
 export interface FhirUIRenderer {
   FhirInputArray: FhirInputArrayRenderer;
   FhirInputBoolean: FhirInputBooleanRenderer;
+  FhirInputContactPoint: FhirInputContactPointRenderer;
   FhirInputDate: FhirInputDateRenderer;
   FhirInputDateTime: FhirInputDateTimeRenderer;
   FhirInputHumanName: FhirInputHumanNameRenderer;

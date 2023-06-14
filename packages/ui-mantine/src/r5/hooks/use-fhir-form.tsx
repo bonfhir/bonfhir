@@ -48,7 +48,11 @@ export function useFhirForm<
               ? options.newValue()
               : options.newValue
             : {};
-          return form.insertListItem(path, newValue, index + 1);
+          if (form.getInputProps(path).value) {
+            form.insertListItem(path, newValue, index + 1);
+          } else {
+            form.setFieldValue(path, [newValue] as any);
+          }
         },
         canAdd: (value) => {
           const newValue = options?.newValue

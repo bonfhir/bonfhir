@@ -16,6 +16,13 @@ export function MantineFhirInputArray(
 ): ReactElement | null {
   const max = props.max ?? Number.POSITIVE_INFINITY;
   const min = props.min ?? Number.NEGATIVE_INFINITY;
+  if (!props.value?.length && min > 0) {
+    for (let i = 0; i < min; i++) {
+      props.onAdd?.(i);
+    }
+    return null;
+  }
+
   return (
     <Input.Wrapper
       label={props.label}
@@ -25,6 +32,16 @@ export function MantineFhirInputArray(
       sx={{ width: "100%" }}
       {...props.rendererProps?.wrapper}
     >
+      {!props.value?.length && (
+        <ActionIcon
+          variant="outline"
+          color="primary"
+          onClick={() => props.onAdd?.(-1)}
+          {...props.rendererProps?.actionIconAdd}
+        >
+          <IconPlus />
+        </ActionIcon>
+      )}
       {props.value?.map((value, index) => (
         <Grid key={index} align="center" {...props.rendererProps?.grid}>
           <Grid.Col span="auto">
@@ -51,6 +68,7 @@ export function MantineFhirInputArray(
               ) : (
                 <ActionIcon
                   variant="subtle"
+                  color="red"
                   onClick={() => props.onRemove?.(index)}
                   {...props.rendererProps?.actionRemove}
                 >

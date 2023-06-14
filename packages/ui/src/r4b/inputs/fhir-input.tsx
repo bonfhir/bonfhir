@@ -2,6 +2,8 @@ import { ReactElement } from "react";
 import {
   FhirInputBoolean,
   FhirInputBooleanProps,
+  FhirInputContactPoint,
+  FhirInputContactPointProps,
   FhirInputDate,
   FhirInputDateProps,
   FhirInputDateTime,
@@ -22,6 +24,9 @@ export function FhirInput<TRendererProps = any>(
   switch (props.type) {
     case "boolean": {
       return <FhirInputBoolean {...props} />;
+    }
+    case "ContactPoint": {
+      return <FhirInputContactPoint {...props} />;
     }
     case "date": {
       return <FhirInputDate {...props} />;
@@ -62,6 +67,7 @@ export function FhirInput<TRendererProps = any>(
 
 export type FhirInputProps<TRendererProps = any> =
   | FhirInputBooleanProps<TRendererProps>
+  | FhirInputContactPointProps<TRendererProps>
   | FhirInputDateProps<TRendererProps>
   | FhirInputDateTimeProps<TRendererProps>
   | FhirInputHumanNameProps<TRendererProps>
