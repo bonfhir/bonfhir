@@ -6,7 +6,16 @@ import {
   FhirInputTerminologyProps,
 } from "@bonfhir/ui/r4b";
 import { Group, GroupProps, Input, InputWrapperProps } from "@mantine/core";
+import {
+  IconAt,
+  IconDeviceLandlinePhone,
+  IconDeviceMobileMessage,
+  IconLink,
+  IconPhone,
+  IconPrinter,
+} from "@tabler/icons-react";
 import { ReactElement } from "react";
+import { MantineFhirInputStringProps } from "./fhir-input-string.js";
 
 export function MantineFhirInputContactPoint(
   props: FhirInputContactPointRendererProps<MantineFhirInputContactPointProps>
@@ -20,7 +29,7 @@ export function MantineFhirInputContactPoint(
     case "full":
     case null:
     case undefined: {
-      mode = ["system", "use", "value"];
+      mode = ["use", "system", "value"];
       break;
     }
   }
@@ -76,13 +85,17 @@ export function MantineFhirInputContactPoint(
             }
             case "value": {
               return (
-                <FhirInput
+                <FhirInput<MantineFhirInputStringProps>
                   key={comp}
                   type="string"
                   value={props.value?.value}
                   onChange={(value) =>
                     props.onChange?.({ ...props.value, value })
                   }
+                  rendererProps={{
+                    icon: valueIcon(props.value?.system),
+                    ...props.rendererProps?.value?.rendererProps,
+                  }}
                   {...props.rendererProps?.value}
                 />
               );
@@ -104,3 +117,28 @@ export type MantineFhirInputContactPointProps = {
   system?: FhirInputTerminologyProps | null | undefined;
   value?: FhirInputStringProps | null | undefined;
 };
+
+function valueIcon(system?: ContactPointSystem): ReactElement | undefined {
+  switch (system) {
+    case "email": {
+      return <IconAt size="0.8rem" />;
+    }
+    case "phone": {
+      return <IconPhone size="0.8rem" />;
+    }
+    case "fax": {
+      return <IconPrinter size="0.8rem" />;
+    }
+    case "sms": {
+      return <IconDeviceMobileMessage size="0.8rem" />;
+    }
+    case "pager": {
+      return <IconDeviceLandlinePhone size="0.8rem" />;
+    }
+    case "url": {
+      return <IconLink size="0.8rem" />;
+    }
+  }
+
+  return;
+}

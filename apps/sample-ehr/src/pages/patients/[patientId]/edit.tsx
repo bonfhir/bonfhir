@@ -80,21 +80,28 @@ export default function EditPatient() {
                   source="http://hl7.org/fhir/ValueSet/marital-status"
                   {...form.getInputProps("maritalStatus")}
                 />
-                <FhirInputArray
-                  label="Contact"
-                  {...form.getArrayInputProps("telecom", { newValue: {} })}
-                >
-                  {({ index }) => {
-                    return (
-                      <FhirInput
-                        type="ContactPoint"
-                        mode="full"
-                        {...form.getInputProps(`telecom.${index}`)}
-                      />
-                    );
-                  }}
-                </FhirInputArray>
               </SimpleGrid>
+              <FhirInputArray
+                label="Contact"
+                {...form.getArrayInputProps("telecom", { newValue: {} })}
+              >
+                {({ index }) => {
+                  return (
+                    <FhirInput
+                      type="ContactPoint"
+                      {...form.getInputProps(`telecom.${index}`)}
+                    />
+                  );
+                }}
+              </FhirInputArray>
+              <FhirInput
+                type="Reference"
+                resourceType="Organization"
+                label="Managing Organization"
+                // search={(query) => (search) =>
+                //   search.name(query).type("Organization")}
+                {...form.getInputProps("managingOrganization")}
+              />
               <Group mt="md">
                 <Button type="submit" loading={form.mutation.isLoading}>
                   Save

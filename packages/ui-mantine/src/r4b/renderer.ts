@@ -9,6 +9,7 @@ import {
   MantineFhirInputDateTime,
   MantineFhirInputHumanName,
   MantineFhirInputNumber,
+  MantineFhirInputResource,
   MantineFhirInputString,
   MantineFhirInputTerminology,
 } from "./inputs/index.js";
@@ -22,6 +23,7 @@ export const MantineRenderer: FhirUIRenderer = {
   FhirInputDateTime: MantineFhirInputDateTime,
   FhirInputHumanName: MantineFhirInputHumanName,
   FhirInputNumber: MantineFhirInputNumber,
+  FhirInputResource: MantineFhirInputResource,
   FhirInputString: MantineFhirInputString,
   FhirInputTerminology: MantineFhirInputTerminology,
   FhirPagination: MantineFhirPagination,

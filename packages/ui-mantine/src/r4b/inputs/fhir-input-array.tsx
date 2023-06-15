@@ -8,20 +8,21 @@ import {
   Input,
   InputWrapperProps,
 } from "@mantine/core";
-import { IconPlus, IconTrash } from "@tabler/icons-react";
-import { ReactElement } from "react";
+import { IconMinus, IconPlus } from "@tabler/icons-react";
+import { ReactElement, ReactNode } from "react";
 
 export function MantineFhirInputArray(
   props: FhirInputArrayRendererProps<MantineFhirInputArrayProps>
 ): ReactElement | null {
   const max = props.max ?? Number.POSITIVE_INFINITY;
   const min = props.min ?? Number.NEGATIVE_INFINITY;
-  if (!props.value?.length && min > 0) {
-    for (let i = 0; i < min; i++) {
-      props.onAdd?.(i);
-    }
-    return null;
-  }
+  // TODO: Figure out an elegant way to do this.
+  // if (!props.value?.length && min > 0) {
+  //   for (let i = 0; i < min; i++) {
+  //     props.onAdd?.(i);
+  //   }
+  //   return null;
+  // }
 
   return (
     <Input.Wrapper
@@ -59,7 +60,7 @@ export function MantineFhirInputArray(
                   onClick={() => props.onAdd?.(index)}
                   {...props.rendererProps?.actionIconAdd}
                 >
-                  <IconPlus />
+                  {props.rendererProps?.iconAdd ?? <IconPlus />}
                 </ActionIcon>
               )}
               {index < min ? (
@@ -72,7 +73,7 @@ export function MantineFhirInputArray(
                   onClick={() => props.onRemove?.(index)}
                   {...props.rendererProps?.actionRemove}
                 >
-                  <IconTrash />
+                  {props.rendererProps?.iconRemove ?? <IconMinus />}
                 </ActionIcon>
               )}
             </Group>
@@ -87,5 +88,7 @@ export interface MantineFhirInputArrayProps {
   wrapper?: InputWrapperProps | null | undefined;
   grid?: GridProps | null | undefined;
   actionIconAdd?: ActionIconProps | null | undefined;
+  iconAdd?: ReactNode | null | undefined;
   actionIconRemove?: ActionIconProps | null | undefined;
+  iconRemove?: ReactNode | null | undefined;
 }

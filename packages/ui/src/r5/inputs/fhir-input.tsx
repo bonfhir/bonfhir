@@ -1,3 +1,4 @@
+import { AnyResourceType } from "@bonfhir/core/r5";
 import { ReactElement } from "react";
 import {
   FhirInputBoolean,
@@ -12,15 +13,18 @@ import {
   FhirInputHumanNameProps,
   FhirInputNumber,
   FhirInputNumberProps,
+  FhirInputResource,
+  FhirInputResourceProps,
   FhirInputString,
   FhirInputStringProps,
   FhirInputTerminology,
   FhirInputTerminologyProps,
 } from "./input-types/index.js";
 
-export function FhirInput<TRendererProps = any>(
-  props: FhirInputProps<TRendererProps>
-): ReactElement | null {
+export function FhirInput<
+  TRendererProps = any,
+  TResourceType extends AnyResourceType = AnyResourceType
+>(props: FhirInputProps<TRendererProps, TResourceType>): ReactElement | null {
   switch (props.type) {
     case "boolean": {
       return <FhirInputBoolean {...props} />;
@@ -45,6 +49,10 @@ export function FhirInput<TRendererProps = any>(
     case "unsignedInt": {
       return <FhirInputNumber {...props} />;
     }
+    case "Resource":
+    case "Reference": {
+      return <FhirInputResource<TRendererProps, TResourceType> {...props} />;
+    }
     case "string":
     case "canonical":
     case "id":
@@ -65,12 +73,16 @@ export function FhirInput<TRendererProps = any>(
   }
 }
 
-export type FhirInputProps<TRendererProps = any> =
+export type FhirInputProps<
+  TRendererProps = any,
+  TResourceType extends AnyResourceType = AnyResourceType
+> =
   | FhirInputBooleanProps<TRendererProps>
   | FhirInputContactPointProps<TRendererProps>
   | FhirInputDateProps<TRendererProps>
   | FhirInputDateTimeProps<TRendererProps>
   | FhirInputHumanNameProps<TRendererProps>
   | FhirInputNumberProps<TRendererProps>
+  | FhirInputResourceProps<TRendererProps, TResourceType>
   | FhirInputStringProps<TRendererProps>
   | FhirInputTerminologyProps<TRendererProps>;
