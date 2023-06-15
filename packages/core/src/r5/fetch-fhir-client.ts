@@ -99,14 +99,15 @@ export class FetchFhirClient implements FhirClient {
     | Retrieved<ExtractResource<TResourceType>>
     | Retrieved<InstanceType<TCustomResourceClass>>
   > {
+    const { signal, ...remainingOptions } = options ?? {};
     const queryString = new URLSearchParams(
-      options as Record<string, string>
+      remainingOptions as Record<string, string>
     ).toString();
 
     const resourceType = typeof type === "string" ? type : type.resourceType;
     return this.fetch(
       `${resourceType}/${id}${queryString ? `?${queryString}` : ""}`,
-      undefined,
+      { signal },
       type
     );
   }
@@ -135,8 +136,9 @@ export class FetchFhirClient implements FhirClient {
     | Retrieved<ExtractResource<TResourceType>>
     | Retrieved<InstanceType<TCustomResourceClass>>
   > {
+    const { signal, ...remainingOptions } = options ?? {};
     const queryString = new URLSearchParams(
-      options as Record<string, string>
+      remainingOptions as Record<string, string>
     ).toString();
 
     const resourceType = typeof type === "string" ? type : type.resourceType;
@@ -144,7 +146,7 @@ export class FetchFhirClient implements FhirClient {
       `${resourceType}/${id}/_history/${vid}${
         queryString ? `?${queryString}` : ""
       }`,
-      undefined,
+      { signal },
       type
     );
   }
@@ -158,7 +160,7 @@ export class FetchFhirClient implements FhirClient {
       | null
       | undefined
   ): Promise<Retrieved<TResource>> {
-    const { preventConcurrentUpdates, search, ...remainingOptions } =
+    const { preventConcurrentUpdates, search, signal, ...remainingOptions } =
       options ?? {};
     const searchQueryString = normalizeSearchParameters(
       body.resourceType,
@@ -187,6 +189,7 @@ export class FetchFhirClient implements FhirClient {
         method: "PUT",
         body: JSON.stringify(body),
         headers,
+        signal,
       },
       body.constructor
     );
@@ -231,8 +234,13 @@ export class FetchFhirClient implements FhirClient {
       | null
       | undefined
   ): Promise<Retrieved<ExtractResource<TResourceType>>> {
-    const { preventConcurrentUpdates, versionId, search, ...remainingOptions } =
-      options ?? {};
+    const {
+      preventConcurrentUpdates,
+      versionId,
+      search,
+      signal,
+      ...remainingOptions
+    } = options ?? {};
     const resourceType = typeof type === "string" ? type : type.resourceType;
     const searchQueryString = normalizeSearchParameters(
       resourceType as TResourceType,
@@ -261,6 +269,7 @@ export class FetchFhirClient implements FhirClient {
           normalizePatchBody(resourceType as TResourceType, body)
         ),
         headers,
+        signal,
       },
       type
     );
@@ -288,11 +297,13 @@ export class FetchFhirClient implements FhirClient {
       );
     }
 
+    const { signal, ...remainingOptions } = options ?? {};
     const queryString = new URLSearchParams(
-      options as Record<string, string>
+      remainingOptions as Record<string, string>
     ).toString();
     await this.fetch(`${type}/${id}${queryString ? `?${queryString}` : ""}`, {
       method: "DELETE",
+      signal,
     });
   }
 
@@ -318,15 +329,17 @@ export class FetchFhirClient implements FhirClient {
       )) as BundleNavigator<Retrieved<ExtractResource<TResourceType>>>;
     }
 
+    const { signal, ...remainingOptions } = options ?? {};
     const queryString = new URLSearchParams(
-      options as Record<string, string>
+      remainingOptions as Record<string, string>
     ).toString();
 
     return bundleNavigator(
       await this.fetch<Bundle<Retrieved<ExtractResource<TResourceType>>>>(
         `${[type, id, "_history"].filter(Boolean).join("/")}${
           queryString ? `?${queryString}` : ""
-        }`
+        }`,
+        { signal }
       )
     );
   }
@@ -339,7 +352,7 @@ export class FetchFhirClient implements FhirClient {
       | null
       | undefined
   ): Promise<Retrieved<TResource>> {
-    const { search, ...remainingOptions } = options ?? {};
+    const { search, signal, ...remainingOptions } = options ?? {};
     const searchQueryString = normalizeSearchParameters(
       body.resourceType,
       search
@@ -356,6 +369,7 @@ export class FetchFhirClient implements FhirClient {
       {
         method: "POST",
         body: JSON.stringify(body),
+        signal,
       },
       body.constructor
     );
@@ -405,8 +419,9 @@ export class FetchFhirClient implements FhirClient {
       resourceType as TResourceType,
       parameters
     );
+    const { signal, ...remainingOptions } = options ?? {};
     const optionsQueryString = new URLSearchParams(
-      options as Record<string, string>
+      remainingOptions as Record<string, string>
     ).toString();
     const queryString = [searchQueryString, optionsQueryString]
       .filter(Boolean)
@@ -414,7 +429,9 @@ export class FetchFhirClient implements FhirClient {
 
     const response = await this.fetch<
       Bundle<Retrieved<ExtractResource<TResourceType>>>
-    >(`${resourceType || ""}${queryString ? `?${queryString}` : ""}`);
+    >(`${resourceType || ""}${queryString ? `?${queryString}` : ""}`, {
+      signal,
+    });
 
     return bundleNavigator(
       response,
@@ -463,14 +480,16 @@ export class FetchFhirClient implements FhirClient {
     search: FhirClientSearchParameters<TResourceType>,
     fn: (
       nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
-    ) => unknown | Promise<unknown>
+    ) => unknown | Promise<unknown>,
+    options?: GeneralParameters | null | undefined
   ): Promise<void>;
   public searchByPage<TCustomResourceClass extends CustomResourceClass>(
     type: TCustomResourceClass,
     search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
     fn: (
       nav: BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
-    ) => unknown | Promise<unknown>
+    ) => unknown | Promise<unknown>,
+    options?: GeneralParameters | null | undefined
   ): Promise<void>;
   public async searchByPage<
     TResourceType extends AnyResourceType,
@@ -480,18 +499,21 @@ export class FetchFhirClient implements FhirClient {
     search: FhirClientSearchParameters<TResourceType>,
     fn: (
       nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
-    ) => unknown | Promise<unknown>
+    ) => unknown | Promise<unknown>,
+    options?: GeneralParameters | null | undefined
   ): Promise<void> {
-    return searchByPage(this, type as TResourceType, search, fn);
+    return searchByPage(this, type as TResourceType, search, fn, options);
   }
 
   public async searchAllPages<TResourceType extends AnyResourceType>(
     type: TResourceType | null | undefined,
-    search: FhirClientSearchParameters<TResourceType>
+    search: FhirClientSearchParameters<TResourceType>,
+    options?: GeneralParameters | null | undefined
   ): Promise<BundleNavigator<ExtractResource<TResourceType>>>;
   public async searchAllPages<TCustomResourceClass extends CustomResourceClass>(
     type: TCustomResourceClass,
-    search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+    search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
+    options?: GeneralParameters | null | undefined
   ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
   public async searchAllPages<
     TResourceType extends AnyResourceType,
@@ -500,13 +522,14 @@ export class FetchFhirClient implements FhirClient {
     type: TResourceType | TCustomResourceClass | null | undefined,
     search:
       | FhirClientSearchParameters<TResourceType>
-      | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+      | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
+    options?: GeneralParameters | null | undefined
   ): Promise<
     | BundleNavigator<ExtractResource<TResourceType>>
     | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
   > {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return searchAllPages(this, type as any, search as any) as any;
+    return searchAllPages(this, type as any, search as any, options) as any;
   }
 
   public async capabilities(
@@ -530,13 +553,15 @@ export class FetchFhirClient implements FhirClient {
       return new BundleExecutor(this, "batch");
     }
 
+    const { signal, ...remainingOptions } = options ?? {};
     const queryString = new URLSearchParams(
-      options as Record<string, string>
+      remainingOptions as Record<string, string>
     ).toString();
 
     return this.fetch<Bundle>(queryString ? `?${queryString}` : "", {
       method: "POST",
       body: JSON.stringify(body),
+      signal,
     });
   }
 
@@ -553,13 +578,15 @@ export class FetchFhirClient implements FhirClient {
       return new BundleExecutor(this, "transaction");
     }
 
+    const { signal, ...remainingOptions } = options ?? {};
     const queryString = new URLSearchParams(
-      options as Record<string, string>
+      remainingOptions as Record<string, string>
     ).toString();
 
     return this.fetch<Bundle>(queryString ? `?${queryString}` : "", {
       method: "POST",
       body: JSON.stringify(body),
+      signal,
     });
   }
 

@@ -19,7 +19,7 @@ import { useFhirClientQueryContext } from "../context.js";
 export interface UseFhirSearchOptions<TResourceType extends AnyResourceType> {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
-  fhir?: Parameters<FhirClient["search"]>[2] | null | undefined;
+  fhir?: Omit<Parameters<FhirClient["search"]>[2], "signal"> | null | undefined;
   query?:
     | Omit<
         UseQueryOptions<
@@ -116,7 +116,7 @@ export function useFhirSearch<
     parameters as FhirClientSearchParameters<TResourceType>
   );
 
-  return useQuery({
+  return useQuery<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
     queryKey: FhirQueryKeys.search(
@@ -126,20 +126,18 @@ export function useFhirSearch<
       pageUrl,
       options?.fhir
     ),
-    queryFn: () =>
+    queryFn: ({ signal }) =>
       pageUrl
         ? fhirQueryContext.fhirClient.fetchPage(
             pageUrl,
-            undefined,
+            { signal },
             typeof type === "string" ? undefined : type || undefined
           )
         : fhirQueryContext.fhirClient.search(
             type as TResourceType,
             parameters as FhirClientSearchParameters<TResourceType>,
-            options?.fhir
+            { ...options?.fhir, signal }
           ),
     keepPreviousData: true,
-  }) as UseQueryResult<
-    BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
-  >;
+  });
 }

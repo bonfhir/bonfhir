@@ -22,7 +22,10 @@ export interface UseFhirSearchOneOptions<
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
-  fhir?: Parameters<FhirClient["searchOne"]>[2] | null | undefined;
+  fhir?:
+    | Omit<Parameters<FhirClient["searchOne"]>[2], "signal">
+    | null
+    | undefined;
   query?:
     | Omit<
         UseQueryOptions<
@@ -116,7 +119,9 @@ export function useFhirSearchOne<
     parameters as FhirClientSearchParameters<TResourceType>
   );
 
-  return useQuery({
+  return useQuery<
+    WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
+  >({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
     queryKey: FhirQueryKeys.search(
@@ -126,13 +131,11 @@ export function useFhirSearchOne<
       undefined,
       options?.fhir
     ),
-    queryFn: () =>
+    queryFn: ({ signal }) =>
       fhirQueryContext.fhirClient.searchOne(
         type as TResourceType,
         parameters as FhirClientSearchParameters<TResourceType>,
-        options?.fhir
+        { ...options?.fhir, signal }
       ),
-  }) as UseQueryResult<
-    WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
-  >;
+  });
 }

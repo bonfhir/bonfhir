@@ -16,7 +16,7 @@ import { useFhirClientQueryContext } from "../context.js";
 export interface UseFhirReadOptions<TResourceType extends AnyResourceType> {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
-  fhir?: Parameters<FhirClient["read"]>[2] | null | undefined;
+  fhir?: Omit<Parameters<FhirClient["read"]>[2], "signal"> | null | undefined;
   query?:
     | Omit<
         UseQueryOptions<
@@ -82,7 +82,7 @@ export function useFhirRead<
   | UseQueryResult<Retrieved<InstanceType<TCustomResourceClass>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
 
-  return useQuery({
+  return useQuery<Retrieved<ExtractResource<TResourceType>>>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
     queryKey: FhirQueryKeys.read(
@@ -91,11 +91,10 @@ export function useFhirRead<
       id,
       options?.fhir
     ),
-    queryFn: () =>
-      fhirQueryContext.fhirClient.read(
-        type as TResourceType,
-        id,
-        options?.fhir
-      ),
-  }) as UseQueryResult<Retrieved<ExtractResource<TResourceType>>>;
+    queryFn: ({ signal }) =>
+      fhirQueryContext.fhirClient.read(type as TResourceType, id, {
+        ...options?.fhir,
+        signal: signal ?? undefined,
+      }),
+  });
 }

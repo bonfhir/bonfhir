@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BundleExecutor } from "./bundle-executor.js";
 import {
   BundleNavigator,
@@ -214,14 +215,16 @@ export interface FhirClient {
     search: FhirClientSearchParameters<TResourceType>,
     fn: (
       nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
-    ) => unknown | Promise<unknown>
+    ) => unknown | Promise<unknown>,
+    options?: GeneralParameters | null | undefined
   ): Promise<void>;
   searchByPage<TCustomResourceClass extends CustomResourceClass>(
     type: TCustomResourceClass,
     search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
     fn: (
       nav: BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
-    ) => unknown | Promise<unknown>
+    ) => unknown | Promise<unknown>,
+    options?: GeneralParameters | null | undefined
   ): Promise<void>;
 
   /**
@@ -230,11 +233,13 @@ export interface FhirClient {
    */
   searchAllPages<TResourceType extends AnyResourceType>(
     type: TResourceType | null | undefined,
-    search: FhirClientSearchParameters<TResourceType>
+    search: FhirClientSearchParameters<TResourceType>,
+    options?: GeneralParameters | null | undefined
   ): Promise<BundleNavigator<ExtractResource<TResourceType>>>;
   searchAllPages<TCustomResourceClass extends CustomResourceClass>(
     type: TCustomResourceClass,
-    search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+    search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
+    options?: GeneralParameters | null | undefined
   ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
 
   /**
@@ -355,7 +360,6 @@ export function normalizeSearchParameters<
   parameters: FhirClientSearchParameters<TResourceType> | null | undefined
 ): string | undefined {
   if (typeof parameters === "function") {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const builtParameters = parameters(fhirSearch(type) as any);
     if (typeof builtParameters === "string") {
       return builtParameters;
@@ -428,6 +432,11 @@ export interface GeneralParameters {
    * https://hl7.org/fhir/search.html#elements
    */
   _elements?: string | Array<string> | null | undefined;
+
+  /**
+   * The {@link AbortSignal} to use for the request in order to cancel it.
+   */
+  signal?: AbortSignal | null | undefined;
 }
 
 /**
@@ -487,7 +496,8 @@ export async function searchByPage<TResourceType extends AnyResourceType>(
   search: FhirClientSearchParameters<TResourceType>,
   fn: (
     nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
-  ) => unknown | Promise<unknown>
+  ) => unknown | Promise<unknown>,
+  options?: GeneralParameters | null | undefined
 ): Promise<void>;
 export async function searchByPage<
   TCustomResourceClass extends CustomResourceClass
@@ -497,7 +507,8 @@ export async function searchByPage<
   search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
   fn: (
     nav: BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
-  ) => unknown | Promise<unknown>
+  ) => unknown | Promise<unknown>,
+  options?: GeneralParameters | null | undefined
 ): Promise<void>;
 export async function searchByPage<
   TResourceType extends AnyResourceType,
@@ -512,7 +523,8 @@ export async function searchByPage<
     nav:
       | BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
       | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
-  ) => unknown | Promise<unknown>
+  ) => unknown | Promise<unknown>,
+  options?: GeneralParameters | null | undefined
 ): Promise<void> {
   let currentNavigator:
     | BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
@@ -524,12 +536,13 @@ export async function searchByPage<
       ? await client.fetchPage(
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           currentNavigator.linkUrl("next")!,
-          undefined,
+          { signal: options?.signal },
           typeof type === "string" ? undefined : type || undefined
         )
       : await client.search<TResourceType>(
           type as TResourceType,
-          search as FhirClientSearchParameters<TResourceType>
+          search as FhirClientSearchParameters<TResourceType>,
+          options
         );
 
     await fn(currentNavigator);
@@ -546,14 +559,16 @@ export async function searchByPage<
 export async function searchAllPages<TResourceType extends AnyResourceType>(
   client: Pick<FhirClient, "search" | "fetchPage">,
   type: TResourceType | null | undefined,
-  search: FhirClientSearchParameters<TResourceType>
+  search: FhirClientSearchParameters<TResourceType>,
+  options?: GeneralParameters | null | undefined
 ): Promise<BundleNavigator<ExtractResource<TResourceType>>>;
 export async function searchAllPages<
   TCustomResourceClass extends CustomResourceClass
 >(
   client: Pick<FhirClient, "search" | "fetchPage">,
   type: TCustomResourceClass,
-  search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+  search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
+  options?: GeneralParameters | null | undefined
 ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
 export async function searchAllPages<
   TResourceType extends AnyResourceType,
@@ -563,7 +578,8 @@ export async function searchAllPages<
   type: TResourceType | TCustomResourceClass | null | undefined,
   search:
     | FhirClientSearchParameters<TResourceType>
-    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
+  options?: GeneralParameters | null | undefined
 ): Promise<
   | BundleNavigator<ExtractResource<TResourceType>>
   | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
@@ -573,15 +589,18 @@ export async function searchAllPages<
     | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
   > = [];
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  await searchByPage(client, type as any, search as any, (nav) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    results.push(nav as any);
-  });
+  await searchByPage(
+    client,
+    type as any,
+    search as any,
+    (nav) => {
+      results.push(nav as any);
+    },
+    options
+  );
 
   return new BundleNavigator(
     results,
     typeof type === "string" ? undefined : type || undefined
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ) as any;
 }

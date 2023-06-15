@@ -16,7 +16,7 @@ import { useFhirClientQueryContext } from "../context.js";
 export interface UseFhirVReadOptions<TResourceType extends AnyResourceType> {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
-  fhir?: Parameters<FhirClient["vread"]>[3] | null | undefined;
+  fhir?: Omit<Parameters<FhirClient["vread"]>[3], "signal"> | null | undefined;
   query?:
     | Omit<
         UseQueryOptions<
@@ -85,7 +85,7 @@ export function useFhirVRead<
   | UseQueryResult<Retrieved<InstanceType<TCustomResourceClass>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
 
-  return useQuery({
+  return useQuery<Retrieved<ExtractResource<TResourceType>>>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
     queryKey: FhirQueryKeys.vread(
@@ -95,12 +95,10 @@ export function useFhirVRead<
       vid,
       options?.fhir
     ),
-    queryFn: () =>
-      fhirQueryContext.fhirClient.vread(
-        type as TResourceType,
-        id,
-        vid,
-        options?.fhir
-      ),
-  }) as UseQueryResult<Retrieved<ExtractResource<TResourceType>>>;
+    queryFn: ({ signal }) =>
+      fhirQueryContext.fhirClient.vread(type as TResourceType, id, vid, {
+        ...options?.fhir,
+        signal,
+      }),
+  });
 }

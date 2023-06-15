@@ -15,7 +15,7 @@ import {
 import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
-export interface UseFhirSearchAllPAgesOptions<
+export interface UseFhirSearchAllPagesOptions<
   TResourceType extends AnyResourceType
 > {
   /** The FhirClient key to use to perform the query. */
@@ -34,7 +34,7 @@ export interface UseFhirSearchAllPAgesOptions<
     | undefined;
 }
 
-export interface UseFhirSearchAllPAgesOptionsCustom<
+export interface UseFhirSearchAllPagesOptionsCustom<
   TCustomResourceClass extends CustomResourceClass
 > {
   /** The FhirClient key to use to perform the query. */
@@ -64,7 +64,7 @@ export interface UseFhirSearchAllPAgesOptionsCustom<
 export function useFhirSearchAllPages<TResourceType extends AnyResourceType>(
   type: TResourceType,
   parameters: FhirClientSearchParameters<TResourceType>,
-  options?: UseFhirSearchAllPAgesOptions<TResourceType> | null | undefined
+  options?: UseFhirSearchAllPagesOptions<TResourceType> | null | undefined
 ): UseQueryResult<BundleNavigator<ExtractResource<TResourceType>>>;
 export function useFhirSearchAllPages<
   TCustomResourceClass extends CustomResourceClass
@@ -72,7 +72,7 @@ export function useFhirSearchAllPages<
   type: TCustomResourceClass,
   parameters: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
   options?:
-    | UseFhirSearchAllPAgesOptionsCustom<TCustomResourceClass>
+    | UseFhirSearchAllPagesOptionsCustom<TCustomResourceClass>
     | null
     | undefined
 ): UseQueryResult<BundleNavigator<InstanceType<TCustomResourceClass>>>;
@@ -85,8 +85,8 @@ export function useFhirSearchAllPages<
     | FhirClientSearchParameters<TResourceType>
     | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
   options?:
-    | UseFhirSearchAllPAgesOptions<TResourceType>
-    | UseFhirSearchAllPAgesOptionsCustom<TCustomResourceClass>
+    | UseFhirSearchAllPagesOptions<TResourceType>
+    | UseFhirSearchAllPagesOptionsCustom<TCustomResourceClass>
     | null
     | undefined
 ):
@@ -99,7 +99,7 @@ export function useFhirSearchAllPages<
     parameters as FhirClientSearchParameters<TResourceType>
   );
 
-  return useQuery({
+  return useQuery<BundleNavigator<ExtractResource<TResourceType>>>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
     queryKey: FhirQueryKeys.search(
@@ -107,10 +107,11 @@ export function useFhirSearchAllPages<
       type,
       normalizedParameters
     ),
-    queryFn: () =>
+    queryFn: ({ signal }) =>
       fhirQueryContext.fhirClient.searchAllPages(
         type as TResourceType,
-        parameters as FhirClientSearchParameters<TResourceType>
+        parameters as FhirClientSearchParameters<TResourceType>,
+        { signal }
       ),
-  }) as UseQueryResult<BundleNavigator<ExtractResource<TResourceType>>>;
+  });
 }

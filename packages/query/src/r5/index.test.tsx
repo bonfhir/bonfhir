@@ -178,7 +178,18 @@ describe("hooks", () => {
   );
 
   const wrapper = ({ children }: PropsWithChildren) => (
-    <FhirQueryProvider fhirClient={baseUrl}>{children}</FhirQueryProvider>
+    <FhirQueryProvider
+      fhirClient={baseUrl}
+      queryClientConfig={{
+        defaultOptions: {
+          queries: {
+            retry: false,
+          },
+        },
+      }}
+    >
+      {children}
+    </FhirQueryProvider>
   );
 
   beforeAll(() => server.listen());

@@ -21,7 +21,7 @@ export interface UseFhirInfiniteSearchOptions<
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
-  fhir?: Parameters<FhirClient["search"]>[2] | null | undefined;
+  fhir?: Omit<Parameters<FhirClient["search"]>[2], "signal"> | null | undefined;
   query?:
     | Omit<
         UseQueryOptions<
@@ -115,7 +115,9 @@ export function useFhirInfiniteSearch<
     parameters as FhirClientSearchParameters<TResourceType>
   );
 
-  return useInfiniteQuery({
+  return useInfiniteQuery<
+    BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
+  >({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
     queryKey: FhirQueryKeys.infiniteSearch(
@@ -124,21 +126,19 @@ export function useFhirInfiniteSearch<
       normalizedParameters,
       options?.fhir
     ),
-    queryFn: (data: { pageParam: string }) =>
-      data?.pageParam
+    queryFn: ({ pageParam, signal }) =>
+      pageParam
         ? fhirQueryContext.fhirClient.fetchPage(
-            data?.pageParam,
-            undefined,
+            pageParam,
+            { signal },
             typeof type === "string" ? undefined : type || undefined
           )
         : fhirQueryContext.fhirClient.search(
             type as TResourceType,
             parameters as FhirClientSearchParameters<TResourceType>,
-            options?.fhir
+            { ...options?.fhir, signal }
           ),
     keepPreviousData: true,
     getNextPageParam: (lastPage: BundleNavigator) => lastPage.linkUrl("next"),
-  }) as UseInfiniteQueryResult<
-    BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
-  >;
+  });
 }
