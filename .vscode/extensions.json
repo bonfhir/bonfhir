@@ -1,9 +1,17 @@
 {
   "recommendations": [
+    "cschleiden.vscode-github-actions",
     "dbaeumer.vscode-eslint",
-    "digitalbrainstem.javascript-ejs-support",
-    "editorconfig.editorconfig",
+    "DigitalBrainstem.javascript-ejs-support",
+    "eamodio.gitlens",
+    "EditorConfig.EditorConfig",
     "esbenp.prettier-vscode",
-    "streetsidesoftware.code-spell-checker"
+    "firsttris.vscode-jest-runner",
+    "github.vscode-pull-request-github",
+    "ms-azuretools.vscode-docker",
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "vivaxy.vscode-conventional-commits",
+    "wmaurer.change-case"
   ]
 }
