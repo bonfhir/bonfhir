@@ -1,4 +1,5 @@
 import { MainPage } from "@/components";
+import { codeableConcept } from "@bonfhir/core/r4b";
 import { useFhirResourceForm } from "@bonfhir/ui-mantine/r4b";
 import { FhirInput, FhirInputArray } from "@bonfhir/ui/r4b";
 import {
@@ -32,7 +33,7 @@ export default function EditPatient() {
       <Paper>
         <form onSubmit={form.onSubmit}>
           <LoadingOverlay visible={form.query.isInitialLoading} />
-          <Box maw={600}>
+          <Box maw={800}>
             <Stack>
               <FhirInputArray
                 label="Name"
@@ -45,6 +46,38 @@ export default function EditPatient() {
                       type="HumanName"
                       mode="simple"
                       {...form.getInputProps(`name.${index}`)}
+                    />
+                  );
+                }}
+              </FhirInputArray>
+              <FhirInputArray
+                label="Identifiers"
+                min={1}
+                {...form.getArrayInputProps("identifier", { newValue: {} })}
+              >
+                {({ index }) => {
+                  return (
+                    <FhirInput
+                      type="Identifier"
+                      identifiers={[
+                        {
+                          system: "http://hl7.org/fhir/sid/us-ssn",
+                          label: "SSN",
+                          type: codeableConcept({
+                            code: "SS",
+                            display: "Social Security number",
+                            system:
+                              "http://terminology.hl7.org/CodeSystem/v2-0203",
+                          }),
+                          processValue: (value) => value.replace(/\W/g, ""),
+                        },
+                        {
+                          system: "http://hl7.org/fhir/sid/us-mbi",
+                          label: "MBI",
+                          processValue: (value) => value.replace(/\W/g, ""),
+                        },
+                      ]}
+                      {...form.getInputProps(`identifier.${index}`)}
                     />
                   );
                 }}

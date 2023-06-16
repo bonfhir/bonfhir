@@ -5,7 +5,7 @@ import {
   Textarea,
   TextareaProps,
 } from "@mantine/core";
-import { IconExternalLink } from "@tabler/icons-react";
+import { IconLink } from "@tabler/icons-react";
 import { FormEvent, ReactElement } from "react";
 
 export function MantineFhirInputString(
@@ -41,7 +41,7 @@ export function MantineFhirInputString(
       w="100%"
       icon={
         ["url", "uri"].includes(props.type) ? (
-          <IconExternalLink size="0.8rem" />
+          <IconLink size="0.8rem" />
         ) : undefined
       }
       value={props.value || ""}

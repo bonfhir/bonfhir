@@ -10,6 +10,7 @@ import type {
   FhirInputDateRenderer,
   FhirInputDateTimeRenderer,
   FhirInputHumanNameRenderer,
+  FhirInputIdentifierRenderer,
   FhirInputNumberRenderer,
   FhirInputResourceRenderer,
   FhirInputStringRenderer,
@@ -23,6 +24,7 @@ export interface FhirUIRenderer {
   FhirInputContactPoint: FhirInputContactPointRenderer;
   FhirInputDate: FhirInputDateRenderer;
   FhirInputDateTime: FhirInputDateTimeRenderer;
+  FhirInputIdentifier: FhirInputIdentifierRenderer;
   FhirInputHumanName: FhirInputHumanNameRenderer;
   FhirInputNumber: FhirInputNumberRenderer;
   FhirInputResource: FhirInputResourceRenderer;

@@ -11,6 +11,8 @@ import {
   FhirInputDateTimeProps,
   FhirInputHumanName,
   FhirInputHumanNameProps,
+  FhirInputIdentifier,
+  FhirInputIdentifierProps,
   FhirInputNumber,
   FhirInputNumberProps,
   FhirInputResource,
@@ -27,27 +29,30 @@ export function FhirInput<
 >(props: FhirInputProps<TRendererProps, TResourceType>): ReactElement | null {
   switch (props.type) {
     case "boolean": {
-      return <FhirInputBoolean {...props} />;
+      return <FhirInputBoolean<TRendererProps> {...props} />;
     }
     case "ContactPoint": {
-      return <FhirInputContactPoint {...props} />;
+      return <FhirInputContactPoint<TRendererProps> {...props} />;
     }
     case "date": {
-      return <FhirInputDate {...props} />;
+      return <FhirInputDate<TRendererProps> {...props} />;
     }
     case "dateTime":
     case "instant": {
-      return <FhirInputDateTime {...props} />;
+      return <FhirInputDateTime<TRendererProps> {...props} />;
     }
     case "HumanName": {
-      return <FhirInputHumanName {...props} />;
+      return <FhirInputHumanName<TRendererProps> {...props} />;
+    }
+    case "Identifier": {
+      return <FhirInputIdentifier<TRendererProps> {...props} />;
     }
     case "decimal":
     case "integer":
     case "integer64":
     case "positiveInt":
     case "unsignedInt": {
-      return <FhirInputNumber {...props} />;
+      return <FhirInputNumber<TRendererProps> {...props} />;
     }
     case "Resource":
     case "Reference": {
@@ -60,12 +65,12 @@ export function FhirInput<
     case "uri":
     case "url":
     case "uuid": {
-      return <FhirInputString {...props} />;
+      return <FhirInputString<TRendererProps> {...props} />;
     }
     case "code":
     case "Coding":
     case "CodeableConcept": {
-      return <FhirInputTerminology {...props} />;
+      return <FhirInputTerminology<TRendererProps> {...props} />;
     }
     default: {
       throw new Error(`Unknown FhirInput type: ${(props as any).type}`);
@@ -82,6 +87,7 @@ export type FhirInputProps<
   | FhirInputDateProps<TRendererProps>
   | FhirInputDateTimeProps<TRendererProps>
   | FhirInputHumanNameProps<TRendererProps>
+  | FhirInputIdentifierProps<TRendererProps>
   | FhirInputNumberProps<TRendererProps>
   | FhirInputResourceProps<TRendererProps, TResourceType>
   | FhirInputStringProps<TRendererProps>
