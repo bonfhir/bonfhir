@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "check": "prettier --check ./src && next lint && tsc --noEmit",
-    "dev": "PORT=4000 next dev --turbo",
+    "dev": "PORT=4000 next dev",
     "format": "prettier --loglevel warn --write ./**/*.ts && eslint --fix ./**/*.ts",
-    "start": "next start"
+    "start": "PORT=4000 next start",
+    "build": "next build"
   },
   "dependencies": {
     "@bonfhir/core": "^2.0.0",

@@ -4,6 +4,7 @@ const nextConfig = {
   compiler: {
     emotion: true,
   },
+  output: "export",
 };
 
 // eslint-disable-next-line no-undef

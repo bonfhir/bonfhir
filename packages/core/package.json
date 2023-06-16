@@ -15,22 +15,22 @@
   "exports": {
     "./r4b": {
       "import": {
-        "default": "./dist/r4b/esm/index.mjs",
-        "types": "./dist/r4b/esm/index.d.ts"
+        "types": "./dist/r4b/esm/index.d.ts",
+        "default": "./dist/r4b/esm/index.mjs"
       },
       "require": {
-        "default": "./dist/r4b/cjs/index.cjs",
-        "types": "./dist/r4b/cjs/index.d.ts"
+        "types": "./dist/r4b/cjs/index.d.ts",
+        "default": "./dist/r4b/cjs/index.cjs"
       }
     },
     "./r5": {
       "import": {
-        "default": "./dist/r5/esm/index.mjs",
-        "types": "./dist/r5/esm/index.d.ts"
+        "types": "./dist/r5/esm/index.d.ts",
+        "default": "./dist/r5/esm/index.mjs"
       },
       "require": {
-        "default": "./dist/r5/cjs/index.cjs",
-        "types": "./dist/r5/cjs/index.d.ts"
+        "types": "./dist/r5/cjs/index.d.ts",
+        "default": "./dist/r5/cjs/index.cjs"
       }
     }
   },
