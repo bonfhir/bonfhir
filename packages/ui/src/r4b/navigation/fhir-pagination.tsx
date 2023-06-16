@@ -41,7 +41,7 @@ export function FhirPagination<TRendererProps = any>(
     total: formatter.format("positiveInt", total),
     pageFirstEntry: formatter.format(
       "positiveInt",
-      (props.pageNumber - 1) * props.pageSize + 1
+      totalPages === 0 ? 0 : (props.pageNumber - 1) * props.pageSize + 1
     ),
     pageLastEntry: formatter.format(
       "positiveInt",

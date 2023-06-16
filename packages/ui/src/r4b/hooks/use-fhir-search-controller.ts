@@ -14,6 +14,9 @@ export interface UseFhirSearchControllerValue<
   onSortChange: (sort: string) => void;
   search: TSearch | undefined;
   onSearch: (search: TSearch | ((search: TSearch) => TSearch)) => void;
+  getInputProps: <TKey extends keyof TSearch>(
+    criteria: TKey
+  ) => UseFhirSearchControllerGetInputPropsResult<TSearch[TKey]>;
 }
 
 export interface UseFhirSearchControllerState<
@@ -46,6 +49,11 @@ export type UseFhirSearchControllerStateManager<
   UseFhirSearchControllerState<TSort, TSearch> | undefined,
   (value: UseFhirSearchControllerState<TSort, TSearch>) => void
 ];
+
+export interface UseFhirSearchControllerGetInputPropsResult<TValue> {
+  value: TValue;
+  onChange: (value: TValue) => void;
+}
 
 export function useFhirSearchController<
   TSort extends string = string,
@@ -80,6 +88,14 @@ export function useFhirSearchController<
     });
   };
 
+  const onSearch = (search: TSearch | ((search: TSearch) => TSearch)) => {
+    if (typeof search === "function") {
+      return updateState({ search: (search as any)(state?.search || {}) });
+    }
+
+    return updateState({ search });
+  };
+
   return {
     pageNumber: state?.pageNumber || 1,
     pageSize: args?.pageSize || 20,
@@ -90,13 +106,16 @@ export function useFhirSearchController<
       return updateState({ sort: sort as TSort });
     },
     search: state?.search || args?.defaultSearch || undefined,
-    onSearch: (search) => {
-      if (typeof search === "function") {
-        return updateState({ search: (search as any)(state?.search || {}) });
-      }
-
-      return updateState({ search });
-    },
+    onSearch,
+    getInputProps: (criteria) => ({
+      value: state?.search?.[criteria] as any,
+      onChange: (value) => {
+        onSearch((search) => ({
+          ...search,
+          [criteria]: value,
+        }));
+      },
+    }),
   };
 }
 

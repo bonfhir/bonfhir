@@ -1,5 +1,5 @@
 import { MainPage } from "@/components";
-import { codeableConcept } from "@bonfhir/core/r4b";
+import { PatientIdentifierSystems } from "@/fhir/known-identifiers";
 import { useFhirResourceForm } from "@bonfhir/ui-mantine/r4b";
 import { FhirInput, FhirInputArray } from "@bonfhir/ui/r4b";
 import {
@@ -59,24 +59,7 @@ export default function EditPatient() {
                   return (
                     <FhirInput
                       type="Identifier"
-                      identifiers={[
-                        {
-                          system: "http://hl7.org/fhir/sid/us-ssn",
-                          label: "SSN",
-                          type: codeableConcept({
-                            code: "SS",
-                            display: "Social Security number",
-                            system:
-                              "http://terminology.hl7.org/CodeSystem/v2-0203",
-                          }),
-                          processValue: (value) => value.replace(/\W/g, ""),
-                        },
-                        {
-                          system: "http://hl7.org/fhir/sid/us-mbi",
-                          label: "MBI",
-                          processValue: (value) => value.replace(/\W/g, ""),
-                        },
-                      ]}
+                      identifiers={PatientIdentifierSystems}
                       {...form.getInputProps(`identifier.${index}`)}
                     />
                   );

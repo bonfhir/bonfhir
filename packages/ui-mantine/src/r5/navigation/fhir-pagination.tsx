@@ -14,6 +14,7 @@ export function MantineFhirPagination(
     <Pagination.Root
       total={props.totalPages}
       value={props.pageNumber}
+      disabled={props.totalPages === 0}
       onFirstPage={() => props.onPageChange?.(props.data?.linkUrl("first"), 1)}
       onNextPage={() =>
         props.onPageChange?.(props.data?.linkUrl("next"), props.pageNumber + 1)

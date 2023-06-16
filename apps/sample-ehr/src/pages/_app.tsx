@@ -1,5 +1,6 @@
 import { Navbar } from "@/components";
-import { FetchFhirClient } from "@bonfhir/core/r4b";
+import { SystemLabels } from "@/fhir/known-identifiers";
+import { FetchFhirClient, Formatter } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { MantineRenderer } from "@bonfhir/ui-mantine/r4b";
 import { FhirUIProvider } from "@bonfhir/ui/r4b";
@@ -57,6 +58,9 @@ export default function App(props: AppProps) {
         <FhirQueryProvider fhirClient={client}>
           <FhirUIProvider
             renderer={MantineRenderer}
+            formatter={Formatter.build({
+              systemsLabels: SystemLabels,
+            })}
             onNavigate={({ target, aux }) => {
               if (aux) {
                 window.open(target, "_blank");

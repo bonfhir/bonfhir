@@ -9,10 +9,10 @@ import {
   Title,
 } from "@mantine/core";
 import {
+  IconBuildingFactory2,
   IconFlame,
   IconHome,
   IconLogout2,
-  IconThumbUp,
   IconUsers,
 } from "@tabler/icons-react";
 import Link from "next/link";
@@ -21,7 +21,11 @@ import { useRouter } from "next/router";
 const links = [
   { link: "/", label: "Dashboard", icon: <IconHome /> },
   { link: "/patients", label: "Patients", icon: <IconUsers /> },
-  { link: "/performance", label: "Performance", icon: <IconThumbUp /> },
+  {
+    link: "/organizations",
+    label: "Organizations",
+    icon: <IconBuildingFactory2 />,
+  },
 ];
 
 export function Navbar() {

@@ -290,21 +290,12 @@ function PatientsList(): ReactElement {
             <FhirInput
               type="string"
               label="Patient Name"
-              value={searchController.search?.name}
-              onChange={(name) =>
-                searchController.onSearch((search) => ({ ...search, name }))
-              }
+              {...searchController.getInputProps("name")}
             />
             <FhirInput<MantineFhirInputDateProps>
               type="date"
               label="Patient DOB"
-              value={searchController.search?.birthDate}
-              onChange={(birthDate) =>
-                searchController.onSearch((search) => ({
-                  ...search,
-                  birthDate,
-                }))
-              }
+              {...searchController.getInputProps("birthDate")}
               rendererProps={{
                 maxDate: new Date(),
               }}
