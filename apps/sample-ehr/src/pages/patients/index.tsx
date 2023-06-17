@@ -6,6 +6,7 @@ import {
   QuickFilter,
   TitleDivider,
 } from "@/components";
+import { CustomPatient } from "@/fhir/patient";
 import { useFhirUrlSearchController } from "@/hooks/use-fhir-url-search-controller";
 import { Patient, PatientSortOrder } from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/query/r4b";
@@ -164,7 +165,7 @@ function PatientsList(): ReactElement {
   });
 
   const patientsQuery = useFhirSearch(
-    "Patient",
+    CustomPatient,
     (search) =>
       search
         .name(searchController.search?.name)

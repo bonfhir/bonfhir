@@ -24,7 +24,8 @@ export function extendResource<
   TExtensions
 >(
   resourceType: TResourceType,
-  extensions: TExtensions
+  extensions: TExtensions &
+    ThisType<ExtractResource<TResourceType> & TExtensions>
 ): {
   resourceType: typeof resourceType;
   new (

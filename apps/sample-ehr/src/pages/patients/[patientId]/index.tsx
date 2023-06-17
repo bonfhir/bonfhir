@@ -1,4 +1,5 @@
 import { MainPage, NavButton } from "@/components";
+import { CustomPatient } from "@/fhir/patient";
 import { Patient, Retrieved } from "@bonfhir/core/r4b";
 import { useFhirRead } from "@bonfhir/query/r4b";
 import { FhirQueryLoader, FhirValue } from "@bonfhir/ui/r4b";
@@ -10,7 +11,7 @@ import { ReactElement } from "react";
 export default function Patient() {
   const router = useRouter();
   const { patientId } = router.query as { patientId: string };
-  const patientQuery = useFhirRead("Patient", patientId);
+  const patientQuery = useFhirRead(CustomPatient, patientId);
 
   return (
     <MainPage

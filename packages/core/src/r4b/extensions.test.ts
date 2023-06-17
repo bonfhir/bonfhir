@@ -5,12 +5,12 @@ import {
   getSetManyExtension,
   getSetTag,
 } from "./extensions.js";
-import { Coding, DiagnosticReport, Patient } from "./fhir-types.codegen.js";
+import { Coding, DiagnosticReport } from "./fhir-types.codegen.js";
 import { Formatter } from "./formatters.js";
 
 describe("extensions", () => {
   const CustomPatient = extendResource("Patient", {
-    computedName(this: Patient): string {
+    computedName(): string {
       return (
         Formatter.default.format("HumanName", this.name, { max: 1 }) +
         Formatter.default.format("date", this.birthDate, {
@@ -19,7 +19,7 @@ describe("extensions", () => {
       );
     },
 
-    birthSex(this: Patient, value?: string | null | undefined) {
+    birthSex(value?: string | null | undefined) {
       return getSetExtension(
         this,
         {
@@ -33,7 +33,6 @@ describe("extensions", () => {
 
   const CustomDiagnosticReport = extendResource("DiagnosticReport", {
     cptCodes(
-      this: DiagnosticReport,
       value?: string[] | ((value: string[]) => string[]) | null | undefined
     ) {
       return getSetManyExtension(
