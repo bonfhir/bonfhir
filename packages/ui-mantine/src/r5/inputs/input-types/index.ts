@@ -8,3 +8,4 @@ export * from "./fhir-input-number.js";
 export * from "./fhir-input-resource.js";
 export * from "./fhir-input-string.js";
 export * from "./fhir-input-terminology.js";
+export * from "./fhir-input-time.js";

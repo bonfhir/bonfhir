@@ -21,6 +21,8 @@ import {
   FhirInputStringProps,
   FhirInputTerminology,
   FhirInputTerminologyProps,
+  FhirInputTime,
+  FhirInputTimeProps,
 } from "./input-types/index.js";
 
 export function FhirInput<
@@ -72,6 +74,9 @@ export function FhirInput<
     case "CodeableConcept": {
       return <FhirInputTerminology<TRendererProps> {...props} />;
     }
+    case "time": {
+      return <FhirInputTime<TRendererProps> {...props} />;
+    }
     default: {
       throw new Error(`Unknown FhirInput type: ${(props as any).type}`);
     }
@@ -91,4 +96,5 @@ export type FhirInputProps<
   | FhirInputNumberProps<TRendererProps>
   | FhirInputResourceProps<TRendererProps, TResourceType>
   | FhirInputStringProps<TRendererProps>
-  | FhirInputTerminologyProps<TRendererProps>;
+  | FhirInputTerminologyProps<TRendererProps>
+  | FhirInputTimeProps<TRendererProps>;

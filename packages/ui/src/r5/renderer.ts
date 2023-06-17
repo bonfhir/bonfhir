@@ -15,6 +15,7 @@ import type {
   FhirInputResourceRenderer,
   FhirInputStringRenderer,
   FhirInputTerminologyRenderer,
+  FhirInputTimeRenderer,
 } from "./inputs/index.js";
 import type { FhirPaginationRenderer } from "./navigation/index.js";
 
@@ -30,6 +31,7 @@ export interface FhirUIRenderer {
   FhirInputResource: FhirInputResourceRenderer;
   FhirInputString: FhirInputStringRenderer;
   FhirInputTerminology: FhirInputTerminologyRenderer;
+  FhirInputTime: FhirInputTimeRenderer;
   FhirPagination: FhirPaginationRenderer;
   FhirQueryLoader: FhirQueryLoaderRenderer;
   FhirTable: FhirTableRenderer;
