@@ -1,11 +1,5 @@
 /* eslint-disable unicorn/no-null */
-import {
-  extendResource,
-  getSetExtension,
-  getSetManyExtension,
-  getSetTag,
-} from "./extensions.js";
-import { Coding, DiagnosticReport } from "./fhir-types.codegen.js";
+import { extendResource, extension, extensionMany, tag } from "./extensions.js";
 import { Formatter } from "./formatters.js";
 
 describe("extensions", () => {
@@ -19,40 +13,22 @@ describe("extensions", () => {
       );
     },
 
-    birthSex(value?: string | null | undefined) {
-      return getSetExtension(
-        this,
-        {
-          url: "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
-          kind: "valueCode",
-        },
-        value
-      );
-    },
+    birthSex: extension({
+      url: "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+      kind: "valueCode",
+    }),
   });
 
   const CustomDiagnosticReport = extendResource("DiagnosticReport", {
-    cptCodes(
-      value?: string[] | ((value: string[]) => string[]) | null | undefined
-    ) {
-      return getSetManyExtension(
-        this,
-        {
-          url: "http://custom/cpt-codes",
-          kind: "valueCode",
-        },
-        value
-      );
-    },
+    cptCodes: extensionMany({
+      url: "http://custom/cpt-codes",
+      kind: "valueCode",
+    }),
 
-    visibility(this: DiagnosticReport, value?: Coding | null | undefined) {
-      return getSetTag(this, { system: "http://custom/visibility" }, value);
-    },
+    visibility: tag({ system: "http://custom/visibility" }),
 
     isPubliclyVisible(): boolean {
-      // TODO: See if we can handle this better
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return (this as any).visibility()?.code === "public";
+      return this.visibility?.code === "public";
     },
   });
 
@@ -84,11 +60,11 @@ describe("extensions", () => {
     `);
   });
 
-  it("manages simple extensions", () => {
+  it("manage simple extensions", () => {
     const patient = new CustomPatient();
-    expect(patient.birthSex()).toBeUndefined();
-    expect(patient.birthSex("OTH")).toEqual("OTH");
-    expect(patient.birthSex()).toEqual("OTH");
+    expect(patient.birthSex).toBeUndefined();
+    patient.birthSex = "OTH";
+    expect(patient.birthSex).toEqual("OTH");
     expect(JSON.stringify(patient, undefined, 2)).toMatchInlineSnapshot(`
       "{
         "resourceType": "Patient",
@@ -104,8 +80,8 @@ describe("extensions", () => {
         }
       }"
     `);
-    expect(patient.birthSex(null)).toBeUndefined();
-    expect(patient.birthSex()).toBeUndefined();
+    patient.birthSex = undefined;
+    expect(patient.birthSex).toBeUndefined();
     expect(JSON.stringify(patient, undefined, 2)).toMatchInlineSnapshot(`
       "{
         "resourceType": "Patient",
@@ -122,8 +98,9 @@ describe("extensions", () => {
       status: "preliminary",
       code: { text: "Diag" },
     });
-    expect(diagnosticReport.cptCodes()).toHaveLength(0);
-    expect(diagnosticReport.cptCodes(["123"])).toHaveLength(1);
+    expect(diagnosticReport.cptCodes).toHaveLength(0);
+    diagnosticReport.cptCodes = ["123"];
+    expect(diagnosticReport.cptCodes).toHaveLength(1);
     expect(JSON.stringify(diagnosticReport, undefined, 2))
       .toMatchInlineSnapshot(`
         "{
@@ -144,9 +121,8 @@ describe("extensions", () => {
           }
         }"
       `);
-    expect(
-      diagnosticReport.cptCodes((values) => [...values, "456"])
-    ).toHaveLength(2);
+    diagnosticReport.cptCodes = [...diagnosticReport.cptCodes, "456"];
+    expect(diagnosticReport.cptCodes).toHaveLength(2);
     expect(JSON.stringify(diagnosticReport, undefined, 2))
       .toMatchInlineSnapshot(`
         "{
@@ -171,8 +147,9 @@ describe("extensions", () => {
           }
         }"
       `);
-    expect(diagnosticReport.cptCodes()).toHaveLength(2);
-    expect(diagnosticReport.cptCodes([])).toHaveLength(0);
+    expect(diagnosticReport.cptCodes).toHaveLength(2);
+    diagnosticReport.cptCodes = [];
+    expect(diagnosticReport.cptCodes).toHaveLength(0);
     expect(JSON.stringify(diagnosticReport, undefined, 2))
       .toMatchInlineSnapshot(`
         "{
@@ -194,10 +171,9 @@ describe("extensions", () => {
       status: "preliminary",
       code: { text: "Diag" },
     });
-    expect(diagnosticReport.visibility()).toBeUndefined();
-    expect(diagnosticReport.visibility({ code: "public" })?.code).toEqual(
-      "public"
-    );
+    expect(diagnosticReport.visibility).toBeUndefined();
+    diagnosticReport.visibility = { code: "public" };
+    expect(diagnosticReport.visibility?.code).toEqual("public");
     expect(diagnosticReport.isPubliclyVisible()).toBeTruthy();
     expect(JSON.stringify(diagnosticReport, undefined, 2))
       .toMatchInlineSnapshot(`
@@ -221,9 +197,8 @@ describe("extensions", () => {
           }
         }"
       `);
-    expect(diagnosticReport.visibility({ code: "internal" })?.code).toEqual(
-      "internal"
-    );
+    diagnosticReport.visibility = { code: "internal" };
+    expect(diagnosticReport.visibility?.code).toEqual("internal");
     expect(diagnosticReport.isPubliclyVisible()).toBeFalsy();
     expect(JSON.stringify(diagnosticReport, undefined, 2))
       .toMatchInlineSnapshot(`
@@ -247,7 +222,8 @@ describe("extensions", () => {
           }
         }"
       `);
-    expect(diagnosticReport.visibility(null)).toBeUndefined();
+    diagnosticReport.visibility = undefined;
+    expect(diagnosticReport.visibility).toBeUndefined();
     expect(JSON.stringify(diagnosticReport, undefined, 2))
       .toMatchInlineSnapshot(`
         "{
