@@ -4,13 +4,18 @@ import {
   BundleNavigator,
   WithResolvableReferences,
 } from "./bundle-navigator.js";
-import { CustomResourceClass } from "./extensions.js";
+import {
+  AnyResourceTypeOrCustomResource,
+  CustomResourceClass,
+  ResourceOf,
+  ResourceTypeOf,
+  resourceTypeOf,
+} from "./extensions.js";
 import {
   AnyResource,
   AnyResourceType,
   Bundle,
   CapabilityStatement,
-  ExtractResource,
   OperationOutcome,
   Retrieved,
 } from "./fhir-types.codegen.js";
@@ -35,33 +40,22 @@ export interface FhirClient {
    * The read interaction accesses the current contents of a resource.
    * https://hl7.org/fhir/http.html#read
    */
-  read<TResourceType extends AnyResourceType>(
+  read<TResourceType extends AnyResourceTypeOrCustomResource>(
     type: TResourceType,
     id: string,
     options?: GeneralParameters | null | undefined
-  ): Promise<Retrieved<ExtractResource<TResourceType>>>;
-  read<TCustomResourceClass extends CustomResourceClass>(
-    type: TCustomResourceClass,
-    id: string,
-    options?: GeneralParameters | null | undefined
-  ): Promise<Retrieved<InstanceType<TCustomResourceClass>>>;
+  ): Promise<Retrieved<ResourceOf<TResourceType>>>;
 
   /**
    * The vread interaction performs a version specific read of the resource.
    * https://hl7.org/fhir/http.html#vread
    */
-  vread<TResourceType extends AnyResourceType>(
+  vread<TResourceType extends AnyResourceTypeOrCustomResource>(
     type: TResourceType,
     id: string,
     vid: string,
     options?: GeneralParameters | null | undefined
-  ): Promise<Retrieved<ExtractResource<TResourceType>>>;
-  vread<TCustomResourceClass extends CustomResourceClass>(
-    type: TCustomResourceClass,
-    id: string,
-    vid: string,
-    options?: GeneralParameters | null | undefined
-  ): Promise<Retrieved<InstanceType<TCustomResourceClass>>>;
+  ): Promise<Retrieved<ResourceOf<TResourceType>>>;
 
   /**
    * The update interaction creates a new current version for an existing resource or creates an initial version
@@ -82,30 +76,18 @@ export interface FhirClient {
    * As an alternative to updating an entire resource, clients can perform a patch operation.
    * https://hl7.org/fhir/http.html#patch
    */
-  patch<TResourceType extends AnyResourceType>(
+  patch<TResourceType extends AnyResourceTypeOrCustomResource>(
     type: TResourceType,
     id: string,
-    body: FhirClientPatchBody<TResourceType>,
+    body: FhirClientPatchBody<ResourceTypeOf<TResourceType>>,
     options?:
       | (GeneralParameters &
           ConcurrencyParameters & {
             versionId?: string | null | undefined;
-          } & ConditionalSearchParameters<TResourceType>)
+          } & ConditionalSearchParameters<ResourceTypeOf<TResourceType>>)
       | null
       | undefined
-  ): Promise<Retrieved<ExtractResource<TResourceType>>>;
-  patch<TCustomResourceClass extends CustomResourceClass>(
-    type: TCustomResourceClass,
-    id: string,
-    body: FhirClientPatchBody<TCustomResourceClass["resourceType"]>,
-    options?:
-      | (GeneralParameters &
-          ConcurrencyParameters & {
-            versionId?: string | null | undefined;
-          } & ConditionalSearchParameters<TCustomResourceClass["resourceType"]>)
-      | null
-      | undefined
-  ): Promise<Retrieved<InstanceType<TCustomResourceClass>>>;
+  ): Promise<Retrieved<ResourceOf<TResourceType>>>;
 
   /**
    * The delete interaction removes an existing resource.
@@ -129,11 +111,11 @@ export interface FhirClient {
     resource: Retrieved<TResource>,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
   ): Promise<BundleNavigator<Retrieved<TResource>>>;
-  history<TResourceType extends AnyResourceType>(
+  history<TResourceType extends AnyResourceTypeOrCustomResource>(
     type?: TResourceType | null | undefined,
     id?: string | null | undefined,
     options?: (GeneralParameters & HistoryParameters) | null | undefined
-  ): Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
+  ): Promise<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>>;
 
   /**
    * The create interaction creates a new resource in a server-assigned location.
@@ -166,19 +148,14 @@ export interface FhirClient {
    * This interaction searches a set of resources based on some filter criteria.
    * https://hl7.org/fhir/http.html#search
    */
-  search<TResourceType extends AnyResourceType>(
+  search<TResourceType extends AnyResourceTypeOrCustomResource>(
     type?: TResourceType | null | undefined,
-    parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
-    options?: GeneralParameters | null | undefined
-  ): Promise<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
-  search<TCustomResourceClass extends CustomResourceClass>(
-    type: TCustomResourceClass,
     parameters?:
-      | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+      | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
       | null
       | undefined,
     options?: GeneralParameters | null | undefined
-  ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
+  ): Promise<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>>;
 
   /**
    * Execute a search operation, and return the first search match in the bundle.
@@ -187,42 +164,25 @@ export interface FhirClient {
    * Included resources are still accessible with resolvable references.
    * https://hl7.org/fhir/http.html#search
    */
-  searchOne<TResourceType extends AnyResourceType>(
+  searchOne<TResourceType extends AnyResourceTypeOrCustomResource>(
     type?: TResourceType | null | undefined,
-    parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
-    options?: GeneralParameters | null | undefined
-  ): Promise<
-    WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
-  >;
-  searchOne<TCustomResourceClass extends CustomResourceClass>(
-    type: TCustomResourceClass,
     parameters?:
-      | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
+      | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
       | null
       | undefined,
     options?: GeneralParameters | null | undefined
-  ): Promise<
-    WithResolvableReferences<Retrieved<InstanceType<TCustomResourceClass>>>
-  >;
+  ): Promise<WithResolvableReferences<Retrieved<ResourceOf<TResourceType>>>>;
 
   /**
    * Execute a search operation and walk through all the search pages.
    * For each page, execute the `fn` callback by passing the current page bundle navigator.
    * https://hl7.org/fhir/http.html#search
    */
-  searchByPage<TResourceType extends AnyResourceType>(
+  searchByPage<TResourceType extends AnyResourceTypeOrCustomResource>(
     type: TResourceType | null | undefined,
-    search: FhirClientSearchParameters<TResourceType>,
+    search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
     fn: (
-      nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
-    ) => unknown | Promise<unknown>,
-    options?: GeneralParameters | null | undefined
-  ): Promise<void>;
-  searchByPage<TCustomResourceClass extends CustomResourceClass>(
-    type: TCustomResourceClass,
-    search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
-    fn: (
-      nav: BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
+      nav: BundleNavigator<Retrieved<ResourceOf<TResourceType>>>
     ) => unknown | Promise<unknown>,
     options?: GeneralParameters | null | undefined
   ): Promise<void>;
@@ -231,16 +191,11 @@ export interface FhirClient {
    * Execute a search operation and retrieve all pages from the server, aggregating into a final {@link BundleNavigator}.
    * Be careful, as this can be a very long / expensive operation.
    */
-  searchAllPages<TResourceType extends AnyResourceType>(
+  searchAllPages<TResourceType extends AnyResourceTypeOrCustomResource>(
     type: TResourceType | null | undefined,
-    search: FhirClientSearchParameters<TResourceType>,
+    search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
     options?: GeneralParameters | null | undefined
-  ): Promise<BundleNavigator<ExtractResource<TResourceType>>>;
-  searchAllPages<TCustomResourceClass extends CustomResourceClass>(
-    type: TCustomResourceClass,
-    search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
-    options?: GeneralParameters | null | undefined
-  ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
+  ): Promise<BundleNavigator<ResourceOf<TResourceType>>>;
 
   /**
    * The capabilities interaction retrieves the information about a server's capabilities - which portions of this specification it supports.
@@ -328,12 +283,14 @@ export type FhirClientPatchBody<TResourceType extends AnyResourceType> =
  * This is a helper function that take either a function or a JSONPatchBody that represents a patch body,
  * and normalize them as the final FHIR patch body as a JSONPatchBody.
  */
-export function normalizePatchBody<TResource extends AnyResourceType>(
-  type: TResource,
-  patch: FhirClientPatchBody<TResource>
+export function normalizePatchBody<
+  TResourceType extends AnyResourceTypeOrCustomResource
+>(
+  type: TResourceType,
+  patch: FhirClientPatchBody<ResourceTypeOf<TResourceType>>
 ): JSONPatchBody {
   if (typeof patch === "function") {
-    const builtPatch = patch(fhirJSONPatch(type));
+    const builtPatch = patch(fhirJSONPatch(resourceTypeOf(type)));
     if (Array.isArray(builtPatch)) {
       return builtPatch;
     }
@@ -354,13 +311,16 @@ export type FhirClientSearchParameters<TResourceType extends AnyResourceType> =
  * and normalize them as the final FHIR search parameters as a string.
  */
 export function normalizeSearchParameters<
-  TResourceType extends AnyResourceType
+  TResourceType extends AnyResourceTypeOrCustomResource
 >(
   type: TResourceType | null | undefined,
-  parameters: FhirClientSearchParameters<TResourceType> | null | undefined
+  parameters:
+    | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
+    | null
+    | undefined
 ): string | undefined {
   if (typeof parameters === "function") {
-    const builtParameters = parameters(fhirSearch(type) as any);
+    const builtParameters = parameters(fhirSearch(resourceTypeOf(type)) as any);
     if (typeof builtParameters === "string") {
       return builtParameters;
     }
@@ -490,60 +450,30 @@ export interface HistoryParameters {
  * This method is meant to be used by client implementations.
  * Prefer using `client.searchByPage`.
  */
-export async function searchByPage<TResourceType extends AnyResourceType>(
+export async function searchByPage<
+  TResourceType extends AnyResourceTypeOrCustomResource
+>(
   client: Pick<FhirClient, "search" | "fetchPage">,
   type: TResourceType | null | undefined,
-  search: FhirClientSearchParameters<TResourceType>,
+  search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
   fn: (
-    nav: BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
-  ) => unknown | Promise<unknown>,
-  options?: GeneralParameters | null | undefined
-): Promise<void>;
-export async function searchByPage<
-  TCustomResourceClass extends CustomResourceClass
->(
-  client: Pick<FhirClient, "search" | "fetchPage">,
-  type: TCustomResourceClass,
-  search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
-  fn: (
-    nav: BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
-  ) => unknown | Promise<unknown>,
-  options?: GeneralParameters | null | undefined
-): Promise<void>;
-export async function searchByPage<
-  TResourceType extends AnyResourceType,
-  TCustomResourceClass extends CustomResourceClass
->(
-  client: Pick<FhirClient, "search" | "fetchPage">,
-  type: TResourceType | TCustomResourceClass | null | undefined,
-  search:
-    | FhirClientSearchParameters<TResourceType>
-    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
-  fn: (
-    nav:
-      | BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
-      | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
+    nav: BundleNavigator<Retrieved<ResourceOf<TResourceType>>>
   ) => unknown | Promise<unknown>,
   options?: GeneralParameters | null | undefined
 ): Promise<void> {
   let currentNavigator:
-    | BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
-    | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
+    | BundleNavigator<Retrieved<ResourceOf<TResourceType>>>
     | undefined;
 
   while (!currentNavigator || currentNavigator.linkUrl("next")) {
     currentNavigator = currentNavigator
-      ? await client.fetchPage(
+      ? ((await client.fetchPage(
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           currentNavigator.linkUrl("next")!,
           { signal: options?.signal },
           typeof type === "string" ? undefined : type || undefined
-        )
-      : await client.search<TResourceType>(
-          type as TResourceType,
-          search as FhirClientSearchParameters<TResourceType>,
-          options
-        );
+        )) as BundleNavigator<Retrieved<ResourceOf<TResourceType>>>)
+      : await client.search(type, search, options);
 
     await fn(currentNavigator);
   }
@@ -556,51 +486,29 @@ export async function searchByPage<
  * This method is meant to be used by client implementations.
  * Prefer using `client.searchAllPages`.
  */
-export async function searchAllPages<TResourceType extends AnyResourceType>(
+export async function searchAllPages<
+  TResourceType extends AnyResourceTypeOrCustomResource
+>(
   client: Pick<FhirClient, "search" | "fetchPage">,
   type: TResourceType | null | undefined,
-  search: FhirClientSearchParameters<TResourceType>,
+  search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
   options?: GeneralParameters | null | undefined
-): Promise<BundleNavigator<ExtractResource<TResourceType>>>;
-export async function searchAllPages<
-  TCustomResourceClass extends CustomResourceClass
->(
-  client: Pick<FhirClient, "search" | "fetchPage">,
-  type: TCustomResourceClass,
-  search: FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
-  options?: GeneralParameters | null | undefined
-): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
-export async function searchAllPages<
-  TResourceType extends AnyResourceType,
-  TCustomResourceClass extends CustomResourceClass
->(
-  client: Pick<FhirClient, "search" | "fetchPage">,
-  type: TResourceType | TCustomResourceClass | null | undefined,
-  search:
-    | FhirClientSearchParameters<TResourceType>
-    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>,
-  options?: GeneralParameters | null | undefined
-): Promise<
-  | BundleNavigator<ExtractResource<TResourceType>>
-  | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
-> {
-  const results: Array<
-    | BundleNavigator<ExtractResource<TResourceType>>
-    | BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
-  > = [];
+): Promise<BundleNavigator<ResourceOf<TResourceType>>> {
+  const results: Array<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>> =
+    [];
 
   await searchByPage(
     client,
-    type as any,
-    search as any,
+    type,
+    search,
     (nav) => {
-      results.push(nav as any);
+      results.push(nav);
     },
     options
   );
 
   return new BundleNavigator(
     results,
-    typeof type === "string" ? undefined : type || undefined
-  ) as any;
+    typeof type === "string" ? undefined : (type as any) || undefined
+  );
 }

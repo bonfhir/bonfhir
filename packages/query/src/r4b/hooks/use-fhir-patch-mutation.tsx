@@ -5,6 +5,7 @@ import {
   ExtractResource,
   FhirClientPatchBody,
   GeneralParameters,
+  ResourceTypeOf,
   Retrieved,
 } from "@bonfhir/core/r4b";
 import {
@@ -19,7 +20,7 @@ export interface UseFhirPatchMutationArgs<
   TResourceType extends AnyResourceType
 > {
   id: string;
-  body: FhirClientPatchBody<TResourceType>;
+  body: FhirClientPatchBody<ResourceTypeOf<TResourceType>>;
   options?:
     | (GeneralParameters &
         ConcurrencyParameters & {

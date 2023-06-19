@@ -1,6 +1,5 @@
 import { MainPage } from "@/components";
 import { PatientIdentifierSystems } from "@/fhir/known-identifiers";
-import { CustomPatient } from "@/fhir/patient";
 import { useFhirResourceForm } from "@bonfhir/ui-mantine/r4b";
 import { FhirInput, FhirInputArray } from "@bonfhir/ui/r4b";
 import {
@@ -20,7 +19,7 @@ export default function EditPatient() {
   const newPatient = patientId === "new";
 
   const form = useFhirResourceForm({
-    type: CustomPatient,
+    type: "Patient",
     id: patientId,
     mutationOptions: {
       onSuccess(data) {

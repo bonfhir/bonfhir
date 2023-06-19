@@ -2,7 +2,7 @@
 import {
   AnyResourceType,
   DomainResource,
-  ExtractResource,
+  ResourceOf,
   Retrieved,
   build,
 } from "@bonfhir/core/r5";
@@ -22,38 +22,42 @@ export interface UseFhirResourceFormArgs<
 > {
   type: TResourceType;
   id: string | "new" | undefined;
-  defaultValues?: Partial<ExtractResource<TResourceType>>;
+  defaultValues?: Partial<ResourceOf<TResourceType>>;
   mutationOptions?:
     | UseFhirSaveMutationOptions<TResourceType>["mutation"]
     | null
     | undefined;
-  formOptions?: Parameters<
-    typeof useFhirForm<ExtractResource<TResourceType>>
-  >[0];
+  formOptions?: Parameters<typeof useFhirForm<ResourceOf<TResourceType>>>[0];
 }
 
 export interface UseFhirResourceFormResult<
   TResourceType extends AnyResourceType
 > {
-  query: UseQueryResult<Retrieved<ExtractResource<TResourceType>>>;
+  query: UseQueryResult<Retrieved<ResourceOf<TResourceType>>>;
   mutation: UseMutationResult<
-    Retrieved<ExtractResource<TResourceType>>,
+    Retrieved<ResourceOf<TResourceType>>,
     unknown,
     UseFhirSaveMutationArgs<TResourceType>,
     unknown
   >;
   form: UseFormReturnType<
-    ExtractResource<TResourceType>,
-    (values: { resourceType: TResourceType }) => ExtractResource<TResourceType>
+    ResourceOf<TResourceType>,
+    (values: {
+      resourceType: ResourceOf<TResourceType>["resourceType"];
+    }) => ResourceOf<TResourceType>
   >;
   onSubmit: () => void;
   getInputProps: UseFhirFormReturnType<
-    ExtractResource<TResourceType>,
-    (values: { resourceType: TResourceType }) => ExtractResource<TResourceType>
+    ResourceOf<TResourceType>,
+    (values: {
+      resourceType: ResourceOf<TResourceType>["resourceType"];
+    }) => ResourceOf<TResourceType>
   >["getInputProps"];
   getArrayInputProps: UseFhirFormReturnType<
-    ExtractResource<TResourceType>,
-    (values: { resourceType: TResourceType }) => ExtractResource<TResourceType>
+    ResourceOf<TResourceType>,
+    (values: {
+      resourceType: ResourceOf<TResourceType>["resourceType"];
+    }) => ResourceOf<TResourceType>
   >["getArrayInputProps"];
 }
 
@@ -98,7 +102,7 @@ export function useFhirResourceForm<TResourceType extends AnyResourceType>(
 
   return {
     query,
-    mutation,
+    mutation: mutation as any,
     form: form as any,
     onSubmit: form.onSubmit((resource) => mutation.mutate(resource as any)),
     getInputProps: form.getInputProps,

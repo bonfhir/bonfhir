@@ -1,10 +1,10 @@
 import {
-  AnyResourceType,
+  AnyResourceTypeOrCustomResource,
   BundleNavigator,
-  CustomResourceClass,
-  ExtractResource,
   FhirClient,
   FhirClientSearchParameters,
+  ResourceOf,
+  ResourceTypeOf,
   Retrieved,
   WithResolvableReferences,
   normalizeSearchParameters,
@@ -18,7 +18,7 @@ import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
 export interface UseFhirSearchOneOptions<
-  TResourceType extends AnyResourceType
+  TResourceType extends AnyResourceTypeOrCustomResource
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
@@ -29,29 +29,9 @@ export interface UseFhirSearchOneOptions<
   query?:
     | Omit<
         UseQueryOptions<
-          BundleNavigator<Retrieved<ExtractResource<TResourceType>>>,
+          BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
           unknown,
-          BundleNavigator<Retrieved<ExtractResource<TResourceType>>>,
-          ReturnType<(typeof FhirQueryKeys)["search"]>
-        >,
-        "initialData" | "queryKey" | "queryFn" | "keepPreviousData"
-      >
-    | null
-    | undefined;
-}
-
-export interface UseFhirSearchOneOptionsCustom<
-  TCustomResourceClass extends CustomResourceClass
-> {
-  /** The FhirClient key to use to perform the query. */
-  fhirClient?: string | null | undefined;
-  fhir?: Parameters<FhirClient["searchOne"]>[2] | null | undefined;
-  query?:
-    | Omit<
-        UseQueryOptions<
-          BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>,
-          unknown,
-          BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>,
+          BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
           ReturnType<(typeof FhirQueryKeys)["search"]>
         >,
         "initialData" | "queryKey" | "queryFn" | "keepPreviousData"
@@ -68,59 +48,23 @@ export interface UseFhirSearchOneOptionsCustom<
  *
  * @see https://hl7.org/fhir/http.html#search
  */
-export function useFhirSearchOne<TResourceType extends AnyResourceType>(
+export function useFhirSearchOne<
+  TResourceType extends AnyResourceTypeOrCustomResource
+>(
   type: TResourceType,
-  parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
+  parameters?:
+    | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
+    | null
+    | undefined,
   options?: UseFhirSearchOneOptions<TResourceType> | null | undefined
 ): UseQueryResult<
-  WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
->;
-export function useFhirSearchOne<
-  TCustomResourceClass extends CustomResourceClass
->(
-  type: TCustomResourceClass,
-  parameters?:
-    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
-    | null
-    | undefined,
-  options?:
-    | UseFhirSearchOneOptionsCustom<TCustomResourceClass>
-    | null
-    | undefined
-): UseQueryResult<
-  WithResolvableReferences<Retrieved<InstanceType<TCustomResourceClass>>>
->;
-export function useFhirSearchOne<
-  TResourceType extends AnyResourceType,
-  TCustomResourceClass extends CustomResourceClass
->(
-  type: TResourceType | TCustomResourceClass,
-  parameters?:
-    | FhirClientSearchParameters<TResourceType>
-    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
-    | null
-    | undefined,
-  options?:
-    | UseFhirSearchOneOptions<TResourceType>
-    | UseFhirSearchOneOptionsCustom<TCustomResourceClass>
-    | null
-    | undefined
-):
-  | UseQueryResult<
-      WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
-    >
-  | UseQueryResult<
-      WithResolvableReferences<Retrieved<InstanceType<TCustomResourceClass>>>
-    > {
+  WithResolvableReferences<Retrieved<ResourceOf<TResourceType>>>
+> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
-  const resourceType = typeof type === "string" ? type : type.resourceType;
-  const normalizedParameters = normalizeSearchParameters(
-    resourceType as TResourceType,
-    parameters as FhirClientSearchParameters<TResourceType>
-  );
+  const normalizedParameters = normalizeSearchParameters(type, parameters);
 
   return useQuery<
-    WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
+    WithResolvableReferences<Retrieved<ResourceOf<TResourceType>>>
   >({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
@@ -132,10 +76,9 @@ export function useFhirSearchOne<
       options?.fhir
     ),
     queryFn: ({ signal }) =>
-      fhirQueryContext.fhirClient.searchOne(
-        type as TResourceType,
-        parameters as FhirClientSearchParameters<TResourceType>,
-        { ...options?.fhir, signal }
-      ),
+      fhirQueryContext.fhirClient.searchOne(type, parameters, {
+        ...options?.fhir,
+        signal,
+      }),
   });
 }

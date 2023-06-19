@@ -1,9 +1,10 @@
 import {
   AnyResourceType,
-  CustomResourceClass,
+  AnyResourceTypeOrCustomResource,
   FhirClient,
   GeneralParameters,
   OperationParameters,
+  resourceTypeOf,
 } from "@bonfhir/core/r4b";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -17,29 +18,29 @@ export const FhirQueryKeys = {
    */
   read: (
     clientKey: string,
-    type: AnyResourceType | CustomResourceClass,
+    type: AnyResourceTypeOrCustomResource,
     id: string,
     options?: GeneralParameters | null | undefined
-  ) => [clientKey, normalizeType(type), id, "read", type, options] as const,
+  ) => [clientKey, resourceTypeOf(type), id, "read", type, options] as const,
 
   /**
    * Get the query keys for a vread request
    */
   vread: (
     clientKey: string,
-    type: AnyResourceType | CustomResourceClass,
+    type: AnyResourceTypeOrCustomResource,
     id: string,
     vid: string,
     options?: Parameters<FhirClient["vread"]>[3] | null | undefined
   ) =>
-    [clientKey, normalizeType(type), id, "vread", vid, type, options] as const,
+    [clientKey, resourceTypeOf(type), id, "vread", vid, type, options] as const,
 
   /**
    * Get the query keys for a history request
    */
   history: (
     clientKey: string,
-    type: AnyResourceType | CustomResourceClass | null | undefined,
+    type: AnyResourceTypeOrCustomResource | null | undefined,
     id: string | null | undefined,
     options?: Parameters<FhirClient["history"]>[2] | null | undefined
   ) => {
@@ -49,7 +50,7 @@ export const FhirQueryKeys = {
     if (!id) {
       return [
         clientKey,
-        normalizeType(type),
+        resourceTypeOf(type),
         "history",
         type,
         options,
@@ -57,7 +58,7 @@ export const FhirQueryKeys = {
     }
     return [
       clientKey,
-      normalizeType(type),
+      resourceTypeOf(type),
       id,
       "history",
       type,
@@ -70,14 +71,14 @@ export const FhirQueryKeys = {
    */
   search: (
     clientKey: string,
-    type: AnyResourceType | CustomResourceClass,
+    type: AnyResourceTypeOrCustomResource,
     parameters?: string | null | undefined,
     pageUrl?: string | null | undefined,
     options?: Parameters<FhirClient["search"]>[2] | null | undefined
   ) =>
     [
       clientKey,
-      normalizeType(type),
+      resourceTypeOf(type),
       "search",
       type,
       parameters,
@@ -90,13 +91,13 @@ export const FhirQueryKeys = {
    */
   infiniteSearch: (
     clientKey: string,
-    type: AnyResourceType | CustomResourceClass,
+    type: AnyResourceTypeOrCustomResource,
     parameters?: string | null | undefined,
     options?: Parameters<FhirClient["search"]>[2] | null | undefined
   ) =>
     [
       clientKey,
-      normalizeType(type),
+      resourceTypeOf(type),
       "infiniteSearch",
       type,
       parameters,
@@ -141,23 +142,3 @@ export const FhirQueryKeys = {
     queryClient.invalidateQueries([clientKey, type, undefined, "execute"]);
   },
 };
-
-function normalizeType(type: null | undefined): undefined;
-function normalizeType(
-  type: AnyResourceType | CustomResourceClass
-): AnyResourceType;
-function normalizeType(
-  type: AnyResourceType | CustomResourceClass | null | undefined
-): AnyResourceType | undefined;
-function normalizeType(
-  type: AnyResourceType | CustomResourceClass | null | undefined
-): AnyResourceType | undefined {
-  if (!type) {
-    return undefined;
-  }
-  if (typeof type === "string") {
-    return type;
-  }
-
-  return type.resourceType;
-}

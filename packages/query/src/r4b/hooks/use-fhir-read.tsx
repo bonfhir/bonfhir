@@ -1,8 +1,7 @@
 import {
-  AnyResourceType,
-  CustomResourceClass,
-  ExtractResource,
+  AnyResourceTypeOrCustomResource,
   FhirClient,
+  ResourceOf,
   Retrieved,
 } from "@bonfhir/core/r4b";
 import {
@@ -13,36 +12,18 @@ import {
 import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
-export interface UseFhirReadOptions<TResourceType extends AnyResourceType> {
+export interface UseFhirReadOptions<
+  TResourceType extends AnyResourceTypeOrCustomResource
+> {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
   fhir?: Omit<Parameters<FhirClient["read"]>[2], "signal"> | null | undefined;
   query?:
     | Omit<
         UseQueryOptions<
-          Retrieved<ExtractResource<TResourceType>>,
+          Retrieved<ResourceOf<TResourceType>>,
           unknown,
-          Retrieved<ExtractResource<TResourceType>>,
-          ReturnType<(typeof FhirQueryKeys)["read"]>
-        >,
-        "initialData" | "queryKey" | "queryFn"
-      >
-    | null
-    | undefined;
-}
-
-export interface UseFhirReadOptionsCustom<
-  TCustomResourceClass extends CustomResourceClass
-> {
-  /** The FhirClient key to use to perform the query. */
-  fhirClient?: string | null | undefined;
-  fhir?: Parameters<FhirClient["read"]>[2] | null | undefined;
-  query?:
-    | Omit<
-        UseQueryOptions<
-          Retrieved<InstanceType<TCustomResourceClass>>,
-          unknown,
-          Retrieved<InstanceType<TCustomResourceClass>>,
+          Retrieved<ResourceOf<TResourceType>>,
           ReturnType<(typeof FhirQueryKeys)["read"]>
         >,
         "initialData" | "queryKey" | "queryFn"
@@ -56,33 +37,16 @@ export interface UseFhirReadOptionsCustom<
  *
  * @see https://hl7.org/fhir/http.html#read
  */
-export function useFhirRead<TResourceType extends AnyResourceType>(
+export function useFhirRead<
+  TResourceType extends AnyResourceTypeOrCustomResource
+>(
   type: TResourceType,
   id: string,
   options?: UseFhirReadOptions<TResourceType> | null | undefined
-): UseQueryResult<Retrieved<ExtractResource<TResourceType>>>;
-export function useFhirRead<TCustomResourceClass extends CustomResourceClass>(
-  type: TCustomResourceClass,
-  id: string,
-  options?: UseFhirReadOptionsCustom<TCustomResourceClass> | null | undefined
-): UseQueryResult<Retrieved<InstanceType<TCustomResourceClass>>>;
-export function useFhirRead<
-  TResourceType extends AnyResourceType,
-  TCustomResourceClass extends CustomResourceClass
->(
-  type: TResourceType | TCustomResourceClass,
-  id: string,
-  options?:
-    | UseFhirReadOptions<TResourceType>
-    | UseFhirReadOptionsCustom<TCustomResourceClass>
-    | null
-    | undefined
-):
-  | UseQueryResult<Retrieved<ExtractResource<TResourceType>>>
-  | UseQueryResult<Retrieved<InstanceType<TCustomResourceClass>>> {
+): UseQueryResult<Retrieved<ResourceOf<TResourceType>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
 
-  return useQuery<Retrieved<ExtractResource<TResourceType>>>({
+  return useQuery<Retrieved<ResourceOf<TResourceType>>>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
     queryKey: FhirQueryKeys.read(

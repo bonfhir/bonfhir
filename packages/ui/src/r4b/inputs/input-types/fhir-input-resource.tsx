@@ -4,6 +4,7 @@ import {
   FhirClientSearchParameters,
   Reference,
   Resource,
+  ResourceTypeOf,
   id,
   reference,
 } from "@bonfhir/core/r4b";
@@ -18,7 +19,9 @@ export type FhirInputResourceProps<
 > = FhirInputCommonProps & {
   placeholder?: string | null | undefined;
   resourceType: TResourceType;
-  search?: (query: string) => FhirClientSearchParameters<TResourceType>;
+  search?: (
+    query: string
+  ) => FhirClientSearchParameters<ResourceTypeOf<TResourceType>>;
   display?:
     | ((resource: ExtractResource<TResourceType>) => ReactNode)
     | null
@@ -47,7 +50,7 @@ export function FhirInputResource<
 ): ReactElement | null {
   const { render } = useFhirUIContext();
   const [searchParam, setSearchParams] =
-    useState<FhirClientSearchParameters<TResourceType>>("");
+    useState<FhirClientSearchParameters<ResourceTypeOf<TResourceType>>>("");
 
   const searchQuery = useFhirSearch(props.resourceType, searchParam);
   const valueQuery = useFhirRead(props.resourceType, id(props.value as any), {

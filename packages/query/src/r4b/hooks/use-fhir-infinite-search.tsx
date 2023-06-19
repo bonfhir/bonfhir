@@ -1,10 +1,10 @@
 import {
-  AnyResourceType,
+  AnyResourceTypeOrCustomResource,
   BundleNavigator,
-  CustomResourceClass,
-  ExtractResource,
   FhirClient,
   FhirClientSearchParameters,
+  ResourceOf,
+  ResourceTypeOf,
   Retrieved,
   normalizeSearchParameters,
 } from "@bonfhir/core/r4b";
@@ -17,7 +17,7 @@ import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
 export interface UseFhirInfiniteSearchOptions<
-  TResourceType extends AnyResourceType
+  TResourceType extends AnyResourceTypeOrCustomResource
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
@@ -25,9 +25,9 @@ export interface UseFhirInfiniteSearchOptions<
   query?:
     | Omit<
         UseQueryOptions<
-          BundleNavigator<Retrieved<ExtractResource<TResourceType>>>,
+          BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
           unknown,
-          BundleNavigator<Retrieved<ExtractResource<TResourceType>>>,
+          BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
           ReturnType<(typeof FhirQueryKeys)["infiniteSearch"]>
         >,
         | "initialData"
@@ -40,83 +40,23 @@ export interface UseFhirInfiniteSearchOptions<
     | undefined;
 }
 
-export interface UseFhirInfiniteSearchOptionsCustom<
-  TCustomResourceClass extends CustomResourceClass
-> {
-  /** The FhirClient key to use to perform the query. */
-  fhirClient?: string | null | undefined;
-  fhir?: Parameters<FhirClient["search"]>[2] | null | undefined;
-  query?:
-    | Omit<
-        UseQueryOptions<
-          BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>,
-          unknown,
-          BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>,
-          ReturnType<(typeof FhirQueryKeys)["infiniteSearch"]>
-        >,
-        | "initialData"
-        | "queryKey"
-        | "queryFn"
-        | "keepPreviousData"
-        | "getNextPageParam"
-      >
-    | null
-    | undefined;
-}
-
-export function useFhirInfiniteSearch<TResourceType extends AnyResourceType>(
+export function useFhirInfiniteSearch<
+  TResourceType extends AnyResourceTypeOrCustomResource
+>(
   type: TResourceType,
-  parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
+  parameters?:
+    | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
+    | null
+    | undefined,
   options?: UseFhirInfiniteSearchOptions<TResourceType> | null | undefined
 ): UseInfiniteQueryResult<
-  BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
->;
-export function useFhirInfiniteSearch<
-  TCustomResourceClass extends CustomResourceClass
->(
-  type: TCustomResourceClass,
-  parameters?:
-    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
-    | null
-    | undefined,
-  options?:
-    | UseFhirInfiniteSearchOptionsCustom<TCustomResourceClass>
-    | null
-    | undefined
-): UseInfiniteQueryResult<
-  BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
->;
-export function useFhirInfiniteSearch<
-  TResourceType extends AnyResourceType,
-  TCustomResourceClass extends CustomResourceClass
->(
-  type: TResourceType | TCustomResourceClass,
-  parameters?:
-    | FhirClientSearchParameters<TResourceType>
-    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
-    | null
-    | undefined,
-  options?:
-    | UseFhirInfiniteSearchOptions<TResourceType>
-    | UseFhirInfiniteSearchOptionsCustom<TCustomResourceClass>
-    | null
-    | undefined
-):
-  | UseInfiniteQueryResult<
-      BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
-    >
-  | UseInfiniteQueryResult<
-      BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
-    > {
+  BundleNavigator<Retrieved<ResourceOf<TResourceType>>>
+> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
-  const resourceType = typeof type === "string" ? type : type.resourceType;
-  const normalizedParameters = normalizeSearchParameters(
-    resourceType as TResourceType,
-    parameters as FhirClientSearchParameters<TResourceType>
-  );
+  const normalizedParameters = normalizeSearchParameters(type, parameters);
 
   return useInfiniteQuery<
-    BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
+    BundleNavigator<Retrieved<ResourceOf<TResourceType>>>
   >({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
@@ -135,7 +75,7 @@ export function useFhirInfiniteSearch<
           )
         : fhirQueryContext.fhirClient.search(
             type as TResourceType,
-            parameters as FhirClientSearchParameters<TResourceType>,
+            parameters,
             { ...options?.fhir, signal }
           ),
     keepPreviousData: true,

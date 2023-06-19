@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { v4 as uuid } from "uuid";
 import {
   BundleNavigator,
@@ -109,7 +110,7 @@ export class BundleExecutor {
       options ?? {};
     const searchQueryString = normalizeSearchParameters(
       body.resourceType,
-      search
+      search as any
     );
     const optionsQueryString = new URLSearchParams(
       remainingOptions as Record<string, string>
@@ -158,7 +159,7 @@ export class BundleExecutor {
   ): FutureRequest<Retrieved<ExtractResource<TResourceType>>> {
     const { preventConcurrentUpdates, versionId, search, ...remainingOptions } =
       options ?? {};
-    const searchQueryString = normalizeSearchParameters(type, search);
+    const searchQueryString = normalizeSearchParameters(type, search as any);
     const optionsQueryString = new URLSearchParams(
       remainingOptions as Record<string, string>
     ).toString();
@@ -170,7 +171,7 @@ export class BundleExecutor {
       resource: <Binary>{
         resourceType: "Binary",
         contentType: "application/json-patch+json",
-        data: btoa(JSON.stringify(normalizePatchBody(type, body))),
+        data: btoa(JSON.stringify(normalizePatchBody(type, body as any))),
       },
       request: {
         method: "PATCH",
@@ -272,7 +273,7 @@ export class BundleExecutor {
     const { search, ...remainingOptions } = options ?? {};
     const searchQueryString = normalizeSearchParameters(
       body.resourceType,
-      search
+      search as any
     );
     const optionsQueryString = new URLSearchParams(
       remainingOptions as Record<string, string>
@@ -306,7 +307,10 @@ export class BundleExecutor {
     parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
     options?: GeneralParameters | null | undefined
   ): FutureRequest<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>> {
-    const searchQueryString = normalizeSearchParameters(type, parameters);
+    const searchQueryString = normalizeSearchParameters(
+      type,
+      parameters as any
+    );
     const optionsQueryString = new URLSearchParams(
       options as Record<string, string>
     ).toString();
@@ -331,7 +335,10 @@ export class BundleExecutor {
   ): FutureRequest<
     WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
   > {
-    const searchQueryString = normalizeSearchParameters(type, parameters);
+    const searchQueryString = normalizeSearchParameters(
+      type,
+      parameters as any
+    );
     const optionsQueryString = new URLSearchParams(
       options as Record<string, string>
     ).toString();

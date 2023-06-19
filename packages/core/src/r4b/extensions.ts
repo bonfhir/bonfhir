@@ -19,6 +19,8 @@ export type CustomResourceClass<TResource extends Resource = Resource> = {
   new (json?: any): TResource;
 };
 
+const isCustomResource = Symbol("isCustomResource");
+
 export function extendResource<
   TResourceType extends AnyResourceType,
   TExtensions
@@ -29,7 +31,7 @@ export function extendResource<
 ): {
   resourceType: typeof resourceType;
   new (
-    json?: Omit<ExtractResource<TResourceType>, "resourceType">
+    data?: Omit<ExtractResource<TResourceType>, "resourceType">
   ): ExtractResource<TResourceType> & TExtensions;
 } {
   const specialExtensions: Record<string, SpecialExtension> = {};
@@ -59,6 +61,10 @@ export function extendResource<
 
       return new Proxy(this, {
         get(target, prop) {
+          if (prop === isCustomResource) {
+            return true;
+          }
+
           const specialExtension =
             prop.toString() !== "constructor" &&
             specialExtensions[prop.toString()];
@@ -87,19 +93,57 @@ export function extendResource<
 }
 
 export function extension<TExtensionType extends keyof AnyExtensionType>(
-  extension: ExtensionHelperManageExtensionArgs<TExtensionType>
-): AnyExtensionType[TExtensionType] | undefined {
+  extension: ExtensionHelperArgs<TExtensionType>
+): AnyExtensionType[TExtensionType] | undefined;
+export function extension<TExtensionType extends keyof AnyExtensionType>(
+  extension: ExtensionHelperArgs<TExtensionType> & { allowMultiple: true }
+): Array<NonNullable<AnyExtensionType[TExtensionType]>>;
+export function extension<TExtensionType extends keyof AnyExtensionType>(
+  extension: ExtensionHelperArgs<TExtensionType> & { allowMultiple?: boolean }
+):
+  | AnyExtensionType[TExtensionType]
+  | Array<NonNullable<AnyExtensionType[TExtensionType]>>
+  | undefined {
   return {
     ...extension,
     __isSpecialExtension: true,
     __get(target: HasExtension) {
-      const extensionValue = (target.extension || []).find(
+      const extensionValues = (target.extension || []).filter(
         (x) => x.url === extension.url
       );
 
-      return extensionValue?.[extension.kind];
+      if (extension.allowMultiple) {
+        return extensionValues
+          .map((ext) => ext?.[extension.kind])
+          .filter(Boolean) as any;
+      }
+
+      return extensionValues?.[0]?.[extension.kind];
     },
-    __set(target: HasExtension, value: AnyExtensionType[TExtensionType]) {
+    __set(
+      target: HasExtension,
+      value:
+        | AnyExtensionType[TExtensionType]
+        | Array<AnyExtensionType[TExtensionType]>
+    ) {
+      if (extension.allowMultiple) {
+        target.extension = [
+          ...(target.extension?.filter((x) => x.url !== extension.url) || []),
+          ...((value as Array<AnyExtensionType[TExtensionType]>) || []).map(
+            (newValue: any) => ({
+              url: extension.url,
+              [extension.kind]: newValue,
+            })
+          ),
+        ];
+
+        if (target.extension.length === 0) {
+          target.extension = undefined;
+        }
+
+        return value as any;
+      }
+
       const extensionValue = (target.extension || []).find(
         (x) => x.url === extension.url
       );
@@ -129,42 +173,6 @@ export function extension<TExtensionType extends keyof AnyExtensionType>(
       ];
 
       return value;
-    },
-  } as any;
-}
-
-export function extensionMany<TExtensionType extends keyof AnyExtensionType>(
-  extension: ExtensionHelperManageExtensionArgs<TExtensionType>
-): Array<NonNullable<AnyExtensionType[TExtensionType]>> {
-  return {
-    ...extension,
-    __isSpecialExtension: true,
-    __get(target: HasExtension) {
-      const extensionValues = (target.extension || []).filter(
-        (x) => x.url === extension.url
-      );
-
-      return extensionValues
-        .map((ext) => ext?.[extension.kind])
-        .filter(Boolean) as any;
-    },
-    __set(
-      target: HasExtension,
-      value: Array<AnyExtensionType[TExtensionType]> | null | undefined
-    ) {
-      target.extension = [
-        ...(target.extension?.filter((x) => x.url !== extension.url) || []),
-        ...(value || []).map((newValue: any) => ({
-          url: extension.url,
-          [extension.kind]: newValue,
-        })),
-      ];
-
-      if (target.extension.length === 0) {
-        target.extension = undefined;
-      }
-
-      return value as any;
     },
   } as any;
 }
@@ -222,7 +230,7 @@ export function tag(tag: { system: string }): Coding | undefined {
   } as any;
 }
 
-export interface ExtensionHelperManageExtensionArgs<
+export interface ExtensionHelperArgs<
   TExtensionType extends keyof AnyExtensionType
 > {
   url: string;
@@ -247,4 +255,53 @@ export interface SpecialExtension {
 
 export function isSpecialExtension(value: any): value is SpecialExtension {
   return value?.__isSpecialExtension;
+}
+
+export type AnyResourceTypeOrCustomResource =
+  | AnyResourceType
+  | CustomResourceClass;
+
+export type ResourceOf<T extends AnyResourceTypeOrCustomResource> =
+  T extends AnyResourceType
+    ? ExtractResource<T>
+    : T extends CustomResourceClass
+    ? InstanceType<T>
+    : never;
+
+export type ResourceTypeOf<T extends AnyResourceTypeOrCustomResource> =
+  T extends AnyResourceType
+    ? T
+    : T extends CustomResourceClass
+    ? T["resourceType"]
+    : never;
+
+export function resourceTypeOf<T extends AnyResourceTypeOrCustomResource>(
+  value: T
+): ResourceTypeOf<T>;
+export function resourceTypeOf(value: null | undefined): undefined;
+export function resourceTypeOf<T extends AnyResourceTypeOrCustomResource>(
+  value: T | null | undefined
+): ResourceTypeOf<T> | undefined;
+export function resourceTypeOf<T extends AnyResourceTypeOrCustomResource>(
+  value: T | null | undefined
+): ResourceTypeOf<T> | undefined {
+  if (!value) {
+    return;
+  }
+  return typeof value === "string" ? value : (value.resourceType as any);
+}
+
+export function cloneResource<T>(value: T): T;
+export function cloneResource(value: null | undefined): undefined;
+export function cloneResource<T>(value: T | null | undefined): T | undefined;
+export function cloneResource<T>(value: T | null | undefined): T | undefined {
+  if (!value) {
+    return;
+  }
+
+  if ((value as any)[isCustomResource]) {
+    return new (value as any).constructor(JSON.parse(JSON.stringify(value)));
+  }
+
+  return structuredClone(value);
 }

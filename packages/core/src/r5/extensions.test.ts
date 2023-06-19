@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/no-null */
-import { extendResource, extension, extensionMany, tag } from "./extensions.js";
+import { cloneResource, extendResource, extension, tag } from "./extensions.js";
 import { Formatter } from "./formatters.js";
 
 describe("extensions", () => {
@@ -20,9 +20,10 @@ describe("extensions", () => {
   });
 
   const CustomDiagnosticReport = extendResource("DiagnosticReport", {
-    cptCodes: extensionMany({
+    cptCodes: extension({
       url: "http://custom/cpt-codes",
       kind: "valueCode",
+      allowMultiple: true,
     }),
 
     visibility: tag({ system: "http://custom/visibility" }),
@@ -238,5 +239,13 @@ describe("extensions", () => {
           }
         }"
       `);
+  });
+
+  it("clone", () => {
+    const patient = new CustomPatient({});
+    patient.birthSex = "OTH";
+    const anotherPatient = cloneResource(patient);
+    expect(anotherPatient).not.toBe(patient);
+    expect(anotherPatient.birthSex).toEqual("OTH");
   });
 });

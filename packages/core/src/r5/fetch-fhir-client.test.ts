@@ -6,7 +6,7 @@ import * as patientExample from "../../fixtures/patient-example.fhir.json";
 import { build } from "./builders.js";
 import { BundleExecutor } from "./bundle-executor.js";
 import { BundleNavigator, bundleNavigator } from "./bundle-navigator.js";
-import { extendResource } from "./extensions.js";
+import { extendResource, extension } from "./extensions.js";
 import { FetchFhirClient } from "./fetch-fhir-client.js";
 import { FhirClient } from "./fhir-client.js";
 import {
@@ -20,7 +20,13 @@ import {
   ValueSetExpandOperation,
 } from "./operations.codegen.js";
 
-const CustomPatient = extendResource("Patient", {});
+const CustomPatient = extendResource("Patient", {
+  /** L'age de toto. */
+  toto: extension({
+    url: "http://example.com/toto",
+    kind: "valueAge",
+  }),
+});
 
 describe("fetch-fhir-client", () => {
   const baseUrl = "http://example.com";

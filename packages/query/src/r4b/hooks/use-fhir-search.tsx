@@ -1,10 +1,10 @@
 import {
-  AnyResourceType,
+  AnyResourceTypeOrCustomResource,
   BundleNavigator,
-  CustomResourceClass,
-  ExtractResource,
   FhirClient,
   FhirClientSearchParameters,
+  ResourceOf,
+  ResourceTypeOf,
   Retrieved,
   normalizeSearchParameters,
 } from "@bonfhir/core/r4b";
@@ -16,36 +16,18 @@ import {
 import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
-export interface UseFhirSearchOptions<TResourceType extends AnyResourceType> {
+export interface UseFhirSearchOptions<
+  TResourceType extends AnyResourceTypeOrCustomResource
+> {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
   fhir?: Omit<Parameters<FhirClient["search"]>[2], "signal"> | null | undefined;
   query?:
     | Omit<
         UseQueryOptions<
-          BundleNavigator<Retrieved<ExtractResource<TResourceType>>>,
+          BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
           unknown,
-          BundleNavigator<Retrieved<ExtractResource<TResourceType>>>,
-          ReturnType<(typeof FhirQueryKeys)["search"]>
-        >,
-        "initialData" | "queryKey" | "queryFn" | "keepPreviousData"
-      >
-    | null
-    | undefined;
-}
-
-export interface UseFhirSearchOptionsCustom<
-  TCustomResourceClass extends CustomResourceClass
-> {
-  /** The FhirClient key to use to perform the query. */
-  fhirClient?: string | null | undefined;
-  fhir?: Parameters<FhirClient["search"]>[2] | null | undefined;
-  query?:
-    | Omit<
-        UseQueryOptions<
-          BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>,
-          unknown,
-          BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>,
+          BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
           ReturnType<(typeof FhirQueryKeys)["search"]>
         >,
         "initialData" | "queryKey" | "queryFn" | "keepPreviousData"
@@ -71,52 +53,21 @@ export interface UseFhirSearchOptionsCustom<
  *  // To paginate
  *  setPageUrl(patientQuery.data?.linkUrl("next"));
  */
-export function useFhirSearch<TResourceType extends AnyResourceType>(
+export function useFhirSearch<
+  TResourceType extends AnyResourceTypeOrCustomResource
+>(
   type: TResourceType,
-  parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
+  parameters?:
+    | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
+    | null
+    | undefined,
   pageUrl?: string | null | undefined,
   options?: UseFhirSearchOptions<TResourceType> | null | undefined
-): UseQueryResult<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
-export function useFhirSearch<TCustomResourceClass extends CustomResourceClass>(
-  type: TCustomResourceClass,
-  parameters?:
-    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
-    | null
-    | undefined,
-  pageUrl?: string | null | undefined,
-  options?: UseFhirSearchOptionsCustom<TCustomResourceClass> | null | undefined
-): UseQueryResult<
-  BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
->;
-export function useFhirSearch<
-  TResourceType extends AnyResourceType,
-  TCustomResourceClass extends CustomResourceClass
->(
-  type: TResourceType | TCustomResourceClass,
-  parameters?:
-    | FhirClientSearchParameters<TResourceType>
-    | FhirClientSearchParameters<TCustomResourceClass["resourceType"]>
-    | null
-    | undefined,
-  pageUrl?: string | null | undefined,
-  options?:
-    | UseFhirSearchOptions<TResourceType>
-    | UseFhirSearchOptionsCustom<TCustomResourceClass>
-    | null
-    | undefined
-):
-  | UseQueryResult<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>
-  | UseQueryResult<
-      BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>
-    > {
+): UseQueryResult<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
-  const resourceType = typeof type === "string" ? type : type.resourceType;
-  const normalizedParameters = normalizeSearchParameters(
-    resourceType as TResourceType,
-    parameters as FhirClientSearchParameters<TResourceType>
-  );
+  const normalizedParameters = normalizeSearchParameters(type, parameters);
 
-  return useQuery<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>({
+  return useQuery<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
     queryKey: FhirQueryKeys.search(
@@ -133,11 +84,10 @@ export function useFhirSearch<
             { signal },
             typeof type === "string" ? undefined : type || undefined
           )
-        : fhirQueryContext.fhirClient.search(
-            type as TResourceType,
-            parameters as FhirClientSearchParameters<TResourceType>,
-            { ...options?.fhir, signal }
-          ),
+        : fhirQueryContext.fhirClient.search(type, parameters, {
+            ...options?.fhir,
+            signal,
+          }),
     keepPreviousData: true,
   });
 }
