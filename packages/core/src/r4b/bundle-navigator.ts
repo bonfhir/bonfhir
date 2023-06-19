@@ -196,10 +196,16 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     const result = (this._resourcesByRelativeReference?.get(finalReference) ||
       undefined) as WithResolvableReferences<Retrieved<TResource>> | undefined;
 
-    if (result && (customResourceClass || this._customResourceClass)) {
-      return new (customResourceClass || this._customResourceClass)!(
-        result
-      ) as any;
+    if (result && customResourceClass) {
+      return new customResourceClass(result) as any;
+    }
+
+    if (
+      result &&
+      this._customResourceClass &&
+      this._customResourceClass.resourceType === (result.resourceType as any)
+    ) {
+      return new this._customResourceClass(result) as any;
     }
 
     return result;

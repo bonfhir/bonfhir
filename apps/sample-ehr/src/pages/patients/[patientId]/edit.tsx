@@ -118,6 +118,12 @@ export default function EditPatient() {
                 //   search.name(query).type("Organization")}
                 {...form.getInputProps("managingOrganization")}
               />
+              <FhirInput
+                type="string"
+                label="Internal note"
+                mode="multiline"
+                {...form.getInputProps("internalNote")}
+              />
               <Group mt="md">
                 <Button type="submit" loading={form.mutation.isLoading}>
                   Save
