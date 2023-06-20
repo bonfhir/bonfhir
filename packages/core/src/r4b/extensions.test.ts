@@ -247,5 +247,44 @@ describe("extensions", () => {
     const anotherPatient = cloneResource(patient);
     expect(anotherPatient).not.toBe(patient);
     expect(anotherPatient.birthSex).toEqual("OTH");
+    expect(anotherPatient).toBeInstanceOf(CustomPatient);
+  });
+
+  it("initialize with special extensions", () => {
+    const patient = new CustomPatient({
+      birthSex: "OTH",
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any);
+    expect(patient.birthSex).toEqual("OTH");
+    expect(JSON.stringify(patient, undefined, 2)).toMatchInlineSnapshot(`
+      "{
+        "resourceType": "Patient",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+            "valueCode": "OTH"
+          }
+        ],
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul></ul></div>"
+        }
+      }"
+    `);
+  });
+
+  it("list all keys", () => {
+    const patient = new CustomPatient({
+      birthSex: "OTH",
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any);
+    expect(Object.keys(patient)).toMatchInlineSnapshot(`
+      [
+        "resourceType",
+        "computedName",
+        "extension",
+        "birthSex",
+      ]
+    `);
   });
 });

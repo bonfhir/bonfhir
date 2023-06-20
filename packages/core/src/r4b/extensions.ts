@@ -19,8 +19,6 @@ export type CustomResourceClass<TResource extends Resource = Resource> = {
   new (json?: any): TResource;
 };
 
-const isCustomResource = Symbol("isCustomResource");
-
 export function extendResource<
   TResourceType extends AnyResourceType,
   TExtensions
@@ -56,15 +54,38 @@ export function extendResource<
             `Unable to assign custom resource class for a ${resourceType} to a resource data for resource type ${data.resourceType}`
           );
         }
-        Object.assign(this, data);
+        const dataWithoutSpecialExtensions = Object.entries(data)
+          .filter(([key]) => !specialExtensions[key])
+          .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {} as any);
+        Object.assign(this, dataWithoutSpecialExtensions);
+        for (const [key, value] of Object.entries(data).filter(
+          ([key]) => specialExtensions[key]
+        )) {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          specialExtensions[key]!.__set(this, value);
+        }
       }
 
       return new Proxy(this, {
+        ownKeys(target) {
+          return [
+            ...Reflect.ownKeys(target),
+            ...Object.keys(specialExtensions),
+          ];
+        },
+        getOwnPropertyDescriptor(target, prop) {
+          const specialExtension =
+            prop.toString() !== "constructor" &&
+            specialExtensions[prop.toString()];
+          return specialExtension
+            ? {
+                configurable: true,
+                enumerable: true,
+                writable: true,
+              }
+            : Reflect.getOwnPropertyDescriptor(target, prop);
+        },
         get(target, prop) {
-          if (prop === isCustomResource) {
-            return true;
-          }
-
           const specialExtension =
             prop.toString() !== "constructor" &&
             specialExtensions[prop.toString()];
@@ -85,7 +106,9 @@ export function extendResource<
 
     toJSON(): this {
       (this as any).text = narrative(this as any);
-      return this;
+      return Object.entries(this)
+        .filter(([key]) => !specialExtensions[key])
+        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {} as any);
     }
   } as any;
 
@@ -299,9 +322,5 @@ export function cloneResource<T>(value: T | null | undefined): T | undefined {
     return;
   }
 
-  if ((value as any)[isCustomResource]) {
-    return new (value as any).constructor(JSON.parse(JSON.stringify(value)));
-  }
-
-  return structuredClone(value);
+  return new (value as any).constructor(JSON.parse(JSON.stringify(value)));
 }

@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-  AnyResourceType,
-  DomainResource,
+  AnyResourceTypeOrCustomResource,
   ResourceOf,
+  ResourceTypeOf,
   Retrieved,
   build,
+  resourceTypeOf,
 } from "@bonfhir/core/r4b";
 import {
   UseFhirSaveMutationArgs,
@@ -18,26 +19,26 @@ import { useEffect } from "react";
 import { UseFhirFormReturnType, useFhirForm } from "./use-fhir-form.js";
 
 export interface UseFhirResourceFormArgs<
-  TResourceType extends AnyResourceType
+  TResourceType extends AnyResourceTypeOrCustomResource
 > {
   type: TResourceType;
   id: string | "new" | undefined;
   defaultValues?: Partial<ResourceOf<TResourceType>>;
   mutationOptions?:
-    | UseFhirSaveMutationOptions<TResourceType>["mutation"]
+    | UseFhirSaveMutationOptions<ResourceTypeOf<TResourceType>>["mutation"]
     | null
     | undefined;
   formOptions?: Parameters<typeof useFhirForm<ResourceOf<TResourceType>>>[0];
 }
 
 export interface UseFhirResourceFormResult<
-  TResourceType extends AnyResourceType
+  TResourceType extends AnyResourceTypeOrCustomResource
 > {
   query: UseQueryResult<Retrieved<ResourceOf<TResourceType>>>;
   mutation: UseMutationResult<
     Retrieved<ResourceOf<TResourceType>>,
     unknown,
-    UseFhirSaveMutationArgs<TResourceType>,
+    UseFhirSaveMutationArgs<ResourceTypeOf<TResourceType>>,
     unknown
   >;
   form: UseFormReturnType<
@@ -64,7 +65,9 @@ export interface UseFhirResourceFormResult<
 /**
  * Encapsulate the whole logic to save a single FHIR resource using a controlled form.
  */
-export function useFhirResourceForm<TResourceType extends AnyResourceType>(
+export function useFhirResourceForm<
+  TResourceType extends AnyResourceTypeOrCustomResource
+>(
   args: UseFhirResourceFormArgs<TResourceType>
 ): UseFhirResourceFormResult<TResourceType> {
   const isNew = args.id == null || args.id === "new";
@@ -72,7 +75,7 @@ export function useFhirResourceForm<TResourceType extends AnyResourceType>(
     query: { enabled: !isNew },
   });
 
-  const mutation = useFhirSaveMutation(args.type, {
+  const mutation = useFhirSaveMutation(resourceTypeOf(args.type), {
     mutation: args.mutationOptions,
   });
 
@@ -81,22 +84,18 @@ export function useFhirResourceForm<TResourceType extends AnyResourceType>(
       ...args.defaultValues,
       resourceType: args.type,
     },
-    transformValues: (values) => build(args.type as any, values as any),
+    transformValues: (values) => {
+      return typeof args.type === "string"
+        ? build(args.type as any, values as any)
+        : new (args.type as any)(values);
+    },
     ...(args.formOptions as any),
   });
 
   useEffect(() => {
     if (query.data) {
-      let clonedResource = structuredClone(query.data) as any;
-      if ((clonedResource as DomainResource).text) {
-        delete (clonedResource as DomainResource).text;
-      }
-      clonedResource = {
-        ...args.defaultValues,
-        ...clonedResource,
-      };
-      form.setValues(clonedResource);
-      form.resetDirty(clonedResource);
+      form.setValues(query.data as any);
+      form.resetDirty(query.data as any);
     }
   }, [query.isSuccess]);
 

@@ -1,6 +1,6 @@
 import { MainPage, NavButton } from "@/components";
 import { CustomPatient } from "@/fhir/patient";
-import { Patient, Retrieved } from "@bonfhir/core/r4b";
+import { Retrieved } from "@bonfhir/core/r4b";
 import { useFhirRead } from "@bonfhir/query/r4b";
 import { FhirQueryLoader, FhirValue } from "@bonfhir/ui/r4b";
 import { Avatar, Divider, Group, Paper, Stack, Title } from "@mantine/core";
@@ -40,7 +40,7 @@ export default function Patient() {
 export function PatientHeader({
   patient,
 }: {
-  patient: Retrieved<Patient>;
+  patient: Retrieved<CustomPatient>;
 }): ReactElement {
   return (
     <Paper>
@@ -79,6 +79,7 @@ export function PatientHeader({
             </Stack>
           </Group>
           <Divider orientation="vertical" mx="lg" />
+          <FhirValue type="string" value={patient.internalNote} />
         </Group>
       </Group>
     </Paper>

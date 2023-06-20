@@ -6,3 +6,5 @@ export const CustomPatient = extendResource("Patient", {
     url: "http://acme.org/StructureDefinition/patient-internalNote",
   }),
 });
+
+export type CustomPatient = InstanceType<typeof CustomPatient>;
