@@ -20,6 +20,7 @@ import {
   Retrieved,
 } from "./fhir-types.codegen.js";
 import { Formatter } from "./formatters.js";
+import { merge } from "./merge.js";
 import {
   ExtractOperationResultType,
   Operation,
@@ -522,7 +523,7 @@ export async function searchAllPages<
   );
 }
 
-export type CreateOrAction = "return" | "replace" | "add";
+export type CreateOrAction = "return" | "replace" | "add" | "merge";
 
 /**
  * The result of a createOr operation.
@@ -582,6 +583,15 @@ export async function createOr<TResource extends AnyResource>(
 
   if (action === "add") {
     return [await client.create(resource), true];
+  }
+
+  if (action === "merge") {
+    const [merged, isUpdated] = merge({ current: found, incoming: resource });
+    if (isUpdated) {
+      return [await client.update(merged), true];
+    }
+
+    return [merged, false];
   }
 
   throw new Error(`Unknown action ${action}`);
