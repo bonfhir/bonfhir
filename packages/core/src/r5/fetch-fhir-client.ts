@@ -15,6 +15,9 @@ import {
 import {
   ConcurrencyParameters,
   ConditionalSearchParameters,
+  createOr,
+  CreateOrAction,
+  CreateOrResult,
   FhirClient,
   FhirClientError,
   FhirClientPatchBody,
@@ -312,6 +315,17 @@ export class FetchFhirClient implements FhirClient {
       },
       body.constructor
     );
+  }
+
+  public async createOr<TResource extends AnyResource>(
+    action: CreateOrAction,
+    resource: TResource,
+    search?:
+      | FhirClientSearchParameters<TResource["resourceType"]>
+      | null
+      | undefined
+  ): Promise<CreateOrResult<TResource>> {
+    return createOr(this, action, resource, search);
   }
 
   public save<TResource extends AnyResource>(

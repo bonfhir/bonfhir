@@ -130,6 +130,15 @@ export interface FhirClient {
       | undefined
   ): Promise<Retrieved<TResource>>;
 
+  createOr<TResource extends AnyResource>(
+    action: CreateOrAction,
+    resource: TResource,
+    search?:
+      | FhirClientSearchParameters<TResource["resourceType"]>
+      | null
+      | undefined
+  ): Promise<CreateOrResult<TResource>>;
+
   /**
    * This is a basic create or update operation.
    * It invokes create if the resource has no id, update otherwise.
@@ -510,5 +519,101 @@ export async function searchAllPages<
   return new BundleNavigator(
     results,
     typeof type === "string" ? undefined : (type as any) || undefined
+  );
+}
+
+export type CreateOrAction = "return" | "replace" | "add";
+
+/**
+ * The result of a createOr operation.
+ * The first element is the resource, the second is a boolean indicating whether the final resource is different
+ * than the original resource.
+ */
+export type CreateOrResult<T> = [T, boolean];
+
+export async function createOr<TResource extends AnyResource>(
+  client: Pick<FhirClient, "create" | "update" | "search">,
+  action: CreateOrAction,
+  resource: TResource,
+  search?:
+    | FhirClientSearchParameters<TResource["resourceType"]>
+    | null
+    | undefined
+): Promise<CreateOrResult<TResource>> {
+  const finalSearch = resolveSearch(resource, search);
+
+  const searchResult = await client.search(
+    resource.resourceType,
+    finalSearch.toString()
+  );
+  const found = searchResult.bundle.entry?.[0]?.resource as
+    | TResource
+    | undefined;
+
+  if (!found) {
+    return [await client.create(resource), true];
+  }
+
+  if (action === "return") {
+    return [found as any, false];
+  }
+
+  const {
+    id: foundId,
+    meta: foundMeta,
+    text: foundText,
+    ...foundContent
+  } = found as any;
+  const {
+    id: resourceId,
+    meta: resourceMeta,
+    text: resourceText,
+    ...resourceContent
+  } = resource as any;
+  if (JSON.stringify(foundContent) === JSON.stringify(resourceContent)) {
+    return [found as any, false];
+  }
+
+  if (action === "replace") {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    resource.id = foundId;
+    return [await client.update(resource), true];
+  }
+
+  if (action === "add") {
+    return [await client.create(resource), true];
+  }
+
+  throw new Error(`Unknown action ${action}`);
+}
+
+function resolveSearch<TResource extends AnyResource>(
+  resource: TResource,
+  search:
+    | FhirClientSearchParameters<TResource["resourceType"]>
+    | null
+    | undefined
+): FhirClientSearchParameters<TResource["resourceType"]> {
+  if (search) {
+    return search;
+  }
+
+  if ((resource as any).url) {
+    return fhirSearch().uriParam("url", (resource as any).url) as any;
+  }
+
+  if ((resource as any).identifier) {
+    return fhirSearch().tokenParam(
+      "identifier",
+      (resource as any).identifier
+    ) as any;
+  }
+
+  if ((resource as any).name && typeof (resource as any).name === "string") {
+    return fhirSearch().stringParam("name", (resource as any).name) as any;
+  }
+
+  throw new Error(
+    `Cannot resolve search for ${resource.resourceType}/${resource.id}- you need to pass it explicitly.`
   );
 }

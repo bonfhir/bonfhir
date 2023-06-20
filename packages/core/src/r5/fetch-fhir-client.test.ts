@@ -10,6 +10,7 @@ import { extendResource, extension } from "./extensions.js";
 import { FetchFhirClient } from "./fetch-fhir-client.js";
 import { FhirClient } from "./fhir-client.js";
 import {
+  Bundle,
   CapabilityStatement,
   Claim,
   Organization,
@@ -137,6 +138,43 @@ describe("fetch-fhir-client", () => {
 
     rest.get(`${baseUrl}/ValueSet/$expand`, (_req, res, ctx) => {
       return res(ctx.json(patientsListFixture));
+    }),
+
+    rest.get(`${baseUrl}/ConceptMap`, (req, res, ctx) => {
+      const searchedUrl = req.url.searchParams.get("url");
+      if (searchedUrl === "http://existingconceptmap") {
+        return res(
+          ctx.json(<Bundle>{
+            resourceType: "Bundle",
+            type: "searchset",
+            entry: [
+              {
+                resource: build("ConceptMap", {
+                  id: "theconceptmapid",
+                  url: searchedUrl,
+                  status: "active",
+                }),
+              },
+            ],
+          })
+        );
+      }
+
+      return res(
+        ctx.json(<Bundle>{
+          resourceType: "Bundle",
+          type: "searchset",
+          entry: [],
+        })
+      );
+    }),
+
+    rest.post(`${baseUrl}/ConceptMap`, async (req, res, ctx) => {
+      return res(ctx.json({ id: uuid(), ...(await req.json<object>()) }));
+    }),
+
+    rest.put(`${baseUrl}/ConceptMap/:conceptMapId`, async (req, res, ctx) => {
+      return res(ctx.json(await req.json()));
     })
   );
 
@@ -344,6 +382,52 @@ describe("fetch-fhir-client", () => {
       });
       const result = await client.create(patient);
       expect(result).toBeInstanceOf(CustomPatient);
+    });
+  });
+
+  describe("createOr", () => {
+    it("createOr return existing", async () => {
+      const conceptMap = build("ConceptMap", {
+        url: "http://existingconceptmap",
+        status: "draft",
+      });
+      const [resultResource, updated] = await client.createOr(
+        "return",
+        conceptMap
+      );
+      expect(updated).toBeFalsy();
+      expect(resultResource).not.toBe(conceptMap);
+    });
+
+    it("createOr return if not found", async () => {
+      const conceptMap = build("ConceptMap", {
+        url: "http://notfound",
+        status: "draft",
+      });
+      const [resultResource, updated] = await client.createOr(
+        "return",
+        conceptMap
+      );
+      expect(updated).toBeTruthy();
+      expect(resultResource).toMatchObject(conceptMap);
+    });
+
+    it("createOr replace", async () => {
+      const conceptMap = build("ConceptMap", {
+        url: "http://existingconceptmap",
+        status: "draft",
+      });
+      const [, updated] = await client.createOr("replace", conceptMap);
+      expect(updated).toBeTruthy();
+    });
+
+    it("createOr replace - do nothing if the same", async () => {
+      const conceptMap = build("ConceptMap", {
+        url: "http://existingconceptmap",
+        status: "active",
+      });
+      const [, updated] = await client.createOr("replace", conceptMap);
+      expect(updated).toBeFalsy();
     });
   });
 
