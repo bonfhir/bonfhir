@@ -1,6 +1,7 @@
 export * from "./use-fhir-batch-mutation.js";
 export * from "./use-fhir-capabilities.js";
 export * from "./use-fhir-create-mutation.js";
+export * from "./use-fhir-create-or-mutation.js";
 export * from "./use-fhir-delete-mutation.js";
 export * from "./use-fhir-execute-mutation.js";
 export * from "./use-fhir-execute.js";

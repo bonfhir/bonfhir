@@ -25,6 +25,7 @@ import {
   useFhirCapabilities,
   useFhirClientQueryContext,
   useFhirCreateMutation,
+  useFhirCreateOrMutation,
   useFhirDeleteMutation,
   useFhirExecute,
   useFhirExecuteMutation,
@@ -173,6 +174,12 @@ describe("hooks", () => {
             resource: {},
           })),
         })
+      );
+    }),
+
+    rest.get(`${baseUrl}/Organization`, (_req, res, ctx) => {
+      return res(
+        ctx.json({ resourceType: "Bundle", type: "searchset", entry: [] })
       );
     })
   );
@@ -559,6 +566,30 @@ describe("hooks", () => {
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();
         expect(result.current.data?.resourceType).toEqual("Organization");
+      });
+    });
+
+    it("create", async () => {
+      const { result } = renderHook(
+        () => useFhirCreateOrMutation("Organization"),
+        {
+          wrapper,
+        }
+      );
+
+      result.current.mutate({
+        action: "return",
+        body: build("Organization", {
+          name: "Acme, Inc.",
+        }),
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const [resource, isChanged] = result.current.data!;
+        expect(resource.resourceType).toEqual("Organization");
+        expect(isChanged).toBeTruthy();
       });
     });
 
