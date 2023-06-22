@@ -13,6 +13,7 @@
     "@bonfhir/core": "^2.0.0",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
+    "@bonfhir/next": "^2.0.0",
     "@bonfhir/prettier-config": "workspace:*",
     "@bonfhir/query": "^2.0.0",
     "@bonfhir/typescript-config": "workspace:*",

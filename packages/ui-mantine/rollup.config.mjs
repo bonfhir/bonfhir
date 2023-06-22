@@ -27,7 +27,9 @@ export default ["r4b", "r5"].flatMap((release) =>
       external: (id) =>
         id.startsWith("@bonfhir/") ||
         id.startsWith("@emotion") ||
-        Object.keys(packageJson.peerDependencies || {}).includes(id),
+        Object.keys(packageJson.peerDependencies || {}).some((x) =>
+          id.startsWith(x)
+        ),
       plugins: [
         replace({
           preventAssignment: true,

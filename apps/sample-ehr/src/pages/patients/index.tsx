@@ -7,8 +7,8 @@ import {
   TitleDivider,
 } from "@/components";
 import { CustomPatient } from "@/fhir/patient";
-import { useFhirUrlSearchController } from "@/hooks/use-fhir-url-search-controller";
 import { Patient, PatientSortOrder } from "@bonfhir/core/r4b";
+import { useFhirSearchControllerNext } from "@bonfhir/next/r4b";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
   MantineFhirInputDateProps,
@@ -153,7 +153,7 @@ function Indicators(): ReactElement {
 }
 
 function PatientsList(): ReactElement {
-  const searchController = useFhirUrlSearchController<
+  const searchController = useFhirSearchControllerNext<
     PatientSortOrder,
     { name: string | undefined; birthDate: string | undefined }
   >("search", {

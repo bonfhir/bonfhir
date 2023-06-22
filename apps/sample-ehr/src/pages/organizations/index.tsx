@@ -1,6 +1,6 @@
 import { MainPage, NavButton, TitleDivider } from "@/components";
-import { useFhirUrlSearchController } from "@/hooks/use-fhir-url-search-controller";
 import { OrganizationSortOrder } from "@bonfhir/core/r4b";
+import { useFhirSearchControllerNext } from "@bonfhir/next/r4b";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
   FhirInput,
@@ -13,7 +13,7 @@ import { Grid, Paper, Stack } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 
 export default function Organizations() {
-  const searchController = useFhirUrlSearchController<
+  const searchController = useFhirSearchControllerNext<
     OrganizationSortOrder,
     { name: string | undefined }
   >("search", {
