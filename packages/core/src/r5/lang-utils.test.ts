@@ -1,4 +1,4 @@
-import { asArray, truncate } from "./lang-utils.js";
+import { asArray, truncate, urlSafeConcat } from "./lang-utils.js";
 
 describe("lang-utils", () => {
   describe("asArray", () => {
@@ -27,5 +27,22 @@ describe("lang-utils", () => {
         expect(truncate(value, options)).toEqual(expected);
       }
     );
+  });
+
+  describe("urlSafeConcat", () => {
+    it.each([
+      [[], ""],
+      [["http://localhost", "fhir/api/"], "http://localhost/fhir/api/"],
+      [["http://localhost", "/fhir/api"], "http://localhost/fhir/api"],
+      [["http://localhost/", "fhir/api"], "http://localhost/fhir/api"],
+      [["http://localhost/", "/fhir/api"], "http://localhost/fhir/api"],
+      [["http://localhost/", "/fhir/api/"], "http://localhost/fhir/api/"],
+      [
+        [new URL("http://localhost/"), undefined, "/fhir/api/"],
+        "http://localhost/fhir/api/",
+      ],
+    ])("%p -> $%p", (urls, expected) => {
+      expect(urlSafeConcat(...urls)).toEqual(expected);
+    });
   });
 });

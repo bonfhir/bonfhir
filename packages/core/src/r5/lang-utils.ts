@@ -305,6 +305,27 @@ export function startCase(
     );
 }
 
+export function urlSafeConcat(
+  ...urls: Array<string | URL | null | undefined>
+): string {
+  return urls
+    .map((url, index) => {
+      if (index !== urls.length - 1) {
+        url = url?.toString().endsWith("/")
+          ? url?.toString().slice(0, -1)
+          : url?.toString();
+      }
+      if (index !== 0) {
+        url = url?.toString().startsWith("/")
+          ? url?.toString().slice(1)
+          : url?.toString();
+      }
+      return url;
+    })
+    .filter(Boolean)
+    .join("/");
+}
+
 /**
  * Type that drop the first element of a type array.
  */
