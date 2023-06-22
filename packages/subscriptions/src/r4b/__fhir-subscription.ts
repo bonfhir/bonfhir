@@ -3,6 +3,7 @@ import {
   FhirClient,
   Subscription,
   build,
+  urlSafeConcat,
 } from "@bonfhir/core/r4b";
 
 export interface FhirSubscription<TResource extends AnyResource = AnyResource> {
@@ -40,11 +41,11 @@ export interface FhirSubscriptionHandlerArgs<
     | undefined;
 }
 
-export interface FhirSubscriptionHandlerResult {
-  status: number;
-  body?: string | object | null | undefined;
-  headers?: Record<string, string> | null | undefined;
-}
+export type FhirSubscriptionHandlerResult =
+  | void
+  | Promise<void>
+  | object
+  | Promise<object>;
 
 export type SubscriptionLogger = Pick<
   typeof console,
@@ -57,10 +58,10 @@ export interface RegisterSubscriptionsArgs {
   logger: SubscriptionLogger;
 
   /** The API base URL */
-  baseUrl: string | URL | null | undefined;
+  baseUrl: string;
 
   /** The subscription payload, a.k.a. MIME type. Defaults to application/fhir+json */
-  payload?: Subscription["channel"]["payload"] | null | undefined;
+  contentType?: Subscription["channel"]["payload"] | null | undefined;
 
   /** A secret shared between the API and the FHIR subscription use to secure the endpoint. */
   webhookSecret: string;
@@ -79,7 +80,7 @@ export interface RegisterSubscriptionsArgs {
  * Create the Subscriptions for the webhooks.
  */
 export async function registerSubscriptions({
-  payload,
+  contentType,
   baseUrl,
   fhirClient,
   logger,
@@ -91,10 +92,10 @@ export async function registerSubscriptions({
 
   for (const subscription of subscriptions) {
     try {
+      const subscriptionUrl = urlSafeConcat(baseUrl, subscription.endpoint);
       const existingSubscriptionSearch = await fhirClient.search(
         "Subscription",
-        (search) =>
-          search.url(new URL(subscription.endpoint, baseUrl || undefined).href)
+        (search) => search.url(subscriptionUrl)
       );
       const existingSubscription =
         existingSubscriptionSearch.bundle.entry?.[0]?.resource;
@@ -108,7 +109,7 @@ export async function registerSubscriptions({
           existingSubscription.criteria !== subscription.criteria ||
           existingSubscription.reason !== subscription.reason ||
           existingSubscription.channel?.payload !==
-            (payload ?? "application/fhir+json") ||
+            (contentType ?? "application/fhir+json") ||
           !existingSubscription.channel?.header?.includes(securityHeaderValue)
         ) {
           await fhirClient.update({
@@ -117,7 +118,7 @@ export async function registerSubscriptions({
             criteria: subscription.criteria,
             channel: {
               ...existingSubscription.channel,
-              payload: payload ?? "application/fhir+json",
+              payload: contentType ?? "application/fhir+json",
               header: [
                 ...(existingSubscription.channel?.header || []),
                 securityHeaderValue,
@@ -133,9 +134,8 @@ export async function registerSubscriptions({
             criteria: subscription.criteria,
             channel: {
               type: "rest-hook",
-              endpoint: new URL(subscription.endpoint, baseUrl || undefined)
-                .href,
-              payload: payload ?? "application/fhir+json",
+              endpoint: subscriptionUrl,
+              payload: contentType ?? "application/fhir+json",
               header: [securityHeaderValue],
             },
           })

@@ -40,11 +40,11 @@ export interface FhirSubscriptionHandlerArgs<
     | undefined;
 }
 
-export interface FhirSubscriptionHandlerResult {
-  status: number;
-  body?: string | object | null | undefined;
-  headers?: Record<string, string> | null | undefined;
-}
+export type FhirSubscriptionHandlerResult =
+  | void
+  | Promise<void>
+  | object
+  | Promise<object>;
 
 export type SubscriptionLogger = Pick<
   typeof console,
@@ -57,7 +57,7 @@ export interface RegisterSubscriptionsArgs {
   logger: SubscriptionLogger;
 
   /** The API base URL */
-  baseUrl: string | URL | null | undefined;
+  baseUrl: string;
 
   /** The subscription payload, a.k.a. MIME type. Defaults to application/fhir+json */
   contentType?: Subscription["contentType"] | null | undefined;

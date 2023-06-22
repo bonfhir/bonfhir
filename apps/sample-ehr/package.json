@@ -16,6 +16,7 @@
     "@bonfhir/next": "^2.0.0",
     "@bonfhir/prettier-config": "workspace:*",
     "@bonfhir/query": "^2.0.0",
+    "@bonfhir/subscriptions": "^2.0.0",
     "@bonfhir/typescript-config": "workspace:*",
     "@bonfhir/ui": "^2.0.0",
     "@bonfhir/ui-mantine": "^2.0.0",
