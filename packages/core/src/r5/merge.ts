@@ -97,7 +97,7 @@ export const defaultMerger: Merger = {
   },
 };
 
-export const MERGERS: Array<Merger> = [arrayMerger, defaultMerger];
+export const DEFAULT_MERGERS: Array<Merger> = [arrayMerger, defaultMerger];
 
 export function merge<TResource extends Resource>({
   current,
@@ -116,7 +116,7 @@ export function merge<TResource extends Resource>({
 
   const merged = applyMergers(
     { current: currentClone, incoming, key: "" },
-    mergers || MERGERS
+    mergers || DEFAULT_MERGERS
   );
   return [merged, JSON.stringify(current) !== JSON.stringify(merged)];
 }
