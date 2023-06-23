@@ -38,6 +38,7 @@ import {
   OperationOutcome,
   Retrieved,
 } from "./fhir-types.codegen.js";
+import { urlSafeConcat } from "./lang-utils.js";
 import {
   ExtractOperationResultType,
   Operation,
@@ -558,15 +559,14 @@ export class FetchFhirClient implements FhirClient {
   ): Promise<T> {
     let targetUrl = typeof resource === "string" ? resource : resource.href;
 
-    if (
-      /^(?:[a-z]+:)?\/\//.test(targetUrl) &&
-      !targetUrl.startsWith(this.options.baseUrl?.toString())
-    ) {
-      throw new Error(
-        `Unable to fetch ${targetUrl} as it is not part of the baseUrl ${this.options.baseUrl}`
-      );
+    if (/^(?:[a-z]+:)?\/\//.test(targetUrl)) {
+      if (!targetUrl.startsWith(this.options.baseUrl?.toString())) {
+        throw new Error(
+          `Unable to fetch ${targetUrl} as it is not part of the baseUrl ${this.options.baseUrl}`
+        );
+      }
     } else {
-      targetUrl = new URL(targetUrl, this.options.baseUrl).toString();
+      targetUrl = urlSafeConcat(this.options.baseUrl, targetUrl);
     }
 
     const finalInit = {
