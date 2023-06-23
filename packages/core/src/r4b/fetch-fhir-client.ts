@@ -50,6 +50,15 @@ import {
  */
 export type FetchFhirClientStaticAuthHeaderOptions = string;
 
+export type FetchFhirClientClientCredentialsAuthOptions = {
+  tokenUrl: string;
+  clientId: string;
+  clientSecret: string;
+  additionalParameters?: Record<string, string> | null | undefined;
+  tokenExpiration?: number | null | undefined;
+  tokenExpirationBuffer?: number | null | undefined;
+};
+
 /**
  * This function is invoked before each fetch operation to return the value for the
  * `Authorization` header.
@@ -60,7 +69,8 @@ export type FetchFhirClientFunctionAuthHeaderOptions = (
 
 export type FetchFhirClientAuthOptions =
   | FetchFhirClientStaticAuthHeaderOptions
-  | FetchFhirClientFunctionAuthHeaderOptions;
+  | FetchFhirClientFunctionAuthHeaderOptions
+  | FetchFhirClientClientCredentialsAuthOptions;
 
 export interface FetchFhirClientOptions {
   baseUrl: string | URL;
@@ -86,6 +96,14 @@ export interface FetchFhirClientOptions {
 }
 
 export class FetchFhirClient implements FhirClient {
+  private _clientCredentialsCache?:
+    | {
+        accessToken: string;
+        expiresAt: number;
+        tokenType: string;
+      }
+    | undefined;
+
   constructor(public options: FetchFhirClientOptions) {}
 
   public async read<TResourceType extends AnyResourceTypeOrCustomResource>(
@@ -583,10 +601,13 @@ export class FetchFhirClient implements FhirClient {
     };
 
     if (!finalInit.headers.Authorization && this.options.auth) {
-      finalInit.headers["Authorization"] =
-        typeof this.options.auth === "function"
-          ? await this.options.auth(targetUrl, finalInit)
-          : this.options.auth;
+      const authHeader = await this.getAuthorizationHeader(
+        targetUrl,
+        finalInit
+      );
+      if (authHeader) {
+        finalInit.headers["Authorization"] = authHeader;
+      }
     }
 
     const response = await (this.options.fetch || fetch)(targetUrl, finalInit);
@@ -616,5 +637,71 @@ export class FetchFhirClient implements FhirClient {
       return new customType(parsedResponse);
     }
     return parsedResponse;
+  }
+
+  private async getAuthorizationHeader(
+    targetUrl: string,
+    init: RequestInit
+  ): Promise<string | undefined> {
+    if (!this.options.auth) {
+      return;
+    }
+
+    if (typeof this.options.auth === "string") {
+      return this.options.auth;
+    }
+
+    if (typeof this.options.auth === "function") {
+      return await this.options.auth(targetUrl, init);
+    }
+
+    if (typeof this.options.auth === "object") {
+      if (
+        this._clientCredentialsCache &&
+        this._clientCredentialsCache.expiresAt > Date.now()
+      ) {
+        return `${this._clientCredentialsCache.tokenType} ${this._clientCredentialsCache.accessToken}`;
+      }
+      const tokenSearchParams = new URLSearchParams({
+        grant_type: "client_credentials",
+        client_id: this.options.auth.clientId,
+        client_secret: this.options.auth.clientSecret,
+        ...this.options.auth.additionalParameters,
+      });
+
+      const tokenResponse = await fetch(this.options.auth.tokenUrl, {
+        method: "POST",
+        body: tokenSearchParams.toString(),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
+
+      if (!tokenResponse.ok) {
+        throw new FhirClientError(tokenResponse.status, undefined, {
+          kind: "client_credentials_error",
+          response: tokenResponse,
+        });
+      }
+
+      const parsedTokenResponse = (await tokenResponse.json()) as {
+        access_token: string;
+        expires_in?: number;
+        token_type?: string;
+      };
+      this._clientCredentialsCache = {
+        accessToken: parsedTokenResponse.access_token,
+        expiresAt:
+          Date.now() +
+          ((parsedTokenResponse.expires_in ||
+            (this.options.auth.tokenExpiration ?? 3600)) -
+            (this.options.auth.tokenExpirationBuffer ?? 360)) *
+            1000,
+        tokenType: parsedTokenResponse.token_type || "Bearer",
+      };
+      return `${this._clientCredentialsCache.tokenType} ${this._clientCredentialsCache.accessToken}`;
+    }
+
+    throw new Error("Invalid auth configuration");
   }
 }

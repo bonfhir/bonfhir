@@ -36,14 +36,19 @@ const theme: MantineThemeOverride = {
   },
 };
 
+const client = new FetchFhirClient({
+  baseUrl: "http://localhost:8103/fhir/R4/",
+  auth: {
+    tokenUrl: "http://localhost:8103/oauth2/token",
+    clientId: "f54370de-eaf3-4d81-a17e-24860f667912",
+    clientSecret:
+      "75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
+  },
+});
+
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
   const router = useRouter();
-
-  const client = new FetchFhirClient({
-    baseUrl: "http://localhost:8103/fhir/R4/",
-    auth: "Basic ZjU0MzcwZGUtZWFmMy00ZDgxLWExN2UtMjQ4NjBmNjY3OTEyOjc1ZDhlN2QwNmJmOTI4MzkyNmM1MWQ1ZjQ2MTI5NWNjZjBiNjkxMjhlOTgzYjZlY2RkNWE5YzA3NTA2ODk1ZGU=",
-  });
 
   return (
     <>

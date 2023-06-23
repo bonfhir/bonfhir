@@ -12,24 +12,44 @@
   },
   "type": "module",
   "exports": {
-    "./r4b": {
+    "./r4b/client": {
       "import": {
-        "types": "./dist/r4b/esm/index.d.ts",
-        "default": "./dist/r4b/esm/index.mjs"
+        "types": "./dist/r4b/client/esm/index.d.ts",
+        "default": "./dist/r4b/client/esm/index.mjs"
       },
       "require": {
-        "types": "./dist/r4b/cjs/index.d.ts",
-        "default": "./dist/r4b/cjs/index.cjs"
+        "types": "./dist/r4b/client/cjs/index.d.ts",
+        "default": "./dist/r4b/client/cjs/index.cjs"
       }
     },
-    "./r5": {
+    "./r4b/server": {
       "import": {
-        "types": "./dist/r5/esm/index.d.ts",
-        "default": "./dist/r5/esm/index.mjs"
+        "types": "./dist/r4b/server/esm/index.d.ts",
+        "default": "./dist/r4b/server/esm/index.mjs"
       },
       "require": {
-        "types": "./dist/r5/cjs/index.d.ts",
-        "default": "./dist/r5/cjs/index.cjs"
+        "types": "./dist/r4b/server/cjs/index.d.ts",
+        "default": "./dist/r4b/server/cjs/index.cjs"
+      }
+    },
+    "./r5/client": {
+      "import": {
+        "types": "./dist/r5/client/esm/index.d.ts",
+        "default": "./dist/r5/client/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/r5/client/cjs/index.d.ts",
+        "default": "./dist/r5/client/cjs/index.cjs"
+      }
+    },
+    "./r5/server": {
+      "import": {
+        "types": "./dist/r5/server/esm/index.d.ts",
+        "default": "./dist/r5/server/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/r5/server/cjs/index.d.ts",
+        "default": "./dist/r5/server/cjs/index.cjs"
       }
     }
   },

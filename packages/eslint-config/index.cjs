@@ -44,6 +44,7 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-empty-interface": "off",
+    "turbo/no-undeclared-env-vars": "off",
     "unicorn/no-array-reduce": "off",
     "unicorn/no-nested-ternary": "off",
     "unicorn/no-useless-undefined": ["error", { checkArguments: false }],
