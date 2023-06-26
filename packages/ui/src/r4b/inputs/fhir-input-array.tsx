@@ -25,7 +25,8 @@ export interface FhirInputArrayProps<TValue, TRendererProps = any> {
 export function FhirInputArray<TRendererProps = any>(
   props: FhirInputArrayProps<TRendererProps>
 ): ReactElement | null {
-  const { render } = useFhirUIContext();
+  const { applyDefaultProps, render } = useFhirUIContext();
+  props = applyDefaultProps("FhirInputArray", props);
 
   return render<FhirInputArrayRendererProps>("FhirInputArray", { ...props });
 }

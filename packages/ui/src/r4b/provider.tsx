@@ -1,11 +1,13 @@
 import { Formatter } from "@bonfhir/core/r4b";
 import { PropsWithChildren, createElement, useMemo } from "react";
 import { FhirUIContext, OnNavigateArgs } from "./context.js";
+import { FhirUIDefaultProps } from "./default-props.js";
 import { FhirUIRenderer } from "./renderer.js";
 
 export type FhirUIProviderProps = PropsWithChildren<{
   formatter?: Formatter | null | undefined;
   renderer: Partial<FhirUIRenderer>;
+  defaultProps?: FhirUIDefaultProps | null | undefined;
   onNavigate?: (args: OnNavigateArgs) => void;
 }>;
 
@@ -34,6 +36,19 @@ export function FhirUIProvider(props: FhirUIProviderProps) {
             throw new Error(`Renderer "${renderer}" not found`);
           }
           return createElement(renderer as any, rendererProps as any);
+        },
+        applyDefaultProps<TProps>(
+          component: keyof FhirUIDefaultProps,
+          componentProps: TProps
+        ): TProps {
+          const configuredDefaultProps = props.defaultProps?.[component];
+          if (!configuredDefaultProps) {
+            return componentProps;
+          }
+
+          return typeof configuredDefaultProps === "function"
+            ? (configuredDefaultProps(componentProps as any) as any)
+            : { ...configuredDefaultProps, ...componentProps };
         },
       }}
     >

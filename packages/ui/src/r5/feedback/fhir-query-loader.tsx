@@ -25,7 +25,8 @@ export type FhirQueryLoaderProps<TRendererProps = any, TData = any> = {
 export function FhirQueryLoader<TRendererProps = any>(
   props: FhirQueryLoaderProps<TRendererProps>
 ): ReactElement | null {
-  const { render } = useFhirUIContext();
+  const { applyDefaultProps, render } = useFhirUIContext();
+  props = applyDefaultProps("FhirQueryLoader", props);
 
   const queries = asArray(props.query);
   const isLoading = queries.some((query) => query.isLoading);

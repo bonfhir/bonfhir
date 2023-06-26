@@ -42,7 +42,8 @@ export function FhirTable<
 >(
   props: FhirTableProps<TResource, TRendererProps, TRow>
 ): ReactElement<any, any> | null {
-  const { render } = useFhirUIContext();
+  const { applyDefaultProps, render } = useFhirUIContext();
+  props = applyDefaultProps("FhirTable", props);
 
   const rows = (props.data as any)?.searchMatch?.() ?? props.data;
 

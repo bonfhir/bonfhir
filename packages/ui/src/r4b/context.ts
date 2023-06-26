@@ -1,15 +1,21 @@
 import { DefaultFormatter } from "@bonfhir/core/r4b";
 import { ReactElement, createContext, useContext } from "react";
+import { FhirUIDefaultProps } from "./default-props.js";
 import { FhirUIRenderer } from "./renderer.js";
 
 export interface FhirUIContext {
   formatter: DefaultFormatter;
   renderer: Partial<FhirUIRenderer>;
+  defaultProps?: FhirUIDefaultProps | null | undefined;
   onNavigate?: (args: OnNavigateArgs) => void;
   render<TRendererProps>(
     renderer: keyof FhirUIRenderer,
     props: TRendererProps
   ): ReactElement<any, any> | null;
+  applyDefaultProps<TProps>(
+    component: keyof FhirUIDefaultProps,
+    props: TProps
+  ): TProps;
 }
 
 /**

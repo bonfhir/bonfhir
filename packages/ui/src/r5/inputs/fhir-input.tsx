@@ -1,5 +1,6 @@
 import { AnyResourceType } from "@bonfhir/core/r5";
 import { ReactElement } from "react";
+import { useFhirUIContext } from "../context.js";
 import {
   FhirInputBoolean,
   FhirInputBooleanProps,
@@ -31,6 +32,9 @@ export function FhirInput<
   TRendererProps = any,
   TResourceType extends AnyResourceType = AnyResourceType
 >(props: FhirInputProps<TRendererProps, TResourceType>): ReactElement | null {
+  const { applyDefaultProps } = useFhirUIContext();
+  props = applyDefaultProps("FhirInput", props);
+
   switch (props.type) {
     case "boolean": {
       return <FhirInputBoolean<TRendererProps> {...props} />;

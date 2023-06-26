@@ -28,7 +28,9 @@ export interface FhirPaginationProps<TRendererProps = any> {
 export function FhirPagination<TRendererProps = any>(
   props: FhirPaginationProps<TRendererProps>
 ): ReactElement | null {
-  const { formatter, render } = useFhirUIContext();
+  const { applyDefaultProps, formatter, render } = useFhirUIContext();
+  props = applyDefaultProps("FhirPagination", props);
+
   const total = props.data?.total ?? 0;
   const totalPages = Math.ceil(total / props.pageSize);
 
