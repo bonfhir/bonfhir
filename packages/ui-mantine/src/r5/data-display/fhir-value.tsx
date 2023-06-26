@@ -34,6 +34,21 @@ export function MantineFhirValue(
       </HoverCard>
     );
   }
+
+  if (props.type === "markdown") {
+    return (
+      <Text span {...props.rendererProps?.text}>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: formatter.format("markdown", props.value, {
+              style: "html",
+            }),
+          }}
+        />
+      </Text>
+    );
+  }
+
   return (
     <Text span {...props.rendererProps?.text}>
       {props.formattedValue}

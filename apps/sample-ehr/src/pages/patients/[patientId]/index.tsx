@@ -79,7 +79,7 @@ export function PatientHeader({
             </Stack>
           </Group>
           <Divider orientation="vertical" mx="lg" />
-          <FhirValue type="string" value={patient.internalNote} />
+          <FhirValue type="markdown" value={patient.internalNote} />
         </Group>
       </Group>
     </Paper>

@@ -13,6 +13,8 @@ import {
   FhirInputHumanNameProps,
   FhirInputIdentifier,
   FhirInputIdentifierProps,
+  FhirInputMarkdown,
+  FhirInputMarkdownProps,
   FhirInputNumber,
   FhirInputNumberProps,
   FhirInputResource,
@@ -48,6 +50,9 @@ export function FhirInput<
     }
     case "Identifier": {
       return <FhirInputIdentifier<TRendererProps> {...props} />;
+    }
+    case "markdown": {
+      return <FhirInputMarkdown<TRendererProps> {...props} />;
     }
     case "decimal":
     case "integer":
@@ -93,6 +98,7 @@ export type FhirInputProps<
   | FhirInputDateTimeProps<TRendererProps>
   | FhirInputHumanNameProps<TRendererProps>
   | FhirInputIdentifierProps<TRendererProps>
+  | FhirInputMarkdownProps<TRendererProps>
   | FhirInputNumberProps<TRendererProps>
   | FhirInputResourceProps<TRendererProps, TResourceType>
   | FhirInputStringProps<TRendererProps>

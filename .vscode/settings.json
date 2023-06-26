@@ -54,6 +54,7 @@
     "searchset",
     "tabler",
     "tanstack",
+    "tiptap",
     "vread"
   ],
   "eslint.workingDirectories": ["apps/*", "packages/*"],

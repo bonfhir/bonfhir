@@ -120,9 +120,8 @@ export default function EditPatient() {
                 {...form.getInputProps("managingOrganization")}
               />
               <FhirInput
-                type="string"
+                type="markdown"
                 label="Internal note"
-                mode="multiline"
                 {...form.getInputProps("internalNote")}
               />
               <Group mt="md">
