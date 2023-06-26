@@ -82,7 +82,7 @@ export function useFhirResourceForm<
   const form = useFhirForm({
     initialValues: {
       ...args.defaultValues,
-      resourceType: args.type,
+      resourceType: resourceTypeOf(args.type),
     },
     transformValues: (values) => {
       return typeof args.type === "string"

@@ -9,20 +9,21 @@ import {
   InputWrapperProps,
 } from "@mantine/core";
 import { IconMinus, IconPlus } from "@tabler/icons-react";
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
 
 export function MantineFhirInputArray(
   props: FhirInputArrayRendererProps<MantineFhirInputArrayProps>
 ): ReactElement | null {
   const max = props.max ?? Number.POSITIVE_INFINITY;
   const min = props.min ?? Number.NEGATIVE_INFINITY;
-  // TODO: Figure out an elegant way to do this.
-  // if (!props.value?.length && min > 0) {
-  //   for (let i = 0; i < min; i++) {
-  //     props.onAdd?.(i);
-  //   }
-  //   return null;
-  // }
+
+  useEffect(() => {
+    if (!props.value?.length && min > 0) {
+      for (let i = 0; i < min; i++) {
+        props.onAdd?.(i);
+      }
+    }
+  }, []);
 
   return (
     <Input.Wrapper
