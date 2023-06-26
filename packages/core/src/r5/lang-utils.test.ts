@@ -1,4 +1,9 @@
-import { asArray, truncate, urlSafeConcat } from "./lang-utils.js";
+import {
+  asArray,
+  cleanFhirValues,
+  truncate,
+  urlSafeConcat,
+} from "./lang-utils.js";
 
 describe("lang-utils", () => {
   describe("asArray", () => {
@@ -43,6 +48,21 @@ describe("lang-utils", () => {
       ],
     ])("%p -> $%p", (urls, expected) => {
       expect(urlSafeConcat(...urls)).toEqual(expected);
+    });
+  });
+
+  describe("cleanFhirValues", () => {
+    it.each([
+      [{}, undefined],
+      [{ name: "" }, undefined],
+      [{ name: "Acme, Inc" }, { name: "Acme, Inc" }],
+      [{ name: ["Acme, Inc", ""] }, { name: ["Acme, Inc"] }],
+      [
+        { name: [{ family: "Doe" }, { given: [] }], birthDate: "2001-01-01" },
+        { name: [{ family: "Doe" }], birthDate: "2001-01-01" },
+      ],
+    ])("%p == %p", (input, expected) => {
+      expect(cleanFhirValues(input)).toEqual(expected);
     });
   });
 });

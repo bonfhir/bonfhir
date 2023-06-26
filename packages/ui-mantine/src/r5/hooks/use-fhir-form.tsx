@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { cleanFhirValues } from "@bonfhir/core/r5";
 import { FhirInputArrayProps } from "@bonfhir/ui/r5";
 import { useForm } from "@mantine/form";
 import {
@@ -34,7 +35,14 @@ export function useFhirForm<
 >(
   args?: UseFormInput<Values, TransformValues>
 ): UseFhirFormReturnType<Values, TransformValues> {
-  const form = useForm(args);
+  const { transformValues, ...remainingArgs } = args || {};
+  const form = useForm({
+    ...remainingArgs,
+    transformValues: (values) => {
+      cleanFhirValues(values);
+      return transformValues ? transformValues(values) : values;
+    },
+  });
   return {
     ...form,
     getArrayInputProps: (path, options) => {

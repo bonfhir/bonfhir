@@ -364,6 +364,44 @@ export function uuid(): string {
 }
 
 /**
+ * Recursively explore value and cleans up un-FHIR values: empty strings, arrays with null, undefined,
+ * empty strings or {}, etc.
+ */
+export function cleanFhirValues<T>(value: T | null | undefined): T | undefined {
+  if (value == undefined) {
+    return undefined;
+  }
+
+  if (typeof value === "string" && !value.trim()) {
+    return;
+  }
+
+  if (Array.isArray(value)) {
+    const filteredArray = value
+      .map((x) => cleanFhirValues(x))
+      .filter(Boolean) as unknown[];
+    return filteredArray.length > 0 ? (filteredArray as T) : undefined;
+  }
+
+  if (typeof value === "object") {
+    for (const [key, itemValue] of Object.entries(value)) {
+      const finalItemValue = cleanFhirValues(itemValue);
+      if (finalItemValue) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (value as any)[key] = finalItemValue;
+      } else {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        delete (value as any)[key];
+      }
+    }
+
+    return JSON.stringify(value) === "{}" ? undefined : value;
+  }
+
+  return value;
+}
+
+/**
  * Type that drop the first element of a type array.
  */
 export type DropFirst<T extends unknown[]> = T extends [infer _, ...infer U]
