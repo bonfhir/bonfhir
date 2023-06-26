@@ -1,5 +1,6 @@
 import { build } from "./builders.js";
-import { merge } from "./merge.js";
+import { DEFAULT_MERGERS, merge } from "./merge.js";
+import { elementMerger } from "./mergers/index.js";
 
 describe("merge", () => {
   it("copy if current is falsy", () => {
@@ -169,6 +170,68 @@ describe("merge", () => {
         "resourceType": "Practitioner",
         "text": {
           "div": "<div xmlns="http://www.w3.org/1999/xhtml"><ul></ul></div>",
+          "status": "generated",
+        },
+      }
+    `);
+  });
+
+  it("merge 5", () => {
+    const current = build("Practitioner", {
+      name: [
+        {
+          use: "usual",
+          given: ["John"],
+          family: "Doe",
+        },
+        {
+          use: "nickname",
+          given: ["John"],
+          family: "smith",
+        },
+      ],
+      birthDate: "2000-01-01",
+    });
+
+    const incoming = build("Practitioner", {
+      name: [
+        {
+          use: "usual",
+          given: ["John"],
+          family: "Abbott",
+        },
+      ],
+      birthDate: "2001-01-01",
+    });
+
+    const [merged, changed] = merge({
+      current,
+      incoming,
+      mergers: [elementMerger("name", ["use"]), ...DEFAULT_MERGERS],
+    });
+    expect(changed).toBeTruthy();
+    expect(merged).toMatchInlineSnapshot(`
+      {
+        "birthDate": "2001-01-01",
+        "name": [
+          {
+            "family": "Abbott",
+            "given": [
+              "John",
+            ],
+            "use": "usual",
+          },
+          {
+            "family": "smith",
+            "given": [
+              "John",
+            ],
+            "use": "nickname",
+          },
+        ],
+        "resourceType": "Practitioner",
+        "text": {
+          "div": "<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Birth Date: </span>1/1/2001</li><li><span>Name: </span><ul><li>John Abbott</li></ul></li></ul></div>",
           "status": "generated",
         },
       }
