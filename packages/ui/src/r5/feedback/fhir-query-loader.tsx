@@ -11,7 +11,7 @@ import {
 import { ReactElement, ReactNode } from "react";
 import { useFhirUIContext } from "../context.js";
 
-export type FhirQueryLoaderProps<TRendererProps = any, TData = any> = {
+export type FhirQueryLoaderProps<TRendererProps, TData> = {
   query:
     | UseBaseQueryResult<TData>
     | [UseBaseQueryResult<TData>, ...QueryObserverBaseResult[]];
@@ -22,8 +22,8 @@ export type FhirQueryLoaderProps<TRendererProps = any, TData = any> = {
   rendererProps?: TRendererProps;
 };
 
-export function FhirQueryLoader<TRendererProps = any>(
-  props: FhirQueryLoaderProps<TRendererProps>
+export function FhirQueryLoader<TRendererProps, TData>(
+  props: FhirQueryLoaderProps<TRendererProps, TData>
 ): ReactElement | null {
   const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirQueryLoader", props);
@@ -52,7 +52,7 @@ export function FhirQueryLoader<TRendererProps = any>(
 }
 
 export interface FhirQueryLoaderRendererProps<TRendererProps = any>
-  extends FhirQueryLoaderProps<TRendererProps> {
+  extends FhirQueryLoaderProps<TRendererProps, any> {
   children?: ReactNode | undefined;
   isLoading: boolean;
   isError: boolean;

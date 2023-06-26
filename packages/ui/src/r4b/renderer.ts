@@ -17,6 +17,7 @@ import type {
   FhirInputStringRenderer,
   FhirInputTerminologyRenderer,
   FhirInputTimeRenderer,
+  FhirQuestionnaireRenderer,
 } from "./inputs/index.js";
 import type { FhirPaginationRenderer } from "./navigation/index.js";
 
@@ -36,6 +37,7 @@ export interface FhirUIRenderer {
   FhirInputTime: FhirInputTimeRenderer;
   FhirPagination: FhirPaginationRenderer;
   FhirQueryLoader: FhirQueryLoaderRenderer;
+  FhirQuestionnaire: FhirQuestionnaireRenderer;
   FhirTable: FhirTableRenderer;
   FhirValue: FhirValueRenderer;
 }

@@ -15,6 +15,7 @@ import {
   MantineFhirInputString,
   MantineFhirInputTerminology,
   MantineFhirInputTime,
+  MantineFhirQuestionnaire,
 } from "./inputs/index.js";
 import { MantineFhirPagination } from "./navigation/index.js";
 
@@ -34,6 +35,7 @@ export const MantineRenderer: FhirUIRenderer = {
   FhirInputTime: MantineFhirInputTime,
   FhirPagination: MantineFhirPagination,
   FhirQueryLoader: MantineFhirQueryLoader,
+  FhirQuestionnaire: MantineFhirQuestionnaire,
   FhirTable: MantineFhirTable,
   FhirValue: MantineFhirValue,
 };

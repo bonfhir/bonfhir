@@ -5,7 +5,11 @@ import {
 } from "@bonfhir/core/r4b";
 import { FhirTableProps, FhirValueProps } from "./data-display/index.js";
 import { FhirQueryLoaderProps } from "./feedback/index.js";
-import { FhirInputArrayProps, FhirInputProps } from "./inputs/index.js";
+import {
+  FhirInputArrayProps,
+  FhirInputProps,
+  FhirQuestionnaireProps,
+} from "./inputs/index.js";
 import { FhirPaginationProps } from "./navigation/index.js";
 
 export interface FhirUIDefaultProps {
@@ -25,8 +29,15 @@ export interface FhirUIDefaultProps {
     | null
     | undefined;
   FhirQueryLoader?:
-    | Partial<FhirQueryLoaderProps>
-    | ((props: FhirQueryLoaderProps) => FhirQueryLoaderProps)
+    | Partial<FhirQueryLoaderProps<any, any>>
+    | ((
+        props: FhirQueryLoaderProps<any, any>
+      ) => FhirQueryLoaderProps<any, any>)
+    | null
+    | undefined;
+  FhirQuestionnaire?:
+    | Partial<FhirQuestionnaireProps>
+    | ((props: FhirQuestionnaireProps) => FhirQuestionnaireProps)
     | null
     | undefined;
   FhirTable?:
