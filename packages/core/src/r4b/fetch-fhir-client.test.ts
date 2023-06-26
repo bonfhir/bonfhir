@@ -1,6 +1,5 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { v4 as uuid } from "uuid";
 import * as patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
 import * as patientExample from "../../fixtures/patient-example.fhir.json";
 import { build } from "./builders.js";
@@ -16,6 +15,7 @@ import {
   Organization,
   Patient,
 } from "./fhir-types.codegen.js";
+import { uuid } from "./lang-utils.js";
 import {
   ClaimSubmitOperation,
   ValueSetExpandOperation,

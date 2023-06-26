@@ -1,9 +1,9 @@
 import { mock, mockReset } from "jest-mock-extended";
-import { v4 as uuid } from "uuid";
 import { build } from "./builders.js";
 import { BundleExecutor } from "./bundle-executor.js";
 import { FhirClient } from "./fhir-client.js";
 import { Patient, Retrieved } from "./fhir-types.codegen.js";
+import { uuid } from "./lang-utils.js";
 import { ValueSetExpandOperation } from "./operations.codegen.js";
 
 describe("bundle-executor", () => {

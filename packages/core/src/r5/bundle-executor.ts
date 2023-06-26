@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { v4 as uuid } from "uuid";
 import {
   BundleNavigator,
   WithResolvableReferences,
@@ -31,6 +30,7 @@ import {
   WithRequired,
   isResource,
 } from "./fhir-types.codegen.js";
+import { uuid } from "./lang-utils.js";
 import {
   ExtractOperationResultType,
   Operation,
