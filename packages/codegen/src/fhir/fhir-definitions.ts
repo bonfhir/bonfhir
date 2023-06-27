@@ -231,12 +231,14 @@ export class StructureDefinition {
    * All the element definitions of this structure definition
    */
   public get elements(): ElementDefinition[] {
-    return ((this as any).snapshot?.element || [])
-      .map((x: any) =>
-        Object.assign(new ElementDefinition(this._definitions, this), x)
-      )
-      .filter((x: any) => !!x.type?.length)
-      .sort((a: any, b: any) => a.path.localeCompare(b.path));
+    return (
+      ((this as any).snapshot?.element || [])
+        .map((x: any) =>
+          Object.assign(new ElementDefinition(this._definitions, this), x)
+        )
+        //.filter((x: any) => !!x.type?.length)
+        .sort((a: any, b: any) => a.path.localeCompare(b.path))
+    );
   }
 
   /**
@@ -426,6 +428,24 @@ export class ElementDefinition {
    * The TypeScript type for this element
    */
   public get tsType(): string {
+    if ((this as any).contentReference) {
+      let resolvedReference = (this as any).contentReference
+        .slice(1)
+        .split(".")
+        .map((x: string) => x[0]?.toUpperCase() + x.slice(1))
+        .join("");
+
+      if (this.isArray) {
+        resolvedReference = `Array<${resolvedReference}>`;
+      }
+
+      if (this.isOptional) {
+        resolvedReference = `${resolvedReference} | undefined`;
+      }
+
+      return resolvedReference;
+    }
+
     let resolvedType = (this as any).type
       ?.map((x: any) => {
         const tsType = toTsType(x.code);

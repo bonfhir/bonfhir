@@ -14807,6 +14807,13 @@ Note that the fullUrl is not the same
   _id?: Element | undefined;
 
   /**
+   * A series of links that provide context to this entry.
+   * @see {@link http://hl7.org/fhir/R4B/Bundle-definitions.html#Bundle.entry.link}
+   */
+  link?: Array<BundleLink> | undefined;
+  _link?: Element[] | undefined;
+
+  /**
  * May be used to represent additional information that is not part of the basic
  * definition of the element and that modifies the understanding of the element in
  * which it is contained and/or the understanding of the containing element's
@@ -15874,6 +15881,18 @@ Modifier extensions
   _modifierExtension?: Element[] | undefined;
 
   /**
+   * Definition of an operation or a named query together with its parameters and
+   * their meaning and type.
+   * CapabilityStatement.rest.operation is for operations invoked at the system
+   * level, or for operations that are supported across multiple resource types.
+   * Operations linked from CapabilityStatement.rest.operation must have
+   * OperationDefinition.system = true, or more than one Operation.resource.
+   * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.operation}
+   */
+  operation?: Array<CapabilityStatementRestResourceOperation> | undefined;
+  _operation?: Element[] | undefined;
+
+  /**
    * A specification of the restful capabilities of the solution for a specific
    * resource type.
    * Max of one repetition per resource type.
@@ -15881,6 +15900,25 @@ Modifier extensions
    */
   resource?: Array<CapabilityStatementRestResource> | undefined;
   _resource?: Element[] | undefined;
+
+  /**
+   * Search parameters that are supported for searching all resources for
+   * implementations to support and/or make use of - either references to ones
+   * defined in the specification, or additional ones defined for/by the
+   * implementation.
+   * Typically, the only search parameters supported for all searches are those that
+   * apply to all resources - tags, profiles, text search etc. These search
+   * parameters should include the control search parameters such as _sort, _count,
+   * etc. that also apply to this resource (though many will be listed at
+   * [CapabilityStatement.rest.searchParam](capabilitystatement-definitions.html#Capa
+   * bilityStatement.rest.searchParam)). The behavior of some search parameters may
+   * be further described by other code or extension elements, or narrative within
+   * the capability statement or linked [SearchParameter](searchparameter.html#)
+   * definitions.
+   * @see {@link http://hl7.org/fhir/R4B/CapabilityStatement-definitions.html#CapabilityStatement.rest.searchParam}
+   */
+  searchParam?: Array<CapabilityStatementRestResourceSearchParam> | undefined;
+  _searchParam?: Element[] | undefined;
 
   /**
    * Information about security implementation from an interface perspective - what a
@@ -18595,6 +18633,16 @@ Modifier extensions
  * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.propertyGroup}
  */
 export interface ChargeItemDefinitionPropertyGroup extends BackboneElement {
+  /**
+   * Expressions that describe applicability criteria for the priceComponent.
+   * The applicability conditions can be used to ascertain whether a billing item is
+   * allowed in a specific context. E.g. some billing codes may only be applicable in
+   * out-patient settings, only to male/female patients or only to children.
+   * @see {@link http://hl7.org/fhir/R4B/ChargeItemDefinition-definitions.html#ChargeItemDefinition.propertyGroup.applicability}
+   */
+  applicability?: Array<ChargeItemDefinitionApplicability> | undefined;
+  _applicability?: Element[] | undefined;
+
   /**
    * May be used to represent additional information that is not part of the basic
    * definition of the element. To make the use of extensions safe and manageable,
@@ -23098,6 +23146,13 @@ export interface Claim extends DomainResource {
  */
 export interface ClaimResponseAddItem extends BackboneElement {
   /**
+   * The adjudication results.
+   * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.adjudication}
+   */
+  adjudication: Array<ClaimResponseItemAdjudication>;
+  _adjudication?: Element[] | undefined;
+
+  /**
    * Physical service site on the patient (limb, tooth, etc.).
    * For example: Providing a tooth code allows an insurer to identify a provider
    * performing a filling on a tooth that was previously removed.
@@ -23325,6 +23380,13 @@ Modifier extensions
  */
 export interface ClaimResponseAddItemDetail extends BackboneElement {
   /**
+   * The adjudication results.
+   * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detail.adjudication}
+   */
+  adjudication: Array<ClaimResponseItemAdjudication>;
+  _adjudication?: Element[] | undefined;
+
+  /**
    * May be used to represent additional information that is not part of the basic
    * definition of the element. To make the use of extensions safe and manageable,
    * there is a strict set of governance  applied to the definition and use of
@@ -23453,6 +23515,13 @@ Modifier extensions
  * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detail.subDetail}
  */
 export interface ClaimResponseAddItemDetailSubDetail extends BackboneElement {
+  /**
+   * The adjudication results.
+   * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.addItem.detail.subDetail.adjudication}
+   */
+  adjudication: Array<ClaimResponseItemAdjudication>;
+  _adjudication?: Element[] | undefined;
+
   /**
    * May be used to represent additional information that is not part of the basic
    * definition of the element. To make the use of extensions safe and manageable,
@@ -23963,6 +24032,13 @@ Modifier extensions
  */
 export interface ClaimResponseItemDetail extends BackboneElement {
   /**
+   * The adjudication results.
+   * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail.adjudication}
+   */
+  adjudication: Array<ClaimResponseItemAdjudication>;
+  _adjudication?: Element[] | undefined;
+
+  /**
    * A number to uniquely reference the claim detail entry.
    * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail.detailSequence}
    * @fhirType positiveInt
@@ -24039,6 +24115,13 @@ Modifier extensions
  * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail.subDetail}
  */
 export interface ClaimResponseItemDetailSubDetail extends BackboneElement {
+  /**
+   * The adjudication results.
+   * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.item.detail.subDetail.adjudication}
+   */
+  adjudication?: Array<ClaimResponseItemAdjudication> | undefined;
+  _adjudication?: Element[] | undefined;
+
   /**
    * May be used to represent additional information that is not part of the basic
    * definition of the element. To make the use of extensions safe and manageable,
@@ -24381,6 +24464,14 @@ export interface ClaimResponse extends DomainResource {
    */
   addItem?: Array<ClaimResponseAddItem> | undefined;
   _addItem?: Element[] | undefined;
+
+  /**
+   * The adjudication results which are presented at the header level rather than at
+   * the line-item or add-item levels.
+   * @see {@link http://hl7.org/fhir/R4B/ClaimResponse-definitions.html#ClaimResponse.adjudication}
+   */
+  adjudication?: Array<ClaimResponseItemAdjudication> | undefined;
+  _adjudication?: Element[] | undefined;
 
   /**
    * Request for additional supporting or authorizing information.
@@ -25254,6 +25345,16 @@ Modifier extensions
   _modifierExtension?: Element[] | undefined;
 
   /**
+   * Information about the use of the medicinal product in relation to other
+   * therapies described as part of the indication.
+   * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.indication.otherTherapy}
+   */
+  otherTherapy?:
+    | Array<ClinicalUseDefinitionContraindicationOtherTherapy>
+    | undefined;
+  _otherTherapy?: Element[] | undefined;
+
+  /**
    * An unwanted side effect or negative outcome that may happen if you use the drug
    * (or other subject of this resource) for this indication.
    * @see {@link http://hl7.org/fhir/R4B/ClinicalUseDefinition-definitions.html#ClinicalUseDefinition.indication.undesirableEffect}
@@ -25758,6 +25859,15 @@ export interface CodeSystemConcept extends BackboneElement {
    */
   code: string;
   _code?: Element | undefined;
+
+  /**
+   * Defines children of a concept to produce a hierarchy of concepts. The nature of
+   * the relationships is variable (is-a/contains/categorizes) - see
+   * hierarchyMeaning.
+   * @see {@link http://hl7.org/fhir/R4B/CodeSystem-definitions.html#CodeSystem.concept.concept}
+   */
+  concept?: Array<CodeSystemConcept> | undefined;
+  _concept?: Element[] | undefined;
 
   /**
    * The formal definition of the concept. The code system resource does not make
@@ -27978,6 +28088,15 @@ Modifier extensions
   _orderedBy?: Element | undefined;
 
   /**
+   * A nested sub-section within this section.
+   * Nested sections are primarily used to help human readers navigate to particular
+   * portions of the document.
+   * @see {@link http://hl7.org/fhir/R4B/Composition-definitions.html#Composition.section.section}
+   */
+  section?: Array<CompositionSection> | undefined;
+  _section?: Element[] | undefined;
+
+  /**
    * A human-readable narrative that contains the attested content of the section,
    * used to represent the content of the resource to a human. The narrative need not
    * encode all the structured data, but is required to contain sufficient detail to
@@ -28502,6 +28621,16 @@ Modifier extensions
  */
   modifierExtension?: Array<Extension> | undefined;
   _modifierExtension?: Element[] | undefined;
+
+  /**
+   * A set of additional outcomes from this mapping to other elements. To properly
+   * execute this mapping, the specified element must be mapped to some data element
+   * or source that is in context. The mapping may still be useful without a place
+   * for the additional data elements, but the equivalence cannot be relied on.
+   * @see {@link http://hl7.org/fhir/R4B/ConceptMap-definitions.html#ConceptMap.group.element.target.product}
+   */
+  product?: Array<ConceptMapGroupElementTargetDependsOn> | undefined;
+  _product?: Element[] | undefined;
 }
 
 /**
@@ -29594,6 +29723,13 @@ Modifier extensions
   _period?: Element | undefined;
 
   /**
+   * Rules which provide exceptions to the base rule or subrules.
+   * @see {@link http://hl7.org/fhir/R4B/Consent-definitions.html#Consent.provision.provision}
+   */
+  provision?: Array<ConsentProvision> | undefined;
+  _provision?: Element[] | undefined;
+
+  /**
    * The context of the activities a user is taking - why the user is accessing the
    * data - that are controlled by this rule.
    * When the purpose of use tag is on the data, access request purpose of use shall
@@ -30564,6 +30700,13 @@ For example, in cases of actions initiated by
   _extension?: Element[] | undefined;
 
   /**
+   * Nested group of Contract Provisions.
+   * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.group}
+   */
+  group?: Array<ContractTerm> | undefined;
+  _group?: Element[] | undefined;
+
+  /**
    * Unique id for the element within a resource (for internal references). This may
    * be any string value that does not contain spaces.
    * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.id}
@@ -31015,6 +31158,13 @@ Modifier extensions
  * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset}
  */
 export interface ContractTermAsset extends BackboneElement {
+  /**
+   * Response to assets.
+   * @see {@link http://hl7.org/fhir/R4B/Contract-definitions.html#Contract.term.asset.answer}
+   */
+  answer?: Array<ContractTermOfferAnswer> | undefined;
+  _answer?: Element[] | undefined;
+
   /**
    * Description of the quality and completeness of the asset that imay be a factor
    * in its valuation.
@@ -43507,6 +43657,13 @@ Modifier extensions
   _rating?: Element | undefined;
 
   /**
+   * A domain or subdomain of certainty.
+   * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.certainty.subcomponent}
+   */
+  subcomponent?: Array<EvidenceCertainty> | undefined;
+  _subcomponent?: Element[] | undefined;
+
+  /**
    * Aspect of certainty being rated.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.certainty.type}
    */
@@ -43666,6 +43823,16 @@ Modifier extensions
  */
 export interface EvidenceStatisticAttributeEstimate extends BackboneElement {
   /**
+   * A nested attribute estimate; which is the attribute estimate of an attribute
+   * estimate.
+   * A nested attribute estimate; which is the attribute estimate of an attribute
+   * estimate
+   * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.attributeEstimate.attributeEstimate}
+   */
+  attributeEstimate?: Array<EvidenceStatisticAttributeEstimate> | undefined;
+  _attributeEstimate?: Element[] | undefined;
+
+  /**
    * Human-readable summary of the estimate.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.attributeEstimate.description}
    */
@@ -43763,6 +43930,13 @@ Modifier extensions
  * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.modelCharacteristic}
  */
 export interface EvidenceStatisticModelCharacteristic extends BackboneElement {
+  /**
+   * An attribute of the statistic used as a model characteristic.
+   * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.modelCharacteristic.attributeEstimate}
+   */
+  attributeEstimate?: Array<EvidenceStatisticAttributeEstimate> | undefined;
+  _attributeEstimate?: Element[] | undefined;
+
   /**
    * Description of a component of the method to generate the statistic.
    * @see {@link http://hl7.org/fhir/R4B/Evidence-definitions.html#Evidence.statistic.modelCharacteristic.code}
@@ -44619,6 +44793,15 @@ Modifier extensions
    */
   orderedBy?: CodeableConcept | undefined;
   _orderedBy?: Element | undefined;
+
+  /**
+   * A nested sub-section within this section.
+   * Nested sections are primarily used to help human readers navigate to particular
+   * portions of the document.
+   * @see {@link http://hl7.org/fhir/R4B/EvidenceReport-definitions.html#EvidenceReport.section.section}
+   */
+  section?: Array<EvidenceReportSection> | undefined;
+  _section?: Element[] | undefined;
 
   /**
    * A human-readable narrative that contains the attested content of the section,
@@ -46139,6 +46322,13 @@ Modifier extensions
    */
   pause?: boolean | undefined;
   _pause?: Element | undefined;
+
+  /**
+   * Nested process.
+   * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step.process}
+   */
+  process?: Array<ExampleScenarioProcess> | undefined;
+  _process?: Element[] | undefined;
 }
 
 /**
@@ -46202,6 +46392,13 @@ Modifier extensions
  */
   modifierExtension?: Array<Extension> | undefined;
   _modifierExtension?: Element[] | undefined;
+
+  /**
+   * What happens in each alternative option.
+   * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step.alternative.step}
+   */
+  step?: Array<ExampleScenarioProcessStep> | undefined;
+  _step?: Element[] | undefined;
 
   /**
    * The label to display for the alternative that gives a sense of the circumstance
@@ -46313,6 +46510,20 @@ Modifier extensions
    */
   receiverActive?: boolean | undefined;
   _receiverActive?: Element | undefined;
+
+  /**
+   * Each resource instance used by the initiator.
+   * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step.operation.request}
+   */
+  request?: ExampleScenarioInstanceContainedInstance | undefined;
+  _request?: Element | undefined;
+
+  /**
+   * Each resource instance used by the responder.
+   * @see {@link http://hl7.org/fhir/R4B/ExampleScenario-definitions.html#ExampleScenario.process.step.operation.response}
+   */
+  response?: ExampleScenarioInstanceContainedInstance | undefined;
+  _response?: Element | undefined;
 
   /**
    * The type of operation - CRUD.
@@ -46631,6 +46842,13 @@ Modifier extensions
  */
 export interface ExplanationOfBenefitAddItem extends BackboneElement {
   /**
+   * The adjudication results.
+   * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.adjudication}
+   */
+  adjudication?: Array<ExplanationOfBenefitItemAdjudication> | undefined;
+  _adjudication?: Element[] | undefined;
+
+  /**
    * Physical service site on the patient (limb, tooth, etc.).
    * For example, providing a tooth code allows an insurer to identify a provider
    * performing a filling on a tooth that was previously removed.
@@ -46858,6 +47076,13 @@ Modifier extensions
  */
 export interface ExplanationOfBenefitAddItemDetail extends BackboneElement {
   /**
+   * The adjudication results.
+   * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.detail.adjudication}
+   */
+  adjudication?: Array<ExplanationOfBenefitItemAdjudication> | undefined;
+  _adjudication?: Element[] | undefined;
+
+  /**
    * May be used to represent additional information that is not part of the basic
    * definition of the element. To make the use of extensions safe and manageable,
    * there is a strict set of governance  applied to the definition and use of
@@ -46987,6 +47212,13 @@ Modifier extensions
  */
 export interface ExplanationOfBenefitAddItemDetailSubDetail
   extends BackboneElement {
+  /**
+   * The adjudication results.
+   * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.addItem.detail.subDetail.adjudication}
+   */
+  adjudication?: Array<ExplanationOfBenefitItemAdjudication> | undefined;
+  _adjudication?: Element[] | undefined;
+
   /**
    * May be used to represent additional information that is not part of the basic
    * definition of the element. To make the use of extensions safe and manageable,
@@ -47991,6 +48223,13 @@ Modifier extensions
  */
 export interface ExplanationOfBenefitItemDetail extends BackboneElement {
   /**
+   * The adjudication results.
+   * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.adjudication}
+   */
+  adjudication?: Array<ExplanationOfBenefitItemAdjudication> | undefined;
+  _adjudication?: Element[] | undefined;
+
+  /**
    * Code to identify the general type of benefits under which products and services
    * are provided.
    * Examples include: Medical Care, Periodontics, Renal Dialysis, Vision Coverage.
@@ -48161,6 +48400,13 @@ Modifier extensions
  */
 export interface ExplanationOfBenefitItemDetailSubDetail
   extends BackboneElement {
+  /**
+   * The adjudication results.
+   * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.item.detail.subDetail.adjudication}
+   */
+  adjudication?: Array<ExplanationOfBenefitItemAdjudication> | undefined;
+  _adjudication?: Element[] | undefined;
+
   /**
    * Code to identify the general type of benefits under which products and services
    * are provided.
@@ -49017,6 +49263,14 @@ export interface ExplanationOfBenefit extends DomainResource {
    */
   addItem?: Array<ExplanationOfBenefitAddItem> | undefined;
   _addItem?: Element[] | undefined;
+
+  /**
+   * The adjudication results which are presented at the header level rather than at
+   * the line-item or add-item levels.
+   * @see {@link http://hl7.org/fhir/R4B/ExplanationOfBenefit-definitions.html#ExplanationOfBenefit.adjudication}
+   */
+  adjudication?: Array<ExplanationOfBenefitItemAdjudication> | undefined;
+  _adjudication?: Element[] | undefined;
 
   /**
    * Balance by Benefit Category.
@@ -51001,6 +51255,13 @@ export interface GraphDefinitionLinkTarget extends BackboneElement {
    */
   id?: string | undefined;
   _id?: Element | undefined;
+
+  /**
+   * Additional links from target resource.
+   * @see {@link http://hl7.org/fhir/R4B/GraphDefinition-definitions.html#GraphDefinition.link.target.link}
+   */
+  link?: Array<GraphDefinitionLink> | undefined;
+  _link?: Element[] | undefined;
 
   /**
  * May be used to represent additional information that is not part of the basic
@@ -54313,6 +54574,14 @@ Modifier extensions
   _nameReference?: Element | undefined;
 
   /**
+   * Nested Pages/Sections under this page.
+   * The implementation guide breadcrumbs are generated from this structure.
+   * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.page.page}
+   */
+  page?: Array<ImplementationGuideDefinitionPage> | undefined;
+  _page?: Element[] | undefined;
+
+  /**
    * A short title used to represent this page in navigational structures such as
    * table of contents, bread crumbs, etc.
    * @see {@link http://hl7.org/fhir/R4B/ImplementationGuide-definitions.html#ImplementationGuide.definition.page.title}
@@ -57033,6 +57302,16 @@ export interface Invoice extends DomainResource {
    */
   totalNet?: Money | undefined;
   _totalNet?: Element | undefined;
+
+  /**
+   * The total amount for the Invoice may be calculated as the sum of the line items
+   * with surcharges/deductions that apply in certain conditions.  The priceComponent
+   * element can be used to offer transparency to the recipient of the Invoice of how
+   * the total price was calculated.
+   * @see {@link http://hl7.org/fhir/R4B/Invoice-definitions.html#Invoice.totalPriceComponent}
+   */
+  totalPriceComponent?: Array<InvoiceLineItemPriceComponent> | undefined;
+  _totalPriceComponent?: Element[] | undefined;
 
   /**
    * Type of Invoice depending on domain, realm an usage (e.g. internal/external,
@@ -68012,6 +68291,20 @@ Modifier extensions
   _modifierExtension?: Element[] | undefined;
 
   /**
+   * Guidance on how to interpret the value by comparison to a normal or recommended
+   * range.
+   * Most observations only have one generic reference range. Systems MAY choose to
+   * restrict to only supplying the relevant reference range based on knowledge about
+   * the patient (e.g., specific to the patient's age, gender, weight and other
+   * factors), but this might not be possible or appropriate. Whenever more than one
+   * reference range is supplied, the differences between them SHOULD be provided in
+   * the reference range and/or age properties.
+   * @see {@link http://hl7.org/fhir/R4B/Observation-definitions.html#Observation.component.referenceRange}
+   */
+  referenceRange?: Array<ObservationReferenceRange> | undefined;
+  _referenceRange?: Element[] | undefined;
+
+  /**
    * The information determined as a result of making the observation, if the
    * information has a simple value.
    * Used when observation has a set of component observations. An observation may
@@ -69388,6 +69681,15 @@ Modifier extensions
   _name?: Element | undefined;
 
   /**
+   * The parts of a nested Parameter.
+   * Query Definitions only have one output parameter, named "result". This might not
+   * be described, but can be to allow a profile to be defined.
+   * @see {@link http://hl7.org/fhir/R4B/OperationDefinition-definitions.html#OperationDefinition.parameter.part}
+   */
+  part?: Array<OperationDefinitionParameter> | undefined;
+  _part?: Element[] | undefined;
+
+  /**
    * Identifies other resource parameters within the operation invocation that are
    * expected to resolve to this resource.
    * Resolution applies if the referenced parameter exists.
@@ -70543,6 +70845,15 @@ Modifier extensions
   _modifierExtension?: Element[] | undefined;
 
   /**
+   * Allows containers (and parts of containers) parwithin containers, still a single
+   * packaged product.  See also
+   * PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).
+   * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.package}
+   */
+  package?: Array<PackagedProductDefinitionPackage> | undefined;
+  _package?: Element[] | undefined;
+
+  /**
    * General characteristics of this item.
    * @see {@link http://hl7.org/fhir/R4B/PackagedProductDefinition-definitions.html#PackagedProductDefinition.package.property}
    */
@@ -71103,6 +71414,14 @@ Modifier extensions
    */
   name: string;
   _name?: Element | undefined;
+
+  /**
+   * A named part of a multi-part parameter.
+   * Only one level of nested parameters is allowed.
+   * @see {@link http://hl7.org/fhir/R4B/Parameters-definitions.html#Parameters.parameter.part}
+   */
+  part?: Array<ParametersParameter> | undefined;
+  _part?: Element[] | undefined;
 
   /**
    * If the parameter is a whole resource.
@@ -72662,6 +72981,16 @@ export interface Person extends DomainResource {
  * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action}
  */
 export interface PlanDefinitionAction extends BackboneElement {
+  /**
+   * Sub actions that are contained within the action. The behavior of this action
+   * determines the functionality of the sub-actions. For example, a selection
+   * behavior of at-most-one indicates that of the sub-actions, at most one may be
+   * chosen as part of realizing the action definition.
+   * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.action}
+   */
+  action?: Array<PlanDefinitionAction> | undefined;
+  _action?: Element[] | undefined;
+
   /**
    * Defines whether the action can be selected multiple times.
    * @see {@link http://hl7.org/fhir/R4B/PlanDefinition-definitions.html#PlanDefinition.action.cardinalityBehavior}
@@ -75338,6 +75667,25 @@ Modifier extensions
  */
 export interface ProvenanceEntity extends BackboneElement {
   /**
+   * The entity is attributed to an agent to express the agent's responsibility for
+   * that entity, possibly along with other agents. This description can be
+   * understood as shorthand for saying that the agent was responsible for the
+   * activity which generated the entity.
+   * A usecase where one Provenance.entity.agent is used where the Entity that was
+   * used in the creation/updating of the Target, is not in the context of the same
+   * custodianship as the Target, and thus the meaning of Provenance.entity.agent is
+   * to say that the entity referenced is managed elsewhere and that this Agent
+   * provided access to it.  This would be similar to where the Entity being
+   * referenced is managed outside FHIR, such as through HL7 v2, v3, or XDS. This
+   * might be where the Entity being referenced is managed in another FHIR resource
+   * server. Thus it explains the Provenance of that Entity's use in the context of
+   * this Provenance activity.
+   * @see {@link http://hl7.org/fhir/R4B/Provenance-definitions.html#Provenance.entity.agent}
+   */
+  agent?: Array<ProvenanceAgent> | undefined;
+  _agent?: Element[] | undefined;
+
+  /**
    * May be used to represent additional information that is not part of the basic
    * definition of the element. To make the use of extensions safe and manageable,
    * there is a strict set of governance  applied to the definition and use of
@@ -75724,6 +76072,16 @@ export interface QuestionnaireItem extends BackboneElement {
    */
   initial?: Array<QuestionnaireItemInitial> | undefined;
   _initial?: Element[] | undefined;
+
+  /**
+   * Text, questions and other groups to be nested beneath a question or group.
+   * There is no specified limit to the depth of nesting.  However, Questionnaire
+   * authors are encouraged to consider the impact on the user and user interface of
+   * overly deep nesting.
+   * @see {@link http://hl7.org/fhir/R4B/Questionnaire-definitions.html#Questionnaire.item.item}
+   */
+  item?: Array<QuestionnaireItem> | undefined;
+  _item?: Element[] | undefined;
 
   /**
    * An identifier that is unique within the Questionnaire allowing linkage to the
@@ -76631,6 +76989,13 @@ There
   _id?: Element | undefined;
 
   /**
+   * Questions or sub-groups nested beneath a question or group.
+   * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.item}
+   */
+  item?: Array<QuestionnaireResponseItem> | undefined;
+  _item?: Element[] | undefined;
+
+  /**
    * The item from the Questionnaire that corresponds to this item in the
    * QuestionnaireResponse resource.
    * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.linkId}
@@ -76700,6 +77065,13 @@ export interface QuestionnaireResponseItemAnswer extends BackboneElement {
    */
   id?: string | undefined;
   _id?: Element | undefined;
+
+  /**
+   * Nested groups and/or questions found within this particular answer.
+   * @see {@link http://hl7.org/fhir/R4B/QuestionnaireResponse-definitions.html#QuestionnaireResponse.item.answer.item}
+   */
+  item?: Array<QuestionnaireResponseItem> | undefined;
+  _item?: Element[] | undefined;
 
   /**
  * May be used to represent additional information that is not part of the basic
@@ -77236,6 +77608,17 @@ The type is the Canonical URL of Resource Definition that
  * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.case}
  */
 export interface RegulatedAuthorizationCase extends BackboneElement {
+  /**
+   * A regulatory submission from an organization to a regulator, as part of an
+   * assessing case. Multiple applications may occur over time, with more or
+   * different information to support or modify the submission or the authorization.
+   * The applications can be considered as steps within the longer running case or
+   * procedure for this authorization process.
+   * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.case.application}
+   */
+  application?: Array<RegulatedAuthorizationCase> | undefined;
+  _application?: Element[] | undefined;
+
   /**
    * Relevant date for this case.
    * @see {@link http://hl7.org/fhir/R4B/RegulatedAuthorization-definitions.html#RegulatedAuthorization.case.datePeriod}
@@ -78128,6 +78511,13 @@ A status of completed for a "doNotPerform"
  * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action}
  */
 export interface RequestGroupAction extends BackboneElement {
+  /**
+   * Sub actions.
+   * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.action}
+   */
+  action?: Array<RequestGroupAction> | undefined;
+  _action?: Element[] | undefined;
+
   /**
    * Defines whether the action can be selected multiple times.
    * @see {@link http://hl7.org/fhir/R4B/RequestGroup-definitions.html#RequestGroup.action.cardinalityBehavior}
@@ -83542,6 +83932,13 @@ Modifier extensions
   _name?: Element | undefined;
 
   /**
+   * Rules contained in this rule.
+   * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.rule}
+   */
+  rule?: Array<StructureMapGroupRule> | undefined;
+  _rule?: Element[] | undefined;
+
+  /**
    * Source inputs to the mapping.
    * @see {@link http://hl7.org/fhir/R4B/StructureMap-definitions.html#StructureMap.group.rule.source}
    */
@@ -86494,6 +86891,20 @@ Modifier extensions
   _status?: Element | undefined;
 
   /**
+   * A synonym of this particular name, by which the substance is also known.
+   * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.name.synonym}
+   */
+  synonym?: Array<SubstanceDefinitionName> | undefined;
+  _synonym?: Element[] | undefined;
+
+  /**
+   * A translation for this name into another human language.
+   * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.name.translation}
+   */
+  translation?: Array<SubstanceDefinitionName> | undefined;
+  _translation?: Element[] | undefined;
+
+  /**
    * Name type, for example 'systematic',  'scientific, 'brand'.
    * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.name.type}
    */
@@ -86962,6 +87373,13 @@ Modifier extensions
    */
   molecularFormulaByMoiety?: string | undefined;
   _molecularFormulaByMoiety?: Element | undefined;
+
+  /**
+   * The molecular weight or weight range (for proteins, polymers or nucleic acids).
+   * @see {@link http://hl7.org/fhir/R4B/SubstanceDefinition-definitions.html#SubstanceDefinition.structure.molecularWeight}
+   */
+  molecularWeight?: SubstanceDefinitionMolecularWeight | undefined;
+  _molecularWeight?: Element | undefined;
 
   /**
    * Optical activity type.
@@ -90476,6 +90894,13 @@ Modifier extensions
  */
   modifierExtension?: Array<Extension> | undefined;
   _modifierExtension?: Element[] | undefined;
+
+  /**
+   * An operation would involve a REST request to a server.
+   * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.teardown.action.operation}
+   */
+  operation: TestReportSetupActionOperation;
+  _operation?: Element | undefined;
 }
 
 /**
@@ -90563,6 +90988,13 @@ Modifier extensions
  */
 export interface TestReportTestAction extends BackboneElement {
   /**
+   * The results of the assertion performed on the previous operations.
+   * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.test.action.assert}
+   */
+  assert?: TestReportSetupActionAssert | undefined;
+  _assert?: Element | undefined;
+
+  /**
    * May be used to represent additional information that is not part of the basic
    * definition of the element. To make the use of extensions safe and manageable,
    * there is a strict set of governance  applied to the definition and use of
@@ -90608,6 +91040,13 @@ Modifier extensions
  */
   modifierExtension?: Array<Extension> | undefined;
   _modifierExtension?: Element[] | undefined;
+
+  /**
+   * An operation would involve a REST request to a server.
+   * @see {@link http://hl7.org/fhir/R4B/TestReport-definitions.html#TestReport.test.action.operation}
+   */
+  operation?: TestReportSetupActionOperation | undefined;
+  _operation?: Element | undefined;
 }
 
 /**
@@ -92177,6 +92616,13 @@ Modifier extensions
  */
   modifierExtension?: Array<Extension> | undefined;
   _modifierExtension?: Element[] | undefined;
+
+  /**
+   * An operation would involve a REST request to a server.
+   * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.teardown.action.operation}
+   */
+  operation: TestScriptSetupActionOperation;
+  _operation?: Element | undefined;
 }
 
 /**
@@ -92264,6 +92710,16 @@ Modifier extensions
  */
 export interface TestScriptTestAction extends BackboneElement {
   /**
+   * Evaluates the results of previous operations to determine if the server under
+   * test behaves appropriately.
+   * In order to evaluate an assertion, the request, response, and results of the
+   * most recently executed operation must always be maintained by the test engine.
+   * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.test.action.assert}
+   */
+  assert?: TestScriptSetupActionAssert | undefined;
+  _assert?: Element | undefined;
+
+  /**
    * May be used to represent additional information that is not part of the basic
    * definition of the element. To make the use of extensions safe and manageable,
    * there is a strict set of governance  applied to the definition and use of
@@ -92309,6 +92765,13 @@ Modifier extensions
  */
   modifierExtension?: Array<Extension> | undefined;
   _modifierExtension?: Element[] | undefined;
+
+  /**
+   * An operation would involve a REST request to a server.
+   * @see {@link http://hl7.org/fhir/R4B/TestScript-definitions.html#TestScript.test.action.operation}
+   */
+  operation?: TestScriptSetupActionOperation | undefined;
+  _operation?: Element | undefined;
 }
 
 /**
@@ -92956,6 +93419,17 @@ export interface UsageContext extends Element {
  * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose}
  */
 export interface ValueSetCompose extends BackboneElement {
+  /**
+   * Exclude one or more codes from the value set based on code system filters and/or
+   * other value sets.
+   * Usually this is used to selectively exclude codes that were included by
+   * subsumption in the inclusions. Any display names specified for the codes are
+   * ignored.
+   * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.compose.exclude}
+   */
+  exclude?: Array<ValueSetComposeInclude> | undefined;
+  _exclude?: Element[] | undefined;
+
   /**
    * May be used to represent additional information that is not part of the basic
    * definition of the element. To make the use of extensions safe and manageable,
@@ -93605,6 +94079,28 @@ export interface ValueSetExpansionContains extends BackboneElement {
    */
   code?: string | undefined;
   _code?: Element | undefined;
+
+  /**
+   * Other codes and entries contained under this entry in the hierarchy.
+   * If the expansion uses this element, there is  no implication about the logical
+   * relationship between them, and the  structure cannot be used for logical
+   * inferencing. The structure  exists to provide navigational assistance for
+   * helping human users to  locate codes in the expansion.
+   * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.contains.contains}
+   */
+  contains?: Array<ValueSetExpansionContains> | undefined;
+  _contains?: Element[] | undefined;
+
+  /**
+   * Additional representations for this item - other languages, aliases, specialized
+   * purposes, used for particular purposes, etc. These are relevant when the
+   * conditions of the expansion do not fix to a single correct representation.
+   * The designations provided must be based on the value set and code system
+   * definitions.
+   * @see {@link http://hl7.org/fhir/R4B/ValueSet-definitions.html#ValueSet.expansion.contains.designation}
+   */
+  designation?: Array<ValueSetComposeIncludeConceptDesignation> | undefined;
+  _designation?: Element[] | undefined;
 
   /**
    * The recommended display for this item in the expansion.

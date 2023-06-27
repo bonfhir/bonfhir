@@ -23,11 +23,11 @@ export interface NarrativeOptions {
 export const NARRATIVE_GENERATORS: Record<string, NarrativeGenerator> = {
   <% for (domainResource of fhir.domainResources) { -%>
     "<%= domainResource.type %>": [
-      <% for (const element of domainResource.ownRootElementsWithChoices.filter(x => x.isSummary)) {-%>["<%= element.name %>", "<%= element.backboneElementName ?? element.type.map((x) => x.code).join(" | ") %>"],<% } -%>
+      <% for (const element of domainResource.ownRootElementsWithChoices.filter(x => x.isSummary && x.type && x.type.length > 0)) {-%>["<%= element.name %>", "<%= element.backboneElementName ?? element.type.map((x) => x.code).join(" | ") %>"],<% } -%>
     ],
     <% for (const backboneElement of domainResource.backboneElements.filter(x => x.rootElement.isSummary)) { -%>
     "<%= backboneElement.rootElement.backboneElementName %>": [
-      <% for (const element of backboneElement.ownRootElementsWithChoices.filter(x => x.isSummary)) {-%>["<%= element.name %>", "<%= element.backboneElementName ?? element.type.map((x) => x.code).join(" | ") %>"],<% } -%>
+      <% for (const element of backboneElement.ownRootElementsWithChoices.filter(x => x.isSummary && x.type && x.type.length > 0)) {-%>["<%= element.name %>", "<%= element.backboneElementName ?? element.type.map((x) => x.code).join(" | ") %>"],<% } -%>
     ],
     <% } -%>
   <% } -%>
