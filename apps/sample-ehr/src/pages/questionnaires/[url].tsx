@@ -10,6 +10,7 @@ export default function QuestionnairePage() {
     <MainPage>
       <FhirQuestionnaire
         source={url}
+        onSubmit={(response) => alert(JSON.stringify(response, undefined, 2))}
         rendererProps={{ mainStack: { w: "50%" } }}
       />
     </MainPage>

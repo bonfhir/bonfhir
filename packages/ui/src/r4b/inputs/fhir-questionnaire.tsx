@@ -12,8 +12,7 @@ export interface FhirQuestionnaireProps<TRendererProps = any> {
   /** Either the Questionnaire URL to use, or the Questionnaire itself. */
   source: string | UseQueryResult<Retrieved<Questionnaire>>;
   fhirClient?: string | null | undefined;
-  value?: QuestionnaireResponse | null | undefined;
-  onChange?: ((value: QuestionnaireResponse) => void) | null | undefined;
+  onSubmit?: ((value: QuestionnaireResponse) => void) | null | undefined;
   rendererProps?: TRendererProps;
 }
 

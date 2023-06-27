@@ -83,3 +83,18 @@ export function codeableConcept(
     text,
   };
 }
+
+export function canonical(
+  resource:
+    | { url?: string | undefined; version?: string | undefined }
+    | null
+    | undefined
+): string | undefined {
+  if (!resource?.url) {
+    return;
+  }
+
+  return resource.version
+    ? `${resource.url}|${resource.version}`
+    : resource.url;
+}
