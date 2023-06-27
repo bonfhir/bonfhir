@@ -35,15 +35,15 @@ export function MantineFhirValue(
     );
   }
 
-  if (props.type === "markdown") {
+  if (props.type === "markdown" && props.options?.style === "html") {
     return (
-      <Text span {...props.rendererProps?.text}>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: props.formattedValue,
-          }}
-        />
-      </Text>
+      <Text
+        component="div"
+        dangerouslySetInnerHTML={{
+          __html: props.formattedValue,
+        }}
+        {...props.rendererProps?.text}
+      />
     );
   }
 

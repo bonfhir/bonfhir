@@ -70,7 +70,6 @@
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "dompurify": "*",
     "react": "*",
     "react-dom": "*"
   },

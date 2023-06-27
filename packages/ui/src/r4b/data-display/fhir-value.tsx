@@ -3,7 +3,7 @@ import {
   ValueFormatter,
   valueFormatters,
 } from "@bonfhir/core/r4b";
-import * as DOMPurify from "dompurify";
+import DOMPurify from "dompurify";
 import { ReactElement } from "react";
 import { useFhirUIContext } from "../context.js";
 
@@ -81,13 +81,8 @@ export function FhirValue<TRendererProps = any>(
     props.options
   );
 
-  if (props.type === "markdown") {
-    formattedValue = DOMPurify.sanitize(
-      formatter.format("markdown", props.value as never, {
-        ...props.options,
-        style: "html",
-      })
-    );
+  if (props.type === "markdown" && props.options?.style === "html") {
+    formattedValue = DOMPurify.sanitize(formattedValue);
   }
 
   return render<FhirValueRendererProps>("FhirValue", {
