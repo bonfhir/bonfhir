@@ -98,6 +98,9 @@ importers:
       dayjs:
         specifier: ^1.11.8
         version: 1.11.8
+      dompurify:
+        specifier: ^3.0.3
+        version: 3.0.3
       eslint:
         specifier: ^8.39.0
         version: 8.39.0
@@ -664,6 +667,9 @@ importers:
       '@testing-library/react':
         specifier: ^14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@types/dompurify':
+        specifier: ^3.0.2
+        version: 3.0.2
       '@types/jest':
         specifier: ^29.5.1
         version: 29.5.1
@@ -676,6 +682,9 @@ importers:
       '@types/uuid':
         specifier: ^9.0.1
         version: 9.0.1
+      dompurify:
+        specifier: ^3.0.3
+        version: 3.0.3
       esbuild-jest:
         specifier: ^0.5.0
         version: 0.5.0(esbuild@0.18.6)
@@ -3321,6 +3330,12 @@ packages:
       '@types/ms': 0.7.31
     dev: true
 
+  /@types/dompurify@3.0.2:
+    resolution: {integrity: sha512-YBL4ziFebbbfQfH5mlC+QTJsvh0oJUrWbmxKMyEdL7emlHJqGR2Qb34TEFKj+VCayBvjKy3xczMFNhugThUsfQ==}
+    dependencies:
+      '@types/trusted-types': 2.0.3
+    dev: true
+
   /@types/ejs@3.1.2:
     resolution: {integrity: sha512-ZmiaE3wglXVWBM9fyVC17aGPkLo/UgaOjEiI2FXQfyczrCefORPxIe+2dVmnmk3zkVIbizjrlQzmPGhSYGXG5g==}
     dev: true
@@ -3478,6 +3493,10 @@ packages:
 
   /@types/tough-cookie@4.0.2:
     resolution: {integrity: sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw==}
+    dev: true
+
+  /@types/trusted-types@2.0.3:
+    resolution: {integrity: sha512-NfQ4gyz38SL8sDNrSixxU2Os1a5xcdFxipAFxYEuLUlvU2uDwS4NUpsImcf1//SlWItCVMMLiylsxbmNMToV/g==}
     dev: true
 
   /@types/uuid@9.0.1:
@@ -4912,6 +4931,9 @@ packages:
     dependencies:
       domelementtype: 2.3.0
     dev: false
+
+  /dompurify@3.0.3:
+    resolution: {integrity: sha512-axQ9zieHLnAnHh0sfAamKYiqXMJAVwu+LM/alQ7WDagoWessyWvMSFyW65CqF3owufNu8HBcE4cM2Vflu7YWcQ==}
 
   /domutils@2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}

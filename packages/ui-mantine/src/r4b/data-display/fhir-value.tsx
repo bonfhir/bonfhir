@@ -43,9 +43,7 @@ export function MantineFhirValue(
       <Text span {...props.rendererProps?.text}>
         <div
           dangerouslySetInnerHTML={{
-            __html: formatter.format("markdown", props.value, {
-              style: "html",
-            }),
+            __html: props.formattedValue,
           }}
         />
       </Text>
