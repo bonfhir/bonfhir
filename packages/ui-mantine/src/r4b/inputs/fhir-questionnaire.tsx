@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   QuestionnaireItem,
   QuestionnaireResponse,
+  QuestionnaireResponseItem,
   build,
   canonical,
 } from "@bonfhir/core/r4b";
@@ -20,62 +23,31 @@ import {
   Title,
   TitleProps,
 } from "@mantine/core";
-import { ReactElement, useMemo } from "react";
+import { ReactElement, useEffect } from "react";
 import { UseFhirFormReturnType, useFhirForm } from "../hooks/use-fhir-form.js";
 
 export function MantineFhirQuestionnaire(
   props: FhirQuestionnaireRendererProps<MantineFhirQuestionnaireProps>
 ): ReactElement | null {
-  const itemsByLinkId = useMemo(() => {
-    if (!props.questionnaireQuery.data) {
-      return {};
-    }
-
-    function visit(
-      item: QuestionnaireItem[]
-    ): Record<string, QuestionnaireItem> {
-      return item.reduce((acc, item) => {
-        acc[item.linkId] = item;
-        if (item.item) {
-          acc = { ...acc, ...visit(item.item) };
-        }
-        return acc;
-      }, {} as Record<string, QuestionnaireItem>);
-    }
-
-    return visit(props.questionnaireQuery.data.item || []);
-  }, [props.questionnaireQuery.data]);
-
   const form = useFhirForm<object, (values: object) => QuestionnaireResponse>({
-    initialValues: {},
     transformValues(values) {
       return build("QuestionnaireResponse", {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         questionnaire: canonical(props.questionnaireQuery.data)!,
         status: "completed",
         authored: new Date().toISOString(),
-        item: Object.entries(values)
-          .map(([linkId, value]) => {
-            const originalItem = itemsByLinkId[linkId];
-            if (originalItem) {
-              return {
-                linkId,
-                text: originalItem.text,
-                answer: [
-                  {
-                    [`value${originalItem.type[0]?.toUpperCase()}${originalItem.type.slice(
-                      1
-                    )}`]: value,
-                  },
-                ],
-              };
-            }
-            return;
-          })
-          .filter(Boolean) as QuestionnaireResponse["item"],
+        item: buildQuestionnaireResponseItems(
+          props.questionnaireQuery.data?.item || [],
+          values
+        ),
       });
     },
   });
+
+  useEffect(() => {
+    if (props.questionnaireQuery.data && JSON.stringify(form.values) === "{}") {
+      form.setValues(buildValues(props.questionnaireQuery.data.item || [], ""));
+    }
+  }, [props.questionnaireQuery.data]);
 
   return (
     <FhirQueryLoader query={props.questionnaireQuery}>
@@ -96,12 +68,12 @@ export function MantineFhirQuestionnaire(
                 key={index}
                 props={props}
                 item={item}
-                level={0}
+                parentPath=""
                 form={form}
               />
             ))}
             <Group mt="md">
-              <Button type="submit">Save</Button>
+              <Button type="submit">Submit</Button>
             </Group>
           </Stack>
         </form>
@@ -117,20 +89,21 @@ export interface MantineFhirQuestionnaireProps {
   itemGroupStack?: StackProps | null | undefined;
   itemGroupTitle?: TitleProps | null | undefined;
   itemString?: FhirInputProps | null | undefined;
+  itemBoolean?: FhirInputProps | null | undefined;
 }
 
 function MantineQuestionnaireItemRenderer({
   props,
   item,
-  level,
+  parentPath,
   form,
 }: {
   props: FhirQuestionnaireRendererProps<MantineFhirQuestionnaireProps>;
   item: QuestionnaireItem;
-  level: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  parentPath: string;
   form: UseFhirFormReturnType<any, any>;
 }): ReactElement | null {
+  const level = parentPath.split(".").filter(Boolean).length;
   switch (item.type) {
     case "display": {
       return (
@@ -152,15 +125,17 @@ function MantineQuestionnaireItemRenderer({
               {item.text}
             </Title>
           )}
-          {(item.item || []).map((item: QuestionnaireItem, index: number) => (
-            <MantineQuestionnaireItemRenderer
-              key={index}
-              props={props}
-              item={item}
-              level={level + 1}
-              form={form}
-            />
-          ))}
+          {(item.item || []).map(
+            (childItem: QuestionnaireItem, index: number) => (
+              <MantineQuestionnaireItemRenderer
+                key={index}
+                props={props}
+                item={childItem}
+                parentPath={concatPath(parentPath, item.linkId)}
+                form={form}
+              />
+            )
+          )}
         </Stack>
       );
     }
@@ -171,12 +146,100 @@ function MantineQuestionnaireItemRenderer({
           label={item.text}
           required={item.required}
           disabled={item.readOnly}
-          {...form.getInputProps(item.linkId)}
+          {...form.getInputProps(concatPath(parentPath, item.linkId))}
           {...props.rendererProps?.itemString}
+        />
+      );
+    }
+    case "boolean": {
+      return (
+        <FhirInput
+          type="boolean"
+          label={item.text}
+          required={item.required}
+          disabled={item.readOnly}
+          {...form.getInputProps(concatPath(parentPath, item.linkId))}
+          {...props.rendererProps?.itemBoolean}
         />
       );
     }
   }
 
   return null;
+}
+
+function concatPath(...paths: string[]): string {
+  return paths.filter(Boolean).join(".");
+}
+
+function buildQuestionnaireResponseItems(
+  item: QuestionnaireItem[],
+  values: any
+): QuestionnaireResponseItem[] | undefined {
+  const result: QuestionnaireResponseItem[] = [];
+
+  for (const i of item) {
+    switch (i.type) {
+      case "group": {
+        const groupValues = values[i.linkId];
+        if (groupValues) {
+          const groupQuestionnaireResponseItems =
+            buildQuestionnaireResponseItems(i.item || [], groupValues);
+          if (groupQuestionnaireResponseItems?.length) {
+            result.push({
+              linkId: i.linkId,
+              text: i.text,
+              item: groupQuestionnaireResponseItems,
+            });
+          }
+        }
+        break;
+      }
+      case "string": {
+        if (values[i.linkId]) {
+          result.push({
+            linkId: i.linkId,
+            text: i.text,
+            answer: [
+              {
+                valueString: values[i.linkId],
+              },
+            ],
+          });
+        }
+        break;
+      }
+      case "boolean": {
+        if (values[i.linkId] != undefined) {
+          result.push({
+            linkId: i.linkId,
+            text: i.text,
+            answer: [
+              {
+                valueBoolean: values[i.linkId],
+              },
+            ],
+          });
+        }
+        break;
+      }
+    }
+  }
+
+  return result.length === 0 ? undefined : result;
+}
+
+function buildValues(item: QuestionnaireItem[], parentPath: string): object {
+  const result = {} as any;
+  for (const i of item) {
+    switch (i.type) {
+      case "group": {
+        result[i.linkId] = buildValues(
+          i.item || [],
+          `${parentPath ? `${parentPath}.` : ""}${i.linkId}`
+        );
+      }
+    }
+  }
+  return result;
 }
