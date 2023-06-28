@@ -12,9 +12,11 @@
     "dev": "turbo run dev",
     "format": "turbo run format",
     "preinstall": "npx only-allow pnpm",
+    "publish-packages": "turbo run build && changeset publish",
     "test": "turbo run test -- --passWithNoTests"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "turbo": "^1.10.6"
   },
   "pnpm": {

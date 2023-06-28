@@ -3,8 +3,8 @@ name: BonFHIR CI
 on:
   push:
     branches: [main]
-  pull_request:
-    types: [opened, synchronize]
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   build:
@@ -42,3 +42,16 @@ jobs:
         env:
           NODE_OPTIONS: "--max_old_space_size=4096"
         run: pnpm check && pnpm test
+
+      - name: Configure publishing
+        run: |
+          echo @bonfhir:https://npm.pkg.github.com/ > .npmrc
+          echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' >> .npmrc
+
+      - name: Create Release Pull Request or Publish to npm
+        uses: changesets/action@v1
+        with:
+          publish: pnpm publish-packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}

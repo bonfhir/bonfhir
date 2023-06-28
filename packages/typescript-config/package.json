@@ -1,5 +1,8 @@
 {
   "name": "@bonfhir/typescript-config",
   "description": "Shared typescript configuration for Bonfhir packages.",
-  "version": "2.0.0"
+  "version": "2.0.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }

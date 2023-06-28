@@ -2,6 +2,9 @@
   "name": "@bonfhir/prettier-config",
   "description": "Shared prettier configuration for Bonfhir packages.",
   "version": "2.0.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "main": "index.json",
   "dependencies": {
     "prettier": "^2.8.4",

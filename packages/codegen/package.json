@@ -1,6 +1,9 @@
 {
   "name": "@bonfhir/codegen",
   "version": "2.0.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "bonfhir-codegen": "ts-node src/index.ts",
     "build": "pnpm clean && rollup --config rollup.config.mjs",
