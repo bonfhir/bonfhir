@@ -90,6 +90,7 @@
     "@mantine/tiptap": "*",
     "@tabler/icons-react": "*",
     "@tanstack/react-query": "*",
+    "@tiptap/extension-link": "*",
     "@tiptap/pm": "*",
     "@tiptap/react": "*",
     "@tiptap/starter-kit": "*",

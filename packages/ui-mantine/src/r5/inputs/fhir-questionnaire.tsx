@@ -88,8 +88,7 @@ export interface MantineFhirQuestionnaireProps {
   itemDisplay?: FhirValueProps | null | undefined;
   itemGroupStack?: StackProps | null | undefined;
   itemGroupTitle?: TitleProps | null | undefined;
-  itemString?: FhirInputProps | null | undefined;
-  itemBoolean?: FhirInputProps | null | undefined;
+  itemInput?: FhirInputProps | null | undefined;
 }
 
 function MantineQuestionnaireItemRenderer({
@@ -104,7 +103,7 @@ function MantineQuestionnaireItemRenderer({
   form: UseFhirFormReturnType<any, any>;
 }): ReactElement | null {
   const level = parentPath.split(".").filter(Boolean).length;
-  switch (item.type) {
+  switch (item.type as string) {
     case "display": {
       return (
         <FhirValue
@@ -139,27 +138,53 @@ function MantineQuestionnaireItemRenderer({
         </Stack>
       );
     }
-    case "string": {
+    case "boolean":
+    case "decimal":
+    case "integer":
+    case "date":
+    case "dateTime":
+    case "time":
+    case "string":
+    case "url": {
       return (
         <FhirInput
-          type="string"
+          type={item.type as any}
           label={item.text}
           required={item.required}
           disabled={item.readOnly}
           {...form.getInputProps(concatPath(parentPath, item.linkId))}
-          {...props.rendererProps?.itemString}
+          {...props.rendererProps?.itemInput}
         />
       );
     }
-    case "boolean": {
+    case "text": {
       return (
         <FhirInput
-          type="boolean"
+          type="string"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          mode="multiline"
           label={item.text}
           required={item.required}
           disabled={item.readOnly}
           {...form.getInputProps(concatPath(parentPath, item.linkId))}
-          {...props.rendererProps?.itemBoolean}
+          {...props.rendererProps?.itemInput}
+        />
+      );
+    }
+    case "choice":
+    case "coding": {
+      return (
+        <FhirInput
+          type="Coding"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          source={item.answerValueSet!}
+          label={item.text}
+          required={item.required}
+          disabled={item.readOnly}
+          {...form.getInputProps(concatPath(parentPath, item.linkId))}
+          {...props.rendererProps?.itemInput}
         />
       );
     }
@@ -195,28 +220,19 @@ function buildQuestionnaireResponseItems(
         }
         break;
       }
-      case "string": {
+      case "question":
+      case "display": {
+        break;
+      }
+      default: {
         if (values[i.linkId]) {
           result.push({
             linkId: i.linkId,
             text: i.text,
             answer: [
               {
-                valueString: values[i.linkId],
-              },
-            ],
-          });
-        }
-        break;
-      }
-      case "boolean": {
-        if (values[i.linkId] != undefined) {
-          result.push({
-            linkId: i.linkId,
-            text: i.text,
-            answer: [
-              {
-                valueBoolean: values[i.linkId],
+                [`value${i.type[0]?.toUpperCase()}${i.type.slice(1)}`]:
+                  values[i.linkId],
               },
             ],
           });
@@ -236,8 +252,14 @@ function buildValues(item: QuestionnaireItem[], parentPath: string): object {
       case "group": {
         result[i.linkId] = buildValues(
           i.item || [],
-          `${parentPath ? `${parentPath}.` : ""}${i.linkId}`
+          concatPath(parentPath, i.linkId)
         );
+        break;
+      }
+      default: {
+        result[i.linkId] = Object.entries(i.initial?.[0] || {}).find(
+          ([key, value]) => key.startsWith("value") && value
+        )?.[1];
       }
     }
   }
