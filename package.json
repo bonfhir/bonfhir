@@ -16,5 +16,10 @@
   },
   "devDependencies": {
     "turbo": "^1.10.6"
+  },
+  "pnpm": {
+    "overrides": {
+      "semver@<7.5.2": ">=7.5.2"
+    }
   }
 }
