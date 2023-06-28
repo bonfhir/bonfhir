@@ -11,6 +11,7 @@
     "codegen": "turbo run codegen",
     "dev": "turbo run dev",
     "format": "turbo run format",
+    "preinstall": "npx only-allow pnpm",
     "test": "turbo run test -- --passWithNoTests"
   },
   "devDependencies": {

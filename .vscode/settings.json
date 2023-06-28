@@ -32,6 +32,10 @@
       "source.fixAll.eslint": true
     }
   },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
   "cSpell.words": [
     "autosize",
     "bonfhir",
@@ -49,6 +53,7 @@
     "loglevel",
     "Mantine",
     "onwarn",
+    "preinstall",
     "revinclude",
     "revincluded",
     "searchset",
