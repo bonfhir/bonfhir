@@ -21,6 +21,7 @@ import {
 } from "./fhir-types.codegen.js";
 import { Formatter } from "./formatters.js";
 import { merge } from "./merge.js";
+import { Merger } from "./mergers/index.js";
 import {
   ExtractOperationResultType,
   Operation,
@@ -534,12 +535,42 @@ export type CreateOrResult<T> = [T, boolean];
 
 export async function createOr<TResource extends AnyResource>(
   client: Pick<FhirClient, "create" | "update" | "search">,
-  action: CreateOrAction,
+  action: Exclude<CreateOrAction, "merge">,
   resource: TResource,
   search?:
     | FhirClientSearchParameters<TResource["resourceType"]>
     | null
     | undefined
+): Promise<CreateOrResult<TResource>>;
+export async function createOr<TResource extends AnyResource>(
+  client: Pick<FhirClient, "create" | "update" | "search">,
+  action: "merge",
+  resource: TResource,
+  search?:
+    | FhirClientSearchParameters<TResource["resourceType"]>
+    | null
+    | undefined,
+  mergers?: Array<Merger> | null | undefined
+): Promise<CreateOrResult<TResource>>;
+export async function createOr<TResource extends AnyResource>(
+  client: Pick<FhirClient, "create" | "update" | "search">,
+  action: CreateOrAction,
+  resource: TResource,
+  search?:
+    | FhirClientSearchParameters<TResource["resourceType"]>
+    | null
+    | undefined,
+  mergers?: Array<Merger> | null | undefined
+): Promise<CreateOrResult<TResource>>;
+export async function createOr<TResource extends AnyResource>(
+  client: Pick<FhirClient, "create" | "update" | "search">,
+  action: CreateOrAction,
+  resource: TResource,
+  search?:
+    | FhirClientSearchParameters<TResource["resourceType"]>
+    | null
+    | undefined,
+  mergers?: Array<Merger> | null | undefined
 ): Promise<CreateOrResult<TResource>> {
   const finalSearch = resolveSearch(resource, search);
 
@@ -586,7 +617,11 @@ export async function createOr<TResource extends AnyResource>(
   }
 
   if (action === "merge") {
-    const [merged, isUpdated] = merge({ current: found, incoming: resource });
+    const [merged, isUpdated] = merge({
+      current: found,
+      incoming: resource,
+      mergers,
+    });
     if (isUpdated) {
       return [await client.update(merged), true];
     }

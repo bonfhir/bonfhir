@@ -39,6 +39,7 @@ import {
   Retrieved,
 } from "./fhir-types.codegen.js";
 import { urlSafeConcat } from "./lang-utils.js";
+import { Merger } from "./mergers/index.js";
 import {
   ExtractOperationResultType,
   Operation,
@@ -337,14 +338,41 @@ export class FetchFhirClient implements FhirClient {
   }
 
   public async createOr<TResource extends AnyResource>(
-    action: CreateOrAction,
+    action: Exclude<CreateOrAction, "merge">,
     resource: TResource,
     search?:
       | FhirClientSearchParameters<TResource["resourceType"]>
       | null
       | undefined
+  ): Promise<CreateOrResult<TResource>>;
+  public async createOr<TResource extends AnyResource>(
+    action: "merge",
+    resource: TResource,
+    search?:
+      | FhirClientSearchParameters<TResource["resourceType"]>
+      | null
+      | undefined,
+    mergers?: Array<Merger> | null | undefined
+  ): Promise<CreateOrResult<TResource>>;
+  public async createOr<TResource extends AnyResource>(
+    action: CreateOrAction,
+    resource: TResource,
+    search?:
+      | FhirClientSearchParameters<TResource["resourceType"]>
+      | null
+      | undefined,
+    mergers?: Array<Merger> | null | undefined
+  ): Promise<CreateOrResult<TResource>>;
+  public async createOr<TResource extends AnyResource>(
+    action: CreateOrAction,
+    resource: TResource,
+    search?:
+      | FhirClientSearchParameters<TResource["resourceType"]>
+      | null
+      | undefined,
+    mergers?: Array<Merger> | null | undefined
   ): Promise<CreateOrResult<TResource>> {
-    return createOr(this, action, resource, search);
+    return createOr(this, action, resource, search, mergers);
   }
 
   public save<TResource extends AnyResource>(
