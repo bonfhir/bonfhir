@@ -18,6 +18,7 @@ import {
 import {
   Alert,
   Button,
+  ButtonProps,
   Group,
   Loader,
   LoaderProps,
@@ -27,7 +28,7 @@ import {
   TitleProps,
 } from "@mantine/core";
 import { IconAlertCircle } from "@tabler/icons-react";
-import { ReactElement, useEffect } from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
 import { UseFhirFormReturnType, useFhirForm } from "../hooks/use-fhir-form.js";
 
 export function MantineFhirQuestionnaire(
@@ -111,7 +112,18 @@ export function MantineFhirQuestionnaire(
           />
         ))}
         <Group mt="md">
-          <Button type="submit">Submit</Button>
+          <Button type="submit" {...props.rendererProps?.submit}>
+            {props.rendererProps?.submitText || "Submit"}
+          </Button>
+          {props.onCancel && (
+            <Button
+              variant="outline"
+              onClick={props.onCancel}
+              {...props.rendererProps?.cancel}
+            >
+              {props.rendererProps?.cancelText || "Cancel"}
+            </Button>
+          )}
         </Group>
       </Stack>
     </form>
@@ -126,6 +138,10 @@ export interface MantineFhirQuestionnaireProps {
   itemGroupStack?: StackProps | null | undefined;
   itemGroupTitle?: TitleProps | null | undefined;
   itemInput?: FhirInputProps | null | undefined;
+  submit?: ButtonProps | null | undefined;
+  submitText?: ReactNode | null | undefined;
+  cancel?: ButtonProps | null | undefined;
+  cancelText?: ReactNode | null | undefined;
 }
 
 function MantineQuestionnaireItemRenderer({

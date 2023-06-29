@@ -19,6 +19,7 @@ export default function QuestionnairePage() {
         <FhirQuestionnaire
           source={url}
           onSubmit={setQuestionnaireResponse}
+          onCancel={() => router.push("/")}
           rendererProps={{ mainStack: { w: "50%" } }}
         />
         <Prism language="json">
