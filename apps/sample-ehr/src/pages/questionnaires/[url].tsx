@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function QuestionnairePage() {
   const router = useRouter();
-  const { url } = router.query as { url: string };
+  const { url } = router.query as { url: string | undefined };
   const [questionnaireResponse, setQuestionnaireResponse] = useState<
     QuestionnaireResponse | undefined
   >(undefined);

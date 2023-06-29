@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   QuestionnaireItem,
+  QuestionnaireItemType,
   QuestionnaireResponse,
   QuestionnaireResponseItem,
   build,
@@ -10,19 +11,22 @@ import {
 import {
   FhirInput,
   FhirInputProps,
-  FhirQueryLoader,
   FhirQuestionnaireRendererProps,
   FhirValue,
   FhirValueProps,
 } from "@bonfhir/ui/r4b";
 import {
+  Alert,
   Button,
   Group,
+  Loader,
+  LoaderProps,
   Stack,
   StackProps,
   Title,
   TitleProps,
 } from "@mantine/core";
+import { IconAlertCircle } from "@tabler/icons-react";
 import { ReactElement, useEffect } from "react";
 import { UseFhirFormReturnType, useFhirForm } from "../hooks/use-fhir-form.js";
 
@@ -32,11 +36,11 @@ export function MantineFhirQuestionnaire(
   const form = useFhirForm<object, (values: object) => QuestionnaireResponse>({
     transformValues(values) {
       return build("QuestionnaireResponse", {
-        questionnaire: canonical(props.questionnaireQuery.data)!,
+        questionnaire: canonical(props.questionnaire)!,
         status: "completed",
         authored: new Date().toISOString(),
         item: buildQuestionnaireResponseItems(
-          props.questionnaireQuery.data?.item || [],
+          props.questionnaire!.item || [],
           values
         ),
       });
@@ -44,46 +48,79 @@ export function MantineFhirQuestionnaire(
   });
 
   useEffect(() => {
-    if (props.questionnaireQuery.data && JSON.stringify(form.values) === "{}") {
-      form.setValues(buildValues(props.questionnaireQuery.data.item || [], ""));
+    if (props.isLoading || JSON.stringify(form.values) !== "{}") {
+      return;
     }
-  }, [props.questionnaireQuery.data]);
+
+    if (props.questionnaire) {
+      form.setValues(
+        buildInitialValues(
+          props.questionnaire.item || [],
+          "",
+          props.questionnaireResponse?.item || []
+        )
+      );
+    }
+  }, [props.isLoading, props.questionnaire, props.questionnaireResponse]);
+
+  if (props.isLoading || !props.questionnaire) {
+    return (
+      <Stack align="center" {...props.rendererProps?.mainStack}>
+        <Loader {...props.rendererProps?.loader} />
+      </Stack>
+    );
+  }
+
+  if (props.errors.length > 0) {
+    console.error(props.errors);
+    return (
+      <Stack {...props.rendererProps?.mainStack}>
+        {props.errors.map((error, index) => (
+          <Alert
+            key={index}
+            icon={<IconAlertCircle size="1rem" />}
+            title="Something went wrong."
+            color="red"
+          >
+            <Stack>{error.message}</Stack>
+          </Alert>
+        ))}
+      </Stack>
+    );
+  }
 
   return (
-    <FhirQueryLoader query={props.questionnaireQuery}>
-      {(questionnaire) => (
-        <form
-          onSubmit={form.onSubmit((questionnaireResponse) =>
-            props.onSubmit?.(questionnaireResponse)
-          )}
-        >
-          <Stack {...props.rendererProps?.mainStack}>
-            {questionnaire.title && (
-              <Title order={2} {...props.rendererProps?.title}>
-                {questionnaire.title}
-              </Title>
-            )}
-            {(questionnaire.item || []).map((item, index) => (
-              <MantineQuestionnaireItemRenderer
-                key={index}
-                props={props}
-                item={item}
-                parentPath=""
-                form={form}
-              />
-            ))}
-            <Group mt="md">
-              <Button type="submit">Submit</Button>
-            </Group>
-          </Stack>
-        </form>
+    <form
+      onSubmit={form.onSubmit((questionnaireResponse) =>
+        props.onSubmit?.(questionnaireResponse)
       )}
-    </FhirQueryLoader>
+    >
+      <Stack {...props.rendererProps?.mainStack}>
+        {props.questionnaire!.title && (
+          <Title order={2} {...props.rendererProps?.title}>
+            {props.questionnaire!.title}
+          </Title>
+        )}
+        {(props.questionnaire!.item || []).map((item, index) => (
+          <MantineQuestionnaireItemRenderer
+            key={index}
+            props={props}
+            item={item}
+            parentPath=""
+            form={form}
+          />
+        ))}
+        <Group mt="md">
+          <Button type="submit">Submit</Button>
+        </Group>
+      </Stack>
+    </form>
   );
 }
 
 export interface MantineFhirQuestionnaireProps {
   mainStack?: StackProps | null | undefined;
+  loader?: LoaderProps | null | undefined;
   title?: TitleProps | null | undefined;
   itemDisplay?: FhirValueProps | null | undefined;
   itemGroupStack?: StackProps | null | undefined;
@@ -103,6 +140,14 @@ function MantineQuestionnaireItemRenderer({
   form: UseFhirFormReturnType<any, any>;
 }): ReactElement | null {
   const level = parentPath.split(".").filter(Boolean).length;
+  const additionalPropsAsString = item.extension?.find(
+    (x) =>
+      x.url ===
+      "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props"
+  )?.valueString;
+  const additionalProps = additionalPropsAsString
+    ? JSON.parse(additionalPropsAsString)
+    : {};
   switch (item.type as string) {
     case "display": {
       return (
@@ -110,6 +155,7 @@ function MantineQuestionnaireItemRenderer({
           type="string"
           value={item.text}
           {...props.rendererProps?.itemDisplay}
+          {...additionalProps}
         />
       );
     }
@@ -120,6 +166,7 @@ function MantineQuestionnaireItemRenderer({
             <Title
               order={level + 3 > 6 ? 6 : level + 3}
               {...props.rendererProps?.itemGroupTitle}
+              {...additionalProps}
             >
               {item.text}
             </Title>
@@ -154,6 +201,7 @@ function MantineQuestionnaireItemRenderer({
           disabled={item.readOnly}
           {...form.getInputProps(concatPath(parentPath, item.linkId))}
           {...props.rendererProps?.itemInput}
+          {...additionalProps}
         />
       );
     }
@@ -169,6 +217,7 @@ function MantineQuestionnaireItemRenderer({
           disabled={item.readOnly}
           {...form.getInputProps(concatPath(parentPath, item.linkId))}
           {...props.rendererProps?.itemInput}
+          {...additionalProps}
         />
       );
     }
@@ -185,6 +234,7 @@ function MantineQuestionnaireItemRenderer({
           disabled={item.readOnly}
           {...form.getInputProps(concatPath(parentPath, item.linkId))}
           {...props.rendererProps?.itemInput}
+          {...additionalProps}
         />
       );
     }
@@ -204,7 +254,7 @@ function buildQuestionnaireResponseItems(
   const result: QuestionnaireResponseItem[] = [];
 
   for (const i of item) {
-    switch (i.type) {
+    switch (i.type as QuestionnaireItemType | "choice") {
       case "group": {
         const groupValues = values[i.linkId];
         if (groupValues) {
@@ -222,6 +272,20 @@ function buildQuestionnaireResponseItems(
       }
       case "question":
       case "display": {
+        break;
+      }
+      case "choice": {
+        if (values[i.linkId]) {
+          result.push({
+            linkId: i.linkId,
+            text: i.text,
+            answer: [
+              {
+                valueCoding: values[i.linkId],
+              },
+            ],
+          });
+        }
         break;
       }
       default: {
@@ -245,19 +309,28 @@ function buildQuestionnaireResponseItems(
   return result.length === 0 ? undefined : result;
 }
 
-function buildValues(item: QuestionnaireItem[], parentPath: string): object {
+function buildInitialValues(
+  item: QuestionnaireItem[],
+  parentPath: string,
+  responseItem: QuestionnaireResponseItem[]
+): object {
   const result = {} as any;
   for (const i of item) {
+    const responseI = responseItem.find(
+      (responseI) => responseI.linkId === i.linkId
+    );
     switch (i.type) {
       case "group": {
-        result[i.linkId] = buildValues(
+        result[i.linkId] = buildInitialValues(
           i.item || [],
-          concatPath(parentPath, i.linkId)
+          concatPath(parentPath, i.linkId),
+          responseI?.item || []
         );
         break;
       }
       default: {
-        result[i.linkId] = Object.entries(i.initial?.[0] || {}).find(
+        const initialValue = responseI?.answer || i.initial;
+        result[i.linkId] = Object.entries(initialValue?.[0] || {}).find(
           ([key, value]) => key.startsWith("value") && value
         )?.[1];
       }
