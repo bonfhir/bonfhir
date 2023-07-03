@@ -1,5 +1,5 @@
 import { MainPage, NavButton, TitleDivider } from "@/components";
-import { OrganizationSortOrder } from "@bonfhir/core/r4b";
+import { Address, OrganizationSortOrder } from "@bonfhir/core/r4b";
 import { useFhirSearchControllerNext } from "@bonfhir/next/r4b/client";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
@@ -56,7 +56,13 @@ export default function Organizations() {
                     key: "address",
                     title: "Address",
                     render: (row) => (
-                      <FhirValue type="Address" value={row.address} />
+                      <>
+                        <FhirValue
+                          type="Address"
+                          value={row.address as Address[]}
+                        />
+                        <FhirValue type="Identifier" value={row.identifier} />
+                      </>
                     ),
                   },
                 ]}

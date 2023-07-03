@@ -29,6 +29,7 @@ export function toTsType(fhirType: string): string {
     case "instant":
     case "markdown":
     case "oid":
+    case "integer64": // TODO: Investigate BigInt support
     case "time":
     case "uri":
     case "url":
@@ -36,7 +37,6 @@ export function toTsType(fhirType: string): string {
     case "xhtml":
       return "string";
     case "integer":
-    case "integer64": // TODO: Investigate BigInt support
     case "decimal":
     case "positiveInt":
     case "unsignedInt":

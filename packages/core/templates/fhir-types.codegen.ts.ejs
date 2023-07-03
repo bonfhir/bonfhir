@@ -17,7 +17,9 @@
 <% const renderElement = (element) => { %>
   <%= element.jsDoc %>
   <%= element.name %><% if (element.isOptional) { %>?<% } %>: <%= element.tsType %>;
+  <% if (element.isPrimitiveType || element.name === "extension") { -%>
   _<%= element.name %>?: Element<% if (element.isArray) { %>[]<% } %> | undefined;
+  <% } -%>
 <% } %>
 
 <% for (const structureDef of fhir.structureDefinitions) { %>

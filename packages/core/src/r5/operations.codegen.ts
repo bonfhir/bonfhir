@@ -111,18 +111,22 @@ export interface ActivityDefinitionApplyOperationParameters {
    * Group. Subjects provided in this parameter will be resolved as the subject of
    * the PlanDefinition based on the type of the subject. If multiple subjects of the
    * same type are provided, the behavior is implementation-defined
+   * @fhirType string
    */
   subject: Array<string>;
   /**
    * The encounter in context, if any
+   * @fhirType string
    */
   encounter?: string | undefined;
   /**
    * The practitioner in context
+   * @fhirType string
    */
   practitioner?: string | undefined;
   /**
    * The organization in context
+   * @fhirType string
    */
   organization?: string | undefined;
   /**
@@ -699,6 +703,7 @@ export interface CodeSystemFindMatchesOperationParameters {
   system?: string | undefined;
   /**
    * The version of the system for the inferencing to be performed
+   * @fhirType string
    */
   version?: string | undefined;
   /**
@@ -710,11 +715,13 @@ export interface CodeSystemFindMatchesOperationParameters {
    * If the operation is being used by a human, the terminology server can return a
    * list of possible matches, with commentary. For a machine, the server returns
    * complete or partial matches, not possible matches. The default value is 'false'
+   * @fhirType boolean
    */
   exact: boolean;
   /**
    * Post-coordinated expressions are allowed to be returned in the matching codes
    * (mainly for SNOMED CT). Default = false
+   * @fhirType boolean
    */
   compositional?: boolean | undefined;
 }
@@ -779,6 +786,7 @@ export interface CodeSystemFindMatchesOperationMatch {
   unmatched?: Array<CodeSystemFindMatchesOperationMatchUnmatched> | undefined;
   /**
    * Information about the quality of the match, if operation is for a human
+   * @fhirType string
    */
   comment?: string | undefined;
 }
@@ -883,6 +891,7 @@ export interface CodeSystemLookupOperationParameters {
   system?: string | undefined;
   /**
    * The version of the system, if one was provided in the source data
+   * @fhirType string
    */
   version?: string | undefined;
   /**
@@ -932,18 +941,22 @@ export interface CodeSystemLookupOperationParameters {
 export interface CodeSystemLookupOperationResult {
   /**
    * A display name for the code system
+   * @fhirType string
    */
   name: string;
   /**
    * The version that these details are based on
+   * @fhirType string
    */
   version?: string | undefined;
   /**
    * The preferred display for this concept
+   * @fhirType string
    */
   display: string;
   /**
    * A statement of the meaning of the concept from the code system
+   * @fhirType string
    */
   definition?: string | undefined;
   /**
@@ -978,6 +991,7 @@ export interface CodeSystemLookupOperationDesignation {
   additionalUse?: Array<Coding> | undefined;
   /**
    * The text value for this designation
+   * @fhirType string
    */
   value: string;
 }
@@ -999,6 +1013,7 @@ export interface CodeSystemLookupOperationProperty {
   value?: Element | undefined;
   /**
    * Human Readable representation of the property value (e.g. display for a code)
+   * @fhirType string
    */
   description?: string | undefined;
   /**
@@ -1032,6 +1047,7 @@ export interface CodeSystemLookupOperationPropertySubproperty {
   /**
    * Human Readable representation of the sub-property value (e.g. display for a
    * code)
+   * @fhirType string
    */
   description?: string | undefined;
   /**
@@ -1114,6 +1130,7 @@ export interface CodeSystemSubsumesOperationParameters {
   system?: string | undefined;
   /**
    * The version of the code system, if one was provided in the source data
+   * @fhirType string
    */
   version?: string | undefined;
   /**
@@ -1219,6 +1236,7 @@ export interface CodeSystemValidateCodeOperationParameters {
   code?: string | undefined;
   /**
    * The version of the code system, if one was provided in the source data
+   * @fhirType string
    */
   version?: string | undefined;
   /**
@@ -1227,6 +1245,7 @@ export interface CodeSystemValidateCodeOperationParameters {
    * display value, but may choose to return a recommended display name in an
    * extension in the outcome. Whether displays are case sensitive is code system
    * dependent
+   * @fhirType string
    */
   display?: string | undefined;
   /**
@@ -1266,6 +1285,7 @@ Note that. 'abstract' is a property defined by many HL7 code systems
  * e.g. as decision making criterion, or when editing value sets themselves. This
  * parameter allows a client to indicate to the server that it is working in such a
  * context.
+ * @fhirType boolean
  */
   abstract?: boolean | undefined;
   /**
@@ -1279,15 +1299,18 @@ Note that. 'abstract' is a property defined by many HL7 code systems
 export interface CodeSystemValidateCodeOperationResult {
   /**
    * True if the concept details supplied are valid
+   * @fhirType boolean
    */
   result: boolean;
   /**
    * Error details, if result = false. If this is provided when result = true, the
    * message carries hints and warnings
+   * @fhirType string
    */
   message?: string | undefined;
   /**
    * A valid display for the concept if the system wishes to display this to a user
+   * @fhirType string
    */
   display?: string | undefined;
   /**
@@ -1302,6 +1325,7 @@ export interface CodeSystemValidateCodeOperationResult {
   system?: string | undefined;
   /**
    * The version of the system of the code that was validated
+   * @fhirType string
    */
   version?: string | undefined;
   /**
@@ -1368,6 +1392,7 @@ export interface CompositionDocumentOperationParameters {
    * is generated. Value = true or false (default is for the server to decide). If
    * the document is stored, its location can be inferred from the Bundle.id, but it
    * SHOULD be provided explicitly in the HTTP Location header in the response
+   * @fhirType boolean
    */
   persist?: boolean | undefined;
   /**
@@ -1419,6 +1444,7 @@ export interface ConceptMapClosureOperationParameters {
   /**
    * The name that defines the particular context for the subsumption based closure
    * table
+   * @fhirType string
    */
   name: string;
   /**
@@ -1428,6 +1454,7 @@ export interface ConceptMapClosureOperationParameters {
   /**
    * A request to resynchronise - request to send all new entries since the nominated
    * version was sent by the server
+   * @fhirType string
    */
   version?: string | undefined;
 }
@@ -1536,6 +1563,7 @@ export interface ConceptMapTranslateOperationParameters {
    * be used for the translation. This is an arbitrary value managed by the concept
    * map author and is not expected to be globally unique. For example, it might be a
    * timestamp (e.g. yyyymmdd) if a managed version is not available.
+   * @fhirType string
    */
   conceptMapVersion?: string | undefined;
   /**
@@ -1551,6 +1579,7 @@ export interface ConceptMapTranslateOperationParameters {
   system?: string | undefined;
   /**
    * The version of the system, if one was provided in the source data
+   * @fhirType string
    */
   version?: string | undefined;
   /**
@@ -1610,12 +1639,14 @@ export interface ConceptMapTranslateOperationResult {
   /**
    * True if the concept could be translated successfully. The value can only be true
    * if at least one returned match has a relationship other than 'not-related-to'.
+   * @fhirType boolean
    */
   result: boolean;
   /**
    * Error details, for display to a human. If this is provided when result = true,
    * the message carries hints and warnings (e.g. a note that the matches could be
    * improved by providing additional detail)
+   * @fhirType string
    */
   message?: string | undefined;
   /**
@@ -1922,6 +1953,7 @@ export interface DocumentReferenceDocrefOperationParameters {
    * This on-demand parameter allows client to dictate whether they are requesting
    * only 'on-demand' or both 'on-demand' and 'stable' documents (or delayed/deferred
    * assembly) that meet the query parameters
+   * @fhirType boolean
    */
   "on-demand"?: boolean | undefined;
 }
@@ -1979,6 +2011,7 @@ export interface DocumentReferenceGenerateOperationParameters {
   /**
    * Whether to store the document at the document end-point (/Document) or not, once
    * it is generated (default is for the server to decide).
+   * @fhirType boolean
    */
   persist?: boolean | undefined;
 }
@@ -2340,6 +2373,7 @@ export interface LibraryDataRequirementsOperationParameters {
   resourceId?: string | null | undefined;
   /**
    * The target of the data requirements operation
+   * @fhirType string
    */
   target?: string | undefined;
 }
@@ -2449,10 +2483,12 @@ export interface MeasureCareGapsOperationParameters {
   /**
    * The topic to be used to determine which measures are considered for the care
    * gaps report. Any measure with the given topic will be included in the report
+   * @fhirType string
    */
   topic: string;
   /**
    * Subject for which the care gaps report will be produced
+   * @fhirType string
    */
   subject: string;
 }
@@ -2513,18 +2549,21 @@ export interface MeasureCollectDataOperationParameters {
    * The measure to evaluate. This parameter is only required when the operation is
    * invoked on the resource type, it is not used when invoking the operation on a
    * Measure instance
+   * @fhirType string
    */
   measure?: string | undefined;
   /**
    * Subject for which the measure will be collected. If not specified, measure data
    * will be collected for all subjects that meet the requirements of the measure. If
    * specified, the measure will only be calculated for the referenced subject(s)
+   * @fhirType string
    */
   subject?: string | undefined;
   /**
    * Practitioner for which the measure will be collected. If specified, measure data
    * will be collected only for subjects that have a primary relationship to the
    * identified practitioner
+   * @fhirType string
    */
   practitioner?: string | undefined;
   /**
@@ -2657,6 +2696,7 @@ export interface MeasureEvaluateMeasureOperationParameters {
    * instance level, this parameter is not allowed; if the operation is invoked at
    * the type level, this parameter may only be used if the url parameter is
    * supplied.
+   * @fhirType string
    */
   version?: string | undefined;
   /**
@@ -2665,6 +2705,7 @@ export interface MeasureEvaluateMeasureOperationParameters {
    * Subjects provided in this parameter will be resolved as the subject of the
    * measure based on the type of the subject. If multiple subjects of the same type
    * are provided, the behavior is implementation-defined
+   * @fhirType string
    */
   subject?: string | undefined;
   /**
@@ -2696,10 +2737,12 @@ export interface MeasureEvaluateMeasureOperationParameters {
    * Practitioner, PractitionerRole, or Organization. If specified, the measure will
    * be calculated for subjects that have a primary relationship to the identified
    * provider. How this relationship is determined is implementation-specific.
+   * @fhirType string
    */
   provider?: string | undefined;
   /**
    * The location for which the report will be run.
+   * @fhirType string
    */
   location?: string | undefined;
   /**
@@ -2885,6 +2928,7 @@ export interface MessageHeaderProcessMessageOperationParameters {
   content: Bundle;
   /**
    * If 'true' the message is processed using the asynchronous messaging pattern
+   * @fhirType boolean
    */
   async?: boolean | undefined;
   /**
@@ -2963,6 +3007,7 @@ export interface NamingSystemPreferredIdOperationParameters {
    * OID as a URI, a plain OID, or a v2 table 0396 code). If the server can't tell
    * what type of identifier it is, it can try it as multiple types. It is an error
    * if more than one system matches the provided identifier
+   * @fhirType string
    */
   id: string;
   /**
@@ -2981,6 +3026,7 @@ export interface NamingSystemPreferredIdOperationParameters {
 export interface NamingSystemPreferredIdOperationResult {
   /**
    * OIDs are return as plain OIDs (not the URI form).
+   * @fhirType string
    */
   result: string;
 }
@@ -3056,6 +3102,7 @@ export interface NamingSystemTranslateIdOperationParameters {
    * OID as a URI, a plain OID, or a v2 table 0396 code). If the server can't tell
    * what type of identifier it is, it can try it as multiple types. It is an error
    * if more than one system matches the provided identifier
+   * @fhirType string
    */
   id: string;
   /**
@@ -3069,6 +3116,7 @@ export interface NamingSystemTranslateIdOperationParameters {
   /**
    * If preferredOnly = true then return only the preferred identifier, or if
    * preferredOnly = false then return all available ids.
+   * @fhirType boolean
    */
   preferredOnly?: boolean | undefined;
   /**
@@ -3082,14 +3130,17 @@ export interface NamingSystemTranslateIdOperationParameters {
 export interface NamingSystemTranslateIdOperationResult {
   /**
    * True if the identifier could be translated successfully.
+   * @fhirType boolean
    */
   result: boolean;
   /**
    * The target identifer(s) of the requested type
+   * @fhirType string
    */
   targetIdentifier?: Array<string> | undefined;
   /**
    * Whether the target identifier is preferred.
+   * @fhirType boolean
    */
   "targetIdentifer.preferred"?: boolean | undefined;
   /**
@@ -3559,6 +3610,7 @@ export interface ObservationStatsOperationParameters {
  * code for all the individual observations that are: 1) referenced in   `.related`
  * for `.related.type` = 'has-member'  and 2) component observations in
  * `Observation.component`.
+ * @fhirType string
  */
   code?: Array<string> | undefined;
   /**
@@ -3590,6 +3642,7 @@ export interface ObservationStatsOperationParameters {
   statistic: Array<string>;
   /**
    * Whether to return the observations on which the statistics are based
+   * @fhirType boolean
    */
   include?: boolean | undefined;
   /**
@@ -3835,6 +3888,7 @@ export interface PatientMatchOperationParameters {
    * If there are multiple potential matches, then the match should not return the
    * results with this flag set to true.  When false, the server may return multiple
    * results with each result graded accordingly.
+   * @fhirType boolean
    */
   onlyCertainMatches?: boolean | undefined;
   /**
@@ -3965,6 +4019,7 @@ e.g. Issue.diagnostics "Merge would update: 10
 
 The resulting target patient resource will
  * also be returned in the result.
+ * @fhirType boolean
  */
   preview?: boolean | undefined;
 }
@@ -4024,6 +4079,7 @@ export interface PlanDefinitionApplyOperationParameters {
    * the instance level, this parameter is not allowed; if the operation is invoked
    * at the type level, this parameter may only be used if the url parameter is
    * supplied.
+   * @fhirType string
    */
   version?: string | undefined;
   /**
@@ -4032,18 +4088,22 @@ export interface PlanDefinitionApplyOperationParameters {
    * provided in this parameter will be resolved as the subject of the PlanDefinition
    * based on the type of the subject. If multiple subjects of the same type are
    * provided, the behavior is implementation-defined
+   * @fhirType string
    */
   subject: Array<string>;
   /**
    * The encounter in context, if any
+   * @fhirType string
    */
   encounter?: string | undefined;
   /**
    * The practitioner applying the plan definition
+   * @fhirType string
    */
   practitioner?: string | undefined;
   /**
    * The organization applying the plan definition
+   * @fhirType string
    */
   organization?: string | undefined;
   /**
@@ -4350,7 +4410,7 @@ export interface ResourceGraphqlOperationParameters {
    */
   resourceId?: string | null | undefined;
   /**
-   *
+   * @fhirType string
    */
   query: string;
 }
@@ -4714,10 +4774,12 @@ export interface SpecimenDefinitionApplyOperationParameters {
    * provided in this parameter will be resolved as the subject of the Specimen based
    * on the type of the subject. If multiple subjects of the same type are provided,
    * the behavior is implementation-defined
+   * @fhirType string
    */
   subject: Array<string>;
   /**
    * The practitioner (or practitioner role) that is collecting the specimen
+   * @fhirType string
    */
   collector?: string | undefined;
   /**
@@ -4847,6 +4909,7 @@ export interface StructureDefinitionQuestionnaireOperationParameters {
   /**
    * If true, the questionnaire will only include those elements marked as
    * "mustSupport='true'" in the StructureDefinition.
+   * @fhirType boolean
    */
   supportedOnly?: boolean | undefined;
 }
@@ -4913,6 +4976,7 @@ export interface StructureDefinitionSnapshotOperationParameters {
    * The StructureDefinition's canonical URL (i.e. 'StructureDefinition.url'). The
    * server must know the structure definition, or be able to retrieve it from other
    * known repositories.
+   * @fhirType string
    */
   url?: string | undefined;
 }
@@ -4973,6 +5037,7 @@ export interface StructureMapTransformOperationParameters {
   /**
    * The same as structureMap, but the resource is provided in the mapping language
    * rather than as a structureMap.
+   * @fhirType string
    */
   srcMap?: Array<string> | undefined;
   /**
@@ -5020,12 +5085,12 @@ export interface SubscriptionEventsOperationParameters {
    * The starting event number, inclusive of this event (lower bound).
    * @fhirType integer64
    */
-  eventsSinceNumber?: number | undefined;
+  eventsSinceNumber?: string | undefined;
   /**
    * The ending event number, inclusive of this event (upper bound).
    * @fhirType integer64
    */
-  eventsUntilNumber?: number | undefined;
+  eventsUntilNumber?: string | undefined;
   /**
    * Requested content style of returned data. Codes from backport-content-value-set
    * (e.g., empty, id-only, full-resource). This is a hint to the server what a
@@ -5090,6 +5155,7 @@ export interface SubscriptionGetWsBindingTokenOperationResult {
    * An access token that a client may use to show authorization during a websocket
    * connection. The security details of the token are implementation-dependent and
    * beyond the scope of this operation definition.
+   * @fhirType string
    */
   token: string;
   /**
@@ -5099,6 +5165,7 @@ export interface SubscriptionGetWsBindingTokenOperationResult {
   expiration: string;
   /**
    * The subscriptions this token is valid for.
+   * @fhirType string
    */
   subscription?: Array<string> | undefined;
   /**
@@ -5224,6 +5291,7 @@ export interface ValueSetExpandOperationParameters {
    * be used when generating the expansion. This is an arbitrary value managed by the
    * value set author and is not expected to be globally unique. For example, it
    * might be a timestamp (e.g. yyyymmdd) if a managed version is not available.
+   * @fhirType string
    */
   valueSetVersion?: string | undefined;
   /**
@@ -5274,6 +5342,7 @@ Text Search engines such as Lucene or Solr, long with their
  * considerable functionality, might also be used. The optional text search might
  * also be code system specific, and servers might have different implementations
  * for different code systems
+ * @fhirType string
  */
   filter?: string | undefined;
   /**
@@ -5307,6 +5376,7 @@ Text Search engines such as Lucene or Solr, long with their
   /**
    * Controls whether concept designations are to be included or excluded in value
    * set expansions
+   * @fhirType boolean
    */
   includeDesignations?: boolean | undefined;
   /**
@@ -5314,11 +5384,13 @@ Text Search engines such as Lucene or Solr, long with their
    * or a language. Designations that match by language or use are included in the
    * expansion. If no designation is specified, it is at the server discretion which
    * designations to return
+   * @fhirType string
    */
   designation?: Array<string> | undefined;
   /**
    * Controls whether the value set definition is included or excluded in value set
    * expansions
+   * @fhirType boolean
    */
   includeDefinition?: boolean | undefined;
   /**
@@ -5326,6 +5398,7 @@ Text Search engines such as Lucene or Solr, long with their
    * expansions. Note that if the value set explicitly specifies that inactive codes
    * are included, this parameter can still remove them from a specific expansion,
    * but this parameter cannot include them if the value set excludes them
+   * @fhirType boolean
    */
   activeOnly?: boolean | undefined;
   /**
@@ -5342,6 +5415,7 @@ Text Search engines such as Lucene or Solr, long with their
    * ValueSet.expansion.contains.contains). If excludeNested is set to true, the
    * expansion MUST be flat (no nesting). If excludeNested is set to false (default),
    * however, nesting is possible but not required
+   * @fhirType boolean
    */
   excludeNested?: boolean | undefined;
   /**
@@ -5365,10 +5439,12 @@ One
  * FHIR Specification itself, the value set expansions are generated with
  * excludeNotForUI = false, and the expansions used when generating schema / code
  * etc., or performing validation, are all excludeNotForUI = true.
+ * @fhirType boolean
  */
   excludeNotForUI?: boolean | undefined;
   /**
    * Controls whether or not the value set expansion includes post coordinated codes
+   * @fhirType boolean
    */
   excludePostCoordinated?: boolean | undefined;
   /**
@@ -5383,6 +5459,7 @@ One
    * definition (convenient) or a the formal URI that refers to the property. Note
    * that property names can clash, so using a URI is recommended. The special value
    * '*' means all properties and their sub-properties known to the server
+   * @fhirType string
    */
   property?: Array<string> | undefined;
   /**
@@ -5506,6 +5583,7 @@ export interface ValueSetValidateCodeOperationParameters {
    * be used when validating the code. This is an arbitrary value managed by the
    * value set author and is not expected to be globally unique. For example, it
    * might be a timestamp (e.g. yyyymmdd) if a managed version is not available.
+   * @fhirType string
    */
   valueSetVersion?: string | undefined;
   /**
@@ -5522,6 +5600,7 @@ export interface ValueSetValidateCodeOperationParameters {
   system?: string | undefined;
   /**
    * The version of the system, if one was provided in the source data
+   * @fhirType string
    */
   systemVersion?: string | undefined;
   /**
@@ -5530,6 +5609,7 @@ export interface ValueSetValidateCodeOperationParameters {
    * display value, but may choose to return a recommended display name using the
    * display parameter in the outcome. Whether displays are case sensitive is code
    * system dependent
+   * @fhirType string
    */
   display?: string | undefined;
   /**
@@ -5569,6 +5649,7 @@ Note that. 'abstract' is a property
  * contexts where it is appropriate to use these codes e.g. as decision making
  * criterion, or when editing value sets themselves. This parameter allows a client
  * to indicate to the server that it is working in such a context.
+ * @fhirType boolean
  */
   abstract?: boolean | undefined;
   /**
@@ -5591,15 +5672,18 @@ Note that. 'abstract' is a property
 export interface ValueSetValidateCodeOperationResult {
   /**
    * True if the concept details supplied are valid
+   * @fhirType boolean
    */
   result: boolean;
   /**
    * Error details, if result = false. If this is provided when result = true, the
    * message carries hints and warnings
+   * @fhirType string
    */
   message?: string | undefined;
   /**
    * A valid display for the concept if the system wishes to display this to a user
+   * @fhirType string
    */
   display?: string | undefined;
   /**
@@ -5614,6 +5698,7 @@ export interface ValueSetValidateCodeOperationResult {
   system?: string | undefined;
   /**
    * The version of the system of the code that was validated
+   * @fhirType string
    */
   version?: string | undefined;
   /**
