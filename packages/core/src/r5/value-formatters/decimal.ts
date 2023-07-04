@@ -1,4 +1,4 @@
-import decimaljs = require("decimal.js");
+import decimaljs from "decimal.js";
 import { ValueFormatter } from "../formatters.js";
 
 /**
