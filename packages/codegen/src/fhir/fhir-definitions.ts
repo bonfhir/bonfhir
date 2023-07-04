@@ -150,7 +150,8 @@ export class FhirDefinitions {
       this.structureDefinitions
         .flatMap((structureDef) =>
           structureDef.elements.map((element) =>
-            element.hasRequiredBinding
+            element.hasRequiredBinding &&
+            (element as any).type?.[0]?.code === "code"
               ? (element as any).binding?.valueSet?.split("|")?.[0]
               : undefined
           )
@@ -468,7 +469,7 @@ export class ElementDefinition {
       })
       .join(" | ");
 
-    if (this.hasRequiredBinding) {
+    if (this.hasRequiredBinding && resolvedType === "string") {
       resolvedType = this._definitions.valueSetsByUrl.get(
         (this as any).binding.valueSet.split("|")[0]
       )?.safeName;
@@ -516,7 +517,7 @@ export class ElementDefinition {
           )
         ),
         this.fhirDocUrl ? `@see {@link ${this.fhirDocUrl}}` : undefined,
-        this.hasRequiredBinding
+        this.hasRequiredBinding && (this as any).type?.[0]?.code === "code"
           ? `@see {@link ${
               this._definitions.valueSetsByUrl.get(
                 (this as any).binding.valueSet.split("|")[0]
