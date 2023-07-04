@@ -139,7 +139,7 @@ export interface FhirClient {
       | FhirClientSearchParameters<TResource["resourceType"]>
       | null
       | undefined
-  ): Promise<CreateOrResult<TResource>>;
+  ): Promise<CreateOrResult<Retrieved<TResource>>>;
 
   /**
    * This is a basic create or update operation.
@@ -541,7 +541,7 @@ export async function createOr<TResource extends AnyResource>(
     | FhirClientSearchParameters<TResource["resourceType"]>
     | null
     | undefined
-): Promise<CreateOrResult<TResource>>;
+): Promise<CreateOrResult<Retrieved<TResource>>>;
 export async function createOr<TResource extends AnyResource>(
   client: Pick<FhirClient, "create" | "update" | "search">,
   action: "merge",
@@ -551,7 +551,7 @@ export async function createOr<TResource extends AnyResource>(
     | null
     | undefined,
   mergers?: Array<Merger> | null | undefined
-): Promise<CreateOrResult<TResource>>;
+): Promise<CreateOrResult<Retrieved<TResource>>>;
 export async function createOr<TResource extends AnyResource>(
   client: Pick<FhirClient, "create" | "update" | "search">,
   action: CreateOrAction,
@@ -561,7 +561,7 @@ export async function createOr<TResource extends AnyResource>(
     | null
     | undefined,
   mergers?: Array<Merger> | null | undefined
-): Promise<CreateOrResult<TResource>>;
+): Promise<CreateOrResult<Retrieved<TResource>>>;
 export async function createOr<TResource extends AnyResource>(
   client: Pick<FhirClient, "create" | "update" | "search">,
   action: CreateOrAction,
@@ -571,7 +571,7 @@ export async function createOr<TResource extends AnyResource>(
     | null
     | undefined,
   mergers?: Array<Merger> | null | undefined
-): Promise<CreateOrResult<TResource>> {
+): Promise<CreateOrResult<Retrieved<TResource>>> {
   const finalSearch = resolveSearch(resource, search);
 
   const searchResult = await client.search(
@@ -579,7 +579,7 @@ export async function createOr<TResource extends AnyResource>(
     finalSearch.toString()
   );
   const found = searchResult.bundle.entry?.[0]?.resource as
-    | TResource
+    | Retrieved<TResource>
     | undefined;
 
   if (!found) {
@@ -626,7 +626,7 @@ export async function createOr<TResource extends AnyResource>(
       return [await client.update(merged), true];
     }
 
-    return [merged, false];
+    return [merged as Retrieved<TResource>, false];
   }
 
   throw new Error(`Unknown action ${action}`);

@@ -344,7 +344,7 @@ export class FetchFhirClient implements FhirClient {
       | FhirClientSearchParameters<TResource["resourceType"]>
       | null
       | undefined
-  ): Promise<CreateOrResult<TResource>>;
+  ): Promise<CreateOrResult<Retrieved<TResource>>>;
   public async createOr<TResource extends AnyResource>(
     action: "merge",
     resource: TResource,
@@ -353,7 +353,7 @@ export class FetchFhirClient implements FhirClient {
       | null
       | undefined,
     mergers?: Array<Merger> | null | undefined
-  ): Promise<CreateOrResult<TResource>>;
+  ): Promise<CreateOrResult<Retrieved<TResource>>>;
   public async createOr<TResource extends AnyResource>(
     action: CreateOrAction,
     resource: TResource,
@@ -362,7 +362,7 @@ export class FetchFhirClient implements FhirClient {
       | null
       | undefined,
     mergers?: Array<Merger> | null | undefined
-  ): Promise<CreateOrResult<TResource>>;
+  ): Promise<CreateOrResult<Retrieved<TResource>>>;
   public async createOr<TResource extends AnyResource>(
     action: CreateOrAction,
     resource: TResource,
@@ -371,7 +371,7 @@ export class FetchFhirClient implements FhirClient {
       | null
       | undefined,
     mergers?: Array<Merger> | null | undefined
-  ): Promise<CreateOrResult<TResource>> {
+  ): Promise<CreateOrResult<Retrieved<TResource>>> {
     return createOr(this, action, resource, search, mergers);
   }
 
