@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.4.0
+
+### Minor Changes
+
+- (Hopefully) finally fix decimal.js packaging
+
 ## 2.3.0
 
 ### Minor Changes

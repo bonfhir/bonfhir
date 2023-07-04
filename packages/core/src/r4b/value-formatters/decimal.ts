@@ -1,4 +1,4 @@
-import decimaljs from "decimal.js";
+import { Decimal } from "decimal.js";
 import { ValueFormatter } from "../formatters.js";
 
 /**
@@ -28,7 +28,7 @@ export const decimalFormatter: ValueFormatter<
     let decimal;
     let significantDigits;
     if (typeof value === "number") {
-      decimal = new decimaljs.Decimal(value);
+      decimal = new Decimal(value);
       significantDigits = decimal.precision();
     } else {
       const trimmedValue = value?.trim();
@@ -40,7 +40,7 @@ export const decimalFormatter: ValueFormatter<
         return trimmedValue;
       }
 
-      decimal = new decimaljs.Decimal(trimmedValue);
+      decimal = new Decimal(trimmedValue);
       significantDigits = trimmedValue.includes("e")
         ? decimal.precision()
         : trimmedValue.replace(/\.|-/g, "").length;
