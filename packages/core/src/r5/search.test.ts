@@ -1,5 +1,6 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable unicorn/no-useless-undefined */
+import { duration } from "./date-time-helpers.js";
 import {
   FhirSearchBuilder,
   Prefix,
@@ -36,13 +37,6 @@ describe("FhirSearchBuilder", () => {
       "date=2022-01-02,2022-01-03",
     ],
     [
-      new FhirSearchBuilder().dateParam(
-        "date",
-        new Date(2022, 1, 2, 15, 50, 23)
-      ),
-      "date=2022-02-02T15:50:23.000Z",
-    ],
-    [
       new FhirSearchBuilder()
         .dateParam("date", "2010-01-01", Prefix.GreaterThanOrEqual)
         .dateParam("date", "2011-12-31", Prefix.LessThanOrEqual),
@@ -53,6 +47,14 @@ describe("FhirSearchBuilder", () => {
         .dateParam("date", "2010-01-01", Prefix.GreaterThanOrEqual)
         .dateParam("date", "2011-12-31", Prefix.LessThanOrEqual, "replace"),
       "date=le2011-12-31",
+    ],
+    [
+      new FhirSearchBuilder().dateParam(
+        "date",
+        duration.add("2023-07-05", duration.months(-3)),
+        "ge"
+      ),
+      "date=ge2023-04-05",
     ],
     [new FhirSearchBuilder().dateParam("date", null), ""],
     [new FhirSearchBuilder().dateParam("date", undefined), ""],

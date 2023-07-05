@@ -36,7 +36,7 @@ export class FhirSearchBuilder {
    */
   public dateParam(
     parameter: string,
-    value: Date | string | Array<Date | string> | null | undefined,
+    value: string | Array<string> | null | undefined,
     prefix?: Prefix | null | undefined,
     replace?: "replace" | null | undefined
   ): this {
@@ -51,12 +51,7 @@ export class FhirSearchBuilder {
       this.push(
         parameter,
         parameterValues
-          .map(
-            (x) =>
-              `${prefix || ""}${
-                typeof x === "string" ? encodeURIComponent(x) : x.toISOString()
-              }`
-          )
+          .map((x) => `${prefix || ""}${encodeURIComponent(x)}`)
           .join(","),
         replace
       );
