@@ -1,5 +1,12 @@
 # @bonfhir/core
 
+## 2.5.0
+
+### Minor Changes
+
+- 67e1380: `client.createOr` now returns a `Retrieved` resource
+- 49f07c1: Add dateTime helpers
+
 ## 2.4.0
 
 ### Minor Changes

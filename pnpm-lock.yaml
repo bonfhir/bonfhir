@@ -21,7 +21,7 @@ importers:
   apps/sample-ehr:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.4.0
+        specifier: ^2.5.0
         version: link:../../packages/core
       '@bonfhir/eslint-config':
         specifier: workspace:*
