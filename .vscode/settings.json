@@ -60,6 +60,7 @@
     "tabler",
     "tanstack",
     "tiptap",
+    "UCUM",
     "vread"
   ],
   "eslint.workingDirectories": ["apps/*", "packages/*"],

@@ -1,4 +1,9 @@
-import { now, parseFhirDateTime, today } from "./date-time-helpers.js";
+import {
+  duration,
+  now,
+  parseFhirDateTime,
+  today,
+} from "./date-time-helpers.js";
 
 describe("date-time-helpers", () => {
   it.each([undefined, "America/New_York", "Australia/Queensland"])(
@@ -144,5 +149,35 @@ describe("date-time-helpers", () => {
   ])("parseDateTime %p => %p", (value, expected) => {
     const result = parseFhirDateTime(value);
     expect(result).toMatchObject(expected);
+  });
+
+  it("duration", () => {
+    const result = duration.hours(3);
+    expect(result).toMatchObject({
+      value: 3,
+      unit: "h",
+      system: "http://unitsofmeasure.org",
+      code: "h",
+    });
+  });
+
+  it.each([
+    [duration.years(1), duration.years(2), duration.years(3)],
+    [duration.hours(1), duration.hours(6), duration.hours(7)],
+    [duration.hours(1), duration.minutes(30), duration.minutes(90)],
+    [duration.days(1), duration.minutes(30), duration.minutes(1470)],
+    ["2023", duration.years(2), "2025"],
+    ["2021-03", duration.years(2), "2023-03"],
+    ["2021-11", duration.months(3), "2022-02"],
+    ["2021-11-01", duration.months(3), "2022-02-01"],
+    ["2021-12-30", duration.days(30), "2022-01-29"],
+    ["2023-07-05T18:42:33.640Z", duration.days(1), "2023-07-06T18:42:33.640Z"],
+  ])("duration.add(%p, %p) => %p", (value, durations, expected) => {
+    const result = duration.add(value as string, durations);
+    if (typeof expected === "string") {
+      expect(result).toEqual(expected);
+    } else {
+      expect(result).toMatchObject(expected);
+    }
   });
 });
