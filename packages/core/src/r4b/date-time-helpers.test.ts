@@ -180,4 +180,30 @@ describe("date-time-helpers", () => {
       expect(result).toMatchObject(expected);
     }
   });
+
+  it.each([
+    [duration.days(1), duration.days(1), 0],
+    [duration.days(30), duration.days(1), 1],
+    [duration.days(60), duration.months(1), 1],
+    [duration.days(60), duration.years(1), -1],
+  ])("compare %p %p ? %p", (a, b, expected) => {
+    expect(duration.compare(a, b)).toEqual(expected);
+  });
+
+  it.each([
+    ["2022-01-01", "2022-01-01", duration.zero(), 0],
+    ["2022-01-01", "2021-01-01", duration.months(3), 1],
+    ["2022-01-01", "2022-01-15", duration.days(30), -1],
+  ])("compare %p %p w/ %p ? %p", (a, b, durationComp, expected) => {
+    expect(duration.compare(a, b, durationComp)).toEqual(expected);
+  });
+
+  it.each([
+    ["2022", "2021", duration.years(1)],
+    ["2022-01-01", "2021-01-01", duration.years(1)],
+    ["2022-01-01", "2022-02-01", duration.days(-31)],
+    ["2022-01-01T10:00:00", "2022-01-01T09:00:00", duration.hours(1)],
+  ])("from %p to %p => %p", (a, b, expected) => {
+    expect(duration.from(a, b)).toMatchObject(expected);
+  });
 });

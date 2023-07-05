@@ -201,6 +201,7 @@ function add(
     if (durations.length === 0) {
       return value;
     }
+    validate(...durations);
     const finalDuration =
       durations.length === 1
         ? durations[0]!
@@ -323,6 +324,7 @@ function add(
     return value;
   }
 
+  validate(...durations);
   let result = value;
   for (const duration of durations) {
     const [valueResult, valueDuration, targetDuration] = convert(
@@ -339,7 +341,119 @@ function add(
   return result;
 }
 
+function from(a: string, b: string, absolute = false): Duration {
+  const parsedA = parseFhirDateTime(a);
+  const parsedB = parseFhirDateTime(b);
+  if (parsedA.flavour === "NA" || parsedB.flavour === "NA") {
+    throw new Error(`Invalid FHIR date/time: ${a} or ${b}`);
+  }
+  let diffTime = parsedA.date.getTime() - parsedB.date.getTime();
+  if (absolute) {
+    diffTime = Math.abs(diffTime);
+  }
+  if (diffTime % 1000 !== 0) {
+    return {
+      value: diffTime,
+      unit: "ms",
+      system: "http://unitsofmeasure.org",
+      code: "ms",
+    };
+  }
+  diffTime /= 1000;
+  if (diffTime % 60 !== 0) {
+    return {
+      value: diffTime,
+      unit: "s",
+      system: "http://unitsofmeasure.org",
+      code: "s",
+    };
+  }
+  diffTime /= 60;
+  if (diffTime % 60 !== 0) {
+    return {
+      value: diffTime,
+      unit: "min",
+      system: "http://unitsofmeasure.org",
+      code: "min",
+    };
+  }
+  diffTime /= 60;
+  if (diffTime % 24 !== 0) {
+    return {
+      value: diffTime,
+      unit: "h",
+      system: "http://unitsofmeasure.org",
+      code: "h",
+    };
+  }
+  diffTime /= 24;
+  if (diffTime % 365 === 0) {
+    return {
+      value: diffTime / 365,
+      unit: "yr",
+      system: "http://unitsofmeasure.org",
+      code: "a",
+    };
+  }
+  if (diffTime % 30 !== 0) {
+    return {
+      value: diffTime,
+      unit: "d",
+      system: "http://unitsofmeasure.org",
+      code: "d",
+    };
+  }
+  diffTime /= 30;
+  if (diffTime % 12 !== 0) {
+    return {
+      value: diffTime,
+      unit: "mo",
+      system: "http://unitsofmeasure.org",
+      code: "mo",
+    };
+  }
+  diffTime /= 12;
+  return {
+    value: diffTime,
+    unit: "yr",
+    system: "http://unitsofmeasure.org",
+    code: "a",
+  };
+}
+
+function compare(a: string, b: string, duration: Duration): -1 | 0 | 1;
+function compare(a: Duration, b: Duration): -1 | 0 | 1;
+function compare(
+  a: Duration | string,
+  b: Duration | string,
+  duration?: Duration | undefined
+): -1 | 0 | 1 {
+  if (typeof a === "string" && typeof b === "string") {
+    return compare(from(a, b, true), duration!);
+  }
+  validate(a as Duration, b as Duration);
+  const [valueA, valueB] = convert(a as Duration, b as Duration);
+
+  if (valueA < valueB) {
+    return -1;
+  }
+
+  if (valueA > valueB) {
+    return 1;
+  }
+
+  return 0;
+}
+
 export const duration = {
+  zero(): Duration {
+    return {
+      value: 0,
+      unit: "ms",
+      system: "http://unitsofmeasure.org",
+      code: "ms",
+    };
+  },
   years(value: number): Duration {
     return {
       value: value,
@@ -397,6 +511,8 @@ export const duration = {
     };
   },
   add,
+  compare,
+  from,
 };
 
 const ORDERED_UCUM_CODES = ["a", "mo", "d", "h", "min", "s", "ms"];
@@ -473,33 +589,15 @@ function convert(
   result: Duration,
   duration: Duration
 ): [number, number, Pick<Duration, "unit" | "code">] {
-  if (!result.code || !duration.code) {
-    throw new Error(
-      `Missing code in duration ${JSON.stringify(result)} or ${JSON.stringify(
-        duration
-      )}`
-    );
-  }
   if (result.code === duration.code) {
     return [result.value || 0, duration.value || 0, result];
-  }
-
-  if (
-    !ORDERED_UCUM_CODES.includes(result.code) ||
-    !ORDERED_UCUM_CODES.includes(duration.code)
-  ) {
-    throw new Error(
-      `Unknown code in duration ${JSON.stringify(result)} or ${JSON.stringify(
-        duration
-      )}`
-    );
   }
 
   const commonCode =
     ORDERED_UCUM_CODES[
       Math.max(
-        ORDERED_UCUM_CODES.indexOf(result.code),
-        ORDERED_UCUM_CODES.indexOf(duration.code)
+        ORDERED_UCUM_CODES.indexOf(result.code!),
+        ORDERED_UCUM_CODES.indexOf(duration.code!)
       )
     ];
   if (!commonCode) {
@@ -513,12 +611,13 @@ function convert(
   let resultValue = result.value;
   if (result.code !== commonCode) {
     resultValue =
-      (result.value || 0) * CONVERSATION_FACTORS[result.code]![commonCode]!;
+      (result.value || 0) * CONVERSATION_FACTORS[result.code!]![commonCode]!;
   }
   let durationValue = duration.value;
   if (duration.code !== commonCode) {
     durationValue =
-      (duration.value || 0) * CONVERSATION_FACTORS[duration.code]![commonCode]!;
+      (duration.value || 0) *
+      CONVERSATION_FACTORS[duration.code!]![commonCode]!;
   }
 
   return [
@@ -526,4 +625,22 @@ function convert(
     durationValue || 0,
     { code: commonCode, unit: UCUM_CODE_UNIT[commonCode] ?? commonCode },
   ];
+}
+
+function validate(...durations: Duration[]) {
+  for (const duration of durations) {
+    if (duration.value == undefined) {
+      throw new Error(`Missing value in duration ${JSON.stringify(duration)}`);
+    }
+    if (!duration.code || !ORDERED_UCUM_CODES.includes(duration.code)) {
+      throw new Error(`Unknown code in duration ${JSON.stringify(duration)}`);
+    }
+    if (duration.system && duration.system !== "http://unitsofmeasure.org") {
+      throw new Error(
+        `Unsupported system in duration ${JSON.stringify(
+          duration
+        )} - must be https://unitsofmeasure.org`
+      );
+    }
+  }
 }
