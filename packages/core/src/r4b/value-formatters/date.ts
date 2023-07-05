@@ -1,3 +1,4 @@
+import { parseFhirDateTime } from "../date-time-helpers.js";
 import { ValueFormatter } from "../formatters.js";
 import { formatRelativeDateTime } from "../lang-utils.js";
 
@@ -24,34 +25,29 @@ export const dateFormatter: ValueFormatter<
 > = {
   type: "date",
   format: (value, options, formatterOptions) => {
+    const fhirDateTime = parseFhirDateTime(value);
     if (!value) {
       return "";
     }
-
-    const matchingData = value
-      .trim()
-      .match(
-        /^(?<year>\d(\d(\d[1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(?<month>0[1-9]|1[0-2])(-(?<day>0[1-9]|[12]\d|3[01]))?)?$/
-      )?.groups as { year?: string; month?: string; day?: string };
-
-    if (!matchingData?.year) {
-      return value;
-    }
-
-    const { year, month, day } = matchingData;
-    const yearNumber = Number.parseInt(year);
-    const monthNumber = month ? Number.parseInt(month) : undefined;
-    const dayNumber = day ? Number.parseInt(day) : undefined;
-    const flavour = day ? "full" : month ? "year-month" : "year";
-    const date = new Date(
-      Date.UTC(yearNumber, monthNumber ? monthNumber - 1 : 0, dayNumber || 1)
-    );
 
     const intlOptions: Intl.DateTimeFormatOptions = {
       timeZone: "UTC",
     };
 
-    switch (flavour) {
+    if (fhirDateTime.flavour === "dateTime") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (fhirDateTime as any).flavour = "date";
+      fhirDateTime.date = new Date(
+        fhirDateTime.year,
+        fhirDateTime.month - 1,
+        fhirDateTime.day
+      );
+    }
+
+    switch (fhirDateTime.flavour) {
+      case "NA": {
+        return "";
+      }
       case "year": {
         intlOptions.year = "numeric";
         break;
@@ -61,11 +57,11 @@ export const dateFormatter: ValueFormatter<
         intlOptions.month = convertDateStyleToMonthStyle(options?.dateStyle);
         break;
       }
-      case "full": {
+      case "date": {
         if (options?.dateStyle === "relative") {
           return formatRelativeDateTime(
             formatterOptions.locale,
-            date,
+            fhirDateTime.date,
             options.relativeTo,
             options.relativeStyle,
             true
@@ -77,7 +73,7 @@ export const dateFormatter: ValueFormatter<
     }
 
     return new Intl.DateTimeFormat(formatterOptions.locale, intlOptions).format(
-      date
+      fhirDateTime.date
     );
   },
 };
