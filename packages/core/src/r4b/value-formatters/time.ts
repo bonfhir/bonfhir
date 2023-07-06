@@ -1,3 +1,4 @@
+import { parseFhirDateTime } from "../date-time-helpers.js";
 import { ValueFormatter } from "../formatters.js";
 
 /**
@@ -21,23 +22,19 @@ export const timeFormatter: ValueFormatter<
       return "";
     }
 
-    const matchingData = value
-      .trim()
-      .match(/^([01]\d|2[0-3]):[0-5]\d:([0-5]\d|60)(\.\d{1,9})?$/);
-    if (!matchingData) {
+    const parsedDateTime = parseFhirDateTime(value);
+    if (parsedDateTime.flavour !== "time") {
       return value.trim();
     }
 
     const intlOptions: Intl.DateTimeFormatOptions = {
-      timeZone: "UTC",
       dateStyle: undefined,
       timeStyle: options?.timeStyle || "short",
     };
     intlOptions.timeStyle = options?.timeStyle || "short";
 
-    const date = new Date(`2000-01-01 ${value}`);
     return new Intl.DateTimeFormat(formatterOptions.locale, intlOptions).format(
-      date
+      parsedDateTime.date
     );
   },
 };

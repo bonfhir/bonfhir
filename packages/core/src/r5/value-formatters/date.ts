@@ -25,14 +25,11 @@ export const dateFormatter: ValueFormatter<
 > = {
   type: "date",
   format: (value, options, formatterOptions) => {
-    const fhirDateTime = parseFhirDateTime(value);
     if (!value) {
       return "";
     }
 
-    const intlOptions: Intl.DateTimeFormatOptions = {
-      timeZone: "UTC",
-    };
+    const fhirDateTime = parseFhirDateTime(value);
 
     if (fhirDateTime.flavour === "dateTime") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -44,9 +41,14 @@ export const dateFormatter: ValueFormatter<
       );
     }
 
+    const intlOptions: Intl.DateTimeFormatOptions = {
+      timeZone: "UTC",
+    };
+
     switch (fhirDateTime.flavour) {
-      case "NA": {
-        return "";
+      case "NA":
+      case "time": {
+        return value;
       }
       case "year": {
         intlOptions.year = "numeric";

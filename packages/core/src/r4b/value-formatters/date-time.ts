@@ -31,8 +31,9 @@ export const dateTimeFormatter: ValueFormatter<
     const intlOptions: Intl.DateTimeFormatOptions = {};
 
     switch (fhirDateTime.flavour) {
-      case "NA": {
-        return "";
+      case "NA":
+      case "time": {
+        return value || "";
       }
       case "year": {
         intlOptions.year = "numeric";

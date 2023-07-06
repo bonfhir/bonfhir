@@ -1,11 +1,50 @@
 import {
   duration,
+  fhirDate,
+  fhirDateTime,
+  fhirInstant,
+  fhirTime,
   now,
   parseFhirDateTime,
   today,
 } from "./date-time-helpers.js";
 
 describe("date-time-helpers", () => {
+  it("fhirDate", () => {
+    const result = fhirDate(new Date("2021-01-01T00:00:00.000Z"));
+    expect(result).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(parseFhirDateTime(result)).toMatchObject({
+      flavour: "date",
+    });
+  });
+
+  it("fhirDateTime", () => {
+    const result = fhirDateTime(new Date("2021-01-01T00:00:00.000Z"));
+    expect(result).toMatch(
+      /^([+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([\sT]((([01]\d|2[0-3])((:?)[0-5]\d)?|24:?00)([,.]\d+(?!:))?)?(\17[0-5]\d([,.]\d+)?)?([Zz]|([+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/
+    );
+    expect(parseFhirDateTime(result)).toMatchObject({
+      flavour: "dateTime",
+    });
+  });
+
+  it("fhirInstant", () => {
+    const result = fhirInstant(new Date("2021-01-01T00:00:00.000Z"));
+    expect(result).toMatch(
+      /^([+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([\sT]((([01]\d|2[0-3])((:?)[0-5]\d)?|24:?00)([,.]\d+(?!:))?)?(\17[0-5]\d([,.]\d+)?)?([Zz]|([+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/
+    );
+    expect(parseFhirDateTime(result)).toMatchObject({
+      flavour: "dateTime",
+    });
+  });
+
+  it("fhirTime", () => {
+    const result = fhirTime(new Date("2021-01-01T10:11:12.123Z"));
+    expect(result).toMatch(
+      /^([01]\d|2[0-3]):[0-5]\d:([0-5]\d|60)(\.\d{1,9})?$/
+    );
+  });
+
   it.each([undefined, "America/New_York", "Australia/Queensland"])(
     "today %p",
     (timeZone) => {
@@ -146,6 +185,26 @@ describe("date-time-helpers", () => {
         date: expect.any(Date),
       },
     ],
+    [
+      "22:25:06",
+      {
+        flavour: "time",
+        hours: 22,
+        minutes: 25,
+        seconds: 6,
+        date: expect.any(Date),
+      },
+    ],
+    [
+      "22:25:06.123",
+      {
+        flavour: "time",
+        hours: 22,
+        minutes: 25,
+        seconds: 6,
+        date: expect.any(Date),
+      },
+    ],
   ])("parseDateTime %p => %p", (value, expected) => {
     const result = parseFhirDateTime(value);
     expect(result).toMatchObject(expected);
@@ -172,6 +231,8 @@ describe("date-time-helpers", () => {
     ["2021-11-01", duration.months(3), "2022-02-01"],
     ["2021-12-30", duration.days(30), "2022-01-29"],
     ["2023-07-05T18:42:33.640Z", duration.days(1), "2023-07-06T18:42:33.640Z"],
+    ["10:00:00", duration.hours(1), "11:00:00"],
+    ["08:58:00", duration.minutes(3), "09:01:00"],
   ])("duration.add(%p, %p) => %p", (value, durations, expected) => {
     const result = duration.add(value as string, durations);
     if (typeof expected === "string") {
@@ -191,19 +252,15 @@ describe("date-time-helpers", () => {
   });
 
   it.each([
-    ["2022-01-01", "2022-01-01", duration.zero(), 0],
-    ["2022-01-01", "2021-01-01", duration.months(3), 1],
-    ["2022-01-01", "2022-01-15", duration.days(30), -1],
-  ])("compare %p %p w/ %p ? %p", (a, b, durationComp, expected) => {
-    expect(duration.compare(a, b, durationComp)).toEqual(expected);
-  });
-
-  it.each([
     ["2022", "2021", duration.years(1)],
     ["2022-01-01", "2021-01-01", duration.years(1)],
     ["2022-01-01", "2022-02-01", duration.days(-31)],
     ["2022-01-01T10:00:00", "2022-01-01T09:00:00", duration.hours(1)],
+    ["10:00:00", "11:00:00", duration.hours(-1)],
+    ["10:00:00", undefined, duration.hours(10)],
+    ["05:30:00", undefined, duration.minutes(330)],
+    ["01:30:25", undefined, duration.seconds(3600 + 1800 + 25)],
   ])("from %p to %p => %p", (a, b, expected) => {
-    expect(duration.from(a, b)).toMatchObject(expected);
+    expect(duration.from(a, b as string)).toMatchObject(expected);
   });
 });

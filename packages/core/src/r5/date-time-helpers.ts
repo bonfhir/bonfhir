@@ -3,6 +3,60 @@
 import { Duration } from "./fhir-types.codegen.js";
 
 /**
+ * Format a Date object as a FHIR date.
+ */
+export function fhirDate(date: Date): string;
+export function fhirDate(date: null | undefined): undefined;
+export function fhirDate(date: Date | null | undefined): string | undefined;
+export function fhirDate(date: Date | null | undefined): string | undefined {
+  if (!date) {
+    return undefined;
+  }
+  return date.toISOString().slice(0, 10);
+}
+
+/**
+ * Format a Date object as a FHIR dateTime.
+ */
+export function fhirDateTime(date: Date): string;
+export function fhirDateTime(date: null | undefined): undefined;
+export function fhirDateTime(date: Date | null | undefined): string | undefined;
+export function fhirDateTime(
+  date: Date | null | undefined
+): string | undefined {
+  if (!date) {
+    return undefined;
+  }
+  return date.toISOString();
+}
+
+/**
+ * Format a Date object as a FHIR instant.
+ */
+export function fhirInstant(date: Date): string;
+export function fhirInstant(date: null | undefined): undefined;
+export function fhirInstant(date: Date | null | undefined): string | undefined;
+export function fhirInstant(date: Date | null | undefined): string | undefined {
+  if (!date) {
+    return undefined;
+  }
+  return date.toISOString();
+}
+
+/**
+ * Format the time portion of a Date object as a FHIR time.
+ */
+export function fhirTime(date: Date): string;
+export function fhirTime(date: null | undefined): undefined;
+export function fhirTime(date: Date | null | undefined): string | undefined;
+export function fhirTime(date: Date | null | undefined): string | undefined {
+  if (!date) {
+    return undefined;
+  }
+  return date.toISOString().slice(11, 19);
+}
+
+/**
  * Return a FHIR date that expresses today's date.
  * Optionally, you can add the timezone to the function call.
  *
@@ -10,7 +64,7 @@ import { Duration } from "./fhir-types.codegen.js";
  */
 export function today(timeZone?: string | null | undefined): string {
   if (!timeZone) {
-    return new Date().toISOString().slice(0, 10);
+    return fhirDate(new Date());
   }
   // Using Sweden locale is a good approximation of ISO format
   const formatter = new Intl.DateTimeFormat("sv-SE", {
@@ -33,7 +87,7 @@ export function now(timeZone?: string | null | undefined): string {
     timeZone.toLowerCase() === "utc" ||
     timeZone.toLowerCase() === "z"
   ) {
-    return new Date().toISOString();
+    return fhirDateTime(new Date());
   }
 
   // Using Sweden locale is a good approximation of ISO format
@@ -59,7 +113,8 @@ export type FhirDateTime =
   | FhirDateTimeYear
   | FhirDateTimeYearMonth
   | FhirDateTimeDate
-  | FhirDateTimeDateTime;
+  | FhirDateTimeDateTime
+  | FhirDateTimeTime;
 
 export type FhirDateTimeFlavour = FhirDateTime["flavour"];
 
@@ -101,6 +156,17 @@ export interface FhirDateTimeDateTime {
   date: Date;
 }
 
+export interface FhirDateTimeTime {
+  flavour: "time";
+  hours: number;
+  minutes: number;
+  seconds: number;
+  date: Date;
+}
+
+/**
+ * Parse any FHIR date/dateTime/instant/time string and return a FhirDateTime object.
+ */
 export function parseFhirDateTime(
   value: string | null | undefined
 ): FhirDateTime {
@@ -108,7 +174,7 @@ export function parseFhirDateTime(
     return { flavour: "NA" };
   }
 
-  const matchingData = value
+  const matchingDateTime = value
     .trim()
     .match(
       /^(?<year>\d(\d(\d[1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(?<month>0[1-9]|1[0-2])(-(?<day>0[1-9]|[12]\d|3[01]))?)?([\sT](?<timeWithTimezone>(?<hours>[01]\d|2[0-3]):(?<minutes>[0-5]\d):(?<seconds>[0-5]\d|60)(?<milliseconds>\.\d{1,9})?(?<timeZone>Z|(\+|-)((0\d|1[0-3]):[0-5]\d|14:00))?))?$/
@@ -124,13 +190,34 @@ export function parseFhirDateTime(
     timeWithTimezone?: string;
   };
 
-  if (!matchingData?.year) {
+  if (!matchingDateTime?.year) {
+    const matchingTime = value
+      .trim()
+      .match(
+        /^(?<hours>[01]\d|2[0-3]):(?<minutes>[0-5]\d):(?<seconds>[0-5]\d|60)(?<milliseconds>\.\d{1,9})?$/
+      )?.groups as {
+      hours?: string;
+      minutes?: string;
+      seconds?: string;
+    };
+    if (matchingTime?.hours && matchingTime?.minutes && matchingTime?.seconds) {
+      const hours = Number.parseInt(matchingTime.hours, 10);
+      const minutes = Number.parseInt(matchingTime.minutes, 10);
+      const seconds = Number.parseInt(matchingTime.seconds, 10);
+      return {
+        flavour: "time",
+        hours,
+        minutes,
+        seconds,
+        date: new Date(0, 0, 0, hours, minutes, seconds),
+      };
+    }
     return { flavour: "NA" };
   }
 
-  const year = Number.parseInt(matchingData.year, 10);
+  const year = Number.parseInt(matchingDateTime.year, 10);
 
-  if (!matchingData.month) {
+  if (!matchingDateTime.month) {
     return {
       flavour: "year",
       year,
@@ -138,9 +225,9 @@ export function parseFhirDateTime(
     };
   }
 
-  const month = Number.parseInt(matchingData.month, 10);
+  const month = Number.parseInt(matchingDateTime.month, 10);
 
-  if (!matchingData.day) {
+  if (!matchingDateTime.day) {
     return {
       flavour: "year-month",
       year,
@@ -149,9 +236,9 @@ export function parseFhirDateTime(
     };
   }
 
-  const day = Number.parseInt(matchingData.day, 10);
+  const day = Number.parseInt(matchingDateTime.day, 10);
 
-  if (!matchingData.timeWithTimezone) {
+  if (!matchingDateTime.timeWithTimezone) {
     return {
       flavour: "date",
       year,
@@ -161,11 +248,11 @@ export function parseFhirDateTime(
     };
   }
 
-  const hours = Number.parseInt(matchingData.hours!, 10);
-  const minutes = Number.parseInt(matchingData.minutes!, 10);
-  const seconds = Number.parseInt(matchingData.seconds!, 10);
+  const hours = Number.parseInt(matchingDateTime.hours!, 10);
+  const minutes = Number.parseInt(matchingDateTime.minutes!, 10);
+  const seconds = Number.parseInt(matchingDateTime.seconds!, 10);
   const milliseconds = Number.parseInt(
-    matchingData.milliseconds?.slice(1) || "",
+    matchingDateTime.milliseconds?.slice(1) || "",
     10
   );
 
@@ -178,17 +265,29 @@ export function parseFhirDateTime(
     minutes,
     seconds,
     milliseconds: Number.isNaN(milliseconds) ? undefined : milliseconds,
-    timeZone: matchingData.timeZone,
+    timeZone: matchingDateTime.timeZone,
     date: new Date(value.trim()),
   };
 }
 
+/**
+ * Add durations to a FHIR dateTime/instant/time.
+ */
 function add(value: string, ...durations: Duration[]): string;
+/**
+ * Add durations to a FHIR dateTime/instant/time.
+ */
 function add(value: null | undefined, ...durations: Duration[]): undefined;
+/**
+ * Add durations to a FHIR dateTime/instant/time.
+ */
 function add(
   value: string | null | undefined,
   ...durations: Duration[]
 ): string | undefined;
+/**
+ * Add durations together.
+ */
 function add(value: Duration, ...durations: Duration[]): Duration;
 function add(
   value: Duration | string | null | undefined,
@@ -263,7 +362,7 @@ function add(
             );
           }
         }
-        return copiedDate.toISOString().slice(0, 10);
+        return fhirDate(copiedDate);
       }
       case "dateTime": {
         const copiedDate = new Date(parsed.date.getTime());
@@ -310,7 +409,47 @@ function add(
             );
           }
         }
-        return copiedDate.toISOString();
+        return fhirDateTime(copiedDate);
+      }
+      case "time": {
+        const copiedDate = new Date(parsed.date.getTime());
+        switch (finalDuration.code) {
+          case "h": {
+            copiedDate.setHours(copiedDate.getHours() + finalDuration.value);
+            break;
+          }
+          case "min": {
+            copiedDate.setMinutes(
+              copiedDate.getMinutes() + finalDuration.value
+            );
+            break;
+          }
+          case "s": {
+            copiedDate.setSeconds(
+              copiedDate.getSeconds() + finalDuration.value
+            );
+            break;
+          }
+          case "ms": {
+            copiedDate.setMilliseconds(
+              copiedDate.getMilliseconds() + finalDuration.value
+            );
+            break;
+          }
+          default: {
+            throw new Error(
+              `Unable to add ${JSON.stringify(finalDuration)} to ${value}`
+            );
+          }
+        }
+        if (copiedDate.getDate() !== parsed.date.getDate()) {
+          throw new Error(
+            `Unable to add duration ${JSON.stringify(
+              finalDuration
+            )} to ${value} as it would change the date.`
+          );
+        }
+        return fhirTime(copiedDate);
       }
       default: {
         throw new Error(
@@ -341,7 +480,38 @@ function add(
   return result;
 }
 
-function from(a: string, b: string, absolute = false): Duration {
+/**
+ * Create a Duration from a time.
+ */
+function from(a: string): Duration;
+/**
+ * Create a Duration by computing the difference between two date/dateTime/instant/time.
+ */
+function from(
+  a: string,
+  b: string,
+  absolute?: boolean | null | undefined
+): Duration;
+function from(
+  a: string,
+  b?: string | undefined,
+  absolute?: boolean | null | undefined
+): Duration {
+  if (b == undefined) {
+    const parsedA = parseFhirDateTime(a);
+    if (parsedA.flavour !== "time") {
+      throw new Error(`Unable to create duration from ${a} alone.`);
+    }
+    if (parsedA.seconds !== 0) {
+      return duration.seconds(
+        parsedA.seconds + parsedA.minutes * 60 + parsedA.hours * 3600
+      );
+    }
+    if (parsedA.minutes !== 0) {
+      return duration.minutes(parsedA.minutes + parsedA.hours * 60);
+    }
+    return duration.hours(parsedA.hours);
+  }
   const parsedA = parseFhirDateTime(a);
   const parsedB = parseFhirDateTime(b);
   if (parsedA.flavour === "NA" || parsedB.flavour === "NA") {
@@ -421,16 +591,10 @@ function from(a: string, b: string, absolute = false): Duration {
   };
 }
 
-function compare(a: string, b: string, duration: Duration): -1 | 0 | 1;
-function compare(a: Duration, b: Duration): -1 | 0 | 1;
-function compare(
-  a: Duration | string,
-  b: Duration | string,
-  duration?: Duration | undefined
-): -1 | 0 | 1 {
-  if (typeof a === "string" && typeof b === "string") {
-    return compare(from(a, b, true), duration!);
-  }
+/**
+ * Compare durations between each other.
+ */
+function compare(a: Duration, b: Duration): -1 | 0 | 1 {
   validate(a as Duration, b as Duration);
   const [valueA, valueB] = convert(a as Duration, b as Duration);
 
