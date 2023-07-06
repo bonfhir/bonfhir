@@ -3,7 +3,7 @@ import { TimeInput, TimeInputProps } from "@mantine/dates";
 import { FormEvent, ReactElement } from "react";
 
 export function MantineFhirInputTime(
-  props: FhirInputTimeRendererProps<MantineFhirInputTimeProps>
+  props: FhirInputTimeRendererProps<MantineFhirInputTimeProps>,
 ): ReactElement | null {
   return (
     <TimeInput

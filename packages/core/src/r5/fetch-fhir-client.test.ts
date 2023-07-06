@@ -54,7 +54,7 @@ describe("fetch-fhir-client", () => {
         }
 
         return res(ctx.json({ ...patientExample, id: req.params.patientId }));
-      }
+      },
     ),
 
     rest.put(`${baseUrl}/Organization`, async (req, res, ctx) => {
@@ -65,7 +65,7 @@ describe("fetch-fhir-client", () => {
       `${baseUrl}/Organization/:organizationId`,
       async (req, res, ctx) => {
         return res(ctx.json(await req.json<Organization>()));
-      }
+      },
     ),
 
     rest.put(`${baseUrl}/Patient/:patientId`, async (req, res, ctx) => {
@@ -113,7 +113,7 @@ describe("fetch-fhir-client", () => {
 
     rest.get(`${baseUrl}/metadata`, async (_req, res, ctx) => {
       return res(
-        ctx.json(build("CapabilityStatement", {} as CapabilityStatement))
+        ctx.json(build("CapabilityStatement", {} as CapabilityStatement)),
       );
     }),
 
@@ -133,7 +133,7 @@ describe("fetch-fhir-client", () => {
       `${baseUrl}/Composition/:compositionId/$document`,
       (_req, res, ctx) => {
         return res(ctx.json(patientsListFixture));
-      }
+      },
     ),
 
     rest.get(`${baseUrl}/ValueSet/$expand`, (_req, res, ctx) => {
@@ -156,7 +156,7 @@ describe("fetch-fhir-client", () => {
                 }),
               },
             ],
-          })
+          }),
         );
       }
 
@@ -165,7 +165,7 @@ describe("fetch-fhir-client", () => {
           resourceType: "Bundle",
           type: "searchset",
           entry: [],
-        })
+        }),
       );
     }),
 
@@ -175,7 +175,7 @@ describe("fetch-fhir-client", () => {
 
     rest.put(`${baseUrl}/ConceptMap/:conceptMapId`, async (req, res, ctx) => {
       return res(ctx.json(await req.json()));
-    })
+    }),
   );
 
   beforeAll(() => server.listen());
@@ -281,7 +281,7 @@ describe("fetch-fhir-client", () => {
   describe("patch", () => {
     it("resource with builder", async () => {
       const result = await client.patch("Patient", "123", (patch) =>
-        patch.add("/active", true)
+        patch.add("/active", true),
       );
       expect(result).toBeDefined();
     });
@@ -298,7 +298,7 @@ describe("fetch-fhir-client", () => {
         "Patient",
         "123",
         (patch) => patch.add("/active", true),
-        { preventConcurrentUpdates: true, versionId: "1" }
+        { preventConcurrentUpdates: true, versionId: "1" },
       );
       expect(result).toBeDefined();
     });
@@ -308,14 +308,14 @@ describe("fetch-fhir-client", () => {
         "Patient",
         "123",
         (patch) => patch.add("/active", false),
-        { search: (search) => search.deceased("true") }
+        { search: (search) => search.deceased("true") },
       );
       expect(result).toBeDefined();
     });
 
     it("resource with custom type", async () => {
       const result = await client.patch(CustomPatient, "123", (patch) =>
-        patch.add("/active", true)
+        patch.add("/active", true),
       );
       expect(result).toBeInstanceOf(CustomPatient);
       expect(result.name).toBeTruthy();
@@ -393,7 +393,7 @@ describe("fetch-fhir-client", () => {
       });
       const [resultResource, updated] = await client.createOr(
         "return",
-        conceptMap
+        conceptMap,
       );
       expect(updated).toBeFalsy();
       expect(resultResource).not.toBe(conceptMap);
@@ -406,7 +406,7 @@ describe("fetch-fhir-client", () => {
       });
       const [resultResource, updated] = await client.createOr(
         "return",
-        conceptMap
+        conceptMap,
       );
       expect(updated).toBeTruthy();
       expect(resultResource).toMatchObject(conceptMap);
@@ -457,7 +457,7 @@ describe("fetch-fhir-client", () => {
 
       it("type and search builder", async () => {
         const result = await client.search("Patient", (search) =>
-          search.name("John Doe")
+          search.name("John Doe"),
         );
         expect(result.searchMatch().length).not.toBe(0);
       });
@@ -471,14 +471,14 @@ describe("fetch-fhir-client", () => {
         const result = await client.search(
           "Patient",
           (search) => search.name("John Doe"),
-          { _summary: "true" }
+          { _summary: "true" },
         );
         expect(result.searchMatch().length).not.toBe(0);
       });
 
       it("with a custom type", async () => {
         const result = await client.search(CustomPatient, (search) =>
-          search.name("John Doe")
+          search.name("John Doe"),
         );
         for (const patient of result.searchMatch()) {
           expect(patient).toBeInstanceOf(CustomPatient);
@@ -489,13 +489,13 @@ describe("fetch-fhir-client", () => {
   describe("searchOne", () => {
     it("throw when multiple values are found", async () => {
       await expect(
-        client.searchOne("Patient", (search) => search._id("1234"))
+        client.searchOne("Patient", (search) => search._id("1234")),
       ).rejects.toThrow("Multiple");
     });
 
     it("throws with a custom type when multiple values are found", async () => {
       await expect(
-        client.searchOne(CustomPatient, (search) => search._id("1234"))
+        client.searchOne(CustomPatient, (search) => search._id("1234")),
       ).rejects.toThrow("Multiple");
     });
   });
@@ -507,7 +507,7 @@ describe("fetch-fhir-client", () => {
         (search) => search.name("John Doe"),
         async (result) => {
           expect(result).toBeDefined();
-        }
+        },
       );
     });
 
@@ -520,7 +520,7 @@ describe("fetch-fhir-client", () => {
           for (const patient of result.searchMatch()) {
             expect(patient).toBeInstanceOf(CustomPatient);
           }
-        }
+        },
       );
     });
   });
@@ -528,14 +528,14 @@ describe("fetch-fhir-client", () => {
   describe("searchAllPages", () => {
     it("search all pages", async () => {
       const result = await client.searchAllPages("Patient", (search) =>
-        search.name("John Doe")
+        search.name("John Doe"),
       );
       expect(result).toBeDefined();
     });
 
     it("search all pages with custom type", async () => {
       const result = await client.searchAllPages(CustomPatient, (search) =>
-        search.name("John Doe")
+        search.name("John Doe"),
       );
       for (const patient of result.searchMatch()) {
         expect(patient).toBeInstanceOf(CustomPatient);
@@ -567,7 +567,7 @@ describe("fetch-fhir-client", () => {
           type: "batch",
           entry: [],
         },
-        { _pretty: true }
+        { _pretty: true },
       );
       expect(result).toBeDefined();
     });
@@ -596,7 +596,7 @@ describe("fetch-fhir-client", () => {
           type: "transaction",
           entry: [],
         },
-        { _pretty: true }
+        { _pretty: true },
       );
       expect(result).toBeDefined();
     });
@@ -653,7 +653,7 @@ describe("fetch-fhir-client", () => {
       const result = await client.execute(
         new ValueSetExpandOperation({
           url: "http://hl7.org/fhir/ValueSet/example",
-        })
+        }),
       );
       expect(result).toBeDefined();
     });
@@ -662,7 +662,7 @@ describe("fetch-fhir-client", () => {
       const result = await client.execute(
         new ClaimSubmitOperation({
           resource: build("Claim", {} as Claim),
-        })
+        }),
       );
       expect(result).toBeDefined();
     });
@@ -672,7 +672,7 @@ describe("fetch-fhir-client", () => {
     it("fetch page and return a bundleNavigator", async () => {
       const nextPageUrl = bundleNavigator(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        patientsListFixture as any
+        patientsListFixture as any,
       ).linkUrl("next");
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const result = await client.fetchPage(nextPageUrl!);
@@ -683,7 +683,7 @@ describe("fetch-fhir-client", () => {
   describe("fetch", () => {
     it("throws if absolute url with wrong baseUrl", async () => {
       await expect(
-        client.fetch("http://www.google.com/Patient")
+        client.fetch("http://www.google.com/Patient"),
       ).rejects.toThrow();
     });
 

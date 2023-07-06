@@ -59,9 +59,9 @@ export function FhirQueryProvider(props: FhirQueryProviderProps) {
   const queryClient = useMemo(
     () =>
       new QueryClient(
-        hasQueryClientConfig(props) ? props.queryClientConfig : undefined
+        hasQueryClientConfig(props) ? props.queryClientConfig : undefined,
       ),
-    []
+    [],
   );
 
   return (
@@ -80,20 +80,20 @@ export function FhirQueryProvider(props: FhirQueryProviderProps) {
 }
 
 function hasQueryClient(
-  value: FhirQueryProviderProps
+  value: FhirQueryProviderProps,
 ): value is FhirQueryProviderProps & { queryClient: QueryClient } {
   return !!(value as { queryClient: QueryClient }).queryClient;
 }
 
 function hasQueryClientConfig(
-  value: FhirQueryProviderProps
+  value: FhirQueryProviderProps,
 ): value is FhirQueryProviderProps & { queryClientConfig: QueryClientConfig } {
   return !!(value as { queryClientConfig: QueryClientConfig })
     .queryClientConfig;
 }
 
 function normalizeFhirClient(
-  fhirClient: FhirQueryProviderProps["fhirClient"]
+  fhirClient: FhirQueryProviderProps["fhirClient"],
 ): FhirQueryContext["fhirClient"] {
   if (isFhirClientMap(fhirClient)) {
     const result = Object.fromEntries(
@@ -104,12 +104,12 @@ function normalizeFhirClient(
             ? new FetchFhirClient({ baseUrl: value })
             : value,
         ])
-        .map(([key, value]) => [key, value])
+        .map(([key, value]) => [key, value]),
     );
 
     if (!result[DEFAULT_FHIR_CLIENT]) {
       throw new Error(
-        `Missing a default FhirClient. You must provide a default FhirClient in the fhirClient prop using either an empty string or the "${DEFAULT_FHIR_CLIENT}" key.`
+        `Missing a default FhirClient. You must provide a default FhirClient in the fhirClient prop using either an empty string or the "${DEFAULT_FHIR_CLIENT}" key.`,
       );
     }
     return result;
@@ -124,7 +124,7 @@ function normalizeFhirClient(
 }
 
 function isFhirClientMap(
-  fhirClient: FhirQueryProviderProps["fhirClient"]
+  fhirClient: FhirQueryProviderProps["fhirClient"],
 ): fhirClient is Record<string, FhirClient | string> {
   if (typeof fhirClient === "string") {
     return false;

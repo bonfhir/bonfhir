@@ -91,7 +91,7 @@ function render(
           .join("")}</ul></li>`;
       }
 
-      return `<li><span>${startCase(attribute).replace(
+      return `<li><span>${startCase(attribute).replaceAll(
         " Boolean",
         ""
       )}: </span>${renderValue(value, type, options)}</li>`;
@@ -118,7 +118,7 @@ function renderValue(
 }
 
 function htmlEncode(value: string): string {
-  return value.replace(
+  return value.replaceAll(
     /[&<>\u00A0-\u9999]/g,
     (i) => "&#" + i.codePointAt(0) + ";"
   );

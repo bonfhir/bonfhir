@@ -18,7 +18,7 @@ import { ReactElement } from "react";
 import { MantineFhirInputStringProps } from "./fhir-input-string.js";
 
 export function MantineFhirInputContactPoint(
-  props: FhirInputContactPointRendererProps<MantineFhirInputContactPointProps>
+  props: FhirInputContactPointRendererProps<MantineFhirInputContactPointProps>,
 ): ReactElement | null {
   let mode = props.mode;
   switch (mode) {

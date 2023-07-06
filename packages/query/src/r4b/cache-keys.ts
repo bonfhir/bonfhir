@@ -20,7 +20,7 @@ export const FhirQueryKeys = {
     clientKey: string,
     type: AnyResourceTypeOrCustomResource,
     id: string,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ) => [clientKey, resourceTypeOf(type), id, "read", type, options] as const,
 
   /**
@@ -31,7 +31,7 @@ export const FhirQueryKeys = {
     type: AnyResourceTypeOrCustomResource,
     id: string,
     vid: string,
-    options?: Parameters<FhirClient["vread"]>[3] | null | undefined
+    options?: Parameters<FhirClient["vread"]>[3] | null | undefined,
   ) =>
     [clientKey, resourceTypeOf(type), id, "vread", vid, type, options] as const,
 
@@ -42,7 +42,7 @@ export const FhirQueryKeys = {
     clientKey: string,
     type: AnyResourceTypeOrCustomResource | null | undefined,
     id: string | null | undefined,
-    options?: Parameters<FhirClient["history"]>[2] | null | undefined
+    options?: Parameters<FhirClient["history"]>[2] | null | undefined,
   ) => {
     if (!type && !id) {
       return [clientKey, "history", options] as const;
@@ -74,7 +74,7 @@ export const FhirQueryKeys = {
     type: AnyResourceTypeOrCustomResource,
     parameters?: string | null | undefined,
     pageUrl?: string | null | undefined,
-    options?: Parameters<FhirClient["search"]>[2] | null | undefined
+    options?: Parameters<FhirClient["search"]>[2] | null | undefined,
   ) =>
     [
       clientKey,
@@ -93,7 +93,7 @@ export const FhirQueryKeys = {
     clientKey: string,
     type: AnyResourceTypeOrCustomResource,
     parameters?: string | null | undefined,
-    options?: Parameters<FhirClient["search"]>[2] | null | undefined
+    options?: Parameters<FhirClient["search"]>[2] | null | undefined,
   ) =>
     [
       clientKey,
@@ -130,7 +130,7 @@ export const FhirQueryKeys = {
     clientKey: string,
     queryClient: QueryClient,
     type: AnyResourceType,
-    id: string
+    id: string,
   ) => {
     queryClient.invalidateQueries([clientKey, type, id]);
     queryClient.invalidateQueries([clientKey, type, "search"]);

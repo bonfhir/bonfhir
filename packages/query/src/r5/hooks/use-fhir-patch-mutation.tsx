@@ -17,7 +17,7 @@ import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
 export interface UseFhirPatchMutationArgs<
-  TResourceType extends AnyResourceType
+  TResourceType extends AnyResourceType,
 > {
   id: string;
   body: FhirClientPatchBody<ResourceTypeOf<TResourceType>>;
@@ -31,7 +31,7 @@ export interface UseFhirPatchMutationArgs<
 }
 
 export interface UseFhirPatchMutationOptions<
-  TResourceType extends AnyResourceType
+  TResourceType extends AnyResourceType,
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
@@ -56,7 +56,7 @@ export interface UseFhirPatchMutationOptions<
  */
 export function useFhirPatchMutation<TResourceType extends AnyResourceType>(
   type: TResourceType,
-  options?: UseFhirPatchMutationOptions<TResourceType> | null | undefined
+  options?: UseFhirPatchMutationOptions<TResourceType> | null | undefined,
 ): UseMutationResult<
   Retrieved<ExtractResource<TResourceType>>,
   unknown,
@@ -74,15 +74,15 @@ export function useFhirPatchMutation<TResourceType extends AnyResourceType>(
           fhirQueryContext.clientKey,
           fhirQueryContext.queryClient,
           data.resourceType,
-          data.id
+          data.id,
         );
         fhirQueryContext.queryClient.setQueryData(
           FhirQueryKeys.read(
             fhirQueryContext.clientKey,
             data.resourceType,
-            data.id
+            data.id,
           ),
-          data
+          data,
         );
       }
       options?.mutation?.onSuccess?.(data, variables, context);
@@ -93,7 +93,7 @@ export function useFhirPatchMutation<TResourceType extends AnyResourceType>(
         args.id,
         args.body,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        args.options as any
+        args.options as any,
       ),
   });
 }

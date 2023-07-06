@@ -26,7 +26,7 @@ export interface FhirPaginationProps<TRendererProps = any> {
 }
 
 export function FhirPagination<TRendererProps = any>(
-  props: FhirPaginationProps<TRendererProps>
+  props: FhirPaginationProps<TRendererProps>,
 ): ReactElement | null {
   const { applyDefaultProps, formatter, render } = useFhirUIContext();
   props = applyDefaultProps("FhirPagination", props);
@@ -43,13 +43,13 @@ export function FhirPagination<TRendererProps = any>(
     total: formatter.format("positiveInt", total),
     pageFirstEntry: formatter.format(
       "positiveInt",
-      totalPages === 0 ? 0 : (props.pageNumber - 1) * props.pageSize + 1
+      totalPages === 0 ? 0 : (props.pageNumber - 1) * props.pageSize + 1,
     ),
     pageLastEntry: formatter.format(
       "positiveInt",
       props.pageNumber * props.pageSize < total
         ? props.pageNumber * props.pageSize
-        : total
+        : total,
     ),
     totalPages: formatter.format("positiveInt", totalPages),
   });
@@ -70,5 +70,5 @@ export interface FhirPaginationRendererProps<TRendererProps = any>
 }
 
 export type FhirPaginationRenderer = (
-  props: FhirPaginationRendererProps
+  props: FhirPaginationRendererProps,
 ) => ReactElement | null;

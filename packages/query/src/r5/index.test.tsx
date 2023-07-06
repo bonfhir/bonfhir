@@ -12,12 +12,12 @@ import {
   ValueSetExpandOperation,
   build,
   extendResource,
+  uuid,
 } from "@bonfhir/core/r5";
 import { renderHook, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import React, { PropsWithChildren } from "react";
-import { v4 as uuid } from "uuid";
 import {
   DEFAULT_FHIR_CLIENT,
   FhirQueryProvider,
@@ -59,7 +59,7 @@ describe("hooks", () => {
       }
 
       return res(
-        ctx.json(build("Patient", { id: req.params.patientId as string }))
+        ctx.json(build("Patient", { id: req.params.patientId as string })),
       );
     }),
 
@@ -75,9 +75,9 @@ describe("hooks", () => {
         }
 
         return res(
-          ctx.json(build("Patient", { id: req.params.patientId as string }))
+          ctx.json(build("Patient", { id: req.params.patientId as string })),
         );
-      }
+      },
     ),
 
     rest.get(`${baseUrl}/Patient`, (req, res, ctx) => {
@@ -94,7 +94,7 @@ describe("hooks", () => {
                 },
               },
             ],
-          })
+          }),
         );
       }
 
@@ -121,7 +121,7 @@ describe("hooks", () => {
 
     rest.get(`${baseUrl}/metadata`, async (_req, res, ctx) => {
       return res(
-        ctx.json(build("CapabilityStatement", {} as CapabilityStatement))
+        ctx.json(build("CapabilityStatement", {} as CapabilityStatement)),
       );
     }),
 
@@ -130,7 +130,7 @@ describe("hooks", () => {
         ctx.json({
           resourceType: "ValueSet",
           url: req.url.searchParams.get("url"),
-        })
+        }),
       );
     }),
 
@@ -139,15 +139,15 @@ describe("hooks", () => {
       async (req, res, ctx) => {
         return res(
           ctx.json(
-            build("Organization", { id: req.params.organizationId as string })
-          )
+            build("Organization", { id: req.params.organizationId as string }),
+          ),
         );
-      }
+      },
     ),
 
     rest.patch(`${baseUrl}/Patient/:patientId`, async (req, res, ctx) => {
       return res(
-        ctx.json({ resourceType: "Patient", id: req.params.patientId })
+        ctx.json({ resourceType: "Patient", id: req.params.patientId }),
       );
     }),
 
@@ -173,15 +173,15 @@ describe("hooks", () => {
           entry: requestBundle.entry!.map(() => ({
             resource: {},
           })),
-        })
+        }),
       );
     }),
 
     rest.get(`${baseUrl}/Organization`, (_req, res, ctx) => {
       return res(
-        ctx.json({ resourceType: "Bundle", type: "searchset", entry: [] })
+        ctx.json({ resourceType: "Bundle", type: "searchset", entry: [] }),
       );
-    })
+    }),
   );
 
   const wrapper = ({ children }: PropsWithChildren) => (
@@ -204,7 +204,7 @@ describe("hooks", () => {
   beforeEach(() => {
     const { result } = renderHook(
       () => useFhirClientQueryContext(DEFAULT_FHIR_CLIENT),
-      { wrapper }
+      { wrapper },
     );
 
     result.current.queryClient.clear();
@@ -218,7 +218,7 @@ describe("hooks", () => {
     it("read", async () => {
       const { result } = renderHook(
         () => useFhirRead("Patient", "a942b3d5-19bc-4959-8b5d-f9aedd790a94"),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
@@ -234,7 +234,7 @@ describe("hooks", () => {
       const { result } = renderHook(
         () =>
           useFhirRead(CustomPatient, "a942b3d5-19bc-4959-8b5d-f9aedd790a94"),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
@@ -247,7 +247,7 @@ describe("hooks", () => {
       const { result } = renderHook(
         () =>
           useFhirVRead("Patient", "a942b3d5-19bc-4959-8b5d-f9aedd790a94", "1"),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
@@ -265,9 +265,9 @@ describe("hooks", () => {
           useFhirVRead(
             CustomPatient,
             "a942b3d5-19bc-4959-8b5d-f9aedd790a94",
-            "1"
+            "1",
           ),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
@@ -279,7 +279,7 @@ describe("hooks", () => {
     it("history", async () => {
       const { result } = renderHook(
         () => useFhirHistory("Patient", "a942b3d5-19bc-4959-8b5d-f9aedd790a94"),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
@@ -292,7 +292,7 @@ describe("hooks", () => {
       it("initial search", async () => {
         const { result } = renderHook(
           () => useFhirSearch("Patient", (search) => search.name("John Doe")),
-          { wrapper }
+          { wrapper },
         );
 
         await waitFor(() => {
@@ -304,7 +304,7 @@ describe("hooks", () => {
       it("next page", async () => {
         const { result } = renderHook(
           () => useFhirSearch("Patient", (search) => search.name("John Doe")),
-          { wrapper }
+          { wrapper },
         );
 
         await waitFor(() => {
@@ -317,9 +317,9 @@ describe("hooks", () => {
             useFhirSearch(
               "Patient",
               (search) => search.name("John Doe"),
-              result.current.data?.linkUrl("next")
+              result.current.data?.linkUrl("next"),
             ),
-          { wrapper }
+          { wrapper },
         );
 
         await waitFor(() => {
@@ -332,7 +332,7 @@ describe("hooks", () => {
         const { result } = renderHook(
           () =>
             useFhirSearch(CustomPatient, (search) => search.name("John Doe")),
-          { wrapper }
+          { wrapper },
         );
 
         await waitFor(() => {
@@ -348,7 +348,7 @@ describe("hooks", () => {
         const { result } = renderHook(
           () =>
             useFhirSearch(CustomPatient, (search) => search.name("John Doe")),
-          { wrapper }
+          { wrapper },
         );
 
         await waitFor(() => {
@@ -361,9 +361,9 @@ describe("hooks", () => {
             useFhirSearch(
               CustomPatient,
               (search) => search.name("John Doe"),
-              result.current.data?.linkUrl("next")
+              result.current.data?.linkUrl("next"),
             ),
-          { wrapper }
+          { wrapper },
         );
 
         await waitFor(() => {
@@ -380,13 +380,13 @@ describe("hooks", () => {
       const { result } = renderHook(
         () =>
           useFhirInfiniteSearch("Patient", (search) => search.name("John Doe")),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();
         expect(result.current.data?.pages.at(-1)).toBeInstanceOf(
-          BundleNavigator
+          BundleNavigator,
         );
         expect(result.current.hasNextPage).toBeTruthy();
       });
@@ -396,19 +396,19 @@ describe("hooks", () => {
       const { result } = renderHook(
         () =>
           useFhirInfiniteSearch(CustomPatient, (search) =>
-            search.name("John Doe")
+            search.name("John Doe"),
           ),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();
         expect(result.current.data?.pages.at(-1)).toBeInstanceOf(
-          BundleNavigator
+          BundleNavigator,
         );
         expect(result.current.hasNextPage).toBeTruthy();
         for (const patient of result.current.data?.pages.flatMap((page) =>
-          page.searchMatch()
+          page.searchMatch(),
         ) || []) {
           expect(patient).toBeInstanceOf(CustomPatient);
         }
@@ -418,7 +418,7 @@ describe("hooks", () => {
     it("search-one", async () => {
       const { result } = renderHook(
         () => useFhirSearchOne("Patient", (search) => search.name("The one")),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
@@ -431,7 +431,7 @@ describe("hooks", () => {
       const { result } = renderHook(
         () =>
           useFhirSearchOne(CustomPatient, (search) => search.name("The one")),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
@@ -445,7 +445,7 @@ describe("hooks", () => {
       const { result } = renderHook(
         () =>
           useFhirSearchAllPages("Patient", (search) => search.name("The one")),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
@@ -458,9 +458,9 @@ describe("hooks", () => {
       const { result } = renderHook(
         () =>
           useFhirSearchAllPages(CustomPatient, (search) =>
-            search.name("The one")
+            search.name("The one"),
           ),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
@@ -487,16 +487,16 @@ describe("hooks", () => {
           useFhirExecute(
             new ValueSetExpandOperation({
               url: "http://hl7.org/fhir/ValueSet/example",
-            })
+            }),
           ),
-        { wrapper }
+        { wrapper },
       );
 
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();
         expect(result.current.data?.resourceType).toEqual("ValueSet");
         expect(result.current.data?.url).toEqual(
-          "http://hl7.org/fhir/ValueSet/example"
+          "http://hl7.org/fhir/ValueSet/example",
         );
       });
     });
@@ -508,13 +508,13 @@ describe("hooks", () => {
         () => useFhirUpdateMutation("Organization"),
         {
           wrapper,
-        }
+        },
       );
 
       result.current.mutate(
         build("Organization", {
           id: "a942b3d5-19bc-4959-8b5d-f9aedd790a94",
-        })
+        }),
       );
 
       await waitFor(() => {
@@ -545,7 +545,7 @@ describe("hooks", () => {
       });
 
       result.current.mutate(
-        build("Patient", { id: "123" }) as Retrieved<Patient>
+        build("Patient", { id: "123" }) as Retrieved<Patient>,
       );
 
       await waitFor(() => {
@@ -558,7 +558,7 @@ describe("hooks", () => {
         () => useFhirCreateMutation("Organization"),
         {
           wrapper,
-        }
+        },
       );
 
       result.current.mutate(build("Organization", {}));
@@ -574,7 +574,7 @@ describe("hooks", () => {
         () => useFhirCreateOrMutation("Organization"),
         {
           wrapper,
-        }
+        },
       );
 
       result.current.mutate({
@@ -614,7 +614,7 @@ describe("hooks", () => {
       result.current.mutate(
         new ClaimSubmitOperation({
           resource: build("Claim", {} as Claim),
-        })
+        }),
       );
 
       await waitFor(() => {

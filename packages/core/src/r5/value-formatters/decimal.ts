@@ -43,7 +43,7 @@ export const decimalFormatter: ValueFormatter<
       decimal = new Decimal(trimmedValue);
       significantDigits = trimmedValue.includes("e")
         ? decimal.precision()
-        : trimmedValue.replace(/\.|-/g, "").length;
+        : trimmedValue.replaceAll(/\.|-/g, "").length;
     }
 
     const valueToFormat = decimal.toNumber();
@@ -65,7 +65,7 @@ export const decimalFormatter: ValueFormatter<
     }
 
     return new Intl.NumberFormat(formatterOptions.locale, intlOptions).format(
-      valueToFormat
+      valueToFormat,
     );
   },
 };

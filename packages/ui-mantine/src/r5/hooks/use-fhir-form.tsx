@@ -11,7 +11,7 @@ import {
 
 export type UseFhirFormReturnType<
   Values,
-  TransformValues extends _TransformValues<Values> = (values: Values) => Values
+  TransformValues extends _TransformValues<Values> = (values: Values) => Values,
 > = UseFormReturnType<Values, TransformValues> & {
   getArrayInputProps: GetArrayInputProps<Values>;
 };
@@ -20,7 +20,7 @@ export type GetArrayInputProps<Values> = <Field extends LooseKeys<Values>>(
   path: Field,
   options?: {
     newValue?: any | (() => any) | null | undefined;
-  }
+  },
 ) => {
   value: any;
   error?: any;
@@ -31,9 +31,9 @@ export type GetArrayInputProps<Values> = <Field extends LooseKeys<Values>>(
 
 export function useFhirForm<
   Values = Record<string, unknown>,
-  TransformValues extends _TransformValues<Values> = (values: Values) => Values
+  TransformValues extends _TransformValues<Values> = (values: Values) => Values,
 >(
-  args?: UseFormInput<Values, TransformValues>
+  args?: UseFormInput<Values, TransformValues>,
 ): UseFhirFormReturnType<Values, TransformValues> {
   const { transformValues, ...remainingArgs } = args || {};
   const form = useForm({

@@ -12,7 +12,7 @@ export interface FhirInputMarkdownProps<TRendererProps = any>
 }
 
 export function FhirInputMarkdown<TRendererProps = any>(
-  props: FhirInputMarkdownProps<TRendererProps>
+  props: FhirInputMarkdownProps<TRendererProps>,
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
@@ -23,5 +23,5 @@ export type FhirInputMarkdownRendererProps<TRendererProps = any> =
   FhirInputMarkdownProps<TRendererProps>;
 
 export type FhirInputMarkdownRenderer = (
-  props: FhirInputMarkdownRendererProps
+  props: FhirInputMarkdownRendererProps,
 ) => ReactElement | null;

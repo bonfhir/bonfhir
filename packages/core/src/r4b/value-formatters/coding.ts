@@ -32,7 +32,7 @@ export const codingFormatter: ValueFormatter<
     const display =
       value.display?.trim() ||
       withValueFormatter<typeof codeFormatter>(
-        formatterOptions.formatter
+        formatterOptions.formatter,
       ).format("code", value.code, { expansions: options?.expansions });
 
     let formattedValue;

@@ -14,7 +14,7 @@ import {
 import { DetailedHTMLProps, HTMLAttributes, ReactElement } from "react";
 
 export function MantineFhirTable(
-  props: FhirTableRendererProps<MantineFhirTableProps>
+  props: FhirTableRendererProps<MantineFhirTableProps>,
 ): ReactElement | null {
   const { onNavigate } = useFhirUIContext();
 
@@ -158,7 +158,7 @@ export interface MantineFhirTableProps {
         HTMLTableCellElement
       >
     | ((
-        column: FhirTableColumn<any>
+        column: FhirTableColumn<any>,
       ) => DetailedHTMLProps<
         HTMLAttributes<HTMLTableCellElement>,
         HTMLTableCellElement
@@ -171,7 +171,7 @@ export interface MantineFhirTableProps {
         HTMLTableRowElement
       >
     | ((
-        row: any
+        row: any,
       ) => DetailedHTMLProps<
         HTMLAttributes<HTMLTableRowElement>,
         HTMLTableRowElement
@@ -185,7 +185,7 @@ export interface MantineFhirTableProps {
       >
     | ((
         column: FhirTableColumn<any>,
-        row: any
+        row: any,
       ) => DetailedHTMLProps<
         HTMLAttributes<HTMLTableCellElement>,
         HTMLTableCellElement

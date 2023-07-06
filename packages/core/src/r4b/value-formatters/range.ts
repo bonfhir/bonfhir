@@ -30,14 +30,14 @@ export const rangeFormatter: ValueFormatter<
     if (!value?.low || !value?.high) return "";
 
     let formattedLow = withValueFormatter<typeof quantityFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("Quantity", value.low, {
       notation: options?.notation,
       expansions: options?.expansions,
       separator: options?.quantitySeparator,
     });
     const formattedHigh = withValueFormatter<typeof quantityFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("Quantity", value.high, {
       notation: options?.notation,
       expansions: options?.expansions,
@@ -46,7 +46,7 @@ export const rangeFormatter: ValueFormatter<
 
     if (value.low?.unit === value.high?.unit) {
       formattedLow = withValueFormatter<typeof decimalFormatter>(
-        formatterOptions.formatter
+        formatterOptions.formatter,
       ).format("decimal", value.low.value, {
         notation: options?.notation,
       });

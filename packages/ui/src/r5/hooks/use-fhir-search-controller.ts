@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export interface UseFhirSearchControllerValue<
   TSort extends string = string,
-  TSearch = unknown
+  TSearch = unknown,
 > {
   pageNumber: number;
   pageSize: number;
@@ -15,13 +15,13 @@ export interface UseFhirSearchControllerValue<
   search: TSearch | undefined;
   onSearch: (search: TSearch | ((search: TSearch) => TSearch)) => void;
   getInputProps: <TKey extends keyof TSearch>(
-    criteria: TKey
+    criteria: TKey,
   ) => UseFhirSearchControllerGetInputPropsResult<TSearch[TKey]>;
 }
 
 export interface UseFhirSearchControllerState<
   TSort extends string = string,
-  TSearch = unknown
+  TSearch = unknown,
 > {
   pageNumber: number;
   pageUrl: string | undefined;
@@ -31,7 +31,7 @@ export interface UseFhirSearchControllerState<
 
 export interface UseFhirSearchControllerArgs<
   TSort extends string = string,
-  TSearch = unknown
+  TSearch = unknown,
 > {
   pageSize?: number | null | undefined;
   defaultSort?: TSort | null | undefined;
@@ -44,10 +44,10 @@ export interface UseFhirSearchControllerArgs<
 
 export type UseFhirSearchControllerStateManager<
   TSort extends string = string,
-  TSearch = unknown
+  TSearch = unknown,
 > = [
   UseFhirSearchControllerState<TSort, TSearch> | undefined,
-  (value: UseFhirSearchControllerState<TSort, TSearch>) => void
+  (value: UseFhirSearchControllerState<TSort, TSearch>) => void,
 ];
 
 export interface UseFhirSearchControllerGetInputPropsResult<TValue> {
@@ -57,9 +57,9 @@ export interface UseFhirSearchControllerGetInputPropsResult<TValue> {
 
 export function useFhirSearchController<
   TSort extends string = string,
-  TSearch = unknown
+  TSearch = unknown,
 >(
-  args: UseFhirSearchControllerArgs<TSort, TSearch> | null | undefined
+  args: UseFhirSearchControllerArgs<TSort, TSearch> | null | undefined,
 ): UseFhirSearchControllerValue<TSort, TSearch> {
   const [state, setState] = useState<
     UseFhirSearchControllerState<TSort, TSearch> | undefined
@@ -72,7 +72,7 @@ export function useFhirSearchController<
   }, [state, args?.stateManager?.[0]]);
 
   const updateState = (
-    newState: Partial<UseFhirSearchControllerState<TSort, TSearch>>
+    newState: Partial<UseFhirSearchControllerState<TSort, TSearch>>,
   ) => {
     setState((prevState) => {
       const newValue = {
@@ -121,7 +121,7 @@ export function useFhirSearchController<
 
 export function useQueryStateManager<
   TSort extends string = string,
-  TSearch = unknown
+  TSearch = unknown,
 >(queryKey: QueryKey): UseFhirSearchControllerStateManager<TSort, TSearch> {
   const { queryClient } = useFhirQueryContext();
 
@@ -135,13 +135,13 @@ export function useQueryStateManager<
 
 export function useURLSearchParamsStateManager<
   TSort extends string = string,
-  TSearch = unknown
+  TSearch = unknown,
 >(
   scope: string,
   [urlSearchParams, setURLSearchParams]: [
     URLSearchParams,
-    (value: URLSearchParams) => void
-  ]
+    (value: URLSearchParams) => void,
+  ],
 ): UseFhirSearchControllerStateManager<TSort, TSearch> {
   return [
     urlSearchParams.has(scope)
@@ -153,7 +153,7 @@ export function useURLSearchParamsStateManager<
         new URLSearchParams({
           ...Object.fromEntries(urlSearchParams),
           [scope]: btoa(JSON.stringify(value)),
-        })
+        }),
       );
     },
   ];

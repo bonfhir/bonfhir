@@ -103,13 +103,13 @@ export default <CommandModule<unknown, CommandOptions>>{
 function preprocess(
   source: string,
   input: string,
-  options: CommandOptions
+  options: CommandOptions,
 ): string {
   const processedFileContent = [];
   const preprocessorStack: Array<string | undefined> = [];
   for (const [lineNumber, contentLine] of input.split("\n").entries()) {
     const matchedPreprocessorDirective = contentLine.match(
-      /\s*\/\/\s*#(?<directive>(end)?if)(\s+(?<condition>.+))?\s*/
+      /\s*\/\/\s*#(?<directive>(end)?if)(\s+(?<condition>.+))?\s*/,
     )?.groups as { directive: string; condition?: string };
 
     if (matchedPreprocessorDirective?.directive) {
@@ -127,12 +127,12 @@ function preprocess(
       if (
         preprocessorStack.every((condition) =>
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          evalCondition(source, lineNumber + 1, condition, options.targetFhir!)
+          evalCondition(source, lineNumber + 1, condition, options.targetFhir!),
         )
       ) {
         processedFileContent.push(
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          contentLine.replaceAll(options.sourceFhir!, options.targetFhir!)
+          contentLine.replaceAll(options.sourceFhir!, options.targetFhir!),
         );
       }
       continue;
@@ -145,11 +145,11 @@ function evalCondition(
   source: string,
   lineNumber: number,
   condition: string | undefined,
-  targetFhir: string
+  targetFhir: string,
 ): boolean {
   if (!condition?.trim()) {
     throw new Error(
-      `Missing pre-processor condition: (${source}:${lineNumber})`
+      `Missing pre-processor condition: (${source}:${lineNumber})`,
     );
   }
   const parsedCondition = condition
@@ -163,7 +163,7 @@ function evalCondition(
 
   if (!parsedCondition) {
     throw new Error(
-      `Invalid pre-processor condition: "${condition}" (${source}:${lineNumber})`
+      `Invalid pre-processor condition: "${condition}" (${source}:${lineNumber})`,
     );
   }
 
@@ -186,7 +186,7 @@ function evalCondition(
     }
     default: {
       throw new Error(
-        `Unsupported operator condition: "${condition}" (${source}:${lineNumber})`
+        `Unsupported operator condition: "${condition}" (${source}:${lineNumber})`,
       );
     }
   }

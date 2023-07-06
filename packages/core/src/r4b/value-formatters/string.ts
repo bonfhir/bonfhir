@@ -24,7 +24,7 @@ export const stringFormatter: ValueFormatter<
     if (options?.truncate) {
       return truncate(
         trimmedValue,
-        typeof options.truncate === "boolean" ? undefined : options.truncate
+        typeof options.truncate === "boolean" ? undefined : options.truncate,
       );
     }
 

@@ -18,7 +18,7 @@ import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
 export interface UseFhirSearchOneOptions<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
@@ -49,14 +49,14 @@ export interface UseFhirSearchOneOptions<
  * @see https://hl7.org/fhir/http.html#search
  */
 export function useFhirSearchOne<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   type: TResourceType,
   parameters?:
     | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
     | null
     | undefined,
-  options?: UseFhirSearchOneOptions<TResourceType> | null | undefined
+  options?: UseFhirSearchOneOptions<TResourceType> | null | undefined,
 ): UseQueryResult<
   WithResolvableReferences<Retrieved<ResourceOf<TResourceType>>>
 > {
@@ -73,7 +73,7 @@ export function useFhirSearchOne<
       type,
       normalizedParameters,
       undefined,
-      options?.fhir
+      options?.fhir,
     ),
     queryFn: ({ signal }) =>
       fhirQueryContext.fhirClient.searchOne(type, parameters, {

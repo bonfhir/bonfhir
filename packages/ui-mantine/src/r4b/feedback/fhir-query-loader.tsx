@@ -14,7 +14,7 @@ import { IconAlertCircle, IconReload } from "@tabler/icons-react";
 import { ReactElement } from "react";
 
 export function MantineFhirQueryLoader(
-  props: FhirQueryLoaderRendererProps<MantineFhirQueryLoaderProps>
+  props: FhirQueryLoaderRendererProps<MantineFhirQueryLoaderProps>,
 ): ReactElement | null {
   if (props.isLoading) {
     return (
@@ -57,7 +57,7 @@ export function MantineFhirQueryLoader(
                 )}
               </Stack>
             </Alert>
-          )
+          ),
         )}
       </Stack>
     );

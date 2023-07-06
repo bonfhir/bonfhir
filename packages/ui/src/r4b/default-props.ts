@@ -31,7 +31,7 @@ export interface FhirUIDefaultProps {
   FhirQueryLoader?:
     | Partial<FhirQueryLoaderProps<any, any>>
     | ((
-        props: FhirQueryLoaderProps<any, any>
+        props: FhirQueryLoaderProps<any, any>,
       ) => FhirQueryLoaderProps<any, any>)
     | null
     | undefined;
@@ -53,7 +53,7 @@ export interface FhirUIDefaultProps {
           AnyResource,
           any,
           WithResolvableReferences<Retrieved<AnyResource>>
-        >
+        >,
       ) => FhirTableProps<
         AnyResource,
         any,

@@ -8,7 +8,7 @@ import {
 import { ReactElement } from "react";
 
 export function MantineFhirPagination(
-  props: FhirPaginationRendererProps<MantineFhirPaginationProps>
+  props: FhirPaginationRendererProps<MantineFhirPaginationProps>,
 ): ReactElement | null {
   return (
     <Pagination.Root
@@ -22,7 +22,7 @@ export function MantineFhirPagination(
       onPreviousPage={() =>
         props.onPageChange?.(
           props.data?.linkUrl("previous"),
-          props.pageNumber - 1
+          props.pageNumber - 1,
         )
       }
       onLastPage={() =>

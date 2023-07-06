@@ -21,15 +21,15 @@ export type CustomResourceClass<TResource extends Resource = Resource> = {
 
 export function extendResource<
   TResourceType extends AnyResourceType,
-  TExtensions
+  TExtensions,
 >(
   resourceType: TResourceType,
   extensions: TExtensions &
-    ThisType<ExtractResource<TResourceType> & TExtensions>
+    ThisType<ExtractResource<TResourceType> & TExtensions>,
 ): {
   resourceType: typeof resourceType;
   new (
-    data?: Omit<ExtractResource<TResourceType>, "resourceType">
+    data?: Omit<ExtractResource<TResourceType>, "resourceType">,
   ): ExtractResource<TResourceType> & TExtensions;
 } {
   const specialExtensions: Record<string, SpecialExtension> = {};
@@ -51,7 +51,7 @@ export function extendResource<
       if (data) {
         if (data.resourceType && data.resourceType !== resourceType) {
           throw new Error(
-            `Unable to assign custom resource class for a ${resourceType} to a resource data for resource type ${data.resourceType}`
+            `Unable to assign custom resource class for a ${resourceType} to a resource data for resource type ${data.resourceType}`,
           );
         }
         const dataWithoutSpecialExtensions = Object.entries(data)
@@ -59,7 +59,7 @@ export function extendResource<
           .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {} as any);
         Object.assign(this, dataWithoutSpecialExtensions);
         for (const [key, value] of Object.entries(data).filter(
-          ([key]) => specialExtensions[key]
+          ([key]) => specialExtensions[key],
         )) {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           specialExtensions[key]!.__set(this, value);
@@ -116,13 +116,13 @@ export function extendResource<
 }
 
 export function extension<TExtensionType extends keyof AnyExtensionType>(
-  extension: ExtensionHelperArgs<TExtensionType>
+  extension: ExtensionHelperArgs<TExtensionType>,
 ): AnyExtensionType[TExtensionType] | undefined;
 export function extension<TExtensionType extends keyof AnyExtensionType>(
-  extension: ExtensionHelperArgs<TExtensionType> & { allowMultiple: true }
+  extension: ExtensionHelperArgs<TExtensionType> & { allowMultiple: true },
 ): Array<NonNullable<AnyExtensionType[TExtensionType]>>;
 export function extension<TExtensionType extends keyof AnyExtensionType>(
-  extension: ExtensionHelperArgs<TExtensionType> & { allowMultiple?: boolean }
+  extension: ExtensionHelperArgs<TExtensionType> & { allowMultiple?: boolean },
 ):
   | AnyExtensionType[TExtensionType]
   | Array<NonNullable<AnyExtensionType[TExtensionType]>>
@@ -132,7 +132,7 @@ export function extension<TExtensionType extends keyof AnyExtensionType>(
     __isSpecialExtension: true,
     __get(target: HasExtension) {
       const extensionValues = (target.extension || []).filter(
-        (x) => x.url === extension.url
+        (x) => x.url === extension.url,
       );
 
       if (extension.allowMultiple) {
@@ -147,7 +147,7 @@ export function extension<TExtensionType extends keyof AnyExtensionType>(
       target: HasExtension,
       value:
         | AnyExtensionType[TExtensionType]
-        | Array<AnyExtensionType[TExtensionType]>
+        | Array<AnyExtensionType[TExtensionType]>,
     ) {
       if (extension.allowMultiple) {
         target.extension = [
@@ -156,7 +156,7 @@ export function extension<TExtensionType extends keyof AnyExtensionType>(
             (newValue: any) => ({
               url: extension.url,
               [extension.kind]: newValue,
-            })
+            }),
           ),
         ];
 
@@ -168,14 +168,14 @@ export function extension<TExtensionType extends keyof AnyExtensionType>(
       }
 
       const extensionValue = (target.extension || []).find(
-        (x) => x.url === extension.url
+        (x) => x.url === extension.url,
       );
 
       if (value == undefined || (typeof value === "string" && !value)) {
         // Delete the extension.
         if (extensionValue) {
           target.extension = target.extension?.filter(
-            (x) => x.url !== extension.url
+            (x) => x.url !== extension.url,
           );
 
           if (target.extension?.length === 0) {
@@ -209,7 +209,7 @@ export function tag(tag: { system: string }): Coding | undefined {
     },
     __set(target: HasMeta, value: Omit<Coding, "system"> | null | undefined) {
       const tagValue = (target.meta?.tag || []).find(
-        (x) => x.system === tag.system
+        (x) => x.system === tag.system,
       );
 
       if (value == undefined) {
@@ -220,7 +220,7 @@ export function tag(tag: { system: string }): Coding | undefined {
         // this is the setter to delete the tag.
         if (tagValue) {
           target.meta.tag = target.meta.tag?.filter(
-            (x) => x.system !== tag.system
+            (x) => x.system !== tag.system,
           );
 
           if (target.meta.tag?.length === 0) {
@@ -254,7 +254,7 @@ export function tag(tag: { system: string }): Coding | undefined {
 }
 
 export interface ExtensionHelperArgs<
-  TExtensionType extends keyof AnyExtensionType
+  TExtensionType extends keyof AnyExtensionType,
 > {
   url: string;
   kind: TExtensionType;
@@ -299,14 +299,14 @@ export type ResourceTypeOf<T extends AnyResourceTypeOrCustomResource> =
     : never;
 
 export function resourceTypeOf<T extends AnyResourceTypeOrCustomResource>(
-  value: T
+  value: T,
 ): ResourceTypeOf<T>;
 export function resourceTypeOf(value: null | undefined): undefined;
 export function resourceTypeOf<T extends AnyResourceTypeOrCustomResource>(
-  value: T | null | undefined
+  value: T | null | undefined,
 ): ResourceTypeOf<T> | undefined;
 export function resourceTypeOf<T extends AnyResourceTypeOrCustomResource>(
-  value: T | null | undefined
+  value: T | null | undefined,
 ): ResourceTypeOf<T> | undefined {
   if (!value) {
     return;

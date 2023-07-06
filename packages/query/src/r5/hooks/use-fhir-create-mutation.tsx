@@ -25,7 +25,7 @@ export type UseFhirCreateMutationArgs<TResourceType extends AnyResourceType> =
   | ExtractResource<TResourceType>;
 
 export interface UseFhirCreateMutationOptions<
-  TResourceType extends AnyResourceType
+  TResourceType extends AnyResourceType,
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
@@ -50,7 +50,7 @@ export interface UseFhirCreateMutationOptions<
  */
 export function useFhirCreateMutation<TResourceType extends AnyResourceType>(
   type: TResourceType,
-  options?: UseFhirCreateMutationOptions<TResourceType> | null | undefined
+  options?: UseFhirCreateMutationOptions<TResourceType> | null | undefined,
 ): UseMutationResult<
   Retrieved<ExtractResource<TResourceType>>,
   unknown,
@@ -68,15 +68,15 @@ export function useFhirCreateMutation<TResourceType extends AnyResourceType>(
           fhirQueryContext.clientKey,
           fhirQueryContext.queryClient,
           data.resourceType,
-          data.id
+          data.id,
         );
         fhirQueryContext.queryClient.setQueryData(
           FhirQueryKeys.read(
             fhirQueryContext.clientKey,
             data.resourceType,
-            data.id
+            data.id,
           ),
-          data
+          data,
         );
       }
       options?.mutation?.onSuccess?.(data, variables, context);

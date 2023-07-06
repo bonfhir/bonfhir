@@ -30,7 +30,7 @@ describe("lang-utils", () => {
       "returns $expected when given value=$value, length=$length, omission=$omission, and separator=$separator",
       ({ value, options, expected }) => {
         expect(truncate(value, options)).toEqual(expected);
-      }
+      },
     );
   });
 

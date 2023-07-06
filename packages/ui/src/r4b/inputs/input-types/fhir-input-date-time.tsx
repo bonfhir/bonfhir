@@ -12,7 +12,7 @@ export interface FhirInputDateTimeProps<TRendererProps = any>
 }
 
 export function FhirInputDateTime<TRendererProps = any>(
-  props: FhirInputDateTimeProps<TRendererProps>
+  props: FhirInputDateTimeProps<TRendererProps>,
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
@@ -23,5 +23,5 @@ export type FhirInputDateTimeRendererProps<TRendererProps = any> =
   FhirInputDateTimeProps<TRendererProps>;
 
 export type FhirInputDateTimeRenderer = (
-  props: FhirInputDateTimeRendererProps
+  props: FhirInputDateTimeRendererProps,
 ) => ReactElement | null;

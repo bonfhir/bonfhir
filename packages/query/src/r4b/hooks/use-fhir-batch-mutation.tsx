@@ -33,7 +33,7 @@ export interface UseFhirBatchMutationOptions {
  * @see https://hl7.org/fhir/http.html#transaction
  */
 export function useFhirBatchMutation(
-  options?: UseFhirBatchMutationOptions | null | undefined
+  options?: UseFhirBatchMutationOptions | null | undefined,
 ): UseMutationResult<
   BundleExecutor,
   unknown,
@@ -55,7 +55,7 @@ export function useFhirBatchMutation(
             fhirQueryContext.clientKey,
             fhirQueryContext.queryClient,
             (resource as Resource).resourceType,
-            (resource as Retrieved<Resource>).id
+            (resource as Retrieved<Resource>).id,
           );
         }
       }

@@ -3415,7 +3415,7 @@ export const NARRATIVE_GENERATORS: Record<string, NarrativeGenerator> = {
 
 export function narrative<TResource extends AnyDomainResource>(
   resource: TResource,
-  options?: NarrativeOptions | null | undefined
+  options?: NarrativeOptions | null | undefined,
 ): Narrative | undefined {
   const generator = NARRATIVE_GENERATORS?.[resource.resourceType];
   if (!generator) {
@@ -3439,7 +3439,7 @@ export function narrative<TResource extends AnyDomainResource>(
     div: `<div xmlns="http://www.w3.org/1999/xhtml">${render(
       resource,
       generator,
-      options
+      options,
     )}</div>`,
   };
 }
@@ -3447,7 +3447,7 @@ export function narrative<TResource extends AnyDomainResource>(
 function render(
   item: object,
   components: Array<NarrativeItemGenerator>,
-  options: NarrativeOptions | null | undefined
+  options: NarrativeOptions | null | undefined,
 ): string {
   return `<ul>${components
     .map((component) => {
@@ -3471,9 +3471,9 @@ function render(
           .join("")}</ul></li>`;
       }
 
-      return `<li><span>${startCase(attribute).replace(
+      return `<li><span>${startCase(attribute).replaceAll(
         " Boolean",
-        ""
+        "",
       )}: </span>${renderValue(value, type, options)}</li>`;
     })
     .filter(Boolean)
@@ -3483,7 +3483,7 @@ function render(
 function renderValue(
   value: any,
   type: string,
-  options: NarrativeOptions | null | undefined
+  options: NarrativeOptions | null | undefined,
 ): string | undefined {
   const formatter = options?.formatter ?? Formatter.default;
   const narrativeGenerator = NARRATIVE_GENERATORS?.[type];
@@ -3498,8 +3498,8 @@ function renderValue(
 }
 
 function htmlEncode(value: string): string {
-  return value.replace(
+  return value.replaceAll(
     /[&<>\u00A0-\u9999]/g,
-    (i) => "&#" + i.codePointAt(0) + ";"
+    (i) => "&#" + i.codePointAt(0) + ";",
   );
 }

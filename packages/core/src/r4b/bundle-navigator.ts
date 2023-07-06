@@ -31,18 +31,18 @@ import { asArray, uniqBy } from "./lang-utils.js";
  *    }
  */
 export function bundleNavigator<TResource extends Resource = Resource>(
-  bundle: Bundle<TResource>
+  bundle: Bundle<TResource>,
 ): BundleNavigator<TResource>;
 export function bundleNavigator<
   TResource extends Resource,
-  TCustomResourceClass extends CustomResourceClass<TResource>
+  TCustomResourceClass extends CustomResourceClass<TResource>,
 >(
   bundle: Bundle<any>,
-  customResourceClass?: TCustomResourceClass
+  customResourceClass?: TCustomResourceClass,
 ): BundleNavigator<InstanceType<TCustomResourceClass>>;
 export function bundleNavigator<TResource extends Resource = Resource>(
   bundle: Bundle<TResource>,
-  customResourceClass?: CustomResourceClass<TResource>
+  customResourceClass?: CustomResourceClass<TResource>,
 ): BundleNavigator<TResource> {
   return new BundleNavigator<TResource>(bundle, customResourceClass);
 }
@@ -59,7 +59,7 @@ export type ResolvableReference<TTargetResource extends Resource = Resource> =
      */
     included<TResult = TTargetResource>(): TResult | undefined;
     included<TResult extends Resource = TTargetResource>(
-      customResourceClass?: CustomResourceClass<TResult> | null | undefined
+      customResourceClass?: CustomResourceClass<TResult> | null | undefined,
     ): TResult | undefined;
   };
 
@@ -77,13 +77,13 @@ export type WithResolvableReferences<T> = {
     : RecursiveResolvableReferences<T[K]>;
 } & {
   revIncluded<TResource extends AnyResource>(
-    select: (resource: TResource) => Reference | Reference[] | null | undefined
+    select: (resource: TResource) => Reference | Reference[] | null | undefined,
   ): RecursiveResolvableReferences<TResource>[];
   revIncluded<TCustomResourceClass extends CustomResourceClass>(
     select: (
-      resource: ExtractResource<TCustomResourceClass["resourceType"]>
+      resource: ExtractResource<TCustomResourceClass["resourceType"]>,
     ) => Reference | Reference[] | null | undefined,
-    customResourceClass: TCustomResourceClass
+    customResourceClass: TCustomResourceClass,
   ): RecursiveResolvableReferences<InstanceType<TCustomResourceClass>>[];
 };
 
@@ -137,7 +137,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     private _bundleOrNavigator:
       | Bundle<TResource>
       | Array<BundleNavigator<TResource>>,
-    private _customResourceClass?: CustomResourceClass<TResource>
+    private _customResourceClass?: CustomResourceClass<TResource>,
   ) {}
 
   /**
@@ -155,7 +155,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   public get bundle(): Bundle<Retrieved<TResource>> {
     if (Array.isArray(this._bundleOrNavigator)) {
       throw new TypeError(
-        "Cannot access bundle on a bundle navigator that was created from an array of bundle navigators"
+        "Cannot access bundle on a bundle navigator that was created from an array of bundle navigators",
       );
     }
     return this._bundleOrNavigator as Bundle<Retrieved<TResource>>;
@@ -173,7 +173,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    */
   public reference<TResource extends AnyResource>(
     reference: string | Reference<TResource> | null | undefined,
-    customResourceClass?: CustomResourceClass<TResource> | null | undefined
+    customResourceClass?: CustomResourceClass<TResource> | null | undefined,
   ): WithResolvableReferences<Retrieved<TResource>> | undefined {
     if (Array.isArray(this._bundleOrNavigator)) {
       for (const navigator of this._bundleOrNavigator) {
@@ -224,22 +224,22 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    */
   public revReference<TResource extends AnyResource>(
     select: (resource: TResource) => Reference | Reference[] | null | undefined,
-    reference: Retrieved<AnyResource> | string | null | undefined
+    reference: Retrieved<AnyResource> | string | null | undefined,
   ): WithResolvableReferences<Retrieved<TResource>>[];
   public revReference<TCustomResourceClass extends CustomResourceClass>(
     select: (
-      resource: ExtractResource<TCustomResourceClass["resourceType"]>
+      resource: ExtractResource<TCustomResourceClass["resourceType"]>,
     ) => Reference | Reference[] | null | undefined,
     reference: Retrieved<AnyResource> | string | null | undefined,
-    customResourceClass: TCustomResourceClass
+    customResourceClass: TCustomResourceClass,
   ): WithResolvableReferences<Retrieved<InstanceType<TCustomResourceClass>>>[];
   public revReference<
     TResource extends AnyResource,
-    TCustomResourceClass extends CustomResourceClass
+    TCustomResourceClass extends CustomResourceClass,
   >(
     select: (resource: TResource) => Reference | Reference[] | null | undefined,
     reference: Retrieved<AnyResource> | string | null | undefined,
-    customResourceClass?: TCustomResourceClass
+    customResourceClass?: TCustomResourceClass,
   ): WithResolvableReferences<Retrieved<TResource>>[] {
     if (!reference) {
       return [];
@@ -250,7 +250,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
         const res = navigator.revReference(
           select as any,
           reference,
-          customResourceClass as any
+          customResourceClass as any,
         );
         if (res.length > 0) {
           return res as any;
@@ -287,7 +287,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    * This is useful to iterate over the primary resource for a search.
    */
   public searchMatch<
-    TResult extends Resource = TResource
+    TResult extends Resource = TResource,
   >(): WithResolvableReferences<Retrieved<TResult>>[] {
     if (Array.isArray(this._bundleOrNavigator)) {
       return this._bundleOrNavigator.flatMap((nav) => nav.searchMatch());
@@ -307,7 +307,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     ) {
       return this.type(
         (this._customResourceClass ||
-          this.bundle.entry[0].resource.resourceType) as any
+          this.bundle.entry[0].resource.resourceType) as any,
       ) as WithResolvableReferences<Retrieved<TResult>>[];
     }
 
@@ -322,7 +322,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    * If you want to return undefined on not found, you should use `searchMatch()[0]` instead.
    */
   public searchMatchOne<
-    TResult extends Resource = TResource
+    TResult extends Resource = TResource,
   >(): WithResolvableReferences<Retrieved<TResult>> {
     if (Array.isArray(this._bundleOrNavigator)) {
       if (this._bundleOrNavigator.length === 0) {
@@ -352,16 +352,16 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    * Get all the resources of a specific type.
    */
   type<TResourceType extends AnyResourceType = AnyResourceType>(
-    type: TResourceType
+    type: TResourceType,
   ): WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>[];
   type<TCustomResourceClass extends CustomResourceClass>(
-    type: TCustomResourceClass
+    type: TCustomResourceClass,
   ): WithResolvableReferences<Retrieved<InstanceType<TCustomResourceClass>>>[];
   public type<
     TCustomResourceClass extends CustomResourceClass,
-    TResourceType extends AnyResourceType = AnyResourceType
+    TResourceType extends AnyResourceType = AnyResourceType,
   >(
-    type: TResourceType | CustomResourceClass
+    type: TResourceType | CustomResourceClass,
   ):
     | WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>[]
     | WithResolvableReferences<
@@ -370,9 +370,9 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     if (Array.isArray(this._bundleOrNavigator)) {
       return uniqBy(
         this._bundleOrNavigator.flatMap((nav) =>
-          nav.type(type as TResourceType)
+          nav.type(type as TResourceType),
         ),
-        (res) => `${res.id}${(res.meta as Meta)?.versionId}`
+        (res) => `${res.id}${(res.meta as Meta)?.versionId}`,
       );
     }
 
@@ -394,7 +394,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    * Return the url associated with a link, characterized by a relation.
    */
   public linkUrl(
-    relation: "self" | "first" | "next" | "previous" | "last"
+    relation: "self" | "first" | "next" | "previous" | "last",
   ): string | undefined;
   public linkUrl(relation: string): string | undefined {
     if (Array.isArray(this._bundleOrNavigator)) {
@@ -420,7 +420,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
 
       return this._bundleOrNavigator.reduce(
         (sum, nav) => sum + (nav.total ?? 0),
-        0
+        0,
       );
     }
     return this.bundle.total;
@@ -436,18 +436,18 @@ export class BundleNavigator<TResource extends Resource = Resource> {
         if (entry.resource) {
           const resolvableResource = withResolvableProxy(
             entry.resource,
-            this
+            this,
           ) as WithResolvableReferences<Resource>;
           if (entry.resource?.id?.length) {
             this._resourcesByRelativeReference.set(
               `${entry.resource.resourceType}/${entry.resource.id}`,
-              resolvableResource
+              resolvableResource,
             );
 
             if (entry.resource.meta?.versionId?.length) {
               this._resourcesByRelativeReference.set(
                 `${entry.resource.resourceType}/${entry.resource.id}/_history/${entry.resource.meta.versionId}`,
-                resolvableResource
+                resolvableResource,
               );
             }
           }
@@ -477,7 +477,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   }
 
   private _ensureSelectIndex(
-    select: (res: unknown) => Reference | Reference[] | null | undefined
+    select: (res: unknown) => Reference | Reference[] | null | undefined,
   ): void {
     if (!this._resourcesByRefSelectIndex) {
       this._resourcesByRefSelectIndex = new Map();
@@ -487,7 +487,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
       const mappedByReference = new Map();
       for (const entry of (this.bundle.entry || []).filter(Boolean) || []) {
         for (const reference of asArray(select(entry.resource) || []).filter(
-          (ref) => !!ref?.reference
+          (ref) => !!ref?.reference,
         )) {
           if (entry.resource) {
             if (!mappedByReference.has(reference.reference)) {
@@ -496,7 +496,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
 
             const resolvableReference = withResolvableProxy(
               entry.resource,
-              this
+              this,
             );
             mappedByReference
               .get(reference.reference)
@@ -511,7 +511,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
 
 function withResolvableProxy<T extends Resource>(
   resource: T,
-  navigator: BundleNavigator<T>
+  navigator: BundleNavigator<T>,
 ): WithResolvableReferences<T> {
   if (typeof resource !== "object" || !resource) {
     return resource;
@@ -523,14 +523,14 @@ function withResolvableProxy<T extends Resource>(
         return (customResourceClass: any) =>
           navigator.reference(
             (target as Reference)?.reference,
-            customResourceClass
+            customResourceClass,
           );
       }
 
       if (prop === "revIncluded" && (target as Resource).resourceType) {
         return (
           select: (resource: any) => Reference | Reference[] | null | undefined,
-          customResourceClass?: any
+          customResourceClass?: any,
         ) => navigator.revReference(select, target as any, customResourceClass);
       }
 

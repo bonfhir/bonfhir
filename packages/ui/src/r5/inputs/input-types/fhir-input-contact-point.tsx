@@ -13,13 +13,13 @@ export interface FhirInputContactPointProps<TRendererProps = any>
 }
 
 export function FhirInputContactPoint<TRendererProps = any>(
-  props: FhirInputContactPointProps<TRendererProps>
+  props: FhirInputContactPointProps<TRendererProps>,
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
   return render<FhirInputContactPointRendererProps>(
     "FhirInputContactPoint",
-    props
+    props,
   );
 }
 
@@ -27,5 +27,5 @@ export interface FhirInputContactPointRendererProps<TRendererProps = any>
   extends FhirInputContactPointProps<TRendererProps> {}
 
 export type FhirInputContactPointRenderer = (
-  props: FhirInputContactPointRendererProps
+  props: FhirInputContactPointRendererProps,
 ) => ReactElement | null;

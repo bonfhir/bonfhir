@@ -23,7 +23,7 @@ export interface FhirInputArrayProps<TValue, TRendererProps = any> {
 }
 
 export function FhirInputArray<TRendererProps = any>(
-  props: FhirInputArrayProps<TRendererProps>
+  props: FhirInputArrayProps<TRendererProps>,
 ): ReactElement | null {
   const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirInputArray", props);
@@ -35,5 +35,5 @@ export interface FhirInputArrayRendererProps<TRendererProps = any>
   extends FhirInputArrayProps<TRendererProps> {}
 
 export type FhirInputArrayRenderer = (
-  props: FhirInputArrayRendererProps
+  props: FhirInputArrayRendererProps,
 ) => ReactElement | null;

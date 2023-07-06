@@ -96,7 +96,7 @@ describe("human-name", () => {
 
     it("sorts by use", () => {
       expect(formatter.format("HumanName", addresses)).toEqual(
-        "official, usual, temp, and maiden"
+        "official, usual, temp, and maiden",
       );
     });
 
@@ -104,7 +104,7 @@ describe("human-name", () => {
       expect(
         formatter.format("HumanName", addresses, {
           useFilterOrder: ["temp", "official"],
-        })
+        }),
       ).toEqual("temp and official");
     });
 
@@ -113,7 +113,7 @@ describe("human-name", () => {
         formatter.format("HumanName", addresses, {
           useFilterOrder: ["temp", "official"],
           max: 1,
-        })
+        }),
       ).toEqual("temp");
     });
   });

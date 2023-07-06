@@ -62,7 +62,7 @@ export const moneyFormatter: ValueFormatter<
     }
 
     return new Intl.NumberFormat(formatterOptions.locale, intlOptions).format(
-      value.value
+      value.value,
     );
   },
 };

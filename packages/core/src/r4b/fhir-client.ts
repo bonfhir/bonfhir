@@ -45,7 +45,7 @@ export interface FhirClient {
   read<TResourceType extends AnyResourceTypeOrCustomResource>(
     type: TResourceType,
     id: string,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): Promise<Retrieved<ResourceOf<TResourceType>>>;
 
   /**
@@ -56,7 +56,7 @@ export interface FhirClient {
     type: TResourceType,
     id: string,
     vid: string,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): Promise<Retrieved<ResourceOf<TResourceType>>>;
 
   /**
@@ -71,7 +71,7 @@ export interface FhirClient {
           ConcurrencyParameters &
           ConditionalSearchParameters<TResource["resourceType"]>)
       | null
-      | undefined
+      | undefined,
   ): Promise<Retrieved<TResource>>;
 
   /**
@@ -88,7 +88,7 @@ export interface FhirClient {
             versionId?: string | null | undefined;
           } & ConditionalSearchParameters<ResourceTypeOf<TResourceType>>)
       | null
-      | undefined
+      | undefined,
   ): Promise<Retrieved<ResourceOf<TResourceType>>>;
 
   /**
@@ -97,12 +97,12 @@ export interface FhirClient {
    */
   delete(
     resource: Retrieved<AnyResource>,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): Promise<void>;
   delete(
     type: AnyResourceType,
     id: string,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): Promise<void>;
 
   /**
@@ -111,12 +111,12 @@ export interface FhirClient {
    */
   history<TResource extends AnyResource>(
     resource: Retrieved<TResource>,
-    options?: (GeneralParameters & HistoryParameters) | null | undefined
+    options?: (GeneralParameters & HistoryParameters) | null | undefined,
   ): Promise<BundleNavigator<Retrieved<TResource>>>;
   history<TResourceType extends AnyResourceTypeOrCustomResource>(
     type?: TResourceType | null | undefined,
     id?: string | null | undefined,
-    options?: (GeneralParameters & HistoryParameters) | null | undefined
+    options?: (GeneralParameters & HistoryParameters) | null | undefined,
   ): Promise<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>>;
 
   /**
@@ -129,7 +129,7 @@ export interface FhirClient {
       | (GeneralParameters &
           ConditionalSearchParameters<TResource["resourceType"]>)
       | null
-      | undefined
+      | undefined,
   ): Promise<Retrieved<TResource>>;
 
   createOr<TResource extends AnyResource>(
@@ -138,7 +138,7 @@ export interface FhirClient {
     search?:
       | FhirClientSearchParameters<TResource["resourceType"]>
       | null
-      | undefined
+      | undefined,
   ): Promise<CreateOrResult<Retrieved<TResource>>>;
 
   /**
@@ -152,7 +152,7 @@ export interface FhirClient {
           ConcurrencyParameters &
           ConditionalSearchParameters<TResource["resourceType"]>)
       | null
-      | undefined
+      | undefined,
   ): Promise<Retrieved<TResource>>;
 
   /**
@@ -165,7 +165,7 @@ export interface FhirClient {
       | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
       | null
       | undefined,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): Promise<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>>;
 
   /**
@@ -181,7 +181,7 @@ export interface FhirClient {
       | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
       | null
       | undefined,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): Promise<WithResolvableReferences<Retrieved<ResourceOf<TResourceType>>>>;
 
   /**
@@ -193,9 +193,9 @@ export interface FhirClient {
     type: TResourceType | null | undefined,
     search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
     fn: (
-      nav: BundleNavigator<Retrieved<ResourceOf<TResourceType>>>
+      nav: BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
     ) => unknown | Promise<unknown>,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): Promise<void>;
 
   /**
@@ -205,7 +205,7 @@ export interface FhirClient {
   searchAllPages<TResourceType extends AnyResourceTypeOrCustomResource>(
     type: TResourceType | null | undefined,
     search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): Promise<BundleNavigator<ResourceOf<TResourceType>>>;
 
   /**
@@ -213,7 +213,7 @@ export interface FhirClient {
    * https://hl7.org/fhir/http.html#capabilities
    */
   capabilities(
-    mode?: "full" | "normative" | "terminology" | null | undefined
+    mode?: "full" | "normative" | "terminology" | null | undefined,
   ): Promise<CapabilityStatement>;
 
   /**
@@ -224,7 +224,7 @@ export interface FhirClient {
   batch(): BundleExecutor;
   batch(
     body: Bundle & { type: "batch" },
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): Promise<Bundle>;
 
   /**
@@ -235,7 +235,7 @@ export interface FhirClient {
   transaction(): BundleExecutor;
   transaction(
     body: Bundle & { type: "transaction" },
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): Promise<Bundle>;
 
   /**
@@ -244,10 +244,10 @@ export interface FhirClient {
    * https://www.hl7.org/fhir/operationslist.html
    */
   execute<TOperation extends Operation>(
-    operation: TOperation
+    operation: TOperation,
   ): Promise<ExtractOperationResultType<TOperation>>;
   execute<TOperationResult>(
-    operation: OperationParameters
+    operation: OperationParameters,
   ): Promise<TOperationResult>;
 
   /**
@@ -259,12 +259,12 @@ export interface FhirClient {
    */
   fetchPage<TResource extends AnyResource>(
     resource: string | URL,
-    init?: Parameters<typeof fetch>[1]
+    init?: Parameters<typeof fetch>[1],
   ): Promise<BundleNavigator<Retrieved<TResource>>>;
   fetchPage<TCustomResourceClass extends CustomResourceClass>(
     resource: string | URL,
     init?: Parameters<typeof fetch>[1],
-    customType?: TCustomResourceClass | null | undefined
+    customType?: TCustomResourceClass | null | undefined,
   ): Promise<BundleNavigator<Retrieved<InstanceType<TCustomResourceClass>>>>;
 
   /**
@@ -280,13 +280,13 @@ export interface FhirClient {
       // eslint-disable-next-line @typescript-eslint/ban-types
       | Function
       | null
-      | undefined
+      | undefined,
   ): Promise<T>;
 }
 
 export type FhirClientPatchBody<TResourceType extends AnyResourceType> =
   | ((
-      patch: ExtractPatchBuilder<TResourceType>
+      patch: ExtractPatchBuilder<TResourceType>,
     ) => ExtractPatchBuilder<TResourceType> | JSONPatchBody)
   | JSONPatchBody;
 
@@ -295,10 +295,10 @@ export type FhirClientPatchBody<TResourceType extends AnyResourceType> =
  * and normalize them as the final FHIR patch body as a JSONPatchBody.
  */
 export function normalizePatchBody<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   type: TResourceType,
-  patch: FhirClientPatchBody<ResourceTypeOf<TResourceType>>
+  patch: FhirClientPatchBody<ResourceTypeOf<TResourceType>>,
 ): JSONPatchBody {
   if (typeof patch === "function") {
     const builtPatch = patch(fhirJSONPatch(resourceTypeOf(type)));
@@ -313,7 +313,7 @@ export function normalizePatchBody<
 
 export type FhirClientSearchParameters<TResourceType extends AnyResourceType> =
   | ((
-      search: ExtractSearchBuilder<TResourceType>
+      search: ExtractSearchBuilder<TResourceType>,
     ) => ExtractSearchBuilder<TResourceType> | string)
   | string;
 
@@ -322,13 +322,13 @@ export type FhirClientSearchParameters<TResourceType extends AnyResourceType> =
  * and normalize them as the final FHIR search parameters as a string.
  */
 export function normalizeSearchParameters<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   type: TResourceType | null | undefined,
   parameters:
     | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
     | null
-    | undefined
+    | undefined,
 ): string | undefined {
   if (typeof parameters === "function") {
     const builtParameters = parameters(fhirSearch(resourceTypeOf(type)) as any);
@@ -350,7 +350,7 @@ export class FhirClientError extends Error {
     public status: number | undefined,
     public operationOutcome: OperationOutcome | undefined,
     public metadata?: Record<string, unknown> | undefined,
-    message?: string | undefined
+    message?: string | undefined,
   ) {
     const operationOutcomeMessage =
       message ||
@@ -365,13 +365,13 @@ export class FhirClientError extends Error {
               "string",
               issue.expression?.join(", "),
               { decorator: " at {}" },
-            ]}`
+            ]}`,
         )
         .join(", ");
     super(
       `Error from FhirClient: ${status || ""}${
         operationOutcomeMessage ? ` - ${operationOutcomeMessage}` : ""
-      }`
+      }`,
     );
   }
 }
@@ -424,7 +424,7 @@ export interface ConcurrencyParameters {
  * https://hl7.org/fhir/http.html#cond-update
  */
 export interface ConditionalSearchParameters<
-  TResourceType extends AnyResourceType
+  TResourceType extends AnyResourceType,
 > {
   search?: FhirClientSearchParameters<TResourceType> | null | undefined;
 }
@@ -462,15 +462,15 @@ export interface HistoryParameters {
  * Prefer using `client.searchByPage`.
  */
 export async function searchByPage<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   client: Pick<FhirClient, "search" | "fetchPage">,
   type: TResourceType | null | undefined,
   search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
   fn: (
-    nav: BundleNavigator<Retrieved<ResourceOf<TResourceType>>>
+    nav: BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
   ) => unknown | Promise<unknown>,
-  options?: GeneralParameters | null | undefined
+  options?: GeneralParameters | null | undefined,
 ): Promise<void> {
   let currentNavigator:
     | BundleNavigator<Retrieved<ResourceOf<TResourceType>>>
@@ -482,7 +482,7 @@ export async function searchByPage<
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           currentNavigator.linkUrl("next")!,
           { signal: options?.signal },
-          typeof type === "string" ? undefined : type || undefined
+          typeof type === "string" ? undefined : type || undefined,
         )) as BundleNavigator<Retrieved<ResourceOf<TResourceType>>>)
       : await client.search(type, search, options);
 
@@ -498,12 +498,12 @@ export async function searchByPage<
  * Prefer using `client.searchAllPages`.
  */
 export async function searchAllPages<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   client: Pick<FhirClient, "search" | "fetchPage">,
   type: TResourceType | null | undefined,
   search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
-  options?: GeneralParameters | null | undefined
+  options?: GeneralParameters | null | undefined,
 ): Promise<BundleNavigator<ResourceOf<TResourceType>>> {
   const results: Array<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>> =
     [];
@@ -515,12 +515,12 @@ export async function searchAllPages<
     (nav) => {
       results.push(nav);
     },
-    options
+    options,
   );
 
   return new BundleNavigator(
     results,
-    typeof type === "string" ? undefined : (type as any) || undefined
+    typeof type === "string" ? undefined : (type as any) || undefined,
   );
 }
 
@@ -540,7 +540,7 @@ export async function createOr<TResource extends AnyResource>(
   search?:
     | FhirClientSearchParameters<TResource["resourceType"]>
     | null
-    | undefined
+    | undefined,
 ): Promise<CreateOrResult<Retrieved<TResource>>>;
 export async function createOr<TResource extends AnyResource>(
   client: Pick<FhirClient, "create" | "update" | "search">,
@@ -550,7 +550,7 @@ export async function createOr<TResource extends AnyResource>(
     | FhirClientSearchParameters<TResource["resourceType"]>
     | null
     | undefined,
-  mergers?: Array<Merger> | null | undefined
+  mergers?: Array<Merger> | null | undefined,
 ): Promise<CreateOrResult<Retrieved<TResource>>>;
 export async function createOr<TResource extends AnyResource>(
   client: Pick<FhirClient, "create" | "update" | "search">,
@@ -560,7 +560,7 @@ export async function createOr<TResource extends AnyResource>(
     | FhirClientSearchParameters<TResource["resourceType"]>
     | null
     | undefined,
-  mergers?: Array<Merger> | null | undefined
+  mergers?: Array<Merger> | null | undefined,
 ): Promise<CreateOrResult<Retrieved<TResource>>>;
 export async function createOr<TResource extends AnyResource>(
   client: Pick<FhirClient, "create" | "update" | "search">,
@@ -570,13 +570,13 @@ export async function createOr<TResource extends AnyResource>(
     | FhirClientSearchParameters<TResource["resourceType"]>
     | null
     | undefined,
-  mergers?: Array<Merger> | null | undefined
+  mergers?: Array<Merger> | null | undefined,
 ): Promise<CreateOrResult<Retrieved<TResource>>> {
   const finalSearch = resolveSearch(resource, search);
 
   const searchResult = await client.search(
     resource.resourceType,
-    finalSearch.toString()
+    finalSearch.toString(),
   );
   const found = searchResult.bundle.entry?.[0]?.resource as
     | Retrieved<TResource>
@@ -637,7 +637,7 @@ function resolveSearch<TResource extends AnyResource>(
   search:
     | FhirClientSearchParameters<TResource["resourceType"]>
     | null
-    | undefined
+    | undefined,
 ): FhirClientSearchParameters<TResource["resourceType"]> {
   if (search) {
     return search;
@@ -650,7 +650,7 @@ function resolveSearch<TResource extends AnyResource>(
   if ((resource as any).identifier) {
     return fhirSearch().tokenParam(
       "identifier",
-      (resource as any).identifier
+      (resource as any).identifier,
     ) as any;
   }
 
@@ -659,6 +659,6 @@ function resolveSearch<TResource extends AnyResource>(
   }
 
   throw new Error(
-    `Cannot resolve search for ${resource.resourceType}/${resource.id}- you need to pass it explicitly.`
+    `Cannot resolve search for ${resource.resourceType}/${resource.id}- you need to pass it explicitly.`,
   );
 }

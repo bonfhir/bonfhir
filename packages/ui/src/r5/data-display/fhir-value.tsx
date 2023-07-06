@@ -73,7 +73,7 @@ export type DefaultFormatterParametersProps =
   | ValueFormatterParametersAsProps<typeof valueFormatters.uuidFormatter>;
 
 export function FhirValue<TRendererProps = any>(
-  props: FhirValueProps<TRendererProps>
+  props: FhirValueProps<TRendererProps>,
 ): ReactElement<any, any> | null {
   const { applyDefaultProps, formatter, render } = useFhirUIContext();
   props = applyDefaultProps("FhirValue", props);
@@ -81,7 +81,7 @@ export function FhirValue<TRendererProps = any>(
   let formattedValue = formatter.format(
     props.type,
     props.value as never,
-    props.options
+    props.options,
   );
 
   if (props.type === "markdown" && props.options?.style === "html") {
@@ -100,5 +100,5 @@ export type FhirValueRendererProps<TRendererProps = any> =
   };
 
 export type FhirValueRenderer = (
-  props: FhirValueRendererProps
+  props: FhirValueRendererProps,
 ) => ReactElement | null;

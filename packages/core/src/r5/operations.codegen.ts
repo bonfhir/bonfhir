@@ -174,7 +174,7 @@ export class ActivityDefinitionDataRequirementsOperation
    * @see {@link http://hl7.org/fhir/OperationDefinition/ActivityDefinition-data-requirements}
    */
   constructor(
-    public parameters: ActivityDefinitionDataRequirementsOperationParameters
+    public parameters: ActivityDefinitionDataRequirementsOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -225,7 +225,7 @@ Note that
  * @see {@link http://hl7.org/fhir/OperationDefinition/CanonicalResource-current-canonical}
  */
   constructor(
-    public parameters: CanonicalResourceCurrentCanonicalOperationParameters
+    public parameters: CanonicalResourceCurrentCanonicalOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -288,7 +288,7 @@ export class CapabilityStatementConformsOperation
    * @see {@link http://hl7.org/fhir/OperationDefinition/CapabilityStatement-conforms}
    */
   constructor(
-    public parameters: CapabilityStatementConformsOperationParameters
+    public parameters: CapabilityStatementConformsOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -360,7 +360,7 @@ export class CapabilityStatementImplementsOperation
    * @see {@link http://hl7.org/fhir/OperationDefinition/CapabilityStatement-implements}
    */
   constructor(
-    public parameters: CapabilityStatementImplementsOperationParameters
+    public parameters: CapabilityStatementImplementsOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -419,7 +419,7 @@ export class CapabilityStatementSubsetOperation
    * @see {@link http://hl7.org/fhir/OperationDefinition/CapabilityStatement-subset}
    */
   constructor(
-    public parameters: CapabilityStatementSubsetOperationParameters
+    public parameters: CapabilityStatementSubsetOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -518,7 +518,7 @@ export class ChargeItemDefinitionApplyOperation implements Operation<Resource> {
    * @see {@link http://hl7.org/fhir/OperationDefinition/ChargeItemDefinition-apply}
    */
   constructor(
-    public parameters: ChargeItemDefinitionApplyOperationParameters
+    public parameters: ChargeItemDefinitionApplyOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -1790,7 +1790,7 @@ export class CoverageEligibilityRequestSubmitOperation
    * @see {@link http://hl7.org/fhir/OperationDefinition/CoverageEligibilityRequest-submit}
    */
   constructor(
-    public parameters: CoverageEligibilityRequestSubmitOperationParameters
+    public parameters: CoverageEligibilityRequestSubmitOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -1986,7 +1986,7 @@ return or generate document references for the following types
  * @see {@link http://hl7.org/fhir/OperationDefinition/DocumentReference-generate}
  */
   constructor(
-    public parameters: DocumentReferenceGenerateOperationParameters
+    public parameters: DocumentReferenceGenerateOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -2845,7 +2845,7 @@ export class MedicinalProductDefinitionEverythingOperation
    * @see {@link http://hl7.org/fhir/OperationDefinition/MedicinalProductDefinition-everything}
    */
   constructor(
-    public parameters: MedicinalProductDefinitionEverythingOperationParameters
+    public parameters: MedicinalProductDefinitionEverythingOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -2906,7 +2906,7 @@ export class MessageHeaderProcessMessageOperation
    * @see {@link http://hl7.org/fhir/OperationDefinition/MessageHeader-process-message}
    */
   constructor(
-    public parameters: MessageHeaderProcessMessageOperationParameters
+    public parameters: MessageHeaderProcessMessageOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -4151,7 +4151,7 @@ export class PlanDefinitionDataRequirementsOperation
    * @see {@link http://hl7.org/fhir/OperationDefinition/PlanDefinition-data-requirements}
    */
   constructor(
-    public parameters: PlanDefinitionDataRequirementsOperationParameters
+    public parameters: PlanDefinitionDataRequirementsOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -4867,7 +4867,7 @@ This operation is intended to enable
  * @see {@link http://hl7.org/fhir/OperationDefinition/StructureDefinition-questionnaire}
  */
   constructor(
-    public parameters: StructureDefinitionQuestionnaireOperationParameters
+    public parameters: StructureDefinitionQuestionnaireOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -4946,7 +4946,7 @@ If the operation is not
  * @see {@link http://hl7.org/fhir/OperationDefinition/StructureDefinition-snapshot}
  */
   constructor(
-    public parameters: StructureDefinitionSnapshotOperationParameters
+    public parameters: StructureDefinitionSnapshotOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {
@@ -5118,7 +5118,7 @@ export class SubscriptionGetWsBindingTokenOperation
    * @see {@link http://hl7.org/fhir/OperationDefinition/Subscription-get-ws-binding-token}
    */
   constructor(
-    public parameters: SubscriptionGetWsBindingTokenOperationParameters
+    public parameters: SubscriptionGetWsBindingTokenOperationParameters,
   ) {}
 
   public getParameters(): OperationParameters {

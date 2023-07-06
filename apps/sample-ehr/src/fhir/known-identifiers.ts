@@ -10,7 +10,7 @@ export const PatientIdentifierSystems: IdentifierSystem[] = [
       display: "Social Security number",
       system: "http://terminology.hl7.org/CodeSystem/v2-0203",
     }),
-    processValue: (value) => value.replace(/\W/g, ""),
+    processValue: (value) => value.replaceAll(/\W/g, ""),
   },
   {
     system: "http://hl7.org/fhir/sid/us-mbi",
@@ -20,11 +20,14 @@ export const PatientIdentifierSystems: IdentifierSystem[] = [
       display: "Patient's Medicare number",
       system: "http://terminology.hl7.org/CodeSystem/v2-0203",
     }),
-    processValue: (value) => value.replace(/\W/g, ""),
+    processValue: (value) => value.replaceAll(/\W/g, ""),
   },
 ];
 
-export const SystemLabels = PatientIdentifierSystems.reduce((acc, cur) => {
-  acc[cur.system] = cur.label || cur.system;
-  return acc;
-}, {} as Record<string, string>);
+export const SystemLabels = PatientIdentifierSystems.reduce(
+  (acc, cur) => {
+    acc[cur.system] = cur.label || cur.system;
+    return acc;
+  },
+  {} as Record<string, string>,
+);

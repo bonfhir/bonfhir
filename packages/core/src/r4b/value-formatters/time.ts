@@ -34,7 +34,7 @@ export const timeFormatter: ValueFormatter<
     intlOptions.timeStyle = options?.timeStyle || "short";
 
     return new Intl.DateTimeFormat(formatterOptions.locale, intlOptions).format(
-      parsedDateTime.date
+      parsedDateTime.date,
     );
   },
 };

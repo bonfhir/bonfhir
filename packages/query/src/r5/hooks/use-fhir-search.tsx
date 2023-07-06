@@ -17,7 +17,7 @@ import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
 export interface UseFhirSearchOptions<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
@@ -54,7 +54,7 @@ export interface UseFhirSearchOptions<
  *  setPageUrl(patientQuery.data?.linkUrl("next"));
  */
 export function useFhirSearch<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   type: TResourceType,
   parameters?:
@@ -62,7 +62,7 @@ export function useFhirSearch<
     | null
     | undefined,
   pageUrl?: string | null | undefined,
-  options?: UseFhirSearchOptions<TResourceType> | null | undefined
+  options?: UseFhirSearchOptions<TResourceType> | null | undefined,
 ): UseQueryResult<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
   const normalizedParameters = normalizeSearchParameters(type, parameters);
@@ -75,14 +75,14 @@ export function useFhirSearch<
       type,
       normalizedParameters,
       pageUrl,
-      options?.fhir
+      options?.fhir,
     ),
     queryFn: ({ signal }) =>
       pageUrl
         ? fhirQueryContext.fhirClient.fetchPage(
             pageUrl,
             { signal },
-            typeof type === "string" ? undefined : type || undefined
+            typeof type === "string" ? undefined : type || undefined,
           )
         : fhirQueryContext.fhirClient.search(type, parameters, {
             ...options?.fhir,

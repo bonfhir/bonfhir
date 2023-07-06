@@ -88221,7 +88221,7 @@ export type ExtractResource<TResourceType extends AnyResourceType> = Extract<
  */
 export function isResource<TResourceType extends AnyResourceType>(
   type: TResourceType,
-  object: unknown | null | undefined
+  object: unknown | null | undefined,
 ): object is ExtractResource<TResourceType> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (object as any)?.resourceType === type;
@@ -88661,5 +88661,5 @@ export const DomainResourceTypes: AnyDomainResourceType[] = [
  * Allow referencing domain resource type from its string {@link FhirDomainResourceType} representation.
  */
 export type ExtractDomainResource<
-  TDomainResourceType extends AnyDomainResourceType
+  TDomainResourceType extends AnyDomainResourceType,
 > = Extract<AnyDomainResource, { resourceType: TDomainResourceType }>;

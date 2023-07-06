@@ -174,7 +174,7 @@ function PatientsList(): ReactElement {
         ._count(searchController.pageSize)
         ._include("Patient", "organization")
         ._total("accurate"),
-    searchController.pageUrl
+    searchController.pageUrl,
   );
 
   return (

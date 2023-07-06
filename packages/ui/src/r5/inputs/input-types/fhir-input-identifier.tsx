@@ -41,7 +41,7 @@ export interface IdentifierSystem {
 }
 
 export function FhirInputIdentifier<TRendererProps = any>(
-  props: FhirInputIdentifierProps<TRendererProps>
+  props: FhirInputIdentifierProps<TRendererProps>,
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
@@ -54,5 +54,5 @@ export interface FhirInputIdentifierRendererProps<TRendererProps = any>
   extends FhirInputIdentifierProps<TRendererProps> {}
 
 export type FhirInputIdentifierRenderer = (
-  props: FhirInputIdentifierRendererProps
+  props: FhirInputIdentifierRendererProps,
 ) => ReactElement | null;

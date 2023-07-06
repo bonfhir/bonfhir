@@ -17,7 +17,7 @@ export const referenceFormatter: ValueFormatter<
       value.display?.trim() ||
       value.reference?.trim() ||
       withValueFormatter<typeof identifierFormatter>(
-        formatterOptions.formatter
+        formatterOptions.formatter,
       ).format("Identifier", value.identifier) ||
       ""
     );

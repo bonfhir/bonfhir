@@ -52,7 +52,7 @@ export interface ValueFormatter<TType extends string, TValue, TOptions> {
       | FormatterOptions
       | null
       | undefined
-    )
+    ),
   ) => string;
 }
 
@@ -77,7 +77,7 @@ export interface CommonFormatterOptions {
  */
 export type WithTypedFormatFunction<
   TValueFormatter,
-  TThis extends Formatter = Formatter
+  TThis extends Formatter = Formatter,
 > = TValueFormatter extends ValueFormatter<
   infer TType,
   infer TValue,
@@ -87,14 +87,14 @@ export type WithTypedFormatFunction<
       format(
         type: TType,
         value: TValue,
-        options?: (TOptions & CommonFormatterOptions) | null | undefined
+        options?: (TOptions & CommonFormatterOptions) | null | undefined,
       ): string;
     } & TThis
   : never;
 
 /** Cast the formatter as if it has the format overload of TValueParameter format. */
 export function withValueFormatter<TValueFormatter>(
-  formatter: Formatter
+  formatter: Formatter,
 ): WithTypedFormatFunction<TValueFormatter> {
   return formatter as WithTypedFormatFunction<TValueFormatter>;
 }
@@ -214,7 +214,7 @@ export class Formatter {
   public format(
     type: string,
     value: never,
-    options?: CommonFormatterOptions | null | undefined
+    options?: CommonFormatterOptions | null | undefined,
   ): string {
     const valueFormatter = this._formatters.get(type);
     if (!valueFormatter) {
@@ -278,11 +278,11 @@ export class Formatter {
    * and return this instance with the added format signature.
    */
   public register<TValueFormatter>(
-    valueFormatter: TValueFormatter
+    valueFormatter: TValueFormatter,
   ): WithTypedFormatFunction<TValueFormatter, this> {
     this._formatters.set(
       (valueFormatter as ValueFormatter<string, unknown, unknown>).type,
-      valueFormatter as ValueFormatter<string, unknown, unknown>
+      valueFormatter as ValueFormatter<string, unknown, unknown>,
     );
     return this as WithTypedFormatFunction<TValueFormatter, this>;
   }

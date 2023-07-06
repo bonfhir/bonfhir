@@ -9,7 +9,7 @@ import { Group, GroupProps, Input, InputWrapperProps } from "@mantine/core";
 import { ReactElement } from "react";
 
 export function MantineFhirInputHumanName(
-  props: FhirInputHumanNameRendererProps<MantineFhirInputHumanNameProps>
+  props: FhirInputHumanNameRendererProps<MantineFhirInputHumanNameProps>,
 ): ReactElement | null {
   let mode = props.mode;
   switch (mode) {
@@ -107,7 +107,7 @@ export type MantineFhirInputHumanNameProps = {
 
 function splitTrim(
   value: string | undefined,
-  separator: string
+  separator: string,
 ): string[] | undefined {
   if (!value) {
     return undefined;

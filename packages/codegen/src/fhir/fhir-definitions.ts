@@ -14,7 +14,7 @@ import {
 export class FhirDefinitions {
   static async load(
     release: string,
-    path?: string | null | undefined
+    path?: string | null | undefined,
   ): Promise<FhirDefinitions> {
     if (!path) {
       path = import.meta?.url
@@ -24,7 +24,7 @@ export class FhirDefinitions {
     }
 
     const version = JSON.parse(
-      await readFile(join(path, "package.json"), "utf8")
+      await readFile(join(path, "package.json"), "utf8"),
     ).version;
 
     const definitions = new FhirDefinitions(release, version);
@@ -37,11 +37,11 @@ export class FhirDefinitions {
           case "StructureDefinition": {
             const structureDefinition = Object.assign(
               new StructureDefinition(definitions),
-              parsed
+              parsed,
             );
             definitions.structureDefinitionsByUrl.set(
               structureDefinition.url,
-              structureDefinition
+              structureDefinition,
             );
             break;
           }
@@ -55,7 +55,7 @@ export class FhirDefinitions {
           case "SearchParameter": {
             const searchParameter = Object.assign(
               new SearchParameter(),
-              parsed
+              parsed,
             );
             definitions.searchParameters.push(searchParameter);
             for (const base of (searchParameter as any).base || []) {
@@ -72,7 +72,7 @@ export class FhirDefinitions {
           case "OperationDefinition": {
             const operationDefinition = Object.assign(
               new OperationDefinition(definitions),
-              parsed
+              parsed,
             );
             definitions.operationDefinitions.push(operationDefinition);
             break;
@@ -86,7 +86,10 @@ export class FhirDefinitions {
     return definitions;
   }
 
-  private constructor(public release: string, public version: string) {}
+  private constructor(
+    public release: string,
+    public version: string,
+  ) {}
 
   public structureDefinitionsByUrl = new Map<string, StructureDefinition>();
   public valueSetsByUrl = new Map<string, ValueSet>();
@@ -99,7 +102,7 @@ export class FhirDefinitions {
    */
   public get structureDefinitions(): StructureDefinition[] {
     return [...this.structureDefinitionsByUrl.values()].sort((a: any, b: any) =>
-      a.name.localeCompare(b.name)
+      a.name.localeCompare(b.name),
     );
   }
 
@@ -108,7 +111,7 @@ export class FhirDefinitions {
    */
   public get resources(): StructureDefinition[] {
     return this.structureDefinitions.filter(
-      (x: any) => x.isResource && x.derivation != "constraint"
+      (x: any) => x.isResource && x.derivation != "constraint",
     );
   }
 
@@ -138,7 +141,7 @@ export class FhirDefinitions {
    */
   public get valueSets(): ValueSet[] {
     return [...this.valueSetsByUrl.values()].sort((a: any, b: any) =>
-      a.name.localeCompare(b.name)
+      a.name.localeCompare(b.name),
     );
   }
 
@@ -153,15 +156,15 @@ export class FhirDefinitions {
             element.hasRequiredBinding &&
             (element as any).type?.[0]?.code === "code"
               ? (element as any).binding?.valueSet?.split("|")?.[0]
-              : undefined
-          )
+              : undefined,
+          ),
         )
-        .filter(Boolean)
+        .filter(Boolean),
     );
 
     return [...this.valueSetsByUrl.values()]
       .filter((valueSet) =>
-        requiredBindingsValueSetUrls.has((valueSet as any).url)
+        requiredBindingsValueSetUrls.has((valueSet as any).url),
       )
       .sort((a: any, b: any) => a.name.localeCompare(b.name));
   }
@@ -175,8 +178,8 @@ export class FhirDefinitions {
               ...x,
               id: `${resource}-${x.id}`,
               resource: [resource],
-            })
-          )
+            }),
+          ),
     );
   }
 }
@@ -192,7 +195,7 @@ export class StructureDefinition {
    */
   public get base(): StructureDefinition | undefined {
     return this._definitions.structureDefinitionsByUrl.get(
-      (this as any).baseDefinition
+      (this as any).baseDefinition,
     );
   }
 
@@ -235,7 +238,7 @@ export class StructureDefinition {
     return (
       ((this as any).snapshot?.element || [])
         .map((x: any) =>
-          Object.assign(new ElementDefinition(this._definitions, this), x)
+          Object.assign(new ElementDefinition(this._definitions, this), x),
         )
         //.filter((x: any) => !!x.type?.length)
         .sort((a: any, b: any) => a.path.localeCompare(b.path))
@@ -247,7 +250,7 @@ export class StructureDefinition {
    */
   public get ownElements(): ElementDefinition[] {
     return this.elements.filter((x: any) =>
-      x.base.path.startsWith((this as any).name + ".")
+      x.base.path.startsWith((this as any).name + "."),
     );
   }
 
@@ -263,7 +266,7 @@ export class StructureDefinition {
    */
   public get ownRootElementsWithChoices(): ElementDefinition[] {
     return this.ownRootElements.flatMap((x) =>
-      x.hasDataTypeChoiceVariants ? x.dataTypeChoiceVariants : x
+      x.hasDataTypeChoiceVariants ? x.dataTypeChoiceVariants : x,
     );
   }
 
@@ -277,7 +280,7 @@ export class StructureDefinition {
   public get ownSearchParameters(): SearchParameter[] {
     return (
       this._definitions.searchParametersByResourceType.get(
-        (this as any).type
+        (this as any).type,
       ) || []
     );
   }
@@ -288,7 +291,7 @@ export class StructureDefinition {
       ...this.ownSearchParameters,
     ].filter(
       (x, i, self) =>
-        i === self.findIndex((y) => (x as any).code === (y as any).code)
+        i === self.findIndex((y) => (x as any).code === (y as any).code),
     );
   }
 
@@ -341,7 +344,7 @@ export class StructureDefinition {
 export class ElementDefinition {
   constructor(
     private _definitions: FhirDefinitions,
-    private _structureDefinition: StructureDefinition
+    private _structureDefinition: StructureDefinition,
   ) {}
 
   /**
@@ -414,14 +417,14 @@ export class ElementDefinition {
             path: (this as any).base.path.replace("[x]", suffix),
           },
           type: [t],
-        }
+        },
       );
     });
   }
 
   public get isPrimitiveType(): boolean {
     return (this as any).type?.some((t: any) =>
-      PRIMITIVE_TYPES.includes(t.code)
+      PRIMITIVE_TYPES.includes(t.code),
     );
   }
 
@@ -471,7 +474,7 @@ export class ElementDefinition {
 
     if (this.hasRequiredBinding && resolvedType === "string") {
       resolvedType = this._definitions.valueSetsByUrl.get(
-        (this as any).binding.valueSet.split("|")[0]
+        (this as any).binding.valueSet.split("|")[0],
       )?.safeName;
     }
 
@@ -513,23 +516,21 @@ export class ElementDefinition {
       [
         ...splitLongLines(
           [(this as any).definition, (this as any).comment].filter(
-            (x) => !!x?.trim()
-          )
+            (x) => !!x?.trim(),
+          ),
         ),
         this.fhirDocUrl ? `@see {@link ${this.fhirDocUrl}}` : undefined,
         this.hasRequiredBinding && (this as any).type?.[0]?.code === "code"
-          ? `@see {@link ${
-              this._definitions.valueSetsByUrl.get(
-                (this as any).binding.valueSet.split("|")[0]
-              )?.safeName
-            }}`
+          ? `@see {@link ${this._definitions.valueSetsByUrl.get(
+              (this as any).binding.valueSet.split("|")[0],
+            )?.safeName}}`
           : undefined,
         this.isPrimitiveType
           ? `@fhirType ${(this as any).type
               .map((x: any) => x.code)
               .join(" | ")}`
           : undefined,
-      ].filter(Boolean) as string[]
+      ].filter(Boolean) as string[],
     );
   }
 
@@ -568,7 +569,7 @@ export class ValueSet {
       ]),
       ...((this as any).expansion?.contains?.length
         ? (this as any).expansion.contains.map(
-            (x: any) => `- ${x.code}: ${x.display}`
+            (x: any) => `- ${x.code}: ${x.display}`,
           )
         : []),
     ]);
@@ -579,11 +580,11 @@ export class ValueSet {
    * for StructureDefinitions and other value sets.
    */
   public get safeName(): string {
-    const name = (this as any).name.replace(/[^\dA-Za-z]/g, "");
+    const name = (this as any).name.replaceAll(/[^\dA-Za-z]/g, "");
     // We avoid conflicts with structure definitions by appending "ValueSet" to the name
     if (
       this._definitions.structureDefinitions.some(
-        (x) => (x as any).name === name
+        (x) => (x as any).name === name,
       )
     ) {
       return `${name}ValueSet`;
@@ -592,10 +593,10 @@ export class ValueSet {
     // We avoid conflicts with other value sets by using the title as the name in that case.
     if (
       this._definitions.valueSets.some(
-        (x) => (x as any).name === name && (x as any).id !== (this as any).id
+        (x) => (x as any).name === name && (x as any).id !== (this as any).id,
       )
     ) {
-      return (this as any).title.replace(/[^\dA-Za-z]/g, "");
+      return (this as any).title.replaceAll(/[^\dA-Za-z]/g, "");
     }
     return name;
   }
@@ -607,7 +608,7 @@ export class ValueSet {
 export class BackboneElement {
   constructor(
     private _parent: StructureDefinition,
-    public rootElement: ElementDefinition
+    public rootElement: ElementDefinition,
   ) {}
 
   /**
@@ -615,7 +616,7 @@ export class BackboneElement {
    */
   public get ownElements(): ElementDefinition[] {
     return this._parent.elements.filter((x: any) =>
-      x.path.startsWith((this.rootElement as any).path + ".")
+      x.path.startsWith((this.rootElement as any).path + "."),
     );
   }
 
@@ -626,7 +627,7 @@ export class BackboneElement {
     return this.ownElements.filter(
       (x) =>
         (x as any).path.split(".").length ===
-        (this.rootElement as any).path.split(".").length + 1
+        (this.rootElement as any).path.split(".").length + 1,
     );
   }
 
@@ -635,7 +636,7 @@ export class BackboneElement {
    */
   public get ownRootElementsWithChoices(): ElementDefinition[] {
     return this.ownRootElements.flatMap((x) =>
-      x.hasDataTypeChoiceVariants ? x.dataTypeChoiceVariants : x
+      x.hasDataTypeChoiceVariants ? x.dataTypeChoiceVariants : x,
     );
   }
 }
@@ -665,7 +666,7 @@ export class SearchParameter {
         (this as any).expression
           ? `@fhirPath \`${(this as any).expression}\``
           : undefined,
-      ].filter(Boolean) as string[]
+      ].filter(Boolean) as string[],
     );
   }
 }
@@ -713,7 +714,7 @@ export class OperationDefinition {
     }
 
     return this._definitions.structureDefinitions.find(
-      (x: any) => x.type === resource
+      (x: any) => x.type === resource,
     );
   }
 
@@ -722,7 +723,7 @@ export class OperationDefinition {
       ...new Set(
         [...this.inParameters, ...this.outParameters]
           .filter((x) => x.partName)
-          .flatMap((x) => [x, ...x.allParts])
+          .flatMap((x) => [x, ...x.allParts]),
       ),
     ];
   }
@@ -764,7 +765,7 @@ export class OperationParameter {
     if ((this as any).part.length === 0) return [];
 
     return (this as any).part.map((x: any) =>
-      Object.assign(new OperationParameter(this), x)
+      Object.assign(new OperationParameter(this), x),
     );
   }
 
@@ -811,10 +812,10 @@ export class OperationParameter {
     return toJsComment(
       [
         ...splitLongLines(
-          [(this as any).documentation].filter((x) => !!x?.trim())
+          [(this as any).documentation].filter((x) => !!x?.trim()),
         ),
         this.isPrimitiveType ? `@fhirType ${(this as any).type}` : undefined,
-      ].filter(Boolean) as string[]
+      ].filter(Boolean) as string[],
     );
   }
 }

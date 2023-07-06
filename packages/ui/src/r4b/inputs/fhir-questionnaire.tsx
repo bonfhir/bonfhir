@@ -30,7 +30,7 @@ export interface FhirQuestionnaireProps<TRendererProps = any> {
 }
 
 export function FhirQuestionnaire<TRendererProps = any>(
-  props: FhirQuestionnaireProps<TRendererProps>
+  props: FhirQuestionnaireProps<TRendererProps>,
 ): ReactElement | null {
   const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirQuestionnaire", props);
@@ -43,7 +43,7 @@ export function FhirQuestionnaire<TRendererProps = any>(
       query: {
         enabled: typeof props.source === "string",
       },
-    }
+    },
   );
 
   const questionnaire =
@@ -58,7 +58,7 @@ export function FhirQuestionnaire<TRendererProps = any>(
       : props.initialValues.data
     : undefined;
   const isLoading = Boolean(
-    !questionnaire || (props.initialValues && !questionnaireResponse)
+    !questionnaire || (props.initialValues && !questionnaireResponse),
   );
 
   const errors = [
@@ -78,22 +78,22 @@ export function FhirQuestionnaire<TRendererProps = any>(
 }
 
 export type FhirQuestionnaireRendererProps<TRendererProps = any> =
-  | FhirQuestionnaireProps<TRendererProps> &
-      (
-        | {
-            questionnaire: Questionnaire | undefined;
-            questionnaireResponse: undefined;
-            isLoading: true;
-            errors: Array<Error>;
-          }
-        | {
-            questionnaire: Questionnaire;
-            questionnaireResponse: QuestionnaireResponse | undefined;
-            isLoading: false;
-            errors: Array<Error>;
-          }
-      );
+  FhirQuestionnaireProps<TRendererProps> &
+    (
+      | {
+          questionnaire: Questionnaire | undefined;
+          questionnaireResponse: undefined;
+          isLoading: true;
+          errors: Array<Error>;
+        }
+      | {
+          questionnaire: Questionnaire;
+          questionnaireResponse: QuestionnaireResponse | undefined;
+          isLoading: false;
+          errors: Array<Error>;
+        }
+    );
 
 export type FhirQuestionnaireRenderer = (
-  props: FhirQuestionnaireRendererProps
+  props: FhirQuestionnaireRendererProps,
 ) => ReactElement | null;

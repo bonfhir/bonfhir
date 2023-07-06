@@ -57,30 +57,30 @@ export const contactPointFormatter: ValueFormatter<
     if (Array.isArray(value)) {
       const formattedContactPointList = filterAndSortContactPoints(
         value,
-        options
+        options,
       )
         .map((contactPoint) =>
           withValueFormatter<typeof contactPointFormatter>(
-            formatterOptions.formatter
-          ).format("ContactPoint", contactPoint, options)
+            formatterOptions.formatter,
+          ).format("ContactPoint", contactPoint, options),
         )
         .filter(Boolean);
 
       return new Intl.ListFormat(
         formatterOptions.locale,
-        options?.listFormatOptions
+        options?.listFormatOptions,
       ).format(formattedContactPointList);
     }
 
     if (!value?.value) return "";
 
     const use = withValueFormatter<typeof codeFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("code", value.use, {
       expansions: options?.useExpansions,
     });
     const system = withValueFormatter<typeof codeFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("code", value.system, {
       expansions: options?.systemExpansions,
     });
@@ -101,7 +101,7 @@ export const contactPointFormatter: ValueFormatter<
       case "full": {
         return [
           `${value.rank} - ${withValueFormatter<typeof periodFormatter>(
-            formatterOptions.formatter
+            formatterOptions.formatter,
           ).format("Period", value.period)}`,
           `${system}: ${value.value} (${use})`,
         ].join(options?.lineSeparator || ", ");
@@ -115,7 +115,7 @@ export const contactPointFormatter: ValueFormatter<
 
 function filterAndSortContactPoints(
   contactPoints: ContactPoint[],
-  options: ContactPointFormatterOptions | null | undefined
+  options: ContactPointFormatterOptions | null | undefined,
 ): ContactPoint[] {
   const useFilterOrder =
     options?.useFilterOrder || DEFAULT_CONTACT_POINT_USE_ORDER_FILTER;
@@ -123,13 +123,13 @@ function filterAndSortContactPoints(
     useFilterOrder.map((currentValue, index) => [
       currentValue || "undefined",
       index,
-    ])
+    ]),
   );
 
   // filter out by use
   if (options?.useFilterOrder)
     contactPoints = contactPoints.filter((contactPoint) =>
-      useFilterOrder.includes(contactPoint.use)
+      useFilterOrder.includes(contactPoint.use),
     );
 
   contactPoints = contactPoints.sort((contactPoint1, contactPoint2) => {

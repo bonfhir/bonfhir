@@ -133,7 +133,7 @@ describe("identifier", () => {
         formatter.format("Identifier", identifiers, {
           style: "value",
           pattern: false,
-        })
+        }),
       ).toEqual(
         "usual, present, " +
           "temp, present, " +
@@ -141,7 +141,7 @@ describe("identifier", () => {
           "usual, past, " +
           "a long time ago, usual, " +
           "a long time ago, secondary, " +
-          "and a long time ago, no use"
+          "and a long time ago, no use",
       );
     });
 
@@ -151,18 +151,18 @@ describe("identifier", () => {
           useFilterOrder: ["official", "usual"],
           style: "value",
           pattern: false,
-        })
+        }),
       ).toEqual(
         "usual, present, " +
           "official, past, " +
           "usual, past, and " +
-          "a long time ago, usual"
+          "a long time ago, usual",
       );
 
       expect(
         formatter.format("Identifier", identifiers, {
           systemFilterOrder: ["ID", "NAS"],
-        })
+        }),
       ).toEqual("ID: temp, present, NAS: official, past, and ID: usual, past");
     });
 
@@ -173,7 +173,7 @@ describe("identifier", () => {
           style: "value",
           max: 2,
           pattern: false,
-        })
+        }),
       ).toEqual("usual, present and official, past");
     });
   });
@@ -188,7 +188,7 @@ describe("identifier", () => {
         formatter.format("Identifier", identifier, {
           pattern: "###-##-####",
           style: "value",
-        })
+        }),
       ).toEqual("753-59-831");
     });
 
@@ -201,7 +201,7 @@ describe("identifier", () => {
       expect(
         formatter.format("Identifier", identifier, {
           style: "value",
-        })
+        }),
       ).toEqual("1EG4-TE5-MK73");
     });
 
@@ -221,7 +221,7 @@ describe("identifier", () => {
         formatter.format("Identifier", identifier, {
           pattern: IdentifierPatterns,
           style: "value",
-        })
+        }),
       ).toEqual("123 456 7890");
     });
 
@@ -233,7 +233,7 @@ describe("identifier", () => {
       expect(
         formatter.format("Identifier", identifier, {
           style: "value",
-        })
+        }),
       ).toEqual("1234567890");
     });
 
@@ -252,7 +252,7 @@ describe("identifier", () => {
         formatter.format("Identifier", identifier, {
           pattern,
           style: "value",
-        })
+        }),
       ).toEqual("1234567890");
     });
 
@@ -265,7 +265,7 @@ describe("identifier", () => {
         formatter.format("Identifier", identifier, {
           pattern: "",
           style: "value",
-        })
+        }),
       ).toEqual("75359831");
     });
 
@@ -277,7 +277,7 @@ describe("identifier", () => {
       expect(
         formatter.format("Identifier", identifier, {
           style: "value",
-        })
+        }),
       ).toEqual("753-59-831");
     });
 
@@ -290,7 +290,7 @@ describe("identifier", () => {
         formatter.format("Identifier", identifier, {
           systemsPatterns: { "http://hl7.org/fhir/sid/us-ssn": "### ## ###" },
           style: "value",
-        })
+        }),
       ).toEqual("123 45 678");
     });
 
@@ -303,7 +303,7 @@ describe("identifier", () => {
         formatter.format("Identifier", identifier, {
           pattern: `###\\##\\####`,
           style: "value",
-        })
+        }),
       ).toEqual("123#45#678");
     });
   });

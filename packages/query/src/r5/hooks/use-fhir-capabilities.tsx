@@ -13,7 +13,7 @@ import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
 export interface UseFhirCapabilitiesOptions<
-  TResourceType extends AnyResourceType
+  TResourceType extends AnyResourceType,
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
@@ -38,7 +38,7 @@ export interface UseFhirCapabilitiesOptions<
  */
 export function useFhirCapabilities<TResourceType extends AnyResourceType>(
   mode?: "full" | "normative" | "terminology" | null | undefined,
-  options?: UseFhirCapabilitiesOptions<TResourceType> | null | undefined
+  options?: UseFhirCapabilitiesOptions<TResourceType> | null | undefined,
 ): UseQueryResult<CapabilityStatement> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
 

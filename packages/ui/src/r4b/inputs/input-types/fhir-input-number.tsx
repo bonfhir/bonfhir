@@ -21,7 +21,7 @@ export type FhirInputNumberProps<TRendererProps = any> =
     );
 
 export function FhirInputNumber<TRendererProps = any>(
-  props: FhirInputNumberProps<TRendererProps>
+  props: FhirInputNumberProps<TRendererProps>,
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
@@ -32,5 +32,5 @@ export type FhirInputNumberRendererProps<TRendererProps = any> =
   FhirInputNumberProps<TRendererProps>;
 
 export type FhirInputNumberRenderer = (
-  props: FhirInputNumberRendererProps
+  props: FhirInputNumberRendererProps,
 ) => ReactElement | null;

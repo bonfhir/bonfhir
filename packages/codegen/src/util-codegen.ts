@@ -1,9 +1,9 @@
 import chunkText from "chunk-text";
 
 export function toJsComment(lines: string[]) {
-  return `/**\n * ${lines.join("\n * ")}\n */`.replace(
+  return `/**\n * ${lines.join("\n * ")}\n */`.replaceAll(
     IRREGULAR_WHITESPACE,
-    " "
+    " ",
   );
 }
 
@@ -48,7 +48,7 @@ export function toTsType(fhirType: string): string {
 }
 
 export function targetProfileToTsTypes(
-  targetDefinitions: string[] | undefined
+  targetDefinitions: string[] | undefined,
 ): string | undefined {
   return targetDefinitions
     ?.map((x) => x?.replace("http://hl7.org/fhir/StructureDefinition/", ""))

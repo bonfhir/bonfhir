@@ -33,7 +33,7 @@ export const quantityFormatter: ValueFormatter<
     if (!value) return "";
 
     const formattedValue = withValueFormatter<typeof decimalFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("decimal", value.value, {
       notation: options?.notation,
     });
@@ -41,7 +41,7 @@ export const quantityFormatter: ValueFormatter<
     const formattedComparator = value.comparator || "";
 
     const formattedCode = withValueFormatter<typeof codeFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("code", value.code, {
       expansions: options?.expansions,
     });

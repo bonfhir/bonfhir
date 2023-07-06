@@ -16,7 +16,7 @@ import {
 import { ReactElement } from "react";
 
 export function MantineFhirInputIdentifier(
-  props: FhirInputIdentifierRendererProps<MantineFhirInputIdentifierProps>
+  props: FhirInputIdentifierRendererProps<MantineFhirInputIdentifierProps>,
 ): ReactElement | null {
   let mode = props.mode;
   switch (mode) {
@@ -156,7 +156,7 @@ export function MantineFhirInputIdentifier(
                       props.value?.system
                     ) {
                       const processValue = props.identifiers?.find(
-                        (x) => x.system === props.value?.system
+                        (x) => x.system === props.value?.system,
                       )?.processValue;
                       if (processValue) {
                         value = processValue(value);

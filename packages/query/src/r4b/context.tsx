@@ -28,7 +28,7 @@ export interface FhirQueryContext {
  * The context used by fhir-query.
  */
 export const FhirQueryContext = createContext<FhirQueryContext | undefined>(
-  undefined
+  undefined,
 );
 
 /**
@@ -40,7 +40,7 @@ export function useFhirQueryContext(): FhirQueryContext {
   const context = useContext(FhirQueryContext);
   if (!context) {
     throw new Error(
-      "Missing FhirQueryContext. Did you forget to use a parent FhirQueryProvider?"
+      "Missing FhirQueryContext. Did you forget to use a parent FhirQueryProvider?",
     );
   }
 
@@ -53,7 +53,7 @@ export function useFhirQueryContext(): FhirQueryContext {
  * @throws Error if no parent context exists (a.k.a. no `FhirQueryProvider` was used in the parent tree).
  */
 export function useFhirClientQueryContext(
-  client: string | null | undefined
+  client: string | null | undefined,
 ): Omit<FhirQueryContext, "fhirClient"> & {
   fhirClient: FhirClient;
   clientKey: string;
@@ -64,7 +64,7 @@ export function useFhirClientQueryContext(
   const fhirClient = context.fhirClient[clientKey];
   if (!fhirClient) {
     throw new Error(
-      `Unable to find a FhirClient with name ${clientKey}. Did you forget to configure it in a parent FhirQueryProvider?`
+      `Unable to find a FhirClient with name ${clientKey}. Did you forget to configure it in a parent FhirQueryProvider?`,
     );
   }
 

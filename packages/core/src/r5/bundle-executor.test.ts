@@ -84,7 +84,7 @@ describe("bundle-executor", () => {
       build("Organization", {
         id: uuid(),
         name: "Acme, Inc.",
-      })
+      }),
     );
     expect(futureRequest.requestEntry.request?.method).toEqual("PUT");
     await executor.send();
@@ -93,7 +93,7 @@ describe("bundle-executor", () => {
   it("patch", async () => {
     const executor = new BundleExecutor(client, "transaction");
     const futureRequest = executor.patch("Patient", "123", (patch) =>
-      patch.add("/active", false)
+      patch.add("/active", false),
     );
     expect(futureRequest.requestEntry.request?.method).toEqual("PATCH");
     await executor.send();
@@ -102,7 +102,7 @@ describe("bundle-executor", () => {
   it("delete", async () => {
     const executor = new BundleExecutor(client, "transaction");
     const futureRequest = executor.delete(
-      build("Patient", { id: "123" }) as Retrieved<Patient>
+      build("Patient", { id: "123" }) as Retrieved<Patient>,
     );
     expect(futureRequest.requestEntry.request?.method).toEqual("DELETE");
     await executor.send();
@@ -120,7 +120,7 @@ describe("bundle-executor", () => {
     const futureRequest = executor.create(
       build("Organization", {
         name: "Acme, Inc.",
-      })
+      }),
     );
     expect(futureRequest.requestEntry.request?.method).toEqual("POST");
     await executor.send();
@@ -129,7 +129,7 @@ describe("bundle-executor", () => {
   it("search", async () => {
     const executor = new BundleExecutor(client, "batch");
     const futureRequest = executor.search("Medication", (search) =>
-      search.code("123")
+      search.code("123"),
     );
     expect(futureRequest.requestEntry.request?.method).toEqual("GET");
     await executor.send();
@@ -138,7 +138,7 @@ describe("bundle-executor", () => {
   it("searchOne", async () => {
     const executor = new BundleExecutor(client, "batch");
     const futureRequest = executor.searchOne("Encounter", (search) =>
-      search.status("finished")
+      search.status("finished"),
     );
     expect(futureRequest.requestEntry.request?.method).toEqual("GET");
     await executor.send();
@@ -156,7 +156,7 @@ describe("bundle-executor", () => {
     const futureRequest = executor.execute(
       new ValueSetExpandOperation({
         url: "http://hl7.org/fhir/ValueSet/example",
-      })
+      }),
     );
     expect(futureRequest.requestEntry.request?.method).toEqual("GET");
     await executor.send();

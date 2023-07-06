@@ -15,7 +15,7 @@ import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
 export type UseFhirCreateOrMutationArgs<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 > = {
   action: CreateOrAction;
   body: ResourceOf<TResourceType>;
@@ -26,7 +26,7 @@ export type UseFhirCreateOrMutationArgs<
 };
 
 export interface UseFhirCreateOrMutationOptions<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
@@ -45,10 +45,10 @@ export interface UseFhirCreateOrMutationOptions<
 }
 
 export function useFhirCreateOrMutation<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   _type: TResourceType,
-  options?: UseFhirCreateOrMutationOptions<TResourceType> | null | undefined
+  options?: UseFhirCreateOrMutationOptions<TResourceType> | null | undefined,
 ): UseMutationResult<
   MergeResult<Retrieved<ResourceOf<TResourceType>>>,
   unknown,
@@ -66,15 +66,15 @@ export function useFhirCreateOrMutation<
           fhirQueryContext.clientKey,
           fhirQueryContext.queryClient,
           resource.resourceType,
-          resource.id
+          resource.id,
         );
         fhirQueryContext.queryClient.setQueryData(
           FhirQueryKeys.read(
             fhirQueryContext.clientKey,
             resource.resourceType,
-            resource.id
+            resource.id,
           ),
-          resource
+          resource,
         );
       }
       options?.mutation?.onSuccess?.([resource, isChanged], variables, context);
@@ -85,7 +85,7 @@ export function useFhirCreateOrMutation<
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         args.body as any,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        args.search as any
+        args.search as any,
       ),
   });
 }

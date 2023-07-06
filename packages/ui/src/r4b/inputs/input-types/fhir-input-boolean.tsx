@@ -12,7 +12,7 @@ export interface FhirInputBooleanProps<TRendererProps = any>
 }
 
 export function FhirInputBoolean<TRendererProps = any>(
-  props: FhirInputBooleanProps<TRendererProps>
+  props: FhirInputBooleanProps<TRendererProps>,
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
@@ -23,5 +23,5 @@ export interface FhirInputBooleanRendererProps<TRendererProps = any>
   extends FhirInputBooleanProps<TRendererProps> {}
 
 export type FhirInputBooleanRenderer = (
-  props: FhirInputBooleanRendererProps
+  props: FhirInputBooleanRendererProps,
 ) => ReactElement | null;

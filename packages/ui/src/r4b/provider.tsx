@@ -39,7 +39,7 @@ export function FhirUIProvider(props: FhirUIProviderProps) {
         },
         applyDefaultProps<TProps>(
           component: keyof FhirUIDefaultProps,
-          componentProps: TProps
+          componentProps: TProps,
         ): TProps {
           const configuredDefaultProps = props.defaultProps?.[component];
           if (!configuredDefaultProps) {

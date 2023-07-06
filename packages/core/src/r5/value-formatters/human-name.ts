@@ -75,14 +75,14 @@ export const humanNameFormatter: ValueFormatter<
       const formattedHumanNameList = filterAndSortHumanNames(value, options)
         .map((humanName) =>
           withValueFormatter<typeof humanNameFormatter>(
-            formatterOptions.formatter
-          ).format("HumanName", humanName, options)
+            formatterOptions.formatter,
+          ).format("HumanName", humanName, options),
         )
         .filter(Boolean);
 
       return new Intl.ListFormat(
         formatterOptions.locale,
-        options?.listFormatOptions
+        options?.listFormatOptions,
       ).format(formattedHumanNameList);
     }
 
@@ -138,7 +138,7 @@ export const humanNameFormatter: ValueFormatter<
 
     if (options?.includeUse) {
       const use = withValueFormatter<typeof codeFormatter>(
-        formatterOptions.formatter
+        formatterOptions.formatter,
       ).format("code", value.use, {
         expansions: options?.expansions,
       });
@@ -152,7 +152,7 @@ export const humanNameFormatter: ValueFormatter<
 
 const filterAndSortHumanNames = (
   humanNames: HumanName[],
-  options: HumanNameFormatterOptions | null | undefined
+  options: HumanNameFormatterOptions | null | undefined,
 ): HumanName[] => {
   const useFilterOrder =
     options?.useFilterOrder || DEFAULT_HUMAN_NAME_USE_ORDER_FILTER;
@@ -160,13 +160,13 @@ const filterAndSortHumanNames = (
     useFilterOrder.map((currentValue, index) => [
       currentValue || "undefined",
       index,
-    ])
+    ]),
   );
 
   // filter out by use
   if (options?.useFilterOrder)
     humanNames = humanNames.filter((humanName) =>
-      useFilterOrder.includes(humanName.use)
+      useFilterOrder.includes(humanName.use),
     );
 
   // sort by use

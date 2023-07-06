@@ -128,7 +128,7 @@ describe("address", () => {
       ]),
     ])("format %p %p => %p", (value, options, expected) => {
       expect(formatter.format("Address", value, options)).toEqual(
-        expected.join(", ")
+        expected.join(", "),
       );
     });
 
@@ -137,7 +137,7 @@ describe("address", () => {
         formatter.format("Address", address, {
           preferText: false,
           lineSeparator: "\n ",
-        })
+        }),
       ).toEqual(
         [
           "18 rue des paquerettes",
@@ -145,7 +145,7 @@ describe("address", () => {
           "batiment 4",
           "appartement 008",
           "Wonderland, Nevada 2A1 J7T",
-        ].join("\n ")
+        ].join("\n "),
       );
     });
   });
@@ -194,7 +194,7 @@ describe("address", () => {
           "work, past, " +
           "a long time ago, work, " +
           "a long time ago, old, and " +
-          "a long time ago, no use"
+          "a long time ago, no use",
       );
     });
 
@@ -202,12 +202,12 @@ describe("address", () => {
       expect(
         formatter.format("Address", addresses, {
           useFilterOrder: ["work", "home"],
-        })
+        }),
       ).toEqual(
         "work, present, " +
           "work, past, " +
           "home, past, and " +
-          "a long time ago, work"
+          "a long time ago, work",
       );
     });
 
@@ -216,7 +216,7 @@ describe("address", () => {
         formatter.format("Address", addresses, {
           useFilterOrder: ["work", "home"],
           max: 2,
-        })
+        }),
       ).toEqual("work, present and work, past");
     });
   });

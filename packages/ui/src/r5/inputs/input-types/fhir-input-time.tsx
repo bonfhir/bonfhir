@@ -12,7 +12,7 @@ export interface FhirInputTimeProps<TRendererProps = any>
 }
 
 export function FhirInputTime<TRendererProps = any>(
-  props: FhirInputTimeProps<TRendererProps>
+  props: FhirInputTimeProps<TRendererProps>,
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
@@ -23,5 +23,5 @@ export type FhirInputTimeRendererProps<TRendererProps = any> =
   FhirInputTimeProps<TRendererProps>;
 
 export type FhirInputTimeRenderer = (
-  props: FhirInputTimeRendererProps
+  props: FhirInputTimeRendererProps,
 ) => ReactElement | null;

@@ -14,7 +14,7 @@ import {
 import { ReactElement } from "react";
 
 export function MantineFhirValue(
-  props: FhirValueRendererProps<MantineFhirValueProps>
+  props: FhirValueRendererProps<MantineFhirValueProps>,
 ): ReactElement | null {
   const { formatter } = useFhirUIContext();
   if (hasRelativeOptions(props.options)) {
@@ -30,7 +30,7 @@ export function MantineFhirValue(
             {formatter.format(
               props.type,
               props.value as never,
-              props.rendererProps?.relativeDateHoverCardFormatter
+              props.rendererProps?.relativeDateHoverCardFormatter,
             )}
           </Text>
         </HoverCard.Dropdown>
@@ -69,7 +69,7 @@ export interface MantineFhirValueProps {
 }
 
 function hasRelativeOptions(
-  value: FhirValueRendererProps<MantineFhirValueProps>["options"]
+  value: FhirValueRendererProps<MantineFhirValueProps>["options"],
 ): value is { dateStyle: "relative" } {
   return !!value && "dateStyle" in value && value.dateStyle === "relative";
 }

@@ -12,7 +12,7 @@ import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { ReactElement, ReactNode, useEffect } from "react";
 
 export function MantineFhirInputArray(
-  props: FhirInputArrayRendererProps<MantineFhirInputArrayProps>
+  props: FhirInputArrayRendererProps<MantineFhirInputArrayProps>,
 ): ReactElement | null {
   const max = props.max ?? Number.POSITIVE_INFINITY;
   const min = props.min ?? Number.NEGATIVE_INFINITY;

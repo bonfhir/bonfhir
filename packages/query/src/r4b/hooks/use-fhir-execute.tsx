@@ -42,20 +42,20 @@ export function useFhirExecute<TOperation extends Operation>(
   options?:
     | UseFhirExecuteOptions<ExtractOperationResultType<TOperation>>
     | null
-    | undefined
+    | undefined,
 ): UseQueryResult<ExtractOperationResultType<TOperation>>;
 export function useFhirExecute<TOperationResult>(
-  operation: OperationParameters
+  operation: OperationParameters,
 ): UseQueryResult<TOperationResult>;
 export function useFhirExecute<
   TOperationResult,
-  TOperation extends Operation<TOperationResult>
+  TOperation extends Operation<TOperationResult>,
 >(
   operation: TOperation | OperationParameters,
   options?:
     | UseFhirExecuteOptions<ExtractOperationResultType<TOperation>>
     | null
-    | undefined
+    | undefined,
 ): UseQueryResult<TOperationResult> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
   const operationParameters = (operation as Operation<TOperationResult>)
@@ -65,7 +65,7 @@ export function useFhirExecute<
 
   if (operationParameters.affectsState) {
     throw new Error(
-      `useFhirExecute hook does not support operations that affect state (${operationParameters.operation}). Use useFhirExecuteMutation instead.`
+      `useFhirExecute hook does not support operations that affect state (${operationParameters.operation}). Use useFhirExecuteMutation instead.`,
     );
   }
 
@@ -74,7 +74,7 @@ export function useFhirExecute<
     ...(options?.query as any),
     queryKey: FhirQueryKeys.execute(
       fhirQueryContext.clientKey,
-      operationParameters
+      operationParameters,
     ),
     queryFn: () => fhirQueryContext.fhirClient.execute(operationParameters),
   });

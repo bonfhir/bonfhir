@@ -43,19 +43,19 @@ export const codeableConceptFormatter: ValueFormatter<
       return value.text || "";
     } else if (codings.length === 1) {
       return withValueFormatter<typeof codingFormatter>(
-        formatterOptions.formatter
+        formatterOptions.formatter,
       ).format("Coding", codings[0], options);
     }
 
     return new Intl.ListFormat(
       formatterOptions.locale,
-      options?.listFormatOptions
+      options?.listFormatOptions,
     ).format(
       codings.map((coding) =>
         withValueFormatter<typeof codingFormatter>(
-          formatterOptions.formatter
-        ).format("Coding", coding, options)
-      )
+          formatterOptions.formatter,
+        ).format("Coding", coding, options),
+      ),
     );
   },
 };

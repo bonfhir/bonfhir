@@ -23,7 +23,7 @@ export type FhirQueryLoaderProps<TRendererProps, TData> = {
 };
 
 export function FhirQueryLoader<TRendererProps, TData>(
-  props: FhirQueryLoaderProps<TRendererProps, TData>
+  props: FhirQueryLoaderProps<TRendererProps, TData>,
 ): ReactElement | null {
   const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirQueryLoader", props);
@@ -43,7 +43,7 @@ export function FhirQueryLoader<TRendererProps, TData>(
     isLoading,
     isError,
     errors: queries.map((query) =>
-      isFhirClientError(query.error) ? query.error : asError(query.error)
+      isFhirClientError(query.error) ? query.error : asError(query.error),
     ),
     retry: () => {
       for (const query of queries) query.refetch();
@@ -61,5 +61,5 @@ export interface FhirQueryLoaderRendererProps<TRendererProps = any>
 }
 
 export type FhirQueryLoaderRenderer = (
-  props: FhirQueryLoaderRendererProps
+  props: FhirQueryLoaderRendererProps,
 ) => ReactElement | null;

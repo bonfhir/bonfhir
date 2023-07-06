@@ -15,12 +15,12 @@ import { FhirInputCommonProps } from "./common.js";
 
 export type FhirInputResourceProps<
   TRendererProps = any,
-  TResourceType extends AnyResourceType = AnyResourceType
+  TResourceType extends AnyResourceType = AnyResourceType,
 > = FhirInputCommonProps & {
   placeholder?: string | null | undefined;
   resourceType: TResourceType;
   search?: (
-    query: string
+    query: string,
   ) => FhirClientSearchParameters<ResourceTypeOf<TResourceType>>;
   display?:
     | ((resource: ExtractResource<TResourceType>) => ReactNode)
@@ -37,16 +37,16 @@ export type FhirInputResourceProps<
         type: "Reference";
         value?: Reference | null | undefined;
         onChange?: (
-          value: Reference<ExtractResource<TResourceType>> | undefined
+          value: Reference<ExtractResource<TResourceType>> | undefined,
         ) => void;
       }
   );
 
 export function FhirInputResource<
   TRendererProps = any,
-  TResourceType extends AnyResourceType = AnyResourceType
+  TResourceType extends AnyResourceType = AnyResourceType,
 >(
-  props: FhirInputResourceProps<TRendererProps, TResourceType>
+  props: FhirInputResourceProps<TRendererProps, TResourceType>,
 ): ReactElement | null {
   const { render } = useFhirUIContext();
   const [searchParam, setSearchParams] =
@@ -101,5 +101,5 @@ export type FhirInputResourceRendererProps<TRendererProps = any> =
   };
 
 export type FhirInputResourceRenderer = (
-  props: FhirInputResourceRendererProps
+  props: FhirInputResourceRendererProps,
 ) => ReactElement | null;

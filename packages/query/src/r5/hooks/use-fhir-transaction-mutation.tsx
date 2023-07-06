@@ -8,7 +8,7 @@ import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
 export type UseFhirTransactionMutationArgs = (
-  executor: BundleExecutor
+  executor: BundleExecutor,
 ) => unknown;
 
 export interface UseFhirTransactionMutationOptions {
@@ -35,7 +35,7 @@ export interface UseFhirTransactionMutationOptions {
  * @see https://hl7.org/fhir/http.html#transaction
  */
 export function useFhirTransactionMutation(
-  options?: UseFhirTransactionMutationOptions | null | undefined
+  options?: UseFhirTransactionMutationOptions | null | undefined,
 ): UseMutationResult<
   BundleExecutor,
   unknown,
@@ -57,7 +57,7 @@ export function useFhirTransactionMutation(
             fhirQueryContext.clientKey,
             fhirQueryContext.queryClient,
             (resource as Resource).resourceType,
-            (resource as Retrieved<Resource>).id
+            (resource as Retrieved<Resource>).id,
           );
         }
       }

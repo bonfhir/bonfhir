@@ -10,11 +10,11 @@ export interface FhirUIContext {
   onNavigate?: (args: OnNavigateArgs) => void;
   render<TRendererProps>(
     renderer: keyof FhirUIRenderer,
-    props: TRendererProps
+    props: TRendererProps,
   ): ReactElement<any, any> | null;
   applyDefaultProps<TProps>(
     component: keyof FhirUIDefaultProps,
-    props: TProps
+    props: TProps,
   ): TProps;
 }
 
@@ -22,7 +22,7 @@ export interface FhirUIContext {
  * The context used by FHIR UI Components.
  */
 export const FhirUIContext = createContext<FhirUIContext | undefined>(
-  undefined
+  undefined,
 );
 
 /**
@@ -34,7 +34,7 @@ export const useFhirUIContext = (): FhirUIContext => {
   const context = useContext(FhirUIContext);
   if (!context) {
     throw new Error(
-      "Missing FhirUIContext. Did you forget to use a parent FhirUIProvider?"
+      "Missing FhirUIContext. Did you forget to use a parent FhirUIProvider?",
     );
   }
 

@@ -3,7 +3,7 @@ import { DateTimePicker, DateTimePickerProps } from "@mantine/dates";
 import { ReactElement } from "react";
 
 export function MantineFhirInputDateTime(
-  props: FhirInputDateTimeRendererProps<MantineFhirInputDateTimeProps>
+  props: FhirInputDateTimeRendererProps<MantineFhirInputDateTimeProps>,
 ): ReactElement | null {
   return (
     <DateTimePicker

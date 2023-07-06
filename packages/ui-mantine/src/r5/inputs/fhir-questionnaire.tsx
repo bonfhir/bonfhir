@@ -32,7 +32,7 @@ import { ReactElement, ReactNode, useEffect } from "react";
 import { UseFhirFormReturnType, useFhirForm } from "../hooks/use-fhir-form.js";
 
 export function MantineFhirQuestionnaire(
-  props: FhirQuestionnaireRendererProps<MantineFhirQuestionnaireProps>
+  props: FhirQuestionnaireRendererProps<MantineFhirQuestionnaireProps>,
 ): ReactElement | null {
   const form = useFhirForm<object, (values: object) => QuestionnaireResponse>({
     transformValues(values) {
@@ -42,7 +42,7 @@ export function MantineFhirQuestionnaire(
         authored: new Date().toISOString(),
         item: buildQuestionnaireResponseItems(
           props.questionnaire!.item || [],
-          values
+          values,
         ),
       });
     },
@@ -58,8 +58,8 @@ export function MantineFhirQuestionnaire(
         buildInitialValues(
           props.questionnaire.item || [],
           "",
-          props.questionnaireResponse?.item || []
-        )
+          props.questionnaireResponse?.item || [],
+        ),
       );
     }
   }, [props.isLoading, props.questionnaire, props.questionnaireResponse]);
@@ -92,8 +92,8 @@ export function MantineFhirQuestionnaire(
 
   return (
     <form
-      onSubmit={form.onSubmit((questionnaireResponse) =>
-        props.onSubmit?.(questionnaireResponse)
+      onSubmit={form.onSubmit(
+        (questionnaireResponse) => props.onSubmit?.(questionnaireResponse),
       )}
     >
       <Stack {...props.rendererProps?.mainStack}>
@@ -159,7 +159,7 @@ function MantineQuestionnaireItemRenderer({
   const additionalPropsAsString = item.extension?.find(
     (x) =>
       x.url ===
-      "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props"
+      "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
   )?.valueString;
   const additionalProps = additionalPropsAsString
     ? JSON.parse(additionalPropsAsString)
@@ -196,7 +196,7 @@ function MantineQuestionnaireItemRenderer({
                 parentPath={concatPath(parentPath, item.linkId)}
                 form={form}
               />
-            )
+            ),
           )}
         </Stack>
       );
@@ -265,7 +265,7 @@ function concatPath(...paths: string[]): string {
 
 function buildQuestionnaireResponseItems(
   item: QuestionnaireItem[],
-  values: any
+  values: any,
 ): QuestionnaireResponseItem[] | undefined {
   const result: QuestionnaireResponseItem[] = [];
 
@@ -328,26 +328,26 @@ function buildQuestionnaireResponseItems(
 function buildInitialValues(
   item: QuestionnaireItem[],
   parentPath: string,
-  responseItem: QuestionnaireResponseItem[]
+  responseItem: QuestionnaireResponseItem[],
 ): object {
   const result = {} as any;
   for (const i of item) {
     const responseI = responseItem.find(
-      (responseI) => responseI.linkId === i.linkId
+      (responseI) => responseI.linkId === i.linkId,
     );
     switch (i.type) {
       case "group": {
         result[i.linkId] = buildInitialValues(
           i.item || [],
           concatPath(parentPath, i.linkId),
-          responseI?.item || []
+          responseI?.item || [],
         );
         break;
       }
       default: {
         const initialValue = responseI?.answer || i.initial;
         result[i.linkId] = Object.entries(initialValue?.[0] || {}).find(
-          ([key, value]) => key.startsWith("value") && value
+          ([key, value]) => key.startsWith("value") && value,
         )?.[1];
       }
     }

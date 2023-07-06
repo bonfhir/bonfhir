@@ -77,25 +77,25 @@ export const addressFormatter: ValueFormatter<
       const formattedAddressList = filterAndSortAddresses(value, options)
         .map((address) =>
           withValueFormatter<typeof addressFormatter>(
-            formatterOptions.formatter
-          ).format("Address", address, options)
+            formatterOptions.formatter,
+          ).format("Address", address, options),
         )
         .filter(Boolean);
 
       return new Intl.ListFormat(
         formatterOptions.locale,
-        options?.listFormatOptions
+        options?.listFormatOptions,
       ).format(formattedAddressList);
     }
 
     const country = value.country || options?.defaultCountry || undefined;
     const use = withValueFormatter<typeof codeFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("code", value.use, {
       expansions: options?.useValueSetExpansions,
     });
     const type = withValueFormatter<typeof codeFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("code", value.type, {
       expansions: options?.typeValueSetExpansions,
     });
@@ -121,8 +121,8 @@ export const addressFormatter: ValueFormatter<
     if (["full", "extended"].includes(options?.style || ""))
       addressComponents.unshift(
         `(${withValueFormatter<typeof periodFormatter>(
-          formatterOptions.formatter
-        ).format("Period", value.period)})`
+          formatterOptions.formatter,
+        ).format("Period", value.period)})`,
       );
 
     // add country
@@ -136,7 +136,7 @@ export const addressFormatter: ValueFormatter<
 
 const filterAndSortAddresses = (
   addresses: Address[],
-  options: AddressFormatterOptions | null | undefined
+  options: AddressFormatterOptions | null | undefined,
 ): Address[] => {
   const useFilterOrder =
     options?.useFilterOrder || DEFAULT_ADDRESS_USE_ORDER_FILTER;
@@ -144,13 +144,13 @@ const filterAndSortAddresses = (
     useFilterOrder.map((currentValue, index) => [
       currentValue || "undefined",
       index,
-    ])
+    ]),
   );
 
   // filter out by use
   if (options?.useFilterOrder)
     addresses = addresses.filter((address) =>
-      useFilterOrder.includes(address.use)
+      useFilterOrder.includes(address.use),
     );
 
   // sort out by period, then use

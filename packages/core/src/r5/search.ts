@@ -38,7 +38,7 @@ export class FhirSearchBuilder {
     parameter: string,
     value: string | Array<string> | null | undefined,
     prefix?: Prefix | null | undefined,
-    replace?: "replace" | null | undefined
+    replace?: "replace" | null | undefined,
   ): this {
     if (value) {
       const parameterValues = Array.isArray(value)
@@ -53,7 +53,7 @@ export class FhirSearchBuilder {
         parameterValues
           .map((x) => `${prefix || ""}${encodeURIComponent(x)}`)
           .join(","),
-        replace
+        replace,
       );
     }
     return this;
@@ -72,12 +72,12 @@ export class FhirSearchBuilder {
   public missingParam(
     parameter: string,
     isMissing = true,
-    replace?: "replace" | null | undefined
+    replace?: "replace" | null | undefined,
   ): this {
     return this.push(
       `${parameter}:missing`,
       isMissing ? "true" : "false",
-      replace
+      replace,
     );
   }
 
@@ -99,7 +99,7 @@ export class FhirSearchBuilder {
     parameter: string,
     value: number | string | Array<number | string> | null | undefined,
     prefix?: Prefix | null | undefined,
-    replace?: "replace" | null | undefined
+    replace?: "replace" | null | undefined,
   ): this {
     if (value) {
       const parameterValues = Array.isArray(value)
@@ -108,7 +108,7 @@ export class FhirSearchBuilder {
       this.push(
         parameter,
         parameterValues.map((x) => `${prefix || ""}${x}`).join(","),
-        replace
+        replace,
       );
     }
     return this;
@@ -147,7 +147,7 @@ export class FhirSearchBuilder {
       | null
       | undefined,
     prefix?: Prefix | null | undefined,
-    replace?: "replace" | null | undefined
+    replace?: "replace" | null | undefined,
   ): this {
     if (number == undefined || number === "") {
       return this;
@@ -172,10 +172,10 @@ export class FhirSearchBuilder {
                     .map((y) => (y ? encodeURIComponent(`${y}`) : ""))
                     .join("|")
                 : x
-            }`
+            }`,
         )
         .join(","),
-      replace
+      replace,
     );
 
     return this;
@@ -207,7 +207,7 @@ export class FhirSearchBuilder {
       | null
       | undefined,
     modifier?: AnyResourceType | null | undefined,
-    replace?: "replace" | null | undefined
+    replace?: "replace" | null | undefined,
   ): this;
   public referenceParam(
     parameter: string,
@@ -227,7 +227,7 @@ export class FhirSearchBuilder {
           | string
         >,
     modifier: ":identifier",
-    replace?: "replace" | null | undefined
+    replace?: "replace" | null | undefined,
   ): this;
   public referenceParam(
     parameter: string,
@@ -251,7 +251,7 @@ export class FhirSearchBuilder {
       | null
       | undefined,
     modifier?: ":identifier" | AnyResourceType | null | undefined,
-    replace?: "replace" | null | undefined
+    replace?: "replace" | null | undefined,
   ): this;
   public referenceParam(
     parameter: string,
@@ -275,7 +275,7 @@ export class FhirSearchBuilder {
       | null
       | undefined,
     modifier?: ":identifier" | AnyResourceType | null | undefined,
-    replace?: "replace" | null | undefined
+    replace?: "replace" | null | undefined,
   ): this {
     if (!id) {
       return this;
@@ -300,7 +300,7 @@ export class FhirSearchBuilder {
               | string
             >,
         undefined,
-        replace
+        replace,
       );
 
       return this;
@@ -318,8 +318,8 @@ export class FhirSearchBuilder {
               x.id?.startsWith(x.type + "/") // Let's be kind and auto-correct double type inclusions.
                 ? x.id.slice(x.type.length + 1)
                 : x.id
-            }`
-          )
+            }`,
+          ),
     );
 
     if (renderedParameterValues.length === 0) {
@@ -329,7 +329,7 @@ export class FhirSearchBuilder {
     this.push(
       `${parameter}${modifier ? `:${modifier}` : ""}`,
       renderedParameterValues.join(","),
-      replace
+      replace,
     );
 
     return this;
@@ -360,7 +360,7 @@ export class FhirSearchBuilder {
     parameter: string,
     value: string | string[] | null | undefined,
     modifier?: StringModifier | null | undefined,
-    special?: "replace" | "remove" | null | undefined
+    special?: "replace" | "remove" | null | undefined,
   ): this {
     if (special === "remove") {
       return this.push(`${parameter}${modifier || ""}`, "", "remove");
@@ -371,7 +371,7 @@ export class FhirSearchBuilder {
       this.push(
         `${parameter}${modifier || ""}`,
         parameterValues.map((x) => encodeURIComponent(x)).join(","),
-        special
+        special,
       );
     }
     return this;
@@ -390,7 +390,7 @@ export class FhirSearchBuilder {
    */
   public compositeParam(
     parameter: string,
-    value: string | null | undefined
+    value: string | null | undefined,
   ): this {
     if (!value) {
       return this;
@@ -412,7 +412,7 @@ export class FhirSearchBuilder {
    */
   public specialParam(
     parameter: string,
-    value: string | null | undefined
+    value: string | null | undefined,
   ): this {
     if (!value) {
       return this;
@@ -458,7 +458,7 @@ export class FhirSearchBuilder {
       | null
       | undefined,
     modifier?: TokenModifier | null | undefined,
-    replace?: "replace" | null | undefined
+    replace?: "replace" | null | undefined,
   ): this {
     if (value == undefined) {
       return this;
@@ -480,7 +480,7 @@ export class FhirSearchBuilder {
       this.push(
         `${parameter}${modifier || ""}`,
         renderedParameterValues,
-        replace
+        replace,
       );
     }
     return this;
@@ -493,7 +493,7 @@ export class FhirSearchBuilder {
           system?: string | null | undefined;
           code?: string | null | undefined;
           value?: string | null | undefined;
-        }
+        },
   ): string {
     let result = "";
 
@@ -530,7 +530,7 @@ export class FhirSearchBuilder {
     parameter: string,
     value: string | URL | Array<string | URL> | null | undefined,
     modifier?: UriModifier | null | undefined,
-    replace?: "replace" | null | undefined
+    replace?: "replace" | null | undefined,
   ): this {
     if (!value) {
       return this;
@@ -546,7 +546,7 @@ export class FhirSearchBuilder {
     return this.push(
       `${parameter}${modifier || ""}`,
       parameterValues.map((x) => encodeURIComponent(x.toString())).join(","),
-      replace
+      replace,
     );
   }
 
@@ -595,13 +595,13 @@ export class FhirSearchBuilder {
     options?: {
       targetResourceType?: TResourceType | null | undefined;
       iterate?: boolean | null | undefined;
-    }
+    },
   ): this {
     return this.stringParam(
       `_include${options?.iterate == undefined ? "" : ":iterate"}`,
       `${sourceResource}:${String(searchParameter)}${
         options?.targetResourceType ? `:${options.targetResourceType}` : ""
-      }`
+      }`,
     );
   }
 
@@ -618,13 +618,13 @@ export class FhirSearchBuilder {
     options?: {
       targetResourceType?: TResourceType | null | undefined;
       iterate?: boolean | null | undefined;
-    }
+    },
   ): this {
     return this.stringParam(
       `_revinclude${options?.iterate == undefined ? "" : ":iterate"}`,
       `${sourceResource}:${String(searchParameter)}${
         options?.targetResourceType ? `:${options.targetResourceType}` : ""
-      }`
+      }`,
     );
   }
 
@@ -650,13 +650,13 @@ export class FhirSearchBuilder {
   private push(
     parameter: string,
     value: string,
-    special?: "replace" | "remove" | null | undefined
+    special?: "replace" | "remove" | null | undefined,
   ): this {
     if (special) {
       let foundIndex = 0;
       while (
         (foundIndex = this._searchParams.findIndex(
-          (x) => x[0] === parameter
+          (x) => x[0] === parameter,
         )) !== -1
       ) {
         this._searchParams.splice(foundIndex, 1);

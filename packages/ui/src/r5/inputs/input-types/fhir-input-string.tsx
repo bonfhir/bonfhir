@@ -14,7 +14,7 @@ export type FhirInputStringProps<TRendererProps = any> =
     );
 
 export function FhirInputString<TRendererProps = any>(
-  props: FhirInputStringProps<TRendererProps>
+  props: FhirInputStringProps<TRendererProps>,
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
@@ -25,5 +25,5 @@ export type FhirInputStringRendererProps<TRendererProps = any> =
   FhirInputStringProps<TRendererProps>;
 
 export type FhirInputStringRenderer = (
-  props: FhirInputStringRendererProps
+  props: FhirInputStringRendererProps,
 ) => ReactElement | null;

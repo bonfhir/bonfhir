@@ -17,7 +17,7 @@ import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
 export interface UseFhirInfiniteSearchOptions<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
@@ -41,14 +41,14 @@ export interface UseFhirInfiniteSearchOptions<
 }
 
 export function useFhirInfiniteSearch<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   type: TResourceType,
   parameters?:
     | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
     | null
     | undefined,
-  options?: UseFhirInfiniteSearchOptions<TResourceType> | null | undefined
+  options?: UseFhirInfiniteSearchOptions<TResourceType> | null | undefined,
 ): UseInfiniteQueryResult<
   BundleNavigator<Retrieved<ResourceOf<TResourceType>>>
 > {
@@ -64,19 +64,19 @@ export function useFhirInfiniteSearch<
       fhirQueryContext.clientKey,
       type,
       normalizedParameters,
-      options?.fhir
+      options?.fhir,
     ),
     queryFn: ({ pageParam, signal }) =>
       pageParam
         ? fhirQueryContext.fhirClient.fetchPage(
             pageParam,
             { signal },
-            typeof type === "string" ? undefined : type || undefined
+            typeof type === "string" ? undefined : type || undefined,
           )
         : fhirQueryContext.fhirClient.search(
             type as TResourceType,
             parameters,
-            { ...options?.fhir, signal }
+            { ...options?.fhir, signal },
           ),
     keepPreviousData: true,
     getNextPageParam: (lastPage: BundleNavigator) => lastPage.linkUrl("next"),

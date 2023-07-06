@@ -49,7 +49,7 @@ export class BundleExecutor {
 
   constructor(
     public client: Pick<FhirClient, "batch" | "transaction">,
-    type: "batch" | "transaction"
+    type: "batch" | "transaction",
   ) {
     this.request = {
       resourceType: "Bundle",
@@ -61,10 +61,10 @@ export class BundleExecutor {
   public read<TResourceType extends AnyResourceType>(
     type: TResourceType,
     id: string,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): FutureRequest<Retrieved<ExtractResource<TResourceType>>> {
     const queryString = new URLSearchParams(
-      options as Record<string, string>
+      options as Record<string, string>,
     ).toString();
     const entry: BundleEntry = {
       request: {
@@ -80,10 +80,10 @@ export class BundleExecutor {
     type: TResourceType,
     id: string,
     vid: string,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): FutureRequest<Retrieved<ExtractResource<TResourceType>>> {
     const queryString = new URLSearchParams(
-      options as Record<string, string>
+      options as Record<string, string>,
     ).toString();
     const entry: BundleEntry = {
       request: {
@@ -104,16 +104,16 @@ export class BundleExecutor {
           ConcurrencyParameters &
           ConditionalSearchParameters<TResource["resourceType"]>)
       | null
-      | undefined
+      | undefined,
   ): FutureRequestWithReference<Retrieved<TResource>> {
     const { preventConcurrentUpdates, search, ...remainingOptions } =
       options ?? {};
     const searchQueryString = normalizeSearchParameters(
       body.resourceType,
-      search as any
+      search as any,
     );
     const optionsQueryString = new URLSearchParams(
-      remainingOptions as Record<string, string>
+      remainingOptions as Record<string, string>,
     ).toString();
     const queryString = [searchQueryString, optionsQueryString]
       .filter(Boolean)
@@ -155,13 +155,13 @@ export class BundleExecutor {
             versionId?: string | null | undefined;
           } & ConditionalSearchParameters<TResourceType>)
       | null
-      | undefined
+      | undefined,
   ): FutureRequest<Retrieved<ExtractResource<TResourceType>>> {
     const { preventConcurrentUpdates, versionId, search, ...remainingOptions } =
       options ?? {};
     const searchQueryString = normalizeSearchParameters(type, search as any);
     const optionsQueryString = new URLSearchParams(
-      remainingOptions as Record<string, string>
+      remainingOptions as Record<string, string>,
     ).toString();
     const queryString = [searchQueryString, optionsQueryString]
       .filter(Boolean)
@@ -188,28 +188,28 @@ export class BundleExecutor {
 
   public delete(
     resource: Retrieved<AnyResource>,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): FutureRequest<void>;
   public delete(
     type: AnyResourceType,
     id: string,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): FutureRequest<void>;
   public delete(
     type: AnyResourceType | Retrieved<AnyResource>,
     id?: string | null | undefined | GeneralParameters,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): FutureRequest<void> {
     if (typeof type !== "string") {
       return this.delete(
         type.resourceType,
         type.id,
-        id as null | undefined | GeneralParameters
+        id as null | undefined | GeneralParameters,
       );
     }
 
     const queryString = new URLSearchParams(
-      options as Record<string, string>
+      options as Record<string, string>,
     ).toString();
 
     const entry: BundleEntry = {
@@ -224,30 +224,30 @@ export class BundleExecutor {
 
   public history<TResource extends AnyResource>(
     resource: Retrieved<TResource>,
-    options?: (GeneralParameters & HistoryParameters) | null | undefined
+    options?: (GeneralParameters & HistoryParameters) | null | undefined,
   ): FutureRequest<BundleNavigator<Retrieved<TResource>>>;
   public history<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     id?: string | null | undefined,
-    options?: (GeneralParameters & HistoryParameters) | null | undefined
+    options?: (GeneralParameters & HistoryParameters) | null | undefined,
   ): FutureRequest<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
   public history<TResourceType extends AnyResourceType>(
     type?: TResourceType | Retrieved<AnyResource> | null | undefined,
     id?: string | (GeneralParameters & HistoryParameters) | null | undefined,
-    options?: (GeneralParameters & HistoryParameters) | null | undefined
+    options?: (GeneralParameters & HistoryParameters) | null | undefined,
   ): FutureRequest<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>> {
     if (type && typeof type !== "string") {
       return this.history(
         type.resourceType,
         type.id,
-        id as (GeneralParameters & HistoryParameters) | null | undefined
+        id as (GeneralParameters & HistoryParameters) | null | undefined,
       ) as FutureRequest<
         BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
       >;
     }
 
     const queryString = new URLSearchParams(
-      options as Record<string, string>
+      options as Record<string, string>,
     ).toString();
 
     const entry: BundleEntry = {
@@ -268,15 +268,15 @@ export class BundleExecutor {
       | (GeneralParameters &
           ConditionalSearchParameters<TResource["resourceType"]>)
       | null
-      | undefined
+      | undefined,
   ): FutureRequestWithReference<Retrieved<TResource>> {
     const { search, ...remainingOptions } = options ?? {};
     const searchQueryString = normalizeSearchParameters(
       body.resourceType,
-      search as any
+      search as any,
     );
     const optionsQueryString = new URLSearchParams(
-      remainingOptions as Record<string, string>
+      remainingOptions as Record<string, string>,
     ).toString();
     const queryString = [searchQueryString, optionsQueryString]
       .filter(Boolean)
@@ -305,14 +305,14 @@ export class BundleExecutor {
   public search<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): FutureRequest<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>> {
     const searchQueryString = normalizeSearchParameters(
       type,
-      parameters as any
+      parameters as any,
     );
     const optionsQueryString = new URLSearchParams(
-      options as Record<string, string>
+      options as Record<string, string>,
     ).toString();
     const queryString = [searchQueryString, optionsQueryString]
       .filter(Boolean)
@@ -331,16 +331,16 @@ export class BundleExecutor {
   public searchOne<TResourceType extends AnyResourceType>(
     type?: TResourceType | null | undefined,
     parameters?: FhirClientSearchParameters<TResourceType> | null | undefined,
-    options?: GeneralParameters | null | undefined
+    options?: GeneralParameters | null | undefined,
   ): FutureRequest<
     WithResolvableReferences<Retrieved<ExtractResource<TResourceType>>>
   > {
     const searchQueryString = normalizeSearchParameters(
       type,
-      parameters as any
+      parameters as any,
     );
     const optionsQueryString = new URLSearchParams(
-      options as Record<string, string>
+      options as Record<string, string>,
     ).toString();
     const queryString = [searchQueryString, optionsQueryString]
       .filter(Boolean)
@@ -354,12 +354,12 @@ export class BundleExecutor {
     };
     this.request.entry.push(entry);
     return this._buildFutureRequest(entry, (x) =>
-      bundleNavigator(x).searchMatchOne()
+      bundleNavigator(x).searchMatchOne(),
     );
   }
 
   public capabilities(
-    mode?: "full" | "normative" | "terminology" | null | undefined
+    mode?: "full" | "normative" | "terminology" | null | undefined,
   ): FutureRequest<CapabilityStatement> {
     const entry: BundleEntry = {
       request: {
@@ -372,16 +372,16 @@ export class BundleExecutor {
   }
 
   public execute<TOperation extends Operation>(
-    operation: TOperation
+    operation: TOperation,
   ): FutureRequest<ExtractOperationResultType<TOperation>>;
   public execute<TOperationResult>(
-    operation: OperationParameters
+    operation: OperationParameters,
   ): FutureRequest<TOperationResult>;
   public execute<
     TOperationResult,
-    TOperation extends Operation<TOperationResult>
+    TOperation extends Operation<TOperationResult>,
   >(
-    operation: TOperation | OperationParameters
+    operation: TOperation | OperationParameters,
   ): FutureRequest<TOperationResult> {
     const operationParameters = (operation as Operation<TOperationResult>)
       .getParameters
@@ -398,7 +398,7 @@ export class BundleExecutor {
       operationParameters.parameters &&
       Object.values(operationParameters.parameters).length > 0
         ? new URLSearchParams(
-            operationParameters.parameters as Record<string, string>
+            operationParameters.parameters as Record<string, string>,
           ).toString()
         : undefined;
 
@@ -433,7 +433,7 @@ export class BundleExecutor {
   private _buildFutureRequest<T>(
     requestEntry: BundleEntry,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    wrapResource?: (resource: any) => any
+    wrapResource?: (resource: any) => any,
   ): FutureRequest<T> {
     const futureRequest = {
       executor: this,
@@ -451,7 +451,7 @@ export class BundleExecutor {
         }
         if (!this.responseEntry) {
           throw new Error(
-            "Server execution error - unable to find the entry in the response bundle."
+            "Server execution error - unable to find the entry in the response bundle.",
           );
         }
 
@@ -468,7 +468,7 @@ export class BundleExecutor {
           isResource("OperationOutcome", this.responseEntry.response?.outcome)
             ? this.responseEntry.response?.outcome
             : undefined,
-          { responseEntry: this.responseEntry }
+          { responseEntry: this.responseEntry },
         );
       },
     };

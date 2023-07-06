@@ -9,7 +9,7 @@ import { Period } from "./fhir-types.codegen.js";
  * wraps the given `value` in an array.
  */
 export function asArray<T>(
-  value: T
+  value: T,
 ): T extends ReadonlyArray<unknown> ? T : [T] {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return Array.isArray(value) ? (value as any) : [value];
@@ -38,10 +38,10 @@ export interface TruncateOptions {
  */
 export function uniqBy<T>(
   values: ReadonlyArray<T>,
-  iteratee: (value: T) => unknown
+  iteratee: (value: T) => unknown,
 ): T[] {
   return values.filter(
-    (x, i, self) => i === self.findIndex((y) => iteratee(x) === iteratee(y))
+    (x, i, self) => i === self.findIndex((y) => iteratee(x) === iteratee(y)),
   );
 }
 
@@ -50,19 +50,19 @@ export function uniqBy<T>(
  */
 export function truncate(
   value: null | undefined,
-  options?: TruncateOptions | null | undefined
+  options?: TruncateOptions | null | undefined,
 ): undefined;
 export function truncate(
   value: string,
-  options?: TruncateOptions | null | undefined
+  options?: TruncateOptions | null | undefined,
 ): string;
 export function truncate(
   value: string | null | undefined,
-  options?: TruncateOptions | null | undefined
+  options?: TruncateOptions | null | undefined,
 ): string | undefined;
 export function truncate(
   value: string | null | undefined,
-  options?: TruncateOptions | null | undefined
+  options?: TruncateOptions | null | undefined,
 ): string | undefined {
   if (value == undefined) {
     return undefined;
@@ -104,7 +104,7 @@ export function formatRelativeDateTime(
   value: Date,
   relativeTo: string | number | Date | null | undefined,
   relativeStyle: "long" | "short" | null | undefined,
-  dateOnlyMode = false
+  dateOnlyMode = false,
 ) {
   const relativeToDate = relativeTo ? new Date(relativeTo) : new Date();
   const relative = new Intl.RelativeTimeFormat(locale || undefined, {
@@ -122,7 +122,7 @@ export function formatRelativeDateTime(
   }
 
   const diffSec = Math.floor(
-    (relativeToDate.getTime() - value.getTime()) / 1000
+    (relativeToDate.getTime() - value.getTime()) / 1000,
   );
 
   // from now
@@ -221,15 +221,15 @@ export function formatValueWithPattern(value: string, pattern: string): string {
  */
 export function formatWithTokens(
   value: string | null | undefined,
-  tokens: Record<string, string>
+  tokens: Record<string, string>,
 ): string {
   if (!value) {
     return "";
   }
 
-  return value.replace(
+  return value.replaceAll(
     /({{[^}]+}})/g,
-    (match) => tokens[match.slice(2, -2)] ?? match
+    (match) => tokens[match.slice(2, -2)] ?? match,
   );
 }
 
@@ -239,7 +239,7 @@ export interface WithPeriod {
 
 export function comparePeriods(
   element1: WithPeriod,
-  element2: WithPeriod
+  element2: WithPeriod,
 ): number {
   const element1EndDate = element1?.period?.end
     ? new Date(element1.period.end)
@@ -290,7 +290,7 @@ export function startCase(value: null | undefined): undefined;
 export function startCase(value: string): string;
 export function startCase(value: string | null | undefined): string | undefined;
 export function startCase(
-  value: string | null | undefined
+  value: string | null | undefined,
 ): string | undefined {
   if (value == undefined) return undefined;
   return value
@@ -301,7 +301,7 @@ export function startCase(
         (index ? " " : "") +
         word.charAt(0).toUpperCase() +
         word.slice(1),
-      ""
+      "",
     );
 }
 
@@ -350,7 +350,7 @@ export function uuid(): string {
         performance.now() * 1000) ||
       0;
 
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replaceAll(/[xy]/g, (c) => {
     let r = Math.random() * 16;
     if (d > 0) {
       r = Math.trunc((d + r) % 16);

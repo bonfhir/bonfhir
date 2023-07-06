@@ -13,7 +13,7 @@ import { useFhirClientQueryContext } from "../context.js";
 
 export type UseFhirExecuteMutationArgs<
   TOperationResult,
-  TOperation extends Operation<TOperationResult> = Operation<TOperationResult>
+  TOperation extends Operation<TOperationResult> = Operation<TOperationResult>,
 > = TOperation | OperationParameters;
 
 export interface UseFhirExecuteMutationOptions<TOperationResult> {
@@ -43,7 +43,7 @@ export interface UseFhirExecuteMutationOptions<TOperationResult> {
  * @see https://www.hl7.org/fhir/operationslist.html
  */
 export function useFhirExecuteMutation<TOperationResult>(
-  options?: UseFhirExecuteMutationOptions<TOperationResult> | null | undefined
+  options?: UseFhirExecuteMutationOptions<TOperationResult> | null | undefined,
 ): UseMutationResult<
   TOperationResult,
   unknown,
@@ -69,7 +69,7 @@ export function useFhirExecuteMutation<TOperationResult>(
             fhirQueryContext.clientKey,
             fhirQueryContext.queryClient,
             operationParameters.resourceType as AnyResourceType,
-            operationParameters.resourceId
+            operationParameters.resourceId,
           );
         }
       }

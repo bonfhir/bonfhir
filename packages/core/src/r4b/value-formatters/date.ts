@@ -37,7 +37,7 @@ export const dateFormatter: ValueFormatter<
       fhirDateTime.date = new Date(
         fhirDateTime.year,
         fhirDateTime.month - 1,
-        fhirDateTime.day
+        fhirDateTime.day,
       );
     }
 
@@ -66,7 +66,7 @@ export const dateFormatter: ValueFormatter<
             fhirDateTime.date,
             options.relativeTo,
             options.relativeStyle,
-            true
+            true,
           );
         }
         intlOptions.dateStyle = options?.dateStyle || undefined;
@@ -75,13 +75,13 @@ export const dateFormatter: ValueFormatter<
     }
 
     return new Intl.DateTimeFormat(formatterOptions.locale, intlOptions).format(
-      fhirDateTime.date
+      fhirDateTime.date,
     );
   },
 };
 
 function convertDateStyleToMonthStyle(
-  style: DateFormatterOptions["dateStyle"] | null | undefined
+  style: DateFormatterOptions["dateStyle"] | null | undefined,
 ): "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined {
   switch (style) {
     case "full":

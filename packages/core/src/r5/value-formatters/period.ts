@@ -14,11 +14,11 @@ export const periodFormatter: ValueFormatter<
     if (!value?.start) return "";
 
     const formattedStartDateTime = withValueFormatter<typeof dateTimeFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("dateTime", value.start, options);
     const formattedEndDateTime = value.end
       ? withValueFormatter<typeof dateTimeFormatter>(
-          formatterOptions.formatter
+          formatterOptions.formatter,
         ).format("dateTime", value.end, options)
       : "ongoing";
 

@@ -37,7 +37,7 @@ export interface FhirSubscriptionsConfig {
 }
 
 export function fhirSubscriptions(
-  config: FhirSubscriptionsConfig
+  config: FhirSubscriptionsConfig,
 ): NextMiddleware {
   return async (request) => {
     if (!request.nextUrl.pathname.startsWith(config.prefix)) {
@@ -81,7 +81,7 @@ export function fhirSubscriptions(
     }
 
     const subscription = config.subscriptions.find(
-      (sub) => `${sub.endpoint}` === action
+      (sub) => `${sub.endpoint}` === action,
     );
 
     if (!subscription) {
@@ -94,7 +94,7 @@ export function fhirSubscriptions(
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
     }
 

@@ -86,31 +86,31 @@ export const identifierFormatter: ValueFormatter<
       const formattedIdentifierList = filterAndSortIdentifiers(value, options)
         .map((identifier) =>
           withValueFormatter<typeof identifierFormatter>(
-            formatterOptions.formatter
-          ).format("Identifier", identifier, options)
+            formatterOptions.formatter,
+          ).format("Identifier", identifier, options),
         )
         .filter(Boolean);
 
       return new Intl.ListFormat(
         formatterOptions.locale,
-        options?.listFormatOptions
+        options?.listFormatOptions,
       ).format(formattedIdentifierList);
     }
 
     if (!value?.value) return "";
 
     const use = withValueFormatter<typeof codeFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("code", value.use, {
       expansions: options?.expansions,
     });
 
     const type = withValueFormatter<typeof codeableConceptFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("CodeableConcept", value.type);
 
     const period = withValueFormatter<typeof periodFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("Period", value.period);
 
     const finalSystemsLabels =
@@ -171,7 +171,7 @@ export const identifierFormatter: ValueFormatter<
 
 const filterAndSortIdentifiers = (
   identifiers: Identifier[],
-  options: IdentifierFormatterOptions | null | undefined
+  options: IdentifierFormatterOptions | null | undefined,
 ): Identifier[] => {
   const useFilterOrder =
     options?.useFilterOrder || DEFAULT_IDENTIFIER_USE_ORDER;
@@ -179,7 +179,7 @@ const filterAndSortIdentifiers = (
     useFilterOrder.map((currentValue, index) => [
       currentValue || "undefined",
       index,
-    ])
+    ]),
   );
 
   // eslint-disable-next-line unicorn/no-null
@@ -190,19 +190,19 @@ const filterAndSortIdentifiers = (
       systemFilterOrder.map((currentValue, index) => [
         currentValue || "undefined",
         index,
-      ])
+      ]),
     );
 
   // filter out by use
   if (useFilterOrder)
     identifiers = identifiers.filter((identifier) =>
-      useFilterOrder.includes(identifier.use)
+      useFilterOrder.includes(identifier.use),
     );
 
   // filter out by system
   if (systemFilterOrder)
-    identifiers = identifiers.filter((identifier) =>
-      systemFilterOrder?.includes(identifier.system)
+    identifiers = identifiers.filter(
+      (identifier) => systemFilterOrder?.includes(identifier.system),
     );
 
   // sort out by period, then system, then use

@@ -16,7 +16,7 @@ import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
 export interface UseFhirSearchAllPagesOptions<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
@@ -43,11 +43,11 @@ export interface UseFhirSearchAllPagesOptions<
  * @see https://hl7.org/fhir/http.html#search
  */
 export function useFhirSearchAllPages<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   type: TResourceType,
   parameters: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
-  options?: UseFhirSearchAllPagesOptions<TResourceType> | null | undefined
+  options?: UseFhirSearchAllPagesOptions<TResourceType> | null | undefined,
 ): UseQueryResult<BundleNavigator<ResourceOf<TResourceType>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
   const normalizedParameters = normalizeSearchParameters(type, parameters);
@@ -58,7 +58,7 @@ export function useFhirSearchAllPages<
     queryKey: FhirQueryKeys.search(
       fhirQueryContext.clientKey,
       type,
-      normalizedParameters
+      normalizedParameters,
     ),
     queryFn: ({ signal }) =>
       fhirQueryContext.fhirClient.searchAllPages(type, parameters, { signal }),

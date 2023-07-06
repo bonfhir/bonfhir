@@ -28,7 +28,7 @@ export function merge<TResource extends Resource>({
 
   const merged = applyMergers(
     { current: currentClone, incoming, key: "" },
-    mergers || DEFAULT_MERGERS
+    mergers || DEFAULT_MERGERS,
   );
   return [merged, JSON.stringify(current) !== JSON.stringify(merged)];
 }

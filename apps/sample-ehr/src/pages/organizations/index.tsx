@@ -32,7 +32,7 @@ export default function Organizations() {
         ._sort(searchController.sort)
         ._count(searchController.pageSize)
         ._total("accurate"),
-    searchController.pageUrl
+    searchController.pageUrl,
   );
 
   return (

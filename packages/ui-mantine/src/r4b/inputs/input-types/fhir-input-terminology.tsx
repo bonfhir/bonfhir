@@ -20,7 +20,7 @@ import { ReactElement } from "react";
  * Base component for all terminology-related inputs
  */
 export function MantineFhirInputTerminology(
-  props: FhirInputTerminologyRendererProps<MantineFhirInputTerminologyProps>
+  props: FhirInputTerminologyRendererProps<MantineFhirInputTerminologyProps>,
 ): ReactElement | null {
   let value;
   let onChange;
@@ -92,7 +92,7 @@ export function MantineFhirInputTerminology(
               value: element.code,
               label: element.display,
               item: element,
-            } as MantineFhirInputTerminologyItemProps)
+            }) as MantineFhirInputTerminologyItemProps,
         )}
         {...props.rendererProps}
       />
@@ -143,7 +143,7 @@ export function MantineFhirInputTerminology(
               value: element.code,
               label: element.display,
               item: element,
-            } as MantineFhirInputTerminologyItemProps)
+            }) as MantineFhirInputTerminologyItemProps,
         )}
         {...props.rendererProps}
       />

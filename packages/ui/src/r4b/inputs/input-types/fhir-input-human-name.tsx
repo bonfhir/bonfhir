@@ -23,7 +23,7 @@ export interface FhirInputHumanNameProps<TRendererProps = any>
 }
 
 export function FhirInputHumanName<TRendererProps = any>(
-  props: FhirInputHumanNameProps<TRendererProps>
+  props: FhirInputHumanNameProps<TRendererProps>,
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
@@ -39,7 +39,7 @@ export interface FhirInputHumanNameRendererProps<TRendererProps = any>
 }
 
 export type FhirInputHumanNameRenderer = (
-  props: FhirInputHumanNameRendererProps
+  props: FhirInputHumanNameRendererProps,
 ) => ReactElement | null;
 
 const HUMAN_NAME_DEFAULT_SEPARATOR = ",";

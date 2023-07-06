@@ -10,7 +10,7 @@ import { useFhirUIContext } from "../context.js";
 export interface FhirTableProps<
   TResource extends AnyResource,
   TRendererProps = any,
-  TRow = WithResolvableReferences<Retrieved<TResource>>
+  TRow = WithResolvableReferences<Retrieved<TResource>>,
 > {
   data:
     | BundleNavigator<TResource>
@@ -38,9 +38,9 @@ export interface FhirTableColumn<TRow, TRendererProps = any> {
 export function FhirTable<
   TResource extends AnyResource,
   TRendererProps = any,
-  TRow = WithResolvableReferences<Retrieved<TResource>>
+  TRow = WithResolvableReferences<Retrieved<TResource>>,
 >(
-  props: FhirTableProps<TResource, TRendererProps, TRow>
+  props: FhirTableProps<TResource, TRendererProps, TRow>,
 ): ReactElement<any, any> | null {
   const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirTable", props);
@@ -75,5 +75,5 @@ export type FhirTableRendererProps<TRendererProps = any> = FhirTableProps<
 };
 
 export type FhirTableRenderer = (
-  props: FhirTableRendererProps
+  props: FhirTableRendererProps,
 ) => ReactElement | null;

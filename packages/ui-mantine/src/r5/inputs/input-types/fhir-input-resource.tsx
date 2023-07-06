@@ -4,14 +4,14 @@ import { Select, SelectProps, Text } from "@mantine/core";
 import { ReactElement, forwardRef } from "react";
 
 export function MantineFhirInputResource(
-  props: FhirInputResourceRendererProps<MantineFhirInputResourceProps>
+  props: FhirInputResourceRendererProps<MantineFhirInputResourceProps>,
 ): ReactElement | null {
   const data = props.data.filter(Boolean).map(
     (resource): MantineFhirInputResourceItemProps => ({
       label: props.display(resource),
       value: `${resource.resourceType}/${resource.id}`,
       resource,
-    })
+    }),
   );
 
   return (
@@ -47,7 +47,7 @@ export function MantineFhirInputResource(
       onChange={(value: string) => {
         const resource = value
           ? data.find(
-              (x) => value === `${x.resource?.resourceType}/${x.resource?.id}`
+              (x) => value === `${x.resource?.resourceType}/${x.resource?.id}`,
             )?.resource
           : undefined;
         return props.onChange(resource);

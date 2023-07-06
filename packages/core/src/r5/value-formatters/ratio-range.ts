@@ -44,7 +44,7 @@ export const ratioRangeFormatter: ValueFormatter<
     }
 
     const formattedRange = withValueFormatter<typeof rangeFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format(
       "Range",
       { low: value.lowNumerator, high: value.highNumerator },
@@ -53,11 +53,11 @@ export const ratioRangeFormatter: ValueFormatter<
         notation: options?.notation,
         quantitySeparator: options?.quantitySeparator,
         rangeSeparator: options?.rangeSeparator,
-      }
+      },
     );
 
     let formattedDenominator = withValueFormatter<typeof quantityFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("Quantity", value.denominator, {
       expansions: options?.denominatorExpansions,
       notation: options?.notation,

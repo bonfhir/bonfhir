@@ -2,7 +2,7 @@ import { Merger } from "./merger.js";
 
 export function elementMerger(
   matchingKey: string | null | undefined,
-  matchers: string[]
+  matchers: string[],
 ): Merger {
   return {
     canMerge: ({ current, incoming, key }) => {

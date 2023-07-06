@@ -3,7 +3,7 @@ import { Checkbox, CheckboxProps, Switch, SwitchProps } from "@mantine/core";
 import { FormEvent, ReactElement } from "react";
 
 export function MantineFhirInputBoolean(
-  props: FhirInputBooleanRendererProps<MantineFhirInputBooleanProps>
+  props: FhirInputBooleanRendererProps<MantineFhirInputBooleanProps>,
 ): ReactElement | null {
   if (!props.mode || props.mode === "checkbox") {
     return (

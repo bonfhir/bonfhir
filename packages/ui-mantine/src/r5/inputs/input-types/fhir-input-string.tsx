@@ -9,7 +9,7 @@ import { IconLink } from "@tabler/icons-react";
 import { FormEvent, ReactElement } from "react";
 
 export function MantineFhirInputString(
-  props: FhirInputStringRendererProps<MantineFhirInputStringProps>
+  props: FhirInputStringRendererProps<MantineFhirInputStringProps>,
 ): ReactElement | null {
   if (props.type === "string" && props.mode === "multiline") {
     return (

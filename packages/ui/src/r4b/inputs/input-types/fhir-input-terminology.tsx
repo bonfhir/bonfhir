@@ -19,7 +19,7 @@ export type FhirInputTerminologyProps<TRendererProps = any> =
     filter?: ((value: ValueSetExpansionContains) => boolean) | null | undefined;
     sort?: (
       a: ValueSetExpansionContains,
-      b: ValueSetExpansionContains
+      b: ValueSetExpansionContains,
     ) => number;
     value?: string | null | undefined;
     onChange?: (value: string | undefined) => void;
@@ -49,7 +49,7 @@ export type FhirInputTerminologyProps<TRendererProps = any> =
     );
 
 export function FhirInputTerminology<TRendererProps = any>(
-  props: FhirInputTerminologyProps<TRendererProps>
+  props: FhirInputTerminologyProps<TRendererProps>,
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
@@ -71,7 +71,7 @@ export function FhirInputTerminology<TRendererProps = any>(
                   cacheTime: Number.POSITIVE_INFINITY,
                   staleTime: Number.POSITIVE_INFINITY,
                 },
-              }
+              },
             )
           : props.source;
       data = selectQuery.data?.expansion?.contains || [];
@@ -101,5 +101,5 @@ export type FhirInputTerminologyRendererProps<TRendererProps = any> =
   };
 
 export type FhirInputTerminologyRenderer = (
-  props: FhirInputTerminologyRendererProps
+  props: FhirInputTerminologyRendererProps,
 ) => ReactElement | null;

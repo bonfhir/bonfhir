@@ -113,7 +113,7 @@ export const REFERENCE_DECORATORS: Record<
  */
 export function reference<TTargetResource extends AnyResource = AnyResource>(
   resource: Retrieved<TTargetResource>,
-  options?: ReferenceOptions | null | undefined
+  options?: ReferenceOptions | null | undefined,
 ): Reference<TTargetResource> {
   let reference: Reference<TTargetResource> = {
     reference: options?.versionSpecific
@@ -144,13 +144,13 @@ function decorate(resource: Resource, reference: Reference): Reference {
     reference.display = name.trim();
   } else if (typeof name === "object") {
     reference.display = withValueFormatter<typeof humanNameFormatter>(
-      Formatter.default
+      Formatter.default,
     ).format("HumanName", name, { max: 1 });
   } else if (title) {
     reference.display = title;
   } else if (code) {
     reference.display = withValueFormatter<typeof codeableConceptFormatter>(
-      Formatter.default
+      Formatter.default,
     ).format("CodeableConcept", code);
   }
 

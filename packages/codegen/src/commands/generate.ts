@@ -82,7 +82,7 @@ export default <CommandModule<unknown, CommandOptions>>{
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               context.options
                 .fhir!.split(",")
-                .map((x) => FhirDefinitions.load(x.trim()))
+                .map((x) => FhirDefinitions.load(x.trim())),
             );
           },
           enabled: (context) => !!context.options.fhir,
@@ -119,7 +119,7 @@ export default <CommandModule<unknown, CommandOptions>>{
                       if (context.options.baseDir) {
                         const remainder = templateParsedPath.dir.replace(
                           context.options.baseDir,
-                          ""
+                          "",
                         );
                         if (remainder) {
                           outDir = join(outDir, remainder);
@@ -143,14 +143,14 @@ export default <CommandModule<unknown, CommandOptions>>{
                           escape(value?: any) {
                             return value?.toString();
                           },
-                        }
+                        },
                       ),
-                      { encoding: "utf8" }
+                      { encoding: "utf8" },
                     );
                     context.writtenFiles.push(writtenFile);
                   },
                 }));
-              })
+              }),
             );
           },
         },
@@ -159,22 +159,22 @@ export default <CommandModule<unknown, CommandOptions>>{
           task: async (context) => {
             const globalPostProcessingTasks =
               context.options.postProcessing?.filter(
-                (x) => !x.includes("%file%")
+                (x) => !x.includes("%file%"),
               ) || [];
             for (const globalPostProcessingTask of globalPostProcessingTasks) {
               const fileChunks = chunk(
                 context.writtenFiles,
-                GLOBAL_POST_PROCESSING_CHUNK_SIZE
+                GLOBAL_POST_PROCESSING_CHUNK_SIZE,
               );
               for (const fileChunk of fileChunks) {
                 await execAsync(
-                  globalPostProcessingTask.replace(
-                    /%files%/g,
-                    fileChunk.join(" ")
+                  globalPostProcessingTask.replaceAll(
+                    "%files%",
+                    fileChunk.join(" "),
                   ),
                   {
                     maxBuffer: EXEC_MAX_BUFFER_SIZE,
-                  }
+                  },
                 );
               }
             }
@@ -189,14 +189,17 @@ export default <CommandModule<unknown, CommandOptions>>{
                     title: `Post-processing ${filePath}`,
                     task: async (context) => {
                       for (const command of context.options.postProcessing?.filter(
-                        (x) => x.includes("%file%")
+                        (x) => x.includes("%file%"),
                       ) || []) {
-                        await execAsync(command.replace(/%file%/g, filePath), {
-                          maxBuffer: EXEC_MAX_BUFFER_SIZE,
-                        });
+                        await execAsync(
+                          command.replaceAll("%file%", filePath),
+                          {
+                            maxBuffer: EXEC_MAX_BUFFER_SIZE,
+                          },
+                        );
                       }
                     },
-                  }))
+                  })),
               );
             }
           },
@@ -214,15 +217,18 @@ export default <CommandModule<unknown, CommandOptions>>{
 };
 
 const chunk = <T>(array: T[], chunkSize: number) => {
-  return array.reduce((resultArray, item, index) => {
-    const chunkIndex = Math.floor(index / chunkSize);
+  return array.reduce(
+    (resultArray, item, index) => {
+      const chunkIndex = Math.floor(index / chunkSize);
 
-    if (!resultArray[chunkIndex]) {
-      resultArray[chunkIndex] = [];
-    }
+      if (!resultArray[chunkIndex]) {
+        resultArray[chunkIndex] = [];
+      }
 
-    resultArray[chunkIndex]?.push(item);
+      resultArray[chunkIndex]?.push(item);
 
-    return resultArray;
-  }, [] as Array<T[]>);
+      return resultArray;
+    },
+    [] as Array<T[]>,
+  );
 };

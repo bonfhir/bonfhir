@@ -26,7 +26,7 @@ export const markdownFormatter: ValueFormatter<
       case "bareString": {
         return marked
           .parse(value, MARKED_OPTIONS)
-          .replace(/<\/?[^>]+(>|$)/gi, "")
+          .replaceAll(/<\/?[^>]+(>|$)/gi, "")
           .trim();
       }
       case "html": {

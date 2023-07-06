@@ -3,12 +3,12 @@ import { DateInput, DateInputProps } from "@mantine/dates";
 import { ReactElement } from "react";
 
 export function MantineFhirInputDate(
-  props: FhirInputDateRendererProps<MantineFhirInputDateProps>
+  props: FhirInputDateRendererProps<MantineFhirInputDateProps>,
 ): ReactElement | null {
   const matchingData = props.value
     ?.trim()
     .match(
-      /^(?<year>\d(\d(\d[1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(?<month>0[1-9]|1[0-2])(-(?<day>0[1-9]|[12]\d|3[01]))?)?$/
+      /^(?<year>\d(\d(\d[1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(?<month>0[1-9]|1[0-2])(-(?<day>0[1-9]|[12]\d|3[01]))?)?$/,
     )?.groups as { year?: string; month?: string; day?: string };
 
   let normalizedValue: string | Date = "";
@@ -23,7 +23,7 @@ export function MantineFhirInputDate(
     normalizedValue = new Date(
       yearNumber,
       monthNumber ? monthNumber - 1 : 0,
-      dayNumber || 1
+      dayNumber || 1,
     );
   }
 

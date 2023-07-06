@@ -29,7 +29,7 @@ export interface UseFhirInputTerminologyDataResult {
 }
 
 export function useFhirInputTerminologyData(
-  props: UseFhirInputTerminologyDataProps
+  props: UseFhirInputTerminologyDataProps,
 ): UseFhirInputTerminologyDataResult {
   if (Array.isArray(props.source)) {
     return {
@@ -49,7 +49,7 @@ export function useFhirInputTerminologyData(
                 cacheTime: Number.POSITIVE_INFINITY,
                 staleTime: Number.POSITIVE_INFINITY,
               },
-            }
+            },
           )
         : props.source;
     let data: Array<ValueSetExpansionContains> = [];

@@ -39,24 +39,24 @@ export interface UseFhirHistoryOptions<TResourceType extends AnyResourceType> {
  */
 export function useFhirHistory<TResource extends AnyResource>(
   resource: Retrieved<TResource>,
-  options?: UseFhirHistoryOptions<TResource["resourceType"]> | null | undefined
+  options?: UseFhirHistoryOptions<TResource["resourceType"]> | null | undefined,
 ): UseQueryResult<BundleNavigator<Retrieved<TResource>>>;
 export function useFhirHistory<TResourceType extends AnyResourceType>(
   type?: TResourceType | null | undefined,
   id?: string | null | undefined,
-  options?: UseFhirHistoryOptions<TResourceType> | null | undefined
+  options?: UseFhirHistoryOptions<TResourceType> | null | undefined,
 ): UseQueryResult<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>>;
 export function useFhirHistory<TResourceType extends AnyResourceType>(
   type?: TResourceType | Retrieved<AnyResource> | null | undefined,
   id?: string | UseFhirHistoryOptions<TResourceType> | null | undefined,
-  options?: UseFhirHistoryOptions<TResourceType> | null | undefined
+  options?: UseFhirHistoryOptions<TResourceType> | null | undefined,
 ): UseQueryResult<BundleNavigator<Retrieved<ExtractResource<TResourceType>>>> {
   if (type && typeof type !== "string") {
     return useFhirHistory(
       type.resourceType,
       type.id,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      id as any
+      id as any,
     ) as UseQueryResult<
       BundleNavigator<Retrieved<ExtractResource<TResourceType>>>
     >;
@@ -71,7 +71,7 @@ export function useFhirHistory<TResourceType extends AnyResourceType>(
       fhirQueryContext.clientKey,
       type,
       id as string,
-      options?.fhir
+      options?.fhir,
     ),
     queryFn: () =>
       fhirQueryContext.fhirClient.history(type, id as string, options?.fhir),

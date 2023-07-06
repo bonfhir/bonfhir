@@ -9,6 +9,6 @@ describe("fhir-definitions", () => {
         expect(result.version).toMatch(/^\d+\.\d+\.\d+$/);
         expect(result.domainResources.length).toBeTruthy();
       });
-    })
+    }),
   );
 });

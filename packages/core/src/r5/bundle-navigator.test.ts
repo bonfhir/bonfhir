@@ -39,26 +39,26 @@ describe("BundleNavigator", () => {
           const result = navigator.reference(value);
 
           expect(result).toBeUndefined();
-        }
+        },
       );
 
       it("returns resources", () => {
         const navigator = bundleNavigator(patientsListBundle);
         const matches = patientsListFixture.entry.filter(
-          (x) => x.search.mode == "match"
+          (x) => x.search.mode == "match",
         );
         const include = patientsListFixture.entry.find(
-          (x) => x.search.mode == "include"
+          (x) => x.search.mode == "include",
         );
 
         const search1 = navigator.reference(
-          reference(matches[0]!.resource as Retrieved<Organization>)
+          reference(matches[0]!.resource as Retrieved<Organization>),
         );
         const search2 = navigator.reference(
-          reference(matches[1]!.resource as Retrieved<AnyResource>).reference
+          reference(matches[1]!.resource as Retrieved<AnyResource>).reference,
         );
         const include1 = navigator.reference(
-          reference(include!.resource as Retrieved<AnyResource>).reference
+          reference(include!.resource as Retrieved<AnyResource>).reference,
         );
 
         expect(search1).toMatchObject(matches[0]!.resource);
@@ -85,17 +85,18 @@ describe("BundleNavigator", () => {
         const expectedProvenance = patientsListFixture.entry.find(
           (x) =>
             x.resource?.resourceType === "Provenance" &&
-            (x.resource as Provenance).target[0]!.reference === patientReference
+            (x.resource as Provenance).target[0]!.reference ===
+              patientReference,
         )!.resource;
 
         const provenanceWithPatientTarget = navigator.revReference<Provenance>(
           (provenance) => provenance.target,
-          patientReference
+          patientReference,
         );
 
         expect(expectedProvenance).not.toBeUndefined();
         expect(provenanceWithPatientTarget).toMatchObject(
-          expect.arrayContaining([expectedProvenance])
+          expect.arrayContaining([expectedProvenance]),
         );
       });
 
@@ -105,7 +106,7 @@ describe("BundleNavigator", () => {
 
         const provenanceWithPatientTarget = navigator.revReference<Provenance>(
           (provenance) => provenance.target,
-          patientReference
+          patientReference,
         );
 
         expect(provenanceWithPatientTarget.length).toBe(0);
@@ -118,11 +119,11 @@ describe("BundleNavigator", () => {
 
           const result = navigator.revReference<Provenance>(
             (provenance) => provenance.target,
-            patientReference
+            patientReference,
           );
 
           expect(result.length).toBe(0);
-        }
+        },
       );
     });
 
@@ -133,12 +134,13 @@ describe("BundleNavigator", () => {
         const expectedProvenance = patientsListFixture.entry.find(
           (x) =>
             x.resource?.resourceType === "Provenance" &&
-            (x.resource as Provenance).target[0]!.reference === patientReference
+            (x.resource as Provenance).target[0]!.reference ===
+              patientReference,
         )!.resource;
 
         const provenanceWithPatientTarget = navigator.revReference<Provenance>(
           (provenance) => provenance.target,
-          patientReference
+          patientReference,
         )[0];
 
         expect(expectedProvenance).not.toBeUndefined();
@@ -151,7 +153,7 @@ describe("BundleNavigator", () => {
 
         const provenanceWithPatientTarget = navigator.revReference<Provenance>(
           (provenance) => provenance.target,
-          patientReference
+          patientReference,
         )[0];
 
         expect(provenanceWithPatientTarget).toBeUndefined();
@@ -164,11 +166,11 @@ describe("BundleNavigator", () => {
 
           const result = navigator.revReference<Provenance>(
             (provenance) => provenance.target,
-            patientReference
+            patientReference,
           )[0];
 
           expect(result).toBeUndefined();
-        }
+        },
       );
     });
 
@@ -192,7 +194,7 @@ describe("BundleNavigator", () => {
             expect.objectContaining<Patient>({
               resourceType: "Patient",
             }),
-          ])
+          ]),
         );
       });
     });
@@ -208,10 +210,10 @@ describe("BundleNavigator", () => {
           ...patientsListBundle,
           entry: [
             patientsListBundle.entry!.find(
-              (x) => x.resource?.resourceType === "Patient"
+              (x) => x.resource?.resourceType === "Patient",
             )!,
             ...(patientsListBundle.entry?.filter(
-              (x) => x.resource?.resourceType !== "Patient"
+              (x) => x.resource?.resourceType !== "Patient",
             ) || []),
           ],
         });
@@ -251,7 +253,7 @@ describe("BundleNavigator", () => {
             expect.objectContaining<Patient>({
               resourceType: "Patient",
             }),
-          ])
+          ]),
         );
 
         expect(provenance.length).toBeGreaterThan(0);
@@ -260,7 +262,7 @@ describe("BundleNavigator", () => {
             expect.objectContaining<Partial<Provenance>>({
               resourceType: "Provenance",
             }),
-          ])
+          ]),
         );
 
         expect(organization.length).toBeGreaterThan(0);
@@ -269,7 +271,7 @@ describe("BundleNavigator", () => {
             expect.objectContaining<Organization>({
               resourceType: "Organization",
             }),
-          ])
+          ]),
         );
       });
     });
@@ -294,7 +296,7 @@ describe("BundleNavigator", () => {
       const navigator = bundleNavigator(patientsListBundle);
       const patient = navigator.searchMatch()[0]!;
       const provenance = patient.revIncluded?.<Provenance>(
-        (provenance) => provenance.target
+        (provenance) => provenance.target,
       )[0];
       expect(provenance).toBeDefined();
       expect(provenance?.resourceType).toBe("Provenance");
@@ -376,14 +378,14 @@ describe("BundleNavigator", () => {
           ...patientsListBundle,
           entry: [
             patientsListBundle.entry!.find(
-              (x) => x.resource?.resourceType === "Patient"
+              (x) => x.resource?.resourceType === "Patient",
             )!,
             ...(patientsListBundle.entry?.filter(
-              (x) => x.resource?.resourceType !== "Patient"
+              (x) => x.resource?.resourceType !== "Patient",
             ) || []),
           ],
         },
-        CustomPatient
+        CustomPatient,
       );
       const patient = navigator.searchMatchOne();
       expect(patient).toBeInstanceOf(CustomPatient);
@@ -393,27 +395,27 @@ describe("BundleNavigator", () => {
       const navigator = bundleNavigator(patientsListBundle, CustomPatient);
 
       const patient = navigator.reference(
-        "Patient/23af4168-fc91-4b4d-a498-4485ce5ebc6f"
+        "Patient/23af4168-fc91-4b4d-a498-4485ce5ebc6f",
       );
       expect(patient).toBeInstanceOf(CustomPatient);
 
       const patient2 = navigator.reference(
         "Patient/23af4168-fc91-4b4d-a498-4485ce5ebc6f",
-        CustomPatient
+        CustomPatient,
       );
       expect(patient2).toBeInstanceOf(CustomPatient);
 
       const organization = navigator.reference(
         "Organization/f5c2ed46-d994-33c7-bc9e-c723b8ad24a0",
-        CustomOrganization
+        CustomOrganization,
       );
       expect(organization).toBeInstanceOf(CustomOrganization);
 
       expect(() =>
         navigator.reference(
           "Organization/f5c2ed46-d994-33c7-bc9e-c723b8ad24a0",
-          CustomPatient
-        )
+          CustomPatient,
+        ),
       ).toThrowError();
     });
 
@@ -424,7 +426,7 @@ describe("BundleNavigator", () => {
       const provenancesWithPatientTarget = navigator.revReference(
         (provenance) => provenance.target,
         patientReference,
-        CustomProvenance
+        CustomProvenance,
       );
 
       expect(provenancesWithPatientTarget.length).toBeGreaterThan(0);
@@ -446,7 +448,7 @@ describe("BundleNavigator", () => {
         const patient = navigator.searchMatch()[0]!;
         const provenance = patient.revIncluded(
           (provenance) => provenance.target,
-          CustomProvenance
+          CustomProvenance,
         )[0];
         expect(provenance).toBeInstanceOf(CustomProvenance);
       });

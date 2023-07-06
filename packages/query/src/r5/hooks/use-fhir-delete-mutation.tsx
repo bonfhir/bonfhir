@@ -31,7 +31,7 @@ export interface UseFhirDeleteMutationOptions {
  * @see https://hl7.org/fhir/http.html#delete
  */
 export function useFhirDeleteMutation(
-  options?: UseFhirDeleteMutationOptions | null | undefined
+  options?: UseFhirDeleteMutationOptions | null | undefined,
 ): UseMutationResult<void, unknown, UseFhirDeleteMutationArgs, unknown> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
 
@@ -44,7 +44,7 @@ export function useFhirDeleteMutation(
           fhirQueryContext.clientKey,
           fhirQueryContext.queryClient,
           variables.resourceType,
-          variables.id
+          variables.id,
         );
       }
       options?.mutation?.onSuccess?.(data, variables, context);
@@ -53,7 +53,7 @@ export function useFhirDeleteMutation(
       return fhirQueryContext.fhirClient.delete(
         args.resourceType,
         args.id,
-        args.options
+        args.options,
       );
     },
   });

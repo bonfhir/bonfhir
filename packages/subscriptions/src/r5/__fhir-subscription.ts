@@ -20,13 +20,13 @@ export interface FhirSubscription<TResource extends AnyResource = AnyResource> {
 }
 
 export type FhirSubscriptionHandler<
-  TResource extends AnyResource = AnyResource
+  TResource extends AnyResource = AnyResource,
 > = (
-  args: FhirSubscriptionHandlerArgs<TResource>
+  args: FhirSubscriptionHandlerArgs<TResource>,
 ) => Promise<FhirSubscriptionHandlerResult>;
 
 export interface FhirSubscriptionHandlerArgs<
-  TResource extends AnyResource = AnyResource
+  TResource extends AnyResource = AnyResource,
 > {
   fhirClient: FhirClient;
 

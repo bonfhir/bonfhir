@@ -51,7 +51,7 @@ export const dateTimeFormatter: ValueFormatter<
             fhirDateTime.date,
             options.relativeTo,
             options.relativeStyle,
-            true
+            true,
           );
         }
         intlOptions.dateStyle = options?.dateStyle || undefined;
@@ -63,7 +63,7 @@ export const dateTimeFormatter: ValueFormatter<
             formatterOptions.locale,
             fhirDateTime.date,
             options.relativeTo,
-            options.relativeStyle
+            options.relativeStyle,
           );
         }
 
@@ -82,13 +82,13 @@ export const dateTimeFormatter: ValueFormatter<
     }
 
     return new Intl.DateTimeFormat(formatterOptions.locale, intlOptions).format(
-      fhirDateTime.date
+      fhirDateTime.date,
     );
   },
 };
 
 function convertDateStyleToMonthStyle(
-  style: DatetimeFormatterOptions["dateStyle"] | null | undefined
+  style: DatetimeFormatterOptions["dateStyle"] | null | undefined,
 ): "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined {
   switch (style) {
     case "full":

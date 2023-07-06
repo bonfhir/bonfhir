@@ -41,7 +41,7 @@ export const ratioFormatter: ValueFormatter<
     }
 
     const formattedNumerator = withValueFormatter<typeof quantityFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("Quantity", value.numerator, {
       expansions: options?.numeratorExpansions,
       notation: options?.notation,
@@ -49,7 +49,7 @@ export const ratioFormatter: ValueFormatter<
     });
 
     let formattedDenominator = withValueFormatter<typeof quantityFormatter>(
-      formatterOptions.formatter
+      formatterOptions.formatter,
     ).format("Quantity", value.denominator, {
       expansions: options?.denominatorExpansions,
       notation: options?.notation,
@@ -61,7 +61,7 @@ export const ratioFormatter: ValueFormatter<
       options?.reduceSingleDenominator !== false
     ) {
       const formattedCode = withValueFormatter<typeof codeFormatter>(
-        formatterOptions.formatter
+        formatterOptions.formatter,
       ).format("code", value.denominator.code, {
         expansions: options?.denominatorExpansions,
       });

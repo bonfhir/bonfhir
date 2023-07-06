@@ -18,7 +18,7 @@ describe("codeable-concept", () => {
       [
         CodeableConcept | undefined,
         CodeableConceptFormatterOptions | undefined,
-        string
+        string,
       ]
     >
   >[
@@ -48,7 +48,7 @@ describe("codeable-concept", () => {
     ],
   ])("format %p %p => %p", (value, options, expected) => {
     expect(formatter.format("CodeableConcept", value, options)).toEqual(
-      expected
+      expected,
     );
   });
 });

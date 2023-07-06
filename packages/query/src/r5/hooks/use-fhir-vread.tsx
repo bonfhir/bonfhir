@@ -13,7 +13,7 @@ import { FhirQueryKeys } from "../cache-keys.js";
 import { useFhirClientQueryContext } from "../context.js";
 
 export interface UseFhirVReadOptions<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
@@ -38,12 +38,12 @@ export interface UseFhirVReadOptions<
  * @see https://hl7.org/fhir/http.html#vread
  */
 export function useFhirVRead<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   type: TResourceType,
   id: string,
   vid: string,
-  options?: UseFhirVReadOptions<TResourceType> | null | undefined
+  options?: UseFhirVReadOptions<TResourceType> | null | undefined,
 ): UseQueryResult<Retrieved<ResourceOf<TResourceType>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
 
@@ -55,7 +55,7 @@ export function useFhirVRead<
       type,
       id,
       vid,
-      options?.fhir
+      options?.fhir,
     ),
     queryFn: ({ signal }) =>
       fhirQueryContext.fhirClient.vread(type, id, vid, {

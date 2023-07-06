@@ -52,7 +52,7 @@ describe("FhirSearchBuilder", () => {
       new FhirSearchBuilder().dateParam(
         "date",
         duration.add("2023-07-05", duration.months(-3)),
-        "ge"
+        "ge",
       ),
       "date=ge2023-04-05",
     ],
@@ -104,7 +104,7 @@ describe("FhirSearchBuilder", () => {
       new FhirSearchBuilder().numberParam(
         "probability",
         [0.5, "0.70"],
-        Prefix.LessThan
+        Prefix.LessThan,
       ),
       "probability=lt0.5,lt0.70",
     ],
@@ -159,7 +159,7 @@ describe("FhirSearchBuilder", () => {
           system: "http://unitsofmeasure.org",
           code: "g",
         },
-        Prefix.ApproximatelyTheSame
+        Prefix.ApproximatelyTheSame,
       ),
       "value-quantity=ap5.4|http%3A%2F%2Funitsofmeasure.org|g",
     ],
@@ -210,7 +210,7 @@ describe("FhirSearchBuilder", () => {
       new FhirSearchBuilder().referenceParam(
         "subject",
         ["12", "23"],
-        "Patient"
+        "Patient",
       ),
       "subject:Patient=12,23",
     ],
@@ -218,7 +218,7 @@ describe("FhirSearchBuilder", () => {
       new FhirSearchBuilder().referenceParam(
         "subject",
         "123456",
-        ":identifier"
+        ":identifier",
       ),
       "subject:identifier=123456",
     ],
@@ -226,7 +226,7 @@ describe("FhirSearchBuilder", () => {
       new FhirSearchBuilder().referenceParam(
         "subject",
         { system: "http://acme.org/fhir/identifier/mrn", value: "123456" },
-        ":identifier"
+        ":identifier",
       ),
       "subject:identifier=http%3A%2F%2Facme.org%2Ffhir%2Fidentifier%2Fmrn|123456",
     ],
@@ -263,7 +263,7 @@ describe("FhirSearchBuilder", () => {
       new FhirSearchBuilder().stringParam(
         "given",
         "eve",
-        StringModifier.Contains
+        StringModifier.Contains,
       ),
       "given:contains=eve",
     ],
@@ -271,7 +271,7 @@ describe("FhirSearchBuilder", () => {
       new FhirSearchBuilder().stringParam(
         "given",
         ["eve", "adam"],
-        StringModifier.Exact
+        StringModifier.Exact,
       ),
       "given:exact=eve,adam",
     ],
@@ -292,7 +292,7 @@ describe("FhirSearchBuilder", () => {
     [
       new FhirSearchBuilder().compositeParam(
         "component-code-value-quantity",
-        "http://loinc.org|8480-6$lt60"
+        "http://loinc.org|8480-6$lt60",
       ),
       "component-code-value-quantity=http://loinc.org|8480-6$lt60",
     ],
@@ -340,7 +340,7 @@ describe("FhirSearchBuilder", () => {
       new FhirSearchBuilder().tokenParam(
         "code",
         "126851005",
-        TokenModifier.Below
+        TokenModifier.Below,
       ),
       "code:below=126851005",
     ],
@@ -354,7 +354,7 @@ describe("FhirSearchBuilder", () => {
       new FhirSearchBuilder().tokenParam(
         "code",
         "http://acme.org/fhir/ValueSet/cardiac-conditions",
-        ":in"
+        ":in",
       ),
       "code:in=http%3A%2F%2Facme.org%2Ffhir%2FValueSet%2Fcardiac-conditions",
     ],
@@ -366,7 +366,7 @@ describe("FhirSearchBuilder", () => {
           code: "MR",
           value: "446053",
         },
-        TokenModifier.OfType
+        TokenModifier.OfType,
       ),
       "identifier:of-type=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fv2-0203|MR|446053",
     ],
@@ -408,7 +408,7 @@ describe("FhirSearchBuilder", () => {
     [
       new FhirSearchBuilder().uriParam(
         "url",
-        "http://acme.org/fhir/ValueSet/123"
+        "http://acme.org/fhir/ValueSet/123",
       ),
       "url=http%3A%2F%2Facme.org%2Ffhir%2FValueSet%2F123",
     ],
@@ -422,7 +422,7 @@ describe("FhirSearchBuilder", () => {
     [
       new FhirSearchBuilder().uriParam(
         "url",
-        new URL("http://acme.org/fhir/ValueSet/123")
+        new URL("http://acme.org/fhir/ValueSet/123"),
       ),
       "url=http%3A%2F%2Facme.org%2Ffhir%2FValueSet%2F123",
     ],
@@ -430,7 +430,7 @@ describe("FhirSearchBuilder", () => {
       new FhirSearchBuilder().uriParam(
         "url",
         "http://acme.org/fhir/",
-        UriModifier.Below
+        UriModifier.Below,
       ),
       "url:below=http%3A%2F%2Facme.org%2Ffhir%2F",
     ],

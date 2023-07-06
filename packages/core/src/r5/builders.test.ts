@@ -43,7 +43,7 @@ describe("builders", () => {
       Array<
         [
           Parameters<typeof codeableConcept>[0],
-          ReturnType<typeof codeableConcept>
+          ReturnType<typeof codeableConcept>,
         ]
       >
     >[

@@ -14,7 +14,7 @@ import { ReactElement, ReactNode, useEffect } from "react";
 import { Markdown } from "tiptap-markdown";
 
 export function MantineFhirInputMarkdown(
-  props: FhirInputMarkdownRendererProps<MantineFhirInputMarkdownProps>
+  props: FhirInputMarkdownRendererProps<MantineFhirInputMarkdownProps>,
 ): ReactElement | null {
   const editor: Editor = useEditor({
     extensions: [
@@ -27,7 +27,7 @@ export function MantineFhirInputMarkdown(
     onUpdate: ({ editor }: { editor: Editor }) => {
       console.log(
         "onChange",
-        editor.storage.markdown.getMarkdown() || undefined
+        editor.storage.markdown.getMarkdown() || undefined,
       );
       props.onChange?.(editor.storage.markdown.getMarkdown() || undefined);
     },

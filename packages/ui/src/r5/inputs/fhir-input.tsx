@@ -30,7 +30,7 @@ import {
 
 export function FhirInput<
   TRendererProps = any,
-  TResourceType extends AnyResourceType = AnyResourceType
+  TResourceType extends AnyResourceType = AnyResourceType,
 >(props: FhirInputProps<TRendererProps, TResourceType>): ReactElement | null {
   const { applyDefaultProps } = useFhirUIContext();
   props = applyDefaultProps("FhirInput", props);
@@ -94,7 +94,7 @@ export function FhirInput<
 
 export type FhirInputProps<
   TRendererProps = any,
-  TResourceType extends AnyResourceType = AnyResourceType
+  TResourceType extends AnyResourceType = AnyResourceType,
 > =
   | FhirInputBooleanProps<TRendererProps>
   | FhirInputContactPointProps<TRendererProps>

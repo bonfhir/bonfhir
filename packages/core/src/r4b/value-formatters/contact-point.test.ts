@@ -46,7 +46,7 @@ describe("contact-point", () => {
         [
           ContactPoint | undefined,
           ContactPointFormatterOptions | undefined,
-          string
+          string,
         ]
       >
     >[
@@ -68,7 +68,7 @@ describe("contact-point", () => {
       }).map(([style, expected]) => [contactPoint, { style }, expected]),
     ])("format %p %p => %p", (value, options, expected) => {
       expect(formatter.format("ContactPoint", value, options)).toEqual(
-        expected
+        expected,
       );
     });
 
@@ -77,7 +77,7 @@ describe("contact-point", () => {
         formatter.format("ContactPoint", contactPoint, {
           style: "full",
           lineSeparator: "\n",
-        })
+        }),
       ).toEqual("42 - 10/11/2020 - ongoing\nemail: jack@example.com (home)");
     });
   });
@@ -132,7 +132,7 @@ describe("contact-point", () => {
           "rank 10, work, " +
           "home, " +
           "work, and " +
-          "rank 0, old, 0 is undefined rank"
+          "rank 0, old, 0 is undefined rank",
       );
     });
 
@@ -140,13 +140,13 @@ describe("contact-point", () => {
       expect(
         formatter.format("ContactPoint", contactPoints, {
           useFilterOrder: ["work", "home"],
-        })
+        }),
       ).toEqual(
         "rank 4, work, " +
           "rank 4, home, " +
           "rank 10, work, " +
           "work, and " +
-          "home"
+          "home",
       );
     });
 
@@ -155,7 +155,7 @@ describe("contact-point", () => {
         formatter.format("ContactPoint", contactPoints, {
           useFilterOrder: ["work", "home"],
           max: 2,
-        })
+        }),
       ).toEqual("rank 4, work and rank 4, home");
     });
   });

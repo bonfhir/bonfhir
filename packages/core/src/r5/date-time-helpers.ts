@@ -23,7 +23,7 @@ export function fhirDateTime(date: Date): string;
 export function fhirDateTime(date: null | undefined): undefined;
 export function fhirDateTime(date: Date | null | undefined): string | undefined;
 export function fhirDateTime(
-  date: Date | null | undefined
+  date: Date | null | undefined,
 ): string | undefined {
   if (!date) {
     return undefined;
@@ -169,7 +169,7 @@ export interface FhirDateTimeTime {
  * Parse any FHIR date/dateTime/instant/time string and return a FhirDateTime object.
  */
 export function parseFhirDateTime(
-  value: string | null | undefined
+  value: string | null | undefined,
 ): FhirDateTime {
   if (!value?.trim()) {
     return { flavour: "NA" };
@@ -178,7 +178,7 @@ export function parseFhirDateTime(
   const matchingDateTime = value
     .trim()
     .match(
-      /^(?<year>\d(\d(\d[1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(?<month>0[1-9]|1[0-2])(-(?<day>0[1-9]|[12]\d|3[01]))?)?([\sT](?<timeWithTimezone>(?<hours>[01]\d|2[0-3]):(?<minutes>[0-5]\d):(?<seconds>[0-5]\d|60)(?<milliseconds>\.\d{1,9})?(?<timeZone>Z|(\+|-)((0\d|1[0-3]):[0-5]\d|14:00))?))?$/
+      /^(?<year>\d(\d(\d[1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(?<month>0[1-9]|1[0-2])(-(?<day>0[1-9]|[12]\d|3[01]))?)?([\sT](?<timeWithTimezone>(?<hours>[01]\d|2[0-3]):(?<minutes>[0-5]\d):(?<seconds>[0-5]\d|60)(?<milliseconds>\.\d{1,9})?(?<timeZone>Z|(\+|-)((0\d|1[0-3]):[0-5]\d|14:00))?))?$/,
     )?.groups as {
     year?: string;
     month?: string;
@@ -195,7 +195,7 @@ export function parseFhirDateTime(
     const matchingTime = value
       .trim()
       .match(
-        /^(?<hours>[01]\d|2[0-3]):(?<minutes>[0-5]\d):(?<seconds>[0-5]\d|60)(?<milliseconds>\.\d{1,9})?$/
+        /^(?<hours>[01]\d|2[0-3]):(?<minutes>[0-5]\d):(?<seconds>[0-5]\d|60)(?<milliseconds>\.\d{1,9})?$/,
       )?.groups as {
       hours?: string;
       minutes?: string;
@@ -254,7 +254,7 @@ export function parseFhirDateTime(
   const seconds = Number.parseInt(matchingDateTime.seconds!, 10);
   const milliseconds = Number.parseInt(
     matchingDateTime.milliseconds?.slice(1) || "",
-    10
+    10,
   );
 
   return {
@@ -323,8 +323,8 @@ function add(
         throw new Error(
           `Unable to add ${Formatter.default.format(
             "Duration",
-            finalDuration
-          )} to ${value}`
+            finalDuration,
+          )} to ${value}`,
         );
       }
       case "year-month": {
@@ -340,7 +340,7 @@ function add(
           return `${finalYear}-${finalMonth.toString().padStart(2, "0")}`;
         }
         throw new Error(
-          `Unable to add ${JSON.stringify(finalDuration)} to ${value}`
+          `Unable to add ${JSON.stringify(finalDuration)} to ${value}`,
         );
       }
       case "date": {
@@ -348,7 +348,7 @@ function add(
         switch (finalDuration.code) {
           case "a": {
             copiedDate.setFullYear(
-              copiedDate.getFullYear() + finalDuration.value
+              copiedDate.getFullYear() + finalDuration.value,
             );
             break;
           }
@@ -364,8 +364,8 @@ function add(
             throw new Error(
               `Unable to add ${Formatter.default.format(
                 "Duration",
-                finalDuration
-              )} to ${value}`
+                finalDuration,
+              )} to ${value}`,
             );
           }
         }
@@ -376,7 +376,7 @@ function add(
         switch (finalDuration.code) {
           case "a": {
             copiedDate.setFullYear(
-              copiedDate.getFullYear() + finalDuration.value
+              copiedDate.getFullYear() + finalDuration.value,
             );
             break;
           }
@@ -394,19 +394,19 @@ function add(
           }
           case "min": {
             copiedDate.setMinutes(
-              copiedDate.getMinutes() + finalDuration.value
+              copiedDate.getMinutes() + finalDuration.value,
             );
             break;
           }
           case "s": {
             copiedDate.setSeconds(
-              copiedDate.getSeconds() + finalDuration.value
+              copiedDate.getSeconds() + finalDuration.value,
             );
             break;
           }
           case "ms": {
             copiedDate.setMilliseconds(
-              copiedDate.getMilliseconds() + finalDuration.value
+              copiedDate.getMilliseconds() + finalDuration.value,
             );
             break;
           }
@@ -414,8 +414,8 @@ function add(
             throw new Error(
               `Unable to add ${Formatter.default.format(
                 "Duration",
-                finalDuration
-              )} to ${value}`
+                finalDuration,
+              )} to ${value}`,
             );
           }
         }
@@ -430,19 +430,19 @@ function add(
           }
           case "min": {
             copiedDate.setMinutes(
-              copiedDate.getMinutes() + finalDuration.value
+              copiedDate.getMinutes() + finalDuration.value,
             );
             break;
           }
           case "s": {
             copiedDate.setSeconds(
-              copiedDate.getSeconds() + finalDuration.value
+              copiedDate.getSeconds() + finalDuration.value,
             );
             break;
           }
           case "ms": {
             copiedDate.setMilliseconds(
-              copiedDate.getMilliseconds() + finalDuration.value
+              copiedDate.getMilliseconds() + finalDuration.value,
             );
             break;
           }
@@ -450,8 +450,8 @@ function add(
             throw new Error(
               `Unable to add ${Formatter.default.format(
                 "Duration",
-                finalDuration
-              )} to ${value}`
+                finalDuration,
+              )} to ${value}`,
             );
           }
         }
@@ -459,8 +459,8 @@ function add(
           throw new Error(
             `Unable to add duration ${Formatter.default.format(
               "Duration",
-              finalDuration
-            )} to ${value} as it would change the date.`
+              finalDuration,
+            )} to ${value} as it would change the date.`,
           );
         }
         return fhirTime(copiedDate);
@@ -469,8 +469,8 @@ function add(
         throw new Error(
           `Unable to add ${Formatter.default.format(
             "Duration",
-            finalDuration
-          )} to ${value}`
+            finalDuration,
+          )} to ${value}`,
         );
       }
     }
@@ -485,7 +485,7 @@ function add(
   for (const duration of durations) {
     const [valueResult, valueDuration, targetDuration] = convert(
       result,
-      duration
+      duration,
     );
     result = {
       value: valueResult + valueDuration,
@@ -507,12 +507,12 @@ function from(a: string): Duration;
 function from(
   a: string,
   b: string,
-  absolute?: boolean | null | undefined
+  absolute?: boolean | null | undefined,
 ): Duration;
 function from(
   a: string,
   b?: string | undefined,
-  absolute?: boolean | null | undefined
+  absolute?: boolean | null | undefined,
 ): Duration {
   if (b == undefined) {
     const parsedA = parseFhirDateTime(a);
@@ -521,7 +521,7 @@ function from(
     }
     if (parsedA.seconds !== 0) {
       return duration.seconds(
-        parsedA.seconds + parsedA.minutes * 60 + parsedA.hours * 3600
+        parsedA.seconds + parsedA.minutes * 60 + parsedA.hours * 3600,
       );
     }
     if (parsedA.minutes !== 0) {
@@ -768,7 +768,7 @@ const CONVERSATION_FACTORS: Record<string, Record<string, number>> = {
 
 function convert(
   result: Duration,
-  duration: Duration
+  duration: Duration,
 ): [number, number, Pick<Duration, "unit" | "code">] {
   if (result.code === duration.code) {
     return [result.value || 0, duration.value || 0, result];
@@ -778,15 +778,15 @@ function convert(
     ORDERED_UCUM_CODES[
       Math.max(
         ORDERED_UCUM_CODES.indexOf(result.code!),
-        ORDERED_UCUM_CODES.indexOf(duration.code!)
+        ORDERED_UCUM_CODES.indexOf(duration.code!),
       )
     ];
   if (!commonCode) {
     throw new Error(
       `Unable to find a common code when adding durations: ${Formatter.default.format(
         "Duration",
-        result
-      )} + ${Formatter.default.format("Duration", duration)}`
+        result,
+      )} + ${Formatter.default.format("Duration", duration)}`,
     );
   }
 
@@ -820,8 +820,8 @@ function validate(...durations: Duration[]) {
     if (duration.system && duration.system !== "http://unitsofmeasure.org") {
       throw new Error(
         `Unsupported system in duration ${JSON.stringify(
-          duration
-        )} - must be https://unitsofmeasure.org`
+          duration,
+        )} - must be https://unitsofmeasure.org`,
       );
     }
   }

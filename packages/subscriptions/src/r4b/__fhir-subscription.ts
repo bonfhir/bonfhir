@@ -21,13 +21,13 @@ export interface FhirSubscription<TResource extends AnyResource = AnyResource> {
 }
 
 export type FhirSubscriptionHandler<
-  TResource extends AnyResource = AnyResource
+  TResource extends AnyResource = AnyResource,
 > = (
-  args: FhirSubscriptionHandlerArgs<TResource>
+  args: FhirSubscriptionHandlerArgs<TResource>,
 ) => Promise<FhirSubscriptionHandlerResult>;
 
 export interface FhirSubscriptionHandlerArgs<
-  TResource extends AnyResource = AnyResource
+  TResource extends AnyResource = AnyResource,
 > {
   fhirClient: FhirClient;
 
@@ -95,7 +95,7 @@ export async function registerSubscriptions({
       const subscriptionUrl = urlSafeConcat(baseUrl, subscription.endpoint);
       const existingSubscriptionSearch = await fhirClient.search(
         "Subscription",
-        (search) => search.url(subscriptionUrl)
+        (search) => search.url(subscriptionUrl),
       );
       const existingSubscription =
         existingSubscriptionSearch.bundle.entry?.[0]?.resource;
@@ -138,17 +138,17 @@ export async function registerSubscriptions({
               payload: contentType ?? "application/fhir+json",
               header: [securityHeaderValue],
             },
-          })
+          }),
         );
       }
 
       logger.debug(
-        `Subscription ${subscription.reason} for ${subscription.criteria} on ${subscription.endpoint} registered.`
+        `Subscription ${subscription.reason} for ${subscription.criteria} on ${subscription.endpoint} registered.`,
       );
     } catch (error) {
       logger.error(
         `Error while registering subscription ${subscription.reason} on ${subscription.endpoint}`,
-        error
+        error,
       );
 
       throw error;

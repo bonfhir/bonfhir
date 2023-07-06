@@ -3,7 +3,7 @@ import { NumberInput, NumberInputProps } from "@mantine/core";
 import { ReactElement } from "react";
 
 export function MantineFhirInputNumber(
-  props: FhirInputNumberRendererProps<MantineFhirInputNumberProps>
+  props: FhirInputNumberRendererProps<MantineFhirInputNumberProps>,
 ): ReactElement | null {
   return (
     <NumberInput
@@ -29,7 +29,7 @@ export function MantineFhirInputNumber(
 export type MantineFhirInputNumberProps = NumberInputProps;
 
 function defaultMin(
-  props: FhirInputNumberRendererProps<MantineFhirInputNumberProps>
+  props: FhirInputNumberRendererProps<MantineFhirInputNumberProps>,
 ) {
   switch (props.type) {
     case "unsignedInt": {

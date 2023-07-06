@@ -16,7 +16,7 @@ import { narrative } from "./narratives.codegen.js";
  */
 export function build<TDomainResourceType extends AnyDomainResourceType>(
   resourceType: TDomainResourceType,
-  resource: Omit<ExtractDomainResource<TDomainResourceType>, "resourceType">
+  resource: Omit<ExtractDomainResource<TDomainResourceType>, "resourceType">,
 ): ExtractDomainResource<TDomainResourceType> {
   const result = {
     ...resource,
@@ -35,10 +35,10 @@ export function build<TDomainResourceType extends AnyDomainResourceType>(
  */
 export function id(value: Retrieved<AnyResource>): string;
 export function id(
-  value: Reference | Retrieved<AnyResource> | string | null | undefined
+  value: Reference | Retrieved<AnyResource> | string | null | undefined,
 ): string | undefined;
 export function id(
-  value: Reference | Retrieved<AnyResource> | string | null | undefined
+  value: Reference | Retrieved<AnyResource> | string | null | undefined,
 ): string | undefined {
   if (!value) {
     return undefined;
@@ -66,10 +66,10 @@ export function codeableConcept(coding: null | undefined): undefined;
 export function codeableConcept(coding: Coding): CodeableConcept;
 export function codeableConcept(coding: Coding[]): CodeableConcept;
 export function codeableConcept(
-  coding: Coding | Coding[] | null | undefined
+  coding: Coding | Coding[] | null | undefined,
 ): CodeableConcept | undefined;
 export function codeableConcept(
-  coding: Coding | Coding[] | null | undefined
+  coding: Coding | Coding[] | null | undefined,
 ): CodeableConcept | undefined {
   if (!coding) {
     return undefined;
@@ -88,7 +88,7 @@ export function canonical(
   resource:
     | { url?: string | undefined; version?: string | undefined }
     | null
-    | undefined
+    | undefined,
 ): string | undefined {
   if (!resource?.url) {
     return;

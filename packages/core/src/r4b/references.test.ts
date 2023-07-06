@@ -13,7 +13,7 @@ describe("references", () => {
     (resource) => {
       const result = reference(resource as any);
       expect(result.display).toBeTruthy();
-    }
+    },
   );
 
   it.each([medicationDispense])(
@@ -21,6 +21,6 @@ describe("references", () => {
     (resource) => {
       const result = reference(resource as any);
       expect(result.display).toBeFalsy();
-    }
+    },
   );
 });

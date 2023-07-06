@@ -19,7 +19,7 @@ import { useEffect } from "react";
 import { UseFhirFormReturnType, useFhirForm } from "./use-fhir-form.js";
 
 export interface UseFhirResourceFormArgs<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 > {
   type: TResourceType;
   id: string | "new" | undefined;
@@ -32,7 +32,7 @@ export interface UseFhirResourceFormArgs<
 }
 
 export interface UseFhirResourceFormResult<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 > {
   query: UseQueryResult<Retrieved<ResourceOf<TResourceType>>>;
   mutation: UseMutationResult<
@@ -66,9 +66,9 @@ export interface UseFhirResourceFormResult<
  * Encapsulate the whole logic to save a single FHIR resource using a controlled form.
  */
 export function useFhirResourceForm<
-  TResourceType extends AnyResourceTypeOrCustomResource
+  TResourceType extends AnyResourceTypeOrCustomResource,
 >(
-  args: UseFhirResourceFormArgs<TResourceType>
+  args: UseFhirResourceFormArgs<TResourceType>,
 ): UseFhirResourceFormResult<TResourceType> {
   const isNew = args.id == null || args.id === "new";
   const query = useFhirRead(args.type, args.id || "new", {
