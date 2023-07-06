@@ -1,5 +1,16 @@
 # @bonfhir/core
 
+## 2.6.0
+
+### Minor Changes
+
+- 11b949d: Fix codegen problem with allowed types extensions for OperationParameters
+- 7891d57: Add fhir... date time helpers
+
+### Patch Changes
+
+- 9b1d478: Updated dependencies, including Prettier/ESLint that touched all files
+
 ## 2.5.0
 
 ### Minor Changes

@@ -21,7 +21,7 @@ importers:
   apps/sample-ehr:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.5.0
+        specifier: ^2.6.0
         version: link:../../packages/core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -30,25 +30,25 @@ importers:
         specifier: workspace:*
         version: link:../../packages/eslint-plugin
       '@bonfhir/next':
-        specifier: ^2.1.0
+        specifier: ^2.1.1
         version: link:../../packages/next
       '@bonfhir/prettier-config':
         specifier: workspace:*
         version: link:../../packages/prettier-config
       '@bonfhir/query':
-        specifier: ^2.1.0
+        specifier: ^2.1.1
         version: link:../../packages/query
       '@bonfhir/subscriptions':
-        specifier: ^2.1.0
+        specifier: ^2.1.1
         version: link:../../packages/subscriptions
       '@bonfhir/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@bonfhir/ui':
-        specifier: ^2.1.0
+        specifier: ^2.1.1
         version: link:../../packages/ui
       '@bonfhir/ui-mantine':
-        specifier: ^2.1.0
+        specifier: ^2.1.1
         version: link:../../packages/ui-mantine
       '@emotion/react':
         specifier: ^11.11.0
@@ -315,7 +315,7 @@ importers:
   packages/eslint-config:
     dependencies:
       '@bonfhir/eslint-plugin':
-        specifier: ~2.0.0
+        specifier: ~2.0.1
         version: link:../eslint-plugin
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.61.0
@@ -355,13 +355,13 @@ importers:
   packages/next:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.1.0
+        specifier: ^2.6.0
         version: link:../core
       '@bonfhir/subscriptions':
-        specifier: ^2.1.0
+        specifier: ^2.1.1
         version: link:../subscriptions
       '@bonfhir/ui':
-        specifier: ^2.1.0
+        specifier: ^2.1.1
         version: link:../ui
     devDependencies:
       '@bonfhir/eslint-config':
@@ -465,7 +465,7 @@ importers:
   packages/query:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.1.0
+        specifier: ^2.6.0
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':
@@ -556,7 +556,7 @@ importers:
   packages/subscriptions:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.1.0
+        specifier: ^2.6.0
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':
@@ -625,10 +625,10 @@ importers:
   packages/ui:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.1.0
+        specifier: ^2.6.0
         version: link:../core
       '@bonfhir/query':
-        specifier: ^2.1.0
+        specifier: ^2.1.1
         version: link:../query
     devDependencies:
       '@bonfhir/eslint-config':
@@ -722,13 +722,13 @@ importers:
   packages/ui-mantine:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.1.0
+        specifier: ^2.6.0
         version: link:../core
       '@bonfhir/query':
-        specifier: ^2.1.0
+        specifier: ^2.1.1
         version: link:../query
       '@bonfhir/ui':
-        specifier: ^2.1.0
+        specifier: ^2.1.1
         version: link:../ui
       '@tiptap/extension-link':
         specifier: '*'
@@ -7485,7 +7485,7 @@ packages:
       exit: 0.1.2
       graceful-fs: 4.2.11
       import-local: 3.1.0
-      jest-config: 29.6.1
+      jest-config: 29.6.1(@types/node@18.16.2)(ts-node@10.9.1)
       jest-util: 29.6.1
       jest-validate: 29.6.1
       prompts: 2.4.2
@@ -7513,7 +7513,7 @@ packages:
       exit: 0.1.2
       graceful-fs: 4.2.11
       import-local: 3.1.0
-      jest-config: 29.6.1(@types/node@18.16.2)
+      jest-config: 29.6.1(@types/node@18.16.2)(ts-node@10.9.1)
       jest-util: 29.6.1
       jest-validate: 29.6.1
       prompts: 2.4.2
@@ -7550,83 +7550,6 @@ packages:
       - '@types/node'
       - supports-color
       - ts-node
-    dev: true
-
-  /jest-config@29.6.1:
-    resolution: {integrity: sha512-XdjYV2fy2xYixUiV2Wc54t3Z4oxYPAELUzWnV6+mcbq0rh742X2p52pii5A3oeRzYjLnQxCsZmp0qpI6klE2cQ==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    peerDependencies:
-      '@types/node': '*'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      '@babel/core': 7.22.8
-      '@jest/test-sequencer': 29.6.1
-      '@jest/types': 29.6.1
-      babel-jest: 29.6.1(@babel/core@7.22.8)
-      chalk: 4.1.2
-      ci-info: 3.8.0
-      deepmerge: 4.3.1
-      glob: 7.2.3
-      graceful-fs: 4.2.11
-      jest-circus: 29.6.1
-      jest-environment-node: 29.6.1
-      jest-get-type: 29.4.3
-      jest-regex-util: 29.4.3
-      jest-resolve: 29.6.1
-      jest-runner: 29.6.1
-      jest-util: 29.6.1
-      jest-validate: 29.6.1
-      micromatch: 4.0.5
-      parse-json: 5.2.0
-      pretty-format: 29.6.1
-      slash: 3.0.0
-      strip-json-comments: 3.1.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /jest-config@29.6.1(@types/node@18.16.2):
-    resolution: {integrity: sha512-XdjYV2fy2xYixUiV2Wc54t3Z4oxYPAELUzWnV6+mcbq0rh742X2p52pii5A3oeRzYjLnQxCsZmp0qpI6klE2cQ==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    peerDependencies:
-      '@types/node': '*'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      '@babel/core': 7.22.8
-      '@jest/test-sequencer': 29.6.1
-      '@jest/types': 29.6.1
-      '@types/node': 18.16.2
-      babel-jest: 29.6.1(@babel/core@7.22.8)
-      chalk: 4.1.2
-      ci-info: 3.8.0
-      deepmerge: 4.3.1
-      glob: 7.2.3
-      graceful-fs: 4.2.11
-      jest-circus: 29.6.1
-      jest-environment-node: 29.6.1
-      jest-get-type: 29.4.3
-      jest-regex-util: 29.4.3
-      jest-resolve: 29.6.1
-      jest-runner: 29.6.1
-      jest-util: 29.6.1
-      jest-validate: 29.6.1
-      micromatch: 4.0.5
-      parse-json: 5.2.0
-      pretty-format: 29.6.1
-      slash: 3.0.0
-      strip-json-comments: 3.1.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /jest-config@29.6.1(@types/node@18.16.2)(ts-node@10.9.1):

@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/codegen",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
