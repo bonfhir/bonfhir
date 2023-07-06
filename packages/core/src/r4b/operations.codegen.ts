@@ -10,7 +10,6 @@ import {
   CodeableConcept,
   Coding,
   ConceptMap,
-  Element,
   Library,
   MeasureReport,
   Meta,
@@ -669,8 +668,9 @@ export interface CodeSystemFindMatchesOperationProperty {
   code: string;
   /**
    * The value of the property provided
+   * @fhirType code | Coding | string | integer | boolean | dateTime
    */
-  value?: Element | undefined;
+  value?: string | Coding | number | boolean | undefined;
   /**
    * Nested Properties (mainly used for SNOMED CT composition, for relationship
    * Groups)
@@ -692,8 +692,9 @@ export interface CodeSystemFindMatchesOperationPropertySubproperty {
   code: string;
   /**
    * The value of the sub-property provided
+   * @fhirType code | Coding | string | integer | boolean | dateTime
    */
-  value: Element;
+  value: string | Coding | number | boolean;
 }
 
 /**
@@ -728,8 +729,9 @@ export interface CodeSystemFindMatchesOperationMatchUnmatched {
   code: string;
   /**
    * The value of the property provided
+   * @fhirType code | Coding | string | integer | boolean | dateTime
    */
-  value: Element;
+  value: string | Coding | number | boolean;
   /**
    * Nested Properties (mainly used for SNOMED CT composition, for relationship
    * Groups)
@@ -751,8 +753,9 @@ export interface CodeSystemFindMatchesOperationMatchUnmatchedProperty {
   code: string;
   /**
    * The value of the sub-property provided
+   * @fhirType code | Coding | string | integer | boolean | dateTime
    */
-  value: Element;
+  value: string | Coding | number | boolean;
 }
 
 /**
@@ -908,8 +911,9 @@ export interface CodeSystemLookupOperationProperty {
   code: string;
   /**
    * The value of the property returned
+   * @fhirType code | Coding | string | integer | boolean | dateTime | decimal
    */
-  value?: Element | undefined;
+  value?: string | Coding | number | boolean | undefined;
   /**
    * Human Readable representation of the property value (e.g. display for a code)
    * @fhirType string
@@ -934,8 +938,9 @@ export interface CodeSystemLookupOperationPropertySubproperty {
   code: string;
   /**
    * The value of the sub-property returned
+   * @fhirType code | Coding | string | integer | boolean | dateTime | decimal
    */
-  value: Element;
+  value: string | Coding | number | boolean;
   /**
    * Human Readable representation of the property value (e.g. display for a code)
    * @fhirType string

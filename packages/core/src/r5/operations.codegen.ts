@@ -10,7 +10,6 @@ import {
   CodeableConcept,
   Coding,
   ConceptMap,
-  Element,
   Identifier,
   Library,
   Measure,
@@ -22,6 +21,7 @@ import {
   Patient,
   Period,
   PlanDefinition,
+  Quantity,
   Questionnaire,
   Reference,
   Resource,
@@ -744,8 +744,9 @@ export interface CodeSystemFindMatchesOperationProperty {
   code: string;
   /**
    * The value of the property provided
+   * @fhirType Coding | boolean | code | dateTime | integer | string
    */
-  value?: Element | undefined;
+  value?: Coding | boolean | string | number | undefined;
   /**
    * Nested Properties (mainly used for SNOMED CT composition, for relationship
    * Groups)
@@ -767,8 +768,9 @@ export interface CodeSystemFindMatchesOperationPropertySubproperty {
   code: string;
   /**
    * The value of the sub-property provided
+   * @fhirType Coding | boolean | code | dateTime | integer | string
    */
-  value: Element;
+  value: Coding | boolean | string | number;
 }
 
 /**
@@ -803,8 +805,9 @@ export interface CodeSystemFindMatchesOperationMatchUnmatched {
   code: string;
   /**
    * The value of the property provided
+   * @fhirType Coding | boolean | code | dateTime | integer | string
    */
-  value: Element;
+  value: Coding | boolean | string | number;
   /**
    * Nested Properties (mainly used for SNOMED CT composition, for relationship
    * Groups)
@@ -826,8 +829,9 @@ export interface CodeSystemFindMatchesOperationMatchUnmatchedProperty {
   code: string;
   /**
    * The value of the sub-property provided
+   * @fhirType Coding | boolean | code | dateTime | integer | string
    */
-  value: Element;
+  value: Coding | boolean | string | number;
 }
 
 /**
@@ -1009,8 +1013,9 @@ export interface CodeSystemLookupOperationProperty {
   code: string;
   /**
    * The value of the property returned
+   * @fhirType Coding | boolean | code | dateTime | decimal | integer | string
    */
-  value?: Element | undefined;
+  value?: Coding | boolean | string | number | undefined;
   /**
    * Human Readable representation of the property value (e.g. display for a code)
    * @fhirType string
@@ -1042,8 +1047,9 @@ export interface CodeSystemLookupOperationPropertySubproperty {
   code: string;
   /**
    * The value of the sub-property returned
+   * @fhirType Coding | boolean | code | dateTime | decimal | integer | string
    */
-  value: Element;
+  value: Coding | boolean | string | number;
   /**
    * Human Readable representation of the sub-property value (e.g. display for a
    * code)
@@ -1669,8 +1675,9 @@ export interface ConceptMapTranslateOperationDependency {
   attribute?: string | undefined;
   /**
    * The data value for this dependency
+   * @fhirType code | Coding | string | boolean | Quantity
    */
-  value?: Element | undefined;
+  value?: string | Coding | boolean | Quantity | undefined;
 }
 
 /**
@@ -1726,8 +1733,9 @@ export interface ConceptMapTranslateOperationMatchProperty {
   uri: string;
   /**
    * The value of the property
+   * @fhirType Coding | string | integer | boolean | dateTime | decimal | code
    */
-  value: Element;
+  value: Coding | string | number | boolean;
 }
 
 /**
@@ -1741,8 +1749,9 @@ export interface ConceptMapTranslateOperationMatchProduct {
   attribute: string;
   /**
    * The value for this product
+   * @fhirType code | Coding | string | boolean | Quantity
    */
-  value: Element;
+  value: string | Coding | boolean | Quantity;
 }
 
 /**
@@ -1756,8 +1765,9 @@ export interface ConceptMapTranslateOperationMatchDependsOn {
   attribute: string;
   /**
    * The value for this product
+   * @fhirType code | Coding | string | integer | boolean | dateTime | decimal | uri | id
    */
-  value: Element;
+  value: string | Coding | number | boolean;
 }
 
 /**

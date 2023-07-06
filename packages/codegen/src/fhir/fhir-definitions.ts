@@ -791,6 +791,15 @@ export class OperationParameter {
       resolvedType = this.partName;
     }
 
+    if (
+      (resolvedType === "Resource" || resolvedType === "Element") &&
+      this.allowedTypes.length > 0
+    ) {
+      resolvedType = [
+        ...new Set(this.allowedTypes.map((x: string) => toTsType(x))),
+      ].join(" | ");
+    }
+
     if (this.isArray) {
       resolvedType = `Array<${resolvedType}>`;
     }
@@ -805,16 +814,35 @@ export class OperationParameter {
     return PRIMITIVE_TYPES.includes((this as any).type);
   }
 
+  public get allowedTypes(): string[] {
+    return (
+      (this as any).extension
+        ?.filter(
+          (x: any) =>
+            x.url ===
+              "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" &&
+            !!x.valueUri,
+        )
+        .map((x: any) => x.valueUri) || []
+    );
+  }
+
   /**
    * A JSDoc comment for this element
    */
   public get jsDoc(): string {
+    let fhirType = (this as any).type;
+    if (this.allowedTypes.length > 0) {
+      fhirType = this.allowedTypes.join(" | ");
+    }
     return toJsComment(
       [
         ...splitLongLines(
           [(this as any).documentation].filter((x) => !!x?.trim()),
         ),
-        this.isPrimitiveType ? `@fhirType ${(this as any).type}` : undefined,
+        this.isPrimitiveType || this.allowedTypes.length > 0
+          ? `@fhirType ${fhirType}`
+          : undefined,
       ].filter(Boolean) as string[],
     );
   }

@@ -10,7 +10,7 @@
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
     "clean": "rimraf dist",
     "dev": "ts-node src/index.ts",
-    "format": "eslint --fix ./src && prettier --loglevel warn --write ./src",
+    "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
     "test": "jest"
   },
   "type": "module",

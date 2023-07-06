@@ -5,7 +5,7 @@
   "scripts": {
     "check": "prettier --check ./src && next lint && tsc --noEmit",
     "dev": "PORT=4000 next dev",
-    "format": "eslint --fix ./src && prettier --loglevel warn --write ./src",
+    "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
     "start": "PORT=4000 next start",
     "build": "next build"
   },
