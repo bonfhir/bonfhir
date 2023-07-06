@@ -50,6 +50,8 @@ export const quantityFormatter: ValueFormatter<
 
     return `${formattedComparator + " "}${formattedValue}${
       options?.separator ?? formatterOptions.quantitySeparator ?? " "
-    }${formattedCode || formattedUnit}`.trim();
+    }${
+      options?.expansions ? formattedCode : formattedUnit || formattedCode
+    }`.trim();
   },
 };

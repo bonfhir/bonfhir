@@ -1,3 +1,4 @@
+import { duration } from "../date-time-helpers.js";
 import { Duration, ValueSetExpansionContains } from "../fhir-types.codegen.js";
 import { Formatter } from "../formatters.js";
 import { codeFormatter } from "./code.js";
@@ -36,6 +37,9 @@ describe("duration", () => {
       },
       "> -4.23E1 milliseconds",
     ],
+    [duration.days(30), undefined, "30 day(s)"],
+    [duration.minutes(30), undefined, "30 minute(s)"],
+    [duration.years(3), undefined, "3 year(s)"],
   ])("format %p %p => %p", (value, options, expected) => {
     expect(formatter.format("Duration", value, options)).toEqual(expected);
   });

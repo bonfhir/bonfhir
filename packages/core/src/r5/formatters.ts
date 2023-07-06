@@ -1,5 +1,6 @@
 import {
   BooleanLabels,
+  DurationFormatterOptions,
   IdentifierFormatterOptions,
   addressFormatter,
   ageFormatter,
@@ -133,6 +134,14 @@ export interface FormatterOptions {
    * The default denominator separator to use.
    */
   denominatorSeparator?: string | null | undefined;
+
+  /**
+   * The default duration expansions to use.
+   */
+  durationExpansions?:
+    | DurationFormatterOptions["expansions"]
+    | null
+    | undefined;
 }
 
 export class Formatter {

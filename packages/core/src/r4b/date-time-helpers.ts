@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import { Duration } from "./fhir-types.codegen.js";
+import { Formatter } from "./formatters.js";
 
 /**
  * Format a Date object as a FHIR date.
@@ -320,7 +321,10 @@ function add(
           return `${parsed.year + finalDuration.value}`;
         }
         throw new Error(
-          `Unable to add ${JSON.stringify(finalDuration)} to ${value}`
+          `Unable to add ${Formatter.default.format(
+            "Duration",
+            finalDuration
+          )} to ${value}`
         );
       }
       case "year-month": {
@@ -358,7 +362,10 @@ function add(
           }
           default: {
             throw new Error(
-              `Unable to add ${JSON.stringify(finalDuration)} to ${value}`
+              `Unable to add ${Formatter.default.format(
+                "Duration",
+                finalDuration
+              )} to ${value}`
             );
           }
         }
@@ -405,7 +412,10 @@ function add(
           }
           default: {
             throw new Error(
-              `Unable to add ${JSON.stringify(finalDuration)} to ${value}`
+              `Unable to add ${Formatter.default.format(
+                "Duration",
+                finalDuration
+              )} to ${value}`
             );
           }
         }
@@ -438,13 +448,17 @@ function add(
           }
           default: {
             throw new Error(
-              `Unable to add ${JSON.stringify(finalDuration)} to ${value}`
+              `Unable to add ${Formatter.default.format(
+                "Duration",
+                finalDuration
+              )} to ${value}`
             );
           }
         }
         if (copiedDate.getDate() !== parsed.date.getDate()) {
           throw new Error(
-            `Unable to add duration ${JSON.stringify(
+            `Unable to add duration ${Formatter.default.format(
+              "Duration",
               finalDuration
             )} to ${value} as it would change the date.`
           );
@@ -453,7 +467,10 @@ function add(
       }
       default: {
         throw new Error(
-          `Unable to add ${JSON.stringify(finalDuration)} to ${value}`
+          `Unable to add ${Formatter.default.format(
+            "Duration",
+            finalDuration
+          )} to ${value}`
         );
       }
     }
@@ -766,9 +783,10 @@ function convert(
     ];
   if (!commonCode) {
     throw new Error(
-      `Unable to find a common code when adding durations: ${JSON.stringify(
+      `Unable to find a common code when adding durations: ${Formatter.default.format(
+        "Duration",
         result
-      )} + ${JSON.stringify(duration)}`
+      )} + ${Formatter.default.format("Duration", duration)}`
     );
   }
 
