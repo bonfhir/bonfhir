@@ -10,6 +10,7 @@ import {
   Reference,
   Resource,
   Retrieved,
+  WithRequired,
 } from "./fhir-types.codegen.js";
 import { asArray, uniqBy } from "./lang-utils.js";
 
@@ -77,12 +78,14 @@ export type WithResolvableReferences<T> = {
     : RecursiveResolvableReferences<T[K]>;
 } & {
   revIncluded<TResource extends AnyResource>(
-    select: (resource: TResource) => Reference | Reference[] | null | undefined,
+    select: (
+      resource: TResource,
+    ) => Reference | Array<Reference | null | undefined> | null | undefined,
   ): RecursiveResolvableReferences<TResource>[];
   revIncluded<TCustomResourceClass extends CustomResourceClass>(
     select: (
       resource: ExtractResource<TCustomResourceClass["resourceType"]>,
-    ) => Reference | Reference[] | null | undefined,
+    ) => Reference | Array<Reference | null | undefined> | null | undefined,
     customResourceClass: TCustomResourceClass,
   ): RecursiveResolvableReferences<InstanceType<TCustomResourceClass>>[];
 };
@@ -223,13 +226,15 @@ export class BundleNavigator<TResource extends Resource = Resource> {
    * @see http://hl7.org/fhir/fhirpath.html
    */
   public revReference<TResource extends AnyResource>(
-    select: (resource: TResource) => Reference | Reference[] | null | undefined,
+    select: (
+      resource: TResource,
+    ) => Reference | Array<Reference | null | undefined> | null | undefined,
     reference: Retrieved<AnyResource> | string | null | undefined,
   ): WithResolvableReferences<Retrieved<TResource>>[];
   public revReference<TCustomResourceClass extends CustomResourceClass>(
     select: (
       resource: ExtractResource<TCustomResourceClass["resourceType"]>,
-    ) => Reference | Reference[] | null | undefined,
+    ) => Reference | Array<Reference | null | undefined> | null | undefined,
     reference: Retrieved<AnyResource> | string | null | undefined,
     customResourceClass: TCustomResourceClass,
   ): WithResolvableReferences<Retrieved<InstanceType<TCustomResourceClass>>>[];
@@ -237,7 +242,9 @@ export class BundleNavigator<TResource extends Resource = Resource> {
     TResource extends AnyResource,
     TCustomResourceClass extends CustomResourceClass,
   >(
-    select: (resource: TResource) => Reference | Reference[] | null | undefined,
+    select: (
+      resource: TResource,
+    ) => Reference | Array<Reference | null | undefined> | null | undefined,
     reference: Retrieved<AnyResource> | string | null | undefined,
     customResourceClass?: TCustomResourceClass,
   ): WithResolvableReferences<Retrieved<TResource>>[] {
@@ -477,7 +484,9 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   }
 
   private _ensureSelectIndex(
-    select: (res: unknown) => Reference | Reference[] | null | undefined,
+    select: (
+      res: unknown,
+    ) => Reference | Array<Reference | null | undefined> | null | undefined,
   ): void {
     if (!this._resourcesByRefSelectIndex) {
       this._resourcesByRefSelectIndex = new Map();
@@ -488,7 +497,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
       for (const entry of (this.bundle.entry || []).filter(Boolean) || []) {
         for (const reference of asArray(select(entry.resource) || []).filter(
           (ref) => !!ref?.reference,
-        )) {
+        ) as Array<WithRequired<Reference, "reference">>) {
           if (entry.resource) {
             if (!mappedByReference.has(reference.reference)) {
               mappedByReference.set(reference.reference, []);

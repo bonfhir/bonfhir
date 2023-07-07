@@ -125,6 +125,28 @@ describe("BundleNavigator", () => {
           expect(result.length).toBe(0);
         },
       );
+
+      it("filters undefined and null values in selector", () => {
+        const navigator = bundleNavigator(patientsListBundle);
+        const patientReference = "Patient/23af4168-fc91-4b4d-a498-4485ce5ebc6f";
+        const expectedProvenance = patientsListFixture.entry.find(
+          (x) =>
+            x.resource?.resourceType === "Provenance" &&
+            (x.resource as Provenance).target[0]!.reference ===
+              patientReference,
+        )!.resource;
+
+        const provenanceWithPatientTarget = navigator.revReference<Provenance>(
+          // eslint-disable-next-line unicorn/no-null
+          (provenance) => [undefined, ...(provenance.target || []), null],
+          patientReference,
+        );
+
+        expect(expectedProvenance).not.toBeUndefined();
+        expect(provenanceWithPatientTarget).toMatchObject(
+          expect.arrayContaining([expectedProvenance]),
+        );
+      });
     });
 
     describe("firstRevReference", () => {
