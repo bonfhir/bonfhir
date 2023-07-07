@@ -9,6 +9,7 @@ import {
   Reference,
   Resource,
   Retrieved,
+  WithRequired,
 } from "./fhir-types.codegen.js";
 import { Formatter, withValueFormatter } from "./formatters.js";
 import {
@@ -114,8 +115,24 @@ export const REFERENCE_DECORATORS: Record<
 export function reference<TTargetResource extends AnyResource = AnyResource>(
   resource: Retrieved<TTargetResource>,
   options?: ReferenceOptions | null | undefined,
-): Reference<TTargetResource> {
-  let reference: Reference<TTargetResource> = {
+): WithRequired<Reference<TTargetResource>, "reference">;
+export function reference(
+  resource: null | undefined,
+  options?: ReferenceOptions | null | undefined,
+): undefined;
+export function reference<TTargetResource extends AnyResource = AnyResource>(
+  resource: Retrieved<TTargetResource> | null | undefined,
+  options?: ReferenceOptions | null | undefined,
+): WithRequired<Reference<TTargetResource>, "reference"> | undefined;
+export function reference<TTargetResource extends AnyResource = AnyResource>(
+  resource: Retrieved<TTargetResource> | null | undefined,
+  options?: ReferenceOptions | null | undefined,
+): WithRequired<Reference<TTargetResource>, "reference"> | undefined {
+  if (!resource) {
+    return undefined;
+  }
+
+  let reference: WithRequired<Reference<TTargetResource>, "reference"> = {
     reference: options?.versionSpecific
       ? `${resource.resourceType}/${resource.id}/_history/${resource.meta.versionId}`
       : `${resource.resourceType}/${resource.id}`,
@@ -130,7 +147,10 @@ export function reference<TTargetResource extends AnyResource = AnyResource>(
   const decorator = REFERENCE_DECORATORS?.[resource.resourceType];
 
   if (decorator) {
-    reference = decorator(resource, reference) as Reference<TTargetResource>;
+    reference = decorator(resource, reference) as WithRequired<
+      Reference<TTargetResource>,
+      "reference"
+    >;
   }
 
   return reference;
