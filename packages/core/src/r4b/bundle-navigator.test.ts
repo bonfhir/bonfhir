@@ -5,6 +5,7 @@ import { bundleNavigator } from "./bundle-navigator.js";
 import { extendResource } from "./extensions.js";
 import {
   AnyResource,
+  Appointment,
   Bundle,
   Organization,
   Patient,
@@ -61,9 +62,15 @@ describe("BundleNavigator", () => {
           reference(include!.resource as Retrieved<AnyResource>).reference,
         );
 
-        expect(search1).toMatchObject(matches[0]!.resource);
-        expect(search2).toMatchObject(matches[1]!.resource);
-        expect(include1).toMatchObject(include!.resource);
+        expect(JSON.stringify(search1)).toEqual(
+          JSON.stringify(matches[0]!.resource),
+        );
+        expect(JSON.stringify(search2)).toEqual(
+          JSON.stringify(matches[1]!.resource),
+        );
+        expect(JSON.stringify(include1)).toEqual(
+          JSON.stringify(include!.resource),
+        );
       });
 
       it("returns from bundle references", () => {
@@ -95,8 +102,8 @@ describe("BundleNavigator", () => {
         );
 
         expect(expectedProvenance).not.toBeUndefined();
-        expect(provenanceWithPatientTarget).toMatchObject(
-          expect.arrayContaining([expectedProvenance]),
+        expect(JSON.stringify(provenanceWithPatientTarget)).toEqual(
+          JSON.stringify([expectedProvenance]),
         );
       });
 
@@ -143,8 +150,8 @@ describe("BundleNavigator", () => {
         );
 
         expect(expectedProvenance).not.toBeUndefined();
-        expect(provenanceWithPatientTarget).toMatchObject(
-          expect.arrayContaining([expectedProvenance]),
+        expect(JSON.stringify(provenanceWithPatientTarget)).toEqual(
+          JSON.stringify([expectedProvenance]),
         );
       });
     });
@@ -166,7 +173,9 @@ describe("BundleNavigator", () => {
         )[0];
 
         expect(expectedProvenance).not.toBeUndefined();
-        expect(provenanceWithPatientTarget).toMatchObject(expectedProvenance);
+        expect(JSON.stringify(provenanceWithPatientTarget)).toEqual(
+          JSON.stringify(expectedProvenance),
+        );
       });
 
       it("returns a undefined when not found", () => {
@@ -454,6 +463,17 @@ describe("BundleNavigator", () => {
       expect(provenancesWithPatientTarget.length).toBeGreaterThan(0);
       for (const provenance of provenancesWithPatientTarget) {
         expect(provenance).toBeInstanceOf(CustomProvenance);
+      }
+    });
+
+    it("works with proxies of proxies", () => {
+      const navigator = bundleNavigator(patientsListBundle, CustomPatient);
+      for (const patient of navigator.searchMatch()) {
+        expect(() =>
+          patient.revIncluded<Appointment>(
+            (apt) => apt.participant?.map((x) => x.actor),
+          ),
+        ).not.toThrow();
       }
     });
 

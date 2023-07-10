@@ -85,21 +85,23 @@ export function extendResource<
               }
             : Reflect.getOwnPropertyDescriptor(target, prop);
         },
-        get(target, prop) {
+        get(target, prop, receiver) {
           const specialExtension =
             prop.toString() !== "constructor" &&
             specialExtensions[prop.toString()];
           return specialExtension
             ? specialExtension.__get(target)
-            : Reflect.get(target, prop);
+            : Reflect.get(target, prop, receiver);
         },
-        set(target, prop, value) {
+        set(target, prop, value, receiver) {
           const specialExtension =
             prop.toString() !== "constructor" &&
             specialExtensions[prop.toString()];
-          return specialExtension
-            ? specialExtension.__set(target, value)
-            : Reflect.set(target, prop, value);
+          if (specialExtension) {
+            specialExtension.__set(target, value);
+            return true;
+          }
+          return Reflect.set(target, prop, value, receiver);
         },
       });
     }

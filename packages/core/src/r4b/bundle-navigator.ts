@@ -527,8 +527,20 @@ function withResolvableProxy<T extends Resource>(
   }
 
   return new Proxy(resource, {
-    get: (target, prop) => {
-      if (prop === "included" && (target as Reference)?.reference) {
+    ownKeys(target) {
+      return [...Reflect.ownKeys(target), "included", "revIncluded"];
+    },
+    getOwnPropertyDescriptor(target, prop) {
+      return ["included", "revIncluded"].includes(prop as string)
+        ? {
+            configurable: true,
+            enumerable: true,
+            writable: false,
+          }
+        : Reflect.getOwnPropertyDescriptor(target, prop);
+    },
+    get: (target, prop, receiver) => {
+      if (prop === "included") {
         return (customResourceClass: any) =>
           navigator.reference(
             (target as Reference)?.reference,
@@ -536,14 +548,17 @@ function withResolvableProxy<T extends Resource>(
           );
       }
 
-      if (prop === "revIncluded" && (target as Resource).resourceType) {
+      if (prop === "revIncluded") {
         return (
           select: (resource: any) => Reference | Reference[] | null | undefined,
           customResourceClass?: any,
         ) => navigator.revReference(select, target as any, customResourceClass);
       }
 
-      return withResolvableProxy(Reflect.get(target, prop) as any, navigator);
+      return withResolvableProxy(
+        Reflect.get(target, prop, receiver) as any,
+        navigator,
+      );
     },
   }) as unknown as WithResolvableReferences<T>;
 }
