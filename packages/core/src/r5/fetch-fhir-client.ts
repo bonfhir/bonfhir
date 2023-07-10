@@ -94,6 +94,12 @@ export interface FetchFhirClientOptions {
    * Some options to setup authentication.
    */
   auth?: FetchFhirClientAuthOptions | null | undefined;
+
+  /**
+   * Disable the check that prevents the client from making requests to a different origin.
+   * This is necessary as some servers tend to redirect to a different origin on pagination
+   */
+  disableSameOriginCheck?: boolean | null | undefined;
 }
 
 export class FetchFhirClient implements FhirClient {
@@ -606,7 +612,10 @@ export class FetchFhirClient implements FhirClient {
     let targetUrl = typeof resource === "string" ? resource : resource.href;
 
     if (/^(?:[a-z]+:)?\/\//.test(targetUrl)) {
-      if (!targetUrl.startsWith(this.options.baseUrl?.toString())) {
+      if (
+        !this.options.disableSameOriginCheck &&
+        !targetUrl.startsWith(this.options.baseUrl?.toString())
+      ) {
         throw new Error(
           `Unable to fetch ${targetUrl} as it is not part of the baseUrl ${this.options.baseUrl}`,
         );
