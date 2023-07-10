@@ -2,7 +2,10 @@ import type {
   FhirTableRenderer,
   FhirValueRenderer,
 } from "./data-display/index.js";
-import type { FhirQueryLoaderRenderer } from "./feedback/index.js";
+import type {
+  FhirErrorRenderer,
+  FhirQueryLoaderRenderer,
+} from "./feedback/index.js";
 import type {
   FhirInputArrayRenderer,
   FhirInputBooleanRenderer,
@@ -22,6 +25,7 @@ import type {
 import type { FhirPaginationRenderer } from "./navigation/index.js";
 
 export interface FhirUIRenderer {
+  FhirError: FhirErrorRenderer;
   FhirInputArray: FhirInputArrayRenderer;
   FhirInputBoolean: FhirInputBooleanRenderer;
   FhirInputContactPoint: FhirInputContactPointRenderer;

@@ -10,6 +10,7 @@ import { useFhirExecute } from "@bonfhir/query/r5";
 import { UseQueryResult } from "@tanstack/react-query";
 import { ReactElement } from "react";
 import { useFhirUIContext } from "../../context.js";
+import { FhirError } from "../../index.js";
 import { FhirInputCommonProps } from "./common.js";
 
 export type FhirInputTerminologyProps<TRendererProps = any> =
@@ -74,6 +75,11 @@ export function FhirInputTerminology<TRendererProps = any>(
               },
             )
           : props.source;
+
+      if (selectQuery.error) {
+        return <FhirError error={selectQuery.error} />;
+      }
+
       data = selectQuery.data?.expansion?.contains || [];
       if (props.filter) {
         data = data.filter((element) => props.filter?.(element));

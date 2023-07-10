@@ -1,6 +1,6 @@
 import { FhirUIRenderer } from "@bonfhir/ui/r5";
 import { MantineFhirTable, MantineFhirValue } from "./data-display/index.js";
-import { MantineFhirQueryLoader } from "./feedback/index.js";
+import { MantineFhirError, MantineFhirQueryLoader } from "./feedback/index.js";
 import {
   MantineFhirInputArray,
   MantineFhirInputBoolean,
@@ -20,6 +20,7 @@ import {
 import { MantineFhirPagination } from "./navigation/index.js";
 
 export const MantineRenderer: FhirUIRenderer = {
+  FhirError: MantineFhirError,
   FhirInputArray: MantineFhirInputArray,
   FhirInputBoolean: MantineFhirInputBoolean,
   FhirInputContactPoint: MantineFhirInputContactPoint,

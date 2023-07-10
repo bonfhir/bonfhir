@@ -1,8 +1,9 @@
-import { FhirQueryLoaderRendererProps } from "@bonfhir/ui/r4b";
 import {
-  ActionIcon,
-  ActionIconProps,
-  Alert,
+  FhirError,
+  FhirErrorProps,
+  FhirQueryLoaderRendererProps,
+} from "@bonfhir/ui/r4b";
+import {
   Center,
   CenterProps,
   Loader,
@@ -10,7 +11,6 @@ import {
   Stack,
   StackProps,
 } from "@mantine/core";
-import { IconAlertCircle, IconReload } from "@tabler/icons-react";
 import { ReactElement } from "react";
 
 export function MantineFhirQueryLoader(
@@ -36,27 +36,16 @@ export function MantineFhirQueryLoader(
           props.error ? (
             props.error(error)
           ) : (
-            <Alert
+            <FhirError
               key={index}
-              icon={<IconAlertCircle size="1rem" />}
-              title="Something went wrong."
-              color="red"
-            >
-              <Stack>
-                {error.message}
-                {(props.allowRetry == undefined || props.allowRetry) && (
-                  <ActionIcon
-                    color="red"
-                    variant="outline"
-                    onClick={() => props.retry()}
-                    title="Retry"
-                    {...props.rendererProps?.retryActionIcon}
-                  >
-                    {props.rendererProps?.retryIcon || <IconReload />}
-                  </ActionIcon>
-                )}
-              </Stack>
-            </Alert>
+              error={error}
+              onRetry={
+                props.allowRetry == undefined || props.allowRetry
+                  ? () => props.retry()
+                  : undefined
+              }
+              {...props.rendererProps?.error}
+            />
           ),
         )}
       </Stack>
@@ -70,6 +59,5 @@ export interface MantineFhirQueryLoaderProps {
   stack?: StackProps | null | undefined;
   center?: CenterProps | null | undefined;
   loader?: LoaderProps | null | undefined;
-  retryActionIcon?: ActionIconProps | null | undefined;
-  retryIcon?: Element | null | undefined;
+  error?: FhirErrorProps | null | undefined;
 }

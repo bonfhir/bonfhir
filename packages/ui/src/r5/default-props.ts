@@ -4,7 +4,7 @@ import {
   WithResolvableReferences,
 } from "@bonfhir/core/r5";
 import { FhirTableProps, FhirValueProps } from "./data-display/index.js";
-import { FhirQueryLoaderProps } from "./feedback/index.js";
+import { FhirErrorProps, FhirQueryLoaderProps } from "./feedback/index.js";
 import {
   FhirInputArrayProps,
   FhirInputProps,
@@ -13,6 +13,11 @@ import {
 import { FhirPaginationProps } from "./navigation/index.js";
 
 export interface FhirUIDefaultProps {
+  FhirError?:
+    | Partial<FhirErrorProps>
+    | ((props: FhirErrorProps) => FhirErrorProps)
+    | null
+    | undefined;
   FhirInput?:
     | Partial<FhirInputProps>
     | ((props: FhirInputProps) => FhirInputProps)
