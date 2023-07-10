@@ -21,7 +21,7 @@ importers:
   apps/sample-ehr:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.6.1
+        specifier: ^2.6.2
         version: link:../../packages/core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -45,10 +45,10 @@ importers:
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@bonfhir/ui':
-        specifier: ^2.1.1
+        specifier: ^2.2.0
         version: link:../../packages/ui
       '@bonfhir/ui-mantine':
-        specifier: ^2.1.1
+        specifier: ^2.2.0
         version: link:../../packages/ui-mantine
       '@emotion/react':
         specifier: ^11.11.0
@@ -625,7 +625,7 @@ importers:
   packages/ui:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.6.0
+        specifier: ^2.6.2
         version: link:../core
       '@bonfhir/query':
         specifier: ^2.1.1
@@ -722,13 +722,13 @@ importers:
   packages/ui-mantine:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.6.0
+        specifier: ^2.6.2
         version: link:../core
       '@bonfhir/query':
         specifier: ^2.1.1
         version: link:../query
       '@bonfhir/ui':
-        specifier: ^2.1.1
+        specifier: ^2.2.0
         version: link:../ui
       '@tiptap/extension-link':
         specifier: '*'

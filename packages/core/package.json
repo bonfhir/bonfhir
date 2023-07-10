@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/core",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },

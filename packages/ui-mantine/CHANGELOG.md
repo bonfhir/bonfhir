@@ -1,5 +1,19 @@
 # @bonfhir/ui-mantine
 
+## 2.2.0
+
+### Minor Changes
+
+- 8425d04: Add `FhirError` UI component
+
+### Patch Changes
+
+- Updated dependencies [6b0914a]
+- Updated dependencies [8425d04]
+- Updated dependencies [63111a1]
+  - @bonfhir/core@2.6.2
+  - @bonfhir/ui@2.2.0
+
 ## 2.1.1
 
 ### Patch Changes

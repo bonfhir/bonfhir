@@ -1,5 +1,12 @@
 # @bonfhir/core
 
+## 2.6.2
+
+### Patch Changes
+
+- 6b0914a: Fix a small bug in formatter decorator that displayed the decorator even when value is empty
+- 63111a1: Add `disableSameOriginCheck` in FetchFhirClient options to support GCP HealthCare API
+
 ## 2.6.1
 
 ### Patch Changes
