@@ -66,7 +66,7 @@ export type FetchFhirClientClientCredentialsAuthOptions = {
  */
 export type FetchFhirClientFunctionAuthHeaderOptions = (
   ...args: Parameters<typeof fetch>
-) => Promise<string>;
+) => string | Promise<string> | null | undefined;
 
 export type FetchFhirClientAuthOptions =
   | FetchFhirClientStaticAuthHeaderOptions
@@ -680,7 +680,7 @@ export class FetchFhirClient implements FhirClient {
     }
 
     if (typeof this.options.auth === "function") {
-      return await this.options.auth(targetUrl, init);
+      return (await this.options.auth(targetUrl, init)) || undefined;
     }
 
     if (typeof this.options.auth === "object") {
