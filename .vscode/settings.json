@@ -78,6 +78,7 @@
     "*.codegen.ts": "${capture}.spec.ts, ${capture}.stories.ts, ${capture}.test.ts"
   },
   "files.associations": {
-    "*.codegen.ts.ejs": "html"
+    "*.codegen.ts.ejs": "html",
+    "*.mdx": "markdown"
   }
 }
