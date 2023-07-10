@@ -1,5 +1,14 @@
 # @bonfhir/core
 
+## 2.6.1
+
+### Patch Changes
+
+- 9b6fed3: Fix a bug with the bundle navigator when using proxies of proxies
+- c12f853: Fix refReference and refIncluded select type signature to allow nullish in array
+- 0d5101b: Fix a bug with undefined references + better type information
+- 085f18f: FetchFhirClient: allow auth function to return a string or undefined
+
 ## 2.6.0
 
 ### Minor Changes
