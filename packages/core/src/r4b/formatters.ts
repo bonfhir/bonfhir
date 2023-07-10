@@ -230,7 +230,7 @@ export class Formatter {
       return options.default;
     }
 
-    if (options?.decorator) {
+    if (options?.decorator && formatterResult?.trim()) {
       return options.decorator.replace("{}", formatterResult);
     }
 
