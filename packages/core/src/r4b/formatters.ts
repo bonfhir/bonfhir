@@ -30,6 +30,7 @@ import {
   quantityFormatter,
   rangeFormatter,
   ratioFormatter,
+  ratioRangeFormatter,
   referenceFormatter,
   stringFormatter,
   timeFormatter,
@@ -175,6 +176,7 @@ export class Formatter {
       .register(quantityFormatter)
       .register(rangeFormatter)
       .register(ratioFormatter)
+      .register(ratioRangeFormatter)
       .register(referenceFormatter)
       .register(stringFormatter)
       .register(timeFormatter)
@@ -334,6 +336,7 @@ export type DefaultFormatterParameters =
   | ValueFormatterParameters<typeof quantityFormatter>
   | ValueFormatterParameters<typeof rangeFormatter>
   | ValueFormatterParameters<typeof ratioFormatter>
+  | ValueFormatterParameters<typeof ratioRangeFormatter>
   | ValueFormatterParameters<typeof referenceFormatter>
   | ValueFormatterParameters<typeof stringFormatter>
   | ValueFormatterParameters<typeof timeFormatter>

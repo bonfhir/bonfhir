@@ -25,6 +25,7 @@ export * from "./period.js";
 export * from "./positive-int.js";
 export * from "./quantity.js";
 export * from "./range.js";
+export * from "./ratio-range.js";
 export * from "./ratio.js";
 export * from "./reference.js";
 export * from "./string.js";

@@ -61,6 +61,7 @@ export type DefaultFormatterParametersProps =
   | ValueFormatterParametersAsProps<typeof valueFormatters.quantityFormatter>
   | ValueFormatterParametersAsProps<typeof valueFormatters.rangeFormatter>
   | ValueFormatterParametersAsProps<typeof valueFormatters.ratioFormatter>
+  | ValueFormatterParametersAsProps<typeof valueFormatters.ratioRangeFormatter>
   | ValueFormatterParametersAsProps<typeof valueFormatters.referenceFormatter>
   | ValueFormatterParametersAsProps<typeof valueFormatters.stringFormatter>
   | ValueFormatterParametersAsProps<typeof valueFormatters.timeFormatter>
