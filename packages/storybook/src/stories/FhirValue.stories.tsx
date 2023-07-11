@@ -8,9 +8,6 @@ import { Meta } from "@storybook/react";
  */
 const meta = {
   title: "FhirValue",
-  parameters: {
-    docs: {},
-  },
   component: FhirValue,
   tags: ["autodocs"],
   argTypes: {

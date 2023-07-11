@@ -60,6 +60,7 @@ export default function EditPatient() {
                   return (
                     <FhirInput
                       type="Identifier"
+                      mode="full"
                       identifiers={PatientIdentifierSystems}
                       {...form.getInputProps(`identifier.${index}`)}
                     />
