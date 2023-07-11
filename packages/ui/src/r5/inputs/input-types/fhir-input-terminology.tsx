@@ -87,13 +87,13 @@ export function FhirInputTerminology<TRendererProps = any>(
       data = props.sort
         ? data.sort((a, b) => props.sort?.(a, b) || 0)
         : data.sort(compareBy("display"));
-
-      return render<FhirInputTerminologyRendererProps>("FhirInputTerminology", {
-        data,
-        loading,
-        ...props,
-      });
     }
+
+    return render<FhirInputTerminologyRendererProps>("FhirInputTerminology", {
+      data,
+      loading,
+      ...props,
+    });
   }
 
   throw new TypeError(`Unsupported mode ${props.mode}.`);
