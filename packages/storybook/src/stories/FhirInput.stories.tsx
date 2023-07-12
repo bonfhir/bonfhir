@@ -297,6 +297,9 @@ export const Decimal = {
     step: {
       control: "number",
     },
+    precision: {
+      control: "number",
+    },
   },
 };
 

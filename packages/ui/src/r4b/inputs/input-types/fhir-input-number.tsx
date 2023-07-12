@@ -25,7 +25,9 @@ export function FhirInputNumber<TRendererProps = any>(
 ): ReactElement | null {
   const { render } = useFhirUIContext();
 
-  return render("FhirInputNumber", { ...props });
+  return props.type === "decimal"
+    ? render("FhirInputNumber", { precision: 5, ...props })
+    : render("FhirInputNumber", { ...props });
 }
 
 export type FhirInputNumberRendererProps<TRendererProps = any> =
