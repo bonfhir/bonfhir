@@ -68,7 +68,7 @@ export function useFhirForm<
               : options?.newValue;
           return JSON.stringify(value) !== JSON.stringify(newValue);
         },
-        onRemove: (index) => form.removeListItem("name", index),
+        onRemove: (index) => form.removeListItem(path, index),
       };
     },
   };
