@@ -82,18 +82,15 @@ export const Default = {
           <Box maw={800}>
             <FhirInputArray
               {...buildArgs(props)}
-              {...form.getArrayInputProps("value", { newValue: {} })}
+              {...form.getArrayInputProps("value", { newValue: "" })}
             >
-              {({ index }) => {
-                return (
-                  <FhirInput
-                    type="HumanName"
-                    mode="simple"
-                    label="Name"
-                    {...form.getInputProps(`value.${index}`)}
-                  />
-                );
-              }}
+              {({ index }) => (
+                <FhirInput
+                  type="string"
+                  label="Input Label"
+                  {...form.getInputProps(`value.${index}`)}
+                />
+              )}
             </FhirInputArray>
           </Box>
           <Group mt="md">

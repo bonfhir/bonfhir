@@ -51,11 +51,10 @@ export function useFhirForm<
         value: inputResult.value,
         error: inputResult.error,
         onAdd: (index) => {
-          const newValue = options?.newValue
-            ? typeof options.newValue === "function"
+          const newValue =
+            options && typeof options.newValue === "function"
               ? options.newValue()
-              : options.newValue
-            : {};
+              : options?.newValue;
           if (form.getInputProps(path).value) {
             form.insertListItem(path, newValue, index + 1);
           } else {
@@ -63,11 +62,10 @@ export function useFhirForm<
           }
         },
         canAdd: (value) => {
-          const newValue = options?.newValue
-            ? typeof options.newValue === "function"
+          const newValue =
+            options && typeof options.newValue === "function"
               ? options.newValue()
-              : options.newValue
-            : {};
+              : options?.newValue;
           return JSON.stringify(value) !== JSON.stringify(newValue);
         },
         onRemove: (index) => form.removeListItem("name", index),
