@@ -1,48 +1,87 @@
-import { FhirClient, bundleNavigator } from "@bonfhir/core/r5";
+import {
+  FhirClient,
+  bundleNavigator,
+  normalizeSearchParameters,
+} from "@bonfhir/core/r5";
 
 export const mockClient = {
   fetch: true,
-  search(type: any) {
+  search(type: any, parameters: any) {
     if (type === "Organization") {
+      let sort: any;
+      let order = "asc";
+      if (parameters) {
+        const renderedParameters = new URLSearchParams(
+          normalizeSearchParameters("Organization", parameters),
+        );
+        if (renderedParameters.has("_sort")) {
+          sort = renderedParameters.get("_sort");
+          if (sort?.startsWith("-")) {
+            sort = sort.substring(1);
+            order = "desc";
+          }
+        }
+      }
+
+      const entry = [
+        {
+          fullUrl:
+            "http://localhost:8103/fhir/R4/Organization/b503ddcc-00ee-4911-a259-bcedd90231c5",
+          resource: {
+            resourceType: "Organization",
+            name: "AlleyCorpNord",
+            text: {
+              status: "generated",
+              div: '<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Name: </span>AlleyCorpNord</li></ul></div>',
+            },
+            id: "b503ddcc-00ee-4911-a259-bcedd90231c5",
+            meta: {
+              versionId: "9bf2ae56-a7a0-4aff-8b21-5599ef811ca7",
+              lastUpdated: "2023-06-16T19:40:21.643Z",
+            },
+          },
+        },
+        {
+          fullUrl:
+            "http://localhost:8103/fhir/R4/Organization/391d4f5b-87f5-4c1f-98dd-4f6afcd3274d",
+          resource: {
+            resourceType: "Organization",
+            name: "CMS.gov",
+            text: {
+              status: "generated",
+              div: '<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Name: </span>CMS.gov</li></ul></div>',
+            },
+            id: "391d4f5b-87f5-4c1f-98dd-4f6afcd3274d",
+            meta: {
+              versionId: "6ab5c799-9a2a-4db3-9481-d57434691754",
+              lastUpdated: "2023-06-16T19:42:57.847Z",
+            },
+          },
+        },
+      ];
+
+      if (sort) {
+        entry.sort((a: any, b: any) => {
+          let baseA = a.resource;
+          let baseB = b.resource;
+          if (sort === "_lastUpdated") {
+            baseA = baseA.meta;
+            baseB = baseB.meta;
+          }
+          if (baseA[sort] < baseB[sort]) {
+            return order === "asc" ? -1 : 1;
+          }
+          if (baseA[sort] > baseB[sort]) {
+            return order === "asc" ? 1 : -1;
+          }
+          return 0;
+        });
+      }
+
       return bundleNavigator({
         resourceType: "Bundle",
         type: "searchset",
-        entry: [
-          {
-            fullUrl:
-              "http://localhost:8103/fhir/R4/Organization/b503ddcc-00ee-4911-a259-bcedd90231c5",
-            resource: {
-              resourceType: "Organization",
-              name: "AlleyCorpNord",
-              text: {
-                status: "generated",
-                div: '<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Name: </span>AlleyCorpNord</li></ul></div>',
-              },
-              id: "b503ddcc-00ee-4911-a259-bcedd90231c5",
-              meta: {
-                versionId: "9bf2ae56-a7a0-4aff-8b21-5599ef811ca7",
-                lastUpdated: "2023-06-16T19:40:21.643Z",
-              },
-            },
-          },
-          {
-            fullUrl:
-              "http://localhost:8103/fhir/R4/Organization/391d4f5b-87f5-4c1f-98dd-4f6afcd3274d",
-            resource: {
-              resourceType: "Organization",
-              name: "CMS.gov",
-              text: {
-                status: "generated",
-                div: '<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Name: </span>CMS.gov</li></ul></div>',
-              },
-              id: "391d4f5b-87f5-4c1f-98dd-4f6afcd3274d",
-              meta: {
-                versionId: "6ab5c799-9a2a-4db3-9481-d57434691754",
-                lastUpdated: "2023-06-16T19:42:57.847Z",
-              },
-            },
-          },
-        ],
+        entry,
         link: [
           {
             relation: "self",
@@ -53,6 +92,7 @@ export const mockClient = {
             url: "http://localhost:8103/fhir/R4/Organization?_count=20&_offset=0",
           },
         ],
+        total: 2,
       });
     }
 
