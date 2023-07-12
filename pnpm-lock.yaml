@@ -615,6 +615,9 @@ importers:
       '@storybook/blocks':
         specifier: ^7.0.26
         version: 7.0.26(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api':
+        specifier: ^7.0.26
+        version: 7.0.26(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preset-create-react-app':
         specifier: ^7.0.26
         version: 7.0.26(@babel/core@7.22.8)(react-refresh@0.14.0)(react-scripts@5.0.1)(typescript@5.1.6)(webpack@5.88.1)
@@ -627,6 +630,9 @@ importers:
       '@storybook/testing-library':
         specifier: ^0.0.14-next.2
         version: 0.0.14-next.2
+      '@storybook/theming':
+        specifier: ^7.0.26
+        version: 7.0.26(react-dom@18.2.0)(react@18.2.0)
       '@tabler/icons-react':
         specifier: ^2.24.0
         version: 2.24.0(react@18.2.0)

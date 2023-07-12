@@ -8,7 +8,7 @@ import { Meta } from "@storybook/react";
  * Renders [FHIR data types](https://hl7.org/fhir/datatypes.html) as inputs.
  */
 const meta = {
-  title: "FhirInput",
+  title: "Inputs/FhirInput",
   component: FhirInput,
   tags: ["autodocs"],
   args: {

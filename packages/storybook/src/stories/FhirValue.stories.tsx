@@ -7,7 +7,7 @@ import { Meta } from "@storybook/react";
  * Renders [FHIR data types](https://hl7.org/fhir/datatypes.html) as string using the core formatter.
  */
 const meta = {
-  title: "FhirValue",
+  title: "Data Display/FhirValue",
   component: FhirValue,
   tags: ["autodocs"],
   argTypes: {
