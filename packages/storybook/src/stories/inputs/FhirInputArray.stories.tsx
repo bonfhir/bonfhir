@@ -2,6 +2,7 @@ import { useFhirForm } from "@bonfhir/ui-mantine/r5";
 import { FhirInput, FhirInputArray } from "@bonfhir/ui/r5";
 import { Box, Button, Group, Stack } from "@mantine/core";
 import { Meta } from "@storybook/react";
+import { buildArgs } from "../helpers.js";
 
 /**
  * Renders FHIR arrays as inputs, allowing management or repeatition.
@@ -40,29 +41,6 @@ const meta = {
 } satisfies Meta<typeof FhirInputArray>;
 
 export default meta;
-
-function buildArgs(props: any): any {
-  const result: Record<string, any> = {};
-
-  for (const key in props) {
-    const value = props[key];
-    const keys = key.split(".");
-
-    let currentObj = result;
-    for (let i = 0; i < keys.length; i++) {
-      const currentKey = keys[i];
-      if (!currentKey) continue;
-      if (!(currentKey in currentObj)) {
-        currentObj[currentKey] = {};
-      }
-      if (i === keys.length - 1) {
-        currentObj[currentKey] = value;
-      }
-      currentObj = currentObj[currentKey];
-    }
-  }
-  return result;
-}
 
 export const Default = {
   args: {

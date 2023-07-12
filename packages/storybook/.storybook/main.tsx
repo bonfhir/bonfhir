@@ -31,5 +31,16 @@ const config: StorybookConfig = {
     ${head}
     <link rel="shortcut icon" href="/favicon.ico">
   `,
+  webpackFinal: async (config) => {
+    config.resolve = {
+      ...config.resolve,
+      extensionAlias: {
+        ...config.resolve?.extensionAlias,
+        ".js": [".ts", ".js"],
+        ".mjs": [".mts", ".mjs"],
+      },
+    };
+    return config;
+  },
 };
 export default config;
