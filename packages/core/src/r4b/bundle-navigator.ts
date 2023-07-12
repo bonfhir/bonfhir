@@ -69,7 +69,10 @@ export type ResolvableReference<TTargetResource extends Resource = Resource> =
  * and with revIncluded method added at the root.
  */
 export type WithResolvableReferences<T> = {
-  [K in keyof T]: T[K] extends Array<Resource> | undefined
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  [K in keyof T]: T[K] extends Function
+    ? T[K]
+    : T[K] extends Array<Resource> | undefined
     ? Array<Resource> | undefined
     : T[K] extends Reference<infer TTargetResource>
     ? ResolvableReference<TTargetResource>
@@ -91,7 +94,10 @@ export type WithResolvableReferences<T> = {
 };
 
 export type RecursiveResolvableReferences<T> = {
-  [K in keyof T]: T[K] extends Array<Resource> | undefined
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  [K in keyof T]: T[K] extends Function
+    ? T[K]
+    : T[K] extends Array<Resource> | undefined
     ? Array<Resource> | undefined
     : T[K] extends Reference<infer TTargetResource>
     ? ResolvableReference<TTargetResource>
