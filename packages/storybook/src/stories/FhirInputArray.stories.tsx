@@ -87,7 +87,6 @@ export const Default = {
               {({ index }) => (
                 <FhirInput
                   type="string"
-                  label="Input Label"
                   {...form.getInputProps(`value.${index}`)}
                 />
               )}

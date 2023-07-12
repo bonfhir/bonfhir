@@ -51,32 +51,32 @@ export function MantineFhirInputArray(
           </Grid.Col>
           <Grid.Col span="content">
             <Group noWrap spacing="xs">
-              {index >= max || (props.canAdd && !props.canAdd(value, index)) ? (
-                // TODO: Better placeholder
-                <svg width="24" height="24"></svg>
-              ) : (
-                <ActionIcon
-                  variant="outline"
-                  color="primary"
-                  onClick={() => props.onAdd?.(index)}
-                  {...props.rendererProps?.actionIconAdd}
-                >
-                  {props.rendererProps?.iconAdd ?? <IconPlus />}
-                </ActionIcon>
-              )}
-              {index < min ? (
-                // TODO: Better placeholder
-                <svg width="24" height="24"></svg>
-              ) : (
-                <ActionIcon
-                  variant="subtle"
-                  color="red"
-                  onClick={() => props.onRemove?.(index)}
-                  {...props.rendererProps?.actionRemove}
-                >
-                  {props.rendererProps?.iconRemove ?? <IconMinus />}
-                </ActionIcon>
-              )}
+              <ActionIcon
+                variant="outline"
+                color="primary"
+                onClick={() => props.onAdd?.(index)}
+                sx={{
+                  visibility:
+                    index >= max ||
+                    (props.canAdd && !props.canAdd(value, index))
+                      ? "hidden"
+                      : "visible",
+                }}
+                {...props.rendererProps?.actionIconAdd}
+              >
+                {props.rendererProps?.iconAdd ?? <IconPlus />}
+              </ActionIcon>
+              <ActionIcon
+                variant="subtle"
+                color="red"
+                onClick={() => props.onRemove?.(index)}
+                sx={{
+                  visibility: index < min ? "hidden" : "visible",
+                }}
+                {...props.rendererProps?.actionRemove}
+              >
+                {props.rendererProps?.iconRemove ?? <IconMinus />}
+              </ActionIcon>
             </Group>
           </Grid.Col>
         </Grid>
