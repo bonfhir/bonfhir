@@ -1,5 +1,13 @@
 # @bonfhir/core
 
+## 2.6.3
+
+### Patch Changes
+
+- [`736f659`](https://github.com/bonfhir/bonfhir2/commit/736f6599e8ed28b1264923f8e7222aec24d79dd4) Thanks [@julienblin](https://github.com/julienblin)! - Fix missing RatioRange formatter
+
+- [`402b786`](https://github.com/bonfhir/bonfhir2/commit/402b786446ecca8876a7ed08e736988cf2fa2317) Thanks [@julienblin](https://github.com/julienblin)! - Fix `RecursiveResolvableReferences` signature to allow functions to work.
+
 ## 2.6.2
 
 ### Patch Changes

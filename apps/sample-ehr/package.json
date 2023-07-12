@@ -10,7 +10,7 @@
     "build": "next build"
   },
   "dependencies": {
-    "@bonfhir/core": "^2.6.2",
+    "@bonfhir/core": "^2.6.3",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
     "@bonfhir/next": "^2.1.1",
@@ -18,8 +18,8 @@
     "@bonfhir/query": "^2.1.1",
     "@bonfhir/subscriptions": "^2.1.1",
     "@bonfhir/typescript-config": "workspace:*",
-    "@bonfhir/ui": "^2.2.0",
-    "@bonfhir/ui-mantine": "^2.2.0",
+    "@bonfhir/ui": "^2.2.1",
+    "@bonfhir/ui-mantine": "^2.2.1",
     "@emotion/react": "^11.11.0",
     "@emotion/server": "^11.11.0",
     "@mantine/core": "^6.0.16",
