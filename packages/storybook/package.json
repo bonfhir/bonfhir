@@ -3,9 +3,9 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "build": "storybook build",
+    "build": "storybook build -o dist",
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
-    "clean": "rimraf storybook-static",
+    "clean": "rimraf dist",
     "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
     "watch": "storybook dev -p 6006"
   },
