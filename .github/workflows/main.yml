@@ -65,5 +65,7 @@ jobs:
           repository-name: bonfhir/storybook-pages
           branch: main
           clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.STORYBOOK_PUBLISH_TOKEN }}
+          git-config-name: gh-actions
+          git-config-email: actions@github.com
 
