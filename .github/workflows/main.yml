@@ -3,6 +3,8 @@ name: BonFHIR CI
 on:
   push:
     branches: [main]
+permissions: 
+  contents: write
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -63,5 +65,5 @@ jobs:
           repository-name: bonfhir/storybook-pages
           branch: main
           clean: true
-          token: ${{ secrets.STORYBOOK_PUBLISH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
