@@ -98,7 +98,7 @@ export const mockClient = {
 
     return undefined;
   },
-  searchOne(type: any, parameters: any) {
+  searchOne(type: any) {
     if (type === "Questionnaire") {
       return bundleNavigator({
         resourceType: "Bundle",
