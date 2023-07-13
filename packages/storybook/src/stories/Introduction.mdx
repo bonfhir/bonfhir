@@ -3,3 +3,15 @@ import { Meta } from "@storybook/blocks";
 <Meta title="Introduction" />
 
 # BonFHIR UI Components
+
+This Storybook illustrates BonFHIR UI component library.
+At the moment, it only render controls using the `ui-mantine` package that leverages the [Mantine Component Library](https://mantine.dev/).
+
+Please take some time to explorer the available components, organized within the following categories:
+
+- Data Display: components that show FHIR [data types](https://hl7.org/fhir/datatypes.html) and [resources](https://hl7.org/fhir/resourcelist.html) in a read-only fashion
+- Feedback: components that handle anything related to the loading / error / display / refresh lifecycle of screens
+- Inputs: components dedicated to creating, updating and saving FHIR [data types](https://hl7.org/fhir/datatypes.html) and [resources](https://hl7.org/fhir/resourcelist.html)
+- Navigation: components dedicated to the navigation around the app
+
+Any interaction with a FHIR data source has been mocked for the purpose of focusing on the components themselves, and not the actual data.
