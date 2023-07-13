@@ -98,6 +98,82 @@ export const mockClient = {
 
     return undefined;
   },
+  searchOne(type: any, parameters: any) {
+    if (type === "Questionnaire") {
+      return bundleNavigator({
+        resourceType: "Bundle",
+        type: "searchset",
+        entry: [
+          {
+            resource: {
+              resourceType: "Questionnaire",
+              status: "active",
+              id: "b95e560e-04b2-47e0-b63e-fad36e873376",
+              meta: {
+                versionId: "b3500c2a-72b5-41f5-b34e-21baa99b94a5",
+                lastUpdated: "2023-06-29T15:03:59.732Z",
+              },
+              item: [
+                {
+                  id: "id-1",
+                  linkId: "generalInformation",
+                  type: "group",
+                  text: "General information",
+                  item: [
+                    {
+                      id: "id-2",
+                      linkId: "firstName",
+                      type: "string",
+                      text: "First Name",
+                    },
+                    {
+                      id: "id-3",
+                      linkId: "lastName",
+                      type: "string",
+                      text: "Last Name",
+                      required: true,
+                    },
+                    {
+                      id: "id-5",
+                      linkId: "deceased",
+                      type: "boolean",
+                      text: "Deceased?",
+                      extension: [
+                        {
+                          url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                          valueString: '{ "mode": "switch" }',
+                        },
+                      ],
+                    },
+                    {
+                      id: "id-6",
+                      linkId: "gender",
+                      type: "choice",
+                      text: "Gender",
+                      answerValueSet:
+                        "http://hl7.org/fhir/ValueSet/administrative-gender",
+                    },
+                  ],
+                },
+              ],
+              url: "http://acme.org/sample-questionnaire",
+              title: "Patient Information",
+            },
+          },
+        ],
+        link: [
+          {
+            relation: "self",
+            url: "http://localhost:8103/fhir/R4/Questionnaire?_count=20&status=active&url=http%3A%2F%2Facme.org%2Fsample-questionnaire",
+          },
+          {
+            relation: "first",
+            url: "http://localhost:8103/fhir/R4/Questionnaire?_count=20&_offset=0&status=active&url=http%3A%2F%2Facme.org%2Fsample-questionnaire",
+          },
+        ],
+      }).searchMatchOne();
+    }
+  },
   execute(operation: any) {
     if (operation.operation === "$expand") {
       if (
@@ -273,6 +349,41 @@ export const mockClient = {
                 system: "http://hl7.org/fhir/identifier-use",
                 code: "usual",
                 display: "Usual",
+              },
+            ],
+          },
+        };
+      }
+
+      if (
+        operation.parameters?.url ===
+        "http://hl7.org/fhir/ValueSet/administrative-gender"
+      ) {
+        return {
+          resourceType: "ValueSet",
+          url: "http://hl7.org/fhir/ValueSet/administrative-gender",
+          expansion: {
+            offset: 0,
+            contains: [
+              {
+                system: "http://hl7.org/fhir/administrative-gender",
+                code: "female",
+                display: "Female",
+              },
+              {
+                system: "http://hl7.org/fhir/administrative-gender",
+                code: "male",
+                display: "Male",
+              },
+              {
+                system: "http://hl7.org/fhir/administrative-gender",
+                code: "other",
+                display: "Other",
+              },
+              {
+                system: "http://hl7.org/fhir/administrative-gender",
+                code: "unknown",
+                display: "Unknown",
               },
             ],
           },

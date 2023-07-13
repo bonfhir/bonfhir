@@ -1,5 +1,5 @@
 import { FhirError } from "@bonfhir/ui/r5";
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { buildArgs } from "../helpers.js";
 
 /**
@@ -41,7 +41,9 @@ const meta = {
 
 export default meta;
 
-export const Default = {
+type Story = StoryObj<typeof FhirError>;
+
+export const Default: Story = {
   args: {
     error: "This is an error message.",
   },

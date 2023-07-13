@@ -11,6 +11,8 @@ export interface FhirPaginationProps<TRendererProps = any> {
 
   data?: BundleNavigator | null | undefined;
 
+  total?: number | null | undefined;
+
   /**
    * The text to display. Defaults to "{{pageFirstEntry}}-{{pageLastEntry}} of {{total}}"
    * Available tokens:
@@ -31,7 +33,7 @@ export function FhirPagination<TRendererProps = any>(
   const { applyDefaultProps, formatter, render } = useFhirUIContext();
   props = applyDefaultProps("FhirPagination", props);
 
-  const total = props.data?.total ?? 0;
+  const total = props.total == undefined ? props.data?.total ?? 0 : props.total;
   const totalPages = Math.ceil(total / props.pageSize);
 
   const finalTextTemplate =
@@ -55,10 +57,10 @@ export function FhirPagination<TRendererProps = any>(
   });
 
   return render<FhirPaginationRendererProps>("FhirPagination", {
+    ...props,
     renderedTextTemplate,
     total,
     totalPages,
-    ...props,
   });
 }
 
