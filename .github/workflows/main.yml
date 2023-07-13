@@ -61,7 +61,7 @@ jobs:
         with:
           folder: packages/storybook/dist
           repository-name: bonfhir/storybook-pages
-          branch: main
+          branch: gh-pages
           clean: true
           token: ${{ secrets.STORYBOOK_PUBLISH_TOKEN }}
           git-config-name: gh-actions
