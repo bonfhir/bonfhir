@@ -55,3 +55,13 @@ jobs:
           publish: pnpm publish-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Storybook
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: packages/storybook/dist
+          repository-name: bonfhir/storybook-pages
+          branch: main
+          clean: true
+          token: ${{ secrets.STORYBOOK_PUBLISH_TOKEN }}
+
