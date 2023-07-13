@@ -60,7 +60,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: packages/storybook/dist
-          repository-name: bonfhir/storybook-pages
+          repository-name: bonfhir/storybook
           branch: gh-pages
           clean: true
           token: ${{ secrets.STORYBOOK_PUBLISH_TOKEN }}
