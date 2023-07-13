@@ -3,8 +3,6 @@ name: BonFHIR CI
 on:
   push:
     branches: [main]
-permissions: 
-  contents: write
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
