@@ -2,9 +2,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   QuestionnaireItem,
+  QuestionnaireItemAnswerOption,
   QuestionnaireItemType,
   QuestionnaireResponse,
   QuestionnaireResponseItem,
+  ValueSetExpansionContains,
   build,
   canonical,
 } from "@bonfhir/core/r4b";
@@ -242,9 +244,11 @@ function MantineQuestionnaireItemRenderer({
       return (
         <FhirInput
           type="Coding"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          source={item.answerValueSet!}
+          source={
+            item.answerOption?.length
+              ? convertAnswerOptions(item.answerOption)
+              : item.answerValueSet || []
+          }
           label={item.text}
           required={item.required}
           disabled={item.readOnly}
@@ -353,4 +357,13 @@ function buildInitialValues(
     }
   }
   return result;
+}
+
+function convertAnswerOptions(
+  answerOption: QuestionnaireItemAnswerOption[],
+): ValueSetExpansionContains[] {
+  return answerOption.map((option) => ({
+    code: option.valueCoding?.code,
+    display: option.valueCoding?.display,
+  }));
 }
