@@ -7,7 +7,7 @@ import {
   TitleDivider,
 } from "@/components";
 import { CustomPatient } from "@/fhir/patient";
-import { Patient, PatientSortOrder } from "@bonfhir/core/r4b";
+import { PatientSortOrder } from "@bonfhir/core/r4b";
 import { useFhirSearchControllerNext } from "@bonfhir/next/r4b/client";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
@@ -182,7 +182,7 @@ function PatientsList(): ReactElement {
       <Grid.Col span="auto">
         <Paper mih="100%">
           <FhirQueryLoader query={patientsQuery}>
-            <FhirTable<Patient, MantineFhirTableProps>
+            <FhirTable<CustomPatient, MantineFhirTableProps>
               {...searchController}
               {...patientsQuery}
               onRowNavigate={(patient) => `/patients/${patient.id}`}
@@ -206,13 +206,11 @@ function PatientsList(): ReactElement {
                   render: (row) => (
                     <FhirValue<MantineFhirValueProps>
                       type="string"
-                      value={row.managingOrganization?.included()?.name}
+                      value={row.organization()?.name}
                       options={{ default: "Unassigned" }}
                       rendererProps={{
                         text: {
-                          c: row.managingOrganization?.included()
-                            ? undefined
-                            : "dimmed",
+                          c: row.organization() ? undefined : "dimmed",
                         },
                       }}
                     />

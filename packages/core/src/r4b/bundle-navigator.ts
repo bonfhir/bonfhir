@@ -568,3 +568,20 @@ function withResolvableProxy<T extends Resource>(
     },
   }) as unknown as WithResolvableReferences<T>;
 }
+
+/**
+ * Ensure and convert a resource as being a {@link RecursiveResolvableReferences}.
+ *
+ * This can be used to typecast a resource that is known to be included in a bundle, and was retrieved from a bundle navigator.
+ */
+export function asResolvableReferences<T extends Resource>(
+  resource: T,
+): RecursiveResolvableReferences<Retrieved<T>> {
+  if (!("revIncluded" in resource)) {
+    throw new Error(
+      `Resource ${resource.resourceType} is not a resolvable reference. You need to search for it first, and use the _include or _revinclude parameters in your search query.`,
+    );
+  }
+
+  return resource as any;
+}
