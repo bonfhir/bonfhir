@@ -223,7 +223,7 @@ export interface FhirClient {
    */
   batch(): BundleExecutor;
   batch(
-    body: Bundle & { type: "batch" },
+    body: Bundle,
     options?: GeneralParameters | null | undefined,
   ): Promise<Bundle>;
 
@@ -234,7 +234,7 @@ export interface FhirClient {
    */
   transaction(): BundleExecutor;
   transaction(
-    body: Bundle & { type: "transaction" },
+    body: Bundle,
     options?: GeneralParameters | null | undefined,
   ): Promise<Bundle>;
 

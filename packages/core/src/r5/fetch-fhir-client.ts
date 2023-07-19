@@ -473,11 +473,11 @@ export class FetchFhirClient implements FhirClient {
 
   public batch(): BundleExecutor;
   public batch(
-    body: Bundle & { type: "batch" },
+    body: Bundle,
     options?: GeneralParameters | null | undefined,
   ): Promise<Bundle>;
   public batch(
-    body?: Bundle & { type: "batch" },
+    body?: Bundle,
     options?: GeneralParameters | null | undefined,
   ): Promise<Bundle> | BundleExecutor {
     if (!body) {
@@ -498,11 +498,11 @@ export class FetchFhirClient implements FhirClient {
 
   public transaction(): BundleExecutor;
   public transaction(
-    body: Bundle & { type: "transaction" },
+    body: Bundle,
     options?: GeneralParameters | null | undefined,
   ): Promise<Bundle>;
   public transaction(
-    body?: Bundle & { type: "transaction" },
+    body?: Bundle,
     options?: GeneralParameters | null | undefined,
   ): Promise<Bundle> | BundleExecutor {
     if (!body) {
