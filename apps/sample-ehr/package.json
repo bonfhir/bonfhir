@@ -10,7 +10,7 @@
     "build": "next build"
   },
   "dependencies": {
-    "@bonfhir/core": "^2.6.3",
+    "@bonfhir/core": "^2.7.0",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
     "@bonfhir/next": "^2.1.1",

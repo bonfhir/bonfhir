@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.7.0
+
+### Minor Changes
+
+- [`9e3bea5`](https://github.com/bonfhir/bonfhir2/commit/9e3bea5cfdc6e77b4880e736cdf066c2c6b3d4e6) Thanks [@julienblin](https://github.com/julienblin)! - Add `asResolvableReferences` helper function
+
 ## 2.6.3
 
 ### Patch Changes
