@@ -1,6 +1,6 @@
-import { parseFhirDateTime } from "../date-time-helpers.js";
-import { ValueFormatter } from "../formatters.js";
-import { formatRelativeDateTime } from "../lang-utils.js";
+import { parseFhirDateTime } from "../date-time-helpers";
+import { ValueFormatter } from "../formatters";
+import { formatRelativeDateTime } from "../lang-utils";
 
 /**
  * A date, or partial date (e.g. just year or year + month) as used in human communication.

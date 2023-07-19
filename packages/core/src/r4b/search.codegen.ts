@@ -2,9 +2,9 @@
  * Typed search builders for r4b/4.3.0
  */
 
-import { AnyResourceType } from "./fhir-types.codegen.js";
-import { DropFirst } from "./lang-utils.js";
-import { FhirSearchBuilder } from "./search.js";
+import { AnyResourceType } from "./fhir-types.codegen";
+import { DropFirst } from "./lang-utils";
+import { FhirSearchBuilder } from "./search";
 
 /**
  * Return a search query builder, whether for a specific resource or a generic one.

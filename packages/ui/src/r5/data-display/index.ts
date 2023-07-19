@@ -1,2 +1,2 @@
-export * from "./fhir-table.js";
-export * from "./fhir-value.js";
+export * from "./fhir-table";
+export * from "./fhir-value";

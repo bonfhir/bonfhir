@@ -16,7 +16,7 @@ import {
 import { UseFormReturnType } from "@mantine/form";
 import { UseMutationResult, UseQueryResult } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { UseFhirFormReturnType, useFhirForm } from "./use-fhir-form.js";
+import { UseFhirFormReturnType, useFhirForm } from "./use-fhir-form";
 
 export interface UseFhirResourceFormArgs<
   TResourceType extends AnyResourceTypeOrCustomResource,

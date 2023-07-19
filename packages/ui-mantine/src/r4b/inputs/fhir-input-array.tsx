@@ -30,7 +30,7 @@ export function MantineFhirInputArray(
       label={props.label}
       description={props.description}
       error={props.error}
-      required={props.required}
+      required={Boolean(props.required)}
       sx={{ width: "100%" }}
       {...props.rendererProps?.wrapper}
     >

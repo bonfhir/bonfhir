@@ -10,8 +10,8 @@ import {
 } from "@bonfhir/core/r5";
 import { useFhirRead, useFhirSearch } from "@bonfhir/query/r5";
 import { ReactElement, ReactNode, useState } from "react";
-import { useFhirUIContext } from "../../context.js";
-import { FhirInputCommonProps } from "./common.js";
+import { useFhirUIContext } from "../../context";
+import { FhirInputCommonProps } from "./common";
 
 export type FhirInputResourceProps<
   TRendererProps = any,

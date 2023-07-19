@@ -1,6 +1,6 @@
-import { Period } from "../fhir-types.codegen.js";
-import { ValueFormatter, withValueFormatter } from "../formatters.js";
-import { DatetimeFormatterOptions, dateTimeFormatter } from "./date-time.js";
+import { Period } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { DatetimeFormatterOptions, dateTimeFormatter } from "./date-time";
 
 export type PeriodFormatterOptions = DatetimeFormatterOptions;
 

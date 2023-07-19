@@ -1,7 +1,7 @@
-import { Period } from "../fhir-types.codegen.js";
-import { Formatter } from "../formatters.js";
-import { dateTimeFormatter } from "./date-time.js";
-import { PeriodFormatterOptions, periodFormatter } from "./period.js";
+import { Period } from "../fhir-types.codegen";
+import { Formatter } from "../formatters";
+import { dateTimeFormatter } from "./date-time";
+import { PeriodFormatterOptions, periodFormatter } from "./period";
 
 describe("period", () => {
   const formatter = new Formatter()

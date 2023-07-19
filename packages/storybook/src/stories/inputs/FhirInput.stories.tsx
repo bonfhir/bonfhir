@@ -3,7 +3,7 @@ import { useFhirForm } from "@bonfhir/ui-mantine/r5";
 import { FhirInput } from "@bonfhir/ui/r5";
 import { Box, Button, Group, Stack } from "@mantine/core";
 import { Meta } from "@storybook/react";
-import { buildArgs } from "../helpers.js";
+import { buildArgs } from "../helpers";
 
 /**
  * Renders [FHIR data types](https://hl7.org/fhir/datatypes.html) as inputs.

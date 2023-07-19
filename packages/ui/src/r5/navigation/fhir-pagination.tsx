@@ -1,6 +1,6 @@
 import { BundleNavigator, formatWithTokens } from "@bonfhir/core/r5";
 import { ReactElement } from "react";
-import { useFhirUIContext } from "../context.js";
+import { useFhirUIContext } from "../context";
 
 export interface FhirPaginationProps<TRendererProps = any> {
   /** Starts at 1 */

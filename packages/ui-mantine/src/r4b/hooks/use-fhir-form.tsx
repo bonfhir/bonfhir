@@ -7,7 +7,7 @@ import {
   UseFormInput,
   UseFormReturnType,
   _TransformValues,
-} from "@mantine/form/lib/types.js";
+} from "@mantine/form/lib/types";
 
 export type UseFhirFormReturnType<
   Values,

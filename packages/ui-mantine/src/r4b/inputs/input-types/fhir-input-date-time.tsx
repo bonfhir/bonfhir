@@ -10,11 +10,10 @@ export function MantineFhirInputDateTime(
       label={props.label}
       description={props.description}
       error={props.error}
-      placeholder={props.placeholder}
-      required={props.required}
-      allowDeselect={!props.required}
-      disabled={props.disabled}
-      value={props.value ? new Date(props.value) : ""}
+      placeholder={props.placeholder ?? undefined}
+      required={Boolean(props.required)}
+      disabled={Boolean(props.disabled)}
+      value={props.value ? new Date(props.value) : null}
       onChange={(value: Date | undefined | null) => {
         if (!value) {
           return props.onChange?.(undefined);

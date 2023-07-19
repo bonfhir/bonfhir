@@ -2,24 +2,24 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import * as patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
 import * as patientExample from "../../fixtures/patient-example.fhir.json";
-import { build } from "./builders.js";
-import { BundleExecutor } from "./bundle-executor.js";
-import { BundleNavigator, bundleNavigator } from "./bundle-navigator.js";
-import { extendResource, extension } from "./extensions.js";
-import { FetchFhirClient } from "./fetch-fhir-client.js";
-import { FhirClient } from "./fhir-client.js";
+import { build } from "./builders";
+import { BundleExecutor } from "./bundle-executor";
+import { BundleNavigator, bundleNavigator } from "./bundle-navigator";
+import { extendResource, extension } from "./extensions";
+import { FetchFhirClient } from "./fetch-fhir-client";
+import { FhirClient } from "./fhir-client";
 import {
   Bundle,
   CapabilityStatement,
   Claim,
   Organization,
   Patient,
-} from "./fhir-types.codegen.js";
-import { uuid } from "./lang-utils.js";
+} from "./fhir-types.codegen";
+import { uuid } from "./lang-utils";
 import {
   ClaimSubmitOperation,
   ValueSetExpandOperation,
-} from "./operations.codegen.js";
+} from "./operations.codegen";
 
 const CustomPatient = extendResource("Patient", {
   /** L'age de toto. */

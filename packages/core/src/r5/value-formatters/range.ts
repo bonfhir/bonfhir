@@ -1,8 +1,8 @@
-import { Range } from "../fhir-types.codegen.js";
-import { ValueFormatter, withValueFormatter } from "../formatters.js";
-import { CodeFormatterOptions } from "./code.js";
-import { DecimalFormatterOptions, decimalFormatter } from "./decimal.js";
-import { QuantityFormatterOptions, quantityFormatter } from "./quantity.js";
+import { Range } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { CodeFormatterOptions } from "./code";
+import { DecimalFormatterOptions, decimalFormatter } from "./decimal";
+import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
 
 /**
  * A set of ordered Quantity values defined by a low and high limit.

@@ -1,4 +1,4 @@
-import { ValueFormatter } from "../formatters.js";
+import { ValueFormatter } from "../formatters";
 
 export const fhirPathFormatter: ValueFormatter<
   "http://hl7.org/fhirpath/System.String",

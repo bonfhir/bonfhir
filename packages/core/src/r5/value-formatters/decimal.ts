@@ -1,5 +1,5 @@
 import { Decimal } from "decimal.js";
-import { ValueFormatter } from "../formatters.js";
+import { ValueFormatter } from "../formatters";
 
 /**
  * Rational numbers that have a decimal representation.

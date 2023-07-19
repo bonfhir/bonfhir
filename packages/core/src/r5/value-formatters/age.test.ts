@@ -1,8 +1,8 @@
-import { Age, ValueSetExpansionContains } from "../fhir-types.codegen.js";
-import { Formatter } from "../formatters.js";
-import { AgeFormatterOptions, ageFormatter } from "./age.js";
-import { codeFormatter } from "./code.js";
-import { decimalFormatter } from "./decimal.js";
+import { Age, ValueSetExpansionContains } from "../fhir-types.codegen";
+import { Formatter } from "../formatters";
+import { AgeFormatterOptions, ageFormatter } from "./age";
+import { codeFormatter } from "./code";
+import { decimalFormatter } from "./decimal";
 
 describe("age", () => {
   const formatter = new Formatter()

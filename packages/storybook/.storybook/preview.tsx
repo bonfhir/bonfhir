@@ -3,7 +3,7 @@ import { MantineRenderer } from "@bonfhir/ui-mantine/r5";
 import { FhirUIProvider } from "@bonfhir/ui/r5";
 import { MantineProvider } from "@mantine/core";
 import type { Preview } from "@storybook/react";
-import { mockClient } from "./mock-fhir-client.js";
+import { mockClient } from "./mock-fhir-client";
 
 const preview: Preview = {
   parameters: {

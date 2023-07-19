@@ -3,9 +3,9 @@
  */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AnyDomainResource, Narrative } from "./fhir-types.codegen.js";
-import { DefaultFormatter, Formatter } from "./formatters.js";
-import { startCase } from "./lang-utils.js";
+import { AnyDomainResource, Narrative } from "./fhir-types.codegen";
+import { DefaultFormatter, Formatter } from "./formatters";
+import { startCase } from "./lang-utils";
 
 /** Attribute name, FHIR Type */
 export type NarrativeItemGenerator = [string, string];

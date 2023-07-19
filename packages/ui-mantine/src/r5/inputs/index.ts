@@ -1,3 +1,3 @@
-export * from "./fhir-input-array.js";
-export * from "./fhir-questionnaire.js";
-export * from "./input-types/index.js";
+export * from "./fhir-input-array";
+export * from "./fhir-questionnaire";
+export * from "./input-types/index";

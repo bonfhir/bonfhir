@@ -1,4 +1,4 @@
-import { ValueFormatter } from "../formatters.js";
+import { ValueFormatter } from "../formatters";
 
 export const oidFormatter: ValueFormatter<"oid", string, null | undefined> = {
   type: "oid",

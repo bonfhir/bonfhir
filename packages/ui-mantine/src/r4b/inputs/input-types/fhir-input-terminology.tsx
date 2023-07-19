@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Coding,
   ValueSetExpansionContains,
@@ -74,26 +75,27 @@ export function MantineFhirInputTerminology(
 
   if (!props.mode || props.mode === "select") {
     return (
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       <Select
         label={props.label}
         description={props.description}
         error={props.error}
-        placeholder={props.placeholder}
-        required={props.required}
-        disabled={props.disabled}
+        placeholder={props.placeholder ?? undefined}
+        required={Boolean(props.required)}
+        disabled={Boolean(props.disabled)}
         w="100%"
         rightSection={props.loading ? <Loader size="1rem" /> : null}
         clearable={!props.required}
         value={value}
         onChange={onChange}
-        data={props.data.map(
-          (element) =>
-            ({
-              value: element.code,
-              label: element.display,
-              item: element,
-            }) as MantineFhirInputTerminologyItemProps,
-        )}
+        data={
+          props.data.map((element) => ({
+            value: element.code,
+            label: element.display,
+            item: element,
+          })) as any
+        }
         {...props.rendererProps}
       />
     );
@@ -101,14 +103,15 @@ export function MantineFhirInputTerminology(
 
   if (props.mode === "radio") {
     return (
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       <Radio.Group
         label={props.label}
         description={props.description}
         error={props.error}
-        placeholder={props.placeholder}
-        required={props.required}
-        disabled={props.disabled}
-        value={value}
+        placeholder={props.placeholder ?? undefined}
+        required={Boolean(props.required)}
+        value={value as any}
         onChange={onChange}
         {...props.rendererProps}
       >
@@ -128,23 +131,24 @@ export function MantineFhirInputTerminology(
   if (props.mode === "segmented") {
     return (
       <SegmentedControl
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         label={props.label}
         description={props.description}
         error={props.error}
-        placeholder={props.placeholder}
-        required={props.required}
-        disabled={props.disabled}
+        placeholder={props.placeholder ?? undefined}
+        required={Boolean(props.required)}
+        disabled={Boolean(props.disabled)}
         fullWidth
-        value={value}
+        value={value as any}
         onChange={onChange}
-        data={props.data.map(
-          (element) =>
-            ({
-              value: element.code,
-              label: element.display,
-              item: element,
-            }) as MantineFhirInputTerminologyItemProps,
-        )}
+        data={
+          props.data.map((element) => ({
+            value: element.code,
+            label: element.display,
+            item: element,
+          })) as any
+        }
         {...props.rendererProps}
       />
     );

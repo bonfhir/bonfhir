@@ -1,4 +1,4 @@
-import { elementMerger } from "./element-merger.js";
+import { elementMerger } from "./element-merger";
 
 /**
  * Default strategy for merging arrays.

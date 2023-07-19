@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { BundleExecutor } from "./bundle-executor.js";
+import { BundleExecutor } from "./bundle-executor";
 import {
   bundleNavigator,
   BundleNavigator,
   WithResolvableReferences,
-} from "./bundle-navigator.js";
+} from "./bundle-navigator";
 import {
   AnyResourceTypeOrCustomResource,
   CustomResourceClass,
   ResourceOf,
   resourceTypeOf,
   ResourceTypeOf,
-} from "./extensions.js";
+} from "./extensions";
 import {
   ConcurrencyParameters,
   ConditionalSearchParameters,
@@ -28,7 +28,7 @@ import {
   normalizeSearchParameters,
   searchAllPages,
   searchByPage,
-} from "./fhir-client.js";
+} from "./fhir-client";
 import {
   AnyResource,
   AnyResourceType,
@@ -37,14 +37,14 @@ import {
   ExtractResource,
   OperationOutcome,
   Retrieved,
-} from "./fhir-types.codegen.js";
-import { urlSafeConcat } from "./lang-utils.js";
-import { Merger } from "./mergers/index.js";
+} from "./fhir-types.codegen";
+import { urlSafeConcat } from "./lang-utils";
+import { Merger } from "./mergers/index";
 import {
   ExtractOperationResultType,
   Operation,
   OperationParameters,
-} from "./operations.codegen.js";
+} from "./operations.codegen";
 
 /**
  * Allows to set the `Authorization` header to a static value.

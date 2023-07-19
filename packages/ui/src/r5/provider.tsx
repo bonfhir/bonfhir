@@ -1,8 +1,8 @@
 import { Formatter } from "@bonfhir/core/r5";
 import { PropsWithChildren, createElement, useMemo } from "react";
-import { FhirUIContext, OnNavigateArgs } from "./context.js";
-import { FhirUIDefaultProps } from "./default-props.js";
-import { FhirUIRenderer } from "./renderer.js";
+import { FhirUIContext, OnNavigateArgs } from "./context";
+import { FhirUIDefaultProps } from "./default-props";
+import { FhirUIRenderer } from "./renderer";
 
 export type FhirUIProviderProps = PropsWithChildren<{
   formatter?: Formatter | null | undefined;

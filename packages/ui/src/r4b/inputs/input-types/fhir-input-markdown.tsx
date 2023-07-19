@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import { useFhirUIContext } from "../../context.js";
-import { FhirInputCommonProps } from "./common.js";
+import { useFhirUIContext } from "../../context";
+import { FhirInputCommonProps } from "./common";
 
 export interface FhirInputMarkdownProps<TRendererProps = any>
   extends FhirInputCommonProps {

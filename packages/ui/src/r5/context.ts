@@ -1,7 +1,7 @@
 import { DefaultFormatter } from "@bonfhir/core/r5";
 import { ReactElement, createContext, useContext } from "react";
-import { FhirUIDefaultProps } from "./default-props.js";
-import { FhirUIRenderer } from "./renderer.js";
+import { FhirUIDefaultProps } from "./default-props";
+import { FhirUIRenderer } from "./renderer";
 
 export interface FhirUIContext {
   formatter: DefaultFormatter;

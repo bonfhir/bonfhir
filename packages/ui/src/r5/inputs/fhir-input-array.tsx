@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from "react";
-import { useFhirUIContext } from "../context.js";
+import { useFhirUIContext } from "../context";
 
 export interface FhirInputArrayHelper<TValue> {
   arrayValue: TValue[] | null | undefined;

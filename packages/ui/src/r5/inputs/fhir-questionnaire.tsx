@@ -8,7 +8,7 @@ import {
 import { useFhirSearchOne } from "@bonfhir/query/r5";
 import { UseQueryResult } from "@tanstack/react-query";
 import { ReactElement } from "react";
-import { useFhirUIContext } from "../context.js";
+import { useFhirUIContext } from "../context";
 
 export interface FhirQuestionnaireProps<TRendererProps = any> {
   /** Either the Questionnaire URL to use, or the Questionnaire itself. */

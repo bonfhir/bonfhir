@@ -1,6 +1,6 @@
 import { FhirQueryLoader } from "@bonfhir/ui/r5";
 import { Meta, StoryObj } from "@storybook/react";
-import { buildArgs } from "../helpers.js";
+import { buildArgs } from "../helpers";
 
 /**
  * Renders a loading/error/loaded state for a FHIR query.

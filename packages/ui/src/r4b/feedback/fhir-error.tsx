@@ -1,6 +1,6 @@
 import { asError } from "@bonfhir/core/r4b";
 import { ReactElement } from "react";
-import { useFhirUIContext } from "../context.js";
+import { useFhirUIContext } from "../context";
 
 export interface FhirErrorProps<TRendererProps = any> {
   error?: unknown;

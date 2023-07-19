@@ -5,7 +5,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { PropsWithChildren, useMemo } from "react";
-import { DEFAULT_FHIR_CLIENT, FhirQueryContext } from "./context.js";
+import { DEFAULT_FHIR_CLIENT, FhirQueryContext } from "./context";
 
 export type FhirQueryProviderProps = PropsWithChildren<
   {

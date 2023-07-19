@@ -2,7 +2,7 @@
 import { codeableConcept, now, today } from "@bonfhir/core/r5";
 import { FhirValue } from "@bonfhir/ui/r5";
 import { Meta } from "@storybook/react";
-import { buildArgs } from "../helpers.js";
+import { buildArgs } from "../helpers";
 
 /**
  * Renders [FHIR data types](https://hl7.org/fhir/datatypes.html) as string using the core formatter.

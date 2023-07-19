@@ -32,7 +32,7 @@ import {
   StructureMap,
   UsageContext,
   ValueSet,
-} from "./fhir-types.codegen.js";
+} from "./fhir-types.codegen";
 
 export interface OperationParameters {
   operation: string | null | undefined;

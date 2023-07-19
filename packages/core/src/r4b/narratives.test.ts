@@ -3,8 +3,8 @@ import medication from "../../fixtures/medication-example.fhir.json";
 import organization from "../../fixtures/organization-example.fhir.json";
 import patient from "../../fixtures/patient-example.fhir.json";
 import riskAssessment from "../../fixtures/risk-assessment-example.fhir.json";
-import { AnyDomainResource } from "./fhir-types.codegen.js";
-import { narrative } from "./narratives.codegen.js";
+import { AnyDomainResource } from "./fhir-types.codegen";
+import { narrative } from "./narratives.codegen";
 
 describe("narrative", () => {
   it.each(<Array<AnyDomainResource>>[

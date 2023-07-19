@@ -1,5 +1,5 @@
-import { Money } from "../fhir-types.codegen.js";
-import { ValueFormatter } from "../formatters.js";
+import { Money } from "../fhir-types.codegen";
+import { ValueFormatter } from "../formatters";
 
 /**
  * An amount of currency.

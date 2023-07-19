@@ -1,5 +1,5 @@
-import { Formatter } from "../formatters.js";
-import { CodeFormatterOptions, codeFormatter } from "./code.js";
+import { Formatter } from "../formatters";
+import { CodeFormatterOptions, codeFormatter } from "./code";
 
 describe("code", () => {
   const formatter = new Formatter().register(codeFormatter);

@@ -9,9 +9,9 @@ import {
 import { useFhirExecute } from "@bonfhir/query/r5";
 import { UseQueryResult } from "@tanstack/react-query";
 import { ReactElement } from "react";
-import { useFhirUIContext } from "../../context.js";
-import { FhirError } from "../../index.js";
-import { FhirInputCommonProps } from "./common.js";
+import { useFhirUIContext } from "../../context";
+import { FhirError } from "../../index";
+import { FhirInputCommonProps } from "./common";
 
 export type FhirInputTerminologyProps<TRendererProps = any> =
   FhirInputCommonProps & {

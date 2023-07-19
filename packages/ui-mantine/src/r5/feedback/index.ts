@@ -1,2 +1,2 @@
-export * from "./fhir-error.js";
-export * from "./fhir-query-loader.js";
+export * from "./fhir-error";
+export * from "./fhir-query-loader";

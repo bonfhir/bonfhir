@@ -1,6 +1,6 @@
-import { Money } from "../fhir-types.codegen.js";
-import { Formatter } from "../formatters.js";
-import { MoneyFormatterOptions, moneyFormatter } from "./money.js";
+import { Money } from "../fhir-types.codegen";
+import { Formatter } from "../formatters";
+import { MoneyFormatterOptions, moneyFormatter } from "./money";
 
 describe("money", () => {
   const formatter = new Formatter().register(moneyFormatter);

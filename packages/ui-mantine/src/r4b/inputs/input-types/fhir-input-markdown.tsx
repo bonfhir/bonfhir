@@ -6,9 +6,7 @@ import {
   RichTextEditorProps,
   RichTextEditorToolbarProps,
 } from "@mantine/tiptap";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { Editor, useEditor } from "@tiptap/react";
+import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { ReactElement, ReactNode, useEffect } from "react";
 import { Markdown } from "tiptap-markdown";
@@ -16,7 +14,7 @@ import { Markdown } from "tiptap-markdown";
 export function MantineFhirInputMarkdown(
   props: FhirInputMarkdownRendererProps<MantineFhirInputMarkdownProps>,
 ): ReactElement | null {
-  const editor: Editor = useEditor({
+  const editor = useEditor({
     extensions: [
       StarterKit,
       Link,
@@ -24,7 +22,7 @@ export function MantineFhirInputMarkdown(
         html: false,
       }),
     ],
-    onUpdate: ({ editor }: { editor: Editor }) => {
+    onUpdate: ({ editor }) => {
       console.log(
         "onChange",
         editor.storage.markdown.getMarkdown() || undefined,
@@ -47,7 +45,7 @@ export function MantineFhirInputMarkdown(
       label={props.label}
       description={props.description}
       error={props.error}
-      required={props.required}
+      required={Boolean(props.required)}
       {...props.rendererProps?.wrapper}
     >
       <RichTextEditor editor={editor} {...props.rendererProps?.richTextEditor}>

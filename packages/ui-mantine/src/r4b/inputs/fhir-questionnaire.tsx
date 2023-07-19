@@ -29,7 +29,7 @@ import {
 } from "@mantine/core";
 import { IconAlertCircle } from "@tabler/icons-react";
 import { ReactElement, ReactNode, useEffect } from "react";
-import { UseFhirFormReturnType, useFhirForm } from "../hooks/use-fhir-form.js";
+import { UseFhirFormReturnType, useFhirForm } from "../hooks/use-fhir-form";
 
 export function MantineFhirQuestionnaire(
   props: FhirQuestionnaireRendererProps<MantineFhirQuestionnaireProps>,

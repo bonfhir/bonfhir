@@ -1,13 +1,13 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable unicorn/no-useless-undefined */
-import { duration } from "./date-time-helpers.js";
+import { duration } from "./date-time-helpers";
 import {
   FhirSearchBuilder,
   Prefix,
   StringModifier,
   TokenModifier,
   UriModifier,
-} from "./search.js";
+} from "./search";
 
 describe("FhirSearchBuilder", () => {
   it("build empty", () => {

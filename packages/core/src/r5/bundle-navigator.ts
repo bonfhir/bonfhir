@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CustomResourceClass } from "./extensions.js";
+import { CustomResourceClass } from "./extensions";
 import {
   AnyResource,
   AnyResourceType,
@@ -14,8 +14,8 @@ import {
   Resource,
   Retrieved,
   WithRequired,
-} from "./fhir-types.codegen.js";
-import { asArray, uniqBy } from "./lang-utils.js";
+} from "./fhir-types.codegen";
+import { asArray, uniqBy } from "./lang-utils";
 
 /**
  * Allows easy navigation inside a mixed bundle, principally returned by search operations.

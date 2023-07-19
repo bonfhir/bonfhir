@@ -1,5 +1,5 @@
-import { ResourceJSONPatchBuilder, fhirJSONPatch } from "./patch.codegen.js";
-import { FhirJSONPatchBuilder, JSONPatchBody } from "./patch.js";
+import { FhirJSONPatchBuilder, JSONPatchBody } from "./patch";
+import { ResourceJSONPatchBuilder, fhirJSONPatch } from "./patch.codegen";
 
 describe("patch", () => {
   it.each(<

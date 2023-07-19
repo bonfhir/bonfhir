@@ -30,7 +30,7 @@ export function MantineFhirInputHumanName(
       label={props.label}
       description={props.description}
       error={props.error}
-      required={props.required}
+      required={Boolean(props.required)}
       {...props.rendererProps?.wrapper}
     >
       <Group spacing="xs" noWrap {...props.rendererProps?.group}>

@@ -1,1 +1,1 @@
-export * from "./__fhir-subscription.js";
+export * from "./__fhir-subscription";

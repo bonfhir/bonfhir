@@ -10,12 +10,12 @@ import {
   Resource,
   Retrieved,
   WithRequired,
-} from "./fhir-types.codegen.js";
-import { Formatter, withValueFormatter } from "./formatters.js";
+} from "./fhir-types.codegen";
+import { Formatter, withValueFormatter } from "./formatters";
 import {
   codeableConceptFormatter,
   humanNameFormatter,
-} from "./value-formatters/index.js";
+} from "./value-formatters/index";
 
 export interface ReferenceOptions {
   versionSpecific?: boolean | null | undefined;

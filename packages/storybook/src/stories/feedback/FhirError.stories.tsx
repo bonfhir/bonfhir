@@ -1,6 +1,6 @@
 import { FhirError } from "@bonfhir/ui/r5";
 import { Meta, StoryObj } from "@storybook/react";
-import { buildArgs } from "../helpers.js";
+import { buildArgs } from "../helpers";
 
 /**
  * Renders an error permanently on screen

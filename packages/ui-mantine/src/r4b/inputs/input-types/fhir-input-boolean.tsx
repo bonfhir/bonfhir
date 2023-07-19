@@ -11,8 +11,8 @@ export function MantineFhirInputBoolean(
         label={props.label}
         description={props.description}
         error={props.error}
-        required={props.required}
-        disabled={props.disabled}
+        required={Boolean(props.required)}
+        disabled={Boolean(props.disabled)}
         checked={props.value || false}
         onChange={(evt: FormEvent<HTMLInputElement>) =>
           props.onChange?.(evt.currentTarget.checked)
@@ -28,8 +28,8 @@ export function MantineFhirInputBoolean(
         label={props.label}
         description={props.description}
         error={props.error}
-        required={props.required}
-        disabled={props.disabled}
+        required={Boolean(props.required)}
+        disabled={Boolean(props.disabled)}
         checked={props.value || false}
         onChange={(evt: FormEvent<HTMLInputElement>) =>
           props.onChange?.(evt.currentTarget.checked)

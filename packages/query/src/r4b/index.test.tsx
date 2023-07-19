@@ -40,7 +40,7 @@ import {
   useFhirTransactionMutation,
   useFhirUpdateMutation,
   useFhirVRead,
-} from "./index.js";
+} from "./index";
 
 globalThis.React = React;
 

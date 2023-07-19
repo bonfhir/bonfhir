@@ -1,5 +1,5 @@
-import { Formatter } from "../formatters.js";
-import { InstantFormatterOptions, instantFormatter } from "./instant.js";
+import { Formatter } from "../formatters";
+import { InstantFormatterOptions, instantFormatter } from "./instant";
 
 describe("instant", () => {
   const formatter = new Formatter().register(instantFormatter);

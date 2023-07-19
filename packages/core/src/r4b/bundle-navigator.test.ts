@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
-import { bundleNavigator } from "./bundle-navigator.js";
-import { extendResource } from "./extensions.js";
+import { bundleNavigator } from "./bundle-navigator";
+import { extendResource } from "./extensions";
 import {
   AnyResource,
   Appointment,
@@ -11,8 +11,8 @@ import {
   Patient,
   Provenance,
   Retrieved,
-} from "./fhir-types.codegen.js";
-import { reference } from "./references.codegen.js";
+} from "./fhir-types.codegen";
+import { reference } from "./references.codegen";
 
 describe("BundleNavigator", () => {
   const emptyBundle: Bundle = {

@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/no-null */
-import { cloneResource, extendResource, extension, tag } from "./extensions.js";
-import { Formatter } from "./formatters.js";
+import { cloneResource, extendResource, extension, tag } from "./extensions";
+import { Formatter } from "./formatters";
 
 describe("extensions", () => {
   const CustomPatient = extendResource("Patient", {

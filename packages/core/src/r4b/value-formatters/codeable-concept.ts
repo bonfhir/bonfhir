@@ -1,6 +1,6 @@
-import { CodeableConcept } from "../fhir-types.codegen.js";
-import { ValueFormatter, withValueFormatter } from "../formatters.js";
-import { CodingFormatterOptions, codingFormatter } from "./coding.js";
+import { CodeableConcept } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { CodingFormatterOptions, codingFormatter } from "./coding";
 
 /**
  * A CodeableConcept represents a value that is usually supplied by

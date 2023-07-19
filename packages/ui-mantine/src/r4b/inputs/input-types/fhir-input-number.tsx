@@ -10,12 +10,11 @@ export function MantineFhirInputNumber(
       label={props.label}
       description={props.description}
       error={props.error}
-      required={props.required}
-      disabled={props.disabled}
-      checked={props.value ?? ""}
-      min={defaultMin(props)}
-      max={props.max}
-      step={props.step}
+      required={Boolean(props.required)}
+      disabled={Boolean(props.disabled)}
+      min={defaultMin(props) ?? undefined}
+      max={props.max ?? undefined}
+      step={props.step ?? undefined}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       precision={(props as any).precision}
       onChange={(value: number | "") =>

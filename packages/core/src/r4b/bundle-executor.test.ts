@@ -1,10 +1,10 @@
 import { mock, mockReset } from "jest-mock-extended";
-import { build } from "./builders.js";
-import { BundleExecutor } from "./bundle-executor.js";
-import { FhirClient } from "./fhir-client.js";
-import { Patient, Retrieved } from "./fhir-types.codegen.js";
-import { uuid } from "./lang-utils.js";
-import { ValueSetExpandOperation } from "./operations.codegen.js";
+import { build } from "./builders";
+import { BundleExecutor } from "./bundle-executor";
+import { FhirClient } from "./fhir-client";
+import { Patient, Retrieved } from "./fhir-types.codegen";
+import { uuid } from "./lang-utils";
+import { ValueSetExpandOperation } from "./operations.codegen";
 
 describe("bundle-executor", () => {
   const client = mock<Pick<FhirClient, "batch" | "transaction">>();

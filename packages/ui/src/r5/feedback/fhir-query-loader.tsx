@@ -9,7 +9,7 @@ import {
   UseBaseQueryResult,
 } from "@tanstack/react-query";
 import { ReactElement, ReactNode } from "react";
-import { useFhirUIContext } from "../context.js";
+import { useFhirUIContext } from "../context";
 
 export type FhirQueryLoaderProps<TRendererProps, TData> = {
   query:

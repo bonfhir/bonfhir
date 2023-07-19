@@ -1,6 +1,6 @@
 import { FhirUIRenderer } from "@bonfhir/ui/r4b";
-import { MantineFhirTable, MantineFhirValue } from "./data-display/index.js";
-import { MantineFhirError, MantineFhirQueryLoader } from "./feedback/index.js";
+import { MantineFhirTable, MantineFhirValue } from "./data-display/index";
+import { MantineFhirError, MantineFhirQueryLoader } from "./feedback/index";
 import {
   MantineFhirInputArray,
   MantineFhirInputBoolean,
@@ -16,8 +16,8 @@ import {
   MantineFhirInputTerminology,
   MantineFhirInputTime,
   MantineFhirQuestionnaire,
-} from "./inputs/index.js";
-import { MantineFhirPagination } from "./navigation/index.js";
+} from "./inputs/index";
+import { MantineFhirPagination } from "./navigation/index";
 
 export const MantineRenderer: FhirUIRenderer = {
   FhirError: MantineFhirError,

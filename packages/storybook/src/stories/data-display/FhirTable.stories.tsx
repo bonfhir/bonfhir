@@ -13,7 +13,7 @@ import {
 import { Stack } from "@mantine/core";
 import { Meta } from "@storybook/react";
 import { createElement } from "react";
-import { buildArgs } from "../helpers.js";
+import { buildArgs } from "../helpers";
 
 /**
  * Renders a table of resources

@@ -19,9 +19,9 @@ export function MantineFhirInputResource(
       label={props.label}
       description={props.description}
       error={props.error}
-      placeholder={props.placeholder}
-      required={props.required}
-      disabled={props.disabled}
+      placeholder={props.placeholder ?? undefined}
+      required={Boolean(props.required)}
+      disabled={Boolean(props.disabled)}
       searchable
       nothingFound="No results"
       clearable={!props.required}

@@ -1,7 +1,7 @@
-import { Ratio } from "../fhir-types.codegen.js";
-import { ValueFormatter, withValueFormatter } from "../formatters.js";
-import { codeFormatter } from "./code.js";
-import { QuantityFormatterOptions, quantityFormatter } from "./quantity.js";
+import { Ratio } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { codeFormatter } from "./code";
+import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
 
 /**
  * A relationship between two Quantity values expressed as a numerator and a denominator.

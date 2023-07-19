@@ -1,5 +1,5 @@
-import { cloneResource } from "./extensions.js";
-import { Resource } from "./fhir-types.codegen.js";
+import { cloneResource } from "./extensions";
+import { Resource } from "./fhir-types.codegen";
 import {
   MergeArgs,
   MergeResult,
@@ -7,7 +7,7 @@ import {
   MergerArgs,
   arrayMerger,
   defaultMerger,
-} from "./mergers/index.js";
+} from "./mergers/index";
 
 export const DEFAULT_MERGERS: Array<Merger> = [arrayMerger, defaultMerger];
 

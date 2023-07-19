@@ -1,5 +1,5 @@
-import { ValueSetExpansionContains } from "../fhir-types.codegen.js";
-import { ValueFormatter } from "../formatters.js";
+import { ValueSetExpansionContains } from "../fhir-types.codegen";
+import { ValueFormatter } from "../formatters";
 
 /**
  * A FHIR code

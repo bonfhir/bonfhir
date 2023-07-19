@@ -5,7 +5,7 @@ import {
 } from "@bonfhir/core/r4b";
 import DOMPurify from "dompurify";
 import { ReactElement } from "react";
-import { useFhirUIContext } from "../context.js";
+import { useFhirUIContext } from "../context";
 
 export type FhirValueProps<TRendererProps = any> =
   DefaultFormatterParametersProps & {

@@ -39,7 +39,7 @@ import {
   uriFormatter,
   urlFormatter,
   uuidFormatter,
-} from "./value-formatters/index.js";
+} from "./value-formatters/index";
 
 /**
  * A value formatter is a function that takes a value and returns a string.

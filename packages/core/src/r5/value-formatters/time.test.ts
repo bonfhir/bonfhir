@@ -1,5 +1,5 @@
-import { Formatter } from "../formatters.js";
-import { TimeFormatterOptions, timeFormatter } from "./time.js";
+import { Formatter } from "../formatters";
+import { TimeFormatterOptions, timeFormatter } from "./time";
 
 describe("time", () => {
   const formatter = new Formatter().register(timeFormatter);

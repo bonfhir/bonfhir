@@ -6,7 +6,7 @@ import {
   targetProfileToTsTypes,
   toJsComment,
   toTsType,
-} from "../util-codegen.js";
+} from "../util-codegen";
 
 /**
  * Holds all FHIR definitions

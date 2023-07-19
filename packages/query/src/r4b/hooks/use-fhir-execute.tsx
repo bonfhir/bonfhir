@@ -8,8 +8,8 @@ import {
   UseQueryResult,
   useQuery,
 } from "@tanstack/react-query";
-import { FhirQueryKeys } from "../cache-keys.js";
-import { useFhirClientQueryContext } from "../context.js";
+import { FhirQueryKeys } from "../cache-keys";
+import { useFhirClientQueryContext } from "../context";
 
 export interface UseFhirExecuteOptions<TOperationResult> {
   /** The FhirClient key to use to perform the query. */

@@ -3,13 +3,13 @@
  */
  /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Formatter, withValueFormatter } from "./formatters.js";
-import { codeableConceptFormatter, humanNameFormatter } from "./value-formatters/index.js";
-import { AnyResource, CodeableConcept, Resource, Reference, Retrieved, WithRequired } from "./fhir-types.codegen.js";
+import { Formatter, withValueFormatter } from "./formatters";
+import { codeableConceptFormatter, humanNameFormatter } from "./value-formatters/index";
+import { AnyResource, CodeableConcept, Resource, Reference, Retrieved, WithRequired } from "./fhir-types.codegen";
 <% const domainResourcesThatCanBeDecorated = fhir.domainResources
     .filter(x => x.ownRootElementsWithChoices.some(x => x.name === "title" || (x.name === "code" && x.tsType.includes("CodeableConcept")) || (x.name === "name" && (x.tsType.includes("string") || x.tsType.includes("HumanName")))));
 -%>
-import { <% for (domainResource of domainResourcesThatCanBeDecorated) { %> <%= domainResource.type %>, <% } %> } from "./fhir-types.codegen.js";
+import { <% for (domainResource of domainResourcesThatCanBeDecorated) { %> <%= domainResource.type %>, <% } %> } from "./fhir-types.codegen";
 
 export interface ReferenceOptions {
   versionSpecific?: boolean | null | undefined;

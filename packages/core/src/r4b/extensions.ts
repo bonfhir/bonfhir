@@ -7,8 +7,8 @@ import {
   ExtractResource,
   Meta,
   Resource,
-} from "./fhir-types.codegen.js";
-import { narrative } from "./narratives.codegen.js";
+} from "./fhir-types.codegen";
+import { narrative } from "./narratives.codegen";
 
 /**
  * Type definition for a Custom Resource *Class*

@@ -4,10 +4,10 @@
  * @see https://hl7.org/fhir/datatypes.html#RatioRange
  */
 
-import { RatioRange } from "../fhir-types.codegen.js";
-import { ValueFormatter, withValueFormatter } from "../formatters.js";
-import { QuantityFormatterOptions, quantityFormatter } from "./quantity.js";
-import { RangeFormatterOptions, rangeFormatter } from "./range.js";
+import { RatioRange } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
+import { RangeFormatterOptions, rangeFormatter } from "./range";
 
 export type RatioRangeFormatterOptions = {
   numeratorExpansions?: QuantityFormatterOptions["expansions"];

@@ -1,4 +1,4 @@
-import { Merger } from "./merger.js";
+import { Merger } from "./merger";
 
 export function elementMerger(
   matchingKey: string | null | undefined,

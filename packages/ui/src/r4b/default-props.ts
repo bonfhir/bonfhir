@@ -3,14 +3,14 @@ import {
   Retrieved,
   WithResolvableReferences,
 } from "@bonfhir/core/r4b";
-import { FhirTableProps, FhirValueProps } from "./data-display/index.js";
-import { FhirErrorProps, FhirQueryLoaderProps } from "./feedback/index.js";
+import { FhirTableProps, FhirValueProps } from "./data-display/index";
+import { FhirErrorProps, FhirQueryLoaderProps } from "./feedback/index";
 import {
   FhirInputArrayProps,
   FhirInputProps,
   FhirQuestionnaireProps,
-} from "./inputs/index.js";
-import { FhirPaginationProps } from "./navigation/index.js";
+} from "./inputs/index";
+import { FhirPaginationProps } from "./navigation/index";
 
 export interface FhirUIDefaultProps {
   FhirError?:

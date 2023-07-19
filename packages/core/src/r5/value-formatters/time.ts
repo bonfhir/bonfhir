@@ -1,5 +1,5 @@
-import { parseFhirDateTime } from "../date-time-helpers.js";
-import { ValueFormatter } from "../formatters.js";
+import { parseFhirDateTime } from "../date-time-helpers";
+import { ValueFormatter } from "../formatters";
 
 /**
  * A time, or partial time (e.g. just year or year + month) as used in human communication.

@@ -10,12 +10,11 @@ export function MantineFhirInputTime(
       label={props.label}
       description={props.description}
       error={props.error}
-      placeholder={props.placeholder}
-      required={props.required}
-      allowDeselect={!props.required}
-      disabled={props.disabled}
+      placeholder={props.placeholder ?? undefined}
+      required={Boolean(props.required)}
+      disabled={Boolean(props.disabled)}
       w="100%"
-      value={props.value}
+      value={props.value ?? undefined}
       onChange={(evt: FormEvent<HTMLInputElement>) =>
         props.onChange?.(evt.currentTarget.value || undefined)
       }

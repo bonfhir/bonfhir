@@ -3,7 +3,7 @@ import {
   cleanFhirValues,
   truncate,
   urlSafeConcat,
-} from "./lang-utils.js";
+} from "./lang-utils";
 
 describe("lang-utils", () => {
   describe("asArray", () => {

@@ -1,15 +1,12 @@
-import {
-  ContactPoint,
-  ValueSetExpansionContains,
-} from "../fhir-types.codegen.js";
-import { Formatter } from "../formatters.js";
-import { codeFormatter } from "./code.js";
+import { ContactPoint, ValueSetExpansionContains } from "../fhir-types.codegen";
+import { Formatter } from "../formatters";
+import { codeFormatter } from "./code";
 import {
   ContactPointFormatterOptions,
   contactPointFormatter,
-} from "./contact-point.js";
-import { dateTimeFormatter } from "./date-time.js";
-import { periodFormatter } from "./period.js";
+} from "./contact-point";
+import { dateTimeFormatter } from "./date-time";
+import { periodFormatter } from "./period";
 
 describe("contact-point", () => {
   const formatter = new Formatter()

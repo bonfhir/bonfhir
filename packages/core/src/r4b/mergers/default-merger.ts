@@ -1,4 +1,4 @@
-import { Merger } from "./merger.js";
+import { Merger } from "./merger";
 
 /** The default strategy for merge, that merges values one-by-one. */
 export const defaultMerger: Merger = {

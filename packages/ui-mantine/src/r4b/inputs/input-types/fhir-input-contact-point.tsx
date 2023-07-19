@@ -15,7 +15,7 @@ import {
   IconPrinter,
 } from "@tabler/icons-react";
 import { ReactElement } from "react";
-import { MantineFhirInputStringProps } from "./fhir-input-string.js";
+import { MantineFhirInputStringProps } from "./fhir-input-string";
 
 export function MantineFhirInputContactPoint(
   props: FhirInputContactPointRendererProps<MantineFhirInputContactPointProps>,
@@ -39,7 +39,7 @@ export function MantineFhirInputContactPoint(
       label={props.label}
       description={props.description}
       error={props.error}
-      required={props.required}
+      required={Boolean(props.required)}
       {...props.rendererProps?.wrapper}
     >
       <Group spacing="xs" noWrap grow {...props.rendererProps?.group}>

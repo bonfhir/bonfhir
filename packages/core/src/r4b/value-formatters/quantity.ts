@@ -1,7 +1,7 @@
-import { Quantity } from "../fhir-types.codegen.js";
-import { ValueFormatter, withValueFormatter } from "../formatters.js";
-import { CodeFormatterOptions, codeFormatter } from "./code.js";
-import { DecimalFormatterOptions, decimalFormatter } from "./decimal.js";
+import { Quantity } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { CodeFormatterOptions, codeFormatter } from "./code";
+import { DecimalFormatterOptions, decimalFormatter } from "./decimal";
 
 /**
  * A measured amount (or an amount that can potentially be measured).

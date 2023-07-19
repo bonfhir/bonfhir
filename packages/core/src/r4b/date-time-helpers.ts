@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import { Duration } from "./fhir-types.codegen.js";
-import { Formatter } from "./formatters.js";
+import { Duration } from "./fhir-types.codegen";
+import { Formatter } from "./formatters";
 
 /**
  * Format a Date object as a FHIR date.

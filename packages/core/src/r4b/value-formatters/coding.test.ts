@@ -1,7 +1,7 @@
-import { Coding } from "../fhir-types.codegen.js";
-import { Formatter } from "../formatters.js";
-import { codeFormatter } from "./code.js";
-import { CodingFormatterOptions, codingFormatter } from "./coding.js";
+import { Coding } from "../fhir-types.codegen";
+import { Formatter } from "../formatters";
+import { codeFormatter } from "./code";
+import { CodingFormatterOptions, codingFormatter } from "./coding";
 
 describe("coding", () => {
   const formatter = new Formatter()

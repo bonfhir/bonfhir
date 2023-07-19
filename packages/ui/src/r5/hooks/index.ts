@@ -1,1 +1,1 @@
-export * from "./use-fhir-search-controller.js";
+export * from "./use-fhir-search-controller";

@@ -1,6 +1,6 @@
-import { Age } from "../fhir-types.codegen.js";
-import { ValueFormatter } from "../formatters.js";
-import { QuantityFormatterOptions, quantityFormatter } from "./quantity.js";
+import { Age } from "../fhir-types.codegen";
+import { ValueFormatter } from "../formatters";
+import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
 
 /**
  * A measured amount (or an amount that can potentially be measured).

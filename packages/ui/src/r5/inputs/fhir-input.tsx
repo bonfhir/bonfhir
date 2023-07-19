@@ -1,6 +1,6 @@
 import { AnyResourceType } from "@bonfhir/core/r5";
 import { ReactElement } from "react";
-import { useFhirUIContext } from "../context.js";
+import { useFhirUIContext } from "../context";
 import {
   FhirInputBoolean,
   FhirInputBooleanProps,
@@ -26,7 +26,7 @@ import {
   FhirInputTerminologyProps,
   FhirInputTime,
   FhirInputTimeProps,
-} from "./input-types/index.js";
+} from "./input-types/index";
 
 export function FhirInput<
   TRendererProps = any,

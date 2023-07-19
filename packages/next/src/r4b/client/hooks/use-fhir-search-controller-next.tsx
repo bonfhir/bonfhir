@@ -4,7 +4,7 @@ import {
   useFhirSearchController,
   useURLSearchParamsStateManager,
 } from "@bonfhir/ui/r4b";
-import { usePathname, useRouter, useSearchParams } from "next/navigation.js";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export function useFhirSearchControllerNext<
   TSort extends string = string,

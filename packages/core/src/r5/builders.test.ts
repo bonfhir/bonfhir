@@ -1,5 +1,5 @@
-import { build, codeableConcept, id } from "./builders.js";
-import { DomainResourceTypes } from "./fhir-types.codegen.js";
+import { build, codeableConcept, id } from "./builders";
+import { DomainResourceTypes } from "./fhir-types.codegen";
 
 describe("builders", () => {
   describe("build", () => {

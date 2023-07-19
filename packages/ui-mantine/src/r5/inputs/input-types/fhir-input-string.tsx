@@ -6,7 +6,7 @@ import {
   TextareaProps,
 } from "@mantine/core";
 import { IconLink } from "@tabler/icons-react";
-import { FormEvent, ReactElement } from "react";
+import { ReactElement } from "react";
 
 export function MantineFhirInputString(
   props: FhirInputStringRendererProps<MantineFhirInputStringProps>,
@@ -17,13 +17,15 @@ export function MantineFhirInputString(
         label={props.label}
         description={props.description}
         error={props.error}
-        placeholder={props.placeholder}
-        required={props.required}
-        disabled={props.disabled}
+        placeholder={props.placeholder ?? undefined}
+        required={Boolean(props.required)}
+        disabled={Boolean(props.disabled)}
         w="100%"
         autosize
         value={props.value || ""}
-        onChange={(evt: FormEvent<HTMLInputElement>) =>
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        onChange={(evt) =>
           props.onChange?.(evt.currentTarget.value || undefined)
         }
         {...props.rendererProps}
@@ -35,9 +37,9 @@ export function MantineFhirInputString(
       label={props.label}
       description={props.description}
       error={props.error}
-      placeholder={props.placeholder}
-      required={props.required}
-      disabled={props.disabled}
+      placeholder={props.placeholder ?? undefined}
+      required={Boolean(props.required)}
+      disabled={Boolean(props.disabled)}
       w="100%"
       icon={
         ["url", "uri"].includes(props.type) ? (
@@ -45,9 +47,9 @@ export function MantineFhirInputString(
         ) : undefined
       }
       value={props.value || ""}
-      onChange={(evt: FormEvent<HTMLInputElement>) =>
-        props.onChange?.(evt.currentTarget.value || undefined)
-      }
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      onChange={(evt) => props.onChange?.(evt.currentTarget.value || undefined)}
       {...props.rendererProps}
     />
   );

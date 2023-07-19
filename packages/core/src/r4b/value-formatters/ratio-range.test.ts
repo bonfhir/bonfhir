@@ -1,14 +1,11 @@
-import { RatioRange } from "../fhir-types.codegen.js";
-import { Formatter } from "../formatters.js";
-import { codeFormatter } from "./code.js";
-import { decimalFormatter } from "./decimal.js";
-import { quantityFormatter } from "./quantity.js";
-import { rangeFormatter } from "./range.js";
-import {
-  RatioRangeFormatterOptions,
-  ratioRangeFormatter,
-} from "./ratio-range.js";
-import { ratioFormatter } from "./ratio.js";
+import { RatioRange } from "../fhir-types.codegen";
+import { Formatter } from "../formatters";
+import { codeFormatter } from "./code";
+import { decimalFormatter } from "./decimal";
+import { quantityFormatter } from "./quantity";
+import { rangeFormatter } from "./range";
+import { ratioFormatter } from "./ratio";
+import { RatioRangeFormatterOptions, ratioRangeFormatter } from "./ratio-range";
 
 describe("ratio-range", () => {
   const formatter = new Formatter()

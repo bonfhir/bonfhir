@@ -1,6 +1,6 @@
-import { HumanName, NameUse } from "../fhir-types.codegen.js";
-import { ValueFormatter, withValueFormatter } from "../formatters.js";
-import { CodeFormatterOptions, codeFormatter } from "./code.js";
+import { HumanName, NameUse } from "../fhir-types.codegen";
+import { ValueFormatter, withValueFormatter } from "../formatters";
+import { CodeFormatterOptions, codeFormatter } from "./code";
 
 /**
  * A name of a human with text, parts and usage information.

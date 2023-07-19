@@ -1,16 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BundleExecutor } from "./bundle-executor.js";
-import {
-  BundleNavigator,
-  WithResolvableReferences,
-} from "./bundle-navigator.js";
+import { BundleExecutor } from "./bundle-executor";
+import { BundleNavigator, WithResolvableReferences } from "./bundle-navigator";
 import {
   AnyResourceTypeOrCustomResource,
   CustomResourceClass,
   ResourceOf,
   ResourceTypeOf,
   resourceTypeOf,
-} from "./extensions.js";
+} from "./extensions";
 import {
   AnyResource,
   AnyResourceType,
@@ -18,18 +15,18 @@ import {
   CapabilityStatement,
   OperationOutcome,
   Retrieved,
-} from "./fhir-types.codegen.js";
-import { Formatter } from "./formatters.js";
-import { merge } from "./merge.js";
-import { Merger } from "./mergers/index.js";
+} from "./fhir-types.codegen";
+import { Formatter } from "./formatters";
+import { merge } from "./merge";
+import { Merger } from "./mergers/index";
 import {
   ExtractOperationResultType,
   Operation,
   OperationParameters,
-} from "./operations.codegen.js";
-import { ExtractPatchBuilder, fhirJSONPatch } from "./patch.codegen.js";
-import { JSONPatchBody } from "./patch.js";
-import { ExtractSearchBuilder, fhirSearch } from "./search.codegen.js";
+} from "./operations.codegen";
+import { JSONPatchBody } from "./patch";
+import { ExtractPatchBuilder, fhirJSONPatch } from "./patch.codegen";
+import { ExtractSearchBuilder, fhirSearch } from "./search.codegen";
 
 /**
  * Abstract FHIR Restful Client that can be used as a dependency.

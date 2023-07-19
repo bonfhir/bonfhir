@@ -11,7 +11,7 @@ export function MantineFhirInputDate(
       /^(?<year>\d(\d(\d[1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(?<month>0[1-9]|1[0-2])(-(?<day>0[1-9]|[12]\d|3[01]))?)?$/,
     )?.groups as { year?: string; month?: string; day?: string };
 
-  let normalizedValue: string | Date = "";
+  let normalizedValue;
   if (matchingData?.year) {
     const yearNumber = Number.parseInt(matchingData.year);
     const monthNumber = matchingData.month
@@ -32,10 +32,10 @@ export function MantineFhirInputDate(
       label={props.label}
       description={props.description}
       error={props.error}
-      placeholder={props.placeholder}
-      required={props.required}
+      placeholder={props.placeholder ?? undefined}
+      required={Boolean(props.required)}
       allowDeselect={!props.required}
-      disabled={props.disabled}
+      disabled={Boolean(props.disabled)}
       w="100%"
       value={normalizedValue}
       onChange={(value: Date | undefined | null) => {

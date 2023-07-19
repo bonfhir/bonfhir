@@ -1,11 +1,11 @@
 import type {
   FhirTableRenderer,
   FhirValueRenderer,
-} from "./data-display/index.js";
+} from "./data-display/index";
 import type {
   FhirErrorRenderer,
   FhirQueryLoaderRenderer,
-} from "./feedback/index.js";
+} from "./feedback/index";
 import type {
   FhirInputArrayRenderer,
   FhirInputBooleanRenderer,
@@ -21,8 +21,8 @@ import type {
   FhirInputTerminologyRenderer,
   FhirInputTimeRenderer,
   FhirQuestionnaireRenderer,
-} from "./inputs/index.js";
-import type { FhirPaginationRenderer } from "./navigation/index.js";
+} from "./inputs/index";
+import type { FhirPaginationRenderer } from "./navigation/index";
 
 export interface FhirUIRenderer {
   FhirError: FhirErrorRenderer;

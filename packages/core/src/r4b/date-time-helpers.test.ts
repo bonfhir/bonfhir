@@ -7,7 +7,7 @@ import {
   now,
   parseFhirDateTime,
   today,
-} from "./date-time-helpers.js";
+} from "./date-time-helpers";
 
 describe("date-time-helpers", () => {
   it("fhirDate", () => {

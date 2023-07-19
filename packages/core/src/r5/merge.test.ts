@@ -1,6 +1,6 @@
-import { build } from "./builders.js";
-import { DEFAULT_MERGERS, merge } from "./merge.js";
-import { elementMerger } from "./mergers/index.js";
+import { build } from "./builders";
+import { DEFAULT_MERGERS, merge } from "./merge";
+import { elementMerger } from "./mergers/index";
 
 describe("merge", () => {
   it("copy if current is falsy", () => {

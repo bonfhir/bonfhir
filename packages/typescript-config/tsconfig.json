@@ -9,7 +9,7 @@
     "inlineSources": false,
     "isolatedModules": true,
     "module": "ES2022",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "Bundler",
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

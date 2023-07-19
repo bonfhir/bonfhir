@@ -1,5 +1,5 @@
-import { ValueFormatter } from "../formatters.js";
-import { IntegerFormatterOptions, integerFormatter } from "./integer.js";
+import { ValueFormatter } from "../formatters";
+import { IntegerFormatterOptions, integerFormatter } from "./integer";
 
 /**
  * A Positive Integer

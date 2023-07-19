@@ -1,1 +1,1 @@
-export * from "./subscriptions/index.js";
+export * from "./subscriptions/index";
