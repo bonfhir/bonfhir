@@ -243,6 +243,28 @@ describe("date-time-helpers", () => {
   });
 
   it.each([
+    [duration.years(1), duration.years(2), duration.years(-1)],
+    [duration.hours(6), duration.hours(1), duration.hours(5)],
+    [duration.hours(1), duration.minutes(30), duration.minutes(30)],
+    [duration.days(1), duration.minutes(30), duration.minutes(1410)],
+    ["2023", duration.years(2), "2021"],
+    ["2021-03", duration.years(2), "2019-03"],
+    ["2021-11", duration.months(3), "2021-08"],
+    ["2021-11-01", duration.months(3), "2021-08-01"],
+    ["2021-12-30", duration.days(30), "2021-11-30"],
+    ["2023-07-05T18:42:33.640Z", duration.days(1), "2023-07-04T18:42:33.640Z"],
+    ["10:00:00", duration.hours(1), "09:00:00"],
+    ["08:58:00", duration.minutes(3), "08:55:00"],
+  ])("duration.subtract(%p, %p) => %p", (value, durations, expected) => {
+    const result = duration.subtract(value as string, durations);
+    if (typeof expected === "string") {
+      expect(result).toEqual(expected);
+    } else {
+      expect(result).toMatchObject(expected);
+    }
+  });
+
+  it.each([
     [duration.days(1), duration.days(1), 0],
     [duration.days(30), duration.days(1), 1],
     [duration.days(60), duration.months(1), 1],

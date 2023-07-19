@@ -498,6 +498,39 @@ function add(
 }
 
 /**
+ * Subtract durations to a FHIR dateTime/instant/time.
+ */
+function subtract(value: string, ...durations: Duration[]): string;
+/**
+ * Subtract durations to a FHIR dateTime/instant/time.
+ */
+function subtract(value: null | undefined, ...durations: Duration[]): undefined;
+/**
+ * Subtract durations to a FHIR dateTime/instant/time.
+ */
+function subtract(
+  value: string | null | undefined,
+  ...durations: Duration[]
+): string | undefined;
+/**
+ * Subtract durations together.
+ */
+function subtract(value: Duration, ...durations: Duration[]): Duration;
+function subtract(
+  value: Duration | string | null | undefined,
+  ...durations: Duration[]
+): Duration | string | undefined {
+  return add(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    value as any,
+    ...durations.map((duration) => ({
+      ...duration,
+      value: duration.value ? -duration.value : undefined,
+    })),
+  );
+}
+
+/**
  * Create a Duration from a time.
  */
 function from(a: string): Duration;
@@ -692,6 +725,7 @@ export const duration = {
     };
   },
   add,
+  subtract,
   compare,
   from,
 };
