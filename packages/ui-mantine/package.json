@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/ui-mantine",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
@@ -37,9 +37,9 @@
     }
   },
   "dependencies": {
-    "@bonfhir/core": "^2.6.3",
-    "@bonfhir/query": "^2.1.1",
-    "@bonfhir/ui": "^2.2.1"
+    "@bonfhir/core": "^2.8.0",
+    "@bonfhir/query": "^2.2.0",
+    "@bonfhir/ui": "^2.3.0"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",

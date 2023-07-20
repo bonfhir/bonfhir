@@ -1,13 +1,13 @@
 {
   "name": "@bonfhir/eslint-config",
   "description": "Shared ESLint configuration for Bonfhir packages.",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
   "main": "index.cjs",
   "dependencies": {
-    "@bonfhir/eslint-plugin": "~2.0.1",
+    "@bonfhir/eslint-plugin": "~2.0.2",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
     "eslint": "^8.45.0",

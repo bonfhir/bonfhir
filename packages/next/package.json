@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/next",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
@@ -57,9 +57,9 @@
     }
   },
   "dependencies": {
-    "@bonfhir/core": "^2.6.0",
-    "@bonfhir/subscriptions": "^2.1.1",
-    "@bonfhir/ui": "^2.1.1"
+    "@bonfhir/core": "^2.8.0",
+    "@bonfhir/subscriptions": "^2.2.0",
+    "@bonfhir/ui": "^2.3.0"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",
