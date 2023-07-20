@@ -1,0 +1,63 @@
+{
+  "name": "@bonfhir/us-core",
+  "version": "2.0.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "build": "pnpm clean && pnpm copyfiles && rollup --config rollup.config.mjs",
+    "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
+    "clean": "rimraf dist && rimraf src/r4b/[!__]**",
+    "copyfiles": "pnpm --dir=\"${PWD}/../codegen\" dev copy -s \"${PWD}/src/r5\" -t \"${PWD}/src/r4b\" -i '**/*.ts(x)?' -e '**/*.codegen.ts' --source-fhir r5 --target-fhir r4b",
+    "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
+    "test": "jest"
+  },
+  "type": "module",
+  "exports": {
+    "./r4b": {
+      "import": {
+        "types": "./dist/r4b/esm/index.d.ts",
+        "default": "./dist/r4b/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/r4b/cjs/index.d.ts",
+        "default": "./dist/r4b/cjs/index.cjs"
+      }
+    },
+    "./r5": {
+      "import": {
+        "types": "./dist/r5/esm/index.d.ts",
+        "default": "./dist/r5/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/r5/cjs/index.d.ts",
+        "default": "./dist/r5/cjs/index.cjs"
+      }
+    }
+  },
+  "dependencies": {
+    "@bonfhir/core": "^2.6.0"
+  },
+  "devDependencies": {
+    "@bonfhir/eslint-config": "workspace:*",
+    "@bonfhir/eslint-plugin": "workspace:*",
+    "@bonfhir/prettier-config": "workspace:*",
+    "@bonfhir/typescript-config": "workspace:*",
+    "@rollup/plugin-commonjs": "^25.0.3",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "@types/jest": "^29.5.3",
+    "@types/node": "^18.16.2",
+    "esbuild-jest": "^0.5.0",
+    "jest": "^29.6.1",
+    "nodemon": "^3.0.1",
+    "rimraf": "^5.0.1",
+    "rollup": "^3.26.3",
+    "rollup-plugin-dts": "^5.3.0",
+    "rollup-plugin-filesize": "^10.0.0",
+    "typescript": "^5.1.6"
+  },
+  "prettier": "@bonfhir/prettier-config"
+}
