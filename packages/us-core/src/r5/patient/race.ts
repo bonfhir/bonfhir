@@ -14,12 +14,12 @@ export interface USCoreRace {
   /**
    * The 5 race category codes according to the [OMB Standards for Maintaining, Collecting, and Presenting Federal Data on Race and Ethnicity, Statistical Policy Directive No. 15, as revised, October 30, 1997](https://www.govinfo.gov/content/pkg/FR-1997-10-30/pdf/97-28653.pdf).
    */
-  ombCategory?: Coding[] | null | undefined;
+  ombCategory?: Coding[] | undefined;
 
   /**
    * The 900+ CDC race codes that are grouped under one of the 5 OMB race category codes:.
    */
-  detailed?: Coding[] | null | undefined;
+  detailed?: Coding[] | undefined;
 
   /**
    * Plain text representation of the race concept(s).
