@@ -51,7 +51,7 @@ export function MantineFhirQuestionnaire(
   });
 
   useEffect(() => {
-    if (props.isLoading || JSON.stringify(form.values) !== "{}") {
+    if (props.isLoading) {
       return;
     }
 

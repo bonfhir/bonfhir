@@ -26,7 +26,6 @@ const meta = {
     },
   },
   render(props) {
-    console.log({ props });
     return (
       <FhirQuestionnaire
         {...buildArgs(props)}
