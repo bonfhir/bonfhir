@@ -23,6 +23,11 @@
   "pnpm": {
     "overrides": {
       "semver@<7.5.2": ">=7.5.2"
+    },
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "typescript": "5"
+      }
     }
   }
 }
