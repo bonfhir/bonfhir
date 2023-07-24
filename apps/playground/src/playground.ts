@@ -5,11 +5,13 @@
 // end of execution line.
 //
 
-console.log("Hello!");
+console.log("Hello world!");
 
-console.log("Gerard!!!");
+console.log("Hello 2");
 
+console.log("Hello 3");
+console.log("Hello 4");
 
-console.log("Again!!");
+console.log("Hello 5");
 
 // --------- End of execution ---------

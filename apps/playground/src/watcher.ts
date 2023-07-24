@@ -1,11 +1,11 @@
-import { existsSync, readFileSync, watch, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, watch } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import chalk from "chalk";
-import { writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import repl from "node:repl";
-import { Readable, Writable } from "node:stream";
+import { format as prettier } from "prettier";
 
 const playgroundFile = join(
   fileURLToPath(new URL(".", import.meta.url)),
@@ -54,9 +54,9 @@ const replServer = repl.start({
 
 let previousHash: string | undefined;
 
-function execute() {
-  const content = readFileSync(playgroundFile, "utf8");
-  let newContent: string[] = [];
+async function execute() {
+  const content = await readFile(playgroundFile, "utf8");
+  const newContent: string[] = [];
   let endOfExecutionLineNumber = 0;
   for (const [lineNumber, line] of content.split(/\r?\n/).entries()) {
     console.log(chalk.grey("Reading " + line));
@@ -77,39 +77,43 @@ function execute() {
 
   console.log(chalk.grey("newContent " + newContent.join("\n")));
 
-  writeFileSync(playgroundFile, newContent.join("\n"), { encoding: "utf8" });
+  const formattedFile = await prettier(newContent.join("\n"), {
+    parser: "typescript",
+  });
+  await writeFile(playgroundFile, formattedFile, { encoding: "utf8" });
   previousHash = createHash("md5")
-    .update(readFileSync(playgroundFile))
+    .update(await readFile(playgroundFile))
     .digest("hex");
 }
 
-execute();
-
-let fsWait: NodeJS.Timeout | boolean = false;
-const watcher = watch(playgroundFile, (_, filename) => {
-  if (filename) {
-    if (fsWait) return;
-    fsWait = setTimeout(() => {
-      fsWait = false;
-    }, 100);
-    const currentHash = createHash("md5")
-      .update(readFileSync(playgroundFile))
-      .digest("hex");
-    if (currentHash === previousHash) {
-      return;
+(async () => {
+  await execute();
+  let fsWait: NodeJS.Timeout | boolean = false;
+  const watcher = watch(playgroundFile, (_, filename) => {
+    if (filename) {
+      if (fsWait) return;
+      fsWait = setTimeout(() => {
+        fsWait = false;
+      }, 2000);
+      const currentHash = createHash("md5")
+        .update(readFileSync(playgroundFile))
+        .digest("hex");
+      if (currentHash === previousHash) {
+        return;
+      }
+      previousHash = currentHash;
+      execute();
     }
-    previousHash = currentHash;
-    execute();
-  }
-});
+  });
 
-console.log();
-console.log(chalk.green(`Watching ${playgroundFile} for changes...`));
+  console.log();
+  console.log(chalk.green(`Watching ${playgroundFile} for changes...`));
 
-process.on("SIGINT", () => {
-  replServer.close();
-  watcher.close();
+  process.on("SIGINT", () => {
+    replServer.close();
+    watcher.close();
 
-  console.log(chalk.green("Bye bye 👋"));
-  process.exit(0);
-});
+    console.log(chalk.green("Bye bye 👋"));
+    process.exit(0);
+  });
+})();
