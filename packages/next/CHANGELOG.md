@@ -1,5 +1,11 @@
 # @bonfhir/next
 
+## 2.2.1
+
+### Patch Changes
+
+- [`0c635d6`](https://github.com/bonfhir/bonfhir2/commit/0c635d6b7803bbce0b0fad7758f00ce352f52bfc) Thanks [@julienblin](https://github.com/julienblin)! - Fix bundling issue with next.js
+
 ## 2.2.0
 
 ### Minor Changes
