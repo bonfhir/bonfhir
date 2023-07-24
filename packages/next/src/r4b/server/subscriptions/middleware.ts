@@ -4,7 +4,7 @@ import {
   SubscriptionLogger,
   registerSubscriptions,
 } from "@bonfhir/subscriptions/r4b";
-import { NextMiddleware, NextResponse } from "next/server";
+import { NextMiddleware, NextResponse } from "next/server.js";
 
 export interface FhirSubscriptionsConfig {
   /**
