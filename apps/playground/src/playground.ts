@@ -5,13 +5,32 @@
 // end of execution line.
 //
 
-console.log("Hello world!");
+// // Import the whole core library
+// ERROR: SyntaxError: Unexpected token 'export'
+import * as core from "@bonfhir/core/r4b";
 
-console.log("Hello 2");
+// Create a client connected to the local BonFHIR server
+const client = new core.FetchFhirClient({
+  baseUrl: "http://localhost:8103/fhir/R4/",
+  auth: {
+    tokenUrl: "http://localhost:8103/oauth2/token",
+    clientId: "f54370de-eaf3-4d81-a17e-24860f667912",
+    clientSecret:
+      "75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
+  },
+});
 
-console.log("Hello 3");
-console.log("Hello 4");
+const patient = core.build("Patient", {
+  name: [{ given: ["John"], family: "Doe" }],
+  active: true,
+});
 
-console.log("Hello 5");
+JSON.stringify(patient, undefined, 2);
+
+patient;
+
+
+// JSON.stringify(patient, undefined, 2);
+// ERROR: SyntaxError: Unexpected token 'export'
 
 // --------- End of execution ---------
