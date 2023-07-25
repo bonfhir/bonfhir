@@ -22,13 +22,23 @@
   },
   "pnpm": {
     "overrides": {
-      "semver@<7.5.2": ">=7.5.2",
-      "micromatch": ">=4.0.5"
+      "micromatch": ">=4.0.5",
+      "sane": ">=5.0.1",
+      "semver@<7.5.2": ">=7.5.2"
     },
     "peerDependencyRules": {
       "allowedVersions": {
         "typescript": "5"
       }
+    },
+    "allowedDeprecatedVersions": {
+      "@npmcli/move-file": "2",
+      "rollup-plugin-terser": "*",
+      "sourcemap-codec": "1",
+      "stable": "0",
+      "svgo": "1",
+      "w3c-hr-time": "1",
+      "workbox-cacheable-response": "6"
     }
   }
 }
