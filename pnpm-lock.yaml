@@ -6,6 +6,7 @@ settings:
 
 overrides:
   micromatch: '>=4.0.5'
+  nth-check: '>=2.0.1'
   sane: '>=5.0.1'
   semver@<7.5.2: '>=7.5.2'
 
@@ -9797,7 +9798,7 @@ packages:
       boolbase: 1.0.0
       css-what: 3.4.2
       domutils: 1.7.0
-      nth-check: 1.0.2
+      nth-check: 2.1.1
     dev: true
 
   /css-select@4.3.0:
@@ -15494,12 +15495,6 @@ packages:
       console-control-strings: 1.1.0
       gauge: 4.0.4
       set-blocking: 2.0.0
-    dev: true
-
-  /nth-check@1.0.2:
-    resolution: {integrity: sha512-WeBOdju8SnzPN5vTUJYxYUxLeXpCaVP5i5e0LF8fg7WORF2Wd7wFX/pk0tYZk7s8T+J7VLy0Da6J1+wCT0AtHg==}
-    dependencies:
-      boolbase: 1.0.0
     dev: true
 
   /nth-check@2.1.1:
