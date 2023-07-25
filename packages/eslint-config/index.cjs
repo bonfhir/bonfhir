@@ -12,6 +12,8 @@ module.exports = {
   ignorePatterns: [
     "**/{.cache,.parcel-cache,coverage,dist,node_modules}/*",
     "**/storybook-static",
+    "dist",
+    ".eslintrc.cjs",
   ],
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint/eslint-plugin", "@bonfhir/eslint-plugin"],
