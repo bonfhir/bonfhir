@@ -1,0 +1,27 @@
+{
+  "name": "@bonfhir/sample-lambda",
+  "description": "Sample AWS Lambda app using the serverless framework.",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "serverless package",
+    "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
+    "dev": "serverless offline start"
+  },
+  "dependencies": {
+    "@bonfhir/aws-lambda": "^2.0.0",
+    "@bonfhir/core": "^2.8.0",
+    "@bonfhir/subscriptions": "^2.2.0"
+  },
+  "devDependencies": {
+    "@bonfhir/eslint-config": "workspace:*",
+    "@bonfhir/eslint-plugin": "workspace:*",
+    "@bonfhir/prettier-config": "workspace:*",
+    "@types/aws-lambda": "^8.10.119",
+    "@types/node": "^18.16.2",
+    "serverless": "^3.33.0",
+    "serverless-offline": "^12.0.4",
+    "serverless-plugin-typescript": "^2.1.5",
+    "typescript": "5.1.6"
+  }
+}
