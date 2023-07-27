@@ -206,6 +206,16 @@ export interface FhirClient {
   ): Promise<BundleNavigator<ResourceOf<TResourceType>>>;
 
   /**
+   * Execute a [$graph operation](http://hl7.org/fhir/R4B/resource-operation-graph.html) to retrieve an entire graph
+   * of resources.
+   */
+  graph<TResourceType extends AnyResourceTypeOrCustomResource>(
+    graph: string,
+    resourceType?: TResourceType | null | undefined,
+    resourceId?: string | null | undefined,
+  ): Promise<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>>;
+
+  /**
    * The capabilities interaction retrieves the information about a server's capabilities - which portions of this specification it supports.
    * https://hl7.org/fhir/http.html#capabilities
    */

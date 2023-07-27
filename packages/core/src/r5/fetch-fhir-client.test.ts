@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import * as graphResultFixture from "../../fixtures/bundle-graph-result.fhir.json";
 import * as patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
 import * as patientExample from "../../fixtures/patient-example.fhir.json";
 import { build } from "./builders";
@@ -176,6 +177,18 @@ describe("fetch-fhir-client", () => {
     rest.put(`${baseUrl}/ConceptMap/:conceptMapId`, async (req, res, ctx) => {
       return res(ctx.json(await req.json()));
     }),
+
+    rest.get(
+      `${baseUrl}/Patient/50e500d7-2afd-42a8-adb7-350489ea3e3c/$graph`,
+      async (req, res, ctx) => {
+        const graph = req.url.searchParams.get("graph");
+        if (graph !== "patient-with-appointments") {
+          throw new Error(`Incorrect graph parameter: ${graph}`);
+        }
+
+        return res(ctx.json(graphResultFixture));
+      },
+    ),
   );
 
   beforeAll(() => server.listen());
@@ -536,6 +549,28 @@ describe("fetch-fhir-client", () => {
     it("search all pages with custom type", async () => {
       const result = await client.searchAllPages(CustomPatient, (search) =>
         search.name("John Doe"),
+      );
+      for (const patient of result.searchMatch()) {
+        expect(patient).toBeInstanceOf(CustomPatient);
+      }
+    });
+  });
+
+  describe("graph", () => {
+    it("execute a $graph operation", async () => {
+      const result = await client.graph(
+        "patient-with-appointments",
+        "Patient",
+        "50e500d7-2afd-42a8-adb7-350489ea3e3c",
+      );
+      expect(result).toBeDefined();
+    });
+
+    it("execute a $graph operation with custom type", async () => {
+      const result = await client.graph(
+        "patient-with-appointments",
+        CustomPatient,
+        "50e500d7-2afd-42a8-adb7-350489ea3e3c",
       );
       for (const patient of result.searchMatch()) {
         expect(patient).toBeInstanceOf(CustomPatient);

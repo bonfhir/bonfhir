@@ -463,6 +463,33 @@ export class FetchFhirClient implements FhirClient {
     return searchAllPages(this, type, search, options);
   }
 
+  /**
+   * Execute a [$graph operation](http://hl7.org/fhir/R4B/resource-operation-graph.html) to retrieve an entire graph
+   * of resources.
+   */
+  public async graph<TResourceType extends AnyResourceTypeOrCustomResource>(
+    graph: string,
+    resourceType?: TResourceType | null | undefined,
+    resourceId?: string | null | undefined,
+  ): Promise<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>> {
+    const result = await this.execute<Bundle>({
+      operation: "$graph",
+      resourceType: resourceTypeOf(resourceType),
+      resourceId,
+      parameters: {
+        graph,
+      },
+      affectsState: false,
+    });
+
+    return bundleNavigator(
+      result,
+      resourceType == undefined || typeof resourceType === "string"
+        ? undefined
+        : (resourceType as CustomResourceClass),
+    ) as BundleNavigator<Retrieved<ResourceOf<TResourceType>>>;
+  }
+
   public async capabilities(
     mode?: "full" | "normative" | "terminology" | null | undefined,
   ): Promise<CapabilityStatement> {
