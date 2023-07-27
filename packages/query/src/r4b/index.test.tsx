@@ -21,6 +21,7 @@ import React, { PropsWithChildren } from "react";
 import {
   DEFAULT_FHIR_CLIENT,
   FhirQueryProvider,
+  UseFhirGraph,
   useFhirBatchMutation,
   useFhirCapabilities,
   useFhirClientQueryContext,
@@ -182,6 +183,19 @@ describe("hooks", () => {
         ctx.json({ resourceType: "Bundle", type: "searchset", entry: [] }),
       );
     }),
+
+    rest.get(
+      `${baseUrl}/Patient/50e500d7-2afd-42a8-adb7-350489ea3e3c/$graph`,
+      async (_, res, ctx) => {
+        const bundle: Bundle = {
+          resourceType: "Bundle",
+          type: "collection",
+          entry: [],
+        };
+
+        return res(ctx.json(bundle));
+      },
+    ),
   );
 
   const wrapper = ({ children }: PropsWithChildren) => (
@@ -498,6 +512,23 @@ describe("hooks", () => {
         expect(result.current.data?.url).toEqual(
           "http://hl7.org/fhir/ValueSet/example",
         );
+      });
+    });
+
+    it("graph", async () => {
+      const { result } = renderHook(
+        () =>
+          UseFhirGraph(
+            "patient-with-appointments",
+            "Patient",
+            "50e500d7-2afd-42a8-adb7-350489ea3e3c",
+          ),
+        { wrapper },
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data).toBeInstanceOf(BundleNavigator);
       });
     });
   });

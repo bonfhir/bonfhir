@@ -34,9 +34,11 @@
     },
     "allowedDeprecatedVersions": {
       "@npmcli/move-file": "2",
+      "querystring": "0.2",
       "rollup-plugin-terser": "*",
       "sourcemap-codec": "1",
       "stable": "0",
+      "superagent": "7",
       "svgo": "1",
       "w3c-hr-time": "1",
       "workbox-cacheable-response": "6"

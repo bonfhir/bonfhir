@@ -5,6 +5,7 @@ export * from "./use-fhir-create-or-mutation";
 export * from "./use-fhir-delete-mutation";
 export * from "./use-fhir-execute";
 export * from "./use-fhir-execute-mutation";
+export * from "./use-fhir-graph";
 export * from "./use-fhir-history";
 export * from "./use-fhir-infinite-search";
 export * from "./use-fhir-patch-mutation";
