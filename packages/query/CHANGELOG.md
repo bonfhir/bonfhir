@@ -1,5 +1,18 @@
 # @bonfhir/query
 
+## 2.3.0
+
+### Minor Changes
+
+- [#8](https://github.com/bonfhir/bonfhir2/pull/8) [`a619c81`](https://github.com/bonfhir/bonfhir2/commit/a619c81355406a75917b4ad5122223621b287673) Thanks [@julienblin](https://github.com/julienblin)! - Add `useFhirGraph` hook
+
+- [#10](https://github.com/bonfhir/bonfhir2/pull/10) [`931f1bc`](https://github.com/bonfhir/bonfhir2/commit/931f1bcf67b03eca749d7291cdb25274a4e9ade8) Thanks [@julienblin](https://github.com/julienblin)! - Add `useFhirGraphQL` and `useFhirGraphQLMutation` hooks
+
+### Patch Changes
+
+- Updated dependencies [[`c1774da`](https://github.com/bonfhir/bonfhir2/commit/c1774da720175e1131919fd16faa79a402aac6ea), [`47ba701`](https://github.com/bonfhir/bonfhir2/commit/47ba7010975779d8761e9cf3773764f0fb5e1232), [`7310c0d`](https://github.com/bonfhir/bonfhir2/commit/7310c0d07e95b82edde9b5662d76afcfbd04a868)]:
+  - @bonfhir/core@2.9.0
+
 ## 2.2.0
 
 ### Minor Changes
