@@ -35,5 +35,6 @@
     "port": 6379,
     "password": "medplum"
   },
-  "allowedOrigins": "*"
+  "allowedOrigins": "*",
+  "introspectionEnabled": true
 }

@@ -1,4 +1,8 @@
 {
+  "[graphql]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
@@ -76,7 +80,8 @@
     "*.ts": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
     "*.tsx": "${basename}.spec.${extname}, ${basename}.stories.${extname}, ${basename}.test.${extname}",
     "*.ts.ejs": "${capture}.ts",
-    "*.codegen.ts": "${capture}.spec.ts, ${capture}.stories.ts, ${capture}.test.ts"
+    "*.codegen.ts": "${capture}.spec.ts, ${capture}.stories.ts, ${capture}.test.ts",
+    "*.graphql": "${capture}.generated.ts"
   },
   "files.associations": {
     "*.codegen.ts.ejs": "html",
