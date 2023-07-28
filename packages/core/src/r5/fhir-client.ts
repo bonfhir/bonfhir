@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
 import { BundleExecutor } from "./bundle-executor";
 import { BundleNavigator, WithResolvableReferences } from "./bundle-navigator";
 import {
@@ -206,7 +207,7 @@ export interface FhirClient {
   ): Promise<BundleNavigator<ResourceOf<TResourceType>>>;
 
   /**
-   * Execute a [$graph operation](http://hl7.org/fhir/R4B/resource-operation-graph.html) to retrieve an entire graph
+   * Execute a [$graph operation](http://hl7.org/fhir/resource-operation-graph.html) to retrieve an entire graph
    * of resources.
    */
   graph<TResourceType extends AnyResourceTypeOrCustomResource>(
@@ -214,6 +215,19 @@ export interface FhirClient {
     resourceType?: TResourceType | null | undefined,
     resourceId?: string | null | undefined,
   ): Promise<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>>;
+
+  /**
+   * Execute a [$graphql operation](https://hl7.org/fhir/resource-operation-graphql.html).
+   */
+  graphql<TResult = any>(
+    query: string,
+    variables?: Record<string, any>,
+    operationName?: string | null | undefined,
+  ): Promise<TResult>;
+  graphql<TResult = any, TVariables = Record<string, any>>(
+    query: TypedDocumentNode<TResult, TVariables>,
+    variables?: TVariables,
+  ): Promise<TResult>;
 
   /**
    * The capabilities interaction retrieves the information about a server's capabilities - which portions of this specification it supports.
