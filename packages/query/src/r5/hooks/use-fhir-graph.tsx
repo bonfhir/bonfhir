@@ -1,7 +1,6 @@
 import {
   AnyResourceTypeOrCustomResource,
   BundleNavigator,
-  FhirClient,
   ResourceOf,
   Retrieved,
   resourceTypeOf,
@@ -19,14 +18,13 @@ export interface UseFhirGraphOptions<
 > {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
-  fhir?: Omit<Parameters<FhirClient["search"]>[2], "signal"> | null | undefined;
   query?:
     | Omit<
         UseQueryOptions<
           BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
           unknown,
           BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
-          ReturnType<(typeof FhirQueryKeys)["search"]>
+          ReturnType<(typeof FhirQueryKeys)["execute"]>
         >,
         "initialData" | "queryKey" | "queryFn"
       >

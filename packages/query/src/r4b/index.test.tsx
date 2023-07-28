@@ -14,6 +14,7 @@ import {
   extendResource,
   uuid,
 } from "@bonfhir/core/r4b";
+import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
 import { renderHook, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
@@ -30,6 +31,8 @@ import {
   useFhirDeleteMutation,
   useFhirExecute,
   useFhirExecuteMutation,
+  useFhirGraphQL,
+  useFhirGraphQLMutation,
   useFhirHistory,
   useFhirInfiniteSearch,
   useFhirPatchMutation,
@@ -51,6 +54,82 @@ describe("hooks", () => {
       return "aah";
     },
   });
+
+  // GraphQL TypedDocumentNode generated.
+  // We just take the output of the generation here, to not bring too much external dependencies in the project.
+  type ListOrganizationsQueryVariables = {
+    name?: string;
+  };
+
+  type ListOrganizationsQuery = {
+    __typename?: "QueryType";
+    OrganizationList?: Array<{
+      __typename?: "Organization";
+      resourceType: string;
+      id?: string | null;
+      name?: string | null;
+      alias?: Array<string> | null;
+    } | null> | null;
+  };
+
+  const ListOrganizationsDocument = {
+    kind: "Document",
+    definitions: [
+      {
+        kind: "OperationDefinition",
+        operation: "query",
+        name: { kind: "Name", value: "ListOrganizations" },
+        variableDefinitions: [
+          {
+            kind: "VariableDefinition",
+            variable: {
+              kind: "Variable",
+              name: { kind: "Name", value: "name" },
+            },
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        ],
+        selectionSet: {
+          kind: "SelectionSet",
+          selections: [
+            {
+              kind: "Field",
+              name: { kind: "Name", value: "OrganizationList" },
+              arguments: [
+                {
+                  kind: "Argument",
+                  name: { kind: "Name", value: "name" },
+                  value: {
+                    kind: "Variable",
+                    name: { kind: "Name", value: "name" },
+                  },
+                },
+              ],
+              selectionSet: {
+                kind: "SelectionSet",
+                selections: [
+                  {
+                    kind: "Field",
+                    name: { kind: "Name", value: "resourceType" },
+                  },
+                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                  { kind: "Field", name: { kind: "Name", value: "name" } },
+                  { kind: "Field", name: { kind: "Name", value: "alias" } },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    ],
+  } as unknown as TypedDocumentNode<
+    ListOrganizationsQuery,
+    ListOrganizationsQueryVariables
+  >;
+
   const baseUrl = "http://example.com";
 
   const server = setupServer(
@@ -196,6 +275,67 @@ describe("hooks", () => {
         return res(ctx.json(bundle));
       },
     ),
+
+    rest.post(`${baseUrl}/$graphql`, async (req, res, ctx) => {
+      const { query, variables } = await req.json();
+
+      if (variables?.id === "graphql-error") {
+        return res(
+          ctx.json({
+            errors: [
+              {
+                message: "Not found",
+                path: ["Patient"],
+                locations: [
+                  {
+                    line: 1,
+                    column: 3,
+                  },
+                ],
+                extensions: {},
+              },
+            ],
+            data: {
+              Patient: undefined,
+            },
+          }),
+        );
+      }
+
+      if (query.includes("OrganizationList")) {
+        return res(
+          ctx.json({
+            data: {
+              OrganizationList: [
+                {
+                  resourceType: "Organization",
+                  id: "86ea22f7-4b7c-4470-8fe7-294933d02e02",
+                  name: "Acme, Inc",
+                  alias: undefined,
+                },
+              ],
+            },
+          }),
+        );
+      }
+
+      return res(
+        ctx.json({
+          data: {
+            Patient: {
+              resourceType: "Patient",
+              id: variables?.id || "patient-id",
+              name: [
+                {
+                  given: ["John"],
+                  family: "Doe",
+                },
+              ],
+            },
+          },
+        }),
+      );
+    }),
   );
 
   const wrapper = ({ children }: PropsWithChildren) => (
@@ -531,6 +671,59 @@ describe("hooks", () => {
         expect(result.current.data).toBeInstanceOf(BundleNavigator);
       });
     });
+
+    describe("GraphQL", () => {
+      it("execute a query as a string", async () => {
+        const { result } = renderHook(
+          () =>
+            useFhirGraphQL(
+              `{
+                Patient(id: "patient-id") {
+                  resourceType
+                  id
+                  name {
+                    given
+                    family
+                  }
+                }
+              }`,
+            ),
+          { wrapper },
+        );
+
+        await waitFor(() => {
+          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.data).toMatchObject({
+            Patient: {
+              resourceType: "Patient",
+              id: expect.stringMatching(/.+/),
+            },
+          });
+        });
+      });
+
+      it("execute a query as a document", async () => {
+        const { result } = renderHook(
+          () =>
+            useFhirGraphQL(ListOrganizationsDocument, {
+              name: "Acme, Inc",
+            }),
+          { wrapper },
+        );
+
+        await waitFor(() => {
+          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.data).toMatchObject({
+            OrganizationList: [
+              {
+                resourceType: "Organization",
+                name: "Acme, Inc",
+              },
+            ],
+          } satisfies Partial<ListOrganizationsQuery>);
+        });
+      });
+    });
   });
 
   describe("mutations", () => {
@@ -689,6 +882,60 @@ describe("hooks", () => {
         expect(result.current.data?.request.type).toBe("batch");
         expect(result.current.data?.futureRequests).toHaveLength(2);
         expect(result.current.data?.futureRequests[0]?.sent).toBeTruthy();
+      });
+    });
+
+    describe("GraphQL", () => {
+      it("execute a mutation as a string", async () => {
+        const { result } = renderHook(
+          () =>
+            useFhirGraphQLMutation(
+              `{
+                Patient(id: "patient-id") {
+                  resourceType
+                  id
+                  name {
+                    given
+                    family
+                  }
+                }
+              }`,
+            ),
+          { wrapper },
+        );
+
+        result.current.mutate({});
+
+        await waitFor(() => {
+          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.data).toMatchObject({
+            Patient: {
+              resourceType: "Patient",
+              id: expect.stringMatching(/.+/),
+            },
+          });
+        });
+      });
+
+      it("execute a mutation as a document", async () => {
+        const { result } = renderHook(
+          () => useFhirGraphQLMutation(ListOrganizationsDocument),
+          { wrapper },
+        );
+
+        result.current.mutate({ name: "Acme, Inc" });
+
+        await waitFor(() => {
+          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.data).toMatchObject({
+            OrganizationList: [
+              {
+                resourceType: "Organization",
+                name: "Acme, Inc",
+              },
+            ],
+          } satisfies Partial<ListOrganizationsQuery>);
+        });
       });
     });
   });

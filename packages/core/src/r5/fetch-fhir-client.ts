@@ -1,21 +1,22 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
+import { print, type ExecutionResult as GraphQLExecutionResult } from "graphql";
 import { BundleExecutor } from "./bundle-executor";
 import {
-  bundleNavigator,
   BundleNavigator,
   WithResolvableReferences,
+  bundleNavigator,
 } from "./bundle-navigator";
 import {
   AnyResourceTypeOrCustomResource,
   CustomResourceClass,
   ResourceOf,
-  resourceTypeOf,
   ResourceTypeOf,
+  resourceTypeOf,
 } from "./extensions";
 import {
   ConcurrencyParameters,
   ConditionalSearchParameters,
-  createOr,
   CreateOrAction,
   CreateOrResult,
   FhirClient,
@@ -24,6 +25,7 @@ import {
   FhirClientSearchParameters,
   GeneralParameters,
   HistoryParameters,
+  createOr,
   normalizePatchBody,
   normalizeSearchParameters,
   searchAllPages,
@@ -489,6 +491,61 @@ export class FetchFhirClient implements FhirClient {
         : (resourceType as CustomResourceClass),
     ) as BundleNavigator<Retrieved<ResourceOf<TResourceType>>>;
   }
+
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  public async graphql<TResult = any>(
+    query: string,
+    variables?: Record<string, any>,
+    operationName?: string | null | undefined,
+  ): Promise<TResult>;
+  public async graphql<TResult = any, TVariables = Record<string, any>>(
+    query: TypedDocumentNode<TResult, TVariables>,
+    variables?: TVariables,
+  ): Promise<TResult>;
+  public async graphql<TResult = any, TVariables = Record<string, any>>(
+    query: string | TypedDocumentNode<TResult, TVariables>,
+    variables?: TVariables,
+    operationName?: string | null | undefined,
+  ): Promise<TResult> {
+    if (typeof query !== "string") {
+      query = print(query);
+    }
+
+    const response = await this.fetch<GraphQLExecutionResult<TResult>>(
+      "$graphql",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          query,
+          variables,
+          operationName,
+        }),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (response.errors?.length) {
+      throw new FhirClientError(
+        200,
+        undefined,
+        {
+          query,
+          variables,
+          operationName,
+          data: response.data,
+          errors: response.errors,
+          extensions: response.extensions,
+        },
+        "GraphQL request failed. See errors property for details.",
+      );
+    }
+
+    return response.data!;
+  }
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 
   public async capabilities(
     mode?: "full" | "normative" | "terminology" | null | undefined,

@@ -129,8 +129,8 @@ export const FhirQueryKeys = {
   invalidateQueries: (
     clientKey: string,
     queryClient: QueryClient,
-    type: AnyResourceType,
-    id: string,
+    type: AnyResourceType | undefined,
+    id: string | undefined,
   ) => {
     queryClient.invalidateQueries([clientKey, type, id]);
     queryClient.invalidateQueries([clientKey, type, "search"]);

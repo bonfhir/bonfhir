@@ -1,3 +1,4 @@
+import { TypedDocumentNode } from "@graphql-typed-document-node/core";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import * as graphResultFixture from "../../fixtures/bundle-graph-result.fhir.json";
@@ -29,6 +30,75 @@ const CustomPatient = extendResource("Patient", {
     kind: "valueAge",
   }),
 });
+
+// GraphQL TypedDocumentNode generated.
+// We just take the output of the generation here, to not bring too much external dependencies in the project.
+type ListOrganizationsQueryVariables = {
+  name?: string;
+};
+
+type ListOrganizationsQuery = {
+  __typename?: "QueryType";
+  OrganizationList?: Array<{
+    __typename?: "Organization";
+    resourceType: string;
+    id?: string | null;
+    name?: string | null;
+    alias?: Array<string> | null;
+  } | null> | null;
+};
+
+const ListOrganizationsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "ListOrganizations" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "name" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "OrganizationList" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "name" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "name" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "resourceType" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "alias" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as TypedDocumentNode<
+  ListOrganizationsQuery,
+  ListOrganizationsQueryVariables
+>;
 
 describe("fetch-fhir-client", () => {
   const baseUrl = "http://example.com";
@@ -189,6 +259,67 @@ describe("fetch-fhir-client", () => {
         return res(ctx.json(graphResultFixture));
       },
     ),
+
+    rest.post(`${baseUrl}/$graphql`, async (req, res, ctx) => {
+      const { query, variables } = await req.json();
+
+      if (variables?.id === "graphql-error") {
+        return res(
+          ctx.json({
+            errors: [
+              {
+                message: "Not found",
+                path: ["Patient"],
+                locations: [
+                  {
+                    line: 1,
+                    column: 3,
+                  },
+                ],
+                extensions: {},
+              },
+            ],
+            data: {
+              Patient: undefined,
+            },
+          }),
+        );
+      }
+
+      if (query.includes("OrganizationList")) {
+        return res(
+          ctx.json({
+            data: {
+              OrganizationList: [
+                {
+                  resourceType: "Organization",
+                  id: "86ea22f7-4b7c-4470-8fe7-294933d02e02",
+                  name: "Acme, Inc",
+                  alias: undefined,
+                },
+              ],
+            },
+          }),
+        );
+      }
+
+      return res(
+        ctx.json({
+          data: {
+            Patient: {
+              resourceType: "Patient",
+              id: variables?.id || "patient-id",
+              name: [
+                {
+                  given: ["John"],
+                  family: "Doe",
+                },
+              ],
+            },
+          },
+        }),
+      );
+    }),
   );
 
   beforeAll(() => server.listen());
@@ -575,6 +706,85 @@ describe("fetch-fhir-client", () => {
       for (const patient of result.searchMatch()) {
         expect(patient).toBeInstanceOf(CustomPatient);
       }
+    });
+  });
+
+  describe("graphql", () => {
+    it("execute a query as string", async () => {
+      const result = await client.graphql(`{
+        Patient(id: "patient-id") {
+          resourceType
+          id
+          name {
+            given
+            family
+          }
+        }
+      }`);
+      expect(result).toMatchObject({
+        Patient: {
+          resourceType: "Patient",
+          id: expect.stringMatching(/.+/),
+        },
+      });
+    });
+
+    it("execute a query as string with variables", async () => {
+      const result = await client.graphql(
+        `query GetPatient($id: ID!) {
+          Patient(id: $id) {
+            resourceType
+            id
+            name {
+              given
+              family
+            }
+          }
+        }`,
+        {
+          id: "patient-id-2",
+        },
+      );
+      expect(result).toMatchObject({
+        Patient: {
+          resourceType: "Patient",
+          id: "patient-id-2",
+        },
+      });
+    });
+
+    it("throw errors on GraphQL errors", async () => {
+      await expect(() =>
+        client.graphql(
+          `query GetPatient($id: ID!) {
+            Patient(id: $id) {
+              resourceType
+              id
+              name {
+                given
+                family
+              }
+            }
+          }`,
+          {
+            id: "graphql-error",
+          },
+        ),
+      ).rejects.toThrow("GraphQL");
+    });
+
+    it("execute a query as typed document", async () => {
+      const result = await client.graphql(ListOrganizationsDocument, {
+        name: "Acme, Inc",
+      });
+      expect(result).toMatchObject({
+        OrganizationList: [
+          {
+            resourceType: "Organization",
+            name: "Acme, Inc",
+          },
+        ],
+      } satisfies Partial<ListOrganizationsQuery>);
     });
   });
 

@@ -1,5 +1,4 @@
 import {
-  AnyResource,
   BundleNavigator,
   Retrieved,
   WithResolvableReferences,
@@ -8,16 +7,15 @@ import { ReactElement, ReactNode } from "react";
 import { useFhirUIContext } from "../context";
 
 export interface FhirTableProps<
-  TResource extends AnyResource,
+  TData extends BundleNavigator | any[],
   TRendererProps = any,
-  TRow = WithResolvableReferences<Retrieved<TResource>>,
+  TRow = TData extends BundleNavigator<infer TResource>
+    ? WithResolvableReferences<Retrieved<TResource>>
+    : TData extends Array<infer TArrayElement>
+    ? TArrayElement
+    : never,
 > {
-  data:
-    | BundleNavigator<TResource>
-    | BundleNavigator<Retrieved<TResource>>
-    | Array<TResource>
-    | null
-    | undefined;
+  data: TData | undefined;
   columns: FhirTableColumn<TRow>[];
   sort?: string | null | undefined;
   onSortChange?: ((sort: string) => void) | null | undefined;
@@ -36,11 +34,15 @@ export interface FhirTableColumn<TRow, TRendererProps = any> {
 }
 
 export function FhirTable<
-  TResource extends AnyResource,
+  TData extends BundleNavigator | any[],
   TRendererProps = any,
-  TRow = WithResolvableReferences<Retrieved<TResource>>,
+  TRow = TData extends BundleNavigator<infer TResource>
+    ? WithResolvableReferences<Retrieved<TResource>>
+    : TData extends Array<infer TArrayElement>
+    ? TArrayElement
+    : never,
 >(
-  props: FhirTableProps<TResource, TRendererProps, TRow>,
+  props: FhirTableProps<TData, TRendererProps, TRow>,
 ): ReactElement<any, any> | null {
   const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirTable", props);
@@ -62,7 +64,7 @@ export function FhirTable<
 }
 
 export type FhirTableRendererProps<TRendererProps = any> = FhirTableProps<
-  AnyResource,
+  any,
   TRendererProps
 > & {
   rows: unknown[] | undefined;

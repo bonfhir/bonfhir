@@ -1,0 +1,22 @@
+query ListOrganizations($name: String) {
+  OrganizationList(name: $name) {
+    resourceType
+    id
+    name
+    address {
+      use
+      type
+      text
+      line
+      city
+      state
+      postalCode
+      country
+    }
+    identifier {
+      use
+      system
+      value
+    }
+  }
+}
