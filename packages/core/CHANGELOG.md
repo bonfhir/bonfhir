@@ -1,5 +1,15 @@
 # @bonfhir/core
 
+## 2.9.0
+
+### Minor Changes
+
+- [#11](https://github.com/bonfhir/bonfhir2/pull/11) [`c1774da`](https://github.com/bonfhir/bonfhir2/commit/c1774da720175e1131919fd16faa79a402aac6ea) Thanks [@julienblin](https://github.com/julienblin)! - Add template option to HumanName formatter
+
+- [#10](https://github.com/bonfhir/bonfhir2/pull/10) [`47ba701`](https://github.com/bonfhir/bonfhir2/commit/47ba7010975779d8761e9cf3773764f0fb5e1232) Thanks [@julienblin](https://github.com/julienblin)! - Add GraphQL support in `FhirClient`
+
+- [#8](https://github.com/bonfhir/bonfhir2/pull/8) [`7310c0d`](https://github.com/bonfhir/bonfhir2/commit/7310c0d07e95b82edde9b5662d76afcfbd04a868) Thanks [@julienblin](https://github.com/julienblin)! - Add `FhirClient.graph` method
+
 ## 2.8.0
 
 ### Minor Changes
