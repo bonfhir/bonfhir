@@ -1,3 +1,4 @@
+import { periodFormatter } from ".";
 import { HumanName, ValueSetExpansionContains } from "../fhir-types.codegen";
 import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
@@ -6,7 +7,8 @@ import { HumanNameFormatterOptions, humanNameFormatter } from "./human-name";
 describe("human-name", () => {
   const formatter = new Formatter()
     .register(humanNameFormatter)
-    .register(codeFormatter);
+    .register(codeFormatter)
+    .register(periodFormatter);
 
   describe("format", () => {
     const name = {
@@ -61,6 +63,14 @@ describe("human-name", () => {
           includeUse: true,
         },
         "Mr Dr Bonisseur de la Bath Hubert Léandre jr (officiel)",
+      ],
+      [
+        name,
+        {
+          template: "{{family}} {{firstGiven}} ({{remainingInitials}})",
+          expansions,
+        },
+        "Bonisseur de la Bath Hubert (L.)",
       ],
       ...Object.entries({
         shorter: "Hubert",

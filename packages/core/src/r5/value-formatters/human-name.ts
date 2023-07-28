@@ -1,3 +1,5 @@
+import { periodFormatter } from ".";
+import { formatWithTokens } from "..";
 import { HumanName, NameUse } from "../fhir-types.codegen";
 import { ValueFormatter, withValueFormatter } from "../formatters";
 import { CodeFormatterOptions, codeFormatter } from "./code";
@@ -25,6 +27,20 @@ export interface HumanNameFormatterOptions {
     | "shorter"
     | null
     | undefined;
+
+  /**
+   * Instead of picking a style, use the templated string to format human names.
+   * Use '{tokens}' to insert the tokens.
+   * Tokens can be any HumanName attribute, +:
+   *  - firstGiven: first given name,
+   *  - initials: all given initials,
+   *  - remainingInitials: all given initials except the first one,
+   *
+   * e.g.:
+   *
+   * "{{family}} {{firstGiven}} ({{remainingInitials}})"
+   */
+  template?: string | null | undefined;
 
   /**
    * If present, send text regardless of the style. Defaults to true
@@ -87,6 +103,38 @@ export const humanNameFormatter: ValueFormatter<
     }
 
     if (options?.preferText !== false && value.text) return value.text;
+
+    if (options?.template) {
+      return formatWithTokens(options.template, {
+        use: withValueFormatter<typeof codeFormatter>(
+          formatterOptions.formatter,
+        ).format("code", value.use, {
+          expansions: options?.expansions,
+        }),
+        family: value.family || "",
+        given: new Intl.ListFormat(
+          formatterOptions.locale,
+          options?.listFormatOptions,
+        ).format(value.given || []),
+        prefix: new Intl.ListFormat(
+          formatterOptions.locale,
+          options?.listFormatOptions,
+        ).format(value.prefix || []),
+        suffix: new Intl.ListFormat(
+          formatterOptions.locale,
+          options?.listFormatOptions,
+        ).format(value.suffix || []),
+        period: withValueFormatter<typeof periodFormatter>(
+          formatterOptions.formatter,
+        ).format("Period", value.period),
+        firstGiven: value.given?.[0] || "",
+        initials: (value.given || []).map((given) => `${given[0]}.`).join(" "),
+        remainingInitials: (value.given || [])
+          .slice(1)
+          .map((given) => `${given[0]}.`)
+          .join(" "),
+      }).replaceAll(/\s+/g, " ");
+    }
 
     let nameComponents: Array<string | undefined>;
 

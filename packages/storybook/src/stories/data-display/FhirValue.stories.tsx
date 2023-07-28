@@ -606,6 +606,10 @@ export const HumanName = {
         undefined,
       ],
     },
+    "options.template": {
+      control: "text",
+      description: "Template string used to format the name.",
+    },
     "options.preferText": {
       control: "boolean",
       description:
