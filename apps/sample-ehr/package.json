@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "check": "prettier --check ./src && next lint && tsc --noEmit",
-    "dev": "PORT=4000 next dev",
+    "codegen": "graphql-codegen --config codegen.ts",
+    "dev": "PORT=4000 concurrently \"next dev\" \"pnpm run codegen --watch\"",
     "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
     "start": "PORT=4000 next start",
     "build": "next build"
@@ -22,6 +23,7 @@
     "@bonfhir/ui-mantine": "^2.3.0",
     "@emotion/react": "^11.11.0",
     "@emotion/server": "^11.11.0",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@mantine/core": "^6.0.17",
     "@mantine/dates": "^6.0.17",
     "@mantine/form": "^6.0.17",
@@ -41,11 +43,22 @@
     "dayjs": "^1.11.9",
     "eslint": "^8.45.0",
     "eslint-config-next": "13.4.10",
+    "graphql": "^16.7.1",
     "next": "13.4.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tiptap-markdown": "0.8.1",
     "typescript": "5.1.6"
   },
-  "prettier": "@bonfhir/prettier-config"
+  "prettier": "@bonfhir/prettier-config",
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/introspection": "^4.0.0",
+    "@graphql-codegen/near-operation-file-preset": "^2.5.0",
+    "@graphql-codegen/typed-document-node": "^5.0.1",
+    "@graphql-codegen/typescript": "4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@parcel/watcher": "^2.2.0",
+    "concurrently": "^8.2.0"
+  }
 }
