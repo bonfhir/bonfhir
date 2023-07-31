@@ -1,5 +1,13 @@
 # @bonfhir/core
 
+## 2.10.0
+
+### Minor Changes
+
+- [#12](https://github.com/bonfhir/bonfhir2/pull/12) [`a6d153d`](https://github.com/bonfhir/bonfhir2/commit/a6d153d45dca46606357d8dcb79c822ecf754504) Thanks [@julienblin](https://github.com/julienblin)! - `compareBy` now accepts reverse sort argument (e.g. "-name")
+
+- [#12](https://github.com/bonfhir/bonfhir2/pull/12) [`fb36662`](https://github.com/bonfhir/bonfhir2/commit/fb36662acfd6fb62356aa932fff75860671e63b8) Thanks [@julienblin](https://github.com/julienblin)! - Add `asBundlePagination` helper
+
 ## 2.9.0
 
 ### Minor Changes
