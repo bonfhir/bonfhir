@@ -36,7 +36,7 @@ importers:
   apps/sample-ehr:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.8.0
+        specifier: ^2.9.0
         version: link:../../packages/core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -51,7 +51,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/prettier-config
       '@bonfhir/query':
-        specifier: ^2.2.0
+        specifier: ^2.3.0
         version: link:../../packages/query
       '@bonfhir/subscriptions':
         specifier: ^2.2.0
@@ -60,7 +60,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@bonfhir/ui':
-        specifier: ^2.3.0
+        specifier: ^2.4.0
         version: link:../../packages/ui
       '@bonfhir/ui-mantine':
         specifier: ^2.3.0
@@ -181,7 +181,7 @@ importers:
         specifier: ^2.1.0
         version: link:../../packages/aws-lambda
       '@bonfhir/core':
-        specifier: ^2.8.0
+        specifier: ^2.9.0
         version: link:../../packages/core
       '@bonfhir/subscriptions':
         specifier: ^2.2.0
@@ -627,7 +627,7 @@ importers:
   packages/query:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.8.0
+        specifier: ^2.9.0
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':
@@ -721,7 +721,7 @@ importers:
   packages/storybook:
     devDependencies:
       '@bonfhir/core':
-        specifier: ^2.8.0
+        specifier: ^2.9.0
         version: link:../core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -733,13 +733,13 @@ importers:
         specifier: workspace:*
         version: link:../prettier-config
       '@bonfhir/query':
-        specifier: ^2.2.0
+        specifier: ^2.3.0
         version: link:../query
       '@bonfhir/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@bonfhir/ui':
-        specifier: ^2.3.0
+        specifier: ^2.4.0
         version: link:../ui
       '@bonfhir/ui-mantine':
         specifier: ^2.3.0
@@ -937,10 +937,10 @@ importers:
   packages/ui:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.8.0
+        specifier: ^2.9.0
         version: link:../core
       '@bonfhir/query':
-        specifier: ^2.2.0
+        specifier: ^2.3.0
         version: link:../query
     devDependencies:
       '@bonfhir/eslint-config':
