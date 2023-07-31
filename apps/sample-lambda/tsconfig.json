@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["es2022", "DOM"],
-    "moduleResolution": "NodeNext"
+    "moduleResolution": "NodeNext",
+    "skipLibCheck": true
   }
 }
