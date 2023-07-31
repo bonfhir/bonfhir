@@ -9,7 +9,7 @@ export interface FhirPaginationProps<TRendererProps = any> {
   pageUrl: string | undefined;
   onPageChange: (pageUrl: string | undefined, pageNumber: number) => void;
 
-  data?: BundleNavigator | null | undefined;
+  data?: Pick<BundleNavigator, "total" | "linkUrl"> | null | undefined;
 
   total?: number | null | undefined;
 
