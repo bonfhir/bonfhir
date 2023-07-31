@@ -259,21 +259,34 @@ export function comparePeriods(
   return 0;
 }
 
+export type SortOrderOf<T> =
+  | keyof T
+  | keyof {
+      [K in keyof T as K extends string ? `-${K}` : never]: T[K];
+    };
+
 /**
  * Build a compare function to be used inside a sort to sort by a property value.
  */
-export function compareBy<T>(by: keyof T) {
+export function compareBy<T>(
+  by: SortOrderOf<T> | null | undefined,
+): (a: T, b: T) => number {
+  if (!by || typeof by !== "string") return () => 0;
+  if (by.startsWith("-")) {
+    const reverseCompare = compareBy(by.slice(1) as SortOrderOf<T>);
+    return (a, b) => -reverseCompare(a, b);
+  }
   return (a: T, b: T) => {
-    if (a[by] && b[by]) {
-      if (a[by] > b[by]) {
+    if (a[by as keyof T] && b[by as keyof T]) {
+      if (a[by as keyof T] > b[by as keyof T]) {
         return 1;
-      } else if (a[by] < b[by]) {
+      } else if (a[by as keyof T] < b[by as keyof T]) {
         return -1;
       }
     }
-    if (a[by]) {
+    if (a[by as keyof T]) {
       return 1;
-    } else if (b[by]) {
+    } else if (b[by as keyof T]) {
       return -1;
     }
 
