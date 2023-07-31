@@ -591,3 +591,97 @@ export function asResolvableReferences<T extends Resource>(
 
   return resource as any;
 }
+
+/**
+ * Transforms and paginate an array as a BundleNavigator pagination, so that it can be used in place of
+ * a bundle navigator.
+ */
+export function asBundlePagination<T>({
+  data,
+  pageSize,
+  pageUrl,
+}: {
+  data: T[];
+  pageSize: number;
+  pageUrl?: string | null | undefined;
+}): { data: T[] } & Pick<BundleNavigator, "total" | "linkUrl">;
+export function asBundlePagination({
+  data,
+  pageSize,
+  pageUrl,
+}: {
+  data: null | undefined;
+  pageSize: number;
+  pageUrl?: string | null | undefined;
+}): { data: undefined } & Pick<BundleNavigator, "total" | "linkUrl">;
+export function asBundlePagination<T>({
+  data,
+  pageSize,
+  pageUrl,
+}: {
+  data: T[] | null | undefined;
+  pageSize: number;
+  pageUrl?: string | null | undefined;
+}): { data: T[] | undefined } & Pick<BundleNavigator, "total" | "linkUrl">;
+export function asBundlePagination<T>({
+  data,
+  pageSize,
+  pageUrl,
+}: {
+  data: T[] | null | undefined;
+  pageSize: number;
+  pageUrl?: string | null | undefined;
+}): { data: T[] | undefined } & Pick<BundleNavigator, "total" | "linkUrl"> {
+  if (data == undefined) {
+    return {
+      data: undefined,
+      total: 0,
+      linkUrl: (): undefined => {
+        return;
+      },
+    };
+  }
+
+  const currentPage =
+    pageUrl && !Number.isNaN(Number.parseInt(pageUrl))
+      ? Number.parseInt(pageUrl)
+      : 0;
+  const numberOfPages =
+    data.length < pageSize ? 1 : Math.ceil(data.length / pageSize);
+  const paginatedData = data.slice(
+    currentPage * pageSize,
+    (currentPage + 1) * pageSize,
+  );
+  return {
+    data: paginatedData,
+    total: data.length,
+    linkUrl: (relation: string): string | undefined => {
+      switch (relation) {
+        case "self": {
+          return currentPage.toString();
+        }
+        case "first": {
+          return "0";
+        }
+        case "next": {
+          if (currentPage + 1 < numberOfPages) {
+            return (currentPage + 1).toString();
+          }
+          return;
+        }
+        case "previous": {
+          if (currentPage === 0) {
+            return;
+          }
+          return (currentPage - 1).toString();
+        }
+        case "last": {
+          return (numberOfPages - 1).toString();
+        }
+        default: {
+          throw new TypeError(`Unimplemented relation ${relation}`);
+        }
+      }
+    },
+  };
+}
