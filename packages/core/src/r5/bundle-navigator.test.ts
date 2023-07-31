@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
-import { bundleNavigator } from "./bundle-navigator";
+import { asBundlePagination, bundleNavigator } from "./bundle-navigator";
 import { extendResource } from "./extensions";
 import {
   AnyResource,
@@ -494,6 +494,49 @@ describe("BundleNavigator", () => {
         )[0];
         expect(provenance).toBeInstanceOf(CustomProvenance);
       });
+    });
+  });
+
+  describe("asBundlePagination", () => {
+    it(`paginate undefined`, () => {
+      const result = asBundlePagination({ data: undefined, pageSize: 20 });
+      expect(result.data).toBeFalsy();
+      expect(result.total).toBe(0);
+      expect(result.linkUrl("next")).toBeFalsy();
+    });
+
+    it(`paginate`, () => {
+      const data = Array.from({ length: 30 }).fill(0);
+      const result = asBundlePagination({ data, pageSize: 20 });
+      expect(result.data.length).toBe(20);
+      expect(result.total).toBe(30);
+      expect(result.linkUrl("first")).toBeTruthy();
+      expect(result.linkUrl("next")).toBeTruthy();
+      expect(result.linkUrl("previous")).toBeFalsy();
+      expect(result.linkUrl("last")).toBe(result.linkUrl("next"));
+
+      const result2 = asBundlePagination({
+        data,
+        pageSize: 20,
+        pageUrl: result.linkUrl("next"),
+      });
+      expect(result2.data.length).toBe(10);
+      expect(result2.total).toBe(30);
+      expect(result2.linkUrl("first")).toBe(result2.linkUrl("previous"));
+      expect(result2.linkUrl("next")).toBeFalsy();
+      expect(result2.linkUrl("previous")).toBeTruthy();
+      expect(result2.linkUrl("last")).toBe(result2.linkUrl("self"));
+    });
+
+    it(`paginate small`, () => {
+      const data = Array.from({ length: 10 }).fill(0);
+      const result = asBundlePagination({ data, pageSize: 20 });
+      expect(result.data.length).toBe(10);
+      expect(result.total).toBe(10);
+      expect(result.linkUrl("first")).toBeTruthy();
+      expect(result.linkUrl("next")).toBeFalsy();
+      expect(result.linkUrl("previous")).toBeFalsy();
+      expect(result.linkUrl("last")).toBe(result.linkUrl("self"));
     });
   });
 });

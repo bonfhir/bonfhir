@@ -18,7 +18,7 @@
     "@bonfhir/eslint-plugin": "workspace:*",
     "@bonfhir/prettier-config": "workspace:*",
     "@types/aws-lambda": "^8.10.119",
-    "@types/node": "^18.16.2",
+    "@types/node": "^18.17.1",
     "serverless": "^3.33.0",
     "serverless-offline": "^12.0.4",
     "serverless-plugin-typescript": "^2.1.5",
