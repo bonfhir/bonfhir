@@ -1,5 +1,11 @@
 # @bonfhir/eslint-config
 
+## 2.0.3
+
+### Patch Changes
+
+- [#12](https://github.com/bonfhir/bonfhir2/pull/12) [`5c0d9fb`](https://github.com/bonfhir/bonfhir2/commit/5c0d9fba2089ab8dcb90f3f95a87ae8f7265b5ea) Thanks [@julienblin](https://github.com/julienblin)! - Update plugin dependencies
+
 ## 2.0.2
 
 ### Patch Changes

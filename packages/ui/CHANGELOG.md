@@ -1,5 +1,14 @@
 # @bonfhir/ui
 
+## 2.4.1
+
+### Patch Changes
+
+- [#12](https://github.com/bonfhir/bonfhir2/pull/12) [`08d8769`](https://github.com/bonfhir/bonfhir2/commit/08d87692947452ce333cddb38478b69d691ce6ee) Thanks [@julienblin](https://github.com/julienblin)! - `FhirPaginationProps.data` has a narrower type
+
+- Updated dependencies [[`a6d153d`](https://github.com/bonfhir/bonfhir2/commit/a6d153d45dca46606357d8dcb79c822ecf754504), [`fb36662`](https://github.com/bonfhir/bonfhir2/commit/fb36662acfd6fb62356aa932fff75860671e63b8)]:
+  - @bonfhir/core@2.10.0
+
 ## 2.4.0
 
 ### Minor Changes

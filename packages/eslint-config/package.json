@@ -1,7 +1,7 @@
 {
   "name": "@bonfhir/eslint-config",
   "description": "Shared ESLint configuration for Bonfhir packages.",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
