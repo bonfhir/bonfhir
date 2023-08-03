@@ -1,4 +1,4 @@
-import { AnyResourceType } from "./fhir-types.codegen";
+import { AnyResourceType, Reference } from "./fhir-types.codegen";
 import { RemoveUnderscoreKeys } from "./lang-utils";
 import { AllResourcesSearchParameters } from "./search.codegen";
 
@@ -203,7 +203,8 @@ export class FhirSearchBuilder {
     id:
       | { id: string; type: string }
       | string
-      | Array<{ id: string; type: string } | string>
+      | Reference
+      | Array<{ id: string; type: string } | string | Reference>
       | null
       | undefined,
     modifier?: AnyResourceType | null | undefined,
@@ -239,6 +240,7 @@ export class FhirSearchBuilder {
           value?: string | null | undefined;
         }
       | string
+      | Reference
       | Array<
           | { id: string; type: string }
           | {
@@ -247,6 +249,7 @@ export class FhirSearchBuilder {
               value?: string | null | undefined;
             }
           | string
+          | Reference
         >
       | null
       | undefined,
@@ -263,6 +266,7 @@ export class FhirSearchBuilder {
           value?: string | null | undefined;
         }
       | string
+      | Reference
       | Array<
           | { id: string; type: string }
           | {
@@ -271,6 +275,7 @@ export class FhirSearchBuilder {
               value?: string | null | undefined;
             }
           | string
+          | Reference
         >
       | null
       | undefined,
@@ -309,10 +314,14 @@ export class FhirSearchBuilder {
     const parameterValues = Array.isArray(id) ? id.filter(Boolean) : [id];
 
     const renderedParameterValues = (
-      parameterValues as Array<{ id: string; type: string } | string>
+      parameterValues as Array<
+        { id: string; type: string } | string | Reference
+      >
     ).map((x) =>
       typeof x === "string"
         ? encodeURIComponent(x)
+        : this.isReference(x)
+        ? encodeURIComponent(x.reference!)
         : encodeURIComponent(
             `${x.type}/${
               x.id?.startsWith(x.type + "/") // Let's be kind and auto-correct double type inclusions.
@@ -333,6 +342,13 @@ export class FhirSearchBuilder {
     );
 
     return this;
+  }
+
+  private isReference(
+    value: string | { id: string; type: string } | Reference,
+  ): value is Reference {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (value as any).reference != undefined;
   }
 
   /**
@@ -446,6 +462,15 @@ export class FhirSearchBuilder {
           code?: string | null | undefined;
           value?: string | null | undefined;
         }
+      | {
+          coding?: [
+            {
+              system?: string | null | undefined;
+              code?: string | null | undefined;
+              value?: string | null | undefined;
+            },
+          ];
+        }
       | string
       | Array<
           | {
@@ -493,12 +518,23 @@ export class FhirSearchBuilder {
           system?: string | null | undefined;
           code?: string | null | undefined;
           value?: string | null | undefined;
+        }
+      | {
+          coding?: [
+            {
+              system?: string | null | undefined;
+              code?: string | null | undefined;
+              value?: string | null | undefined;
+            },
+          ];
         },
   ): string {
     let result = "";
 
     if (typeof value === "string") {
       result = encodeURIComponent(value);
+    } else if (this.hasCoding(value)) {
+      return this.tokenParameterValue(value.coding![0]);
     } else if (value.system && !value.code && !value.value) {
       result = `${encodeURIComponent(value.system)}|`;
     } else {
@@ -513,6 +549,37 @@ export class FhirSearchBuilder {
     }
 
     return result;
+  }
+
+  private hasCoding(
+    value:
+      | {
+          system?: string | null | undefined;
+          code?: string | null | undefined;
+          value?: string | null | undefined;
+        }
+      | {
+          coding?: [
+            {
+              system?: string | null | undefined;
+              code?: string | null | undefined;
+              value?: string | null | undefined;
+            },
+          ];
+        },
+  ): value is {
+    coding?: [
+      {
+        system?: string | null | undefined;
+        code?: string | null | undefined;
+        value?: string | null | undefined;
+      },
+    ];
+  } {
+    return (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      Array.isArray((value as any).coding) && (value as any).coding.length > 0
+    );
   }
 
   /**

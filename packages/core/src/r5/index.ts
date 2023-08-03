@@ -2,6 +2,7 @@ export * from "./builders";
 export * from "./bundle-executor";
 export * from "./bundle-navigator";
 export * from "./date-time-helpers";
+export * from "./dedup-search";
 export * from "./extensions";
 export * from "./fetch-fhir-client";
 export * from "./fhir-client";
