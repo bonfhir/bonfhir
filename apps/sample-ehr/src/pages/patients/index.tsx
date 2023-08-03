@@ -259,6 +259,24 @@ function PatientsList(): ReactElement {
                   ),
                 },
                 {
+                  key: "passport",
+                  title: "Passport",
+                  render: (row) => (
+                    <FhirValue
+                      type="Identifier"
+                      value={row.identifier}
+                      options={{
+                        max: 1,
+                        systemFilterOrder: [
+                          "http://standardhealthrecord.org/fhir/StructureDefinition/passportNumber",
+                        ],
+                        style: "value",
+                        default: "Unknown",
+                      }}
+                    />
+                  ),
+                },
+                {
                   key: "_lastUpdated",
                   title: "Last Updated",
                   sortable: true,

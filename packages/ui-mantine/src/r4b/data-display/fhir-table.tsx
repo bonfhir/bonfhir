@@ -102,22 +102,26 @@ function MantineFhirTableHeader({
     >
       <Group
         position="apart"
+        spacing={0}
+        noWrap={true}
         sx={{
           fontSize: "inherit",
           fontWeight: "inherit",
           color: "inherit",
         }}
       >
-        {column.title}
-        {parsedSort?.columnKey === column.key ? (
-          parsedSort.desc ? (
-            <IconChevronDown />
+        <>{column.title}</>
+        <>
+          {parsedSort?.columnKey === column.key ? (
+            parsedSort.desc ? (
+              <IconChevronDown />
+            ) : (
+              <IconChevronUp />
+            )
           ) : (
-            <IconChevronUp />
-          )
-        ) : (
-          <IconSelector />
-        )}
+            <IconSelector />
+          )}
+        </>
       </Group>
     </UnstyledButton>
   ) : (
