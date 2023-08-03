@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.11.0
+
+### Minor Changes
+
+- [#14](https://github.com/bonfhir/bonfhir2/pull/14) [`df80ae2`](https://github.com/bonfhir/bonfhir2/commit/df80ae2d2d53590ee00bd5c6278aba5ef75ca9c2) Thanks [@julienblin](https://github.com/julienblin)! - Add `fhirDedupSearch`
+
 ## 2.10.0
 
 ### Minor Changes

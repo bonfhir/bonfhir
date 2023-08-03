@@ -1,5 +1,18 @@
 # @bonfhir/ui-mantine
 
+## 2.3.1
+
+### Patch Changes
+
+- [#16](https://github.com/bonfhir/bonfhir2/pull/16) [`6bf0d79`](https://github.com/bonfhir/bonfhir2/commit/6bf0d79f269bad6c68b1584538b1f105860ec3be) Thanks [@julienblin](https://github.com/julienblin)! - Fix `FhirTable` header no-wrap to prevent orphaned sort button
+
+- [#16](https://github.com/bonfhir/bonfhir2/pull/16) [`5832c74`](https://github.com/bonfhir/bonfhir2/commit/5832c743affa5aa378e072a8934b067dee9f1ebe) Thanks [@julienblin](https://github.com/julienblin)! - Fix a bug in `FhirTable` rendererProps for td styling
+
+- [#16](https://github.com/bonfhir/bonfhir2/pull/16) [`793ba6c`](https://github.com/bonfhir/bonfhir2/commit/793ba6c47802bd42f6073aec0e7d9ed7844986e3) Thanks [@julienblin](https://github.com/julienblin)! - Add `theadPrefix` and `headerCell` to `FhirTable` to allow more customization of the table header
+
+- Updated dependencies [[`df80ae2`](https://github.com/bonfhir/bonfhir2/commit/df80ae2d2d53590ee00bd5c6278aba5ef75ca9c2)]:
+  - @bonfhir/core@2.11.0
+
 ## 2.3.0
 
 ### Minor Changes
