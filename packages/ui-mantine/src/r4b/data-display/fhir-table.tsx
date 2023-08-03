@@ -11,7 +11,12 @@ import {
   IconChevronUp,
   IconSelector,
 } from "@tabler/icons-react";
-import { DetailedHTMLProps, HTMLAttributes, ReactElement } from "react";
+import {
+  DetailedHTMLProps,
+  HTMLAttributes,
+  ReactElement,
+  createElement,
+} from "react";
 
 export function MantineFhirTable(
   props: FhirTableRendererProps<MantineFhirTableProps>,
@@ -21,17 +26,23 @@ export function MantineFhirTable(
   return (
     <Table {...props.rendererProps?.table}>
       <thead {...props.rendererProps?.thead}>
+        {props.rendererProps?.theadPrefix
+          ? createElement(props.rendererProps.theadPrefix)
+          : null}
         <tr>
           {props.columns.map((column) => (
             <th
               key={column.key}
               {...propsOrFunction(props.rendererProps?.th, column)}
             >
-              <MantineFhirTableHeader
-                column={column}
-                parsedSort={props.parsedSort}
-                onSortChange={props.onSortChange}
-              />
+              {createElement(
+                props.rendererProps?.headerCell ?? MantineFhirTableHeader,
+                {
+                  column,
+                  parsedSort: props.parsedSort,
+                  onSortChange: props.onSortChange,
+                },
+              )}
             </th>
           ))}
         </tr>
@@ -79,15 +90,17 @@ export function MantineFhirTable(
   );
 }
 
+export interface MantineFhirTableHeaderProps {
+  column: FhirTableColumn<any>;
+  parsedSort: FhirTableRendererProps["parsedSort"];
+  onSortChange: FhirTableRendererProps["onSortChange"];
+}
+
 function MantineFhirTableHeader({
   column,
   parsedSort,
   onSortChange,
-}: {
-  column: FhirTableColumn<any>;
-  parsedSort: FhirTableRendererProps["parsedSort"];
-  onSortChange: FhirTableRendererProps["onSortChange"];
-}) {
+}: MantineFhirTableHeaderProps) {
   return column.sortable ? (
     <UnstyledButton
       onClick={() => {
@@ -102,22 +115,26 @@ function MantineFhirTableHeader({
     >
       <Group
         position="apart"
+        spacing={0}
+        noWrap={true}
         sx={{
           fontSize: "inherit",
           fontWeight: "inherit",
           color: "inherit",
         }}
       >
-        {column.title}
-        {parsedSort?.columnKey === column.key ? (
-          parsedSort.desc ? (
-            <IconChevronDown />
+        <>{column.title}</>
+        <>
+          {parsedSort?.columnKey === column.key ? (
+            parsedSort.desc ? (
+              <IconChevronDown />
+            ) : (
+              <IconChevronUp />
+            )
           ) : (
-            <IconChevronUp />
-          )
-        ) : (
-          <IconSelector />
-        )}
+            <IconSelector />
+          )}
+        </>
       </Group>
     </UnstyledButton>
   ) : (
@@ -130,7 +147,7 @@ function propsOrFunction<TProps extends object>(
   ...arg: any[]
 ): TProps | null | undefined {
   if (typeof value === "function") {
-    return value(arg);
+    return value(...arg);
   }
 
   return value;
@@ -145,6 +162,8 @@ export interface MantineFhirTableProps {
       >
     | null
     | undefined;
+  theadPrefix?: () => ReactElement;
+  headerCell?: (props: MantineFhirTableHeaderProps) => ReactElement;
   tbody?:
     | DetailedHTMLProps<
         HTMLAttributes<HTMLTableSectionElement>,
