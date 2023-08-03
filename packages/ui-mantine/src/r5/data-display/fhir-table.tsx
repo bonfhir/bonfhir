@@ -130,7 +130,7 @@ function propsOrFunction<TProps extends object>(
   ...arg: any[]
 ): TProps | null | undefined {
   if (typeof value === "function") {
-    return value(arg);
+    return value(...arg);
   }
 
   return value;
