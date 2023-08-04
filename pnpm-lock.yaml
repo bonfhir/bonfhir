@@ -36,7 +36,7 @@ importers:
   apps/sample-ehr:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.10.0
+        specifier: ^2.11.0
         version: link:../../packages/core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -63,7 +63,7 @@ importers:
         specifier: ^2.4.1
         version: link:../../packages/ui
       '@bonfhir/ui-mantine':
-        specifier: ^2.3.0
+        specifier: ^2.3.1
         version: link:../../packages/ui-mantine
       '@emotion/react':
         specifier: ^11.11.0
@@ -181,7 +181,7 @@ importers:
         specifier: ^2.1.0
         version: link:../../packages/aws-lambda
       '@bonfhir/core':
-        specifier: ^2.10.0
+        specifier: ^2.11.0
         version: link:../../packages/core
       '@bonfhir/subscriptions':
         specifier: ^2.2.0
@@ -329,6 +329,9 @@ importers:
       '@types/decompress':
         specifier: ^4.2.4
         version: 4.2.4
+      '@types/inquirer':
+        specifier: ^9.0.3
+        version: 9.0.3
       '@types/jest':
         specifier: ^29.5.3
         version: 29.5.3
@@ -353,6 +356,9 @@ importers:
       fast-glob:
         specifier: ^3.3.1
         version: 3.3.1
+      inquirer:
+        specifier: ^8.2.6
+        version: 8.2.6
       jest:
         specifier: ^29.6.2
         version: 29.6.2(@types/node@18.17.1)(ts-node@10.9.1)
@@ -807,7 +813,7 @@ importers:
   packages/storybook:
     devDependencies:
       '@bonfhir/core':
-        specifier: ^2.10.0
+        specifier: ^2.11.0
         version: link:../core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -828,7 +834,7 @@ importers:
         specifier: ^2.4.1
         version: link:../ui
       '@bonfhir/ui-mantine':
-        specifier: ^2.3.0
+        specifier: ^2.3.1
         version: link:../ui-mantine
       '@emotion/react':
         specifier: ^11.11.0
@@ -1120,7 +1126,7 @@ importers:
   packages/ui-mantine:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.10.0
+        specifier: ^2.11.0
         version: link:../core
       '@bonfhir/query':
         specifier: ^2.2.0
@@ -9734,6 +9740,13 @@ packages:
       '@types/node': 18.17.1
     dev: true
 
+  /@types/inquirer@9.0.3:
+    resolution: {integrity: sha512-CzNkWqQftcmk2jaCWdBTf9Sm7xSw4rkI1zpU/Udw3HX5//adEZUIm9STtoRP1qgWj0CWQtJ9UTvqmO2NNjhMJw==}
+    dependencies:
+      '@types/through': 0.0.30
+      rxjs: 7.8.1
+    dev: true
+
   /@types/is-ci@3.0.0:
     resolution: {integrity: sha512-Q0Op0hdWbYd1iahB+IFNQcWXFq4O0Q5MwQP7uN0souuQ4rPg1vEYcnIOfr1gY+M+6rc8FGoRaBO1mOOvL29sEQ==}
     dependencies:
@@ -9990,6 +10003,12 @@ packages:
 
   /@types/throttle-debounce@2.1.0:
     resolution: {integrity: sha512-5eQEtSCoESnh2FsiLTxE121IiE60hnMqcb435fShf4bpLRjEu1Eoekht23y6zXS9Ts3l+Szu3TARnTsA0GkOkQ==}
+
+  /@types/through@0.0.30:
+    resolution: {integrity: sha512-FvnCJljyxhPM3gkRgWmxmDZyAQSiBQQWLI0A0VFL0K7W1oRUrPJSqNO0NvTnLkBcotdlp3lKvaT0JrnyRDkzOg==}
+    dependencies:
+      '@types/node': 18.17.1
+    dev: true
 
   /@types/tough-cookie@4.0.2:
     resolution: {integrity: sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw==}
@@ -16278,6 +16297,27 @@ packages:
       strip-ansi: 6.0.1
       through: 2.3.8
       wrap-ansi: 7.0.0
+    dev: true
+
+  /inquirer@8.2.6:
+    resolution: {integrity: sha512-M1WuAmb7pn9zdFRtQYk26ZBoY043Sse0wVDdk4Bppr+JOXyQYybdtvK+l9wUibhtjdjvtoiNy8tk+EgsYIUqKg==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      cli-cursor: 3.1.0
+      cli-width: 3.0.0
+      external-editor: 3.1.0
+      figures: 3.2.0
+      lodash: 4.17.21
+      mute-stream: 0.0.8
+      ora: 5.4.1
+      run-async: 2.4.1
+      rxjs: 7.8.1
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      through: 2.3.8
+      wrap-ansi: 6.2.0
     dev: true
 
   /internal-slot@1.0.5:

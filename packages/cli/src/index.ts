@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import yargs from "yargs";
+import create from "./commands/create";
 import _import from "./commands/import";
 
 try {
@@ -10,6 +11,7 @@ try {
     .alias("h", "help")
     .strictCommands()
     .command(_import)
+    .command(create)
     .demandCommand(1)
     .version(process.env.PACKAGE_VERSION || "local")
     .parse(process.argv.slice(2));
