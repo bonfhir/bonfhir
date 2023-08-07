@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { render } from "ejs";
 import fg from "fast-glob";
-import Listr from "listr";
+import { Listr } from "listr2";
 import { exec } from "node:child_process";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
