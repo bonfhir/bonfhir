@@ -11,7 +11,9 @@ export class PackageManagerHandler {
   public async create(...args: string[]) {
     const [firstArg, secondArg, ...restArgs] = args;
     await execAsync(
-      `${this.packageManager} create ${firstArg} ${secondArg}${
+      `${this.packageManager} create${
+        this.packageManager === "npm" ? " -y" : ""
+      } ${firstArg} ${secondArg}${
         restArgs.length > 0 && this.packageManager === "npm" ? " --" : ""
       } ${restArgs.join(" ")}`.trim(),
     );

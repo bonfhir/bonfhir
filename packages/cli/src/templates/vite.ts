@@ -1,10 +1,9 @@
 import chalk from "chalk";
 import fg from "fast-glob";
-import Listr from "listr";
+import { Listr } from "listr2";
 
 import { existsSync } from "node:fs";
 import { mkdir, rm, unlink, writeFile } from "node:fs/promises";
-import { join } from "node:path";
 
 import { TemplateOptions } from "../commands/create";
 import { Template } from "./template";
@@ -43,14 +42,6 @@ export const Vite: Template = {
         title: "Add dependencies",
         task: async ({ options: { cwd, packageManager } }) => {
           await packageManager.install(cwd);
-
-          //TODO : remove once npm packages have been published.
-          await writeFile(
-            join(cwd, ".npmrc"),
-            `@bonfhir:registry=https://npm.pkg.github.com/
-      //npm.pkg.github.com/:_authToken=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`,
-            "utf8",
-          );
           await packageManager.add(
             cwd,
             "@bonfhir/core",

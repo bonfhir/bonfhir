@@ -10,7 +10,7 @@ import {
 import chalk from "chalk";
 import decompress from "decompress";
 import fg from "fast-glob";
-import Listr from "listr";
+import { Listr } from "listr2";
 import { readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { basename, extname, join, parse } from "node:path";

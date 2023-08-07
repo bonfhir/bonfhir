@@ -17,6 +17,7 @@ export default ["cjs", "esm"].flatMap((format) => [
         sourcemap: true,
         compact: true,
         banner: "#!/usr/bin/env node",
+        inlineDynamicImports: true,
       },
     ],
     plugins: [
@@ -52,7 +53,7 @@ export default ["cjs", "esm"].flatMap((format) => [
           mkdirSync(`./dist/${format}`, { recursive: true });
           writeFileSync(
             `./dist/${format}/package.json`,
-            `{"type": "${format === "cjs" ? "commonjs" : "module"}}"}`
+            `{"type": "${format === "cjs" ? "commonjs" : "module"}}"}`,
           );
         },
       },

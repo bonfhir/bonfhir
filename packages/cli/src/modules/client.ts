@@ -3,7 +3,7 @@ import {
   FhirClient as FhirClientR4b,
 } from "@bonfhir/core/r4b";
 import { FetchFhirClient as FetchFhirClientR5 } from "@bonfhir/core/r5";
-import { ListrTask } from "listr";
+import { ListrTask } from "listr2";
 import { CommandBuilder } from "yargs";
 import {
   FhirVersionCommandBuilder,
