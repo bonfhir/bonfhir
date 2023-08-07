@@ -115,7 +115,7 @@ export const Vite: Template = {
             import { Outlet, useNavigate } from "react-router-dom";
             
             /**
-             * Uncomment the following lines to connect to a local
+             * The following lines connect to a local
              * Medplum Devbox FHIR server
              * https://bonfhir.dev/docs/medplum-devbox
              */
