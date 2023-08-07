@@ -1,9 +1,22 @@
 {
   "name": "@bonfhir/eslint-plugin",
-  "description": "ESLint for Bonfhir packages.",
+  "description": "ESLint plugin for BonFHIR packages.",
   "version": "2.0.2",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "keywords": [
+    "HL7",
+    "FHIR",
+    "BonFHIR",
+    "ESLint"
+  ],
+  "homepage": "https://bonfhir.dev/",
+  "bugs": {
+    "url": "https://github.com/bonfhir/bonfhir/issues"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonfhir/bonfhir.git",
+    "directory": "packages/eslint-plugin"
   },
   "main": "index.cjs",
   "devDependencies": {

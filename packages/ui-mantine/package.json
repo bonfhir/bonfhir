@@ -1,8 +1,24 @@
 {
   "name": "@bonfhir/ui-mantine",
   "version": "2.3.1",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "description": "Mantine UI renderers for BonFHIR UI",
+  "keywords": [
+    "HL7",
+    "FHIR",
+    "BonFHIR",
+    "UI",
+    "React",
+    "Mantine"
+  ],
+  "homepage": "https://bonfhir.dev/",
+  "bugs": {
+    "url": "https://github.com/bonfhir/bonfhir/issues"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonfhir/bonfhir.git",
+    "directory": "packages/ui-mantine"
   },
   "scripts": {
     "build": "pnpm clean && pnpm copyfiles && rollup --config rollup.config.mjs",

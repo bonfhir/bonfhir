@@ -14,7 +14,6 @@ jobs:
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ vars.TURBO_TEAM }}
-      NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout
@@ -44,17 +43,14 @@ jobs:
           NODE_OPTIONS: "--max_old_space_size=4096"
         run: pnpm check && pnpm test
 
-      - name: Configure publishing
-        run: |
-          echo @bonfhir:https://npm.pkg.github.com/ > .npmrc
-          echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' >> .npmrc
-
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@v1
         with:
           publish: pnpm publish-packages
+          version: pnpm version-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish Storybook
         uses: JamesIves/github-pages-deploy-action@v4

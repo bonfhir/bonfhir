@@ -12,6 +12,7 @@
     "dev": "turbo run dev",
     "format": "turbo run format",
     "preinstall": "npx only-allow pnpm",
+    "version-packages": "changeset version && pnpm install",
     "publish-packages": "turbo run build && changeset publish",
     "test": "turbo run test -- --passWithNoTests"
   },

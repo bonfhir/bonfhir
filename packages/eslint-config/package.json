@@ -1,9 +1,22 @@
 {
   "name": "@bonfhir/eslint-config",
-  "description": "Shared ESLint configuration for Bonfhir packages.",
   "version": "2.0.3",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "description": "Shared ESLint configuration for BonFHIR packages.",
+  "keywords": [
+    "HL7",
+    "FHIR",
+    "BonFHIR",
+    "ESLint"
+  ],
+  "homepage": "https://bonfhir.dev/",
+  "bugs": {
+    "url": "https://github.com/bonfhir/bonfhir/issues"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonfhir/bonfhir.git",
+    "directory": "packages/eslint-config"
   },
   "main": "index.cjs",
   "dependencies": {

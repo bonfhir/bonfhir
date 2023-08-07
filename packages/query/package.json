@@ -1,8 +1,22 @@
 {
   "name": "@bonfhir/query",
   "version": "2.3.0",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "description": "BonFHIR client state management library",
+  "keywords": [
+    "HL7",
+    "FHIR",
+    "BonFHIR",
+    "react-query"
+  ],
+  "homepage": "https://bonfhir.dev/",
+  "bugs": {
+    "url": "https://github.com/bonfhir/bonfhir/issues"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonfhir/bonfhir.git",
+    "directory": "packages/query"
   },
   "scripts": {
     "build": "pnpm clean && pnpm copyfiles && rollup --config rollup.config.mjs",

@@ -1,8 +1,22 @@
 {
   "name": "@bonfhir/codegen",
   "version": "2.4.0",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "description": "The BonFHIR code generator",
+  "keywords": [
+    "HL7",
+    "FHIR",
+    "BonFHIR",
+    "Code Generator"
+  ],
+  "homepage": "https://bonfhir.dev/",
+  "bugs": {
+    "url": "https://github.com/bonfhir/bonfhir/issues"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonfhir/bonfhir.git",
+    "directory": "packages/codegen"
   },
   "scripts": {
     "bonfhir-codegen": "ts-node src/index.ts",

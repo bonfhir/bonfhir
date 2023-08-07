@@ -1,8 +1,23 @@
 {
   "name": "@bonfhir/ui",
   "version": "2.4.1",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "description": "UI components for BonFHIR",
+  "keywords": [
+    "HL7",
+    "FHIR",
+    "BonFHIR",
+    "UI",
+    "React"
+  ],
+  "homepage": "https://bonfhir.dev/",
+  "bugs": {
+    "url": "https://github.com/bonfhir/bonfhir/issues"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonfhir/bonfhir.git",
+    "directory": "packages/ui"
   },
   "scripts": {
     "build": "pnpm clean && pnpm copyfiles && rollup --config rollup.config.mjs",

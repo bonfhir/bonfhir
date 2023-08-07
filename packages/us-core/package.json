@@ -1,8 +1,22 @@
 {
   "name": "@bonfhir/us-core",
   "version": "2.0.0",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "description": "US Core Profile customization for BonFHIR",
+  "keywords": [
+    "HL7",
+    "FHIR",
+    "BonFHIR",
+    "US Core"
+  ],
+  "homepage": "https://bonfhir.dev/",
+  "bugs": {
+    "url": "https://github.com/bonfhir/bonfhir/issues"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonfhir/bonfhir.git",
+    "directory": "packages/us-core"
   },
   "scripts": {
     "build": "pnpm clean && pnpm copyfiles && rollup --config rollup.config.mjs",

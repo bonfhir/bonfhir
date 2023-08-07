@@ -1,9 +1,22 @@
 {
   "name": "@bonfhir/prettier-config",
-  "description": "Shared prettier configuration for Bonfhir packages.",
   "version": "2.0.2",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "description": "Shared prettier configuration for BonFHIR packages.",
+  "keywords": [
+    "HL7",
+    "FHIR",
+    "BonFHIR",
+    "Prettier"
+  ],
+  "homepage": "https://bonfhir.dev/",
+  "bugs": {
+    "url": "https://github.com/bonfhir/bonfhir/issues"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonfhir/bonfhir.git",
+    "directory": "packages/prettier-config"
   },
   "main": "index.json",
   "dependencies": {

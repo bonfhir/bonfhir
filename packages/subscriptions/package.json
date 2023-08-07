@@ -1,8 +1,22 @@
 {
   "name": "@bonfhir/subscriptions",
   "version": "2.2.0",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "description": "A library for working with FHIR subscriptions",
+  "keywords": [
+    "HL7",
+    "FHIR",
+    "BonFHIR",
+    "Subscription"
+  ],
+  "homepage": "https://bonfhir.dev/",
+  "bugs": {
+    "url": "https://github.com/bonfhir/bonfhir/issues"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonfhir/bonfhir.git",
+    "directory": "packages/subscriptions"
   },
   "scripts": {
     "build": "pnpm clean && pnpm copyfiles && rollup --config rollup.config.mjs",
