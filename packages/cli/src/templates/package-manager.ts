@@ -32,7 +32,7 @@ export class PackageManagerHandler {
   }
 
   public async runPrettier(cwd?: string | URL | undefined) {
-    await execAsync(`npx prettier --write .`, {
+    await execAsync(`npx -y prettier --write .`, {
       cwd,
     });
   }
