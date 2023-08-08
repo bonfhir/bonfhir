@@ -25,14 +25,32 @@ export class PackageManagerHandler {
     });
   }
 
-  public async add(cwd?: string | URL | undefined, ...args: string[]) {
-    await execAsync(`${this.packageManager} add ${args.join(" ")}`, {
-      cwd,
-    });
+  public async add(
+    cwd?: string | URL | undefined,
+    ...args: Array<string | undefined>
+  ) {
+    await execAsync(
+      `${this.packageManager} add ${args.filter(Boolean).join(" ")}`,
+      {
+        cwd,
+      },
+    );
+  }
+
+  public async addDev(
+    cwd?: string | URL | undefined,
+    ...args: Array<string | undefined>
+  ) {
+    await execAsync(
+      `${this.packageManager} add --save-dev ${args.filter(Boolean).join(" ")}`,
+      {
+        cwd,
+      },
+    );
   }
 
   public async runPrettier(cwd?: string | URL | undefined) {
-    await execAsync(`npx -y prettier --write .`, {
+    await execAsync(`npx -y prettier --write ./**/src/**/*.*`, {
       cwd,
     });
   }

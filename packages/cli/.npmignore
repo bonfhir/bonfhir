@@ -1,3 +1,4 @@
+.turbo/
 fixtures/
 src/
 .eslintrc.cjs
