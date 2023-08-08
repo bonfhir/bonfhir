@@ -14,7 +14,10 @@
     "preinstall": "npx only-allow pnpm",
     "version-packages": "changeset version && pnpm install --lockfile-only",
     "publish-packages": "turbo run build && changeset publish",
-    "test": "turbo run test -- --passWithNoTests"
+    "test": "turbo run test -- --passWithNoTests",
+    "start-fhir-server": "docker run -p 8100:8100 -p 8103:8103 -v bonfhir_fhir_data:/var/lib/postgresql/15/main -v bonfhir_fhir_files:/usr/src/medplum/packages/server/dist/binary --name bonfhir_fhir_server --rm -d ghcr.io/bonfhir/medplum-devbox:latest",
+    "stop-fhir-server": "docker stop bonfhir_fhir_server",
+    "add-sample-data": "pnpm --filter @bonfhir/cli run dev import --source synthea-sample --fhir r4b --base-url http://localhost:8103/fhir/R4/ --auth-token-url http://localhost:8103/oauth2/token --auth-client-id f54370de-eaf3-4d81-a17e-24860f667912 --auth-client-secret 75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",

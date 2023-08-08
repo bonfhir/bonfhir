@@ -6,7 +6,8 @@
   "scripts": {
     "build": "serverless package",
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
-    "dev": "serverless offline start"
+    "dev": "serverless offline start",
+    "register-subscriptions": "curl -i --request POST http://localhost:6000/fhir/subscriptions/register --header \"X-Subscription-Auth: secret\""
   },
   "dependencies": {
     "@bonfhir/aws-lambda": "^2.1.0",
