@@ -1,3 +1,4 @@
+.turbo/
 src/
 .eslintrc.cjs
 jest.config.mjs
