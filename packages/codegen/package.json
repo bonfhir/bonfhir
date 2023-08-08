@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/codegen",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "The BonFHIR code generator",
   "keywords": [
     "HL7",

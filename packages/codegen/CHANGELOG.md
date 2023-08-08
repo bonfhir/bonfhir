@@ -1,5 +1,11 @@
 # @bonfhir/codegen
 
+## 2.4.1
+
+### Patch Changes
+
+- [#20](https://github.com/bonfhir/bonfhir/pull/20) [`7b5af69`](https://github.com/bonfhir/bonfhir/commit/7b5af69959c186cae011b532f5ab316c3b77fbc4) Thanks [@julienblin](https://github.com/julienblin)! - Migrate to listr2
+
 ## 2.4.0
 
 ### Minor Changes
