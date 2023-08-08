@@ -196,6 +196,9 @@ importers:
       '@bonfhir/prettier-config':
         specifier: workspace:*
         version: link:../../packages/prettier-config
+      '@serverless/typescript':
+        specifier: ^3.30.1
+        version: 3.30.1
       '@types/aws-lambda':
         specifier: ^8.10.119
         version: 8.10.119
@@ -7271,6 +7274,10 @@ packages:
       - debug
       - supports-color
       - utf-8-validate
+    dev: true
+
+  /@serverless/typescript@3.30.1:
+    resolution: {integrity: sha512-P14spozEjEhfqPdCi7h0kzlmv0CH4fVPMQKMBaAEKlWT9Qq6gqDOzRP8RNLojliAXt+bKnO1Ns5Z7+HrcuRK4Q==}
     dev: true
 
   /@serverless/utils@6.13.1:
