@@ -5,9 +5,9 @@
   "scripts": {
     "check": "prettier --check ./src && next lint && tsc --noEmit",
     "codegen": "graphql-codegen --config codegen.ts",
-    "dev": "PORT=4000 concurrently \"next dev\" \"pnpm run codegen --watch\"",
+    "dev": "concurrently \"next dev\" \"pnpm run codegen --watch\"",
     "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
-    "start": "PORT=4000 next start",
+    "start": "next start",
     "build": "next build"
   },
   "dependencies": {
@@ -45,6 +45,7 @@
     "eslint-config-next": "13.4.12",
     "graphql": "^16.7.1",
     "next": "13.4.12",
+    "next-auth": "^4.22.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tiptap-markdown": "0.8.2",
