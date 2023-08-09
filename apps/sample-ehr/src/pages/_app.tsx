@@ -1,15 +1,17 @@
 import { Navbar } from "@/components";
 import { SystemLabels } from "@/fhir/known-identifiers";
-import { FetchFhirClient, Formatter } from "@bonfhir/core/r4b";
+import { FetchFhirClient, FhirClient, Formatter } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { MantineRenderer } from "@bonfhir/ui-mantine/r4b";
 import { FhirUIProvider } from "@bonfhir/ui/r4b";
 import { AppShell, MantineProvider, MantineThemeOverride } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { SessionProvider, signIn, useSession } from "next-auth/react";
 import { AppProps } from "next/app";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
+import { PropsWithChildren, useEffect, useState } from "react";
 
 const montserrat = Montserrat({ subsets: ["latin-ext"] });
 
@@ -36,18 +38,11 @@ const theme: MantineThemeOverride = {
   },
 };
 
-const client = new FetchFhirClient({
-  baseUrl: "http://localhost:8103/fhir/R4/",
-  auth: {
-    tokenUrl: "http://localhost:8103/oauth2/token",
-    clientId: "f54370de-eaf3-4d81-a17e-24860f667912",
-    clientSecret:
-      "75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
-  },
-});
-
 export default function App(props: AppProps) {
-  const { Component, pageProps } = props;
+  const {
+    Component,
+    pageProps: { session, ...pageProps },
+  } = props;
   const router = useRouter();
 
   return (
@@ -59,35 +54,70 @@ export default function App(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-        <FhirQueryProvider fhirClient={client}>
-          <FhirUIProvider
-            renderer={MantineRenderer}
-            formatter={Formatter.build({
-              systemsLabels: SystemLabels,
-            })}
-            onNavigate={({ target, aux }) => {
-              if (aux) {
-                window.open(target, "_blank");
-              } else {
-                router.push(target);
-              }
-            }}
-          >
-            <AppShell
-              navbar={<Navbar />}
-              styles={{
-                main: {
-                  backgroundColor: "#F1F1F1",
-                },
+      <SessionProvider session={session}>
+        <WithSession>
+          <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+            <FhirUIProvider
+              renderer={MantineRenderer}
+              formatter={Formatter.build({
+                systemsLabels: SystemLabels,
+              })}
+              onNavigate={({ target, aux }) => {
+                if (aux) {
+                  window.open(target, "_blank");
+                } else {
+                  router.push(target);
+                }
               }}
             >
-              <Component {...pageProps} />
-            </AppShell>
-            <ReactQueryDevtools position="bottom-right" />
-          </FhirUIProvider>
-        </FhirQueryProvider>
-      </MantineProvider>
+              <AppShell
+                navbar={<Navbar />}
+                styles={{
+                  main: {
+                    backgroundColor: "#F1F1F1",
+                  },
+                }}
+              >
+                <Component {...pageProps} />
+              </AppShell>
+              <ReactQueryDevtools position="bottom-right" />
+            </FhirUIProvider>
+          </MantineProvider>
+        </WithSession>
+      </SessionProvider>
     </>
+  );
+}
+
+function WithSession(props: PropsWithChildren) {
+  const { data: session, status } = useSession();
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      signIn("medplum");
+    }
+  }, [status]);
+
+  const [fhirClient, setFhirClient] = useState<FhirClient>();
+
+  useEffect(() => {
+    if (session) {
+      setFhirClient(
+        new FetchFhirClient({
+          baseUrl: "http://localhost:8103/fhir/R4/",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          auth: `Bearer ${(session as any).accessToken}}`,
+        }),
+      );
+    }
+  }, [session]);
+
+  if (!fhirClient) {
+    return;
+  }
+
+  return (
+    <FhirQueryProvider fhirClient={fhirClient}>
+      {props.children}
+    </FhirQueryProvider>
   );
 }
