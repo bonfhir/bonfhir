@@ -368,6 +368,8 @@ const CONFIG_CONTENT = `export const Config = {
   },
   server: {
     authServerUrl: process.env.AUTH_SERVER_URL || "http://localhost:8103",
+    authTokenUrl:
+      process.env.AUTH_TOKEN_URL || "http://localhost:8103/oauth2/token",
     logoutUrl: process.env.LOGOUT_URL || "http://localhost:8103/oauth2/logout",
     authClientId:
       process.env.AUTH_CLIENT_ID || "f54370de-eaf3-4d81-a17e-24860f667912",
@@ -375,40 +377,36 @@ const CONFIG_CONTENT = `export const Config = {
       process.env.AUTH_CLIENT_SECRET ||
       "75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
     authSecret: process.env.AUTH_SECRET || "secret",
+    appBaseUrl: process.env.APP_BASE_URL || "http://host.docker.internal:3000",
+    fhirSubscriptionsSecret: process.env.FHIR_SUBSCRIPTION_SECRET || "secret",
   },
 } as const;
 `;
 
-const MIDDLEWARE_CONTENT = `import { FetchFhirClient } from "@bonfhir/core/r4b";
+const MIDDLEWARE_CONTENT = `import { Config } from "@/config";
+import { FetchFhirClient } from "@bonfhir/core/r4b";
 import { fhirSubscriptions } from "@bonfhir/next/r4b/server";
-import { communicationRequests } from "./subscriptions";
 
 export const config = {
   matcher: ["/api/fhir/subscriptions/:subscription*"],
 };
 
 export const middleware = fhirSubscriptions({
-  /**
-   * The following lines connect to a local
-   * Medplum Devbox FHIR server for the SERVER side.
-   * https://bonfhir.dev/docs/medplum-devbox
-   */
   fhirClient: () =>
     new FetchFhirClient({
-      baseUrl: "http://localhost:8103/fhir/R4/",
+      baseUrl: Config.public.fhirUrl,
       auth: {
-        tokenUrl: "http://localhost:8103/oauth2/token",
-        clientId: "f54370de-eaf3-4d81-a17e-24860f667912",
-        clientSecret:
-          "75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
+        tokenUrl: Config.server.authTokenUrl,
+        clientId: Config.server.authClientId,
+        clientSecret: Config.server.authClientSecret,
       },
     }),
-  baseUrl: process.env.APP_BASE_URL || process.env.VERCEL_URL ? \`https://$\{process.env.VERCEL_URL}\` : "http://host.docker.internal:4000",
+  baseUrl: Config.server.appBaseUrl,
   prefix: "/api/fhir/subscriptions",
-  webhookSecret: process.env.FHIR_SUBSCRIPTION_SECRET || "secret",
-  // Register custom subscriptions here
+  webhookSecret: Config.server.fhirSubscriptionsSecret,
   subscriptions: [],
 });
+
 `;
 
 const NEXT_AUTH_TYPES_CONTENT = `import { Practitioner, Reference, RelatedPerson } from "@bonfhir/core/r4b";
