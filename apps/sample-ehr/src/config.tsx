@@ -2,12 +2,10 @@ export const Config = {
   public: {
     fhirUrl:
       process.env.NEXT_PUBLIC_FHIR_URL || "http://localhost:8103/fhir/R4/",
-    logoutUrl:
-      process.env.NEXT_PUBLIC_AUTH_LOGOUT ||
-      "http://localhost:8103/oauth2/logout",
   },
   server: {
     authServerUrl: process.env.AUTH_SERVER_URL || "http://localhost:8103",
+    logoutUrl: process.env.LOGOUT_URL || "http://localhost:8103/oauth2/logout",
     authClientId:
       process.env.AUTH_CLIENT_ID || "f54370de-eaf3-4d81-a17e-24860f667912",
     authClientSecret:

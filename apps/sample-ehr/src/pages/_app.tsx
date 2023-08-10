@@ -5,7 +5,13 @@ import { FetchFhirClient, FhirClient, Formatter } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { MantineRenderer } from "@bonfhir/ui-mantine/r4b";
 import { FhirUIProvider } from "@bonfhir/ui/r4b";
-import { AppShell, MantineProvider, MantineThemeOverride } from "@mantine/core";
+import {
+  AppShell,
+  Center,
+  Loader,
+  MantineProvider,
+  MantineThemeOverride,
+} from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider, signIn, useSession } from "next-auth/react";
 import { AppProps } from "next/app";
@@ -101,7 +107,7 @@ function WithAuth(props: PropsWithChildren) {
   }, [status]);
 
   useEffect(() => {
-    if (session) {
+    if (session?.accessToken) {
       setFhirClient(
         new FetchFhirClient({
           baseUrl: Config.public.fhirUrl,
@@ -111,8 +117,14 @@ function WithAuth(props: PropsWithChildren) {
     }
   }, [session]);
 
-  if (!session || !fhirClient) {
-    return;
+  if (status !== "authenticated" || !session?.accessToken || !fhirClient) {
+    return (
+      <AppShell>
+        <Center h="100%">
+          <Loader />
+        </Center>
+      </AppShell>
+    );
   }
 
   return (
