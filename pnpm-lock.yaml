@@ -36,7 +36,7 @@ importers:
   apps/sample-ehr:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.11.0
+        specifier: ^2.12.0
         version: link:../../packages/core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -54,7 +54,7 @@ importers:
         specifier: ^2.3.0
         version: link:../../packages/query
       '@bonfhir/subscriptions':
-        specifier: ^2.2.0
+        specifier: ^2.2.1
         version: link:../../packages/subscriptions
       '@bonfhir/typescript-config':
         specifier: workspace:*
@@ -184,10 +184,10 @@ importers:
         specifier: ^2.1.0
         version: link:../../packages/aws-lambda
       '@bonfhir/core':
-        specifier: ^2.11.0
+        specifier: ^2.12.0
         version: link:../../packages/core
       '@bonfhir/subscriptions':
-        specifier: ^2.2.0
+        specifier: ^2.2.1
         version: link:../../packages/subscriptions
     devDependencies:
       '@bonfhir/eslint-config':
@@ -813,7 +813,7 @@ importers:
   packages/storybook:
     devDependencies:
       '@bonfhir/core':
-        specifier: ^2.11.0
+        specifier: ^2.12.0
         version: link:../core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -960,7 +960,7 @@ importers:
   packages/subscriptions:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.10.0
+        specifier: ^2.12.0
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':
