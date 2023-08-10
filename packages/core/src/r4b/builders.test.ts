@@ -1,4 +1,4 @@
-import { build, codeableConcept, id } from "./builders";
+import { build, codeableConcept, id, isReferenceOf } from "./builders";
 import { DomainResourceTypes } from "./fhir-types.codegen";
 
 describe("builders", () => {
@@ -73,5 +73,32 @@ describe("builders", () => {
     ])("%p => %p", (value, expected) => {
       expect(codeableConcept(value)).toEqual(expected);
     });
+  });
+
+  describe("isReferenceOf", () => {
+    it.each([
+      [undefined, "Patient", false],
+      ["Organization/123", "Patient", false],
+      ["Patient/123", "Patient", true],
+    ] as const)(
+      `check reference of %p => %p = %p`,
+      (reference, type, expected) => {
+        expect(isReferenceOf({ reference: reference }, type)).toEqual(expected);
+      },
+    );
+
+    it.each([
+      [undefined, "Patient", "Organization", false],
+      ["Organization/123", "Patient", "Organization", true],
+      ["Patient/123", "Patient", "Organization", true],
+      ["Medication/123", "Patient", "Organization", false],
+    ] as const)(
+      `check reference of multiple %p => %p = %p`,
+      (reference, type1, type2, expected) => {
+        expect(isReferenceOf({ reference: reference }, type1, type2)).toEqual(
+          expected,
+        );
+      },
+    );
   });
 });
