@@ -248,7 +248,7 @@ import { MantineRenderer } from "@bonfhir/ui-mantine/r4b";
 import { FhirUIProvider } from "@bonfhir/ui/r4b";
 import { AppShell, Center, Loader, MantineProvider, MantineThemeOverride } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { SessionProvider, signIn, useSession } from "next-auth/react";
+import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import type { AppProps } from 'next/app';
 import { useRouter } from "next/navigation";
 import { PropsWithChildren, useEffect, useState } from "react";
@@ -307,6 +307,11 @@ function WithAuth(props: PropsWithChildren) {
         new FetchFhirClient({
           baseUrl: Config.public.fhirUrl,
           auth: \`Bearer \${session.accessToken}\`,
+          async onError(response) {
+            if (response.status === 401) {
+              signOut({ callbackUrl: "/" });
+            }
+          },
         }),
       );
     }
