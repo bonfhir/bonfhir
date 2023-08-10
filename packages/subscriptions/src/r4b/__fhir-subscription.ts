@@ -1,6 +1,7 @@
 import {
   AnyResource,
   FhirClient,
+  Retrieved,
   Subscription,
   build,
   urlSafeConcat,
@@ -32,7 +33,7 @@ export interface FhirSubscriptionHandlerArgs<
   fhirClient: FhirClient;
 
   /** The resource that matches the subscription. */
-  resource: TResource;
+  resource: Retrieved<TResource>;
 
   /** The configured logger. */
   logger:

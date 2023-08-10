@@ -1,9 +1,11 @@
 import {
   AnyDomainResourceType,
   AnyResource,
+  AnyResourceType,
   CodeableConcept,
   Coding,
   ExtractDomainResource,
+  ExtractResource,
   Reference,
   Retrieved,
 } from "./fhir-types.codegen";
@@ -97,4 +99,87 @@ export function canonical(
   return resource.version
     ? `${resource.url}|${resource.version}`
     : resource.url;
+}
+
+/**
+ * Check whether a reference is a reference to a specific resource type, and assert the strong Reference type.
+ */
+export function isReferenceOf<TResourceType extends AnyResourceType>(
+  reference: Reference | null | undefined,
+  resourceType: TResourceType,
+): reference is Reference<ExtractResource<TResourceType>>;
+export function isReferenceOf<
+  TResourceType extends AnyResourceType,
+  TResourceType2 extends AnyResourceType,
+>(
+  reference: Reference | null | undefined,
+  resourceType: TResourceType,
+  resourceType2: TResourceType2,
+): reference is Reference<
+  ExtractResource<TResourceType> | ExtractResource<TResourceType2>
+>;
+export function isReferenceOf<
+  TResourceType extends AnyResourceType,
+  TResourceType2 extends AnyResourceType,
+  TResourceType3 extends AnyResourceType,
+>(
+  reference: Reference | null | undefined,
+  resourceType: TResourceType,
+  resourceType2: TResourceType2,
+  resourceType3: TResourceType3,
+): reference is Reference<
+  | ExtractResource<TResourceType>
+  | ExtractResource<TResourceType2>
+  | ExtractResource<TResourceType3>
+>;
+export function isReferenceOf<
+  TResourceType extends AnyResourceType,
+  TResourceType2 extends AnyResourceType,
+  TResourceType3 extends AnyResourceType,
+  TResourceType4 extends AnyResourceType,
+>(
+  reference: Reference | null | undefined,
+  resourceType: TResourceType,
+  resourceType2: TResourceType2,
+  resourceType3: TResourceType3,
+  resourceType4: TResourceType4,
+): reference is Reference<
+  | ExtractResource<TResourceType>
+  | ExtractResource<TResourceType2>
+  | ExtractResource<TResourceType3>
+  | ExtractResource<TResourceType4>
+>;
+export function isReferenceOf<
+  TResourceType extends AnyResourceType,
+  TResourceType2 extends AnyResourceType,
+  TResourceType3 extends AnyResourceType,
+  TResourceType4 extends AnyResourceType,
+  TResourceType5 extends AnyResourceType,
+>(
+  reference: Reference | null | undefined,
+  resourceType: TResourceType,
+  resourceType2: TResourceType2,
+  resourceType3: TResourceType3,
+  resourceType4: TResourceType4,
+  resourceType5: TResourceType5,
+): reference is Reference<
+  | ExtractResource<TResourceType>
+  | ExtractResource<TResourceType2>
+  | ExtractResource<TResourceType3>
+  | ExtractResource<TResourceType4>
+  | ExtractResource<TResourceType5>
+>;
+export function isReferenceOf<TResourceType extends AnyResourceType>(
+  reference: Reference | null | undefined,
+  ...resourceType: TResourceType[]
+): boolean {
+  if (!reference?.reference) {
+    return false;
+  }
+  for (const rt of resourceType) {
+    if (reference.reference.startsWith(`${rt}/`)) {
+      return true;
+    }
+  }
+  return false;
 }

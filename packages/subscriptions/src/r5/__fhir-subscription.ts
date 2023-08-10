@@ -1,6 +1,7 @@
 import {
   AnyResource,
   FhirClient,
+  Retrieved,
   Subscription,
   SubscriptionFilterBy,
 } from "@bonfhir/core/r5";
@@ -31,7 +32,7 @@ export interface FhirSubscriptionHandlerArgs<
   fhirClient: FhirClient;
 
   /** The resource that matches the subscription. */
-  resource: TResource;
+  resource: Retrieved<TResource>;
 
   /** The configured logger. */
   logger:
