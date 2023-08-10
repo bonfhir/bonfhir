@@ -11,5 +11,6 @@ export const Config = {
     authClientSecret:
       process.env.AUTH_CLIENT_SECRET ||
       "75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
+    authSecret: process.env.AUTH_SECRET || "secret",
   },
 } as const;
