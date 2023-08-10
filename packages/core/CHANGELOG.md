@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.12.0
+
+### Minor Changes
+
+- [#25](https://github.com/bonfhir/bonfhir/pull/25) [`cd479cf`](https://github.com/bonfhir/bonfhir/commit/cd479cf6d23c8c14a14a30ea73eb980e69d8445a) Thanks [@julienblin](https://github.com/julienblin)! - Add `isReferenceOf` helper
+
 ## 2.11.0
 
 ### Minor Changes

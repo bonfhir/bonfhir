@@ -1,5 +1,14 @@
 # @bonfhir/subscriptions
 
+## 2.2.1
+
+### Patch Changes
+
+- [#25](https://github.com/bonfhir/bonfhir/pull/25) [`c1e3212`](https://github.com/bonfhir/bonfhir/commit/c1e3212915d3a99f7ea520facaa2a63b91911c3c) Thanks [@julienblin](https://github.com/julienblin)! - Update to FhirSubscription resource type -> Retrieved<TResource>
+
+- Updated dependencies [[`cd479cf`](https://github.com/bonfhir/bonfhir/commit/cd479cf6d23c8c14a14a30ea73eb980e69d8445a)]:
+  - @bonfhir/core@2.12.0
+
 ## 2.2.0
 
 ### Minor Changes
