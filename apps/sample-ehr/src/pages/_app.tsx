@@ -13,7 +13,7 @@ import {
   MantineThemeOverride,
 } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { SessionProvider, signIn, useSession } from "next-auth/react";
+import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import { AppProps } from "next/app";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
@@ -112,6 +112,11 @@ function WithAuth(props: PropsWithChildren) {
         new FetchFhirClient({
           baseUrl: Config.public.fhirUrl,
           auth: `Bearer ${session.accessToken}`,
+          async onError(response) {
+            if (response.status === 401) {
+              signOut({ callbackUrl: "/" });
+            }
+          },
         }),
       );
     }

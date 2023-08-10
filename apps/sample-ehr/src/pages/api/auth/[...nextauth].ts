@@ -18,7 +18,7 @@ export default NextAuth({
       },
     },
   ],
-  secret: process.env.AUTH_SECRET || "secret",
+  secret: Config.server.authSecret,
   callbacks: {
     async jwt({ token, account }) {
       if (account) {

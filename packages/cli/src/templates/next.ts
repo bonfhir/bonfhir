@@ -12,7 +12,8 @@ export interface Context {
 
 export const Next: Template = {
   name: "next",
-  description: "A Next.js app with BonFHIR UI & Subscription API.",
+  description:
+    "A Next.js app with BonFHIR UI & Subscription API, with NextAuth integration.",
   async handler(options) {
     await new Listr<Context>([
       {
@@ -28,7 +29,7 @@ export const Next: Template = {
       {
         title: "Create Next project",
         task: async ({ options: { cwd, name } }) => {
-          await mkdir(`${cwd}/src/pages`, { recursive: true });
+          await mkdir(`${cwd}/src/pages/api/auth`, { recursive: true });
           await mkdir(`${cwd}/src/subscriptions`, { recursive: true });
           await mkdir(`${cwd}/src/components`, { recursive: true });
           await mkdir(`${cwd}/public`, { recursive: true });
@@ -50,8 +51,19 @@ export const Next: Template = {
           );
           await writeFile(`${cwd}/src/pages/index.tsx`, INDEX_CONTENT, "utf8");
           await writeFile(
+            `${cwd}/src/pages/api/auth/[...nextauth].ts`,
+            NEXT_AUTH_API_CONTENT,
+            "utf8",
+          );
+          await writeFile(`${cwd}/src/config.tsx`, CONFIG_CONTENT, "utf8");
+          await writeFile(
             `${cwd}/src/middleware.ts`,
             MIDDLEWARE_CONTENT,
+            "utf8",
+          );
+          await writeFile(
+            `${cwd}/src/next-auth.d.ts`,
+            NEXT_AUTH_TYPES_CONTENT,
             "utf8",
           );
           await writeFile(
@@ -82,6 +94,7 @@ export const Next: Template = {
             "@tanstack/react-query@^4",
             "@tanstack/react-query-devtools@^4",
             "next",
+            "next-auth",
             "react",
             "react-dom",
           );
@@ -142,7 +155,7 @@ const PACKAGE_JSON_CONTENT = (name: string) => `{
     "start": "next start",
     "lint": "prettier --check ./src && next lint",
     "format": "prettier --write ./src",
-    "start-fhir-server": "docker run -p 8100:8100 -p 8103:8103 -v ${name}_fhir_data:/var/lib/postgresql/15/main -v ${name}_fhir_files:/usr/src/medplum/packages/server/dist/binary --name ${name}_fhir_server --rm -d ghcr.io/bonfhir/medplum-devbox:latest",
+    "start-fhir-server": "docker run -p 8100:8100 -p 8103:8103 -v ${name}_fhir_data:/var/lib/postgresql/15/main -v ${name}_fhir_files:/usr/src/medplum/packages/server/dist/binary -e INITIAL_CLIENT_APP_REDIRECT_URI=http://localhost:3000/api/auth/callback/medplum --name ${name}_fhir_server --rm -d ghcr.io/bonfhir/medplum-devbox:latest",
     "stop-fhir-server": "docker stop ${name}_fhir_server",
     "add-sample-data": "npx @bonfhir/cli import --source synthea-sample --fhir r4b --base-url http://localhost:8103/fhir/R4/ --auth-token-url http://localhost:8103/oauth2/token --auth-client-id f54370de-eaf3-4d81-a17e-24860f667912 --auth-client-secret 75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
     "register-subscriptions": "curl -i --request POST 'http://localhost:3000/api/fhir/subscriptions/register' --header 'X-Subscription-Auth: secret'"
@@ -226,29 +239,19 @@ yarn-error.log*
 next-env.d.ts            
 `;
 
-const APP_CONTENT = `import { FetchFhirClient } from "@bonfhir/core/r4b";
+const APP_CONTENT = `
+import { Navbar } from "@/components";
+import { Config } from "@/config";
+import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { MantineRenderer } from "@bonfhir/ui-mantine/r4b";
 import { FhirUIProvider } from "@bonfhir/ui/r4b";
-import { AppShell, MantineProvider, MantineThemeOverride } from "@mantine/core";
+import { AppShell, Center, Loader, MantineProvider, MantineThemeOverride } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import type { AppProps } from 'next/app';
 import { useRouter } from "next/navigation";
-
-/**
- * The following lines connect to a local
- * Medplum Devbox FHIR server for the CLIENT side.
- * https://bonfhir.dev/docs/medplum-devbox
- */
-const client = new FetchFhirClient({
-  baseUrl: "http://localhost:8103/fhir/R4/",
-  auth: {
-    tokenUrl: "http://localhost:8103/oauth2/token",
-    clientId: "f54370de-eaf3-4d81-a17e-24860f667912",
-    clientSecret:
-      "75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
-  },
-});
+import { PropsWithChildren, useEffect, useState } from "react";
 
 /**
  * Customize Mantine Theme.
@@ -256,29 +259,78 @@ const client = new FetchFhirClient({
  */
 const theme: MantineThemeOverride = {};
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App(props: AppProps) {
+  const {
+    Component,
+    pageProps: { session, ...pageProps },
+  } = props;
   const router = useRouter();
 
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-      <FhirQueryProvider fhirClient={client}>
-        <FhirUIProvider
-          renderer={MantineRenderer}
-          onNavigate={({ target, aux }) => {
-            if (aux) {
-              window.open(target, "_blank");
-            } else {
-              router.push(target);
-            }
-          }}
-        >
-          <AppShell>
-            <Component {...pageProps} />
-          </AppShell>
-          <ReactQueryDevtools />
-        </FhirUIProvider>
-      </FhirQueryProvider>
+      <SessionProvider session={session}>
+        <WithAuth>
+          <FhirUIProvider
+            renderer={MantineRenderer}
+            onNavigate={({ target, aux }) => {
+              if (aux) {
+                window.open(target, "_blank");
+              } else {
+                router.push(target);
+              }
+            }}
+          >
+            <AppShell>
+              <Component {...pageProps} />
+            </AppShell>
+            <ReactQueryDevtools />
+          </FhirUIProvider>
+        </WithAuth>
+      </SessionProvider>
     </MantineProvider>
+  );
+}
+
+function WithAuth(props: PropsWithChildren) {
+  const { data: session, status } = useSession();
+  const [fhirClient, setFhirClient] = useState<FhirClient>();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      signIn("medplum");
+    }
+  }, [status]);
+
+  useEffect(() => {
+    if (session?.accessToken) {
+      setFhirClient(
+        new FetchFhirClient({
+          baseUrl: Config.public.fhirUrl,
+          auth: \`Bearer \${session.accessToken}\`,
+          async onError(response) {
+            if (response.status === 401) {
+              signOut({ callbackUrl: "/" });
+            }
+          },
+        }),
+      );
+    }
+  }, [session]);
+
+  if (status !== "authenticated" || !session?.accessToken || !fhirClient) {
+    return (
+      <AppShell>
+        <Center h="100%">
+          <Loader />
+        </Center>
+      </AppShell>
+    );
+  }
+
+  return (
+    <FhirQueryProvider fhirClient={fhirClient}>
+      {props.children}
+    </FhirQueryProvider>
   );
 }
 `;
@@ -309,34 +361,134 @@ export default function Home() {
 }
 `;
 
-const MIDDLEWARE_CONTENT = `import { FetchFhirClient } from "@bonfhir/core/r4b";
+const CONFIG_CONTENT = `export const Config = {
+  public: {
+    fhirUrl:
+      process.env.NEXT_PUBLIC_FHIR_URL || "http://localhost:8103/fhir/R4/",
+  },
+  server: {
+    authServerUrl: process.env.AUTH_SERVER_URL || "http://localhost:8103",
+    authTokenUrl:
+      process.env.AUTH_TOKEN_URL || "http://localhost:8103/oauth2/token",
+    logoutUrl: process.env.LOGOUT_URL || "http://localhost:8103/oauth2/logout",
+    authClientId:
+      process.env.AUTH_CLIENT_ID || "f54370de-eaf3-4d81-a17e-24860f667912",
+    authClientSecret:
+      process.env.AUTH_CLIENT_SECRET ||
+      "75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
+    authSecret: process.env.AUTH_SECRET || "secret",
+    appBaseUrl: process.env.APP_BASE_URL || "http://host.docker.internal:3000",
+    fhirSubscriptionsSecret: process.env.FHIR_SUBSCRIPTION_SECRET || "secret",
+  },
+} as const;
+`;
+
+const MIDDLEWARE_CONTENT = `import { Config } from "@/config";
+import { FetchFhirClient } from "@bonfhir/core/r4b";
 import { fhirSubscriptions } from "@bonfhir/next/r4b/server";
-import { communicationRequests } from "./subscriptions";
 
 export const config = {
   matcher: ["/api/fhir/subscriptions/:subscription*"],
 };
 
 export const middleware = fhirSubscriptions({
-  /**
-   * The following lines connect to a local
-   * Medplum Devbox FHIR server for the SERVER side.
-   * https://bonfhir.dev/docs/medplum-devbox
-   */
   fhirClient: () =>
     new FetchFhirClient({
-      baseUrl: "http://localhost:8103/fhir/R4/",
+      baseUrl: Config.public.fhirUrl,
       auth: {
-        tokenUrl: "http://localhost:8103/oauth2/token",
-        clientId: "f54370de-eaf3-4d81-a17e-24860f667912",
-        clientSecret:
-          "75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
+        tokenUrl: Config.server.authTokenUrl,
+        clientId: Config.server.authClientId,
+        clientSecret: Config.server.authClientSecret,
       },
     }),
-  baseUrl: process.env.APP_BASE_URL || process.env.VERCEL_URL ? \`https://$\{process.env.VERCEL_URL}\` : "http://host.docker.internal:4000",
+  baseUrl: Config.server.appBaseUrl,
   prefix: "/api/fhir/subscriptions",
-  webhookSecret: process.env.FHIR_SUBSCRIPTION_SECRET || "secret",
-  // Register custom subscriptions here
+  webhookSecret: Config.server.fhirSubscriptionsSecret,
   subscriptions: [],
+});
+
+`;
+
+const NEXT_AUTH_TYPES_CONTENT = `import { Practitioner, Reference, RelatedPerson } from "@bonfhir/core/r4b";
+import "next-auth";
+
+declare module "next-auth" {
+  interface Account {
+    profile: {
+      reference: string;
+      display: string;
+    };
+  }
+
+  interface Session {
+    user: {
+      id: string;
+      profile: Reference<Practitioner | RelatedPerson>;
+    };
+    accessToken: string;
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    accessToken: string;
+    profile: {
+      reference: string;
+      display: string;
+    };
+  }
+}
+`;
+
+const NEXT_AUTH_API_CONTENT = `import { Config } from "@/config";
+import NextAuth from "next-auth";
+
+export default NextAuth({
+  providers: [
+    {
+      id: "medplum",
+      name: "Medplum",
+      type: "oauth",
+      checks: ["state", "nonce"],
+      wellKnown: \`\${Config.server.authServerUrl}/.well-known/openid-configuration\`,
+      clientId: Config.server.authClientId,
+      clientSecret: Config.server.authClientSecret,
+      profile: (profile) => {
+        return {
+          id: profile.sub,
+        };
+      },
+    },
+  ],
+  secret: Config.server.authSecret,
+  callbacks: {
+    async jwt({ token, account }) {
+      if (account) {
+        token.accessToken = account.access_token!;
+        token.profile = account.profile;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.accessToken = token.accessToken;
+      session.user = {
+        id: token.sub!,
+        profile: token.profile,
+      };
+      return session;
+    },
+  },
+  events: {
+    async signOut({ token }) {
+      await fetch(Config.server.logoutUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: \`Bearer \${token.accessToken}\`,
+        },
+        body: JSON.stringify({}),
+      });
+    },
+  },
 });
 `;

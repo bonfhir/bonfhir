@@ -102,6 +102,11 @@ export interface FetchFhirClientOptions {
    * This is necessary as some servers tend to redirect to a different origin on pagination
    */
   disableSameOriginCheck?: boolean | null | undefined;
+
+  /**
+   * Get notified when a request fails.
+   */
+  onError?: (response: Response) => void | Promise<void>;
 }
 
 export class FetchFhirClient implements FhirClient {
@@ -734,8 +739,12 @@ export class FetchFhirClient implements FhirClient {
     const response = await (this.options.fetch || fetch)(targetUrl, finalInit);
 
     if (!response.ok) {
-      // We clone the response to allow the use code to re-read the body if need be.
+      // We clone the response to allow the user code to re-read the body if need be.
       const clonedResponse = response.clone();
+      if (this.options.onError) {
+        const clonedResponse2 = response.clone();
+        await this.options.onError(clonedResponse2);
+      }
       let operationOutcome: OperationOutcome | undefined;
       try {
         const tryOperationOutcome = (await response.json()) as OperationOutcome;
