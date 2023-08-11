@@ -55,7 +55,7 @@ jobs:
       - name: Publish Storybook
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: packages/storybook/dist
+          folder: docs/storybook/dist
           repository-name: bonfhir/storybook
           branch: gh-pages
           clean: true
