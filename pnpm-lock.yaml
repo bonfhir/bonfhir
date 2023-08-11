@@ -376,6 +376,9 @@ importers:
       '@docusaurus/preset-classic':
         specifier: 2.4.1
         version: 2.4.1(@algolia/client-search@4.19.1)(react-dom@17.0.2)(react@17.0.2)(search-insights@2.7.0)(typescript@5.1.6)
+      '@docusaurus/remark-plugin-npm2yarn':
+        specifier: ^2.4.1
+        version: 2.4.1
       '@docusaurus/theme-classic':
         specifier: ^2.4.1
         version: 2.4.1(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
@@ -4594,6 +4597,15 @@ packages:
       '@types/react': 18.2.17
       prop-types: 15.8.1
       react: 17.0.2
+
+  /@docusaurus/remark-plugin-npm2yarn@2.4.1:
+    resolution: {integrity: sha512-RTX4hGCrwibqjDVf6edWVNwdvWHjx+YmfKwxqXxfhNnYjypTCXWTAyKeIfCUW2DNdtqAI2ZM0zFhB1maua2JbQ==}
+    engines: {node: '>=16.14'}
+    dependencies:
+      npm-to-yarn: 2.0.0
+      tslib: 2.6.1
+      unist-util-visit: 2.0.3
+    dev: false
 
   /@docusaurus/theme-classic@2.4.1(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
     resolution: {integrity: sha512-Rz0wKUa+LTW1PLXmwnf8mn85EBzaGSt6qamqtmnh9Hflkc+EqiYMhtUJeLdV+wsgYq4aG0ANc+bpUDpsUhdnwg==}
@@ -20818,6 +20830,11 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       path-key: 4.0.0
+
+  /npm-to-yarn@2.0.0:
+    resolution: {integrity: sha512-/IbjiJ7vqbxfxJxAZ+QI9CCRjnIbvGxn5KQcSY9xHh0lMKc/Sgqmm7yp7KPmd6TiTZX5/KiSBKlkGHo59ucZbg==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /npmlog@6.0.2:
     resolution: {integrity: sha512-/vBvz5Jfr9dT/aFWd0FIRf+T/Q2WBsLENygUaFUqstqsycmZAP/t5BvFJTK0viFmSUxiUKTUplWy5vt+rvKIxg==}
