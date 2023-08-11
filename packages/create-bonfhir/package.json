@@ -1,7 +1,7 @@
 {
-  "name": "@bonfhir/cli",
+  "name": "create-bonfhir",
   "version": "2.2.0",
-  "description": "BonFHIR CLI",
+  "description": "Create a new BonFHIR project",
   "keywords": [
     "HL7",
     "FHIR",
@@ -28,21 +28,10 @@
   },
   "type": "module",
   "bin": {
-    "bonfhir": "./dist/cli/index.cjs"
-  },
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.mjs"
-      },
-      "required": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.cjs"
-      }
-    }
+    "create-bonfhir": "./dist/cjs/index.cjs"
   },
   "devDependencies": {
+    "@bonfhir/cli": "workspace:*",
     "@bonfhir/core": "workspace:*",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
@@ -69,7 +58,6 @@
     "listr2": "^6.6.1",
     "rimraf": "^5.0.1",
     "rollup": "^3.27.0",
-    "rollup-plugin-dts": "5.3.1",
     "rollup-plugin-filesize": "^10.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
