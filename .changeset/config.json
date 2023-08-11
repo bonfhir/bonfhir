@@ -7,9 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "@bonfhir/sample-ehr",
-    "@bonfhir/sample-lambda",
-    "@bonfhir/storybook"
-  ]
+  "ignore": ["@bonfhir/sample-ehr", "@bonfhir/sample-lambda"]
 }

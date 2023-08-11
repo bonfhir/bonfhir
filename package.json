@@ -47,6 +47,7 @@
       "stable": "0",
       "superagent": "7",
       "svgo": "1",
+      "trim": "0.0.1",
       "w3c-hr-time": "1",
       "workbox-cacheable-response": "6"
     }
