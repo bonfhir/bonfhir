@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.13.0
+
+### Minor Changes
+
+- [#27](https://github.com/bonfhir/bonfhir/pull/27) [`510226e`](https://github.com/bonfhir/bonfhir/commit/510226eeb771b408026543f3ebba60fd461e2123) Thanks [@julienblin](https://github.com/julienblin)! - Add `onError` callback on `FetchFhirClient`.
+
 ## 2.12.0
 
 ### Minor Changes

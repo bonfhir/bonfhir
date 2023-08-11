@@ -1,5 +1,17 @@
 # @bonfhir/cli
 
+## 2.3.0
+
+### Minor Changes
+
+- [#27](https://github.com/bonfhir/bonfhir/pull/27) [`b35dad5`](https://github.com/bonfhir/bonfhir/commit/b35dad5dfb4aba4bdaee04e27a79805f7021c884) Thanks [@julienblin](https://github.com/julienblin)! - Add NextAuth to `next` template
+
+### Patch Changes
+
+- [#30](https://github.com/bonfhir/bonfhir/pull/30) [`0adb5a3`](https://github.com/bonfhir/bonfhir/commit/0adb5a3ed9acb2d377f928eec63b94ee8b35b62f) Thanks [@julienblin](https://github.com/julienblin)! - Create exports for commands (use it as a package)
+
+- [#27](https://github.com/bonfhir/bonfhir/pull/27) [`95da1da`](https://github.com/bonfhir/bonfhir/commit/95da1da97776178174ca09e396703ee1beb54c68) Thanks [@julienblin](https://github.com/julienblin)! - Fix middleware Config in next template
+
 ## 2.2.0
 
 ### Minor Changes
