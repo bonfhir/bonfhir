@@ -18,7 +18,7 @@
     "directory": "packages/core"
   },
   "scripts": {
-    "build": "pnpm clean && pnpm codegen && pnpm copyfiles && rollup --config rollup.config.mjs",
+    "build": "pnpm clean && pnpm codegen && pnpm copyfiles && rollup --config rollup.config.mjs && rollup --config rollup-global.config.mjs",
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
     "clean": "rimraf dist && rimraf src/r4b/[!__]**",
     "copyfiles": "pnpm --dir=\"${PWD}/../codegen\" dev copy -s \"${PWD}/src/r5\" -t \"${PWD}/src/r4b\" -i '**/*.ts' -e '**/*.codegen.ts' --source-fhir r5 --target-fhir r4b",
@@ -37,7 +37,8 @@
       "require": {
         "types": "./dist/r4b/cjs/index.d.ts",
         "default": "./dist/r4b/cjs/index.cjs"
-      }
+      },
+      "script": "./dist/r4b/global/index.js"
     },
     "./r5": {
       "import": {
@@ -47,7 +48,8 @@
       "require": {
         "types": "./dist/r5/cjs/index.d.ts",
         "default": "./dist/r5/cjs/index.cjs"
-      }
+      },
+      "script": "./dist/r5/global/index.js"
     }
   },
   "devDependencies": {

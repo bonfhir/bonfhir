@@ -6,4 +6,6 @@ templates/
 jest.config.mjs
 jest.setup.mjs
 rollup.config.mjs
+rollup-global.config.mjs
 tsconfig.json
+index.html
