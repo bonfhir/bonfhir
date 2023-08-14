@@ -1,8 +1,10 @@
 import {
   AnyResourceTypeOrCustomResource,
   FhirClient,
+  Reference,
   ResourceOf,
   Retrieved,
+  id as resolveId,
 } from "@bonfhir/core/r5";
 import {
   UseQueryOptions,
@@ -41,7 +43,7 @@ export function useFhirRead<
   TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   type: TResourceType,
-  id: string,
+  id: string | Reference,
   options?: UseFhirReadOptions<TResourceType> | null | undefined,
 ): UseQueryResult<Retrieved<ResourceOf<TResourceType>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
@@ -52,13 +54,25 @@ export function useFhirRead<
     queryKey: FhirQueryKeys.read(
       fhirQueryContext.clientKey,
       type,
-      id,
+      resolveId(id) || raiseInvalidReference(id),
       options?.fhir,
     ),
     queryFn: ({ signal }) =>
-      fhirQueryContext.fhirClient.read(type as TResourceType, id, {
-        ...options?.fhir,
-        signal: signal ?? undefined,
-      }),
+      fhirQueryContext.fhirClient.read(
+        type as TResourceType,
+        resolveId(id) || raiseInvalidReference(id),
+        {
+          ...options?.fhir,
+          signal: signal ?? undefined,
+        },
+      ),
   });
+}
+
+function raiseInvalidReference(value: unknown): never {
+  throw new Error(
+    `Invalid reference: ${JSON.stringify(
+      value,
+    )} is missing the reference value.`,
+  );
 }
