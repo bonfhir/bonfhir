@@ -16,6 +16,7 @@ import {
   Claim,
   Organization,
   Patient,
+  Reference,
 } from "./fhir-types.codegen";
 import { uuid } from "./lang-utils";
 import {
@@ -345,6 +346,20 @@ describe("fetch-fhir-client", () => {
       const result = await client.read(CustomPatient, "123");
       expect(result).toBeInstanceOf(CustomPatient);
       expect(result.name).toBeTruthy();
+    });
+
+    it("a typed reference", async () => {
+      const reference: Reference<Patient> = { reference: "Patient/123" };
+      const result = await client.read(reference);
+      expect(result).toBeDefined();
+      expect(result?.resourceType).toEqual("Patient");
+    });
+
+    it("an untyped reference", async () => {
+      const reference: Reference = { reference: "Patient/123" };
+      const result = await client.read("Patient", reference);
+      expect(result).toBeDefined();
+      expect(result?.resourceType).toEqual("Patient");
     });
   });
 
