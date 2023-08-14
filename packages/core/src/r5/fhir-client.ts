@@ -15,6 +15,7 @@ import {
   Bundle,
   CapabilityStatement,
   OperationOutcome,
+  Reference,
   Retrieved,
 } from "./fhir-types.codegen";
 import { Formatter } from "./formatters";
@@ -41,8 +42,12 @@ export interface FhirClient {
    * https://hl7.org/fhir/http.html#read
    */
   read<TResourceType extends AnyResourceTypeOrCustomResource>(
+    id: Reference<ResourceOf<TResourceType>>,
+    options?: GeneralParameters | null | undefined,
+  ): Promise<Retrieved<ResourceOf<TResourceType>>>;
+  read<TResourceType extends AnyResourceTypeOrCustomResource>(
     type: TResourceType,
-    id: string,
+    id: string | Reference,
     options?: GeneralParameters | null | undefined,
   ): Promise<Retrieved<ResourceOf<TResourceType>>>;
 

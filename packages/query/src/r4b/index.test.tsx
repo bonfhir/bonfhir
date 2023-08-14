@@ -397,6 +397,24 @@ describe("hooks", () => {
       });
     });
 
+    it("read a reference", async () => {
+      const { result } = renderHook(
+        () =>
+          useFhirRead("Patient", {
+            reference: "Patient/a942b3d5-19bc-4959-8b5d-f9aedd790a94",
+          }),
+        { wrapper },
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data).toMatchObject({
+          resourceType: "Patient",
+          id: "a942b3d5-19bc-4959-8b5d-f9aedd790a94",
+        });
+      });
+    });
+
     it("vread", async () => {
       const { result } = renderHook(
         () =>

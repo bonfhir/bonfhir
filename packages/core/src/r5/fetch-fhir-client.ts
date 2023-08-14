@@ -38,6 +38,7 @@ import {
   CapabilityStatement,
   ExtractResource,
   OperationOutcome,
+  Reference,
   Retrieved,
 } from "./fhir-types.codegen";
 import { urlSafeConcat } from "./lang-utils";
@@ -121,10 +122,34 @@ export class FetchFhirClient implements FhirClient {
   constructor(public options: FetchFhirClientOptions) {}
 
   public async read<TResourceType extends AnyResourceTypeOrCustomResource>(
+    id: Reference<ResourceOf<TResourceType>>,
+    options?: GeneralParameters | null | undefined,
+  ): Promise<Retrieved<ResourceOf<TResourceType>>>;
+  public async read<TResourceType extends AnyResourceTypeOrCustomResource>(
     type: TResourceType,
-    id: string,
+    id: string | Reference,
+    options?: GeneralParameters | null | undefined,
+  ): Promise<Retrieved<ResourceOf<TResourceType>>>;
+  public async read<TResourceType extends AnyResourceTypeOrCustomResource>(
+    type: TResourceType | Reference<ResourceOf<TResourceType>>,
+    id: string | Reference | GeneralParameters | null | undefined,
     options?: GeneralParameters | null | undefined,
   ): Promise<Retrieved<ResourceOf<TResourceType>>> {
+    if (typeof type === "object") {
+      if (!type.reference) {
+        throw new Error(`Missing reference value in ${JSON.stringify(type)}`);
+      }
+      options = id as GeneralParameters | null | undefined;
+      [type, id] = type.reference.split("/") as [TResourceType, string];
+    }
+
+    if (id && typeof id === "object") {
+      if (!(id as Reference).reference) {
+        throw new Error(`Missing reference value in ${JSON.stringify(id)}`);
+      }
+      id = (id as Reference).reference!.split("/")[1];
+    }
+
     const { signal, ...remainingOptions } = options ?? {};
     const queryString = new URLSearchParams(
       remainingOptions as Record<string, string>,
