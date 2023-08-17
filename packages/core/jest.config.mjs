@@ -2,6 +2,6 @@
 export default {
   globalSetup: "<rootDir>/jest.setup.mjs",
   transform: {
-    "^.+\\.tsx?$": ["esbuild-jest", { sourcemap: true }],
+    "^.+\\.(t|j)sx?$": ["esbuild-jest", { sourcemap: true }],
   },
 };
