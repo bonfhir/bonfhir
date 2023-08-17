@@ -35,6 +35,10 @@
     "import": "./dist/esm/index.mjs",
     "require": "./dist/cjs/index.cjs"
   },
+  "files": [
+    "definitions",
+    "dist"
+  ],
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
@@ -68,5 +72,11 @@
     "typescript": "^5.1.6",
     "yargs": "^17.7.2"
   },
-  "prettier": "@bonfhir/prettier-config"
+  "prettier": "@bonfhir/prettier-config",
+  "eslintConfig": {
+    "extends": "@bonfhir/eslint-config",
+    "env": {
+      "node": true
+    }
+  }
 }

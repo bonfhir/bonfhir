@@ -23,6 +23,7 @@
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
     "clean": "rimraf dist && rimraf src/r4b/**/[!__]**",
     "copyfiles": "pnpm --dir=\"${PWD}/../codegen\" dev copy -s \"${PWD}/src/r5\" -t \"${PWD}/src/r4b\" -i '**/*.ts(x)?' -e '**/*.codegen.ts' --source-fhir r5 --target-fhir r4b",
+    "dev": "nodemon --watch src/r5 --ext ts,tsx --exec \"pnpm copyfiles && rollup --config rollup.config.mjs\"",
     "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
     "test": "jest"
   },
@@ -49,6 +50,9 @@
       }
     }
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@bonfhir/core": "^2.10.0"
   },
@@ -73,5 +77,8 @@
     "rollup-plugin-filesize": "^10.0.0",
     "typescript": "^5.1.6"
   },
-  "prettier": "@bonfhir/prettier-config"
+  "prettier": "@bonfhir/prettier-config",
+  "eslintConfig": {
+    "extends": "@bonfhir/eslint-config"
+  }
 }

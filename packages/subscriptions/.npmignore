@@ -1,6 +1,0 @@
-.turbo/
-src/
-.eslintrc.cjs
-jest.config.mjs
-rollup.config.mjs
-tsconfig.json

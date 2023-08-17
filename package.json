@@ -3,7 +3,8 @@
   "private": true,
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "docs/*"
   ],
   "scripts": {
     "build": "turbo run build",
@@ -12,6 +13,7 @@
     "dev": "turbo run dev",
     "format": "turbo run format",
     "preinstall": "npx only-allow pnpm",
+    "prepush": "pnpm build && pnpm check && pnpm test",
     "version-packages": "changeset version && pnpm install --lockfile-only",
     "publish-packages": "turbo run build && changeset publish",
     "test": "turbo run test -- --passWithNoTests",

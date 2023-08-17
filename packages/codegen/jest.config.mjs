@@ -1,6 +1,6 @@
 /** @type {import('jest').Config} */
 export default {
   transform: {
-    "^.+\\.tsx?$": ["esbuild-jest", { sourcemap: true }],
+    "^.+\\.(t|j)sx?$": ["esbuild-jest", { sourcemap: true }],
   },
 };

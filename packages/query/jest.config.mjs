@@ -2,6 +2,6 @@
 export default {
   testEnvironment: "./jest.environment.ts",
   transform: {
-    "^.+\\.tsx?$": ["esbuild-jest", { sourcemap: true }],
+    "^.+\\.(t|j)sx?$": ["esbuild-jest", { sourcemap: true }],
   },
 };
