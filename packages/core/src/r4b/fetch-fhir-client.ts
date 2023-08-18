@@ -40,6 +40,7 @@ import {
   OperationOutcome,
   Reference,
   Retrieved,
+  TerminologyCapabilities,
 } from "./fhir-types.codegen";
 import { urlSafeConcat } from "./lang-utils";
 import { Merger } from "./mergers/index";
@@ -578,11 +579,15 @@ export class FetchFhirClient implements FhirClient {
   /* eslint-enable @typescript-eslint/no-explicit-any */
 
   public async capabilities(
+    mode?: "full" | "normative" | null | undefined,
+  ): Promise<CapabilityStatement>;
+  public async capabilities(
+    mode: "terminology",
+  ): Promise<TerminologyCapabilities>;
+  public async capabilities(
     mode?: "full" | "normative" | "terminology" | null | undefined,
-  ): Promise<CapabilityStatement> {
-    return this.fetch<CapabilityStatement>(
-      `metadata${mode ? `?mode=${mode}` : ""}`,
-    );
+  ): Promise<CapabilityStatement | TerminologyCapabilities> {
+    return this.fetch(`metadata${mode ? `?mode=${mode}` : ""}`);
   }
 
   public batch(): BundleExecutor;
