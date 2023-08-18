@@ -153,6 +153,34 @@ export const mockClient = {
                       answerValueSet:
                         "http://hl7.org/fhir/ValueSet/administrative-gender",
                     },
+                    {
+                      id: "id-7",
+                      linkId: "morning-eating-habit",
+                      type: "choice",
+                      text: "How often do you eat in the morning?",
+                      answerOption: [
+                        {
+                          valueCoding: {
+                            code: "every-day",
+                            display: "Every day",
+                          },
+                          initialSelected: true,
+                        },
+                        {
+                          valueCoding: {
+                            code: "once-a-week",
+                            display: "Once a week",
+                          },
+                        },
+                        {
+                          valueCoding: {
+                            code: "never",
+                            display: "Never",
+                          },
+                          valueString: "Never",
+                        },
+                      ],
+                    },
                   ],
                 },
               ],
