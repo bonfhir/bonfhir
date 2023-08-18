@@ -349,7 +349,8 @@ function buildInitialValues(
         break;
       }
       default: {
-        const initialValue = responseI?.answer || i.initial;
+        const initialValue = responseI?.answer ||
+          i.initial || [i.answerOption?.find((ao) => ao.initialSelected)];
         result[i.linkId] = Object.entries(initialValue?.[0] || {}).find(
           ([key, value]) => key.startsWith("value") && value,
         )?.[1];
@@ -362,8 +363,18 @@ function buildInitialValues(
 function convertAnswerOptions(
   answerOption: QuestionnaireItemAnswerOption[],
 ): ValueSetExpansionContains[] {
-  return answerOption.map((option) => ({
-    code: option.valueCoding?.code,
-    display: option.valueCoding?.display,
-  }));
+  return answerOption
+    .map((option) => {
+      if (option.valueCoding) {
+        return {
+          code: option.valueCoding?.code,
+          display: option.valueCoding?.display,
+        };
+      }
+      console.warn(
+        `Unsupported answerOption value format: ${JSON.stringify(option)}`,
+      );
+      return;
+    })
+    .filter(Boolean) as ValueSetExpansionContains[];
 }
