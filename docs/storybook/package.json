@@ -6,8 +6,8 @@
     "build": "storybook build -o dist",
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
     "clean": "rimraf dist",
-    "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
-    "watch": "storybook dev -p 6006"
+    "dev": "storybook dev -p 6006",
+    "format": "eslint --fix ./src && prettier --log-level warn --write ./src"
   },
   "type": "module",
   "devDependencies": {
