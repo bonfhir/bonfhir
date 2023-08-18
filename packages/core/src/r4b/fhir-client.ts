@@ -17,6 +17,7 @@ import {
   OperationOutcome,
   Reference,
   Retrieved,
+  TerminologyCapabilities,
 } from "./fhir-types.codegen";
 import { Formatter } from "./formatters";
 import { merge } from "./merge";
@@ -239,8 +240,9 @@ export interface FhirClient {
    * https://hl7.org/fhir/http.html#capabilities
    */
   capabilities(
-    mode?: "full" | "normative" | "terminology" | null | undefined,
+    mode?: "full" | "normative" | null | undefined,
   ): Promise<CapabilityStatement>;
+  capabilities(mode: "terminology"): Promise<TerminologyCapabilities>;
 
   /**
    * The batch interaction submits a set of actions to perform on a server in a single HTTP request/response.
