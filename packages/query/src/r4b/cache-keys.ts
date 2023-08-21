@@ -3,7 +3,7 @@ import {
   AnyResourceTypeOrCustomResource,
   FhirClient,
   GeneralParameters,
-  OperationParameters,
+  Operation,
   resourceTypeOf,
 } from "@bonfhir/core/r4b";
 import { QueryClient } from "@tanstack/react-query";
@@ -113,14 +113,17 @@ export const FhirQueryKeys = {
   /**
    * Get the query keys for an execute request
    */
-  execute: (clientKey: string, parameters: OperationParameters) =>
+  execute: (
+    clientKey: string,
+    operation: Operation | Record<string, unknown>,
+  ) =>
     [
       clientKey,
-      parameters.resourceType,
-      parameters.resourceId,
+      operation.resourceType,
+      operation.resourceId,
       "execute",
-      parameters.operation,
-      parameters.parameters,
+      operation.operation,
+      operation.parameters,
     ] as const,
 
   /**

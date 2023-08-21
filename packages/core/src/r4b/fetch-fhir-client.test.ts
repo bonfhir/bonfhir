@@ -19,10 +19,6 @@ import {
   Reference,
 } from "./fhir-types.codegen";
 import { uuid } from "./lang-utils";
-import {
-  ClaimSubmitOperation,
-  ValueSetExpandOperation,
-} from "./operations.codegen";
 
 const CustomPatient = extendResource("Patient", {
   /** L'age de toto. */
@@ -197,7 +193,7 @@ describe("fetch-fhir-client", () => {
       return res(ctx.json(patientsListFixture));
     }),
 
-    rest.post(`${baseUrl}/Claim/$submit`, (_req, res, ctx) => {
+    rest.post(`${baseUrl}/Claim/$submit`, async (_req, res, ctx) => {
       return res(ctx.json(patientsListFixture));
     }),
 
@@ -901,29 +897,42 @@ describe("fetch-fhir-client", () => {
         operation: "$document",
         resourceType: "Composition",
         resourceId: "1234",
-        parameters: {
-          format: "application/pdf",
-        },
-        affectsState: true,
+        parameters: [
+          {
+            name: "persist",
+            valueBoolean: true,
+          },
+        ],
       });
       expect(result).toBeDefined();
     });
 
-    it("with typed operation - affectsState false", async () => {
-      const result = await client.execute(
-        new ValueSetExpandOperation({
-          url: "http://hl7.org/fhir/ValueSet/example",
-        }),
-      );
+    it("with affectsState false and simple arguments", async () => {
+      const result = await client.execute({
+        operation: "$expand",
+        resourceType: "ValueSet",
+        parameters: [
+          {
+            name: "url",
+            valueUri: "http://hl7.org/fhir/ValueSet/example",
+          },
+        ],
+        affectsState: false,
+      });
       expect(result).toBeDefined();
     });
 
     it("with typed operation - affectsState true", async () => {
-      const result = await client.execute(
-        new ClaimSubmitOperation({
-          resource: build("Claim", {} as Claim),
-        }),
-      );
+      const result = await client.execute({
+        operation: "$submit",
+        resourceType: "Claim",
+        parameters: [
+          {
+            name: "resource",
+            resource: build("Claim", {} as Claim),
+          },
+        ],
+      });
       expect(result).toBeDefined();
     });
   });

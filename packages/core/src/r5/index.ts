@@ -12,7 +12,6 @@ export * from "./lang-utils";
 export * from "./merge";
 export * from "./mergers/index";
 export * from "./narratives.codegen";
-export * from "./operations.codegen";
 export * from "./patch";
 export * from "./patch.codegen";
 export * from "./references.codegen";

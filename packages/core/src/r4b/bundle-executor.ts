@@ -13,6 +13,8 @@ import {
   FhirClientSearchParameters,
   GeneralParameters,
   HistoryParameters,
+  Operation,
+  hasComplexParameters,
   normalizePatchBody,
   normalizeSearchParameters,
 } from "./fhir-client";
@@ -31,11 +33,6 @@ import {
   isResource,
 } from "./fhir-types.codegen";
 import { uuid } from "./lang-utils";
-import {
-  ExtractOperationResultType,
-  Operation,
-  OperationParameters,
-} from "./operations.codegen";
 import { reference } from "./references.codegen";
 
 export class BundleExecutor {
@@ -371,45 +368,40 @@ export class BundleExecutor {
     return this._buildFutureRequest(entry);
   }
 
-  public execute<TOperation extends Operation>(
-    operation: TOperation,
-  ): FutureRequest<ExtractOperationResultType<TOperation>>;
   public execute<TOperationResult>(
-    operation: OperationParameters,
-  ): FutureRequest<TOperationResult>;
-  public execute<
-    TOperationResult,
-    TOperation extends Operation<TOperationResult>,
-  >(
-    operation: TOperation | OperationParameters,
+    operation: Operation,
   ): FutureRequest<TOperationResult> {
-    const operationParameters = (operation as Operation<TOperationResult>)
-      .getParameters
-      ? (operation as Operation<TOperationResult>).getParameters()
-      : (operation as OperationParameters);
-    const prefix = [
-      operationParameters.resourceType,
-      operationParameters.resourceId,
-    ]
+    const prefix = [operation.resourceType, operation.resourceId]
       .filter(Boolean)
       .join("/");
+    const parameters = Array.isArray(operation.parameters)
+      ? ({
+          resourceType: "Parameters",
+          parameter: operation.parameters,
+        } as const)
+      : operation.parameters;
+    const affectsState = operation.affectsState ?? true;
+    const useGet = !affectsState && !hasComplexParameters(parameters);
     const queryString =
-      !operationParameters.affectsState &&
-      operationParameters.parameters &&
-      Object.values(operationParameters.parameters).length > 0
+      useGet && parameters?.parameter?.length
         ? new URLSearchParams(
-            operationParameters.parameters as Record<string, string>,
+            parameters.parameter.reduce(
+              (acc, cur) => {
+                acc[cur.name] = Object.entries(cur).find(
+                  ([key, val]) => key.startsWith("value") && val != undefined,
+                )?.[1];
+                return acc;
+              },
+              {} as Record<string, string>,
+            ),
           ).toString()
         : undefined;
 
     const entry: BundleEntry = {
-      resource:
-        operationParameters.affectsState && operationParameters.parameters
-          ? (operationParameters.parameters as Resource)
-          : undefined,
+      resource: !useGet && parameters ? parameters : undefined,
       request: {
-        method: operationParameters.affectsState ? "POST" : "GET",
-        url: `${prefix ? `${prefix}/` : ""}${operationParameters.operation}${
+        method: useGet ? "GET" : "POST",
+        url: `${prefix ? `${prefix}/` : ""}${operation.operation}${
           queryString ? `?${queryString}` : ""
         }`,
       },

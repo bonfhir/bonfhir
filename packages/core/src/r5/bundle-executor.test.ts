@@ -4,7 +4,6 @@ import { BundleExecutor } from "./bundle-executor";
 import { FhirClient } from "./fhir-client";
 import { Patient, Retrieved } from "./fhir-types.codegen";
 import { uuid } from "./lang-utils";
-import { ValueSetExpandOperation } from "./operations.codegen";
 
 describe("bundle-executor", () => {
   const client = mock<Pick<FhirClient, "batch" | "transaction">>();
@@ -153,12 +152,19 @@ describe("bundle-executor", () => {
 
   it("execute", async () => {
     const executor = new BundleExecutor(client, "batch");
-    const futureRequest = executor.execute(
-      new ValueSetExpandOperation({
-        url: "http://hl7.org/fhir/ValueSet/example",
-      }),
-    );
+    const futureRequest = executor.execute({
+      operation: "$expand",
+      resourceType: "ValueSet",
+      parameters: [
+        {
+          name: "url",
+          valueUri: "http://hl7.org/fhir/ValueSet/example",
+        },
+      ],
+      affectsState: false,
+    });
     expect(futureRequest.requestEntry.request?.method).toEqual("GET");
+    console.log(futureRequest.requestEntry);
     await executor.send();
   });
 });

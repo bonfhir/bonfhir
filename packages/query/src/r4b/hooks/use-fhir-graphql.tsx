@@ -58,7 +58,6 @@ export function useFhirGraphQL<TResult = any, TVariables = Record<string, any>>(
         query,
         variables,
       },
-      affectsState: false,
     }),
     queryFn: () =>
       fhirQueryContext.fhirClient.graphql(
