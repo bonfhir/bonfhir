@@ -1,5 +1,6 @@
 import {
   FhirClient,
+  ParametersParameter,
   bundleNavigator,
   normalizeSearchParameters,
 } from "@bonfhir/core/r5";
@@ -204,10 +205,10 @@ export const mockClient = {
   },
   execute(operation: any) {
     if (operation.operation === "$expand") {
-      if (
-        operation.parameters?.url ===
-        "http://hl7.org/fhir/ValueSet/contact-point-system"
-      ) {
+      const url = operation.parameters?.find(
+        (p: ParametersParameter) => p.name === "url",
+      ).valueUri;
+      if (url === "http://hl7.org/fhir/ValueSet/contact-point-system") {
         return {
           resourceType: "ValueSet",
           url: "http://hl7.org/fhir/ValueSet/contact-point-system",
@@ -254,10 +255,7 @@ export const mockClient = {
         };
       }
 
-      if (
-        operation.parameters?.url ===
-        "http://hl7.org/fhir/ValueSet/contact-point-use"
-      ) {
+      if (url === "http://hl7.org/fhir/ValueSet/contact-point-use") {
         return {
           resourceType: "ValueSet",
           url: "http://hl7.org/fhir/ValueSet/contact-point-use",
@@ -294,9 +292,7 @@ export const mockClient = {
         };
       }
 
-      if (
-        operation.parameters?.url === "http://hl7.org/fhir/ValueSet/name-use"
-      ) {
+      if (url === "http://hl7.org/fhir/ValueSet/name-use") {
         return {
           resourceType: "ValueSet",
           url: "http://hl7.org/fhir/ValueSet/name-use",
@@ -343,10 +339,7 @@ export const mockClient = {
         };
       }
 
-      if (
-        operation.parameters?.url ===
-        "http://hl7.org/fhir/ValueSet/identifier-use"
-      ) {
+      if (url === "http://hl7.org/fhir/ValueSet/identifier-use") {
         return {
           resourceType: "ValueSet",
           url: "http://hl7.org/fhir/ValueSet/identifier-use",
@@ -383,10 +376,7 @@ export const mockClient = {
         };
       }
 
-      if (
-        operation.parameters?.url ===
-        "http://hl7.org/fhir/ValueSet/administrative-gender"
-      ) {
+      if (url === "http://hl7.org/fhir/ValueSet/administrative-gender") {
         return {
           resourceType: "ValueSet",
           url: "http://hl7.org/fhir/ValueSet/administrative-gender",

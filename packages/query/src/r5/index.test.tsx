@@ -4,12 +4,11 @@ import {
   BundleNavigator,
   CapabilityStatement,
   Claim,
-  ClaimSubmitOperation,
   Organization,
   Patient,
   Resource,
   Retrieved,
-  ValueSetExpandOperation,
+  ValueSet,
   build,
   extendResource,
   uuid,
@@ -656,11 +655,14 @@ describe("hooks", () => {
     it("execute", async () => {
       const { result } = renderHook(
         () =>
-          useFhirExecute(
-            new ValueSetExpandOperation({
-              url: "http://hl7.org/fhir/ValueSet/example",
-            }),
-          ),
+          useFhirExecute<ValueSet>({
+            operation: "$expand",
+            resourceType: "ValueSet",
+            parameters: [
+              { name: "url", valueUri: "http://hl7.org/fhir/ValueSet/example" },
+            ],
+            affectsState: false,
+          }),
         { wrapper },
       );
 
@@ -853,11 +855,16 @@ describe("hooks", () => {
         wrapper,
       });
 
-      result.current.mutate(
-        new ClaimSubmitOperation({
-          resource: build("Claim", {} as Claim),
-        }),
-      );
+      result.current.mutate({
+        operation: "$submit",
+        resourceType: "Claim",
+        parameters: [
+          {
+            name: "resource",
+            resource: build("Claim", {} as Claim),
+          },
+        ],
+      });
 
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();

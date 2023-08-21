@@ -1,8 +1,4 @@
-import {
-  AnyResourceType,
-  Operation,
-  OperationParameters,
-} from "@bonfhir/core/r4b";
+import { AnyResourceType, Operation } from "@bonfhir/core/r4b";
 import {
   UseMutationOptions,
   UseMutationResult,
@@ -11,22 +7,12 @@ import {
 import { FhirQueryKeys } from "../cache-keys";
 import { useFhirClientQueryContext } from "../context";
 
-export type UseFhirExecuteMutationArgs<
-  TOperationResult,
-  TOperation extends Operation<TOperationResult> = Operation<TOperationResult>,
-> = TOperation | OperationParameters;
-
 export interface UseFhirExecuteMutationOptions<TOperationResult> {
   /** The FhirClient key to use to perform the query. */
   fhirClient?: string | null | undefined;
   mutation?:
     | Omit<
-        UseMutationOptions<
-          TOperationResult,
-          unknown,
-          UseFhirExecuteMutationArgs<TOperationResult>,
-          unknown
-        >,
+        UseMutationOptions<TOperationResult, unknown, Operation, unknown>,
         "mutationFn"
       >
     | null
@@ -44,36 +30,26 @@ export interface UseFhirExecuteMutationOptions<TOperationResult> {
  */
 export function useFhirExecuteMutation<TOperationResult>(
   options?: UseFhirExecuteMutationOptions<TOperationResult> | null | undefined,
-): UseMutationResult<
-  TOperationResult,
-  unknown,
-  UseFhirExecuteMutationArgs<TOperationResult>,
-  unknown
-> {
+): UseMutationResult<TOperationResult, unknown, Operation, unknown> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
 
   return useMutation({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.mutation as any),
-    onSuccess: (data, variables, context) => {
-      if (fhirQueryContext.manageCache) {
-        const operationParameters = (variables as Operation<TOperationResult>)
-          .getParameters
-          ? (variables as Operation<TOperationResult>).getParameters()
-          : (variables as OperationParameters);
-        if (
-          operationParameters.resourceType &&
-          operationParameters.resourceId
-        ) {
-          FhirQueryKeys.invalidateQueries(
-            fhirQueryContext.clientKey,
-            fhirQueryContext.queryClient,
-            operationParameters.resourceType as AnyResourceType,
-            operationParameters.resourceId,
-          );
-        }
+    onSuccess: (data, operation, context) => {
+      if (
+        fhirQueryContext.manageCache &&
+        operation.resourceType &&
+        operation.resourceId
+      ) {
+        FhirQueryKeys.invalidateQueries(
+          fhirQueryContext.clientKey,
+          fhirQueryContext.queryClient,
+          operation.resourceType as AnyResourceType,
+          operation.resourceId,
+        );
       }
-      options?.mutation?.onSuccess?.(data, variables, context);
+      options?.mutation?.onSuccess?.(data, operation, context);
     },
     mutationFn: (args) =>
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

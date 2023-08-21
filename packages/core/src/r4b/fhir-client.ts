@@ -14,19 +14,17 @@ import {
   AnyResourceType,
   Bundle,
   CapabilityStatement,
+  Parameters as FhirParameters,
   OperationOutcome,
+  ParametersParameter,
   Reference,
+  ResourceType,
   Retrieved,
   TerminologyCapabilities,
 } from "./fhir-types.codegen";
 import { Formatter } from "./formatters";
 import { merge } from "./merge";
 import { Merger } from "./mergers/index";
-import {
-  ExtractOperationResultType,
-  Operation,
-  OperationParameters,
-} from "./operations.codegen";
 import { JSONPatchBody } from "./patch";
 import { ExtractPatchBuilder, fhirJSONPatch } from "./patch.codegen";
 import { ExtractSearchBuilder, fhirSearch } from "./search.codegen";
@@ -271,12 +269,7 @@ export interface FhirClient {
    * https://www.hl7.org/fhir/operations.html
    * https://www.hl7.org/fhir/operationslist.html
    */
-  execute<TOperation extends Operation>(
-    operation: TOperation,
-  ): Promise<ExtractOperationResultType<TOperation>>;
-  execute<TOperationResult>(
-    operation: OperationParameters,
-  ): Promise<TOperationResult>;
+  execute<TOperationResult>(operation: Operation): Promise<TOperationResult>;
 
   /**
    * Fetch a page from a bundle previously retrieved from a search or history operation.
@@ -406,6 +399,14 @@ export class FhirClientError extends Error {
 
 export function isFhirClientError(error: unknown): error is FhirClientError {
   return error instanceof FhirClientError;
+}
+
+export interface Operation {
+  operation: string | null | undefined;
+  resourceType?: ResourceType | null | undefined;
+  resourceId?: string | null | undefined;
+  parameters?: FhirParameters | ParametersParameter[] | null | undefined;
+  affectsState?: boolean;
 }
 
 /**
@@ -689,4 +690,30 @@ function resolveSearch<TResource extends AnyResource>(
   throw new Error(
     `Cannot resolve search for ${resource.resourceType}/${resource.id}- you need to pass it explicitly.`,
   );
+}
+
+/**
+ * Return true if parameters contains complex parameters (i.e. parameters that are not simple key-value pairs).
+ */
+export function hasComplexParameters(
+  parameters: FhirParameters | null | undefined,
+): boolean {
+  if (!parameters?.parameter?.length) {
+    return false;
+  }
+
+  for (const param of parameters.parameter) {
+    if (
+      typeof Object.entries(param).find(
+        ([k, v]) =>
+          v != undefined && (k === "resource" || k.startsWith("value")),
+      )?.[1] === "object"
+    ) {
+      return true;
+    }
+    if (param.part?.length) {
+      return true;
+    }
+  }
+  return false;
 }

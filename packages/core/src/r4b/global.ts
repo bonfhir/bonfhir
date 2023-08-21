@@ -17,7 +17,6 @@ import * as formatters from "./formatters";
 import * as langUtils from "./lang-utils";
 import * as merge from "./merge";
 import * as narratives from "./narratives.codegen";
-import * as operations from "./operations.codegen";
 import * as patch from "./patch";
 import * as patchCodegen from "./patch.codegen";
 import * as references from "./references.codegen";
@@ -39,7 +38,6 @@ import * as searchCodegen from "./search.codegen";
   ...langUtils,
   ...merge,
   ...narratives,
-  ...operations,
   ...patchCodegen,
   ...patch,
   ...references,

@@ -1,8 +1,4 @@
-import {
-  ExtractOperationResultType,
-  Operation,
-  OperationParameters,
-} from "@bonfhir/core/r5";
+import { Operation } from "@bonfhir/core/r5";
 import {
   UseQueryOptions,
   UseQueryResult,
@@ -30,52 +26,27 @@ export interface UseFhirExecuteOptions<TOperationResult> {
 
 /**
  * Return a [Query](https://tanstack.com/query/latest/docs/react/guides/queries) for an operation request.
- *
- * Will throw an error if the operation affects state.
  * If  you want to execute an operation that affects state, you should use the {@link useFhirExecuteMutation} hook instead.
  *
  * @see https://hl7.org/fhir/operations.html
  * @see https://www.hl7.org/fhir/operationslist.html
  */
-export function useFhirExecute<TOperation extends Operation>(
-  operation: TOperation,
-  options?:
-    | UseFhirExecuteOptions<ExtractOperationResultType<TOperation>>
-    | null
-    | undefined,
-): UseQueryResult<ExtractOperationResultType<TOperation>>;
 export function useFhirExecute<TOperationResult>(
-  operation: OperationParameters,
-): UseQueryResult<TOperationResult>;
-export function useFhirExecute<
-  TOperationResult,
-  TOperation extends Operation<TOperationResult>,
->(
-  operation: TOperation | OperationParameters,
-  options?:
-    | UseFhirExecuteOptions<ExtractOperationResultType<TOperation>>
-    | null
-    | undefined,
+  operation: Operation,
+  options?: UseFhirExecuteOptions<Operation> | null | undefined,
 ): UseQueryResult<TOperationResult> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
-  const operationParameters = (operation as Operation<TOperationResult>)
-    .getParameters
-    ? (operation as Operation<TOperationResult>).getParameters()
-    : (operation as OperationParameters);
 
-  if (operationParameters.affectsState) {
+  if (operation.affectsState ?? true) {
     throw new Error(
-      `useFhirExecute hook does not support operations that affect state (${operationParameters.operation}). Use useFhirExecuteMutation instead.`,
+      `useFhirExecute hook does not support operations that affect state (${operation.operation}). Use useFhirExecuteMutation instead.`,
     );
   }
 
   return useQuery({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
-    queryKey: FhirQueryKeys.execute(
-      fhirQueryContext.clientKey,
-      operationParameters,
-    ),
-    queryFn: () => fhirQueryContext.fhirClient.execute(operationParameters),
+    queryKey: FhirQueryKeys.execute(fhirQueryContext.clientKey, operation),
+    queryFn: () => fhirQueryContext.fhirClient.execute(operation),
   });
 }

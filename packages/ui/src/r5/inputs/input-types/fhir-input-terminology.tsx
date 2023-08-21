@@ -2,7 +2,6 @@ import {
   CodeableConcept,
   Coding,
   ValueSet,
-  ValueSetExpandOperation,
   ValueSetExpansionContains,
   compareBy,
 } from "@bonfhir/core/r5";
@@ -62,10 +61,18 @@ export function FhirInputTerminology<TRendererProps = any>(
     } else {
       const selectQuery =
         typeof props.source === "string"
-          ? useFhirExecute(
-              new ValueSetExpandOperation({
-                url: props.source,
-              }),
+          ? useFhirExecute<ValueSet>(
+              {
+                operation: "$expand",
+                resourceType: "ValueSet",
+                parameters: [
+                  {
+                    name: "url",
+                    valueUri: props.source,
+                  },
+                ],
+                affectsState: false,
+              },
               {
                 fhirClient: props.fhirClient,
                 query: {

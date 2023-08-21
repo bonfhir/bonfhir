@@ -25,7 +25,9 @@ import {
   FhirClientSearchParameters,
   GeneralParameters,
   HistoryParameters,
+  Operation,
   createOr,
+  hasComplexParameters,
   normalizePatchBody,
   normalizeSearchParameters,
   searchAllPages,
@@ -44,11 +46,6 @@ import {
 } from "./fhir-types.codegen";
 import { urlSafeConcat } from "./lang-utils";
 import { Merger } from "./mergers/index";
-import {
-  ExtractOperationResultType,
-  Operation,
-  OperationParameters,
-} from "./operations.codegen";
 
 /**
  * Allows to set the `Authorization` header to a static value.
@@ -510,7 +507,13 @@ export class FetchFhirClient implements FhirClient {
       resourceType: resourceTypeOf(resourceType),
       resourceId,
       parameters: {
-        graph,
+        resourceType: "Parameters",
+        parameter: [
+          {
+            name: "graph",
+            valueUri: graph,
+          },
+        ],
       },
       affectsState: false,
     });
@@ -640,44 +643,41 @@ export class FetchFhirClient implements FhirClient {
     });
   }
 
-  public execute<TOperation extends Operation>(
-    operation: TOperation,
-  ): Promise<ExtractOperationResultType<TOperation>>;
   public execute<TOperationResult>(
-    operation: OperationParameters,
-  ): Promise<TOperationResult>;
-  public async execute<
-    TOperationResult,
-    TOperation extends Operation<TOperationResult>,
-  >(operation: TOperation | OperationParameters): Promise<TOperationResult> {
-    const operationParameters = (operation as Operation<TOperationResult>)
-      .getParameters
-      ? (operation as Operation<TOperationResult>).getParameters()
-      : (operation as OperationParameters);
-    const prefix = [
-      operationParameters.resourceType,
-      operationParameters.resourceId,
-    ]
+    operation: Operation,
+  ): Promise<TOperationResult> {
+    const prefix = [operation.resourceType, operation.resourceId]
       .filter(Boolean)
       .join("/");
+    const parameters = Array.isArray(operation.parameters)
+      ? ({
+          resourceType: "Parameters",
+          parameter: operation.parameters,
+        } as const)
+      : operation.parameters;
+    const affectsState = operation.affectsState ?? true;
+    const useGet = !affectsState && !hasComplexParameters(parameters);
     const queryString =
-      !operationParameters.affectsState &&
-      operationParameters.parameters &&
-      Object.values(operationParameters.parameters).length > 0
+      useGet && parameters?.parameter?.length
         ? new URLSearchParams(
-            operationParameters.parameters as Record<string, string>,
+            parameters.parameter.reduce(
+              (acc, cur) => {
+                acc[cur.name] = Object.entries(cur).find(
+                  ([key, val]) => key.startsWith("value") && val != undefined,
+                )?.[1];
+                return acc;
+              },
+              {} as Record<string, string>,
+            ),
           ).toString()
         : undefined;
     return this.fetch<TOperationResult>(
-      `${prefix ? `${prefix}/` : ""}${operationParameters.operation}${
+      `${prefix ? `${prefix}/` : ""}${operation.operation}${
         queryString ? `?${queryString}` : ""
       }`,
       {
-        method: operationParameters.affectsState ? "POST" : "GET",
-        body:
-          operationParameters.affectsState && operationParameters.parameters
-            ? JSON.stringify(operationParameters.parameters)
-            : undefined,
+        method: useGet ? "GET" : "POST",
+        body: !useGet && parameters ? JSON.stringify(parameters) : undefined,
       },
     );
   }

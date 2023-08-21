@@ -54,25 +54,17 @@ export function useFhirRead<
     queryKey: FhirQueryKeys.read(
       fhirQueryContext.clientKey,
       type,
-      resolveId(id) || raiseInvalidReference(id),
+      resolveId(id) || "",
       options?.fhir,
     ),
     queryFn: ({ signal }) =>
       fhirQueryContext.fhirClient.read(
         type as TResourceType,
-        resolveId(id) || raiseInvalidReference(id),
+        resolveId(id) || "",
         {
           ...options?.fhir,
           signal: signal ?? undefined,
         },
       ),
   });
-}
-
-function raiseInvalidReference(value: unknown): never {
-  throw new Error(
-    `Invalid reference: ${JSON.stringify(
-      value,
-    )} is missing the reference value.`,
-  );
 }

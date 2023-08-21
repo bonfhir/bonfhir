@@ -53,11 +53,15 @@ export function FhirInputResource<
     useState<FhirClientSearchParameters<ResourceTypeOf<TResourceType>>>("");
 
   const searchQuery = useFhirSearch(props.resourceType, searchParam);
-  const valueQuery = useFhirRead(props.resourceType, id(props.value as any), {
-    query: {
-      enabled: !!id(props.value as any),
+  const valueQuery = useFhirRead(
+    props.resourceType,
+    props.value ? id(props.value as any) : "",
+    {
+      query: {
+        enabled: !!props.value && !!id(props.value as any),
+      },
     },
-  });
+  );
 
   return render("FhirInputResource", {
     ...props,
