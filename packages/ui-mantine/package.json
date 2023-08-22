@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/ui-mantine",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Mantine UI renderers for BonFHIR UI",
   "keywords": [
     "HL7",
@@ -55,9 +55,9 @@
     "dist"
   ],
   "dependencies": {
-    "@bonfhir/core": "^2.11.0",
-    "@bonfhir/query": "^2.2.0",
-    "@bonfhir/ui": "^2.4.1"
+    "@bonfhir/core": "^2.14.0",
+    "@bonfhir/query": "^2.4.0",
+    "@bonfhir/ui": "^2.5.0"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",

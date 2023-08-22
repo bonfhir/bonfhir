@@ -36,7 +36,7 @@ importers:
   apps/sample-ehr:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.13.0
+        specifier: ^2.14.0
         version: link:../../packages/core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -51,7 +51,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/prettier-config
       '@bonfhir/query':
-        specifier: ^2.3.0
+        specifier: ^2.4.0
         version: link:../../packages/query
       '@bonfhir/subscriptions':
         specifier: ^2.2.1
@@ -60,10 +60,10 @@ importers:
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@bonfhir/ui':
-        specifier: ^2.4.1
+        specifier: ^2.5.0
         version: link:../../packages/ui
       '@bonfhir/ui-mantine':
-        specifier: ^2.3.1
+        specifier: ^2.3.2
         version: link:../../packages/ui-mantine
       '@emotion/react':
         specifier: ^11.11.0
@@ -184,7 +184,7 @@ importers:
         specifier: ^2.1.0
         version: link:../../packages/aws-lambda
       '@bonfhir/core':
-        specifier: ^2.13.0
+        specifier: ^2.14.0
         version: link:../../packages/core
       '@bonfhir/subscriptions':
         specifier: ^2.2.1
@@ -960,7 +960,7 @@ importers:
   packages/query:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.10.0
+        specifier: ^2.14.0
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':
@@ -1108,10 +1108,10 @@ importers:
   packages/ui:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.10.0
+        specifier: ^2.14.0
         version: link:../core
       '@bonfhir/query':
-        specifier: ^2.3.0
+        specifier: ^2.4.0
         version: link:../query
     devDependencies:
       '@bonfhir/eslint-config':
@@ -1184,13 +1184,13 @@ importers:
   packages/ui-mantine:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.11.0
+        specifier: ^2.14.0
         version: link:../core
       '@bonfhir/query':
-        specifier: ^2.2.0
+        specifier: ^2.4.0
         version: link:../query
       '@bonfhir/ui':
-        specifier: ^2.4.1
+        specifier: ^2.5.0
         version: link:../ui
       '@tiptap/extension-link':
         specifier: '*'

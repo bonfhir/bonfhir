@@ -1,5 +1,18 @@
 # @bonfhir/ui-mantine
 
+## 2.3.2
+
+### Patch Changes
+
+- [#46](https://github.com/bonfhir/bonfhir/pull/46) [`6331ca6`](https://github.com/bonfhir/bonfhir/commit/6331ca67a3593a9caeba48320c4c2d64b8a7f5ac) Thanks [@julienblin](https://github.com/julienblin)! - Fix #42: add support for `Questionnaire.answerOption.initialSelected`
+
+- [#49](https://github.com/bonfhir/bonfhir/pull/49) [`db75654`](https://github.com/bonfhir/bonfhir/commit/db75654b98911bd11d2933649f243bd0d50d2ceb) Thanks [@julienblin](https://github.com/julienblin)! - Fix #4 - Missing label on terminology input when using segmented control
+
+- Updated dependencies [[`31971cc`](https://github.com/bonfhir/bonfhir/commit/31971ccbbb3111d99e06ca3d240baaa4fe073a68), [`677a62a`](https://github.com/bonfhir/bonfhir/commit/677a62a547cfe31831b409e9a7757a302f1cdd91), [`6703e8d`](https://github.com/bonfhir/bonfhir/commit/6703e8d74804fc62eebabb5935de7be82a3bf999), [`de78ae3`](https://github.com/bonfhir/bonfhir/commit/de78ae343c1a852b351332b4c7173365c1e1cb2e), [`cf01de0`](https://github.com/bonfhir/bonfhir/commit/cf01de0d5c740c28c446ef410acecf9dcf2f1c3a), [`5563dfc`](https://github.com/bonfhir/bonfhir/commit/5563dfc86995c2ae175c52f05e568481ce176954)]:
+  - @bonfhir/query@2.4.0
+  - @bonfhir/core@2.14.0
+  - @bonfhir/ui@2.5.0
+
 ## 2.3.1
 
 ### Patch Changes

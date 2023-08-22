@@ -1,5 +1,23 @@
 # @bonfhir/query
 
+## 2.4.0
+
+### Minor Changes
+
+- [#37](https://github.com/bonfhir/bonfhir/pull/37) [`31971cc`](https://github.com/bonfhir/bonfhir/commit/31971ccbbb3111d99e06ca3d240baaa4fe073a68) Thanks [@julienblin](https://github.com/julienblin)! - Add support for reference in `useFhirRead`
+
+- [#48](https://github.com/bonfhir/bonfhir/pull/48) [`5563dfc`](https://github.com/bonfhir/bonfhir/commit/5563dfc86995c2ae175c52f05e568481ce176954) Thanks [@julienblin](https://github.com/julienblin)! - Fix #44 - Breaking Change: Removed incorrect operations types
+
+  The operation types were completely broken, and had to be removed in favor of this.
+  This may break some client apps that rely on operations, but the change should be straightforward.
+
+### Patch Changes
+
+- [#45](https://github.com/bonfhir/bonfhir/pull/45) [`cf01de0`](https://github.com/bonfhir/bonfhir/commit/cf01de0d5c740c28c446ef410acecf9dcf2f1c3a) Thanks [@julienblin](https://github.com/julienblin)! - Fix #43: `FhirClient.capabilities` returns TerminologyCapabilities when mode=terminology
+
+- Updated dependencies [[`677a62a`](https://github.com/bonfhir/bonfhir/commit/677a62a547cfe31831b409e9a7757a302f1cdd91), [`6703e8d`](https://github.com/bonfhir/bonfhir/commit/6703e8d74804fc62eebabb5935de7be82a3bf999), [`de78ae3`](https://github.com/bonfhir/bonfhir/commit/de78ae343c1a852b351332b4c7173365c1e1cb2e), [`cf01de0`](https://github.com/bonfhir/bonfhir/commit/cf01de0d5c740c28c446ef410acecf9dcf2f1c3a), [`5563dfc`](https://github.com/bonfhir/bonfhir/commit/5563dfc86995c2ae175c52f05e568481ce176954)]:
+  - @bonfhir/core@2.14.0
+
 ## 2.3.0
 
 ### Minor Changes
