@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@bonfhir/aws-lambda": "^2.1.0",
-    "@bonfhir/core": "^2.13.0",
+    "@bonfhir/core": "^2.14.0",
     "@bonfhir/subscriptions": "^2.2.1"
   },
   "devDependencies": {

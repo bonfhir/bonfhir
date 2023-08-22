@@ -1,5 +1,24 @@
 # @bonfhir/core
 
+## 2.14.0
+
+### Minor Changes
+
+- [#35](https://github.com/bonfhir/bonfhir/pull/35) [`6703e8d`](https://github.com/bonfhir/bonfhir/commit/6703e8d74804fc62eebabb5935de7be82a3bf999) Thanks [@julienblin](https://github.com/julienblin)! - Add support for global browser import
+
+- [#37](https://github.com/bonfhir/bonfhir/pull/37) [`de78ae3`](https://github.com/bonfhir/bonfhir/commit/de78ae343c1a852b351332b4c7173365c1e1cb2e) Thanks [@julienblin](https://github.com/julienblin)! - Add support for `Reference` in `FhirClient.read`
+
+- [#48](https://github.com/bonfhir/bonfhir/pull/48) [`5563dfc`](https://github.com/bonfhir/bonfhir/commit/5563dfc86995c2ae175c52f05e568481ce176954) Thanks [@julienblin](https://github.com/julienblin)! - Fix #44 - Breaking Change: Removed incorrect operations types
+
+  The operation types were completely broken, and had to be removed in favor of this.
+  This may break some client apps that rely on operations, but the change should be straightforward.
+
+### Patch Changes
+
+- [#47](https://github.com/bonfhir/bonfhir/pull/47) [`677a62a`](https://github.com/bonfhir/bonfhir/commit/677a62a547cfe31831b409e9a7757a302f1cdd91) Thanks [@julienblin](https://github.com/julienblin)! - Fix #39: Add ReferenceTarget helper to extract a reference target
+
+- [#45](https://github.com/bonfhir/bonfhir/pull/45) [`cf01de0`](https://github.com/bonfhir/bonfhir/commit/cf01de0d5c740c28c446ef410acecf9dcf2f1c3a) Thanks [@julienblin](https://github.com/julienblin)! - Fix #43: `FhirClient.capabilities` returns TerminologyCapabilities when mode=terminology
+
 ## 2.13.0
 
 ### Minor Changes
