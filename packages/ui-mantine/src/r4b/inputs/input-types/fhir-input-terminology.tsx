@@ -6,6 +6,8 @@ import {
 } from "@bonfhir/core/r4b";
 import { FhirInputTerminologyRendererProps } from "@bonfhir/ui/r4b";
 import {
+  Input,
+  InputWrapperProps,
   Loader,
   Radio,
   RadioGroupProps,
@@ -130,27 +132,27 @@ export function MantineFhirInputTerminology(
 
   if (props.mode === "segmented") {
     return (
-      <SegmentedControl
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
+      <Input.Wrapper
         label={props.label}
         description={props.description}
         error={props.error}
-        placeholder={props.placeholder ?? undefined}
         required={Boolean(props.required)}
-        disabled={Boolean(props.disabled)}
-        fullWidth
-        value={value as any}
-        onChange={onChange}
-        data={
-          props.data.map((element) => ({
-            value: element.code,
+        {...(props.rendererProps as any)?.wrapper}
+      >
+        <SegmentedControl
+          disabled={Boolean(props.disabled)}
+          fullWidth
+          value={value as any}
+          onChange={onChange}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
+          data={props.data.map((element) => ({
+            value: element.code || "",
             label: element.display,
-            item: element,
-          })) as any
-        }
-        {...props.rendererProps}
-      />
+          }))}
+          {...props.rendererProps}
+        />
+      </Input.Wrapper>
     );
   }
 
@@ -160,7 +162,7 @@ export function MantineFhirInputTerminology(
 export type MantineFhirInputTerminologyProps =
   | SelectProps
   | RadioGroupProps
-  | SegmentedControlProps;
+  | (SegmentedControlProps & { wrapper: InputWrapperProps });
 
 /**
  * Item types for terminology-related inputs.
