@@ -164,7 +164,6 @@ describe("bundle-executor", () => {
       affectsState: false,
     });
     expect(futureRequest.requestEntry.request?.method).toEqual("GET");
-    console.log(futureRequest.requestEntry);
     await executor.send();
   });
 });

@@ -64,7 +64,11 @@ export function MantineFhirQuestionnaire(
         ),
       );
     }
-  }, [props.isLoading, props.questionnaire, props.questionnaireResponse]);
+  }, [
+    props.isLoading,
+    props.questionnaire?.id,
+    props.questionnaireResponse?.id,
+  ]);
 
   if (props.isLoading || !props.questionnaire) {
     return (
