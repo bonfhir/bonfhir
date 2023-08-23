@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.14.1
+
+### Patch Changes
+
+- [#50](https://github.com/bonfhir/bonfhir/pull/50) [`eb17f1c`](https://github.com/bonfhir/bonfhir/commit/eb17f1cd82062575b2a45dbb73acaa6b664c5160) Thanks [@julienblin](https://github.com/julienblin)! - Fix potential Infinite loop creation on `BundleNavigator` Proxy
+
 ## 2.14.0
 
 ### Minor Changes
