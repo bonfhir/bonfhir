@@ -11,7 +11,7 @@
     "build": "next build"
   },
   "dependencies": {
-    "@bonfhir/core": "^2.14.1",
+    "@bonfhir/core": "^2.14.2",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
     "@bonfhir/next": "^2.2.1",
