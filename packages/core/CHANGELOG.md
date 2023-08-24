@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.14.2
+
+### Patch Changes
+
+- [#52](https://github.com/bonfhir/bonfhir/pull/52) [`7e5aa27`](https://github.com/bonfhir/bonfhir/commit/7e5aa27be94871f53688c9ef7ee893d1eee15a13) Thanks [@julienblin](https://github.com/julienblin)! - Make proxy properties writable
+
 ## 2.14.1
 
 ### Patch Changes
