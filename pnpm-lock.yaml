@@ -36,7 +36,7 @@ importers:
   apps/sample-ehr:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.14.0
+        specifier: ^2.14.1
         version: link:../../packages/core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -63,7 +63,7 @@ importers:
         specifier: ^2.5.0
         version: link:../../packages/ui
       '@bonfhir/ui-mantine':
-        specifier: ^2.3.2
+        specifier: ^2.3.3
         version: link:../../packages/ui-mantine
       '@emotion/react':
         specifier: ^11.11.0
@@ -184,7 +184,7 @@ importers:
         specifier: ^2.1.0
         version: link:../../packages/aws-lambda
       '@bonfhir/core':
-        specifier: ^2.14.0
+        specifier: ^2.14.1
         version: link:../../packages/core
       '@bonfhir/subscriptions':
         specifier: ^2.2.1
@@ -1184,7 +1184,7 @@ importers:
   packages/ui-mantine:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.14.0
+        specifier: ^2.14.1
         version: link:../core
       '@bonfhir/query':
         specifier: ^2.4.0

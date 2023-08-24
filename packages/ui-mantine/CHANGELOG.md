@@ -1,5 +1,14 @@
 # @bonfhir/ui-mantine
 
+## 2.3.3
+
+### Patch Changes
+
+- [#50](https://github.com/bonfhir/bonfhir/pull/50) [`115f356`](https://github.com/bonfhir/bonfhir/commit/115f356fb7f765264638b72a6bfbdaa34b1fc2ed) Thanks [@julienblin](https://github.com/julienblin)! - Fix questionnaire resetting when query re-runs
+
+- Updated dependencies [[`eb17f1c`](https://github.com/bonfhir/bonfhir/commit/eb17f1cd82062575b2a45dbb73acaa6b664c5160)]:
+  - @bonfhir/core@2.14.1
+
 ## 2.3.2
 
 ### Patch Changes
