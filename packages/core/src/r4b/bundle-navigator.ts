@@ -550,7 +550,7 @@ function withResolvableProxy<T extends Resource>(
         return {
           configurable: true,
           enumerable: true,
-          writable: false,
+          writable: true,
           value: (customResourceClass: any) =>
             navigator.reference(
               (target as Reference)?.reference,
@@ -563,7 +563,7 @@ function withResolvableProxy<T extends Resource>(
         return {
           configurable: true,
           enumerable: true,
-          writable: false,
+          writable: true,
           value: (
             select: (
               resource: any,
@@ -578,7 +578,7 @@ function withResolvableProxy<T extends Resource>(
         return {
           configurable: true,
           enumerable: true,
-          writable: false,
+          writable: true,
           value: () => true,
         };
       }
