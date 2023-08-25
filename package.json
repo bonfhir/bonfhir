@@ -27,7 +27,7 @@
     "@graphql-codegen/cli": "^5.0.0",
     "graphql": "^16.7.1",
     "graphql-config": "^5.0.2",
-    "turbo": "^1.10.12"
+    "turbo": "^1.10.13"
   },
   "pnpm": {
     "overrides": {
