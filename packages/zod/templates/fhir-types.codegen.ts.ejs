@@ -1,0 +1,62 @@
+/* eslint-disable unicorn/prefer-export-from */
+/**
+ * Zod FHIR Definitions for <%= fhir.release %>/<%= fhir.version %>
+ */
+
+import { z } from "zod";
+import {
+  string
+} from "./primitive-types";
+
+<% for (const valueSet of fhir.requiredBindingValueSets) { %>
+  <%= valueSet.jsDoc %>
+  export const <%= valueSet.safeName %> =
+  <% if (valueSet.expansion?.contains?.length) { -%>
+    z.enum([
+    <% for (const expansion of valueSet.expansion?.contains || []) { -%>"<%= expansion.code %>", <% } -%>
+    ]);
+  <% } else { %>
+    string;
+  <% } %>
+<% } %>
+
+<% const renderElement = (element) => { %>
+  <%= element.jsDoc %>
+  <%= element.name %>: <%= element.zodType %>,
+<% } %>
+
+<% for (const structureDef of fhir.topologicallySortedStructureDefinitions) { %>
+
+  <% for (const backboneElement of structureDef.backboneElements) { %>
+    <%= backboneElement.rootElement.jsDoc %>
+    export const <%= backboneElement.rootElement.backboneElementName %> = BackboneElement.extend({
+      <% for (const element of backboneElement.ownRootElementsWithChoices) { %>
+        <%= renderElement(element) %>
+      <% } %>
+    });
+  <% } %>
+
+  <% if (structureDef.derivation != "constraint" && structureDef.kind != "primitive-type") { %>
+
+    <%= structureDef.jsDoc %>
+    export const <%= structureDef.type %> =
+      <% if (structureDef.base?.type) { -%>
+        <%= structureDef.base.type %>.extend({
+      <% } else { -%>
+        z.object({
+      <% } -%>
+      <% if (structureDef.isResource && !structureDef.abstract) { %>
+        resourceType: z.literal("<%= structureDef.type %>"),
+      <% } else if (structureDef.type === "Resource") { %>
+        resourceType: string,
+      <% } -%>
+
+      <% for (const element of structureDef.ownRootElementsWithChoices) { %>
+        <%= renderElement(element) %>
+      <% } %>
+
+    });
+
+  <% } -%>
+
+<% } -%>

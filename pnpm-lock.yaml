@@ -648,6 +648,9 @@ importers:
       rollup-plugin-filesize:
         specifier: ^10.0.0
         version: 10.0.0
+      topological-sort:
+        specifier: ^0.3.0
+        version: 0.3.0
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@swc/core@1.3.72)(@types/node@18.17.1)(typescript@5.1.6)
@@ -25695,6 +25698,11 @@ packages:
     dependencies:
       '@tokenizer/token': 0.3.0
       ieee754: 1.2.1
+    dev: true
+
+  /topological-sort@0.3.0:
+    resolution: {integrity: sha512-BmO2t72jjJ3B9PZC3LTHyojgNynOKEvWG4GiYqyfSMUjtO6+yZK0oozlMYVA+tC6YvS3NZh4OPx6QaolEYOg6A==}
+    engines: {node: '>=8'}
     dev: true
 
   /totalist@1.1.0:

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
+import { TopologicalSort } from "topological-sort";
 import {
   splitLongLines,
   targetProfileToTsTypes,
@@ -104,6 +105,43 @@ export class FhirDefinitions {
     return [...this.structureDefinitionsByUrl.values()].sort((a: any, b: any) =>
       a.name.localeCompare(b.name),
     );
+  }
+
+  /**
+   * All structure definitions sorted topologically.
+   */
+  public get topologicallySortedStructureDefinitions(): StructureDefinition[] {
+    const topologicalSort = new TopologicalSort<string, StructureDefinition>(
+      new Map(),
+    );
+    const alreadyAdded = new Set<string>();
+    for (const structureDef of this.structureDefinitionsByUrl.values()) {
+      if (
+        (structureDef as any).type &&
+        (structureDef as any).derivation != "constraint" &&
+        !alreadyAdded.has((structureDef as any).type)
+      ) {
+        topologicalSort.addNode((structureDef as any).type, structureDef);
+        alreadyAdded.add((structureDef as any).type);
+      }
+    }
+    for (const structureDef of this.structureDefinitionsByUrl.values()) {
+      if (
+        (structureDef as any).type && //&&
+        (structureDef.base as any)?.type &&
+        (structureDef as any).type !== (structureDef.base as any).type
+      ) {
+        topologicalSort.addEdge(
+          (structureDef.base as any).type,
+          (structureDef as any).type,
+        );
+      }
+
+      if (structureDef.backboneElements.length > 0) {
+        topologicalSort.addEdge("BackboneElement", (structureDef as any).type);
+      }
+    }
+    return [...topologicalSort.sort().values()].map((i) => i.node);
   }
 
   /**
@@ -497,6 +535,14 @@ export class ElementDefinition {
       resolvedType = `${resolvedType} | undefined`;
     }
     return resolvedType;
+  }
+
+  /**
+   * The Zod type for this element.
+   * This assumes that primitive types are already imported, as well as "z".
+   */
+  public get zodType(): string {
+    return "z.string().optional()";
   }
 
   /**

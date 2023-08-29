@@ -1,3 +1,7 @@
+/**
+ * Zod Primitive types
+ */
+
 import { z } from "zod";
 
 /**
