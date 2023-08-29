@@ -198,3 +198,13 @@ export const uuid = z
  * https://hl7.org/fhir/datatypes.html#uuid
  */
 export type uuid = z.infer<typeof uuid>;
+
+/**
+ * https://hl7.org/fhir/narrative.html#xhtml
+ */
+export const xhtml = z.string().nonempty();
+
+/**
+ * https://hl7.org/fhir/narrative.html#xhtml
+ */
+export type xhtml = z.infer<typeof xhtml>;

@@ -5,7 +5,27 @@
 
 import { z } from "zod";
 import {
-  string
+  base64Binary,
+  boolean,
+  canonical,
+  code,
+  date,
+  dateTime,
+  decimal,
+  id,
+  instant,
+  integer,
+  integer64,
+  markdown,
+  oid,
+  string,
+  positiveInt,
+  time,
+  unsignedInt,
+  uri,
+  url,
+  uuid,
+  xhtml
 } from "./primitive-types";
 
 <% for (const valueSet of fhir.requiredBindingValueSets) { %>
@@ -52,6 +72,8 @@ import {
       <% } -%>
 
       <% for (const element of structureDef.ownRootElementsWithChoices) { %>
+        <% if (element.name === "extension" || element.name === "modifierExtension") { continue; } -%>
+        <% if (structureDef.type === "Reference" && element.name === "identifier") { continue; } -%>
         <%= renderElement(element) %>
       <% } %>
 

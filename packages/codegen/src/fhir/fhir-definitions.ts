@@ -140,6 +140,28 @@ export class FhirDefinitions {
       if (structureDef.backboneElements.length > 0) {
         topologicalSort.addEdge("BackboneElement", (structureDef as any).type);
       }
+
+      for (const code of structureDef.elements
+        .flatMap((x: any) => x.type)
+        .filter(Boolean)
+        .flatMap((x: any) => x.code)) {
+        if (code === "Extension") {
+          continue;
+        }
+        if (
+          code === "Identifier" &&
+          (structureDef as any).type === "Reference"
+        ) {
+          continue;
+        }
+        if (alreadyAdded.has(code)) {
+          try {
+            topologicalSort.addEdge(code, (structureDef as any).type);
+          } catch {
+            // Ignore
+          }
+        }
+      }
     }
     return [...topologicalSort.sort().values()].map((i) => i.node);
   }
@@ -542,7 +564,58 @@ export class ElementDefinition {
    * This assumes that primitive types are already imported, as well as "z".
    */
   public get zodType(): string {
-    return "z.string().optional()";
+    if ((this as any).contentReference) {
+      let resolvedReference = (this as any).contentReference
+        .slice(1)
+        .split(".")
+        .map((x: string) => x[0]?.toUpperCase() + x.slice(1))
+        .join("");
+
+      if (this.isArray) {
+        resolvedReference = `${resolvedReference}.array()`;
+      }
+
+      if (this.isOptional) {
+        resolvedReference = `${resolvedReference}.optional()`;
+      }
+
+      return resolvedReference;
+    }
+
+    const typeCodes = (this as any).type.map((x: any) => {
+      switch (x.code) {
+        case "http://hl7.org/fhirpath/System.String": {
+          return "string";
+        }
+        default: {
+          return x.code;
+        }
+      }
+    }) as string[];
+
+    let resolvedType =
+      typeCodes.length === 1
+        ? typeCodes[0]
+        : `z.union(${typeCodes.join(", ")})`;
+
+    if (this.hasRequiredBinding && resolvedType === "string") {
+      resolvedType = this._definitions.valueSetsByUrl.get(
+        (this as any).binding.valueSet.split("|")[0],
+      )?.safeName;
+    }
+
+    if (this.backboneElementName) {
+      resolvedType = this.backboneElementName;
+    }
+
+    if (this.isArray) {
+      resolvedType = `${resolvedType}.optional()`;
+    }
+
+    if (this.isOptional) {
+      resolvedType = `${resolvedType}.optional()`;
+    }
+    return resolvedType || "";
   }
 
   /**
