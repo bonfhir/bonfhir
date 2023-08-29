@@ -140,28 +140,6 @@ export class FhirDefinitions {
       if (structureDef.backboneElements.length > 0) {
         topologicalSort.addEdge("BackboneElement", (structureDef as any).type);
       }
-
-      for (const code of structureDef.elements
-        .flatMap((x: any) => x.type)
-        .filter(Boolean)
-        .flatMap((x: any) => x.code)) {
-        if (code === "Extension") {
-          continue;
-        }
-        if (
-          code === "Identifier" &&
-          (structureDef as any).type === "Reference"
-        ) {
-          continue;
-        }
-        if (alreadyAdded.has(code)) {
-          try {
-            topologicalSort.addEdge(code, (structureDef as any).type);
-          } catch {
-            // Ignore
-          }
-        }
-      }
     }
     return [...topologicalSort.sort().values()].map((i) => i.node);
   }
@@ -395,75 +373,6 @@ export class StructureDefinition {
     return this.ownElements
       .filter((x) => x.backboneElementName)
       .map((x) => new BackboneElement(this, x));
-  }
-
-  /**
-   * Nested backbone elements inside this structure definition, regardless of nesting level
-   */
-  public get topologicallySortedBackboneElements(): BackboneElement[] {
-    const backboneElements = this.backboneElements;
-    if (backboneElements.length === 0) {
-      return backboneElements;
-    }
-    const topologicalSort = new TopologicalSort<string, BackboneElement>(
-      new Map(),
-    );
-    const alreadyAdded = new Set<string>();
-    for (const backboneElement of backboneElements) {
-      if (
-        backboneElement.rootElement.backboneElementName &&
-        !alreadyAdded.has(backboneElement.rootElement.backboneElementName)
-      ) {
-        topologicalSort.addNode(
-          backboneElement.rootElement.backboneElementName,
-          backboneElement,
-        );
-        alreadyAdded.add(backboneElement.rootElement.backboneElementName);
-      }
-    }
-
-    for (const backboneElement of backboneElements) {
-      if (!backboneElement.rootElement.backboneElementName) {
-        continue;
-      }
-
-      for (const element of backboneElement.ownRootElementsWithChoices) {
-        if (element.backboneElementName && element.backboneElementName) {
-          try {
-            topologicalSort.addEdge(
-              element.backboneElementName,
-              backboneElement.rootElement.backboneElementName,
-            );
-          } catch {
-            // Ignore
-          }
-        }
-
-        const contentReference = (element as any).contentReference
-          ?.slice(1)
-          .split(".")
-          .map((x: string) => x[0]?.toUpperCase() + x.slice(1))
-          .join("");
-        if (!contentReference) {
-          continue;
-        }
-        if (
-          alreadyAdded.has(contentReference) &&
-          contentReference !== backboneElement.rootElement.backboneElementName
-        ) {
-          try {
-            topologicalSort.addEdge(
-              contentReference,
-              backboneElement.rootElement.backboneElementName,
-            );
-          } catch {
-            // Ignore
-          }
-        }
-      }
-    }
-
-    return [...topologicalSort.sort().values()].map((i) => i.node);
   }
 }
 

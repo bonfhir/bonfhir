@@ -27,6 +27,7 @@ import {
   uuid,
   xhtml
 } from "./primitive-types";
+import type * as FhirTypes from "@bonfhir/core/<%= fhir.release %>";
 
 <% for (const valueSet of fhir.requiredBindingValueSets) { %>
   <%= valueSet.jsDoc %>
@@ -42,26 +43,23 @@ import {
 
 <% const renderElement = (element) => { %>
   <%= element.jsDoc %>
-  <%= element.name %>: <%= element.zodType %>,
+  <%= element.name %>: z.lazy(() => <%= element.zodType %>),
 <% } %>
 
 <% for (const structureDef of fhir.topologicallySortedStructureDefinitions) { %>
 
-  <% for (const backboneElement of structureDef.topologicallySortedBackboneElements) { %>
+  <% for (const backboneElement of structureDef.backboneElements) { %>
     <%= backboneElement.rootElement.jsDoc %>
-    export const <%= backboneElement.rootElement.backboneElementName %> = BackboneElement.extend({
+    export const <%= backboneElement.rootElement.backboneElementName %>: z.ZodObject<z.ZodRawShape, "strip", z.ZodTypeAny, FhirTypes.<%= backboneElement.rootElement.backboneElementName %>, FhirTypes.<%= backboneElement.rootElement.backboneElementName %>> = BackboneElement.extend({
       <% for (const element of backboneElement.ownRootElementsWithChoices) { %>
-        <% if (element.name === "extension" || element.name === "modifierExtension") { continue; } -%>
-        <% if (structureDef.type === "Reference" && element.name === "identifier") { continue; } -%>
         <%= renderElement(element) %>
       <% } %>
     });
   <% } %>
-
   <% if (structureDef.derivation != "constraint" && structureDef.kind != "primitive-type") { %>
 
     <%= structureDef.jsDoc %>
-    export const <%= structureDef.type %> =
+    export const <%= structureDef.type %>: z.ZodObject<z.ZodRawShape, "strip", z.ZodTypeAny, FhirTypes.<%= structureDef.type %>, FhirTypes.<%= structureDef.type %>> =
       <% if (structureDef.base?.type) { -%>
         <%= structureDef.base.type %>.extend({
       <% } else { -%>
@@ -74,13 +72,10 @@ import {
       <% } -%>
 
       <% for (const element of structureDef.ownRootElementsWithChoices) { %>
-        <% if (element.name === "extension" || element.name === "modifierExtension") { continue; } -%>
-        <% if (structureDef.type === "Reference" && element.name === "identifier") { continue; } -%>
         <%= renderElement(element) %>
       <% } %>
 
     });
 
   <% } -%>
-
 <% } -%>

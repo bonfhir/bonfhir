@@ -1358,6 +1358,10 @@ importers:
         version: 5.1.6
 
   packages/zod:
+    dependencies:
+      '@bonfhir/core':
+        specifier: ^2.14.0
+        version: link:../core
     devDependencies:
       '@bonfhir/codegen':
         specifier: workspace:*

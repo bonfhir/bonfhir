@@ -53,6 +53,9 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "@bonfhir/core": "^2.14.0"
+  },
   "devDependencies": {
     "@bonfhir/codegen": "workspace:*",
     "@bonfhir/eslint-config": "workspace:*",
