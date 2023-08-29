@@ -47,10 +47,12 @@ import {
 
 <% for (const structureDef of fhir.topologicallySortedStructureDefinitions) { %>
 
-  <% for (const backboneElement of structureDef.backboneElements) { %>
+  <% for (const backboneElement of structureDef.topologicallySortedBackboneElements) { %>
     <%= backboneElement.rootElement.jsDoc %>
     export const <%= backboneElement.rootElement.backboneElementName %> = BackboneElement.extend({
       <% for (const element of backboneElement.ownRootElementsWithChoices) { %>
+        <% if (element.name === "extension" || element.name === "modifierExtension") { continue; } -%>
+        <% if (structureDef.type === "Reference" && element.name === "identifier") { continue; } -%>
         <%= renderElement(element) %>
       <% } %>
     });

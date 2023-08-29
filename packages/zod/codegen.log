@@ -1,0 +1,15 @@
+
+> @bonfhir/zod@2.0.0 codegen /Users/julien/dev/GitHub/bonfhir/bonfhir/packages/zod
+> pnpm --dir="${PWD}/../codegen" dev generate --fhir r4b,r5 -t "${PWD}/templates/**/*.ejs" -b "${PWD}/templates" -p 'prettier --write %files%' -o "${PWD}/src/<%= fhir.release %>"
+
+
+> @bonfhir/codegen@2.4.1 dev /Users/julien/dev/GitHub/bonfhir/bonfhir/packages/codegen
+> ts-node src/index.ts "generate" "--fhir" "r4b,r5" "-t" "/Users/julien/dev/GitHub/bonfhir/bonfhir/packages/zod/templates/**/*.ejs" "-b" "/Users/julien/dev/GitHub/bonfhir/bonfhir/packages/zod/templates" "-p" "prettier --write %files%" "-o" "/Users/julien/dev/GitHub/bonfhir/bonfhir/packages/zod/src/<%= fhir.release %>"
+
+[33m❯[39m Loading FHIR definitions
+[32m✔[39m Loading FHIR definitions (r4b,r5)
+[33m❯[39m Scan templates
+[32m✔[39m Scan templates: 1 template(s) found.
+[33m❯[39m Process templates
+[33m❯[39m fhir-types.codegen.ts (r4b)
+[?25h
