@@ -26,6 +26,11 @@ export type FhirSubscriptionHandler<
   args: FhirSubscriptionHandlerArgs<TResource>,
 ) => Promise<FhirSubscriptionHandlerResult>;
 
+export type FhirSubscriptionLogger = Pick<
+  typeof console,
+  "debug" | "info" | "warn" | "error"
+>;
+
 export interface FhirSubscriptionHandlerArgs<
   TResource extends AnyResource = AnyResource,
 > {
@@ -35,10 +40,7 @@ export interface FhirSubscriptionHandlerArgs<
   resource: Retrieved<TResource>;
 
   /** The configured logger. */
-  logger:
-    | Pick<typeof console, "debug" | "info" | "warn" | "error">
-    | null
-    | undefined;
+  logger: FhirSubscriptionLogger | null | undefined;
 }
 
 export type FhirSubscriptionHandlerResult =
@@ -47,15 +49,10 @@ export type FhirSubscriptionHandlerResult =
   | object
   | Promise<object>;
 
-export type SubscriptionLogger = Pick<
-  typeof console,
-  "debug" | "info" | "warn" | "error"
->;
-
 export interface RegisterSubscriptionsArgs {
   fhirClient: FhirClient;
 
-  logger: SubscriptionLogger;
+  logger: FhirSubscriptionLogger;
 
   /** The API base URL */
   baseUrl: string;
