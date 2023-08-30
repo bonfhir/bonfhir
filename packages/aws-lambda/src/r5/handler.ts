@@ -1,7 +1,7 @@
 import { FhirClient, urlSafeConcat } from "@bonfhir/core/r5";
 import {
   FhirSubscription,
-  SubscriptionLogger,
+  FhirSubscriptionLogger,
   registerSubscriptions,
 } from "@bonfhir/subscriptions/r5";
 import type {
@@ -33,7 +33,7 @@ export interface AwsLambdaFhirSubscriptionsConfig {
   webhookSecret: string;
 
   /** Logger to use. Defaults to console. */
-  logger?: SubscriptionLogger | null | undefined;
+  logger?: FhirSubscriptionLogger | null | undefined;
 
   contentType?: string | null | undefined;
 }
