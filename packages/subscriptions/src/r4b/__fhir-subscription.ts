@@ -19,6 +19,11 @@ export interface FhirSubscription<TResource extends AnyResource = AnyResource> {
 
   /** The subscription handler. */
   handler: FhirSubscriptionHandler<TResource>;
+
+  /** Allow customization of the subscription registration. */
+  registration?: (
+    subscription: Subscription,
+  ) => Subscription | Promise<Subscription>;
 }
 
 export type FhirSubscriptionHandler<
@@ -26,6 +31,11 @@ export type FhirSubscriptionHandler<
 > = (
   args: FhirSubscriptionHandlerArgs<TResource>,
 ) => Promise<FhirSubscriptionHandlerResult>;
+
+export type FhirSubscriptionLogger = Pick<
+  typeof console,
+  "debug" | "info" | "warn" | "error"
+>;
 
 export interface FhirSubscriptionHandlerArgs<
   TResource extends AnyResource = AnyResource,
@@ -36,10 +46,7 @@ export interface FhirSubscriptionHandlerArgs<
   resource: Retrieved<TResource>;
 
   /** The configured logger. */
-  logger:
-    | Pick<typeof console, "debug" | "info" | "warn" | "error">
-    | null
-    | undefined;
+  logger: FhirSubscriptionLogger | null | undefined;
 }
 
 export type FhirSubscriptionHandlerResult =
@@ -48,15 +55,10 @@ export type FhirSubscriptionHandlerResult =
   | object
   | Promise<object>;
 
-export type SubscriptionLogger = Pick<
-  typeof console,
-  "debug" | "info" | "warn" | "error"
->;
-
 export interface RegisterSubscriptionsArgs {
   fhirClient: FhirClient;
 
-  logger: SubscriptionLogger;
+  logger: FhirSubscriptionLogger;
 
   /** The API base URL */
   baseUrl: string;
@@ -94,58 +96,34 @@ export async function registerSubscriptions({
   for (const subscription of subscriptions) {
     try {
       const subscriptionUrl = urlSafeConcat(baseUrl, subscription.endpoint);
-      const existingSubscriptionSearch = await fhirClient.search(
-        "Subscription",
-        (search) => search.url(subscriptionUrl),
-      );
-      const existingSubscription =
-        existingSubscriptionSearch.bundle.entry?.[0]?.resource;
-
       const securityHeaderValue = `${
         securityHeader || "X-Subscription-Auth"
       }: ${webhookSecret}`;
+      let subscriptionToRegister = build("Subscription", {
+        status: "active",
+        reason: subscription.reason,
+        criteria: subscription.criteria,
+        channel: {
+          type: "rest-hook",
+          endpoint: subscriptionUrl,
+          payload: contentType ?? "application/fhir+json",
+          header: [securityHeaderValue],
+        },
+      });
+      subscriptionToRegister = subscription.registration
+        ? await subscription.registration(subscriptionToRegister)
+        : subscriptionToRegister;
+      const [savedSubscription, updated] = await fhirClient.createOr(
+        "replace",
+        subscriptionToRegister,
+        (search) => search.url(subscriptionUrl),
+      );
 
-      if (existingSubscription) {
-        if (
-          existingSubscription.criteria !== subscription.criteria ||
-          existingSubscription.reason !== subscription.reason ||
-          existingSubscription.channel?.payload !==
-            (contentType ?? "application/fhir+json") ||
-          !existingSubscription.channel?.header?.includes(securityHeaderValue)
-        ) {
-          await fhirClient.update({
-            ...existingSubscription,
-            reason: subscription.reason,
-            criteria: subscription.criteria,
-            channel: {
-              ...existingSubscription.channel,
-              payload: contentType ?? "application/fhir+json",
-              header: [
-                ...(existingSubscription.channel?.header || []),
-                securityHeaderValue,
-              ],
-            },
-          });
-        }
-      } else {
-        await fhirClient.create(
-          build("Subscription", {
-            status: "active",
-            reason: subscription.reason,
-            criteria: subscription.criteria,
-            channel: {
-              type: "rest-hook",
-              endpoint: subscriptionUrl,
-              payload: contentType ?? "application/fhir+json",
-              header: [securityHeaderValue],
-            },
-          }),
+      if (updated) {
+        logger.debug(
+          `Subscription ${savedSubscription.reason} for ${savedSubscription.criteria} on ${subscriptionUrl} registered.`,
         );
       }
-
-      logger.debug(
-        `Subscription ${subscription.reason} for ${subscription.criteria} on ${subscription.endpoint} registered.`,
-      );
     } catch (error) {
       logger.error(
         `Error while registering subscription ${subscription.reason} on ${subscription.endpoint}`,

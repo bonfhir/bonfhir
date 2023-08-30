@@ -1,7 +1,7 @@
 import { FhirClient, urlSafeConcat } from "@bonfhir/core/r4b";
 import {
   FhirSubscription,
-  SubscriptionLogger,
+  FhirSubscriptionLogger,
   registerSubscriptions,
 } from "@bonfhir/subscriptions/r4b";
 import { NextMiddleware, NextResponse } from "next/server.js";
@@ -31,7 +31,7 @@ export interface FhirSubscriptionsConfig {
   webhookSecret: string;
 
   /** Logger to use. Defaults to console. */
-  logger?: SubscriptionLogger | null | undefined;
+  logger?: FhirSubscriptionLogger | null | undefined;
 
   contentType?: string | null | undefined;
 }

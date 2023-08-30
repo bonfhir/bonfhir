@@ -2,7 +2,7 @@
  * This module is used to provide a set of utility functions for typescript
  */
 
-import { Period } from "./fhir-types.codegen";
+import { DomainResource, Period, Resource } from "./fhir-types.codegen";
 
 /**
  * Returns the given `value` as is if it satisfies `Array.isArray` or otherwise
@@ -426,3 +426,37 @@ export type DropFirst<T extends unknown[]> = T extends [infer _, ...infer U]
  */
 export type RemoveUnderscoreKeys<T extends PropertyKey> =
   T extends `_${infer _U}` ? never : T;
+
+/**
+ * Semantically compare 2 resources, ignoring the id, meta and text fields.
+ */
+export function resourcesAreEqual(
+  resourceA: Resource,
+  resourceB: Resource,
+): boolean {
+  const {
+    id: idA,
+    meta: metaA,
+    text: textA,
+    ...resourceAWithoutMeta
+  } = resourceA as DomainResource;
+  const {
+    id: idB,
+    meta: metaB,
+    text: textB,
+    ...resourceBWithoutMeta
+  } = resourceB as DomainResource;
+
+  return deepEqual(resourceAWithoutMeta, resourceBWithoutMeta);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function deepEqual(x: any, y: any): boolean {
+  const ok = Object.keys,
+    tx = typeof x,
+    ty = typeof y;
+  return x && y && tx === "object" && tx === ty
+    ? ok(x).length === ok(y).length &&
+        ok(x).every((key) => deepEqual(x[key], y[key]))
+    : x === y;
+}
