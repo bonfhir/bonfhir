@@ -47,17 +47,29 @@ const config = {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "My Site",
-        logo: {
-          alt: "My Site Logo",
+        title: "BonFHIR",
+        /*logo: {
+          alt: "BonFHIR Logo",
           src: "img/logo.svg",
-        },
+        },*/
         items: [
           {
             type: "docSidebar",
-            sidebarId: "tutorialSidebar",
-            position: "left",
-            label: "Tutorial",
+            sidebarId: "getStartedSidebar",
+            position: "right",
+            label: "Get Started",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "getStartedSidebar",
+            position: "right",
+            label: "Packages Documentation",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "getStartedSidebar",
+            position: "right",
+            label: "Contributing",
           },
           {
             href: "https://github.com/bonfhir/bonfhir",
@@ -68,39 +80,15 @@ const config = {
       },
       footer: {
         style: "dark",
-        links: [
-          {
-            title: "Docs",
-            items: [
-              {
-                label: "Tutorial",
-                to: "/docs/intro",
-              },
-            ],
-          },
-          {
-            title: "Community",
-            items: [
-              {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
-              },
-              {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
-              },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
-              },
-            ],
-          },
-        ],
+        links: [],
         copyright: `Copyright © ${new Date().getFullYear()} AlleyCorp Nord.`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      colorMode: {
+        disableSwitch: true,
       },
     }),
 };

@@ -4,20 +4,12 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  padding: 5.37rem 7.5rem;
+  height: 657px;
+  background-color: var(--ifm-color-primary);
+  color: #FFF
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.heroBanner h1 {
+  font-size: 5rem;
 }
