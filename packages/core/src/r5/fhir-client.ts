@@ -605,7 +605,7 @@ export async function createOr<TResource extends AnyResource>(
 
   const searchResult = await client.search(
     resource.resourceType,
-    finalSearch.toString(),
+    finalSearch as any,
   );
   const found = searchResult.bundle.entry?.[0]?.resource as
     | Retrieved<TResource>
