@@ -23,6 +23,7 @@ import {
   TerminologyCapabilities,
 } from "./fhir-types.codegen";
 import { Formatter } from "./formatters";
+import { resourcesAreEqual } from "./lang-utils";
 import { merge } from "./merge";
 import { Merger } from "./mergers/index";
 import { JSONPatchBody } from "./patch";
@@ -619,25 +620,12 @@ export async function createOr<TResource extends AnyResource>(
     return [found as any, false];
   }
 
-  const {
-    id: foundId,
-    meta: foundMeta,
-    text: foundText,
-    ...foundContent
-  } = found as any;
-  const {
-    id: resourceId,
-    meta: resourceMeta,
-    text: resourceText,
-    ...resourceContent
-  } = resource as any;
-  if (JSON.stringify(foundContent) === JSON.stringify(resourceContent)) {
+  if (resourcesAreEqual(found, resource)) {
     return [found as any, false];
   }
 
   if (action === "replace") {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    resource.id = foundId;
+    resource.id = found.id;
     return [await client.update(resource), true];
   }
 

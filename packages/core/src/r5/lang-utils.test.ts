@@ -1,6 +1,9 @@
+import { build } from "./builders";
+import { Resource } from "./fhir-types.codegen";
 import {
   asArray,
   cleanFhirValues,
+  resourcesAreEqual,
   truncate,
   urlSafeConcat,
 } from "./lang-utils";
@@ -64,5 +67,47 @@ describe("lang-utils", () => {
     ])("%p == %p", (input, expected) => {
       expect(cleanFhirValues(input)).toEqual(expected);
     });
+  });
+
+  describe("resourcesAreEqual", () => {
+    it.each([
+      [build("Patient", { id: "1" }), build("Patient", { id: "2" }), true],
+      [
+        build("Patient", { id: "1", name: [{ family: "Doe" }] }),
+        build("Patient", { id: "2", name: [{ family: "Smith" }] }),
+        false,
+      ],
+      [
+        build("Patient", {
+          id: "1",
+          name: [{ family: "Doe" }],
+          birthDate: "2023-01-01",
+        }),
+        build("Patient", {
+          id: "2",
+          name: [{ family: "Doe" }],
+          birthDate: "2023-01-01",
+        }),
+        true,
+      ],
+      [
+        build("Patient", {
+          id: "1",
+          name: [{ family: "Doe" }],
+          birthDate: "2023-01-01",
+        }),
+        build("Patient", {
+          birthDate: "2023-01-01",
+          name: [{ family: "Doe" }],
+          id: "2",
+        }),
+        true,
+      ],
+    ] satisfies Array<[Resource, Resource, boolean]>)(
+      "%p == %p",
+      (a, b, expected) => {
+        expect(resourcesAreEqual(a, b)).toEqual(expected);
+      },
+    );
   });
 });
