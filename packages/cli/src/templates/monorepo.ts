@@ -207,10 +207,13 @@ node_modules
 # testing
 coverage
 
-# next.js
+# builds
 .next/
 out/
 build
+.build
+.serverless
+.esbuild
 
 # misc
 .DS_Store
