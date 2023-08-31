@@ -34,7 +34,8 @@
       "micromatch": ">=4.0.5",
       "nth-check": ">=2.0.1",
       "sane": ">=5.0.1",
-      "semver@<7.5.2": ">=7.5.2"
+      "semver@<7.5.2": ">=7.5.2",
+      "trim": ">=0.0.3"
     },
     "peerDependencyRules": {
       "allowedVersions": {
@@ -49,7 +50,7 @@
       "stable": "0",
       "superagent": "7",
       "svgo": "1",
-      "trim": "0.0.1",
+      "trim": "1.0.1",
       "w3c-hr-time": "1",
       "workbox-cacheable-response": "6"
     }
