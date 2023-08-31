@@ -3,10 +3,11 @@
   "description": "Sample AWS Lambda app using the serverless framework.",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "serverless package",
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
-    "dev": "serverless offline start",
+    "dev": "serverless offline start --reloadHandler",
     "register-subscriptions": "curl -i --request POST http://localhost:6000/fhir/subscriptions/register --header \"X-Subscription-Auth: secret\""
   },
   "dependencies": {
@@ -22,8 +23,8 @@
     "@types/aws-lambda": "^8.10.119",
     "@types/node": "^18.17.1",
     "serverless": "^3.34.0",
+    "serverless-esbuild": "^1.46.0",
     "serverless-offline": "^12.0.4",
-    "serverless-plugin-typescript": "^2.1.5",
-    "typescript": "5.1.6"
+    "typescript": "5.2.2"
   }
 }

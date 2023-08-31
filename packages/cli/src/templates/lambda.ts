@@ -4,6 +4,7 @@ import { Listr, ListrTask } from "listr2";
 import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { TemplateOptions } from "../commands/create";
+import { PackageManager } from "./package-manager";
 import { Template } from "./template";
 
 export interface Context {
@@ -44,7 +45,7 @@ export const LambdaTasks = (): ListrTask<Context>[] => [
   },
   {
     title: "Create Lambda project",
-    task: async ({ options: { cwd, name }, monorepo }) => {
+    task: async ({ options: { cwd, name, packageManager }, monorepo }) => {
       await mkdir(`${cwd}/src/subscriptions`, { recursive: true });
 
       if (!monorepo) {
@@ -59,7 +60,7 @@ export const LambdaTasks = (): ListrTask<Context>[] => [
 
       await writeFile(
         `${cwd}/serverless.yml`,
-        SERVERLESS_CONTENT(name),
+        SERVERLESS_CONTENT(name, packageManager.packageManager),
         "utf8",
       );
       await writeFile(
@@ -67,10 +68,7 @@ export const LambdaTasks = (): ListrTask<Context>[] => [
         monorepo
           ? `{
         "extends": "@${monorepo}/tsconfig/tsconfig.json",
-        "include": ["src/**/*"],
-        "compilerOptions": {
-          "moduleResolution": "NodeNext",
-        }
+        "include": ["src/**/*"]
       }`
           : TSCONFIG_CONTENT,
         "utf8",
@@ -110,8 +108,8 @@ export const LambdaTasks = (): ListrTask<Context>[] => [
         "prettier",
         "prettier-plugin-organize-imports",
         "serverless@^3",
+        "serverless-esbuild@^1",
         "serverless-offline@^12",
-        "serverless-plugin-typescript@^2",
         "typescript",
         monorepo ? `@${monorepo}/eslint-config-custom` : "",
         monorepo ? `@${monorepo}/tsconfig` : "",
@@ -156,6 +154,7 @@ dist-ssr
 # Serverless directories
 .serverless
 .build
+.esbuild
 `;
 
 const EDITORCONFIG_CONTENT = `
@@ -175,7 +174,7 @@ const PACKAGE_JSON_CONTENT = (name: string, monorepo?: string) => `{
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "serverless offline start",
+    "dev": "serverless offline start --reloadHandler",
     "build": "serverless package",
     "lint": "prettier --check ./src && eslint ./src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write ./src",
@@ -212,9 +211,10 @@ const PACKAGE_JSON_CONTENT = (name: string, monorepo?: string) => `{
 }
 `;
 
-const SERVERLESS_CONTENT = (name: string) => `service: "${name
-  .replace("@", "")
-  .replace("/", "-")}"
+const SERVERLESS_CONTENT = (
+  name: string,
+  packageManager: PackageManager,
+) => `service: "${name.replace("@", "").replace("/", "-")}"
 frameworkVersion: "3"
 
 provider:
@@ -230,10 +230,14 @@ functions:
           method: post
 
 plugins:
-  - serverless-plugin-typescript
+  - serverless-esbuild
   - serverless-offline
 
 custom:
+  esbuild:
+    format: esm
+    outputFileExtension: .mjs
+    packager: ${packageManager}
   serverless-offline:
     httpPort: 6000
     host: 0.0.0.0
@@ -242,7 +246,7 @@ custom:
 const TSCONFIG_CONTENT = `{
   "compilerOptions": {
     "lib": ["es2020", "DOM"],
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Bundler",
     "module": "ES2020",
     "skipLibCheck": true
   }

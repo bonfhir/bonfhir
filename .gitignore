@@ -12,6 +12,7 @@ coverage
 out/
 build
 dist
+.esbuild
 
 # misc
 .DS_Store
