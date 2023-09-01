@@ -11,6 +11,7 @@
   },
   "type": "module",
   "devDependencies": {
+    "@babel/runtime": "7.22.6",
     "@bonfhir/core": "^2.12.0",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
