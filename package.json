@@ -55,5 +55,8 @@
       "w3c-hr-time": "1",
       "workbox-cacheable-response": "6"
     }
+  },
+  "engines": {
+    "node": ">=18.17.1"
   }
 }
