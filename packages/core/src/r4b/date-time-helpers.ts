@@ -659,6 +659,67 @@ function compare(a: Duration, b: Duration): -1 | 0 | 1 {
   return 0;
 }
 
+export type DurationRoundUnit = "a" | "mo" | "d" | "h" | "min" | "s" | "ms";
+
+/**
+ * Round a duration to the specified duration unit.
+ */
+function round(
+  duration: Duration,
+  to: DurationRoundUnit,
+  method: "ceil" | "floor" | "round" = "round",
+): Duration {
+  if (!duration.code) {
+    throw new Error(`Missing code in duration ${JSON.stringify(duration)}`);
+  }
+  if (duration.code === to) {
+    return duration;
+  }
+  const conversionFactor = CONVERSION_FACTORS[duration.code]?.[to];
+  if (!conversionFactor) {
+    throw new Error(
+      `Unable to convert ${duration.code} to ${to} - missing conversion factor.`,
+    );
+  }
+
+  return {
+    value: Math[method]((duration.value || 0) * conversionFactor),
+    unit: UCUM_CODE_UNIT[to] ?? to,
+    system: "http://unitsofmeasure.org",
+    code: to,
+  };
+}
+
+/**
+ * Return a duration in years from the value to relativeTo or `today()`,
+ * which should represent an age in years relative to a date.
+ *
+ * This is in fact a shortcut for the following operations:
+ * `duration.round(duration.from(value, relativeTo || today()), "a", "floor")`
+ *
+ * @example
+ * const age = duration.age(patient.birthDate) // age in years from birthDate to today
+ */
+function age(value: string, relativeTo?: string | null | undefined): Duration;
+function age(
+  value: null | undefined,
+  relativeTo?: string | null | undefined,
+): undefined;
+function age(
+  value: string | null | undefined,
+  relativeTo?: string | null | undefined,
+): Duration | undefined;
+function age(
+  value: string | null | undefined,
+  relativeTo?: string | null | undefined,
+): Duration | undefined {
+  if (!value) {
+    return undefined;
+  }
+
+  return round(from(relativeTo || today(), value), "a", "floor");
+}
+
 export const duration = {
   zero(): Duration {
     return {
@@ -725,16 +786,18 @@ export const duration = {
     };
   },
   add,
+  age,
   subtract,
   compare,
   from,
+  round,
 };
 
 const ORDERED_UCUM_CODES = ["a", "mo", "d", "h", "min", "s", "ms"];
 const UCUM_CODE_UNIT: Record<string, string> = {
   a: "yr",
 };
-const CONVERSATION_FACTORS: Record<string, Record<string, number>> = {
+const CONVERSION_FACTORS: Record<string, Record<string, number>> = {
   a: {
     a: 1,
     mo: 12,
@@ -827,13 +890,12 @@ function convert(
   let resultValue = result.value;
   if (result.code !== commonCode) {
     resultValue =
-      (result.value || 0) * CONVERSATION_FACTORS[result.code!]![commonCode]!;
+      (result.value || 0) * CONVERSION_FACTORS[result.code!]![commonCode]!;
   }
   let durationValue = duration.value;
   if (duration.code !== commonCode) {
     durationValue =
-      (duration.value || 0) *
-      CONVERSATION_FACTORS[duration.code!]![commonCode]!;
+      (duration.value || 0) * CONVERSION_FACTORS[duration.code!]![commonCode]!;
   }
 
   return [
