@@ -1,4 +1,5 @@
 import {
+  DurationRoundUnit,
   duration,
   fhirDate,
   fhirDateTime,
@@ -8,6 +9,7 @@ import {
   parseFhirDateTime,
   today,
 } from "./date-time-helpers";
+import { Duration } from "./fhir-types.codegen";
 
 describe("date-time-helpers", () => {
   it("fhirDate", () => {
@@ -284,5 +286,22 @@ describe("date-time-helpers", () => {
     ["01:30:25", undefined, duration.seconds(3600 + 1800 + 25)],
   ])("from %p to %p => %p", (a, b, expected) => {
     expect(duration.from(a, b as string)).toMatchObject(expected);
+  });
+
+  it.each([
+    [duration.years(1), "a", duration.years(1)],
+    [duration.years(1), "d", duration.days(365)],
+    [duration.days(15_300), "a", duration.years(42)],
+  ] satisfies Array<[Duration, DurationRoundUnit, Duration]>)(
+    "round %p to %p => %p",
+    (a, b, expected) => {
+      expect(duration.round(a, b)).toMatchObject(expected);
+    },
+  );
+
+  it.each([["1980-01-01", "2023-09-06", duration.years(43)]] satisfies Array<
+    [string, string | undefined, Duration]
+  >)("age %p relative to %p => %p", (a, b, expected) => {
+    expect(duration.age(a, b)).toMatchObject(expected);
   });
 });
