@@ -483,10 +483,8 @@ function add(
   validate(...durations);
   let result = value;
   for (const duration of durations) {
-    const [valueResult, valueDuration, targetDuration] = convert(
-      result,
-      duration,
-    );
+    const [valueResult, valueDuration, targetDuration] =
+      convertToCommonCodeResolution(result, duration);
     result = {
       value: valueResult + valueDuration,
       unit: targetDuration.unit,
@@ -646,7 +644,10 @@ function from(
  */
 function compare(a: Duration, b: Duration): -1 | 0 | 1 {
   validate(a as Duration, b as Duration);
-  const [valueA, valueB] = convert(a as Duration, b as Duration);
+  const [valueA, valueB] = convertToCommonCodeResolution(
+    a as Duration,
+    b as Duration,
+  );
 
   if (valueA < valueB) {
     return -1;
@@ -659,15 +660,30 @@ function compare(a: Duration, b: Duration): -1 | 0 | 1 {
   return 0;
 }
 
-export type DurationRoundUnit = "a" | "mo" | "d" | "h" | "min" | "s" | "ms";
+export type DurationUnit = "a" | "mo" | "d" | "h" | "min" | "s" | "ms";
 
 /**
- * Round a duration to the specified duration unit.
+ * Convert a duration to the specified duration unit.
+ * May apply rounding in the process.
  */
-function round(
+function convert(duration: Duration, to: DurationUnit): Duration;
+function convert(
   duration: Duration,
-  to: DurationRoundUnit,
-  method: "ceil" | "floor" | "round" = "round",
+  to: DurationUnit,
+  round: "ceil" | "floor" | "round",
+  digits?: number | null | undefined,
+): Duration;
+function convert(
+  duration: Duration,
+  to: DurationUnit,
+  round?: "ceil" | "floor" | "round" | null | undefined,
+  digits?: number | null | undefined,
+): Duration;
+function convert(
+  duration: Duration,
+  to: DurationUnit,
+  round?: "ceil" | "floor" | "round" | null | undefined,
+  digits?: number | null | undefined,
 ): Duration {
   if (!duration.code) {
     throw new Error(`Missing code in duration ${JSON.stringify(duration)}`);
@@ -683,11 +699,40 @@ function round(
   }
 
   return {
-    value: Math[method]((duration.value || 0) * conversionFactor),
+    value: roundTo((duration.value || 0) * conversionFactor, round, digits),
     unit: UCUM_CODE_UNIT[to] ?? to,
     system: "http://unitsofmeasure.org",
     code: to,
   };
+}
+
+function roundTo(
+  value: number,
+  round: "ceil" | "floor" | "round" | null | undefined,
+  digits: number | null | undefined,
+): number {
+  if (!round) {
+    return value;
+  }
+
+  digits ??= 0;
+
+  if (digits === 0) {
+    return Math[round](value);
+  }
+
+  let negative = false;
+  if (value < 0) {
+    negative = true;
+    value = value * -1;
+  }
+  const multiplier = Math.pow(10, digits);
+  value = Number.parseFloat((value * multiplier).toFixed(11));
+  value = Number((Math[round](value) / multiplier).toFixed(digits));
+  if (negative) {
+    value = Number((value * -1).toFixed(digits));
+  }
+  return value;
 }
 
 /**
@@ -700,24 +745,31 @@ function round(
  * @example
  * const age = duration.age(patient.birthDate) // age in years from birthDate to today
  */
-function age(value: string, relativeTo?: string | null | undefined): Duration;
+function age(
+  value: string,
+  relativeTo?: string | null | undefined,
+  digits?: number | null | undefined,
+): Duration;
 function age(
   value: null | undefined,
   relativeTo?: string | null | undefined,
+  digits?: number | null | undefined,
 ): undefined;
 function age(
   value: string | null | undefined,
   relativeTo?: string | null | undefined,
+  digits?: number | null | undefined,
 ): Duration | undefined;
 function age(
   value: string | null | undefined,
   relativeTo?: string | null | undefined,
+  digits?: number | null | undefined,
 ): Duration | undefined {
   if (!value) {
     return undefined;
   }
 
-  return round(from(relativeTo || today(), value), "a", "floor");
+  return convert(from(relativeTo || today(), value), "a", "floor", digits);
 }
 
 export const duration = {
@@ -787,10 +839,10 @@ export const duration = {
   },
   add,
   age,
+  convert,
   subtract,
   compare,
   from,
-  round,
 };
 
 const ORDERED_UCUM_CODES = ["a", "mo", "d", "h", "min", "s", "ms"];
@@ -863,7 +915,7 @@ const CONVERSION_FACTORS: Record<string, Record<string, number>> = {
   },
 };
 
-function convert(
+function convertToCommonCodeResolution(
   result: Duration,
   duration: Duration,
 ): [number, number, Pick<Duration, "unit" | "code">] {

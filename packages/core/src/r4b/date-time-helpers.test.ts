@@ -1,5 +1,5 @@
 import {
-  DurationRoundUnit,
+  DurationUnit,
   duration,
   fhirDate,
   fhirDateTime,
@@ -289,19 +289,38 @@ describe("date-time-helpers", () => {
   });
 
   it.each([
-    [duration.years(1), "a", duration.years(1)],
-    [duration.years(1), "d", duration.days(365)],
-    [duration.days(15_300), "a", duration.years(42)],
-  ] satisfies Array<[Duration, DurationRoundUnit, Duration]>)(
-    "round %p to %p => %p",
-    (a, b, expected) => {
-      expect(duration.round(a, b)).toMatchObject(expected);
-    },
-  );
+    [duration.years(1), "a", undefined, undefined, duration.years(1)],
+    [duration.years(1), "d", undefined, undefined, duration.days(365)],
+    [
+      duration.days(15_300),
+      "a",
+      undefined,
+      undefined,
+      duration.years(41.917_808_219_178_085),
+    ],
+    [duration.days(15_300), "a", "round", undefined, duration.years(42)],
+    [duration.days(15_300), "a", "round", 2, duration.years(41.92)],
+    [duration.days(15_301), "a", "ceil", 2, duration.years(41.93)],
+    [duration.days(15_300), "a", "floor", 2, duration.years(41.91)],
+  ] satisfies Array<
+    [
+      Duration,
+      DurationUnit,
+      "ceil" | "floor" | "round" | undefined,
+      number | undefined,
+      Duration,
+    ]
+  >)("convert(%p, %p, %p, %p) => %p", (a, b, round, digits, expected) => {
+    expect(duration.convert(a, b, round, digits)).toMatchObject(expected);
+  });
 
-  it.each([["1980-01-01", "2023-09-06", duration.years(43)]] satisfies Array<
-    [string, string | undefined, Duration]
-  >)("age %p relative to %p => %p", (a, b, expected) => {
-    expect(duration.age(a, b)).toMatchObject(expected);
+  it.each([
+    ["1980-01-01", "2023-09-06", undefined, duration.years(43)],
+    ["1980-01-01", "2023-09-07", 1, duration.years(43.7)],
+    ["2023-09-07", "1980-01-01", 1, duration.years(-43.7)],
+  ] satisfies Array<
+    [string, string | undefined, number | undefined, Duration]
+  >)("age(%p, %p, %p) => %p", (a, b, digits, expected) => {
+    expect(duration.age(a, b, digits)).toMatchObject(expected);
   });
 });
