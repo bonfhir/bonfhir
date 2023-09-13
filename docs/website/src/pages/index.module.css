@@ -4,12 +4,50 @@
  */
 
 .heroBanner {
-  padding: 5.37rem 7.5rem;
-  height: 657px;
+  padding: 4rem;
   background-color: var(--ifm-color-primary);
-  color: #FFF
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.heroBanner > div {
+  display: flex;
+  flex-direction: row;
+  width: 90rem;
+  margin: 0 auto;
+}
+
+.heroBanner > div > div {
+  width: 50%;
+  align-items: center;
 }
 
 .heroBanner h1 {
   font-size: 5rem;
+  margin: 0;
+}
+
+.verticalStack {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1.375rem;
+}
+
+.learnMore {
+  border-radius: 1.5rem;
+  background: #fdc022;
+  color: var(--bf-secondary-1, #584f7a);
+  text-align: center;
+  font-family: Noto Sans;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.03719rem;
+  text-decoration: none;
 }

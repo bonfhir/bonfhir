@@ -47,11 +47,10 @@ const config = {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "BonFHIR",
-        /*logo: {
-          alt: "BonFHIR Logo",
-          src: "img/logo.svg",
-        },*/
+        logo: {
+          alt: "bonFHIR",
+          src: "img/bonfhir_logo.svg",
+        },
         items: [
           {
             type: "docSidebar",
