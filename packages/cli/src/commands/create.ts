@@ -1,6 +1,6 @@
-import chalk from "chalk";
 import inquirer from "inquirer";
 import { CommandModule } from "yargs";
+import writeLogo from "../ascii-logo";
 import { Templates } from "../templates";
 import {
   PackageManager,
@@ -37,8 +37,7 @@ export default <CommandModule<unknown, CommandOption>>{
     },
   },
   handler: async (options) => {
-    console.log(chalk.bold(`🔥 BonFHIR 🔥`));
-    console.log();
+    writeLogo();
 
     const answers: Required<CommandOption> = await inquirer.prompt(
       [
