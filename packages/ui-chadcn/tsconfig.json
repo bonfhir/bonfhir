@@ -1,0 +1,11 @@
+{
+  "extends": "@bonfhir/typescript-config/tsconfig.json",
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
