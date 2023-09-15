@@ -1,5 +1,11 @@
 # @bonfhir/codegen
 
+## 2.4.2
+
+### Patch Changes
+
+- [#77](https://github.com/bonfhir/bonfhir/pull/77) [`998396e`](https://github.com/bonfhir/bonfhir/commit/998396ec35090a2462dbfbaaa41f0a9a5babaa90) Thanks [@julienblin](https://github.com/julienblin)! - Fix #76 - subtypes with base of `Element` are missing from codegen
+
 ## 2.4.1
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @bonfhir/subscriptions
 
+## 2.3.0
+
+### Minor Changes
+
+- [#59](https://github.com/bonfhir/bonfhir/pull/59) [`9c5ed4c`](https://github.com/bonfhir/bonfhir/commit/9c5ed4cd2700bd18559baca265ebfb32e0ffe828) Thanks [@julienblin](https://github.com/julienblin)! - Fix #38 - Add `registration` option to allow customization of the registration
+
+### Patch Changes
+
+- Updated dependencies [[`998396e`](https://github.com/bonfhir/bonfhir/commit/998396ec35090a2462dbfbaaa41f0a9a5babaa90), [`5a53a1f`](https://github.com/bonfhir/bonfhir/commit/5a53a1fcbf1f4b18c3250768292a0b56e46e27e0), [`200cc4b`](https://github.com/bonfhir/bonfhir/commit/200cc4bc3bf38d85ed24476c2751f12f176d329e), [`816e7d1`](https://github.com/bonfhir/bonfhir/commit/816e7d1d41db4de095f1df26af3a96f472e290c9), [`7030b76`](https://github.com/bonfhir/bonfhir/commit/7030b7631f30c65e17ff83a074fce7d211c85cb6), [`944bc6e`](https://github.com/bonfhir/bonfhir/commit/944bc6ea9a5e717359973ac2379e17b180bed8b8)]:
+  - @bonfhir/core@2.15.0
+
 ## 2.2.1
 
 ### Patch Changes

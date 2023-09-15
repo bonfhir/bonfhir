@@ -38,7 +38,7 @@ importers:
   apps/sample-ehr:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.14.2
+        specifier: ^2.15.0
         version: link:../../packages/core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -47,7 +47,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/eslint-plugin
       '@bonfhir/next':
-        specifier: ^2.2.1
+        specifier: ^2.3.0
         version: link:../../packages/next
       '@bonfhir/prettier-config':
         specifier: workspace:*
@@ -56,7 +56,7 @@ importers:
         specifier: ^2.4.0
         version: link:../../packages/query
       '@bonfhir/subscriptions':
-        specifier: ^2.2.1
+        specifier: ^2.3.0
         version: link:../../packages/subscriptions
       '@bonfhir/typescript-config':
         specifier: workspace:*
@@ -183,13 +183,13 @@ importers:
   apps/sample-lambda:
     dependencies:
       '@bonfhir/aws-lambda':
-        specifier: ^2.1.0
+        specifier: ^2.2.0
         version: link:../../packages/aws-lambda
       '@bonfhir/core':
-        specifier: ^2.14.2
+        specifier: ^2.15.0
         version: link:../../packages/core
       '@bonfhir/subscriptions':
-        specifier: ^2.2.1
+        specifier: ^2.3.0
         version: link:../../packages/subscriptions
     devDependencies:
       '@bonfhir/eslint-config':
@@ -422,10 +422,10 @@ importers:
   packages/aws-lambda:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.10.0
+        specifier: ^2.15.0
         version: link:../core
       '@bonfhir/subscriptions':
-        specifier: ^2.2.0
+        specifier: ^2.3.0
         version: link:../subscriptions
     devDependencies:
       '@bonfhir/eslint-config':
@@ -880,10 +880,10 @@ importers:
   packages/next:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.10.0
+        specifier: ^2.15.0
         version: link:../core
       '@bonfhir/subscriptions':
-        specifier: ^2.2.0
+        specifier: ^2.3.0
         version: link:../subscriptions
       '@bonfhir/ui':
         specifier: ^2.4.1
@@ -1059,7 +1059,7 @@ importers:
   packages/subscriptions:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.12.0
+        specifier: ^2.15.0
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':
