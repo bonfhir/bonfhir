@@ -329,12 +329,12 @@ export class StructureDefinition {
   }
 
   /**
-   * Nested backbone elements inside this structure definition, regardless of nesting level
+   * Nested composed elements inside this structure definition, regardless of nesting level
    */
-  public get backboneElements(): BackboneElement[] {
+  public get compositions(): Composition[] {
     return this.ownElements
-      .filter((x) => x.backboneElementName)
-      .map((x) => new BackboneElement(this, x));
+      .filter((x) => x.compositionName)
+      .map((x) => new Composition(this, x));
   }
 }
 
@@ -374,11 +374,13 @@ export class ElementDefinition {
   }
 
   /**
-   * If this element is a BackboneElement, return the name of the BackboneElement.
+   * If this element is a Composition (e.g. subtype), return the name of the Composed type.
    * Otherwise, return undefined.
    */
-  public get backboneElementName(): string | undefined {
-    if ((this as any).type?.[0]?.code !== "BackboneElement") {
+  public get compositionName(): string | undefined {
+    if (
+      !["BackboneElement", "Element"].includes((this as any).type?.[0]?.code)
+    ) {
       return undefined;
     }
 
@@ -478,8 +480,8 @@ export class ElementDefinition {
       )?.safeName;
     }
 
-    if (this.backboneElementName) {
-      resolvedType = this.backboneElementName;
+    if (this.compositionName) {
+      resolvedType = this.compositionName;
       if (
         (this._structureDefinition as any).type === "Bundle" &&
         this.name === "entry" &&
@@ -605,7 +607,7 @@ export class ValueSet {
 /**
  * http://hl7.org/fhir/types.html#BackBoneElement
  */
-export class BackboneElement {
+export class Composition {
   constructor(
     private _parent: StructureDefinition,
     public rootElement: ElementDefinition,

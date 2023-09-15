@@ -9,8 +9,8 @@
   <% } -%>
   <% for (const structureDef of fhir.structureDefinitions) { -%>
     <%= structureDef.type -%>,
-    <% for (const backboneElement of structureDef.backboneElements || []) { -%>
-      <%= backboneElement.rootElement.backboneElementName %>,
+    <% for (const composition of structureDef.compositions || []) { -%>
+      <%= composition.rootElement.compositionName %>,
     <% } -%>
   <% } -%>
   AnyResourceType

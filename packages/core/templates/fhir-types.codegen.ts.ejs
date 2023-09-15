@@ -24,11 +24,11 @@
 
 <% for (const structureDef of fhir.structureDefinitions) { %>
 
-  <% for (const backboneElement of structureDef.backboneElements) { %>
-    <%= backboneElement.rootElement.jsDoc %>
-    export interface <%= backboneElement.rootElement.backboneElementName %><% if (["BundleEntry"].includes(backboneElement.rootElement.backboneElementName)) { %><TTargetResource extends Resource = Resource> <% } %> extends BackboneElement {
+  <% for (const composition of structureDef.compositions) { %>
+    <%= composition.rootElement.jsDoc %>
+    export interface <%= composition.rootElement.compositionName %><% if (["BundleEntry"].includes(composition.rootElement.compositionName)) { %><TTargetResource extends Resource = Resource> <% } %> extends <%= composition.rootElement?.type?.[0]?.code %> {
 
-      <% for (const element of backboneElement.ownRootElementsWithChoices) { %>
+      <% for (const element of composition.ownRootElementsWithChoices) { %>
         <%= renderElement(element) %>
       <% } %>
 
