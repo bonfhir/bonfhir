@@ -1,5 +1,23 @@
 # @bonfhir/core
 
+## 2.15.0
+
+### Minor Changes
+
+- [#59](https://github.com/bonfhir/bonfhir/pull/59) [`5a53a1f`](https://github.com/bonfhir/bonfhir/commit/5a53a1fcbf1f4b18c3250768292a0b56e46e27e0) Thanks [@julienblin](https://github.com/julienblin)! - Add `resourcesAreEqual` helper function to semantically compare resources
+
+- [#73](https://github.com/bonfhir/bonfhir/pull/73) [`200cc4b`](https://github.com/bonfhir/bonfhir/commit/200cc4bc3bf38d85ed24476c2751f12f176d329e) Thanks [@julienblin](https://github.com/julienblin)! - Update duration API: rename `round` to `convert` and add better rounding options.
+
+- [#72](https://github.com/bonfhir/bonfhir/pull/72) [`7030b76`](https://github.com/bonfhir/bonfhir/commit/7030b7631f30c65e17ff83a074fce7d211c85cb6) Thanks [@julienblin](https://github.com/julienblin)! - Fix #71: Add `duration.round` and `duration.age` helpers
+
+### Patch Changes
+
+- [#77](https://github.com/bonfhir/bonfhir/pull/77) [`998396e`](https://github.com/bonfhir/bonfhir/commit/998396ec35090a2462dbfbaaa41f0a9a5babaa90) Thanks [@julienblin](https://github.com/julienblin)! - Fix #76 - subtypes with base of `Element` are missing from codegen
+
+- [#62](https://github.com/bonfhir/bonfhir/pull/62) [`816e7d1`](https://github.com/bonfhir/bonfhir/commit/816e7d1d41db4de095f1df26af3a96f472e290c9) Thanks [@julienblin](https://github.com/julienblin)! - Update marked dependency
+
+- [#59](https://github.com/bonfhir/bonfhir/pull/59) [`944bc6e`](https://github.com/bonfhir/bonfhir/commit/944bc6ea9a5e717359973ac2379e17b180bed8b8) Thanks [@julienblin](https://github.com/julienblin)! - Fix a bug in `client.createOr` that prevented using a search function parameter
+
 ## 2.14.2
 
 ### Patch Changes

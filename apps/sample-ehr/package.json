@@ -11,13 +11,13 @@
     "build": "next build"
   },
   "dependencies": {
-    "@bonfhir/core": "^2.14.2",
+    "@bonfhir/core": "^2.15.0",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
-    "@bonfhir/next": "^2.2.1",
+    "@bonfhir/next": "^2.3.0",
     "@bonfhir/prettier-config": "workspace:*",
     "@bonfhir/query": "^2.4.0",
-    "@bonfhir/subscriptions": "^2.2.1",
+    "@bonfhir/subscriptions": "^2.3.0",
     "@bonfhir/typescript-config": "workspace:*",
     "@bonfhir/ui": "^2.5.0",
     "@bonfhir/ui-mantine": "^2.3.3",
