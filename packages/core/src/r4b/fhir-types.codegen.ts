@@ -28774,6 +28774,213 @@ export interface CoverageEligibilityResponse extends DomainResource {
 }
 
 /**
+ * Code filters specify additional constraints on the data, specifying the value
+ * set of interest for a particular element of the data. Each code filter defines
+ * an additional constraint on the data, i.e. code filters are AND'ed, not OR'ed.
+ */
+export interface DataRequirementCodeFilter extends Element {
+  /**
+   * The codes for the code filter. If values are given, the filter will return only
+   * those data items for which the code-valued attribute specified by the path has a
+   * value that is one of the specified codes. If codes are specified in addition to
+   * a value set, the filter returns items matching a code in the value set or one of
+   * the specified codes.
+   */
+  code?: Array<Coding> | undefined;
+
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * The code-valued attribute of the filter. The specified path SHALL be a FHIRPath
+   * resolveable on the specified type of the DataRequirement, and SHALL consist only
+   * of identifiers, constant indexers, and .resolve(). The path is allowed to
+   * contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to
+   * traverse multiple-cardinality sub-elements (see the [Simple FHIRPath
+   * Profile](fhirpath.html#simple) for full details). Note that the index must be an
+   * integer constant. The path must resolve to an element of type code, Coding, or
+   * CodeableConcept.
+   * The path attribute contains a [Simple FHIRPath Subset](fhirpath.html#simple)
+   * that allows path traversal, but not calculation.
+   * @fhirType string
+   */
+  path?: string | undefined;
+  _path?: Element | undefined;
+
+  /**
+   * A token parameter that refers to a search parameter defined on the specified
+   * type of the DataRequirement, and which searches on elements of type code,
+   * Coding, or CodeableConcept.
+   * @fhirType string
+   */
+  searchParam?: string | undefined;
+  _searchParam?: Element | undefined;
+
+  /**
+   * The valueset for the code filter. The valueSet and code elements are additive.
+   * If valueSet is specified, the filter will return only those data items for which
+   * the value of the code-valued element specified in the path is a member of the
+   * specified valueset.
+   * @fhirType canonical
+   */
+  valueSet?: string | undefined;
+  _valueSet?: Element | undefined;
+}
+
+/**
+ * Date filters specify additional constraints on the data in terms of the
+ * applicable date range for specific elements. Each date filter specifies an
+ * additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
+ */
+export interface DataRequirementDateFilter extends Element {
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * The date-valued attribute of the filter. The specified path SHALL be a FHIRPath
+   * resolveable on the specified type of the DataRequirement, and SHALL consist only
+   * of identifiers, constant indexers, and .resolve(). The path is allowed to
+   * contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to
+   * traverse multiple-cardinality sub-elements (see the [Simple FHIRPath
+   * Profile](fhirpath.html#simple) for full details). Note that the index must be an
+   * integer constant. The path must resolve to an element of type date, dateTime,
+   * Period, Schedule, or Timing.
+   * The path attribute contains a [Simple FHIR Subset](fhirpath.html#simple) that
+   * allows path traversal, but not calculation.
+   * @fhirType string
+   */
+  path?: string | undefined;
+  _path?: Element | undefined;
+
+  /**
+   * A date parameter that refers to a search parameter defined on the specified type
+   * of the DataRequirement, and which searches on elements of type date, dateTime,
+   * Period, Schedule, or Timing.
+   * @fhirType string
+   */
+  searchParam?: string | undefined;
+  _searchParam?: Element | undefined;
+
+  /**
+   * The value of the filter. If period is specified, the filter will return only
+   * those data items that fall within the bounds determined by the Period, inclusive
+   * of the period boundaries. If dateTime is specified, the filter will return only
+   * those data items that are equal to the specified dateTime. If a Duration is
+   * specified, the filter will return only those data items that fall within
+   * Duration before now.
+   * @fhirType dateTime
+   */
+  valueDateTime?: string | undefined;
+  _valueDateTime?: Element | undefined;
+
+  /**
+   * The value of the filter. If period is specified, the filter will return only
+   * those data items that fall within the bounds determined by the Period, inclusive
+   * of the period boundaries. If dateTime is specified, the filter will return only
+   * those data items that are equal to the specified dateTime. If a Duration is
+   * specified, the filter will return only those data items that fall within
+   * Duration before now.
+   */
+  valuePeriod?: Period | undefined;
+
+  /**
+   * The value of the filter. If period is specified, the filter will return only
+   * those data items that fall within the bounds determined by the Period, inclusive
+   * of the period boundaries. If dateTime is specified, the filter will return only
+   * those data items that are equal to the specified dateTime. If a Duration is
+   * specified, the filter will return only those data items that fall within
+   * Duration before now.
+   */
+  valueDuration?: Duration | undefined;
+}
+
+/**
+ * Specifies the order of the results to be returned.
+ * This element can be used in combination with the sort element to specify quota
+ * requirements such as "the most recent 5" or "the highest 5". When multiple sorts
+ * are specified, they are applied in the order they appear in the resource.
+ */
+export interface DataRequirementSort extends Element {
+  /**
+   * The direction of the sort, ascending or descending.
+   * @see {@link SortDirection}
+   * @fhirType code
+   */
+  direction: SortDirection;
+  _direction?: Element | undefined;
+
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * The attribute of the sort. The specified path must be resolvable from the type
+   * of the required data. The path is allowed to contain qualifiers (.) to traverse
+   * sub-elements, as well as indexers ([x]) to traverse multiple-cardinality
+   * sub-elements. Note that the index must be an integer constant.
+   * @fhirType string
+   */
+  path: string;
+  _path?: Element | undefined;
+}
+
+/**
  * DataRequirement
  *
  * Base StructureDefinition for DataRequirement Type: Describes a required data
@@ -28789,14 +28996,14 @@ export interface DataRequirement extends Element {
    * set of interest for a particular element of the data. Each code filter defines
    * an additional constraint on the data, i.e. code filters are AND'ed, not OR'ed.
    */
-  codeFilter?: Array<Element> | undefined;
+  codeFilter?: Array<DataRequirementCodeFilter> | undefined;
 
   /**
    * Date filters specify additional constraints on the data in terms of the
    * applicable date range for specific elements. Each date filter specifies an
    * additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
    */
-  dateFilter?: Array<Element> | undefined;
+  dateFilter?: Array<DataRequirementDateFilter> | undefined;
 
   /**
    * Specifies a maximum number of results that are required (uses the _count search
@@ -28838,7 +29045,7 @@ The value of mustSupport SHALL be a
    * requirements such as "the most recent 5" or "the highest 5". When multiple sorts
    * are specified, they are applied in the order they appear in the resource.
    */
-  sort?: Array<Element> | undefined;
+  sort?: Array<DataRequirementSort> | undefined;
 
   /**
    * The intended subjects of the data requirement. If this element is not provided,
@@ -32373,6 +32580,130 @@ Modifier
 }
 
 /**
+ * The amount of medication administered.
+ */
+export interface DosageDoseAndRate extends Element {
+  /**
+   * Amount of medication per dose.
+   * Note that this specifies the quantity of the specified medication, not the
+   * quantity for each active ingredient(s). Each ingredient amount can be
+   * communicated in the Medication resource. For example, if one wants to
+   * communicate that a tablet was 375 mg, where the dose was one tablet, you can use
+   * the Medication resource to document that the tablet was comprised of 375 mg of
+   * drug XYZ. Alternatively if the dose was 375 mg, then you may only need to use
+   * the Medication resource to indicate this was a tablet. If the example were an IV
+   * such as dopamine and you wanted to communicate that 400mg of dopamine was mixed
+   * in 500 ml of some IV solution, then this would all be communicated in the
+   * Medication resource. If the administration is not intended to be instantaneous
+   * (rate is present or timing has a duration), this can be specified to convey the
+   * total amount to be administered over the period of time as indicated by the
+   * schedule e.g. 500 ml in dose, with timing used to convey that this should be
+   * done over 4 hours.
+   */
+  doseRange?: Range | undefined;
+
+  /**
+   * Amount of medication per dose.
+   * Note that this specifies the quantity of the specified medication, not the
+   * quantity for each active ingredient(s). Each ingredient amount can be
+   * communicated in the Medication resource. For example, if one wants to
+   * communicate that a tablet was 375 mg, where the dose was one tablet, you can use
+   * the Medication resource to document that the tablet was comprised of 375 mg of
+   * drug XYZ. Alternatively if the dose was 375 mg, then you may only need to use
+   * the Medication resource to indicate this was a tablet. If the example were an IV
+   * such as dopamine and you wanted to communicate that 400mg of dopamine was mixed
+   * in 500 ml of some IV solution, then this would all be communicated in the
+   * Medication resource. If the administration is not intended to be instantaneous
+   * (rate is present or timing has a duration), this can be specified to convey the
+   * total amount to be administered over the period of time as indicated by the
+   * schedule e.g. 500 ml in dose, with timing used to convey that this should be
+   * done over 4 hours.
+   */
+  doseQuantity?: Quantity | undefined;
+
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+ * Amount of medication per unit of time.
+ * It is possible to supply both a rate and a doseQuantity to provide full details
+ * about how the medication is to be administered and supplied. If the rate is
+ * intended to change over time, depending on local rules/regulations, each change
+ * should be captured as a new version of the MedicationRequest with an updated
+ * rate, or captured with a new MedicationRequest with the new rate.
+
+It is
+ * possible to specify a rate over time (for example, 100 ml/hour) using either the
+ * rateRatio and rateQuantity.  The rateQuantity approach requires systems to have
+ * the capability to parse UCUM grammer where ml/hour is included rather than a
+ * specific ratio where the time is specified as the denominator.  Where a rate
+ * such as 500ml over 2 hours is specified, the use of rateRatio may be more
+ * semantically correct than specifying using a rateQuantity of 250 mg/hour.
+ */
+  rateRatio?: Ratio | undefined;
+
+  /**
+ * Amount of medication per unit of time.
+ * It is possible to supply both a rate and a doseQuantity to provide full details
+ * about how the medication is to be administered and supplied. If the rate is
+ * intended to change over time, depending on local rules/regulations, each change
+ * should be captured as a new version of the MedicationRequest with an updated
+ * rate, or captured with a new MedicationRequest with the new rate.
+
+It is
+ * possible to specify a rate over time (for example, 100 ml/hour) using either the
+ * rateRatio and rateQuantity.  The rateQuantity approach requires systems to have
+ * the capability to parse UCUM grammer where ml/hour is included rather than a
+ * specific ratio where the time is specified as the denominator.  Where a rate
+ * such as 500ml over 2 hours is specified, the use of rateRatio may be more
+ * semantically correct than specifying using a rateQuantity of 250 mg/hour.
+ */
+  rateRange?: Range | undefined;
+
+  /**
+ * Amount of medication per unit of time.
+ * It is possible to supply both a rate and a doseQuantity to provide full details
+ * about how the medication is to be administered and supplied. If the rate is
+ * intended to change over time, depending on local rules/regulations, each change
+ * should be captured as a new version of the MedicationRequest with an updated
+ * rate, or captured with a new MedicationRequest with the new rate.
+
+It is
+ * possible to specify a rate over time (for example, 100 ml/hour) using either the
+ * rateRatio and rateQuantity.  The rateQuantity approach requires systems to have
+ * the capability to parse UCUM grammer where ml/hour is included rather than a
+ * specific ratio where the time is specified as the denominator.  Where a rate
+ * such as 500ml over 2 hours is specified, the use of rateRatio may be more
+ * semantically correct than specifying using a rateQuantity of 250 mg/hour.
+ */
+  rateQuantity?: Quantity | undefined;
+
+  /**
+   * The kind of dose or rate specified, for example, ordered or calculated.
+   */
+  type?: CodeableConcept | undefined;
+}
+
+/**
  * Dosage
  *
  * Base StructureDefinition for Dosage Type: Indicates how the medication is/was
@@ -32422,7 +32753,7 @@ export interface Dosage extends BackboneElement {
   /**
    * The amount of medication administered.
    */
-  doseAndRate?: Array<Element> | undefined;
+  doseAndRate?: Array<DosageDoseAndRate> | undefined;
 
   /**
    * Upper limit on medication per administration.
@@ -32541,6 +32872,915 @@ export interface Element {
 }
 
 /**
+ * Information about the base definition of the element, provided to make it
+ * unnecessary for tools to trace the deviation of the element through the derived
+ * and related profiles. When the element definition is not the original definition
+ * of an element - i.g. either in a constraint on another type, or for elements
+ * from a super type in a snap shot - then the information in provided in the
+ * element definition may be different to the base definition. On the original
+ * definition of the element, it will be same.
+ * The base information does not carry any information that could not be determined
+ * from the path and related profiles, but making this determination requires both
+ * that the related profiles are available, and that the algorithm to determine
+ * them be available. For tooling simplicity, the base information must always be
+ * populated in element definitions in snap shots, even if it is the same.
+ */
+export interface ElementDefinitionBase extends Element {
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * Maximum cardinality of the base element identified by the path.
+   * This is provided to code generation, since the serialization representation in
+   * JSON differs depending on whether the base element has max > 1. Also, some forms
+   * of code generation may differ.
+   * @fhirType string
+   */
+  max: string;
+  _max?: Element | undefined;
+
+  /**
+   * Minimum cardinality of the base element identified by the path.
+   * This is provided for consistency with max, and may affect code generation of
+   * mandatory elements of the base resource are generated differently (some
+   * reference implementations have done this).
+   * @fhirType unsignedInt
+   */
+  min: number;
+  _min?: Element | undefined;
+
+  /**
+   * The Path that identifies the base element - this matches the
+   * ElementDefinition.path for that element. Across FHIR, there is only one base
+   * definition of any element - that is, an element definition on a
+   * [StructureDefinition](structuredefinition.html#) without a
+   * StructureDefinition.base.
+   * @fhirType string
+   */
+  path: string;
+  _path?: Element | undefined;
+}
+
+/**
+ * Binds to a value set if this element is coded (code, Coding, CodeableConcept,
+ * Quantity), or the data types (string, uri).
+ * For a CodeableConcept, when no codes are allowed - only text, use a binding of
+ * strength "required" with a description explaining that no coded values are
+ * allowed and what sort of information to put in the "text" element.
+ */
+export interface ElementDefinitionBinding extends Element {
+  /**
+   * Describes the intended use of this particular set of codes.
+   * @fhirType string
+   */
+  description?: string | undefined;
+  _description?: Element | undefined;
+
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * Indicates the degree of conformance expectations associated with this binding -
+   * that is, the degree to which the provided value set must be adhered to in the
+   * instances.
+   * For further discussion, see [Using Terminologies](terminologies.html).
+   * @see {@link BindingStrength}
+   * @fhirType code
+   */
+  strength: BindingStrength;
+  _strength?: Element | undefined;
+
+  /**
+   * Refers to the value set that identifies the set of codes the binding refers to.
+   * The reference may be version-specific or not (e.g. have a |[version] at the end
+   * of the canonical URL).
+   * @fhirType canonical
+   */
+  valueSet?: string | undefined;
+  _valueSet?: Element | undefined;
+}
+
+/**
+ * Formal constraints such as co-occurrence and other constraints that can be
+ * computationally evaluated within the context of the instance.
+ * Constraints should be declared on the "context" element - the lowest element in
+ * the hierarchy that is common to all nodes referenced by the constraint.
+ */
+export interface ElementDefinitionConstraint extends Element {
+  /**
+   * A [FHIRPath](fhirpath.html) expression of constraint that can be executed to see
+   * if this constraint is met.
+   * In the absense of an expression, the expression is likely not enforceable by
+   * validators, and might be missed by many systems.
+   * @fhirType string
+   */
+  expression?: string | undefined;
+  _expression?: Element | undefined;
+
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Text that can be used to describe the constraint in messages identifying that
+   * the constraint has been violated.
+   * Should be expressed in business terms as much as possible.
+   * @fhirType string
+   */
+  human: string;
+  _human?: Element | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * Allows identification of which elements have their cardinalities impacted by the
+   * constraint.  Will not be referenced for constraints that do not affect
+   * cardinality.
+   * @fhirType id
+   */
+  key: string;
+  _key?: Element | undefined;
+
+  /**
+   * Description of why this constraint is necessary or appropriate.
+   * To be used if the reason for the constraint might not be intuitive to all
+   * implementers.
+   * @fhirType string
+   */
+  requirements?: string | undefined;
+  _requirements?: Element | undefined;
+
+  /**
+   * Identifies the impact constraint violation has on the conformance of the
+   * instance.
+   * This allows constraints to be asserted as "shall" (error) and "should"
+   * (warning).
+   * @see {@link ConstraintSeverity}
+   * @fhirType code
+   */
+  severity: ConstraintSeverity;
+  _severity?: Element | undefined;
+
+  /**
+   * A reference to the original source of the constraint, for traceability purposes.
+   * This is used when, e.g. rendering, where it is not useful to present inherited
+   * constraints when rendering the snapshot.
+   * @fhirType canonical
+   */
+  source?: string | undefined;
+  _source?: Element | undefined;
+
+  /**
+   * An XPath expression of constraint that can be executed to see if this constraint
+   * is met.
+   * Elements SHALL use "f" as the namespace prefix for the FHIR namespace, and "x"
+   * for the xhtml namespace, and SHALL NOT use any other prefixes.     Note: XPath
+   * is generally considered not useful because it does not apply to JSON and other
+   * formats and because of XSLT implementation issues, and may be removed in the
+   * future.
+   * @fhirType string
+   */
+  xpath?: string | undefined;
+  _xpath?: Element | undefined;
+}
+
+/**
+ * A sample value for this element demonstrating the type of information that would
+ * typically be found in the element.
+ * Examples will most commonly be present for data where it's not implicitly
+ * obvious from either the data type or value set what the values might be.  (I.e.
+ * Example values for dates or quantities would generally be unnecessary.)  If the
+ * example value is fully populated, the publication tool can generate an instance
+ * automatically.
+ */
+export interface ElementDefinitionExample extends Element {
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * Describes the purpose of this example amoung the set of examples.
+   * @fhirType string
+   */
+  label: string;
+  _label?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType base64Binary
+   */
+  valueBase64Binary?: string | undefined;
+  _valueBase64Binary?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType boolean
+   */
+  valueBoolean?: boolean | undefined;
+  _valueBoolean?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType canonical
+   */
+  valueCanonical?: string | undefined;
+  _valueCanonical?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType code
+   */
+  valueCode?: string | undefined;
+  _valueCode?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType date
+   */
+  valueDate?: string | undefined;
+  _valueDate?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType dateTime
+   */
+  valueDateTime?: string | undefined;
+  _valueDateTime?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType decimal
+   */
+  valueDecimal?: number | undefined;
+  _valueDecimal?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType id
+   */
+  valueId?: string | undefined;
+  _valueId?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType instant
+   */
+  valueInstant?: string | undefined;
+  _valueInstant?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType integer
+   */
+  valueInteger?: number | undefined;
+  _valueInteger?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType markdown
+   */
+  valueMarkdown?: string | undefined;
+  _valueMarkdown?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType oid
+   */
+  valueOid?: string | undefined;
+  _valueOid?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType positiveInt
+   */
+  valuePositiveInt?: number | undefined;
+  _valuePositiveInt?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType string
+   */
+  valueString?: string | undefined;
+  _valueString?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType time
+   */
+  valueTime?: string | undefined;
+  _valueTime?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType unsignedInt
+   */
+  valueUnsignedInt?: number | undefined;
+  _valueUnsignedInt?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType uri
+   */
+  valueUri?: string | undefined;
+  _valueUri?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType url
+   */
+  valueUrl?: string | undefined;
+  _valueUrl?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   * @fhirType uuid
+   */
+  valueUuid?: string | undefined;
+  _valueUuid?: Element | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueAddress?: Address | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueAge?: Age | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueAnnotation?: Annotation | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueAttachment?: Attachment | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueCodeableConcept?: CodeableConcept | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueCodeableReference?: CodeableReference | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueCoding?: Coding | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueContactPoint?: ContactPoint | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueCount?: Count | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueDistance?: Distance | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueDuration?: Duration | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueHumanName?: HumanName | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueIdentifier?: Identifier | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueMoney?: Money | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valuePeriod?: Period | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueQuantity?: Quantity | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueRange?: Range | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueRatio?: Ratio | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueRatioRange?: RatioRange | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueReference?: Reference | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueSampledData?: SampledData | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueSignature?: Signature | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueTiming?: Timing | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueContactDetail?: ContactDetail | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueContributor?: Contributor | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueDataRequirement?: DataRequirement | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueExpression?: Expression | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueParameterDefinition?: ParameterDefinition | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueRelatedArtifact?: RelatedArtifact | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueTriggerDefinition?: TriggerDefinition | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueUsageContext?: UsageContext | undefined;
+
+  /**
+   * The actual value for the element, which must be one of the types allowed for
+   * this element.
+   */
+  valueDosage?: Dosage | undefined;
+}
+
+/**
+ * Identifies a concept from an external specification that roughly corresponds to
+ * this element.
+ * Mappings are not necessarily specific enough for safe translation.
+ */
+export interface ElementDefinitionMapping extends Element {
+  /**
+   * Comments that provide information about the mapping or its use.
+   * @fhirType string
+   */
+  comment?: string | undefined;
+  _comment?: Element | undefined;
+
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * An internal reference to the definition of a mapping.
+   * @fhirType id
+   */
+  identity: string;
+  _identity?: Element | undefined;
+
+  /**
+   * Identifies the computable language in which mapping.map is expressed.
+   * If omitted, then there can be no expectation of computational interpretation of
+   * the mapping.
+   * @see {@link MimeTypes}
+   * @fhirType code
+   */
+  language?: MimeTypes | undefined;
+  _language?: Element | undefined;
+
+  /**
+   * Expresses what part of the target specification corresponds to this element.
+   * For most mappings, the syntax is undefined.  Syntax will be provided for
+   * mappings to the RIM.  Multiple mappings may be possible and may include
+   * constraints on other resource elements that identify when a particular mapping
+   * applies.
+   * @fhirType string
+   */
+  map: string;
+  _map?: Element | undefined;
+}
+
+/**
+ * Indicates that the element is sliced into a set of alternative definitions (i.e.
+ * in a structure definition, there are multiple different constraints on a single
+ * element in the base resource). Slicing can be used in any resource that has
+ * cardinality ..* on the base resource, or any resource with a choice of types.
+ * The set of slices is any elements that come after this in the element sequence
+ * that have the same path, until a shorter path occurs (the shorter path
+ * terminates the set).
+ * The first element in the sequence, the one that carries the slicing, is the
+ * definition that applies to all the slices. This is based on the unconstrained
+ * element, but can apply any constraints as appropriate. This may include the
+ * common constraints on the children of the element.
+ */
+export interface ElementDefinitionSlicing extends Element {
+  /**
+   * A human-readable text description of how the slicing works. If there is no
+   * discriminator, this is required to be present to provide whatever information is
+   * possible about how the slices can be differentiated.
+   * If it's really not possible to differentiate them, the design should be
+   * re-evaluated to make the content usable.
+   * @fhirType string
+   */
+  description?: string | undefined;
+  _description?: Element | undefined;
+
+  /**
+   * Designates which child elements are used to discriminate between the slices when
+   * processing an instance. If one or more discriminators are provided, the value of
+   * the child elements in the instance data SHALL completely distinguish which slice
+   * the element in the resource matches based on the allowed values for those
+   * elements in each of the slices.
+   * If there is no discriminator, the content is hard to process, so this should be
+   * avoided.
+   */
+  discriminator?: Array<ElementDefinitionSlicingDiscriminator> | undefined;
+
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * If the matching elements have to occur in the same order as defined in the
+   * profile.
+   * Order should only be required when it is a pressing concern for presentation.
+   * Profile authors should consider making the order a feature of the rules about
+   * the narrative, not the rules about the data - requiring ordered data makes the
+   * profile much less re-usable.
+   * @fhirType boolean
+   */
+  ordered?: boolean | undefined;
+  _ordered?: Element | undefined;
+
+  /**
+   * Whether additional slices are allowed or not. When the slices are ordered,
+   * profile authors can also say that additional slices are only allowed at the end.
+   * Allowing additional elements makes for a much for flexible template - it's open
+   * for use in wider contexts, but also means that the content of the resource is
+   * not closed, and applications have to decide how to handle content not described
+   * by the profile.
+   * @see {@link SlicingRules}
+   * @fhirType code
+   */
+  rules: SlicingRules;
+  _rules?: Element | undefined;
+}
+
+/**
+ * Designates which child elements are used to discriminate between the slices when
+ * processing an instance. If one or more discriminators are provided, the value of
+ * the child elements in the instance data SHALL completely distinguish which slice
+ * the element in the resource matches based on the allowed values for those
+ * elements in each of the slices.
+ * If there is no discriminator, the content is hard to process, so this should be
+ * avoided.
+ */
+export interface ElementDefinitionSlicingDiscriminator extends Element {
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * A FHIRPath expression, using [the simple subset of
+   * FHIRPath](fhirpath.html#simple), that is used to identify the element on which
+   * discrimination is based.
+   * The only FHIRPath functions that are allowed are as(type), resolve(), and
+   * extension(url).
+   * @fhirType string
+   */
+  path: string;
+  _path?: Element | undefined;
+
+  /**
+   * How the element value is interpreted when discrimination is evaluated.
+   * @see {@link DiscriminatorType}
+   * @fhirType code
+   */
+  type: DiscriminatorType;
+  _type?: Element | undefined;
+}
+
+/**
+ * The data type or resource that the value of this element is permitted to be.
+ * The Type of the element can be left blank in a differential constraint, in which
+ * case the type is inherited from the resource. Abstract types are not permitted
+ * to appear as a type when multiple types are listed.  (I.e. Abstract types cannot
+ * be part of a choice).
+ */
+export interface ElementDefinitionType extends Element {
+  /**
+   * If the type is a reference to another resource, how the resource is or can be
+   * aggregated - is it a contained resource, or a reference, and if the context is a
+   * bundle, is it included in the bundle.
+   * See [Aggregation Rules](elementdefinition.html#aggregation) for further
+   * clarification.
+   * @see {@link AggregationMode}
+   * @fhirType code
+   */
+  aggregation?: Array<AggregationMode> | undefined;
+  _aggregation?: Element[] | undefined;
+
+  /**
+   * URL of Data type or Resource that is a(or the) type used for this element.
+   * References are URLs that are relative to http://hl7.org/fhir/StructureDefinition
+   * e.g. "string" is a reference to http://hl7.org/fhir/StructureDefinition/string.
+   * Absolute URLs are only allowed in logical models.
+   * If the element is a reference to another resource, this element contains
+   * "Reference", and the targetProfile element defines what resources can be
+   * referenced. The targetProfile may be a reference to the general definition of a
+   * resource (e.g. http://hl7.org/fhir/StructureDefinition/Patient).
+   * @fhirType uri
+   */
+  code: string;
+  _code?: Element | undefined;
+
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * Identifies a profile structure or implementation Guide that applies to the
+   * datatype this element refers to. If any profiles are specified, then the content
+   * must conform to at least one of them. The URL can be a local reference - to a
+   * contained StructureDefinition, or a reference to another StructureDefinition or
+   * Implementation Guide by a canonical URL. When an implementation guide is
+   * specified, the type SHALL conform to at least one profile defined in the
+   * implementation guide.
+   * It is possible to profile  backbone element (e.g. part of a resource), using the
+   * [profile-element](extension-elementdefinition-profile-element.html) extension.
+   * @fhirType canonical
+   */
+  profile?: Array<string> | undefined;
+  _profile?: Element[] | undefined;
+
+  /**
+   * Used when the type is "Reference" or "canonical", and identifies a profile
+   * structure or implementation Guide that applies to the target of the reference
+   * this element refers to. If any profiles are specified, then the content must
+   * conform to at least one of them. The URL can be a local reference - to a
+   * contained StructureDefinition, or a reference to another StructureDefinition or
+   * Implementation Guide by a canonical URL. When an implementation guide is
+   * specified, the target resource SHALL conform to at least one profile defined in
+   * the implementation guide.
+   * @fhirType canonical
+   */
+  targetProfile?: Array<string> | undefined;
+  _targetProfile?: Element[] | undefined;
+
+  /**
+   * Whether this reference needs to be version specific or version independent, or
+   * whether either can be used.
+   * The base specification never makes a rule as to which form is allowed, but
+   * implementation guides may do this. See [Aggregation
+   * Rules](elementdefinition.html#aggregation) for further clarification.
+   * @see {@link ReferenceVersionRules}
+   * @fhirType code
+   */
+  versioning?: ReferenceVersionRules | undefined;
+  _versioning?: Element | undefined;
+}
+
+/**
  * ElementDefinition
  *
  * Base StructureDefinition for ElementDefinition Type: Captures constraints on
@@ -32571,7 +33811,7 @@ export interface ElementDefinition extends BackboneElement {
    * them be available. For tooling simplicity, the base information must always be
    * populated in element definitions in snap shots, even if it is the same.
    */
-  base?: Element | undefined;
+  base?: ElementDefinitionBase | undefined;
 
   /**
    * Binds to a value set if this element is coded (code, Coding, CodeableConcept,
@@ -32580,7 +33820,7 @@ export interface ElementDefinition extends BackboneElement {
    * strength "required" with a description explaining that no coded values are
    * allowed and what sort of information to put in the "text" element.
    */
-  binding?: Element | undefined;
+  binding?: ElementDefinitionBinding | undefined;
 
   /**
    * A code that has the same meaning as the element in a particular terminology.
@@ -32619,7 +33859,7 @@ export interface ElementDefinition extends BackboneElement {
    * Constraints should be declared on the "context" element - the lowest element in
    * the hierarchy that is common to all nodes referenced by the constraint.
    */
-  constraint?: Array<Element> | undefined;
+  constraint?: Array<ElementDefinitionConstraint> | undefined;
 
   /**
    * Identifies an element defined elsewhere in the definition whose content rules
@@ -33511,7 +34751,7 @@ No
    * example value is fully populated, the publication tool can generate an instance
    * automatically.
    */
-  example?: Array<Element> | undefined;
+  example?: Array<ElementDefinitionExample> | undefined;
 
   /**
    * Specifies a value that SHALL be exactly the value  for this element in the
@@ -34121,7 +35361,7 @@ No
    * this element.
    * Mappings are not necessarily specific enough for safe translation.
    */
-  mapping?: Array<Element> | undefined;
+  mapping?: Array<ElementDefinitionMapping> | undefined;
 
   /**
    * The maximum number of times this element is permitted to appear in the instance.
@@ -36105,7 +37345,7 @@ When
    * element, but can apply any constraints as appropriate. This may include the
    * common constraints on the children of the element.
    */
-  slicing?: Element | undefined;
+  slicing?: ElementDefinitionSlicing | undefined;
 
   /**
    * The data type or resource that the value of this element is permitted to be.
@@ -36114,7 +37354,7 @@ When
    * to appear as a type when multiple types are listed.  (I.e. Abstract types cannot
    * be part of a choice).
    */
-  type?: Array<Element> | undefined;
+  type?: Array<ElementDefinitionType> | undefined;
 }
 
 /**
@@ -37368,6 +38608,32 @@ export interface EpisodeOfCare extends DomainResource {
 }
 
 /**
+ * Indicates who or what performed the {{title}} and how they were involved.
+ * [Resources may choose to replace this with just a single performer or repeating
+ * where there's no need to distinguish the function performed].
+ */
+export interface EventPerformer extends Element {
+  /**
+   * Indicates who or what performed the {{title}}.
+   */
+  actor: Reference<
+    | Practitioner
+    | PractitionerRole
+    | Organization
+    | CareTeam
+    | Patient
+    | Device
+    | RelatedPerson
+  >;
+
+  /**
+   * Distinguishes the type of involvement of the performer in the {{title}}.
+   * [Consider adding examples].
+   */
+  function?: CodeableConcept | undefined;
+}
+
+/**
  * Event
  *
  * Logical Model: A pattern to be followed by resources that represent the
@@ -37569,7 +38835,7 @@ export interface Event {
    * [Resources may choose to replace this with just a single performer or repeating
    * where there's no need to distinguish the function performed].
    */
-  performer?: Array<Element> | undefined;
+  performer?: Array<EventPerformer> | undefined;
 
   /**
    * Describes why the {{title}} occurred in coded or textual form.
@@ -85853,6 +87119,185 @@ In some cases, the resource can no longer
 }
 
 /**
+ * A set of rules that describe when the event is scheduled.
+ */
+export interface TimingRepeat extends Element {
+  /**
+   * Either a duration for the length of the timing schedule, a range of possible
+   * length, or outer bounds for start and/or end limits of the timing schedule.
+   */
+  boundsDuration?: Duration | undefined;
+
+  /**
+   * Either a duration for the length of the timing schedule, a range of possible
+   * length, or outer bounds for start and/or end limits of the timing schedule.
+   */
+  boundsRange?: Range | undefined;
+
+  /**
+   * Either a duration for the length of the timing schedule, a range of possible
+   * length, or outer bounds for start and/or end limits of the timing schedule.
+   */
+  boundsPeriod?: Period | undefined;
+
+  /**
+   * A total count of the desired number of repetitions across the duration of the
+   * entire timing specification. If countMax is present, this element indicates the
+   * lower bound of the allowed range of count values.
+   * If you have both bounds and count, then this should be understood as within the
+   * bounds period, until count times happens.
+   * @fhirType positiveInt
+   */
+  count?: number | undefined;
+  _count?: Element | undefined;
+
+  /**
+   * If present, indicates that the count is a range - so to perform the action
+   * between [count] and [countMax] times.
+   * @fhirType positiveInt
+   */
+  countMax?: number | undefined;
+  _countMax?: Element | undefined;
+
+  /**
+   * If one or more days of week is provided, then the action happens only on the
+   * specified day(s).
+   * If no days are specified, the action is assumed to happen every day as otherwise
+   * specified. The elements frequency and period cannot be used as well as
+   * dayOfWeek.
+   * @see {@link DaysOfWeek}
+   * @fhirType code
+   */
+  dayOfWeek?: Array<DaysOfWeek> | undefined;
+  _dayOfWeek?: Element[] | undefined;
+
+  /**
+   * How long this thing happens for when it happens. If durationMax is present, this
+   * element indicates the lower bound of the allowed range of the duration.
+   * For some events the duration is part of the definition of the event (e.g. IV
+   * infusions, where the duration is implicit in the specified quantity and rate).
+   * For others, it's part of the timing specification (e.g. exercise).
+   * @fhirType decimal
+   */
+  duration?: number | undefined;
+  _duration?: Element | undefined;
+
+  /**
+   * If present, indicates that the duration is a range - so to perform the action
+   * between [duration] and [durationMax] time length.
+   * For some events the duration is part of the definition of the event (e.g. IV
+   * infusions, where the duration is implicit in the specified quantity and rate).
+   * For others, it's part of the timing specification (e.g. exercise).
+   * @fhirType decimal
+   */
+  durationMax?: number | undefined;
+  _durationMax?: Element | undefined;
+
+  /**
+   * The units of time for the duration, in UCUM units.
+   * @see {@link UnitsOfTime}
+   * @fhirType code
+   */
+  durationUnit?: UnitsOfTime | undefined;
+  _durationUnit?: Element | undefined;
+
+  /**
+   * May be used to represent additional information that is not part of the basic
+   * definition of the element. To make the use of extensions safe and manageable,
+   * there is a strict set of governance  applied to the definition and use of
+   * extensions. Though any implementer can define an extension, there is a set of
+   * requirements that SHALL be met as part of the definition of the extension.
+   * There can be no stigma associated with the use of extensions by any application,
+   * project, or standard - regardless of the institution or jurisdiction that uses
+   * or defines the extensions.  The use of extensions is what allows the FHIR
+   * specification to retain a core level of simplicity for everyone.
+   */
+  extension?: Array<Extension> | undefined;
+  _extension?: Element[] | undefined;
+
+  /**
+   * The number of times to repeat the action within the specified period. If
+   * frequencyMax is present, this element indicates the lower bound of the allowed
+   * range of the frequency.
+   * @fhirType positiveInt
+   */
+  frequency?: number | undefined;
+  _frequency?: Element | undefined;
+
+  /**
+   * If present, indicates that the frequency is a range - so to repeat between
+   * [frequency] and [frequencyMax] times within the period or period range.
+   * @fhirType positiveInt
+   */
+  frequencyMax?: number | undefined;
+  _frequencyMax?: Element | undefined;
+
+  /**
+   * Unique id for the element within a resource (for internal references). This may
+   * be any string value that does not contain spaces.
+   * @fhirType http://hl7.org/fhirpath/System.String
+   */
+  id?: string | undefined;
+  _id?: Element | undefined;
+
+  /**
+   * The number of minutes from the event. If the event code does not indicate
+   * whether the minutes is before or after the event, then the offset is assumed to
+   * be after the event.
+   * @fhirType unsignedInt
+   */
+  offset?: number | undefined;
+  _offset?: Element | undefined;
+
+  /**
+   * Indicates the duration of time over which repetitions are to occur; e.g. to
+   * express "3 times per day", 3 would be the frequency and "1 day" would be the
+   * period. If periodMax is present, this element indicates the lower bound of the
+   * allowed range of the period length.
+   * @fhirType decimal
+   */
+  period?: number | undefined;
+  _period?: Element | undefined;
+
+  /**
+   * If present, indicates that the period is a range from [period] to [periodMax],
+   * allowing expressing concepts such as "do this once every 3-5 days.
+   * @fhirType decimal
+   */
+  periodMax?: number | undefined;
+  _periodMax?: Element | undefined;
+
+  /**
+   * The units of time for the period in UCUM units.
+   * @see {@link UnitsOfTime}
+   * @fhirType code
+   */
+  periodUnit?: UnitsOfTime | undefined;
+  _periodUnit?: Element | undefined;
+
+  /**
+   * Specified time of day for action to take place.
+   * When time of day is specified, it is inferred that the action happens every day
+   * (as filtered by dayofWeek) on the specified times. The elements when, frequency
+   * and period cannot be used as well as timeOfDay.
+   * @fhirType time
+   */
+  timeOfDay?: Array<string> | undefined;
+  _timeOfDay?: Element[] | undefined;
+
+  /**
+   * An approximate time period during the day, potentially linked to an event of
+   * daily living that indicates when the action should occur.
+   * When more than one event is listed, the event is tied to the union of the
+   * specified events.
+   * @see {@link EventTiming}
+   * @fhirType code
+   */
+  when?: Array<EventTiming> | undefined;
+  _when?: Element[] | undefined;
+}
+
+/**
  * Timing
  *
  * Base StructureDefinition for Timing Type: Specifies an event that may occur
@@ -85892,7 +87337,7 @@ export interface Timing extends BackboneElement {
   /**
    * A set of rules that describe when the event is scheduled.
    */
-  repeat?: Element | undefined;
+  repeat?: TimingRepeat | undefined;
 }
 
 /**
