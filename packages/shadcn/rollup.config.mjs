@@ -7,6 +7,7 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import dts from "rollup-plugin-dts";
 import filesize from "rollup-plugin-filesize";
+import postcss from "rollup-plugin-postcss";
 
 const packageJson = JSON.parse(await readFile("package.json", "utf8"));
 
@@ -26,9 +27,8 @@ export default ["r4b", "r5"].flatMap((release) =>
       ],
       external: (id) =>
         id.startsWith("@bonfhir/") ||
-        id.startsWith("@emotion") ||
         Object.keys(packageJson.peerDependencies || {}).some((x) =>
-          id.startsWith(x)
+          id.startsWith(x),
         ),
       plugins: [
         replace({
@@ -39,6 +39,7 @@ export default ["r4b", "r5"].flatMap((release) =>
             }"`,
           },
         }),
+        postcss(),
         nodeResolve(),
         commonjs(),
         typescript({
@@ -61,7 +62,7 @@ export default ["r4b", "r5"].flatMap((release) =>
             mkdirSync(`./dist/${release}/${format}`, { recursive: true });
             writeFileSync(
               `./dist/${release}/${format}/package.json`,
-              `{"type": "${format === "cjs" ? "commonjs" : "module"}"}`
+              `{"type": "${format === "cjs" ? "commonjs" : "module"}"}`,
             );
           },
         },
@@ -87,6 +88,21 @@ export default ["r4b", "r5"].flatMap((release) =>
       plugins: [
         dts(),
         {
+          buildStart: () => {
+            // We start by removing the css imports from the source DTS file.
+            const indexDts = readFileSync(
+              `dist/${release}/${format}/dts/index.d.ts`,
+              "utf8",
+            );
+            const indexDtsWithoutCss = indexDts.replaceAll(
+              /^.*import.*\.css";.*$/gm,
+              "",
+            );
+            writeFileSync(
+              `dist/${release}/${format}/dts/index.d.ts`,
+              indexDtsWithoutCss,
+            );
+          },
           buildEnd: () => {
             rmSync(`dist/${release}/${format}/dts`, {
               recursive: true,
@@ -105,5 +121,5 @@ export default ["r4b", "r5"].flatMap((release) =>
         warn(warning);
       },
     },
-  ])
+  ]),
 );
