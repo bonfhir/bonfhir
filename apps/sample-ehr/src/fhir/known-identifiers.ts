@@ -1,5 +1,5 @@
 import { codeableConcept } from "@bonfhir/core/r4b";
-import { IdentifierSystem } from "@bonfhir/ui/r4b";
+import { IdentifierSystem } from "@bonfhir/react/r4b";
 
 export const PatientIdentifierSystems: IdentifierSystem[] = [
   {

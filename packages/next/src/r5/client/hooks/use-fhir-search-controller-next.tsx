@@ -3,7 +3,7 @@ import {
   UseFhirSearchControllerValue,
   useFhirSearchController,
   useURLSearchParamsStateManager,
-} from "@bonfhir/ui/r5";
+} from "@bonfhir/react/r5";
 import { usePathname, useRouter, useSearchParams } from "next/navigation.js";
 
 export function useFhirSearchControllerNext<
