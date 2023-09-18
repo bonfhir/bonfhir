@@ -5,6 +5,7 @@ import { FetchFhirClient, FhirClient, Formatter } from "@bonfhir/core/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { FhirUIProvider } from "@bonfhir/react/r4b";
+import { ShadcnRenderer } from "@bonfhir/shadcn/r4b";
 import {
   AppShell,
   Center,
@@ -65,7 +66,7 @@ export default function App(props: AppProps) {
         <SessionProvider session={session}>
           <WithAuth>
             <FhirUIProvider
-              renderer={MantineRenderer}
+              renderer={{ ...MantineRenderer, ...ShadcnRenderer }}
               formatter={Formatter.build({
                 systemsLabels: SystemLabels,
               })}

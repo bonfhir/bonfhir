@@ -43,7 +43,7 @@ export default ["r4b", "r5"].flatMap((release) =>
         resolve(),
         commonjs(),
         typescript({
-          include: [`src/${release}/**/*`],
+          include: [`src/${release}/**/*`, `@/**/*`],
           outDir: `dist/${format}`,
           declaration: true,
           declarationDir: "dts",
@@ -69,13 +69,19 @@ export default ["r4b", "r5"].flatMap((release) =>
         filesize(),
       ],
       onwarn(warning, warn) {
-        if (["THIS_IS_UNDEFINED", "CIRCULAR_DEPENDENCY"].includes(warning.code))
+        if (
+          [
+            "THIS_IS_UNDEFINED",
+            "CIRCULAR_DEPENDENCY",
+            "MODULE_LEVEL_DIRECTIVE",
+          ].includes(warning.code)
+        )
           return;
         warn(warning);
       },
     },
     {
-      input: `dist/${release}/${format}/dts/index.d.ts`,
+      input: `dist/${release}/${format}/dts/src/${release}/index.d.ts`,
       output: [
         {
           file: `dist/${release}/${format}/index.d.ts`,
@@ -91,7 +97,7 @@ export default ["r4b", "r5"].flatMap((release) =>
           buildStart: () => {
             // We start by removing the css imports from the source DTS file.
             const indexDts = readFileSync(
-              `dist/${release}/${format}/dts/index.d.ts`,
+              `dist/${release}/${format}/dts/src/${release}/index.d.ts`,
               "utf8",
             );
             const indexDtsWithoutCss = indexDts.replaceAll(
@@ -99,7 +105,7 @@ export default ["r4b", "r5"].flatMap((release) =>
               "",
             );
             writeFileSync(
-              `dist/${release}/${format}/dts/index.d.ts`,
+              `dist/${release}/${format}/dts/src/${release}/index.d.ts`,
               indexDtsWithoutCss,
             );
           },

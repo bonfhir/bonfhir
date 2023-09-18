@@ -11,7 +11,7 @@ export function ShadcnFhirInputString(
     <div className="grid w-full max-w-sm items-center gap-1.5">
       <Label htmlFor={id}>{props.label}</Label>
       <Input
-        type="email"
+        type="text"
         id={id}
         placeholder={props.placeholder ?? undefined}
         value={props.value ?? ""}

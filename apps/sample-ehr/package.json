@@ -21,6 +21,7 @@
     "@bonfhir/typescript-config": "workspace:*",
     "@bonfhir/react": "^2.6.0",
     "@bonfhir/mantine": "^2.4.0",
+    "@bonfhir/shadcn": "^2.0.0",
     "@emotion/react": "^11.11.0",
     "@emotion/server": "^11.11.0",
     "@graphql-typed-document-node/core": "^3.2.0",
