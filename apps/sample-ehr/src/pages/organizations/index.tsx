@@ -9,7 +9,7 @@ import {
   FhirQueryLoader,
   FhirTable,
   useFhirUIContext,
-} from "@bonfhir/ui/r4b";
+} from "@bonfhir/react/r4b";
 import { Grid, Paper, Stack } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 

@@ -8,20 +8,20 @@ import {
 } from "@/components";
 import { CustomPatient } from "@/fhir/patient";
 import { BundleNavigator, PatientSortOrder } from "@bonfhir/core/r4b";
-import { useFhirSearchControllerNext } from "@bonfhir/next/r4b/client";
-import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
   MantineFhirInputDateProps,
   MantineFhirTableProps,
   MantineFhirValueProps,
-} from "@bonfhir/ui-mantine/r4b";
+} from "@bonfhir/mantine/r4b";
+import { useFhirSearchControllerNext } from "@bonfhir/next/r4b/client";
+import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
   FhirInput,
   FhirPagination,
   FhirQueryLoader,
   FhirTable,
   FhirValue,
-} from "@bonfhir/ui/r4b";
+} from "@bonfhir/react/r4b";
 import { Drawer, Grid, Paper, SimpleGrid, Stack } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { PropsWithChildren, ReactElement, useState } from "react";

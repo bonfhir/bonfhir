@@ -1,6 +1,6 @@
 import { MainPage } from "@/components";
-import { useFhirResourceForm } from "@bonfhir/ui-mantine/r4b";
-import { FhirInput } from "@bonfhir/ui/r4b";
+import { useFhirResourceForm } from "@bonfhir/mantine/r4b";
+import { FhirInput } from "@bonfhir/react/r4b";
 import {
   Box,
   Button,

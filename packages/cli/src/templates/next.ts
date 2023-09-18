@@ -83,8 +83,8 @@ export const Next: Template = {
             "@bonfhir/next",
             "@bonfhir/query",
             "@bonfhir/subscriptions",
-            "@bonfhir/ui",
-            "@bonfhir/ui-mantine",
+            "@bonfhir/react",
+            "@bonfhir/mantine",
             "@mantine/core@^6",
             "@mantine/dates@^6",
             "@mantine/form@^6",
@@ -244,8 +244,8 @@ import { Navbar } from "@/components";
 import { Config } from "@/config";
 import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
-import { MantineRenderer } from "@bonfhir/ui-mantine/r4b";
-import { FhirUIProvider } from "@bonfhir/ui/r4b";
+import { MantineRenderer } from "@bonfhir/mantine/r4b";
+import { FhirUIProvider } from "@bonfhir/react/r4b";
 import { AppShell, Center, Loader, MantineProvider, MantineThemeOverride } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";

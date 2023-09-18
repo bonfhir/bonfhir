@@ -32,8 +32,8 @@ importers:
         specifier: ^5.0.2
         version: 5.0.2(@types/node@18.17.1)(graphql@16.8.0)
       turbo:
-        specifier: ^1.10.13
-        version: 1.10.13
+        specifier: ^1.10.14
+        version: 1.10.14
 
   apps/sample-ehr:
     dependencies:
@@ -46,6 +46,9 @@ importers:
       '@bonfhir/eslint-plugin':
         specifier: workspace:*
         version: link:../../packages/eslint-plugin
+      '@bonfhir/mantine':
+        specifier: ^2.3.3
+        version: link:../../packages/mantine
       '@bonfhir/next':
         specifier: ^2.3.0
         version: link:../../packages/next
@@ -55,18 +58,15 @@ importers:
       '@bonfhir/query':
         specifier: ^2.4.0
         version: link:../../packages/query
+      '@bonfhir/react':
+        specifier: ^2.5.0
+        version: link:../../packages/react
       '@bonfhir/subscriptions':
         specifier: ^2.3.0
         version: link:../../packages/subscriptions
       '@bonfhir/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@bonfhir/ui':
-        specifier: ^2.5.0
-        version: link:../../packages/ui
-      '@bonfhir/ui-mantine':
-        specifier: ^2.3.3
-        version: link:../../packages/ui-mantine
       '@emotion/react':
         specifier: ^11.11.0
         version: 11.11.1(@types/react@18.2.21)(react@18.2.0)
@@ -248,10 +248,10 @@ importers:
         version: link:../../packages/typescript-config
       '@bonfhir/ui':
         specifier: ^2.4.1
-        version: link:../../packages/ui
+        version: 2.5.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0)
       '@bonfhir/ui-mantine':
         specifier: ^2.3.1
-        version: link:../../packages/ui-mantine
+        version: 2.3.3(@mantine/core@6.0.19)(@mantine/dates@6.0.19)(@mantine/form@6.0.19)(@mantine/hooks@6.0.19)(@mantine/tiptap@6.0.19)(@tabler/icons-react@2.32.0)(@tanstack/react-query@4.33.0)(@tiptap/extension-link@2.1.7)(@tiptap/pm@2.1.7)(@tiptap/react@2.1.7)(@tiptap/starter-kit@2.1.7)(dayjs@1.11.9)(react-dom@18.2.0)(react@18.2.0)(tiptap-markdown@0.8.2)
       '@emotion/react':
         specifier: ^11.11.0
         version: 11.11.1(@types/react@18.2.21)(react@18.2.0)
@@ -877,17 +877,126 @@ importers:
         specifier: ^8.44.2
         version: 8.44.2
 
+  packages/mantine:
+    dependencies:
+      '@bonfhir/core':
+        specifier: ^2.14.1
+        version: link:../core
+      '@bonfhir/query':
+        specifier: ^2.4.0
+        version: link:../query
+      '@bonfhir/react':
+        specifier: ^2.5.0
+        version: link:../react
+      '@tiptap/extension-link':
+        specifier: '*'
+        version: 2.1.7(@tiptap/core@2.1.7)(@tiptap/pm@2.1.7)
+    devDependencies:
+      '@bonfhir/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@bonfhir/eslint-plugin':
+        specifier: workspace:*
+        version: link:../eslint-plugin
+      '@bonfhir/prettier-config':
+        specifier: workspace:*
+        version: link:../prettier-config
+      '@bonfhir/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@mantine/core':
+        specifier: ^6.0.19
+        version: 6.0.19(@emotion/react@11.11.1)(@mantine/hooks@6.0.19)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/dates':
+        specifier: ^6.0.19
+        version: 6.0.19(@mantine/core@6.0.19)(@mantine/hooks@6.0.19)(dayjs@1.11.9)(react@18.2.0)
+      '@mantine/form':
+        specifier: ^6.0.19
+        version: 6.0.19(react@18.2.0)
+      '@mantine/hooks':
+        specifier: ^6.0.19
+        version: 6.0.19(react@18.2.0)
+      '@mantine/tiptap':
+        specifier: ^6.0.19
+        version: 6.0.19(@mantine/core@6.0.19)(@mantine/hooks@6.0.19)(@tabler/icons-react@2.32.0)(@tiptap/extension-link@2.1.7)(@tiptap/react@2.1.7)(react@18.2.0)
+      '@rollup/plugin-commonjs':
+        specifier: ^25.0.4
+        version: 25.0.4(rollup@3.28.1)
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.2.1
+        version: 15.2.1(rollup@3.28.1)
+      '@rollup/plugin-replace':
+        specifier: ^5.0.2
+        version: 5.0.2(rollup@3.28.1)
+      '@rollup/plugin-terser':
+        specifier: ^0.4.3
+        version: 0.4.3(rollup@3.28.1)
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.3
+        version: 11.1.3(rollup@3.28.1)(typescript@5.2.2)
+      '@tabler/icons-react':
+        specifier: ^2.32.0
+        version: 2.32.0(react@18.2.0)
+      '@tanstack/react-query':
+        specifier: ^4.33.0
+        version: 4.33.0(react-dom@18.2.0)(react@18.2.0)
+      '@tiptap/pm':
+        specifier: ^2.1.7
+        version: 2.1.7
+      '@tiptap/react':
+        specifier: ^2.1.7
+        version: 2.1.7(@tiptap/core@2.1.7)(@tiptap/pm@2.1.7)(react-dom@18.2.0)(react@18.2.0)
+      '@tiptap/starter-kit':
+        specifier: ^2.1.7
+        version: 2.1.7(@tiptap/pm@2.1.7)
+      '@types/react':
+        specifier: ^18.2.21
+        version: 18.2.21
+      '@types/react-dom':
+        specifier: ^18.2.7
+        version: 18.2.7
+      dayjs:
+        specifier: ^1.11.9
+        version: 1.11.9
+      nodemon:
+        specifier: ^3.0.1
+        version: 3.0.1
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      rimraf:
+        specifier: ^5.0.1
+        version: 5.0.1
+      rollup:
+        specifier: ^3.28.1
+        version: 3.28.1
+      rollup-plugin-dts:
+        specifier: ^6.0.0
+        version: 6.0.0(rollup@3.28.1)(typescript@5.2.2)
+      rollup-plugin-filesize:
+        specifier: ^10.0.0
+        version: 10.0.0
+      tiptap-markdown:
+        specifier: ^0.8.2
+        version: 0.8.2(@tiptap/core@2.1.7)
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
   packages/next:
     dependencies:
       '@bonfhir/core':
         specifier: ^2.15.0
         version: link:../core
+      '@bonfhir/react':
+        specifier: ^2.4.1
+        version: link:../react
       '@bonfhir/subscriptions':
         specifier: ^2.3.0
         version: link:../subscriptions
-      '@bonfhir/ui':
-        specifier: ^2.4.1
-        version: link:../ui
     devDependencies:
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -1056,61 +1165,7 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
 
-  packages/subscriptions:
-    dependencies:
-      '@bonfhir/core':
-        specifier: ^2.15.0
-        version: link:../core
-    devDependencies:
-      '@bonfhir/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@bonfhir/eslint-plugin':
-        specifier: workspace:*
-        version: link:../eslint-plugin
-      '@bonfhir/prettier-config':
-        specifier: workspace:*
-        version: link:../prettier-config
-      '@bonfhir/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      '@rollup/plugin-commonjs':
-        specifier: ^25.0.4
-        version: 25.0.4(rollup@3.28.1)
-      '@rollup/plugin-node-resolve':
-        specifier: ^15.2.1
-        version: 15.2.1(rollup@3.28.1)
-      '@rollup/plugin-replace':
-        specifier: ^5.0.2
-        version: 5.0.2(rollup@3.28.1)
-      '@rollup/plugin-terser':
-        specifier: ^0.4.3
-        version: 0.4.3(rollup@3.28.1)
-      '@rollup/plugin-typescript':
-        specifier: ^11.1.3
-        version: 11.1.3(rollup@3.28.1)(typescript@5.2.2)
-      nodemon:
-        specifier: ^3.0.1
-        version: 3.0.1
-      rimraf:
-        specifier: ^5.0.1
-        version: 5.0.1
-      rollup:
-        specifier: ^3.28.1
-        version: 3.28.1
-      rollup-plugin-dts:
-        specifier: ^6.0.0
-        version: 6.0.0(rollup@3.28.1)(typescript@5.2.2)
-      rollup-plugin-filesize:
-        specifier: ^10.0.0
-        version: 10.0.0
-      typescript:
-        specifier: ^5.2.2
-        version: 5.2.2
-
-  packages/typescript-config: {}
-
-  packages/ui:
+  packages/react:
     dependencies:
       '@bonfhir/core':
         specifier: ^2.14.0
@@ -1186,20 +1241,11 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2
 
-  packages/ui-mantine:
+  packages/subscriptions:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.14.1
+        specifier: ^2.15.0
         version: link:../core
-      '@bonfhir/query':
-        specifier: ^2.4.0
-        version: link:../query
-      '@bonfhir/ui':
-        specifier: ^2.5.0
-        version: link:../ui
-      '@tiptap/extension-link':
-        specifier: '*'
-        version: 2.1.7(@tiptap/core@2.1.7)(@tiptap/pm@2.1.7)
     devDependencies:
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -1213,21 +1259,6 @@ importers:
       '@bonfhir/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@mantine/core':
-        specifier: ^6.0.19
-        version: 6.0.19(@emotion/react@11.11.1)(@mantine/hooks@6.0.19)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
-      '@mantine/dates':
-        specifier: ^6.0.19
-        version: 6.0.19(@mantine/core@6.0.19)(@mantine/hooks@6.0.19)(dayjs@1.11.9)(react@18.2.0)
-      '@mantine/form':
-        specifier: ^6.0.19
-        version: 6.0.19(react@18.2.0)
-      '@mantine/hooks':
-        specifier: ^6.0.19
-        version: 6.0.19(react@18.2.0)
-      '@mantine/tiptap':
-        specifier: ^6.0.19
-        version: 6.0.19(@mantine/core@6.0.19)(@mantine/hooks@6.0.19)(@tabler/icons-react@2.32.0)(@tiptap/extension-link@2.1.7)(@tiptap/react@2.1.7)(react@18.2.0)
       '@rollup/plugin-commonjs':
         specifier: ^25.0.4
         version: 25.0.4(rollup@3.28.1)
@@ -1243,39 +1274,9 @@ importers:
       '@rollup/plugin-typescript':
         specifier: ^11.1.3
         version: 11.1.3(rollup@3.28.1)(typescript@5.2.2)
-      '@tabler/icons-react':
-        specifier: ^2.32.0
-        version: 2.32.0(react@18.2.0)
-      '@tanstack/react-query':
-        specifier: ^4.33.0
-        version: 4.33.0(react-dom@18.2.0)(react@18.2.0)
-      '@tiptap/pm':
-        specifier: ^2.1.7
-        version: 2.1.7
-      '@tiptap/react':
-        specifier: ^2.1.7
-        version: 2.1.7(@tiptap/core@2.1.7)(@tiptap/pm@2.1.7)(react-dom@18.2.0)(react@18.2.0)
-      '@tiptap/starter-kit':
-        specifier: ^2.1.7
-        version: 2.1.7(@tiptap/pm@2.1.7)
-      '@types/react':
-        specifier: ^18.2.21
-        version: 18.2.21
-      '@types/react-dom':
-        specifier: ^18.2.7
-        version: 18.2.7
-      dayjs:
-        specifier: ^1.11.9
-        version: 1.11.9
       nodemon:
         specifier: ^3.0.1
         version: 3.0.1
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
       rimraf:
         specifier: ^5.0.1
         version: 5.0.1
@@ -1288,12 +1289,11 @@ importers:
       rollup-plugin-filesize:
         specifier: ^10.0.0
         version: 10.0.0
-      tiptap-markdown:
-        specifier: ^0.8.2
-        version: 0.8.2(@tiptap/core@2.1.7)
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
+
+  packages/typescript-config: {}
 
   packages/us-core:
     dependencies:
@@ -3469,6 +3469,76 @@ packages:
 
   /@bcoe/v8-coverage@0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
+    dev: true
+
+  /@bonfhir/core@2.15.0:
+    resolution: {integrity: sha512-MmKnfIMLSO/ECQSwVigkNGikmjJaoXP+j4T8DqXcRohjveiuObAtV/OLc2++YX8QM6C5nhqnGO192McxpijPfg==}
+    dev: true
+
+  /@bonfhir/query@2.4.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-ky6Kur5L5Cr9R7QG4nzFwDf+0skf6CnA3oF7wXAe0SyX4EkjNsbRy9nOPz2S02ncIXeSvv+Yi/SjhGrQBw/eXg==}
+    peerDependencies:
+      '@tanstack/react-query': ^4.0.0
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      '@bonfhir/core': 2.15.0
+      '@tanstack/react-query': 4.33.0(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: true
+
+  /@bonfhir/ui-mantine@2.3.3(@mantine/core@6.0.19)(@mantine/dates@6.0.19)(@mantine/form@6.0.19)(@mantine/hooks@6.0.19)(@mantine/tiptap@6.0.19)(@tabler/icons-react@2.32.0)(@tanstack/react-query@4.33.0)(@tiptap/extension-link@2.1.7)(@tiptap/pm@2.1.7)(@tiptap/react@2.1.7)(@tiptap/starter-kit@2.1.7)(dayjs@1.11.9)(react-dom@18.2.0)(react@18.2.0)(tiptap-markdown@0.8.2):
+    resolution: {integrity: sha512-YPbfAhcll7yC5Rsym2IL1L0JWMmQlqEofwp5G9EVyuwoSHnNW9bCe4posl5MEN3KOwo/m73bh3h5uh+8BvVvEQ==}
+    peerDependencies:
+      '@mantine/core': ^6
+      '@mantine/dates': ^6
+      '@mantine/form': ^6
+      '@mantine/hooks': ^6
+      '@mantine/tiptap': ^6
+      '@tabler/icons-react': ^2
+      '@tanstack/react-query': '*'
+      '@tiptap/extension-link': '*'
+      '@tiptap/pm': '*'
+      '@tiptap/react': '*'
+      '@tiptap/starter-kit': '*'
+      dayjs: '*'
+      react: '*'
+      react-dom: '*'
+      tiptap-markdown: '*'
+    dependencies:
+      '@bonfhir/core': 2.15.0
+      '@bonfhir/query': 2.4.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0)
+      '@bonfhir/ui': 2.5.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/core': 6.0.19(@emotion/react@11.11.1)(@mantine/hooks@6.0.19)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/dates': 6.0.19(@mantine/core@6.0.19)(@mantine/hooks@6.0.19)(dayjs@1.11.9)(react@18.2.0)
+      '@mantine/form': 6.0.19(react@18.2.0)
+      '@mantine/hooks': 6.0.19(react@18.2.0)
+      '@mantine/tiptap': 6.0.19(@mantine/core@6.0.19)(@mantine/hooks@6.0.19)(@tabler/icons-react@2.32.0)(@tiptap/extension-link@2.1.7)(@tiptap/react@2.1.7)(react@18.2.0)
+      '@tabler/icons-react': 2.32.0(react@18.2.0)
+      '@tanstack/react-query': 4.33.0(react-dom@18.2.0)(react@18.2.0)
+      '@tiptap/extension-link': 2.1.7(@tiptap/core@2.1.7)(@tiptap/pm@2.1.7)
+      '@tiptap/pm': 2.1.7
+      '@tiptap/react': 2.1.7(@tiptap/core@2.1.7)(@tiptap/pm@2.1.7)(react-dom@18.2.0)(react@18.2.0)
+      '@tiptap/starter-kit': 2.1.7(@tiptap/pm@2.1.7)
+      dayjs: 1.11.9
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      tiptap-markdown: 0.8.2(@tiptap/core@2.1.7)
+    dev: true
+
+  /@bonfhir/ui@2.5.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-D9ekFHoAtTbJKAVSaXYwswtRw64CYBtFG9PKMs56ZqkgtSlK8+QlfBBU6xNnM3kHGGKUwk/R76baBdKnAVlLpA==}
+    peerDependencies:
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      '@bonfhir/core': 2.15.0
+      '@bonfhir/query': 2.4.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - '@tanstack/react-query'
     dev: true
 
   /@changesets/apply-release-plan@6.1.4:
@@ -7025,7 +7095,7 @@ packages:
   /@mantine/utils@6.0.19(react@18.2.0):
     resolution: {integrity: sha512-duvtnaW1gDR2gnvUqnWhl6DMW7sN0HEWqS8Z/BbwaMi75U+Xp17Q72R9JtiIrxQbzsq+KvH9L9B/pxMVwbLirg==}
     peerDependencies:
-      react: '>=16.8.0'
+      react: '>=16.8.0 || 18'
     dependencies:
       react: 18.2.0
 
@@ -17220,7 +17290,7 @@ packages:
   /history@4.10.1:
     resolution: {integrity: sha512-36nwAD620w12kuzPAsyINPWJqlNbij+hpK1k9XRloDtym8mxzGYl2c17LnV6IAGB2Dmg4tEa7G7DlawS0+qjew==}
     dependencies:
-      '@babel/runtime': 7.22.11
+      '@babel/runtime': 7.22.6
       loose-envify: 1.4.0
       resolve-pathname: 3.0.0
       tiny-invariant: 1.3.1
@@ -23545,7 +23615,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.22.11
+      '@babel/runtime': 7.22.6
       react: 17.0.2
       use-composed-ref: 1.3.0(react@17.0.2)
       use-latest: 1.2.1(react@17.0.2)
@@ -25999,64 +26069,64 @@ packages:
       - supports-color
     dev: true
 
-  /turbo-darwin-64@1.10.13:
-    resolution: {integrity: sha512-vmngGfa2dlYvX7UFVncsNDMuT4X2KPyPJ2Jj+xvf5nvQnZR/3IeDEGleGVuMi/hRzdinoxwXqgk9flEmAYp0Xw==}
+  /turbo-darwin-64@1.10.14:
+    resolution: {integrity: sha512-I8RtFk1b9UILAExPdG/XRgGQz95nmXPE7OiGb6ytjtNIR5/UZBS/xVX/7HYpCdmfriKdVwBKhalCoV4oDvAGEg==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-darwin-arm64@1.10.13:
-    resolution: {integrity: sha512-eMoJC+k7gIS4i2qL6rKmrIQGP6Wr9nN4odzzgHFngLTMimok2cGLK3qbJs5O5F/XAtEeRAmuxeRnzQwTl/iuAw==}
+  /turbo-darwin-arm64@1.10.14:
+    resolution: {integrity: sha512-KAdUWryJi/XX7OD0alOuOa0aJ5TLyd4DNIYkHPHYcM6/d7YAovYvxRNwmx9iv6Vx6IkzTnLeTiUB8zy69QkG9Q==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-64@1.10.13:
-    resolution: {integrity: sha512-0CyYmnKTs6kcx7+JRH3nPEqCnzWduM0hj8GP/aodhaIkLNSAGAa+RiYZz6C7IXN+xUVh5rrWTnU2f1SkIy7Gdg==}
+  /turbo-linux-64@1.10.14:
+    resolution: {integrity: sha512-BOBzoREC2u4Vgpap/WDxM6wETVqVMRcM8OZw4hWzqCj2bqbQ6L0wxs1LCLWVrghQf93JBQtIGAdFFLyCSBXjWQ==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-arm64@1.10.13:
-    resolution: {integrity: sha512-0iBKviSGQQlh2OjZgBsGjkPXoxvRIxrrLLbLObwJo3sOjIH0loGmVIimGS5E323soMfi/o+sidjk2wU1kFfD7Q==}
+  /turbo-linux-arm64@1.10.14:
+    resolution: {integrity: sha512-D8T6XxoTdN5D4V5qE2VZG+/lbZX/89BkAEHzXcsSUTRjrwfMepT3d2z8aT6hxv4yu8EDdooZq/2Bn/vjMI32xw==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-64@1.10.13:
-    resolution: {integrity: sha512-S5XySRfW2AmnTeY1IT+Jdr6Goq7mxWganVFfrmqU+qqq3Om/nr0GkcUX+KTIo9mPrN0D3p5QViBRzulwB5iuUQ==}
+  /turbo-windows-64@1.10.14:
+    resolution: {integrity: sha512-zKNS3c1w4i6432N0cexZ20r/aIhV62g69opUn82FLVs/zk3Ie0GVkSB6h0rqIvMalCp7enIR87LkPSDGz9K4UA==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-arm64@1.10.13:
-    resolution: {integrity: sha512-nKol6+CyiExJIuoIc3exUQPIBjP9nIq5SkMJgJuxsot2hkgGrafAg/izVDRDrRduQcXj2s8LdtxJHvvnbI8hEQ==}
+  /turbo-windows-arm64@1.10.14:
+    resolution: {integrity: sha512-rkBwrTPTxNSOUF7of8eVvvM+BkfkhA2OvpHM94if8tVsU+khrjglilp8MTVPHlyS9byfemPAmFN90oRIPB05BA==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo@1.10.13:
-    resolution: {integrity: sha512-vOF5IPytgQPIsgGtT0n2uGZizR2N3kKuPIn4b5p5DdeLoI0BV7uNiydT7eSzdkPRpdXNnO8UwS658VaI4+YSzQ==}
+  /turbo@1.10.14:
+    resolution: {integrity: sha512-hr9wDNYcsee+vLkCDIm8qTtwhJ6+UAMJc3nIY6+PNgUTtXcQgHxCq8BGoL7gbABvNWv76CNbK5qL4Lp9G3ZYRA==}
     hasBin: true
     optionalDependencies:
-      turbo-darwin-64: 1.10.13
-      turbo-darwin-arm64: 1.10.13
-      turbo-linux-64: 1.10.13
-      turbo-linux-arm64: 1.10.13
-      turbo-windows-64: 1.10.13
-      turbo-windows-arm64: 1.10.13
+      turbo-darwin-64: 1.10.14
+      turbo-darwin-arm64: 1.10.14
+      turbo-linux-64: 1.10.14
+      turbo-linux-arm64: 1.10.14
+      turbo-windows-64: 1.10.14
+      turbo-windows-arm64: 1.10.14
     dev: true
 
   /type-check@0.4.0:

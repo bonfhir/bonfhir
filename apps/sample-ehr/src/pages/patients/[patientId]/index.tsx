@@ -2,7 +2,7 @@ import { MainPage, NavButton } from "@/components";
 import { CustomPatient } from "@/fhir/patient";
 import { Retrieved } from "@bonfhir/core/r4b";
 import { useFhirRead } from "@bonfhir/query/r4b";
-import { FhirQueryLoader, FhirValue } from "@bonfhir/ui/r4b";
+import { FhirQueryLoader, FhirValue } from "@bonfhir/react/r4b";
 import { Avatar, Divider, Group, Paper, Stack, Title } from "@mantine/core";
 import { IconEdit } from "@tabler/icons-react";
 import { useRouter } from "next/router";

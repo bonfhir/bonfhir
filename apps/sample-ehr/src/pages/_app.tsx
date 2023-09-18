@@ -2,9 +2,9 @@ import { Navbar } from "@/components";
 import { Config } from "@/config";
 import { SystemLabels } from "@/fhir/known-identifiers";
 import { FetchFhirClient, FhirClient, Formatter } from "@bonfhir/core/r4b";
+import { MantineRenderer } from "@bonfhir/mantine/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
-import { MantineRenderer } from "@bonfhir/ui-mantine/r4b";
-import { FhirUIProvider } from "@bonfhir/ui/r4b";
+import { FhirUIProvider } from "@bonfhir/react/r4b";
 import {
   AppShell,
   Center,

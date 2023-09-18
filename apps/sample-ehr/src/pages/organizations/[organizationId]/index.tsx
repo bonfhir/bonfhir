@@ -1,6 +1,6 @@
 import { MainPage, NavButton } from "@/components";
 import { useFhirRead } from "@bonfhir/query/r4b";
-import { FhirQueryLoader, FhirValue } from "@bonfhir/ui/r4b";
+import { FhirQueryLoader, FhirValue } from "@bonfhir/react/r4b";
 import { Paper, Stack, Title } from "@mantine/core";
 import { IconEdit } from "@tabler/icons-react";
 import { useRouter } from "next/router";

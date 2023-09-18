@@ -107,8 +107,8 @@ export const ViteTasks = (): ListrTask<Context>[] => [
         cwd,
         "@bonfhir/core",
         "@bonfhir/query",
-        "@bonfhir/ui",
-        "@bonfhir/ui-mantine",
+        "@bonfhir/react",
+        "@bonfhir/mantine",
         "@mantine/core@^6",
         "@mantine/dates@^6",
         "@mantine/form@^6",
@@ -336,8 +336,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 const APP_CONTENT = `import { FetchFhirClient } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
-import { MantineRenderer } from "@bonfhir/ui-mantine/r4b";
-import { FhirUIProvider } from "@bonfhir/ui/r4b";
+import { MantineRenderer } from "@bonfhir/mantine/r4b";
+import { FhirUIProvider } from "@bonfhir/react/r4b";
 import { AppShell, MantineProvider, MantineThemeOverride } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Outlet, useNavigate } from "react-router-dom";

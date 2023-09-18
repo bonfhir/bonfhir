@@ -1,4 +1,4 @@
-import { useFhirUIContext } from "@bonfhir/ui/r4b";
+import { useFhirUIContext } from "@bonfhir/react/r4b";
 import { Button, ButtonProps } from "@mantine/core";
 import { ReactElement } from "react";
 

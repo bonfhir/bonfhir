@@ -75,7 +75,7 @@
   "dependencies": {
     "@bonfhir/core": "^2.15.0",
     "@bonfhir/subscriptions": "^2.3.0",
-    "@bonfhir/ui": "^2.4.1"
+    "@bonfhir/react": "^2.4.1"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",

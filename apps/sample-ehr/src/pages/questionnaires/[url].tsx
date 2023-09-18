@@ -1,6 +1,6 @@
 import { MainPage } from "@/components";
 import { QuestionnaireResponse } from "@bonfhir/core/r4b";
-import { FhirQuestionnaire } from "@bonfhir/ui/r4b";
+import { FhirQuestionnaire } from "@bonfhir/react/r4b";
 import { Paper, Stack } from "@mantine/core";
 import { Prism } from "@mantine/prism";
 import { useRouter } from "next/router";
