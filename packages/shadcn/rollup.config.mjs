@@ -1,5 +1,5 @@
 import commonjs from "@rollup/plugin-commonjs";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
+import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
@@ -40,7 +40,7 @@ export default ["r4b", "r5"].flatMap((release) =>
           },
         }),
         postcss(),
-        nodeResolve(),
+        resolve(),
         commonjs(),
         typescript({
           include: [`src/${release}/**/*`],
