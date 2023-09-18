@@ -59,7 +59,8 @@
     "@bonfhir/core": "^2.14.1",
     "@bonfhir/query": "^2.4.0",
     "@bonfhir/react": "^2.5.0",
-    "@radix-ui/react-label": "^2.0.2"
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-slot": "^1.0.2"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",

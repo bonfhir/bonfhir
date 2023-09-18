@@ -1,0 +1,39 @@
+{
+  "name": "sample-next-shadcn",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@bonfhir/core": "^2.15.0",
+    "@bonfhir/eslint-config": "workspace:*",
+    "@bonfhir/eslint-plugin": "workspace:*",
+    "@bonfhir/prettier-config": "workspace:*",
+    "@bonfhir/query": "^2.4.0",
+    "@bonfhir/react": "workspace:^",
+    "@bonfhir/shadcn": "workspace:*",
+    "@bonfhir/subscriptions": "^2.3.0",
+    "@bonfhir/typescript-config": "workspace:*",
+    "@types/node": "^18.17.1",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "autoprefixer": "^10.4.15",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^1.2.1",
+    "eslint": "^8.48.0",
+    "eslint-config-next": "13.4.19",
+    "lucide-react": "^0.279.0",
+    "next": "13.4.19",
+    "postcss": "^8.4.29",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss": "^3.3.3",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "5.2.2"
+  }
+}
