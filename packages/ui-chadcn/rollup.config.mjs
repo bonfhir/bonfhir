@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
@@ -7,7 +8,8 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import dts from "rollup-plugin-dts";
 import filesize from "rollup-plugin-filesize";
-
+import postcss from "rollup-plugin-postcss";
+import tailwindcss from "tailwindcss";
 const packageJson = JSON.parse(await readFile("package.json", "utf8"));
 
 export default ["r4b", "r5"].flatMap((release) =>
@@ -28,7 +30,7 @@ export default ["r4b", "r5"].flatMap((release) =>
         id.startsWith("@bonfhir/") ||
         id.startsWith("@emotion") ||
         Object.keys(packageJson.peerDependencies || {}).some((x) =>
-          id.startsWith(x)
+          id.startsWith(x),
         ),
       plugins: [
         replace({
@@ -40,6 +42,16 @@ export default ["r4b", "r5"].flatMap((release) =>
           },
         }),
         nodeResolve(),
+        postcss({
+          // extensions: [".css"],
+          extract: "dist/index.css",
+          plugins: [
+            tailwindcss({
+              darkMode: ["class"],
+              content: [`src/${release}/**/*.{ts,tsx}`],
+            }),
+          ],
+        }),
         commonjs(),
         typescript({
           include: [`src/${release}/**/*`],
@@ -61,7 +73,7 @@ export default ["r4b", "r5"].flatMap((release) =>
             mkdirSync(`./dist/${release}/${format}`, { recursive: true });
             writeFileSync(
               `./dist/${release}/${format}/package.json`,
-              `{"type": "${format === "cjs" ? "commonjs" : "module"}"}`
+              `{"type": "${format === "cjs" ? "commonjs" : "module"}"}`,
             );
           },
         },
@@ -86,6 +98,7 @@ export default ["r4b", "r5"].flatMap((release) =>
         Object.keys(packageJson.peerDependencies || {}).includes(id),
       plugins: [
         dts(),
+
         {
           buildEnd: () => {
             rmSync(`dist/${release}/${format}/dts`, {
@@ -105,5 +118,5 @@ export default ["r4b", "r5"].flatMap((release) =>
         warn(warning);
       },
     },
-  ])
+  ]),
 );
