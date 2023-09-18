@@ -1,5 +1,11 @@
 # @bonfhir/react
 
+## 2.6.0
+
+### Minor Changes
+
+- [#78](https://github.com/bonfhir/bonfhir/pull/78) [`c54acde`](https://github.com/bonfhir/bonfhir/commit/c54acde358ab889f952ef1a0c3b3bd983705c337) Thanks [@julienblin](https://github.com/julienblin)! - Rename `@bonfhir/ui` project to `@bonfhir/react` and `@bonfhir/ui-mantine` to `@bonfhir/mantine`
+
 ## 2.5.0
 
 ### Minor Changes

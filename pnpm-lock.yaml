@@ -47,10 +47,10 @@ importers:
         specifier: workspace:*
         version: link:../../packages/eslint-plugin
       '@bonfhir/mantine':
-        specifier: ^2.3.3
+        specifier: ^2.4.0
         version: link:../../packages/mantine
       '@bonfhir/next':
-        specifier: ^2.3.0
+        specifier: ^2.4.0
         version: link:../../packages/next
       '@bonfhir/prettier-config':
         specifier: workspace:*
@@ -59,7 +59,7 @@ importers:
         specifier: ^2.4.0
         version: link:../../packages/query
       '@bonfhir/react':
-        specifier: ^2.5.0
+        specifier: ^2.6.0
         version: link:../../packages/react
       '@bonfhir/subscriptions':
         specifier: ^2.3.0
@@ -886,7 +886,7 @@ importers:
         specifier: ^2.4.0
         version: link:../query
       '@bonfhir/react':
-        specifier: ^2.5.0
+        specifier: ^2.6.0
         version: link:../react
       '@tiptap/extension-link':
         specifier: '*'
@@ -992,7 +992,7 @@ importers:
         specifier: ^2.15.0
         version: link:../core
       '@bonfhir/react':
-        specifier: ^2.4.1
+        specifier: ^2.6.0
         version: link:../react
       '@bonfhir/subscriptions':
         specifier: ^2.3.0
@@ -7095,7 +7095,7 @@ packages:
   /@mantine/utils@6.0.19(react@18.2.0):
     resolution: {integrity: sha512-duvtnaW1gDR2gnvUqnWhl6DMW7sN0HEWqS8Z/BbwaMi75U+Xp17Q72R9JtiIrxQbzsq+KvH9L9B/pxMVwbLirg==}
     peerDependencies:
-      react: '>=16.8.0 || 18'
+      react: '>=16.8.0'
     dependencies:
       react: 18.2.0
 
