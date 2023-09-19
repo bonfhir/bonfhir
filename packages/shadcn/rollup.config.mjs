@@ -7,10 +7,10 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import dts from "rollup-plugin-dts";
 import filesize from "rollup-plugin-filesize";
-import postcss from "rollup-plugin-postcss";
 
 const packageJson = JSON.parse(await readFile("package.json", "utf8"));
-
+//TODO: see how we can preserver 'use client'
+//article that shows different ways to do that -> https://www.misha.wtf/blog/rollup-server-components
 export default ["r4b", "r5"].flatMap((release) =>
   ["cjs", "esm"].flatMap((format) => [
     {
@@ -39,7 +39,6 @@ export default ["r4b", "r5"].flatMap((release) =>
             }"`,
           },
         }),
-        postcss(),
         resolve(),
         commonjs(),
         typescript({
