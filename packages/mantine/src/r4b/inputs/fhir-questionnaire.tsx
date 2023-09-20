@@ -148,8 +148,8 @@ export interface MantineFhirQuestionnaireProps {
   submit?: ButtonProps | null | undefined;
   submitText?: ReactNode | null | undefined;
   additionalButtons?: ReactElement | null | undefined;
-  delete?: ButtonProps | null | undefined;
-  deleteText?: ReactNode | null | undefined;
+  cancel?: ButtonProps | null | undefined;
+  cancelText?: ReactNode | null | undefined;
 }
 
 function MantineQuestionnaireItemRenderer({
