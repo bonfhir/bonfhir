@@ -41,7 +41,7 @@
   font-size: 1.375rem;
 }
 
-.learnMore {
+.heroBanner .learnMore {
   border-radius: 1.5rem;
   background: #fdc022;
   color: var(--bf-secondary-1, #584f7a);
@@ -143,6 +143,119 @@
 .getStarted a {
   border-radius: 1.5rem;
   background: #fff;
+  color: #302d3d;
+  text-align: center;
+  font-family: Noto Sans;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.03719rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.81rem 1.31rem;
+}
+
+/** Featured packages section */
+
+.featuredPackages {
+  padding: 4rem;
+  background-color: #302d3d;
+  color: #fff;
+  justify-content: center;
+}
+
+.featuredPackages > div {
+  display: flex;
+  flex-direction: column;
+  width: 90rem;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.featuredPackages h2 {
+  font-family: Signika;
+  font-size: 3.9975rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+}
+
+.featuredCode {
+  display: flex;
+  flex-direction: row;
+}
+
+.featuredCode .leftColumn {
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.featuredCode .rightColumn {
+  flex: 1;
+}
+
+.featuredPackages h4 {
+  font-family: Signika;
+  font-size: 1.99938rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.featuredPackages .learnMore {
+  text-align: center;
+}
+
+.featuredPackages a {
+  border-radius: 1.5rem;
+  background: #00e2d0;
+  color: #302d3d;
+  text-align: center;
+  font-family: Noto Sans;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.03719rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.81rem 1.31rem;
+}
+
+/** Get in touch section */
+
+.getInTouch {
+  padding: 4rem;
+  background-color: #fdc022;
+  color: #302d3d;
+  justify-content: center;
+}
+
+.getInTouch > div {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: 0 auto;
+  gap: 2rem;
+  text-align: center;
+}
+
+.getInTouch h2 {
+  font-family: Signika;
+  font-size: 3.9975rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+}
+
+.getInTouch a {
+  border-radius: 1.5rem;
+  border: 4px solid #302d3d;
   color: #302d3d;
   text-align: center;
   font-family: Noto Sans;

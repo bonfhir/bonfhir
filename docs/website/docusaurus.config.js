@@ -1,12 +1,12 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
+const lightCodeTheme = require("prism-react-renderer/themes/dracula");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Bonfhir",
+  title: "bonFHIR",
   tagline:
     "A collection of projects and libraries to help implement FHIR-based products and solutions.",
   // TODO: Adjust here
@@ -79,8 +79,11 @@ const config = {
       },
       footer: {
         style: "dark",
-        links: [],
-        copyright: `Copyright © ${new Date().getFullYear()} AlleyCorp Nord.`,
+        copyright: `BonFHIR is an open source project by AlleyCorp Nord, initially built to support Alley Corp portfolio companies.`,
+        logo: {
+          alt: "bonFHIR",
+          src: "img/bonfhir_logo.svg",
+        },
       },
       prism: {
         theme: lightCodeTheme,
