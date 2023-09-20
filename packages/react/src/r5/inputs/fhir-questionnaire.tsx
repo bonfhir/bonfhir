@@ -7,7 +7,7 @@ import {
 } from "@bonfhir/core/r5";
 import { useFhirSearchOne } from "@bonfhir/query/r5";
 import { UseQueryResult } from "@tanstack/react-query";
-import { MouseEventHandler, ReactElement } from "react";
+import { ReactElement } from "react";
 import { useFhirUIContext } from "../context";
 
 export interface FhirQuestionnaireProps<TRendererProps = any> {
@@ -26,8 +26,7 @@ export interface FhirQuestionnaireProps<TRendererProps = any> {
     | undefined;
   onSubmit?: ((value: QuestionnaireResponse) => void) | null | undefined;
   onCancel?: (() => void) | null | undefined;
-  onDraft?: MouseEventHandler<HTMLButtonElement>;
-  onDelete?: MouseEventHandler<HTMLButtonElement>;
+  additionalButtons?: ReactElement | null | undefined;
   rendererProps?: TRendererProps;
 }
 

@@ -121,24 +121,7 @@ export function MantineFhirQuestionnaire(
           <Button type="submit" {...props.rendererProps?.submit}>
             {props.rendererProps?.submitText || "Submit"}
           </Button>
-          {props.onDraft && (
-            <Button
-              variant="outline"
-              onClick={props.onDraft}
-              {...props.rendererProps?.draft}
-            >
-              {props.rendererProps?.draftText || "Save as draft"}
-            </Button>
-          )}
-          {props.onDelete && (
-            <Button
-              color="red"
-              onClick={props.onDelete}
-              {...props.rendererProps?.delete}
-            >
-              {props.rendererProps?.deleteText || "Delete"}
-            </Button>
-          )}
+          {props.additionalButtons && props.additionalButtons}
           {props.onCancel && (
             <Button
               variant="outline"
@@ -164,10 +147,7 @@ export interface MantineFhirQuestionnaireProps {
   itemInput?: FhirInputProps | null | undefined;
   submit?: ButtonProps | null | undefined;
   submitText?: ReactNode | null | undefined;
-  cancel?: ButtonProps | null | undefined;
-  cancelText?: ReactNode | null | undefined;
-  draft?: ButtonProps | null | undefined;
-  draftText?: ReactNode | null | undefined;
+  additionalButtons?: ReactElement | null | undefined;
   delete?: ButtonProps | null | undefined;
   deleteText?: ReactNode | null | undefined;
 }
