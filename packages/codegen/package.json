@@ -19,11 +19,10 @@
     "directory": "packages/codegen"
   },
   "scripts": {
-    "bonfhir-codegen": "ts-node src/index.ts",
     "build": "pnpm clean && rollup --config rollup.config.mjs",
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
     "clean": "rimraf dist",
-    "dev": "node --loader ts-node/esm src/index.ts",
+    "dev": "node --loader ts-node/esm --no-warnings src/index.ts",
     "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
     "test": "jest"
   },

@@ -1,19 +1,24 @@
-// prints ASCII bonFIHR logo to the console
-export default function writeLogo() {
-  console.log(
+/**
+ * Prints ASCII bonFHIR logo
+ */
+export default function writeLogo(
+  logFn: (typeof console)["log"] | undefined = console.log,
+) {
+  logFn("\n");
+  logFn(
     "       |\\         _                    _____  _   _  ___  ____        |\\",
   );
-  console.log(
+  logFn(
     "       | V\\      | |__    ___   _ __  |  ___|| | | ||_ _||  _ \\       | V\\",
   );
-  console.log(
+  logFn(
     "    \\  /  / \\    | '_ \\  / _ \\ | '_ \\ | |_   | |_| | | | | |_) |   \\  /  / \\",
   );
-  console.log(
+  logFn(
     "    |\\/   \\_|\\   | |_) || (_) || | | ||  _|  |  _  | | | |  _ <    |\\/   \\_|\\",
   );
-  console.log(
+  logFn(
     "     \\_______/   |_.__/  \\___/ |_| |_||_|    |_| |_||___||_| \\_\\    \\_______/",
   );
-  console.log("\n");
+  logFn("\n");
 }
