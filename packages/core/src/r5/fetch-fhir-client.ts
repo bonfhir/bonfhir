@@ -474,7 +474,10 @@ export class FetchFhirClient implements FhirClient {
     TResourceType extends AnyResourceTypeOrCustomResource,
   >(
     type: TResourceType | null | undefined,
-    search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
+    search:
+      | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
+      | null
+      | undefined,
     fn: (
       nav: BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
     ) => unknown | Promise<unknown>,
@@ -487,7 +490,10 @@ export class FetchFhirClient implements FhirClient {
     TResourceType extends AnyResourceTypeOrCustomResource,
   >(
     type: TResourceType | null | undefined,
-    search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
+    search?:
+      | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
+      | null
+      | undefined,
     options?: GeneralParameters | null | undefined,
   ): Promise<BundleNavigator<ResourceOf<TResourceType>>> {
     return searchAllPages(this, type, search, options);
