@@ -10,6 +10,7 @@ export interface FhirInputContactPointProps<TRendererProps = any>
   value?: ContactPoint | null | undefined;
   onChange?: (value: ContactPoint | undefined) => void;
   className?: string | undefined;
+  style?: Record<string, any> | undefined;
   rendererProps?: TRendererProps;
 }
 

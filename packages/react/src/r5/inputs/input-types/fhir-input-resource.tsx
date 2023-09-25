@@ -27,6 +27,7 @@ export type FhirInputResourceProps<
     | null
     | undefined;
   className?: string | undefined;
+  style?: Record<string, any> | undefined;
   rendererProps?: TRendererProps;
 } & (
     | {

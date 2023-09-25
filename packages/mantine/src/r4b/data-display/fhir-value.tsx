@@ -21,7 +21,12 @@ export function MantineFhirValue(
     return (
       <HoverCard openDelay={1000} {...props.rendererProps?.hoverCard}>
         <HoverCard.Target {...props.rendererProps?.hoverCardTarget}>
-          <Text span className={props.className} {...props.rendererProps?.text}>
+          <Text
+            span
+            className={props.className}
+            style={props.style}
+            {...props.rendererProps?.text}
+          >
             {props.formattedValue}
           </Text>
         </HoverCard.Target>
@@ -42,6 +47,7 @@ export function MantineFhirValue(
     return (
       <Text
         className={props.className}
+        style={props.style}
         component="div"
         dangerouslySetInnerHTML={{
           __html: props.formattedValue,
@@ -52,7 +58,12 @@ export function MantineFhirValue(
   }
 
   return (
-    <Text span className={props.className} {...props.rendererProps?.text}>
+    <Text
+      span
+      className={props.className}
+      style={props.style}
+      {...props.rendererProps?.text}
+    >
       {props.formattedValue}
     </Text>
   );

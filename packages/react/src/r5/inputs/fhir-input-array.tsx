@@ -20,6 +20,7 @@ export interface FhirInputArrayProps<TValue, TRendererProps = any> {
   canAdd?: ((value: TValue, index: number) => boolean) | null | undefined;
   onRemove?: (index: number) => void;
   className?: string | undefined;
+  style?: Record<string, any> | undefined;
   rendererProps?: TRendererProps;
 }
 

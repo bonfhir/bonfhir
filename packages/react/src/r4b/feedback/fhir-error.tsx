@@ -4,6 +4,7 @@ import { useFhirUIContext } from "../context";
 
 export interface FhirErrorProps<TRendererProps = any> {
   className?: string | undefined;
+  style?: Record<string, any> | undefined;
   error?: unknown;
   onRetry?: () => void;
   rendererProps?: TRendererProps;

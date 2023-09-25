@@ -15,6 +15,7 @@ export function MantineFhirInputString(
     return (
       <Textarea
         className={props.className}
+        style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}
@@ -36,6 +37,7 @@ export function MantineFhirInputString(
   return (
     <TextInput
       className={props.className}
+      style={props.style}
       label={props.label}
       description={props.description}
       error={props.error}

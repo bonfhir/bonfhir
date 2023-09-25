@@ -17,6 +17,7 @@ export interface FhirTableProps<
 > {
   data: TData | undefined;
   className?: string | undefined;
+  style?: Record<string, any> | undefined;
   columns: FhirTableColumn<TRow>[];
   sort?: string | null | undefined;
   onSortChange?: ((sort: string) => void) | null | undefined;

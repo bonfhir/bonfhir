@@ -9,6 +9,7 @@ export function MantineFhirInputBoolean(
     return (
       <Checkbox
         className={props.className}
+        style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}
@@ -27,6 +28,7 @@ export function MantineFhirInputBoolean(
     return (
       <Switch
         className={props.className}
+        style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}

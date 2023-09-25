@@ -17,6 +17,7 @@ export function MantineFhirInputResource(
   return (
     <Select
       className={props.className}
+      style={props.style}
       label={props.label}
       description={props.description}
       error={props.error}

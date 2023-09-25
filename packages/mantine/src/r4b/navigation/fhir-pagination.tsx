@@ -15,6 +15,9 @@ export function MantineFhirPagination(
       classNames={{
         control: props.className,
       }}
+      styles={{
+        control: props.style,
+      }}
       total={props.totalPages}
       value={props.pageNumber}
       disabled={props.totalPages === 0}

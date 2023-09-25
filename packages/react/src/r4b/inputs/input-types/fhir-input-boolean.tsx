@@ -9,6 +9,7 @@ export interface FhirInputBooleanProps<TRendererProps = any>
   value?: boolean | null | undefined;
   onChange?: (value: boolean | undefined) => void;
   className?: string | undefined;
+  style?: Record<string, any> | undefined;
   rendererProps?: TRendererProps;
 }
 

@@ -9,6 +9,7 @@ export interface FhirInputDateTimeProps<TRendererProps = any>
   value?: string | null | undefined;
   onChange?: (value: string | undefined) => void;
   className?: string | undefined;
+  style?: Record<string, any> | undefined;
   rendererProps?: TRendererProps;
 }
 

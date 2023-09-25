@@ -81,6 +81,7 @@ export function MantineFhirInputTerminology(
       // @ts-expect-error
       <Select
         className={props.className}
+        style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}
@@ -110,6 +111,7 @@ export function MantineFhirInputTerminology(
       // @ts-expect-error
       <Radio.Group
         className={props.className}
+        style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}
@@ -136,6 +138,7 @@ export function MantineFhirInputTerminology(
     return (
       <Input.Wrapper
         className={props.className}
+        style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}

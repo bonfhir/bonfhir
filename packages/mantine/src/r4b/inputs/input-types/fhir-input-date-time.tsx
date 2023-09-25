@@ -8,6 +8,7 @@ export function MantineFhirInputDateTime(
   return (
     <DateTimePicker
       className={props.className}
+      style={props.style}
       label={props.label}
       description={props.description}
       error={props.error}

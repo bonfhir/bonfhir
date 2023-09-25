@@ -18,7 +18,11 @@ export function MantineFhirQueryLoader(
 ): ReactElement | null {
   if (props.isLoading) {
     return (
-      <Stack className={props.className} {...props.rendererProps?.stack}>
+      <Stack
+        className={props.className}
+        style={props.style}
+        {...props.rendererProps?.stack}
+      >
         {props.loader || (
           <Center {...props.rendererProps?.center}>
             <Loader {...props.rendererProps?.loader} />
@@ -31,7 +35,11 @@ export function MantineFhirQueryLoader(
   if (props.isError) {
     console.error(props.errors);
     return (
-      <Stack className={props.className} {...props.rendererProps?.stack}>
+      <Stack
+        className={props.className}
+        style={props.style}
+        {...props.rendererProps?.stack}
+      >
         {props.errors.map((error, index) =>
           props.error ? (
             props.error(error)
@@ -53,7 +61,11 @@ export function MantineFhirQueryLoader(
   }
 
   return (
-    <Stack className={props.className} {...props.rendererProps?.stack}>
+    <Stack
+      className={props.className}
+      style={props.style}
+      {...props.rendererProps?.stack}
+    >
       {props.children}
     </Stack>
   );
