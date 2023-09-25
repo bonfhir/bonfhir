@@ -26,6 +26,8 @@ export interface FhirQuestionnaireProps<TRendererProps = any> {
     | undefined;
   onSubmit?: ((value: QuestionnaireResponse) => void) | null | undefined;
   onCancel?: (() => void) | null | undefined;
+  className?: string | undefined;
+  style?: Record<string, any> | undefined;
   rendererProps?: TRendererProps;
 }
 

@@ -80,6 +80,8 @@ export function MantineFhirInputTerminology(
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
       <Select
+        className={props.className}
+        style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}
@@ -108,6 +110,8 @@ export function MantineFhirInputTerminology(
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
       <Radio.Group
+        className={props.className}
+        style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}
@@ -133,6 +137,8 @@ export function MantineFhirInputTerminology(
   if (props.mode === "segmented") {
     return (
       <Input.Wrapper
+        className={props.className}
+        style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}

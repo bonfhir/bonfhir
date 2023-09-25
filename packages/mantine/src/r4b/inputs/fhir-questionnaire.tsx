@@ -72,7 +72,12 @@ export function MantineFhirQuestionnaire(
 
   if (props.isLoading || !props.questionnaire) {
     return (
-      <Stack align="center" {...props.rendererProps?.mainStack}>
+      <Stack
+        className={props.className}
+        style={props.style}
+        align="center"
+        {...props.rendererProps?.mainStack}
+      >
         <Loader {...props.rendererProps?.loader} />
       </Stack>
     );
@@ -81,7 +86,11 @@ export function MantineFhirQuestionnaire(
   if (props.errors.length > 0) {
     console.error(props.errors);
     return (
-      <Stack {...props.rendererProps?.mainStack}>
+      <Stack
+        className={props.className}
+        style={props.style}
+        {...props.rendererProps?.mainStack}
+      >
         {props.errors.map((error, index) => (
           <Alert
             key={index}
@@ -102,7 +111,11 @@ export function MantineFhirQuestionnaire(
         (questionnaireResponse) => props.onSubmit?.(questionnaireResponse),
       )}
     >
-      <Stack {...props.rendererProps?.mainStack}>
+      <Stack
+        className={props.className}
+        style={props.style}
+        {...props.rendererProps?.mainStack}
+      >
         {props.questionnaire!.title && (
           <Title order={2} {...props.rendererProps?.title}>
             {props.questionnaire!.title}

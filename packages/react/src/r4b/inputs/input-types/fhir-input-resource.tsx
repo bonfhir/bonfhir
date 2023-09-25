@@ -26,6 +26,8 @@ export type FhirInputResourceProps<
     | ((resource: ExtractResource<TResourceType>) => ReactNode)
     | null
     | undefined;
+  className?: string | undefined;
+  style?: Record<string, any> | undefined;
   rendererProps?: TRendererProps;
 } & (
     | {

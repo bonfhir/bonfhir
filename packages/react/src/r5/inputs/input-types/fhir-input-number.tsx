@@ -9,6 +9,8 @@ export type FhirInputNumberProps<TRendererProps = any> =
     step?: number | null | undefined;
     value?: number | null | undefined;
     onChange?: (value: number | undefined) => void;
+    className?: string | undefined;
+    style?: Record<string, any> | undefined;
     rendererProps?: TRendererProps;
   } & (
       | {

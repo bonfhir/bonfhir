@@ -8,6 +8,8 @@ export interface FhirInputBooleanProps<TRendererProps = any>
   mode?: "checkbox" | "switch";
   value?: boolean | null | undefined;
   onChange?: (value: boolean | undefined) => void;
+  className?: string | undefined;
+  style?: Record<string, any> | undefined;
   rendererProps?: TRendererProps;
 }
 

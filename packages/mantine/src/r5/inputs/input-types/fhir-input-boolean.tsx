@@ -8,6 +8,8 @@ export function MantineFhirInputBoolean(
   if (!props.mode || props.mode === "checkbox") {
     return (
       <Checkbox
+        className={props.className}
+        style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}
@@ -25,6 +27,8 @@ export function MantineFhirInputBoolean(
   if (props.mode === "switch") {
     return (
       <Switch
+        className={props.className}
+        style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}

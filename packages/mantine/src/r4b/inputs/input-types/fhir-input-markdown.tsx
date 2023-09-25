@@ -42,6 +42,8 @@ export function MantineFhirInputMarkdown(
 
   return (
     <Input.Wrapper
+      className={props.className}
+      style={props.style}
       label={props.label}
       description={props.description}
       error={props.error}

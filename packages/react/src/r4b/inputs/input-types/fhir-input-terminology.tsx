@@ -23,6 +23,8 @@ export type FhirInputTerminologyProps<TRendererProps = any> =
     ) => number;
     value?: string | null | undefined;
     onChange?: (value: string | undefined) => void;
+    className?: string | undefined;
+    style?: Record<string, any> | undefined;
     rendererProps?: TRendererProps;
   } & {
     mode?: "select" | "radio" | "segmented" | null | undefined;

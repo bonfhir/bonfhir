@@ -19,6 +19,8 @@ export interface FhirInputHumanNameProps<TRendererProps = any>
   separator?: string | null | undefined;
   value?: HumanName | null | undefined;
   onChange?: (value: HumanName | undefined) => void;
+  className?: string | undefined;
+  style?: Record<string, any> | undefined;
   rendererProps?: TRendererProps;
 }
 
