@@ -36,6 +36,7 @@ export function MantineFhirInputContactPoint(
 
   return (
     <Input.Wrapper
+      className={props.className}
       label={props.label}
       description={props.description}
       error={props.error}

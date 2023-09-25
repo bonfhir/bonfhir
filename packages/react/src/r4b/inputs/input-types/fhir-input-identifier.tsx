@@ -30,6 +30,7 @@ export interface FhirInputIdentifierProps<TRendererProps = any>
     | undefined;
   value?: Identifier | null | undefined;
   onChange?: (value: Identifier | undefined) => void;
+  className?: string | undefined;
   rendererProps?: TRendererProps;
 }
 

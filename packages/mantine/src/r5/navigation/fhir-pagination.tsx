@@ -12,6 +12,9 @@ export function MantineFhirPagination(
 ): ReactElement | null {
   return (
     <Pagination.Root
+      classNames={{
+        control: props.className,
+      }}
       total={props.totalPages}
       value={props.pageNumber}
       disabled={props.totalPages === 0}

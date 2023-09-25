@@ -7,6 +7,7 @@ export function MantineFhirInputTime(
 ): ReactElement | null {
   return (
     <TimeInput
+      className={props.className}
       label={props.label}
       description={props.description}
       error={props.error}

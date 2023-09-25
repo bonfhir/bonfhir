@@ -9,6 +9,7 @@ import { useFhirUIContext } from "../context";
 
 export type FhirValueProps<TRendererProps = any> =
   DefaultFormatterParametersProps & {
+    className?: string | undefined;
     rendererProps?: TRendererProps;
   };
 

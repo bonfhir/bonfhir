@@ -3,6 +3,7 @@ import { ReactElement } from "react";
 import { useFhirUIContext } from "../context";
 
 export interface FhirErrorProps<TRendererProps = any> {
+  className?: string | undefined;
   error?: unknown;
   onRetry?: () => void;
   rendererProps?: TRendererProps;

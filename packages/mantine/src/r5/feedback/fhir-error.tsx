@@ -18,6 +18,7 @@ export function MantineFhirError(
 
   return (
     <Alert
+      className={props.className}
       icon={<IconAlertCircle size="1rem" />}
       title={props.rendererProps?.titleText ?? "Something went wrong."}
       color="red"

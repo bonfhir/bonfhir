@@ -7,6 +7,7 @@ export function MantineFhirInputNumber(
 ): ReactElement | null {
   return (
     <NumberInput
+      className={props.className}
       label={props.label}
       description={props.description}
       error={props.error}

@@ -24,6 +24,7 @@ export interface FhirPaginationProps<TRendererProps = any> {
    *  - totalPages
    */
   textTemplate?: string | null | undefined;
+  className?: string | undefined;
   rendererProps?: TRendererProps;
 }
 

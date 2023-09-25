@@ -19,6 +19,7 @@ export type FhirQueryLoaderProps<TRendererProps, TData> = {
   loader?: ReactElement | null | undefined;
   error?: ((error: FhirClientError | Error) => ReactElement) | null | undefined;
   children?: ReactNode | ((data: TData) => ReactNode) | undefined;
+  className?: string | undefined;
   rendererProps?: TRendererProps;
 };
 

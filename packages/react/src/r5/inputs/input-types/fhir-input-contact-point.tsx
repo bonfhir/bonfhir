@@ -9,6 +9,7 @@ export interface FhirInputContactPointProps<TRendererProps = any>
   mode?: "full" | "simple" | Array<"system" | "value" | "use">;
   value?: ContactPoint | null | undefined;
   onChange?: (value: ContactPoint | undefined) => void;
+  className?: string | undefined;
   rendererProps?: TRendererProps;
 }
 

@@ -7,6 +7,7 @@ export function MantineFhirInputDateTime(
 ): ReactElement | null {
   return (
     <DateTimePicker
+      className={props.className}
       label={props.label}
       description={props.description}
       error={props.error}

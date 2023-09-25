@@ -24,7 +24,7 @@ export function MantineFhirTable(
   const { onNavigate } = useFhirUIContext();
 
   return (
-    <Table {...props.rendererProps?.table}>
+    <Table className={props.className} {...props.rendererProps?.table}>
       <thead {...props.rendererProps?.thead}>
         {props.rendererProps?.theadPrefix
           ? createElement(props.rendererProps.theadPrefix)

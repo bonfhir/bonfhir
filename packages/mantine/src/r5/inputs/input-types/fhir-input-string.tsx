@@ -14,6 +14,7 @@ export function MantineFhirInputString(
   if (props.type === "string" && props.mode === "multiline") {
     return (
       <Textarea
+        className={props.className}
         label={props.label}
         description={props.description}
         error={props.error}
@@ -34,6 +35,7 @@ export function MantineFhirInputString(
   }
   return (
     <TextInput
+      className={props.className}
       label={props.label}
       description={props.description}
       error={props.error}
