@@ -194,7 +194,10 @@ export interface FhirClient {
    */
   searchByPage<TResourceType extends AnyResourceTypeOrCustomResource>(
     type: TResourceType | null | undefined,
-    search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
+    search:
+      | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
+      | null
+      | undefined,
     fn: (
       nav: BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
     ) => unknown | Promise<unknown>,
@@ -207,7 +210,10 @@ export interface FhirClient {
    */
   searchAllPages<TResourceType extends AnyResourceTypeOrCustomResource>(
     type: TResourceType | null | undefined,
-    search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
+    search?:
+      | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
+      | null
+      | undefined,
     options?: GeneralParameters | null | undefined,
   ): Promise<BundleNavigator<ResourceOf<TResourceType>>>;
 
@@ -496,7 +502,10 @@ export async function searchByPage<
 >(
   client: Pick<FhirClient, "search" | "fetchPage">,
   type: TResourceType | null | undefined,
-  search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
+  search:
+    | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
+    | null
+    | undefined,
   fn: (
     nav: BundleNavigator<Retrieved<ResourceOf<TResourceType>>>,
   ) => unknown | Promise<unknown>,
@@ -532,7 +541,10 @@ export async function searchAllPages<
 >(
   client: Pick<FhirClient, "search" | "fetchPage">,
   type: TResourceType | null | undefined,
-  search: FhirClientSearchParameters<ResourceTypeOf<TResourceType>>,
+  search?:
+    | FhirClientSearchParameters<ResourceTypeOf<TResourceType>>
+    | null
+    | undefined,
   options?: GeneralParameters | null | undefined,
 ): Promise<BundleNavigator<ResourceOf<TResourceType>>> {
   const results: Array<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>> =
