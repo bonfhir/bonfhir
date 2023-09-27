@@ -547,24 +547,10 @@ export class FetchFhirClient implements FhirClient {
     variables?: TVariables,
     operationName?: string | null | undefined,
   ): Promise<TResult> {
-    if (typeof query !== "string") {
-      query = print(query);
-    }
-
-    const response = await this.fetch<GraphQLExecutionResult<TResult>>(
-      "$graphql",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          query,
-          variables,
-          operationName,
-        }),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      },
+    const response = await this.graphqlResult<TResult, TVariables>(
+      query,
+      variables,
+      operationName,
     );
 
     if (response.errors?.length) {
@@ -584,6 +570,43 @@ export class FetchFhirClient implements FhirClient {
     }
 
     return response.data!;
+  }
+
+  public async graphqlResult<TResult = any>(
+    query: string,
+    variables?: Record<string, any>,
+    operationName?: string | null | undefined,
+  ): Promise<GraphQLExecutionResult<TResult>>;
+  public async graphqlResult<TResult = any, TVariables = Record<string, any>>(
+    query: TypedDocumentNode<TResult, TVariables>,
+    variables?: TVariables,
+  ): Promise<GraphQLExecutionResult<TResult>>;
+  public async graphqlResult<TResult = any, TVariables = Record<string, any>>(
+    query: string | TypedDocumentNode<TResult, TVariables>,
+    variables?: TVariables,
+    operationName?: string | null | undefined,
+  ): Promise<GraphQLExecutionResult<TResult>>;
+  public async graphqlResult<TResult = any, TVariables = Record<string, any>>(
+    query: string | TypedDocumentNode<TResult, TVariables>,
+    variables?: TVariables,
+    operationName?: string | null | undefined,
+  ): Promise<GraphQLExecutionResult<TResult>> {
+    if (typeof query !== "string") {
+      query = print(query);
+    }
+
+    return await this.fetch<GraphQLExecutionResult<TResult>>("$graphql", {
+      method: "POST",
+      body: JSON.stringify({
+        query,
+        variables,
+        operationName,
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
   }
   /* eslint-enable @typescript-eslint/no-explicit-any */
 

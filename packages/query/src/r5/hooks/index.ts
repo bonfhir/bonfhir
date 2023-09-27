@@ -8,6 +8,7 @@ export * from "./use-fhir-execute-mutation";
 export * from "./use-fhir-graph";
 export * from "./use-fhir-graphql";
 export * from "./use-fhir-graphql-mutation";
+export * from "./use-fhir-graphql-result";
 export * from "./use-fhir-history";
 export * from "./use-fhir-infinite-search";
 export * from "./use-fhir-patch-mutation";

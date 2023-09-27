@@ -23,6 +23,11 @@ export interface UseFhirGraphQLMutationOptions<
     | undefined;
 }
 
+/**
+ * Execute a [$graphql mutation](https://hl7.org/fhir/resource-operation-graphql.html).
+ *
+ * The mutation is put on error if there are GraphQL errors in the response.
+ */
 export function useFhirGraphQLMutation<TResult = any>(
   query: string,
   operationName?: string | null | undefined,
