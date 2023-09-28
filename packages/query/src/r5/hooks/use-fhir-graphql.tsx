@@ -27,6 +27,12 @@ export interface UseFhirGraphQLOptions<TResult = any> {
 
 /**
  * Execute a [$graphql operation](https://hl7.org/fhir/resource-operation-graphql.html).
+ *
+ * This hook puts the query on error if there are GraphQL errors in the response.
+ * This make it easier to reason about, but do not support partial errors in GraphQL.
+ *
+ * Use the `useFhirGraphqlResult` hook to have access to the raw GraphQL response,
+ * including the `errors` and `extensions` field.
  */
 export function useFhirGraphQL<TResult = any>(
   query: string,

@@ -32,6 +32,7 @@ import {
   useFhirExecuteMutation,
   useFhirGraphQL,
   useFhirGraphQLMutation,
+  useFhirGraphQLResult,
   useFhirHistory,
   useFhirInfiniteSearch,
   useFhirPatchMutation,
@@ -742,6 +743,59 @@ describe("hooks", () => {
             ],
           } satisfies Partial<ListOrganizationsQuery>);
         });
+      });
+    });
+  });
+
+  describe("GraphQLResult", () => {
+    it("execute a query as a string", async () => {
+      const { result } = renderHook(
+        () =>
+          useFhirGraphQLResult(
+            `{
+              Patient(id: "patient-id") {
+                resourceType
+                id
+                name {
+                  given
+                  family
+                }
+              }
+            }`,
+          ),
+        { wrapper },
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data?.data).toMatchObject({
+          Patient: {
+            resourceType: "Patient",
+            id: expect.stringMatching(/.+/),
+          },
+        });
+      });
+    });
+
+    it("execute a query as a document", async () => {
+      const { result } = renderHook(
+        () =>
+          useFhirGraphQLResult(ListOrganizationsDocument, {
+            name: "Acme, Inc",
+          }),
+        { wrapper },
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data?.data).toMatchObject({
+          OrganizationList: [
+            {
+              resourceType: "Organization",
+              name: "Acme, Inc",
+            },
+          ],
+        } satisfies Partial<ListOrganizationsQuery>);
       });
     });
   });

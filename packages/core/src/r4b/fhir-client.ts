@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
+import { ExecutionResult } from "graphql";
 import { BundleExecutor } from "./bundle-executor";
 import { BundleNavigator, WithResolvableReferences } from "./bundle-navigator";
 import {
@@ -229,6 +230,12 @@ export interface FhirClient {
 
   /**
    * Execute a [$graphql operation](https://hl7.org/fhir/resource-operation-graphql.html).
+   *
+   * This methods throws a `FhirClientError` if there are GraphQL errors in the response.
+   * This make it easier to reason about, but do not support partial errors in GraphQL.
+   *
+   * Use the {@link graphqlResult} method to have access to the raw GraphQL response,
+   * including the `errors` and `extensions` field.
    */
   graphql<TResult = any>(
     query: string,
@@ -239,6 +246,25 @@ export interface FhirClient {
     query: TypedDocumentNode<TResult, TVariables>,
     variables?: TVariables,
   ): Promise<TResult>;
+
+  /**
+   * Execute a [$graphql operation](https://hl7.org/fhir/resource-operation-graphql.html).
+   *
+   * This methods returns the "raw" GraphQL ExecutionResult, including the `errors` and `extensions` field.
+   * It does not throw if there are GraphQL errors in the response - it is up to the caller to handle them.
+   *
+   * Use the {@link graphql} method to have a simpler API that throws a `FhirClientError`
+   * whenever there are GraphQL errors.
+   */
+  graphqlResult<TResult = any>(
+    query: string,
+    variables?: Record<string, any>,
+    operationName?: string | null | undefined,
+  ): Promise<ExecutionResult<TResult>>;
+  graphqlResult<TResult = any, TVariables = Record<string, any>>(
+    query: TypedDocumentNode<TResult, TVariables>,
+    variables?: TVariables,
+  ): Promise<ExecutionResult<TResult>>;
 
   /**
    * The capabilities interaction retrieves the information about a server's capabilities - which portions of this specification it supports.

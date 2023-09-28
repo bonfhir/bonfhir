@@ -799,6 +799,87 @@ describe("fetch-fhir-client", () => {
     });
   });
 
+  describe("graphqlResult", () => {
+    it("execute a query as string", async () => {
+      const result = await client.graphqlResult(`{
+        Patient(id: "patient-id") {
+          resourceType
+          id
+          name {
+            given
+            family
+          }
+        }
+      }`);
+      expect(result.data).toMatchObject({
+        Patient: {
+          resourceType: "Patient",
+          id: expect.stringMatching(/.+/),
+        },
+      });
+      expect(result.errors).toBeFalsy();
+    });
+
+    it("execute a query as string with variables", async () => {
+      const result = await client.graphqlResult(
+        `query GetPatient($id: ID!) {
+          Patient(id: $id) {
+            resourceType
+            id
+            name {
+              given
+              family
+            }
+          }
+        }`,
+        {
+          id: "patient-id-2",
+        },
+      );
+      expect(result.data).toMatchObject({
+        Patient: {
+          resourceType: "Patient",
+          id: "patient-id-2",
+        },
+      });
+      expect(result.errors).toBeFalsy();
+    });
+
+    it("does not throw error on GraphQL errors and return execution result", async () => {
+      const result = await client.graphqlResult(
+        `query GetPatient($id: ID!) {
+            Patient(id: $id) {
+              resourceType
+              id
+              name {
+                given
+                family
+              }
+            }
+          }`,
+        {
+          id: "graphql-error",
+        },
+      );
+      expect(result.errors?.length).toBeGreaterThan(0);
+      expect(result.data?.Patient).toBeFalsy();
+    });
+
+    it("execute a query as typed document", async () => {
+      const result = await client.graphqlResult(ListOrganizationsDocument, {
+        name: "Acme, Inc",
+      });
+      expect(result.data).toMatchObject({
+        OrganizationList: [
+          {
+            resourceType: "Organization",
+            name: "Acme, Inc",
+          },
+        ],
+      } satisfies Partial<ListOrganizationsQuery>);
+    });
+  });
+
   describe("capabilities", () => {
     it("return", async () => {
       const result = await client.capabilities();
