@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/no-null */
 import { codeableConcept, now, today } from "@bonfhir/core/r5";
-import { FhirValue } from "@bonfhir/ui/r5";
+import { FhirValue } from "@bonfhir/react/r5";
 import { Meta } from "@storybook/react";
 import { buildArgs } from "../helpers";
 

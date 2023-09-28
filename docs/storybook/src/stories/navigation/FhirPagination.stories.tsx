@@ -1,4 +1,4 @@
-import { FhirPagination } from "@bonfhir/ui/r5";
+import { FhirPagination } from "@bonfhir/react/r5";
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
