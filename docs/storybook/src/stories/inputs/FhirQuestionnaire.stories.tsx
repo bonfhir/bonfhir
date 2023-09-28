@@ -1,4 +1,4 @@
-import { FhirQuestionnaire } from "@bonfhir/ui/r5";
+import { FhirQuestionnaire } from "@bonfhir/react/r5";
 import { Meta, StoryObj } from "@storybook/react";
 import { buildArgs } from "../helpers";
 

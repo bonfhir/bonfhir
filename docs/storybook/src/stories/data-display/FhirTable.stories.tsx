@@ -9,7 +9,7 @@ import {
   FhirTable,
   FhirValue,
   useFhirSearchController,
-} from "@bonfhir/ui/r5";
+} from "@bonfhir/react/r5";
 import { Stack } from "@mantine/core";
 import { Meta } from "@storybook/react";
 import { createElement } from "react";

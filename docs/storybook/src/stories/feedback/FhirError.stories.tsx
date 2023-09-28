@@ -1,4 +1,4 @@
-import { FhirError } from "@bonfhir/ui/r5";
+import { FhirError } from "@bonfhir/react/r5";
 import { Meta, StoryObj } from "@storybook/react";
 import { buildArgs } from "../helpers";
 

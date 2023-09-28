@@ -229,7 +229,7 @@ importers:
         specifier: 7.22.6
         version: 7.22.6
       '@bonfhir/core':
-        specifier: ^2.12.0
+        specifier: workspace:*
         version: link:../../packages/core
       '@bonfhir/eslint-config':
         specifier: workspace:*
@@ -237,21 +237,21 @@ importers:
       '@bonfhir/eslint-plugin':
         specifier: workspace:*
         version: link:../../packages/eslint-plugin
+      '@bonfhir/mantine':
+        specifier: workspace:*
+        version: link:../../packages/mantine
       '@bonfhir/prettier-config':
         specifier: workspace:*
         version: link:../../packages/prettier-config
       '@bonfhir/query':
-        specifier: ^2.3.0
+        specifier: workspace:*
         version: link:../../packages/query
+      '@bonfhir/react':
+        specifier: workspace:*
+        version: link:../../packages/react
       '@bonfhir/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@bonfhir/ui':
-        specifier: ^2.4.1
-        version: 2.5.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0)
-      '@bonfhir/ui-mantine':
-        specifier: ^2.3.1
-        version: 2.3.3(@mantine/core@6.0.19)(@mantine/dates@6.0.19)(@mantine/form@6.0.19)(@mantine/hooks@6.0.19)(@mantine/tiptap@6.0.19)(@tabler/icons-react@2.32.0)(@tanstack/react-query@4.33.0)(@tiptap/extension-link@2.1.7)(@tiptap/pm@2.1.7)(@tiptap/react@2.1.7)(@tiptap/starter-kit@2.1.7)(dayjs@1.11.9)(react-dom@18.2.0)(react@18.2.0)(tiptap-markdown@0.8.2)
       '@emotion/react':
         specifier: ^11.11.0
         version: 11.11.1(@types/react@18.2.21)(react@18.2.0)
@@ -3469,76 +3469,6 @@ packages:
 
   /@bcoe/v8-coverage@0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
-    dev: true
-
-  /@bonfhir/core@2.15.0:
-    resolution: {integrity: sha512-MmKnfIMLSO/ECQSwVigkNGikmjJaoXP+j4T8DqXcRohjveiuObAtV/OLc2++YX8QM6C5nhqnGO192McxpijPfg==}
-    dev: true
-
-  /@bonfhir/query@2.4.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-ky6Kur5L5Cr9R7QG4nzFwDf+0skf6CnA3oF7wXAe0SyX4EkjNsbRy9nOPz2S02ncIXeSvv+Yi/SjhGrQBw/eXg==}
-    peerDependencies:
-      '@tanstack/react-query': ^4.0.0
-      react: '*'
-      react-dom: '*'
-    dependencies:
-      '@bonfhir/core': 2.15.0
-      '@tanstack/react-query': 4.33.0(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: true
-
-  /@bonfhir/ui-mantine@2.3.3(@mantine/core@6.0.19)(@mantine/dates@6.0.19)(@mantine/form@6.0.19)(@mantine/hooks@6.0.19)(@mantine/tiptap@6.0.19)(@tabler/icons-react@2.32.0)(@tanstack/react-query@4.33.0)(@tiptap/extension-link@2.1.7)(@tiptap/pm@2.1.7)(@tiptap/react@2.1.7)(@tiptap/starter-kit@2.1.7)(dayjs@1.11.9)(react-dom@18.2.0)(react@18.2.0)(tiptap-markdown@0.8.2):
-    resolution: {integrity: sha512-YPbfAhcll7yC5Rsym2IL1L0JWMmQlqEofwp5G9EVyuwoSHnNW9bCe4posl5MEN3KOwo/m73bh3h5uh+8BvVvEQ==}
-    peerDependencies:
-      '@mantine/core': ^6
-      '@mantine/dates': ^6
-      '@mantine/form': ^6
-      '@mantine/hooks': ^6
-      '@mantine/tiptap': ^6
-      '@tabler/icons-react': ^2
-      '@tanstack/react-query': '*'
-      '@tiptap/extension-link': '*'
-      '@tiptap/pm': '*'
-      '@tiptap/react': '*'
-      '@tiptap/starter-kit': '*'
-      dayjs: '*'
-      react: '*'
-      react-dom: '*'
-      tiptap-markdown: '*'
-    dependencies:
-      '@bonfhir/core': 2.15.0
-      '@bonfhir/query': 2.4.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0)
-      '@bonfhir/ui': 2.5.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0)
-      '@mantine/core': 6.0.19(@emotion/react@11.11.1)(@mantine/hooks@6.0.19)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
-      '@mantine/dates': 6.0.19(@mantine/core@6.0.19)(@mantine/hooks@6.0.19)(dayjs@1.11.9)(react@18.2.0)
-      '@mantine/form': 6.0.19(react@18.2.0)
-      '@mantine/hooks': 6.0.19(react@18.2.0)
-      '@mantine/tiptap': 6.0.19(@mantine/core@6.0.19)(@mantine/hooks@6.0.19)(@tabler/icons-react@2.32.0)(@tiptap/extension-link@2.1.7)(@tiptap/react@2.1.7)(react@18.2.0)
-      '@tabler/icons-react': 2.32.0(react@18.2.0)
-      '@tanstack/react-query': 4.33.0(react-dom@18.2.0)(react@18.2.0)
-      '@tiptap/extension-link': 2.1.7(@tiptap/core@2.1.7)(@tiptap/pm@2.1.7)
-      '@tiptap/pm': 2.1.7
-      '@tiptap/react': 2.1.7(@tiptap/core@2.1.7)(@tiptap/pm@2.1.7)(react-dom@18.2.0)(react@18.2.0)
-      '@tiptap/starter-kit': 2.1.7(@tiptap/pm@2.1.7)
-      dayjs: 1.11.9
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      tiptap-markdown: 0.8.2(@tiptap/core@2.1.7)
-    dev: true
-
-  /@bonfhir/ui@2.5.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-D9ekFHoAtTbJKAVSaXYwswtRw64CYBtFG9PKMs56ZqkgtSlK8+QlfBBU6xNnM3kHGGKUwk/R76baBdKnAVlLpA==}
-    peerDependencies:
-      react: '*'
-      react-dom: '*'
-    dependencies:
-      '@bonfhir/core': 2.15.0
-      '@bonfhir/query': 2.4.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - '@tanstack/react-query'
     dev: true
 
   /@changesets/apply-release-plan@6.1.4:
