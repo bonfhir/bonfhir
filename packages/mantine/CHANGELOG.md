@@ -1,5 +1,20 @@
 # @bonfhir/mantine
 
+## 2.5.0
+
+### Minor Changes
+
+- [#83](https://github.com/bonfhir/bonfhir/pull/83) [`5ff66cd2`](https://github.com/bonfhir/bonfhir/commit/5ff66cd263184800f1d9e3dd1aa1168642adf8d6) Thanks [@julienblin](https://github.com/julienblin)! - Fix #81: add `className` to all react components
+
+- [#83](https://github.com/bonfhir/bonfhir/pull/83) [`887c348f`](https://github.com/bonfhir/bonfhir/commit/887c348ff27bda9e75dd348060933eb3fbae751d) Thanks [@julienblin](https://github.com/julienblin)! - Fix #81: add `style` to all react components
+
+### Patch Changes
+
+- Updated dependencies [[`a53ae609`](https://github.com/bonfhir/bonfhir/commit/a53ae6092577d373ef97c3ddf5f6a1e826096640), [`39df0adf`](https://github.com/bonfhir/bonfhir/commit/39df0adfaa0f7f569e6d72d12a0d33f722db8c1b), [`5ff66cd2`](https://github.com/bonfhir/bonfhir/commit/5ff66cd263184800f1d9e3dd1aa1168642adf8d6), [`775753f0`](https://github.com/bonfhir/bonfhir/commit/775753f0cc1ec05f6c853301a2abe413a75e719f), [`887c348f`](https://github.com/bonfhir/bonfhir/commit/887c348ff27bda9e75dd348060933eb3fbae751d)]:
+  - @bonfhir/query@2.5.0
+  - @bonfhir/core@2.16.0
+  - @bonfhir/react@2.7.0
+
 ## 2.4.0
 
 ### Minor Changes
