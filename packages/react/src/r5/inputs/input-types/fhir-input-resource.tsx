@@ -5,6 +5,7 @@ import {
   Reference,
   Resource,
   ResourceTypeOf,
+  cloneResource,
   id,
   reference,
 } from "@bonfhir/core/r5";
@@ -85,7 +86,7 @@ export function FhirInputResource<
       }
 
       if (props.type === "Resource") {
-        props.onChange?.(value as any);
+        props.onChange?.(cloneResource(value as any));
       }
     },
     data: searchQuery.data?.searchMatch() ?? [],
