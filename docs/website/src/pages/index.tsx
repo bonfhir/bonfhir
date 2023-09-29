@@ -37,7 +37,7 @@ function HomepageHeader() {
             </div>
             <div>
               <div>
-                <Link className={styles.learnMore} to="/learn-more">
+                <Link className={styles.learnMore} to="/">
                   Learn More
                 </Link>
               </div>
@@ -101,7 +101,7 @@ function GetStarted() {
             </p>
           </div>
           <div>
-            <Link to="/get-started">Get Started</Link>
+            <Link to="/">Get Started</Link>
           </div>
         </div>
         <div className={styles.rightColumn}>
@@ -145,7 +145,7 @@ const patient = build("Patient", {
 })
 
 const savedPatient = await client.create(patient);
-console.log(\`Saved patient \${Formatter.default.format("HumaneName", savedPatient.name)}.\`);
+console.log(\`Saved patient \${Formatter.default.format("HumanName", savedPatient.name)}.\`);
 `}</CodeBlock>
           </div>
         </div>
@@ -213,13 +213,14 @@ function MyComponent() {
 </FhirInputArray>
 
 <FhirTable {...patientsQuery}>
+  { /*...*/ }
 </FhirTable>
 <FhirPagination {...patientsQuery}>
 `}</CodeBlock>
           </div>
         </div>
         <div className={styles.learnMore}>
-          <Link to="/learn-more">Learn More</Link>
+          <Link to="/">Learn More</Link>
         </div>
       </div>
     </div>
@@ -236,7 +237,7 @@ function GetInTouch() {
           back to you as soon as possible!
         </p>
         <div>
-          <Link to="/about-us">Contact</Link>
+          <Link to="/">Contact</Link>
         </div>
       </div>
     </div>

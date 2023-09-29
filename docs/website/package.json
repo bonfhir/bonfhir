@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "docusaurus build",
+    "build": "docusaurus build --out-dir dist",
     "check": "tsc",
     "clean": "docusaurus clear",
     "deploy": "docusaurus deploy",
