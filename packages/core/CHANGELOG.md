@@ -1,5 +1,15 @@
 # @bonfhir/core
 
+## 2.16.0
+
+### Minor Changes
+
+- [#89](https://github.com/bonfhir/bonfhir/pull/89) [`a53ae609`](https://github.com/bonfhir/bonfhir/commit/a53ae6092577d373ef97c3ddf5f6a1e826096640) Thanks [@julienblin](https://github.com/julienblin)! - Fix #88: add support for GraphQL Execution Result / partial errors
+
+### Patch Changes
+
+- [#87](https://github.com/bonfhir/bonfhir/pull/87) [`775753f0`](https://github.com/bonfhir/bonfhir/commit/775753f0cc1ec05f6c853301a2abe413a75e719f) Thanks [@julienblin](https://github.com/julienblin)! - Fix #86: make `parameters` optional on `searchAllPages`
+
 ## 2.15.0
 
 ### Minor Changes

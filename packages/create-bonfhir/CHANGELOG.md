@@ -1,5 +1,11 @@
 # create-bonfhir
 
+## 2.4.0
+
+### Minor Changes
+
+- [#87](https://github.com/bonfhir/bonfhir/pull/87) [`042686b2`](https://github.com/bonfhir/bonfhir/commit/042686b2fc794708e03000960ddc71f2935c26dc) Thanks [@julienblin](https://github.com/julienblin)! - Fix #85: add playground template
+
 ## 2.3.0
 
 ### Minor Changes

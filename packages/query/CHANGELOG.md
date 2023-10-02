@@ -1,5 +1,16 @@
 # @bonfhir/query
 
+## 2.5.0
+
+### Minor Changes
+
+- [#89](https://github.com/bonfhir/bonfhir/pull/89) [`a53ae609`](https://github.com/bonfhir/bonfhir/commit/a53ae6092577d373ef97c3ddf5f6a1e826096640) Thanks [@julienblin](https://github.com/julienblin)! - Fix #88: add support for GraphQL Execution Result / partial errors
+
+### Patch Changes
+
+- Updated dependencies [[`a53ae609`](https://github.com/bonfhir/bonfhir/commit/a53ae6092577d373ef97c3ddf5f6a1e826096640), [`775753f0`](https://github.com/bonfhir/bonfhir/commit/775753f0cc1ec05f6c853301a2abe413a75e719f)]:
+  - @bonfhir/core@2.16.0
+
 ## 2.4.0
 
 ### Minor Changes
