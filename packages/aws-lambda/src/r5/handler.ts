@@ -122,6 +122,9 @@ export function fhirSubscriptionHandler(
     if (!event.body) {
       return {
         statusCode: 204,
+        body: JSON.stringify({
+          message: `Body was not provided, noop for the following ${subscription}`,
+        }),
       };
     }
 
