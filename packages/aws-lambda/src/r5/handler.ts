@@ -111,9 +111,7 @@ export function fhirSubscriptionHandler(
       return {
         statusCode: 404,
         body: JSON.stringify({
-          message: `Unable to find a subscription for ${JSON.stringify(
-            subscription,
-          )}`,
+          message: `Unable to find a subscription`,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -125,9 +123,7 @@ export function fhirSubscriptionHandler(
       return {
         statusCode: 204,
         body: JSON.stringify({
-          message: `Body was not provided, noop for the following ${JSON.stringify(
-            subscription,
-          )}`,
+          message: `Body was not provided, noop for subscription`,
         }),
       };
     }
