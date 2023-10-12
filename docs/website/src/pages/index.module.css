@@ -1,23 +1,270 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+/** Banner section */
 
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  padding: 4rem;
+  background-color: var(--ifm-color-primary);
+  color: #fff;
+  flex-shrink: 0;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.buttons {
+.heroBanner > div {
   display: flex;
+  flex-direction: row;
+  width: 90rem;
+  margin: 0 auto;
+}
+
+.heroBanner > div > div {
+  width: 50%;
   align-items: center;
+  display: flex;
+  margin: 0 1rem;
+}
+
+.heroBanner h1 {
+  font-size: 5rem;
+  margin: 0;
+}
+
+.verticalStack {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.verticalStack > div > div {
+  display: flex;
+}
+
+.heroSubtitle {
+  font-size: 1.375rem;
+}
+
+.heroBanner .learnMore {
+  border-radius: 1.5rem;
+  background: #fdc022;
+  color: var(--bf-secondary-1, #584f7a);
+  text-align: center;
+  font-family: Noto Sans;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.03719rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.81rem 1.31rem;
+}
+
+/** Benefits section */
+
+.benefits {
+  background: #302d3d;
+  padding: 4rem;
+}
+
+.benefits > div {
+  display: flex;
+  flex-direction: row;
+  width: 90rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.benefits h2 {
+  color: #fff;
+  font-family: Signika;
+  font-size: 3.9975rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.benefitsContainer {
+  color: #fff;
+  display: flex;
   justify-content: center;
+}
+
+.benefitItem {
+  margin: 2rem;
+  width: 21rem;
+}
+
+.benefitItem h4 {
+  color: #fff;
+  font-family: Signika;
+  font-size: 1.99938rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 2rem 0;
+}
+
+/** GetStarted section */
+
+.getStarted {
+  background: #fdc022;
+}
+
+.getStarted > div {
+  width: 70rem;
+  margin: 0 auto;
+  padding: 5rem 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.getStarted h2 {
+  color: #302d3d;
+  font-family: Signika;
+  font-size: 3.9375rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.getStarted .leftColumn {
+  flex: 1;
+  margin-right: 10em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.getStarted .rightColumn {
+  width: 200px;
+}
+
+.getStarted a {
+  border-radius: 1.5rem;
+  background: #fff;
+  color: #302d3d;
+  text-align: center;
+  font-family: Noto Sans;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.03719rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.81rem 1.31rem;
+}
+
+/** Featured packages section */
+
+.featuredPackages {
+  padding: 4rem;
+  background-color: #302d3d;
+  color: #fff;
+  justify-content: center;
+}
+
+.featuredPackages > div {
+  display: flex;
+  flex-direction: column;
+  width: 90rem;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.featuredPackages h2 {
+  font-family: Signika;
+  font-size: 3.9975rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+}
+
+.featuredCode {
+  display: flex;
+  flex-direction: row;
+}
+
+.featuredCode .leftColumn {
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.featuredCode .rightColumn {
+  flex: 1;
+}
+
+.featuredPackages h4 {
+  font-family: Signika;
+  font-size: 1.99938rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.featuredPackages .learnMore {
+  text-align: center;
+}
+
+.featuredPackages a {
+  border-radius: 1.5rem;
+  background: #00e2d0;
+  color: #302d3d;
+  text-align: center;
+  font-family: Noto Sans;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.03719rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.81rem 1.31rem;
+}
+
+/** Get in touch section */
+
+.getInTouch {
+  padding: 4rem;
+  background-color: #fdc022;
+  color: #302d3d;
+  justify-content: center;
+}
+
+.getInTouch > div {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: 0 auto;
+  gap: 2rem;
+  text-align: center;
+}
+
+.getInTouch h2 {
+  font-family: Signika;
+  font-size: 3.9975rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+}
+
+.getInTouch a {
+  border-radius: 1.5rem;
+  border: 4px solid #302d3d;
+  color: #302d3d;
+  text-align: center;
+  font-family: Noto Sans;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.03719rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.81rem 1.31rem;
 }
