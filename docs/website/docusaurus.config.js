@@ -1,12 +1,12 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
+const lightCodeTheme = require("prism-react-renderer/themes/dracula");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Bonfhir",
+  title: "bonFHIR",
   tagline:
     "A collection of projects and libraries to help implement FHIR-based products and solutions.",
   // TODO: Adjust here
@@ -47,17 +47,28 @@ const config = {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "My Site",
         logo: {
-          alt: "My Site Logo",
-          src: "img/logo.svg",
+          alt: "bonFHIR",
+          src: "img/bonfhir_logo.svg",
         },
         items: [
           {
             type: "docSidebar",
-            sidebarId: "tutorialSidebar",
-            position: "left",
-            label: "Tutorial",
+            sidebarId: "getStartedSidebar",
+            position: "right",
+            label: "Get Started",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "getStartedSidebar",
+            position: "right",
+            label: "Packages Documentation",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "getStartedSidebar",
+            position: "right",
+            label: "Contributing",
           },
           {
             href: "https://github.com/bonfhir/bonfhir",
@@ -68,39 +79,18 @@ const config = {
       },
       footer: {
         style: "dark",
-        links: [
-          {
-            title: "Docs",
-            items: [
-              {
-                label: "Tutorial",
-                to: "/docs/intro",
-              },
-            ],
-          },
-          {
-            title: "Community",
-            items: [
-              {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
-              },
-              {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
-              },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} AlleyCorp Nord.`,
+        copyright: `BonFHIR is an open source project by AlleyCorp Nord, initially built to support Alley Corp portfolio companies.`,
+        logo: {
+          alt: "bonFHIR",
+          src: "img/bonfhir_logo.svg",
+        },
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      colorMode: {
+        disableSwitch: true,
       },
     }),
 };
