@@ -109,7 +109,7 @@ export const LambdaTasks = (): ListrTask<Context>[] => [
         "prettier-plugin-organize-imports",
         "serverless@^3",
         "serverless-esbuild@^1",
-        "serverless-offline@^12",
+        "serverless-offline@^13",
         "typescript",
         monorepo ? `@${monorepo}/eslint-config-custom` : "",
         monorepo ? `@${monorepo}/tsconfig` : "",
