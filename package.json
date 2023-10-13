@@ -25,13 +25,14 @@
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.2",
     "@graphql-codegen/cli": "^5.0.0",
-    "graphql": "^16.8.0",
-    "graphql-config": "^5.0.2",
+    "graphql": "^16.8.1",
+    "graphql-config": "^5.0.3",
     "turbo": "^1.10.15"
   },
   "pnpm": {
     "overrides": {
-      "got": ">=11.8.5",
+      "@swc/core": "1.3.81",
+      "got": "~11.8.6",
       "micromatch": ">=4.0.5",
       "nth-check": ">=2.0.1",
       "sane": ">=5.0.1",

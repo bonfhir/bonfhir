@@ -25,12 +25,12 @@ export const markdownFormatter: ValueFormatter<
     switch (options?.style) {
       case "bareString": {
         return marked
-          .parse(value, MARKED_OPTIONS)
+          .parse(value)
           .replaceAll(/<\/?[^>]+(>|$)/gi, "")
           .trim();
       }
       case "html": {
-        return marked.parse(value, MARKED_OPTIONS).trim();
+        return marked.parse(value).trim();
       }
       // eslint-disable-next-line unicorn/no-null
       case null:
@@ -40,9 +40,4 @@ export const markdownFormatter: ValueFormatter<
       }
     }
   },
-};
-
-const MARKED_OPTIONS = {
-  mangle: false,
-  headerIds: false,
 };

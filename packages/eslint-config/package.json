@@ -21,17 +21,17 @@
   "main": "index.cjs",
   "dependencies": {
     "@bonfhir/eslint-plugin": "~2.0.2",
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
-    "@typescript-eslint/parser": "^6.5.0",
-    "eslint": "^8.48.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-config-turbo": "^1.10.13",
+    "eslint-config-turbo": "^1.10.15",
     "eslint-plugin-unicorn": "^48.0.1",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
-    "@types/eslint": "^8.44.2"
+    "@types/eslint": "^8.44.4"
   },
   "peerDependencies": {
     "prettier": "*"
