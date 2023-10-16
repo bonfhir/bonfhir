@@ -110,7 +110,7 @@ function MantineFhirTableHeader({
       onClick={() => {
         return onSortChange?.(parsedSort?.desc ? column.key : `-${column.key}`);
       }}
-      sx={{
+      style={{
         fontSize: "inherit",
         fontWeight: "inherit",
         color: "inherit",
@@ -118,10 +118,10 @@ function MantineFhirTableHeader({
       }}
     >
       <Group
-        position="apart"
-        spacing={0}
-        noWrap={true}
-        sx={{
+        justify="apart"
+        gap={0}
+        wrap="nowrap"
+        style={{
           fontSize: "inherit",
           fontWeight: "inherit",
           color: "inherit",

@@ -33,7 +33,7 @@ export function MantineFhirInputArray(
       description={props.description}
       error={props.error}
       required={Boolean(props.required)}
-      sx={{ width: "100%" }}
+      styles={{ width: "100%" }}
       {...props.rendererProps?.wrapper}
     >
       {!props.value?.length && (
@@ -52,12 +52,12 @@ export function MantineFhirInputArray(
             {props.children?.({ arrayValue: props.value, value, index })}
           </Grid.Col>
           <Grid.Col span="content">
-            <Group noWrap spacing="xs">
+            <Group wrap="nowrap" gap="xs">
               <ActionIcon
                 variant="outline"
                 color="primary"
                 onClick={() => props.onAdd?.(index)}
-                sx={{
+                style={{
                   visibility:
                     index >= max ||
                     (props.canAdd && !props.canAdd(value, index))
@@ -72,7 +72,7 @@ export function MantineFhirInputArray(
                 variant="subtle"
                 color="red"
                 onClick={() => props.onRemove?.(index)}
-                sx={{
+                style={{
                   visibility: index < min ? "hidden" : "visible",
                 }}
                 {...props.rendererProps?.actionRemove}
