@@ -9,8 +9,8 @@ export interface TitleDividerProps extends StackProps {
 export function TitleDivider(props: TitleDividerProps): ReactElement {
   const { title, secondaryText, ...stackProps } = props;
   return (
-    <Stack spacing="0.3rem" {...stackProps}>
-      <Group position="apart">
+    <Stack gap="0.3rem" {...stackProps}>
+      <Group justify="apart">
         <Title order={6}>{title}</Title>
         {secondaryText && <Text size="xs">{secondaryText}</Text>}
       </Group>

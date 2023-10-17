@@ -10,7 +10,7 @@ export function MainPage(props: MainPageProps): ReactElement | null {
   return (
     <Stack>
       {props.title && (
-        <Group position="apart">
+        <Group justify="apart">
           <Title>{props.title}</Title>
           {props.titleRight}
         </Group>

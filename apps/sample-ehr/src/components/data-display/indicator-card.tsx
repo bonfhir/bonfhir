@@ -39,7 +39,7 @@ export function IndicatorCard(props: IndicatorCardProps): ReactElement {
       }}
       {...cardProps}
     >
-      <Group position="apart">
+      <Group justify="apart">
         <Text fz="xs" fw={500}>
           {title}
         </Text>

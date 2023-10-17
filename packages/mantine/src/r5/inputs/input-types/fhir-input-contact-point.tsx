@@ -44,7 +44,7 @@ export function MantineFhirInputContactPoint(
       required={Boolean(props.required)}
       {...props.rendererProps?.wrapper}
     >
-      <Group spacing="xs" noWrap grow {...props.rendererProps?.group}>
+      <Group gap="xs" wrap="nowrap" grow {...props.rendererProps?.group}>
         {mode.map((comp) => {
           switch (comp) {
             case "system": {
