@@ -2,7 +2,7 @@ import {
   Center,
   Code,
   Group,
-  Navbar as MantineNavbar,
+  AppShell as MantineAppShell,
   NavLink,
   Stack,
   ThemeIcon,
@@ -31,25 +31,32 @@ const links = [
 export function Navbar() {
   const router = useRouter();
   return (
-    <MantineNavbar height="100vh" width={{ sm: 210 }}>
-      <MantineNavbar.Section m="sm" mt="md">
+    <MantineAppShell
+      //TODO: see what is equivalent in Mantine v7 to sm: 210
+      style={{ height: "100vh", width: "sm" }}
+      // height="100vh"
+      // width={{ sm: 210 }}
+    >
+      <MantineAppShell.Section m="sm" mt="md">
         <Stack>
-          <Group spacing="xs">
+          <Group justify="xs">
             <ThemeIcon radius="xl" size="lg" color="red">
               <IconFlame />
             </ThemeIcon>
             <Title order={3}>Sample EHR</Title>
           </Group>
         </Stack>
-      </MantineNavbar.Section>
-      <MantineNavbar.Section grow mt="md">
-        <Stack spacing={0}>
+      </MantineAppShell.Section>
+      <MantineAppShell.Section grow mt="md">
+        <Stack gap={0}>
           {links.map((link) => (
             <NavLink
               key={link.label}
               component={Link}
               href={link.link}
-              icon={link.icon}
+              //TODO:
+              // icon={link.icon}
+
               label={link.label}
               active={
                 link.link === "/"
@@ -59,20 +66,20 @@ export function Navbar() {
             />
           ))}
         </Stack>
-      </MantineNavbar.Section>
-      <MantineNavbar.Section>
+      </MantineAppShell.Section>
+      <MantineAppShell.Section>
         <Stack>
           <NavLink
             component={Link}
             href="/logout"
-            icon={<IconLogout2 />}
+            children={<IconLogout2 />}
             label="Log out"
           />
           <Code block color="blue">
             <Center>version: {process.env.PACKAGE_VERSION || "local"}</Center>
           </Code>
         </Stack>
-      </MantineNavbar.Section>
-    </MantineNavbar>
+      </MantineAppShell.Section>
+    </MantineAppShell>
   );
 }
