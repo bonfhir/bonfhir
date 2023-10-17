@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { cleanFhirValues } from "@bonfhir/core/r5";
 import { FhirInputArrayProps } from "@bonfhir/react/r5";
-import { useForm } from "@mantine/form";
 import {
   LooseKeys,
   UseFormInput,
   UseFormReturnType,
   _TransformValues,
-} from "@mantine/form/lib/types";
+  useForm,
+} from "@mantine/form";
 
 export type UseFhirFormReturnType<
   Values,
