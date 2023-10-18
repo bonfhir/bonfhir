@@ -18,6 +18,8 @@ import {
   FhirInputMarkdownProps,
   FhirInputNumber,
   FhirInputNumberProps,
+  FhirInputQuantity,
+  FhirInputQuantityProps,
   FhirInputResource,
   FhirInputResourceProps,
   FhirInputString,
@@ -64,6 +66,9 @@ export function FhirInput<
     case "positiveInt":
     case "unsignedInt": {
       return <FhirInputNumber<TRendererProps> {...props} />;
+    }
+    case "Quantity": {
+      return <FhirInputQuantity<TRendererProps> {...props} />;
     }
     case "Resource":
     case "Reference": {

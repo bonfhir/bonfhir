@@ -407,6 +407,38 @@ export const mockClient = {
           },
         };
       }
+
+      if (url === "http://hl7.org/fhir/ValueSet/quantity-comparator") {
+        return {
+          resourceType: "ValueSet",
+          url: "http://hl7.org/fhir/ValueSet/quantity-comparator",
+          expansion: {
+            offset: 0,
+            contains: [
+              {
+                system: "http://hl7.org/fhir/quantity-comparator",
+                code: "<",
+                display: "Less than",
+              },
+              {
+                system: "http://hl7.org/fhir/quantity-comparator",
+                code: "<=",
+                display: "Less or Equal to",
+              },
+              {
+                system: "http://hl7.org/fhir/quantity-comparator",
+                code: ">",
+                display: "Greater than",
+              },
+              {
+                system: "http://hl7.org/fhir/quantity-comparator",
+                code: ">=",
+                display: "Greater or Equal to",
+              },
+            ],
+          },
+        };
+      }
     }
   },
 } as unknown as FhirClient;

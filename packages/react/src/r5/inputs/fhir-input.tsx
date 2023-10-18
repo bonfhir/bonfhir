@@ -18,6 +18,8 @@ import {
   FhirInputMarkdownProps,
   FhirInputNumber,
   FhirInputNumberProps,
+  FhirInputQuantity,
+  FhirInputQuantityProps,
   FhirInputResource,
   FhirInputResourceProps,
   FhirInputString,

@@ -16,6 +16,7 @@ import type {
   FhirInputIdentifierRenderer,
   FhirInputMarkdownRenderer,
   FhirInputNumberRenderer,
+  FhirInputQuantityRenderer,
   FhirInputResourceRenderer,
   FhirInputStringRenderer,
   FhirInputTerminologyRenderer,
@@ -35,6 +36,7 @@ export interface FhirUIRenderer {
   FhirInputHumanName: FhirInputHumanNameRenderer;
   FhirInputMarkdown: FhirInputMarkdownRenderer;
   FhirInputNumber: FhirInputNumberRenderer;
+  FhirInputQuantity: FhirInputQuantityRenderer;
   FhirInputResource: FhirInputResourceRenderer;
   FhirInputString: FhirInputStringRenderer;
   FhirInputTerminology: FhirInputTerminologyRenderer;

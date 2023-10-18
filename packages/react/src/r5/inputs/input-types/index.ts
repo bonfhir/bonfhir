@@ -7,6 +7,7 @@ export * from "./fhir-input-human-name";
 export * from "./fhir-input-identifier";
 export * from "./fhir-input-markdown";
 export * from "./fhir-input-number";
+export * from "./fhir-input-quantity";
 export * from "./fhir-input-resource";
 export * from "./fhir-input-string";
 export * from "./fhir-input-terminology";

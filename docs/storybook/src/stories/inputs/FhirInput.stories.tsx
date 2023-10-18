@@ -466,6 +466,41 @@ export const Resource = {
 };
 
 /**
+ * Render FHIR [Quantity](https://hl7.org/fhir/datatypes.html#Quantity) input.
+ */
+export const Quantity = {
+  args: {
+    type: "Quantity",
+    decimal: {
+      precision: 2,
+    },
+  },
+  argTypes: {
+    comparator: {
+      control: "boolean",
+    },
+  },
+};
+
+/**
+ * Render FHIR [Quantity](https://hl7.org/fhir/datatypes.html#Quantity) input.
+ */
+export const Quantity_Fixed_Unit = {
+  args: {
+    type: "Quantity",
+    decimal: {
+      precision: 2,
+    },
+    unit: "mg/l",
+  },
+  argTypes: {
+    comparator: {
+      control: "boolean",
+    },
+  },
+};
+
+/**
  * Render FHIR [string]((https://hl7.org/fhir/datatypes.html#string) input.
  */
 export const String = {
