@@ -277,6 +277,20 @@ export const Decimal = {
 };
 
 /**
+ * Render FHIR [Duration](https://hl7.org/fhir/datatypes.html#Duration) input.
+ */
+export const Duration = {
+  args: {
+    type: "Duration",
+  },
+  argTypes: {
+    comparator: {
+      control: "boolean",
+    },
+  },
+};
+
+/**
  * Render FHIR [HumanName]((https://hl7.org/fhir/datatypes.html#HumanName) input.
  */
 export const HumanName = {

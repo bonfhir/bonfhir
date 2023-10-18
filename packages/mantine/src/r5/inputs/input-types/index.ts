@@ -2,6 +2,7 @@ export * from "./fhir-input-boolean";
 export * from "./fhir-input-contact-point";
 export * from "./fhir-input-date";
 export * from "./fhir-input-date-time";
+export * from "./fhir-input-duration";
 export * from "./fhir-input-human-name";
 export * from "./fhir-input-identifier";
 export * from "./fhir-input-markdown";

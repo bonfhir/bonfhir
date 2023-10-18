@@ -10,6 +10,8 @@ import {
   FhirInputDateProps,
   FhirInputDateTime,
   FhirInputDateTimeProps,
+  FhirInputDuration,
+  FhirInputDurationProps,
   FhirInputHumanName,
   FhirInputHumanNameProps,
   FhirInputIdentifier,
@@ -53,6 +55,9 @@ export function FhirInput<
     }
     case "HumanName": {
       return <FhirInputHumanName<TRendererProps> {...props} />;
+    }
+    case "Duration": {
+      return <FhirInputDuration<TRendererProps> {...props} />;
     }
     case "Identifier": {
       return <FhirInputIdentifier<TRendererProps> {...props} />;
@@ -105,10 +110,12 @@ export type FhirInputProps<
   | FhirInputContactPointProps<TRendererProps>
   | FhirInputDateProps<TRendererProps>
   | FhirInputDateTimeProps<TRendererProps>
+  | FhirInputDurationProps<TRendererProps>
   | FhirInputHumanNameProps<TRendererProps>
   | FhirInputIdentifierProps<TRendererProps>
   | FhirInputMarkdownProps<TRendererProps>
   | FhirInputNumberProps<TRendererProps>
+  | FhirInputQuantityProps<TRendererProps>
   | FhirInputResourceProps<TRendererProps, TResourceType>
   | FhirInputStringProps<TRendererProps>
   | FhirInputTerminologyProps<TRendererProps>
