@@ -3,9 +3,14 @@ import { cleanFhirValues } from "@bonfhir/core/r5";
 import { FhirInputArrayProps } from "@bonfhir/react/r5";
 import { UseFormInput, UseFormReturnType, useForm } from "@mantine/form";
 
-//THOSE where initially exported from mantine, adding them manually for now
-type LooseKeys<Values> = keyof Values | (string & object);
-type _TransformValues<Values> = (values: Values) => unknown;
+/**
+ * These types are internal mantine/forms type that we need here.
+ * They used to be exposed before v7, but no longer are.
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type LooseKeys<Values> = keyof Values | (string & {});
+export type _TransformValues<Values> = (values: Values) => unknown;
+
 export type UseFhirFormReturnType<
   Values,
   TransformValues extends _TransformValues<Values> = (values: Values) => Values,
