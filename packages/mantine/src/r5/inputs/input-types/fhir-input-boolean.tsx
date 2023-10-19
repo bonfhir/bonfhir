@@ -19,7 +19,9 @@ export function MantineFhirInputBoolean(
         onChange={(evt: FormEvent<HTMLInputElement>) =>
           props.onChange?.(evt.currentTarget.checked)
         }
-        {...props.rendererProps}
+        //TODO: fix this as className was giving type error
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        {...(props.rendererProps as unknown as any)}
       />
     );
   }
