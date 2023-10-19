@@ -77,14 +77,6 @@ const config = {
           },
         ],
       },
-      footer: {
-        style: "dark",
-        copyright: `BonFHIR is an open source project by AlleyCorp Nord, initially built to support Alley Corp portfolio companies.`,
-        logo: {
-          alt: "bonFHIR",
-          src: "img/bonfhir_logo.svg",
-        },
-      },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
