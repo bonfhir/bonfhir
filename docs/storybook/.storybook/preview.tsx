@@ -19,7 +19,9 @@ const preview: Preview = {
   decorators: [
     (renderStory: Function) => (
       <FhirQueryProvider fhirClient={mockClient}>
-        <MantineProvider withGlobalStyles withNormalizeCSS>
+        //TODO: fix this with the new way
+        {/* <MantineProvider withGlobalStyles withNormalizeCSS> */}
+        <MantineProvider>
           <FhirUIProvider renderer={MantineRenderer}>
             {renderStory()}
           </FhirUIProvider>
