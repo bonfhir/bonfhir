@@ -12,6 +12,7 @@
     "check": "turbo run check",
     "codegen": "turbo run codegen",
     "dev": "turbo run dev",
+    "dev-mantine": "turbo run dev --filter=@bonfhir/react --filter=@bonfhir/mantine --filter=@bonfhir/sample-ehr",
     "format": "turbo run format",
     "preinstall": "npx only-allow pnpm",
     "version-packages": "changeset version && pnpm install --lockfile-only",
