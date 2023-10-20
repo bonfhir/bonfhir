@@ -20,7 +20,7 @@ export default function Patient() {
         <NavButton
           target={`/patients/${patientId}/edit`}
           variant="outline"
-          leftIcon={<IconEdit size="1rem" />}
+          leftSection={<IconEdit size="1rem" />}
         >
           Edit
         </NavButton>

@@ -17,7 +17,7 @@ export default function Organization() {
         <NavButton
           target={`/organizations/${organizationId}/edit`}
           variant="outline"
-          leftIcon={<IconEdit size="1rem" />}
+          leftSection={<IconEdit size="1rem" />}
         >
           Edit
         </NavButton>
