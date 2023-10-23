@@ -23,7 +23,7 @@ import { PropsWithChildren, useEffect, useState } from "react";
 const montserrat = Montserrat({ subsets: ["latin-ext"] });
 
 const theme: MantineThemeOverride = {
-  colorScheme: "light",
+  // colorScheme: "light",
   fontFamily: montserrat.style.fontFamily,
   components: {
     Grid: {
@@ -61,7 +61,8 @@ export default function App(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+      <MantineProvider theme={theme}>
+        {/* <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}> */}
         <SessionProvider session={session}>
           <WithAuth>
             <FhirUIProvider
@@ -78,13 +79,18 @@ export default function App(props: AppProps) {
               }}
             >
               <AppShell
-                navbar={<Navbar />}
+                navbar={{
+                  width: 300,
+                  breakpoint: "sm",
+                }}
+                padding="md"
                 styles={{
                   main: {
                     backgroundColor: "#F1F1F1",
                   },
                 }}
               >
+                <Navbar />
                 <Component {...pageProps} />
               </AppShell>
               <ReactQueryDevtools position="bottom-right" />
