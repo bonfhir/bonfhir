@@ -5,13 +5,15 @@ import { FetchFhirClient, FhirClient, Formatter } from "@bonfhir/core/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { FhirUIProvider } from "@bonfhir/react/r4b";
+import "@mantine/code-highlight/styles.css";
 import {
   AppShell,
   Center,
   Loader,
   MantineProvider,
-  MantineThemeOverride,
+  createTheme,
 } from "@mantine/core";
+import "@mantine/core/styles.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import { AppProps } from "next/app";
@@ -19,11 +21,9 @@ import { Montserrat } from "next/font/google";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { PropsWithChildren, useEffect, useState } from "react";
-
 const montserrat = Montserrat({ subsets: ["latin-ext"] });
 
-const theme: MantineThemeOverride = {
-  colorScheme: "light",
+export const theme = createTheme({
   fontFamily: montserrat.style.fontFamily,
   components: {
     Grid: {
@@ -43,7 +43,8 @@ const theme: MantineThemeOverride = {
       },
     },
   },
-};
+  /* Put your mantine theme override here */
+});
 
 export default function App(props: AppProps) {
   const {
@@ -61,7 +62,8 @@ export default function App(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+      <MantineProvider theme={theme}>
+        {/* <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}> */}
         <SessionProvider session={session}>
           <WithAuth>
             <FhirUIProvider
@@ -78,14 +80,21 @@ export default function App(props: AppProps) {
               }}
             >
               <AppShell
-                navbar={<Navbar />}
+                navbar={{
+                  width: 300,
+                  breakpoint: "sm",
+                }}
+                padding="md"
                 styles={{
                   main: {
                     backgroundColor: "#F1F1F1",
                   },
                 }}
               >
-                <Component {...pageProps} />
+                <Navbar />
+                <AppShell.Main>
+                  <Component {...pageProps} />
+                </AppShell.Main>
               </AppShell>
               <ReactQueryDevtools position="bottom-right" />
             </FhirUIProvider>

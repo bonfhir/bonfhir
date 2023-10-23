@@ -36,7 +36,7 @@ export function MantineFhirPagination(
       }
       {...props.rendererProps?.root}
     >
-      <Group spacing="xs" position="center" {...props.rendererProps?.group}>
+      <Group gap="xs" justify="center" {...props.rendererProps?.group}>
         <Pagination.First />
         <Pagination.Previous />
         {props.renderedTextTemplate}

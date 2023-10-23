@@ -71,7 +71,7 @@ export default function Organizations() {
           <Paper mih="100%">
             <Stack>
               <NavButton
-                leftIcon={<IconPlus size="1rem" />}
+                leftSection={<IconPlus size="1rem" />}
                 target="/organizations/new/edit"
               >
                 New organization

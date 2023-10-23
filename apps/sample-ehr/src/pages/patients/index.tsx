@@ -298,7 +298,7 @@ function PatientsList(): ReactElement {
         <Paper>
           <Stack>
             <NavButton
-              leftIcon={<IconPlus size="1rem" />}
+              leftSection={<IconPlus size="1rem" />}
               target="/patients/new/edit"
             >
               New patient

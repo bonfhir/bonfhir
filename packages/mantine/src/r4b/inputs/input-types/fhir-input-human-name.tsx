@@ -35,7 +35,7 @@ export function MantineFhirInputHumanName(
       required={Boolean(props.required)}
       {...props.rendererProps?.wrapper}
     >
-      <Group spacing="xs" noWrap {...props.rendererProps?.group}>
+      <Group gap="xs" wrap="nowrap" {...props.rendererProps?.group}>
         {mode.map((comp) => {
           switch (comp) {
             case "use": {

@@ -1,7 +1,7 @@
 import { Resource } from "@bonfhir/core/r4b";
 import { FhirInputResourceRendererProps } from "@bonfhir/react/r4b";
-import { Select, SelectProps, Text } from "@mantine/core";
-import { ReactElement, forwardRef } from "react";
+import { Select, SelectProps } from "@mantine/core";
+import { ReactElement } from "react";
 
 export function MantineFhirInputResource(
   props: FhirInputResourceRendererProps<MantineFhirInputResourceProps>,
@@ -25,21 +25,22 @@ export function MantineFhirInputResource(
       required={Boolean(props.required)}
       disabled={Boolean(props.disabled)}
       searchable
-      nothingFound="No results"
+      nothingFoundMessage="No results"
       clearable={!props.required}
       data={data}
-      itemComponent={forwardRef<
-        HTMLDivElement,
-        MantineFhirInputResourceItemProps
-      >(({ value: _, label: __, resource, ...others }, ref) => {
-        if (!resource) return null;
-        const rendered = props.display(resource);
-        return (
-          <div ref={ref} {...others}>
-            {typeof rendered === "string" ? <Text>{rendered}</Text> : rendered}
-          </div>
-        );
-      })}
+      //TODO itemComponent does not seem to exist in Mantine v7
+      // itemComponent={forwardRef<
+      //   HTMLDivElement,
+      //   MantineFhirInputResourceItemProps
+      // >(({ value: _, label: __, resource, ...others }, ref) => {
+      //   if (!resource) return null;
+      //   const rendered = props.display(resource);
+      //   return (
+      //     <div ref={ref} {...others}>
+      //       {typeof rendered === "string" ? <Text>{rendered}</Text> : rendered}
+      //     </div>
+      //   );
+      // })}
       onSearchChange={props.onSearch}
       value={
         props.value

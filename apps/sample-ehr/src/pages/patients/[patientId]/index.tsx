@@ -20,7 +20,7 @@ export default function Patient() {
         <NavButton
           target={`/patients/${patientId}/edit`}
           variant="outline"
-          leftIcon={<IconEdit size="1rem" />}
+          leftSection={<IconEdit size="1rem" />}
         >
           Edit
         </NavButton>
@@ -44,11 +44,11 @@ export function PatientHeader({
 }): ReactElement {
   return (
     <Paper>
-      <Group position="apart">
+      <Group justify="apart">
         <Group>
           <Group>
             <Avatar size="xl" variant="light" />
-            <Stack h="100%" spacing={0}>
+            <Stack h="100%" gap={0}>
               <Title order={4}>
                 <FhirValue
                   type="HumanName"

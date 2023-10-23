@@ -121,7 +121,7 @@ export function MantineFhirInputTerminology(
         onChange={onChange}
         {...props.rendererProps}
       >
-        <Stack spacing="xs" mt="xs">
+        <Stack justify="xs" mt="xs">
           {props.data.map((element) => (
             <Radio
               key={element.code}

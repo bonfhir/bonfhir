@@ -71,15 +71,10 @@ export const Default = {
             </FhirInputArray>
           </Box>
           <Group mt="md">
-            <Button type="submit" compact variant="outline">
+            <Button type="submit" variant="outline">
               Submit
             </Button>
-            <Button
-              compact
-              variant="outline"
-              color="red"
-              onClick={() => form.reset()}
-            >
+            <Button variant="outline" color="red" onClick={() => form.reset()}>
               Reset
             </Button>
           </Group>

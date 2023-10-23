@@ -18,7 +18,9 @@ export function MantineFhirInputNumber(
       max={props.max ?? undefined}
       step={props.step ?? undefined}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      precision={(props as any).precision}
+
+      //TODO: precision does not seem to exist in Mantine v7
+      // precision={(props as any).precision}
       onChange={(value: number | "") =>
         props.onChange?.(value === "" ? undefined : value)
       }
