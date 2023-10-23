@@ -10,8 +10,9 @@ import {
   Center,
   Loader,
   MantineProvider,
-  MantineThemeOverride,
+  createTheme,
 } from "@mantine/core";
+import "@mantine/core/styles.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import { AppProps } from "next/app";
@@ -19,11 +20,9 @@ import { Montserrat } from "next/font/google";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { PropsWithChildren, useEffect, useState } from "react";
-
 const montserrat = Montserrat({ subsets: ["latin-ext"] });
 
-const theme: MantineThemeOverride = {
-  // colorScheme: "light",
+export const theme = createTheme({
   fontFamily: montserrat.style.fontFamily,
   components: {
     Grid: {
@@ -43,7 +42,8 @@ const theme: MantineThemeOverride = {
       },
     },
   },
-};
+  /* Put your mantine theme override here */
+});
 
 export default function App(props: AppProps) {
   const {
@@ -91,7 +91,9 @@ export default function App(props: AppProps) {
                 }}
               >
                 <Navbar />
-                <Component {...pageProps} />
+                <AppShell.Main>
+                  <Component {...pageProps} />
+                </AppShell.Main>
               </AppShell>
               <ReactQueryDevtools position="bottom-right" />
             </FhirUIProvider>

@@ -31,12 +31,7 @@ const links = [
 export function Navbar() {
   const router = useRouter();
   return (
-    <MantineAppShell
-      //TODO: see what is equivalent in Mantine v7 to sm: 210
-      style={{ height: "100vh", width: "sm" }}
-      // height="100vh"
-      // width={{ sm: 210 }}
-    >
+    <MantineAppShell.Navbar style={{ height: "100vh", width: "sm" }}>
       <MantineAppShell.Section m="sm" mt="md">
         <Stack>
           <Group justify="xs">
@@ -80,6 +75,6 @@ export function Navbar() {
           </Code>
         </Stack>
       </MantineAppShell.Section>
-    </MantineAppShell>
+    </MantineAppShell.Navbar>
   );
 }

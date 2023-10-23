@@ -60,6 +60,9 @@
     "@graphql-codegen/typescript": "4.0.1",
     "@graphql-codegen/typescript-operations": "^4.0.1",
     "@parcel/watcher": "^2.3.0",
-    "concurrently": "^8.2.1"
+    "concurrently": "^8.2.1",
+    "postcss": "^8.4.31",
+    "postcss-preset-mantine": "^1.9.0",
+    "postcss-simple-vars": "^7.0.1"
   }
 }
