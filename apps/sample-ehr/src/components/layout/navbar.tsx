@@ -46,12 +46,10 @@ export function Navbar() {
         <Stack gap={0}>
           {links.map((link) => (
             <NavLink
+              leftSection={link.icon}
               key={link.label}
               component={Link}
               href={link.link}
-              //TODO:
-              // icon={link.icon}
-
               label={link.label}
               active={
                 link.link === "/"
