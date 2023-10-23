@@ -1,8 +1,8 @@
 import { MainPage } from "@/components";
 import { QuestionnaireResponse } from "@bonfhir/core/r4b";
 import { FhirQuestionnaire } from "@bonfhir/react/r4b";
+import { CodeHighlight } from "@mantine/code-highlight";
 import { Paper, Stack } from "@mantine/core";
-import { Prism } from "@mantine/prism";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -23,9 +23,10 @@ export default function QuestionnairePage() {
             onCancel={() => router.push("/")}
             rendererProps={{ mainStack: { w: "50%" } }}
           />
-          <Prism language="json">
-            {JSON.stringify(questionnaireResponse, undefined, 2) || ""}
-          </Prism>
+          <CodeHighlight
+            language="json"
+            code={JSON.stringify(questionnaireResponse, undefined, 2) || ""}
+          />
         </Stack>
       </Paper>
     </MainPage>

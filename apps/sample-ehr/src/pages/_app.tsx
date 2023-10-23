@@ -5,6 +5,7 @@ import { FetchFhirClient, FhirClient, Formatter } from "@bonfhir/core/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { FhirUIProvider } from "@bonfhir/react/r4b";
+import "@mantine/code-highlight/styles.css";
 import {
   AppShell,
   Center,
