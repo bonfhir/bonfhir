@@ -1,5 +1,16 @@
 # @bonfhir/mantine
 
+## 3.0.0
+
+### Major Changes
+
+- [#99](https://github.com/bonfhir/bonfhir/pull/99) [`79ce876b`](https://github.com/bonfhir/bonfhir/commit/79ce876b34335b652e51767a93aa1362b0ca6cad) Thanks [@ysael](https://github.com/ysael)! - Update to mantine 7
+
+### Patch Changes
+
+- Updated dependencies [[`ad86aa05`](https://github.com/bonfhir/bonfhir/commit/ad86aa058bd100ac1f95b25c09ad18fa7cbafa85)]:
+  - @bonfhir/core@2.16.1
+
 ## 2.5.0
 
 ### Minor Changes

@@ -11,10 +11,10 @@
     "build": "next build"
   },
   "dependencies": {
-    "@bonfhir/core": "^2.16.0",
+    "@bonfhir/core": "^2.16.1",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
-    "@bonfhir/mantine": "^2.5.0",
+    "@bonfhir/mantine": "^3.0.0",
     "@bonfhir/next": "^2.4.0",
     "@bonfhir/prettier-config": "workspace:*",
     "@bonfhir/query": "^2.5.0",
