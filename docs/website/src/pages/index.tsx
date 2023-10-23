@@ -13,6 +13,7 @@ import SvgBonfhir from "@site/static/img/bonfhir_logo.svg";
 import SvgYoutubeIcon from "@site/static/img/home/youtube_icon.svg";
 import styles from "./index.module.css";
 import { classnames } from "@site/src/helpers";
+import HeroImage from '@site/src/components/HeroImage'
 
 export default function Home(): JSX.Element {
   return (
@@ -55,8 +56,8 @@ function HomepageHeader() {
             </Link>
           </div>
         </div>
-        <div>
-          <img src="https://placehold.co/591x394/png" alt="BonFHIR" />
+        <div className={styles.heroImageWrapper}>
+          <HeroImage />
         </div>
       </div>
     </header>

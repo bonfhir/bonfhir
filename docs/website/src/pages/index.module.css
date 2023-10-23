@@ -104,6 +104,7 @@ p {
   .heroBannerWrapper {
     gap: 2rem;
     max-width: 90rem;
+    align-items: center;
 
     @media (max-width: 997px) {
       flex-direction: column-reverse;
@@ -137,6 +138,92 @@ p {
     }
   }
 
+  .heroImageWrapper {
+    @media (max-width: 1350px) {
+      height: 17.25rem;
+      width: 34.5rem;
+    }
+
+    @media (max-width: 1175px) {
+      height: 11.5rem;
+      width: 23rem;
+    }
+  }
+}
+
+.heroImageContainer {
+  height: 23rem;
+  width: 46rem;
+  position: relative;
+  flex-shrink: 0;
+
+  @media (max-width: 1350px) {
+    transform: scale(0.75);
+  }
+
+  @media (max-width: 1175px) {
+    transform: scale(0.5);
+  }
+
+  > img {
+    max-height: 100%;
+  }
+
+  .macMockup {
+    z-index: 2;
+  }
+
+  .tabletMockup {
+    max-height: 21rem;
+    position: absolute;
+    right: 3rem;
+    bottom: 0;
+    z-index: 3;
+  }
+
+  .phoneMockup {
+    max-height: 14.5rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+  }
+
+  .imagesMask {
+    position: absolute;
+    width: 30.6rem;
+    top: 0.51rem;
+    left: 2.95rem;
+    overflow: hidden;
+    background: #000;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    z-index: 1;
+
+    .animatingImageContainer {
+      display: flex;
+      width: 100%;
+      height: 100%;
+
+      -moz-animation:heroImageLoop 10s linear infinite;
+      -webkit-animation:heroImageLoop 10s linear infinite;
+
+      .screenshot {
+        width: 100%;
+        z-index: 0;
+      }
+    }
+  }
+}
+
+@keyframes heroImageLoop {
+  0%  { transform: translateX(0) }
+  31% { transform: translateX(0) }
+  33%  { transform: translateX(-30.6rem) }
+  64%  { transform: translateX(-30.6rem) }
+  66% { transform: translateX(-61.2rem) }
+  98% { transform: translateX(-61.2rem) }
+  100%{ transform: translateX(-91.8rem) }
 }
 
 
