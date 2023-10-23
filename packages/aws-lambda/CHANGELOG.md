@@ -1,5 +1,14 @@
 # @bonfhir/aws-lambda
 
+## 2.2.1
+
+### Patch Changes
+
+- [#94](https://github.com/bonfhir/bonfhir/pull/94) [`03c87861`](https://github.com/bonfhir/bonfhir/commit/03c87861fa35970d567a8724b438675abd0f6248) Thanks [@ysael](https://github.com/ysael)! - Add message to aws lambda when no body provided
+
+- Updated dependencies [[`ad86aa05`](https://github.com/bonfhir/bonfhir/commit/ad86aa058bd100ac1f95b25c09ad18fa7cbafa85)]:
+  - @bonfhir/core@2.16.1
+
 ## 2.2.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @bonfhir/cli
 
+## 2.6.1
+
+### Patch Changes
+
+- [#97](https://github.com/bonfhir/bonfhir/pull/97) [`ad86aa05`](https://github.com/bonfhir/bonfhir/commit/ad86aa058bd100ac1f95b25c09ad18fa7cbafa85) Thanks [@julienblin](https://github.com/julienblin)! - Update dependencies
+
 ## 2.6.0
 
 ### Minor Changes
