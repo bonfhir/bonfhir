@@ -63,7 +63,6 @@ export default function App(props: AppProps) {
         />
       </Head>
       <MantineProvider theme={theme}>
-        {/* <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}> */}
         <SessionProvider session={session}>
           <WithAuth>
             <FhirUIProvider
