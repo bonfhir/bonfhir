@@ -74,7 +74,8 @@ p {
   }
 
   .presentationSectionItemDark {
-    > h4, > p {
+    > h4,
+    > p {
       color: var(--ifm-color-primary-dark);
     }
   }
@@ -86,9 +87,9 @@ p {
     .presentationSectionItem {
       max-width: 25rem;
 
-       > h4 {
-         margin: 1rem 0;
-       }
+      > h4 {
+        margin: 1rem 0;
+      }
     }
   }
 }
@@ -205,8 +206,9 @@ p {
       width: 100%;
       height: 100%;
 
-      -moz-animation:heroImageLoop 10s linear infinite;
-      -webkit-animation:heroImageLoop 10s linear infinite;
+      animation: heroImageLoop 10s linear infinite;
+      -moz-animation: heroImageLoop 10s linear infinite;
+      -webkit-animation: heroImageLoop 10s linear infinite;
 
       .screenshot {
         width: 100%;
@@ -217,15 +219,28 @@ p {
 }
 
 @keyframes heroImageLoop {
-  0%  { transform: translateX(0) }
-  31% { transform: translateX(0) }
-  33%  { transform: translateX(-30.6rem) }
-  64%  { transform: translateX(-30.6rem) }
-  66% { transform: translateX(-61.2rem) }
-  98% { transform: translateX(-61.2rem) }
-  100%{ transform: translateX(-91.8rem) }
+  0% {
+    transform: translateX(0);
+  }
+  31% {
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateX(-30.6rem);
+  }
+  64% {
+    transform: translateX(-30.6rem);
+  }
+  66% {
+    transform: translateX(-61.2rem);
+  }
+  98% {
+    transform: translateX(-61.2rem);
+  }
+  100% {
+    transform: translateX(-91.8rem);
+  }
 }
-
 
 /** whatIs section */
 .whatIs {
@@ -237,7 +252,6 @@ p {
     text-align: center;
   }
 }
-
 
 /** ReadyToLearn section */
 .readyToLearn {
@@ -298,7 +312,6 @@ p {
   }
 }
 
-
 /** BatteriesIncluded section */
 .batteriesIncluded {
   background: var(--ifm-color-primary);
@@ -351,7 +364,6 @@ p {
   }
 }
 
-
 /** Get in touch section */
 .getInTouch {
   background-color: var(--ifm-color-secondary);
@@ -385,7 +397,6 @@ p {
     }
   }
 }
-
 
 /* Used By section */
 .usedBy {
@@ -445,9 +456,9 @@ p {
     align-items: center;
     justify-content: center;
 
-     > div {
-       color: #f5f5f5;
-       font-size: 0.875rem;
-     }
+    > div {
+      color: #f5f5f5;
+      font-size: 0.875rem;
+    }
   }
 }

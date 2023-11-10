@@ -13,7 +13,7 @@ import SvgBonfhir from "@site/static/img/bonfhir_logo.svg";
 import SvgYoutubeIcon from "@site/static/img/home/youtube_icon.svg";
 import styles from "./index.module.css";
 import { classnames } from "@site/src/helpers";
-import HeroImage from '@site/src/components/HeroImage'
+import HeroImage from "@site/src/components/HeroImage";
 
 export default function Home(): JSX.Element {
   return (
@@ -66,7 +66,7 @@ function HomepageHeader() {
 
 function PresentationSection({
   items,
-  theme = "light"
+  theme = "light",
 }: {
   items: {
     classNames?: string[];
@@ -83,7 +83,7 @@ function PresentationSection({
           key={idx}
           className={classnames([
             styles.presentationSectionItem,
-            ...(theme === 'dark' ? [styles.presentationSectionItemDark] : []),
+            ...(theme === "dark" ? [styles.presentationSectionItemDark] : []),
             ...classNames,
           ])}
         >
@@ -103,23 +103,25 @@ function WhatIs() {
         className={classnames([styles.sectionContainer, styles.whatIsWrapper])}
       >
         <h1>What is BonFHIR?</h1>
-        <PresentationSection items={[
-          {
-            img: <SvgGears role="img" />,
-            title: "For Developers",
-            text: "BonFHIR allows developers to focus on building great features, instead of creating the plumbing. You can build high-quality apps faster, and avoid the tedious low-level work required to handle FHIR resources."
-          },
-          {
-            img: <SvgComputerDevices role="img" />,
-            title: "For Products Owners",
-            text: "BonFHIR brings the best Healthcare tech experience to your users. Instead of subjecting them to un-ergonomic generic screens and workflows assembled from disparate apps, you can deliver a tailored experience that clinicians, clinical ops and patients enjoy every day."
-          },
-          {
-            img: <SvgBusinessMane role="img" />,
-            title: "For CTOs",
-            text: "BonFHIR was built to work with FHIR. So your data is guaranteed be in full compliance with the latest health specifications requirements. It enables easier integrations and certifications. It allows your team to deliver faster, while adhering to a sound and proven domain model and standard."
-          },
-        ]} />
+        <PresentationSection
+          items={[
+            {
+              img: <SvgGears role="img" />,
+              title: "For Developers",
+              text: "BonFHIR allows developers to focus on building great features, instead of creating the plumbing. You can build high-quality apps faster, and avoid the tedious low-level work required to handle FHIR resources.",
+            },
+            {
+              img: <SvgComputerDevices role="img" />,
+              title: "For Products Owners",
+              text: "BonFHIR brings the best Healthcare tech experience to your users. Instead of subjecting them to un-ergonomic generic screens and workflows assembled from disparate apps, you can deliver a tailored experience that clinicians, clinical ops and patients enjoy every day.",
+            },
+            {
+              img: <SvgBusinessMane role="img" />,
+              title: "For CTOs",
+              text: "BonFHIR was built to work with FHIR. So your data is guaranteed be in full compliance with the latest health specifications requirements. It enables easier integrations and certifications. It allows your team to deliver faster, while adhering to a sound and proven domain model and standard.",
+            },
+          ]}
+        />
       </div>
     </div>
   );
@@ -254,27 +256,35 @@ function GetInTouch() {
             healthcare project implementation.
           </p>
         </div>
-        <PresentationSection items={[
-          {
-            img: <SvgGears role="img" className={styles.darkSvg}/>,
-            title: "Team Services",
-            text: "Hire the developers that built BonFHIR to set up BonFHIR for you. ",
-          },
-          {
-            img: <SvgBusinessMane role="img" className={styles.darkSvg} />,
-            title: "Product Design",
-            text: "Need help with the UX/UI of your interface? Add one of our Product Designers to your team.",
-          },
-          {
-            img: <SvgBusinessMane role="img" className={styles.darkSvg} />,
-            title: "Consulting",
-            text: "Need help with the UX/UI of your interface? Add one of our Product Designers to your team.",
-          },
-        ]} theme={"dark"}/>
+        <PresentationSection
+          items={[
+            {
+              img: <SvgGears role="img" className={styles.darkSvg} />,
+              title: "Team Services",
+              text: "Hire the developers that built BonFHIR to set up BonFHIR for you. ",
+            },
+            {
+              img: <SvgBusinessMane role="img" className={styles.darkSvg} />,
+              title: "Product Design",
+              text: "Need help with the UX/UI of your interface? Add one of our Product Designers to your team.",
+            },
+            {
+              img: <SvgBusinessMane role="img" className={styles.darkSvg} />,
+              title: "Consulting",
+              text: "Need help with the UX/UI of your interface? Add one of our Product Designers to your team.",
+            },
+          ]}
+          theme={"dark"}
+        />
         <div>
-          <Link to="/" className={classnames([styles.ctaButton])}>
+          <a
+            href="mailto:info@alleycorpnord.com?subject=bonFHIR%20inquiry"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={classnames([styles.ctaButton])}
+          >
             Contact us
-          </Link>
+          </a>
         </div>
       </div>
     </div>
@@ -284,16 +294,18 @@ function GetInTouch() {
 function UsedBy() {
   return (
     <div className={classnames([styles.section, styles.usedBy])}>
-      <div className={classnames([styles.sectionContainer, styles.usedByWrapper])}>
+      <div
+        className={classnames([styles.sectionContainer, styles.usedByWrapper])}
+      >
         <h1>Used by</h1>
         <div className={styles.usedByLogos}>
-          <SvgAcn/>
-          <SvgEnsage/>
-          <img src={PngChamber} alt="Chamber"/>
+          <SvgAcn />
+          <SvgEnsage />
+          <img src={PngChamber} alt="Chamber" />
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function Footer() {
@@ -301,12 +313,18 @@ function Footer() {
     <div className={styles.footer}>
       <SvgBonfhir />
       <p>
-        BonFHIR is an open source project by <a href={'https://alleycorpnord.com'}>AlleyCorp Nord</a>, initially built to support <a href={'https://alleycorp.com'}>Alley Corp</a> portfolio companies.
+        BonFHIR is an open source project by{" "}
+        <a href={"https://alleycorpnord.com"}>AlleyCorp Nord</a>, initially
+        built to support <a href={"https://alleycorp.com"}>Alley Corp</a>{" "}
+        portfolio companies.
       </p>
-      <a className={styles.youtube} href={'https://www.youtube.com/channel/UCncSPtWNFdieSbksbUdIPaw'}>
+      <a
+        className={styles.youtube}
+        href={"https://www.youtube.com/channel/UCncSPtWNFdieSbksbUdIPaw"}
+      >
         <div>YouTube</div>
         <SvgYoutubeIcon />
       </a>
     </div>
-  )
+  );
 }
