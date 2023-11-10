@@ -256,14 +256,16 @@
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #584f7a;
-  --ifm-color-primary-dark: #4f476e;
+  --ifm-color-primary-dark: #302d3d;
   --ifm-color-primary-darker: #4b4368;
   --ifm-color-primary-darkest: #3e3755;
   --ifm-color-primary-light: #615786;
   --ifm-color-primary-lighter: #655b8c;
   --ifm-color-primary-lightest: #73689d;
-  --ifm-navbar-background-color: #302d3d;
+  --ifm-color-secondary: #fdc022;
+  --ifm-navbar-background-color: #292A2B;
   --ifm-navbar-height: 5rem;
+  --ifm-navbar-padding-horizontal: 2rem;
   --ifm-heading-font-family: "Signika", sans-serif;
   --ifm-font-family-base: "Noto Sans", system-ui, -apple-system, Segoe UI,
     Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont,
@@ -293,3 +295,20 @@
 .navbar__title {
   font-size: 2.3125rem;
 }
+
+.navbar__items {
+  @media (max-width: 997px) {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .navbar__toggle {
+    margin-right: 1rem;
+    > svg {
+      > path {
+        stroke: #fff;
+      }
+    }
+  }
+}
+
