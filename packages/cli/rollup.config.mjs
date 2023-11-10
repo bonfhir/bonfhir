@@ -16,7 +16,7 @@ export default [
         file: "dist/cli/index.cjs",
         format: "cjs",
         sourcemap: true,
-        compact: true,
+        compact: false, // There is a bug in Rollup that prevents the use of compact: true for this. the error is it mangles a `typeof document` into `typeof document`.
         banner: "#!/usr/bin/env node",
         inlineDynamicImports: true,
       },

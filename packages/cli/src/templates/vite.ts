@@ -54,6 +54,11 @@ export const ViteTasks = (): ListrTask<Context>[] => [
         await writeFile(`${cwd}/.editorconfig`, EDITORCONFIG_CONTENT, "utf8");
         await writeFile(`${cwd}/.gitignore`, GITIGNORE_CONTENT, "utf8");
         await writeFile(
+          `${cwd}/postcss.config.cjs`,
+          POSTCSS_CONFIG_CONTENT,
+          "utf8",
+        );
+        await writeFile(
           `${cwd}/tsconfig.node.json`,
           TSCONFIG_NODE_CONTENT,
           "utf8",
@@ -109,11 +114,11 @@ export const ViteTasks = (): ListrTask<Context>[] => [
         "@bonfhir/query",
         "@bonfhir/react",
         "@bonfhir/mantine",
-        "@mantine/core@^6",
-        "@mantine/dates@^6",
-        "@mantine/form@^6",
-        "@mantine/hooks@^6",
-        "@mantine/tiptap@^6",
+        "@mantine/core@^7",
+        "@mantine/dates@^7",
+        "@mantine/form@^7",
+        "@mantine/hooks@^7",
+        "@mantine/tiptap@^7",
         "@tabler/icons-react@^2",
         "@tanstack/react-query@^4",
         "@tanstack/react-query-devtools@^4",
@@ -132,6 +137,9 @@ export const ViteTasks = (): ListrTask<Context>[] => [
         "eslint-config-prettier",
         "eslint-plugin-react-hooks",
         "eslint-plugin-react-refresh",
+        "postcss@^8",
+        "postcss-preset-mantine@^1",
+        "postcss-simple-vars@^7",
         "prettier",
         "prettier-plugin-organize-imports",
         "typescript",
@@ -149,6 +157,22 @@ export const ViteTasks = (): ListrTask<Context>[] => [
     },
   },
 ];
+
+const POSTCSS_CONFIG_CONTENT = `module.exports = {
+  plugins: {
+    "postcss-preset-mantine": {},
+    "postcss-simple-vars": {
+      variables: {
+        "mantine-breakpoint-xs": "36em",
+        "mantine-breakpoint-sm": "48em",
+        "mantine-breakpoint-md": "62em",
+        "mantine-breakpoint-lg": "75em",
+        "mantine-breakpoint-xl": "88em",
+      },
+    },
+  },
+};
+`;
 
 const GITIGNORE_CONTENT = `# Logs
 logs
@@ -191,8 +215,7 @@ const INDEX_HTML_CONTENT = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no" />
     <title>BonFHIR + Mantine + Vite</title>
   </head>
   <body>
@@ -334,11 +357,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 );
 `;
 
-const APP_CONTENT = `import { FetchFhirClient } from "@bonfhir/core/r4b";
+const APP_CONTENT = `import "@mantine/core/styles.css";
+import { FetchFhirClient } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
 import { FhirUIProvider } from "@bonfhir/react/r4b";
-import { AppShell, MantineProvider, MantineThemeOverride } from "@mantine/core";
+import { AppShell, MantineProvider, createTheme } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Outlet, useNavigate } from "react-router-dom";
 
@@ -359,14 +383,14 @@ const client = new FetchFhirClient({
 
 /**
  * Customize Mantine Theme.
- * https://v6.mantine.dev/theming/theme-object/
+ * https://mantine.dev/theming/theme-object/
  */
-const theme: MantineThemeOverride = {};
+const theme = createTheme({});
 
 export default function App() {
   const navigate = useNavigate();
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+    <MantineProvider theme={theme}>
       <FhirQueryProvider fhirClient={client}>
         <FhirUIProvider
           renderer={MantineRenderer}
@@ -379,7 +403,9 @@ export default function App() {
           }}
         >
           <AppShell>
-            <Outlet />
+            <AppShell.Main>
+              <Outlet />
+            </AppShell.Main>
           </AppShell>
           <ReactQueryDevtools />
         </FhirUIProvider>
@@ -396,7 +422,7 @@ const HOME_CONTENT = `import { Center, Title } from "@mantine/core";
 
 export default function Home() {
   return (
-    <Center h="100%">
+    <Center h="100vh">
       <Title>BonFHIR + Mantine + Vite = 🔥</Title>
     </Center>
   );

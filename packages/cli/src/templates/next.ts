@@ -41,6 +41,12 @@ export const Next: Template = {
             PACKAGE_JSON_CONTENT(name),
             "utf8",
           );
+
+          await writeFile(
+            `${cwd}/postcss.config.js`,
+            POSTCSS_CONFIG_CONTENT,
+            "utf8",
+          );
           await writeFile(`${cwd}/tsconfig.json`, TSCONFIG_CONTENT, "utf8");
           await writeFile(`${cwd}/next.config.js`, NEXT_CONFIG_CONTENT, "utf8");
           await writeFile(`${cwd}/src/pages/_app.tsx`, APP_CONTENT, "utf8");
@@ -80,16 +86,18 @@ export const Next: Template = {
           await packageManager.add(
             cwd,
             "@bonfhir/core",
+            "@bonfhir/mantine",
             "@bonfhir/next",
             "@bonfhir/query",
             "@bonfhir/subscriptions",
             "@bonfhir/react",
-            "@bonfhir/mantine",
-            "@mantine/core@^6",
-            "@mantine/dates@^6",
-            "@mantine/form@^6",
-            "@mantine/hooks@^6",
-            "@mantine/tiptap@^6",
+            "@mantine/code-highlight@^7",
+            "@mantine/core@^7",
+            "@mantine/dates@^7",
+            "@mantine/form@^7",
+            "@mantine/hooks@^7",
+            "@mantine/next@^6",
+            "@mantine/tiptap@^7",
             "@tabler/icons-react@^2",
             "@tanstack/react-query@^4",
             "@tanstack/react-query-devtools@^4",
@@ -107,6 +115,9 @@ export const Next: Template = {
             "eslint",
             "eslint-config-next",
             "eslint-config-prettier",
+            "postcss@^8",
+            "postcss-preset-mantine@^1",
+            "postcss-simple-vars@^7",
             "prettier",
             "prettier-plugin-organize-imports",
             "typescript",
@@ -202,6 +213,22 @@ const nextConfig = {
 module.exports = nextConfig
 `;
 
+const POSTCSS_CONFIG_CONTENT = `module.exports = {
+  plugins: {
+    "postcss-preset-mantine": {},
+    "postcss-simple-vars": {
+      variables: {
+        "mantine-breakpoint-xs": "36em",
+        "mantine-breakpoint-sm": "48em",
+        "mantine-breakpoint-md": "62em",
+        "mantine-breakpoint-lg": "75em",
+        "mantine-breakpoint-xl": "88em",
+      },
+    },
+  },
+};
+`;
+
 const GITIGNORE_CONTENT = `# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -240,24 +267,28 @@ next-env.d.ts
 `;
 
 const APP_CONTENT = `
-import { Navbar } from "@/components";
 import { Config } from "@/config";
 import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
-import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
+import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { FhirUIProvider } from "@bonfhir/react/r4b";
-import { AppShell, Center, Loader, MantineProvider, MantineThemeOverride } from "@mantine/core";
+import "@mantine/code-highlight/styles.css";
+import {
+  AppShell,
+  Center,
+  Loader,
+  MantineProvider,
+  createTheme,
+} from "@mantine/core";
+import "@mantine/core/styles.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
-import type { AppProps } from 'next/app';
+import { AppProps } from "next/app";
+import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { PropsWithChildren, useEffect, useState } from "react";
 
-/**
- * Customize Mantine Theme.
- * https://v6.mantine.dev/theming/theme-object/
- */
-const theme: MantineThemeOverride = {};
+export const theme = createTheme({});
 
 export default function App(props: AppProps) {
   const {
@@ -267,27 +298,38 @@ export default function App(props: AppProps) {
   const router = useRouter();
 
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-      <SessionProvider session={session}>
-        <WithAuth>
-          <FhirUIProvider
-            renderer={MantineRenderer}
-            onNavigate={({ target, aux }) => {
-              if (aux) {
-                window.open(target, "_blank");
-              } else {
-                router.push(target);
-              }
-            }}
-          >
-            <AppShell>
-              <Component {...pageProps} />
-            </AppShell>
-            <ReactQueryDevtools />
-          </FhirUIProvider>
-        </WithAuth>
-      </SessionProvider>
-    </MantineProvider>
+    <>
+      <Head>
+        <title>Sample EHR</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+      </Head>
+      <MantineProvider theme={theme}>
+        <SessionProvider session={session}>
+          <WithAuth>
+            <FhirUIProvider
+              renderer={MantineRenderer}
+              onNavigate={({ target, aux }) => {
+                if (aux) {
+                  window.open(target, "_blank");
+                } else {
+                  router.push(target);
+                }
+              }}
+            >
+              <AppShell>
+                <AppShell.Main>
+                  <Component {...pageProps} />
+                </AppShell.Main>
+              </AppShell>
+              <ReactQueryDevtools />
+            </FhirUIProvider>
+          </WithAuth>
+        </SessionProvider>
+      </MantineProvider>
+    </>
   );
 }
 
@@ -320,7 +362,7 @@ function WithAuth(props: PropsWithChildren) {
   if (status !== "authenticated" || !session?.accessToken || !fhirClient) {
     return (
       <AppShell>
-        <Center h="100%">
+        <Center h="100vh">
           <Loader />
         </Center>
       </AppShell>
@@ -333,20 +375,30 @@ function WithAuth(props: PropsWithChildren) {
     </FhirQueryProvider>
   );
 }
+
 `;
 
-const DOCUMENT_CONTENT = `import { Html, Head, Main, NextScript } from 'next/document'
+const DOCUMENT_CONTENT = `import { ColorSchemeScript } from "@mantine/core";
+import { createGetInitialProps } from "@mantine/next";
+import Document, { Head, Html, Main, NextScript } from "next/document";
+const getInitialProps = createGetInitialProps();
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
+export default class _Document extends Document {
+  static getInitialProps = getInitialProps;
+
+  render() {
+    return (
+      <Html>
+        <Head>
+          <ColorSchemeScript defaultColorScheme="auto" />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
 `;
 
@@ -354,7 +406,7 @@ const INDEX_CONTENT = `import { Center, Title } from "@mantine/core";
 
 export default function Home() {
   return (
-    <Center h="100%">
+    <Center h="100vh">
       <Title>BonFHIR + Mantine + Next = 🔥</Title>
     </Center>
   );
