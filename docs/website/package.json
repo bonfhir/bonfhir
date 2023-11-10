@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "docusaurus build --out-dir dist",
+    "build": "docusaurus build --out-dir dist --no-minify",
     "check": "tsc",
     "clean": "docusaurus clear",
     "deploy": "docusaurus deploy",
     "dev": "docusaurus start",
     "docusaurus": "docusaurus",
-    "serve": "docusaurus serve",
+    "serve": "docusaurus serve --dir dist",
     "swizzle": "docusaurus swizzle",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids"
