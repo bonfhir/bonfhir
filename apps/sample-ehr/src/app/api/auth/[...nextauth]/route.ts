@@ -1,7 +1,7 @@
 import { Config } from "@/config";
 import NextAuth from "next-auth";
 
-export default NextAuth({
+const handler = NextAuth({
   providers: [
     {
       id: "medplum",
@@ -49,3 +49,5 @@ export default NextAuth({
     },
   },
 });
+
+export { handler as GET, handler as POST };

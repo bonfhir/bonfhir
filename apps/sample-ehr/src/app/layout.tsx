@@ -1,3 +1,4 @@
+"use client";
 import { Navbar } from "@/components";
 import { Config } from "@/config";
 import { SystemLabels } from "@/fhir/known-identifiers";
@@ -9,6 +10,7 @@ import "@mantine/code-highlight/styles.css";
 import {
   AppShell,
   Center,
+  ColorSchemeScript,
   Loader,
   MantineProvider,
   createTheme,
@@ -16,9 +18,7 @@ import {
 import "@mantine/core/styles.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
-import { AppProps } from "next/app";
 import { Montserrat } from "next/font/google";
-import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { PropsWithChildren, useEffect, useState } from "react";
 const montserrat = Montserrat({ subsets: ["latin-ext"] });
@@ -43,64 +43,62 @@ export const theme = createTheme({
       },
     },
   },
-  /* Put your mantine theme override here */
 });
 
-export default function App(props: AppProps) {
-  const {
-    Component,
-    pageProps: { session, ...pageProps },
-  } = props;
+export default function RootLayout({ children }: PropsWithChildren) {
   const router = useRouter();
+  const { data: session } = useSession();
 
   return (
-    <>
-      <Head>
+    <html lang="en">
+      <head>
+        <ColorSchemeScript />
         <title>Sample EHR</title>
+        <link rel="shortcut icon" href="/favicon.svg" />
         <meta
           name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
-      </Head>
-      <MantineProvider theme={theme}>
-        <SessionProvider session={session}>
-          <WithAuth>
-            <FhirUIProvider
-              renderer={MantineRenderer}
-              formatter={Formatter.build({
-                systemsLabels: SystemLabels,
-              })}
-              onNavigate={({ target, aux }) => {
-                if (aux) {
-                  window.open(target, "_blank");
-                } else {
-                  router.push(target);
-                }
-              }}
-            >
-              <AppShell
-                navbar={{
-                  width: 300,
-                  breakpoint: "sm",
-                }}
-                padding="md"
-                styles={{
-                  main: {
-                    backgroundColor: "#F1F1F1",
-                  },
+      </head>
+      <body>
+        <MantineProvider theme={theme}>
+          <SessionProvider session={session}>
+            <WithAuth>
+              <FhirUIProvider
+                renderer={MantineRenderer}
+                formatter={Formatter.build({
+                  systemsLabels: SystemLabels,
+                })}
+                onNavigate={({ target, aux }) => {
+                  if (aux) {
+                    window.open(target, "_blank");
+                  } else {
+                    router.push(target);
+                  }
                 }}
               >
-                <Navbar />
-                <AppShell.Main>
-                  <Component {...pageProps} />
-                </AppShell.Main>
-              </AppShell>
-              <ReactQueryDevtools position="bottom-right" />
-            </FhirUIProvider>
-          </WithAuth>
-        </SessionProvider>
-      </MantineProvider>
-    </>
+                <AppShell
+                  navbar={{
+                    width: 300,
+                    breakpoint: "sm",
+                  }}
+                  padding="md"
+                  styles={{
+                    main: {
+                      backgroundColor: "#F1F1F1",
+                    },
+                  }}
+                >
+                  <Navbar />
+                  <AppShell.Main>{children}</AppShell.Main>
+                </AppShell>
+                <ReactQueryDevtools position="bottom-right" />
+              </FhirUIProvider>
+            </WithAuth>
+          </SessionProvider>
+        </MantineProvider>
+      </body>
+    </html>
   );
 }
 
