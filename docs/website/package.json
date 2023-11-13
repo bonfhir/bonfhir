@@ -6,7 +6,7 @@
     "build": "docusaurus build --out-dir dist --no-minify",
     "check": "tsc",
     "clean": "docusaurus clear",
-    "deploy": "docusaurus deploy",
+    "deploy": "docusaurus deploy --out-dir dist --skip-build",
     "dev": "docusaurus start",
     "docusaurus": "docusaurus",
     "serve": "docusaurus serve --dir dist",
