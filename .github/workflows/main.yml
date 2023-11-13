@@ -63,3 +63,16 @@ jobs:
           git-config-name: gh-actions
           git-config-email: actions@github.com
 
+      - name: Authenticate SSH deploy key
+        uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY }}
+    
+      - name: Deploy website
+        env:
+          USE_SSH: true
+          DEPLOYMENT_BRANCH: main
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "gh-actions"
+          cd docs/website && pnpm run build && pnpm run deploy

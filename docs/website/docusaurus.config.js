@@ -6,15 +6,15 @@ const { themes } = require("prism-react-renderer");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "bonFHIR",
-  tagline:
-    "A collection of projects and libraries to help implement FHIR-based products and solutions.",
-  // TODO: Adjust here
+  tagline: "Easily harness the potential of FHIR in your apps",
+
   favicon: "img/favicon.ico",
   url: "https://bonfhir.dev",
   baseUrl: "/",
   organizationName: "bonfhir",
   projectName: "bonfhir.github.io",
-  onBrokenLinks: "throw",
+  trailingSlash: false,
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   i18n: {
     defaultLocale: "en",
