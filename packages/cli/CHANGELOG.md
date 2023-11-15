@@ -1,5 +1,15 @@
 # @bonfhir/cli
 
+## 2.7.0
+
+### Minor Changes
+
+- [#105](https://github.com/bonfhir/bonfhir/pull/105) [`b7eb3aae`](https://github.com/bonfhir/bonfhir/commit/b7eb3aaebe54e623270017e1ce1d11891089354b) Thanks [@ysael](https://github.com/ysael)! - Update nextjs template to support mantine 7
+
+- [#105](https://github.com/bonfhir/bonfhir/pull/105) [`4c5629c6`](https://github.com/bonfhir/bonfhir/commit/4c5629c699ec44b751ff087835db52d7060d4a2a) Thanks [@ysael](https://github.com/ysael)! - Update vite template to support mantine 7
+
+- [#105](https://github.com/bonfhir/bonfhir/pull/105) [`757b9683`](https://github.com/bonfhir/bonfhir/commit/757b968349ffb6488d514a28fe90cae99cfbfbbe) Thanks [@ysael](https://github.com/ysael)! - Fix CLI rollup script error
+
 ## 2.6.1
 
 ### Patch Changes
