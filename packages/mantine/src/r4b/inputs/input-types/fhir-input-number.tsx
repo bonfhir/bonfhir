@@ -18,12 +18,22 @@ export function MantineFhirInputNumber(
       max={props.max ?? undefined}
       step={props.step ?? undefined}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-
-      //TODO: precision does not seem to exist in Mantine v7
-      // precision={(props as any).precision}
-      onChange={(value: number | "") =>
-        props.onChange?.(value === "" ? undefined : value)
+      decimalScale={(props as any).precision}
+      value={props.value ?? undefined}
+      onChange={(value: string | number | "") =>
+        props.onChange?.(
+          value === ""
+            ? undefined
+            : typeof value === "string"
+            ? Number(value)
+            : value,
+        )
       }
+      styles={{
+        input: {
+          textAlign: "right",
+        },
+      }}
       {...props.rendererProps}
     />
   );

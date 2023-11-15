@@ -12,10 +12,12 @@ import type {
   FhirInputContactPointRenderer,
   FhirInputDateRenderer,
   FhirInputDateTimeRenderer,
+  FhirInputDurationRenderer,
   FhirInputHumanNameRenderer,
   FhirInputIdentifierRenderer,
   FhirInputMarkdownRenderer,
   FhirInputNumberRenderer,
+  FhirInputQuantityRenderer,
   FhirInputResourceRenderer,
   FhirInputStringRenderer,
   FhirInputTerminologyRenderer,
@@ -31,10 +33,12 @@ export interface FhirUIRenderer {
   FhirInputContactPoint: FhirInputContactPointRenderer;
   FhirInputDate: FhirInputDateRenderer;
   FhirInputDateTime: FhirInputDateTimeRenderer;
+  FhirInputDuration: FhirInputDurationRenderer;
   FhirInputIdentifier: FhirInputIdentifierRenderer;
   FhirInputHumanName: FhirInputHumanNameRenderer;
   FhirInputMarkdown: FhirInputMarkdownRenderer;
   FhirInputNumber: FhirInputNumberRenderer;
+  FhirInputQuantity: FhirInputQuantityRenderer;
   FhirInputResource: FhirInputResourceRenderer;
   FhirInputString: FhirInputStringRenderer;
   FhirInputTerminology: FhirInputTerminologyRenderer;

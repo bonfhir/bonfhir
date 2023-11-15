@@ -277,6 +277,20 @@ export const Decimal = {
 };
 
 /**
+ * Render FHIR [Duration](https://hl7.org/fhir/datatypes.html#Duration) input.
+ */
+export const Duration = {
+  args: {
+    type: "Duration",
+  },
+  argTypes: {
+    comparator: {
+      control: "boolean",
+    },
+  },
+};
+
+/**
  * Render FHIR [HumanName]((https://hl7.org/fhir/datatypes.html#HumanName) input.
  */
 export const HumanName = {
@@ -461,6 +475,41 @@ export const Resource = {
   argTypes: {
     resourceType: {
       control: "text",
+    },
+  },
+};
+
+/**
+ * Render FHIR [Quantity](https://hl7.org/fhir/datatypes.html#Quantity) input.
+ */
+export const Quantity = {
+  args: {
+    type: "Quantity",
+    decimal: {
+      precision: 2,
+    },
+  },
+  argTypes: {
+    comparator: {
+      control: "boolean",
+    },
+  },
+};
+
+/**
+ * Render FHIR [Quantity](https://hl7.org/fhir/datatypes.html#Quantity) input.
+ */
+export const Quantity_Fixed_Unit = {
+  args: {
+    type: "Quantity",
+    decimal: {
+      precision: 2,
+    },
+    unit: "mg/l",
+  },
+  argTypes: {
+    comparator: {
+      control: "boolean",
     },
   },
 };

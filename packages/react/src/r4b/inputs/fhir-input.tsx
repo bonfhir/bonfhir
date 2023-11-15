@@ -10,6 +10,8 @@ import {
   FhirInputDateProps,
   FhirInputDateTime,
   FhirInputDateTimeProps,
+  FhirInputDuration,
+  FhirInputDurationProps,
   FhirInputHumanName,
   FhirInputHumanNameProps,
   FhirInputIdentifier,
@@ -18,6 +20,8 @@ import {
   FhirInputMarkdownProps,
   FhirInputNumber,
   FhirInputNumberProps,
+  FhirInputQuantity,
+  FhirInputQuantityProps,
   FhirInputResource,
   FhirInputResourceProps,
   FhirInputString,
@@ -52,6 +56,9 @@ export function FhirInput<
     case "HumanName": {
       return <FhirInputHumanName<TRendererProps> {...props} />;
     }
+    case "Duration": {
+      return <FhirInputDuration<TRendererProps> {...props} />;
+    }
     case "Identifier": {
       return <FhirInputIdentifier<TRendererProps> {...props} />;
     }
@@ -64,6 +71,9 @@ export function FhirInput<
     case "positiveInt":
     case "unsignedInt": {
       return <FhirInputNumber<TRendererProps> {...props} />;
+    }
+    case "Quantity": {
+      return <FhirInputQuantity<TRendererProps> {...props} />;
     }
     case "Resource":
     case "Reference": {
@@ -100,10 +110,12 @@ export type FhirInputProps<
   | FhirInputContactPointProps<TRendererProps>
   | FhirInputDateProps<TRendererProps>
   | FhirInputDateTimeProps<TRendererProps>
+  | FhirInputDurationProps<TRendererProps>
   | FhirInputHumanNameProps<TRendererProps>
   | FhirInputIdentifierProps<TRendererProps>
   | FhirInputMarkdownProps<TRendererProps>
   | FhirInputNumberProps<TRendererProps>
+  | FhirInputQuantityProps<TRendererProps>
   | FhirInputResourceProps<TRendererProps, TResourceType>
   | FhirInputStringProps<TRendererProps>
   | FhirInputTerminologyProps<TRendererProps>
