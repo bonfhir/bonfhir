@@ -5,18 +5,23 @@ import {
   FhirTableRendererProps,
   useFhirUIContext,
 } from "@bonfhir/react/r5";
-import { Group, Table, TableProps, UnstyledButton } from "@mantine/core";
+import {
+  Group,
+  Table,
+  TableProps,
+  TableTbodyProps,
+  TableTdProps,
+  TableThProps,
+  TableTheadProps,
+  TableTrProps,
+  UnstyledButton,
+} from "@mantine/core";
 import {
   IconChevronDown,
   IconChevronUp,
   IconSelector,
 } from "@tabler/icons-react";
-import {
-  DetailedHTMLProps,
-  HTMLAttributes,
-  ReactElement,
-  createElement,
-} from "react";
+import { ReactElement, createElement } from "react";
 
 export function MantineFhirTable(
   props: FhirTableRendererProps<MantineFhirTableProps>,
@@ -29,13 +34,13 @@ export function MantineFhirTable(
       style={props.style}
       {...props.rendererProps?.table}
     >
-      <thead {...props.rendererProps?.thead}>
+      <Table.Thead {...props.rendererProps?.thead}>
         {props.rendererProps?.theadPrefix
           ? createElement(props.rendererProps.theadPrefix)
           : null}
-        <tr>
+        <Table.Tr>
           {props.columns.map((column) => (
-            <th
+            <Table.Th
               key={column.key}
               {...propsOrFunction(props.rendererProps?.th, column)}
             >
@@ -47,14 +52,14 @@ export function MantineFhirTable(
                   onSortChange: props.onSortChange,
                 },
               )}
-            </th>
+            </Table.Th>
           ))}
-        </tr>
-      </thead>
+        </Table.Tr>
+      </Table.Thead>
       {Boolean(props.rows) && (
-        <tbody {...props.rendererProps?.tbody}>
+        <Table.Tbody {...props.rendererProps?.tbody}>
           {props.rows?.map((row, index) => (
-            <tr
+            <Table.Tr
               key={index}
               onClick={() => {
                 props.onRowClick?.(row as any, index);
@@ -79,16 +84,16 @@ export function MantineFhirTable(
               {...propsOrFunction(props.rendererProps?.tr, row)}
             >
               {props.columns.map((column) => (
-                <td
+                <Table.Td
                   key={column.key}
                   {...propsOrFunction(props.rendererProps?.td, column, row)}
                 >
                   {column.render(row as any, index)}
-                </td>
+                </Table.Td>
               ))}
-            </tr>
+            </Table.Tr>
           ))}
-        </tbody>
+        </Table.Tbody>
       )}
     </Table>
   );
@@ -159,60 +164,19 @@ function propsOrFunction<TProps extends object>(
 
 export interface MantineFhirTableProps {
   table?: TableProps | null | undefined;
-  thead?:
-    | DetailedHTMLProps<
-        HTMLAttributes<HTMLTableSectionElement>,
-        HTMLTableSectionElement
-      >
-    | null
-    | undefined;
+  thead?: TableTheadProps | null | undefined;
   theadPrefix?: () => ReactElement;
   headerCell?: (props: MantineFhirTableHeaderProps) => ReactElement;
-  tbody?:
-    | DetailedHTMLProps<
-        HTMLAttributes<HTMLTableSectionElement>,
-        HTMLTableSectionElement
-      >
-    | null
-    | undefined;
+  tbody?: TableTbodyProps | null | undefined;
   th?:
-    | DetailedHTMLProps<
-        HTMLAttributes<HTMLTableCellElement>,
-        HTMLTableCellElement
-      >
-    | ((
-        column: FhirTableColumn<any>,
-      ) => DetailedHTMLProps<
-        HTMLAttributes<HTMLTableCellElement>,
-        HTMLTableCellElement
-      >)
+    | TableThProps
+    | ((column: FhirTableColumn<any>) => TableThProps)
     | null
     | undefined;
-  tr?:
-    | DetailedHTMLProps<
-        HTMLAttributes<HTMLTableRowElement>,
-        HTMLTableRowElement
-      >
-    | ((
-        row: any,
-      ) => DetailedHTMLProps<
-        HTMLAttributes<HTMLTableRowElement>,
-        HTMLTableRowElement
-      >)
-    | null
-    | undefined;
+  tr?: TableTrProps | ((row: any) => TableTrProps) | null | undefined;
   td?:
-    | DetailedHTMLProps<
-        HTMLAttributes<HTMLTableCellElement>,
-        HTMLTableCellElement
-      >
-    | ((
-        column: FhirTableColumn<any>,
-        row: any,
-      ) => DetailedHTMLProps<
-        HTMLAttributes<HTMLTableCellElement>,
-        HTMLTableCellElement
-      >)
+    | TableTdProps
+    | ((column: FhirTableColumn<any>, row: any) => TableTdProps)
     | null
     | undefined;
 }
