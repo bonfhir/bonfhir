@@ -1,5 +1,20 @@
 # @bonfhir/mantine
 
+## 3.1.0
+
+### Minor Changes
+
+- [#102](https://github.com/bonfhir/bonfhir/pull/102) [`54bdf542`](https://github.com/bonfhir/bonfhir/commit/54bdf5422579e6c9e21ea3431abc30f864fbde93) Thanks [@julienblin](https://github.com/julienblin)! - Update number input to right-align the numbers.
+
+- [#102](https://github.com/bonfhir/bonfhir/pull/102) [`99dfce30`](https://github.com/bonfhir/bonfhir/commit/99dfce304dc821fc3d16081926f9a603a9056e80) Thanks [@julienblin](https://github.com/julienblin)! - Fix #91 - Add Quantity input
+
+- [#102](https://github.com/bonfhir/bonfhir/pull/102) [`e3da6548`](https://github.com/bonfhir/bonfhir/commit/e3da65480416bb282024cfba72a84da28247301f) Thanks [@julienblin](https://github.com/julienblin)! - Fix #92 - Add Duration input
+
+### Patch Changes
+
+- Updated dependencies [[`99dfce30`](https://github.com/bonfhir/bonfhir/commit/99dfce304dc821fc3d16081926f9a603a9056e80), [`e3da6548`](https://github.com/bonfhir/bonfhir/commit/e3da65480416bb282024cfba72a84da28247301f)]:
+  - @bonfhir/react@2.8.0
+
 ## 3.0.0
 
 ### Major Changes

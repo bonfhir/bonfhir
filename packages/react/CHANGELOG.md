@@ -1,5 +1,13 @@
 # @bonfhir/react
 
+## 2.8.0
+
+### Minor Changes
+
+- [#102](https://github.com/bonfhir/bonfhir/pull/102) [`99dfce30`](https://github.com/bonfhir/bonfhir/commit/99dfce304dc821fc3d16081926f9a603a9056e80) Thanks [@julienblin](https://github.com/julienblin)! - Fix #91 - Add Quantity input
+
+- [#102](https://github.com/bonfhir/bonfhir/pull/102) [`e3da6548`](https://github.com/bonfhir/bonfhir/commit/e3da65480416bb282024cfba72a84da28247301f) Thanks [@julienblin](https://github.com/julienblin)! - Fix #92 - Add Duration input
+
 ## 2.7.0
 
 ### Minor Changes
