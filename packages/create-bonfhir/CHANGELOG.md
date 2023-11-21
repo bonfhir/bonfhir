@@ -1,5 +1,11 @@
 # create-bonfhir
 
+## 2.5.1
+
+### Patch Changes
+
+- [#108](https://github.com/bonfhir/bonfhir/pull/108) [`c62cc129`](https://github.com/bonfhir/bonfhir/commit/c62cc12961ab6878999460a2a165b458d3be3fdd) Thanks [@julienblin](https://github.com/julienblin)! - Add missing css imports since mantine v7 migration
+
 ## 2.5.0
 
 ### Minor Changes
