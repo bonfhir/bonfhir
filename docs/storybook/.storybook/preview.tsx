@@ -3,6 +3,8 @@ import { FhirQueryProvider } from "@bonfhir/query/r5";
 import { FhirUIProvider } from "@bonfhir/react/r5";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
+import "@mantine/tiptap/styles.css";
 import type { Preview } from "@storybook/react";
 import { mockClient } from "./mock-fhir-client";
 

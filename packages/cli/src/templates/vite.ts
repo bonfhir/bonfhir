@@ -358,6 +358,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 `;
 
 const APP_CONTENT = `import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
+import "@mantine/tiptap/styles.css";
 import { FetchFhirClient } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
