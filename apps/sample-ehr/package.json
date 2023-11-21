@@ -14,7 +14,7 @@
     "@bonfhir/core": "^2.16.1",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
-    "@bonfhir/mantine": "^3.1.0",
+    "@bonfhir/mantine": "^3.1.1",
     "@bonfhir/next": "^2.4.0",
     "@bonfhir/prettier-config": "workspace:*",
     "@bonfhir/query": "^2.5.0",

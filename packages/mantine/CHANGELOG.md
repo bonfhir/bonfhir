@@ -1,5 +1,11 @@
 # @bonfhir/mantine
 
+## 3.1.1
+
+### Patch Changes
+
+- [#108](https://github.com/bonfhir/bonfhir/pull/108) [`ce0ef910`](https://github.com/bonfhir/bonfhir/commit/ce0ef9101a5c779ba716d330dc2ad55b7d0a282a) Thanks [@julienblin](https://github.com/julienblin)! - Fix `FhirTable` sub-components to fit mantine v7
+
 ## 3.1.0
 
 ### Minor Changes
