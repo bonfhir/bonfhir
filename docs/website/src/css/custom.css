@@ -263,7 +263,7 @@
   --ifm-color-primary-lighter: #655b8c;
   --ifm-color-primary-lightest: #73689d;
   --ifm-color-secondary: #fdc022;
-  --ifm-navbar-background-color: #292A2B;
+  --ifm-navbar-background-color: #292a2b;
   --ifm-navbar-height: 5rem;
   --ifm-navbar-padding-horizontal: 2rem;
   --ifm-heading-font-family: "Signika", sans-serif;
@@ -312,3 +312,16 @@
   }
 }
 
+.container {
+  color: var(--ifm-font-color-primary);
+}
+
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6,
+.container p {
+  color: var(--ifm-font-color-primary);
+}

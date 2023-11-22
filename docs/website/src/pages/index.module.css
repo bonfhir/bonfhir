@@ -19,6 +19,12 @@ h2 {
   font-weight: 400;
 }
 
+h3 {
+  color: #f5f5f5;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 2rem;
+}
+
 h4 {
   color: #f5f5f5;
   font-family: var(--ifm-heading-font-family);
@@ -362,6 +368,10 @@ p {
       }
     }
   }
+}
+
+.packageDocs {
+  text-align: center;
 }
 
 /** Get in touch section */
