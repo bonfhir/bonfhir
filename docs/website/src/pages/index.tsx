@@ -50,7 +50,7 @@ function HomepageHeader() {
           <div>
             <Link
               className={classnames([styles.ctaButton, styles.learnMore])}
-              to="/"
+              to="/docs/intro"
             >
               Learn More
             </Link>
@@ -234,6 +234,11 @@ function BatteriesIncluded() {
               <p>{text}</p>
             </div>
           ))}
+        </div>
+        <div className={styles.packageDocs}>
+          <Link className={classnames([styles.ctaButton])} to="/packages/core">
+            View packages documentation
+          </Link>
         </div>
       </div>
     </div>

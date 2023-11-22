@@ -40,6 +40,22 @@ const config = {
     ],
   ],
 
+  plugins: [
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "packages",
+        path: "packages",
+        routeBasePath: "packages",
+        sidebarPath: require.resolve("./sidebars.js"),
+        editUrl: "https://github.com/bonfhir/bonfhir/tree/main/docs/website",
+        remarkPlugins: [
+          [require("@docusaurus/remark-plugin-npm2yarn"), { sync: true }],
+        ],
+      },
+    ],
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -58,16 +74,10 @@ const config = {
             label: "Get Started",
           },
           {
-            type: "docSidebar",
-            sidebarId: "getStartedSidebar",
+            to: "/packages/core",
             position: "right",
             label: "Packages Documentation",
-          },
-          {
-            type: "docSidebar",
-            sidebarId: "getStartedSidebar",
-            position: "right",
-            label: "Contributing",
+            activeBaseRegex: `/packages/`,
           },
           {
             href: "https://github.com/bonfhir/bonfhir",
@@ -82,6 +92,11 @@ const config = {
       },
       colorMode: {
         disableSwitch: true,
+      },
+      algolia: {
+        appId: "C444QI5SK7",
+        apiKey: "fc7d73ded65b514d4e2773653bc196c4",
+        indexName: "bonfhir",
       },
     }),
 };
