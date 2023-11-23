@@ -40,7 +40,7 @@ Load some test data
 >ReferenceError: fetch is not defined   
 
 ### Start building!
-Using the provided bonFHIR utilies and components start building! Here is a simple React example to get you started
+Using the provided bonFHIR utilities and components start building! Here is a simple React example to get you started
 
 ```javascript
 import { useFhirSearch } from "@bonfhir/query/r4b";
