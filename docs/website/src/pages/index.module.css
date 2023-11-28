@@ -77,6 +77,10 @@ p {
     > h4 {
       margin: 2rem 0;
     }
+
+    > svg {
+      height: 90px;
+    }
   }
 
   .presentationSectionItemDark {
