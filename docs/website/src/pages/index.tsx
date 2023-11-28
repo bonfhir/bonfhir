@@ -5,6 +5,7 @@ import SvgGears from "@site/static/img/home/gears.svg";
 import SvgBusinessMane from "@site/static/img/home/business_man.svg";
 import SvgComputerBooks from "@site/static/img/home/computer_books.svg";
 import SvgComputerDevices from "@site/static/img/home/computer_devices.svg";
+import SvgBrowserSlider from "@site/static/img/home/browser-slider.svg";
 import SvgBattery from "@site/static/img/home/battery.svg";
 import SvgAcn from "@site/static/img/home/acn_logo.svg";
 import SvgEnsage from "@site/static/img/home/ensage_logo.svg";
@@ -266,17 +267,17 @@ function GetInTouch() {
             {
               img: <SvgGears role="img" className={styles.darkSvg} />,
               title: "Team Services",
-              text: "Hire the developers that built BonFHIR to set up BonFHIR for you. ",
+              text: "Hire the creators of bonFHIR to design, implement and deliver the solution you have in mind. ",
             },
             {
-              img: <SvgBusinessMane role="img" className={styles.darkSvg} />,
+              img: <SvgBrowserSlider role="img" className={styles.darkSvg} />,
               title: "Product Design",
               text: "Need help with the UX/UI of your interface? Add one of our Product Designers to your team.",
             },
             {
               img: <SvgBusinessMane role="img" className={styles.darkSvg} />,
               title: "Consulting",
-              text: "Need help with the UX/UI of your interface? Add one of our Product Designers to your team.",
+              text: "Our technical consultants can help you understand how and where bonFHIR can be integrated with your current environment.",
             },
           ]}
           theme={"dark"}
