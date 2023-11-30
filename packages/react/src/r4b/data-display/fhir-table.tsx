@@ -12,8 +12,8 @@ export interface FhirTableProps<
   TRow = TData extends BundleNavigator<infer TResource>
     ? WithResolvableReferences<Retrieved<TResource>>
     : TData extends Array<infer TArrayElement>
-    ? TArrayElement
-    : never,
+      ? TArrayElement
+      : never,
 > {
   data: TData | undefined;
   className?: string | undefined;
@@ -41,8 +41,8 @@ export function FhirTable<
   TRow = TData extends BundleNavigator<infer TResource>
     ? WithResolvableReferences<Retrieved<TResource>>
     : TData extends Array<infer TArrayElement>
-    ? TArrayElement
-    : never,
+      ? TArrayElement
+      : never,
 >(
   props: FhirTableProps<TData, TRendererProps, TRow>,
 ): ReactElement<any, any> | null {

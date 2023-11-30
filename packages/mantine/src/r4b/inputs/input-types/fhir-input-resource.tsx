@@ -47,7 +47,7 @@ export function MantineFhirInputResource(
           ? `${props.value.resourceType}/${props.value.id}`
           : undefined
       }
-      onChange={(value: string) => {
+      onChange={(value) => {
         const resource = value
           ? data.find(
               (x) => value === `${x.resource?.resourceType}/${x.resource?.id}`,

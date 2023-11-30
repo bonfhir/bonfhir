@@ -52,8 +52,8 @@ export function FhirQuestionnaire<TRendererProps = any>(
     typeof props.source === "string"
       ? questionnaireQuery.data
       : isResource("Questionnaire", props.source)
-      ? props.source
-      : props.source?.data;
+        ? props.source
+        : props.source?.data;
   const questionnaireResponse = props.initialValues
     ? isResource("QuestionnaireResponse", props.initialValues)
       ? props.initialValues

@@ -25,8 +25,8 @@ export function MantineFhirInputNumber(
           value === ""
             ? undefined
             : typeof value === "string"
-            ? Number(value)
-            : value,
+              ? Number(value)
+              : value,
         )
       }
       styles={{
