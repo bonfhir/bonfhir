@@ -118,10 +118,10 @@ export function MantineFhirInputIdentifier(
                       label: x.label || x.system,
                     }))}
                     value={props.value?.system}
-                    onChange={(system: string) =>
+                    onChange={(system) =>
                       props.onChange?.({
                         ...props.value,
-                        system,
+                        system: system ?? undefined,
                         type:
                           props.identifiers?.find((x) => x.system === system)
                             ?.type || undefined,
