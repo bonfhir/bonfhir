@@ -290,15 +290,15 @@ export type ResourceOf<T extends AnyResourceTypeOrCustomResource> =
   T extends AnyResourceType
     ? ExtractResource<T>
     : T extends CustomResourceClass
-    ? InstanceType<T>
-    : never;
+      ? InstanceType<T>
+      : never;
 
 export type ResourceTypeOf<T extends AnyResourceTypeOrCustomResource> =
   T extends AnyResourceType
     ? T
     : T extends CustomResourceClass
-    ? T["resourceType"]
-    : never;
+      ? T["resourceType"]
+      : never;
 
 export function resourceTypeOf<T extends AnyResourceTypeOrCustomResource>(
   value: T,

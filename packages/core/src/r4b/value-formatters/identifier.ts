@@ -125,12 +125,12 @@ export const identifierFormatter: ValueFormatter<
       options?.pattern === false
         ? undefined
         : options?.pattern == undefined
-        ? options?.systemsPatterns
-          ? options.systemsPatterns[value.system || ""] || ""
-          : DEFAULT_SYSTEMS_PATTERNS[value.system || ""] || ""
-        : typeof options?.pattern === "string"
-        ? options.pattern
-        : options?.pattern[system || ""] || "";
+          ? options?.systemsPatterns
+            ? options.systemsPatterns[value.system || ""] || ""
+            : DEFAULT_SYSTEMS_PATTERNS[value.system || ""] || ""
+          : typeof options?.pattern === "string"
+            ? options.pattern
+            : options?.pattern[system || ""] || "";
 
     const patternFormattedValue: string | undefined =
       options?.pattern === false

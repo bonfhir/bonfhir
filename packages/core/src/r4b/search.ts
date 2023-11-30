@@ -321,14 +321,14 @@ export class FhirSearchBuilder {
       typeof x === "string"
         ? encodeURIComponent(x)
         : this.isReference(x)
-        ? encodeURIComponent(x.reference!)
-        : encodeURIComponent(
-            `${x.type}/${
-              x.id?.startsWith(x.type + "/") // Let's be kind and auto-correct double type inclusions.
-                ? x.id.slice(x.type.length + 1)
-                : x.id
-            }`,
-          ),
+          ? encodeURIComponent(x.reference!)
+          : encodeURIComponent(
+              `${x.type}/${
+                x.id?.startsWith(x.type + "/") // Let's be kind and auto-correct double type inclusions.
+                  ? x.id.slice(x.type.length + 1)
+                  : x.id
+              }`,
+            ),
     );
 
     if (renderedParameterValues.length === 0) {

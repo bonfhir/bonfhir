@@ -76,12 +76,12 @@ export type WithResolvableReferences<T> = {
   [K in keyof T]: T[K] extends Function
     ? T[K]
     : T[K] extends Array<Resource> | undefined
-    ? Array<Resource> | undefined
-    : T[K] extends Reference<infer TTargetResource>
-    ? ResolvableReference<TTargetResource>
-    : T[K] extends Reference<infer TTargetResource> | undefined
-    ? ResolvableReference<TTargetResource> | undefined
-    : RecursiveResolvableReferences<T[K]>;
+      ? Array<Resource> | undefined
+      : T[K] extends Reference<infer TTargetResource>
+        ? ResolvableReference<TTargetResource>
+        : T[K] extends Reference<infer TTargetResource> | undefined
+          ? ResolvableReference<TTargetResource> | undefined
+          : RecursiveResolvableReferences<T[K]>;
 } & {
   revIncluded<TResource extends AnyResource>(
     select: (
@@ -101,12 +101,12 @@ export type RecursiveResolvableReferences<T> = {
   [K in keyof T]: T[K] extends Function
     ? T[K]
     : T[K] extends Array<Resource> | undefined
-    ? Array<Resource> | undefined
-    : T[K] extends Reference<infer TTargetResource>
-    ? ResolvableReference<TTargetResource>
-    : T[K] extends Reference<infer TTargetResource> | undefined
-    ? ResolvableReference<TTargetResource> | undefined
-    : RecursiveResolvableReferences<T[K]>;
+      ? Array<Resource> | undefined
+      : T[K] extends Reference<infer TTargetResource>
+        ? ResolvableReference<TTargetResource>
+        : T[K] extends Reference<infer TTargetResource> | undefined
+          ? ResolvableReference<TTargetResource> | undefined
+          : RecursiveResolvableReferences<T[K]>;
 };
 
 export class BundleNavigator<TResource extends Resource = Resource> {
