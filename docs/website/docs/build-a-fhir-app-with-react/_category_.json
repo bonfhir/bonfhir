@@ -1,0 +1,8 @@
+{
+  "label": "Build a FHIR app with React",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Create a simple FHIR web app using the Vite template. These guides will walk you through key BonFHIR concepts and every step of the process, from setup to a fully functional web app with tables and inputs."
+  }
+}
