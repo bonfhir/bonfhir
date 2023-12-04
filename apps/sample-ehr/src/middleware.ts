@@ -1,7 +1,6 @@
 import { Config } from "@/config";
 import { FetchFhirClient } from "@bonfhir/core/r4b";
 import { fhirSubscriptions } from "@bonfhir/next/r4b/server";
-import { communicationRequests } from "./subscriptions";
 
 export const config = {
   matcher: ["/api/fhir/subscriptions/:subscription*"],
@@ -20,5 +19,5 @@ export const middleware = fhirSubscriptions({
   baseUrl: Config.server.appBaseUrl,
   prefix: "/api/fhir/subscriptions",
   webhookSecret: Config.server.fhirSubscriptionsSecret,
-  subscriptions: [communicationRequests],
+  subscriptions: [],
 });

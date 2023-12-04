@@ -22,6 +22,40 @@ export const PatientIdentifierSystems: IdentifierSystem[] = [
     }),
     processValue: (value) => value.replaceAll(/\W/g, ""),
   },
+  {
+    system: "https://github.com/synthetichealth/synthea",
+    label: "Synthetic ID",
+  },
+  {
+    system: "http://hospital.smarthealthit.org",
+    label: "Medical Record Number",
+    type: codeableConcept({
+      code: "MR",
+      display: "Medical Record Number",
+      system: "http://terminology.hl7.org/CodeSystem/v2-0203",
+    }),
+  },
+  {
+    system: "urn:oid:2.16.840.1.113883.4.3.25",
+    label: "Driver's License",
+    type: codeableConcept({
+      code: "DL",
+      display: "Driver's License",
+      system: "http://terminology.hl7.org/CodeSystem/v2-0203",
+    }),
+    processValue: (value) => value.replaceAll(/\W/g, ""),
+  },
+  {
+    system:
+      "http://standardhealthrecord.org/fhir/StructureDefinition/passportNumber",
+    label: "Passport Number",
+    type: codeableConcept({
+      code: "PPN",
+      system: "http://terminology.hl7.org/CodeSystem/v2-0203",
+      display: "Passport Number",
+    }),
+    processValue: (value) => value.replaceAll(/\W/g, ""),
+  },
 ];
 
 export const SystemLabels = PatientIdentifierSystems.reduce(
