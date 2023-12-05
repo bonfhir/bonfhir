@@ -53,7 +53,7 @@ Let's start by retrieving a Patient and displaying some information about them.
    );
    ```
 
-6. BonFHIR comes with [Mantine](https://mantine.dev/) components ready to use for developing the application. We can now add additional information about the patient including their birthday, addresses and contact points. `FhirValue` will take care of all data formatting for us.
+6. BonFHIR components render using [Mantine](https://mantine.dev/) components - so you can mix & match with all Mantine components for layout and data presentation. We can now add additional information about the patient including their birthday, addresses and contact points. `FhirValue` will take care of all data formatting for us. Don't hesitate to play with options as well to explore formatting capabilities.
 
    ```tsx
    <Group>
