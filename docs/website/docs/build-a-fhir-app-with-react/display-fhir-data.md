@@ -98,7 +98,7 @@ export default function Home() {
               </Text>
               <Group>
                 <Text fw={600}>Birthday: </Text>
-                <FhirValue type="date" value={patient.birthDate} />
+                <FhirValue type="date" value={patient.birthDate} options={{ dateStyle: "full" }} />
               </Group>
               <Group>
                 <Text fw={600}>Address: </Text>
