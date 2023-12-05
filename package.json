@@ -1,11 +1,6 @@
 {
   "name": "bonfhir",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "docs/*"
-  ],
   "scripts": {
     "all": "pnpm build && pnpm check && pnpm test",
     "build": "turbo run build",
