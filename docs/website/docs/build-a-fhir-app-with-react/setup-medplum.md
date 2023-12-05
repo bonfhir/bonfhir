@@ -27,3 +27,5 @@ BonFHIR can connect to any FHIR-based API. For local development, BonFHIR is des
    ```
 
 5. Verify that patient data appears in MedPlum at http://localhost:8100/Patient
+
+   ![Example](../../static/img/docs/medplum.png)
