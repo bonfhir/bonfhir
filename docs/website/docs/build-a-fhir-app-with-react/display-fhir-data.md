@@ -58,7 +58,7 @@ Let's start by retrieving a Patient and displaying some information about them.
    ```tsx
    <Group>
       <Text fw={600}>Birthday: </Text>
-      <FhirValue type="date" value={patient.birthDate} />
+      <FhirValue type="date" value={patient.birthDate} options={{ dateStyle: "full" }} />
    </Group>
    <Group>
       <Text fw={600}>Address: </Text>
