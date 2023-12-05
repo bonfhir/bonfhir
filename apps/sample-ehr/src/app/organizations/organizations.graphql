@@ -1,0 +1,22 @@
+query ListOrganizations($name: String, $_count: Int, $_sort: String) {
+  OrganizationList(name: $name, _count: $_count, _sort: $_sort) {
+    resourceType
+    id
+    name
+    address {
+      use
+      type
+      text
+      line
+      city
+      state
+      postalCode
+      country
+    }
+    identifier {
+      use
+      system
+      value
+    }
+  }
+}

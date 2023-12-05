@@ -14,7 +14,11 @@ export const Config = {
       process.env.AUTH_CLIENT_SECRET ||
       "75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
     authSecret: process.env.AUTH_SECRET || "secret",
-    appBaseUrl: process.env.APP_BASE_URL || "http://host.docker.internal:3000",
+    appBaseUrl:
+      process.env.APP_BASE_URL ||
+      (process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://host.docker.internal:3000"),
     fhirSubscriptionsSecret: process.env.FHIR_SUBSCRIPTION_SECRET || "secret",
   },
 } as const;

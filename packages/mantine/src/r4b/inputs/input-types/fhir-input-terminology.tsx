@@ -30,14 +30,17 @@ export function MantineFhirInputTerminology(
   switch (props.type) {
     case "code": {
       value = props.value || "";
-      onChange = (value: string) => props.onChange?.(value || undefined);
+      onChange = (value: string | null) => {
+        props.onChange?.(value || undefined);
+      };
       break;
     }
     case "Coding": {
       value = props.value?.code || "";
-      onChange = (code: string) => {
+      onChange = (code: string | null) => {
         if (!code) {
-          return props.onChange?.(undefined);
+          props.onChange?.(undefined);
+          return;
         }
 
         const foundElement = props.data.find((x) => x.code === code);
@@ -49,27 +52,28 @@ export function MantineFhirInputTerminology(
           userSelected: true,
         };
 
-        return props.onChange?.(coding);
+        props.onChange?.(coding);
       };
       break;
     }
     case "CodeableConcept": {
       value = props.value?.coding?.[0]?.code || "";
-      onChange = (code: string) => {
+      onChange = (code: string | null) => {
         if (!code) {
-          return props.onChange?.(undefined);
+          props.onChange?.(undefined);
+          return;
         }
 
         const foundElement = props.data.find((x) => x.code === code);
 
         const codeableConceptValue = codeableConcept({
-          code,
+          code: code ?? undefined,
           system: foundElement?.system,
           display: foundElement?.display,
           userSelected: true,
         });
 
-        return props.onChange?.(codeableConceptValue);
+        props.onChange?.(codeableConceptValue);
       };
       break;
     }
@@ -78,7 +82,6 @@ export function MantineFhirInputTerminology(
   if (!props.mode || props.mode === "select") {
     return (
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
       <Select
         className={props.className}
         style={props.style}
@@ -92,6 +95,7 @@ export function MantineFhirInputTerminology(
         rightSection={props.loading ? <Loader size="1rem" /> : null}
         clearable={!props.required}
         value={value}
+        // @ts-expect-error - onChange type does not seem to propagate correctly.
         onChange={onChange}
         data={
           props.data.map((element) => ({

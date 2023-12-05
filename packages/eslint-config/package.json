@@ -21,13 +21,13 @@
   "main": "index.cjs",
   "dependencies": {
     "@bonfhir/eslint-plugin": "~2.0.2",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
-    "eslint": "^8.51.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-config-turbo": "^1.10.15",
-    "eslint-plugin-unicorn": "^48.0.1",
-    "prettier": "^3.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-turbo": "^1.10.16",
+    "eslint-plugin-unicorn": "^49.0.0",
+    "prettier": "^3.1.0",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
