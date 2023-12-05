@@ -2,46 +2,28 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Welcome to Bonfhir
 
-Let's discover **Docusaurus in less than 5 minutes**.
+BonFHIR is a collection of projects and libraries to help implement [FHIR](https://hl7.org/fhir/)-based products and solutions. Focus on building features by taking advantage of the comprehensive BonFHIR tooling that makes working with FHIR easier and faster:
 
-## Getting Started
+- React UI components and state management built for FHIR resources and common healthcare use cases
+- Type definitions for R4b and R5, including search builder parameters
+- Localized formatters to present FHIR data in any language with support for names, dates, addresses and more
+- A FHIR client that supports FHIR subscriptions, bundle navigation, dynamic proxies, batch execution, GraphQL and more!
 
-Get started by **creating a new site**.
-
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Get started
 
 ### What you'll need
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+- [Node.js](https://nodejs.org/en/download/)
+- [Docker](https://docs.docker.com/desktop/)
 
-## Generate a new site
+### Where to start
 
-Generate a new Docusaurus site using the **classic template**.
+Start building your first FHIR client in 5 minutes by following this guide: **[Build a FHIR app with React](/docs/category/build-a-fhir-app-with-react)**.
 
-The classic template will automatically be added to your project after you run the command:
+Or select a template and start on your own:
 
-```bash
-npm init docusaurus@latest my-website classic
 ```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
+npm create bonfhir
 ```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
