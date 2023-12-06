@@ -2,7 +2,17 @@
  * This module is used to provide a set of utility functions for typescript
  */
 
-import { DomainResource, Period, Resource } from "./fhir-types.codegen";
+import { ResolvableReference } from ".";
+import { isReferenceOf } from "./builders";
+import {
+  AnyResourceType,
+  DomainResource,
+  ExtractResource,
+  Period,
+  Reference,
+  Resource,
+  isResource,
+} from "./fhir-types.codegen";
 
 /**
  * Returns the given `value` as is if it satisfies `Array.isArray` or otherwise
@@ -448,6 +458,49 @@ export function resourcesAreEqual(
   } = resourceB as DomainResource;
 
   return deepEqual(resourceAWithoutMeta, resourceBWithoutMeta);
+}
+
+/**
+ * Return undefined if the resource is not of the given type,
+ * or the resource itself if it is, properly typed.
+ */
+export function asResource<TResourceType extends AnyResourceType>(
+  type: TResourceType,
+  resource: Resource | null | undefined,
+): ExtractResource<TResourceType> | undefined {
+  return isResource(type, resource) ? resource : undefined;
+}
+
+/**
+ * Iterate over the given array of references and return the first one that is of the given type.
+ */
+export function findReference<TResourceType extends AnyResourceType>(
+  values: Array<Reference | null | undefined> | null | undefined,
+  type: TResourceType,
+): ResolvableReference<ExtractResource<TResourceType>> | undefined {
+  if (!values?.length) {
+    return undefined;
+  }
+
+  return values.find((x) => isReferenceOf(x, type)) as
+    | ResolvableReference<ExtractResource<TResourceType>>
+    | undefined;
+}
+
+/**
+ * Iterate over the given array of references and return all the references to the given type.
+ */
+export function findReferences<TResourceType extends AnyResourceType>(
+  values: Array<Reference | null | undefined> | null | undefined,
+  type: TResourceType,
+): ResolvableReference<ExtractResource<TResourceType>>[] {
+  if (!values?.length) {
+    return [];
+  }
+
+  return values.filter((x) => isReferenceOf(x, type)) as ResolvableReference<
+    ExtractResource<TResourceType>
+  >[];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

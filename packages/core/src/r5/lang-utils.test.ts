@@ -1,8 +1,12 @@
+/* eslint-disable unicorn/no-null */
 import { build } from "./builders";
-import { Resource } from "./fhir-types.codegen";
+import { AnyResourceType, Reference, Resource } from "./fhir-types.codegen";
 import {
   asArray,
+  asResource,
   cleanFhirValues,
+  findReference,
+  findReferences,
   resourcesAreEqual,
   truncate,
   urlSafeConcat,
@@ -109,5 +113,62 @@ describe("lang-utils", () => {
         expect(resourcesAreEqual(a, b)).toEqual(expected);
       },
     );
+  });
+
+  describe("asResource", () => {
+    it.each([
+      ["Patient", undefined, undefined],
+      ["Patient", null, undefined],
+      ["Patient", {} as Resource, undefined],
+      ["Patient", { resourceType: "Appointment" }, undefined],
+      ["Patient", { resourceType: "Patient" }, { resourceType: "Patient" }],
+    ] satisfies Array<[AnyResourceType, Resource | null | undefined, unknown]>)(
+      "%p == %p",
+      (type, value, expected) => {
+        expect(asResource(type, value)).toEqual(expected);
+      },
+    );
+  });
+
+  describe("findReference", () => {
+    it.each([
+      ["Patient", undefined, undefined],
+      ["Patient", null, undefined],
+      ["Patient", [], undefined],
+      [
+        "Patient",
+        [
+          { reference: "Appointment/2" },
+          { reference: "Patient/1" },
+          { reference: "Patient/2" },
+        ],
+        { reference: "Patient/1" },
+      ],
+    ] satisfies Array<
+      [AnyResourceType, Reference[] | null | undefined, unknown]
+    >)("%p == %p", (type, value, expected) => {
+      expect(findReference(value, type)).toEqual(expected);
+    });
+  });
+
+  describe("findReferences", () => {
+    it.each([
+      ["Patient", undefined, []],
+      ["Patient", null, []],
+      ["Patient", [], []],
+      [
+        "Patient",
+        [
+          { reference: "Appointment/2" },
+          { reference: "Patient/1" },
+          { reference: "Patient/2" },
+        ],
+        [{ reference: "Patient/1" }, { reference: "Patient/2" }],
+      ],
+    ] satisfies Array<
+      [AnyResourceType, Reference[] | null | undefined, unknown]
+    >)("%p == %p", (type, value, expected) => {
+      expect(findReferences(value, type)).toEqual(expected);
+    });
   });
 });
