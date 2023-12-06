@@ -119,9 +119,8 @@ export default function Patients() {
                         value={patient.birthDate}
                         options={{
                           dateStyle: "medium",
-                          decorator: `{} (${duration.age(
-                            patient?.birthDate,
-                          )}yo)`,
+                          decorator: `{} (${duration.age(patient?.birthDate)
+                            ?.value}yo)`,
                         }}
                       />
                     </>
