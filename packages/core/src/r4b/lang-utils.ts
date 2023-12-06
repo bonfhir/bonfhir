@@ -460,6 +460,17 @@ export function resourcesAreEqual(
   return deepEqual(resourceAWithoutMeta, resourceBWithoutMeta);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function deepEqual(x: any, y: any): boolean {
+  const ok = Object.keys,
+    tx = typeof x,
+    ty = typeof y;
+  return x && y && tx === "object" && tx === ty
+    ? ok(x).length === ok(y).length &&
+        ok(x).every((key) => deepEqual(x[key], y[key]))
+    : x === y;
+}
+
 /**
  * Return undefined if the resource is not of the given type,
  * or the resource itself if it is, properly typed.
@@ -503,13 +514,56 @@ export function findReferences<TResourceType extends AnyResourceType>(
   >[];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function deepEqual(x: any, y: any): boolean {
-  const ok = Object.keys,
-    tx = typeof x,
-    ty = typeof y;
-  return x && y && tx === "object" && tx === ty
-    ? ok(x).length === ok(y).length &&
-        ok(x).every((key) => deepEqual(x[key], y[key]))
-    : x === y;
+/**
+ * Handles https://hl7.org/fhir/formats.html#choice.
+ * Execute the proper function based on the presence of the value in the
+ * choice of data types identified by the prefix.
+ *
+ * @example
+ *
+ * const result = choiceOfDataTypes(condition, "onset", {
+ *   dateTime: (value: string) => value + " as dateTime",
+ *   string: (value: string) => value + " as string",
+ *   Period: (value: Period) => value + " as Period",
+ * });
+ */
+export function choiceOfDataTypes<TParent, TPrefix extends string, TResult>(
+  parent: TParent | null | undefined,
+  prefix: TPrefix,
+  options: ChoiceOfDataTypesOptions<TParent, TPrefix, TResult>,
+): TResult | undefined {
+  if (!parent) {
+    return undefined;
+  }
+
+  const value = Object.entries(parent).find(
+    // eslint-disable-next-line unicorn/no-null
+    ([k, v]) => k.startsWith(prefix) && v != null,
+  );
+  if (!value) {
+    return undefined;
+  }
+
+  const suffix = value[0].slice(prefix.length);
+  const optionKey = (suffix.charAt(0).toLowerCase() +
+    suffix.slice(1)) as keyof ChoiceOfDataTypesOptions<
+    TParent,
+    TPrefix,
+    TResult
+  >;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (options[optionKey] as any)?.(
+    value[1] as TParent[TPrefix & keyof TParent],
+  ) as TResult;
 }
+
+export type ChoiceOfDataTypesOptions<
+  TParent,
+  TPrefix extends string,
+  TResult,
+> = {
+  [K in keyof TParent as K extends `${TPrefix}${infer TRest}`
+    ? Uncapitalize<TRest>
+    : never]: (value: NonNullable<TParent[K]>) => TResult;
+};

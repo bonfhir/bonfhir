@@ -86,12 +86,13 @@ export default function Conditions() {
                 },
                 {
                   key: "onset-date",
-                  title: "Onset Date",
+                  title: "Onset",
                   sortable: true,
                   render: (condition) => (
                     <FhirValue
-                      type="dateTime"
-                      value={condition.onsetDateTime}
+                      type="choice"
+                      value={condition}
+                      options={{ prefix: "onset" }}
                     />
                   ),
                 },

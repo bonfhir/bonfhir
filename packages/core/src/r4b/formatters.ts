@@ -6,6 +6,7 @@ import {
   ageFormatter,
   booleanFormatter,
   canonicalFormatter,
+  choiceFormatter,
   codeFormatter,
   codeableConceptFormatter,
   codingFormatter,
@@ -38,7 +39,7 @@ import {
   uriFormatter,
   urlFormatter,
   uuidFormatter,
-} from "./value-formatters/index";
+} from "./value-formatters";
 
 /**
  * A value formatter is a function that takes a value and returns a string.
@@ -152,6 +153,7 @@ export class Formatter {
       .register(ageFormatter)
       .register(booleanFormatter)
       .register(canonicalFormatter)
+      .register(choiceFormatter)
       .register(codeFormatter)
       .register(codeableConceptFormatter)
       .register(codingFormatter)
@@ -312,6 +314,7 @@ export type DefaultFormatterParameters =
   | ValueFormatterParameters<typeof ageFormatter>
   | ValueFormatterParameters<typeof booleanFormatter>
   | ValueFormatterParameters<typeof canonicalFormatter>
+  | ValueFormatterParameters<typeof choiceFormatter>
   | ValueFormatterParameters<typeof codeFormatter>
   | ValueFormatterParameters<typeof codeableConceptFormatter>
   | ValueFormatterParameters<typeof codingFormatter>
