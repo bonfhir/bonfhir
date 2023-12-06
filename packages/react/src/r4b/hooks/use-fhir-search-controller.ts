@@ -40,6 +40,15 @@ export interface UseFhirSearchControllerArgs<
     | UseFhirSearchControllerStateManager<TSort, TSearch>
     | null
     | undefined;
+  /**
+   * This gets call when the values are initially restored.
+   * Can be used to set values for a controlled form, for example, when the state manager
+   * gets restored from a URL search param.
+   */
+  initialValues?: (
+    sort: TSort | undefined,
+    search: TSearch | undefined,
+  ) => unknown;
 }
 
 export type UseFhirSearchControllerStateManager<
@@ -64,10 +73,19 @@ export function useFhirSearchController<
   const [state, setState] = useState<
     UseFhirSearchControllerState<TSort, TSearch> | undefined
   >();
+  const [initialValuesCall, setInitialValuesCall] = useState(false);
 
   useEffect(() => {
     if (!state) {
       setState(args?.stateManager?.[0]);
+
+      if (!initialValuesCall) {
+        setInitialValuesCall(true);
+        args?.initialValues?.(
+          args?.stateManager?.[0]?.sort,
+          args?.stateManager?.[0]?.search,
+        );
+      }
     }
   }, [state, args?.stateManager?.[0]]);
 

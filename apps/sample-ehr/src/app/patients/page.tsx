@@ -10,10 +10,18 @@ import {
   FhirTable,
   FhirValue,
 } from "@bonfhir/react/r4b";
-import { Box, Button, Flex, Paper, Stack } from "@mantine/core";
+import { Box, Button, Flex, Group, Paper, Stack } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 
 export default function Patients() {
+  const form = useFhirForm({
+    initialValues: {
+      patientName: "",
+      practitioner: "",
+      managingOrganization: "",
+    },
+  });
+
   const searchController = useFhirSearchControllerNext<
     PatientSortOrder,
     {
@@ -28,13 +36,12 @@ export default function Patients() {
       practitioner: undefined,
       managingOrganization: undefined,
     },
-  });
-
-  const form = useFhirForm({
-    initialValues: {
-      patientName: "",
-      practitioner: "",
-      managingOrganization: "",
+    initialValues(_, search) {
+      form.setValues({
+        patientName: search?.patientName ?? "",
+        practitioner: search?.practitioner ?? "",
+        managingOrganization: search?.managingOrganization ?? "",
+      });
     },
   });
 
@@ -86,10 +93,12 @@ export default function Patients() {
                 style={{ width: "100%" }}
                 {...form.getInputProps("managingOrganization")}
               />
-              <Button type="submit" leftSection={<IconSearch />}>
-                Search
-              </Button>
-              <Button onClick={handleReset}>Reset</Button>
+              <Group grow preventGrowOverflow={false} wrap="nowrap">
+                <Button type="submit" leftSection={<IconSearch />}>
+                  Search
+                </Button>
+                <Button onClick={handleReset}>Reset</Button>
+              </Group>
             </Flex>
           </form>
         </Box>
