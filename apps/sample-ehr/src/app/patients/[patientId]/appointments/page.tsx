@@ -1,12 +1,10 @@
 "use client";
 import {
   Appointment,
-  AppointmentParticipant,
   AppointmentSortOrder,
   BundleNavigator,
-  Practitioner,
   Retrieved,
-  isReferenceOf,
+  findReference,
 } from "@bonfhir/core/r4b";
 import { useFhirSearchControllerNext } from "@bonfhir/next/r4b/client";
 import { useFhirSearch } from "@bonfhir/query/r4b";
@@ -57,7 +55,8 @@ export default function Appointments() {
         ._total("accurate")
         ._count(pastAppointmentsSearchController.pageSize)
         ._sort(pastAppointmentsSearchController.sort)
-        ._include("Appointment", "actor"),
+        ._include("Appointment", "actor")
+        ._include("Appointment", "location"),
     pastAppointmentsSearchController.pageUrl,
   );
 
@@ -97,7 +96,7 @@ function AppointmentTable({
             {
               key: "appointmentType",
               title: "Appointment Type",
-              render: (appointment: Appointment) => (
+              render: (appointment) => (
                 <FhirValue
                   type="CodeableConcept"
                   value={appointment.appointmentType}
@@ -108,46 +107,45 @@ function AppointmentTable({
               key: "date",
               title: "Scheduled Time",
               sortable: true,
-              render: (appointment: Appointment) => (
+              render: (appointment) => (
                 <FhirValue type="dateTime" value={appointment.start} />
               ),
             },
             {
               key: "status",
               title: "Status",
-              render: (appointment: Appointment) => (
+              render: (appointment) => (
                 <FhirValue type="string" value={appointment.status} />
               ),
             },
             {
               key: "participant",
               title: "Provider",
-              render: (appointment: Appointment) => (
-                <FhirValue
-                  type="HumanName"
-                  value={
-                    (
-                      appointment.participant
-                        .find((participant: AppointmentParticipant) =>
-                          isReferenceOf(participant.actor, "Practitioner"),
-                        )
-                        // @ts-expect-error see https://github.com/bonfhir/bonfhir/issues/112
-                        ?.actor?.included() as Practitioner
-                    )?.name
-                  }
-                />
-              ),
+              render: (appointment) => {
+                return (
+                  <FhirValue
+                    type="HumanName"
+                    value={
+                      findReference(
+                        appointment.participant?.map((p) => p?.actor),
+                        "Practitioner",
+                      )?.included()?.name
+                    }
+                  />
+                );
+              },
             },
             {
               key: "location",
               title: "Location",
-              render: (appointment: Appointment) => (
+              render: (appointment) => (
                 <FhirValue
-                  type="Reference"
+                  type="string"
                   value={
-                    appointment.participant.find((participant) =>
-                      isReferenceOf(participant.actor, "Location"),
-                    )?.actor
+                    findReference(
+                      appointment.participant?.map((p) => p?.actor),
+                      "Location",
+                    )?.included()?.name
                   }
                 />
               ),
