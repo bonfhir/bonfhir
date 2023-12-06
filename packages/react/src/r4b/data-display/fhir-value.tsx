@@ -35,6 +35,7 @@ export type DefaultFormatterParametersProps =
   | ValueFormatterParametersAsProps<typeof valueFormatters.ageFormatter>
   | ValueFormatterParametersAsProps<typeof valueFormatters.booleanFormatter>
   | ValueFormatterParametersAsProps<typeof valueFormatters.canonicalFormatter>
+  | ValueFormatterParametersAsProps<typeof valueFormatters.choiceFormatter>
   | ValueFormatterParametersAsProps<typeof valueFormatters.codeFormatter>
   | ValueFormatterParametersAsProps<
       typeof valueFormatters.codeableConceptFormatter

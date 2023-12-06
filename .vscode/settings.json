@@ -71,6 +71,7 @@
     "tanstack",
     "tiptap",
     "UCUM",
+    "Uncapitalize",
     "vread"
   ],
   "eslint.workingDirectories": ["apps/*", "packages/*"],

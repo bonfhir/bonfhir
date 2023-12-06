@@ -4,6 +4,7 @@ import { AnyResourceType, Reference, Resource } from "./fhir-types.codegen";
 import {
   asArray,
   asResource,
+  choiceOfDataTypes,
   cleanFhirValues,
   findReference,
   findReferences,
@@ -169,6 +170,43 @@ describe("lang-utils", () => {
       [AnyResourceType, Reference[] | null | undefined, unknown]
     >)("%p == %p", (type, value, expected) => {
       expect(findReferences(value, type)).toEqual(expected);
+    });
+  });
+
+  describe("choiceOfDataTypes", () => {
+    it("return undefined when no value", () => {
+      const condition = build("Condition", {
+        clinicalStatus: { text: "unknown" },
+        subject: {},
+      });
+
+      const result = choiceOfDataTypes(condition, "onset", {});
+      expect(result).toBeUndefined();
+    });
+
+    it("return undefined when no options", () => {
+      const condition = build("Condition", {
+        clinicalStatus: { text: "unknown" },
+        subject: {},
+        onsetDateTime: "2020-01-01",
+      });
+
+      const result = choiceOfDataTypes(condition, "onset", {});
+      expect(result).toBeUndefined();
+    });
+
+    it("return value", () => {
+      const condition = build("Condition", {
+        clinicalStatus: { text: "unknown" },
+        subject: {},
+        onsetDateTime: "2020-01-01",
+      });
+
+      const result = choiceOfDataTypes(condition, "onset", {
+        dateTime: (value: string) => value + "dateTime",
+        string: (value: string) => value + "string",
+      });
+      expect(result).toEqual("2020-01-01dateTime");
     });
   });
 });

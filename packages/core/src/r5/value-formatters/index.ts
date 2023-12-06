@@ -2,6 +2,7 @@ export * from "./address";
 export * from "./age";
 export * from "./boolean";
 export * from "./canonical";
+export * from "./choice";
 export * from "./code";
 export * from "./codeable-concept";
 export * from "./coding";
