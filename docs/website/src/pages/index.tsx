@@ -46,9 +46,11 @@ function HomepageHeader() {
           <h2>Accelerate your healthcare app development</h2>
           <p className={styles.heroSubtitle}>
             <em>FHIR is awesome.</em> Let's face it though, getting started and
-            creating a FHIR solution can be quite daunting. Let BonFHIR help!
+            creating a FHIR solution can be quite daunting.
+            <br />
+            Let BonFHIR help!
           </p>
-          <div>
+          <div className={styles.ctaButtonParent}>
             <Link
               className={classnames([styles.ctaButton, styles.learnMore])}
               to="/docs/intro"
