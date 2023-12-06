@@ -5,7 +5,7 @@ body {
 h1 {
   font-family: var(--ifm-heading-font-family);
   color: #ffffff;
-  font-size: 4.25rem;
+  font-size: 4rem;
 
   @media (max-width: 997px) {
     font-size: 2.8rem;
@@ -61,6 +61,10 @@ p {
   text-decoration: none;
   text-transform: uppercase;
   padding: 1rem 1.75rem;
+}
+
+.ctaButtonParent {
+  margin-bottom: 1rem;
 }
 
 .presentationSection {
@@ -132,6 +136,7 @@ p {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      max-width: 500px;
       gap: 1.5rem;
 
       > * {
@@ -140,6 +145,8 @@ p {
 
       .heroSubtitle {
         font-size: 1.375rem;
+        margin-right: auto;
+        max-width: 400px;
       }
 
       .learnMore {
@@ -150,13 +157,17 @@ p {
   }
 
   .heroImageWrapper {
+    margin-left: 100px;
+
     @media (max-width: 1350px) {
       height: 17.25rem;
+      margin-left: 0;
       width: 34.5rem;
     }
 
     @media (max-width: 1175px) {
       height: 11.5rem;
+      margin-left: 0;
       width: 23rem;
     }
   }
