@@ -12,7 +12,6 @@ import {
   Loader,
   MantineProvider,
   createTheme,
-  rem,
 } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
@@ -44,13 +43,6 @@ const theme = createTheme({
         striped: true,
       },
     },
-  },
-  fontSizes: {
-    xs: rem(10),
-    sm: rem(12),
-    md: rem(14),
-    lg: rem(16),
-    xl: rem(18),
   },
   colors: {
     destructive: [
