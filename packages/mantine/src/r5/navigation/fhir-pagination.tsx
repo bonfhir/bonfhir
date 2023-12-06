@@ -37,11 +37,13 @@ export function MantineFhirPagination(
       {...props.rendererProps?.root}
     >
       <Group gap="xs" justify="center" {...props.rendererProps?.group}>
-        <Pagination.First />
+        <Pagination.First
+          disabled={!props.data?.linkUrl("first") || props.pageNumber <= 1}
+        />
         <Pagination.Previous />
         {props.renderedTextTemplate}
-        <Pagination.Next />
-        <Pagination.Last />
+        <Pagination.Next disabled={!props.data?.linkUrl("next")} />
+        <Pagination.Last disabled={!props.data?.linkUrl("last")} />
       </Group>
     </Pagination.Root>
   );
