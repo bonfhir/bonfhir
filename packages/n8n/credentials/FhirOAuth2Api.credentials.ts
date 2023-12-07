@@ -4,7 +4,7 @@ export class FhirOAuth2Api implements ICredentialType {
 	name = 'FhirOAuth2Api';
 	extends = ['oAuth2Api'];
 	displayName = 'Fhir OAuth2 API';
-	documentationUrl = '';
+	documentationUrl = 'https://www.medplum.com/docs/api/oauth';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Grant Type',
