@@ -1,53 +1,59 @@
 {
-    "name": "@bonfhir/n8n-nodes-bonfhir",
-    "version": "0.1.0",
-    "description": "BonFHIR node for n8n platform",
-    "keywords": [
-      "HL7",
-      "FHIR",
-      "BonFHIR",
-      "n8n-community-node-package"
+  "name": "@bonfhir/n8n-nodes-bonfhir",
+  "version": "0.1.0",
+  "description": "BonFHIR node for n8n platform",
+  "keywords": [
+    "HL7",
+    "FHIR",
+    "BonFHIR",
+    "n8n-community-node-package"
+  ],
+  "homepage": "https://bonfhir.dev/",
+  "bugs": {
+    "url": "https://github.com/bonfhir/bonfhir/issues"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonfhir/bonfhir.git",
+    "directory": "packages/n8n"
+  },
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/FhirOAuth2Api.credentials.js"
     ],
-    "homepage": "https://bonfhir.dev/",
-    "bugs": {
-      "url": "https://github.com/bonfhir/bonfhir/issues"
-    },
-    "license": "Apache-2.0",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/bonfhir/bonfhir.git",
-      "directory": "packages/n8n"
-    },
-    "scripts": {
-        "build": "tsc && gulp build:icons",
-        "dev": "tsc --watch",
-        "format": "prettier nodes credentials --write",
-        "lint": "eslint nodes credentials package.json",
-        "lintfix": "eslint nodes credentials package.json --fix",
-        "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
-    },
-    "files": [
-      "dist"
-    ],
-    "n8n": {
-        "n8nNodesApiVersion": 1,
-        "credentials": [
-            "dist/credentials/FhirOAuth2Api.credentials.js"
-        ],
-        "nodes": [
-            "dist/nodes/Fhir/Fhir.node.js"
-        ]
-    },
-    "devDependencies": {
-        "@types/express": "^4.17.6",
-        "@types/request-promise-native": "~1.0.15",
-        "@typescript-eslint/parser": "~5.45",
-        "eslint-plugin-n8n-nodes-base": "^1.11.0",
-        "gulp": "^4.0.2",
-        "n8n-core": "0.149.2",
-        "n8n-workflow": "0.131.2",
-        "prettier": "^2.7.1",
-        "typescript": "~4.8.4"
-    }
+    "nodes": [
+      "dist/nodes/Fhir/Fhir.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@bonfhir/codegen": "workspace:*",
+    "@bonfhir/eslint-config": "workspace:*",
+    "@bonfhir/eslint-plugin": "workspace:*",
+    "@bonfhir/prettier-config": "workspace:*",
+    "@bonfhir/typescript-config": "workspace:*",
+    "@types/express": "^4.17.6",
+    "@types/request-promise-native": "~1.0.15",
+    "eslint-plugin-n8n-nodes-base": "^1.11.0",
+    "gulp": "^4.0.2",
+    "n8n-core": "0.149.2",
+    "n8n-workflow": "0.131.2",
+    "typescript": "^5.2.2"
+  },
+  "prettier": "@bonfhir/prettier-config",
+  "eslintConfig": {
+    "extends": "@bonfhir/eslint-config"
+  }
 }
-  
