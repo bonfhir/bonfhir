@@ -19,12 +19,12 @@
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
     "@bonfhir/prettier-config": "workspace:*",
-    "@serverless/typescript": "^3.30.1",
-    "@types/aws-lambda": "^8.10.124",
-    "@types/node": "^20.10.3",
-    "serverless": "^3.35.2",
-    "serverless-esbuild": "^1.48.5",
-    "serverless-offline": "^13.2.0",
-    "typescript": "5.2.2"
+    "@serverless/typescript": "^3.38.0",
+    "@types/aws-lambda": "^8.10.130",
+    "@types/node": "^20.10.4",
+    "serverless": "^3.38.0",
+    "serverless-esbuild": "^1.50.0",
+    "serverless-offline": "^13.3.1",
+    "typescript": "5.3.3"
   }
 }

@@ -112,13 +112,13 @@ export function MantineFhirInputTerminology(
   if (props.mode === "radio") {
     return (
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
       <Radio.Group
         className={props.className}
         style={props.style}
         label={props.label}
         description={props.description}
         error={props.error}
+        // @ts-expect-error Mantine / TS types error
         placeholder={props.placeholder ?? undefined}
         required={Boolean(props.required)}
         value={value as any}
