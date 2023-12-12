@@ -15,8 +15,9 @@ import {
 } from "@bonfhir/core/r5";
 import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
 import { renderHook, waitFor } from "@testing-library/react";
-import { rest } from "msw";
+import { http } from "msw";
 import { setupServer } from "msw/node";
+import { setMaxListeners } from "node:events";
 import React, { PropsWithChildren } from "react";
 import {
   DEFAULT_FHIR_CLIENT,
@@ -47,6 +48,9 @@ import {
 } from "./index";
 
 globalThis.React = React;
+
+// This is a quirk of msw: https://github.com/mswjs/msw/issues/1911
+setMaxListeners(30);
 
 describe("hooks", () => {
   const CustomPatient = extendResource("Patient", {
@@ -133,37 +137,38 @@ describe("hooks", () => {
   const baseUrl = "http://example.com";
 
   const server = setupServer(
-    rest.get(`${baseUrl}/Patient/:patientId`, (req, res, ctx) => {
-      if (req.params.patientId === "not-found") {
-        return res(ctx.status(404));
+    http.get(`${baseUrl}/Patient/:patientId`, ({ params }) => {
+      if (params.patientId === "not-found") {
+        return new Response(undefined, { status: 404 });
       }
 
-      return res(
-        ctx.json(build("Patient", { id: req.params.patientId as string })),
+      return new Response(
+        JSON.stringify(build("Patient", { id: params.patientId as string })),
       );
     }),
 
-    rest.get(`${baseUrl}/Patient/:patientId/_history`, (_req, res, ctx) => {
-      return res(ctx.json({ resourceType: "Bundle", entry: [] }));
-    }),
+    http.get(
+      `${baseUrl}/Patient/:patientId/_history`,
+      () => new Response(JSON.stringify({ resourceType: "Bundle", entry: [] })),
+    ),
 
-    rest.get(
+    http.get(
       `${baseUrl}/Patient/:patientId/_history/:versionId`,
-      (req, res, ctx) => {
-        if (req.params.patientId === "not-found") {
-          return res(ctx.status(404));
+      ({ params }) => {
+        if (params.patientId === "not-found") {
+          return new Response(undefined, { status: 404 });
         }
 
-        return res(
-          ctx.json(build("Patient", { id: req.params.patientId as string })),
+        return new Response(
+          JSON.stringify(build("Patient", { id: params.patientId as string })),
         );
       },
     ),
 
-    rest.get(`${baseUrl}/Patient`, (req, res, ctx) => {
-      if (req.url.searchParams.get("_page_token")) {
-        return res(
-          ctx.json({
+    http.get(`${baseUrl}/Patient`, ({ request }) => {
+      if (new URL(request.url).searchParams.get("_page_token")) {
+        return new Response(
+          JSON.stringify({
             resourceType: "Bundle",
             type: "searchset",
             entry: [
@@ -196,92 +201,113 @@ describe("hooks", () => {
           },
         ],
       };
-      return res(ctx.json(bundle));
+      return new Response(JSON.stringify(bundle));
     }),
 
-    rest.get(`${baseUrl}/metadata`, async (_req, res, ctx) => {
-      return res(
-        ctx.json(build("CapabilityStatement", {} as CapabilityStatement)),
-      );
-    }),
-
-    rest.get(`${baseUrl}/ValueSet/$expand`, (req, res, ctx) => {
-      return res(
-        ctx.json({
-          resourceType: "ValueSet",
-          url: req.url.searchParams.get("url"),
-        }),
-      );
-    }),
-
-    rest.put(
-      `${baseUrl}/Organization/:organizationId`,
-      async (req, res, ctx) => {
-        return res(
-          ctx.json(
-            build("Organization", { id: req.params.organizationId as string }),
+    http.get(
+      `${baseUrl}/metadata`,
+      () =>
+        new Response(
+          JSON.stringify(
+            build("CapabilityStatement", {} as CapabilityStatement),
           ),
-        );
-      },
+        ),
     ),
 
-    rest.patch(`${baseUrl}/Patient/:patientId`, async (req, res, ctx) => {
-      return res(
-        ctx.json({ resourceType: "Patient", id: req.params.patientId }),
-      );
-    }),
+    http.get(
+      `${baseUrl}/ValueSet/$expand`,
+      ({ request }) =>
+        new Response(
+          JSON.stringify({
+            resourceType: "ValueSet",
+            url: new URL(request.url).searchParams.get("url"),
+          }),
+        ),
+    ),
 
-    rest.delete(`${baseUrl}/Patient/:patientId`, (_req, res, ctx) => {
-      return res(ctx.status(204));
-    }),
+    http.put(
+      `${baseUrl}/Organization/:organizationId`,
+      ({ params }) =>
+        new Response(
+          JSON.stringify(
+            build("Organization", { id: params.organizationId as string }),
+          ),
+        ),
+    ),
 
-    rest.post(`${baseUrl}/Organization`, async (req, res, ctx) => {
-      return res(ctx.json({ ...(await req.json<Organization>()), id: uuid() }));
-    }),
+    http.patch(
+      `${baseUrl}/Patient/:patientId`,
+      ({ params }) =>
+        new Response(
+          JSON.stringify({ resourceType: "Patient", id: params.patientId }),
+        ),
+    ),
 
-    rest.post(`${baseUrl}/Claim/$submit`, (_req, res, ctx) => {
-      return res(ctx.json({}));
-    }),
+    http.delete(
+      `${baseUrl}/Patient/:patientId`,
+      () => new Response(undefined, { status: 204 }),
+    ),
 
-    rest.post(`${baseUrl}/`, async (req, res, ctx) => {
-      const requestBundle = await req.json<Bundle>();
-      return res(
-        ctx.json({
+    http.post(
+      `${baseUrl}/Organization`,
+      async ({ request }) =>
+        new Response(
+          JSON.stringify({
+            ...((await request.json()) as Organization),
+            id: uuid(),
+          }),
+        ),
+    ),
+
+    http.post(
+      `${baseUrl}/Claim/$submit`,
+      () => new Response(JSON.stringify({})),
+    ),
+
+    http.post(`${baseUrl}/`, async ({ request }) => {
+      const requestBundle = (await request.json()) as Bundle;
+      return new Response(
+        JSON.stringify({
           resourceType: "Bundle",
           type: `${requestBundle.type}-response`,
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          entry: requestBundle.entry!.map(() => ({
+          entry: requestBundle.entry?.map(() => ({
             resource: {},
           })),
         }),
       );
     }),
 
-    rest.get(`${baseUrl}/Organization`, (_req, res, ctx) => {
-      return res(
-        ctx.json({ resourceType: "Bundle", type: "searchset", entry: [] }),
-      );
-    }),
-
-    rest.get(
-      `${baseUrl}/Patient/50e500d7-2afd-42a8-adb7-350489ea3e3c/$graph`,
-      async (_, res, ctx) => {
-        const bundle: Bundle = {
-          resourceType: "Bundle",
-          type: "collection",
-          entry: [],
-        };
-
-        return res(ctx.json(bundle));
-      },
+    http.get(
+      `${baseUrl}/Organization`,
+      () =>
+        new Response(
+          JSON.stringify({
+            resourceType: "Bundle",
+            type: "searchset",
+            entry: [],
+          }),
+        ),
     ),
 
-    rest.post(`${baseUrl}/$graphql`, async (req, res, ctx) => {
-      const { query, variables } = await req.json();
+    http.get(
+      `${baseUrl}/Patient/50e500d7-2afd-42a8-adb7-350489ea3e3c/$graph`,
+      () =>
+        new Response(
+          JSON.stringify({
+            resourceType: "Bundle",
+            type: "collection",
+            entry: [],
+          }),
+        ),
+    ),
+
+    http.post(`${baseUrl}/$graphql`, async ({ request }) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { query, variables } = (await request.json()) as any;
 
       if (variables?.id === "graphql-error") {
-        return res(
-          ctx.json({
+        return new Response(
+          JSON.stringify({
             errors: [
               {
                 message: "Not found",
@@ -303,8 +329,8 @@ describe("hooks", () => {
       }
 
       if (query.includes("OrganizationList")) {
-        return res(
-          ctx.json({
+        return new Response(
+          JSON.stringify({
             data: {
               OrganizationList: [
                 {
@@ -319,8 +345,8 @@ describe("hooks", () => {
         );
       }
 
-      return res(
-        ctx.json({
+      return new Response(
+        JSON.stringify({
           data: {
             Patient: {
               resourceType: "Patient",

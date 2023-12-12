@@ -1,6 +1,7 @@
 import { TypedDocumentNode } from "@graphql-typed-document-node/core";
-import { rest } from "msw";
+import { http } from "msw";
 import { setupServer } from "msw/node";
+import { setMaxListeners } from "node:events";
 import * as graphResultFixture from "../../fixtures/bundle-graph-result.fhir.json";
 import * as patientsListFixture from "../../fixtures/bundle-navigator.list-patients.test.fhir.json";
 import * as patientExample from "../../fixtures/patient-example.fhir.json";
@@ -19,6 +20,9 @@ import {
   Reference,
 } from "./fhir-types.codegen";
 import { uuid } from "./lang-utils";
+
+// This is a quirk of msw: https://github.com/mswjs/msw/issues/1911
+setMaxListeners(30);
 
 const CustomPatient = extendResource("Patient", {
   /** L'age de toto. */
@@ -102,117 +106,154 @@ describe("fetch-fhir-client", () => {
   const client: FhirClient = new FetchFhirClient({ baseUrl });
 
   const server = setupServer(
-    rest.get(`${baseUrl}/Patient/_history`, (_req, res, ctx) => {
-      return res(ctx.json({ resourceType: "Bundle", entry: [] }));
-    }),
-
-    rest.get(`${baseUrl}/Patient/:patientId`, (req, res, ctx) => {
-      if (req.params.patientId === "not-found") {
-        return res(ctx.status(404));
-      }
-
-      return res(ctx.json({ ...patientExample, id: req.params.patientId }));
-    }),
-
-    rest.get(
-      `${baseUrl}/Patient/:patientId/_history/:versionId`,
-      (req, res, ctx) => {
-        if (req.params.patientId === "not-found") {
-          return res(ctx.status(404));
-        }
-
-        return res(ctx.json({ ...patientExample, id: req.params.patientId }));
-      },
+    http.get(
+      `${baseUrl}/Patient/_history`,
+      () => new Response(JSON.stringify({ resourceType: "Bundle", entry: [] })),
     ),
 
-    rest.put(`${baseUrl}/Organization`, async (req, res, ctx) => {
-      return res(ctx.json({ ...(await req.json<Organization>()), id: uuid() }));
-    }),
-
-    rest.put(
-      `${baseUrl}/Organization/:organizationId`,
-      async (req, res, ctx) => {
-        return res(ctx.json(await req.json<Organization>()));
-      },
-    ),
-
-    rest.put(`${baseUrl}/Patient/:patientId`, async (req, res, ctx) => {
-      return res(ctx.json(await req.json<Patient>()));
-    }),
-
-    rest.patch(`${baseUrl}/Patient/:patientId`, async (req, res, ctx) => {
-      return res(ctx.json({ ...patientExample, id: req.params.patientId }));
-    }),
-
-    rest.delete(`${baseUrl}/Patient/:patientId`, (req, res, ctx) => {
-      if (req.params.patientId === "not-found") {
-        return res(ctx.status(404));
+    http.get(`${baseUrl}/Patient/:patientId`, ({ params }) => {
+      if (params.patientId === "not-found") {
+        return new Response(undefined, { status: 404 });
       }
 
-      return res(ctx.status(204));
-    }),
-
-    rest.get(`${baseUrl}/_history`, (_req, res, ctx) => {
-      return res(ctx.json({ resourceType: "Bundle", entry: [] }));
-    }),
-
-    rest.get(`${baseUrl}/Patient/:patientId/_history`, (_req, res, ctx) => {
-      return res(ctx.json({ resourceType: "Bundle", entry: [] }));
-    }),
-
-    rest.post(`${baseUrl}/Organization`, async (req, res, ctx) => {
-      return res(ctx.json({ id: uuid(), ...(await req.json<Organization>()) }));
-    }),
-
-    rest.post(`${baseUrl}/Patient`, async (req, res, ctx) => {
-      return res(ctx.json({ id: uuid(), ...(await req.json<Patient>()) }));
-    }),
-
-    rest.get(`${baseUrl}/`, (_req, res, ctx) => {
-      return res(ctx.json(patientsListFixture));
-    }),
-
-    rest.get(`${baseUrl}/Patient`, (req, res, ctx) => {
-      if (req.url.searchParams.get("_page_token")) {
-        return res(ctx.json({ resourceType: "Bundle" }));
-      }
-      return res(ctx.json(patientsListFixture));
-    }),
-
-    rest.get(`${baseUrl}/metadata`, async (_req, res, ctx) => {
-      return res(
-        ctx.json(build("CapabilityStatement", {} as CapabilityStatement)),
+      return new Response(
+        JSON.stringify({ ...patientExample, id: params.patientId }),
       );
     }),
 
-    rest.post(`${baseUrl}/`, (_req, res, ctx) => {
-      return res(ctx.json(patientsListFixture));
-    }),
+    http.get(
+      `${baseUrl}/Patient/:patientId/_history/:versionId`,
+      ({ params }) => {
+        if (params.patientId === "not-found") {
+          return new Response(undefined, { status: 404 });
+        }
 
-    rest.get(`${baseUrl}/$convert`, (_req, res, ctx) => {
-      return res(ctx.json(patientsListFixture));
-    }),
-
-    rest.post(`${baseUrl}/Claim/$submit`, async (_req, res, ctx) => {
-      return res(ctx.json(patientsListFixture));
-    }),
-
-    rest.post(
-      `${baseUrl}/Composition/:compositionId/$document`,
-      (_req, res, ctx) => {
-        return res(ctx.json(patientsListFixture));
+        return new Response(
+          JSON.stringify({ ...patientExample, id: params.patientId }),
+        );
       },
     ),
 
-    rest.get(`${baseUrl}/ValueSet/$expand`, (_req, res, ctx) => {
-      return res(ctx.json(patientsListFixture));
+    http.put(
+      `${baseUrl}/Organization`,
+      async ({ request }) =>
+        new Response(
+          JSON.stringify({
+            ...((await request.json()) as Organization),
+            id: uuid(),
+          }),
+        ),
+    ),
+
+    http.put(
+      `${baseUrl}/Organization/:organizationId`,
+      async ({ request }) => new Response(JSON.stringify(await request.json())),
+    ),
+
+    http.put(
+      `${baseUrl}/Patient/:patientId`,
+      async ({ request }) => new Response(JSON.stringify(await request.json())),
+    ),
+
+    http.patch(
+      `${baseUrl}/Patient/:patientId`,
+      ({ params }) =>
+        new Response(
+          JSON.stringify({ ...patientExample, id: params.patientId }),
+        ),
+    ),
+
+    http.delete(`${baseUrl}/Patient/:patientId`, ({ params }) => {
+      if (params.patientId === "not-found") {
+        return new Response(undefined, { status: 404 });
+      }
+      return new Response(undefined, { status: 204 });
     }),
 
-    rest.get(`${baseUrl}/ConceptMap`, (req, res, ctx) => {
-      const searchedUrl = req.url.searchParams.get("url");
+    http.get(
+      `${baseUrl}/_history`,
+      () => new Response(JSON.stringify({ resourceType: "Bundle", entry: [] })),
+    ),
+
+    http.get(
+      `${baseUrl}/Patient/:patientId/_history`,
+      () => new Response(JSON.stringify({ resourceType: "Bundle", entry: [] })),
+    ),
+
+    http.post(
+      `${baseUrl}/Organization`,
+      async ({ request }) =>
+        new Response(
+          JSON.stringify({
+            id: uuid(),
+            ...((await request.json()) as Organization),
+          }),
+        ),
+    ),
+
+    http.post(
+      `${baseUrl}/Patient`,
+      async ({ request }) =>
+        new Response(
+          JSON.stringify({
+            id: uuid(),
+            ...((await request.json()) as Patient),
+          }),
+        ),
+    ),
+
+    http.get(
+      `${baseUrl}/`,
+      () => new Response(JSON.stringify(patientsListFixture)),
+    ),
+
+    http.get(`${baseUrl}/Patient`, ({ request }) => {
+      if (new URL(request.url).searchParams.get("_page_token")) {
+        return new Response(JSON.stringify({ resourceType: "Bundle" }));
+      }
+      return new Response(JSON.stringify(patientsListFixture));
+    }),
+
+    http.get(
+      `${baseUrl}/metadata`,
+      () =>
+        new Response(
+          JSON.stringify(
+            build("CapabilityStatement", {} as CapabilityStatement),
+          ),
+        ),
+    ),
+
+    http.post(
+      `${baseUrl}/`,
+      () => new Response(JSON.stringify(patientsListFixture)),
+    ),
+
+    http.get(
+      `${baseUrl}/$convert`,
+      () => new Response(JSON.stringify(patientsListFixture)),
+    ),
+
+    http.post(
+      `${baseUrl}/Claim/$submit`,
+      () => new Response(JSON.stringify(patientsListFixture)),
+    ),
+
+    http.post(
+      `${baseUrl}/Composition/:compositionId/$document`,
+      () => new Response(JSON.stringify(patientsListFixture)),
+    ),
+
+    http.get(
+      `${baseUrl}/ValueSet/$expand`,
+      () => new Response(JSON.stringify(patientsListFixture)),
+    ),
+
+    http.get(`${baseUrl}/ConceptMap`, ({ request }) => {
+      const searchedUrl = new URL(request.url).searchParams.get("url");
       if (searchedUrl === "http://existingconceptmap") {
-        return res(
-          ctx.json(<Bundle>{
+        return new Response(
+          JSON.stringify(<Bundle>{
             resourceType: "Bundle",
             type: "searchset",
             entry: [
@@ -228,8 +269,8 @@ describe("fetch-fhir-client", () => {
         );
       }
 
-      return res(
-        ctx.json(<Bundle>{
+      return new Response(
+        JSON.stringify(<Bundle>{
           resourceType: "Bundle",
           type: "searchset",
           entry: [],
@@ -237,32 +278,38 @@ describe("fetch-fhir-client", () => {
       );
     }),
 
-    rest.post(`${baseUrl}/ConceptMap`, async (req, res, ctx) => {
-      return res(ctx.json({ id: uuid(), ...(await req.json<object>()) }));
-    }),
+    http.post(
+      `${baseUrl}/ConceptMap`,
+      async ({ request }) =>
+        new Response(
+          JSON.stringify({ id: uuid(), ...((await request.json()) as object) }),
+        ),
+    ),
 
-    rest.put(`${baseUrl}/ConceptMap/:conceptMapId`, async (req, res, ctx) => {
-      return res(ctx.json(await req.json()));
-    }),
+    http.put(
+      `${baseUrl}/ConceptMap/:conceptMapId`,
+      async ({ request }) => new Response(JSON.stringify(await request.json())),
+    ),
 
-    rest.get(
+    http.get(
       `${baseUrl}/Patient/50e500d7-2afd-42a8-adb7-350489ea3e3c/$graph`,
-      async (req, res, ctx) => {
-        const graph = req.url.searchParams.get("graph");
+      ({ request }) => {
+        const graph = new URL(request.url).searchParams.get("graph");
         if (graph !== "patient-with-appointments") {
           throw new Error(`Incorrect graph parameter: ${graph}`);
         }
 
-        return res(ctx.json(graphResultFixture));
+        return new Response(JSON.stringify(graphResultFixture));
       },
     ),
 
-    rest.post(`${baseUrl}/$graphql`, async (req, res, ctx) => {
-      const { query, variables } = await req.json();
+    http.post(`${baseUrl}/$graphql`, async ({ request }) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { query, variables } = (await request.json()) as any;
 
       if (variables?.id === "graphql-error") {
-        return res(
-          ctx.json({
+        return new Response(
+          JSON.stringify({
             errors: [
               {
                 message: "Not found",
@@ -284,8 +331,8 @@ describe("fetch-fhir-client", () => {
       }
 
       if (query.includes("OrganizationList")) {
-        return res(
-          ctx.json({
+        return new Response(
+          JSON.stringify({
             data: {
               OrganizationList: [
                 {
@@ -300,8 +347,8 @@ describe("fetch-fhir-client", () => {
         );
       }
 
-      return res(
-        ctx.json({
+      return new Response(
+        JSON.stringify({
           data: {
             Patient: {
               resourceType: "Patient",
