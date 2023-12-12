@@ -24,13 +24,12 @@ export const markdownFormatter: ValueFormatter<
 
     switch (options?.style) {
       case "bareString": {
-        return marked
-          .parse(value)
+        return (marked.parse(value) as string)
           .replaceAll(/<\/?[^>]+(>|$)/gi, "")
           .trim();
       }
       case "html": {
-        return marked.parse(value).trim();
+        return (marked.parse(value) as string).trim();
       }
       // eslint-disable-next-line unicorn/no-null
       case null:
