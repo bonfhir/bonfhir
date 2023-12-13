@@ -19,19 +19,32 @@ describe("extensions", () => {
     }),
   });
 
-  const CustomDiagnosticReport = extendResource("DiagnosticReport", {
-    cptCodes: extension({
-      url: "http://custom/cpt-codes",
-      kind: "valueCode",
-      allowMultiple: true,
-    }),
+  const CustomDiagnosticReport = extendResource(
+    "DiagnosticReport",
+    {
+      cptCodes: extension({
+        url: "http://custom/cpt-codes",
+        kind: "valueCode",
+        allowMultiple: true,
+      }),
 
-    visibility: tag({ system: "http://custom/visibility" }),
+      visibility: tag({ system: "http://custom/visibility" }),
 
-    isPubliclyVisible(): boolean {
-      return this.visibility?.code === "public";
+      isPubliclyVisible(): boolean {
+        return this.visibility?.code === "public";
+      },
     },
-  });
+    {
+      profile: "http://custom/diagnostic-report",
+      onFhirResource: (resource) => {
+        if (resource.code?.text) {
+          resource.code.text = resource.code.text.toUpperCase();
+        }
+
+        return resource;
+      },
+    },
+  );
 
   it("manage computed properties", () => {
     const patient = new CustomPatient({
@@ -108,7 +121,7 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "extension": [
             {
@@ -119,6 +132,11 @@ describe("extensions", () => {
           "text": {
             "status": "generated",
             "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+          },
+          "meta": {
+            "profile": [
+              "http://custom/diagnostic-report"
+            ]
           }
         }"
       `);
@@ -130,7 +148,7 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "extension": [
             {
@@ -144,7 +162,12 @@ describe("extensions", () => {
           ],
           "text": {
             "status": "generated",
-            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>DIAG</li><li><span>Status: </span>preliminary</li></ul></div>"
+          },
+          "meta": {
+            "profile": [
+              "http://custom/diagnostic-report"
+            ]
           }
         }"
       `);
@@ -157,11 +180,16 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "text": {
             "status": "generated",
-            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>DIAG</li><li><span>Status: </span>preliminary</li></ul></div>"
+          },
+          "meta": {
+            "profile": [
+              "http://custom/diagnostic-report"
+            ]
           }
         }"
       `);
@@ -182,7 +210,7 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "meta": {
             "tag": [
@@ -190,6 +218,9 @@ describe("extensions", () => {
                 "code": "public",
                 "system": "http://custom/visibility"
               }
+            ],
+            "profile": [
+              "http://custom/diagnostic-report"
             ]
           },
           "text": {
@@ -207,7 +238,7 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "meta": {
             "tag": [
@@ -215,11 +246,14 @@ describe("extensions", () => {
                 "code": "internal",
                 "system": "http://custom/visibility"
               }
+            ],
+            "profile": [
+              "http://custom/diagnostic-report"
             ]
           },
           "text": {
             "status": "generated",
-            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>DIAG</li><li><span>Status: </span>preliminary</li></ul></div>"
           }
         }"
       `);
@@ -231,11 +265,16 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
+          },
+          "meta": {
+            "profile": [
+              "http://custom/diagnostic-report"
+            ]
           },
           "text": {
             "status": "generated",
-            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>DIAG</li><li><span>Status: </span>preliminary</li></ul></div>"
           }
         }"
       `);
@@ -286,5 +325,54 @@ describe("extensions", () => {
         "birthSex",
       ]
     `);
+  });
+
+  it("merge meta", () => {
+    const diagnosticReport = new CustomDiagnosticReport({
+      status: "preliminary",
+      code: { text: "Diag" },
+      meta: {
+        source: "http://example.com",
+      },
+    });
+    expect(JSON.stringify(diagnosticReport, undefined, 2))
+      .toMatchInlineSnapshot(`
+        "{
+          "resourceType": "DiagnosticReport",
+          "status": "preliminary",
+          "code": {
+            "text": "DIAG"
+          },
+          "meta": {
+            "source": "http://example.com",
+            "profile": [
+              "http://custom/diagnostic-report"
+            ]
+          },
+          "text": {
+            "status": "generated",
+            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+          }
+        }"
+      `);
+  });
+
+  it("return the FHIR resource representation", () => {
+    const patient = new CustomPatient();
+    patient.birthSex = "OTH";
+
+    expect(patient.toFhirResource()).toMatchObject({
+      resourceType: "Patient",
+      extension: [
+        {
+          url: "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+          valueCode: "OTH",
+        },
+      ],
+      text: {
+        status: "generated",
+        div: '<div xmlns="http://www.w3.org/1999/xhtml"><ul></ul></div>',
+      },
+    });
   });
 });
