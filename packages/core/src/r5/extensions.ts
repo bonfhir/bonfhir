@@ -8,6 +8,7 @@ import {
   Meta,
   Resource,
 } from "./fhir-types.codegen";
+import { asArray } from "./lang-utils";
 import { narrative } from "./narratives.codegen";
 
 /**
@@ -19,6 +20,11 @@ export type CustomResourceClass<TResource extends Resource = Resource> = {
   new (json?: any): TResource;
 };
 
+export interface ExtendResourceOptions {
+  /** The FHIR profile(s) to apply to the final FHIR resource */
+  profile?: string | string[] | undefined;
+}
+
 export function extendResource<
   TResourceType extends AnyResourceType,
   TExtensions,
@@ -26,6 +32,7 @@ export function extendResource<
   resourceType: TResourceType,
   extensions: TExtensions &
     ThisType<ExtractResource<TResourceType> & TExtensions>,
+  options?: ExtendResourceOptions | undefined,
 ): {
   resourceType: typeof resourceType;
   new (
@@ -108,6 +115,12 @@ export function extendResource<
 
     toJSON(): this {
       (this as any).text = narrative(this as any);
+      if (options?.profile) {
+        (this as any).meta = {
+          ...(this as any).meta,
+          profile: asArray(options.profile),
+        };
+      }
       return Object.entries(this)
         .filter(([key]) => !specialExtensions[key])
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {} as any);

@@ -19,19 +19,25 @@ describe("extensions", () => {
     }),
   });
 
-  const CustomDiagnosticReport = extendResource("DiagnosticReport", {
-    cptCodes: extension({
-      url: "http://custom/cpt-codes",
-      kind: "valueCode",
-      allowMultiple: true,
-    }),
+  const CustomDiagnosticReport = extendResource(
+    "DiagnosticReport",
+    {
+      cptCodes: extension({
+        url: "http://custom/cpt-codes",
+        kind: "valueCode",
+        allowMultiple: true,
+      }),
 
-    visibility: tag({ system: "http://custom/visibility" }),
+      visibility: tag({ system: "http://custom/visibility" }),
 
-    isPubliclyVisible(): boolean {
-      return this.visibility?.code === "public";
+      isPubliclyVisible(): boolean {
+        return this.visibility?.code === "public";
+      },
     },
-  });
+    {
+      profile: "http://custom/diagnostic-report",
+    },
+  );
 
   it("manage computed properties", () => {
     const patient = new CustomPatient({
@@ -119,6 +125,11 @@ describe("extensions", () => {
           "text": {
             "status": "generated",
             "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+          },
+          "meta": {
+            "profile": [
+              "http://custom/diagnostic-report"
+            ]
           }
         }"
       `);
@@ -145,6 +156,11 @@ describe("extensions", () => {
           "text": {
             "status": "generated",
             "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+          },
+          "meta": {
+            "profile": [
+              "http://custom/diagnostic-report"
+            ]
           }
         }"
       `);
@@ -162,6 +178,11 @@ describe("extensions", () => {
           "text": {
             "status": "generated",
             "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+          },
+          "meta": {
+            "profile": [
+              "http://custom/diagnostic-report"
+            ]
           }
         }"
       `);
@@ -190,6 +211,9 @@ describe("extensions", () => {
                 "code": "public",
                 "system": "http://custom/visibility"
               }
+            ],
+            "profile": [
+              "http://custom/diagnostic-report"
             ]
           },
           "text": {
@@ -215,6 +239,9 @@ describe("extensions", () => {
                 "code": "internal",
                 "system": "http://custom/visibility"
               }
+            ],
+            "profile": [
+              "http://custom/diagnostic-report"
             ]
           },
           "text": {
@@ -232,6 +259,11 @@ describe("extensions", () => {
           "status": "preliminary",
           "code": {
             "text": "Diag"
+          },
+          "meta": {
+            "profile": [
+              "http://custom/diagnostic-report"
+            ]
           },
           "text": {
             "status": "generated",
@@ -286,5 +318,35 @@ describe("extensions", () => {
         "birthSex",
       ]
     `);
+  });
+
+  it("merge meta", () => {
+    const diagnosticReport = new CustomDiagnosticReport({
+      status: "preliminary",
+      code: { text: "Diag" },
+      meta: {
+        source: "http://example.com",
+      },
+    });
+    expect(JSON.stringify(diagnosticReport, undefined, 2))
+      .toMatchInlineSnapshot(`
+        "{
+          "resourceType": "DiagnosticReport",
+          "status": "preliminary",
+          "code": {
+            "text": "Diag"
+          },
+          "meta": {
+            "source": "http://example.com",
+            "profile": [
+              "http://custom/diagnostic-report"
+            ]
+          },
+          "text": {
+            "status": "generated",
+            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+          }
+        }"
+      `);
   });
 });
