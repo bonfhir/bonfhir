@@ -98,6 +98,14 @@ export default function EditPatient() {
                 );
               }}
             </FhirInputArray>
+            <Group>
+              <FhirInput
+                type="Reference"
+                label="Managing Organization"
+                resourceType="Organization"
+                {...form.getInputProps("managingOrganization")}
+              />
+            </Group>
             <SaveChangesButtons save={{ loading: form.mutation.isLoading }} />
           </Stack>
         </form>
