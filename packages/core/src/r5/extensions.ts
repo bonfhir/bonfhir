@@ -20,9 +20,16 @@ export type CustomResourceClass<TResource extends Resource = Resource> = {
   new (json?: any): TResource;
 };
 
-export interface ExtendResourceOptions {
+export interface ExtendResourceOptions<TResource extends Resource = Resource> {
   /** The FHIR profile(s) to apply to the final FHIR resource */
   profile?: string | string[] | undefined;
+
+  /**
+   * Called after the extension normalization to FHIR, but before the value is returned.
+   *
+   * This is useful for setting values programmatically.
+   */
+  onFhirResource?: (resource: TResource) => TResource;
 }
 
 export function extendResource<
@@ -32,7 +39,7 @@ export function extendResource<
   resourceType: TResourceType,
   extensions: TExtensions &
     ThisType<ExtractResource<TResourceType> & TExtensions>,
-  options?: ExtendResourceOptions | undefined,
+  options?: ExtendResourceOptions<ExtractResource<TResourceType>> | undefined,
 ): {
   resourceType: typeof resourceType;
   new (
@@ -113,17 +120,25 @@ export function extendResource<
       });
     }
 
-    toJSON(): this {
+    toJSON(): ExtractResource<TResourceType> {
       (this as any).text = narrative(this as any);
+
       if (options?.profile) {
         (this as any).meta = {
           ...(this as any).meta,
           profile: asArray(options.profile),
         };
       }
-      return Object.entries(this)
+
+      const value = Object.entries(this)
         .filter(([key]) => !specialExtensions[key])
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {} as any);
+
+      if (options?.onFhirResource) {
+        return options.onFhirResource(value);
+      }
+
+      return value;
     }
   } as any;
 

@@ -36,6 +36,13 @@ describe("extensions", () => {
     },
     {
       profile: "http://custom/diagnostic-report",
+      onFhirResource: (resource) => {
+        if (resource.code?.text) {
+          resource.code.text = resource.code.text.toUpperCase();
+        }
+
+        return resource;
+      },
     },
   );
 
@@ -114,7 +121,7 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "extension": [
             {
@@ -141,7 +148,7 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "extension": [
             {
@@ -155,7 +162,7 @@ describe("extensions", () => {
           ],
           "text": {
             "status": "generated",
-            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>DIAG</li><li><span>Status: </span>preliminary</li></ul></div>"
           },
           "meta": {
             "profile": [
@@ -173,11 +180,11 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "text": {
             "status": "generated",
-            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>DIAG</li><li><span>Status: </span>preliminary</li></ul></div>"
           },
           "meta": {
             "profile": [
@@ -203,7 +210,7 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "meta": {
             "tag": [
@@ -231,7 +238,7 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "meta": {
             "tag": [
@@ -246,7 +253,7 @@ describe("extensions", () => {
           },
           "text": {
             "status": "generated",
-            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>DIAG</li><li><span>Status: </span>preliminary</li></ul></div>"
           }
         }"
       `);
@@ -258,7 +265,7 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "meta": {
             "profile": [
@@ -267,7 +274,7 @@ describe("extensions", () => {
           },
           "text": {
             "status": "generated",
-            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>Diag</li><li><span>Status: </span>preliminary</li></ul></div>"
+            "div": "<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul><li><span>Code: </span>DIAG</li><li><span>Status: </span>preliminary</li></ul></div>"
           }
         }"
       `);
@@ -334,7 +341,7 @@ describe("extensions", () => {
           "resourceType": "DiagnosticReport",
           "status": "preliminary",
           "code": {
-            "text": "Diag"
+            "text": "DIAG"
           },
           "meta": {
             "source": "http://example.com",
