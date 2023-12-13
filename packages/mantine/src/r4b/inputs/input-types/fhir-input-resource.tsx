@@ -1,7 +1,8 @@
 import { Resource } from "@bonfhir/core/r4b";
-import { FhirInputResourceRendererProps } from "@bonfhir/react/r4b";
+import { FhirError, FhirInputResourceRendererProps } from "@bonfhir/react/r4b";
 import { Select, SelectProps } from "@mantine/core";
-import { ReactElement } from "react";
+import { usePrevious } from "@mantine/hooks";
+import { ReactElement, useEffect, useState } from "react";
 
 export function MantineFhirInputResource(
   props: FhirInputResourceRendererProps<MantineFhirInputResourceProps>,
@@ -13,6 +14,20 @@ export function MantineFhirInputResource(
       resource,
     }),
   );
+
+  // This is to track a reset event and reset the search as well.
+  const previousValue = usePrevious(props.value);
+  const [searchValue, setSearchValue] = useState("");
+
+  useEffect(() => {
+    if (!props.value && previousValue) {
+      setSearchValue("");
+    }
+  }, [props.value]);
+
+  if (props.error) {
+    return <FhirError error={props.error} />;
+  }
 
   return (
     <Select
@@ -28,25 +43,12 @@ export function MantineFhirInputResource(
       nothingFoundMessage="No results"
       clearable={!props.required}
       data={data}
-      //TODO itemComponent does not seem to exist in Mantine v7
-      // itemComponent={forwardRef<
-      //   HTMLDivElement,
-      //   MantineFhirInputResourceItemProps
-      // >(({ value: _, label: __, resource, ...others }, ref) => {
-      //   if (!resource) return null;
-      //   const rendered = props.display(resource);
-      //   return (
-      //     <div ref={ref} {...others}>
-      //       {typeof rendered === "string" ? <Text>{rendered}</Text> : rendered}
-      //     </div>
-      //   );
-      // })}
-      onSearchChange={props.onSearch}
-      value={
-        props.value
-          ? `${props.value.resourceType}/${props.value.id}`
-          : undefined
-      }
+      onSearchChange={(value) => {
+        setSearchValue(value);
+        props.onSearch(value);
+      }}
+      value={props.value ? `${props.value.resourceType}/${props.value.id}` : ""}
+      searchValue={searchValue}
       onChange={(value) => {
         const resource = value
           ? data.find(

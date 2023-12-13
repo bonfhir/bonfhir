@@ -43,6 +43,7 @@ export default function Patients() {
         managingOrganization: search?.managingOrganization ?? "",
       });
     },
+    defaultSort: "-_lastUpdated",
   });
 
   const patientsQuery = useFhirSearch(
@@ -83,7 +84,7 @@ export default function Patients() {
                 resourceType="Practitioner"
                 label="Provider"
                 style={{ width: "100%" }}
-                search={(query) => `name=${query}`}
+                search={(query) => (search) => search.name(query)}
                 {...form.getInputProps("practitioner")}
               />
               <FhirInput
@@ -91,6 +92,7 @@ export default function Patients() {
                 resourceType="Organization"
                 label="Clinic"
                 style={{ width: "100%" }}
+                search={(query) => (search) => search.name(query)}
                 {...form.getInputProps("managingOrganization")}
               />
               <Group grow preventGrowOverflow={false} wrap="nowrap">
@@ -168,6 +170,18 @@ export default function Patients() {
                     <FhirValue
                       type="string"
                       value={patient.managingOrganization?.display}
+                    />
+                  ),
+                },
+                {
+                  key: "_lastUpdated",
+                  title: "Last Updated",
+                  sortable: true,
+                  render: (patient) => (
+                    <FhirValue
+                      type="instant"
+                      value={patient.meta.lastUpdated}
+                      options={{ dateStyle: "relative" }}
                     />
                   ),
                 },

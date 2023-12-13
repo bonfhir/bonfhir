@@ -2,11 +2,13 @@ import {
   AnyResourceType,
   ExtractResource,
   FhirClientSearchParameters,
+  FhirSearchBuilder,
   Reference,
   Resource,
   ResourceTypeOf,
   cloneResource,
   id,
+  normalizeSearchParameters,
   reference,
 } from "@bonfhir/core/r5";
 import { useFhirRead, useFhirSearch } from "@bonfhir/query/r5";
@@ -71,9 +73,15 @@ export function FhirInputResource<
     value: valueQuery.data || undefined,
     onSearch: (query: string) => {
       if (props.search) {
-        setSearchParams(props.search(query));
+        const normalizedSearch = normalizeSearchParameters(
+          props.resourceType,
+          props.search(query),
+        );
+        setSearchParams(normalizedSearch ?? "");
       } else {
-        setSearchParams("");
+        setSearchParams(
+          new FhirSearchBuilder().stringParam("_text", query).href,
+        );
       }
     },
     onChange: (value: Resource | undefined) => {
@@ -95,6 +103,7 @@ export function FhirInputResource<
       ((resource: Resource) =>
         reference(resource as any)?.display ??
         `${resource.resourceType}/${resource.id}`),
+    error: valueQuery.error ?? searchQuery.error,
   });
 }
 
@@ -105,6 +114,7 @@ export type FhirInputResourceRendererProps<TRendererProps = any> =
     onSearch: (query: string) => void;
     data: Resource[];
     display: (resource: Resource) => string;
+    error: unknown | undefined;
   };
 
 export type FhirInputResourceRenderer = (
