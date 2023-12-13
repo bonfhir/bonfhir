@@ -1,5 +1,23 @@
 # @bonfhir/core
 
+## 2.17.0
+
+### Minor Changes
+
+- [#138](https://github.com/bonfhir/bonfhir/pull/138) [`07783ef`](https://github.com/bonfhir/bonfhir/commit/07783ef61c461be6b2dc2b07b42f52d9df219d2a) Thanks [@julienblin](https://github.com/julienblin)! - Fix #133 - add `toFhirResource` to extended resources
+
+- [#131](https://github.com/bonfhir/bonfhir/pull/131) [`13518b0`](https://github.com/bonfhir/bonfhir/commit/13518b0df35986b8a6b1a568034f95edef6c196d) Thanks [@julienblin](https://github.com/julienblin)! - Fix #118 - Handling of Choice of DataTypes - add the `choice` formatter + `choiceOfDataTypes` helper
+
+- [#138](https://github.com/bonfhir/bonfhir/pull/138) [`da9eff6`](https://github.com/bonfhir/bonfhir/commit/da9eff60436a8e5a562eb0464469f548f899b062) Thanks [@julienblin](https://github.com/julienblin)! - Fix #136 - add profile to `extendResource`
+
+- [#130](https://github.com/bonfhir/bonfhir/pull/130) [`2f10415`](https://github.com/bonfhir/bonfhir/commit/2f1041545802f890b7c2f6676218a21da9acaf73) Thanks [@julienblin](https://github.com/julienblin)! - Fix #112 - add `asResource`, `findReference` and `findReferences` helpers
+
+- [#138](https://github.com/bonfhir/bonfhir/pull/138) [`c7891dc`](https://github.com/bonfhir/bonfhir/commit/c7891dc71b74e7a04d0ad33c927bd29a9bedc92c) Thanks [@julienblin](https://github.com/julienblin)! - Fix #137 - add `onFhirResource` callback to `extendResource`
+
+### Patch Changes
+
+- [#134](https://github.com/bonfhir/bonfhir/pull/134) [`67aab61`](https://github.com/bonfhir/bonfhir/commit/67aab613fd348f5386e948ec839534cc50928669) Thanks [@julienblin](https://github.com/julienblin)! - Update `marked`` internal dependency for markdown parsing/rendering
+
 ## 2.16.1
 
 ### Patch Changes
