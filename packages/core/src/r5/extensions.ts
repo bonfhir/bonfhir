@@ -32,19 +32,32 @@ export interface ExtendResourceOptions<TResource extends Resource = Resource> {
   onFhirResource?: (resource: TResource) => TResource;
 }
 
+export interface ToFhirResource<TResource extends Resource = Resource> {
+  /**
+   * Return the plain, "original" FHIR resource representation - without the custom properties.
+   */
+  toFhirResource(): TResource;
+}
+
 export function extendResource<
   TResourceType extends AnyResourceType,
   TExtensions,
 >(
   resourceType: TResourceType,
   extensions: TExtensions &
-    ThisType<ExtractResource<TResourceType> & TExtensions>,
+    ThisType<
+      ExtractResource<TResourceType> &
+        TExtensions &
+        ToFhirResource<ExtractResource<TResourceType>>
+    >,
   options?: ExtendResourceOptions<ExtractResource<TResourceType>> | undefined,
 ): {
   resourceType: typeof resourceType;
   new (
     data?: Omit<ExtractResource<TResourceType>, "resourceType">,
-  ): ExtractResource<TResourceType> & TExtensions;
+  ): ExtractResource<TResourceType> &
+    TExtensions &
+    ToFhirResource<ExtractResource<TResourceType>>;
 } {
   const specialExtensions: Record<string, SpecialExtension> = {};
   const extensionsWithoutSpecialExtensions = {} as any;
@@ -120,7 +133,7 @@ export function extendResource<
       });
     }
 
-    toJSON(): ExtractResource<TResourceType> {
+    toFhirResource(): ExtractResource<TResourceType> {
       (this as any).text = narrative(this as any);
 
       if (options?.profile) {
@@ -139,6 +152,10 @@ export function extendResource<
       }
 
       return value;
+    }
+
+    toJSON() {
+      return this.toFhirResource();
     }
   } as any;
 

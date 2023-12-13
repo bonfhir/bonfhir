@@ -356,4 +356,23 @@ describe("extensions", () => {
         }"
       `);
   });
+
+  it("return the FHIR resource representation", () => {
+    const patient = new CustomPatient();
+    patient.birthSex = "OTH";
+
+    expect(patient.toFhirResource()).toMatchObject({
+      resourceType: "Patient",
+      extension: [
+        {
+          url: "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+          valueCode: "OTH",
+        },
+      ],
+      text: {
+        status: "generated",
+        div: '<div xmlns="http://www.w3.org/1999/xhtml"><ul></ul></div>',
+      },
+    });
+  });
 });
