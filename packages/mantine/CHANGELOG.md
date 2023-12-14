@@ -1,5 +1,17 @@
 # @bonfhir/mantine
 
+## 3.1.2
+
+### Patch Changes
+
+- [#127](https://github.com/bonfhir/bonfhir/pull/127) [`a785f0c`](https://github.com/bonfhir/bonfhir/commit/a785f0c6fed66ec4c6ec4f75e3d7b7cc29be4d2f) Thanks [@julienblin](https://github.com/julienblin)! - Fix #115 - Disable pagination buttons when the server bundle does not include the proper links
+
+- [#135](https://github.com/bonfhir/bonfhir/pull/135) [`621165e`](https://github.com/bonfhir/bonfhir/commit/621165ebecd99a9009f0bf394d8238f4abf18323) Thanks [@julienblin](https://github.com/julienblin)! - Fix #113 - search can now be a function, defaults to `_text=`, display query errors, and support form reset
+
+- Updated dependencies [[`07783ef`](https://github.com/bonfhir/bonfhir/commit/07783ef61c461be6b2dc2b07b42f52d9df219d2a), [`67aab61`](https://github.com/bonfhir/bonfhir/commit/67aab613fd348f5386e948ec839534cc50928669), [`13518b0`](https://github.com/bonfhir/bonfhir/commit/13518b0df35986b8a6b1a568034f95edef6c196d), [`621165e`](https://github.com/bonfhir/bonfhir/commit/621165ebecd99a9009f0bf394d8238f4abf18323), [`da9eff6`](https://github.com/bonfhir/bonfhir/commit/da9eff60436a8e5a562eb0464469f548f899b062), [`2f10415`](https://github.com/bonfhir/bonfhir/commit/2f1041545802f890b7c2f6676218a21da9acaf73), [`c7891dc`](https://github.com/bonfhir/bonfhir/commit/c7891dc71b74e7a04d0ad33c927bd29a9bedc92c), [`5fae2e2`](https://github.com/bonfhir/bonfhir/commit/5fae2e259364c29e0eefa8232cce4858571026ef)]:
+  - @bonfhir/core@2.17.0
+  - @bonfhir/react@2.9.0
+
 ## 3.1.1
 
 ### Patch Changes
