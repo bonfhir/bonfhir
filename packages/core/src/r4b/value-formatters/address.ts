@@ -1,6 +1,10 @@
 import { formatAddress } from "localized-address-format";
 import { Address } from "../fhir-types.codegen";
-import { ValueFormatter, withValueFormatter } from "../formatters";
+import {
+  ValueFormatter,
+  cleanUpCommonOptions,
+  withValueFormatter,
+} from "../formatters";
 import { comparePeriods } from "../lang-utils";
 import { CodeFormatterOptions, codeFormatter } from "./code";
 import { periodFormatter } from "./period";
@@ -78,7 +82,7 @@ export const addressFormatter: ValueFormatter<
         .map((address) =>
           withValueFormatter<typeof addressFormatter>(
             formatterOptions.formatter,
-          ).format("Address", address, options),
+          ).format("Address", address, cleanUpCommonOptions(options)),
         )
         .filter(Boolean);
 

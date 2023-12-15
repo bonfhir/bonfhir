@@ -1,5 +1,9 @@
 import { CodeableConcept } from "../fhir-types.codegen";
-import { ValueFormatter, withValueFormatter } from "../formatters";
+import {
+  ValueFormatter,
+  cleanUpCommonOptions,
+  withValueFormatter,
+} from "../formatters";
 import { CodingFormatterOptions, codingFormatter } from "./coding";
 
 /**
@@ -44,7 +48,7 @@ export const codeableConceptFormatter: ValueFormatter<
     } else if (codings.length === 1) {
       return withValueFormatter<typeof codingFormatter>(
         formatterOptions.formatter,
-      ).format("Coding", codings[0], options);
+      ).format("Coding", codings[0], cleanUpCommonOptions(options));
     }
 
     return new Intl.ListFormat(
@@ -54,7 +58,7 @@ export const codeableConceptFormatter: ValueFormatter<
       codings.map((coding) =>
         withValueFormatter<typeof codingFormatter>(
           formatterOptions.formatter,
-        ).format("Coding", coding, options),
+        ).format("Coding", coding, cleanUpCommonOptions(options)),
       ),
     );
   },

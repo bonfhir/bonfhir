@@ -1,5 +1,9 @@
 import { Identifier } from "../fhir-types.codegen";
-import { ValueFormatter, withValueFormatter } from "../formatters";
+import {
+  ValueFormatter,
+  cleanUpCommonOptions,
+  withValueFormatter,
+} from "../formatters";
 import { comparePeriods, formatValueWithPattern } from "../lang-utils";
 import { CodeFormatterOptions, codeFormatter } from "./code";
 import { codeableConceptFormatter } from "./codeable-concept";
@@ -87,7 +91,7 @@ export const identifierFormatter: ValueFormatter<
         .map((identifier) =>
           withValueFormatter<typeof identifierFormatter>(
             formatterOptions.formatter,
-          ).format("Identifier", identifier, options),
+          ).format("Identifier", identifier, cleanUpCommonOptions(options)),
         )
         .filter(Boolean);
 

@@ -76,6 +76,25 @@ export interface CommonFormatterOptions {
 }
 
 /**
+ * Remove the common options from a formatter options object so that they are not applied multiple times.
+ * Has to be used when passing whole upstream options to downstream formatters.
+ */
+export function cleanUpCommonOptions<T>(
+  options: T | null | undefined,
+): Omit<T, "default" | "decorator"> | undefined {
+  if (!options || typeof options !== "object") {
+    return undefined;
+  }
+
+  const {
+    default: defaultOmitted,
+    decorator: decoratorOmitted,
+    ...otherOptions
+  } = options as T & CommonFormatterOptions;
+  return otherOptions;
+}
+
+/**
  * Extends the base Formatter type with an overload of the format function that fits the ValueFormatter.
  */
 export type WithTypedFormatFunction<

@@ -41,6 +41,25 @@ describe("formatters", () => {
         }),
         "Age: 3 years old",
       ],
+      [
+        Formatter.default.format(
+          "CodeableConcept",
+          {
+            coding: [
+              {
+                system:
+                  "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                code: "active",
+                display: "Active",
+              },
+            ],
+          },
+          {
+            decorator: "Status: {}",
+          },
+        ),
+        "Status: Active",
+      ],
     ])("%p => %p", (expression, expected) => {
       expect(expression).toEqual(expected);
     });
