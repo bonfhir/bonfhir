@@ -1,5 +1,9 @@
 import { ContactPoint } from "../fhir-types.codegen";
-import { ValueFormatter, withValueFormatter } from "../formatters";
+import {
+  ValueFormatter,
+  cleanUpCommonOptions,
+  withValueFormatter,
+} from "../formatters";
 import { CodeFormatterOptions, codeFormatter } from "./code";
 import { periodFormatter } from "./period";
 
@@ -62,7 +66,7 @@ export const contactPointFormatter: ValueFormatter<
         .map((contactPoint) =>
           withValueFormatter<typeof contactPointFormatter>(
             formatterOptions.formatter,
-          ).format("ContactPoint", contactPoint, options),
+          ).format("ContactPoint", contactPoint, cleanUpCommonOptions(options)),
         )
         .filter(Boolean);
 

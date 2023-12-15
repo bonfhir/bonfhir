@@ -1,7 +1,11 @@
 import { periodFormatter } from ".";
 import { formatWithTokens } from "..";
 import { HumanName, NameUse } from "../fhir-types.codegen";
-import { ValueFormatter, withValueFormatter } from "../formatters";
+import {
+  ValueFormatter,
+  cleanUpCommonOptions,
+  withValueFormatter,
+} from "../formatters";
 import { CodeFormatterOptions, codeFormatter } from "./code";
 
 /**
@@ -92,7 +96,7 @@ export const humanNameFormatter: ValueFormatter<
         .map((humanName) =>
           withValueFormatter<typeof humanNameFormatter>(
             formatterOptions.formatter,
-          ).format("HumanName", humanName, options),
+          ).format("HumanName", humanName, cleanUpCommonOptions(options)),
         )
         .filter(Boolean);
 
