@@ -1,6 +1,7 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable unicorn/no-useless-undefined */
 import { duration } from "./date-time-helpers";
+import { Organization, Retrieved } from "./fhir-types.codegen";
 import {
   FhirSearchBuilder,
   Prefix,
@@ -183,6 +184,15 @@ describe("FhirSearchBuilder", () => {
     expect(builder.href).toBe(expected);
   });
 
+  const organization: Retrieved<Organization> = {
+    resourceType: "Organization",
+    id: "456",
+    meta: {
+      versionId: "2",
+      lastUpdated: "2021-07-05T14:48:00.000Z",
+    },
+  };
+
   it.each(<Array<[FhirSearchBuilder, string]>>[
     [
       new FhirSearchBuilder().referenceParam("subject", "Patient/23"),
@@ -236,6 +246,17 @@ describe("FhirSearchBuilder", () => {
         id: "23",
       }),
       "subject=Patient%2F23",
+    ],
+    [
+      new FhirSearchBuilder().referenceParam("subject", {
+        resourceType: "Patient",
+        id: "23",
+      }),
+      "subject=Patient%2F23",
+    ],
+    [
+      new FhirSearchBuilder().referenceParam("organization", organization),
+      "organization=Organization%2F456",
     ],
     [new FhirSearchBuilder().referenceParam("subject", null), ""],
     [new FhirSearchBuilder().referenceParam("subject", undefined), ""],
