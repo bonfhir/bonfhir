@@ -202,9 +202,15 @@ export class FhirSearchBuilder {
     parameter: string,
     id:
       | { id: string; type: string }
+      | { id: string; resourceType: string }
       | string
       | Reference
-      | Array<{ id: string; type: string } | string | Reference>
+      | Array<
+          | { id: string; type: string }
+          | string
+          | Reference
+          | { id: string; resourceType: string }
+        >
       | null
       | undefined,
     modifier?: AnyResourceType | null | undefined,
@@ -234,6 +240,7 @@ export class FhirSearchBuilder {
     parameter: string,
     id:
       | { id: string; type: string }
+      | { id: string; resourceType: string }
       | {
           system?: string | null | undefined;
           code?: string | null | undefined;
@@ -243,6 +250,7 @@ export class FhirSearchBuilder {
       | Reference
       | Array<
           | { id: string; type: string }
+          | { id: string; resourceType: string }
           | {
               system?: string | null | undefined;
               code?: string | null | undefined;
@@ -260,6 +268,7 @@ export class FhirSearchBuilder {
     parameter: string,
     id:
       | { id: string; type: string }
+      | { id: string; resourceType: string }
       | {
           system?: string | null | undefined;
           code?: string | null | undefined;
@@ -269,6 +278,7 @@ export class FhirSearchBuilder {
       | Reference
       | Array<
           | { id: string; type: string }
+          | { id: string; resourceType: string }
           | {
               system?: string | null | undefined;
               code?: string | null | undefined;
@@ -315,7 +325,10 @@ export class FhirSearchBuilder {
 
     const renderedParameterValues = (
       parameterValues as Array<
-        { id: string; type: string } | string | Reference
+        | { id: string; type: string }
+        | { id: string; resourceType: string }
+        | string
+        | Reference
       >
     ).map((x) =>
       typeof x === "string"
@@ -323,9 +336,16 @@ export class FhirSearchBuilder {
         : this.isReference(x)
           ? encodeURIComponent(x.reference!)
           : encodeURIComponent(
-              `${x.type}/${
-                x.id?.startsWith(x.type + "/") // Let's be kind and auto-correct double type inclusions.
-                  ? x.id.slice(x.type.length + 1)
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              `${(x as any).type || (x as any).resourceType}/${
+                x.id?.startsWith(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  ((x as any).type || (x as any).resourceType) + "/",
+                ) // Let's be kind and auto-correct double type inclusions.
+                  ? x.id.slice(
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      ((x as any).type || (x as any).resourceType).length + 1,
+                    )
                   : x.id
               }`,
             ),
