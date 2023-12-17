@@ -56,9 +56,8 @@ export default function PatientLayout({ children }: PropsWithChildren) {
   const patientId = pathname?.split("/")?.[2];
   const activeTab = pathname.split("/")?.[3] || tabs[0].value;
 
-  const patientQuery = useFhirRead("Patient", patientId!, {
+  const patientQuery = useFhirRead("Patient", patientId, {
     query: {
-      enabled: Boolean(patientId),
       onSuccess(patient) {
         if (patient) {
           document.title = formatter.format("HumanName", patient.name, {

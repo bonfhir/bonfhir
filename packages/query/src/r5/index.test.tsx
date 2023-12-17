@@ -441,6 +441,16 @@ describe("hooks", () => {
       });
     });
 
+    it("disable read on empty ids", async () => {
+      const { result } = renderHook(() => useFhirRead("Patient", undefined), {
+        wrapper,
+      });
+
+      await waitFor(() => {
+        expect(result.current.isFetching).toBeFalsy();
+      });
+    });
+
     it("vread", async () => {
       const { result } = renderHook(
         () =>
@@ -471,6 +481,18 @@ describe("hooks", () => {
       await waitFor(() => {
         expect(result.current.isSuccess).toBeTruthy();
         expect(result.current.data).toBeInstanceOf(CustomPatient);
+      });
+    });
+
+    it("disable vread on empty ids", async () => {
+      const { result } = renderHook(
+        () =>
+          useFhirVRead("Patient", "a942b3d5-19bc-4959-8b5d-f9aedd790a94", ""),
+        { wrapper },
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeFalsy();
       });
     });
 
