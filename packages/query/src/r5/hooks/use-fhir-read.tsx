@@ -43,7 +43,7 @@ export function useFhirRead<
   TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   type: TResourceType,
-  id: string | Reference,
+  id: string | Reference | null | undefined,
   options?: UseFhirReadOptions<TResourceType> | null | undefined,
 ): UseQueryResult<Retrieved<ResourceOf<TResourceType>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
@@ -51,6 +51,9 @@ export function useFhirRead<
   return useQuery<Retrieved<ResourceOf<TResourceType>>>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
+    enabled:
+      Boolean(id) &&
+      (options?.query?.enabled == undefined || options?.query?.enabled),
     queryKey: FhirQueryKeys.read(
       fhirQueryContext.clientKey,
       type,

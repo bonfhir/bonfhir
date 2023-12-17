@@ -1,8 +1,10 @@
 import {
   AnyResourceTypeOrCustomResource,
   FhirClient,
+  Reference,
   ResourceOf,
   Retrieved,
+  id as resolveId,
 } from "@bonfhir/core/r4b";
 import {
   UseQueryOptions,
@@ -41,8 +43,8 @@ export function useFhirVRead<
   TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   type: TResourceType,
-  id: string,
-  vid: string,
+  id: string | Reference | null | undefined,
+  vid: string | null | undefined,
   options?: UseFhirVReadOptions<TResourceType> | null | undefined,
 ): UseQueryResult<Retrieved<ResourceOf<TResourceType>>> {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
@@ -50,15 +52,19 @@ export function useFhirVRead<
   return useQuery<Retrieved<ResourceOf<TResourceType>>>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
+    enabled:
+      Boolean(id) &&
+      Boolean(vid) &&
+      (options?.query?.enabled == undefined || options?.query?.enabled),
     queryKey: FhirQueryKeys.vread(
       fhirQueryContext.clientKey,
       type,
-      id,
-      vid,
+      resolveId(id) || "",
+      vid || "",
       options?.fhir,
     ),
     queryFn: ({ signal }) =>
-      fhirQueryContext.fhirClient.vread(type, id, vid, {
+      fhirQueryContext.fhirClient.vread(type, resolveId(id) || "", vid || "", {
         ...options?.fhir,
         signal,
       }),
