@@ -1,11 +1,6 @@
-import type {
-  FhirTableRenderer,
-  FhirValueRenderer,
-} from "./data-display/index";
-import type {
-  FhirErrorRenderer,
-  FhirQueryLoaderRenderer,
-} from "./feedback/index";
+import type { FhirTableRenderer, FhirValueRenderer } from "./data-display";
+import { FhirFormatterRenderer } from "./data-display";
+import type { FhirErrorRenderer, FhirQueryLoaderRenderer } from "./feedback";
 import type {
   FhirInputArrayRenderer,
   FhirInputBooleanRenderer,
@@ -23,11 +18,12 @@ import type {
   FhirInputTerminologyRenderer,
   FhirInputTimeRenderer,
   FhirQuestionnaireRenderer,
-} from "./inputs/index";
-import type { FhirPaginationRenderer } from "./navigation/index";
+} from "./inputs";
+import type { FhirPaginationRenderer } from "./navigation";
 
 export interface FhirUIRenderer {
   FhirError: FhirErrorRenderer;
+  FhirFormatter: FhirFormatterRenderer;
   FhirInputArray: FhirInputArrayRenderer;
   FhirInputBoolean: FhirInputBooleanRenderer;
   FhirInputContactPoint: FhirInputContactPointRenderer;

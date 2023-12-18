@@ -4,7 +4,7 @@
     "prefix": "fhiruicomp",
     "body": [
       "import { ReactElement } from \"react\";",
-      "import { useFhirUIContext } from \"../../context.js\"",
+      "import { useFhirUIContext } from \"../context\"",
       "",
       "export interface ${1}Props<TRendererProps = any> {",
       "  rendererProps?: TRendererProps;",

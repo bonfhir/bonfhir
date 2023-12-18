@@ -1,16 +1,25 @@
-import { FhirTableProps, FhirValueProps } from "./data-display/index";
-import { FhirErrorProps, FhirQueryLoaderProps } from "./feedback/index";
+import {
+  FhirFormatterProps,
+  FhirTableProps,
+  FhirValueProps,
+} from "./data-display";
+import { FhirErrorProps, FhirQueryLoaderProps } from "./feedback";
 import {
   FhirInputArrayProps,
   FhirInputProps,
   FhirQuestionnaireProps,
-} from "./inputs/index";
-import { FhirPaginationProps } from "./navigation/index";
+} from "./inputs";
+import { FhirPaginationProps } from "./navigation";
 
 export interface FhirUIDefaultProps {
   FhirError?:
     | Partial<FhirErrorProps>
     | ((props: FhirErrorProps) => FhirErrorProps)
+    | null
+    | undefined;
+  FhirFormatter?:
+    | Partial<FhirFormatterProps>
+    | ((props: FhirFormatterProps) => FhirFormatterProps)
     | null
     | undefined;
   FhirInput?:
