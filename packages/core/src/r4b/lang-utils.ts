@@ -277,6 +277,15 @@ export type SortOrderOf<T> =
 
 /**
  * Build a compare function to be used inside a sort to sort by a property value.
+ *
+ * Defaults to ascending order.
+ * Prefix the sort order with a `-` to sort in reverse (descending) order.
+ *
+ * @example
+ *
+ * declare const listOfPatients: Patient[];
+ * const patientsSortedByDateOfBirthOldestFirst = listOfPatients.sort(compareBy("birthDate"));
+ * const patientsSortedByDateOfBirthYoungestFirst = listOfPatients.sort(compareBy("-birthDate"));
  */
 export function compareBy<T>(
   by: SortOrderOf<T> | null | undefined,

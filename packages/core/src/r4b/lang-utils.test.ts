@@ -6,6 +6,7 @@ import {
   asResource,
   choiceOfDataTypes,
   cleanFhirValues,
+  compareBy,
   findReference,
   findReferences,
   resourcesAreEqual,
@@ -207,6 +208,38 @@ describe("lang-utils", () => {
         string: (value: string) => value + "string",
       });
       expect(result).toEqual("2020-01-01dateTime");
+    });
+  });
+
+  describe("compareBy", () => {
+    it("compare ascending", () => {
+      const patients = [
+        build("Patient", { birthDate: "2000-01-01" }),
+        build("Patient", { birthDate: "1985-01-01" }),
+        build("Patient", { birthDate: "1950-01-01" }),
+      ];
+
+      const result = patients.sort(compareBy("birthDate"));
+      expect(result.map((x) => x.birthDate)).toEqual([
+        "1950-01-01",
+        "1985-01-01",
+        "2000-01-01",
+      ]);
+    });
+
+    it("compare descending", () => {
+      const patients = [
+        build("Patient", { birthDate: "2000-01-01" }),
+        build("Patient", { birthDate: "1985-01-01" }),
+        build("Patient", { birthDate: "1950-01-01" }),
+      ];
+
+      const result = patients.sort(compareBy("-birthDate"));
+      expect(result.map((x) => x.birthDate)).toEqual([
+        "2000-01-01",
+        "1985-01-01",
+        "1950-01-01",
+      ]);
     });
   });
 });
