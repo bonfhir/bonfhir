@@ -1,5 +1,17 @@
 # @bonfhir/react
 
+## 2.10.0
+
+### Minor Changes
+
+- [#151](https://github.com/bonfhir/bonfhir/pull/151) [`cd2db40`](https://github.com/bonfhir/bonfhir/commit/cd2db409ac3c1f03aa0b240bda809f3ea34fadc8) Thanks [@julienblin](https://github.com/julienblin)! - Fix #144 - Add a `<FhirFormatter />` component to format complex messages using the formatter
+
+### Patch Changes
+
+- Updated dependencies [[`acda662`](https://github.com/bonfhir/bonfhir/commit/acda6629c0af50ce5824501a9f01b1dc595e0dda), [`9766122`](https://github.com/bonfhir/bonfhir/commit/97661222b439b9a9174fd340fbab1a0cc7ff0b43), [`9fbc13d`](https://github.com/bonfhir/bonfhir/commit/9fbc13d09c50aed82626b910560f3fb525142cdd), [`f42935e`](https://github.com/bonfhir/bonfhir/commit/f42935e8dbc38602e6a763a5cca0018c6401b97a), [`304d6c7`](https://github.com/bonfhir/bonfhir/commit/304d6c7868a352d2baad95dbd98cb8bd2b2848de)]:
+  - @bonfhir/core@2.17.1
+  - @bonfhir/query@2.5.1
+
 ## 2.9.0
 
 ### Minor Changes

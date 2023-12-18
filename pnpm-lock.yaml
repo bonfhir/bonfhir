@@ -166,7 +166,7 @@ importers:
         specifier: ^2.2.1
         version: link:../../packages/aws-lambda
       '@bonfhir/core':
-        specifier: ^2.17.0
+        specifier: ^2.17.1
         version: link:../../packages/core
       '@bonfhir/subscriptions':
         specifier: ^2.3.0
@@ -851,13 +851,13 @@ importers:
   packages/mantine:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.17.0
+        specifier: ^2.17.1
         version: link:../core
       '@bonfhir/query':
-        specifier: ^2.5.0
+        specifier: ^2.5.1
         version: link:../query
       '@bonfhir/react':
-        specifier: ^2.9.0
+        specifier: ^2.10.0
         version: link:../react
       '@tiptap/extension-link':
         specifier: '*'
@@ -1045,7 +1045,7 @@ importers:
   packages/query:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.16.1
+        specifier: ^2.17.1
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':
@@ -1136,10 +1136,10 @@ importers:
   packages/react:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.17.0
+        specifier: ^2.17.1
         version: link:../core
       '@bonfhir/query':
-        specifier: ^2.5.0
+        specifier: ^2.5.1
         version: link:../query
     devDependencies:
       '@bonfhir/eslint-config':
