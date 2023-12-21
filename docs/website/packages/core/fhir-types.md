@@ -1,19 +1,7 @@
 ---
 sidebar_position: 1
+title: FHIR Types
 ---
-
-# Core
-
-[![npm](https://img.shields.io/npm/v/@bonfhir/core)](https://www.npmjs.com/package/@bonfhir/core)
-
-```bash npm2yarn
-npm install @bonfhir/core
-```
-
-The `core` package provides primitives to easily manipulate FHIR resources.
-It is also used as a common dependency for all other packages to rely on.
-
-## FHIR types
 
 All FHIR [resources](https://hl7.org/fhir/resourcelist.html) and [data types](https://hl7.org/fhir/datatypes.html)
 typescript typings are included in the core package.
@@ -28,7 +16,7 @@ declare const patient: Patient;
 patient.name; // HumanName
 ```
 
-### Builder and Narrative generator
+## Builder and Narrative generator
 
 The `build` function can build any FHIR Resource, and generate the appropriate narrative.  
 Narratives are generated using resources elements that are marked with the
@@ -50,7 +38,7 @@ console.log(patient.text);
 // {status: 'generated', div: '<div xmlns="http://www.w3.org/1999/xhtml"><ul><li>…</span><ul><li>John Doe</li></ul></li></ul></div>'}
 ```
 
-### References and ids
+## References and ids
 
 The `reference` function builds FHIR [literal references](https://hl7.org/fhir/references.html#literal) to other resources.
 When possible, it also infers a proper `display` attribute automatically, based on the targeted resource.
@@ -94,23 +82,3 @@ const questionnaire = build("Questionnaire", {
 console.log(canonical(questionnaire));
 // https://example.com/questionnaire|2.1
 ```
-
-## FHIR Client
-
-### Initialize
-
-### CRUD
-
-### Search builders
-
-### Batch/Transaction builder
-
-### Mergers
-
-## Data Types Formatters
-
-## Manipulating time - the duration API
-
-## Extending FHIR resources
-
-## Import in browser
