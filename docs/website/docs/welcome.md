@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 0
 ---
 
 # Welcome to Bonfhir
@@ -15,12 +15,12 @@ BonFHIR is a collection of projects and libraries to help implement [FHIR](https
 
 ### What you'll need
 
-- [Node.js](https://nodejs.org/en/download/)
+- [Node.js v18+](https://nodejs.org/en/download/)
 - [Docker](https://docs.docker.com/desktop/)
 
 ### Where to start
 
-Start building your first FHIR client in 5 minutes by following this guide: **[Build a FHIR app with React](/docs/category/build-a-fhir-app-with-react)**.
+Start building your first FHIR client in 5 minutes by following this guide: **[Build a FHIR app with React](/docs/build-a-fhir-app-with-react)**.
 
 Or select a template and start on your own:
 

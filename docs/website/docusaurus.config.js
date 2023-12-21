@@ -74,10 +74,15 @@ const config = {
             label: "Get Started",
           },
           {
-            to: "/packages/core",
+            to: "/packages/intro",
             position: "right",
             label: "Packages Documentation",
             activeBaseRegex: `/packages/`,
+          },
+          {
+            href: "https://bonfhir.dev/storybook",
+            label: "Storybook",
+            position: "right",
           },
           {
             href: "https://github.com/bonfhir/bonfhir",
