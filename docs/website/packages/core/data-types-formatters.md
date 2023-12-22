@@ -93,6 +93,19 @@ formatter.format("boolean", patient.active); // 'yes'
 // The decorator is available on all formatter types. It only applies when there is a value to format.
 formatter.format("boolean", patient.active, { decorator: "Is active? {}" }); // Is active? yes
 
+// The formatters also support formatting of choice data types.
+// See https://hl7.org/fhir/formats.html#choice
+const condition1 = build("Condition", {
+  subject: { reference: "Patient/123" },
+  onsetDateTime: "2020-01-01",
+});
+const condition2 = build("Condition", {
+  subject: { reference: "Patient/123" },
+  onsetAge: duration.years(15),
+});
+formatter.format("choice", condition1, { prefix: "onset" }); // '1/1/2020'
+formatter.format("choice", condition2, { prefix: "onset" }); // '15 yr'
+
 // And many, many more options....
 ```
 

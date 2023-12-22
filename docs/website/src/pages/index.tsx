@@ -15,6 +15,7 @@ import SvgYoutubeIcon from "@site/static/img/home/youtube_icon.svg";
 import styles from "./index.module.css";
 import { classnames } from "@site/src/helpers";
 import HeroImage from "@site/src/components/HeroImage";
+import { useHistory } from "@docusaurus/router";
 
 export default function Home(): JSX.Element {
   return (
@@ -167,18 +168,22 @@ function ReadyToLearn() {
 }
 
 function BatteriesIncluded() {
+  const history = useHistory();
   const sections = [
     {
       title: "FHIR Client",
       text: "Built-in FHIR client with bundle navigator, dynamic proxies, batch execution, resource merging capabilities & more",
+      link: "/packages/core/fhir-client",
     },
     {
       title: "FHIR Resources & DataTypes",
       text: "Complete type definitions for R4b and R5, including search parameter builders",
+      link: "/packages/core/fhir-types",
     },
     {
       title: "GraphQL support",
       text: "Query your FHIR data using typed GraphQL",
+      link: "/packages/core/fhir-client#graphql",
     },
     {
       title: "FHIR Subscriptions",
@@ -187,6 +192,7 @@ function BatteriesIncluded() {
     {
       title: "Localized formatters",
       text: "Format and present FHIR values localized in any language - we even have address formatting based on official country rules!",
+      link: "/packages/core/data-types-formatters",
     },
     {
       title: "React state management",
@@ -207,6 +213,7 @@ function BatteriesIncluded() {
     {
       title: "Custom FHIR resources",
       text: "handle FHIR profiles alongside standard FHIR resources",
+      link: "/packages/core/extending-fhir-resources",
     },
     {
       title: "US Core resources",
@@ -231,8 +238,13 @@ function BatteriesIncluded() {
           <SvgBattery role="img" />
         </div>
         <div className={styles.batteriesIncludedItems}>
-          {sections.map(({ title, text }, idx) => (
-            <div key={idx} className={styles.batteriesIncludedItem}>
+          {sections.map(({ title, text, link }, idx) => (
+            <div
+              key={idx}
+              className={styles.batteriesIncludedItem}
+              onClick={link ? () => history.push(link) : undefined}
+              style={{ cursor: link ? "pointer" : "default" }}
+            >
               <h4>{title}</h4>
               <p>{text}</p>
             </div>

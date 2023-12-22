@@ -533,7 +533,7 @@ export function findReferences<TResourceType extends AnyResourceType>(
  * const result = choiceOfDataTypes(condition, "onset", {
  *   dateTime: (value: string) => value + " as dateTime",
  *   string: (value: string) => value + " as string",
- *   Period: (value: Period) => value + " as Period",
+ *   period: (value: Period) => value + " as Period",
  * });
  */
 export function choiceOfDataTypes<TParent, TPrefix extends string, TResult>(

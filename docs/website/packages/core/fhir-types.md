@@ -23,7 +23,7 @@ Narratives are generated using resources elements that are marked with the
 [**Σ** (`isSummary`) element definition](https://hl7.org/fhir/elementdefinition-definitions.html#ElementDefinition.isSummary).
 
 ```typescript
-import { build } from "@bonfhir/core/r4b";
+import { build, narrative } from "@bonfhir/core/r4b";
 
 const patient = build("Patient", {
   name: [
@@ -36,6 +36,9 @@ const patient = build("Patient", {
 
 console.log(patient.text);
 // {status: 'generated', div: '<div xmlns="http://www.w3.org/1999/xhtml"><ul><li>…</span><ul><li>John Doe</li></ul></li></ul></div>'}
+
+// The narrative function can also be invoked on its own
+const generatedNarrative = narrative(patient);
 ```
 
 ## References and ids
@@ -81,4 +84,17 @@ const questionnaire = build("Questionnaire", {
 
 console.log(canonical(questionnaire));
 // https://example.com/questionnaire|2.1
+```
+
+Finally, there is a nifty `codeableConcept` helper that builds a [`CodeableConcept`](https://hl7.org/fhir/datatypes.html#CodeableConcept)
+from a [`Coding`](https://hl7.org/fhir/datatypes.html#Coding).
+
+```typescript
+import { codeableConcept } from "@bonfhir/core/r4b";
+
+codeableConcept({ code: "M", display: "Married" });
+{
+  coding: [{ code: "M", display: "Married" }],
+  text: "Married",
+};
 ```

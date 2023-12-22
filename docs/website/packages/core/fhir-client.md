@@ -185,6 +185,14 @@ const result = await client.execute<Group>({
 });
 ```
 
+A `BundleNavigator` can also be used on any bundle, without going through the client:
+
+```typescript
+declare const bundle: Bundle<Patient>;
+const navigator = bundleNavigator(bundle);
+const patients = navigator.searchMatch();
+```
+
 ## Batch/Transaction builder
 
 The client includes a builder to help with creating [FHIR Batch or Transation Bundles](https://hl7.org/fhir/http.html#transaction).
@@ -331,6 +339,12 @@ const [finalCondition, wasMerged] = await client.createOr(
       .recordedDate(updatedCondition.recordedDate)
       .code(updatedCondition.code?.coding?.[0]),
 );
+```
+
+It is possible to use the merging functionality directly as well:
+
+```typescript
+const [result, wasUpdated] = merge(current, incoming);
 ```
 
 And how are resources merged?
