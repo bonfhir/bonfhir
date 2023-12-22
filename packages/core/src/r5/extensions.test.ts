@@ -374,5 +374,8 @@ describe("extensions", () => {
         div: '<div xmlns="http://www.w3.org/1999/xhtml"><ul></ul></div>',
       },
     });
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect((patient.toFhirResource() as any).computedName).toBeUndefined();
   });
 });

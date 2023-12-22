@@ -144,7 +144,10 @@ export function extendResource<
       }
 
       const value = Object.entries(this)
-        .filter(([key]) => !specialExtensions[key])
+        .filter(
+          ([key, value]) =>
+            !specialExtensions[key] && typeof value !== "function",
+        )
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {} as any);
 
       if (options?.onFhirResource) {
