@@ -29,7 +29,9 @@ export const Next: Template = {
       {
         title: "Create Next project",
         task: async ({ options: { cwd, name } }) => {
-          await mkdir(`${cwd}/src/pages/api/auth`, { recursive: true });
+          await mkdir(`${cwd}/src/app/api/auth/[...nextauth]`, {
+            recursive: true,
+          });
           await mkdir(`${cwd}/src/subscriptions`, { recursive: true });
           await mkdir(`${cwd}/src/components`, { recursive: true });
           await mkdir(`${cwd}/public`, { recursive: true });
@@ -43,21 +45,20 @@ export const Next: Template = {
           );
 
           await writeFile(
-            `${cwd}/postcss.config.js`,
+            `${cwd}/postcss.config.cjs`,
             POSTCSS_CONFIG_CONTENT,
             "utf8",
           );
           await writeFile(`${cwd}/tsconfig.json`, TSCONFIG_CONTENT, "utf8");
-          await writeFile(`${cwd}/next.config.js`, NEXT_CONFIG_CONTENT, "utf8");
-          await writeFile(`${cwd}/src/pages/_app.tsx`, APP_CONTENT, "utf8");
           await writeFile(
-            `${cwd}/src/pages/_document.tsx`,
-            DOCUMENT_CONTENT,
+            `${cwd}/next.config.cjs`,
+            NEXT_CONFIG_CONTENT,
             "utf8",
           );
-          await writeFile(`${cwd}/src/pages/index.tsx`, INDEX_CONTENT, "utf8");
+          await writeFile(`${cwd}/src/app/layout.tsx`, LAYOUT_CONTENT, "utf8");
+          await writeFile(`${cwd}/src/app/page.tsx`, PAGE_CONTENT, "utf8");
           await writeFile(
-            `${cwd}/src/pages/api/auth/[...nextauth].ts`,
+            `${cwd}/src/app/api/auth/[...nextauth]/route.ts`,
             NEXT_AUTH_API_CONTENT,
             "utf8",
           );
@@ -96,7 +97,6 @@ export const Next: Template = {
             "@mantine/dates@^7",
             "@mantine/form@^7",
             "@mantine/hooks@^7",
-            "@mantine/next@^6",
             "@mantine/tiptap@^7",
             "@tabler/icons-react@^2",
             "@tanstack/react-query@^4",
@@ -160,6 +160,7 @@ const PACKAGE_JSON_CONTENT = (name: string) => `{
   "name": "${name}",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -183,7 +184,11 @@ const PACKAGE_JSON_CONTENT = (name: string) => `{
 const TSCONFIG_CONTENT = `{
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -197,11 +202,25 @@ const TSCONFIG_CONTENT = `{
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
 `;
 
@@ -266,7 +285,7 @@ yarn-error.log*
 next-env.d.ts            
 `;
 
-const APP_CONTENT = `
+const LAYOUT_CONTENT = `"use client";
 import { Config } from "@/config";
 import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
@@ -276,6 +295,7 @@ import "@mantine/code-highlight/styles.css";
 import {
   AppShell,
   Center,
+  ColorSchemeScript,
   Loader,
   MantineProvider,
   createTheme,
@@ -290,60 +310,62 @@ import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { PropsWithChildren, useEffect, useState } from "react";
 
-export const theme = createTheme({});
+/**
+ * Customize Mantine Theme.
+ * https://mantine.dev/theming/theme-object/
+ */
+const theme = createTheme({});
 
-export default function App(props: AppProps) {
-  const {
-    Component,
-    pageProps: { session, ...pageProps },
-  } = props;
+export default function RootLayout({ children }: PropsWithChildren) {
   const router = useRouter();
 
   return (
-    <>
-      <Head>
-        <title>Sample EHR</title>
+    <html lang="en">
+      <head>
+        <title>bonFHIR sample Next app</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-      </Head>
-      <MantineProvider theme={theme}>
-        <SessionProvider session={session}>
-          <WithAuth>
-            <FhirUIProvider
-              renderer={MantineRenderer}
-              onNavigate={({ target, aux }) => {
-                if (aux) {
-                  window.open(target, "_blank");
-                } else {
-                  router.push(target);
-                }
-              }}
-            >
-              <AppShell>
-                <AppShell.Main>
-                  <Component {...pageProps} />
-                </AppShell.Main>
-              </AppShell>
-              <ReactQueryDevtools />
-            </FhirUIProvider>
-          </WithAuth>
-        </SessionProvider>
-      </MantineProvider>
-    </>
+        <ColorSchemeScript forceColorScheme="light" />
+    </head>
+      <body>
+        <MantineProvider theme={theme}>
+          <SessionProvider>
+            <WithAuth>
+              <FhirUIProvider
+                renderer={MantineRenderer}
+                onNavigate={({ target, aux }) => {
+                  if (aux) {
+                    window.open(target, "_blank");
+                  } else {
+                    router.push(target);
+                  }
+                }}
+              >
+                <AppShell>
+                  <AppShell.Main>
+                    {children}
+                  </AppShell.Main>
+                </AppShell>
+                <ReactQueryDevtools />
+              </FhirUIProvider>
+            </WithAuth>
+          </SessionProvider>
+        </MantineProvider>
+      </body>
+    </html>
   );
 }
 
 function WithAuth(props: PropsWithChildren) {
-  const { data: session, status } = useSession();
-  const [fhirClient, setFhirClient] = useState<FhirClient>();
-
-  useEffect(() => {
-    if (status === "unauthenticated") {
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
       signIn("medplum");
-    }
-  }, [status]);
+    },
+  });
+  const [fhirClient, setFhirClient] = useState<FhirClient>();
 
   useEffect(() => {
     if (session?.accessToken) {
@@ -359,14 +381,16 @@ function WithAuth(props: PropsWithChildren) {
         }),
       );
     }
-  }, [session]);
+  }, [session?.accessToken]);
 
   if (status !== "authenticated" || !session?.accessToken || !fhirClient) {
     return (
       <AppShell>
-        <Center h="100vh">
-          <Loader />
-        </Center>
+        <AppShell.Main>
+          <Center h="100vh">
+            <Loader />
+          </Center>
+        </AppShell.Main>
       </AppShell>
     );
   }
@@ -380,31 +404,8 @@ function WithAuth(props: PropsWithChildren) {
 
 `;
 
-const DOCUMENT_CONTENT = `import { ColorSchemeScript } from "@mantine/core";
-import { createGetInitialProps } from "@mantine/next";
-import Document, { Head, Html, Main, NextScript } from "next/document";
-const getInitialProps = createGetInitialProps();
-
-export default class _Document extends Document {
-  static getInitialProps = getInitialProps;
-
-  render() {
-    return (
-      <Html>
-        <Head>
-          <ColorSchemeScript defaultColorScheme="auto" />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
-}
-`;
-
-const INDEX_CONTENT = `import { Center, Title } from "@mantine/core";
+const PAGE_CONTENT = `"use client";
+import { Center, Title } from "@mantine/core";
 
 export default function Home() {
   return (
@@ -497,7 +498,7 @@ declare module "next-auth/jwt" {
 const NEXT_AUTH_API_CONTENT = `import { Config } from "@/config";
 import NextAuth from "next-auth";
 
-export default NextAuth({
+const handler = NextAuth({
   providers: [
     {
       id: "medplum",
@@ -545,4 +546,6 @@ export default NextAuth({
     },
   },
 });
+
+export { handler as GET, handler as POST };
 `;
