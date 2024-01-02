@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/gluestack-ui",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Gluestack UI renderers for BonFHIR UI",
   "keywords": [
     "HL7",
