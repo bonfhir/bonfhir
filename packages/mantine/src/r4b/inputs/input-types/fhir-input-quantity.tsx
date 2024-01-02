@@ -42,7 +42,7 @@ export function MantineFhirInputQuantity(
               ? { source: "http://hl7.org/fhir/ValueSet/quantity-comparator" }
               : (props.comparator as Omit<
                   FhirInputTerminologyProps,
-                  "type" | "onChange"
+                  "type" | "onChange" | "value"
                 >))}
           />
         )}
