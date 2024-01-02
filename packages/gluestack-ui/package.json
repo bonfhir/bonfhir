@@ -83,7 +83,8 @@
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "@gluestack-ui/themed": "^1"
+    "@gluestack-ui/themed": "^1",
+    "react": "*"
   },
   "prettier": "@bonfhir/prettier-config",
   "eslintConfig": {
