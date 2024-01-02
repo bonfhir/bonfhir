@@ -201,6 +201,7 @@ function BatteriesIncluded() {
     {
       title: "React UI components",
       text: "Values, forms, inputs, tables, pagination, query loaders… and you can completely customize the rendering! Build any application you can dream of",
+      link: "/packages/react",
     },
     {
       title: "AWS Lambda",

@@ -4,6 +4,8 @@ import { buildArgs } from "../helpers";
 
 /**
  * Renders a loading/error/loaded state for a FHIR query.
+ *
+ * See https://bonfhir.dev/packages/react/components/fhir-query-loader for more information.
  */
 const meta = {
   title: "Feedback/FhirQueryLoader",

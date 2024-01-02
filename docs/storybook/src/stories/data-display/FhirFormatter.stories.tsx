@@ -6,6 +6,8 @@ import { Meta } from "@storybook/react";
  * Allows complex message formatting using the `Formatter.message` builder.
  *
  * As opposed to the `FhirValue` component, returns a ReactNode instead of a `Text`.
+ *
+ * See https://bonfhir.dev/packages/react/components/fhir-formatter for more information.
  */
 const meta = {
   title: "Data Display/FhirFormatter",

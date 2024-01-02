@@ -5,7 +5,9 @@ import { Meta } from "@storybook/react";
 import { buildArgs } from "../helpers";
 
 /**
- * Renders FHIR arrays as inputs, allowing management or repeatition.
+ * Renders FHIR arrays as inputs, allowing management or repetition.
+ *
+ * See https://bonfhir.dev/packages/react/components/fhir-input-array for more information.
  */
 const meta = {
   title: "Inputs/FhirInputArray",

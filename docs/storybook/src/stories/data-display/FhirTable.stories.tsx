@@ -17,6 +17,8 @@ import { buildArgs } from "../helpers";
 
 /**
  * Renders a table of resources
+ *
+ * See https://bonfhir.dev/packages/react/components/fhir-table for more information.
  */
 const meta = {
   title: "Data Display/FhirTable",

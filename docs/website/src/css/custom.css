@@ -325,3 +325,15 @@
 .container p {
   color: var(--ifm-font-color-primary);
 }
+
+.container a {
+  text-decoration: underline;
+}
+
+.container a.card {
+  text-decoration: none;
+}
+
+.container .table-of-contents a {
+  text-decoration: none;
+}
