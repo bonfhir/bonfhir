@@ -9,7 +9,7 @@ description: Clone and create an app from a template
 1. In a terminal, install and run package **@bonfhir/create-bonfhir**
 
    ```
-   npm create bonfhir
+   npm create -y bonfhir@latest
    ```
 
 2. Provide a project name and select the **vite** template

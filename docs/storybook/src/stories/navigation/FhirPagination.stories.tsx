@@ -4,6 +4,8 @@ import { useState } from "react";
 
 /**
  * Renders a paginator for a Bundle
+ *
+ * See https://bonfhir.dev/packages/react/components/fhir-pagination for more information.
  */
 const meta = {
   title: "Navigation/FhirPagination",

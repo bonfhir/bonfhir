@@ -6,6 +6,8 @@ import { buildArgs } from "../helpers";
 
 /**
  * Renders [FHIR data types](https://hl7.org/fhir/datatypes.html) as string using the core formatter.
+ *
+ * See https://bonfhir.dev/packages/react/components/fhir-value for more information.
  */
 const meta = {
   title: "Data Display/FhirValue",

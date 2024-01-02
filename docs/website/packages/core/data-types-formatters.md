@@ -6,6 +6,8 @@ title: Data Types Formatters
 bonFHIR comes built-in with localized, configurable formatters for all [FHIR Data Types](https://hl7.org/fhir/datatypes.html).
 They can be used to present the information to users and saves a considerable amount of time when implementing FHIR solutions.
 
+## Formatter usage
+
 ```typescript
 import { build, Formatter } from "@bonfhir/core/r4b";
 
@@ -109,6 +111,8 @@ formatter.format("choice", condition2, { prefix: "onset" }); // '15 yr'
 // And many, many more options....
 ```
 
+## Customize the formatter instance
+
 The `Formatter` instance can be customized for your own specific needs:
 
 ```typescript
@@ -122,4 +126,50 @@ const formatter = Formatter.build({
 formatter.format("Identifier", patient.identifier, { pattern: "###/##/###" }); // 'Numéro de sécurité sociale: 999/83/604'
 
 formatter.format("date", patient.birthDate, { dateStyle: "full" }); // 'dimanche 5 février 1950'
+```
+
+## The `message` API
+
+The formatter comes with a special API named `message`. It is a [JavaScript Tag template function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals?ref=triplet.fi#tagged_templates)
+that can compose all the formatter capabilities into a single string:
+
+```typescript
+// Same patient as above.
+
+formatter.message`The patient names are ${[
+  "HumanName",
+  patient.name,
+]} and his birth date is ${["date", patient.birthDate]}`;
+// The patient names are John Doe and Johnny and his birth date is 2/5/1950
+```
+
+The syntax for each tag is an array with:
+
+- the data type type - e.g. "date", "HumanName", "Quantity"...
+- the value itself
+- and optionaly the options associated with the data type formatter.
+
+e.g.
+
+```typescript
+["date", patient.name, { dateStyle: "relative" }];
+["HumanName", patient.name, { max: 1 }];
+```
+
+Tags are type safe, so you can rely on typescript completion to find out all the options.
+This can be used in conjunction with the `decorator` option to very easily composed long optional messages.
+
+E.g.
+
+```typescript
+// Render patient information, with optional value support.
+formatter.message`${["HumanName", patient.name, { max: 1 }]}${[
+  "date",
+  patient.birthDate,
+  { decorator: " (born {})" },
+]}${[
+  "boolean",
+  patient.active,
+  { labels: { true: " active", false: " [No longer a patient]" } },
+]}`; // John Doe (born 2/5/1950) active
 ```

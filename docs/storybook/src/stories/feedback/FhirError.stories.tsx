@@ -4,6 +4,8 @@ import { buildArgs } from "../helpers";
 
 /**
  * Renders an error permanently on screen
+ *
+ * See https://bonfhir.dev/packages/react/components/fhir-error for more information.
  */
 const meta = {
   title: "Feedback/FhirError",

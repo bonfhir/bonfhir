@@ -7,6 +7,8 @@ import { buildArgs } from "../helpers";
 
 /**
  * Renders [FHIR data types](https://hl7.org/fhir/datatypes.html) as inputs.
+ *
+ * See https://bonfhir.dev/packages/react/components/fhir-input for more information.
  */
 const meta = {
   title: "Inputs/FhirInput",

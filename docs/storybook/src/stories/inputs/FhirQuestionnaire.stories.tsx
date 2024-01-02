@@ -4,6 +4,8 @@ import { buildArgs } from "../helpers";
 
 /**
  * Renders a paginator for a Bundle
+ *
+ * See https://bonfhir.dev/packages/react/components/fhir-questionnaire for more information.
  */
 const meta = {
   title: "Inputs/FhirQuestionnaire",
