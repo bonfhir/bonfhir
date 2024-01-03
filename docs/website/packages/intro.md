@@ -19,14 +19,14 @@ Some packages are client-side only, some are server-side only, and some are both
 - Client - they are reserved to client application:
 
   - [`@bonfhir/query`](/packages/query)
-  - `@bonfhir/react`
-  - `@bonfhir/mantine`
+  - [`@bonfhir/react`](/packages/react)
+  - [`@bonfhir/mantine`](/packages/react/mantine)
   - `@bonfhir/gluestack-ui`
 
 - Server:
 
-  - `@bonfhir/subscriptions`
-  - `@bonfhir/aws-lambda`
+  - [`@bonfhir/subscriptions`](/packages/subscriptions)
+  - [`@bonfhir/aws-lambda`](/packages/subscriptions/aws-lambda)
 
 - Utilities - not meant for inclusion in a project:
   - `@bonfhir/codegen`
