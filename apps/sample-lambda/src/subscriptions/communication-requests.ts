@@ -8,4 +8,16 @@ export const communicationRequests: FhirSubscription<CommunicationRequest> = {
   async handler({ resource, logger }) {
     logger?.info(resource);
   },
+
+  registration(subscription) {
+    subscription.extension = [
+      ...(subscription.extension ?? []),
+      {
+        url: "https://acme.org/fhir/StructureDefinition/subscription-max-attempts",
+        valueInteger: 3,
+      },
+    ];
+
+    return subscription;
+  },
 };

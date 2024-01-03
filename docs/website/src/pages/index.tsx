@@ -188,6 +188,7 @@ function BatteriesIncluded() {
     {
       title: "FHIR Subscriptions",
       text: "Subscribe and react to FHIR subscriptions to orchestrate your own workflows",
+      link: "/packages/subscriptions",
     },
     {
       title: "Localized formatters",
@@ -206,6 +207,7 @@ function BatteriesIncluded() {
     {
       title: "AWS Lambda",
       text: "Support for execution in serverless environments",
+      link: "/packages/subscriptions/aws-lambda",
     },
     {
       title: "Next.js support",
