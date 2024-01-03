@@ -18,8 +18,8 @@ BonFHIR provides many useful features for fetching and formatting FHIR data, wit
 
 ## Step by step
 
-This guide builds off of the previous guide: [Setup Medplum](/docs/build-a-fhir-app-with-react/setup-medplum).
-
+This guide builds off of the previous guide: [Setup Medplum](/docs/build-a-fhir-app-with-react/setup-fhir-server).
+``
 Let's start by retrieving a Patient and displaying some information about them.
 
 1. Select a Patient in Medplum to retrieve. Open the Patient table (http://localhost:8100/Patient) and view a patient's details. Take note of the ID as we will use this to query.
@@ -98,7 +98,11 @@ export default function Home() {
               </Text>
               <Group>
                 <Text fw={600}>Birthday: </Text>
-                <FhirValue type="date" value={patient.birthDate} options={{ dateStyle: "full" }} />
+                <FhirValue
+                  type="date"
+                  value={patient.birthDate}
+                  options={{ dateStyle: "full" }}
+                />
               </Group>
               <Group>
                 <Text fw={600}>Address: </Text>

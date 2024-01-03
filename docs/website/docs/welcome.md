@@ -25,5 +25,5 @@ Start building your first FHIR client in 5 minutes by following this guide: **[B
 Or select a template and start on your own:
 
 ```
-npm create bonfhir
+npm create -y bonfhir@latest
 ```

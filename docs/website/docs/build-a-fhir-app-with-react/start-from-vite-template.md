@@ -8,14 +8,14 @@ description: Clone and create an app from a template
 
 1. In a terminal, install and run package **@bonfhir/create-bonfhir**
 
-   ```
+   ```bash
    npm create -y bonfhir@latest
    ```
 
 2. Provide a project name and select the **vite** template
 3. `cd` into the new project and start the development environment
 
-   ```
+   ```bash npm2yarn
    npm run dev
    ```
 
