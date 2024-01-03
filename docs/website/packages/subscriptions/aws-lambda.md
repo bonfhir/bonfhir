@@ -36,8 +36,7 @@ export const handler = fhirSubscriptionHandler({
     }),
 
   // The public URL where the handler is exposed.
-  // This needs to include any subpath where the handler is exposed in API Gateway
-  // e.g. - https://abcdef123.execute-api.us-east-2.amazonaws.com/fhir/subscriptions
+  // e.g. - https://abcdef123.execute-api.us-east-2.amazonaws.com/
   // if using custom domains, this needs to be the public custom domain URL.
   baseUrl: process.env.APP_BASE_URL,
 
