@@ -45,7 +45,7 @@ export const handler = fhirSubscriptionHandler({
   webhookSecret: process.env.FHIR_SUBSCRIPTION_SECRET,
 
   // The list of subscriptions to manage.
-  subscriptions: [communicationRequestsSubscription],
+  subscriptions: [],
 });
 ```
 
@@ -73,3 +73,6 @@ For safety reasons it does _not_ remove subscriptions that are no longer active 
 It is up to you to clean it up in the FHIR Server.
 
 :::
+
+We recommend that you run the register command in your deployment pipeline as well, to ensure that your subscriptions are
+always registered properly.
