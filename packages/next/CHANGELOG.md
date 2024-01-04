@@ -1,5 +1,17 @@
 # @bonfhir/next
 
+## 2.5.0
+
+### Minor Changes
+
+- [#193](https://github.com/bonfhir/bonfhir/pull/193) [`72bc570`](https://github.com/bonfhir/bonfhir/commit/72bc570f35796293c9dd6e631ce9922a7e9093b0) Thanks [@julienblin](https://github.com/julienblin)! - Rename `useFhirSearchControllerNext` to `useFhirSearchController`
+
+### Patch Changes
+
+- Updated dependencies [[`dbfa65d`](https://github.com/bonfhir/bonfhir/commit/dbfa65d5b4b3fcd24c86e28b73682233856b1594), [`f6a3c72`](https://github.com/bonfhir/bonfhir/commit/f6a3c72642654cf5c09a75789a9415150b95aeca), [`6a0bb61`](https://github.com/bonfhir/bonfhir/commit/6a0bb61b4d6e9b971c9cd63488b24c9231d9150c)]:
+  - @bonfhir/react@3.0.0
+  - @bonfhir/core@2.17.2
+
 ## 2.4.0
 
 ### Minor Changes

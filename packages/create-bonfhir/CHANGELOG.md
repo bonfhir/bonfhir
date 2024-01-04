@@ -1,5 +1,15 @@
 # create-bonfhir
 
+## 2.6.0
+
+### Minor Changes
+
+- [#175](https://github.com/bonfhir/bonfhir/pull/175) [`0ebc68e`](https://github.com/bonfhir/bonfhir/commit/0ebc68e93eec9c2ddba586caf18b3ed57569ba2f) Thanks [@julienblin](https://github.com/julienblin)! - Fix #126 - Update next template to app router
+
+### Patch Changes
+
+- [#175](https://github.com/bonfhir/bonfhir/pull/175) [`d7bb4e9`](https://github.com/bonfhir/bonfhir/commit/d7bb4e9c05e93125da135b787c792d03f585cb38) Thanks [@julienblin](https://github.com/julienblin)! - Update favicon in templates to use bonFHIR logo
+
 ## 2.5.1
 
 ### Patch Changes
