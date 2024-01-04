@@ -135,13 +135,21 @@ export const FhirQueryKeys = {
     type: AnyResourceType | undefined,
     id: string | undefined,
   ) => {
-    queryClient.invalidateQueries([clientKey, type, id]);
-    queryClient.invalidateQueries([clientKey, type, "search"]);
-    queryClient.invalidateQueries([clientKey, type, "infiniteSearch"]);
-    queryClient.invalidateQueries([clientKey, "history"]);
-    queryClient.invalidateQueries([clientKey, type, "history"]);
-    queryClient.invalidateQueries([clientKey, type, id, "history"]);
-    queryClient.invalidateQueries([clientKey, type, id, "execute"]);
-    queryClient.invalidateQueries([clientKey, type, undefined, "execute"]);
+    queryClient.invalidateQueries({ queryKey: [clientKey, type, id] });
+    queryClient.invalidateQueries({ queryKey: [clientKey, type, "search"] });
+    queryClient.invalidateQueries({
+      queryKey: [clientKey, type, "infiniteSearch"],
+    });
+    queryClient.invalidateQueries({ queryKey: [clientKey, "history"] });
+    queryClient.invalidateQueries({ queryKey: [clientKey, type, "history"] });
+    queryClient.invalidateQueries({
+      queryKey: [clientKey, type, id, "history"],
+    });
+    queryClient.invalidateQueries({
+      queryKey: [clientKey, type, id, "execute"],
+    });
+    queryClient.invalidateQueries({
+      queryKey: [clientKey, type, undefined, "execute"],
+    });
   },
 };

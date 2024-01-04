@@ -10,10 +10,11 @@ import {
 } from "@bonfhir/react/r4b";
 import { Box, Button, Flex, Paper, Stack, Title } from "@mantine/core";
 import { IconChevronRight, IconPlus } from "@tabler/icons-react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { usePatientContext } from "../patient.context";
 
 export default function Conditions() {
-  const params = useParams();
+  const { patient } = usePatientContext();
   const router = useRouter();
 
   const searchController = useFhirSearchController<ConditionSortOrder>("q", {
@@ -27,7 +28,7 @@ export default function Conditions() {
     "Condition",
     (search) =>
       search
-        .patient(params.patientId)
+        .patient(patient)
         ._sort(searchController.sort)
         ._count(searchController.pageSize)
         ._total("accurate"),
@@ -42,7 +43,7 @@ export default function Conditions() {
           <Box>
             <Button
               onClick={() =>
-                router.push(`/patients/${params.patientId}/conditions/new`)
+                router.push(`/patients/${patient.id}/conditions/new`)
               }
             >
               <IconPlus />
@@ -56,7 +57,7 @@ export default function Conditions() {
               {...conditionsQuery}
               {...searchController}
               onRowNavigate={(condition) =>
-                `/patients/${params.patientId}/conditions/${condition.id}`
+                `/patients/${patient.id}/conditions/${condition.id}`
               }
               columns={[
                 {

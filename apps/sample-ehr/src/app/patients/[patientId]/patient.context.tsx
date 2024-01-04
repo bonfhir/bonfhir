@@ -1,9 +1,9 @@
 "use client";
-import { Patient } from "@bonfhir/core/r4b";
+import { Patient, Retrieved } from "@bonfhir/core/r4b";
 import { createContext, useContext } from "react";
 
 export interface PatientContext {
-  patient: Patient;
+  patient: Retrieved<Patient>;
 }
 
 export const PatientContext = createContext<PatientContext | undefined>(

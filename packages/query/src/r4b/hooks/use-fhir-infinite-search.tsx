@@ -9,6 +9,7 @@ import {
   normalizeSearchParameters,
 } from "@bonfhir/core/r4b";
 import {
+  InfiniteData,
   UseInfiniteQueryResult,
   UseQueryOptions,
   useInfiniteQuery,
@@ -50,16 +51,15 @@ export function useFhirInfiniteSearch<
     | undefined,
   options?: UseFhirInfiniteSearchOptions<TResourceType> | null | undefined,
 ): UseInfiniteQueryResult<
-  BundleNavigator<Retrieved<ResourceOf<TResourceType>>>
+  InfiniteData<BundleNavigator<Retrieved<ResourceOf<TResourceType>>>>
 > {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
   const normalizedParameters = normalizeSearchParameters(type, parameters);
 
-  return useInfiniteQuery<
-    BundleNavigator<Retrieved<ResourceOf<TResourceType>>>
-  >({
+  return useInfiniteQuery({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.query as any),
+    initialPageParam: "",
     queryKey: FhirQueryKeys.infiniteSearch(
       fhirQueryContext.clientKey,
       type,
@@ -69,7 +69,7 @@ export function useFhirInfiniteSearch<
     queryFn: ({ pageParam, signal }) =>
       pageParam
         ? fhirQueryContext.fhirClient.fetchPage(
-            pageParam,
+            pageParam as string,
             { signal },
             typeof type === "string" ? undefined : type || undefined,
           )

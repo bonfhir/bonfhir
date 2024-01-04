@@ -67,7 +67,7 @@
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.5",
-    "@tanstack/react-query": "^4.36.1",
+    "@tanstack/react-query": "^5.17.1",
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.4",
@@ -87,7 +87,7 @@
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "@tanstack/react-query": "^4.0.0",
+    "@tanstack/react-query": "^5",
     "react": "*",
     "react-dom": "*"
   },

@@ -14,8 +14,11 @@ import {
   FhirValue,
 } from "@bonfhir/react/r4b";
 import { Grid, Paper, Title } from "@mantine/core";
+import { usePatientContext } from "../patient.context";
 
 export default function Vitals() {
+  const { patient } = usePatientContext();
+
   const searchController = useFhirSearchController<ObservationSortOrder>(
     "search",
     {
@@ -28,6 +31,7 @@ export default function Vitals() {
     (search) =>
       search
         .category("vital-signs")
+        .patient(patient)
         ._sort("-date")
         ._count(searchController.pageSize)
         ._total("accurate"),
