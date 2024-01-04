@@ -198,6 +198,7 @@ function BatteriesIncluded() {
     {
       title: "React state management",
       text: "Based on React query, customized for the FHIR Rest & GraphQL APIs",
+      link: "/packages/query",
     },
     {
       title: "React UI components",
