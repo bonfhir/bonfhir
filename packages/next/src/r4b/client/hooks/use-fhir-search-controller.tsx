@@ -1,12 +1,12 @@
 import {
   UseFhirSearchControllerArgs,
   UseFhirSearchControllerValue,
-  useFhirSearchController,
+  useFhirSearchController as useFhirSearchControllerBase,
   useURLSearchParamsStateManager,
 } from "@bonfhir/react/r4b";
 import { usePathname, useRouter, useSearchParams } from "next/navigation.js";
 
-export function useFhirSearchControllerNext<
+export function useFhirSearchController<
   TSort extends string = string,
   TSearch = unknown,
 >(
@@ -19,7 +19,7 @@ export function useFhirSearchControllerNext<
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  return useFhirSearchController<TSort, TSearch>({
+  return useFhirSearchControllerBase<TSort, TSearch>({
     ...args,
     stateManager: useURLSearchParamsStateManager(scope, [
       searchParams as unknown as URLSearchParams,
@@ -29,3 +29,8 @@ export function useFhirSearchControllerNext<
     ]),
   });
 }
+
+/**
+ * @deprecated Use `useFhirSearchController` instead.
+ */
+export const useFhirSearchControllerNext = useFhirSearchController;

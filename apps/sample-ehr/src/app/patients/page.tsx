@@ -1,7 +1,7 @@
 "use client";
 import { PatientSortOrder, duration } from "@bonfhir/core/r4b";
 import { useFhirForm } from "@bonfhir/mantine/r4b";
-import { useFhirSearchControllerNext } from "@bonfhir/next/r4b/client";
+import { useFhirSearchController } from "@bonfhir/next/r4b/client";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
   FhirInput,
@@ -22,7 +22,7 @@ export default function Patients() {
     },
   });
 
-  const searchController = useFhirSearchControllerNext<
+  const searchController = useFhirSearchController<
     PatientSortOrder,
     {
       patientName: string | undefined;

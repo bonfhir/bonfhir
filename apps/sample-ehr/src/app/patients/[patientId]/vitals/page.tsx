@@ -5,7 +5,7 @@ import {
   ObservationSortOrder,
 } from "@bonfhir/core/r4b";
 import { MantineFhirTableProps } from "@bonfhir/mantine/r4b";
-import { useFhirSearchControllerNext } from "@bonfhir/next/r4b/client";
+import { useFhirSearchController } from "@bonfhir/next/r4b/client";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
   FhirPagination,
@@ -16,7 +16,7 @@ import {
 import { Grid, Paper, Title } from "@mantine/core";
 
 export default function Vitals() {
-  const searchController = useFhirSearchControllerNext<ObservationSortOrder>(
+  const searchController = useFhirSearchController<ObservationSortOrder>(
     "search",
     {
       pageSize: 5,

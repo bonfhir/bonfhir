@@ -1,1 +1,1 @@
-export * from "./use-fhir-search-controller-next";
+export * from "./use-fhir-search-controller";
