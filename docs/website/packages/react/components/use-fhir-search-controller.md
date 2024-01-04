@@ -10,6 +10,8 @@ See the examples in [`<FhirTable />`](/packages/react/components/fhir-table) and
 ## Basic usage
 
 ```tsx
+import { useFhirSearchController } from "@bonfhir/react/r4b";
+
 // The search controller coordinates activities and actions between the <FhirTable /> and the query.
 const orgsSearchController = useFhirSearchController({
   defaultSort: "name",
