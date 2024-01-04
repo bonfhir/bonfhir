@@ -19,7 +19,7 @@ This guide builds off of the previous guide: [Display FHIR data](/docs/build-a-f
 
 1. Create a new React component called `PatientReportsTable` that receives a patient ID as a prop. Import this component in `pages/Home.tsx` and add the table component inside the page, passing in `patient.id`.
 
-   ```tsx title="src/components/PatientDiagnosticReportsTable.tsx"
+   ```tsx title="src/components/PatientReportsTable.tsx"
    import { FC, ReactElement } from "react";
 
    type PatientReportsTableProps = {
