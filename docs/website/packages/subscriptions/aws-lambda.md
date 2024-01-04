@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: AWS Lambda
+description: Host in AWS Lambda function
 ---
 
 [![npm](https://img.shields.io/npm/v/@bonfhir/aws-lambda)](https://www.npmjs.com/package/@bonfhir/aws-lambda)

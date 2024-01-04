@@ -1,6 +1,7 @@
 ---
 sidebar_position: 7
 title: Import in browser
+description: Use it anywhere
 ---
 
 In addition to the [versions available for all packages](/packages/intro#package-formats), the `@bonfhir/core` package

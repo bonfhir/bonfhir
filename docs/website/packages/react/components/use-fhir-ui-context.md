@@ -6,7 +6,7 @@ The `useFhirUIContext` hook gives access to the [`<FhirUIProvider />` configurat
 
 ## Basic usage
 
-```typescript
+```tsx
 const { formatter, render } = useFhirUIContext();
 ```
 

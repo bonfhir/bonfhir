@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 title: Mantine
+description: The Mantine renderer for components
 ---
 
 The `@bonfhir/mantine` package provides renderers for the [Mantine toolkit v7](https://mantine.dev/).

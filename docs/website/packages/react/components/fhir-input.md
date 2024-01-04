@@ -17,16 +17,13 @@ Although it can be use with a simple `useState` as shown below, it should probab
 
 ## Example usage
 
-```typescript
-
+```tsx
 const [name, setName] = useState<string | undefined>();
 const [identifier, setIdentifier] = useState<Identifier | undefined>();
 const [maritalStatus, setMaritalStatus] = useState<
   CodeableConcept | undefined
 >();
-const [patientRef, setPatientRef] = useState<
-    Reference<Patient> | undefined
-  >();
+const [patientRef, setPatientRef] = useState<Reference<Patient> | undefined>();
 
 return (
   <>

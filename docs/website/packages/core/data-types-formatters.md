@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 title: Data Types Formatters
+description: Display localized FHIR Data Types
 ---
 
 bonFHIR comes built-in with localized, configurable formatters for all [FHIR Data Types](https://hl7.org/fhir/datatypes.html).

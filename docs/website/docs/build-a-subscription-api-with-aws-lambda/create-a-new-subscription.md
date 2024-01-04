@@ -12,7 +12,7 @@ has its status set to `arrived`.
 
 Create a new file `src/subscriptions/arrived-appointments.ts` and paste the following code:
 
-```typescript
+```typescript title="src/subscriptions/arrived-appointments.ts"
 import {
   Appointment,
   Practitioner,
@@ -72,7 +72,7 @@ export const arrivedAppointments: FhirSubscription<Appointment> = {
 
 Also, we need to update the `src/subscriptions/index.ts` file to add the new subscription to the Lambda handler:
 
-```typescript
+```typescript title="src/subscriptions/index.ts"
 // ...
 import { arrivedAppointments } from "./arrived-appointments.js";
 

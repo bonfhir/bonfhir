@@ -9,7 +9,7 @@ See the examples in [`<FhirTable />`](/packages/react/components/fhir-table) and
 
 ## Basic usage
 
-```typescript
+```tsx
 // The search controller coordinates activities and actions between the <FhirTable /> and the query.
 const orgsSearchController = useFhirSearchController({
   defaultSort: "name",
@@ -48,7 +48,7 @@ return (
 
 In addition to managing pagination and sorting, the search controller can also manages search parameters.
 
-```typescript
+```tsx
 const orgsSearchController = useFhirSearchController({
   defaultSort: "name",
   pageSize: 20,
@@ -102,7 +102,7 @@ The search controller state can be managed externally.
 This is very useful to project it to the url query parameters, allowing urls to reflect the search state.
 Your SPA app now behaves like a server-side rendered app, with support for URL sharing and bookmarks on search!
 
-```typescript
+```tsx
 import { OrganizationSortOrder } from "@bonfhir/core/r4b";
 import {
   useFhirSearchController,

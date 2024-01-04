@@ -8,7 +8,7 @@ See also [`<FhirQueryLoader />`](/packages/react/components/fhir-query-loader) f
 
 ## Example usage
 
-```typescript
+```tsx
 const encountersQuery = useFhirSearch("Encounter");
 
 if (encountersQuery.isError) {

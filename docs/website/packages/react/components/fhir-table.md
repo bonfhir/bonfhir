@@ -8,7 +8,7 @@ It is designed to work in conjunction with the `useFhirSearch` and `useFhirSearc
 
 ## Example usage
 
-```typescript
+```tsx
 // Using the useFhirSearch query directly
 const organizationQuery = useFhirSearch("Organization", (search) =>
   search._include("Organization", "partof"),
@@ -28,11 +28,7 @@ return (
         key: "address",
         title: "Address",
         render: (org) => (
-          <FhirValue
-            type="Address"
-            value={org.address}
-            options={{ max: 1 }}
-          />
+          <FhirValue type="Address" value={org.address} options={{ max: 1 }} />
         ),
       },
       {
@@ -53,7 +49,7 @@ Each column can provide its own renderer that is used for each cell.
 
 There is built-in support for row navigation when a row is clicked, using the [configured navigation on the `<FhirUIProvider />`](/packages/react/get-started#navigation).
 
-```typescript
+```tsx
 // Return the target url to navigate to.
 <FhirTable onRowNavigate={(org) => `/organizations/${org.id}`} />
 ```
@@ -64,7 +60,7 @@ When used in tandem with a [search controller](#usefhirsearchcontroller), the ta
 sorting.  
 The column `key` attrtibute must be a valid FHIR search parameter for the sorting to work properly.
 
-```typescript
+```tsx
 // The search controller coordinates activities and actions between the <FhirTable /> and the query.
 const orgsSearchController = useFhirSearchController({
   defaultSort: "name",

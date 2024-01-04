@@ -1,6 +1,7 @@
 ---
 sidebar_position: 4
 title: Manipulating date and time
+description: FHIR Native date/time/duration handling
 ---
 
 bonFHIR comes built-in with a date/time subframework that can be used to manipulate date, time and duration notions

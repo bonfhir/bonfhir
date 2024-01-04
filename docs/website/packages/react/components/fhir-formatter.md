@@ -7,8 +7,7 @@ The `<FhirFormatter />` is a variation of the [`<FhirValue />`](/packages/react/
 
 ## Example usage
 
-```typescript
-
+```tsx
 const patientQuery = useFhirRead("Patient", "123");
 const patient = patientQuery.data;
 
@@ -20,12 +19,12 @@ const patient = patientQuery.data;
       { decorator: " (born {})" },
     ]}`
   }
-/>
+/>;
 ```
 
 ## preview
 
-```typescript
+```tsx
 <FhirFormatter
   format={(f) =>
     f.message`Name: ${["HumanName", patient.name]}${[
