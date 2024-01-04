@@ -7,24 +7,22 @@ and creates a corresponding [FHIR QuestionnaireResponse](https://hl7.org/fhir/qu
 
 ## Example usage
 
-```typescript
+```tsx
 // Use the Questionnaire URL directly.
 <FhirQuestionnaire
   source="http://acme.org/sample-questionnaire"
   onSubmit={(questionnaireResponse) => alert(questionnaireResponse)}
-/>
+/>;
 
 // Use a query to retrieve the Questionnaire
 const { data: questionnaire } = useFhirSearchOne("Questionnaire", (search) =>
-  search
-    .url("http://acme.org/sample-questionnaire")
-    .status("active"),
+  search.url("http://acme.org/sample-questionnaire").status("active"),
 );
 
 <FhirQuestionnaire
   source={questionnaire}
   onSubmit={(questionnaireResponse) => alert(questionnaireResponse)}
-/>
+/>;
 ```
 
 ## Preview

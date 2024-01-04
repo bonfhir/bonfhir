@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: FHIR Types
+description: TypeScript Types for FHIR
 ---
 
 All FHIR [resources](https://hl7.org/fhir/resourcelist.html) and [data types](https://hl7.org/fhir/datatypes.html)

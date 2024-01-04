@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Components & Hooks
+description: The building blocks
 ---
 
 :::info

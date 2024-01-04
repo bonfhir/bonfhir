@@ -6,7 +6,7 @@ import {
   Retrieved,
   findReference,
 } from "@bonfhir/core/r4b";
-import { useFhirSearchControllerNext } from "@bonfhir/next/r4b/client";
+import { useFhirSearchController } from "@bonfhir/next/r4b/client";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
   FhirPagination,
@@ -24,7 +24,7 @@ export default function Appointments() {
 
   const currentDate = new Date();
   const upcomingAppointmentsSearchController =
-    useFhirSearchControllerNext<AppointmentSortOrder>("upcoming", {
+    useFhirSearchController<AppointmentSortOrder>("upcoming", {
       defaultSort: "date",
       pageSize: 10,
     });
@@ -42,7 +42,7 @@ export default function Appointments() {
   );
 
   const pastAppointmentsSearchController =
-    useFhirSearchControllerNext<AppointmentSortOrder>("past", {
+    useFhirSearchController<AppointmentSortOrder>("past", {
       defaultSort: "-date",
       pageSize: 10,
     });

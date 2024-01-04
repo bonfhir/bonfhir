@@ -1,6 +1,7 @@
 ---
 sidebar_position: 5
 title: Extending FHIR resources
+description: Extensions, tags, and profiles
 ---
 
 bonFHIR includes built-in support for managing extensions, tags, and profiles.

@@ -8,7 +8,7 @@ It is designed to work in conjunction with the `useFhirSearch` and `useFhirSearc
 
 ## Example usage
 
-```typescript
+```tsx
 // The search controller coordinates activities and actions between the <FhirTable /> and the query.
 const orgsSearchController = useFhirSearchController({
   defaultSort: "name",

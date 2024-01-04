@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: Get started
+description: Start using the UI components in your app
 ---
 
 You can either get started from one of our templates, or configure it manually.
@@ -39,7 +40,7 @@ The provider is there to globally configure all [react components](/packages/rea
 
 Wrap you application with the `<FhirUIProvider />` and indicates which renderer to use:
 
-```typescript
+```tsx
 import { FhirUIProvider } from "@bonfhir/react/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
 
@@ -77,7 +78,7 @@ You'll have to add `"use client";` if you use the app router in next.
 Some components use a [formatter instance](/packages/core/data-types-formatters) to render FHIR content.
 It is possible to customize the instance of the formatter used:
 
-```typescript
+```tsx
 import { FhirUIProvider } from "@bonfhir/react/r4b";
 import { Formatter } from "@bonfhir/core/r4b";
 
@@ -102,7 +103,7 @@ function Root() {
 
 To access the formatter instance in a react component, use the `useFhirUIContext` hook:
 
-```typescript
+```tsx
 import { useFhirUIContext } from "@bonfhir/react/r4b";
 
 const { formatter } = useFhirUIContext();
@@ -113,7 +114,7 @@ const { formatter } = useFhirUIContext();
 Some components may want to access and influence the navigation of the app.
 This can be configured using the `onNavigate` prop:
 
-```typescript
+```tsx
 import { FhirUIProvider } from "@bonfhir/react/r4b";
 
 function Root() {
@@ -121,14 +122,16 @@ function Root() {
   const navigate = useNavigate(); // Depends on your choice of router
 
   return (
-    <FhirUIProvider onNavigate={({ target, aux }) => {
+    <FhirUIProvider
+      onNavigate={({ target, aux }) => {
         if (aux) {
           // aux indicate that this should be opened in a different window if possible.
           window.open(target, "_blank");
         } else {
           navigate(target);
         }
-      }}>
+      }}
+    >
       <App />
     </FhirUIProvider>
   );
@@ -140,7 +143,7 @@ function Root() {
 You can define default props for all bonFHIR components - they will apply globally, without the need to use them everywhere,
 unless they are overridden by component props:
 
-```typescript
+```tsx
 import { FhirUIProvider } from "@bonfhir/react/r4b";
 
 function Root() {
@@ -151,9 +154,10 @@ function Root() {
     <FhirUIProvider
       defaultProps={{
         FhirInput: {
-          required: true // Makes all inputs required by default.
-        }
-      }}>
+          required: true, // Makes all inputs required by default.
+        },
+      }}
+    >
       <App />
     </FhirUIProvider>
   );
@@ -162,7 +166,7 @@ function Root() {
 
 It is possible to also use a function that can examine the component props and decide how to apply default options:
 
-```typescript
+```tsx
 import { FhirUIProvider } from "@bonfhir/react/r4b";
 
 function Root() {
@@ -174,12 +178,13 @@ function Root() {
         FhirInput: (props) => {
           if (["code", "Coding", "CodeableConcept"].includes(props.type)) {
             // Defaults the `fhirClient` props of `FhirInput` to "terminology" when the type is "code, "Coding" or "CodeableConcept"
-            return ({ ...props, fhirClient: "terminology" })
+            return { ...props, fhirClient: "terminology" };
           }
 
           return props;
-        }
-      }}>
+        },
+      }}
+    >
       <App />
     </FhirUIProvider>
   );
@@ -195,7 +200,7 @@ what the base bonFHIR react component interface provides.
 The following example illustrates the concept with Mantine renderer for the `<FhirValue />` component, that re-exposes
 all of the [`Text` props](https://mantine.dev/core/text/?t=props) inside a `text` attribute:
 
-```typescript
+```tsx
 // Render the value in blue with a xl size
 <FhirValue
   type="string"
@@ -215,7 +220,7 @@ This can be fixed in 2 ways: locally or globally.
 Renderer packages should provide a type to specify what the renderer props are, and it can be applied to the bonFHIR
 component:
 
-```typescript
+```tsx
 import { MantineFhirValueProps } from "@bonfhir/mantine/r4b";
 import { FhirValue } from "@bonfhir/react/r4b";
 
@@ -224,7 +229,7 @@ import { FhirValue } from "@bonfhir/react/r4b";
   type="string"
   value="Hello, world!"
   rendererProps={{ text: { color: "blue", size: "xl" } }}
-/>
+/>;
 ```
 
 While this works, we recommend using the global approach as it will be applied everywhere by default.
@@ -234,7 +239,7 @@ While this works, we recommend using the global approach as it will be applied e
 For this, you will need to create a filoe named `bonfhir.d.ts` at the root of your application, and apply TypeScript
 types overrides for each bonFHIR component you use:
 
-```typescript
+```tsx
 import {
   MantineFhirPaginationProps,
   MantineFhirValueProps,

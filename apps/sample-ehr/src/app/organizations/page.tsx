@@ -1,13 +1,13 @@
 "use client";
 import { Address, OrganizationSortOrder } from "@bonfhir/core/r4b";
-import { useFhirSearchControllerNext } from "@bonfhir/next/r4b/client";
+import { useFhirSearchController } from "@bonfhir/next/r4b/client";
 import { useFhirGraphQL } from "@bonfhir/query/r4b";
 import { FhirTable, FhirValue } from "@bonfhir/react/r4b";
 import { Paper, Stack, Title } from "@mantine/core";
 import { ListOrganizationsDocument } from "./organizations.generated";
 
 export default function Organizations() {
-  const searchController = useFhirSearchControllerNext<
+  const searchController = useFhirSearchController<
     OrganizationSortOrder,
     { name: string | undefined }
   >("search", {

@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: FHIR Client
+description: Access FHIR Servers
 ---
 
 The `FhirClient` is an important piece of the `core` package.

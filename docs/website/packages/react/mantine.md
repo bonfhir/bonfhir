@@ -1,7 +1,14 @@
 ---
 sidebar_position: 3
 title: Mantine
+description: The Mantine renderer for components
 ---
+
+[![npm](https://img.shields.io/npm/v/@bonfhir/mantine)](https://www.npmjs.com/package/@bonfhir/mantine)
+
+```bash npm2yarn
+npm install @bonfhir/mantine
+```
 
 The `@bonfhir/mantine` package provides renderers for the [Mantine toolkit v7](https://mantine.dev/).
 

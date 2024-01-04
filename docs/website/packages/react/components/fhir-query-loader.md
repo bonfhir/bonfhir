@@ -13,7 +13,7 @@ Here is the lifecycle:
 
 ## Example usage
 
-```typescript
+```tsx
 const encountersQuery = useFhirSearch("Encounter");
 
 return (
@@ -25,7 +25,7 @@ return (
 
 If using a function as the child component, it passes the query `data` as an non-null argument.
 
-```typescript
+```tsx
 const patientQuery = useFhirRead("Patient", "123");
 
 return (
@@ -39,7 +39,7 @@ return (
 Multiple queries can be tracked for loading status, and only renders when all queries are loaded.  
 In that case, the argument to the child function is the first query of the array.
 
-```typescript
+```tsx
 const patientQuery = useFhirRead("Patient", "123");
 const encountersQuery = useFhirSearch("Encounter", (search) =>
   search.patient("Patient/123"),

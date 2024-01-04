@@ -9,7 +9,7 @@ The default formatter options can be configured in the [`<FhirUIProvider />`](/p
 
 ### Example usage
 
-```typescript
+```tsx
 
 const patientQuery = useFhirRead("Patient", "123");
 const patient = patientQuery.data;
@@ -20,7 +20,7 @@ const patient = patientQuery.data;
 
 ### Preview
 
-```typescript
+```tsx
 <FhirValue type="HumanName" value={patient?.name} />
 ```
 

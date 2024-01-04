@@ -1,6 +1,7 @@
 ---
 sidebar_position: 0
 title: Subscription handlers
+description: React to FHIR Resources changes
 ---
 
 At the heart of the bonFHIR subscription models lies the concept of a `FhirSubscription`.  

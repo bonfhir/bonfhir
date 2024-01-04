@@ -1,6 +1,7 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 title: Custom renderers
+description: Complete customization
 ---
 
 You can create custom renderers if need be, to replace and/or augment bonFHIR-provided one.
@@ -17,7 +18,7 @@ We'll first create the custom renderer, and configure the app to use it.
 
 Create a new component named `custom-fhir-value.tsx` using the following content:
 
-```typescript
+```tsx
 import { FhirValueRendererProps } from "@bonfhir/react/r5";
 import { ReactElement } from "react";
 
@@ -52,7 +53,7 @@ You can also use the [`useFhirUIContext`](/packages/react/components/use-fhir-ui
 
 Create a new file named `custom-renderer.ts`:
 
-```typescript
+```tsx
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
 import { FhirUIRenderer } from "@bonfhir/react/r4b";
 import { CustomFhirValue } from "./custom-fhir-value";
@@ -71,7 +72,7 @@ export const CustomRenderer = {
 
 ## Configure the new renderer on the `<FhirUIProvider />`
 
-```typescript
+```tsx
 import { FhirUIProvider } from "@bonfhir/react/r4b";
 import { CustomRenderer } from "./custom-renderer";
 
@@ -88,7 +89,7 @@ function Root() {
 
 Optionaly, [if you have configured typed renderer props](/packages/react/get-started#typed-rendererprops), update the `<FhirValue />` render props:
 
-```typescript
+```tsx
 import type { CustomFhirValueProps } from "./custom-fhir-value";
 import { FhirPaginationProps, FhirValueProps } from "@bonfhir/react/r4b";
 
@@ -101,7 +102,7 @@ declare module "@bonfhir/react/r4b" {
 
 ## Use the component as usual
 
-```typescript
+```tsx
 <FhirValue
   type="string"
   value="Hello World"

@@ -1,6 +1,7 @@
 ---
 sidebar_position: 6
 title: Misc helpers
+description: Little things to help with development
 ---
 
 bonFHIR ships with a lot of helpers function to help you manage and handle FHIR data.  

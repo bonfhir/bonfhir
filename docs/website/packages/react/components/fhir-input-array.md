@@ -8,7 +8,7 @@ As with [`<FhirInput />`](/packages/react/components/fhir-input), it is a contro
 
 ## Example usage
 
-```typescript
+```tsx
 // This example uses the `useListState` from Mantine for simplicty sake - https://mantine.dev/hooks/use-list-state/
 const [identifiers, setIdentifiers] = useListState<Identifier>([]);
 
