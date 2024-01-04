@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.17.2
+
+### Patch Changes
+
+- [#171](https://github.com/bonfhir/bonfhir/pull/171) [`f6a3c72`](https://github.com/bonfhir/bonfhir/commit/f6a3c72642654cf5c09a75789a9415150b95aeca) Thanks [@julienblin](https://github.com/julienblin)! - Fix #167 - `toFhirResource` should exclude functions
+
 ## 2.17.1
 
 ### Patch Changes

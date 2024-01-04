@@ -1,5 +1,21 @@
 # @bonfhir/cli
 
+## 2.8.0
+
+### Minor Changes
+
+- [#175](https://github.com/bonfhir/bonfhir/pull/175) [`0ebc68e`](https://github.com/bonfhir/bonfhir/commit/0ebc68e93eec9c2ddba586caf18b3ed57569ba2f) Thanks [@julienblin](https://github.com/julienblin)! - Fix #126 - Update next template to app router
+
+- [#194](https://github.com/bonfhir/bonfhir/pull/194) [`6a0bb61`](https://github.com/bonfhir/bonfhir/commit/6a0bb61b4d6e9b971c9cd63488b24c9231d9150c) Thanks [@julienblin](https://github.com/julienblin)! - Fix #103 - update react-query to v5
+
+  This is a breaking change for consumers of the package and will likely impact the apps using bonFHIR.
+  Hopefully this is not too bad and most changes are trivial.
+  Please review the guide here for more information: https://tanstack.com/query/latest/docs/react/guides/migrating-to-v5
+
+### Patch Changes
+
+- [#175](https://github.com/bonfhir/bonfhir/pull/175) [`d7bb4e9`](https://github.com/bonfhir/bonfhir/commit/d7bb4e9c05e93125da135b787c792d03f585cb38) Thanks [@julienblin](https://github.com/julienblin)! - Update favicon in templates to use bonFHIR logo
+
 ## 2.7.1
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # @bonfhir/react
 
+## 3.0.0
+
+### Major Changes
+
+- [#194](https://github.com/bonfhir/bonfhir/pull/194) [`6a0bb61`](https://github.com/bonfhir/bonfhir/commit/6a0bb61b4d6e9b971c9cd63488b24c9231d9150c) Thanks [@julienblin](https://github.com/julienblin)! - Fix #103 - update react-query to v5
+
+  This is a breaking change for consumers of the package and will likely impact the apps using bonFHIR.
+  Hopefully this is not too bad and most changes are trivial.
+  Please review the guide here for more information: https://tanstack.com/query/latest/docs/react/guides/migrating-to-v5
+
+### Patch Changes
+
+- [#185](https://github.com/bonfhir/bonfhir/pull/185) [`dbfa65d`](https://github.com/bonfhir/bonfhir/commit/dbfa65d5b4b3fcd24c86e28b73682233856b1594) Thanks [@julienblin](https://github.com/julienblin)! - Fix a type bug with `<FhirInput />` where string was overly abused
+
+- Updated dependencies [[`f6a3c72`](https://github.com/bonfhir/bonfhir/commit/f6a3c72642654cf5c09a75789a9415150b95aeca), [`6a0bb61`](https://github.com/bonfhir/bonfhir/commit/6a0bb61b4d6e9b971c9cd63488b24c9231d9150c)]:
+  - @bonfhir/core@2.17.2
+  - @bonfhir/query@3.0.0
+
 ## 2.10.0
 
 ### Minor Changes

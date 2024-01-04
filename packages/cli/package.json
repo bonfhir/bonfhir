@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/cli",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "description": "BonFHIR CLI",
   "keywords": [
     "HL7",
