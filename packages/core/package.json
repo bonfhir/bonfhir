@@ -23,7 +23,6 @@
     "clean": "rimraf dist && rimraf src/r4b/[!__]**",
     "copyfiles": "pnpm --dir=\"${PWD}/../codegen\" dev copy -s \"${PWD}/src/r5\" -t \"${PWD}/src/r4b\" -i '**/*.ts' -e '**/*.codegen.ts' --source-fhir r5 --target-fhir r4b",
     "codegen": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r4b,r5 -t \"${PWD}/templates/**/*.ejs\" -b \"${PWD}/templates\" -p 'prettier --write %files%' -o \"${PWD}/src/<%= fhir.release %>\"",
-    "codegen2": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r4b -t \"${PWD}/templates/resourse-list.ts.ejs\" -b \"${PWD}/templates\" -p 'prettier --write %files%' -o \"${PWD}/src/<%= fhir.release %>\"",
     "dev": "nodemon --watch templates --watch src/r5 --ext ejs,ts --ignore '**/*.codegen.ts' --exec \"pnpm codegen && pnpm copyfiles\"",
     "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
     "test": "jest"
