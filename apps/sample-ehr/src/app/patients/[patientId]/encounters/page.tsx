@@ -22,7 +22,7 @@ export default function Appointments() {
     "Encounter",
     (search) =>
       search
-        .patient(patient.id)
+        .patient(patient)
         ._total("accurate")
         ._count(searchController.pageSize)
         ._sort(searchController.sort)

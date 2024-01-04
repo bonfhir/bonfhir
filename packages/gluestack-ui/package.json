@@ -72,7 +72,7 @@
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.5",
-    "@tanstack/react-query": "^4.36.1",
+    "@tanstack/react-query": "^5.17.1",
     "@types/react": "^18.2.43",
     "nodemon": "^3.0.2",
     "react": "^18.2.0",

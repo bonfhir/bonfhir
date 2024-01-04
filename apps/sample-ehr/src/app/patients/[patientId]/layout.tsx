@@ -1,6 +1,6 @@
 "use client";
 import { useFhirRead } from "@bonfhir/query/r4b";
-import { FhirQueryLoader, useFhirUIContext } from "@bonfhir/react/r4b";
+import { FhirQueryLoader } from "@bonfhir/react/r4b";
 import { Space, Stack, Tabs } from "@mantine/core";
 import {
   IconActivity,
@@ -52,21 +52,10 @@ export default function PatientLayout({ children }: PropsWithChildren) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const { formatter } = useFhirUIContext();
   const patientId = pathname?.split("/")?.[2];
   const activeTab = pathname.split("/")?.[3] || tabs[0].value;
 
-  const patientQuery = useFhirRead("Patient", patientId, {
-    query: {
-      onSuccess(patient) {
-        if (patient) {
-          document.title = formatter.format("HumanName", patient.name, {
-            max: 1,
-          });
-        }
-      },
-    },
-  });
+  const patientQuery = useFhirRead("Patient", patientId);
 
   return (
     <FhirQueryLoader query={patientQuery}>

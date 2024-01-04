@@ -53,7 +53,7 @@ export function useFhirInputTerminologyData(
             {
               fhirClient: props.fhirClient,
               query: {
-                cacheTime: Number.POSITIVE_INFINITY,
+                gcTime: Number.POSITIVE_INFINITY,
                 staleTime: Number.POSITIVE_INFINITY,
               },
             },

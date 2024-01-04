@@ -106,7 +106,7 @@ export default function EditPatient() {
                 {...form.getInputProps("managingOrganization")}
               />
             </Group>
-            <SaveChangesButtons save={{ loading: form.mutation.isLoading }} />
+            <SaveChangesButtons save={{ loading: form.mutation.isPending }} />
           </Stack>
         </form>
       </Stack>
