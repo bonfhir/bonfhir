@@ -40,10 +40,10 @@ export function useFhirForm<
   const { transformValues, ...remainingArgs } = args || {};
   const form = useForm({
     ...remainingArgs,
-  
+
     transformValues: (values: any) => {
       cleanFhirValues(values);
-      return transformValues ? transformValues(values)  : values  ;
+      return transformValues ? transformValues(values) : values;
     },
   });
   return {
@@ -76,5 +76,3 @@ export function useFhirForm<
     },
   };
 }
-
-
