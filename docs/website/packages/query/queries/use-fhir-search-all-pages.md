@@ -4,7 +4,7 @@ title: useFhirSearchAllPages
 description: Get all the search results at once
 ---
 
-This hook is similar to the [`useFhirSearch`](/packages/query/read/use-fhir-search) one, except that it retrieves all the
+This hook is similar to the [`useFhirSearch`](/packages/query/queries/use-fhir-search) one, except that it retrieves all the
 result pages before returning all the results as a consolidated serach navigator.
 
 :::warning[Use with caution]
@@ -15,6 +15,8 @@ parameter size wizely to limit the number of fetch that needs to happen.
 Most of the time there is a better way to achieve a feature, through referenced resources or graph operations for example.
 
 :::
+
+### Basic usage
 
 ```tsx
 import { asError } from "@bonfhir/core/r4b";
@@ -32,7 +34,7 @@ export default function MyComponent() {
         ._count(100),
   );
 
-  if (allObservationsLinkedToAnEnounterQuery.isInitialLoading) {
+  if (allObservationsLinkedToAnEnounterQuery.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -58,7 +60,7 @@ export default function MyComponent() {
 }
 ```
 
-More concisely, with the [`<FhirQueryLoader />`](/packages/react/components/fhir-query-loader) component:
+### With the `<FhirQueryLoader />`
 
 ```tsx
 import { useFhirSearchAllPages } from "@bonfhir/query/r4b";
@@ -91,7 +93,7 @@ export default function MyComponent() {
 }
 ```
 
-With options:
+### With options
 
 ```tsx
 import { DEFAULT_FHIR_CLIENT, useFhirSearchAllPages } from "@bonfhir/query/r4b";
