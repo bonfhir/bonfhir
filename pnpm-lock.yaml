@@ -1033,6 +1033,9 @@ importers:
       '@bonfhir/codegen':
         specifier: workspace:*
         version: link:../codegen
+      '@bonfhir/core':
+        specifier: workspace:*
+        version: link:../core
       '@bonfhir/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
