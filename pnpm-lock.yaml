@@ -1048,6 +1048,15 @@ importers:
       '@bonfhir/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@rollup/plugin-commonjs':
+        specifier: ^25.0.7
+        version: 25.0.7(rollup@4.9.2)
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.2.3
+        version: 15.2.3(rollup@4.9.2)
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.5
+        version: 11.1.5(rollup@4.9.2)(typescript@5.3.3)
       '@types/express':
         specifier: ^4.17.6
         version: 4.17.21
@@ -1066,6 +1075,18 @@ importers:
       n8n-workflow:
         specifier: 0.131.2
         version: 0.131.2
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
+      rollup:
+        specifier: ^4.8.0
+        version: 4.9.2
+      rollup-plugin-dts:
+        specifier: ^6.1.0
+        version: 6.1.0(rollup@4.9.2)(typescript@5.3.3)
+      rollup-plugin-filesize:
+        specifier: ^10.0.0
+        version: 10.0.0
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
