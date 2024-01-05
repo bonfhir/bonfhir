@@ -20,6 +20,7 @@
   },
   "scripts": {
     "build": "tsc && gulp build:icons",
+    "buildnlink": "pnpm build && npm link",
     "codegen": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r4b -t \"${PWD}/templates/**/*.ejs\" -b \"${PWD}/templates\" -p 'prettier --write %files%' -o \"${PWD}/nodes/Fhir\"",
     "dev": "tsc --watch",
     "format": "prettier nodes credentials --write",
@@ -36,10 +37,12 @@
       "dist/credentials/FhirOAuth2Api.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/Fhir/ResourceLookup.node.js"
+      "dist/nodes/Fhir/ResourceLookup.node.js",
+      "dist/nodes/FHIRWebhookTrigger/FHIRWebhookTrigger.node.js"
     ]
   },
   "devDependencies": {
+    "@bonfhir/core": "workspace:*",
     "@bonfhir/codegen": "workspace:*",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
