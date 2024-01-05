@@ -35,14 +35,15 @@ export function useFhirForm<
   Values = Record<string, unknown>,
   TransformValues extends _TransformValues<Values> = (values: Values) => Values,
 >(
-  args?: UseFormInput<Values, TransformValues>,
+  args?: UseFormInput<Values, any>,
 ): UseFhirFormReturnType<Values, TransformValues> {
   const { transformValues, ...remainingArgs } = args || {};
   const form = useForm({
     ...remainingArgs,
-    transformValues: (values) => {
+  
+    transformValues: (values: any) => {
       cleanFhirValues(values);
-      return transformValues ? transformValues(values) : values;
+      return transformValues ? transformValues(values)  : values  ;
     },
   });
   return {
@@ -75,3 +76,5 @@ export function useFhirForm<
     },
   };
 }
+
+
