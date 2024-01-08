@@ -29,9 +29,9 @@ Some packages are client-side only, some are server-side only, and some are both
   - [`@bonfhir/aws-lambda`](/packages/subscriptions/aws-lambda)
 
 - Utilities - not meant for inclusion in a project:
+  - [`@bonfhir/cli`](/packages/cli)
+  - [`create-bonfhir`](/packages/cli/create) (subset of `@bonfhir/cli`)
   - `@bonfhir/codegen`
-  - `@bonfhir/cli`
-  - `create-bonfhir` (subset of `@bonfhir/cli`)
 
 ## Package formats
 
