@@ -12,7 +12,7 @@ We do recommend that you use one of our starter template to get started.
 Simply run the `npm create -y bonfhir@latest` command to get started and pick the template that you want.  
 We do provide templates for [Vite](https://vitejs.dev/) and a [Next.js](https://nextjs.org/).
 
-If you haven't, we also strongly suggest you follow [one of our get started tutorials](docs/build-a-fhir-app-with-react)
+If you haven't, we also strongly suggest you follow [one of our get started tutorials](/docs/build-a-fhir-app-with-react)
 to learn more about the development process.
 
 ## Manually
