@@ -19,8 +19,8 @@
     "directory": "packages/n8n"
   },
   "scripts": {
-    "build:gulp": "rimraf dist && tsc && gulp build:icons",
-    "build:rollup": "rimraf dist && rollup --config rollup.config.mjs",
+    "build:gulp": "rimraf dist && tsc && gulp build:icons && gulp build:deleteN8Ndir",
+    "build:rollup": "rimraf dist && rollup --config rollup.config.mjs && gulp build:icons",
     "buildnlink": "pnpm build && npm link",
     "codegen": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r4b -t \"${PWD}/templates/**/*.ejs\" -b \"${PWD}/templates\" -p 'prettier --write %files%' -o \"${PWD}/nodes/Fhir\"",
     "dev": "tsc --watch",
@@ -43,8 +43,8 @@
     ]
   },
   "devDependencies": {
-    "@bonfhir/core": "workspace:*",
     "@bonfhir/codegen": "workspace:*",
+    "@bonfhir/core": "workspace:*",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
     "@bonfhir/prettier-config": "workspace:*",
@@ -62,7 +62,8 @@
     "rollup": "^4.8.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-filesize": "^10.0.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "glob": "^10.3.10"
   },
   "prettier": "@bonfhir/prettier-config",
   "eslintConfig": {
