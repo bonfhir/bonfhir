@@ -76,7 +76,7 @@ export function useFhirGraphQLMutation<
       fhirQueryContext.fhirClient.graphql(
         query as any,
         variables as any,
-        operationName as any,
+        typeof operationName === "string" ? (operationName as any) : undefined,
       ),
   });
 }

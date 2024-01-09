@@ -69,7 +69,7 @@ export function useFhirGraphQL<TResult = any, TVariables = Record<string, any>>(
       fhirQueryContext.fhirClient.graphql(
         query as any,
         variables as any,
-        operationName as any,
+        typeof operationName === "string" ? (operationName as any) : undefined,
       ),
   });
 }
