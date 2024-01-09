@@ -22,7 +22,6 @@ import React, { PropsWithChildren } from "react";
 import {
   DEFAULT_FHIR_CLIENT,
   FhirQueryProvider,
-  UseFhirGraph,
   useFhirBatchMutation,
   useFhirCapabilities,
   useFhirClientQueryContext,
@@ -31,6 +30,7 @@ import {
   useFhirDeleteMutation,
   useFhirExecute,
   useFhirExecuteMutation,
+  useFhirGraph,
   useFhirGraphQL,
   useFhirGraphQLMutation,
   useFhirGraphQLResult,
@@ -741,7 +741,7 @@ describe("hooks", () => {
     it("graph", async () => {
       const { result } = renderHook(
         () =>
-          UseFhirGraph(
+          useFhirGraph(
             "patient-with-appointments",
             "Patient",
             "50e500d7-2afd-42a8-adb7-350489ea3e3c",
