@@ -38,7 +38,7 @@ export interface UseFhirGraphOptions<
  *
  * @see http://hl7.org/fhir/R4B/resource-operation-graph.html
  */
-export function UseFhirGraph<
+export function useFhirGraph<
   TResourceType extends AnyResourceTypeOrCustomResource,
 >(
   graph: string,
