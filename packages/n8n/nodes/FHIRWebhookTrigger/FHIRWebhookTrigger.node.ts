@@ -5,7 +5,7 @@ import {
   IWebhookResponseData,
 } from "n8n-workflow";
 
-import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
+import { FetchFhirClient, FhirClient, build } from "@bonfhir/core/r4b";
 
 export class FHIRWebhookTrigger implements INodeType {
   description: INodeTypeDescription = {
@@ -27,7 +27,7 @@ export class FHIRWebhookTrigger implements INodeType {
         name: "default",
         httpMethod: "POST",
         responseMode: "onReceived",
-        path: "webhook",
+        path: "",
       },
     ],
     credentials: [
@@ -48,54 +48,72 @@ export class FHIRWebhookTrigger implements INodeType {
   webhookMethods = {
     default: {
       async checkExists(this: IHookFunctions): Promise<boolean> {
-        console.log("checkExists");
-
+        const credentials = await this.getCredentials("FhirOAuth2Api");
         const client: FhirClient = new FetchFhirClient({
-          baseUrl: "http://fhir-server/fhir/R4",
-          auth: "Basic <basic-auth-key>",
+          baseUrl: "http://localhost:8103/fhir/R4",
+          // @ts-expect-error TODO: these are set.
+          auth: `${credentials.oauthTokenData.token_type} ${credentials.oauthTokenData.access_token}`,
         });
 
-        console.log("client", client);
+        const webhookUrl = this.getNodeWebhookUrl("default");
+        const searchResults = await client.search("Subscription", (search) =>
+          search.status("active").url(webhookUrl),
+        );
 
-        // const webhookData = this.getWorkflowStaticData("node");
-        // const webhookUrl = this.getNodeWebhookUrl("default");
-        // const event = this.getNodeParameter("event") as string;
+        const matchingSubscription = searchResults.searchMatch()[0];
 
-        // const { hooks: webhooks } = await autofriendApiRequest.call(this, 'GET', '/hooks');
-        // for (const webhook of webhooks) {
-        //   if (webhook.target_url === webhookUrl && webhook.event === snakeCase(event)) {
-        //     webhookData.webhookId = webhook.hook_id;
-        //     return true;
-        //   }
-        // }
+        if (matchingSubscription) return true;
         return false;
       },
 
       async create(this: IHookFunctions): Promise<boolean> {
-        console.log("create");
-        // const webhookUrl = this.getNodeWebhookUrl("default");
-        // const webhookData = this.getWorkflowStaticData("node");
-        // const event = this.getNodeParameter("event") as string;
+        const webhookUrl = this.getNodeWebhookUrl("default");
+        const webhookData = this.getWorkflowStaticData("node");
 
-        // const body: IDataObject = {
-        //   event: snakeCase(event),
-        //   target_url: webhookUrl,
-        // };
+        const credentials = await this.getCredentials("FhirOAuth2Api");
+        const client: FhirClient = new FetchFhirClient({
+          baseUrl: "http://localhost:8103/fhir/R4",
+          // @ts-expect-error TODO: these are set.
+          auth: `${credentials.oauthTokenData.token_type} ${credentials.oauthTokenData.access_token}`,
+        });
 
-        // const webhook = await autofriendApiRequest.call(this, 'POST', '/hook', body);
-        // webhookData.webhookId = webhook.hook_id;
+        const subscription = await client.create(
+          build("Subscription", {
+            status: "active",
+            reason: "n8n workflow trigger",
+            criteria: "Patient",
+            channel: {
+              type: "rest-hook",
+              endpoint: webhookUrl,
+            },
+          }),
+        );
+
+        const subscriptionId = subscription.id;
+        webhookData.subscriptionId = subscriptionId;
+
         return true;
       },
 
       async delete(this: IHookFunctions): Promise<boolean> {
-        console.log("delete");
         const webhookData = this.getWorkflowStaticData("node");
-        try {
-          // await autofriendApiRequest.call(this, 'DELETE', `/hook/${webhookData.webhookId}`);
-        } catch {
+
+        const credentials = await this.getCredentials("FhirOAuth2Api");
+        const client: FhirClient = new FetchFhirClient({
+          baseUrl: "http://localhost:8103/fhir/R4",
+          // @ts-expect-error TODO: these are set.
+          auth: `${credentials.oauthTokenData.token_type} ${credentials.oauthTokenData.access_token}`,
+        });
+
+        if (!webhookData.subscriptionId) {
           return false;
         }
-        delete webhookData.webhookId;
+        await client.delete(
+          "Subscription",
+          webhookData.subscriptionId as string,
+        );
+
+        delete webhookData.subscriptionId;
         return true;
       },
     },
