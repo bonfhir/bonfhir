@@ -1,10 +1,13 @@
-import { CodeableConcept } from "../fhir-types.codegen";
 import {
   ValueFormatter,
   cleanUpCommonOptions,
   withValueFormatter,
 } from "../formatters";
-import { CodingFormatterOptions, codingFormatter } from "./coding";
+import {
+  CodingFormatterOptions,
+  FormattableCoding,
+  codingFormatter,
+} from "./coding";
 
 /**
  * A CodeableConcept represents a value that is usually supplied by
@@ -23,9 +26,14 @@ export interface CodeableConceptFormatterOptions
   listFormatOptions?: Intl.ListFormatOptions | undefined;
 }
 
+export interface FormattableCodeableConcept {
+  coding?: Array<FormattableCoding> | null | undefined;
+  text?: string | null | undefined;
+}
+
 export const codeableConceptFormatter: ValueFormatter<
   "CodeableConcept",
-  CodeableConcept | null | undefined,
+  FormattableCodeableConcept | null | undefined,
   CodeableConceptFormatterOptions | null | undefined
 > = {
   type: "CodeableConcept",

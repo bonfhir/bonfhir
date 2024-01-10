@@ -2,7 +2,7 @@ import { ValueFormatter } from "../formatters";
 
 export const fhirPathFormatter: ValueFormatter<
   "http://hl7.org/fhirpath/System.String",
-  string,
+  string | null | undefined,
   null | undefined
 > = {
   type: "http://hl7.org/fhirpath/System.String",

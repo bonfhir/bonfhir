@@ -1,4 +1,4 @@
-import { periodFormatter } from ".";
+import { FormattablePeriod, periodFormatter } from ".";
 import { formatWithTokens } from "..";
 import { HumanName, NameUse } from "../fhir-types.codegen";
 import {
@@ -82,9 +82,19 @@ export interface HumanNameFormatterOptions {
   expansions?: CodeFormatterOptions["expansions"];
 }
 
+export interface FormattableHumanName {
+  family?: string | null | undefined;
+  given?: string[] | null | undefined;
+  period?: FormattablePeriod | null | undefined;
+  prefix?: string[] | null | undefined;
+  suffix?: string[] | null | undefined;
+  text?: string | null | undefined;
+  use?: NameUse | null | undefined;
+}
+
 export const humanNameFormatter: ValueFormatter<
   "HumanName",
-  HumanName | HumanName[] | null | undefined,
+  FormattableHumanName | FormattableHumanName[] | null | undefined,
   HumanNameFormatterOptions | null | undefined
 > = {
   type: "HumanName",
@@ -140,7 +150,7 @@ export const humanNameFormatter: ValueFormatter<
       }).replaceAll(/\s+/g, " ");
     }
 
-    let nameComponents: Array<string | undefined>;
+    let nameComponents: Array<string | null | undefined>;
 
     switch (options?.style) {
       case "full": {
@@ -202,10 +212,10 @@ export const humanNameFormatter: ValueFormatter<
   },
 };
 
-const filterAndSortHumanNames = (
-  humanNames: HumanName[],
+function filterAndSortHumanNames(
+  humanNames: FormattableHumanName[],
   options: HumanNameFormatterOptions | null | undefined,
-): HumanName[] => {
+) {
   const useFilterOrder =
     options?.useFilterOrder || DEFAULT_HUMAN_NAME_USE_ORDER_FILTER;
   const indexedOrder: { [k: string]: number } = Object.fromEntries(
@@ -218,7 +228,7 @@ const filterAndSortHumanNames = (
   // filter out by use
   if (options?.useFilterOrder)
     humanNames = humanNames.filter((humanName) =>
-      useFilterOrder.includes(humanName.use),
+      useFilterOrder.includes(humanName.use ?? undefined),
     );
 
   // sort by use
@@ -234,7 +244,7 @@ const filterAndSortHumanNames = (
   }
 
   return humanNames;
-};
+}
 
 const DEFAULT_HUMAN_NAME_USE_ORDER_FILTER: HumanName["use"][] = [
   "official",

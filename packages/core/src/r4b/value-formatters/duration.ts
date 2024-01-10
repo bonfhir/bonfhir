@@ -1,6 +1,10 @@
-import { Distance, ValueSetExpansionContains } from "../fhir-types.codegen";
+import { ValueSetExpansionContains } from "../fhir-types.codegen";
 import { ValueFormatter } from "../formatters";
-import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
+import {
+  FormattableQuantity,
+  QuantityFormatterOptions,
+  quantityFormatter,
+} from "./quantity";
 
 /**
  * A measured amount (or an amount that can potentially be measured).
@@ -11,7 +15,7 @@ export type DurationFormatterOptions = QuantityFormatterOptions;
 
 export const durationFormatter: ValueFormatter<
   "Duration",
-  Distance | null | undefined,
+  FormattableQuantity | null | undefined,
   DurationFormatterOptions | null | undefined
 > = {
   type: "Duration",
