@@ -1,8 +1,11 @@
-import { Range } from "../fhir-types.codegen";
 import { ValueFormatter, withValueFormatter } from "../formatters";
 import { CodeFormatterOptions } from "./code";
 import { DecimalFormatterOptions, decimalFormatter } from "./decimal";
-import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
+import {
+  FormattableQuantity,
+  QuantityFormatterOptions,
+  quantityFormatter,
+} from "./quantity";
 
 /**
  * A set of ordered Quantity values defined by a low and high limit.
@@ -20,9 +23,14 @@ export type RangeFormatterOptions = {
   rangeSeparator?: string | null | undefined;
 };
 
+export interface FormattableRange {
+  high?: FormattableQuantity | null | undefined;
+  low?: FormattableQuantity | null | undefined;
+}
+
 export const rangeFormatter: ValueFormatter<
   "Range",
-  Range | null | undefined,
+  FormattableRange | null | undefined,
   RangeFormatterOptions | null | undefined
 > = {
   type: "Range",

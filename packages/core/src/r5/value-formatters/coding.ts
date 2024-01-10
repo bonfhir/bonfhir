@@ -1,4 +1,3 @@
-import { Coding } from "../fhir-types.codegen";
 import { ValueFormatter, withValueFormatter } from "../formatters";
 import { CodeFormatterOptions, codeFormatter } from "./code";
 
@@ -18,9 +17,16 @@ export interface CodingFormatterOptions {
   expansions?: CodeFormatterOptions["expansions"];
 }
 
+export interface FormattableCoding {
+  code?: string | null | undefined;
+  display?: string | null | undefined;
+  system?: string | null | undefined;
+  userSelected?: boolean | null | undefined;
+}
+
 export const codingFormatter: ValueFormatter<
   "Coding",
-  Coding | null | undefined,
+  FormattableCoding | null | undefined,
   CodingFormatterOptions | null | undefined
 > = {
   type: "Coding",

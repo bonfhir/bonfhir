@@ -1,4 +1,4 @@
-import { Money } from "../fhir-types.codegen";
+import { Currencies } from "../fhir-types.codegen";
 import { ValueFormatter } from "../formatters";
 
 /**
@@ -32,9 +32,14 @@ export type MoneyFormatterOptions = {
     | undefined;
 };
 
+export interface FormattableMoney {
+  currency?: Currencies | null | undefined;
+  value?: number | null | undefined;
+}
+
 export const moneyFormatter: ValueFormatter<
   "Money",
-  Money | null | undefined,
+  FormattableMoney | null | undefined,
   MoneyFormatterOptions | null | undefined
 > = {
   type: "Money",
@@ -43,7 +48,7 @@ export const moneyFormatter: ValueFormatter<
 
     const intlOptions: Intl.NumberFormatOptions = {
       style: "currency",
-      currency: value.currency,
+      currency: value.currency ?? undefined,
     };
 
     intlOptions.currencyDisplay = options?.currencyDisplay;

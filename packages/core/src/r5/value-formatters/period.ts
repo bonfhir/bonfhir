@@ -1,5 +1,4 @@
 import { parseFhirDateTime } from "../date-time-helpers";
-import { Period } from "../fhir-types.codegen";
 import {
   ValueFormatter,
   cleanUpCommonOptions,
@@ -12,9 +11,14 @@ export type PeriodFormatterOptions = DatetimeFormatterOptions & {
   avoidDateDuplication?: boolean;
 };
 
+export interface FormattablePeriod {
+  end?: string | null | undefined;
+  start?: string | null | undefined;
+}
+
 export const periodFormatter: ValueFormatter<
   "Period",
-  Period | null | undefined,
+  FormattablePeriod | null | undefined,
   PeriodFormatterOptions | null | undefined
 > = {
   type: "Period",

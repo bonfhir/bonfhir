@@ -4,9 +4,12 @@
  * @see https://hl7.org/fhir/datatypes.html#RatioRange
  */
 
-import { RatioRange } from "../fhir-types.codegen";
 import { ValueFormatter, withValueFormatter } from "../formatters";
-import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
+import {
+  FormattableQuantity,
+  QuantityFormatterOptions,
+  quantityFormatter,
+} from "./quantity";
 import { RangeFormatterOptions, rangeFormatter } from "./range";
 
 export type RatioRangeFormatterOptions = {
@@ -32,9 +35,15 @@ export type RatioRangeFormatterOptions = {
   reduceSingleDenominator?: boolean | null | undefined;
 };
 
+export interface FormattableRatioRange {
+  denominator?: FormattableQuantity | null | undefined;
+  highNumerator?: FormattableQuantity | null | undefined;
+  lowNumerator?: FormattableQuantity | null | undefined;
+}
+
 export const ratioRangeFormatter: ValueFormatter<
   "RatioRange",
-  RatioRange | null | undefined,
+  FormattableRatioRange | null | undefined,
   RatioRangeFormatterOptions | null | undefined
 > = {
   type: "RatioRange",
