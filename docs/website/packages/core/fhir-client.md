@@ -368,23 +368,21 @@ The client also supports executing [GraphQL operations](https://hl7.org/fhir/gra
 While it can be used with free-text queries, it is best to use it with [the GraphQL Code Generator](https://the-guild.dev/graphql/codegen)
 and [`TypedDocumentNode`](https://github.com/dotansimha/graphql-typed-document-node) to ensure type safety for GraphQL operations.
 
-[This guide](https://the-guild.dev/graphql/codegen/docs/getting-started) should walk you through installing the GraphQL
-code generator in your solution.
+[This guide](/docs/guides/graphql) should walk you through installing the GraphQL code generator in your solution.
 
 ```typescript
 // This is a sample of how to use the client to make a GraphQL query using free text
-const result = await client.graphql(
-  /* GraphQL */ `
-    query ListOrganizations($name: String, $_count: Int, $_sort: String) {
-      OrganizationList(name: $name, _count: $_count, _sort: $_sort) {
-        resourceType
-        id
-        name
-        identifier {
-          value
-        }
+const result = await client.graphql(`
+  query ListOrganizations($name: String, $_count: Int, $_sort: String) {
+    OrganizationList(name: $name, _count: $_count, _sort: $_sort) {
+      resourceType
+      id
+      name
+      identifier {
+        value
       }
     }
+  }
   `,
   {
     name: "Test",
@@ -393,9 +391,9 @@ const result = await client.graphql(
   },
 );
 
-// Or if you configure your project to use TypedDocumentNode - see https://the-guild.dev/graphql/codegen/docs/getting-started
+// Or if you configure your project to use TypedDocumentNode - see https://bonfhir.dev/docs/guides/graphql
 // you can have fully typed GraphQL queries
-const listOrganizationDocument = graphql(/* GraphQL */ `
+const listOrganizationDocument = graphql(`
   query ListOrganizations($name: String, $_count: Int, $_sort: String) {
     OrganizationList(name: $name, _count: $_count, _sort: $_sort) {
       resourceType

@@ -183,7 +183,7 @@ function BatteriesIncluded() {
     {
       title: "GraphQL support",
       text: "Query your FHIR data using typed GraphQL",
-      link: "/packages/core/fhir-client#graphql",
+      link: "/docs/guides/graphql",
     },
     {
       title: "FHIR Subscriptions",
