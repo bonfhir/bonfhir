@@ -213,9 +213,10 @@ import { Group, Paper, Stack, Text } from "@mantine/core";
 import PatientReportsTable from "../components/PatientReportsTable";
 
 export default function Home() {
-  const patientId = "afb2bbf9-872c-47a9-9b31-2a737ed65f0b";
-
-  const patientQuery = useFhirRead("Patient", patientId);
+  const patientQuery = useFhirRead(
+    "Patient",
+    "afb2bbf9-872c-47a9-9b31-2a737ed65f0b",
+  );
 
   return (
     <FhirQueryLoader query={patientQuery}>
