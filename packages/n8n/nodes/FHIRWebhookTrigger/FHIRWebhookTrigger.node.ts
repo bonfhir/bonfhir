@@ -25,6 +25,12 @@ export class FHIRWebhookTrigger implements INodeType {
     outputs: ["main"],
     properties: [
       {
+        displayName: "FHIR base URL",
+        name: "fhirBaseUrl",
+        type: "string",
+        default: "http://localhost:8103/fhir/R4",
+      },
+      {
         displayName: "Additional Fields",
         name: "additionalFields",
         type: "collection",
@@ -80,8 +86,10 @@ export class FHIRWebhookTrigger implements INodeType {
     default: {
       async checkExists(this: IHookFunctions): Promise<boolean> {
         const credentials = await this.getCredentials("FhirOAuth2Api");
+        const fhirBaseUrl = this.getNodeParameter("fhirBaseUrl") as string;
+
         const client: FhirClient = new FetchFhirClient({
-          baseUrl: "http://localhost:8103/fhir/R4",
+          baseUrl: fhirBaseUrl,
           // @ts-expect-error TODO: these are set.
           auth: `${credentials.oauthTokenData.token_type} ${credentials.oauthTokenData.access_token}`,
         });
@@ -107,11 +115,12 @@ export class FHIRWebhookTrigger implements INodeType {
 
         const webhookUrl =
           additionalFields.overrideWebhookUrl || defaultWebhookUrl;
+        const fhirBaseUrl = this.getNodeParameter("fhirBaseUrl") as string;
 
         const resource = this.getNodeParameter("resource") as string;
         const credentials = await this.getCredentials("FhirOAuth2Api");
         const client: FhirClient = new FetchFhirClient({
-          baseUrl: "http://localhost:8103/fhir/R4",
+          baseUrl: fhirBaseUrl,
           // @ts-expect-error TODO: these are set.
           auth: `${credentials.oauthTokenData.token_type} ${credentials.oauthTokenData.access_token}`,
         });
@@ -137,10 +146,11 @@ export class FHIRWebhookTrigger implements INodeType {
 
       async delete(this: IHookFunctions): Promise<boolean> {
         const webhookData = this.getWorkflowStaticData("node");
+        const fhirBaseUrl = this.getNodeParameter("fhirBaseUrl") as string;
 
         const credentials = await this.getCredentials("FhirOAuth2Api");
         const client: FhirClient = new FetchFhirClient({
-          baseUrl: "http://localhost:8103/fhir/R4",
+          baseUrl: fhirBaseUrl,
           // @ts-expect-error TODO: these are set.
           auth: `${credentials.oauthTokenData.token_type} ${credentials.oauthTokenData.access_token}`,
         });
