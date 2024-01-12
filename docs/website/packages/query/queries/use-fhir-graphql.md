@@ -72,7 +72,7 @@ export default function MyComponent() {
 ### Usage with typed GraphQL
 
 It is possible to generate proper type information for GraphQL queries.
-The details depend on your setup, but [following this guide](https://the-guild.dev/graphql/codegen/docs/getting-started)
+The details depend on your setup, but [following this guide](/docs/guides/graphql)
 should get you started. You can then do this:
 
 ```tsx title="codegen.ts"
