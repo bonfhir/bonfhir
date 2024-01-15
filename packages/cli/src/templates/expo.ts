@@ -7,6 +7,7 @@ import { promisify } from "node:util";
 import * as semver from "semver";
 import { TemplateOptions } from "../commands/create";
 import { Template } from "./template";
+import { packageJsonFhirServerScripts } from "./utils/fhir-servers";
 import { modifyJsonFile } from "./utils/modify-json-file";
 
 const execAsync = promisify(exec);
@@ -125,10 +126,7 @@ export const Expo: Template = {
               ...config.scripts,
               lint: "prettier --check ./src && eslint ./src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
               format: "prettier --write ./src",
-              "start-fhir-server": `docker run -p 8100:8100 -p 8103:8103 -v ${name}_fhir_data:/var/lib/postgresql/15/main -v ${name}_fhir_files:/usr/src/medplum/packages/server/dist/binary --name ${name}_fhir_server --rm -d ghcr.io/bonfhir/medplum-devbox:latest`,
-              "stop-fhir-server": `docker stop ${name}_fhir_server`,
-              "add-sample-data":
-                "npx @bonfhir/cli import --source synthea-sample --fhir r4b --base-url http://localhost:8103/fhir/R4/ --auth-token-url http://localhost:8103/oauth2/token --auth-client-id f54370de-eaf3-4d81-a17e-24860f667912 --auth-client-secret 75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
+              ...packageJsonFhirServerScripts(name, "medplum"),
             },
             prettier: {
               plugins: ["prettier-plugin-organize-imports"],

@@ -6,6 +6,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { TemplateOptions } from "../commands/create";
 import { LambdaTasks } from "./lambda";
 import { Template } from "./template";
+import { packageJsonFhirServerScripts } from "./utils/fhir-servers";
 import { PackageManager } from "./utils/package-manager";
 import { ViteTasks } from "./vite";
 
@@ -246,24 +247,31 @@ const NPMRC_CONTENT = `auto-install-peers = true
 const ROOT_PACKAGE_JSON_CONTENT = (
   name: string,
   packageManager: PackageManager,
-) => `{
-  "name": "${name}",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "turbo run format",
-    "start-fhir-server": "docker run -p 8100:8100 -p 8103:8103 -v ${name}_fhir_data:/var/lib/postgresql/15/main -v ${name}_fhir_files:/usr/src/medplum/packages/server/dist/binary --name ${name}_fhir_server --rm -d ghcr.io/bonfhir/medplum-devbox:latest",
-    "stop-fhir-server": "docker stop ${name}_fhir_server",
-    "add-sample-data": "npx @bonfhir/cli import --source synthea-sample --fhir r4b --base-url http://localhost:8103/fhir/R4/ --auth-token-url http://localhost:8103/oauth2/token --auth-client-id f54370de-eaf3-4d81-a17e-24860f667912 --auth-client-secret 75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de"
-  },
-  "devDependencies": {
-    "turbo": "latest"
-  }
-  ${packageManager === "npm" ? `, "workspaces": ["apps/*", "packages/*"]` : ""}
-}
-`;
+) =>
+  JSON.stringify(
+    {
+      name,
+      private: true,
+      scripts: {
+        build: "turbo run build",
+        dev: "turbo run dev",
+        lint: "turbo run lint",
+        format: "turbo run format",
+        ...packageJsonFhirServerScripts(
+          name,
+          "medplum",
+          "http://localhost:5173",
+        ),
+      },
+      devDependencies: {
+        turbo: "latest",
+      },
+      workspaces:
+        packageManager === "npm" ? ["apps/*", "packages/*"] : undefined,
+    },
+    undefined,
+    2,
+  );
 
 const PNPM_WORKSPACE_CONTENT = `packages:
 - "apps/*"
