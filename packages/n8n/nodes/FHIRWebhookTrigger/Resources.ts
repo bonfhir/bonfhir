@@ -3,574 +3,574 @@ import { INodePropertyOptions } from "n8n-workflow";
 export const resourceTypes: INodePropertyOptions[] = [
   {
     name: "Account",
-    value: "account",
+    value: "Account",
   },
   {
     name: "ActivityDefinition",
-    value: "activitydefinition",
+    value: "ActivityDefinition",
   },
   {
     name: "AdministrableProductDefinition",
-    value: "administrableproductdefinition",
+    value: "AdministrableProductDefinition",
   },
   {
     name: "AdverseEvent",
-    value: "adverseevent",
+    value: "AdverseEvent",
   },
   {
     name: "AllergyIntolerance",
-    value: "allergyintolerance",
+    value: "AllergyIntolerance",
   },
   {
     name: "Appointment",
-    value: "appointment",
+    value: "Appointment",
   },
   {
     name: "AppointmentResponse",
-    value: "appointmentresponse",
+    value: "AppointmentResponse",
   },
   {
     name: "AuditEvent",
-    value: "auditevent",
+    value: "AuditEvent",
   },
   {
     name: "Basic",
-    value: "basic",
+    value: "Basic",
   },
   {
     name: "Binary",
-    value: "binary",
+    value: "Binary",
   },
   {
     name: "BiologicallyDerivedProduct",
-    value: "biologicallyderivedproduct",
+    value: "BiologicallyDerivedProduct",
   },
   {
     name: "BodyStructure",
-    value: "bodystructure",
+    value: "BodyStructure",
   },
   {
     name: "Bundle",
-    value: "bundle",
+    value: "Bundle",
   },
   {
     name: "CapabilityStatement",
-    value: "capabilitystatement",
+    value: "CapabilityStatement",
   },
   {
     name: "CarePlan",
-    value: "careplan",
+    value: "CarePlan",
   },
   {
     name: "CareTeam",
-    value: "careteam",
+    value: "CareTeam",
   },
   {
     name: "CatalogEntry",
-    value: "catalogentry",
+    value: "CatalogEntry",
   },
   {
     name: "ChargeItem",
-    value: "chargeitem",
+    value: "ChargeItem",
   },
   {
     name: "ChargeItemDefinition",
-    value: "chargeitemdefinition",
+    value: "ChargeItemDefinition",
   },
   {
     name: "Citation",
-    value: "citation",
+    value: "Citation",
   },
   {
     name: "Claim",
-    value: "claim",
+    value: "Claim",
   },
   {
     name: "ClaimResponse",
-    value: "claimresponse",
+    value: "ClaimResponse",
   },
   {
     name: "ClinicalImpression",
-    value: "clinicalimpression",
+    value: "ClinicalImpression",
   },
   {
     name: "ClinicalUseDefinition",
-    value: "clinicalusedefinition",
+    value: "ClinicalUseDefinition",
   },
   {
     name: "CodeSystem",
-    value: "codesystem",
+    value: "CodeSystem",
   },
   {
     name: "Communication",
-    value: "communication",
+    value: "Communication",
   },
   {
     name: "CommunicationRequest",
-    value: "communicationrequest",
+    value: "CommunicationRequest",
   },
   {
     name: "CompartmentDefinition",
-    value: "compartmentdefinition",
+    value: "CompartmentDefinition",
   },
   {
     name: "Composition",
-    value: "composition",
+    value: "Composition",
   },
   {
     name: "ConceptMap",
-    value: "conceptmap",
+    value: "ConceptMap",
   },
   {
     name: "Condition",
-    value: "condition",
+    value: "Condition",
   },
   {
     name: "Consent",
-    value: "consent",
+    value: "Consent",
   },
   {
     name: "Contract",
-    value: "contract",
+    value: "Contract",
   },
   {
     name: "Coverage",
-    value: "coverage",
+    value: "Coverage",
   },
   {
     name: "CoverageEligibilityRequest",
-    value: "coverageeligibilityrequest",
+    value: "CoverageEligibilityRequest",
   },
   {
     name: "CoverageEligibilityResponse",
-    value: "coverageeligibilityresponse",
+    value: "CoverageEligibilityResponse",
   },
   {
     name: "DetectedIssue",
-    value: "detectedissue",
+    value: "DetectedIssue",
   },
   {
     name: "Device",
-    value: "device",
+    value: "Device",
   },
   {
     name: "DeviceDefinition",
-    value: "devicedefinition",
+    value: "DeviceDefinition",
   },
   {
     name: "DeviceMetric",
-    value: "devicemetric",
+    value: "DeviceMetric",
   },
   {
     name: "DeviceRequest",
-    value: "devicerequest",
+    value: "DeviceRequest",
   },
   {
     name: "DeviceUseStatement",
-    value: "deviceusestatement",
+    value: "DeviceUseStatement",
   },
   {
     name: "DiagnosticReport",
-    value: "diagnosticreport",
+    value: "DiagnosticReport",
   },
   {
     name: "DocumentManifest",
-    value: "documentmanifest",
+    value: "DocumentManifest",
   },
   {
     name: "DocumentReference",
-    value: "documentreference",
+    value: "DocumentReference",
   },
   {
     name: "DomainResource",
-    value: "domainresource",
+    value: "DomainResource",
   },
   {
     name: "Encounter",
-    value: "encounter",
+    value: "Encounter",
   },
   {
     name: "Endpoint",
-    value: "endpoint",
+    value: "Endpoint",
   },
   {
     name: "EnrollmentRequest",
-    value: "enrollmentrequest",
+    value: "EnrollmentRequest",
   },
   {
     name: "EnrollmentResponse",
-    value: "enrollmentresponse",
+    value: "EnrollmentResponse",
   },
   {
     name: "EpisodeOfCare",
-    value: "episodeofcare",
+    value: "EpisodeOfCare",
   },
   {
     name: "EventDefinition",
-    value: "eventdefinition",
+    value: "EventDefinition",
   },
   {
     name: "Evidence",
-    value: "evidence",
+    value: "Evidence",
   },
   {
     name: "EvidenceReport",
-    value: "evidencereport",
+    value: "EvidenceReport",
   },
   {
     name: "EvidenceVariable",
-    value: "evidencevariable",
+    value: "EvidenceVariable",
   },
   {
     name: "ExampleScenario",
-    value: "examplescenario",
+    value: "ExampleScenario",
   },
   {
     name: "ExplanationOfBenefit",
-    value: "explanationofbenefit",
+    value: "ExplanationOfBenefit",
   },
   {
     name: "FamilyMemberHistory",
-    value: "familymemberhistory",
+    value: "FamilyMemberHistory",
   },
   {
     name: "Flag",
-    value: "flag",
+    value: "Flag",
   },
   {
     name: "Goal",
-    value: "goal",
+    value: "Goal",
   },
   {
     name: "GraphDefinition",
-    value: "graphdefinition",
+    value: "GraphDefinition",
   },
   {
     name: "Group",
-    value: "group",
+    value: "Group",
   },
   {
     name: "GuidanceResponse",
-    value: "guidanceresponse",
+    value: "GuidanceResponse",
   },
   {
     name: "HealthcareService",
-    value: "healthcareservice",
+    value: "HealthcareService",
   },
   {
     name: "ImagingStudy",
-    value: "imagingstudy",
+    value: "ImagingStudy",
   },
   {
     name: "Immunization",
-    value: "immunization",
+    value: "Immunization",
   },
   {
     name: "ImmunizationEvaluation",
-    value: "immunizationevaluation",
+    value: "ImmunizationEvaluation",
   },
   {
     name: "ImmunizationRecommendation",
-    value: "immunizationrecommendation",
+    value: "ImmunizationRecommendation",
   },
   {
     name: "ImplementationGuide",
-    value: "implementationguide",
+    value: "ImplementationGuide",
   },
   {
     name: "Ingredient",
-    value: "ingredient",
+    value: "Ingredient",
   },
   {
     name: "InsurancePlan",
-    value: "insuranceplan",
+    value: "InsurancePlan",
   },
   {
     name: "Invoice",
-    value: "invoice",
+    value: "Invoice",
   },
   {
     name: "Library",
-    value: "library",
+    value: "Library",
   },
   {
     name: "Linkage",
-    value: "linkage",
+    value: "Linkage",
   },
   {
     name: "List",
-    value: "list",
+    value: "List",
   },
   {
     name: "Location",
-    value: "location",
+    value: "Location",
   },
   {
     name: "ManufacturedItemDefinition",
-    value: "manufactureditemdefinition",
+    value: "ManufacturedItemDefinition",
   },
   {
     name: "Measure",
-    value: "measure",
+    value: "Measure",
   },
   {
     name: "MeasureReport",
-    value: "measurereport",
+    value: "MeasureReport",
   },
   {
     name: "Media",
-    value: "media",
+    value: "Media",
   },
   {
     name: "Medication",
-    value: "medication",
+    value: "Medication",
   },
   {
     name: "MedicationAdministration",
-    value: "medicationadministration",
+    value: "MedicationAdministration",
   },
   {
     name: "MedicationDispense",
-    value: "medicationdispense",
+    value: "MedicationDispense",
   },
   {
     name: "MedicationKnowledge",
-    value: "medicationknowledge",
+    value: "MedicationKnowledge",
   },
   {
     name: "MedicationRequest",
-    value: "medicationrequest",
+    value: "MedicationRequest",
   },
   {
     name: "MedicationStatement",
-    value: "medicationstatement",
+    value: "MedicationStatement",
   },
   {
     name: "MedicinalProductDefinition",
-    value: "medicinalproductdefinition",
+    value: "MedicinalProductDefinition",
   },
   {
     name: "MessageDefinition",
-    value: "messagedefinition",
+    value: "MessageDefinition",
   },
   {
     name: "MessageHeader",
-    value: "messageheader",
+    value: "MessageHeader",
   },
   {
     name: "MolecularSequence",
-    value: "molecularsequence",
+    value: "MolecularSequence",
   },
   {
     name: "NamingSystem",
-    value: "namingsystem",
+    value: "NamingSystem",
   },
   {
     name: "NutritionOrder",
-    value: "nutritionorder",
+    value: "NutritionOrder",
   },
   {
     name: "NutritionProduct",
-    value: "nutritionproduct",
+    value: "NutritionProduct",
   },
   {
     name: "Observation",
-    value: "observation",
+    value: "Observation",
   },
   {
     name: "ObservationDefinition",
-    value: "observationdefinition",
+    value: "ObservationDefinition",
   },
   {
     name: "OperationDefinition",
-    value: "operationdefinition",
+    value: "OperationDefinition",
   },
   {
     name: "OperationOutcome",
-    value: "operationoutcome",
+    value: "OperationOutcome",
   },
   {
     name: "Organization",
-    value: "organization",
+    value: "Organization",
   },
   {
     name: "OrganizationAffiliation",
-    value: "organizationaffiliation",
+    value: "OrganizationAffiliation",
   },
   {
     name: "PackagedProductDefinition",
-    value: "packagedproductdefinition",
+    value: "PackagedProductDefinition",
   },
   {
     name: "Parameters",
-    value: "parameters",
+    value: "Parameters",
   },
   {
     name: "Patient",
-    value: "patient",
+    value: "Patient",
   },
   {
     name: "PaymentNotice",
-    value: "paymentnotice",
+    value: "PaymentNotice",
   },
   {
     name: "PaymentReconciliation",
-    value: "paymentreconciliation",
+    value: "PaymentReconciliation",
   },
   {
     name: "Person",
-    value: "person",
+    value: "Person",
   },
   {
     name: "PlanDefinition",
-    value: "plandefinition",
+    value: "PlanDefinition",
   },
   {
     name: "Practitioner",
-    value: "practitioner",
+    value: "Practitioner",
   },
   {
     name: "PractitionerRole",
-    value: "practitionerrole",
+    value: "PractitionerRole",
   },
   {
     name: "Procedure",
-    value: "procedure",
+    value: "Procedure",
   },
   {
     name: "Provenance",
-    value: "provenance",
+    value: "Provenance",
   },
   {
     name: "Questionnaire",
-    value: "questionnaire",
+    value: "Questionnaire",
   },
   {
     name: "QuestionnaireResponse",
-    value: "questionnaireresponse",
+    value: "QuestionnaireResponse",
   },
   {
     name: "RegulatedAuthorization",
-    value: "regulatedauthorization",
+    value: "RegulatedAuthorization",
   },
   {
     name: "RelatedPerson",
-    value: "relatedperson",
+    value: "RelatedPerson",
   },
   {
     name: "RequestGroup",
-    value: "requestgroup",
+    value: "RequestGroup",
   },
   {
     name: "ResearchDefinition",
-    value: "researchdefinition",
+    value: "ResearchDefinition",
   },
   {
     name: "ResearchElementDefinition",
-    value: "researchelementdefinition",
+    value: "ResearchElementDefinition",
   },
   {
     name: "ResearchStudy",
-    value: "researchstudy",
+    value: "ResearchStudy",
   },
   {
     name: "ResearchSubject",
-    value: "researchsubject",
+    value: "ResearchSubject",
   },
   {
     name: "Resource",
-    value: "resource",
+    value: "Resource",
   },
   {
     name: "RiskAssessment",
-    value: "riskassessment",
+    value: "RiskAssessment",
   },
   {
     name: "Schedule",
-    value: "schedule",
+    value: "Schedule",
   },
   {
     name: "SearchParameter",
-    value: "searchparameter",
+    value: "SearchParameter",
   },
   {
     name: "ServiceRequest",
-    value: "servicerequest",
+    value: "ServiceRequest",
   },
   {
     name: "Slot",
-    value: "slot",
+    value: "Slot",
   },
   {
     name: "Specimen",
-    value: "specimen",
+    value: "Specimen",
   },
   {
     name: "SpecimenDefinition",
-    value: "specimendefinition",
+    value: "SpecimenDefinition",
   },
   {
     name: "StructureDefinition",
-    value: "structuredefinition",
+    value: "StructureDefinition",
   },
   {
     name: "StructureMap",
-    value: "structuremap",
+    value: "StructureMap",
   },
   {
     name: "Subscription",
-    value: "subscription",
+    value: "Subscription",
   },
   {
     name: "SubscriptionStatus",
-    value: "subscriptionstatus",
+    value: "SubscriptionStatus",
   },
   {
     name: "SubscriptionTopic",
-    value: "subscriptiontopic",
+    value: "SubscriptionTopic",
   },
   {
     name: "Substance",
-    value: "substance",
+    value: "Substance",
   },
   {
     name: "SubstanceDefinition",
-    value: "substancedefinition",
+    value: "SubstanceDefinition",
   },
   {
     name: "SupplyDelivery",
-    value: "supplydelivery",
+    value: "SupplyDelivery",
   },
   {
     name: "SupplyRequest",
-    value: "supplyrequest",
+    value: "SupplyRequest",
   },
   {
     name: "Task",
-    value: "task",
+    value: "Task",
   },
   {
     name: "TerminologyCapabilities",
-    value: "terminologycapabilities",
+    value: "TerminologyCapabilities",
   },
   {
     name: "TestReport",
-    value: "testreport",
+    value: "TestReport",
   },
   {
     name: "TestScript",
-    value: "testscript",
+    value: "TestScript",
   },
   {
     name: "ValueSet",
-    value: "valueset",
+    value: "ValueSet",
   },
   {
     name: "VerificationResult",
-    value: "verificationresult",
+    value: "VerificationResult",
   },
   {
     name: "VisionPrescription",
-    value: "visionprescription",
+    value: "VisionPrescription",
   },
 ];

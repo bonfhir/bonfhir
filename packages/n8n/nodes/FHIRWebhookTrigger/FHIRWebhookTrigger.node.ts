@@ -129,7 +129,7 @@ export class FHIRWebhookTrigger implements INodeType {
           build("Subscription", {
             status: "active",
             reason: "n8n workflow trigger",
-            criteria: resource[0].toUpperCase() + resource.slice(1),
+            criteria: resource,
             channel: {
               type: "rest-hook",
               endpoint: webhookUrl as string,
