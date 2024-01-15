@@ -10,7 +10,7 @@ BonFHIR can connect to any FHIR-based API. For local development, BonFHIR provid
 2. In your project directory, start a [development-ready MedPlum](https://github.com/bonfhir/medplum-devbox) instance. **This is for development only and not for production use.**
 
    ```bash npm2yarn
-   npm run start-fhir-server
+   npm run fhir:start-server
    ```
 
 3. Once the server is ready (it may take up to a minute the first time), open http://localhost:8100 and login using the default credentials:

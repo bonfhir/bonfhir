@@ -10,19 +10,19 @@ BonFHIR can connect to any FHIR-based API. For local development, BonFHIR provid
 2. In your project directory, start a [development-ready MedPlum](https://github.com/bonfhir/medplum-devbox) instance. **This is for development only and not for production use.**
 
    ```bash npm2yarn
-   npm run start-fhir-server
+   npm run fhir:start-server
    ```
 
-3. Once the server is ready, open http://localhost:8100 and login using the default credentials:
+3. Once the server is ready (look for a message saying "Server started"), open http://localhost:8100 and login using the default credentials:
 
    - Username: `admin@example.com`
    - Password: `medplum_admin`
    - Project: Default
 
-4. Import FHIR sample data into Medplum. This command will ask to install another package: **@bonfhir/cli**
+4. Import FHIR sample data into Medplum - Run the following command in a different terminal while the server is running:
 
    ```bash npm2yarn
-   npm run add-sample-data
+   npm run fhir:add-sample-data
    ```
 
 :::info

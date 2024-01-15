@@ -10,5 +10,8 @@ description: Initialize the project
    npm create -y bonfhir@latest
    ```
 
-2. Provide a project name and select the **lambda** template
+2. Provide a project name and select the **lambda** template with the **Medplum** FHIR Server:
+
+   ![Lambda Project Template](../../static/img/docs/lambda-project-template.png)
+
 3. `cd` into the new project and open it in your favorite editor

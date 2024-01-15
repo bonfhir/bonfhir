@@ -46,7 +46,7 @@ All projects comes with a [local FHIR server setup](https://github.com/bonfhir/m
 Simply use the following command to launch it:
 
 ```bash npm2yarn
-npm run start-fhir-server
+npm run fhir:start-server
 ```
 
 Wait for a few minute for the server to start (you can look in the docker logs for a `Server started` statement).
@@ -55,10 +55,12 @@ Then open http://localhost:8100 and login using the default credentials:
 
 - Username: `admin@example.com`
 - Password: `medplum_admin`
-- Project: Default
+- Project: "Default Project"
 
-The following command will also launch [the import of synthetic patient data](/packages/cli/import) into the FHIR server:
+The following command will also launch [the import of synthetic patient data](/packages/cli/import) into the FHIR server
+
+- using it while the server is running:
 
 ```bash npm2yarn
-npm run add-sample-data
+npm run fhir:add-sample-data
 ```

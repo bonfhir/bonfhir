@@ -81,7 +81,7 @@ export default config;
 There are a few things that you may need to fix:
 
 1. Ensure that your FHIR Server is running nad the introspection endpoint is available  
-   _(run the `npm start-fhir-server` command in a project created from a bonFHIR template)_
+   _(run the `npm fhir:start-server` command in a project created from a bonFHIR template)_
 
 2. Your FHIR Server introspection endpoint may need authentication information; this is the case for our [provided FHIR local development server](/docs/build-a-fhir-app-with-react/setup-fhir-server)  
    If this is the case you can add the authentication info like so:
