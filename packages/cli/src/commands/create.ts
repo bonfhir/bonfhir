@@ -3,15 +3,21 @@ import { CommandModule } from "yargs";
 import writeLogo from "../ascii-logo";
 import { Templates } from "../templates";
 import {
+  FhirServerChoices,
+  FhirServerType,
+  FhirServerTypes,
+} from "../templates/utils/fhir-servers";
+import {
   PackageManager,
   PackageManagerHandler,
   PackageManagers,
-} from "../templates/package-manager";
+} from "../templates/utils/package-manager";
 
 export interface CommandOption {
   name?: string;
   template?: string;
   packageManager?: string;
+  fhirServer?: FhirServerType;
 }
 
 export default <CommandModule<unknown, CommandOption>>{
@@ -34,6 +40,12 @@ export default <CommandModule<unknown, CommandOption>>{
       alias: "p",
       choices: PackageManagers,
       describe: "The package manager to use",
+    },
+    "fhir-server": {
+      type: "string",
+      alias: "f",
+      choices: FhirServerTypes,
+      describe: "The local FHIR Server to include",
     },
   },
   handler: async (options) => {
@@ -63,6 +75,17 @@ export default <CommandModule<unknown, CommandOption>>{
           choices: PackageManagers,
           validate: (input) => PackageManagers.includes(input),
         },
+        {
+          name: "fhirServer",
+          type: "list",
+          message: "Which development FHIR Server do you want to include?",
+          choices: FhirServerChoices,
+          default: "medplum",
+          validate: (input) => FhirServerTypes.includes(input),
+          when(answers) {
+            return answers.template === "vite";
+          },
+        },
       ],
       options,
     );
@@ -83,7 +106,8 @@ export default <CommandModule<unknown, CommandOption>>{
 };
 
 export interface TemplateOptions
-  extends Omit<Required<CommandOption>, "packageManager"> {
+  extends Omit<Required<CommandOption>, "packageManager" | "fhirServer"> {
   cwd: string;
   packageManager: PackageManagerHandler;
+  fhirServer: FhirServerType | undefined;
 }

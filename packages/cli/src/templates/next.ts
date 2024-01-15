@@ -3,8 +3,8 @@ import { Listr } from "listr2";
 import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { TemplateOptions } from "../commands/create";
-import { FAVICON_CONTENT_BASE64 } from "./favicon";
 import { Template } from "./template";
+import { FAVICON_CONTENT_BASE64 } from "./utils/favicon";
 
 export interface Context {
   options: TemplateOptions;

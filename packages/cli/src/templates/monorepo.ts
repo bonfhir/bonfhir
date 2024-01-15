@@ -5,8 +5,8 @@ import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { TemplateOptions } from "../commands/create";
 import { LambdaTasks } from "./lambda";
-import { PackageManager } from "./package-manager";
 import { Template } from "./template";
+import { PackageManager } from "./utils/package-manager";
 import { ViteTasks } from "./vite";
 
 export interface Context {
@@ -148,6 +148,7 @@ export const Monorepo: Template = {
                 name: `@${name}/web`,
                 packageManager,
                 template: "vite",
+                fhirServer: undefined,
               },
               monorepo: name,
             },
@@ -164,6 +165,7 @@ export const Monorepo: Template = {
                 name: `@${name}/api`,
                 packageManager,
                 template: "lambda",
+                fhirServer: undefined,
               },
               monorepo: name,
             },

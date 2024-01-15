@@ -28,6 +28,7 @@
     "listr",
     "loglevel",
     "Mantine",
+    "Medplum",
     "onwarn",
     "preinstall",
     "revinclude",

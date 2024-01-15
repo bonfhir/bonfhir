@@ -4,8 +4,8 @@ import { Listr, ListrTask } from "listr2";
 import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { TemplateOptions } from "../commands/create";
-import { PackageManager } from "./package-manager";
 import { Template } from "./template";
+import { PackageManager } from "./utils/package-manager";
 
 export interface Context {
   options: TemplateOptions;
