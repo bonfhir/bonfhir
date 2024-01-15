@@ -127,7 +127,13 @@ export async function registerSubscriptions({
     } catch (error) {
       logger.error(
         `Error while registering subscription ${subscription.reason} on ${subscription.endpoint}`,
-        error,
+        (() => {
+          try {
+            return JSON.stringify(error, undefined, 2);
+          } catch {
+            return error;
+          }
+        })(),
       );
 
       throw error;

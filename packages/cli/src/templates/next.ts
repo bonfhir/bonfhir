@@ -3,8 +3,9 @@ import { Listr } from "listr2";
 import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { TemplateOptions } from "../commands/create";
-import { FAVICON_CONTENT_BASE64 } from "./favicon";
 import { Template } from "./template";
+import { FAVICON_CONTENT_BASE64 } from "./utils/favicon";
+import { packageJsonFhirServerScripts } from "./utils/fhir-servers";
 
 export interface Context {
   options: TemplateOptions;
@@ -156,30 +157,37 @@ indent_style = space
 indent_size = 2
 `;
 
-const PACKAGE_JSON_CONTENT = (name: string) => `{
-  "name": "${name}",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "prettier --check ./src && next lint",
-    "format": "prettier --write ./src",
-    "start-fhir-server": "docker run -p 8100:8100 -p 8103:8103 -v ${name}_fhir_data:/var/lib/postgresql/15/main -v ${name}_fhir_files:/usr/src/medplum/packages/server/dist/binary -e INITIAL_CLIENT_APP_REDIRECT_URI=http://localhost:3000/api/auth/callback/medplum --name ${name}_fhir_server --rm -d ghcr.io/bonfhir/medplum-devbox:latest",
-    "stop-fhir-server": "docker stop ${name}_fhir_server",
-    "add-sample-data": "npx @bonfhir/cli import --source synthea-sample --fhir r4b --base-url http://localhost:8103/fhir/R4/ --auth-token-url http://localhost:8103/oauth2/token --auth-client-id f54370de-eaf3-4d81-a17e-24860f667912 --auth-client-secret 75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
-    "register-subscriptions": "curl -i --request POST 'http://localhost:3000/api/fhir/subscriptions/register' --header 'X-Subscription-Auth: secret'"
-  },
-  "prettier": {
-    "plugins": ["prettier-plugin-organize-imports"]
-  },
-  "eslintConfig": {
-    "extends": ["next/core-web-vitals", "prettier"]
-  }
-}
-`;
+const PACKAGE_JSON_CONTENT = (name: string) =>
+  JSON.stringify(
+    {
+      name,
+      version: "0.1.0",
+      private: true,
+      type: "module",
+      scripts: {
+        dev: "next dev",
+        build: "next build",
+        start: "next start",
+        lint: "prettier --check ./src && next lint",
+        format: "prettier --write ./src",
+        ...packageJsonFhirServerScripts(
+          name,
+          "medplum",
+          "http://localhost:3000/api/auth/callback/medplum",
+        ),
+        "register-subscriptions":
+          "curl -i --request POST 'http://localhost:3000/api/fhir/subscriptions/register' --header 'X-Subscription-Auth: secret'",
+      },
+      prettier: {
+        plugins: ["prettier-plugin-organize-imports"],
+      },
+      eslintConfig: {
+        extends: ["next/core-web-vitals", "prettier"],
+      },
+    },
+    undefined,
+    2,
+  );
 
 const TSCONFIG_CONTENT = `{
   "compilerOptions": {
