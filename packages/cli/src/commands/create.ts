@@ -83,7 +83,7 @@ export default <CommandModule<unknown, CommandOption>>{
           default: "medplum",
           validate: (input) => FhirServerTypes.includes(input),
           when(answers) {
-            return answers.template === "vite";
+            return ["vite", "lambda"].includes(answers.template);
           },
         },
       ],
