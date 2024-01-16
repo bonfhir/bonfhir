@@ -12,6 +12,7 @@ import {
   fetchFhirClientConfig,
   packageJsonFhirServerScripts,
 } from "./utils/fhir-servers";
+import { MANTINE_RENDERER_PROPS_CONTENT } from "./utils/mantine-renderer-props";
 
 export interface Context {
   options: TemplateOptions;
@@ -99,9 +100,13 @@ export const ViteTasks = (): ListrTask<Context>[] => [
       await writeFile(`${cwd}/src/App.tsx`, APP_CONTENT(fhirServer), "utf8");
       await writeFile(`${cwd}/src/index.tsx`, INDEX_CONTENT, "utf8");
       await writeFile(`${cwd}/src/vite-env.d.ts`, VITE_ENV_CONTENT, "utf8");
+      await writeFile(
+        `${cwd}/src/bonfhir.d.ts`,
+        MANTINE_RENDERER_PROPS_CONTENT,
+        "utf8",
+      );
       await mkdir(`${cwd}/src/pages`, { recursive: true });
       await writeFile(`${cwd}/src/pages/Home.tsx`, HOME_CONTENT, "utf8");
-
       await writeFile(
         `${cwd}/public/favicon.ico`,
         FAVICON_CONTENT_BASE64,

@@ -6,6 +6,7 @@ import { TemplateOptions } from "../commands/create";
 import { Template } from "./template";
 import { FAVICON_CONTENT_BASE64 } from "./utils/favicon";
 import { packageJsonFhirServerScripts } from "./utils/fhir-servers";
+import { MANTINE_RENDERER_PROPS_CONTENT } from "./utils/mantine-renderer-props";
 
 export interface Context {
   options: TemplateOptions;
@@ -72,6 +73,11 @@ export const Next: Template = {
           await writeFile(
             `${cwd}/src/next-auth.d.ts`,
             NEXT_AUTH_TYPES_CONTENT,
+            "utf8",
+          );
+          await writeFile(
+            `${cwd}/src/bonfhir.d.ts`,
+            MANTINE_RENDERER_PROPS_CONTENT,
             "utf8",
           );
           await writeFile(
