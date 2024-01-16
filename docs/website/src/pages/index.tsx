@@ -226,6 +226,7 @@ function BatteriesIncluded() {
     {
       title: "Code generation",
       text: "Generate any code you like using FHIR definition files and your own templates",
+      link: "/packages/codegen",
     },
   ];
   return (

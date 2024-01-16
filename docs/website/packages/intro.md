@@ -31,7 +31,7 @@ Some packages are client-side only, some are server-side only, and some are both
 - Utilities - not meant for inclusion in a project:
   - [`@bonfhir/cli`](/packages/cli)
   - [`create-bonfhir`](/packages/cli/create) (subset of `@bonfhir/cli`)
-  - `@bonfhir/codegen`
+  - [`@bonfhir/codegen`](/packages/codegen)
 
 ## Package formats
 
