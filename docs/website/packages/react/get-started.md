@@ -236,17 +236,17 @@ While this works, we recommend using the global approach as it will be applied e
 
 ### Globally apply the renderer props type
 
-For this, you will need to create a filoe named `bonfhir.d.ts` at the root of your application, and apply TypeScript
+For this, you will need to create a file named `bonfhir.d.ts` at the root of your application, and apply TypeScript
 types overrides for each bonFHIR component you use:
 
-```tsx
+```tsx title="bonfhir.d.ts"
 import {
   MantineFhirPaginationProps,
   MantineFhirValueProps,
 } from "@bonfhir/mantine/r4b";
 import { FhirPaginationProps, FhirValueProps } from "@bonfhir/react/r4b";
 
-declare module "@bonfhir/react/r4b" {
+declare global {
   export function FhirValue(
     props: FhirValueProps<MantineFhirValueProps>,
   ): ReactElement | null;
