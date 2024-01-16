@@ -167,10 +167,10 @@ importers:
         specifier: ^2.2.1
         version: link:../../packages/aws-lambda
       '@bonfhir/core':
-        specifier: ^2.17.2
+        specifier: ^2.18.0
         version: link:../../packages/core
       '@bonfhir/subscriptions':
-        specifier: ^2.3.0
+        specifier: ^2.3.1
         version: link:../../packages/subscriptions
     devDependencies:
       '@bonfhir/eslint-config':
@@ -1122,7 +1122,7 @@ importers:
   packages/query:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.17.2
+        specifier: ^2.18.0
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':
@@ -1289,7 +1289,7 @@ importers:
   packages/subscriptions:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.16.1
+        specifier: ^2.18.0
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':
