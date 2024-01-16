@@ -13,7 +13,12 @@ The big benefit is that it works with FHIR types natively. For example:
 - terminology is supported, as well as references and resources search
 - composite data types are also supported: `Identifier`, `HumanName`, `Address`, `ContactPoint`...
 
-Although it can be use with a simple `useState` as shown below, it should probably be used with a form hook / system for maximum flexibility.
+:::tip
+
+Although it can be use with a simple `useState` as shown below, it should probably be used with a form hook / system for maximum power.  
+See [`useFhirForm`](/packages/react/mantine/use-fhir-form) or [`useFhirResourceForm`](/packages/react/mantine/use-fhir-resource-form) for more information.
+
+:::
 
 ## Example usage
 

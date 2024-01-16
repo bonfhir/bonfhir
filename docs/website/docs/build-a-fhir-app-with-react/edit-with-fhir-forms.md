@@ -9,7 +9,7 @@ Let's learn how to create or edit FHIR resources through forms.
 ## Key concepts
 
 - Create a new page and adapt the navigation / router
-- `useFhirResourceForm` to create a controlled form to edit FHIR resource
+- [`useFhirResourceForm`](/packages/react/mantine/use-fhir-resource-form) to create a controlled form to edit FHIR resources
 - [`<FhirInput>`](/packages/react/components/fhir-input) to create form inputs for FHIR data types
 - [`<FhirInputArray>`](/packages/react/components/fhir-input-array) for repeating elements in resources
 

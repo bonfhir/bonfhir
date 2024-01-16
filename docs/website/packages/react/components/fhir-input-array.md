@@ -6,6 +6,13 @@ The `<FhirInputArray />` manages values that are repeated (e.g. when the FHIR ca
 
 As with [`<FhirInput />`](/packages/react/components/fhir-input), it is a controlled component.
 
+:::tip
+
+Although it can be use with a simple `useListState` as shown below, it should probably be used with a form hook / system for maximum power.  
+See [`useFhirForm`](/packages/react/mantine/use-fhir-form) or [`useFhirResourceForm`](/packages/react/mantine/use-fhir-resource-form) for more information.
+
+:::
+
 ## Example usage
 
 ```tsx
