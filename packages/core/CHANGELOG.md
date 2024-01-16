@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.18.0
+
+### Minor Changes
+
+- [#215](https://github.com/bonfhir/bonfhir/pull/215) [`aaa68ac`](https://github.com/bonfhir/bonfhir/commit/aaa68ac717478791607d72065255316ce8217238) Thanks [@julienblin](https://github.com/julienblin)! - Update formatter types and helpers to make it more adaptable - specifically in GraphQL contexts (see #132)
+
 ## 2.17.2
 
 ### Patch Changes

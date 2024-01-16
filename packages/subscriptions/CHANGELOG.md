@@ -1,5 +1,14 @@
 # @bonfhir/subscriptions
 
+## 2.3.1
+
+### Patch Changes
+
+- [#224](https://github.com/bonfhir/bonfhir/pull/224) [`38ddfda`](https://github.com/bonfhir/bonfhir/commit/38ddfda85cdbd4223bb19196d2fbe7804be8612f) Thanks [@julienblin](https://github.com/julienblin)! - Better logging of subscription registration errors
+
+- Updated dependencies [[`aaa68ac`](https://github.com/bonfhir/bonfhir/commit/aaa68ac717478791607d72065255316ce8217238)]:
+  - @bonfhir/core@2.18.0
+
 ## 2.3.0
 
 ### Minor Changes
