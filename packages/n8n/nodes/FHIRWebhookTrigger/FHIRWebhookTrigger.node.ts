@@ -1,13 +1,36 @@
 import { IHookFunctions, IWebhookFunctions } from "n8n-core";
 import {
   IDataObject,
+  INodePropertyOptions,
   INodeType,
   INodeTypeDescription,
   IWebhookResponseData,
 } from "n8n-workflow";
 
-import { FetchFhirClient, FhirClient, build } from "@bonfhir/core/r4b";
-import { resourceTypes } from "./Resources";
+import {
+  DomainResourceTypes,
+  FetchFhirClient,
+  FhirClient,
+  build,
+} from "@bonfhir/core/r4b";
+
+const resourceTypes: INodePropertyOptions[] = DomainResourceTypes.map(
+  (type) => ({
+    name: type as string,
+    value: type as string,
+  }),
+);
+
+const createClient = async (data: IHookFunctions): Promise<FhirClient> => {
+  const credentials = await data.getCredentials("FhirOAuth2Api");
+  const fhirBaseUrl = data.getNodeParameter("fhirBaseUrl") as string;
+
+  return new FetchFhirClient({
+    baseUrl: fhirBaseUrl,
+    // @ts-expect-error TODO: these are set.
+    auth: `${credentials.oauthTokenData.token_type} ${credentials.oauthTokenData.access_token}`,
+  });
+};
 
 export class FHIRWebhookTrigger implements INodeType {
   description: INodeTypeDescription = {
@@ -85,45 +108,28 @@ export class FHIRWebhookTrigger implements INodeType {
   webhookMethods = {
     default: {
       async checkExists(this: IHookFunctions): Promise<boolean> {
-        const credentials = await this.getCredentials("FhirOAuth2Api");
-        const fhirBaseUrl = this.getNodeParameter("fhirBaseUrl") as string;
-
-        const client: FhirClient = new FetchFhirClient({
-          baseUrl: fhirBaseUrl,
-          // @ts-expect-error TODO: these are set.
-          auth: `${credentials.oauthTokenData.token_type} ${credentials.oauthTokenData.access_token}`,
-        });
+        const client = await createClient(this);
 
         const webhookUrl = this.getNodeWebhookUrl("default");
         const searchResults = await client.search("Subscription", (search) =>
           search.status("active").url(webhookUrl),
         );
 
-        const matchingSubscription = searchResults.searchMatch()[0];
-
-        if (matchingSubscription) return true;
-        return false;
+        return searchResults.searchMatch().length > 0;
       },
 
       async create(this: IHookFunctions): Promise<boolean> {
+        const client = await createClient(this);
+
         const defaultWebhookUrl = this.getNodeWebhookUrl("default");
         const webhookData = this.getWorkflowStaticData("node");
 
         const additionalFields = this.getNodeParameter(
           "additionalFields",
         ) as IDataObject;
-
         const webhookUrl =
           additionalFields.overrideWebhookUrl || defaultWebhookUrl;
-        const fhirBaseUrl = this.getNodeParameter("fhirBaseUrl") as string;
-
         const resource = this.getNodeParameter("resource") as string;
-        const credentials = await this.getCredentials("FhirOAuth2Api");
-        const client: FhirClient = new FetchFhirClient({
-          baseUrl: fhirBaseUrl,
-          // @ts-expect-error TODO: these are set.
-          auth: `${credentials.oauthTokenData.token_type} ${credentials.oauthTokenData.access_token}`,
-        });
 
         const subscription = await client.create(
           build("Subscription", {
@@ -145,19 +151,10 @@ export class FHIRWebhookTrigger implements INodeType {
       },
 
       async delete(this: IHookFunctions): Promise<boolean> {
+        const client = await createClient(this);
         const webhookData = this.getWorkflowStaticData("node");
-        const fhirBaseUrl = this.getNodeParameter("fhirBaseUrl") as string;
+        if (!webhookData.subscriptionId) return false;
 
-        const credentials = await this.getCredentials("FhirOAuth2Api");
-        const client: FhirClient = new FetchFhirClient({
-          baseUrl: fhirBaseUrl,
-          // @ts-expect-error TODO: these are set.
-          auth: `${credentials.oauthTokenData.token_type} ${credentials.oauthTokenData.access_token}`,
-        });
-
-        if (!webhookData.subscriptionId) {
-          return false;
-        }
         await client.delete(
           "Subscription",
           webhookData.subscriptionId as string,
