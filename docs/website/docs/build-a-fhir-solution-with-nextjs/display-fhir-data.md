@@ -12,15 +12,15 @@ BonFHIR provides many useful features for fetching and formatting FHIR data, wit
 
 - Launch the app in development mode
 
-- [`useFhirRead()`](/packages/query/queries/use-fhir-read) will return a query that fetches a specific FHIR resource by ID or by a Reference.
+- `useFhirRead()` will return a query that fetches a specific FHIR resource by ID or by a Reference.
 
-- [`<FhirValue />`](/packages/react/components/fhir-value) is a BonFHIR component that will automatically format a value based on the FHIR data type of the value, such as HumanName, date, Address, and more.
+- `<FhirValue />` is a BonFHIR component that will automatically format a value based on the FHIR data type of the value, such as HumanName, date, Address, and more. [More details in storybook](https://bonfhir.dev/storybook/?path=/docs/bonfhir-data-display-fhirvalue--docs)
 
-- [`<FhirQueryLoader />`](/packages/react/components/fhir-query-loader) can be used with `useFhirRead` to simplify loading and error handling.
+- `<FhirQueryLoader />` can be used with `useFhirRead` to simplify loading and error handling. [More details in storybook](https://bonfhir.dev/storybook/?path=/docs/bonfhir-feedback-fhirqueryloader--docs)
 
 ## Step by step
 
-This guide builds off of the previous two guide: [Start from the Vite Template](/docs/build-a-fhir-app-with-react/start-from-vite-template) and [Setup a local FHIR Server](/docs/build-a-fhir-app-with-react/setup-fhir-server).
+This guide builds off of the previous two guide: [Start from the Next Template](/docs/build-a-fhir-solution-with-nextjs/start-from-next-template) and [Setup a local FHIR Server](/docs/build-a-fhir-solution-with-nextjs/setup-fhir-server).
 
 Let's start by retrieving a Patient and displaying some information about them.
 
@@ -30,15 +30,15 @@ Let's start by retrieving a Patient and displaying some information about them.
    npm run dev
    ```
 
-2. Go to [`http://localhost:5173/`](http://localhost:5173/) in your browser to preview the application.
+2. Go to [`http://localhost:3000/`](http://localhost:3000/) in your browser to preview the application.
    Use the same credentials as per Medplum to login to the app:
 
    - Username: `admin@example.com`
    - Password: `medplum_admin`
 
-   You should see the content of `src/pages/Home.tsx`:
+   You should see the content of `src/app/page.tsx`:
 
-   ![Example](../../static/img/docs/vite-template.png)
+   ![Example](../../static/img/docs/next-template.png)
 
    :::warning
 
@@ -49,7 +49,7 @@ Let's start by retrieving a Patient and displaying some information about them.
 
 3. Select a Patient in Medplum to retrieve. Open the Patient table (http://localhost:8100/Patient) and view a patient's details. Take note of the ID as we will use this to query.
 
-4. In the newly created Vite app, open `src/pages/Home.tsx`
+4. In the newly created Vite app, open `src/app/page.tsx`
 
 5. To fetch a Patient with `useFhirRead`, indicate that the type is `"Patient"` and the ID is what you copied in step 1. For example: `"afb2bbf9-872c-47a9-9b31-2a737ed65f0b"`
 
@@ -99,7 +99,8 @@ Here is the output of this example with patient information displayed on a singl
 
 ![Example](../../static/img/docs/display-fhir-data-example.png)
 
-```tsx title="src/pages/Home.tsx"
+```tsx title="src/app/page.tsx"
+"use client";
 import { useFhirRead } from "@bonfhir/query/r4b";
 import { FhirQueryLoader, FhirValue } from "@bonfhir/react/r4b";
 import { Group, Paper, Stack, Text } from "@mantine/core";
@@ -143,3 +144,11 @@ export default function Home() {
   );
 }
 ```
+
+:::info
+
+Notice the `"use client";` instruction at the top - it is important as it tells [Next.js to run client-side](https://nextjs.org/docs/app/building-your-application/rendering/client-components#using-client-components-in-nextjs).  
+bonFHIR relies on [React contexts](https://react.dev/reference/react/createContext) to work properly and must be run client-side.
+
+If you forget this, you will see an error from Next.js indicating that `createContext` does not exist.
+:::
