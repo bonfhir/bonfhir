@@ -8,10 +8,10 @@ description: Display FHIR resources in a paginated table
 
 ## Key concepts
 
-- `useFhirSearch()` will return a query that fetches data for a type of FHIR resource. It also accepts search parameters that can either be a function or a search parameters string.
-- `<FhirTable />` a BonFHIR component that displays FHIR data in a table. Each column can be customized with built-in support for sorting and pagination. [More details in storybook](https://bonfhir.dev/storybook/?path=/docs/bonfhir-data-display-fhirtable--docs)
-- `useFhirSearchController()`: setup and manage FHIR search functionality through a simple interface
-- `<FhirPagination />`: a BonFHIR component that controls FhirTable pagination via the search controller [More details in storybook](https://bonfhir.dev/storybook/?path=/docs/bonfhir-navigation-fhirpagination--docs)
+- [`useFhirSearch()`](/packages/query/queries/use-fhir-search) will return a [query](https://tanstack.com/query/latest/docs/react/guides/queries) that fetches data for a type of FHIR resource. It also accepts search parameters that can either be a function or a search parameters string.
+- [`<FhirTable />`](/packages/react/components/fhir-table) a BonFHIR component that displays FHIR data in a table. Each column can be customized with built-in support for sorting and pagination.
+- [`useFhirSearchController()`](/packages/react/components/use-fhir-search-controller): setup and manage FHIR search functionality through a simple interface
+- [`<FhirPagination />`](/packages/react/components/fhir-pagination): a BonFHIR component that controls FhirTable pagination via the search controller
 
 ## Step by step
 
@@ -213,9 +213,10 @@ import { Group, Paper, Stack, Text } from "@mantine/core";
 import PatientReportsTable from "../components/PatientReportsTable";
 
 export default function Home() {
-  const patientId = "afb2bbf9-872c-47a9-9b31-2a737ed65f0b";
-
-  const patientQuery = useFhirRead("Patient", patientId);
+  const patientQuery = useFhirRead(
+    "Patient",
+    "afb2bbf9-872c-47a9-9b31-2a737ed65f0b",
+  );
 
   return (
     <FhirQueryLoader query={patientQuery}>

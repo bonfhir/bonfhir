@@ -1,10 +1,15 @@
-import { Reference } from "../fhir-types.codegen";
 import { ValueFormatter, withValueFormatter } from "../formatters";
-import { identifierFormatter } from "./identifier";
+import { FormattableIdentifier, identifierFormatter } from "./identifier";
+
+export interface FormattableReference {
+  display?: string | null | undefined;
+  identifier?: FormattableIdentifier | null | undefined;
+  reference?: string | null | undefined;
+}
 
 export const referenceFormatter: ValueFormatter<
   "Reference",
-  Reference | null | undefined,
+  FormattableReference | null | undefined,
   null | undefined
 > = {
   type: "Reference",

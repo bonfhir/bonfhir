@@ -1,6 +1,9 @@
-import { Distance } from "../fhir-types.codegen";
 import { ValueFormatter } from "../formatters";
-import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
+import {
+  FormattableQuantity,
+  QuantityFormatterOptions,
+  quantityFormatter,
+} from "./quantity";
 
 /**
  * A measured amount (or an amount that can potentially be measured).
@@ -11,7 +14,7 @@ export type DistanceFormatterOptions = QuantityFormatterOptions;
 
 export const distanceFormatter: ValueFormatter<
   "Distance",
-  Distance | null | undefined,
+  FormattableQuantity | null | undefined,
   DistanceFormatterOptions | null | undefined
 > = {
   type: "Distance",

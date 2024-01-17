@@ -1,6 +1,9 @@
-import { Age } from "../fhir-types.codegen";
 import { ValueFormatter } from "../formatters";
-import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
+import {
+  FormattableQuantity,
+  QuantityFormatterOptions,
+  quantityFormatter,
+} from "./quantity";
 
 /**
  * A measured amount (or an amount that can potentially be measured).
@@ -11,7 +14,7 @@ export type AgeFormatterOptions = QuantityFormatterOptions;
 
 export const ageFormatter: ValueFormatter<
   "Age",
-  Age | null | undefined,
+  FormattableQuantity | null | undefined,
   AgeFormatterOptions | null | undefined
 > = {
   type: "Age",

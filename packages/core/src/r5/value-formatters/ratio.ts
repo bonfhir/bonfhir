@@ -1,7 +1,10 @@
-import { Ratio } from "../fhir-types.codegen";
 import { ValueFormatter, withValueFormatter } from "../formatters";
 import { codeFormatter } from "./code";
-import { QuantityFormatterOptions, quantityFormatter } from "./quantity";
+import {
+  FormattableQuantity,
+  QuantityFormatterOptions,
+  quantityFormatter,
+} from "./quantity";
 
 /**
  * A relationship between two Quantity values expressed as a numerator and a denominator.
@@ -29,9 +32,14 @@ export interface RatioFormatterOptions {
   reduceSingleDenominator?: boolean | null | undefined;
 }
 
+export interface FormattableRatio {
+  denominator?: FormattableQuantity | null | undefined;
+  numerator?: FormattableQuantity | null | undefined;
+}
+
 export const ratioFormatter: ValueFormatter<
   "Ratio",
-  Ratio | null | undefined,
+  FormattableRatio | null | undefined,
   RatioFormatterOptions | null | undefined
 > = {
   type: "Ratio",

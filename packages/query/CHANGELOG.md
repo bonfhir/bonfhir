@@ -1,5 +1,18 @@
 # @bonfhir/query
 
+## 3.0.1
+
+### Patch Changes
+
+- [#211](https://github.com/bonfhir/bonfhir/pull/211) [`e59ab37`](https://github.com/bonfhir/bonfhir/commit/e59ab37dc211f533d48fa53711f7d05a8dc727a1) Thanks [@julienblin](https://github.com/julienblin)! - Fix #203: using `useFhirGraphQLMutation` with a typed document and options result in an error
+
+- [#211](https://github.com/bonfhir/bonfhir/pull/211) [`a0cd488`](https://github.com/bonfhir/bonfhir/commit/a0cd4880c1312e4c622ed0490b19a7aa149dd4e2) Thanks [@julienblin](https://github.com/julienblin)! - Rename `UseFhirGraph` to `useFhirGraph` (improper casing)
+
+  This is technically a breaking change, but should be trivial to resolve and I don't think many implementations use it.
+
+- Updated dependencies [[`aaa68ac`](https://github.com/bonfhir/bonfhir/commit/aaa68ac717478791607d72065255316ce8217238)]:
+  - @bonfhir/core@2.18.0
+
 ## 3.0.0
 
 ### Major Changes

@@ -7,8 +7,12 @@ description: Read a FHIR resource
 Return a [Query](https://tanstack.com/query/latest/docs/react/guides/queries) for a
 [read](https://hl7.org/fhir/http.html#read) request.
 
+### Basic usage
+
 ```tsx
+import { asError } from "@bonfhir/core/r4b";
 import { useFhirRead } from "@bonfhir/query/r4b";
+import { FhirValue } from "@bonfhir/react/r4b";
 
 export default function MyComponent() {
   const patientQuery = useFhirRead(
@@ -16,7 +20,7 @@ export default function MyComponent() {
     "a337ccfc-3ad4-47b4-9f02-3a19e035bb03",
   );
 
-  if (patientQuery.isInitialLoading) {
+  if (patientQuery.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -28,7 +32,7 @@ export default function MyComponent() {
 }
 ```
 
-More concisely, with the [`<FhirQueryLoader />`](/packages/react/components/fhir-query-loader) component:
+### With `<FhirQueryLoader />`
 
 ```tsx
 import { useFhirRead } from "@bonfhir/query/r4b";
@@ -48,7 +52,7 @@ export default function MyComponent() {
 }
 ```
 
-With options:
+### With options
 
 ```tsx
 import { DEFAULT_FHIR_CLIENT, useFhirRead } from "@bonfhir/query/r4b";
@@ -79,4 +83,4 @@ export default function MyComponent() {
 
 The `useFhirRead` hook errors out on not found - same behavior as the [`FhirClient.read`](/packages/core/fhir-client#crud).
 
-If you are not sure about the existence of the resource, you might want to use [`useFhirSearch`](/packages/query/read/use-fhir-search) instead.
+If you are not sure about the existence of the resource, you might want to use [`useFhirSearch`](/packages/query/queries/use-fhir-search) instead.

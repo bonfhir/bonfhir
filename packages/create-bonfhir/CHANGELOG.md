@@ -1,5 +1,23 @@
 # create-bonfhir
 
+## 2.7.0
+
+### Minor Changes
+
+- [#224](https://github.com/bonfhir/bonfhir/pull/224) [`02b1bf4`](https://github.com/bonfhir/bonfhir/commit/02b1bf4b75cb8cda9aaf9b9526e8caa14e6606ca) Thanks [@julienblin](https://github.com/julienblin)! - Add HAPI support to lambda project template
+
+- [#224](https://github.com/bonfhir/bonfhir/pull/224) [`be4b3e3`](https://github.com/bonfhir/bonfhir/commit/be4b3e358e9ad164400ebecfc18feb2cff076735) Thanks [@julienblin](https://github.com/julienblin)! - Fix #174 - Add support for HAPI in playground project template
+
+- [#221](https://github.com/bonfhir/bonfhir/pull/221) [`6b5a6d3`](https://github.com/bonfhir/bonfhir/commit/6b5a6d3724927c3997ecc49f1a39a018a6053815) Thanks [@julienblin](https://github.com/julienblin)! - Enhance expo template with expo router, expo auth session and eslint
+
+- [#224](https://github.com/bonfhir/bonfhir/pull/224) [`fd49b28`](https://github.com/bonfhir/bonfhir/commit/fd49b28888a647aecf7cab46662f25a6acb8b383) Thanks [@julienblin](https://github.com/julienblin)! - Fix #174 - Add HAPI support to vite project template
+
+- [#206](https://github.com/bonfhir/bonfhir/pull/206) [`a184913`](https://github.com/bonfhir/bonfhir/commit/a1849130673a8f35fb038cf10eb64741a58aa344) Thanks [@nickvallee](https://github.com/nickvallee)! - Fix #146 - Add a new project template for expo
+
+### Patch Changes
+
+- [#225](https://github.com/bonfhir/bonfhir/pull/225) [`f711d05`](https://github.com/bonfhir/bonfhir/commit/f711d059f2d2cec79bc71d0711f0504182e059c3) Thanks [@julienblin](https://github.com/julienblin)! - Fix #184 - add rendererProps types to vite and next project templates
+
 ## 2.6.0
 
 ### Minor Changes
