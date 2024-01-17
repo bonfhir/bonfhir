@@ -1,5 +1,5 @@
 import { formatAddress } from "localized-address-format";
-import { Address } from "../fhir-types.codegen";
+import { Address, AddressType, AddressUse } from "../fhir-types.codegen";
 import {
   ValueFormatter,
   cleanUpCommonOptions,
@@ -7,7 +7,7 @@ import {
 } from "../formatters";
 import { comparePeriods } from "../lang-utils";
 import { CodeFormatterOptions, codeFormatter } from "./code";
-import { periodFormatter } from "./period";
+import { FormattablePeriod, periodFormatter } from "./period";
 
 /**
  * An address expressed using postal conventions
@@ -68,9 +68,22 @@ export interface AddressFormatterOptions {
   typeValueSetExpansions?: CodeFormatterOptions["expansions"];
 }
 
+export interface FormattableAddress {
+  use?: AddressUse | null | undefined;
+  type?: AddressType | null | undefined;
+  period?: FormattablePeriod | null | undefined;
+  text?: string | null | undefined;
+  line?: string[] | null | undefined;
+  city?: string | null | undefined;
+  district?: string | null | undefined;
+  state?: string | null | undefined;
+  postalCode?: string | null | undefined;
+  country?: string | null | undefined;
+}
+
 export const addressFormatter: ValueFormatter<
   "Address",
-  Address | Address[] | null | undefined,
+  FormattableAddress | FormattableAddress[] | null | undefined,
   AddressFormatterOptions | null | undefined
 > = {
   type: "Address",
@@ -106,11 +119,11 @@ export const addressFormatter: ValueFormatter<
 
     const fullAddress = formatAddress({
       postalCountry: country,
-      administrativeArea: value.state,
-      locality: value.city,
-      dependentLocality: value.district,
-      postalCode: value.postalCode,
-      addressLines: value.line,
+      administrativeArea: value.state ?? undefined,
+      locality: value.city ?? undefined,
+      dependentLocality: value.district ?? undefined,
+      postalCode: value.postalCode ?? undefined,
+      addressLines: value.line ?? undefined,
     });
 
     if (options?.preferText !== false && value.text) return value.text;
@@ -138,10 +151,10 @@ export const addressFormatter: ValueFormatter<
   },
 };
 
-const filterAndSortAddresses = (
-  addresses: Address[],
+function filterAndSortAddresses(
+  addresses: FormattableAddress[],
   options: AddressFormatterOptions | null | undefined,
-): Address[] => {
+) {
   const useFilterOrder =
     options?.useFilterOrder || DEFAULT_ADDRESS_USE_ORDER_FILTER;
   const indexedOrder: { [k: string]: number } = Object.fromEntries(
@@ -154,7 +167,7 @@ const filterAndSortAddresses = (
   // filter out by use
   if (options?.useFilterOrder)
     addresses = addresses.filter((address) =>
-      useFilterOrder.includes(address.use),
+      useFilterOrder.includes(address.use ?? undefined),
     );
 
   // sort out by period, then use
@@ -175,7 +188,7 @@ const filterAndSortAddresses = (
   }
 
   return addresses;
-};
+}
 
 const DEFAULT_ADDRESS_USE_ORDER_FILTER: Address["use"][] = [
   "home",

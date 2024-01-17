@@ -5,8 +5,14 @@ import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 
 import { TemplateOptions } from "../commands/create";
-import { FAVICON_CONTENT_BASE64 } from "./favicon";
 import { Template } from "./template";
+import { FAVICON_CONTENT_BASE64 } from "./utils/favicon";
+import {
+  FhirServerType,
+  fetchFhirClientConfig,
+  packageJsonFhirServerScripts,
+} from "./utils/fhir-servers";
+import { MANTINE_RENDERER_PROPS_CONTENT } from "./utils/mantine-renderer-props";
 
 export interface Context {
   options: TemplateOptions;
@@ -45,7 +51,7 @@ export const ViteTasks = (): ListrTask<Context>[] => [
   },
   {
     title: "Create Vite project",
-    task: async ({ options: { cwd, name }, monorepo }) => {
+    task: async ({ options: { cwd, name, fhirServer }, monorepo }) => {
       await mkdir(`${cwd}/src/pages`, { recursive: true });
       await mkdir(`${cwd}/src/components`, { recursive: true });
       await mkdir(`${cwd}/public`, { recursive: true });
@@ -67,7 +73,7 @@ export const ViteTasks = (): ListrTask<Context>[] => [
 
       await writeFile(
         `${cwd}/package.json`,
-        PACKAGE_JSON_CONTENT(name, monorepo),
+        PACKAGE_JSON_CONTENT(name, fhirServer, monorepo),
         "utf8",
       );
       await writeFile(`${cwd}/index.html`, INDEX_HTML_CONTENT, "utf8");
@@ -91,12 +97,16 @@ export const ViteTasks = (): ListrTask<Context>[] => [
       );
       await writeFile(`${cwd}/vite.config.ts`, VITE_CONFIG_CONTENT, "utf8");
 
-      await writeFile(`${cwd}/src/App.tsx`, APP_CONTENT, "utf8");
+      await writeFile(`${cwd}/src/App.tsx`, APP_CONTENT(fhirServer), "utf8");
       await writeFile(`${cwd}/src/index.tsx`, INDEX_CONTENT, "utf8");
       await writeFile(`${cwd}/src/vite-env.d.ts`, VITE_ENV_CONTENT, "utf8");
+      await writeFile(
+        `${cwd}/src/bonfhir.d.ts`,
+        MANTINE_RENDERER_PROPS_CONTENT,
+        "utf8",
+      );
       await mkdir(`${cwd}/src/pages`, { recursive: true });
       await writeFile(`${cwd}/src/pages/Home.tsx`, HOME_CONTENT, "utf8");
-
       await writeFile(
         `${cwd}/public/favicon.ico`,
         FAVICON_CONTENT_BASE64,
@@ -106,7 +116,10 @@ export const ViteTasks = (): ListrTask<Context>[] => [
   },
   {
     title: "Add dependencies",
-    task: async ({ options: { cwd, packageManager }, monorepo }) => {
+    task: async ({
+      options: { cwd, packageManager, fhirServer },
+      monorepo,
+    }) => {
       await packageManager.install(cwd);
       await packageManager.add(
         cwd,
@@ -125,6 +138,8 @@ export const ViteTasks = (): ListrTask<Context>[] => [
         "react",
         "react-dom",
         "react-router-dom@^6",
+        fhirServer === "medplum" ? "oidc-client-ts@^2" : undefined,
+        fhirServer === "medplum" ? "react-oidc-context@^2" : undefined,
       );
       await packageManager.addDev(
         cwd,
@@ -225,63 +240,72 @@ const INDEX_HTML_CONTENT = `<!doctype html>
 </html>
 `;
 
-const PACKAGE_JSON_CONTENT = (name: string, monorepo?: string) => `{
-  "name": "${name}",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "prettier --check ./src && eslint ./src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write ./src",
-    "preview": "vite preview"${
-      monorepo
-        ? ``
-        : `,
-    "start-fhir-server": "docker run -p 8100:8100 -p 8103:8103 -v ${name}_fhir_data:/var/lib/postgresql/15/main -v ${name}_fhir_files:/usr/src/medplum/packages/server/dist/binary --name ${name}_fhir_server --rm -d ghcr.io/bonfhir/medplum-devbox:latest",
-    "stop-fhir-server": "docker stop ${name}_fhir_server",
-    "add-sample-data": "npx @bonfhir/cli import --source synthea-sample --fhir r4b --base-url http://localhost:8103/fhir/R4/ --auth-token-url http://localhost:8103/oauth2/token --auth-client-id f54370de-eaf3-4d81-a17e-24860f667912 --auth-client-secret 75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de"`
-    }
-  },
-  "prettier": {
-    "plugins": ["prettier-plugin-organize-imports"]
-  },
-  "eslintConfig": ${
-    monorepo
-      ? `{
-        "env": { "browser": true, "es2020": true },
-        "extends": ["plugin:react-hooks/recommended", "@${monorepo}/eslint-config"],
-        "ignorePatterns": ["dist"],
-        "plugins": ["react-refresh"],
-        "rules": {
-          "react-refresh/only-export-components": [
-            "warn",
-            { "allowConstantExport": true }
-          ]
-        }
-      }`
-      : `{
-    "env": { "browser": true, "es2020": true },
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react-hooks/recommended",
-      "prettier"
-    ],
-    "ignorePatterns": ["dist"],
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["react-refresh"],
-    "rules": {
-      "react-refresh/only-export-components": [
-        "warn",
-        { "allowConstantExport": true }
-      ]
-    }
-  }`
-  }
-}
-`;
+const PACKAGE_JSON_CONTENT = (
+  name: string,
+  fhirServer?: FhirServerType,
+  monorepo?: string,
+) =>
+  JSON.stringify(
+    {
+      name,
+      version: "0.1.0",
+      private: true,
+      type: "module",
+      scripts: {
+        dev: "vite",
+        build: "tsc && vite build",
+        lint: "prettier --check ./src && eslint ./src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        format: "prettier --write ./src",
+        preview: "vite preview",
+        ...(monorepo
+          ? undefined
+          : packageJsonFhirServerScripts(
+              name,
+              fhirServer,
+              fhirServer === "medplum" ? "http://localhost:5173" : undefined,
+            )),
+      },
+      prettier: {
+        plugins: ["prettier-plugin-organize-imports"],
+      },
+      eslintConfig: monorepo
+        ? {
+            env: { browser: true, es2020: true },
+            extends: [
+              "plugin:react-hooks/recommended",
+              `@${monorepo}/eslint-config`,
+            ],
+            ignorePatterns: ["dist"],
+            plugins: ["react-refresh"],
+            rules: {
+              "react-refresh/only-export-components": [
+                "warn",
+                { allowConstantExport: true },
+              ],
+            },
+          }
+        : {
+            env: { browser: true, es2020: true },
+            extends: [
+              "eslint:recommended",
+              "plugin:@typescript-eslint/recommended",
+              "plugin:react-hooks/recommended",
+              "prettier",
+            ],
+            ignorePatterns: ["dist"],
+            parser: "@typescript-eslint/parser",
+            plugins: ["react-refresh"],
+            rules: {
+              "react-refresh/only-export-components": [
+                "warn",
+                { allowConstantExport: true },
+              ],
+            },
+          },
+    },
+    undefined,
+    2,
+  );
 
 const TSCONFIG_CONTENT = `{
   "compilerOptions": {
@@ -357,7 +381,133 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 );
 `;
 
-const APP_CONTENT = `import "@mantine/core/styles.css";
+const APP_CONTENT = (fhirServer?: FhirServerType) =>
+  fhirServer === "medplum"
+    ? `import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
+    import { MantineRenderer } from "@bonfhir/mantine/r4b";
+    import { FhirQueryProvider } from "@bonfhir/query/r4b";
+    import { FhirUIProvider } from "@bonfhir/react/r4b";
+    import {
+      Alert,
+      AppShell,
+      Center,
+      Loader,
+      MantineProvider,
+      createTheme,
+    } from "@mantine/core";
+    import "@mantine/core/styles.css";
+    import "@mantine/dates/styles.css";
+    import "@mantine/tiptap/styles.css";
+    import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+    import { PropsWithChildren, useEffect, useState } from "react";
+    import { AuthProvider, useAuth } from "react-oidc-context";
+    import { Outlet, useNavigate } from "react-router-dom";
+    
+    /**
+     * Customize Mantine Theme.
+     * https://mantine.dev/theming/theme-object/
+     */
+    const theme = createTheme({});
+    
+    export default function App() {
+      const navigate = useNavigate();
+    
+      return (
+        <MantineProvider theme={theme}>
+          <AuthProvider
+            authority="http://localhost:8103"
+            client_id="f54370de-eaf3-4d81-a17e-24860f667912"
+            redirect_uri={document.location.origin}
+          >
+            <WithAuth>
+              <FhirUIProvider
+                renderer={MantineRenderer}
+                onNavigate={({ target, aux }) => {
+                  if (aux) {
+                    window.open(target, "_blank");
+                  } else {
+                    navigate(target);
+                  }
+                }}
+              >
+                <AppShell>
+                  <AppShell.Main>
+                    <Outlet />
+                  </AppShell.Main>
+                </AppShell>
+              </FhirUIProvider>
+            </WithAuth>
+          </AuthProvider>
+        </MantineProvider>
+      );
+    }
+    
+    function WithAuth({ children }: PropsWithChildren) {
+      const auth = useAuth();
+      const [fhirClient, setFhirClient] = useState<FhirClient | undefined>();
+    
+      useEffect(() => {
+        if (auth.isAuthenticated && auth.user?.access_token && !fhirClient) {
+          setFhirClient(
+            new FetchFhirClient({
+              baseUrl: "http://localhost:8103/fhir/R4/",
+              auth: \`Bearer \${auth.user?.access_token}\`,
+              onError(response) {
+                if (response.status === 401) {
+                  auth.signoutRedirect();
+                }
+              },
+            }),
+          );
+          // Clear the URL for any OpenID params
+          history.pushState(null, "", location.href.split("?")[0]);
+          return;
+        }
+    
+        if (auth.isAuthenticated || auth.isLoading) return;
+    
+        auth.signinRedirect();
+      }, [auth, fhirClient]);
+    
+      if (auth.isLoading) {
+        return (
+          <AppShell>
+            <AppShell.Main>
+              <Center h="100vh">
+                <Loader />
+              </Center>
+            </AppShell.Main>
+          </AppShell>
+        );
+      }
+    
+      if (auth.error) {
+        return (
+          <AppShell>
+            <AppShell.Main>
+              <Center h="100vh">
+                <Alert variant="filled" color="red" title="Oops...">
+                  {auth.error.message}
+                </Alert>
+              </Center>
+            </AppShell.Main>
+          </AppShell>
+        );
+      }
+    
+      if (fhirClient) {
+        return (
+          <FhirQueryProvider fhirClient={fhirClient}>
+            {children}
+            <ReactQueryDevtools />
+          </FhirQueryProvider>
+        );
+      }
+    
+      return null;
+    }
+    `
+    : `import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import "@mantine/tiptap/styles.css";
 import { FetchFhirClient } from "@bonfhir/core/r4b";
@@ -369,19 +519,11 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Outlet, useNavigate } from "react-router-dom";
 
 /**
- * The following lines connect to a local
- * Medplum Devbox FHIR server
- * https://bonfhir.dev/docs/medplum-devbox
+ * The following lines connect to a local FHIR server
  */
-const client = new FetchFhirClient({
-  baseUrl: "http://localhost:8103/fhir/R4/",
-  auth: {
-    tokenUrl: "http://localhost:8103/oauth2/token",
-    clientId: "f54370de-eaf3-4d81-a17e-24860f667912",
-    clientSecret:
-      "75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
-  },
-});
+const client = new FetchFhirClient(${JSON.stringify(
+        fetchFhirClientConfig(fhirServer),
+      )});
 
 /**
  * Customize Mantine Theme.

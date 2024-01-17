@@ -22,7 +22,7 @@ const patient = patientQuery.data;
 />;
 ```
 
-## preview
+## Preview
 
 ```tsx
 <FhirFormatter

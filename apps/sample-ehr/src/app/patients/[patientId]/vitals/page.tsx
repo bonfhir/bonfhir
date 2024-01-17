@@ -1,10 +1,5 @@
 "use client";
-import {
-  BundleNavigator,
-  Observation,
-  ObservationSortOrder,
-} from "@bonfhir/core/r4b";
-import { MantineFhirTableProps } from "@bonfhir/mantine/r4b";
+import { ObservationSortOrder } from "@bonfhir/core/r4b";
 import { useFhirSearchController } from "@bonfhir/next/r4b/client";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
@@ -45,7 +40,7 @@ export default function Vitals() {
         <Grid.Col span="auto">
           <Paper mih="100%">
             <FhirQueryLoader query={vitalsQuery}>
-              <FhirTable<BundleNavigator<Observation>, MantineFhirTableProps>
+              <FhirTable
                 {...searchController}
                 {...vitalsQuery}
                 rendererProps={{

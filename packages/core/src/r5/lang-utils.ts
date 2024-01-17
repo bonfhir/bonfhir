@@ -8,7 +8,6 @@ import {
   AnyResourceType,
   DomainResource,
   ExtractResource,
-  Period,
   Reference,
   Resource,
   isResource,
@@ -244,7 +243,13 @@ export function formatWithTokens(
 }
 
 export interface WithPeriod {
-  period?: Period | undefined;
+  period?:
+    | {
+        start?: string | number | null | undefined;
+        end?: string | number | null | undefined;
+      }
+    | null
+    | undefined;
 }
 
 export function comparePeriods(

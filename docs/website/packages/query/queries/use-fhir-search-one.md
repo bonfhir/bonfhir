@@ -4,12 +4,14 @@ title: useFhirSearchOne
 description: Search for a single FHIR resource
 ---
 
-This hook is similar to the [`useFhirSearch`](/packages/query/read/use-fhir-search) one, except that it is optimized to
+This hook is similar to the [`useFhirSearch`](/packages/query/queries/use-fhir-search) one, except that it is optimized to
 return one and only one search match.  
 This is very convenient on cases where:
 
 - you need to address a single resource by its [canonical URL](https://www.hl7.org/fhir/references.html#canonical)
 - or you are looking to also retrieve [referenced resources](https://www.hl7.org/fhir/search.html#include) (e.g. `_include` and `_revinclude` usage)
+
+### Basic usage
 
 ```tsx
 import { asError } from "@bonfhir/core/r4b";
@@ -20,7 +22,7 @@ export default function MyComponent() {
     search.url("http://acme.org/fhir/my-questionnaire"),
   );
 
-  if (questionnaireQuery.isInitialLoading) {
+  if (questionnaireQuery.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -32,7 +34,7 @@ export default function MyComponent() {
 }
 ```
 
-More concisely, with the [`<FhirQueryLoader />`](/packages/react/components/fhir-query-loader) component:
+### With the `<FhirQueryLoader />`
 
 ```tsx
 import { DocumentReference } from "@bonfhir/core/r4b";
@@ -72,7 +74,7 @@ export default function MyComponent() {
 }
 ```
 
-With options:
+### With options
 
 ```tsx
 import { DEFAULT_FHIR_CLIENT, useFhirSearchOne } from "@bonfhir/query/r4b";
@@ -103,4 +105,4 @@ export default function MyComponent() {
 
 The `useFhirSearchOne` hook errors out if there is no result, or more than one match in the bundle (referenced resources are OK).
 
-If you are not sure about the existence of the resource, you might want to use [`useFhirSearch`](/packages/query/read/use-fhir-search) instead.
+If you are not sure about the existence of the resource, you might want to use [`useFhirSearch`](/packages/query/queries/use-fhir-search) instead.
