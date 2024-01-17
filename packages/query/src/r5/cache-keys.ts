@@ -129,6 +129,9 @@ export const FhirQueryKeys = {
       operation.parameters,
     ] as const,
 
+  clientFn: (clientKey: string, fn: string, params: unknown[]) =>
+    [clientKey, "client", fn, ...params] as const,
+
   /**
    * Invalidate all queries that might be impacted by a change on a resource.
    */
@@ -138,6 +141,11 @@ export const FhirQueryKeys = {
     type: AnyResourceType | undefined,
     id: string | undefined,
   ) => {
+    if (!type && !id) {
+      queryClient.invalidateQueries({ queryKey: [clientKey] });
+      return;
+    }
+
     queryClient.invalidateQueries({ queryKey: [clientKey, type, id] });
     queryClient.invalidateQueries({ queryKey: [clientKey, type, "search"] });
     queryClient.invalidateQueries({
@@ -154,5 +162,6 @@ export const FhirQueryKeys = {
     queryClient.invalidateQueries({
       queryKey: [clientKey, type, undefined, "execute"],
     });
+    queryClient.invalidateQueries({ queryKey: [clientKey, "client"] });
   },
 };

@@ -18,10 +18,10 @@ import { useFhirTransactionMutation } from "@bonfhir/query/r4b";
 import { Button } from "@mantine/core";
 
 export default function MyComponent() {
-  const transactionQuery = useFhirTransactionMutation();
+  const transactionMutation = useFhirTransactionMutation();
 
   const executeTransaction = () => {
-    transactionQuery.mutate((transaction) => {
+    transactionMutation.mutate((transaction) => {
       // The body of the mutate function is a function that can manipulate the transaction builder
       // We see here that we create an Organization, a Practitioner and a PractionerRole in the same transaction
       // with inner references.
@@ -41,7 +41,10 @@ export default function MyComponent() {
   };
 
   return (
-    <Button loading={transactionQuery.isPending} onClick={executeTransaction}>
+    <Button
+      loading={transactionMutation.isPending}
+      onClick={executeTransaction}
+    >
       Create organization and practitioner
     </Button>
   );
@@ -54,7 +57,7 @@ export default function MyComponent() {
 import { DEFAULT_FHIR_CLIENT, useFhirTransactionMutation } from "@bonfhir/query/r4b";
 
 export default function MyComponent() {
-  const transactionQuery = useFhirTransactionMutation({
+  const transactionMutation = useFhirTransactionMutation({
     // The name of the FhirClient to use
     fhirClient: DEFAULT_FHIR_CLIENT,
 

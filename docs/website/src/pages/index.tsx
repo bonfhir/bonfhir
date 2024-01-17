@@ -213,6 +213,7 @@ function BatteriesIncluded() {
     {
       title: "Next.js support",
       text: "Create your front-end app and api using Next.js",
+      link: "/docs/build-a-fhir-solution-with-nextjs",
     },
     {
       title: "Custom FHIR resources",
