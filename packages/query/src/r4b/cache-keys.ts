@@ -42,6 +42,7 @@ export const FhirQueryKeys = {
     clientKey: string,
     type: AnyResourceTypeOrCustomResource | null | undefined,
     id: string | null | undefined,
+    pageUrl?: string | null | undefined,
     options?: Parameters<FhirClient["history"]>[2] | null | undefined,
   ) => {
     if (!type && !id) {
@@ -53,6 +54,7 @@ export const FhirQueryKeys = {
         resourceTypeOf(type),
         "history",
         type,
+        pageUrl,
         options,
       ] as const;
     }
@@ -62,6 +64,7 @@ export const FhirQueryKeys = {
       id,
       "history",
       type,
+      pageUrl,
       options,
     ] as const;
   },

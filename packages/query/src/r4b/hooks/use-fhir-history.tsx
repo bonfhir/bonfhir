@@ -30,6 +30,7 @@ export interface UseFhirHistoryOptions<TResourceType extends AnyResourceType> {
       >
     | null
     | undefined;
+  pageUrl?: string | null | undefined;
 }
 
 /**
@@ -71,9 +72,19 @@ export function useFhirHistory<TResourceType extends AnyResourceType>(
       fhirQueryContext.clientKey,
       type,
       id as string,
+      options?.pageUrl,
       options?.fhir,
     ),
-    queryFn: () =>
-      fhirQueryContext.fhirClient.history(type, id as string, options?.fhir),
+    queryFn: ({ signal }) =>
+      options?.pageUrl
+        ? fhirQueryContext.fhirClient.fetchPage(
+            options?.pageUrl,
+            { signal },
+            typeof type === "string" ? undefined : type || undefined,
+          )
+        : fhirQueryContext.fhirClient.history(type, id as string, {
+            ...options?.fhir,
+            signal,
+          }),
   });
 }
