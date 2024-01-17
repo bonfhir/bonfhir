@@ -138,6 +138,11 @@ export const FhirQueryKeys = {
     type: AnyResourceType | undefined,
     id: string | undefined,
   ) => {
+    if (!type && !id) {
+      queryClient.invalidateQueries({ queryKey: [clientKey] });
+      return;
+    }
+
     queryClient.invalidateQueries({ queryKey: [clientKey, type, id] });
     queryClient.invalidateQueries({ queryKey: [clientKey, type, "search"] });
     queryClient.invalidateQueries({

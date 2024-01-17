@@ -24,6 +24,7 @@ import {
   FhirQueryProvider,
   useFhirBatchMutation,
   useFhirCapabilities,
+  useFhirClientMutation,
   useFhirClientQueryContext,
   useFhirCreateMutation,
   useFhirCreateOrMutation,
@@ -1102,6 +1103,28 @@ describe("hooks", () => {
             ],
           } satisfies Partial<ListOrganizationsQuery>);
         });
+      });
+    });
+
+    it("client", async () => {
+      const { result } = renderHook(
+        () => useFhirClientMutation<Organization>(),
+        {
+          wrapper,
+        },
+      );
+
+      result.current.mutate(async (client) => {
+        return await client.update(
+          build("Organization", {
+            id: "a942b3d5-19bc-4959-8b5d-f9aedd790a94",
+          }),
+        );
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data?.resourceType).toEqual("Organization");
       });
     });
   });
