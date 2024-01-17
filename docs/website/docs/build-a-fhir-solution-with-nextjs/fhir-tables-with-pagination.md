@@ -15,11 +15,11 @@ description: Display FHIR resources in a paginated table
 
 ## Step by step
 
-This guide builds off of the previous guide: [Display FHIR data](/docs/build-a-fhir-app-with-react/display-fhir-data).
+This guide builds off of the previous guide: [Display FHIR data](/docs/build-a-fhir-solution-with-nextjs/display-fhir-data).
 
-1. Create a new React component called `PatientReportsTable` that receives a patient ID as a prop. Import this component in `pages/Home.tsx` and add the table component inside the page, passing in `patient.id`.
+1. Create a new React component called `PatientReportsTable` that receives a patient ID as a prop. Import this component in `src/app/page.tsx` and add the table component inside the page, passing in `patient.id`.
 
-   ```tsx title="src/components/PatientReportsTable.tsx"
+   ```tsx title="src/app/PatientReportsTable.tsx"
    import { FC, ReactElement } from "react";
 
    type PatientReportsTableProps = {
@@ -39,7 +39,7 @@ This guide builds off of the previous guide: [Display FHIR data](/docs/build-a-f
    export default PatientReportsTable;
    ```
 
-   ```tsx title="src/pages/Home.tsx"
+   ```tsx title="src/app/page.tsx"
    <PatientReportsTable patientId={patient.id} />
    ```
 
@@ -135,7 +135,7 @@ Here is the output of this example with a paginated table of Diagnostic Reports 
 
 ![Example](../../static/img/docs/fhir-table-with-pagination.png)
 
-```tsx title="src/components/PatientReportsTable.tsx"
+```tsx title="src/app/PatientReportsTable.tsx"
 import { DiagnosticReportSortOrder } from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/query/r4b";
 import {
@@ -206,11 +206,12 @@ const PatientReportsTable: FC<PatientReportsTableProps> = ({
 export default PatientReportsTable;
 ```
 
-```tsx title="src/pages/Home.tsx"
+```tsx title="src/app/page.tsx"
+"use client";
 import { useFhirRead } from "@bonfhir/query/r4b";
 import { FhirQueryLoader, FhirValue } from "@bonfhir/react/r4b";
 import { Group, Paper, Stack, Text } from "@mantine/core";
-import PatientReportsTable from "../components/PatientReportsTable";
+import PatientReportsTable from "./PatientReportsTable";
 
 export default function Home() {
   const patientQuery = useFhirRead(
