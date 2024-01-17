@@ -72,6 +72,53 @@ export default function MyComponent() {
 }
 ```
 
+### With pagination
+
+Pagination works the same way as [`useFhirSearch`](/packages/query/queries/use-fhir-search#with-pagination),
+except that the `pageUrl` argument is in the options:
+
+```tsx
+import { useFhirHistory } from "@bonfhir/query/r4b";
+import { FhirQueryLoader, FhirValue } from "@bonfhir/react/r4b";
+import { List, Stack } from "@mantine/core";
+import { useState } from "react";
+
+export default function MyComponent() {
+  const [pageUrl, setPageUrl] = useState<string | undefined>(undefined);
+
+  const patientHistoryQuery = useFhirHistory(
+    "Patient",
+    "bddc8d51-7e38-451c-8dd6-5a313b988bfe",
+    {
+      pageUrl,
+    },
+  );
+
+  return (
+    <FhirQueryLoader query={patientHistoryQuery}>
+      {(result) => (
+        <Stack>
+          <List>
+            {result.searchMatch().map((entry) => (
+              <List.Item key={entry.meta.versionId}>
+                {entry.meta.versionId} (on{" "}
+                <FhirValue type="instant" value={entry.meta.lastUpdated} />)
+              </List.Item>
+            ))}
+          </List>
+          {result.linkUrl("next") && (
+            // Here we set the pageUrl using the bundle next link.
+            <Button onClick={() => setPageUrl(result.linkUrl("next"))}>
+              Go to next page - {result.total} total result(s)
+            </Button>
+          )}
+        </Stack>
+      )}
+    </FhirQueryLoader>
+  );
+}
+```
+
 ### With options
 
 ```tsx
