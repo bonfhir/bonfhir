@@ -12,6 +12,6 @@
     "@bonfhir/sample-lambda",
     "@bonfhir/storybook",
     "@bonfhir/website",
-    "@bonfhir/n8n"
+    "@bonfhir/n8n-nodes-bonfhir"
   ]
 }
