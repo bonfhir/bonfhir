@@ -51,6 +51,7 @@ export class FHIRWebhookTrigger implements INodeType {
         displayName: "FHIR base URL",
         name: "fhirBaseUrl",
         type: "string",
+        description: "The base URL of the FHIR server API.",
         default: "http://localhost:8103/fhir/R4",
       },
       {
@@ -65,6 +66,8 @@ export class FHIRWebhookTrigger implements INodeType {
             name: "overrideWebhookUrl",
             type: "string",
             default: "",
+            description:
+              "If you're running n8n locally, you can use this to override the webhook URL.",
           },
         ],
       },
@@ -75,7 +78,7 @@ export class FHIRWebhookTrigger implements INodeType {
         default: "patient",
         options: resourceTypes,
         required: true,
-        description: "The resource type to listen for.",
+        description: "The resource type to subscribe for changes.",
       },
     ],
     webhooks: [
