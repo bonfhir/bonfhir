@@ -42,7 +42,7 @@
     "vread"
   ],
   "eslint.workingDirectories": ["apps/*", "packages/*"],
-  // "explorer.excludeGitIgnore": true,
+  "explorer.excludeGitIgnore": true,
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {

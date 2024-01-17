@@ -19,9 +19,7 @@
     "directory": "packages/n8n"
   },
   "scripts": {
-    "build:gulp": "rimraf dist && tsc && gulp build:icons && gulp build:deleteN8Ndir",
-    "build:rollup": "rimraf dist && rollup --config rollup.config.mjs && gulp build:icons",
-    "buildnlink": "pnpm build && npm link",
+    "build": "rimraf dist && rollup --config rollup.config.mjs && gulp build:icons",
     "codegen": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r4b -t \"${PWD}/templates/**/*.ejs\" -b \"${PWD}/templates\" -p 'prettier --write %files%' -o \"${PWD}/nodes/Fhir\"",
     "dev": "tsc --watch",
     "format": "prettier nodes credentials --write",
