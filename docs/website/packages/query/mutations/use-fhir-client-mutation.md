@@ -7,7 +7,7 @@ description: Execute a series of FHIR operations
 Return a [Mutation](https://tanstack.com/query/latest/docs/react/guides/mutations) with access to the raw [FhirClient](/packages/core/fhir-client).
 
 This is useful when you have a series of operations to execute as part of a single mutation, or if the other [mutation hooks](/packages/query/mutations)
-won't allow you to do what you mean.  
+won't allow you to do what you want.  
 **You should always prefer to use a more precise hook.**
 
 :::warning

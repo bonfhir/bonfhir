@@ -1,5 +1,6 @@
 export * from "./use-fhir-batch-mutation";
 export * from "./use-fhir-capabilities";
+export * from "./use-fhir-client";
 export * from "./use-fhir-client-mutation";
 export * from "./use-fhir-create-mutation";
 export * from "./use-fhir-create-or-mutation";
