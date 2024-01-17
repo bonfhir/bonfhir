@@ -11,6 +11,7 @@
     "@bonfhir/sample-ehr",
     "@bonfhir/sample-lambda",
     "@bonfhir/storybook",
-    "@bonfhir/website"
+    "@bonfhir/website",
+    "@bonfhir/n8n"
   ]
 }
