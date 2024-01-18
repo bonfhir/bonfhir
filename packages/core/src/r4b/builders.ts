@@ -1,13 +1,11 @@
 import {
   AnyDomainResourceType,
-  AnyResource,
   AnyResourceType,
   CodeableConcept,
   Coding,
   ExtractDomainResource,
   ExtractResource,
   Reference,
-  Retrieved,
 } from "./fhir-types.codegen";
 import { asArray } from "./lang-utils";
 import { narrative } from "./narratives.codegen";
@@ -35,12 +33,25 @@ export function build<TDomainResourceType extends AnyDomainResourceType>(
 /**
  * Returns the id of a resource, a reference, or an id itself.
  */
-export function id(value: Retrieved<AnyResource>): string;
+export function id(value: {
+  resourceType: AnyResourceType;
+  id: string;
+}): string;
 export function id(
-  value: Reference | Retrieved<AnyResource> | string | null | undefined,
+  value:
+    | { reference?: string | undefined }
+    | { resourceType: AnyResourceType; id: string }
+    | string
+    | null
+    | undefined,
 ): string | undefined;
 export function id(
-  value: Reference | Retrieved<AnyResource> | string | null | undefined,
+  value:
+    | { reference?: string | undefined }
+    | { resourceType: AnyResourceType; id: string }
+    | string
+    | null
+    | undefined,
 ): string | undefined {
   if (!value) {
     return undefined;
@@ -50,12 +61,15 @@ export function id(
     return value.trim().split("/").pop() || undefined;
   }
 
-  const valueAsDomainResource = value as Retrieved<AnyResource>;
+  const valueAsDomainResource = value as {
+    resourceType: AnyResourceType;
+    id: string;
+  };
   if (valueAsDomainResource.resourceType) {
     return valueAsDomainResource.id?.split("/").pop() || undefined;
   }
 
-  const valueAsReference = value as Reference;
+  const valueAsReference = value as { reference?: string | undefined };
 
   if (!valueAsReference.reference) {
     return undefined;

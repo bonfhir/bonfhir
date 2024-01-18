@@ -41,11 +41,12 @@ The monorepo uses [`pnpm`](https://pnpm.io) as a package manager, and [`turborep
 
 ### Build, run the checks, and run the tests
 
-- Clone the reppository
+- Clone the repository
 - `pnpm install`
-- `pnpm build` - runs the build for all packages
-- `pnpm check` - runs the quality checks for all packages (prettier, eslint, and type checking)
+- `pnpm build` - run the build for all packages
+- `pnpm check` - run the quality checks for all packages (prettier, eslint, and type checking)
 - `pnpm test` - run the unit tests for all packages
+- `pnpm all` - run `build`, `check` and `test`
 
 ### Run the sample apps
 
@@ -129,3 +130,102 @@ A good commit should:
 
 > A good practice prior to commit is to run the `pnpm all` command at the root of the monorepo.
 > This builds, checks and tests all packages to ensure that everything is good prior to the CI run.
+
+## Maintain version consistency across package dependencies
+
+bonFHIR is maintained as a monorepo using [turbo](https://turbo.build/) and [pnpm](https://pnpm.io/).
+
+Some packages have common dependencies. As a good practice, we want to ensure that all dependencies in the monorepo have
+the same version - what that means is that if `@bonfhir/react` and `@bonfhir/mantine` both have a dependency on the `react`
+package, we want to make sure that version is the same; maintain version consistency across package depndencies.
+
+There are 2 moments in the maintenance of the packages where this is important:
+
+- when adding new dependencies
+- when updating dependencies
+
+### Adding dependencies
+
+_This is true as well when creating new packages._
+When adding new dependencies to a package, we want to make sure to use the same version of the package if another bonFHIR
+package already uses the same dependency.
+
+In order to achieve this:
+
+1. always check in the monorepo if another package already uses that same dependency, by using the `pnpm packages:lookup` command
+
+   ```bash
+   pnpm packages:lookup left-pad
+   ```
+
+2. If the previous command returns nothing, then simply add the dependency as usual.
+
+3. If it does, please lookupthe version specifier in the `package.json` file where it is present, and use the same when adding it
+
+:::info[Walkthrough]
+
+Let's imagine that we need to add a dependency to the `marked` package to `@bonfhir/react`.
+
+1. Lookup existing information
+
+```bash
+pnpm packages:lookup marked
+
+> bonfhir@ packages:lookup bonfhir/bonfhir
+> pnpm why -r "marked"
+
+Legend: production dependency, optional only, dev only
+
+@bonfhir/core@2.17.2 bonfhir/bonfhir/packages/core
+
+devDependencies:
+marked 11.1.0
+```
+
+2. Found it! It is used by the `@bonfhir/core` package. Let's look at the `package.json` file:
+
+```json
+{
+  "name": "@bonfhir/core",
+  "version": "2.17.2",
+  "description": "Core FHIR resources and utilities for BonFHIR",
+  //...
+  "devDependencies": {
+    //...
+    "marked": "^11.1.0"
+    //...
+  }
+  //...
+}
+```
+
+3. Install with the same version moniker:
+
+```bash
+pnpm add marked@^11.1.0
+```
+
+:::
+
+### Updating dependencies
+
+Always update dependencies from the root of the monorepo, to ensure that all packages are updated equally.
+
+To identify outdated dependencies, first run:
+
+```bash
+pnpm packages:outdated
+```
+
+This creates a file named `outdated.log` that can be opened in your editor - e.g. `code outdated.log`.
+This file lists all the dependencies across the monorepo that have an update available, with the projects that use them.
+
+Identify the packages you want to update, and then run the `pnpm packages:update` command:
+
+```bash
+pnpm packages:update turbo rollup '@mantine/*' '@tabler/*'
+```
+
+> Notice how multiple packages can be specified, whether different names or with the same npm organization.
+
+This process ensure that all projects are updated with the same version, and that the monorepo stay consistent.

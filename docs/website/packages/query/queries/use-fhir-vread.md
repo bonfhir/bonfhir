@@ -7,8 +7,14 @@ description: Read a version of a FHIR resource
 Return a [Query](https://tanstack.com/query/latest/docs/react/guides/queries) for a
 [vread](https://hl7.org/fhir/http.html#vread) request.
 
+See the [`useFhirHistory`](/packages/query/queries/use-fhir-history) hook to retrieve the list of versions for a resource.
+
+### Basic usage
+
 ```tsx
+import { asError } from "@bonfhir/core/r4b";
 import { useFhirVRead } from "@bonfhir/query/r4b";
+import { FhirValue } from "@bonfhir/react/r4b";
 
 export default function MyComponent() {
   const patientQuery = useFhirVRead(
@@ -18,7 +24,7 @@ export default function MyComponent() {
     "51a9a637-465b-4ab8-afe4-79875eaf9dd7",
   );
 
-  if (patientQuery.isInitialLoading) {
+  if (patientQuery.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -30,7 +36,7 @@ export default function MyComponent() {
 }
 ```
 
-More concisely, with the [`<FhirQueryLoader />`](/packages/react/components/fhir-query-loader) component:
+### With the `<FhirQueryLoader />`
 
 ```tsx
 import { useFhirRead } from "@bonfhir/query/r4b";
@@ -52,7 +58,7 @@ export default function MyComponent() {
 }
 ```
 
-With options:
+### With options
 
 ```tsx
 import { DEFAULT_FHIR_CLIENT, useFhirRead } from "@bonfhir/query/r4b";

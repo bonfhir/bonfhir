@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: Start from the Vite template
-description: Clone and create an app from a template
+description: Create the app from the vite template
 ---
 
 # Create from the Vite template
@@ -12,13 +12,18 @@ description: Clone and create an app from a template
    npm create -y bonfhir@latest
    ```
 
-2. Provide a project name and select the **vite** template
-3. `cd` into the new project and start the development environment
+2. Provide a project name and select the **vite** template with the **Medplum** FHIR server:
 
-   ```bash npm2yarn
-   npm run dev
-   ```
+   ![Vite Project Template](../../static/img/docs/vite-project-template.png)
 
-4. Go to [`http://localhost:5173/`](http://localhost:5173/) in your browser to preview the application. You should see the content of `src/pages/Home.tsx`:
+:::info
 
-   ![Example](../../static/img/docs/vite-template.png)
+This project template create a brand new React application using [Vite](https://vitejs.dev/), and:
+
+- add the required bonFHIR packages with [Mantine integration](https://mantine.dev/)
+- update the [TypeScript configuration](/packages/intro#typescript-configuration)
+- add the [React Router](https://reactrouter.com/) package and configure it for client-side routing
+- add the [`react-oidc-context`](https://github.com/authts/react-oidc-context) package and configure it for authentication
+- include a layout and a page to get started
+
+:::

@@ -1,11 +1,15 @@
-import { ContactPoint } from "../fhir-types.codegen";
+import {
+  ContactPoint,
+  ContactPointSystem,
+  ContactPointUse,
+} from "../fhir-types.codegen";
 import {
   ValueFormatter,
   cleanUpCommonOptions,
   withValueFormatter,
 } from "../formatters";
 import { CodeFormatterOptions, codeFormatter } from "./code";
-import { periodFormatter } from "./period";
+import { FormattablePeriod, periodFormatter } from "./period";
 
 /**
  * Details for all kinds of technology-mediated contact points for a person or organization, including telephone, email, etc.
@@ -51,9 +55,17 @@ export interface ContactPointFormatterOptions {
   useExpansions?: CodeFormatterOptions["expansions"];
 }
 
+export interface FormattableContactPoint {
+  period?: FormattablePeriod | null | undefined;
+  rank?: number | null | undefined;
+  system?: ContactPointSystem | null | undefined;
+  use?: ContactPointUse | null | undefined;
+  value?: string | null | undefined;
+}
+
 export const contactPointFormatter: ValueFormatter<
   "ContactPoint",
-  ContactPoint | ContactPoint[] | null | undefined,
+  FormattableContactPoint | FormattableContactPoint[] | null | undefined,
   ContactPointFormatterOptions | null | undefined
 > = {
   type: "ContactPoint",
@@ -118,9 +130,9 @@ export const contactPointFormatter: ValueFormatter<
 };
 
 function filterAndSortContactPoints(
-  contactPoints: ContactPoint[],
+  contactPoints: FormattableContactPoint[],
   options: ContactPointFormatterOptions | null | undefined,
-): ContactPoint[] {
+) {
   const useFilterOrder =
     options?.useFilterOrder || DEFAULT_CONTACT_POINT_USE_ORDER_FILTER;
   const indexedOrder: { [k: string]: number } = Object.fromEntries(
@@ -133,7 +145,7 @@ function filterAndSortContactPoints(
   // filter out by use
   if (options?.useFilterOrder)
     contactPoints = contactPoints.filter((contactPoint) =>
-      useFilterOrder.includes(contactPoint.use),
+      useFilterOrder.includes(contactPoint.use ?? undefined),
     );
 
   contactPoints = contactPoints.sort((contactPoint1, contactPoint2) => {
@@ -161,7 +173,7 @@ function filterAndSortContactPoints(
   return contactPoints;
 }
 
-const DEFAULT_CONTACT_POINT_USE_ORDER_FILTER = [
+const DEFAULT_CONTACT_POINT_USE_ORDER_FILTER: ContactPoint["use"][] = [
   "home",
   "work",
   "temp",

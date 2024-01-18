@@ -7,10 +7,13 @@ description: Search for FHIR resources
 Return a [Query](https://tanstack.com/query/latest/docs/react/guides/queries) for a
 [search](https://hl7.org/fhir/http.html#search) request.
 
-## Basic usage
+### Basic usage
 
 ```tsx
+import { asError } from "@bonfhir/core/r4b";
 import { useFhirSearch } from "@bonfhir/query/r4b";
+import { FhirValue } from "@bonfhir/react/r4b";
+import { List } from "@mantine/core";
 
 export default function MyComponent() {
   const patientsSearchQuery = useFhirSearch("Patient", (search) =>
@@ -21,7 +24,7 @@ export default function MyComponent() {
       ._total("accurate"),
   );
 
-  if (patientsSearchQuery.isInitialLoading) {
+  if (patientsSearchQuery.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -50,7 +53,7 @@ export default function MyComponent() {
 See the [Core documentation around search](/packages/core/fhir-client#search-builders-and-bundle-navigators) for more information
 about the search or the bundle navigator.
 
-More concisely, with the [`<FhirQueryLoader />`](/packages/react/components/fhir-query-loader) component:
+### With the `<FhirQueryLoader />`
 
 ```tsx
 import { useFhirSearch } from "@bonfhir/query/r4b";
@@ -88,7 +91,7 @@ export default function MyComponent() {
 }
 ```
 
-## With pagination
+### With pagination
 
 The third argument of `useFhirSearch` is there to handle subsequent pages.
 Since there is a direct depency between the search result and the url for the next page, you need to handle it through
@@ -201,7 +204,7 @@ export default function MyComponent() {
 }
 ```
 
-With options:
+### With options
 
 ```tsx
 import { DEFAULT_FHIR_CLIENT, useFhirSearch } from "@bonfhir/query/r4b";

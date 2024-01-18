@@ -1,4 +1,4 @@
-import { Identifier } from "../fhir-types.codegen";
+import { Identifier, IdentifierUse } from "../fhir-types.codegen";
 import {
   ValueFormatter,
   cleanUpCommonOptions,
@@ -6,8 +6,11 @@ import {
 } from "../formatters";
 import { comparePeriods, formatValueWithPattern } from "../lang-utils";
 import { CodeFormatterOptions, codeFormatter } from "./code";
-import { codeableConceptFormatter } from "./codeable-concept";
-import { periodFormatter } from "./period";
+import {
+  FormattableCodeableConcept,
+  codeableConceptFormatter,
+} from "./codeable-concept";
+import { FormattablePeriod, periodFormatter } from "./period";
 
 /**
  * A numeric or alphanumeric string that is associated with a single object or entity within a given system.
@@ -79,9 +82,17 @@ export interface IdentifierFormatterOptions {
   systemsPatterns?: Record<string, string> | null | undefined;
 }
 
+export interface FormattableIdentifier {
+  period?: FormattablePeriod | null | undefined;
+  system?: string | null | undefined;
+  type?: FormattableCodeableConcept | null | undefined;
+  use?: IdentifierUse | null | undefined;
+  value?: string | null | undefined;
+}
+
 export const identifierFormatter: ValueFormatter<
   "Identifier",
-  Identifier | Identifier[] | null | undefined,
+  FormattableIdentifier | FormattableIdentifier[] | null | undefined,
   IdentifierFormatterOptions | null | undefined
 > = {
   type: "Identifier",
@@ -173,10 +184,10 @@ export const identifierFormatter: ValueFormatter<
   },
 };
 
-const filterAndSortIdentifiers = (
-  identifiers: Identifier[],
+function filterAndSortIdentifiers(
+  identifiers: FormattableIdentifier[],
   options: IdentifierFormatterOptions | null | undefined,
-): Identifier[] => {
+) {
   const useFilterOrder =
     options?.useFilterOrder || DEFAULT_IDENTIFIER_USE_ORDER;
   const useIndexedOrder: { [k: string]: number } = Object.fromEntries(
@@ -200,13 +211,14 @@ const filterAndSortIdentifiers = (
   // filter out by use
   if (useFilterOrder)
     identifiers = identifiers.filter((identifier) =>
-      useFilterOrder.includes(identifier.use),
+      useFilterOrder.includes(identifier.use ?? undefined),
     );
 
   // filter out by system
   if (systemFilterOrder)
     identifiers = identifiers.filter(
-      (identifier) => systemFilterOrder?.includes(identifier.system),
+      (identifier) =>
+        systemFilterOrder?.includes(identifier.system ?? undefined),
     );
 
   // sort out by period, then system, then use
@@ -235,12 +247,12 @@ const filterAndSortIdentifiers = (
   }
 
   return identifiers;
-};
+}
 
 /**
  * The default order use to sort identifiers.
  */
-export const DEFAULT_IDENTIFIER_USE_ORDER = [
+export const DEFAULT_IDENTIFIER_USE_ORDER: Identifier["use"][] = [
   "official",
   "usual",
   "temp",

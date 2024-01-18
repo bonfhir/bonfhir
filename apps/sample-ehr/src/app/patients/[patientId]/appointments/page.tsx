@@ -121,7 +121,7 @@ function AppointmentTable({
             {
               key: "participant",
               title: "Provider",
-              render: (appointment) => {
+              render: (appointment: Appointment) => {
                 return (
                   <FhirValue
                     type="HumanName"

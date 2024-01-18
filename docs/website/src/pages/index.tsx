@@ -183,7 +183,7 @@ function BatteriesIncluded() {
     {
       title: "GraphQL support",
       text: "Query your FHIR data using typed GraphQL",
-      link: "/packages/core/fhir-client#graphql",
+      link: "/docs/guides/graphql",
     },
     {
       title: "FHIR Subscriptions",
@@ -213,6 +213,7 @@ function BatteriesIncluded() {
     {
       title: "Next.js support",
       text: "Create your front-end app and api using Next.js",
+      link: "/docs/build-a-fhir-solution-with-nextjs",
     },
     {
       title: "Custom FHIR resources",
@@ -226,6 +227,7 @@ function BatteriesIncluded() {
     {
       title: "Code generation",
       text: "Generate any code you like using FHIR definition files and your own templates",
+      link: "/packages/codegen",
     },
   ];
   return (

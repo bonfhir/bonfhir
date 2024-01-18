@@ -48,17 +48,19 @@ export function useFhirTransactionMutation(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.mutation as any),
     onSuccess: (data, variables, context) => {
-      for (const resource of data.futureRequests.map((x) => x.resource)) {
-        if (
-          (resource as Resource).resourceType &&
-          (resource as Retrieved<Resource>).id
-        ) {
-          FhirQueryKeys.invalidateQueries(
-            fhirQueryContext.clientKey,
-            fhirQueryContext.queryClient,
-            (resource as Resource).resourceType,
-            (resource as Retrieved<Resource>).id,
-          );
+      if (fhirQueryContext.manageCache) {
+        for (const resource of data.futureRequests.map((x) => x.resource)) {
+          if (
+            (resource as Resource).resourceType &&
+            (resource as Retrieved<Resource>).id
+          ) {
+            FhirQueryKeys.invalidateQueries(
+              fhirQueryContext.clientKey,
+              fhirQueryContext.queryClient,
+              (resource as Resource).resourceType,
+              (resource as Retrieved<Resource>).id,
+            );
+          }
         }
       }
       options?.mutation?.onSuccess?.(data, variables, context);

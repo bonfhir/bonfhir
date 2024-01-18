@@ -1,4 +1,4 @@
-import { Quantity } from "../fhir-types.codegen";
+import { QuantityComparator } from "../fhir-types.codegen";
 import { ValueFormatter, withValueFormatter } from "../formatters";
 import { CodeFormatterOptions, codeFormatter } from "./code";
 import { DecimalFormatterOptions, decimalFormatter } from "./decimal";
@@ -23,9 +23,16 @@ export interface QuantityFormatterOptions {
   separator?: string | null | undefined;
 }
 
+export interface FormattableQuantity {
+  code?: string | null | undefined;
+  comparator?: QuantityComparator | null | undefined;
+  unit?: string | null | undefined;
+  value?: number | null | undefined;
+}
+
 export const quantityFormatter: ValueFormatter<
   "Quantity",
-  Quantity | null | undefined,
+  FormattableQuantity | null | undefined,
   QuantityFormatterOptions | null | undefined
 > = {
   type: "Quantity",

@@ -22,15 +22,17 @@ import React, { PropsWithChildren } from "react";
 import {
   DEFAULT_FHIR_CLIENT,
   FhirQueryProvider,
-  UseFhirGraph,
   useFhirBatchMutation,
   useFhirCapabilities,
+  useFhirClient,
+  useFhirClientMutation,
   useFhirClientQueryContext,
   useFhirCreateMutation,
   useFhirCreateOrMutation,
   useFhirDeleteMutation,
   useFhirExecute,
   useFhirExecuteMutation,
+  useFhirGraph,
   useFhirGraphQL,
   useFhirGraphQLMutation,
   useFhirGraphQLResult,
@@ -303,7 +305,21 @@ describe("hooks", () => {
 
     http.post(`${baseUrl}/$graphql`, async ({ request }) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { query, variables } = (await request.json()) as any;
+      const { query, operationName, variables } = (await request.json()) as any;
+
+      // https://github.com/bonfhir/bonfhir/issues/203
+      if (typeof operationName === "object") {
+        return new Response(
+          JSON.stringify({
+            errors: [
+              {
+                message: 'Unknown operation named "[object Object]".',
+                extensions: {},
+              },
+            ],
+          }),
+        );
+      }
 
       if (variables?.id === "graphql-error") {
         return new Response(
@@ -727,7 +743,7 @@ describe("hooks", () => {
     it("graph", async () => {
       const { result } = renderHook(
         () =>
-          UseFhirGraph(
+          useFhirGraph(
             "patient-with-appointments",
             "Patient",
             "50e500d7-2afd-42a8-adb7-350489ea3e3c",
@@ -844,6 +860,28 @@ describe("hooks", () => {
             },
           ],
         } satisfies Partial<ListOrganizationsQuery>);
+      });
+    });
+
+    it("client", async () => {
+      const { result } = renderHook(
+        () =>
+          useFhirClient(
+            async (client) =>
+              await client.read(
+                "Patient",
+                "a942b3d5-19bc-4959-8b5d-f9aedd790a94",
+              ),
+          ),
+        { wrapper },
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data).toMatchObject({
+          resourceType: "Patient",
+          id: "a942b3d5-19bc-4959-8b5d-f9aedd790a94",
+        });
       });
     });
   });
@@ -1063,6 +1101,53 @@ describe("hooks", () => {
             ],
           } satisfies Partial<ListOrganizationsQuery>);
         });
+      });
+
+      // https://github.com/bonfhir/bonfhir/issues/203
+      it("execute a mutation as a document using options and no variables", async () => {
+        const { result } = renderHook(
+          () =>
+            useFhirGraphQLMutation(ListOrganizationsDocument, {
+              fhirClient: DEFAULT_FHIR_CLIENT,
+            }),
+          { wrapper },
+        );
+
+        result.current.mutate({ name: "Acme, Inc" });
+
+        await waitFor(() => {
+          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.data).toMatchObject({
+            OrganizationList: [
+              {
+                resourceType: "Organization",
+                name: "Acme, Inc",
+              },
+            ],
+          } satisfies Partial<ListOrganizationsQuery>);
+        });
+      });
+    });
+
+    it("client", async () => {
+      const { result } = renderHook(
+        () => useFhirClientMutation<Organization>(),
+        {
+          wrapper,
+        },
+      );
+
+      result.current.mutate(async (client) => {
+        return await client.update(
+          build("Organization", {
+            id: "a942b3d5-19bc-4959-8b5d-f9aedd790a94",
+          }),
+        );
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.data?.resourceType).toEqual("Organization");
       });
     });
   });
