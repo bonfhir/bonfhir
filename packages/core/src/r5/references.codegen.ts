@@ -1,118 +1,106 @@
 /**
  * Reference decorators for r5/5.0.0
  */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import {
-  AnyResource,
-  CodeableConcept,
-  Reference,
-  Resource,
-  Retrieved,
-  WithRequired,
-} from "./fhir-types.codegen";
 import { Formatter, withValueFormatter } from "./formatters";
-import {
-  codeableConceptFormatter,
-  humanNameFormatter,
-} from "./value-formatters/index";
+import { codeableConceptFormatter, humanNameFormatter } from "./value-formatters/index";
+import { AnyResource, CodeableConcept, Resource, Reference, Retrieved, WithRequired } from "./fhir-types.codegen";
+import {  Account,  ActivityDefinition,  ActorDefinition,  AdverseEvent,  AllergyIntolerance,  ArtifactAssessment,  AuditEvent,  Basic,  CanonicalResource,  CapabilityStatement,  CarePlan,  CareTeam,  ChargeItem,  ChargeItemDefinition,  Citation,  CodeSystem,  CompartmentDefinition,  Composition,  ConceptMap,  Condition,  ConditionDefinition,  Contract,  DetectedIssue,  DiagnosticReport,  Endpoint,  EventDefinition,  Evidence,  EvidenceVariable,  ExampleScenario,  FamilyMemberHistory,  Flag,  FormularyItem,  GraphDefinition,  Group,  HealthcareService,  ImagingSelection,  ImplementationGuide,  InsurancePlan,  InventoryItem,  Library,  List,  Location,  ManufacturedItemDefinition,  Measure,  Medication,  MedicationKnowledge,  MessageDefinition,  NamingSystem,  NutritionIntake,  NutritionProduct,  Observation,  ObservationDefinition,  OperationDefinition,  Organization,  OrganizationAffiliation,  PackagedProductDefinition,  Patient,  Person,  PlanDefinition,  Practitioner,  PractitionerRole,  Procedure,  Questionnaire,  RelatedPerson,  RequestOrchestration,  Requirements,  ResearchStudy,  RiskAssessment,  Schedule,  SearchParameter,  SpecimenDefinition,  StructureDefinition,  StructureMap,  Subscription,  SubscriptionTopic,  Task,  TerminologyCapabilities,  TestPlan,  TestReport,  TestScript,  Transport,  ValueSet,  } from "./fhir-types.codegen";
 
 export interface ReferenceOptions {
   versionSpecific?: boolean | null | undefined;
 }
 
-export const REFERENCE_DECORATORS: Record<
-  string,
-  (resource: Resource, reference: Reference) => Reference
-> = {
-  Account: decorate,
-  ActivityDefinition: decorate,
-  ActorDefinition: decorate,
-  AdverseEvent: decorate,
-  AllergyIntolerance: decorate,
-  ArtifactAssessment: decorate,
-  AuditEvent: decorate,
-  Basic: decorate,
-  CanonicalResource: decorate,
-  CapabilityStatement: decorate,
-  CarePlan: decorate,
-  CareTeam: decorate,
-  ChargeItem: decorate,
-  ChargeItemDefinition: decorate,
-  Citation: decorate,
-  CodeSystem: decorate,
-  CompartmentDefinition: decorate,
-  Composition: decorate,
-  ConceptMap: decorate,
-  Condition: decorate,
-  ConditionDefinition: decorate,
-  Contract: decorate,
-  DetectedIssue: decorate,
-  DiagnosticReport: decorate,
-  Endpoint: decorate,
-  EventDefinition: decorate,
-  Evidence: decorate,
-  EvidenceVariable: decorate,
-  ExampleScenario: decorate,
-  FamilyMemberHistory: decorate,
-  Flag: decorate,
-  FormularyItem: decorate,
-  GraphDefinition: decorate,
-  Group: decorate,
-  HealthcareService: decorate,
-  ImagingSelection: decorate,
-  ImplementationGuide: decorate,
-  InsurancePlan: decorate,
-  InventoryItem: decorate,
-  Library: decorate,
-  List: decorate,
-  Location: decorate,
-  ManufacturedItemDefinition: decorate,
-  Measure: decorate,
-  Medication: decorate,
-  MedicationKnowledge: decorate,
-  MessageDefinition: decorate,
-  NamingSystem: decorate,
-  NutritionIntake: decorate,
-  NutritionProduct: decorate,
-  Observation: decorate,
-  ObservationDefinition: decorate,
-  OperationDefinition: decorate,
-  Organization: decorate,
-  OrganizationAffiliation: decorate,
-  PackagedProductDefinition: decorate,
-  Patient: decorate,
-  Person: decorate,
-  PlanDefinition: decorate,
-  Practitioner: decorate,
-  PractitionerRole: decorate,
-  Procedure: decorate,
-  Questionnaire: decorate,
-  RelatedPerson: decorate,
-  RequestOrchestration: decorate,
-  Requirements: decorate,
-  ResearchStudy: decorate,
-  RiskAssessment: decorate,
-  Schedule: decorate,
-  SearchParameter: decorate,
-  SpecimenDefinition: decorate,
-  StructureDefinition: decorate,
-  StructureMap: decorate,
-  Subscription: decorate,
-  SubscriptionTopic: decorate,
-  Task: decorate,
-  TerminologyCapabilities: decorate,
-  TestPlan: decorate,
-  TestReport: decorate,
-  TestScript: decorate,
-  Transport: decorate,
-  ValueSet: decorate,
-};
+export const REFERENCE_DECORATORS: Record<string, (resource: Resource, reference: Reference) => Reference> = {
+      "Account": decorate,
+      "ActivityDefinition": decorate,
+      "ActorDefinition": decorate,
+      "AdverseEvent": decorate,
+      "AllergyIntolerance": decorate,
+      "ArtifactAssessment": decorate,
+      "AuditEvent": decorate,
+      "Basic": decorate,
+      "CanonicalResource": decorate,
+      "CapabilityStatement": decorate,
+      "CarePlan": decorate,
+      "CareTeam": decorate,
+      "ChargeItem": decorate,
+      "ChargeItemDefinition": decorate,
+      "Citation": decorate,
+      "CodeSystem": decorate,
+      "CompartmentDefinition": decorate,
+      "Composition": decorate,
+      "ConceptMap": decorate,
+      "Condition": decorate,
+      "ConditionDefinition": decorate,
+      "Contract": decorate,
+      "DetectedIssue": decorate,
+      "DiagnosticReport": decorate,
+      "Endpoint": decorate,
+      "EventDefinition": decorate,
+      "Evidence": decorate,
+      "EvidenceVariable": decorate,
+      "ExampleScenario": decorate,
+      "FamilyMemberHistory": decorate,
+      "Flag": decorate,
+      "FormularyItem": decorate,
+      "GraphDefinition": decorate,
+      "Group": decorate,
+      "HealthcareService": decorate,
+      "ImagingSelection": decorate,
+      "ImplementationGuide": decorate,
+      "InsurancePlan": decorate,
+      "InventoryItem": decorate,
+      "Library": decorate,
+      "List": decorate,
+      "Location": decorate,
+      "ManufacturedItemDefinition": decorate,
+      "Measure": decorate,
+      "Medication": decorate,
+      "MedicationKnowledge": decorate,
+      "MessageDefinition": decorate,
+      "NamingSystem": decorate,
+      "NutritionIntake": decorate,
+      "NutritionProduct": decorate,
+      "Observation": decorate,
+      "ObservationDefinition": decorate,
+      "OperationDefinition": decorate,
+      "Organization": decorate,
+      "OrganizationAffiliation": decorate,
+      "PackagedProductDefinition": decorate,
+      "Patient": decorate,
+      "Person": decorate,
+      "PlanDefinition": decorate,
+      "Practitioner": decorate,
+      "PractitionerRole": decorate,
+      "Procedure": decorate,
+      "Questionnaire": decorate,
+      "RelatedPerson": decorate,
+      "RequestOrchestration": decorate,
+      "Requirements": decorate,
+      "ResearchStudy": decorate,
+      "RiskAssessment": decorate,
+      "Schedule": decorate,
+      "SearchParameter": decorate,
+      "SpecimenDefinition": decorate,
+      "StructureDefinition": decorate,
+      "StructureMap": decorate,
+      "Subscription": decorate,
+      "SubscriptionTopic": decorate,
+      "Task": decorate,
+      "TerminologyCapabilities": decorate,
+      "TestPlan": decorate,
+      "TestReport": decorate,
+      "TestScript": decorate,
+      "Transport": decorate,
+      "ValueSet": decorate,
+  };
 
 /**
  * Build a reference from a resource.
  */
-export function reference<TTargetResource extends AnyResource = AnyResource>(
+ export function reference<TTargetResource extends AnyResource = AnyResource>(
   resource: Retrieved<TTargetResource>,
   options?: ReferenceOptions | null | undefined,
 ): WithRequired<Reference<TTargetResource>, "reference">;
@@ -147,10 +135,7 @@ export function reference<TTargetResource extends AnyResource = AnyResource>(
   const decorator = REFERENCE_DECORATORS?.[resource.resourceType];
 
   if (decorator) {
-    reference = decorator(resource, reference) as WithRequired<
-      Reference<TTargetResource>,
-      "reference"
-    >;
+    reference = decorator(resource, reference) as WithRequired<Reference<TTargetResource>, "reference">;
   }
 
   return reference;
@@ -163,15 +148,11 @@ function decorate(resource: Resource, reference: Reference): Reference {
   if (typeof name === "string" && name.length > 0) {
     reference.display = name.trim();
   } else if (typeof name === "object") {
-    reference.display = withValueFormatter<typeof humanNameFormatter>(
-      Formatter.default,
-    ).format("HumanName", name, { max: 1 });
+    reference.display = withValueFormatter<typeof humanNameFormatter>(Formatter.default).format("HumanName", name, { max: 1 });
   } else if (title) {
     reference.display = title;
   } else if (code) {
-    reference.display = withValueFormatter<typeof codeableConceptFormatter>(
-      Formatter.default,
-    ).format("CodeableConcept", code);
+    reference.display = withValueFormatter<typeof codeableConceptFormatter>(Formatter.default).format("CodeableConcept", code);
   }
 
   return reference;
@@ -180,6 +161,4 @@ function decorate(resource: Resource, reference: Reference): Reference {
 /**
  * Extract the target resource type from a reference.
  */
-export type ReferenceTarget<TReference> = TReference extends Reference<infer X>
-  ? X
-  : never;
+export type ReferenceTarget<TReference> = TReference extends Reference<infer X> ? X : never;

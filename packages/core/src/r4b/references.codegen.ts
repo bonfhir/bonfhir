@@ -1,106 +1,94 @@
 /**
  * Reference decorators for r4b/4.3.0
  */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import {
-  AnyResource,
-  CodeableConcept,
-  Reference,
-  Resource,
-  Retrieved,
-  WithRequired,
-} from "./fhir-types.codegen";
 import { Formatter, withValueFormatter } from "./formatters";
-import {
-  codeableConceptFormatter,
-  humanNameFormatter,
-} from "./value-formatters/index";
+import { codeableConceptFormatter, humanNameFormatter } from "./value-formatters/index";
+import { AnyResource, CodeableConcept, Resource, Reference, Retrieved, WithRequired } from "./fhir-types.codegen";
+import {  Account,  ActivityDefinition,  AllergyIntolerance,  Basic,  CapabilityStatement,  CarePlan,  CareTeam,  ChargeItem,  ChargeItemDefinition,  Citation,  ClinicalImpression,  CodeSystem,  CompartmentDefinition,  Composition,  ConceptMap,  Condition,  Contract,  DetectedIssue,  DiagnosticReport,  Endpoint,  EventDefinition,  Evidence,  EvidenceVariable,  ExampleScenario,  FamilyMemberHistory,  Flag,  GraphDefinition,  Group,  HealthcareService,  ImplementationGuide,  InsurancePlan,  Library,  List,  Location,  Measure,  Medication,  MedicationKnowledge,  MessageDefinition,  NamingSystem,  NutritionProduct,  Observation,  ObservationDefinition,  OperationDefinition,  Organization,  OrganizationAffiliation,  PackagedProductDefinition,  Patient,  Person,  PlanDefinition,  Practitioner,  PractitionerRole,  Procedure,  Questionnaire,  RelatedPerson,  RequestGroup,  ResearchDefinition,  ResearchElementDefinition,  ResearchStudy,  RiskAssessment,  SearchParameter,  ServiceRequest,  StructureDefinition,  StructureMap,  SubscriptionTopic,  Substance,  Task,  TerminologyCapabilities,  TestReport,  TestScript,  ValueSet,  } from "./fhir-types.codegen";
 
 export interface ReferenceOptions {
   versionSpecific?: boolean | null | undefined;
 }
 
-export const REFERENCE_DECORATORS: Record<
-  string,
-  (resource: Resource, reference: Reference) => Reference
-> = {
-  Account: decorate,
-  ActivityDefinition: decorate,
-  AllergyIntolerance: decorate,
-  Basic: decorate,
-  CapabilityStatement: decorate,
-  CarePlan: decorate,
-  CareTeam: decorate,
-  ChargeItem: decorate,
-  ChargeItemDefinition: decorate,
-  Citation: decorate,
-  ClinicalImpression: decorate,
-  CodeSystem: decorate,
-  CompartmentDefinition: decorate,
-  Composition: decorate,
-  ConceptMap: decorate,
-  Condition: decorate,
-  Contract: decorate,
-  DetectedIssue: decorate,
-  DiagnosticReport: decorate,
-  Endpoint: decorate,
-  EventDefinition: decorate,
-  Evidence: decorate,
-  EvidenceVariable: decorate,
-  ExampleScenario: decorate,
-  FamilyMemberHistory: decorate,
-  Flag: decorate,
-  GraphDefinition: decorate,
-  Group: decorate,
-  HealthcareService: decorate,
-  ImplementationGuide: decorate,
-  InsurancePlan: decorate,
-  Library: decorate,
-  List: decorate,
-  Location: decorate,
-  Measure: decorate,
-  Medication: decorate,
-  MedicationKnowledge: decorate,
-  MessageDefinition: decorate,
-  NamingSystem: decorate,
-  NutritionProduct: decorate,
-  Observation: decorate,
-  ObservationDefinition: decorate,
-  OperationDefinition: decorate,
-  Organization: decorate,
-  OrganizationAffiliation: decorate,
-  PackagedProductDefinition: decorate,
-  Patient: decorate,
-  Person: decorate,
-  PlanDefinition: decorate,
-  Practitioner: decorate,
-  PractitionerRole: decorate,
-  Procedure: decorate,
-  Questionnaire: decorate,
-  RelatedPerson: decorate,
-  RequestGroup: decorate,
-  ResearchDefinition: decorate,
-  ResearchElementDefinition: decorate,
-  ResearchStudy: decorate,
-  RiskAssessment: decorate,
-  SearchParameter: decorate,
-  ServiceRequest: decorate,
-  StructureDefinition: decorate,
-  StructureMap: decorate,
-  SubscriptionTopic: decorate,
-  Substance: decorate,
-  Task: decorate,
-  TerminologyCapabilities: decorate,
-  TestReport: decorate,
-  TestScript: decorate,
-  ValueSet: decorate,
-};
+export const REFERENCE_DECORATORS: Record<string, (resource: Resource, reference: Reference) => Reference> = {
+      "Account": decorate,
+      "ActivityDefinition": decorate,
+      "AllergyIntolerance": decorate,
+      "Basic": decorate,
+      "CapabilityStatement": decorate,
+      "CarePlan": decorate,
+      "CareTeam": decorate,
+      "ChargeItem": decorate,
+      "ChargeItemDefinition": decorate,
+      "Citation": decorate,
+      "ClinicalImpression": decorate,
+      "CodeSystem": decorate,
+      "CompartmentDefinition": decorate,
+      "Composition": decorate,
+      "ConceptMap": decorate,
+      "Condition": decorate,
+      "Contract": decorate,
+      "DetectedIssue": decorate,
+      "DiagnosticReport": decorate,
+      "Endpoint": decorate,
+      "EventDefinition": decorate,
+      "Evidence": decorate,
+      "EvidenceVariable": decorate,
+      "ExampleScenario": decorate,
+      "FamilyMemberHistory": decorate,
+      "Flag": decorate,
+      "GraphDefinition": decorate,
+      "Group": decorate,
+      "HealthcareService": decorate,
+      "ImplementationGuide": decorate,
+      "InsurancePlan": decorate,
+      "Library": decorate,
+      "List": decorate,
+      "Location": decorate,
+      "Measure": decorate,
+      "Medication": decorate,
+      "MedicationKnowledge": decorate,
+      "MessageDefinition": decorate,
+      "NamingSystem": decorate,
+      "NutritionProduct": decorate,
+      "Observation": decorate,
+      "ObservationDefinition": decorate,
+      "OperationDefinition": decorate,
+      "Organization": decorate,
+      "OrganizationAffiliation": decorate,
+      "PackagedProductDefinition": decorate,
+      "Patient": decorate,
+      "Person": decorate,
+      "PlanDefinition": decorate,
+      "Practitioner": decorate,
+      "PractitionerRole": decorate,
+      "Procedure": decorate,
+      "Questionnaire": decorate,
+      "RelatedPerson": decorate,
+      "RequestGroup": decorate,
+      "ResearchDefinition": decorate,
+      "ResearchElementDefinition": decorate,
+      "ResearchStudy": decorate,
+      "RiskAssessment": decorate,
+      "SearchParameter": decorate,
+      "ServiceRequest": decorate,
+      "StructureDefinition": decorate,
+      "StructureMap": decorate,
+      "SubscriptionTopic": decorate,
+      "Substance": decorate,
+      "Task": decorate,
+      "TerminologyCapabilities": decorate,
+      "TestReport": decorate,
+      "TestScript": decorate,
+      "ValueSet": decorate,
+  };
 
 /**
  * Build a reference from a resource.
  */
-export function reference<TTargetResource extends AnyResource = AnyResource>(
+ export function reference<TTargetResource extends AnyResource = AnyResource>(
   resource: Retrieved<TTargetResource>,
   options?: ReferenceOptions | null | undefined,
 ): WithRequired<Reference<TTargetResource>, "reference">;
@@ -135,10 +123,7 @@ export function reference<TTargetResource extends AnyResource = AnyResource>(
   const decorator = REFERENCE_DECORATORS?.[resource.resourceType];
 
   if (decorator) {
-    reference = decorator(resource, reference) as WithRequired<
-      Reference<TTargetResource>,
-      "reference"
-    >;
+    reference = decorator(resource, reference) as WithRequired<Reference<TTargetResource>, "reference">;
   }
 
   return reference;
@@ -151,15 +136,11 @@ function decorate(resource: Resource, reference: Reference): Reference {
   if (typeof name === "string" && name.length > 0) {
     reference.display = name.trim();
   } else if (typeof name === "object") {
-    reference.display = withValueFormatter<typeof humanNameFormatter>(
-      Formatter.default,
-    ).format("HumanName", name, { max: 1 });
+    reference.display = withValueFormatter<typeof humanNameFormatter>(Formatter.default).format("HumanName", name, { max: 1 });
   } else if (title) {
     reference.display = title;
   } else if (code) {
-    reference.display = withValueFormatter<typeof codeableConceptFormatter>(
-      Formatter.default,
-    ).format("CodeableConcept", code);
+    reference.display = withValueFormatter<typeof codeableConceptFormatter>(Formatter.default).format("CodeableConcept", code);
   }
 
   return reference;
@@ -168,6 +149,4 @@ function decorate(resource: Resource, reference: Reference): Reference {
 /**
  * Extract the target resource type from a reference.
  */
-export type ReferenceTarget<TReference> = TReference extends Reference<infer X>
-  ? X
-  : never;
+export type ReferenceTarget<TReference> = TReference extends Reference<infer X> ? X : never;

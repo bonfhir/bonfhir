@@ -18,17 +18,17 @@ import { FhirSearchBuilder } from "./search";
  */
 export function fhirSearch(resourceType?: null | undefined): FhirSearchBuilder;
 export function fhirSearch<
-  TResourceType extends AnyResourceType = AnyResourceType,
+  TResourceType extends AnyResourceType = AnyResourceType
 >(resourceType: TResourceType): ExtractSearchBuilder<TResourceType>;
 export function fhirSearch<
-  TResourceType extends AnyResourceType = AnyResourceType,
+  TResourceType extends AnyResourceType = AnyResourceType
 >(
-  resourceType?: TResourceType | null | undefined,
+  resourceType?: TResourceType | null | undefined
 ): FhirSearchBuilder | ExtractSearchBuilder<TResourceType>;
 export function fhirSearch<
-  TResourceType extends AnyResourceType = AnyResourceType,
+  TResourceType extends AnyResourceType = AnyResourceType
 >(
-  resourceType?: TResourceType | null | undefined,
+  resourceType?: TResourceType | null | undefined
 ): FhirSearchBuilder | ExtractSearchBuilder<TResourceType> {
   if (!resourceType) {
     return new FhirSearchBuilder();
@@ -511,7 +511,7 @@ export function fhirSearch<
     }
     default: {
       throw new Error(
-        `Unsupported fhirSearch for resource type ${resourceType}`,
+        `Unsupported fhirSearch for resource type ${resourceType}`
       );
     }
   }
@@ -725,13 +725,13 @@ export class ResourceFhirSearchBuilder extends FhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ResourceSortOrder | ResourceSortOrder[] | null | undefined,
+    parameters: ResourceSortOrder | ResourceSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -759,13 +759,13 @@ export class DomainResourceFhirSearchBuilder extends ResourceFhirSearchBuilder {
       | DomainResourceSortOrder
       | DomainResourceSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -1214,13 +1214,13 @@ export class AccountFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: AccountSortOrder | AccountSortOrder[] | null | undefined,
+    parameters: AccountSortOrder | AccountSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -2717,13 +2717,13 @@ export class ActivityDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
       | ActivityDefinitionSortOrder
       | ActivityDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -3927,13 +3927,13 @@ export class ActorDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
       | ActorDefinitionSortOrder
       | ActorDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -4087,13 +4087,13 @@ export class AdministrableProductDefinitionFhirSearchBuilder extends DomainResou
       | AdministrableProductDefinitionSortOrder
       | AdministrableProductDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -4688,13 +4688,13 @@ export class AdverseEventFhirSearchBuilder extends DomainResourceFhirSearchBuild
       | AdverseEventSortOrder
       | AdverseEventSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -5319,13 +5319,13 @@ export class AllergyIntoleranceFhirSearchBuilder extends DomainResourceFhirSearc
       | AllergyIntoleranceSortOrder
       | AllergyIntoleranceSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -5971,17 +5971,13 @@ export class AppointmentFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters:
-      | AppointmentSortOrder
-      | AppointmentSortOrder[]
-      | null
-      | undefined,
+    parameters: AppointmentSortOrder | AppointmentSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -6394,13 +6390,13 @@ export class AppointmentResponseFhirSearchBuilder extends DomainResourceFhirSear
       | AppointmentResponseSortOrder
       | AppointmentResponseSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -6446,13 +6442,13 @@ export class ArtifactAssessmentFhirSearchBuilder extends DomainResourceFhirSearc
       | ArtifactAssessmentSortOrder
       | ArtifactAssessmentSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -6978,13 +6974,13 @@ export class AuditEventFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: AuditEventSortOrder | AuditEventSortOrder[] | null | undefined,
+    parameters: AuditEventSortOrder | AuditEventSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -7408,13 +7404,13 @@ export class BasicFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: BasicSortOrder | BasicSortOrder[] | null | undefined,
+    parameters: BasicSortOrder | BasicSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -7430,13 +7426,13 @@ export class BinaryFhirSearchBuilder extends ResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: BinarySortOrder | BinarySortOrder[] | null | undefined,
+    parameters: BinarySortOrder | BinarySortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -7569,13 +7565,13 @@ export class BiologicallyDerivedProductFhirSearchBuilder extends DomainResourceF
       | BiologicallyDerivedProductSortOrder
       | BiologicallyDerivedProductSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -7596,13 +7592,13 @@ export class BiologicallyDerivedProductDispenseFhirSearchBuilder extends DomainR
       | BiologicallyDerivedProductDispenseSortOrder
       | BiologicallyDerivedProductDispenseSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -7972,13 +7968,13 @@ export class BodyStructureFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | BodyStructureSortOrder
       | BodyStructureSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -8065,13 +8061,13 @@ export class BundleFhirSearchBuilder extends ResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: BundleSortOrder | BundleSortOrder[] | null | undefined,
+    parameters: BundleSortOrder | BundleSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -8089,13 +8085,13 @@ export class CanonicalResourceFhirSearchBuilder extends DomainResourceFhirSearch
       | CanonicalResourceSortOrder
       | CanonicalResourceSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -9482,13 +9478,13 @@ export class CapabilityStatementFhirSearchBuilder extends DomainResourceFhirSear
       | CapabilityStatementSortOrder
       | CapabilityStatementSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -10150,13 +10146,13 @@ export class CarePlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: CarePlanSortOrder | CarePlanSortOrder[] | null | undefined,
+    parameters: CarePlanSortOrder | CarePlanSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -10612,13 +10608,13 @@ export class CareTeamFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: CareTeamSortOrder | CareTeamSortOrder[] | null | undefined,
+    parameters: CareTeamSortOrder | CareTeamSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -11266,13 +11262,13 @@ export class ChargeItemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ChargeItemSortOrder | ChargeItemSortOrder[] | null | undefined,
+    parameters: ChargeItemSortOrder | ChargeItemSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -12505,13 +12501,13 @@ export class ChargeItemDefinitionFhirSearchBuilder extends DomainResourceFhirSea
       | ChargeItemDefinitionSortOrder
       | ChargeItemDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -13853,13 +13849,13 @@ export class CitationFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: CitationSortOrder | CitationSortOrder[] | null | undefined,
+    parameters: CitationSortOrder | CitationSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -14453,13 +14449,13 @@ export class ClaimFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ClaimSortOrder | ClaimSortOrder[] | null | undefined,
+    parameters: ClaimSortOrder | ClaimSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -14905,13 +14901,13 @@ export class ClaimResponseFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | ClaimResponseSortOrder
       | ClaimResponseSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -15496,13 +15492,13 @@ export class ClinicalImpressionFhirSearchBuilder extends DomainResourceFhirSearc
       | ClinicalImpressionSortOrder
       | ClinicalImpressionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -15694,13 +15690,13 @@ export class ClinicalUseDefinitionFhirSearchBuilder extends DomainResourceFhirSe
       | ClinicalUseDefinitionSortOrder
       | ClinicalUseDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -17167,13 +17163,13 @@ export class CodeSystemFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: CodeSystemSortOrder | CodeSystemSortOrder[] | null | undefined,
+    parameters: CodeSystemSortOrder | CodeSystemSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -17752,13 +17748,13 @@ export class CommunicationFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | CommunicationSortOrder
       | CommunicationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -18342,13 +18338,13 @@ export class CommunicationRequestFhirSearchBuilder extends DomainResourceFhirSea
       | CommunicationRequestSortOrder
       | CommunicationRequestSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -19400,13 +19396,13 @@ export class CompartmentDefinitionFhirSearchBuilder extends DomainResourceFhirSe
       | CompartmentDefinitionSortOrder
       | CompartmentDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -20119,17 +20115,13 @@ export class CompositionFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters:
-      | CompositionSortOrder
-      | CompositionSortOrder[]
-      | null
-      | undefined,
+    parameters: CompositionSortOrder | CompositionSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -21667,13 +21659,13 @@ export class ConceptMapFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ConceptMapSortOrder | ConceptMapSortOrder[] | null | undefined,
+    parameters: ConceptMapSortOrder | ConceptMapSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -22372,13 +22364,13 @@ export class ConditionFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ConditionSortOrder | ConditionSortOrder[] | null | undefined,
+    parameters: ConditionSortOrder | ConditionSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -23643,13 +23635,13 @@ export class ConditionDefinitionFhirSearchBuilder extends DomainResourceFhirSear
       | ConditionDefinitionSortOrder
       | ConditionDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -24244,13 +24236,13 @@ export class ConsentFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ConsentSortOrder | ConsentSortOrder[] | null | undefined,
+    parameters: ConsentSortOrder | ConsentSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -24676,13 +24668,13 @@ export class ContractFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ContractSortOrder | ContractSortOrder[] | null | undefined,
+    parameters: ContractSortOrder | ContractSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -25179,13 +25171,13 @@ export class CoverageFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: CoverageSortOrder | CoverageSortOrder[] | null | undefined,
+    parameters: CoverageSortOrder | CoverageSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -25581,13 +25573,13 @@ export class CoverageEligibilityRequestFhirSearchBuilder extends DomainResourceF
       | CoverageEligibilityRequestSortOrder
       | CoverageEligibilityRequestSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26009,13 +26001,13 @@ export class CoverageEligibilityResponseFhirSearchBuilder extends DomainResource
       | CoverageEligibilityResponseSortOrder
       | CoverageEligibilityResponseSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26485,13 +26477,13 @@ export class DetectedIssueFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | DetectedIssueSortOrder
       | DetectedIssueSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26800,13 +26792,13 @@ export class DeviceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: DeviceSortOrder | DeviceSortOrder[] | null | undefined,
+    parameters: DeviceSortOrder | DeviceSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26826,13 +26818,13 @@ export class DeviceAssociationFhirSearchBuilder extends DomainResourceFhirSearch
       | DeviceAssociationSortOrder
       | DeviceAssociationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26948,13 +26940,13 @@ export class DeviceDefinitionFhirSearchBuilder extends DomainResourceFhirSearchB
       | DeviceDefinitionSortOrder
       | DeviceDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -26974,13 +26966,13 @@ export class DeviceDispenseFhirSearchBuilder extends DomainResourceFhirSearchBui
       | DeviceDispenseSortOrder
       | DeviceDispenseSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -27056,13 +27048,13 @@ export class DeviceMetricFhirSearchBuilder extends DomainResourceFhirSearchBuild
       | DeviceMetricSortOrder
       | DeviceMetricSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -27732,13 +27724,13 @@ export class DeviceRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | DeviceRequestSortOrder
       | DeviceRequestSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -28090,17 +28082,13 @@ export class DeviceUsageFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters:
-      | DeviceUsageSortOrder
-      | DeviceUsageSortOrder[]
-      | null
-      | undefined,
+    parameters: DeviceUsageSortOrder | DeviceUsageSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -28796,13 +28784,13 @@ export class DiagnosticReportFhirSearchBuilder extends DomainResourceFhirSearchB
       | DiagnosticReportSortOrder
       | DiagnosticReportSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -29635,13 +29623,13 @@ export class DocumentReferenceFhirSearchBuilder extends DomainResourceFhirSearch
       | DocumentReferenceSortOrder
       | DocumentReferenceSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -30393,13 +30381,13 @@ export class EncounterFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: EncounterSortOrder | EncounterSortOrder[] | null | undefined,
+    parameters: EncounterSortOrder | EncounterSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -30499,13 +30487,13 @@ export class EncounterHistoryFhirSearchBuilder extends DomainResourceFhirSearchB
       | EncounterHistorySortOrder
       | EncounterHistorySortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -30604,13 +30592,13 @@ export class EndpointFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: EndpointSortOrder | EndpointSortOrder[] | null | undefined,
+    parameters: EndpointSortOrder | EndpointSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -30938,13 +30926,13 @@ export class EnrollmentRequestFhirSearchBuilder extends DomainResourceFhirSearch
       | EnrollmentRequestSortOrder
       | EnrollmentRequestSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -30964,13 +30952,13 @@ export class EnrollmentResponseFhirSearchBuilder extends DomainResourceFhirSearc
       | EnrollmentResponseSortOrder
       | EnrollmentResponseSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -31513,13 +31501,13 @@ export class EpisodeOfCareFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | EpisodeOfCareSortOrder
       | EpisodeOfCareSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -33004,13 +32992,13 @@ export class EventDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
       | EventDefinitionSortOrder
       | EventDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -34124,13 +34112,13 @@ export class EvidenceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: EvidenceSortOrder | EvidenceSortOrder[] | null | undefined,
+    parameters: EvidenceSortOrder | EvidenceSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -34944,13 +34932,13 @@ export class EvidenceReportFhirSearchBuilder extends DomainResourceFhirSearchBui
       | EvidenceReportSortOrder
       | EvidenceReportSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -36320,13 +36308,13 @@ export class EvidenceVariableFhirSearchBuilder extends DomainResourceFhirSearchB
       | EvidenceVariableSortOrder
       | EvidenceVariableSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -37443,13 +37431,13 @@ export class ExampleScenarioFhirSearchBuilder extends DomainResourceFhirSearchBu
       | ExampleScenarioSortOrder
       | ExampleScenarioSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -38047,13 +38035,13 @@ export class ExplanationOfBenefitFhirSearchBuilder extends DomainResourceFhirSea
       | ExplanationOfBenefitSortOrder
       | ExplanationOfBenefitSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -38573,13 +38561,13 @@ export class FamilyMemberHistoryFhirSearchBuilder extends DomainResourceFhirSear
       | FamilyMemberHistorySortOrder
       | FamilyMemberHistorySortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -39107,7 +39095,7 @@ export class FlagFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -39127,13 +39115,13 @@ export class FormularyItemFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | FormularyItemSortOrder
       | FormularyItemSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -39153,13 +39141,13 @@ export class GenomicStudyFhirSearchBuilder extends DomainResourceFhirSearchBuild
       | GenomicStudySortOrder
       | GenomicStudySortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -39611,7 +39599,7 @@ export class GoalFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -40813,13 +40801,13 @@ export class GraphDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBu
       | GraphDefinitionSortOrder
       | GraphDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -40993,13 +40981,13 @@ export class GroupFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: GroupSortOrder | GroupSortOrder[] | null | undefined,
+    parameters: GroupSortOrder | GroupSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -41369,13 +41357,13 @@ export class GuidanceResponseFhirSearchBuilder extends DomainResourceFhirSearchB
       | GuidanceResponseSortOrder
       | GuidanceResponseSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -41604,13 +41592,13 @@ export class HealthcareServiceFhirSearchBuilder extends DomainResourceFhirSearch
       | HealthcareServiceSortOrder
       | HealthcareServiceSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -42106,13 +42094,13 @@ export class ImagingSelectionFhirSearchBuilder extends DomainResourceFhirSearchB
       | ImagingSelectionSortOrder
       | ImagingSelectionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -42712,13 +42700,13 @@ export class ImagingStudyFhirSearchBuilder extends DomainResourceFhirSearchBuild
       | ImagingStudySortOrder
       | ImagingStudySortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -43290,13 +43278,13 @@ export class ImmunizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
       | ImmunizationSortOrder
       | ImmunizationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -43746,13 +43734,13 @@ export class ImmunizationEvaluationFhirSearchBuilder extends DomainResourceFhirS
       | ImmunizationEvaluationSortOrder
       | ImmunizationEvaluationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -44216,13 +44204,13 @@ export class ImmunizationRecommendationFhirSearchBuilder extends DomainResourceF
       | ImmunizationRecommendationSortOrder
       | ImmunizationRecommendationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -45543,13 +45531,13 @@ export class ImplementationGuideFhirSearchBuilder extends DomainResourceFhirSear
       | ImplementationGuideSortOrder
       | ImplementationGuideSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -45744,13 +45732,13 @@ export class IngredientFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: IngredientSortOrder | IngredientSortOrder[] | null | undefined,
+    parameters: IngredientSortOrder | IngredientSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -45770,13 +45758,13 @@ export class InsurancePlanFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | InsurancePlanSortOrder
       | InsurancePlanSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -45796,13 +45784,13 @@ export class InventoryItemFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | InventoryItemSortOrder
       | InventoryItemSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -45822,13 +45810,13 @@ export class InventoryReportFhirSearchBuilder extends DomainResourceFhirSearchBu
       | InventoryReportSortOrder
       | InventoryReportSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -46253,13 +46241,13 @@ export class InvoiceFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: InvoiceSortOrder | InvoiceSortOrder[] | null | undefined,
+    parameters: InvoiceSortOrder | InvoiceSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -47767,13 +47755,13 @@ export class LibraryFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: LibrarySortOrder | LibrarySortOrder[] | null | undefined,
+    parameters: LibrarySortOrder | LibrarySortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -47789,13 +47777,13 @@ export class LinkageFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: LinkageSortOrder | LinkageSortOrder[] | null | undefined,
+    parameters: LinkageSortOrder | LinkageSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -48421,7 +48409,7 @@ export class ListFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -48681,13 +48669,13 @@ Note: The algorithm to
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: LocationSortOrder | LocationSortOrder[] | null | undefined,
+    parameters: LocationSortOrder | LocationSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -48778,13 +48766,13 @@ export class ManufacturedItemDefinitionFhirSearchBuilder extends DomainResourceF
       | ManufacturedItemDefinitionSortOrder
       | ManufacturedItemDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -50265,13 +50253,13 @@ export class MeasureFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: MeasureSortOrder | MeasureSortOrder[] | null | undefined,
+    parameters: MeasureSortOrder | MeasureSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -50759,13 +50747,13 @@ export class MeasureReportFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | MeasureReportSortOrder
       | MeasureReportSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -51102,13 +51090,13 @@ export class MedicationFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: MedicationSortOrder | MedicationSortOrder[] | null | undefined,
+    parameters: MedicationSortOrder | MedicationSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -51695,13 +51683,13 @@ export class MedicationAdministrationFhirSearchBuilder extends DomainResourceFhi
       | MedicationAdministrationSortOrder
       | MedicationAdministrationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -52391,13 +52379,13 @@ export class MedicationDispenseFhirSearchBuilder extends DomainResourceFhirSearc
       | MedicationDispenseSortOrder
       | MedicationDispenseSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -52793,13 +52781,13 @@ export class MedicationKnowledgeFhirSearchBuilder extends DomainResourceFhirSear
       | MedicationKnowledgeSortOrder
       | MedicationKnowledgeSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -53411,13 +53399,13 @@ export class MedicationRequestFhirSearchBuilder extends DomainResourceFhirSearch
       | MedicationRequestSortOrder
       | MedicationRequestSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -54003,13 +53991,13 @@ export class MedicationStatementFhirSearchBuilder extends DomainResourceFhirSear
       | MedicationStatementSortOrder
       | MedicationStatementSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -54197,13 +54185,13 @@ export class MedicinalProductDefinitionFhirSearchBuilder extends DomainResourceF
       | MedicinalProductDefinitionSortOrder
       | MedicinalProductDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -55520,13 +55508,13 @@ export class MessageDefinitionFhirSearchBuilder extends DomainResourceFhirSearch
       | MessageDefinitionSortOrder
       | MessageDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -55694,13 +55682,13 @@ export class MessageHeaderFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | MessageHeaderSortOrder
       | MessageHeaderSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -55718,13 +55706,13 @@ export class MetadataResourceFhirSearchBuilder extends DomainResourceFhirSearchB
       | MetadataResourceSortOrder
       | MetadataResourceSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -56115,13 +56103,13 @@ export class MolecularSequenceFhirSearchBuilder extends DomainResourceFhirSearch
       | MolecularSequenceSortOrder
       | MolecularSequenceSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -57551,13 +57539,13 @@ export class NamingSystemFhirSearchBuilder extends DomainResourceFhirSearchBuild
       | NamingSystemSortOrder
       | NamingSystemSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -58145,13 +58133,13 @@ export class NutritionIntakeFhirSearchBuilder extends DomainResourceFhirSearchBu
       | NutritionIntakeSortOrder
       | NutritionIntakeSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -58682,13 +58670,13 @@ export class NutritionOrderFhirSearchBuilder extends DomainResourceFhirSearchBui
       | NutritionOrderSortOrder
       | NutritionOrderSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -58778,13 +58766,13 @@ export class NutritionProductFhirSearchBuilder extends DomainResourceFhirSearchB
       | NutritionProductSortOrder
       | NutritionProductSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -59808,17 +59796,13 @@ export class ObservationFhirSearchBuilder extends DomainResourceFhirSearchBuilde
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters:
-      | ObservationSortOrder
-      | ObservationSortOrder[]
-      | null
-      | undefined,
+    parameters: ObservationSortOrder | ObservationSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -60239,13 +60223,13 @@ export class ObservationDefinitionFhirSearchBuilder extends DomainResourceFhirSe
       | ObservationDefinitionSortOrder
       | ObservationDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -61616,13 +61600,13 @@ export class OperationDefinitionFhirSearchBuilder extends DomainResourceFhirSear
       | OperationDefinitionSortOrder
       | OperationDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -61642,13 +61626,13 @@ export class OperationOutcomeFhirSearchBuilder extends DomainResourceFhirSearchB
       | OperationOutcomeSortOrder
       | OperationOutcomeSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -61836,13 +61820,13 @@ export class OrganizationFhirSearchBuilder extends DomainResourceFhirSearchBuild
       | OrganizationSortOrder
       | OrganizationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -62053,13 +62037,13 @@ export class OrganizationAffiliationFhirSearchBuilder extends DomainResourceFhir
       | OrganizationAffiliationSortOrder
       | OrganizationAffiliationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -62236,13 +62220,13 @@ export class PackagedProductDefinitionFhirSearchBuilder extends DomainResourceFh
       | PackagedProductDefinitionSortOrder
       | PackagedProductDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -62258,13 +62242,13 @@ export class ParametersFhirSearchBuilder extends ResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ParametersSortOrder | ParametersSortOrder[] | null | undefined,
+    parameters: ParametersSortOrder | ParametersSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -62698,13 +62682,13 @@ export class PatientFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: PatientSortOrder | PatientSortOrder[] | null | undefined,
+    parameters: PatientSortOrder | PatientSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -62822,13 +62806,13 @@ export class PaymentNoticeFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | PaymentNoticeSortOrder
       | PaymentNoticeSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -62986,13 +62970,13 @@ export class PaymentReconciliationFhirSearchBuilder extends DomainResourceFhirSe
       | PaymentReconciliationSortOrder
       | PaymentReconciliationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -63008,13 +62992,13 @@ export class PermissionFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: PermissionSortOrder | PermissionSortOrder[] | null | undefined,
+    parameters: PermissionSortOrder | PermissionSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -63715,13 +63699,13 @@ export class PersonFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: PersonSortOrder | PersonSortOrder[] | null | undefined,
+    parameters: PersonSortOrder | PersonSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -65232,13 +65216,13 @@ export class PlanDefinitionFhirSearchBuilder extends DomainResourceFhirSearchBui
       | PlanDefinitionSortOrder
       | PlanDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -65627,13 +65611,13 @@ export class PractitionerFhirSearchBuilder extends DomainResourceFhirSearchBuild
       | PractitionerSortOrder
       | PractitionerSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -65889,13 +65873,13 @@ export class PractitionerRoleFhirSearchBuilder extends DomainResourceFhirSearchB
       | PractitionerRoleSortOrder
       | PractitionerRoleSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -66590,13 +66574,13 @@ export class ProcedureFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ProcedureSortOrder | ProcedureSortOrder[] | null | undefined,
+    parameters: ProcedureSortOrder | ProcedureSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -66994,13 +66978,13 @@ export class ProvenanceFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ProvenanceSortOrder | ProvenanceSortOrder[] | null | undefined,
+    parameters: ProvenanceSortOrder | ProvenanceSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -68374,13 +68358,13 @@ export class QuestionnaireFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | QuestionnaireSortOrder
       | QuestionnaireSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -68911,13 +68895,13 @@ export class QuestionnaireResponseFhirSearchBuilder extends DomainResourceFhirSe
       | QuestionnaireResponseSortOrder
       | QuestionnaireResponseSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -69039,13 +69023,13 @@ export class RegulatedAuthorizationFhirSearchBuilder extends DomainResourceFhirS
       | RegulatedAuthorizationSortOrder
       | RegulatedAuthorizationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -69696,13 +69680,13 @@ export class RelatedPersonFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | RelatedPersonSortOrder
       | RelatedPersonSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -70318,13 +70302,13 @@ export class RequestOrchestrationFhirSearchBuilder extends DomainResourceFhirSea
       | RequestOrchestrationSortOrder
       | RequestOrchestrationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -71617,13 +71601,13 @@ export class RequirementsFhirSearchBuilder extends DomainResourceFhirSearchBuild
       | RequirementsSortOrder
       | RequirementsSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -71643,13 +71627,13 @@ export class ResearchStudyFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | ResearchStudySortOrder
       | ResearchStudySortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -72043,13 +72027,13 @@ export class ResearchSubjectFhirSearchBuilder extends DomainResourceFhirSearchBu
       | ResearchSubjectSortOrder
       | ResearchSubjectSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -72601,13 +72585,13 @@ export class RiskAssessmentFhirSearchBuilder extends DomainResourceFhirSearchBui
       | RiskAssessmentSortOrder
       | RiskAssessmentSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -72746,13 +72730,13 @@ export class ScheduleFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ScheduleSortOrder | ScheduleSortOrder[] | null | undefined,
+    parameters: ScheduleSortOrder | ScheduleSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -74021,13 +74005,13 @@ export class SearchParameterFhirSearchBuilder extends DomainResourceFhirSearchBu
       | SearchParameterSortOrder
       | SearchParameterSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -74707,13 +74691,13 @@ export class ServiceRequestFhirSearchBuilder extends DomainResourceFhirSearchBui
       | ServiceRequestSortOrder
       | ServiceRequestSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -74860,7 +74844,7 @@ export class SlotFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -75343,13 +75327,13 @@ export class SpecimenFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: SpecimenSortOrder | SpecimenSortOrder[] | null | undefined,
+    parameters: SpecimenSortOrder | SpecimenSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -75784,13 +75768,13 @@ export class SpecimenDefinitionFhirSearchBuilder extends DomainResourceFhirSearc
       | SpecimenDefinitionSortOrder
       | SpecimenDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -77227,13 +77211,13 @@ export class StructureDefinitionFhirSearchBuilder extends DomainResourceFhirSear
       | StructureDefinitionSortOrder
       | StructureDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -78498,13 +78482,13 @@ export class StructureMapFhirSearchBuilder extends DomainResourceFhirSearchBuild
       | StructureMapSortOrder
       | StructureMapSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -78664,13 +78648,13 @@ export class SubscriptionFhirSearchBuilder extends DomainResourceFhirSearchBuild
       | SubscriptionSortOrder
       | SubscriptionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -78690,13 +78674,13 @@ export class SubscriptionStatusFhirSearchBuilder extends DomainResourceFhirSearc
       | SubscriptionStatusSortOrder
       | SubscriptionStatusSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -79279,13 +79263,13 @@ export class SubscriptionTopicFhirSearchBuilder extends DomainResourceFhirSearch
       | SubscriptionTopicSortOrder
       | SubscriptionTopicSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -79407,13 +79391,13 @@ export class SubstanceFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: SubstanceSortOrder | SubstanceSortOrder[] | null | undefined,
+    parameters: SubstanceSortOrder | SubstanceSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -79500,13 +79484,13 @@ export class SubstanceDefinitionFhirSearchBuilder extends DomainResourceFhirSear
       | SubstanceDefinitionSortOrder
       | SubstanceDefinitionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -79526,13 +79510,13 @@ export class SubstanceNucleicAcidFhirSearchBuilder extends DomainResourceFhirSea
       | SubstanceNucleicAcidSortOrder
       | SubstanceNucleicAcidSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -79552,13 +79536,13 @@ export class SubstancePolymerFhirSearchBuilder extends DomainResourceFhirSearchB
       | SubstancePolymerSortOrder
       | SubstancePolymerSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -79578,13 +79562,13 @@ export class SubstanceProteinFhirSearchBuilder extends DomainResourceFhirSearchB
       | SubstanceProteinSortOrder
       | SubstanceProteinSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -79604,13 +79588,13 @@ export class SubstanceReferenceInformationFhirSearchBuilder extends DomainResour
       | SubstanceReferenceInformationSortOrder
       | SubstanceReferenceInformationSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -79630,13 +79614,13 @@ export class SubstanceSourceMaterialFhirSearchBuilder extends DomainResourceFhir
       | SubstanceSourceMaterialSortOrder
       | SubstanceSourceMaterialSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -80006,13 +79990,13 @@ export class SupplyDeliveryFhirSearchBuilder extends DomainResourceFhirSearchBui
       | SupplyDeliverySortOrder
       | SupplyDeliverySortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -80476,13 +80460,13 @@ export class SupplyRequestFhirSearchBuilder extends DomainResourceFhirSearchBuil
       | SupplyRequestSortOrder
       | SupplyRequestSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -81192,7 +81176,7 @@ export class TaskFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -82457,13 +82441,13 @@ export class TerminologyCapabilitiesFhirSearchBuilder extends DomainResourceFhir
       | TerminologyCapabilitiesSortOrder
       | TerminologyCapabilitiesSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -82751,13 +82735,13 @@ export class TestPlanFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: TestPlanSortOrder | TestPlanSortOrder[] | null | undefined,
+    parameters: TestPlanSortOrder | TestPlanSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -82865,13 +82849,13 @@ export class TestReportFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: TestReportSortOrder | TestReportSortOrder[] | null | undefined,
+    parameters: TestReportSortOrder | TestReportSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -84182,13 +84166,13 @@ export class TestScriptFhirSearchBuilder extends DomainResourceFhirSearchBuilder
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: TestScriptSortOrder | TestScriptSortOrder[] | null | undefined,
+    parameters: TestScriptSortOrder | TestScriptSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -84234,13 +84218,13 @@ export class TransportFhirSearchBuilder extends DomainResourceFhirSearchBuilder 
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: TransportSortOrder | TransportSortOrder[] | null | undefined,
+    parameters: TransportSortOrder | TransportSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -85680,13 +85664,13 @@ export class ValueSetFhirSearchBuilder extends DomainResourceFhirSearchBuilder {
    * @see https://hl7.org/fhir/search.html#sort
    */
   _sort(
-    parameters: ValueSetSortOrder | ValueSetSortOrder[] | null | undefined,
+    parameters: ValueSetSortOrder | ValueSetSortOrder[] | null | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -85852,13 +85836,13 @@ export class VerificationResultFhirSearchBuilder extends DomainResourceFhirSearc
       | VerificationResultSortOrder
       | VerificationResultSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
@@ -86304,13 +86288,13 @@ export class VisionPrescriptionFhirSearchBuilder extends DomainResourceFhirSearc
       | VisionPrescriptionSortOrder
       | VisionPrescriptionSortOrder[]
       | null
-      | undefined,
+      | undefined
   ): this {
     return this.stringParam(
       "_sort",
       parameters,
       undefined,
-      parameters ? "replace" : "remove",
+      parameters ? "replace" : "remove"
     );
   }
 }
