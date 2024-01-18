@@ -2,6 +2,7 @@
 import {
   MantineFhirErrorProps,
   MantineFhirFormatterProps,
+  MantineFhirInfiniteMarkerProps,
   MantineFhirInputArrayProps,
   MantineFhirInputBooleanProps,
   MantineFhirInputContactPointProps,
@@ -26,6 +27,7 @@ import {
 import {
   FhirErrorProps,
   FhirFormatterProps,
+  FhirInfiniteMarkerProps,
   FhirInputArrayProps,
   FhirPaginationProps,
   FhirQueryLoaderProps,
@@ -44,6 +46,10 @@ declare module "@bonfhir/react/r4b" {
 
   export function FhirFormatter(
     props: FhirFormatterProps<MantineFhirFormatterProps>,
+  ): ReactElement | null;
+
+  export function FhirInfiniteMarker(
+    props: FhirInfiniteMarkerProps<MantineFhirInfiniteMarkerProps>,
   ): ReactElement | null;
 
   export function FhirInputArray(

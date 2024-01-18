@@ -9,7 +9,7 @@ import {
   FhirInputProps,
   FhirQuestionnaireProps,
 } from "./inputs";
-import { FhirPaginationProps } from "./navigation";
+import { FhirInfiniteMarkerProps, FhirPaginationProps } from "./navigation";
 
 export interface FhirUIDefaultProps {
   FhirError?:
@@ -20,6 +20,11 @@ export interface FhirUIDefaultProps {
   FhirFormatter?:
     | Partial<FhirFormatterProps>
     | ((props: FhirFormatterProps) => FhirFormatterProps)
+    | null
+    | undefined;
+  FhirInfiniteMarker?:
+    | Partial<FhirInfiniteMarkerProps>
+    | ((props: FhirInfiniteMarkerProps) => FhirInfiniteMarkerProps)
     | null
     | undefined;
   FhirInput?:

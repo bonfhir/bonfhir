@@ -19,11 +19,15 @@ import type {
   FhirInputTimeRenderer,
   FhirQuestionnaireRenderer,
 } from "./inputs";
-import type { FhirPaginationRenderer } from "./navigation";
+import type {
+  FhirInfiniteMarkerRenderer,
+  FhirPaginationRenderer,
+} from "./navigation";
 
 export interface FhirUIRenderer {
   FhirError: FhirErrorRenderer;
   FhirFormatter: FhirFormatterRenderer;
+  FhirInfiniteMarker: FhirInfiniteMarkerRenderer;
   FhirInputArray: FhirInputArrayRenderer;
   FhirInputBoolean: FhirInputBooleanRenderer;
   FhirInputContactPoint: FhirInputContactPointRenderer;

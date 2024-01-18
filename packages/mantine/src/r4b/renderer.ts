@@ -23,11 +23,12 @@ import {
   MantineFhirInputTime,
   MantineFhirQuestionnaire,
 } from "./inputs";
-import { MantineFhirPagination } from "./navigation";
+import { MantineFhirInfiniteMarker, MantineFhirPagination } from "./navigation";
 
 export const MantineRenderer: FhirUIRenderer = {
   FhirError: MantineFhirError,
   FhirFormatter: MantineFhirFormatter,
+  FhirInfiniteMarker: MantineFhirInfiniteMarker,
   FhirInputArray: MantineFhirInputArray,
   FhirInputBoolean: MantineFhirInputBoolean,
   FhirInputContactPoint: MantineFhirInputContactPoint,
