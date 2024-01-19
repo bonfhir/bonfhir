@@ -14,15 +14,11 @@ export function MantineFhirInfiniteMarker(
     if (!target) {
       return;
     }
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting && props.query.hasNextPage)) {
-          props.query.fetchNextPage();
-        }
-      },
-      props.rendererProps?.intersectionObserverOptions ??
-        FHIR_INFINITE_MARKER_INTERSECTION_OBSERVER_DEFAULT_OPTIONS,
-    );
+    observerRef.current = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting && props.query.hasNextPage)) {
+        props.query.fetchNextPage();
+      }
+    }, props.rendererProps?.intersectionObserverOptions ?? FHIR_INFINITE_MARKER_INTERSECTION_OBSERVER_DEFAULT_OPTIONS);
     observerRef.current.observe(target);
     return () => {
       observerRef.current?.disconnect();

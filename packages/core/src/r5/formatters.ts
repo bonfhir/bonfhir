@@ -100,19 +100,20 @@ export function cleanUpCommonOptions<T>(
 export type WithTypedFormatFunction<
   TValueFormatter,
   TThis extends Formatter = Formatter,
-> = TValueFormatter extends ValueFormatter<
-  infer TType,
-  infer TValue,
-  infer TOptions
->
-  ? {
-      format(
-        type: TType,
-        value: TValue,
-        options?: (TOptions & CommonFormatterOptions) | null | undefined,
-      ): string;
-    } & TThis
-  : never;
+> =
+  TValueFormatter extends ValueFormatter<
+    infer TType,
+    infer TValue,
+    infer TOptions
+  >
+    ? {
+        format(
+          type: TType,
+          value: TValue,
+          options?: (TOptions & CommonFormatterOptions) | null | undefined,
+        ): string;
+      } & TThis
+    : never;
 
 /** Cast the formatter as if it has the format overload of TValueParameter format. */
 export function withValueFormatter<TValueFormatter>(

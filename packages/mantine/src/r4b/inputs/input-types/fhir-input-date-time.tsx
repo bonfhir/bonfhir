@@ -12,7 +12,6 @@ export function MantineFhirInputDateTime(
       label={props.label}
       description={props.description}
       error={props.error}
-      // @ts-expect-error Mantine / TS types error
       placeholder={props.placeholder ?? undefined}
       required={Boolean(props.required)}
       disabled={Boolean(props.disabled)}

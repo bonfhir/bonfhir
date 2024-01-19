@@ -107,8 +107,8 @@ export function MantineFhirQuestionnaire(
 
   return (
     <form
-      onSubmit={form.onSubmit(
-        (questionnaireResponse) => props.onSubmit?.(questionnaireResponse),
+      onSubmit={form.onSubmit((questionnaireResponse) =>
+        props.onSubmit?.(questionnaireResponse),
       )}
     >
       <Stack

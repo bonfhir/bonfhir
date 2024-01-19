@@ -40,6 +40,7 @@ export function useFhirForm<
   const { transformValues, ...remainingArgs } = args || {};
   const form = useForm({
     ...remainingArgs,
+    // @ts-expect-error Mantine / TS types error
     transformValues: (values) => {
       cleanFhirValues(values);
       return transformValues ? transformValues(values) : values;

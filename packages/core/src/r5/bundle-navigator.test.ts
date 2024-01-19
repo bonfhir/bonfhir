@@ -470,8 +470,8 @@ describe("BundleNavigator", () => {
       const navigator = bundleNavigator(patientsListBundle, CustomPatient);
       for (const patient of navigator.searchMatch()) {
         expect(() =>
-          patient.revIncluded<Appointment>(
-            (apt) => apt.participant?.map((x) => x.actor),
+          patient.revIncluded<Appointment>((apt) =>
+            apt.participant?.map((x) => x.actor),
           ),
         ).not.toThrow();
       }
