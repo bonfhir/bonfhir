@@ -118,10 +118,10 @@ export function MantineFhirInputTerminology(
         label={props.label}
         description={props.description}
         error={props.error}
-        // @ts-expect-error Mantine / TS types error
         placeholder={props.placeholder ?? undefined}
         required={Boolean(props.required)}
         value={value as any}
+        // @ts-expect-error Mantine / TS types error
         onChange={onChange}
         {...props.rendererProps}
       >
@@ -153,9 +153,9 @@ export function MantineFhirInputTerminology(
           disabled={Boolean(props.disabled)}
           fullWidth
           value={value as any}
+          // @ts-expect-error Mantine / TS types error
           onChange={onChange}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
+          // @ts-expect-error Mantine / TS types error
           data={props.data.map((element) => ({
             value: element.code || "",
             label: element.display,

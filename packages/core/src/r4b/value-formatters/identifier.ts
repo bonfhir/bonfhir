@@ -216,9 +216,8 @@ function filterAndSortIdentifiers(
 
   // filter out by system
   if (systemFilterOrder)
-    identifiers = identifiers.filter(
-      (identifier) =>
-        systemFilterOrder?.includes(identifier.system ?? undefined),
+    identifiers = identifiers.filter((identifier) =>
+      systemFilterOrder?.includes(identifier.system ?? undefined),
     );
 
   // sort out by period, then system, then use

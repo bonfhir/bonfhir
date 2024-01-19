@@ -168,6 +168,5 @@ function decorate(resource: Resource, reference: Reference): Reference {
 /**
  * Extract the target resource type from a reference.
  */
-export type ReferenceTarget<TReference> = TReference extends Reference<infer X>
-  ? X
-  : never;
+export type ReferenceTarget<TReference> =
+  TReference extends Reference<infer X> ? X : never;

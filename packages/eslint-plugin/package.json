@@ -20,6 +20,6 @@
   },
   "main": "index.cjs",
   "devDependencies": {
-    "@types/eslint": "^8.44.8"
+    "@types/eslint": "^8.56.2"
   }
 }

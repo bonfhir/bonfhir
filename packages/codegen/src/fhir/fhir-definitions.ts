@@ -523,9 +523,11 @@ export class ElementDefinition {
         ),
         this.fhirDocUrl ? `@see {@link ${this.fhirDocUrl}}` : undefined,
         this.hasRequiredBinding && (this as any).type?.[0]?.code === "code"
-          ? `@see {@link ${this._definitions.valueSetsByUrl.get(
-              (this as any).binding.valueSet.split("|")[0],
-            )?.safeName}}`
+          ? `@see {@link ${
+              this._definitions.valueSetsByUrl.get(
+                (this as any).binding.valueSet.split("|")[0],
+              )?.safeName
+            }}`
           : undefined,
         this.isPrimitiveType
           ? `@fhirType ${(this as any).type
