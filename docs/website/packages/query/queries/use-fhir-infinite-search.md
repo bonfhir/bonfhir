@@ -52,6 +52,7 @@ export default function MyComponent() {
 
 ```tsx
 import { useFhirInfiniteSearch } from "@bonfhir/query/r4b";
+import { FhirInfiniteMarker } from "@bonfhir/react/r4b";
 import { List, Stack } from "@mantine/core";
 import { UseInfiniteQueryResult } from "@tanstack/react-query";
 import { useEffect, useId, useRef } from "react";
@@ -76,36 +77,9 @@ export default function MyComponent() {
             )),
         )}
       </List>
-      <InfiniteScroller {...patientsQuery} />
+      <FhirInfiniteMarker query={patientsQuery} />
     </Stack>
   );
-}
-
-function InfiniteScroller({
-  hasNextPage,
-  fetchNextPage,
-}: UseInfiniteQueryResult) {
-  const id = useId();
-  const observerRef = useRef<IntersectionObserver | undefined>(undefined);
-
-  useEffect(() => {
-    const target = document.getElementById(id);
-    if (!target) {
-      return;
-    }
-    const options = { root: null, rootMargin: "0px", threshold: 1 };
-    observerRef.current = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting && hasNextPage)) {
-        fetchNextPage();
-      }
-    }, options);
-    observerRef.current.observe(target);
-    return () => {
-      observerRef.current?.disconnect();
-    };
-  }, [id, hasNextPage, fetchNextPage]);
-
-  return <div id={id} />;
 }
 ```
 
