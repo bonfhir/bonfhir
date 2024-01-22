@@ -1,0 +1,106 @@
+
+import {
+  INodeType,
+  INodeTypeDescription,
+} from "n8n-workflow";
+
+export class Fhir implements INodeType {
+  description: INodeTypeDescription = {
+    displayName: "Fhir",
+    name: "fhir",
+    icon: "file:Fhir.svg",
+    group: ["transform"],
+    version: 1,
+    description: "Consume your FHIR API",
+    defaults: {
+      name: "Fhir",
+    },
+    inputs: ["main"],
+    outputs: ["main"],
+    credentials: [
+      {
+        name: "fhirOAuth2Api",
+        required: true,
+      },
+    ],
+    requestDefaults: {
+      baseURL: 'http://localhost:8103/fhir/R4',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+    // Basic node details will go here
+    properties: [
+      {
+        displayName: "Resource",
+        name: "resource",
+        type: "options",
+        options: [
+        <% for (const structureDef of fhir.resources) { -%>
+          {
+            name: "<%= structureDef.type -%>",
+            value: "<%= structureDef.type.toLowerCase() -%>"
+          },
+        <% } -%>
+        ],
+        default: "patient",
+        noDataExpression: true,
+        required: true,
+      },
+      {
+        displayName: "Operation",
+        name: "operation",
+        type: "options",
+        noDataExpression: true,
+        displayOptions: {
+          show: {
+            resource: [
+            <% for (const structureDef of fhir.resources) { -%>
+              "<%= structureDef.type.toLowerCase() -%>",
+            <% } -%>
+            ],
+          },
+        },
+        options: [
+          {
+            name: "Get",
+            value: "get",
+            description: "Get by ID",
+            action: "Get by ID",
+            routing: {
+              request: {
+                method: 'GET',
+              },
+            },
+          },
+        ],
+        default: "get"
+      },
+
+      <% for (const structureDef of fhir.resources) { -%>
+        {
+          displayName: "<%= structureDef.type -%> ID",
+          name: "id",
+          type: "string",
+          required: true,
+          displayOptions: {
+            show: {
+              operation: ["get"],
+              resource: ["<%= structureDef.type.toLowerCase() -%>"],
+            },
+          },
+          default: "bbc0696a-ba15-4410-b479-4f9963f54712",
+          placeholder: "Insert ID here",
+          description: "FHIR ID for the <%= structureDef.type.toLowerCase() -%>",
+          routing: {
+            request: {
+              url: '=/<%= structureDef.type -%>/{{$value}}',
+            },
+          },
+        },
+      <% } -%>
+    ],
+  };
+}
+
