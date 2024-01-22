@@ -38,3 +38,6 @@ yarn-error.log*
 
 # log files
 *.log
+
+# Rollup
+.rollup.cache
