@@ -66,6 +66,7 @@
     "@bonfhir/eslint-plugin": "workspace:*",
     "@bonfhir/prettier-config": "workspace:*",
     "@bonfhir/typescript-config": "workspace:*",
+    "@gluestack-ui/config": "^1.0.13",
     "@gluestack-ui/themed": "^1.0.37",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",

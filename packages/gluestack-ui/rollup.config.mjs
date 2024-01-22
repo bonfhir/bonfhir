@@ -27,7 +27,7 @@ export default ["r4b", "r5"].flatMap((release) =>
       external: (id) =>
         id.startsWith("@bonfhir/") ||
         Object.keys(packageJson.peerDependencies || {}).some((x) =>
-          id.startsWith(x)
+          id.startsWith(x),
         ),
       plugins: [
         replace({
@@ -46,7 +46,9 @@ export default ["r4b", "r5"].flatMap((release) =>
           declaration: true,
           declarationDir: "dts",
           declarationMap: false,
-          exclude: ["**/*.test.ts"],
+          // Having the gluestack declaration file explode typescript currently.
+          // WE exclude it and ignore the consequent warnings.
+          exclude: ["**/*.test.ts", "**/gluestack.d.ts"],
         }),
         terser({
           compress: false,
@@ -60,7 +62,7 @@ export default ["r4b", "r5"].flatMap((release) =>
             mkdirSync(`./dist/${release}/${format}`, { recursive: true });
             writeFileSync(
               `./dist/${release}/${format}/package.json`,
-              `{"type": "${format === "cjs" ? "commonjs" : "module"}"}`
+              `{"type": "${format === "cjs" ? "commonjs" : "module"}"}`,
             );
           },
         },
@@ -68,6 +70,8 @@ export default ["r4b", "r5"].flatMap((release) =>
       ],
       onwarn(warning, warn) {
         if (["THIS_IS_UNDEFINED", "CIRCULAR_DEPENDENCY"].includes(warning.code))
+          return;
+        if (warning.toString().includes("@rollup/plugin-typescript TS2322"))
           return;
         warn(warning);
       },
@@ -104,5 +108,5 @@ export default ["r4b", "r5"].flatMap((release) =>
         warn(warning);
       },
     },
-  ])
+  ]),
 );
