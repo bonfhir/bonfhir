@@ -19,10 +19,9 @@
     "directory": "packages/n8n"
   },
   "scripts": {
-    "build": "pnpm clean && pnpm codegen && rollup --config rollup.config.mjs",
+    "build": "pnpm clean && rollup --config rollup.config.mjs",
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
     "clean": "rimraf dist",
-    "codegen": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r4b -t \"${PWD}/templates/**/*.ejs\" -b \"${PWD}/templates\" -p 'prettier --write %files%' -o \"${PWD}/src\"",
     "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
     "n8n:start": "docker run -it --rm --name n8n -p 5678:5678 -v bonfhir_n8n_data:/home/node/.n8n -v \"${PWD}/package.json\":/home/node/.n8n/custom/package.json -v \"${PWD}/dist\":/home/node/.n8n/custom/dist docker.n8n.io/n8nio/n8n"
   },
@@ -40,7 +39,6 @@
     ]
   },
   "devDependencies": {
-    "@bonfhir/codegen": "workspace:*",
     "@bonfhir/core": "workspace:*",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
