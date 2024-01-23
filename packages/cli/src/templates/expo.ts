@@ -350,8 +350,8 @@ function WithAuth(props: PropsWithChildren) {
 `;
 
 const INDEX_CONTENT = `import { useFhirSearch } from "@bonfhir/query/r4b";
-import { FhirValue } from "@bonfhir/react/r4b";
-import { Center, Text } from "@gluestack-ui/themed";
+import { FhirQueryLoader, FhirValue } from "@bonfhir/react/r4b";
+import { Center } from "@gluestack-ui/themed";
 
 export default function Home() {
   const patientsSearchQuery = useFhirSearch("Patient", (search) =>
@@ -362,15 +362,12 @@ export default function Home() {
       ._total("accurate"),
   );
   const patientData = patientsSearchQuery.data?.searchMatch()[0];
-  if (patientsSearchQuery.isLoading) {
-    return <Text>Loading...</Text>;
-  }
-  if (patientsSearchQuery.error) {
-    return <Text>{JSON.stringify(patientsSearchQuery, null, 2)}</Text>;
-  }
+
   return (
     <Center height="100%">
-      <FhirValue type="HumanName" value={patientData?.name} />
+      <FhirQueryLoader query={patientsSearchQuery}>
+        <FhirValue type="HumanName" value={patientData?.name} />
+      </FhirQueryLoader>
     </Center>
   );
 }
