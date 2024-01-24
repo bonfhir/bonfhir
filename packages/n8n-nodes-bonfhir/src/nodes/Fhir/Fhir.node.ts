@@ -17,7 +17,7 @@ const resourcesList: string[] = DomainResourceTypes.map(
   (type) => type.toLowerCase() as string,
 );
 
-const operations: INodeProperties[] = DomainResourceTypes.map((type) => ({
+const getFields: INodeProperties[] = DomainResourceTypes.map((type) => ({
   displayName: `${type} Get`,
   name: "id",
   type: "string",
@@ -38,9 +38,30 @@ const operations: INodeProperties[] = DomainResourceTypes.map((type) => ({
   },
 }));
 
+const searchFields: INodeProperties[] = DomainResourceTypes.map((type) => ({
+  displayName: `${type} Search`,
+  name: "search",
+  type: "string",
+  default: "",
+  required: true,
+  displayOptions: {
+    show: {
+      operation: ["search"],
+      resource: [type.toLowerCase()],
+    },
+  },
+  placeholder: "Insert Search Query here",
+  description: `FHIR Search Query for the ${type.toLowerCase()}`,
+  routing: {
+    request: {
+      url: `=/${type}?{{$value}}`,
+    },
+  },
+}));
+
 export class Fhir implements INodeType {
   description: INodeTypeDescription = {
-    displayName: "Fhir",
+    displayName: "FHIR API ",
     name: "fhir",
     icon: "file:Fhir.svg",
     group: ["transform"],
@@ -58,7 +79,7 @@ export class Fhir implements INodeType {
       },
     ],
     requestDefaults: {
-      baseURL: "http://localhost:8103/fhir/R4",
+      baseURL: "http://192.168.1.176:8103/fhir/R4",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -68,6 +89,7 @@ export class Fhir implements INodeType {
     properties: [
       {
         displayName: "FHIR Base URL",
+
         name: "fhirBaseUrl",
         type: "string",
         description: "The base URL of the FHIR server API",
@@ -104,10 +126,21 @@ export class Fhir implements INodeType {
               },
             },
           },
+          {
+            name: "Search",
+            value: "search",
+            action: "Search",
+            routing: {
+              request: {
+                method: "GET",
+              },
+            },
+          },
         ],
         default: "get",
       },
-      ...operations,
+      ...getFields,
+      ...searchFields,
     ],
   };
 }
