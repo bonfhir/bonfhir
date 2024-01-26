@@ -337,3 +337,7 @@
 .container .table-of-contents a {
   text-decoration: none;
 }
+
+section.row {
+  margin-top: 40px;
+}

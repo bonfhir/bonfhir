@@ -223,6 +223,7 @@ function BatteriesIncluded() {
     {
       title: "US Core resources",
       text: "Support for US Core specific extensions",
+      link: "/packages/us-core",
     },
     {
       title: "Code generation",
