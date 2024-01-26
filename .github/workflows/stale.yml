@@ -1,0 +1,19 @@
+name: "Close stale issues and comment on stale PR with assignees"
+on:
+  schedule:
+    - cron: "30 1 * * *"
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          include-only-assigned: true
+          stale-issue-message: "This issue is stale because it has been open 15 days with no activity. Remove stale label or comment or this will be closed in 5 days."
+          stale-pr-message: "This PR is stale because it has been open 15 days with no activity."
+          close-issue-message: "This issue was closed because it has been stale for 5 days with no activity."
+          days-before-stale: 15
+          days-before-close: 5
+          days-before-pr-close: -1
