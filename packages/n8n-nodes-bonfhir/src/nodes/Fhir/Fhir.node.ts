@@ -1,10 +1,19 @@
 import { DomainResourceTypes } from "@bonfhir/core/r4b";
 import {
-  INodeProperties,
   INodePropertyOptions,
   INodeType,
   INodeTypeDescription,
 } from "n8n-workflow";
+import {
+  createOperation,
+  createProperties,
+  readOperation,
+  readProperties,
+  searchOperation,
+  searchProperties,
+  vreadOperation,
+  vreadProperties,
+} from "./description";
 
 const resourceTypes: INodePropertyOptions[] = DomainResourceTypes.map(
   (type) => ({
@@ -16,91 +25,6 @@ const resourceTypes: INodePropertyOptions[] = DomainResourceTypes.map(
 const resourcesList: string[] = DomainResourceTypes.map(
   (type) => type.toLowerCase() as string,
 );
-
-const getFields: INodeProperties[] = DomainResourceTypes.map((type) => ({
-  displayName: `${type} Read`,
-  name: "id",
-  type: "string",
-  default: "",
-  required: true,
-  displayOptions: {
-    show: {
-      operation: ["read"],
-      resource: [type.toLowerCase()],
-    },
-  },
-  placeholder: "Insert ID here",
-  description: `FHIR ID for the ${type.toLowerCase()}`,
-  routing: {
-    request: {
-      url: `=/${type}/{{$value}}`,
-    },
-  },
-}));
-
-const vread: INodeProperties[][] = DomainResourceTypes.map((type) => [
-  {
-    displayName: `${type} ID`,
-    name: "id",
-    type: "string",
-    default: "",
-    required: true,
-    displayOptions: {
-      show: {
-        operation: ["vread"],
-        resource: [type.toLowerCase()],
-      },
-    },
-    placeholder: "Insert ID here",
-    description: `FHIR ID for the ${type.toLowerCase()}`,
-    routing: {
-      request: {
-        url: `=/${type}/{{$parameter.id}}/_history/{{$parameter.vid}}`,
-      },
-    },
-  },
-  {
-    displayName: `${type} Version ID`,
-    name: "vid",
-    type: "string",
-    default: "",
-    required: true,
-    displayOptions: {
-      show: {
-        operation: ["vread"],
-        resource: [type.toLowerCase()],
-      },
-    },
-    placeholder: "Insert ID here",
-    description: `Version ID for the ${type.toLowerCase()}`,
-    // routing: {
-    //   request: {
-    //     url: `=/_history/{{$value}}`,
-    //   },
-    // },
-  },
-]);
-
-const searchFields: INodeProperties[] = DomainResourceTypes.map((type) => ({
-  displayName: `${type} Search`,
-  name: "search",
-  type: "string",
-  default: "",
-  required: true,
-  displayOptions: {
-    show: {
-      operation: ["search"],
-      resource: [type.toLowerCase()],
-    },
-  },
-  placeholder: "Insert Search Query here",
-  description: `FHIR Search Query for the ${type.toLowerCase()}`,
-  routing: {
-    request: {
-      url: `=/${type}?{{$value}}`,
-    },
-  },
-}));
 
 export class Fhir implements INodeType {
   description: INodeTypeDescription = {
@@ -158,43 +82,17 @@ export class Fhir implements INodeType {
           },
         },
         options: [
-          {
-            name: "Read",
-            value: "read",
-            description: "Read by ID",
-            action: "Read by ID",
-            routing: {
-              request: {
-                method: "GET",
-              },
-            },
-          },
-          {
-            name: "Search",
-            value: "search",
-            action: "Search",
-            routing: {
-              request: {
-                method: "GET",
-              },
-            },
-          },
-          {
-            name: "VRead",
-            value: "vread",
-            action: "Vread",
-            routing: {
-              request: {
-                method: "GET",
-              },
-            },
-          },
+          vreadOperation,
+          readOperation,
+          searchOperation,
+          createOperation,
         ],
-        default: "read",
+        default: "",
       },
-      ...getFields,
-      ...searchFields,
-      ...vread.flat(),
+      ...readProperties,
+      ...searchProperties,
+      ...vreadProperties.flat(),
+      ...createProperties.flat(),
     ],
   };
 }
