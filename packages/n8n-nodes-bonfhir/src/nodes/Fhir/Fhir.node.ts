@@ -7,6 +7,8 @@ import {
 import {
   createOperation,
   createProperties,
+  deleteOperation,
+  deleteProperties,
   readOperation,
   readProperties,
   searchOperation,
@@ -46,7 +48,7 @@ export class Fhir implements INodeType {
       },
     ],
     requestDefaults: {
-      baseURL: "http://192.168.1.176:8103/fhir/R4",
+      baseURL: "={{$parameter.fhirBaseUrl}}",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -56,11 +58,10 @@ export class Fhir implements INodeType {
     properties: [
       {
         displayName: "FHIR Base URL",
-
         name: "fhirBaseUrl",
         type: "string",
         description: "The base URL of the FHIR server API",
-        default: "http://localhost:8103/fhir/R4",
+        default: "",
       },
       {
         displayName: "Resource",
@@ -86,10 +87,12 @@ export class Fhir implements INodeType {
           readOperation,
           searchOperation,
           createOperation,
+          deleteOperation,
         ],
         default: "",
       },
       ...readProperties,
+      ...deleteProperties,
       ...searchProperties,
       ...vreadProperties.flat(),
       ...createProperties.flat(),

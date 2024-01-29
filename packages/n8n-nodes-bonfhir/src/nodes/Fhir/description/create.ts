@@ -16,6 +16,11 @@ export const createProperties: INodeProperties[][] = DomainResourceTypes.map(
         },
       },
       placeholder: `${type} Data`,
+      routing: {
+        request: {
+          url: `=/${type}`,
+        },
+      },
     },
   ],
 );
