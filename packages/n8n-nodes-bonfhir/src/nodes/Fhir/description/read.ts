@@ -11,7 +11,7 @@ export const readProperties: INodeProperties[] = DomainResourceTypes.map(
     displayOptions: {
       show: {
         operation: ["read"],
-        resource: [type.toLowerCase()],
+        resource: [type],
       },
     },
     placeholder: "Insert ID here",

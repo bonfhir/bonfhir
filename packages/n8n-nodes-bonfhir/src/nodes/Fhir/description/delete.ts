@@ -11,7 +11,7 @@ export const deleteProperties: INodeProperties[] = DomainResourceTypes.map(
     displayOptions: {
       show: {
         operation: ["delete"],
-        resource: [type.toLowerCase()],
+        resource: [type],
       },
     },
     placeholder: "Insert ID here",

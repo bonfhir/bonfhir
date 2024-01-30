@@ -11,7 +11,7 @@ export const searchProperties: INodeProperties[] = DomainResourceTypes.map(
     displayOptions: {
       show: {
         operation: ["search"],
-        resource: [type.toLowerCase()],
+        resource: [type],
       },
     },
     placeholder: "Insert Search Query here",

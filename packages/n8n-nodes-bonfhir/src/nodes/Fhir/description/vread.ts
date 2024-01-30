@@ -12,7 +12,7 @@ export const vreadProperties: INodeProperties[][] = DomainResourceTypes.map(
       displayOptions: {
         show: {
           operation: ["vread"],
-          resource: [type.toLowerCase()],
+          resource: [type],
         },
       },
       placeholder: "Insert ID here",
@@ -32,7 +32,7 @@ export const vreadProperties: INodeProperties[][] = DomainResourceTypes.map(
       displayOptions: {
         show: {
           operation: ["vread"],
-          resource: [type.toLowerCase()],
+          resource: [type],
         },
       },
       placeholder: "Insert ID here",

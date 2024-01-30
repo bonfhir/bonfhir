@@ -1,5 +1,10 @@
 import { DomainResourceTypes } from "@bonfhir/core/r4b";
-import { INodeProperties, INodePropertyOptions } from "n8n-workflow";
+import {
+  IExecuteSingleFunctions,
+  IHttpRequestOptions,
+  INodeProperties,
+  INodePropertyOptions,
+} from "n8n-workflow";
 
 export const createProperties: INodeProperties[][] = DomainResourceTypes.map(
   (type) => [
@@ -12,7 +17,7 @@ export const createProperties: INodeProperties[][] = DomainResourceTypes.map(
       displayOptions: {
         show: {
           operation: ["create"],
-          resource: [type.toLowerCase()],
+          resource: [type],
         },
       },
       placeholder: `${type} Data`,
@@ -29,12 +34,35 @@ export const createOperation: INodePropertyOptions = {
   name: "Create",
   value: "create",
   routing: {
+    send: {
+      preSend: [parseJsonPreSendAction],
+    },
     request: {
       method: "POST",
       body: {
-        resourceType: "{{$parameter.resourceType}}",
-        // spread the data object
+        ...JSON.parse(`{"data": "={{$parameter.data}}"}`),
+        ...JSON.parse(`{"resourceType": "={{$parameter.resource}}"}`),
       },
     },
   },
 };
+
+async function parseJsonPreSendAction(
+  this: IExecuteSingleFunctions,
+  requestOptions: IHttpRequestOptions,
+): Promise<IHttpRequestOptions> {
+  const body = (requestOptions.body || {}) as {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resourceType: any;
+  };
+
+  return {
+    ...requestOptions,
+    body: {
+      resourceType: body.resourceType,
+      ...JSON.parse(body.data),
+    },
+  };
+}

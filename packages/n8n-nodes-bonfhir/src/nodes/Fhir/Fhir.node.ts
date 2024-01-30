@@ -20,12 +20,12 @@ import {
 const resourceTypes: INodePropertyOptions[] = DomainResourceTypes.map(
   (type) => ({
     name: type as string,
-    value: type.toLowerCase(),
+    value: type as string,
   }),
 );
 
 const resourcesList: string[] = DomainResourceTypes.map(
-  (type) => type.toLowerCase() as string,
+  (type) => type as string,
 );
 
 export class Fhir implements INodeType {
@@ -68,7 +68,7 @@ export class Fhir implements INodeType {
         name: "resource",
         type: "options",
         options: resourceTypes,
-        default: "patient",
+        default: "Patient",
         noDataExpression: true,
         required: true,
       },
