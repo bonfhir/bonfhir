@@ -40,8 +40,8 @@ export const createOperation: INodePropertyOptions = {
     request: {
       method: "POST",
       body: {
-        ...JSON.parse(`{"data": "={{$parameter.data}}"}`),
-        ...JSON.parse(`{"resourceType": "={{$parameter.resource}}"}`),
+        data: "={{$parameter.data}}",
+        resourceType: "={{$parameter.resource}}",
       },
     },
   },
