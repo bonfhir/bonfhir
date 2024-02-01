@@ -1,34 +1,30 @@
-import { DomainResourceTypes } from "@bonfhir/core/r4b";
 import { INodeProperties, INodePropertyOptions } from "n8n-workflow";
 
-export const readProperties: INodeProperties[] = DomainResourceTypes.map(
-  (type) => ({
-    displayName: `${type} Read`,
-    name: "id",
-    type: "string",
-    default: "",
-    required: true,
-    displayOptions: {
-      show: {
-        operation: ["read"],
-        resource: [type],
-      },
+export const readProperties: INodeProperties = {
+  displayName: "Resource ID",
+  name: "id",
+  type: "string",
+  default: "",
+  required: true,
+  displayOptions: {
+    show: {
+      operation: ["read"],
     },
-    placeholder: "Insert ID here",
-    description: `FHIR ID for the ${type.toLowerCase()}`,
-    routing: {
-      request: {
-        url: `=/${type}/{{$value}}`,
-      },
+  },
+  placeholder: "Insert ID here",
+  description: "FHIR ID for the Resource",
+  routing: {
+    request: {
+      url: `=/{{$parameter.resource}}/{{$value}}`,
     },
-  }),
-);
+  },
+};
 
 export const readOperation: INodePropertyOptions = {
   name: "Read",
   value: "read",
   description: "Read by ID",
-  action: "Read by ID",
+  action: "Read",
   routing: {
     request: {
       method: "GET",

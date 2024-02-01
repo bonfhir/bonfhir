@@ -1,5 +1,6 @@
 import { DomainResourceTypes } from "@bonfhir/core/r4b";
 import {
+  INodeProperties,
   INodePropertyOptions,
   INodeType,
   INodeTypeDescription,
@@ -24,9 +25,15 @@ const resourceTypes: INodePropertyOptions[] = DomainResourceTypes.map(
   }),
 );
 
-const resourcesList: string[] = DomainResourceTypes.map(
-  (type) => type as string,
-);
+export const resourcesProperties: INodeProperties = {
+  displayName: "Resource",
+  name: "resource",
+  type: "options",
+  default: "",
+  options: resourceTypes,
+  noDataExpression: true,
+  required: true,
+};
 
 export class Fhir implements INodeType {
   description: INodeTypeDescription = {
@@ -54,6 +61,7 @@ export class Fhir implements INodeType {
         "Content-Type": "application/json",
       },
     },
+
     // Basic node details will go here
     properties: [
       {
@@ -61,27 +69,14 @@ export class Fhir implements INodeType {
         name: "fhirBaseUrl",
         type: "string",
         description: "The base URL of the FHIR server API",
+        placeholder: "http://localhost:8103/fhir/R4",
         default: "",
-      },
-      {
-        displayName: "Resource",
-        name: "resource",
-        type: "options",
-        options: resourceTypes,
-        default: "Patient",
-        noDataExpression: true,
-        required: true,
       },
       {
         displayName: "Operation",
         name: "operation",
         type: "options",
         noDataExpression: true,
-        displayOptions: {
-          show: {
-            resource: resourcesList,
-          },
-        },
         options: [
           vreadOperation,
           readOperation,
@@ -91,11 +86,12 @@ export class Fhir implements INodeType {
         ],
         default: "",
       },
-      ...readProperties,
-      ...deleteProperties,
-      ...searchProperties,
+      resourcesProperties,
+      readProperties,
+      deleteProperties,
+      searchProperties,
       ...vreadProperties.flat(),
-      ...createProperties.flat(),
+      createProperties,
     ],
   };
 }
