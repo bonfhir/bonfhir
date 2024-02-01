@@ -64,6 +64,14 @@ const config = {
     ({
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
+      announcementBar: {
+        id: "consult_with_us",
+        content:
+          'We are launching a new service to help you with your FHIR data modeling. <a target="_blank" rel="noopener noreferrer" href="https://calendly.com/acn-fhir">Book a consultation</a> with us!',
+        backgroundColor: "#fafbfc",
+        textColor: "#091E42",
+        isCloseable: true,
+      },
       navbar: {
         logo: {
           alt: "bonFHIR",
@@ -92,6 +100,11 @@ const config = {
             label: "GitHub",
             position: "right",
           },
+          {
+            type: "search",
+            position: "right",
+            className: "searchBox",
+          },
         ],
       },
       prism: {
@@ -104,7 +117,7 @@ const config = {
       algolia: {
         appId: "C444QI5SK7",
         apiKey: "fc7d73ded65b514d4e2773653bc196c4",
-        indexName: "bonfhir",
+        indexName: "bonfhir2",
       },
     }),
 };
