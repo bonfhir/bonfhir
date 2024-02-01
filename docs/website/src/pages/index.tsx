@@ -25,7 +25,7 @@ export default function Home(): JSX.Element {
         <WhatIs />
         <ReadyToLearn />
         <BatteriesIncluded />
-        <GetInTouch />
+        <HowCanWeHelp />
         <UsedBy />
       </main>
       <Footer />
@@ -77,12 +77,16 @@ function PresentationSection({
     img: JSX.Element;
     title: string;
     text?: string;
+    link?: {
+      href: string;
+      title: string;
+    };
   }[];
   theme?: "dark" | "light";
 }) {
   return (
     <div className={styles.presentationSection}>
-      {items.map(({ title, text, img, classNames = [] }, idx) => (
+      {items.map(({ title, text, img, link, classNames = [] }, idx) => (
         <div
           key={idx}
           className={classnames([
@@ -94,6 +98,18 @@ function PresentationSection({
           {img}
           <h4>{title}</h4>
           <p>{text}</p>
+          {link && (
+            <div className={styles.presentationSectionCTA}>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={classnames([styles.ctaButton])}
+              >
+                {link.title}
+              </a>
+            </div>
+          )}
         </div>
       ))}
     </div>
@@ -116,7 +132,7 @@ function WhatIs() {
             },
             {
               img: <SvgComputerDevices role="img" />,
-              title: "For Products Owners",
+              title: "For Products Managers",
               text: "BonFHIR brings the best Healthcare tech experience to your users. Instead of subjecting them to un-ergonomic generic screens and workflows assembled from disparate apps, you can deliver a tailored experience that clinicians, clinical ops and patients enjoy every day.",
             },
             {
@@ -159,9 +175,7 @@ function ReadyToLearn() {
             </Link>
           </div>
         </div>
-        <div className={styles.rightColumn}>
-          <SvgComputerBooks role="img" />
-        </div>
+        <div className={styles.rightColumn}></div>
       </div>
     </div>
   );
@@ -267,18 +281,18 @@ function BatteriesIncluded() {
   );
 }
 
-function GetInTouch() {
+function HowCanWeHelp() {
   return (
-    <div className={classnames([styles.section, styles.getInTouch])}>
+    <div className={classnames([styles.section, styles.howCanWeHelp])}>
       <div
         className={classnames([
           styles.sectionContainer,
-          styles.getInTouchWrapper,
+          styles.howCanWeHelpWrapper,
         ])}
       >
-        <div className={styles.getInTouchTitles}>
+        <div className={styles.howCanWeHelpTitles}>
           <h1>How Can We Help?</h1>
-          <p className={styles.getInTouchSubtitle}>
+          <p className={styles.howCanWeHelpSubtitle}>
             Let the people that maintain bonFHIR help you succeed in your
             healthcare project implementation.
           </p>
@@ -287,32 +301,34 @@ function GetInTouch() {
           items={[
             {
               img: <SvgGears role="img" className={styles.darkSvg} />,
-              title: "Team Services",
-              text: "Hire the creators of bonFHIR to design, implement and deliver the solution you have in mind. ",
+              title: "Courses",
+              text: "Sign up to be the first to know when our FHIR data modelling course launches!",
+              link: {
+                href: "https://forms.gle/3fKWG1gZoaueKmud8",
+                title: "Sign Up",
+              },
             },
             {
               img: <SvgBrowserSlider role="img" className={styles.darkSvg} />,
-              title: "Product Design",
-              text: "Need help with the UX/UI of your interface? Add one of our Product Designers to your team.",
+              title: "Product Studio",
+              text: "Building complex clinical workflows or digital health apps? Our team of expert designers and engineers can help.",
+              link: {
+                href: "mailto:sales@alleycorpnord.com?subject=bonFHIR%20inquiry",
+                title: "Contact Us",
+              },
             },
             {
               img: <SvgBusinessMane role="img" className={styles.darkSvg} />,
               title: "Consulting",
-              text: "Our technical consultants can help you understand how and where bonFHIR can be integrated with your current environment.",
+              text: "Need a second pair of eyes on your healthcare data model? Talk to the experts behind BonFHIR.",
+              link: {
+                href: "https://calendly.com/acn-fhir",
+                title: "Book a Call",
+              },
             },
           ]}
           theme={"dark"}
         />
-        <div>
-          <a
-            href="mailto:info@alleycorpnord.com?subject=bonFHIR%20inquiry"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={classnames([styles.ctaButton])}
-          >
-            Contact us
-          </a>
-        </div>
       </div>
     </div>
   );

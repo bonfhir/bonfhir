@@ -341,3 +341,9 @@
 section.row {
   margin-top: 40px;
 }
+
+.searchBox {
+  @media (max-width: 997px) {
+    position: static !important;
+  }
+}
