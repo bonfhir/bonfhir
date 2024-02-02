@@ -117,7 +117,7 @@ const config = {
       algolia: {
         appId: "C444QI5SK7",
         apiKey: "fc7d73ded65b514d4e2773653bc196c4",
-        indexName: "bonfhir2",
+        indexName: "bonfhir",
       },
     }),
 };
