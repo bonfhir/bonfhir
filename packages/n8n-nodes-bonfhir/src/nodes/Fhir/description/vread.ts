@@ -2,25 +2,6 @@ import { INodeProperties, INodePropertyOptions } from "n8n-workflow";
 
 export const vreadProperties: INodeProperties[] = [
   {
-    displayName: `Resource ID`,
-    name: "id",
-    type: "string",
-    default: "",
-    required: true,
-    displayOptions: {
-      show: {
-        operation: ["vread"],
-      },
-    },
-    placeholder: "Insert ID here",
-    description: "FHIR ID for the Resource",
-    routing: {
-      request: {
-        url: `=/{{$parameter.resource}}/{{$parameter.id}}/_history/{{$parameter.vid}}`,
-      },
-    },
-  },
-  {
     displayName: `Version ID`,
     name: "vid",
     type: "string",
@@ -44,6 +25,7 @@ export const vreadOperation: INodePropertyOptions = {
   routing: {
     request: {
       method: "GET",
+      url: `=/{{$parameter.resource}}/{{$parameter.id}}/_history/{{$parameter.vid}}`,
     },
   },
 };

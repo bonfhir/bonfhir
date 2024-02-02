@@ -1,24 +1,43 @@
 import {
   IExecuteSingleFunctions,
   IHttpRequestOptions,
-  INodeProperties,
   INodePropertyOptions,
 } from "n8n-workflow";
 
-export const createProperties: INodeProperties = {
-  displayName: `New resource Data`,
-  name: "data",
-  type: "json",
-  default: "",
-  required: true,
-  displayOptions: {
-    show: {
-      operation: ["create"],
+export const updateOperation: INodePropertyOptions = {
+  name: "Update",
+  value: "update",
+  action: "Update",
+  description: "Update existing FHIR resource",
+  routing: {
+    send: {
+      preSend: [parseJsonPreSendAction],
+    },
+    request: {
+      method: "PUT",
+      body: {
+        data: "={{$parameter.data}}",
+        resourceType: "={{$parameter.resource}}",
+      },
     },
   },
+};
+
+export const patchOperation: INodePropertyOptions = {
+  name: "Patch",
+  value: "patch",
+  action: "Patch",
+  description: "Patch existing FHIR resource",
   routing: {
+    send: {
+      preSend: [parseJsonPreSendAction],
+    },
     request: {
-      url: "={{$parameter.resource}}",
+      method: "PATCH",
+      body: {
+        data: "={{$parameter.data}}",
+        resourceType: "={{$parameter.resource}}",
+      },
     },
   },
 };

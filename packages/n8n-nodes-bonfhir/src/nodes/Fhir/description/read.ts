@@ -1,24 +1,4 @@
-import { INodeProperties, INodePropertyOptions } from "n8n-workflow";
-
-export const readProperties: INodeProperties = {
-  displayName: "Resource ID",
-  name: "id",
-  type: "string",
-  default: "",
-  required: true,
-  displayOptions: {
-    show: {
-      operation: ["read"],
-    },
-  },
-  placeholder: "Insert ID here",
-  description: "FHIR ID for the Resource",
-  routing: {
-    request: {
-      url: `=/{{$parameter.resource}}/{{$value}}`,
-    },
-  },
-};
+import { INodePropertyOptions } from "n8n-workflow";
 
 export const readOperation: INodePropertyOptions = {
   name: "Read",
@@ -28,6 +8,7 @@ export const readOperation: INodePropertyOptions = {
   routing: {
     request: {
       method: "GET",
+      url: `=/{{$parameter.resource}}/{{$parameter.id}}`,
     },
   },
 };

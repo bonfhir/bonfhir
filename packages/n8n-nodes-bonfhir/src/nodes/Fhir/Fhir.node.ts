@@ -1,39 +1,18 @@
-import { DomainResourceTypes } from "@bonfhir/core/r4b";
-import {
-  INodeProperties,
-  INodePropertyOptions,
-  INodeType,
-  INodeTypeDescription,
-} from "n8n-workflow";
+import { INodeType, INodeTypeDescription } from "n8n-workflow";
 import {
   createOperation,
-  createProperties,
+  dataFieldProperties,
   deleteOperation,
-  deleteProperties,
+  patchOperation,
   readOperation,
-  readProperties,
+  resourceIdFieldProperties,
+  resourcesProperties,
   searchOperation,
   searchProperties,
+  updateOperation,
   vreadOperation,
   vreadProperties,
 } from "./description";
-
-const resourceTypes: INodePropertyOptions[] = DomainResourceTypes.map(
-  (type) => ({
-    name: type as string,
-    value: type as string,
-  }),
-);
-
-export const resourcesProperties: INodeProperties = {
-  displayName: "Resource",
-  name: "resource",
-  type: "options",
-  default: "",
-  options: resourceTypes,
-  noDataExpression: true,
-  required: true,
-};
 
 export class Fhir implements INodeType {
   description: INodeTypeDescription = {
@@ -72,6 +51,7 @@ export class Fhir implements INodeType {
         placeholder: "http://localhost:8103/fhir/R4",
         default: "",
       },
+      resourcesProperties,
       {
         displayName: "Operation",
         name: "operation",
@@ -83,15 +63,15 @@ export class Fhir implements INodeType {
           searchOperation,
           createOperation,
           deleteOperation,
+          patchOperation,
+          updateOperation,
         ],
         default: "",
       },
-      resourcesProperties,
-      readProperties,
-      deleteProperties,
+      resourceIdFieldProperties,
       searchProperties,
+      dataFieldProperties,
       ...vreadProperties.flat(),
-      createProperties,
     ],
   };
 }
