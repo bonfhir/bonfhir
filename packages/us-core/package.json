@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/us-core",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "US Core Profile customization for BonFHIR",
   "keywords": [
     "HL7",

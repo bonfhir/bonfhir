@@ -1,5 +1,15 @@
 # @bonfhir/cli
 
+## 2.10.0
+
+### Minor Changes
+
+- [#232](https://github.com/bonfhir/bonfhir/pull/232) [`0e5160c`](https://github.com/bonfhir/bonfhir/commit/0e5160c48d5add91f1258712acaf96df77f0b505) Thanks [@julienblin](https://github.com/julienblin)! - Fix #201 - Add a `<FhirInfiniteMarker />` component
+
+### Patch Changes
+
+- [#241](https://github.com/bonfhir/bonfhir/pull/241) [`59f7cfe`](https://github.com/bonfhir/bonfhir/commit/59f7cfe33aa992f2ff9cea19fe27b09c90347b69) Thanks [@nickvallee](https://github.com/nickvallee)! - Add FhirQueryLoader to the cli expo template
+
 ## 2.9.0
 
 ### Minor Changes

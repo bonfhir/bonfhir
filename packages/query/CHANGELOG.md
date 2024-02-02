@@ -1,5 +1,17 @@
 # @bonfhir/query
 
+## 3.1.0
+
+### Minor Changes
+
+- [#231](https://github.com/bonfhir/bonfhir/pull/231) [`aeab8d5`](https://github.com/bonfhir/bonfhir/commit/aeab8d5ed27f9ab2f74ac9715e055e8825c456c6) Thanks [@julienblin](https://github.com/julienblin)! - Fix #58 - Add a `useFhirClient` query hook
+
+- [#231](https://github.com/bonfhir/bonfhir/pull/231) [`da2bfe7`](https://github.com/bonfhir/bonfhir/commit/da2bfe78eee5e287d6aca48c2f8357e920e9370b) Thanks [@julienblin](https://github.com/julienblin)! - Fix #226 - Add a `useFhirClientMutation` hook
+
+### Patch Changes
+
+- [#229](https://github.com/bonfhir/bonfhir/pull/229) [`131bd5d`](https://github.com/bonfhir/bonfhir/commit/131bd5d9042cf9e6cf8860b3db8de562928507c0) Thanks [@julienblin](https://github.com/julienblin)! - Fix #204 - Add pagination to `useFhirHistory`
+
 ## 3.0.1
 
 ### Patch Changes
