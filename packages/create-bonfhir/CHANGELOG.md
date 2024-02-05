@@ -1,5 +1,11 @@
 # create-bonfhir
 
+## 2.8.0
+
+### Minor Changes
+
+- [#232](https://github.com/bonfhir/bonfhir/pull/232) [`0e5160c`](https://github.com/bonfhir/bonfhir/commit/0e5160c48d5add91f1258712acaf96df77f0b505) Thanks [@julienblin](https://github.com/julienblin)! - Fix #201 - Add a `<FhirInfiniteMarker />` component
+
 ## 2.7.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/gluestack-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gluestack UI renderers for BonFHIR UI",
   "keywords": [
     "HL7",
@@ -58,8 +58,8 @@
   ],
   "dependencies": {
     "@bonfhir/core": "^2.17.2",
-    "@bonfhir/query": "^3.0.0",
-    "@bonfhir/react": "^3.0.0"
+    "@bonfhir/query": "^3.1.0",
+    "@bonfhir/react": "^3.1.0"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",

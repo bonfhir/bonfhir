@@ -1,5 +1,19 @@
 # @bonfhir/gluestack-ui
 
+## 1.0.1
+
+### Patch Changes
+
+- [#239](https://github.com/bonfhir/bonfhir/pull/239) [`6f950b3`](https://github.com/bonfhir/bonfhir/commit/6f950b309a4d4eba75ea659dfbbe441b13767066) Thanks [@nickvallee](https://github.com/nickvallee)! - Add FhirQueryLoader component to Gluestack-ui render
+
+- [#243](https://github.com/bonfhir/bonfhir/pull/243) [`d669454`](https://github.com/bonfhir/bonfhir/commit/d6694549718950e3503b9c6a2fe40fc7c2b144bd) Thanks [@nickvallee](https://github.com/nickvallee)! - Create Gluestack-ui renderer for FhirFormatter
+
+- [#234](https://github.com/bonfhir/bonfhir/pull/234) [`c2d8147`](https://github.com/bonfhir/bonfhir/commit/c2d81471ba204a2e43bd2968caace1e5c64a4c48) Thanks [@nickvallee](https://github.com/nickvallee)! - Add FhirError component to gluestack-ui renderer
+
+- Updated dependencies [[`aeab8d5`](https://github.com/bonfhir/bonfhir/commit/aeab8d5ed27f9ab2f74ac9715e055e8825c456c6), [`131bd5d`](https://github.com/bonfhir/bonfhir/commit/131bd5d9042cf9e6cf8860b3db8de562928507c0), [`da2bfe7`](https://github.com/bonfhir/bonfhir/commit/da2bfe78eee5e287d6aca48c2f8357e920e9370b), [`8849bbb`](https://github.com/bonfhir/bonfhir/commit/8849bbb096ac235ab9bcc128daf781af9aaee5b9), [`0e5160c`](https://github.com/bonfhir/bonfhir/commit/0e5160c48d5add91f1258712acaf96df77f0b505)]:
+  - @bonfhir/query@3.1.0
+  - @bonfhir/react@3.1.0
+
 ## 1.0.0
 
 ### Major Changes
