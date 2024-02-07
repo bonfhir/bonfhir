@@ -22,39 +22,39 @@
     "build": "pnpm clean && pnpm codegen && rollup --config rollup.config.mjs",
     "check": "prettier --check ./src && eslint ./src && tsc --noEmit",
     "clean": "rimraf dist",
-    "codegen": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r4b -t \"${PWD}/templates/**/*.ejs\" -b \"${PWD}/templates\" -p 'prettier --write %files%' -o \"${PWD}/src\"",
+    "codegen": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r5 -t \"${PWD}/templates/**/*.ejs\" -b \"${PWD}/templates\" -p 'prettier --write %files%' -o \"${PWD}/src\"",
+    "dev": "nodemon --watch templates --watch src --ext json,ts,svg --ignore '**/*.codegen.ts' --exec \"pnpm build && pnpm n8n:start\"",
     "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
-    "n8n:start": "docker run -it --rm --name n8n -p 5678:5678 -v bonfhir_n8n_data:/home/node/.n8n -v \"${PWD}/package.json\":/home/node/.n8n/custom/package.json -v \"${PWD}/dist\":/home/node/.n8n/custom/dist docker.n8n.io/n8nio/n8n"
+    "n8n:start": "docker run -t --rm --name n8n -p 5678:5678 -e WEBHOOK_URL=http://host.docker.internal:5678/ -v bonfhir_n8n_data:/home/node/.n8n -v \"${PWD}/package.json\":/home/node/.n8n/custom/package.json -v \"${PWD}/dist\":/home/node/.n8n/custom/dist docker.n8n.io/n8nio/n8n"
   },
   "files": [
     "dist"
   ],
   "n8n": {
     "n8nNodesApiVersion": 1,
-    "credentials": [
-      "dist/credentials/FhirOAuth2Api.credentials.js"
-    ],
     "nodes": [
-      "dist/nodes/Fhir/Fhir.node.js",
-      "dist/nodes/FhirWebhookTrigger/FhirWebhookTrigger.node.js"
+      "dist/nodes/Bonfhir/Bonfhir.node.js",
+      "dist/nodes/Bonfhir/BonfhirTrigger.node.js"
     ]
   },
   "devDependencies": {
     "@bonfhir/codegen": "workspace:*",
-    "@bonfhir/core": "workspace:*",
     "@bonfhir/eslint-config": "workspace:*",
     "@bonfhir/eslint-plugin": "workspace:*",
     "@bonfhir/prettier-config": "workspace:*",
     "@bonfhir/typescript-config": "workspace:*",
     "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/express": "^4.17.6",
     "@types/request-promise-native": "~1.0.15",
     "eslint-plugin-n8n-nodes-base": "^1.11.0",
+    "fhirpath": "^3.10.1",
     "glob": "^10.3.10",
     "n8n-core": "0.149.2",
     "n8n-workflow": "0.131.2",
+    "nodemon": "^3.0.3",
     "rimraf": "^5.0.5",
     "rollup": "^4.8.0",
     "rollup-plugin-copy": "^3.5.0",

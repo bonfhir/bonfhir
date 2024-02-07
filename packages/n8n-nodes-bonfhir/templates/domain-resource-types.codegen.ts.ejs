@@ -1,0 +1,6 @@
+/**
+ * All the domain resource types as string.
+ */
+export const DomainResourceTypes = [
+  <% for (const structureDef of fhir.domainResources) { %> "<%= structureDef.type %>", <% } %>
+] as const;

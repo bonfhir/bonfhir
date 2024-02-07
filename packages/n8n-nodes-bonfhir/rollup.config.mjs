@@ -1,4 +1,5 @@
 import commonjs from "@rollup/plugin-commonjs";
+import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import { glob } from "glob";
@@ -18,6 +19,8 @@ export default {
         fileURLToPath(new URL(file, import.meta.url)),
       ]),
   ),
+  external: (id) =>
+    id.startsWith("n8n") || id.startsWith("request-promise-native"),
   output: [
     {
       dir: "dist",
@@ -28,10 +31,12 @@ export default {
   plugins: [
     nodeResolve(),
     commonjs(),
+    json(),
     typescript({
       declaration: false,
       declarationMap: false,
       exclude: ["**/*.test.ts"],
+      outputToFilesystem: false,
     }),
     copy({
       targets: [

@@ -20,6 +20,7 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "outDir": "./dist/",
+    "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
   },
   "include": ["./src"],
   "exclude": ["node_modules"],
