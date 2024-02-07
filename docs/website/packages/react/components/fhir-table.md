@@ -56,7 +56,7 @@ There is built-in support for row navigation when a row is clicked, using the [c
 
 ## Sorting support
 
-When used in tandem with a [search controller](#usefhirsearchcontroller), the table can provide automatic server-side
+When used in tandem with a [search controller](/packages/react/components/use-fhir-search-controller), the table can provide automatic server-side
 sorting.  
 The column `key` attrtibute must be a valid FHIR search parameter for the sorting to work properly.
 

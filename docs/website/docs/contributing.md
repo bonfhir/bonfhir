@@ -24,7 +24,7 @@ Here are a few guidelines.
 
 ### Add a new feature or change an existing one?
 
-- If the change is small enough, you can try your luck with opening a PR - see the [patch instructions](#did-you-write-a-patch-that-fixes-a-bug-or-improve-the-documentation) above.
+- If the change is small enough, you can try your luck with opening a PR - see the [patch instructions](#fix-a-bug-or-improve-the-documentation) above.
 - Otherwise, please [create a new discussion](https://github.com/bonfhir/bonfhir/discussions), explains your intended changes, and be prepared to be asked for code snippets or POCs 🙂
 
 ## Get started - running the bonFHIR solution
