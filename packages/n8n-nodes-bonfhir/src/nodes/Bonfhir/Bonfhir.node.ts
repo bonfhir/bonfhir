@@ -23,7 +23,7 @@ export class Bonfhir implements INodeType {
     name: "bonfhir",
     version: 1,
     subtitle:
-      '={{ $parameter["operation"] + ": " + $parameter["resourceType"]}}',
+      '={{ $parameter["operation"] + ($parameter["operation"] == "Resolve" ? " references" : ": " + $parameter["resourceType"])}}',
     icon: "file:Bonfhir.svg",
     group: ["output"],
     description: "Perform operations on FHIR resources",
@@ -79,6 +79,12 @@ export class Bonfhir implements INodeType {
             value: "Read",
             action: "Read a FHIR Resource",
             description: "Read a FHIR Resource",
+          },
+          {
+            name: "Resolve",
+            value: "Resolve",
+            action: "Resolve FHIR references",
+            description: "Resolve FHIR references",
           },
           {
             name: "Search",
@@ -140,6 +146,11 @@ export class Bonfhir implements INodeType {
           })),
           { name: "- Custom -", value: "customResourceType" },
         ],
+        displayOptions: {
+          hide: {
+            operation: ["Resolve"],
+          },
+        },
       },
       {
         displayName: "Custom Resource Type",
@@ -197,6 +208,20 @@ export class Bonfhir implements INodeType {
         },
       },
       {
+        displayName: "Reference",
+        description:
+          "Either a string, a Reference object, or an array of Reference objects",
+        name: "reference",
+        type: "json",
+        required: true,
+        default: "",
+        displayOptions: {
+          show: {
+            operation: ["Resolve"],
+          },
+        },
+      },
+      {
         displayName: "Query Params",
         name: "queryParams",
         type: "string",
@@ -227,85 +252,102 @@ export class Bonfhir implements INodeType {
 
     const resultItems: NodeExecutionWithMetadata[] = [];
 
+    const authParameters = await getAuthParameters(this);
     for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
-      try {
-        const { requestOptions, operation, baseUrl, resourceType } =
-          await buildRequestOptions(this, itemIndex);
+      const builtRequestOptions = await buildRequestOptions(this, itemIndex);
 
-        const authParameters = await getAuthParameters(this);
-        let response = await requestWithAuth(
-          this,
-          requestOptions,
-          authParameters,
-        );
+      for (const {
+        requestOptions,
+        operation,
+        baseUrl,
+        resourceType,
+      } of builtRequestOptions) {
+        try {
+          let response = await requestWithAuth(
+            this,
+            requestOptions,
+            authParameters,
+          );
 
-        response = JSON.parse(response);
-
-        const fhirPath = this.getNodeParameter(
-          "fhirPath",
-          itemIndex,
-          "",
-        ) as string;
-        if (fhirPath) {
-          response = evaluate(response, fhirPath);
-        }
-
-        resultItems.push(...processResponseIntoItems(response, itemIndex));
-
-        const allPages = this.getNodeParameter(
-          "allPages",
-          itemIndex,
-          false,
-        ) as boolean;
-
-        const normalizeNextUrlToBaseUrl = this.getNodeParameter(
-          "normalizeNextUrlToBaseUrl",
-          itemIndex,
-          false,
-        ) as boolean;
-
-        if (operation === "Search" && allPages) {
-          let nextUrl = getNextUrl(response);
-          while (nextUrl) {
-            if (
-              normalizeNextUrlToBaseUrl &&
-              nextUrl &&
-              !nextUrl.startsWith(baseUrl)
-            ) {
-              const [, ...restUrl] = nextUrl.split(resourceType);
-              nextUrl = `${baseUrl}/${resourceType}${restUrl.join("")}`;
+          const fhirPath = this.getNodeParameter(
+            "fhirPath",
+            itemIndex,
+            "",
+          ) as string;
+          if (fhirPath) {
+            response = evaluate(response, fhirPath);
+            if (Array.isArray(response)) {
+              resultItems.push(
+                ...response.flatMap((x) =>
+                  processResponseIntoItems(x, itemIndex),
+                ),
+              );
+            } else {
+              resultItems.push(
+                ...processResponseIntoItems(response, itemIndex),
+              );
             }
-            requestOptions.uri = nextUrl;
-            let response = await requestWithAuth(
-              this,
-              requestOptions,
-              authParameters,
-            );
-
-            response = JSON.parse(response);
-            nextUrl = getNextUrl(response);
-
-            if (fhirPath) {
-              response = evaluate(response, fhirPath);
-            }
-
-            resultItems.push(...processResponseIntoItems(response, itemIndex));
+            continue;
           }
+
+          resultItems.push(...processResponseIntoItems(response, itemIndex));
+
+          const allPages = this.getNodeParameter(
+            "allPages",
+            itemIndex,
+            false,
+          ) as boolean;
+
+          const normalizeNextUrlToBaseUrl = this.getNodeParameter(
+            "normalizeNextUrlToBaseUrl",
+            itemIndex,
+            false,
+          ) as boolean;
+
+          if (operation === "Search" && allPages) {
+            let nextUrl = getNextUrl(response);
+            while (nextUrl) {
+              if (
+                normalizeNextUrlToBaseUrl &&
+                nextUrl &&
+                !nextUrl.startsWith(baseUrl)
+              ) {
+                const [, ...restUrl] = nextUrl.split(resourceType);
+                nextUrl = `${baseUrl}/${resourceType}${restUrl.join("")}`;
+              }
+              requestOptions.uri = nextUrl;
+              let response = await requestWithAuth(
+                this,
+                requestOptions,
+                authParameters,
+              );
+
+              nextUrl = getNextUrl(response);
+
+              if (fhirPath) {
+                response = evaluate(response, fhirPath);
+              }
+
+              resultItems.push(
+                ...processResponseIntoItems(response, itemIndex),
+              );
+            }
+          }
+        } catch (error) {
+          if (this.continueOnFail()) {
+            const item = {
+              error,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              json: this.getInputData(itemIndex) as any,
+              pairedItem: {
+                item: itemIndex,
+              },
+            };
+            resultItems.push(item);
+            continue;
+          }
+          throw error;
         }
-      } catch (error) {
-        if (this.continueOnFail()) {
-          const item = {
-            error,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            json: this.getInputData(itemIndex) as any,
-            pairedItem: {
-              item: itemIndex,
-            },
-          };
-          resultItems.push(item);
-          continue;
-        }
-        throw error;
       }
     }
 
@@ -316,12 +358,14 @@ export class Bonfhir implements INodeType {
 async function buildRequestOptions(
   node: IExecuteFunctions,
   itemIndex: number,
-): Promise<{
-  requestOptions: OptionsWithUri;
-  operation: string;
-  baseUrl: string;
-  resourceType: string;
-}> {
+): Promise<
+  {
+    requestOptions: OptionsWithUri;
+    operation: string;
+    baseUrl: string;
+    resourceType: string;
+  }[]
+> {
   let baseUrl = (node.getNodeParameter("baseUrl", itemIndex) as string)?.trim();
   if (baseUrl.endsWith("/")) {
     baseUrl = baseUrl.slice(0, -1);
@@ -365,53 +409,159 @@ async function buildRequestOptions(
       "content-type": `application/fhir+json`,
     },
     uri: "",
-    simple: false,
+    json: true,
     rejectUnauthorized: !allowUnauthorizedCerts,
   };
 
   switch (operation) {
     case "Create": {
-      requestOptions.method = "POST";
-      requestOptions.uri = `${baseUrl}/${resourceType}${queryParams ? `?${queryParams}` : ""}`;
-      requestOptions.body = bodyParameter;
-      break;
+      return [
+        {
+          requestOptions: {
+            ...requestOptions,
+            method: "POST",
+            uri: `${baseUrl}/${resourceType}${queryParams ? `?${queryParams}` : ""}`,
+            body: bodyParameter,
+          },
+          operation,
+          baseUrl,
+          resourceType,
+        },
+      ];
     }
     case "Delete": {
-      requestOptions.method = "DELETE";
-      requestOptions.uri = `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`;
-      break;
+      return [
+        {
+          requestOptions: {
+            ...requestOptions,
+            method: "DELETE",
+            uri: `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`,
+          },
+          operation,
+          baseUrl,
+          resourceType,
+        },
+      ];
     }
     case "History": {
-      requestOptions.method = "GET";
-      requestOptions.uri = `${baseUrl}/${resourceType}/${id}/_history${queryParams ? `?${queryParams}` : ""}`;
-      break;
+      return [
+        {
+          requestOptions: {
+            ...requestOptions,
+            method: "GET",
+            uri: `${baseUrl}/${resourceType}/${id}/_history${queryParams ? `?${queryParams}` : ""}`,
+          },
+          operation,
+          baseUrl,
+          resourceType,
+        },
+      ];
     }
     case "Patch": {
-      requestOptions.method = "PATCH";
-      requestOptions.uri = `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`;
-      requestOptions.body = bodyParameter;
-      break;
+      return [
+        {
+          requestOptions: {
+            ...requestOptions,
+            method: "PATCH",
+            uri: `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`,
+            body: bodyParameter,
+          },
+          operation,
+          baseUrl,
+          resourceType,
+        },
+      ];
     }
     case "Read": {
-      requestOptions.method = "GET";
-      requestOptions.uri = `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`;
-      break;
+      return [
+        {
+          requestOptions: {
+            ...requestOptions,
+            method: "GET",
+            uri: `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`,
+          },
+          operation,
+          baseUrl,
+          resourceType,
+        },
+      ];
+    }
+    case "Resolve": {
+      const reference = node.getNodeParameter("reference", itemIndex, "") as
+        | string
+        | object
+        | object[]
+        | undefined;
+      if (!reference) {
+        return [];
+      }
+      let allReferences = [];
+      if (typeof reference === "string") {
+        allReferences = [reference];
+      } else if (Array.isArray(reference)) {
+        allReferences = reference.map((ref) => ref?.reference).filter(Boolean);
+      } else if (typeof reference === "object") {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        allReferences = [(reference as any).reference];
+      }
+
+      return allReferences.map((ref) => {
+        const [refResourceType, ...refId] = ref.split("/");
+        return {
+          requestOptions: {
+            ...requestOptions,
+            method: "GET",
+            uri: `${baseUrl}/${refResourceType}/${refId}${queryParams ? `?${queryParams}` : ""}`,
+          },
+          operation,
+          baseUrl,
+          resourceType,
+        };
+      });
     }
     case "Search": {
-      requestOptions.method = "GET";
-      requestOptions.uri = `${baseUrl}/${resourceType}${queryParams ? `/?${queryParams}` : ""}`;
-      break;
+      return [
+        {
+          requestOptions: {
+            ...requestOptions,
+            method: "GET",
+            uri: `${baseUrl}/${resourceType}${queryParams ? `/?${queryParams}` : ""}`,
+          },
+          operation,
+          baseUrl,
+          resourceType,
+        },
+      ];
     }
     case "Update": {
-      requestOptions.method = "PUT";
-      requestOptions.uri = `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`;
-      requestOptions.body = bodyParameter;
-      break;
+      return [
+        {
+          requestOptions: {
+            ...requestOptions,
+            method: "PUT",
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            uri: `${baseUrl}/${resourceType}/${id || (bodyParameter as any).id}${queryParams ? `?${queryParams}` : ""}`,
+            body: bodyParameter,
+          },
+          operation,
+          baseUrl,
+          resourceType,
+        },
+      ];
     }
     case "VRead": {
-      requestOptions.method = "GET";
-      requestOptions.uri = `${baseUrl}/${resourceType}/${id}/_history/${vid}${queryParams ? `?${queryParams}` : ""}`;
-      break;
+      return [
+        {
+          requestOptions: {
+            ...requestOptions,
+            method: "GET",
+            uri: `${baseUrl}/${resourceType}/${id}/_history/${vid}${queryParams ? `?${queryParams}` : ""}`,
+          },
+          operation,
+          baseUrl,
+          resourceType,
+        },
+      ];
     }
 
     default: {
@@ -422,8 +572,6 @@ async function buildRequestOptions(
       );
     }
   }
-
-  return { requestOptions, operation, baseUrl, resourceType };
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -444,7 +592,7 @@ export function processResponseIntoItems(response: any, itemIndex: number) {
         },
       });
     }
-  } else {
+  } else if (response != undefined) {
     resultItems.push({
       json: response,
       pairedItem: {
