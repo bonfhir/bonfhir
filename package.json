@@ -33,10 +33,11 @@
     "@graphql-codegen/cli": "^5.0.0",
     "graphql": "^16.8.1",
     "graphql-config": "^5.0.3",
-    "turbo": "^1.11.3"
+    "turbo": "^1.12.3"
   },
   "pnpm": {
     "overrides": {
+      "crypto-js": ">=4.2.0",
       "follow-redirects": ">=1.15.4",
       "got": "~11.8.6",
       "micromatch": ">=4.0.5",
@@ -48,11 +49,14 @@
     },
     "peerDependencyRules": {
       "allowedVersions": {
+        "react": "18",
         "typescript": "5"
       }
     },
     "allowedDeprecatedVersions": {
+      "@babel/*": "7",
       "@npmcli/move-file": "2",
+      "@types/react-native": "0.73",
       "querystring": "0.2",
       "rollup-plugin-terser": "*",
       "sourcemap-codec": "1",
