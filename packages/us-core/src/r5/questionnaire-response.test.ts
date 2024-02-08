@@ -11,11 +11,20 @@ describe("questionnaire-response", () => {
     questionnaireResponse.questionnaireUri = "http://example.com";
     expect(questionnaireResponse.questionnaireUri).toBe("http://example.com");
 
-    expect(JSON.stringify(questionnaireResponse)).toMatchSnapshot();
+    expect(questionnaireResponse).toMatchObject({
+      _questionnaire: {
+        extension: [
+          {
+            url: "http://hl7.org/fhir/us/core/StructureDefinition/us-core-extension-questionnaire-uri",
+            valueUri: "http://example.com",
+          },
+        ],
+      },
+      resourceType: "QuestionnaireResponse",
+    });
 
     questionnaireResponse.questionnaireUri = undefined;
     expect(questionnaireResponse.questionnaireUri).toBeUndefined();
-
-    expect(JSON.stringify(questionnaireResponse)).toMatchSnapshot();
+    expect(questionnaireResponse._questionnaire).toBeUndefined();
   });
 });

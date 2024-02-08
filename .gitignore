@@ -13,6 +13,7 @@ out/
 build
 dist
 .esbuild
+*.tsbuildinfo
 
 # misc
 .DS_Store

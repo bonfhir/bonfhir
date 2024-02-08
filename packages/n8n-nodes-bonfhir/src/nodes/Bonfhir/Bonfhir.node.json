@@ -1,17 +1,12 @@
 {
-  "node": "n8n-nodes-base.FhirWebhookTrigger",
+  "node": "n8n-nodes-base.bonfhir",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
   "categories": ["Miscellaneous"],
   "resources": {
-    "credentialDocumentation": [
-      {
-        "url": ""
-      }
-    ],
     "primaryDocumentation": [
       {
-        "url": ""
+        "url": "https://bonfhir.dev"
       }
     ]
   }
