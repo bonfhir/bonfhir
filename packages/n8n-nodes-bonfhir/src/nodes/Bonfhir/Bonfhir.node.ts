@@ -276,6 +276,18 @@ export class Bonfhir implements INodeType {
           ) as string;
           if (fhirPath) {
             response = evaluate(response, fhirPath);
+            if (Array.isArray(response)) {
+              resultItems.push(
+                ...response.flatMap((x) =>
+                  processResponseIntoItems(x, itemIndex),
+                ),
+              );
+            } else {
+              resultItems.push(
+                ...processResponseIntoItems(response, itemIndex),
+              );
+            }
+            continue;
           }
 
           resultItems.push(...processResponseIntoItems(response, itemIndex));
@@ -580,7 +592,7 @@ export function processResponseIntoItems(response: any, itemIndex: number) {
         },
       });
     }
-  } else {
+  } else if (response != undefined) {
     resultItems.push({
       json: response,
       pairedItem: {
