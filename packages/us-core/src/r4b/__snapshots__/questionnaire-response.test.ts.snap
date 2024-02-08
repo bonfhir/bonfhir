@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`questionnaire-response should work 1`] = `"{"resourceType":"QuestionnaireResponse","_questionnaire":{"extension":[{"url":"http://hl7.org/fhir/us/core/StructureDefinition/us-core-extension-questionnaire-uri","valueUri":"http://example.com"}]},"text":{"status":"generated","div":"<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul></ul></div>"}}"`;
-
-exports[`questionnaire-response should work 2`] = `"{"resourceType":"QuestionnaireResponse","text":{"status":"generated","div":"<div xmlns=\\"http://www.w3.org/1999/xhtml\\"><ul></ul></div>"}}"`;
