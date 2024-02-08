@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/n8n-nodes-bonfhir",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "BonFHIR node for n8n platform",
   "keywords": [
     "HL7",
