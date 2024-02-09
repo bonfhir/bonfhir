@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable n8n-nodes-base/node-param-operation-option-action-miscased */
 import { evaluate } from "fhirpath";
 import {
   NodeApiError,
+  NodeOperationError,
   type IExecuteFunctions,
   type INodeExecutionData,
   type INodeType,
@@ -41,7 +43,8 @@ export class Bonfhir implements INodeType {
         type: "string",
         description: "The base URL of the FHIR server API",
         required: true,
-        default: "http://example.com/fhir",
+        default: "",
+        placeholder: "http://example.com/fhir",
       },
       {
         displayName: "Operation",
@@ -130,6 +133,25 @@ export class Bonfhir implements INodeType {
           show: {
             operation: ["Search"],
           },
+          hide: {
+            allPages: [false],
+          },
+        },
+      },
+      {
+        displayName: "Error if More than One Result",
+        description:
+          "Whether this will return an error if there is more than one result in the search Bundle",
+        name: "errorIfMoreThanOneResult",
+        type: "boolean",
+        default: false,
+        displayOptions: {
+          show: {
+            operation: ["Search"],
+          },
+          hide: {
+            allPages: [true],
+          },
         },
       },
       {
@@ -196,6 +218,27 @@ export class Bonfhir implements INodeType {
         },
       },
       {
+        displayName: "Specify Patch Body",
+        name: "specifyPatchBody",
+        type: "options",
+        options: [
+          {
+            name: "Using Fields Below",
+            value: "keypair",
+          },
+          {
+            name: "Using JSON",
+            value: "json",
+          },
+        ],
+        default: "keypair",
+        displayOptions: {
+          show: {
+            operation: ["Patch"],
+          },
+        },
+      },
+      {
         displayName: "Body",
         name: "body",
         type: "json",
@@ -205,7 +248,98 @@ export class Bonfhir implements INodeType {
           show: {
             operation: ["Create", "Patch", "Update"],
           },
+          hide: {
+            specifyPatchBody: ["keypair"],
+          },
         },
+      },
+      {
+        displayName: "Patch Parameters",
+        name: "patchParameters",
+        type: "fixedCollection",
+        displayOptions: {
+          show: {
+            specifyPatchBody: ["keypair"],
+          },
+        },
+        typeOptions: {
+          multipleValues: true,
+        },
+        placeholder: "Add Parameter",
+        default: {
+          parameters: [],
+        },
+        options: [
+          {
+            name: "parameters",
+            displayName: "Parameter",
+            values: [
+              {
+                displayName: "Op",
+                name: "op",
+                type: "options",
+                default: "add",
+                options: [
+                  {
+                    name: "Add",
+                    description:
+                      "Adds a value to an object or inserts it into an array",
+                    value: "add",
+                  },
+                  {
+                    name: "Copy",
+                    description:
+                      "Copies a value from one location to another within the JSON document. Both from and path are JSON Pointers.",
+                    value: "copy",
+                  },
+                  {
+                    name: "Move",
+                    description:
+                      "Moves a value from one location to the other. Both from and path are JSON Pointers.",
+                    value: "move",
+                  },
+                  {
+                    name: "Remove",
+                    description: "Removes a value from an object or array",
+                    value: "remove",
+                  },
+                  {
+                    name: "Replace",
+                    description:
+                      "Replaces a value. Equivalent to a “remove” followed by an “add”.",
+                    value: "replace",
+                  },
+                  {
+                    name: "Test",
+                    description:
+                      "Tests that the specified value is set in the document. If the test fails, then the patch as a whole should not apply.",
+                    value: "test",
+                  },
+                ],
+              },
+              {
+                displayName: "From",
+                name: "from",
+                type: "string",
+                default: "",
+                placeholder: "{Only for Copy, Move, or Test}",
+              },
+              {
+                displayName: "Path",
+                name: "path",
+                type: "string",
+                default: "",
+                placeholder: "/path/to/element",
+              },
+              {
+                displayName: "Value",
+                name: "value",
+                type: "json",
+                default: "",
+              },
+            ],
+          },
+        ],
       },
       {
         displayName: "Reference",
@@ -222,9 +356,67 @@ export class Bonfhir implements INodeType {
         },
       },
       {
-        displayName: "Query Params",
-        name: "queryParams",
-        type: "string",
+        displayName: "Specify Query Parameters",
+        name: "specifyQuery",
+        type: "options",
+        options: [
+          {
+            name: "Using Fields Below",
+            value: "keypair",
+          },
+          {
+            name: "Using JSON",
+            value: "json",
+          },
+        ],
+        default: "keypair",
+      },
+      {
+        displayName: "Query Parameters",
+        name: "queryParameters",
+        type: "fixedCollection",
+        displayOptions: {
+          show: {
+            specifyQuery: ["keypair"],
+          },
+        },
+        typeOptions: {
+          multipleValues: true,
+        },
+        placeholder: "Add Parameter",
+        default: {
+          parameters: [],
+        },
+        options: [
+          {
+            name: "parameters",
+            displayName: "Parameter",
+            values: [
+              {
+                displayName: "Name",
+                name: "name",
+                type: "string",
+                default: "",
+              },
+              {
+                displayName: "Value",
+                name: "value",
+                type: "string",
+                default: "",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        displayName: "JSON",
+        name: "jsonQuery",
+        type: "json",
+        displayOptions: {
+          show: {
+            specifyQuery: ["json"],
+          },
+        },
         default: "",
       },
       {
@@ -268,6 +460,28 @@ export class Bonfhir implements INodeType {
             requestOptions,
             authParameters,
           );
+
+          const errorIfMoreThanOneResult = this.getNodeParameter(
+            "errorIfMoreThanOneResult",
+            itemIndex,
+            false,
+          ) as boolean;
+          if (
+            operation === "Search" &&
+            errorIfMoreThanOneResult &&
+            response.resourceType === "Bundle" &&
+            response.entry.filter((e: any) =>
+              isSearchMatch(e, response.entry?.[0]),
+            ).length > 1
+          ) {
+            throw new NodeApiError(
+              this.getNode(),
+              { operation, response },
+              {
+                message: `The search returned more than one result (${response.total ?? response.entry.filter((e: any) => isSearchMatch(e, response.entry?.[0])).length})`,
+              },
+            );
+          }
 
           const fhirPath = this.getNodeParameter(
             "fhirPath",
@@ -313,12 +527,20 @@ export class Bonfhir implements INodeType {
                 !nextUrl.startsWith(baseUrl)
               ) {
                 const [, ...restUrl] = nextUrl.split(resourceType);
-                nextUrl = `${baseUrl}/${resourceType}${restUrl.join("")}`;
+                nextUrl = `${baseUrl}/${resourceType}${restUrl.join(resourceType)}`;
               }
-              requestOptions.uri = nextUrl;
+              const pageRequestOptions: OptionsWithUri = {
+                headers: {
+                  "content-type": `application/fhir+json`,
+                },
+                method: "GET",
+                uri: nextUrl,
+                json: true,
+                rejectUnauthorized: requestOptions.rejectUnauthorized,
+              };
               let response = await requestWithAuth(
                 this,
-                requestOptions,
+                pageRequestOptions,
                 authParameters,
               );
 
@@ -337,7 +559,7 @@ export class Bonfhir implements INodeType {
           if (this.continueOnFail()) {
             const item = {
               error,
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
               json: this.getInputData(itemIndex) as any,
               pairedItem: {
                 item: itemIndex,
@@ -385,6 +607,23 @@ async function buildRequestOptions(
   }
   const id = node.getNodeParameter("id", itemIndex, "") as string;
   const vid = node.getNodeParameter("vid", itemIndex, "") as string;
+  const specifyPatchBody = node.getNodeParameter(
+    "specifyPatchBody",
+    itemIndex,
+    "keypair",
+  ) as "keypair" | "json";
+  const patchParameters = node.getNodeParameter(
+    "patchParameters.parameters",
+    itemIndex,
+    [],
+  ) as [
+    {
+      op: string;
+      from: string;
+      path: string;
+      value: string;
+    },
+  ];
   let bodyParameter = node.getNodeParameter("body", itemIndex, "") as string;
   if (
     bodyParameter &&
@@ -393,11 +632,42 @@ async function buildRequestOptions(
   ) {
     bodyParameter = JSON.parse(bodyParameter);
   }
-  const queryParams = node.getNodeParameter(
-    "queryParams",
+  const specifyQuery = node.getNodeParameter(
+    "specifyQuery",
+    itemIndex,
+    "keypair",
+  ) as string;
+  const queryParameters = node.getNodeParameter(
+    "queryParameters.parameters",
+    itemIndex,
+    [],
+  ) as [{ name: string; value: string }];
+  const jsonQueryParameter = node.getNodeParameter(
+    "jsonQuery",
     itemIndex,
     "",
   ) as string;
+
+  let qs;
+  if (specifyQuery === "keypair" && queryParameters.length > 0) {
+    qs = queryParameters.reduce((acc, { name, value }) => {
+      acc[name] = value;
+      return acc;
+    }, {} as any);
+  } else if (specifyQuery === "json" && jsonQueryParameter) {
+    try {
+      qs = JSON.parse(jsonQueryParameter);
+    } catch {
+      throw new NodeOperationError(
+        node.getNode(),
+        "JSON parameter need to be an valid JSON",
+        {
+          itemIndex,
+        },
+      );
+    }
+  }
+
   const allowUnauthorizedCerts = node.getNodeParameter(
     "allowUnauthorizedCerts",
     itemIndex,
@@ -409,6 +679,7 @@ async function buildRequestOptions(
       "content-type": `application/fhir+json`,
     },
     uri: "",
+    qs,
     json: true,
     rejectUnauthorized: !allowUnauthorizedCerts,
   };
@@ -420,7 +691,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "POST",
-            uri: `${baseUrl}/${resourceType}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}`,
             body: bodyParameter,
           },
           operation,
@@ -435,7 +706,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "DELETE",
-            uri: `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}/${id}`,
           },
           operation,
           baseUrl,
@@ -449,7 +720,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "GET",
-            uri: `${baseUrl}/${resourceType}/${id}/_history${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}/${id}/_history`,
           },
           operation,
           baseUrl,
@@ -463,8 +734,9 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "PATCH",
-            uri: `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`,
-            body: bodyParameter,
+            uri: `${baseUrl}/${resourceType}/${id}`,
+            body:
+              specifyPatchBody === "keypair" ? patchParameters : bodyParameter,
           },
           operation,
           baseUrl,
@@ -478,7 +750,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "GET",
-            uri: `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}/${id}`,
           },
           operation,
           baseUrl,
@@ -501,7 +773,6 @@ async function buildRequestOptions(
       } else if (Array.isArray(reference)) {
         allReferences = reference.map((ref) => ref?.reference).filter(Boolean);
       } else if (typeof reference === "object") {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         allReferences = [(reference as any).reference];
       }
 
@@ -511,7 +782,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "GET",
-            uri: `${baseUrl}/${refResourceType}/${refId}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${refResourceType}/${refId}`,
           },
           operation,
           baseUrl,
@@ -525,7 +796,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "GET",
-            uri: `${baseUrl}/${resourceType}${queryParams ? `/?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}`,
           },
           operation,
           baseUrl,
@@ -539,8 +810,8 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "PUT",
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            uri: `${baseUrl}/${resourceType}/${id || (bodyParameter as any).id}${queryParams ? `?${queryParams}` : ""}`,
+
+            uri: `${baseUrl}/${resourceType}/${id || (bodyParameter as any).id}`,
             body: bodyParameter,
           },
           operation,
@@ -555,7 +826,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "GET",
-            uri: `${baseUrl}/${resourceType}/${id}/_history/${vid}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}/${id}/_history/${vid}`,
           },
           operation,
           baseUrl,
@@ -574,17 +845,29 @@ async function buildRequestOptions(
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getNextUrl(bundle: any): string | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getNextUrl(bundle: any): string | undefined {
   return bundle.link?.find((link: any) => link.relation === "next")?.url;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function processResponseIntoItems(response: any, itemIndex: number) {
+function processResponseIntoItems(response: any, itemIndex: number) {
   const resultItems = [];
   if (response.resourceType === "Bundle") {
-    for (const entry of response.entry) {
+    const allResources = new Map<string, unknown>();
+    for (const entry of response.entry
+      ?.map((entry: any) => entry.resource)
+      .filter(Boolean) || []) {
+      allResources.set(`${entry.resourceType}/${entry.id}`, entry);
+      if (entry.meta?.versionId) {
+        allResources.set(
+          `${entry.resourceType}/${entry.id}/_history/${entry.meta.versionId}`,
+          entry,
+        );
+      }
+    }
+    for (const entry of response.entry.filter((e: any) =>
+      isSearchMatch(e, response.entry?.[0]),
+    )) {
+      resolveInternalReferences(entry, allResources);
       resultItems.push({
         json: entry.resource,
         pairedItem: {
@@ -601,4 +884,36 @@ export function processResponseIntoItems(response: any, itemIndex: number) {
     });
   }
   return resultItems;
+}
+
+function isSearchMatch(entry: any, firstEntry: any) {
+  return entry.search?.mode
+    ? entry.search.mode === "match"
+    : entry.resource?.resourceType === firstEntry.resource?.resourceType;
+}
+
+function resolveInternalReferences(
+  entry: any,
+  allResources: Map<string, unknown>,
+) {
+  if (!entry) {
+    return;
+  }
+
+  if (Array.isArray(entry)) {
+    for (const e of entry) resolveInternalReferences(e, allResources);
+    return;
+  }
+
+  if (typeof entry !== "object") {
+    return;
+  }
+
+  if (entry.reference && allResources.has(entry.reference)) {
+    entry.included = allResources.get(entry.reference);
+  }
+
+  for (const key in entry) {
+    resolveInternalReferences(entry[key], allResources);
+  }
 }
