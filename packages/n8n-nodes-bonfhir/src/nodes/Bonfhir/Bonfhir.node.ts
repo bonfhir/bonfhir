@@ -3,6 +3,7 @@
 import { evaluate } from "fhirpath";
 import {
   NodeApiError,
+  NodeOperationError,
   type IExecuteFunctions,
   type INodeExecutionData,
   type INodeType,
@@ -242,9 +243,67 @@ export class Bonfhir implements INodeType {
         },
       },
       {
-        displayName: "Query Params",
-        name: "queryParams",
-        type: "string",
+        displayName: "Specify Query Parameters",
+        name: "specifyQuery",
+        type: "options",
+        options: [
+          {
+            name: "Using Fields Below",
+            value: "keypair",
+          },
+          {
+            name: "Using JSON",
+            value: "json",
+          },
+        ],
+        default: "keypair",
+      },
+      {
+        displayName: "Query Parameters",
+        name: "queryParameters",
+        type: "fixedCollection",
+        displayOptions: {
+          show: {
+            specifyQuery: ["keypair"],
+          },
+        },
+        typeOptions: {
+          multipleValues: true,
+        },
+        placeholder: "Add Parameter",
+        default: {
+          parameters: [],
+        },
+        options: [
+          {
+            name: "parameters",
+            displayName: "Parameter",
+            values: [
+              {
+                displayName: "Name",
+                name: "name",
+                type: "string",
+                default: "",
+              },
+              {
+                displayName: "Value",
+                name: "value",
+                type: "string",
+                default: "",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        displayName: "JSON",
+        name: "jsonQuery",
+        type: "json",
+        displayOptions: {
+          show: {
+            specifyQuery: ["json"],
+          },
+        },
         default: "",
       },
       {
@@ -355,12 +414,20 @@ export class Bonfhir implements INodeType {
                 !nextUrl.startsWith(baseUrl)
               ) {
                 const [, ...restUrl] = nextUrl.split(resourceType);
-                nextUrl = `${baseUrl}/${resourceType}${restUrl.join("")}`;
+                nextUrl = `${baseUrl}/${resourceType}${restUrl.join(resourceType)}`;
               }
-              requestOptions.uri = nextUrl;
+              const pageRequestOptions: OptionsWithUri = {
+                headers: {
+                  "content-type": `application/fhir+json`,
+                },
+                method: "GET",
+                uri: nextUrl,
+                json: true,
+                rejectUnauthorized: requestOptions.rejectUnauthorized,
+              };
               let response = await requestWithAuth(
                 this,
-                requestOptions,
+                pageRequestOptions,
                 authParameters,
               );
 
@@ -435,11 +502,42 @@ async function buildRequestOptions(
   ) {
     bodyParameter = JSON.parse(bodyParameter);
   }
-  const queryParams = node.getNodeParameter(
-    "queryParams",
+  const specifyQuery = node.getNodeParameter(
+    "specifyQuery",
+    itemIndex,
+    "keypair",
+  ) as string;
+  const queryParameters = node.getNodeParameter(
+    "queryParameters.parameters",
+    itemIndex,
+    [],
+  ) as [{ name: string; value: string }];
+  const jsonQueryParameter = node.getNodeParameter(
+    "jsonQuery",
     itemIndex,
     "",
   ) as string;
+
+  let qs;
+  if (specifyQuery === "keypair" && queryParameters.length > 0) {
+    qs = queryParameters.reduce((acc, { name, value }) => {
+      acc[name] = value;
+      return acc;
+    }, {} as any);
+  } else if (specifyQuery === "json" && jsonQueryParameter) {
+    try {
+      qs = JSON.parse(jsonQueryParameter);
+    } catch {
+      throw new NodeOperationError(
+        node.getNode(),
+        "JSON parameter need to be an valid JSON",
+        {
+          itemIndex,
+        },
+      );
+    }
+  }
+
   const allowUnauthorizedCerts = node.getNodeParameter(
     "allowUnauthorizedCerts",
     itemIndex,
@@ -451,6 +549,7 @@ async function buildRequestOptions(
       "content-type": `application/fhir+json`,
     },
     uri: "",
+    qs,
     json: true,
     rejectUnauthorized: !allowUnauthorizedCerts,
   };
@@ -462,7 +561,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "POST",
-            uri: `${baseUrl}/${resourceType}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}`,
             body: bodyParameter,
           },
           operation,
@@ -477,7 +576,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "DELETE",
-            uri: `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}/${id}`,
           },
           operation,
           baseUrl,
@@ -491,7 +590,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "GET",
-            uri: `${baseUrl}/${resourceType}/${id}/_history${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}/${id}/_history`,
           },
           operation,
           baseUrl,
@@ -505,7 +604,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "PATCH",
-            uri: `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}/${id}`,
             body: bodyParameter,
           },
           operation,
@@ -520,7 +619,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "GET",
-            uri: `${baseUrl}/${resourceType}/${id}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}/${id}`,
           },
           operation,
           baseUrl,
@@ -552,7 +651,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "GET",
-            uri: `${baseUrl}/${refResourceType}/${refId}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${refResourceType}/${refId}`,
           },
           operation,
           baseUrl,
@@ -566,7 +665,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "GET",
-            uri: `${baseUrl}/${resourceType}${queryParams ? `/?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}`,
           },
           operation,
           baseUrl,
@@ -581,7 +680,7 @@ async function buildRequestOptions(
             ...requestOptions,
             method: "PUT",
 
-            uri: `${baseUrl}/${resourceType}/${id || (bodyParameter as any).id}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}/${id || (bodyParameter as any).id}`,
             body: bodyParameter,
           },
           operation,
@@ -596,7 +695,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "GET",
-            uri: `${baseUrl}/${resourceType}/${id}/_history/${vid}${queryParams ? `?${queryParams}` : ""}`,
+            uri: `${baseUrl}/${resourceType}/${id}/_history/${vid}`,
           },
           operation,
           baseUrl,

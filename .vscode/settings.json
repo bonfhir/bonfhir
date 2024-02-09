@@ -25,6 +25,7 @@
     "fhirpath",
     "filesize",
     "Formattable",
+    "keypair",
     "listr",
     "loglevel",
     "Mantine",
