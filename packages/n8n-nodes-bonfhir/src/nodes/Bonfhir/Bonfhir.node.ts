@@ -1,4 +1,4 @@
-/* eslint-disable unicorn/no-array-callback-reference */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable n8n-nodes-base/node-param-operation-option-action-miscased */
 import { evaluate } from "fhirpath";
 import {
@@ -298,13 +298,15 @@ export class Bonfhir implements INodeType {
             operation === "Search" &&
             errorIfMoreThanOneResult &&
             response.resourceType === "Bundle" &&
-            response.entry.filter(isSearchMatch).length > 1
+            response.entry.filter((e: any) =>
+              isSearchMatch(e, response.entry?.[0]),
+            ).length > 1
           ) {
             throw new NodeApiError(
               this.getNode(),
               { operation, response },
               {
-                message: `The search returned more than one result (${response.total ?? response.entry.filter(isSearchMatch).length})`,
+                message: `The search returned more than one result (${response.total ?? response.entry.filter((e: any) => isSearchMatch(e, response.entry?.[0])).length})`,
               },
             );
           }
@@ -377,7 +379,7 @@ export class Bonfhir implements INodeType {
           if (this.continueOnFail()) {
             const item = {
               error,
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
               json: this.getInputData(itemIndex) as any,
               pairedItem: {
                 item: itemIndex,
@@ -541,7 +543,6 @@ async function buildRequestOptions(
       } else if (Array.isArray(reference)) {
         allReferences = reference.map((ref) => ref?.reference).filter(Boolean);
       } else if (typeof reference === "object") {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         allReferences = [(reference as any).reference];
       }
 
@@ -579,7 +580,7 @@ async function buildRequestOptions(
           requestOptions: {
             ...requestOptions,
             method: "PUT",
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
             uri: `${baseUrl}/${resourceType}/${id || (bodyParameter as any).id}${queryParams ? `?${queryParams}` : ""}`,
             body: bodyParameter,
           },
@@ -614,17 +615,29 @@ async function buildRequestOptions(
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getNextUrl(bundle: any): string | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return bundle.link?.find((link: any) => link.relation === "next")?.url;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function processResponseIntoItems(response: any, itemIndex: number) {
   const resultItems = [];
   if (response.resourceType === "Bundle") {
-    for (const entry of response.entry.filter(isSearchMatch)) {
+    const allResources = new Map<string, unknown>();
+    for (const entry of response.entry
+      ?.map((entry: any) => entry.resource)
+      .filter(Boolean) || []) {
+      allResources.set(`${entry.resourceType}/${entry.id}`, entry);
+      if (entry.meta?.versionId) {
+        allResources.set(
+          `${entry.resourceType}/${entry.id}/_history/${entry.meta.versionId}`,
+          entry,
+        );
+      }
+    }
+    for (const entry of response.entry.filter((e: any) =>
+      isSearchMatch(e, response.entry?.[0]),
+    )) {
+      resolveInternalReferences(entry, allResources);
       resultItems.push({
         json: entry.resource,
         pairedItem: {
@@ -643,7 +656,34 @@ function processResponseIntoItems(response: any, itemIndex: number) {
   return resultItems;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function isSearchMatch(entry: any) {
-  return !entry.search?.mode || entry.search.mode === "match";
+function isSearchMatch(entry: any, firstEntry: any) {
+  return entry.search?.mode
+    ? entry.search.mode === "match"
+    : entry.resource?.resourceType === firstEntry.resource?.resourceType;
+}
+
+function resolveInternalReferences(
+  entry: any,
+  allResources: Map<string, unknown>,
+) {
+  if (!entry) {
+    return;
+  }
+
+  if (Array.isArray(entry)) {
+    for (const e of entry) resolveInternalReferences(e, allResources);
+    return;
+  }
+
+  if (typeof entry !== "object") {
+    return;
+  }
+
+  if (entry.reference && allResources.has(entry.reference)) {
+    entry.included = allResources.get(entry.reference);
+  }
+
+  for (const key in entry) {
+    resolveInternalReferences(entry[key], allResources);
+  }
 }
