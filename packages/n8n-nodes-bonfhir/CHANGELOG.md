@@ -1,5 +1,19 @@
 # @bonfhir/n8n-nodes-bonfhir
 
+## 1.2.0
+
+### Minor Changes
+
+- [#255](https://github.com/bonfhir/bonfhir/pull/255) [`f4576b0`](https://github.com/bonfhir/bonfhir/commit/f4576b0866ace38289fe4c41ecaee20c69d8ad75) Thanks [@julienblin](https://github.com/julienblin)! - Search now inline included resources and filter on primary search
+
+- [#255](https://github.com/bonfhir/bonfhir/pull/255) [`0243724`](https://github.com/bonfhir/bonfhir/commit/024372484ea61de7bc3616d615ffd97121b97291) Thanks [@julienblin](https://github.com/julienblin)! - Query parameters can now be specify using JSON or a collection
+
+- [#255](https://github.com/bonfhir/bonfhir/pull/255) [`b1478b4`](https://github.com/bonfhir/bonfhir/commit/b1478b4d0face362fe5bdf127b0c6ed7a0c993ef) Thanks [@julienblin](https://github.com/julienblin)! - Add patch builder
+
+### Patch Changes
+
+- [#255](https://github.com/bonfhir/bonfhir/pull/255) [`9326974`](https://github.com/bonfhir/bonfhir/commit/9326974d90df075e63048116dbad1b8062dbf6ea) Thanks [@julienblin](https://github.com/julienblin)! - Add a Search One option
+
 ## 1.1.0
 
 ### Minor Changes
