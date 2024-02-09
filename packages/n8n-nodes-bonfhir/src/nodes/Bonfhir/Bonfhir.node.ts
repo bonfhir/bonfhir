@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-array-callback-reference */
 /* eslint-disable n8n-nodes-base/node-param-operation-option-action-miscased */
 import { evaluate } from "fhirpath";
 import {
@@ -129,6 +130,25 @@ export class Bonfhir implements INodeType {
         displayOptions: {
           show: {
             operation: ["Search"],
+          },
+          hide: {
+            allPages: [false],
+          },
+        },
+      },
+      {
+        displayName: "Error if More than One Result",
+        description:
+          "Whether this will return an error if there is more than one result in the search Bundle",
+        name: "errorIfMoreThanOneResult",
+        type: "boolean",
+        default: false,
+        displayOptions: {
+          show: {
+            operation: ["Search"],
+          },
+          hide: {
+            allPages: [true],
           },
         },
       },
@@ -268,6 +288,26 @@ export class Bonfhir implements INodeType {
             requestOptions,
             authParameters,
           );
+
+          const errorIfMoreThanOneResult = this.getNodeParameter(
+            "errorIfMoreThanOneResult",
+            itemIndex,
+            false,
+          ) as boolean;
+          if (
+            operation === "Search" &&
+            errorIfMoreThanOneResult &&
+            response.resourceType === "Bundle" &&
+            response.entry.filter(isSearchMatch).length > 1
+          ) {
+            throw new NodeApiError(
+              this.getNode(),
+              { operation, response },
+              {
+                message: `The search returned more than one result (${response.total ?? response.entry.filter(isSearchMatch).length})`,
+              },
+            );
+          }
 
           const fhirPath = this.getNodeParameter(
             "fhirPath",
@@ -575,16 +615,16 @@ async function buildRequestOptions(
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getNextUrl(bundle: any): string | undefined {
+function getNextUrl(bundle: any): string | undefined {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return bundle.link?.find((link: any) => link.relation === "next")?.url;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function processResponseIntoItems(response: any, itemIndex: number) {
+function processResponseIntoItems(response: any, itemIndex: number) {
   const resultItems = [];
   if (response.resourceType === "Bundle") {
-    for (const entry of response.entry) {
+    for (const entry of response.entry.filter(isSearchMatch)) {
       resultItems.push({
         json: entry.resource,
         pairedItem: {
@@ -601,4 +641,9 @@ export function processResponseIntoItems(response: any, itemIndex: number) {
     });
   }
   return resultItems;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isSearchMatch(entry: any) {
+  return !entry.search?.mode || entry.search.mode === "match";
 }
