@@ -43,7 +43,8 @@ export class Bonfhir implements INodeType {
         type: "string",
         description: "The base URL of the FHIR server API",
         required: true,
-        default: "http://example.com/fhir",
+        default: "",
+        placeholder: "http://example.com/fhir",
       },
       {
         displayName: "Operation",
@@ -217,6 +218,27 @@ export class Bonfhir implements INodeType {
         },
       },
       {
+        displayName: "Specify Patch Body",
+        name: "specifyPatchBody",
+        type: "options",
+        options: [
+          {
+            name: "Using Fields Below",
+            value: "keypair",
+          },
+          {
+            name: "Using JSON",
+            value: "json",
+          },
+        ],
+        default: "keypair",
+        displayOptions: {
+          show: {
+            operation: ["Patch"],
+          },
+        },
+      },
+      {
         displayName: "Body",
         name: "body",
         type: "json",
@@ -226,7 +248,98 @@ export class Bonfhir implements INodeType {
           show: {
             operation: ["Create", "Patch", "Update"],
           },
+          hide: {
+            specifyPatchBody: ["keypair"],
+          },
         },
+      },
+      {
+        displayName: "Patch Parameters",
+        name: "patchParameters",
+        type: "fixedCollection",
+        displayOptions: {
+          show: {
+            specifyPatchBody: ["keypair"],
+          },
+        },
+        typeOptions: {
+          multipleValues: true,
+        },
+        placeholder: "Add Parameter",
+        default: {
+          parameters: [],
+        },
+        options: [
+          {
+            name: "parameters",
+            displayName: "Parameter",
+            values: [
+              {
+                displayName: "Op",
+                name: "op",
+                type: "options",
+                default: "add",
+                options: [
+                  {
+                    name: "Add",
+                    description:
+                      "Adds a value to an object or inserts it into an array",
+                    value: "add",
+                  },
+                  {
+                    name: "Copy",
+                    description:
+                      "Copies a value from one location to another within the JSON document. Both from and path are JSON Pointers.",
+                    value: "copy",
+                  },
+                  {
+                    name: "Move",
+                    description:
+                      "Moves a value from one location to the other. Both from and path are JSON Pointers.",
+                    value: "move",
+                  },
+                  {
+                    name: "Remove",
+                    description: "Removes a value from an object or array",
+                    value: "remove",
+                  },
+                  {
+                    name: "Replace",
+                    description:
+                      "Replaces a value. Equivalent to a “remove” followed by an “add”.",
+                    value: "replace",
+                  },
+                  {
+                    name: "Test",
+                    description:
+                      "Tests that the specified value is set in the document. If the test fails, then the patch as a whole should not apply.",
+                    value: "test",
+                  },
+                ],
+              },
+              {
+                displayName: "From",
+                name: "from",
+                type: "string",
+                default: "",
+                placeholder: "{Only for Copy, Move, or Test}",
+              },
+              {
+                displayName: "Path",
+                name: "path",
+                type: "string",
+                default: "",
+                placeholder: "/path/to/element",
+              },
+              {
+                displayName: "Value",
+                name: "value",
+                type: "json",
+                default: "",
+              },
+            ],
+          },
+        ],
       },
       {
         displayName: "Reference",
@@ -494,6 +607,23 @@ async function buildRequestOptions(
   }
   const id = node.getNodeParameter("id", itemIndex, "") as string;
   const vid = node.getNodeParameter("vid", itemIndex, "") as string;
+  const specifyPatchBody = node.getNodeParameter(
+    "specifyPatchBody",
+    itemIndex,
+    "keypair",
+  ) as "keypair" | "json";
+  const patchParameters = node.getNodeParameter(
+    "patchParameters.parameters",
+    itemIndex,
+    [],
+  ) as [
+    {
+      op: string;
+      from: string;
+      path: string;
+      value: string;
+    },
+  ];
   let bodyParameter = node.getNodeParameter("body", itemIndex, "") as string;
   if (
     bodyParameter &&
@@ -605,7 +735,8 @@ async function buildRequestOptions(
             ...requestOptions,
             method: "PATCH",
             uri: `${baseUrl}/${resourceType}/${id}`,
-            body: bodyParameter,
+            body:
+              specifyPatchBody === "keypair" ? patchParameters : bodyParameter,
           },
           operation,
           baseUrl,
