@@ -220,6 +220,11 @@ function BatteriesIncluded() {
       link: "/packages/react",
     },
     {
+      title: "Visual workflow builder",
+      text: "Use FHIR with n8n to build complex workflows",
+      link: "/docs/bulid-workflows-with-n8n",
+    },
+    {
       title: "AWS Lambda",
       text: "Support for execution in serverless environments",
       link: "/packages/subscriptions/aws-lambda",
@@ -233,11 +238,6 @@ function BatteriesIncluded() {
       title: "Custom FHIR resources",
       text: "handle FHIR profiles alongside standard FHIR resources",
       link: "/packages/core/extending-fhir-resources",
-    },
-    {
-      title: "US Core resources",
-      text: "Support for US Core specific extensions",
-      link: "/packages/us-core",
     },
     {
       title: "Code generation",

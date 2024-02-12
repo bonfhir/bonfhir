@@ -38,7 +38,7 @@ Let's start by retrieving a Patient and displaying some information about them.
 
    You should see the content of `src/pages/Home.tsx`:
 
-   ![Example](../../static/img/docs/vite-template.png)
+   ![Example](/img/docs/vite-template.png)
 
    :::warning
 
@@ -97,7 +97,7 @@ Let's start by retrieving a Patient and displaying some information about them.
 
 Here is the output of this example with patient information displayed on a single card:
 
-![Example](../../static/img/docs/display-fhir-data-example.png)
+![Example](/img/docs/display-fhir-data-example.png)
 
 ```tsx title="src/pages/Home.tsx"
 import { useFhirRead } from "@bonfhir/query/r4b";

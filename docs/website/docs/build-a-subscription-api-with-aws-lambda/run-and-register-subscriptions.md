@@ -62,7 +62,7 @@ Subscription Send communication requests for CommunicationRequest on http://host
 
 Head over to the local Medplum server and have a look at the subscriptions (http://localhost:8100/Subscription) - you should see the one that just got registered!
 
-![Medplum Subscription](../../static/img/docs/medplum-subscription.png)
+![Medplum Subscription](/img/docs/medplum-subscription.png)
 
 ## Test the subscription
 

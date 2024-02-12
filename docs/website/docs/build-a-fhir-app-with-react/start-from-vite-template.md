@@ -14,7 +14,7 @@ description: Create the app from the vite template
 
 2. Provide a project name and select the **vite** template with the **Medplum** FHIR server:
 
-   ![Vite Project Template](../../static/img/docs/vite-project-template.png)
+   ![Vite Project Template](/img/docs/vite-project-template.png)
 
 :::info
 
