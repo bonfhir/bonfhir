@@ -35,4 +35,4 @@ for your liking.
 
 5. Verify that patient data appears in MedPlum at http://localhost:8100/Patient
 
-   ![Medplum](../../static/img/docs/medplum.png)
+   ![Medplum](/img/docs/medplum.png)

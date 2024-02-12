@@ -105,11 +105,11 @@ Subscription Create encounters for arrived appointments for Appointment?status=a
 Head over to [Medplum and create a new appointment](http://localhost:8100/Appointment) with the status `arrived`.
 You can even include participants!
 
-![Medplum Appointment](../../static/img/docs/medplum-appointment.png)
+![Medplum Appointment](/img/docs/medplum-appointment.png)
 
 Then [search for encounters](http://localhost:8100/Encounter) and look at the last one updated - you should see the one
 that the subscription just created!
 
-![Medplum Encounter](../../static/img/docs/medplum-encounter.png)
+![Medplum Encounter](/img/docs/medplum-encounter.png)
 
 Congratulation! You have now created your first subscription.

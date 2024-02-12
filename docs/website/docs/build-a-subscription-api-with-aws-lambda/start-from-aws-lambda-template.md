@@ -12,7 +12,7 @@ description: Create the app from the lambda template
 
 2. Provide a project name and select the **lambda** template with the **Medplum** FHIR Server:
 
-   ![Lambda Project Template](../../static/img/docs/lambda-project-template.png)
+   ![Lambda Project Template](/img/docs/lambda-project-template.png)
 
 :::info
 

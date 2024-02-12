@@ -1,0 +1,153 @@
+{
+  "name": "Send email from CommunicationRequest",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "baseUrl": "http://fhir-server:8103/fhir/R4",
+        "resourceType": "CommunicationRequest",
+        "searchCriteria": "status=active&medium=email",
+        "reason": "Send emails from CommunicationRequest"
+      },
+      "id": "1271dd06-e0e2-4990-8f6d-2dc4d060888f",
+      "name": "bonFHIR Trigger",
+      "type": "@bonfhir/n8n-nodes-bonfhir.bonfhirTrigger",
+      "typeVersion": 1,
+      "position": [380, 260],
+      "webhookId": "f007bee8-8f3a-4d12-bd9d-d915d2fa20eb",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "lq4KErUXzEeRUEL1",
+          "name": "Medplum Basic Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "baseUrl": "http://fhir-server:8103/fhir/R4",
+        "operation": "Resolve",
+        "patchParameters": {
+          "parameters": []
+        },
+        "reference": "={{ $json.recipient }}",
+        "queryParameters": {
+          "parameters": []
+        },
+        "fhirPath": "telecom.where(system='email').first()"
+      },
+      "id": "4bfc4dd9-943e-4425-b44f-24556bb965a9",
+      "name": "bonFHIR",
+      "type": "@bonfhir/n8n-nodes-bonfhir.bonfhir",
+      "typeVersion": 1,
+      "position": [760, 260],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "lq4KErUXzEeRUEL1",
+          "name": "Medplum Basic Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "admin@fhir-server.local",
+        "toEmail": "={{ $json.value }}",
+        "subject": "={{ $('bonFHIR Trigger').item.json.payload[0].contentString }}",
+        "emailFormat": "text",
+        "text": "={{ $('bonFHIR Trigger').item.json.payload[1].contentString }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "96d61331-2c84-4559-80a3-1037e17a52b2",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [980, 260],
+      "credentials": {
+        "smtp": {
+          "id": "Mbzjqc2ulmpY5SNw",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "baseUrl": "http://fhir-server:8103/fhir/R4",
+        "operation": "Patch",
+        "resourceType": "CommunicationRequest",
+        "id": "={{ $('bonFHIR Trigger').item.json.id }}",
+        "patchParameters": {
+          "parameters": [
+            {
+              "path": "/status",
+              "value": "completed"
+            }
+          ]
+        },
+        "queryParameters": {
+          "parameters": []
+        }
+      },
+      "id": "d05c2b9c-55ec-476d-a246-46c309b1c4dc",
+      "name": "bonFHIR1",
+      "type": "@bonfhir/n8n-nodes-bonfhir.bonfhir",
+      "typeVersion": 1,
+      "position": [1200, 260],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "lq4KErUXzEeRUEL1",
+          "name": "Medplum Basic Auth"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "bonFHIR Trigger": {
+      "main": [
+        [
+          {
+            "node": "bonFHIR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "bonFHIR": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "bonFHIR1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b773254c-e360-406c-a7ad-d9f3a371f9d5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "15002683a394274f09e42d482473b61f0283944b32d932a280a9b80b85fda08a"
+  },
+  "id": "Rx1lSQoryllDyqJG",
+  "tags": []
+}

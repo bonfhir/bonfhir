@@ -14,7 +14,7 @@ description: Create the app from the next template
 
 2. Provide a project name and select the **next** template:
 
-   ![Vite Project Template](../../static/img/docs/next-project-template.png)
+   ![Vite Project Template](/img/docs/next-project-template.png)
 
 :::info
 

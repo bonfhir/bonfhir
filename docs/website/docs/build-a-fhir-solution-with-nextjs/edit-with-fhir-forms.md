@@ -114,7 +114,7 @@ Let's start by creating a new page and adapt navigation.
 
     Simply update the birth date of the patient, and observe the resource being updated back in the home page.
 
-    ![Patient form with birthDate](../../static/img/docs/patient-form-birthDate.png)
+    ![Patient form with birthDate](/img/docs/patient-form-birthDate.png)
 
     Notice how we did not need to do anything to refresh the data in the home page; the `@bonfhir/query` package takes
     care of cache invalidation and refresh for us.
@@ -175,7 +175,7 @@ Let's start by creating a new page and adapt navigation.
     Notice the usage of `<FhirInputArray>` in conjunction with `form.getArrayInputProps` to handle repeating elements
     in a FHIR resource.
 
-    ![Patient form with names](../../static/img/docs/patient-form-with-names.png)
+    ![Patient form with names](/img/docs/patient-form-with-names.png)
 
 :::info[Works in creation too]
 

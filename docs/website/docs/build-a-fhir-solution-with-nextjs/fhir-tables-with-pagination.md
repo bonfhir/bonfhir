@@ -133,7 +133,7 @@ This guide builds off of the previous guide: [Display FHIR data](/docs/build-a-f
 
 Here is the output of this example with a paginated table of Diagnostic Reports for the patient!
 
-![Example](../../static/img/docs/fhir-table-with-pagination.png)
+![Example](/img/docs/fhir-table-with-pagination.png)
 
 ```tsx title="src/app/PatientReportsTable.tsx"
 import { DiagnosticReportSortOrder } from "@bonfhir/core/r4b";
