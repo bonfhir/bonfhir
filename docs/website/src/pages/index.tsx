@@ -277,6 +277,7 @@ function BatteriesIncluded() {
           </Link>
         </div>
       </div>
+      <a id="help"></a>
     </div>
   );
 }

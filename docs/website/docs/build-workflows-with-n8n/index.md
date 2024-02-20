@@ -17,6 +17,14 @@ It is also easily self-hostable (which allow you to make it HIPAA-compliant), an
 
 :::
 
+### Video tutorial
+
+This tutorial is also available in video:
+
+<p style={{textAlign: "center"}}>
+  <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/tQ0-lLY_E9Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</p>
+
 ### What you'll need
 
 - [Docker](https://docs.docker.com/desktop/)

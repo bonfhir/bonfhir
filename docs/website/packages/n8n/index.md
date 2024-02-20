@@ -12,6 +12,6 @@ The `@bonfhir/n8n-nodes-bonfhir` is a [n8n](https://n8n.io/) community node that
 It allows you to build complex workflow visually, and simplifies the integration with third-party systems through the
 numerous [pre-built integrations](https://n8n.io/integrations/) for different apps and services.
 
-[Follow our tutorial here](/docs/bulid-workflows-with-n8n) to get started and have a taste!
+[Follow our tutorial here](/docs/build-workflows-with-n8n) to get started and have a taste!
 
 <DocCardList />
