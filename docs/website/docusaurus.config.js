@@ -61,9 +61,8 @@ const config = {
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      // Replace with your project's social card
-      image: "img/docusaurus-social-card.jpg",
+    {
+      image: "img/bonfhir-card.png",
       announcementBar: {
         id: "consult_with_us",
         content:
@@ -119,7 +118,7 @@ const config = {
         apiKey: "fc7d73ded65b514d4e2773653bc196c4",
         indexName: "bonfhir",
       },
-    }),
+    },
 };
 
 module.exports = config;
