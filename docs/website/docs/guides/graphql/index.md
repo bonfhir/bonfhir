@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 title: Setup GraphQL in a bonFHIR project
 description: Type-safe graphql at your fingertips
 ---
