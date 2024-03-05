@@ -35,7 +35,7 @@ Here are some resources to learn more about how to create IGs:
 ## What is the IG Toolbox?
 
 bonFHIR's IG toolbox helps with maintaining the suite of tools required to author and generate IGs,
-so you can focus on _writing_ the IG, not figuring out how to setup you tools and workstation.
+so you can focus on _writing_ the IG, not figuring out how to setup your tools and workstation.
 
 You don't need to install anything.  
 The only thing you need is [Docker installed](https://www.docker.com/products/docker-desktop/),
