@@ -1,6 +1,8 @@
 import {
+  INode,
   INodeProperties,
   IRequestOptionsSimplified,
+  NodeApiError,
   RequestHelperFunctions,
   jsonParse,
   type ICredentialDataDecryptedObject,
@@ -171,7 +173,7 @@ export async function getAuthParameters(
 }
 
 export async function requestWithAuth(
-  node: { helpers: RequestHelperFunctions },
+  node: { helpers: RequestHelperFunctions; getNode(): INode },
   requestOptions: OptionsWithUri,
   authParameters: GenericAuthParameters,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -225,15 +227,17 @@ export async function requestWithAuth(
     }
   }
 
+  let response;
+
   if (authParameters.oAuth1Api) {
-    return await node.helpers.requestOAuth1.call(
+    response = await node.helpers.requestOAuth1.call(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       node as any,
       "oAuth1Api",
       requestOptions,
     );
   } else if (authParameters.oAuth2Api) {
-    return await node.helpers.requestOAuth2.call(
+    response = await node.helpers.requestOAuth2.call(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       node as any,
       "oAuth2Api",
@@ -243,6 +247,27 @@ export async function requestWithAuth(
       },
     );
   } else {
-    return await node.helpers.request(requestOptions);
+    response = await node.helpers.request(requestOptions);
   }
+
+  if (!response) {
+    throw new NodeApiError(node.getNode(), {
+      message:
+        "No response returned - It might indicate an authentication issue",
+    });
+  }
+
+  if (response.resourceType === "OperationOutcome") {
+    console.error(response);
+    throw new NodeApiError(node.getNode(), response, {
+      message: response.issue
+        ?.map(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (issue: any) =>
+            `${issue.severity}: [${issue.code}] ${issue.diagnostics}`,
+        )
+        .join(", "),
+    });
+  }
+  return response;
 }
