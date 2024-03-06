@@ -32,9 +32,10 @@ export class BonfhirTrigger implements INodeType {
     webhooks: [
       {
         name: "default",
-        httpMethod: "POST",
+        httpMethod: '={{$parameter["mode"] == "webhook" ? "POST" : "PUT"}}',
         responseMode: "onReceived",
-        path: "webhook",
+        path: '={{$parameter["mode"] == "webhook" ? $parameter["pathPrefix"] : "/fhir/:resourceType/:resourceId"}}',
+        isFullPath: true,
       },
     ],
     properties: [
@@ -59,6 +60,42 @@ export class BonfhirTrigger implements INodeType {
         description: "The base URL of the FHIR server API",
         required: true,
         default: "http://example.com/fhir",
+      },
+      {
+        displayName: "Mode",
+        name: "mode",
+        type: "options",
+        description: "How the trigger should behave",
+        required: true,
+        options: [
+          {
+            name: "Webhook",
+            description:
+              "Act as a standard Webhook: POST Method, and stable URL",
+            value: "webhook",
+          },
+          {
+            name: "Resthook / FHIR Client",
+            description:
+              "Act as if it was a FHIR Server receiving a FHIR REST API call, with a PUT method. This is how HAPI FHIR servers works.",
+            value: "resthook",
+          },
+        ],
+        default: "webhook",
+      },
+      {
+        displayName: "Path Prefix",
+        description: "The Webhook path prefix",
+        hint: "Used to differentiate multiple webhooks - you should probably not change it",
+        name: "pathPrefix",
+        type: "string",
+        required: true,
+        default: `${Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8)}`,
+        displayOptions: {
+          show: {
+            mode: ["webhook"],
+          },
+        },
       },
       {
         displayName: "Resource Type",
@@ -150,6 +187,7 @@ export class BonfhirTrigger implements INodeType {
     const resource = JSON.parse(rawResource.toString());
 
     return {
+      webhookResponse: JSON.stringify(resource),
       workflowData: [this.helpers.returnJsonArray(resource)],
     };
   }
@@ -165,7 +203,7 @@ export class BonfhirTrigger implements INodeType {
         if (baseUrl.endsWith("/")) {
           baseUrl = baseUrl.slice(0, -1);
         }
-        const webhookUrl = this.getNodeWebhookUrl("default");
+        const webhookUrl = getWebhookUrl(this);
 
         const response = await requestWithAuth(
           this,
@@ -198,7 +236,7 @@ export class BonfhirTrigger implements INodeType {
         if (baseUrl.endsWith("/")) {
           baseUrl = baseUrl.slice(0, -1);
         }
-        const webhookUrl = this.getNodeWebhookUrl("default");
+        const webhookUrl = getWebhookUrl(this);
         const reason = this.getNodeParameter("reason") as string;
         const payload = this.getNodeParameter("payload") as string;
         const secret = this.getNodeParameter("secret") as string;
@@ -226,7 +264,7 @@ export class BonfhirTrigger implements INodeType {
               resourceType: "Subscription",
               status: "active",
               reason,
-              criteria: `${resourceType}${searchCriteria ? "?" + searchCriteria : ""}`,
+              criteria: `${resourceType}?${searchCriteria || ""}`,
               channel: {
                 type: "rest-hook",
                 endpoint: webhookUrl,
@@ -251,7 +289,7 @@ export class BonfhirTrigger implements INodeType {
         if (baseUrl.endsWith("/")) {
           baseUrl = baseUrl.slice(0, -1);
         }
-        const webhookUrl = this.getNodeWebhookUrl("default");
+        const webhookUrl = getWebhookUrl(this);
 
         const response = await requestWithAuth(
           this,
@@ -292,4 +330,10 @@ export class BonfhirTrigger implements INodeType {
       },
     },
   };
+}
+
+function getWebhookUrl(node: IHookFunctions): string {
+  return node
+    .getNodeWebhookUrl("default")!
+    .replace("/:resourceType/:resourceId", "");
 }

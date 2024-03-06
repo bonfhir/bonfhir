@@ -18,3 +18,25 @@ The creation of the subscription is managed automatically by the node, and is cr
 
 ![Add bonFHIR Trigger](/img/docs/n8n/add-bonfhir-trigger.png)
 ![CR received output](/img/docs/n8n/cr-received-output.png)
+
+## Modes
+
+The trigger has 2 modes: Webhook or Resthook
+
+### Webhook
+
+In this mode, the trigger behaves like a standard webhook:
+
+- listen for POST requests
+- only listen at the root of the webhook URL (A unique path prefix is generated to avoid potential collisions)
+
+This is the mode that servers like [Medplum](https://medplum.com) expect.
+
+### Resthook
+
+In Resthook mode, the trigger behaves closer to what a "real" FHIR server would do:
+
+- listen for PUT requests
+- expect a resource type and resource id to be appended in the path
+
+This is the mode that servers like [HAPI FHIR](https://hapifhir.io/) expect.
