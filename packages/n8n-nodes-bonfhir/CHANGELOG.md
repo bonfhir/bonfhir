@@ -1,5 +1,13 @@
 # @bonfhir/n8n-nodes-bonfhir
 
+## 1.3.0
+
+### Minor Changes
+
+- [#262](https://github.com/bonfhir/bonfhir/pull/262) [`b9fd6f8`](https://github.com/bonfhir/bonfhir/commit/b9fd6f89220430c50e0d87b0a0046b9fed0cb2c5) Thanks [@julienblin](https://github.com/julienblin)! - Better error handling and management
+
+- [#262](https://github.com/bonfhir/bonfhir/pull/262) [`d60edfb`](https://github.com/bonfhir/bonfhir/commit/d60edfb04de5fc3a7379fe0d3da25c1e31792007) Thanks [@julienblin](https://github.com/julienblin)! - Introduce trigger modes - webhook or resthook to handle different styles of servers, and have HAPI FHIR compatibility.
+
 ## 1.2.0
 
 ### Minor Changes
