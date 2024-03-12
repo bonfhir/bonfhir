@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/aws-lambda",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "AWS Lambda package for BonFHIR",
   "keywords": [
     "HL7",
@@ -55,7 +55,7 @@
   ],
   "dependencies": {
     "@bonfhir/core": "^2.16.1",
-    "@bonfhir/subscriptions": "^2.3.0"
+    "@bonfhir/subscriptions": "^2.4.0"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",

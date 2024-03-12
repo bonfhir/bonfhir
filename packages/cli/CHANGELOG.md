@@ -1,5 +1,11 @@
 # @bonfhir/cli
 
+## 2.11.0
+
+### Minor Changes
+
+- [#266](https://github.com/bonfhir/bonfhir/pull/266) [`77dfcd2`](https://github.com/bonfhir/bonfhir/commit/77dfcd2d3e9f57a0ee58d2a96c3a9e29e4f677fe) Thanks [@julienblin](https://github.com/julienblin)! - Make subscriptions compatible with HAPI as well as Medplum (accept PUT and POST requests).
+
 ## 2.10.0
 
 ### Minor Changes
