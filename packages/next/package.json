@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/next",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "BonFHIR Next.js integration",
   "keywords": [
     "HL7",
@@ -75,7 +75,7 @@
   "dependencies": {
     "@bonfhir/core": "^2.17.2",
     "@bonfhir/react": "^3.0.0",
-    "@bonfhir/subscriptions": "^2.3.0"
+    "@bonfhir/subscriptions": "^2.4.0"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",
