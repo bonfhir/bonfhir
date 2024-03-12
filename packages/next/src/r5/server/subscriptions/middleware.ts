@@ -60,7 +60,10 @@ export function fhirSubscriptions(
         ? await config.fhirClient()
         : config.fhirClient;
 
-    const action = request.nextUrl.pathname.split("/").at(-1);
+    const action = request.nextUrl.pathname
+      .split(config.prefix)[1]
+      ?.split("/")
+      .find(Boolean);
 
     if (action === "register") {
       try {
@@ -100,7 +103,7 @@ export function fhirSubscriptions(
 
     const resource = await request.json();
     try {
-      const result = await subscription.handler({
+      await subscription.handler({
         fhirClient:
           typeof config.fhirClient === "function"
             ? await config.fhirClient()
@@ -109,16 +112,12 @@ export function fhirSubscriptions(
         logger,
       });
 
-      return result == undefined
-        ? new NextResponse(undefined, {
-            status: 204,
-          })
-        : new NextResponse(JSON.stringify(result), {
-            status: 200,
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+      return new NextResponse(JSON.stringify(resource), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/fhir+json",
+        },
+      });
     } catch (error) {
       logger.error(error);
       return new NextResponse(errorToString(error), {

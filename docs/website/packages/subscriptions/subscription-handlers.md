@@ -5,7 +5,7 @@ description: React to FHIR Resources changes
 ---
 
 At the heart of the bonFHIR subscription models lies the concept of a `FhirSubscription`.  
-A `FhirSubscription` is an abstraction that represents both the criterias that trigger it (the registration information),
+A `FhirSubscription` is an abstraction that represents both the criteria that trigger it (the registration information),
 and the handler that gets executed when said subscription is triggered.
 
 ## Basic usage

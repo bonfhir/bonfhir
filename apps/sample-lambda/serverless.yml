@@ -12,6 +12,9 @@ functions:
       - httpApi:
           path: /fhir/subscriptions/{endpoint+}
           method: post
+      - httpApi:
+          path: /fhir/subscriptions/{endpoint+}
+          method: put
 
 plugins:
   - serverless-esbuild

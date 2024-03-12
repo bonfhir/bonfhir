@@ -28,9 +28,7 @@ export interface FhirSubscription<TResource extends AnyResource = AnyResource> {
 
 export type FhirSubscriptionHandler<
   TResource extends AnyResource = AnyResource,
-> = (
-  args: FhirSubscriptionHandlerArgs<TResource>,
-) => Promise<FhirSubscriptionHandlerResult>;
+> = (args: FhirSubscriptionHandlerArgs<TResource>) => Promise<void>;
 
 export type FhirSubscriptionLogger = Pick<
   typeof console,
@@ -48,12 +46,6 @@ export interface FhirSubscriptionHandlerArgs<
   /** The configured logger. */
   logger: FhirSubscriptionLogger | null | undefined;
 }
-
-export type FhirSubscriptionHandlerResult =
-  | void
-  | Promise<void>
-  | object
-  | Promise<object>;
 
 export interface RegisterSubscriptionsArgs {
   fhirClient: FhirClient;

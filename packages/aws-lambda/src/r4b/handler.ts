@@ -61,7 +61,9 @@ export function fhirSubscriptionHandler(
       };
     }
 
-    const endpoint = event.pathParameters?.["endpoint"];
+    const endpoint = event.pathParameters?.["endpoint"]
+      ?.split("/")
+      .find(Boolean);
 
     if (!endpoint) {
       return {
@@ -131,7 +133,7 @@ export function fhirSubscriptionHandler(
     const resource = JSON.parse(event.body);
 
     try {
-      const result = await subscription.handler({
+      await subscription.handler({
         fhirClient:
           typeof config.fhirClient === "function"
             ? await config.fhirClient()
@@ -140,13 +142,11 @@ export function fhirSubscriptionHandler(
         logger,
       });
 
-      return result == undefined
-        ? { statusCode: 204 }
-        : {
-            statusCode: 200,
-            body: JSON.stringify(result),
-            headers: { "Content-Type": "application/json" },
-          };
+      return {
+        statusCode: 200,
+        body: JSON.stringify(resource),
+        headers: { "Content-Type": "application/fhir+json" },
+      };
     } catch (error) {
       logger.error(error);
 
