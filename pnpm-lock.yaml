@@ -165,13 +165,13 @@ importers:
   apps/sample-lambda:
     dependencies:
       '@bonfhir/aws-lambda':
-        specifier: ^2.3.0
+        specifier: ^2.4.0
         version: link:../../packages/aws-lambda
       '@bonfhir/core':
         specifier: ^2.18.0
         version: link:../../packages/core
       '@bonfhir/subscriptions':
-        specifier: ^2.4.0
+        specifier: ^2.5.0
         version: link:../../packages/subscriptions
     devDependencies:
       '@bonfhir/eslint-config':
@@ -404,7 +404,7 @@ importers:
         specifier: ^2.16.1
         version: link:../core
       '@bonfhir/subscriptions':
-        specifier: ^2.4.0
+        specifier: ^2.5.0
         version: link:../subscriptions
     devDependencies:
       '@bonfhir/eslint-config':
@@ -1113,7 +1113,7 @@ importers:
         specifier: ^3.0.0
         version: link:../react
       '@bonfhir/subscriptions':
-        specifier: ^2.4.0
+        specifier: ^2.5.0
         version: link:../subscriptions
     devDependencies:
       '@bonfhir/eslint-config':
