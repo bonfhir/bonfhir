@@ -1,5 +1,6 @@
 import {
   AnyResource,
+  CustomResourceClass,
   FhirClient,
   Retrieved,
   Subscription,
@@ -7,7 +8,9 @@ import {
   urlSafeConcat,
 } from "@bonfhir/core/r4b";
 
-export interface FhirSubscription<TResource extends AnyResource = AnyResource> {
+export interface FhirSubscription<
+  TResource extends AnyResource | CustomResourceClass = AnyResource,
+> {
   /** The Subscription selection criteria. */
   criteria: Subscription["criteria"];
 
@@ -16,6 +19,11 @@ export interface FhirSubscription<TResource extends AnyResource = AnyResource> {
 
   /** The Subscription endpoint to hit (webhook url). */
   endpoint: string;
+
+  /**
+   * Use a custom (extended) resource class (instead of default FHIR resource).
+   */
+  customResource?: CustomResourceClass;
 
   /** The subscription handler. */
   handler: FhirSubscriptionHandler<TResource>;
@@ -27,7 +35,7 @@ export interface FhirSubscription<TResource extends AnyResource = AnyResource> {
 }
 
 export type FhirSubscriptionHandler<
-  TResource extends AnyResource = AnyResource,
+  TResource extends AnyResource | CustomResourceClass = AnyResource,
 > = (args: FhirSubscriptionHandlerArgs<TResource>) => Promise<void>;
 
 export type FhirSubscriptionLogger = Pick<
@@ -36,7 +44,7 @@ export type FhirSubscriptionLogger = Pick<
 >;
 
 export interface FhirSubscriptionHandlerArgs<
-  TResource extends AnyResource = AnyResource,
+  TResource extends AnyResource | CustomResourceClass = AnyResource,
 > {
   fhirClient: FhirClient;
 
