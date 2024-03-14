@@ -10,7 +10,7 @@ You can also easily add computed values to FHIR resources to ease usage.
 ## Extend FHIR resources
 
 ```typescript
-import { extendResource, extension, tag, Formatter } from "@bonfhir/core/r4b";
+import { extendResource, extension, ResourceOf, tag, Formatter } from "@bonfhir/core/r4b";
 
 // Define a custom Patient resource
 const CustomPatient = extendResource("Patient", {
@@ -32,6 +32,9 @@ const CustomPatient = extendResource("Patient", {
     ]}`;
   },
 });
+
+// You don't have to do this, but this may get handy if you need to use the custom resource as a type as well.
+type CustomPatient = ResourceOf<typeof CustomPatient>;
 
 // Use it as a constructor then
 const patient = new CustomPatient({

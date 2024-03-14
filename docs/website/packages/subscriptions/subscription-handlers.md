@@ -70,3 +70,23 @@ to the [FHIR subscription](https://hl7.org/fhir/R4B/subscription-definitions.htm
 secret. This header is then verified by the subscription infrastructure to prevent any unwanted invocation from happening.
 
 The shared secret (named `webhookSecret` in the configuration) must be protected adequately (as you would handle other secrets).
+
+## Custom resources in subscriptions
+
+Subscriptions handler support [custom (extended) resources](/packages/core/extending-fhir-resources).
+Just use the `customResource` and adjust your subscription type:
+
+```typescript
+// This only works if you have also exported your custom resource class as a type.
+export const communicationRequestsSubscription: FhirSubscription<CustomCommunicationRequest> =
+  {
+    // ...
+
+    customResource: CustomCommunicationRequest
+
+    async handler({ fhirClient, resource, logger }) {
+      // Here `resource` is a custom resource class instance.
+      logger?.info(resource);
+    },
+  };
+```

@@ -108,7 +108,6 @@ export const LambdaTasks = (): ListrTask<Context>[] => [
         cwd,
         "@types/aws-lambda",
         "@types/node",
-        "@types/react-dom",
         "@typescript-eslint/eslint-plugin",
         "@typescript-eslint/parser",
         "eslint",

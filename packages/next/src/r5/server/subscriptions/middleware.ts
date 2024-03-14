@@ -102,13 +102,19 @@ export function fhirSubscriptions(
     }
 
     const resource = await request.json();
+    const resourceOrCustomResource =
+      subscription.customResource &&
+      typeof subscription.customResource !== "string"
+        ? new subscription.customResource(resource)
+        : resource;
+
     try {
       await subscription.handler({
         fhirClient:
           typeof config.fhirClient === "function"
             ? await config.fhirClient()
             : config.fhirClient,
-        resource,
+        resource: resourceOrCustomResource,
         logger,
       });
 
