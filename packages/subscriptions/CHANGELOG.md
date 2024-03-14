@@ -1,5 +1,11 @@
 # @bonfhir/subscriptions
 
+## 2.5.0
+
+### Minor Changes
+
+- [#268](https://github.com/bonfhir/bonfhir/pull/268) [`7810f2e`](https://github.com/bonfhir/bonfhir/commit/7810f2e75d75fb7cda68f1c1c2d525e3bdf6039b) Thanks [@julienblin](https://github.com/julienblin)! - Add support for custom resource classes in subscriptions
+
 ## 2.4.0
 
 ### Minor Changes

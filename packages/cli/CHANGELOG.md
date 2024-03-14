@@ -1,5 +1,11 @@
 # @bonfhir/cli
 
+## 2.11.1
+
+### Patch Changes
+
+- [#268](https://github.com/bonfhir/bonfhir/pull/268) [`7ed82a7`](https://github.com/bonfhir/bonfhir/commit/7ed82a7ae0c423f279287445d654e82863b5e671) Thanks [@julienblin](https://github.com/julienblin)! - Remove react types from lambda template
+
 ## 2.11.0
 
 ### Minor Changes
