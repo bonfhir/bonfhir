@@ -1,6 +1,6 @@
 {
   "name": "create-bonfhir",
-  "version": "2.8.1",
+  "version": "2.8.2",
   "description": "Create a new BonFHIR project",
   "keywords": [
     "HL7",

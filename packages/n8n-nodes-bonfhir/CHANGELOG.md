@@ -1,5 +1,11 @@
 # @bonfhir/n8n-nodes-bonfhir
 
+## 1.4.0
+
+### Minor Changes
+
+- [#270](https://github.com/bonfhir/bonfhir/pull/270) [`55f9dac`](https://github.com/bonfhir/bonfhir/commit/55f9daccc8fa7753d1263233bae357a2d04d6bd5) Thanks [@julienblin](https://github.com/julienblin)! - Fix PATCH operation - now sending the proper `application/json-patch+json` content-type. This is a compatibility update for HAPI.
+
 ## 1.3.0
 
 ### Minor Changes
