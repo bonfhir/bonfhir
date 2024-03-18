@@ -1,5 +1,11 @@
 # create-bonfhir
 
+## 2.8.2
+
+### Patch Changes
+
+- [#270](https://github.com/bonfhir/bonfhir/pull/270) [`15bdf86`](https://github.com/bonfhir/bonfhir/commit/15bdf86cd45c1bdee6974c31a5d21badf98f6ced) Thanks [@julienblin](https://github.com/julienblin)! - Fix lambda template - moved to any for serverless-offline, which had an issue with multiple handlers at same address.
+
 ## 2.8.1
 
 ### Patch Changes
