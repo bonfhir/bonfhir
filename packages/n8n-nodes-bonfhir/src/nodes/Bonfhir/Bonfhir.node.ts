@@ -676,7 +676,10 @@ async function buildRequestOptions(
 
   const requestOptions: OptionsWithUri = {
     headers: {
-      "content-type": `application/fhir+json`,
+      "content-type":
+        operation === "Patch"
+          ? `application/json-patch+json`
+          : `application/fhir+json`,
     },
     uri: "",
     qs,

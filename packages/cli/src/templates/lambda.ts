@@ -235,10 +235,7 @@ functions:
     events:
       - httpApi:
           path: /fhir/subscriptions/{endpoint+}
-          method: post
-      - httpApi:
-          path: /fhir/subscriptions/{endpoint+}
-          method: post
+          method: any
 
 plugins:
   - serverless-esbuild

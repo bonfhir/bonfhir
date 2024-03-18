@@ -155,13 +155,14 @@ describe("fetch-fhir-client", () => {
       async ({ request }) => new Response(JSON.stringify(await request.json())),
     ),
 
-    http.patch(
-      `${baseUrl}/Patient/:patientId`,
-      ({ params }) =>
-        new Response(
-          JSON.stringify({ ...patientExample, id: params.patientId }),
-        ),
-    ),
+    http.patch(`${baseUrl}/Patient/:patientId`, ({ params, request }) => {
+      expect(request.headers.get("Content-Type")).toEqual(
+        "application/json-patch+json",
+      );
+      return new Response(
+        JSON.stringify({ ...patientExample, id: params.patientId }),
+      );
+    }),
 
     http.delete(`${baseUrl}/Patient/:patientId`, ({ params }) => {
       if (params.patientId === "not-found") {
