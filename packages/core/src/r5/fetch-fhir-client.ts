@@ -265,7 +265,11 @@ export class FetchFhirClient implements FhirClient {
       {
         method: "PATCH",
         body: JSON.stringify(normalizePatchBody(type, body)),
-        headers,
+        headers: {
+          ...headers,
+          "Content-Type":
+            headers?.["Content-Type"] ?? "application/json-patch+json",
+        },
         signal,
       },
       type,
