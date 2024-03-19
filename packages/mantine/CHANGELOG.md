@@ -1,5 +1,11 @@
 # @bonfhir/mantine
 
+## 3.3.1
+
+### Patch Changes
+
+- [#272](https://github.com/bonfhir/bonfhir/pull/272) [`0db5a06`](https://github.com/bonfhir/bonfhir/commit/0db5a066d8b5bdde8596c1edbf924c5513643cb3) Thanks [@julienblin](https://github.com/julienblin)! - Add form renderer props to questionnaire
+
 ## 3.3.0
 
 ### Minor Changes
