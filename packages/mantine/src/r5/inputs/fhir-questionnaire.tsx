@@ -29,6 +29,7 @@ import {
   Title,
   TitleProps,
 } from "@mantine/core";
+import { UseFormInput } from "@mantine/form";
 import { IconAlertCircle } from "@tabler/icons-react";
 import { ReactElement, ReactNode, useEffect } from "react";
 import { UseFhirFormReturnType, useFhirForm } from "../hooks/use-fhir-form";
@@ -48,6 +49,7 @@ export function MantineFhirQuestionnaire(
         ),
       });
     },
+    ...(props?.rendererProps?.form as any),
   });
 
   useEffect(() => {
@@ -161,6 +163,7 @@ export interface MantineFhirQuestionnaireProps {
   submitText?: ReactNode | null | undefined;
   cancel?: ButtonProps | null | undefined;
   cancelText?: ReactNode | null | undefined;
+  form?: UseFormInput<any, any> | null | undefined;
 }
 
 function MantineQuestionnaireItemRenderer({
