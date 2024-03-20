@@ -1,5 +1,17 @@
 # @bonfhir/mantine
 
+## 3.4.0
+
+### Minor Changes
+
+- [#274](https://github.com/bonfhir/bonfhir/pull/274) [`f19fbe9`](https://github.com/bonfhir/bonfhir/commit/f19fbe96a7cad03a797d7442c61c8d575996ddfd) Thanks [@julienblin](https://github.com/julienblin)! - Add `onResponseChange` on `<FhirQuestionnaire />`.
+
+### Patch Changes
+
+- Updated dependencies [[`f19fbe9`](https://github.com/bonfhir/bonfhir/commit/f19fbe96a7cad03a797d7442c61c8d575996ddfd), [`22498a5`](https://github.com/bonfhir/bonfhir/commit/22498a5c7c9d0cc5d0f1e3719092e9f247ebce69), [`2994d20`](https://github.com/bonfhir/bonfhir/commit/2994d202997209d185ea6c98ab0f639961e93f23)]:
+  - @bonfhir/react@3.2.0
+  - @bonfhir/core@2.19.1
+
 ## 3.3.1
 
 ### Patch Changes
