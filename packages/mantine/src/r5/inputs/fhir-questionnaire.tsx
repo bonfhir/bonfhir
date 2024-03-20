@@ -7,6 +7,7 @@ import {
   QuestionnaireResponse,
   QuestionnaireResponseItem,
   ValueSetExpansionContains,
+  WithRequired,
   build,
   canonical,
 } from "@bonfhir/core/r5";
@@ -37,41 +38,6 @@ import { UseFhirFormReturnType, useFhirForm } from "../hooks/use-fhir-form";
 export function MantineFhirQuestionnaire(
   props: FhirQuestionnaireRendererProps<MantineFhirQuestionnaireProps>,
 ): ReactElement | null {
-  const form = useFhirForm<object, (values: object) => QuestionnaireResponse>({
-    transformValues(values) {
-      return build("QuestionnaireResponse", {
-        questionnaire: canonical(props.questionnaire)!,
-        status: "completed",
-        authored: new Date().toISOString(),
-        item: buildQuestionnaireResponseItems(
-          props.questionnaire!.item || [],
-          values,
-        ),
-      });
-    },
-    ...(props?.rendererProps?.form as any),
-  });
-
-  useEffect(() => {
-    if (props.isLoading) {
-      return;
-    }
-
-    if (props.questionnaire) {
-      form.setValues(
-        buildInitialValues(
-          props.questionnaire.item || [],
-          "",
-          props.questionnaireResponse?.item || [],
-        ),
-      );
-    }
-  }, [
-    props.isLoading,
-    props.questionnaire?.id,
-    props.questionnaireResponse?.id,
-  ]);
-
   if (props.isLoading || !props.questionnaire) {
     return (
       <Stack
@@ -108,6 +74,95 @@ export function MantineFhirQuestionnaire(
   }
 
   return (
+    <QuestionnaireRenderer {...props} questionnaire={props.questionnaire} />
+  );
+}
+
+export interface MantineFhirQuestionnaireProps {
+  mainStack?: StackProps | null | undefined;
+  loader?: LoaderProps | null | undefined;
+  title?: TitleProps | null | undefined;
+  itemDisplay?: FhirValueProps | null | undefined;
+  itemGroupStack?: StackProps | null | undefined;
+  itemGroupTitle?: TitleProps | null | undefined;
+  itemInput?: FhirInputProps | null | undefined;
+  submit?: ButtonProps | null | undefined;
+  submitText?: ReactNode | null | undefined;
+  cancel?: ButtonProps | null | undefined;
+  cancelText?: ReactNode | null | undefined;
+  form?:
+    | UseFormInput<any, any>
+    | ((form: UseFhirFormReturnType<any, any>) => UseFormInput<any, any>)
+    | null
+    | undefined;
+}
+
+function QuestionnaireRenderer(
+  props: WithRequired<
+    FhirQuestionnaireRendererProps<MantineFhirQuestionnaireProps>,
+    "questionnaire"
+  >,
+): ReactElement | null {
+  const form = useFhirForm<object, (values: object) => QuestionnaireResponse>({
+    transformValues(values) {
+      return build("QuestionnaireResponse", {
+        questionnaire: canonical(props.questionnaire)!,
+        status: "completed",
+        authored: new Date().toISOString(),
+        item: buildQuestionnaireResponseItems(
+          props.questionnaire.item || [],
+          values,
+        ),
+      });
+    },
+    onValuesChange(values) {
+      if (props.questionnaire && props.onResponseChange) {
+        const newValues = props.onResponseChange(
+          build("QuestionnaireResponse", {
+            questionnaire: canonical(props.questionnaire)!,
+            status: "completed",
+            authored: new Date().toISOString(),
+            item: buildQuestionnaireResponseItems(
+              props.questionnaire.item || [],
+              values,
+            ),
+          }),
+        );
+        if (newValues) {
+          form.setValues(
+            buildValues(
+              props.questionnaire.item || [],
+              "",
+              newValues.item || [],
+            ),
+          );
+        }
+      }
+    },
+    ...(props?.rendererProps?.form as any),
+  });
+
+  useEffect(() => {
+    if (props.isLoading) {
+      return;
+    }
+
+    if (props.questionnaire) {
+      form.setValues(
+        buildValues(
+          props.questionnaire.item || [],
+          "",
+          props.questionnaireResponse?.item || [],
+        ),
+      );
+    }
+  }, [
+    props.isLoading,
+    props.questionnaire?.id,
+    props.questionnaireResponse?.id,
+  ]);
+
+  return (
     <form
       onSubmit={form.onSubmit((questionnaireResponse) =>
         props.onSubmit?.(questionnaireResponse),
@@ -118,12 +173,12 @@ export function MantineFhirQuestionnaire(
         style={props.style}
         {...props.rendererProps?.mainStack}
       >
-        {props.questionnaire!.title && (
+        {props.questionnaire.title && (
           <Title order={2} {...props.rendererProps?.title}>
-            {props.questionnaire!.title}
+            {props.questionnaire.title}
           </Title>
         )}
-        {(props.questionnaire!.item || []).map((item, index) => (
+        {(props.questionnaire.item || []).map((item, index) => (
           <MantineQuestionnaireItemRenderer
             key={index}
             props={props}
@@ -149,21 +204,6 @@ export function MantineFhirQuestionnaire(
       </Stack>
     </form>
   );
-}
-
-export interface MantineFhirQuestionnaireProps {
-  mainStack?: StackProps | null | undefined;
-  loader?: LoaderProps | null | undefined;
-  title?: TitleProps | null | undefined;
-  itemDisplay?: FhirValueProps | null | undefined;
-  itemGroupStack?: StackProps | null | undefined;
-  itemGroupTitle?: TitleProps | null | undefined;
-  itemInput?: FhirInputProps | null | undefined;
-  submit?: ButtonProps | null | undefined;
-  submitText?: ReactNode | null | undefined;
-  cancel?: ButtonProps | null | undefined;
-  cancelText?: ReactNode | null | undefined;
-  form?: UseFormInput<any, any> | null | undefined;
 }
 
 function MantineQuestionnaireItemRenderer({
@@ -312,6 +352,10 @@ function buildQuestionnaireResponseItems(
       }
       case "question":
       case "display": {
+        result.push({
+          linkId: i.linkId,
+          text: i.text,
+        });
         break;
       }
       case "choice": {
@@ -349,7 +393,7 @@ function buildQuestionnaireResponseItems(
   return result.length === 0 ? undefined : result;
 }
 
-function buildInitialValues(
+function buildValues(
   item: QuestionnaireItem[],
   parentPath: string,
   responseItem: QuestionnaireResponseItem[],
@@ -361,7 +405,7 @@ function buildInitialValues(
     );
     switch (i.type) {
       case "group": {
-        result[i.linkId] = buildInitialValues(
+        result[i.linkId] = buildValues(
           i.item || [],
           concatPath(parentPath, i.linkId),
           responseI?.item || [],

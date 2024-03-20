@@ -26,6 +26,14 @@ export interface FhirQuestionnaireProps<TRendererProps = any> {
     | undefined;
   onSubmit?: ((value: QuestionnaireResponse) => void) | null | undefined;
   onCancel?: (() => void) | null | undefined;
+  /**
+   * Invoked on every response change in the form.
+   * If the function returns a value, it will be used as the new response and the form should update.
+   * Be careful to check for infinite loops when using this function.
+   */
+  onResponseChange?: (
+    response: QuestionnaireResponse,
+  ) => QuestionnaireResponse | void | undefined;
   className?: string | undefined;
   style?: Record<string, any> | undefined;
   rendererProps?: TRendererProps;
