@@ -9,6 +9,8 @@ import {
   compareBy,
   findReference,
   findReferences,
+  flattenQuestionnaireItems,
+  getQuestionnaireItemByLinkId,
   resourcesAreEqual,
   truncate,
   urlSafeConcat,
@@ -241,5 +243,463 @@ describe("lang-utils", () => {
         "1950-01-01",
       ]);
     });
+  });
+
+  describe("flattenQuestionnaireItems", () => {
+    it("should flatten Questionnaire items", () => {
+      const questionnaire = {
+        resourceType: "Questionnaire",
+        url: "https://www.seenhealth.org/fhir/Questionnaire/PHQ-9",
+        title: "PATIENT HEALTH QUESTIONNAIRE (PHQ-9)",
+        name: "phq-9",
+        status: "active",
+        subjectType: ["Patient"],
+        item: [
+          {
+            linkId: "instructions",
+            type: "display",
+            text: "Over the last 2 weeks, how often have you been\nbothered by any of the following problems?",
+          },
+          {
+            linkId: "questions",
+            type: "group",
+            item: [
+              {
+                linkId: "q1",
+                type: "choice",
+                text: "Little interest or pleasure in doing things",
+                answerValueSet:
+                  "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+                required: true,
+                extension: [
+                  {
+                    url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                    valueString: '{ "mode": "segmented" }',
+                  },
+                ],
+              },
+              {
+                linkId: "q2",
+                type: "choice",
+                text: "Feeling down, depressed, or hopeless",
+                answerValueSet:
+                  "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+                required: true,
+                extension: [
+                  {
+                    url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                    valueString: '{ "mode": "segmented" }',
+                  },
+                ],
+              },
+              {
+                linkId: "q3",
+                type: "choice",
+                text: "Trouble falling or staying asleep, or sleeping too much",
+                answerValueSet:
+                  "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+                required: true,
+                extension: [
+                  {
+                    url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                    valueString: '{ "mode": "segmented" }',
+                  },
+                ],
+              },
+              {
+                linkId: "q4",
+                type: "choice",
+                text: "Feeling tired or having little energy",
+                answerValueSet:
+                  "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+                required: true,
+                extension: [
+                  {
+                    url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                    valueString: '{ "mode": "segmented" }',
+                  },
+                ],
+              },
+              {
+                linkId: "q5",
+                type: "choice",
+                text: "Poor appetite or overeating",
+                answerValueSet:
+                  "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+                required: true,
+                extension: [
+                  {
+                    url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                    valueString: '{ "mode": "segmented" }',
+                  },
+                ],
+              },
+              {
+                linkId: "q6",
+                type: "choice",
+                text: "Feeling bad about yourself or that you are a failure or have let yourself or your family down",
+                answerValueSet:
+                  "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+                required: true,
+                extension: [
+                  {
+                    url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                    valueString: '{ "mode": "segmented" }',
+                  },
+                ],
+              },
+              {
+                linkId: "q7",
+                type: "choice",
+                text: "Trouble concentrating on things, such as reading the newspaper or watching television",
+                answerValueSet:
+                  "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+                required: true,
+                extension: [
+                  {
+                    url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                    valueString: '{ "mode": "segmented" }',
+                  },
+                ],
+              },
+              {
+                linkId: "q8",
+                type: "choice",
+                text: "Moving or speaking so slowly that other people could have noticed. Or the opposite being so figety or restless that you have been moving around a lot more than usual",
+                answerValueSet:
+                  "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+                required: true,
+                extension: [
+                  {
+                    url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                    valueString: '{ "mode": "segmented" }',
+                  },
+                ],
+              },
+              {
+                linkId: "q9",
+                type: "choice",
+                text: "Thoughts that you would be better off dead, or of hurting yourself",
+                answerValueSet:
+                  "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+                required: true,
+                extension: [
+                  {
+                    url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                    valueString: '{ "mode": "segmented" }',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            linkId: "scoring",
+            type: "group",
+            item: [
+              {
+                linkId: "score",
+                type: "integer",
+                readOnly: true,
+                text: "Total Score:",
+                extension: [
+                  {
+                    url: "https://www.seenhealth.org/fhir/StructureDefinition/Questionnaire-Scoring",
+                    valueCode: "SUM",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      const items = flattenQuestionnaireItems(questionnaire);
+      expect(items.length).toEqual(13);
+    });
+
+    it("should flatten QuestionnaireResponse items with nested items", () => {
+      const questionnaireResponse = {
+        questionnaire: "https://www.seenhealth.org/fhir/Questionnaire/PHQ-9",
+        status: "completed",
+        authored: "2024-03-20T14:01:10.541Z",
+        item: [
+          {
+            linkId: "instructions",
+            text: "Over the last 2 weeks, how often have you been\nbothered by any of the following problems?",
+          },
+          {
+            linkId: "questions",
+            item: [
+              {
+                linkId: "q3",
+                text: "Trouble falling or staying asleep, or sleeping too much",
+                answer: [
+                  {
+                    valueCoding: {
+                      code: "2",
+                      system:
+                        "https://www.seenhealth.org/fhir/CodeSystem/PHQ-9-Answers",
+                      display: "More than half the days",
+                      userSelected: true,
+                    },
+                  },
+                ],
+              },
+              {
+                linkId: "q6",
+                text: "Feeling bad about yourself or that you are a failure or have let yourself or your family down",
+                answer: [
+                  {
+                    valueCoding: {
+                      code: "1",
+                      system:
+                        "https://www.seenhealth.org/fhir/CodeSystem/PHQ-9-Answers",
+                      display: "Several days",
+                      userSelected: true,
+                    },
+                  },
+                ],
+              },
+              {
+                linkId: "q7",
+                text: "Trouble concentrating on things, such as reading the newspaper or watching television",
+                answer: [
+                  {
+                    valueCoding: {
+                      code: "3",
+                      system:
+                        "https://www.seenhealth.org/fhir/CodeSystem/PHQ-9-Answers",
+                      display: "Nearly every day",
+                      userSelected: true,
+                    },
+                  },
+                ],
+              },
+              {
+                linkId: "q8",
+                text: "Moving or speaking so slowly that other people could have noticed. Or the opposite being so figety or restless that you have been moving around a lot more than usual",
+                answer: [
+                  {
+                    valueCoding: {
+                      code: "3",
+                      system:
+                        "https://www.seenhealth.org/fhir/CodeSystem/PHQ-9-Answers",
+                      display: "Nearly every day",
+                      userSelected: true,
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            linkId: "scoring",
+            item: [
+              {
+                linkId: "score",
+                text: "Total Score:",
+                answer: [
+                  {
+                    valueInteger: 9,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        resourceType: "QuestionnaireResponse",
+        text: {
+          status: "generated",
+          div: '<div xmlns="http://www.w3.org/1999/xhtml"><ul><li><span>Authored: </span>3/20/24, 10:01 AM</li><li><span>Questionnaire: </span>https://www.seenhealth.org/fhir/Questionnaire/PHQ-9</li><li><span>Status: </span>completed</li></ul></div>',
+        },
+      };
+      const items = flattenQuestionnaireItems(questionnaireResponse);
+      expect(items.length).toEqual(8);
+    });
+  });
+
+  describe("getQuestionnaireItemByLinkId", () => {
+    const questionnaire = {
+      resourceType: "Questionnaire",
+      url: "https://www.seenhealth.org/fhir/Questionnaire/PHQ-9",
+      title: "PATIENT HEALTH QUESTIONNAIRE (PHQ-9)",
+      name: "phq-9",
+      status: "active",
+      subjectType: ["Patient"],
+      item: [
+        {
+          linkId: "instructions",
+          type: "display",
+          text: "Over the last 2 weeks, how often have you been\nbothered by any of the following problems?",
+        },
+        {
+          linkId: "questions",
+          type: "group",
+          item: [
+            {
+              linkId: "q1",
+              type: "choice",
+              text: "Little interest or pleasure in doing things",
+              answerValueSet:
+                "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+              required: true,
+              extension: [
+                {
+                  url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                  valueString: '{ "mode": "segmented" }',
+                },
+              ],
+            },
+            {
+              linkId: "q2",
+              type: "choice",
+              text: "Feeling down, depressed, or hopeless",
+              answerValueSet:
+                "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+              required: true,
+              extension: [
+                {
+                  url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                  valueString: '{ "mode": "segmented" }',
+                },
+              ],
+            },
+            {
+              linkId: "q3",
+              type: "choice",
+              text: "Trouble falling or staying asleep, or sleeping too much",
+              answerValueSet:
+                "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+              required: true,
+              extension: [
+                {
+                  url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                  valueString: '{ "mode": "segmented" }',
+                },
+              ],
+            },
+            {
+              linkId: "q4",
+              type: "choice",
+              text: "Feeling tired or having little energy",
+              answerValueSet:
+                "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+              required: true,
+              extension: [
+                {
+                  url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                  valueString: '{ "mode": "segmented" }',
+                },
+              ],
+            },
+            {
+              linkId: "q5",
+              type: "choice",
+              text: "Poor appetite or overeating",
+              answerValueSet:
+                "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+              required: true,
+              extension: [
+                {
+                  url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                  valueString: '{ "mode": "segmented" }',
+                },
+              ],
+            },
+            {
+              linkId: "q6",
+              type: "choice",
+              text: "Feeling bad about yourself or that you are a failure or have let yourself or your family down",
+              answerValueSet:
+                "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+              required: true,
+              extension: [
+                {
+                  url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                  valueString: '{ "mode": "segmented" }',
+                },
+              ],
+            },
+            {
+              linkId: "q7",
+              type: "choice",
+              text: "Trouble concentrating on things, such as reading the newspaper or watching television",
+              answerValueSet:
+                "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+              required: true,
+              extension: [
+                {
+                  url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                  valueString: '{ "mode": "segmented" }',
+                },
+              ],
+            },
+            {
+              linkId: "q8",
+              type: "choice",
+              text: "Moving or speaking so slowly that other people could have noticed. Or the opposite being so figety or restless that you have been moving around a lot more than usual",
+              answerValueSet:
+                "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+              required: true,
+              extension: [
+                {
+                  url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                  valueString: '{ "mode": "segmented" }',
+                },
+              ],
+            },
+            {
+              linkId: "q9",
+              type: "choice",
+              text: "Thoughts that you would be better off dead, or of hurting yourself",
+              answerValueSet:
+                "https://www.seenhealth.org/fhir/ValueSet/PHQ-9-Answers",
+              required: true,
+              extension: [
+                {
+                  url: "http://bonfhir.dev/StructureDefinition/fhir-questionnaire-props",
+                  valueString: '{ "mode": "segmented" }',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          linkId: "scoring",
+          type: "group",
+          item: [
+            {
+              linkId: "score",
+              type: "integer",
+              readOnly: true,
+              text: "Total Score:",
+              extension: [
+                {
+                  url: "https://www.seenhealth.org/fhir/StructureDefinition/Questionnaire-Scoring",
+                  valueCode: "SUM",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    const score = getQuestionnaireItemByLinkId(
+      questionnaire,
+      "scoring",
+      "score",
+    );
+    expect(score?.linkId).toEqual("score");
+
+    const q2 = getQuestionnaireItemByLinkId(questionnaire, "q2");
+    expect(q2).toBeUndefined();
+
+    const questionsQ2 = getQuestionnaireItemByLinkId(
+      questionnaire,
+      "questions",
+      "q2",
+    );
+    expect(questionsQ2?.linkId).toEqual("q2");
   });
 });

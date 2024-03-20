@@ -17,10 +17,13 @@ export type FhirInputTerminologyProps<TRendererProps = any> =
     placeholder?: string | null | undefined;
     fhirClient?: string | null | undefined;
     filter?: ((value: ValueSetExpansionContains) => boolean) | null | undefined;
-    sort?: (
-      a: ValueSetExpansionContains,
-      b: ValueSetExpansionContains,
-    ) => number;
+    sort?:
+      | "original"
+      | "display"
+      | ((
+          a: ValueSetExpansionContains,
+          b: ValueSetExpansionContains,
+        ) => number);
     className?: string | undefined;
     style?: Record<string, any> | undefined;
     rendererProps?: TRendererProps;
@@ -91,9 +94,33 @@ export function FhirInputTerminology<TRendererProps = any>(
       if (props.filter) {
         data = data.filter((element) => props.filter?.(element));
       }
-      data = props.sort
-        ? data.sort((a, b) => props.sort?.(a, b) || 0)
-        : data.sort(compareBy("display"));
+
+      switch (props.sort) {
+        case "original": {
+          break;
+        }
+        case "display":
+        case undefined:
+        // eslint-disable-next-line unicorn/no-null, no-fallthrough
+        case null: {
+          data = [...data].sort(compareBy("display"));
+          break;
+        }
+        default: {
+          if (typeof props.sort === "function") {
+            data = [...data].sort(
+              (a, b) =>
+                (
+                  props.sort as (
+                    a: ValueSetExpansionContains,
+                    b: ValueSetExpansionContains,
+                  ) => number
+                )?.(a, b) || 0,
+            );
+          }
+          break;
+        }
+      }
     }
 
     return render<FhirInputTerminologyRendererProps>("FhirInputTerminology", {

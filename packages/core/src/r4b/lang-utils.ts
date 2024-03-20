@@ -8,6 +8,8 @@ import {
   AnyResourceType,
   DomainResource,
   ExtractResource,
+  QuestionnaireItem,
+  QuestionnaireResponseItem,
   Reference,
   Resource,
   isResource,
@@ -581,3 +583,35 @@ export type ChoiceOfDataTypesOptions<
     ? Uncapitalize<TRest>
     : never]: (value: NonNullable<TParent[K]>) => TResult;
 };
+
+/**
+ * Flattens `Questionnaire` or `QuestionnaireResponse` items into a flat array.
+ * Depth-first search.
+ */
+export function flattenQuestionnaireItems<
+  T extends QuestionnaireItem | QuestionnaireResponseItem,
+>(withItem: { item?: T[] }): T[] {
+  return (withItem.item?.flatMap((item) => [
+    item,
+    ...flattenQuestionnaireItems(item as never),
+  ]) ?? []) as T[];
+}
+
+/**
+ * Find a `Questionnaire` or `QuestionnaireResponse` item using their linkId path.
+ * The complete path must be provided.
+ * For a search by partial path, use `flattenQuestionnaireItems`.
+ */
+export function getQuestionnaireItemByLinkId<
+  T extends QuestionnaireItem | QuestionnaireResponseItem,
+>(withItem: { item?: T[] }, ...linkIds: string[]): T | undefined {
+  if (linkIds.length === 0) {
+    return undefined;
+  }
+  const [currentLinkId, ...restLinkIds] = linkIds;
+  const item = withItem.item?.find((x) => x.linkId === currentLinkId);
+  if (restLinkIds.length === 0) {
+    return item;
+  }
+  return getQuestionnaireItemByLinkId(item as never, ...restLinkIds);
+}
