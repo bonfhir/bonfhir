@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.19.1
+
+### Patch Changes
+
+- [#274](https://github.com/bonfhir/bonfhir/pull/274) [`22498a5`](https://github.com/bonfhir/bonfhir/commit/22498a5c7c9d0cc5d0f1e3719092e9f247ebce69) Thanks [@julienblin](https://github.com/julienblin)! - Add questionnaire utility methods.
+
 ## 2.19.0
 
 ### Minor Changes
