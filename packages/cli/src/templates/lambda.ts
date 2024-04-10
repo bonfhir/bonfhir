@@ -110,7 +110,7 @@ export const LambdaTasks = (): ListrTask<Context>[] => [
         "@types/node",
         "@typescript-eslint/eslint-plugin",
         "@typescript-eslint/parser",
-        "eslint",
+        "eslint@^8",
         "eslint-config-prettier",
         "prettier",
         "prettier-plugin-organize-imports",

@@ -85,7 +85,7 @@ export const Expo: Template = {
             cwd,
             "prettier",
             "prettier-plugin-organize-imports",
-            "eslint",
+            "eslint@^8",
             "eslint-config-prettier",
             "eslint-config-universe",
           );

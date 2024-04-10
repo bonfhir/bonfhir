@@ -130,7 +130,7 @@ export const Monorepo: Template = {
             `${cwd}/packages/fhir`,
             `@${name}/eslint-config-custom`,
             `@${name}/tsconfig`,
-            "eslint",
+            "eslint@^8",
             "eslint-config-prettier",
             "prettier",
             "prettier-plugin-organize-imports",
