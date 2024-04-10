@@ -26,7 +26,7 @@ export class BonfhirTrigger implements INodeType {
     defaults: {
       name: "bonFHIR Trigger",
     },
-    inputs: [""],
+    inputs: [],
     outputs: ["main"],
     credentials,
     webhooks: [
