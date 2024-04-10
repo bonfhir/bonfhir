@@ -148,7 +148,7 @@ export const ViteTasks = (): ListrTask<Context>[] => [
         "@typescript-eslint/eslint-plugin",
         "@typescript-eslint/parser",
         "@vitejs/plugin-react@^4",
-        "eslint",
+        "eslint@^8",
         "eslint-config-prettier",
         "eslint-plugin-react-hooks",
         "eslint-plugin-react-refresh",

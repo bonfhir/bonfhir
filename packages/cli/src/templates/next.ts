@@ -119,7 +119,7 @@ export const Next: Template = {
             "@types/node",
             "@types/react",
             "@types/react-dom",
-            "eslint",
+            "eslint@^8",
             "eslint-config-next",
             "eslint-config-prettier",
             "postcss@^8",
