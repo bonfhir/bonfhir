@@ -20,8 +20,8 @@
   },
   "main": "index.json",
   "dependencies": {
-    "prettier": "^3.2.4",
+    "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.4"
   }
 }
