@@ -65,7 +65,8 @@ export function useFhirPatchMutation<TResourceType extends AnyResourceType>(
   unknown
 > {
   const fhirQueryContext = useFhirClientQueryContext(options?.fhirClient);
-  const mutatorManageCache = options?.manageCache === undefined || options?.manageCache;
+  const mutatorManageCache =
+    options?.manageCache === undefined || options?.manageCache;
   return useMutation({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...(options?.mutation as any),
