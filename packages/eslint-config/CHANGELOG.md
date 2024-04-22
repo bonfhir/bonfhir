@@ -1,5 +1,11 @@
 # @bonfhir/eslint-config
 
+## 2.0.5
+
+### Patch Changes
+
+- [#276](https://github.com/bonfhir/bonfhir/pull/276) [`c163e25`](https://github.com/bonfhir/bonfhir/commit/c163e2532c0940ed32779ad186aa03985bcc5641) Thanks [@julienblin](https://github.com/julienblin)! - Update rules
+
 ## 2.0.4
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # create-bonfhir
 
+## 2.9.0
+
+### Minor Changes
+
+- [#278](https://github.com/bonfhir/bonfhir/pull/278) [`18fbb00`](https://github.com/bonfhir/bonfhir/commit/18fbb00fa33f1fa2c573fbe6ed498b19a6c6caf6) Thanks [@julienblin](https://github.com/julienblin)! - Limit eslint package to major version 8 for the moment
+
+### Patch Changes
+
+- [#276](https://github.com/bonfhir/bonfhir/pull/276) [`0425511`](https://github.com/bonfhir/bonfhir/commit/04255115dc86f095535405a61c2757d8786f09c0) Thanks [@julienblin](https://github.com/julienblin)! - Update internal dependencies (inquirer)
+
 ## 2.8.2
 
 ### Patch Changes

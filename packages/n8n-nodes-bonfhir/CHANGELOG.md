@@ -1,5 +1,11 @@
 # @bonfhir/n8n-nodes-bonfhir
 
+## 1.4.1
+
+### Patch Changes
+
+- [#278](https://github.com/bonfhir/bonfhir/pull/278) [`9267bff`](https://github.com/bonfhir/bonfhir/commit/9267bffc6281213882d27acb0e94c0ea61d67386) Thanks [@julienblin](https://github.com/julienblin)! - Update n8n-core dependency and adjusted types
+
 ## 1.4.0
 
 ### Minor Changes

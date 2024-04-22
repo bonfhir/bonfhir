@@ -1,5 +1,14 @@
 # @bonfhir/mantine
 
+## 3.4.1
+
+### Patch Changes
+
+- [#276](https://github.com/bonfhir/bonfhir/pull/276) [`53992eb`](https://github.com/bonfhir/bonfhir/commit/53992eb664c7ba9286f980b94824e5dda73dd8b6) Thanks [@julienblin](https://github.com/julienblin)! - Fix peer dependency specification for @tabler/icons-react
+
+- Updated dependencies [[`0a24249`](https://github.com/bonfhir/bonfhir/commit/0a242499c20f29629018bcd8764b77bd86e7161d)]:
+  - @bonfhir/core@2.19.2
+
 ## 3.4.0
 
 ### Minor Changes

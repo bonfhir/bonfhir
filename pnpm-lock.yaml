@@ -172,7 +172,7 @@ importers:
         specifier: ^2.4.0
         version: link:../../packages/aws-lambda
       '@bonfhir/core':
-        specifier: ^2.19.1
+        specifier: ^2.19.2
         version: link:../../packages/core
       '@bonfhir/subscriptions':
         specifier: ^2.5.0
@@ -409,7 +409,7 @@ importers:
   packages/aws-lambda:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.16.1
+        specifier: ^2.19.2
         version: link:../core
       '@bonfhir/subscriptions':
         specifier: ^2.5.0
@@ -861,7 +861,7 @@ importers:
   packages/gluestack-ui:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.17.2
+        specifier: ^2.19.2
         version: link:../core
       '@bonfhir/query':
         specifier: ^3.1.0
@@ -934,7 +934,7 @@ importers:
   packages/mantine:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.19.1
+        specifier: ^2.19.2
         version: link:../core
       '@bonfhir/query':
         specifier: ^3.1.0
@@ -1115,7 +1115,7 @@ importers:
   packages/next:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.17.2
+        specifier: ^2.19.2
         version: link:../core
       '@bonfhir/react':
         specifier: ^3.0.0
@@ -1200,7 +1200,7 @@ importers:
   packages/query:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.18.0
+        specifier: ^2.19.2
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':
@@ -1291,7 +1291,7 @@ importers:
   packages/react:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.19.1
+        specifier: ^2.19.2
         version: link:../core
       '@bonfhir/query':
         specifier: ^3.1.0
@@ -1367,7 +1367,7 @@ importers:
   packages/subscriptions:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.18.0
+        specifier: ^2.19.2
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':
@@ -1421,7 +1421,7 @@ importers:
   packages/us-core:
     dependencies:
       '@bonfhir/core':
-        specifier: ^2.16.1
+        specifier: ^2.19.2
         version: link:../core
     devDependencies:
       '@bonfhir/eslint-config':

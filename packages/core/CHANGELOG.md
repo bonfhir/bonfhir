@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.19.2
+
+### Patch Changes
+
+- [#276](https://github.com/bonfhir/bonfhir/pull/276) [`0a24249`](https://github.com/bonfhir/bonfhir/commit/0a242499c20f29629018bcd8764b77bd86e7161d) Thanks [@julienblin](https://github.com/julienblin)! - Update internal dependencies (marked)
+
 ## 2.19.1
 
 ### Patch Changes
