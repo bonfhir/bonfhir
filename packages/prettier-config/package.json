@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/prettier-config",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Shared prettier configuration for BonFHIR packages.",
   "keywords": [
     "HL7",

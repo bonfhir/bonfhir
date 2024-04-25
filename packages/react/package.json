@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/react",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "UI components for BonFHIR",
   "keywords": [
     "HL7",
@@ -54,8 +54,8 @@
     "dist"
   ],
   "dependencies": {
-    "@bonfhir/core": "workspace:^2.19.2",
-    "@bonfhir/query": "workspace:^3.1.0"
+    "@bonfhir/core": "workspace:^2.19.3",
+    "@bonfhir/query": "workspace:^3.2.0"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",

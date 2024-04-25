@@ -1,5 +1,14 @@
 # @bonfhir/us-core
 
+## 2.0.2
+
+### Patch Changes
+
+- [#277](https://github.com/bonfhir/bonfhir/pull/277) [`f58b99b`](https://github.com/bonfhir/bonfhir/commit/f58b99b87ce8d155409abc0ef5514e4a779cd435) Thanks [@github-actions](https://github.com/apps/github-actions)! - Bump
+
+- Updated dependencies [[`f58b99b`](https://github.com/bonfhir/bonfhir/commit/f58b99b87ce8d155409abc0ef5514e4a779cd435)]:
+  - @bonfhir/core@2.19.3
+
 ## 2.0.1
 
 ### Patch Changes
