@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/eslint-config",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Shared ESLint configuration for BonFHIR packages.",
   "keywords": [
     "HL7",

@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/subscriptions",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "A library for working with FHIR subscriptions",
   "keywords": [
     "HL7",
@@ -53,7 +53,7 @@
     "dist"
   ],
   "dependencies": {
-    "@bonfhir/core": "workspace:^2.19.2"
+    "@bonfhir/core": "workspace:^2.19.3"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",

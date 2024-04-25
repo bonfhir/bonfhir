@@ -1,5 +1,18 @@
 # @bonfhir/query
 
+## 3.2.0
+
+### Minor Changes
+
+- [#279](https://github.com/bonfhir/bonfhir/pull/279) [`799296f`](https://github.com/bonfhir/bonfhir/commit/799296fb4ad5a8c5717d28b4c1d7f7d4129179bf) Thanks [@lp](https://github.com/lp)! - granular manageCache for useFhirPatchMutation
+
+### Patch Changes
+
+- [#277](https://github.com/bonfhir/bonfhir/pull/277) [`f58b99b`](https://github.com/bonfhir/bonfhir/commit/f58b99b87ce8d155409abc0ef5514e4a779cd435) Thanks [@github-actions](https://github.com/apps/github-actions)! - Bump
+
+- Updated dependencies [[`f58b99b`](https://github.com/bonfhir/bonfhir/commit/f58b99b87ce8d155409abc0ef5514e4a779cd435)]:
+  - @bonfhir/core@2.19.3
+
 ## 3.1.0
 
 ### Minor Changes
