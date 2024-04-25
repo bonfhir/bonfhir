@@ -20,7 +20,7 @@
   },
   "main": "index.cjs",
   "dependencies": {
-    "@bonfhir/eslint-plugin": "~2.0.2",
+    "@bonfhir/eslint-plugin": "workspace:~2.0.2",
     "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@typescript-eslint/parser": "^7.6.0",
     "eslint": "^8.56.0",
