@@ -1,5 +1,11 @@
-import { marked } from "marked";
+import { Remarkable } from "remarkable";
 import { ValueFormatter } from "../formatters";
+
+let remarkable: Remarkable | undefined;
+function htmlRenderer(opts?: Remarkable.Options): Remarkable {
+  if (!remarkable) remarkable = new Remarkable(opts);
+  return remarkable;
+}
 
 /**
  * A FHIR string (see above) that may contain markdown syntax for optional processing
@@ -24,12 +30,13 @@ export const markdownFormatter: ValueFormatter<
 
     switch (options?.style) {
       case "bareString": {
-        return (marked.parse(value) as string)
+        return htmlRenderer()
+          .render(value)
           .replaceAll(/<\/?[^>]+(>|$)/gi, "")
           .trim();
       }
       case "html": {
-        return (marked.parse(value) as string).trim();
+        return htmlRenderer().render(value).trim();
       }
       // eslint-disable-next-line unicorn/no-null
       case null:

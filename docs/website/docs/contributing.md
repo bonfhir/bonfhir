@@ -164,22 +164,22 @@ In order to achieve this:
 
 :::info[Walkthrough]
 
-Let's imagine that we need to add a dependency to the `marked` package to `@bonfhir/react`.
+Let's imagine that we need to add the `remarkable` package as a dependency of `@bonfhir/react`.
 
 1. Lookup existing information
 
 ```bash
-pnpm packages:lookup marked
+pnpm packages:lookup remarkable
 
 > bonfhir@ packages:lookup bonfhir/bonfhir
-> pnpm why -r "marked"
+> pnpm why -r "remarkable"
 
 Legend: production dependency, optional only, dev only
 
-@bonfhir/core@2.17.2 bonfhir/bonfhir/packages/core
+@bonfhir/core@2.19.2 bonfhir/bonfhir/packages/core
 
 devDependencies:
-marked 11.1.0
+remarkable 2.0.1
 ```
 
 2. Found it! It is used by the `@bonfhir/core` package. Let's look at the `package.json` file:
@@ -187,12 +187,12 @@ marked 11.1.0
 ```json
 {
   "name": "@bonfhir/core",
-  "version": "2.17.2",
+  "version": "2.19.2",
   "description": "Core FHIR resources and utilities for BonFHIR",
   //...
   "devDependencies": {
     //...
-    "marked": "^11.1.0"
+    "remarkable": "^2.0.1"
     //...
   }
   //...
@@ -202,7 +202,7 @@ marked 11.1.0
 3. Install with the same version moniker:
 
 ```bash
-pnpm add marked@^11.1.0
+pnpm add remarkable@^2.0.1
 ```
 
 :::
