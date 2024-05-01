@@ -76,6 +76,12 @@ export type DefaultFormatterParametersProps =
   | ValueFormatterParametersAsProps<typeof valueFormatters.urlFormatter>
   | ValueFormatterParametersAsProps<typeof valueFormatters.uuidFormatter>;
 
+/**
+ * @note HTML generated from Markdown content with `style: "html"` will NOT be
+ * sanitized against XSS attacks in React Native environments. Consider using a
+ * different `style` or provide a renderer that handles the generated HTML
+ * carefully if this is a concern.
+ */
 export function FhirValue<TRendererProps = any>(
   props: FhirValueProps<TRendererProps>,
 ): ReactElement<any, any> | null {
@@ -88,7 +94,11 @@ export function FhirValue<TRendererProps = any>(
     props.options,
   );
 
-  if (props.type === "markdown" && props.options?.style === "html") {
+  if (
+    props.type === "markdown" &&
+    props.options?.style === "html" &&
+    DOMPurify.isSupported
+  ) {
     formattedValue = DOMPurify.sanitize(formattedValue);
   }
 
