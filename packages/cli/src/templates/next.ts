@@ -108,6 +108,7 @@ export const Next: Template = {
             "@tabler/icons-react@^2",
             "@tanstack/react-query@^5",
             "@tanstack/react-query-devtools@^5",
+            "dayjs@^1",
             "next",
             "next-auth",
             "react",
