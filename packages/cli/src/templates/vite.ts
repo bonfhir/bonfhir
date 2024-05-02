@@ -135,6 +135,7 @@ export const ViteTasks = (): ListrTask<Context>[] => [
         "@tabler/icons-react@^2",
         "@tanstack/react-query@^5",
         "@tanstack/react-query-devtools@^5",
+        "@tiptap/core",
         "@tiptap/extension-link",
         "@tiptap/react",
         "dayjs@^1",
