@@ -110,12 +110,15 @@ export const Next: Template = {
             "@tanstack/react-query-devtools@^5",
             "@tiptap/core",
             "@tiptap/extension-link",
+            "@tiptap/pm",
             "@tiptap/react",
+            "@tiptap/starter-kit",
             "dayjs@^1",
             "next",
             "next-auth",
             "react",
             "react-dom",
+            "tiptap-markdown",
           );
 
           await packageManager.addDev(
