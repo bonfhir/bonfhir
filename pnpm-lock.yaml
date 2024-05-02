@@ -1294,7 +1294,7 @@ importers:
   packages/react:
     dependencies:
       '@bonfhir/core':
-        specifier: workspace:^2.19.3
+        specifier: workspace:^2.19.4
         version: link:../core
       '@bonfhir/query':
         specifier: workspace:^3.2.0
@@ -15223,7 +15223,7 @@ packages:
   superagent@7.1.6:
     resolution: {integrity: sha512-gZkVCQR1gy/oUXr+kxJMLDjla434KmSOKbx5iGD30Ql+AkJQ/YlPKECJy2nhqOsHLjGHzoDTXNSjhnvWhzKk7g==}
     engines: {node: '>=6.4.0 <13 || >=14'}
-    deprecated: Please downgrade to v7.1.5 if you need IE/ActiveXObject support OR upgrade to v8.0.0 as we no longer support IE and published an incorrect patch version (see https://github.com/visionmedia/superagent/issues/1731)
+    deprecated: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
 
   supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
@@ -16315,6 +16315,7 @@ packages:
 
   workbox-google-analytics@6.6.0:
     resolution: {integrity: sha512-p4DJa6OldXWd6M9zRl0H6vB9lkrmqYFkRQ2xEiNdBFp9U0LhsGO7hsBscVEyH9H2/3eZZt8c97NB2FD9U2NJ+Q==}
+    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
 
   workbox-navigation-preload@6.6.0:
     resolution: {integrity: sha512-utNEWG+uOfXdaZmvhshrh7KzhDu/1iMHyQOV6Aqup8Mm78D286ugu5k9MFD9SzBT5TcwgwSORVvInaXWbvKz9Q==}

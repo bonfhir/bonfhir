@@ -1,5 +1,14 @@
 # @bonfhir/react
 
+## 3.2.2
+
+### Patch Changes
+
+- [#283](https://github.com/bonfhir/bonfhir/pull/283) [`3547a0f`](https://github.com/bonfhir/bonfhir/commit/3547a0fd5a4239d556a93fb76c84fdd518cc0cb9) Thanks [@opiation](https://github.com/opiation)! - Only sanitize HTML output from Markdown formatting when formatted where a DOM is available (browser, Deno, etc.). Platforms without a DOM (React Native) have other means of rendering and sanitizing a given Markdown or HTML string into a relatively safe and usable UI.
+
+- Updated dependencies [[`6948f7a`](https://github.com/bonfhir/bonfhir/commit/6948f7ab003d42eaba4cef505176b8ddf80ee135)]:
+  - @bonfhir/core@2.19.4
+
 ## 3.2.1
 
 ### Patch Changes

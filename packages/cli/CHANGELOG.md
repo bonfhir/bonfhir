@@ -1,5 +1,11 @@
 # @bonfhir/cli
 
+## 2.12.2
+
+### Patch Changes
+
+- [#286](https://github.com/bonfhir/bonfhir/pull/286) [`5a16d1a`](https://github.com/bonfhir/bonfhir/commit/5a16d1aaa34276d2f016547c1e03a3764e4a7bcb) Thanks [@opiation](https://github.com/opiation)! - Explicitly add required peer dependencies when creating projects from the Next and Vite templates
+
 ## 2.12.1
 
 ### Patch Changes

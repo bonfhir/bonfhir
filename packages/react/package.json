@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/react",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "UI components for BonFHIR",
   "keywords": [
     "HL7",
@@ -54,7 +54,7 @@
     "dist"
   ],
   "dependencies": {
-    "@bonfhir/core": "workspace:^2.19.3",
+    "@bonfhir/core": "workspace:^2.19.4",
     "@bonfhir/query": "workspace:^3.2.0"
   },
   "devDependencies": {
