@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.19.4
+
+### Patch Changes
+
+- [#283](https://github.com/bonfhir/bonfhir/pull/283) [`6948f7a`](https://github.com/bonfhir/bonfhir/commit/6948f7ab003d42eaba4cef505176b8ddf80ee135) Thanks [@opiation](https://github.com/opiation)! - Use `remarkable` instead of `marked` to format Markdown content. This avoids using regular expression syntax that isn't yet supported by the Hermes JS engine, allowing `@bonfhir/core` to load without error in Expo / React Native applications.
+
 ## 2.19.3
 
 ### Patch Changes
