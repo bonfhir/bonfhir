@@ -3,7 +3,7 @@ import { PropsWithChildren, createElement } from "react";
 import { FhirUIContext, OnNavigateArgs } from "./context";
 import { FhirUIDefaultProps } from "./default-props";
 import { useFhirFormatters } from "./formatters/fhir-formatters-context";
-import { FhirFormatterProvider } from "./formatters/provider";
+import { FhirFormattersProvider } from "./formatters/provider";
 import { FhirUIRenderer } from "./renderer";
 
 // DO NOT EXPORT, this is to support the independent formatters context
@@ -52,7 +52,7 @@ const FhirUIProviderWrapper: React.FC<DeprecationWrapperProps> = (props) => {
 
 export type FhirUIProviderProps = PropsWithChildren<{
   /**
-   * @deprecated formatter in UI context is deprecated: please @see FhirFormatterProvider and its hook @see useFhirFormatters
+   * @deprecated formatter in UI context is deprecated: please @see FhirFormattersProvider and its hook @see useFhirFormatters
    */
   formatter?: Formatter | null | undefined;
   renderer: Partial<FhirUIRenderer>;
@@ -68,10 +68,10 @@ export function FhirUIProvider(props: FhirUIProviderProps) {
   const { children, ...otherProps } = props;
 
   return (
-    <FhirFormatterProvider
+    <FhirFormattersProvider
       formatters={props.formatter as Formatter | undefined}
     >
       <FhirUIProviderWrapper {...otherProps}>{children}</FhirUIProviderWrapper>
-    </FhirFormatterProvider>
+    </FhirFormattersProvider>
   );
 }

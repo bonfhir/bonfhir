@@ -19,9 +19,9 @@ export type FhirFormattersProps = {
  * export const BaseLayout: React.FC = () => {
  *
  *   return (
- *     <FhirFormatterProvider>
+ *     <FhirFormattersProvider>
  *       ...
- *     </FhirFormatterProvider>
+ *     </FhirFormattersProvider>
  *   );
  * }
  *
@@ -34,16 +34,16 @@ export type FhirFormattersProps = {
  *   };
  *
  *   return (
- *     <FhirFormatterProvider options={{ locale }}>
+ *     <FhirFormattersProvider options={{ locale }}>
  *       <button onClick={() => handleOnLocaleSwitch('en')}>EN</button>
  *       <button onClick={() => handleOnLocaleSwitch('es')}>ES</button>
  *       <button onClick={() => handleOnLocaleSwitch('fr')}>FR</button>
  *       ...
- *     </FhirFormatterProvider>
+ *     </FhirFormattersProvider>
  *   );
  * }
  */
-export const FhirFormatterProvider: React.FC<FhirFormattersProps> = ({
+export const FhirFormattersProvider: React.FC<FhirFormattersProps> = ({
   formatters,
   options,
   children,
