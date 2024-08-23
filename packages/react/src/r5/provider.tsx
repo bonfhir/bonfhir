@@ -67,11 +67,23 @@ export type FhirUIProviderProps = PropsWithChildren<{
 export function FhirUIProvider(props: FhirUIProviderProps) {
   const { children, ...otherProps } = props;
 
+  if (props.formatter) {
+    console.warn(
+      "[FhirUIProvider] formatters in FhirUIProvider are deprecated, please use FhirFormattersProvider instead.",
+    );
+
+    return (
+      <FhirFormattersProvider
+        formatters={props.formatter as Formatter | undefined}
+      >
+        <FhirUIProviderWrapper {...otherProps}>
+          {children}
+        </FhirUIProviderWrapper>
+      </FhirFormattersProvider>
+    );
+  }
+
   return (
-    <FhirFormattersProvider
-      formatters={props.formatter as Formatter | undefined}
-    >
-      <FhirUIProviderWrapper {...otherProps}>{children}</FhirUIProviderWrapper>
-    </FhirFormattersProvider>
+    <FhirUIProviderWrapper {...otherProps}>{children}</FhirUIProviderWrapper>
   );
 }
