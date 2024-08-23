@@ -4,6 +4,9 @@ import { FhirUIDefaultProps } from "./default-props";
 import { FhirUIRenderer } from "./renderer";
 
 export interface FhirUIContext {
+  /**
+   * @deprecated formatter in UI context is deprecated: please @see FhirFormatterProvider and its hook @see useFhirFormatters
+   */
   formatter: DefaultFormatter;
   renderer: Partial<FhirUIRenderer>;
   defaultProps?: FhirUIDefaultProps | null | undefined;
@@ -21,25 +24,14 @@ export interface FhirUIContext {
 /**
  * The context used by FHIR UI Components.
  */
-export const FhirUIContext = createContext<FhirUIContext | undefined>(
-  undefined,
-);
+export const FhirUIContext = createContext<FhirUIContext>({} as FhirUIContext);
 
 /**
  * Get the current {@link FhirUIContext}.
  *
  * @throws Error if no parent context exists (a.k.a. no `FhirUIProvider` was used in the parent tree).
  */
-export const useFhirUIContext = (): FhirUIContext => {
-  const context = useContext(FhirUIContext);
-  if (!context) {
-    throw new Error(
-      "Missing FhirUIContext. Did you forget to use a parent FhirUIProvider?",
-    );
-  }
-
-  return context;
-};
+export const useFhirUIContext = (): FhirUIContext => useContext(FhirUIContext);
 
 export interface OnNavigateArgs {
   target: string;
