@@ -68,9 +68,9 @@ export function FhirUIProvider(props: FhirUIProviderProps) {
   const { children, ...otherProps } = props;
 
   if (props.formatter) {
-    console.warn(
-      "[FhirUIProvider] formatters in FhirUIProvider are deprecated, please use FhirFormattersProvider instead.",
-    );
+    // Logger?.warn(
+    //   "[FhirUIProvider] formatters in FhirUIProvider are deprecated, please use FhirFormattersProvider instead.",
+    // );
 
     return (
       <FhirFormattersProvider
