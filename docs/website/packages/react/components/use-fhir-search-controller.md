@@ -5,7 +5,7 @@ title: useFhirSearchController
 The `useFhirSearchController` hook manages the synchronization between a query and a table and pagination.
 
 See the examples in [`<FhirTable />`](/packages/react/components/fhir-table) and [`<FhirPagination />`](/packages/react/components/fhir-pagination) to better understand the relationship between all components.
-[Going through our tutorial](http://localhost:3000/docs/build-a-fhir-app-with-react/fhir-tables-with-pagination) might also be beneficial.
+[Going through our tutorial](/docs/build-a-fhir-app-with-react/fhir-tables-with-pagination) might also be beneficial.
 
 ## Basic usage
 
