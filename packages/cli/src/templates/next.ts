@@ -311,7 +311,7 @@ import { Config } from "@/config";
 import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
-import { FhirUIProvider } from "@bonfhir/react/r4b";
+import { FhirFormattersProvider, FhirUIProvider } from "@bonfhir/react/r4b";
 import "@mantine/code-highlight/styles.css";
 import {
   AppShell,
@@ -354,23 +354,25 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <MantineProvider theme={theme}>
           <SessionProvider>
             <WithAuth>
-              <FhirUIProvider
-                renderer={MantineRenderer}
-                onNavigate={({ target, aux }) => {
-                  if (aux) {
-                    window.open(target, "_blank");
-                  } else {
-                    router.push(target);
-                  }
-                }}
-              >
-                <AppShell>
-                  <AppShell.Main>
-                    {children}
-                  </AppShell.Main>
-                </AppShell>
-                <ReactQueryDevtools />
-              </FhirUIProvider>
+              <FhirFormattersProvider>
+                <FhirUIProvider
+                  renderer={MantineRenderer}
+                  onNavigate={({ target, aux }) => {
+                    if (aux) {
+                      window.open(target, "_blank");
+                    } else {
+                      router.push(target);
+                    }
+                  }}
+                >
+                  <AppShell>
+                    <AppShell.Main>
+                      {children}
+                    </AppShell.Main>
+                  </AppShell>
+                  <ReactQueryDevtools />
+                </FhirUIProvider>
+              </FhirFormattersProvider>
             </WithAuth>
           </SessionProvider>
         </MantineProvider>
