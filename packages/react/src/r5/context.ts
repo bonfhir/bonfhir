@@ -1,5 +1,5 @@
 import { DefaultFormatter } from "@bonfhir/core/r5";
-import { ReactElement, createContext } from "react";
+import { ReactElement, createContext, useContext } from "react";
 import { FhirUIDefaultProps } from "./default-props";
 import { FhirUIRenderer } from "./renderer";
 
@@ -25,6 +25,11 @@ export interface FhirUIContext {
  * The context used by FHIR UI Components.
  */
 export const FhirUIContext = createContext<FhirUIContext>({} as FhirUIContext);
+
+/**
+ * Get the current {@link FhirUIContext}.
+ */
+export const useFhirUIContext = () => useContext(FhirUIContext);
 
 export interface OnNavigateArgs {
   target: string;
