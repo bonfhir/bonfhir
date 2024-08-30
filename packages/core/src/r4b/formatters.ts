@@ -2,6 +2,7 @@ import {
   BooleanLabels,
   DurationFormatterOptions,
   IdentifierFormatterOptions,
+  ValueFormatterTypes,
   addressFormatter,
   ageFormatter,
   booleanFormatter,
@@ -236,13 +237,18 @@ export class Formatter {
    * Format a value using the specified type and options.
    */
   public format(
-    type: string,
+    type: ValueFormatterTypes | string,
     value: unknown,
     options?: CommonFormatterOptions | null | undefined,
   ): string {
     const valueFormatter = this._formatters.get(type);
     if (!valueFormatter) {
-      throw new Error(`No formatter found for type '${type}'`);
+      if (value) {
+        // todo: warn?
+        return String(value);
+      }
+
+      throw new Error(`No formatter and no value found for type '${type}'`);
     }
 
     const formatterResult = valueFormatter.format(value, options, {
