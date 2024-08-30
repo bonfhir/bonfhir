@@ -243,7 +243,7 @@ export class Formatter {
    */
   public format(
     type: string,
-    value: never,
+    value: unknown,
     options?: CommonFormatterOptions | null | undefined,
   ): string {
     const valueFormatter = this._formatters.get(type);
@@ -286,7 +286,7 @@ export class Formatter {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const options: any = value[2];
 
-        return this.format(formatterName, valueToFormat as never, options);
+        return this.format(formatterName, valueToFormat, options);
       }
 
       return value.toString();

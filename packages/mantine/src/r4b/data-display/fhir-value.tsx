@@ -34,7 +34,7 @@ export function MantineFhirValue(
           <Text span {...props.rendererProps?.text}>
             {formatter.format(
               props.type,
-              props.value as never,
+              props.value,
               props.rendererProps?.relativeDateHoverCardFormatter,
             )}
           </Text>

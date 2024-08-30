@@ -87,11 +87,7 @@ export function FhirValue<TRendererProps = any>(
   const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirValue", props);
 
-  let formattedValue = formatter.format(
-    props.type,
-    props.value as never,
-    props.options,
-  );
+  let formattedValue = formatter.format(props.type, props.value, props.options);
 
   if (
     props.type === "markdown" &&
