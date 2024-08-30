@@ -31,7 +31,7 @@ export const FhirUIContext = createContext<FhirUIContext>({} as FhirUIContext);
  *
  * @throws Error if no parent context exists (a.k.a. no `FhirUIProvider` was used in the parent tree).
  */
-export const useFhirUIContext = (): FhirUIContext => useContext(FhirUIContext);
+export const useFhirUIContext = () => useContext(FhirUIContext);
 
 export interface OnNavigateArgs {
   target: string;
