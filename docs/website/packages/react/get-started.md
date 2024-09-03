@@ -18,7 +18,7 @@ to learn more about the development process.
 ## Manually
 
 To use the components manually, first make sure that you have a working react application.  
-Pay also attention to the required [typescript configuration for bonFHIR](http://localhost:3000/packages/intro#typescript-configuration).
+Pay also attention to the required [typescript configuration for bonFHIR](/packages/intro#typescript-configuration).
 
 ### Install the package(s)
 
