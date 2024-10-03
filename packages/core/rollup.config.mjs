@@ -54,7 +54,7 @@ export default ["r4b", "r5"].flatMap((release) =>
             mkdirSync(`./dist/${release}/${format}`, { recursive: true });
             writeFileSync(
               `./dist/${release}/${format}/package.json`,
-              `{"type": "${format === "cjs" ? "commonjs" : "module"}"}`
+              `{"type": "${format === "cjs" ? "commonjs" : "module"}"}`,
             );
           },
         },
@@ -86,5 +86,5 @@ export default ["r4b", "r5"].flatMap((release) =>
         },
       ],
     },
-  ])
+  ]),
 );
