@@ -1,5 +1,5 @@
 ---
-"@bonfhir/fhirtypes": major
+"@bonfhir/fhirtypes": minor
 ---
 
 Extract FHIR resource definitions from @bonfhir/core
