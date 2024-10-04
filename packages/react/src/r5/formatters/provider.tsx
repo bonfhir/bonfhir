@@ -49,7 +49,9 @@ export const FhirFormattersProvider: React.FC<FhirFormattersProps> = ({
   children,
 }) => {
   const wrapped = useMemo(
-    () => formatters ?? Formatter.build(options),
+    () => ({
+      formatter: formatters ?? Formatter.build(options),
+    }),
     [formatters, options],
   );
 
