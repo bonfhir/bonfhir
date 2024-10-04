@@ -1,3 +1,4 @@
+import "@formatjs/intl-numberformat/polyfill";
 import { Decimal } from "decimal.js";
 import { ValueFormatter } from "../formatters";
 

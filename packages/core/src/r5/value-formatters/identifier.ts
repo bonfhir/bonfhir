@@ -1,3 +1,4 @@
+import "@formatjs/intl-listformat/polyfill";
 import { Identifier, IdentifierUse } from "../fhir-types.codegen";
 import {
   ValueFormatter,
