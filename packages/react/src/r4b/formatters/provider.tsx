@@ -29,15 +29,11 @@ export type FhirFormattersProps = {
  * export const BaseLayout: React.FC = () => {
  *   const [locale, setLocale] = useState<'en' | 'es' | 'fr'>('en');
  *
- *   const handleOnLocaleSwitch = (changedTo: 'en' | 'es' | 'fr') => {
- *     setLocale(changedTo);
- *   };
- *
  *   return (
  *     <FhirFormattersProvider options={{ locale }}>
- *       <button onClick={() => handleOnLocaleSwitch('en')}>EN</button>
- *       <button onClick={() => handleOnLocaleSwitch('es')}>ES</button>
- *       <button onClick={() => handleOnLocaleSwitch('fr')}>FR</button>
+ *       <button onClick={() => setLocale('en')}>EN</button>
+ *       <button onClick={() => setLocale('es')}>ES</button>
+ *       <button onClick={() => setLocale('fr')}>FR</button>
  *       ...
  *     </FhirFormattersProvider>
  *   );

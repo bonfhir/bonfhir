@@ -12,11 +12,6 @@ export const FhirFormattersContext = createContext<FhirFormatters>({
  * const { formatter } = useFhirFormatters();
  *
  * const totalCosts = formatters.format('Money', costs);
- *
- * @example
- * const { formatter } = useFhirFormatters();
- *
- * const totalCosts = formatters.format('Money', costs);
  */
 export const useFhirFormatters = () => {
   const context = useContext(FhirFormattersContext);
