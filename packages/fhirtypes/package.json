@@ -1,6 +1,6 @@
 {
   "name": "@bonfhir/fhirtypes",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "FHIR resource definitions for typescript",
   "keywords": [
     "HL7",
