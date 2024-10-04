@@ -1,0 +1,133 @@
+/**
+ * FHIR Definitions for <%= fhir.release %>/<%= fhir.version %>
+ */
+
+<% for (const valueSet of fhir.requiredBindingValueSets) { %>
+  <%= valueSet.jsDoc %>
+  export type <%= valueSet.safeName %> =
+  <% if (valueSet.expansion?.contains?.length) { %>
+    <% for (const expansion of valueSet.expansion?.contains || []) { %>
+      | "<%= expansion.code %>"
+    <% } %>;
+  <% } else { %>
+    string;
+  <% } %>
+<% } %>
+
+<% const renderElement = (element) => { %>
+  <%= element.jsDoc %>
+  <%= element.name %><% if (element.isOptional) { %>?<% } %>: <%= element.tsType %>;
+  <% if (element.isPrimitiveType || element.name === "extension") { -%>
+  _<%= element.name %>?: Element<% if (element.isArray) { %>[]<% } %> | undefined;
+  <% } -%>
+<% } %>
+
+<% for (const structureDef of fhir.structureDefinitions) { %>
+
+  <% for (const composition of structureDef.compositions) { %>
+    <%= composition.rootElement.jsDoc %>
+    export interface <%= composition.rootElement.compositionName %><% if (["BundleEntry"].includes(composition.rootElement.compositionName)) { %><TTargetResource extends Resource = Resource> <% } %> extends <%= composition.rootElement?.type?.[0]?.code %> {
+
+      <% for (const element of composition.ownRootElementsWithChoices) { %>
+        <%= renderElement(element) %>
+      <% } %>
+
+    }
+  <% } %>
+
+  <% if (structureDef.derivation != "constraint" && structureDef.kind != "primitive-type") { %>
+    <%= structureDef.jsDoc %>
+    <% if (structureDef.type === "Reference") { %>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars <% } %>
+    export interface <%= structureDef.type %><% if (["Bundle", "Reference"].includes(structureDef.type)) { %><TTargetResource extends Resource = Resource> <% } %> <% if (structureDef.base?.type) { %>extends <%= structureDef.base.type %> <% } %>{
+      <% if (structureDef.isResource && !structureDef.abstract) { %>
+      readonly resourceType: "<%= structureDef.type %>";
+      <% } else if (structureDef.type === "Resource") { %>
+      readonly resourceType: AnyResourceType;
+      <% } %>
+
+      <% for (const element of structureDef.ownRootElementsWithChoices) { %>
+        <%= renderElement(element) %>
+      <% } %>
+
+      <% if (structureDef.type === "Reference") { -%>
+      _extension?: Element["extension"] & {
+        /**
+        * This attribute only exists to allow strong typings of resource in typescript.
+        * It is NOT a part of the FHIR specification, and you should never use it or set a value to it.
+        */
+        _targetTypeDoNotUse?: TTargetResource | undefined;
+      }
+      <% } -%>
+    }
+  <% } %>
+<% } %>
+
+/**
+ *  Create a new type from T with K attributes required.
+ */
+export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: NonNullable<T[P]> };
+
+/**
+* Create a new type from a {@link Resource} that contains additional guaranteed properties when the resource
+* is retrieved from the server.
+*/
+export type Retrieved<TResource extends Resource> = WithRequired<TResource, "id"> & { meta: WithRequired<Meta, "versionId" | "lastUpdated"> };
+
+/**
+ * Any of the possible resource types
+ */
+export type AnyResource =
+  <% for (const structureDef of fhir.resources.filter(x => !x.abstract)) { %> | <%= structureDef.type %> <% } %>;
+
+/**
+ * Any of the possible resource types as string
+ */
+export type AnyResourceType = <% for (const structureDef of fhir.resources.filter(x => !x.abstract)) { %> | "<%= structureDef.type %>" <% } %>;
+
+/**
+ * Allow referencing a resource type from its string {@link AnyResourceType} representation.
+ */
+export type ExtractResource<TResourceType extends AnyResourceType> = Extract<
+  AnyResource,
+  { resourceType: TResourceType }
+>;
+
+/**
+ * Return true if the object is a FhirResource of a specific type.
+ */
+export function isResource<TResourceType extends AnyResourceType>(
+  type: TResourceType,
+  object: unknown | null | undefined
+): object is ExtractResource<TResourceType> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (object as any)?.resourceType === type;
+}
+
+/**
+ * Any of the possible domain resource types
+ */
+export type AnyDomainResource =
+  <% for (const structureDef of fhir.domainResources) { %> | <%= structureDef.type %> <% } %>;
+
+/**
+ * Any of the possible domain resource types as string
+ */
+export type AnyDomainResourceType = <% for (const structureDef of fhir.domainResources) { %> | "<%= structureDef.type %>" <% } %>;
+
+/**
+ * All the domain resource types as string.
+ */
+export const DomainResourceTypes: AnyDomainResourceType[] = [
+  <% for (const structureDef of fhir.domainResources) { %> "<%= structureDef.type %>", <% } %>
+];
+
+/**
+ * Allow referencing domain resource type from its string {@link FhirDomainResourceType} representation.
+ */
+export type ExtractDomainResource<TDomainResourceType extends AnyDomainResourceType> = Extract<
+  AnyDomainResource,
+  { resourceType: TDomainResourceType }
+>;
