@@ -83,7 +83,7 @@ export type DefaultFormatterParametersProps =
 export function FhirValue<TRendererProps = any>(
   props: FhirValueProps<TRendererProps>,
 ): ReactElement<any, any> | null {
-  const formatter = useFhirFormatters();
+  const { formatter } = useFhirFormatters();
   const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirValue", props);
 

@@ -243,7 +243,7 @@ export class Formatter {
   ): string {
     const valueFormatter = this._formatters.get(type);
     if (!valueFormatter) {
-      if (value) {
+      if (value !== null || value !== undefined) {
         // todo: warn?
         return String(value);
       }

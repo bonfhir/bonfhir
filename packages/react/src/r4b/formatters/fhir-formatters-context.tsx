@@ -1,22 +1,30 @@
 import { Formatter } from "@bonfhir/core/r4b";
 import { createContext, useContext } from "react";
+export type FhirFormatters = { formatter: Formatter }; // redirecting in case we add strictly react-functionalities
 
-type FhirFormatters = Formatter; // redirecting in case we add strictly react-functionalities
-
-export const FhirFormattersContext = createContext<FhirFormatters>(
-  {} as FhirFormatters,
-);
+export const FhirFormattersContext = createContext<FhirFormatters>({
+  formatter: Formatter.default,
+} as FhirFormatters);
 
 /**
  * @returns the value formatters available for FHIR values
  * @example
- * const formatters = useFhirFormatters();
+ * const { formatter } = useFhirFormatters();
  *
  * const totalCosts = formatters.format('Money', costs);
  *
  * @example
- * const { format } = useFhirFormatters();
+ * const { formatter } = useFhirFormatters();
  *
- * const totalCosts = format('Money', costs);
+ * const totalCosts = formatters.format('Money', costs);
  */
-export const useFhirFormatters = () => useContext(FhirFormattersContext);
+export const useFhirFormatters = () => {
+  const context = useContext(FhirFormattersContext);
+  if (!context || !context.formatter) {
+    throw new Error(
+      "Missing FhirFormattersContext. Did you forget to use a parent FhirFormattersProvider?",
+    );
+  }
+
+  return context;
+};
