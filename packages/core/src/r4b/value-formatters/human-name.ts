@@ -1,4 +1,5 @@
 import { HumanName, NameUse } from "@bonfhir/fhirtypes/r4b";
+import "@formatjs/intl-listformat/polyfill";
 import { FormattablePeriod, periodFormatter } from ".";
 import { formatWithTokens } from "..";
 import {

@@ -1,4 +1,5 @@
 import { Currencies } from "@bonfhir/fhirtypes/r5";
+import "@formatjs/intl-numberformat/polyfill";
 import { ValueFormatter } from "../formatters";
 
 /**

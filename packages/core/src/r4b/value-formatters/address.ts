@@ -1,3 +1,4 @@
+import "@formatjs/intl-listformat/polyfill";
 import { Address, AddressType, AddressUse } from "@bonfhir/fhirtypes/r4b";
 import { formatAddress } from "localized-address-format";
 import {
@@ -99,6 +100,7 @@ export const addressFormatter: ValueFormatter<
         )
         .filter(Boolean);
 
+      // polyfilled for environments which don't support those yet https://formatjs.io/docs/polyfills
       return new Intl.ListFormat(
         formatterOptions.locale,
         options?.listFormatOptions,

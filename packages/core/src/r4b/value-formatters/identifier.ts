@@ -1,4 +1,5 @@
 import { Identifier, IdentifierUse } from "@bonfhir/fhirtypes/r4b";
+import "@formatjs/intl-listformat/polyfill";
 import {
   ValueFormatter,
   cleanUpCommonOptions,
