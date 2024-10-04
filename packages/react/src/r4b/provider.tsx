@@ -1,5 +1,5 @@
 import { Formatter } from "@bonfhir/core/r4b";
-import { createElement, PropsWithChildren } from "react";
+import { PropsWithChildren, createElement } from "react";
 import { FhirUIContext, OnNavigateArgs } from "./context";
 import { FhirUIDefaultProps } from "./default-props";
 import { useFhirFormatters } from "./formatters/fhir-formatters-context";
@@ -15,12 +15,12 @@ type DeprecationWrapperProps = PropsWithChildren<{
 
 // DO NOT EXPORT, this is to support the independent formatters context
 const FhirUIProviderWrapper: React.FC<DeprecationWrapperProps> = (props) => {
-  const formatters = useFhirFormatters();
+  const { formatter } = useFhirFormatters();
 
   return (
     <FhirUIContext.Provider
       value={{
-        formatter: formatters,
+        formatter: formatter,
         renderer: props.renderer,
         onNavigate: props.onNavigate,
         render(rendererName, rendererProps) {

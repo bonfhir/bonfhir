@@ -11,7 +11,7 @@ export interface FhirFormatterProps<TRendererProps = any> {
 export function FhirFormatter<TRendererProps = any>(
   props: FhirFormatterProps<TRendererProps>,
 ): ReactElement | null {
-  const formatter = useFhirFormatters();
+  const { formatter } = useFhirFormatters();
   const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirFormatter", props);
 
