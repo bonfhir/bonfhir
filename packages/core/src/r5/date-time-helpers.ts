@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-
+import "@formatjs/intl-datetimeformat/polyfill";
 import { Duration } from "./fhir-types.codegen";
 import { Formatter } from "./formatters";
 

@@ -1,3 +1,4 @@
+import "@formatjs/intl-numberformat/polyfill";
 import { Currencies } from "../fhir-types.codegen";
 import { ValueFormatter } from "../formatters";
 

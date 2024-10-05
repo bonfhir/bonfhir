@@ -1,3 +1,4 @@
+import "@formatjs/intl-datetimeformat/polyfill";
 import { parseFhirDateTime } from "../date-time-helpers";
 import { ValueFormatter } from "../formatters";
 import { formatRelativeDateTime } from "../lang-utils";
@@ -80,7 +81,7 @@ export const dateTimeFormatter: ValueFormatter<
         break;
       }
     }
-
+    // polyfilled for environments which don't support those yet https://formatjs.io/docs/polyfills
     return new Intl.DateTimeFormat(formatterOptions.locale, intlOptions).format(
       fhirDateTime.date,
     );

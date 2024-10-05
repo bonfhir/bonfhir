@@ -1,3 +1,4 @@
+import "@formatjs/intl-listformat/polyfill";
 import { FormattablePeriod, periodFormatter } from ".";
 import { formatWithTokens } from "..";
 import { HumanName, NameUse } from "../fhir-types.codegen";
