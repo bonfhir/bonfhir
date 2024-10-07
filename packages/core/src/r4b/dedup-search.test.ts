@@ -1,6 +1,6 @@
 import { build, codeableConcept } from "./builders";
 import { fhirDedupSearch } from "./dedup-search";
-import { AnyResource } from "./fhir-types.codegen";
+import { AnyResource } from "@bonfhir/fhirtypes/r4b";
 
 describe("fhirDedupSearch", () => {
   it.each([

@@ -11,7 +11,7 @@ import {
   Resource,
   Retrieved,
   WithRequired,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r4b";
 import { asArray, uniqBy } from "./lang-utils";
 
 /**

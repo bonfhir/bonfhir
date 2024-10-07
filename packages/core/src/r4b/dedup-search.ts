@@ -1,4 +1,4 @@
-import { AnyResource, Identifier } from "./fhir-types.codegen";
+import { AnyResource, Identifier } from "@bonfhir/fhirtypes/r4b";
 import { asArray } from "./lang-utils";
 import { FhirSearchBuilder } from "./search";
 import { fhirSearch } from "./search.codegen";

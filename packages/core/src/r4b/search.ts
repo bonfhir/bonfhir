@@ -1,4 +1,4 @@
-import { AnyResourceType, Reference } from "./fhir-types.codegen";
+import { AnyResourceType, Reference } from "@bonfhir/fhirtypes/r4b";
 import { RemoveUnderscoreKeys } from "./lang-utils";
 import { AllResourcesSearchParameters } from "./search.codegen";
 

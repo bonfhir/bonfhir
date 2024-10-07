@@ -12,7 +12,7 @@ import * as dedupSearch from "./dedup-search";
 import * as extensions from "./extensions";
 import * as fetchFhirClient from "./fetch-fhir-client";
 import * as fhirClient from "./fhir-client";
-import * as fhirTypes from "./fhir-types.codegen";
+import * as fhirTypes from "@bonfhir/fhirtypes/r5";
 import * as formatters from "./formatters";
 import * as langUtils from "./lang-utils";
 import * as merge from "./merge";

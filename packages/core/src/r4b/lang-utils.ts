@@ -13,7 +13,7 @@ import {
   Reference,
   Resource,
   isResource,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r4b";
 
 /**
  * Returns the given `value` as is if it satisfies `Array.isArray` or otherwise

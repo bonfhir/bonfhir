@@ -1,5 +1,5 @@
 import { cloneResource } from "./extensions";
-import { Resource } from "./fhir-types.codegen";
+import { Resource } from "@bonfhir/fhirtypes/r4b";
 import {
   MergeArgs,
   MergeResult,

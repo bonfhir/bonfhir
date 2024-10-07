@@ -31,7 +31,7 @@ import {
   Retrieved,
   WithRequired,
   isResource,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r4b";
 import { uuid } from "./lang-utils";
 import { reference } from "./references.codegen";
 

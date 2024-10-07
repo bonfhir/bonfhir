@@ -22,7 +22,7 @@ import {
   ResourceType,
   Retrieved,
   TerminologyCapabilities,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r5";
 import { Formatter } from "./formatters";
 import { resourcesAreEqual } from "./lang-utils";
 import { merge } from "./merge";

@@ -9,7 +9,7 @@ import {
   parseFhirDateTime,
   today,
 } from "./date-time-helpers";
-import { Duration } from "./fhir-types.codegen";
+import { Duration } from "@bonfhir/fhirtypes/r5";
 
 describe("date-time-helpers", () => {
   it("fhirDate", () => {

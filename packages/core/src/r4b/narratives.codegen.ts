@@ -3,7 +3,7 @@
  */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AnyDomainResource, Narrative } from "./fhir-types.codegen";
+import { AnyDomainResource, Narrative } from "@bonfhir/fhirtypes/r4b";
 import { DefaultFormatter, Formatter } from "./formatters";
 import { startCase } from "./lang-utils";
 

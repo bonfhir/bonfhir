@@ -11,7 +11,7 @@ import {
   Patient,
   Provenance,
   Retrieved,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r5";
 import { reference } from "./references.codegen";
 
 describe("BundleNavigator", () => {

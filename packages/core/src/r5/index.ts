@@ -6,7 +6,7 @@ export * from "./dedup-search";
 export * from "./extensions";
 export * from "./fetch-fhir-client";
 export * from "./fhir-client";
-export * from "./fhir-types.codegen";
+export * from "@bonfhir/fhirtypes/r5";
 export * from "./formatters";
 export * from "./lang-utils";
 export * from "./merge";

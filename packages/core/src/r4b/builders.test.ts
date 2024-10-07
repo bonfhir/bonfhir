@@ -1,5 +1,5 @@
 import { build, codeableConcept, id, isReferenceOf } from "./builders";
-import { DomainResourceTypes } from "./fhir-types.codegen";
+import { DomainResourceTypes } from "@bonfhir/fhirtypes/r4b";
 
 describe("builders", () => {
   describe("build", () => {

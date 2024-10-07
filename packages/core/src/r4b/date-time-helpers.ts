@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import { Duration } from "./fhir-types.codegen";
+import { Duration } from "@bonfhir/fhirtypes/r4b";
 import { Formatter } from "./formatters";
 
 /**

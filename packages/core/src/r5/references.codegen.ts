@@ -10,7 +10,7 @@ import {
   Resource,
   Retrieved,
   WithRequired,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes";
 import { Formatter, withValueFormatter } from "./formatters";
 import {
   codeableConceptFormatter,

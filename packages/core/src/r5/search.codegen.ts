@@ -2,7 +2,7 @@
  * Typed search builders for r5/5.0.0
  */
 
-import { AnyResourceType } from "./fhir-types.codegen";
+import { AnyResourceType } from "@bonfhir/fhirtypes/r5";
 import { DropFirst } from "./lang-utils";
 import { FhirSearchBuilder } from "./search";
 

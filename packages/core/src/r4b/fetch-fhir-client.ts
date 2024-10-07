@@ -43,7 +43,7 @@ import {
   Reference,
   Retrieved,
   TerminologyCapabilities,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r4b";
 import { urlSafeConcat } from "./lang-utils";
 import { Merger } from "./mergers/index";
 

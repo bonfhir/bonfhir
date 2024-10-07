@@ -18,7 +18,7 @@ import {
   Organization,
   Patient,
   Reference,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r5";
 import { uuid } from "./lang-utils";
 
 // This is a quirk of msw: https://github.com/mswjs/msw/issues/1911
