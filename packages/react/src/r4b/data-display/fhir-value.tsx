@@ -6,7 +6,7 @@ import {
 import DOMPurify from "dompurify";
 import { ReactElement } from "react";
 import { useFhirUIContext } from "../context";
-import { useFhirFormatters } from "../formatters";
+import { useFhirFormatter } from "../formatters";
 
 export type FhirValueProps<TRendererProps = any> =
   DefaultFormatterParametersProps & {
@@ -83,7 +83,7 @@ export type DefaultFormatterParametersProps =
 export function FhirValue<TRendererProps = any>(
   props: FhirValueProps<TRendererProps>,
 ): ReactElement<any, any> | null {
-  const { formatter } = useFhirFormatters();
+  const { formatter } = useFhirFormatter();
   const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirValue", props);
 

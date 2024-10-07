@@ -1,6 +1,6 @@
 import { MantineRenderer } from "@bonfhir/mantine/r5";
 import { FhirQueryProvider } from "@bonfhir/query/r5";
-import { FhirFormattersProvider, FhirUIProvider } from "@bonfhir/react/r5";
+import { FhirFormatterProvider, FhirUIProvider } from "@bonfhir/react/r5";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
@@ -23,11 +23,11 @@ const preview: Preview = {
     (renderStory: Function) => (
       <FhirQueryProvider fhirClient={mockClient}>
         <MantineProvider>
-          <FhirFormattersProvider>
+          <FhirFormatterProvider>
             <FhirUIProvider renderer={MantineRenderer}>
               {renderStory()}
             </FhirUIProvider>
-          </FhirFormattersProvider>
+          </FhirFormatterProvider>
         </MantineProvider>
       </FhirQueryProvider>
     ),

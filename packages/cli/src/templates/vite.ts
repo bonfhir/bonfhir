@@ -393,7 +393,7 @@ const APP_CONTENT = (fhirServer?: FhirServerType) =>
     ? `import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
     import { MantineRenderer } from "@bonfhir/mantine/r4b";
     import { FhirQueryProvider } from "@bonfhir/query/r4b";
-    import { FhirFormattersProvider, FhirUIProvider } from "@bonfhir/react/r4b";
+    import { FhirFormatterProvider, FhirUIProvider } from "@bonfhir/react/r4b";
     import {
       Alert,
       AppShell,
@@ -427,7 +427,7 @@ const APP_CONTENT = (fhirServer?: FhirServerType) =>
             redirect_uri={document.location.origin}
           >
             <WithAuth>
-              <FhirFormattersProvider>
+              <FhirFormatterProvider>
                 <FhirUIProvider
                   renderer={MantineRenderer}
                   onNavigate={({ target, aux }) => {
@@ -444,7 +444,7 @@ const APP_CONTENT = (fhirServer?: FhirServerType) =>
                     </AppShell.Main>
                   </AppShell>
                 </FhirUIProvider>
-              </FhirFormattersProvider>
+              </FhirFormatterProvider>
             </WithAuth>
           </AuthProvider>
         </MantineProvider>
@@ -522,7 +522,7 @@ import "@mantine/tiptap/styles.css";
 import { FetchFhirClient } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
-import { FhirFormattersProvider, FhirUIProvider } from "@bonfhir/react/r4b";
+import { FhirFormatterProvider, FhirUIProvider } from "@bonfhir/react/r4b";
 import { AppShell, MantineProvider, createTheme } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -545,7 +545,7 @@ export default function App() {
   return (
     <MantineProvider theme={theme}>
       <FhirQueryProvider fhirClient={client}>
-        <FhirFormattersProvider>
+        <FhirFormatterProvider>
           <FhirUIProvider
             renderer={MantineRenderer}
             onNavigate={({ target, aux }) => {
@@ -563,7 +563,7 @@ export default function App() {
             </AppShell>
             <ReactQueryDevtools />
           </FhirUIProvider>
-        </FhirFormattersProvider>
+        </FhirFormatterProvider>
       </FhirQueryProvider>
     </MantineProvider>
   );

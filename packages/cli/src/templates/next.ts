@@ -311,7 +311,7 @@ import { Config } from "@/config";
 import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
-import { FhirFormattersProvider, FhirUIProvider } from "@bonfhir/react/r4b";
+import { FhirFormatterProvider, FhirUIProvider } from "@bonfhir/react/r4b";
 import "@mantine/code-highlight/styles.css";
 import {
   AppShell,
@@ -354,7 +354,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <MantineProvider theme={theme}>
           <SessionProvider>
             <WithAuth>
-              <FhirFormattersProvider>
+              <FhirFormatterProvider>
                 <FhirUIProvider
                   renderer={MantineRenderer}
                   onNavigate={({ target, aux }) => {
@@ -372,7 +372,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
                   </AppShell>
                   <ReactQueryDevtools />
                 </FhirUIProvider>
-              </FhirFormattersProvider>
+              </FhirFormatterProvider>
             </WithAuth>
           </SessionProvider>
         </MantineProvider>

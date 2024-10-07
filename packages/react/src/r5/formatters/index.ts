@@ -1,2 +1,2 @@
-export * from "./fhir-formatters-context";
+export * from "./fhir-formatter-context";
 export * from "./provider";

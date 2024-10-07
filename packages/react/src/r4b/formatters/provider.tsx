@@ -1,9 +1,9 @@
 import { Formatter, FormatterOptions } from "@bonfhir/core/r4b";
 import { useMemo } from "react";
-import { FhirFormattersContext } from "./fhir-formatters-context";
+import { FhirFormatterContext } from "./fhir-formatter-context";
 
-export type FhirFormattersProps = {
-  formatters?: Formatter;
+export type FhirFormatterProviderProps = {
+  formatter?: Formatter;
   options?: FormatterOptions;
   children?: React.ReactNode | React.ReactNode[];
 };
@@ -19,9 +19,9 @@ export type FhirFormattersProps = {
  * export const BaseLayout: React.FC = () => {
  *
  *   return (
- *     <FhirFormattersProvider>
+ *     <FhirFormatterProvider>
  *       ...
- *     </FhirFormattersProvider>
+ *     </FhirFormatterProvider>
  *   );
  * }
  *
@@ -30,30 +30,30 @@ export type FhirFormattersProps = {
  *   const [locale, setLocale] = useState<'en' | 'es' | 'fr'>('en');
  *
  *   return (
- *     <FhirFormattersProvider options={{ locale }}>
+ *     <FhirFormatterProvider options={{ locale }}>
  *       <button onClick={() => setLocale('en')}>EN</button>
  *       <button onClick={() => setLocale('es')}>ES</button>
  *       <button onClick={() => setLocale('fr')}>FR</button>
  *       ...
- *     </FhirFormattersProvider>
+ *     </FhirFormatterProvider>
  *   );
  * }
  */
-export const FhirFormattersProvider: React.FC<FhirFormattersProps> = ({
-  formatters,
+export const FhirFormatterProvider: React.FC<FhirFormatterProviderProps> = ({
+  formatter,
   options,
   children,
 }) => {
   const wrapped = useMemo(
     () => ({
-      formatter: formatters ?? Formatter.build(options),
+      formatter: formatter ?? Formatter.build(options),
     }),
-    [formatters, options],
+    [formatter, options],
   );
 
   return (
-    <FhirFormattersContext.Provider value={wrapped}>
+    <FhirFormatterContext.Provider value={wrapped}>
       {children}
-    </FhirFormattersContext.Provider>
+    </FhirFormatterContext.Provider>
   );
 };

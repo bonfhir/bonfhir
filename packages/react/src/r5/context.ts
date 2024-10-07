@@ -24,7 +24,7 @@ export interface FhirUIContext {
 /**
  * The context used by FHIR UI Components.
  */
-export const FhirUIContext = createContext<FhirUIContext>({} as FhirUIContext);
+export const FhirUIContext = createContext<FhirUIContext>(undefined!);
 
 /**
  * Get the current {@link FhirUIContext}.
