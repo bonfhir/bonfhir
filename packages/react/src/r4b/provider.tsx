@@ -2,8 +2,8 @@ import { Formatter } from "@bonfhir/core/r4b";
 import { PropsWithChildren, createElement } from "react";
 import { FhirUIContext, OnNavigateArgs } from "./context";
 import { FhirUIDefaultProps } from "./default-props";
-import { useFhirFormatters } from "./formatters/fhir-formatters-context";
-import { FhirFormattersProvider } from "./formatters/provider";
+import { useFhirFormatter } from "./formatters/fhir-formatter-context";
+import { FhirFormatterProvider } from "./formatters/provider";
 import { FhirUIRenderer } from "./renderer";
 
 // DO NOT EXPORT, this is to support the independent formatters context
@@ -15,7 +15,7 @@ type DeprecationWrapperProps = PropsWithChildren<{
 
 // DO NOT EXPORT, this is to support the independent formatters context
 const FhirUIProviderWrapper: React.FC<DeprecationWrapperProps> = (props) => {
-  const { formatter } = useFhirFormatters();
+  const { formatter } = useFhirFormatter();
 
   return (
     <FhirUIContext.Provider
@@ -52,7 +52,7 @@ const FhirUIProviderWrapper: React.FC<DeprecationWrapperProps> = (props) => {
 
 export type FhirUIProviderProps = PropsWithChildren<{
   /**
-   * @deprecated formatter in UI context is deprecated: please @see FhirFormattersProvider and its hook @see useFhirFormatters
+   * @deprecated formatter in UI context is deprecated: please @see FhirFormatterProvider and its hook @see useFhirFormatter
    */
   formatter?: Formatter | null | undefined;
   renderer: Partial<FhirUIRenderer>;
@@ -69,17 +69,17 @@ export function FhirUIProvider(props: FhirUIProviderProps) {
 
   if (props.formatter) {
     // Logger?.warn(
-    //   "[FhirUIProvider] formatters in FhirUIProvider are deprecated, please use FhirFormattersProvider instead.",
+    //   "[FhirUIProvider] formatters in FhirUIProvider are deprecated, please use FhirFormatterProvider instead.",
     // );
 
     return (
-      <FhirFormattersProvider
-        formatters={props.formatter as Formatter | undefined}
+      <FhirFormatterProvider
+        formatter={props.formatter as Formatter | undefined}
       >
         <FhirUIProviderWrapper {...otherProps}>
           {children}
         </FhirUIProviderWrapper>
-      </FhirFormattersProvider>
+      </FhirFormatterProvider>
     );
   }
 

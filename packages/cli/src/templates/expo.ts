@@ -237,7 +237,7 @@ const CONFIG_CONTENT = `export const Config = {
 const LAYOUT_CONTENT = `import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
 import { GluestackUIRenderer } from "@bonfhir/gluestack-ui/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
-import { FhirFormattersProvider, FhirUIProvider } from "@bonfhir/react/r4b";
+import { FhirFormatterProvider, FhirUIProvider } from "@bonfhir/react/r4b";
 import { config as gluestackUIConfig } from "@gluestack-ui/config";
 import {
   Button,
@@ -271,7 +271,7 @@ console.log(
 export default function RootLayout() {
   return (
     <GluestackUIProvider config={gluestackUIConfig}>
-      <FhirFormattersProvider>
+      <FhirFormatterProvider>
         <FhirUIProvider renderer={GluestackUIRenderer}>
           <SafeAreaView>
             <WithAuth>
@@ -279,7 +279,7 @@ export default function RootLayout() {
             </WithAuth>
           </SafeAreaView>
         </FhirUIProvider>
-      </FhirFormattersProvider>
+      </FhirFormatterProvider>
     </GluestackUIProvider>
   );
 }

@@ -1,23 +1,23 @@
 ---
-title: useFhirFormatters & FhirFormattersProvider
+title: useFhirFormatter & FhirFormatterProvider
 ---
 
-[`<FhirFormattersProvider>`](/packages/react/get-started#configure-the-fhirformattersprovider-) allows your React components to use the `useFhirFormatters` hook to format data from your queries on demand.
+[`<FhirFormatterProvider>`](/packages/react/get-started#configure-the-FhirFormatterProvider-) allows your React components to use the `useFhirFormatter` hook to format data from your queries on demand.
 
-# `FhirFormattersProvider` Context provider
+# `FhirFormatterProvider` Context provider
 
 ## Basic usage
 
-When used from the root of your app, it allows the use of any FHIR resource formatting in any component through the use of its hook `useFhirFormatters`.
+When used from the root of your app, it allows the use of any FHIR resource formatting in any component through the use of its hook `useFhirFormatter`.
 
 Using all the default for the formatters would look like this:
 
 ```tsx
 export const BaseLayout: React.FC = () => {
   return (
-    <FhirFormattersProvider>
+    <FhirFormatterProvider>
       <YourAppOrOtherProviders>...</YourAppOrOtherProviders>
-    </FhirFormattersProvider>
+    </FhirFormatterProvider>
   );
 };
 ```
@@ -29,17 +29,17 @@ export const BaseLayout: React.FC = () => {
   const [locale, setLocale] = useState<"en" | "es" | "fr">("en");
 
   return (
-    <FhirFormattersProvider options={{ locale }}>
+    <FhirFormatterProvider options={{ locale }}>
       <button onClick={() => setLocale("en")}>EN</button>
       <button onClick={() => setLocale("es")}>ES</button>
       <button onClick={() => setLocale("fr")}>FR</button>
       ...
-    </FhirFormattersProvider>
+    </FhirFormatterProvider>
   );
 };
 ```
 
-# `useFhirFormatters` hook
+# `useFhirFormatter` hook
 
 ## Basic usage
 
@@ -52,7 +52,7 @@ Example: you have a data table to display, with patient names, appointment time 
 \* we take a shortcut here and pretend we wrapped our FHIR query in a local custom hook
 
 ```tsx
-import { useFhirFormatters } from "@bonfhir/react/r5/formatters";
+import { useFhirFormatter } from "@bonfhir/react/r5/formatters";
 import { Spinner } from "@/components/ui/spinner";
 import {
   Table,
@@ -70,7 +70,7 @@ import {
 } from "./actions";
 
 export const TodaysAppointmentSchedule = () => {
-  const { format } = useFhirFormatters();
+  const { formatter } = useFhirFormatter();
   const { data, isLoading } = useTodaysAppointments();
 
   if (isLoading) {
@@ -90,9 +90,11 @@ export const TodaysAppointmentSchedule = () => {
         {data.map((appointment, i) => {
           return (
             <TableRow key={i}>
-              <TableData>{format("HumanName", appointment.patient)}</TableData>
               <TableData>
-                {format("dateTime", appointment.bookedAt, {
+                {formatter.format("HumanName", appointment.patient)}
+              </TableData>
+              <TableData>
+                {formatter.format("dateTime", appointment.bookedAt, {
                   timeStyle: "medium",
                 })}
               </TableData>
@@ -115,7 +117,7 @@ export const TodaysAppointmentSchedule = () => {
 ### Mantine
 
 ```tsx
-import { useFhirFormatters } from "@bonfhir/react/r5/formatters";
+import { useFhirFormatter } from "@bonfhir/react/r5/formatters";
 import { Table, Button, Loader } from "@mantine/core";
 import { useTodaysAppointments } from "./data/use-todays-appointments";
 import {
@@ -125,7 +127,7 @@ import {
 } from "./actions";
 
 export const TodaysAppointmentSchedule = () => {
-  const { format } = useFhirFormatters();
+  const { formatter } = useFhirFormatter();
   const { data, isLoading } = useTodaysAppointments();
 
   if (isLoading) {
@@ -145,9 +147,11 @@ export const TodaysAppointmentSchedule = () => {
         {data.map((appointment, i) => {
           return (
             <Table.Tr key={i}>
-              <Table.Td>{format("HumanName", appointment.patient)}</Table.Td>
               <Table.Td>
-                {format("dateTime", appointment.bookedAt, {
+                {formatter.format("HumanName", appointment.patient)}
+              </Table.Td>
+              <Table.Td>
+                {formatter.format("dateTime", appointment.bookedAt, {
                   timeStyle: "medium",
                 })}
               </Table.Td>
@@ -170,7 +174,7 @@ export const TodaysAppointmentSchedule = () => {
 ### Ant design
 
 ```tsx
-import { useFhirFormatters } from "@bonfhir/react/r5/formatters";
+import { useFhirFormatter } from "@bonfhir/react/r5/formatters";
 import { Table, Skeleton } from "antd";
 import { useTodaysAppointments } from "./data/use-todays-appointments";
 import {
@@ -180,7 +184,7 @@ import {
 } from "./actions";
 
 export const TodaysAppointmentSchedule = () => {
-  const { format } = useFhirFormatters();
+  const { formatter } = useFhirFormatter();
   const { data, isLoading } = useTodaysAppointments();
 
   const columns = [
@@ -188,7 +192,7 @@ export const TodaysAppointmentSchedule = () => {
       title: "Patient",
       dataIndex: "patient",
       key: "patient",
-      render: (patient) => <>{format("HumanName", patient)}</>,
+      render: (patient) => <>{formatter.format("HumanName", patient)}</>,
     },
     {
       title: "Time",
@@ -196,7 +200,7 @@ export const TodaysAppointmentSchedule = () => {
       key: "bookedAt",
       render: (_, { bookedAt }) => (
         <>
-          {format("dateTime", bookedAt, {
+          {formatter.format("dateTime", bookedAt, {
             timeStyle: "medium",
           })}
         </>
@@ -226,7 +230,7 @@ export const TodaysAppointmentSchedule = () => {
 ### Your own
 
 ```tsx
-import { useFhirFormatters } from "@bonfhir/react/r5/formatters";
+import { useFhirFormatter } from "@bonfhir/react/r5/formatters";
 import { useTodaysAppointments } from "./data/use-todays-appointments";
 import {
   ConfirmAppointmentButton,
@@ -237,7 +241,7 @@ import {
 import "./appointments-table.css";
 
 export const TodaysAppointmentSchedule = () => {
-  const { format } = useFhirFormatters();
+  const { formatter } = useFhirFormatter();
   const { data, isLoading } = useTodaysAppointments();
 
   if (isLoading) {
@@ -257,9 +261,9 @@ export const TodaysAppointmentSchedule = () => {
         {data.map((appointment, i) => {
           return (
             <tr key={i}>
-              <td>{format("HumanName", appointment.patient)}</td>
+              <td>{formatter.format("HumanName", appointment.patient)}</td>
               <td>
-                {format("dateTime", appointment.bookedAt, {
+                {formatter.format("dateTime", appointment.bookedAt, {
                   timeStyle: "medium",
                 })}
               </td>
