@@ -4,6 +4,7 @@
  * This enables usage in third-party tools such as no-code tools.
  */
 
+import * as fhirTypes from "@bonfhir/fhirtypes/r5";
 import * as builders from "./builders";
 import * as bundleExecutor from "./bundle-executor";
 import * as bundleNavigator from "./bundle-navigator";
@@ -12,7 +13,6 @@ import * as dedupSearch from "./dedup-search";
 import * as extensions from "./extensions";
 import * as fetchFhirClient from "./fetch-fhir-client";
 import * as fhirClient from "./fhir-client";
-import * as fhirTypes from "@bonfhir/fhirtypes/r5";
 import * as formatters from "./formatters";
 import * as langUtils from "./lang-utils";
 import * as merge from "./merge";

@@ -2,7 +2,6 @@
  * Typed patch builders for <%= fhir.release %>/<%= fhir.version %>
  */
 
- import { FhirJSONPatchBuilder, JSONPatchBody } from "./patch";
  import {
   <% for (const valueSet of fhir.requiredBindingValueSets) { -%>
     <%= valueSet.safeName %>,
@@ -14,7 +13,8 @@
     <% } -%>
   <% } -%>
   AnyResourceType
-} from "@bonfhir/fhirtypes/<%= fhir.release %>";;
+} from "@bonfhir/fhirtypes/<%= fhir.release %>";
+import { FhirJSONPatchBuilder, JSONPatchBody } from "./patch";
 
 /**
  * Return a typed patch builder for a specific resource.

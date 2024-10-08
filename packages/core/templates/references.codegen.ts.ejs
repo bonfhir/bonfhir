@@ -3,9 +3,9 @@
  */
  /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { AnyResource, CodeableConcept, Resource, Reference, Retrieved, WithRequired } from "@bonfhir/fhirtypes/<%= fhir.release %>";
 import { Formatter, withValueFormatter } from "./formatters";
 import { codeableConceptFormatter, humanNameFormatter } from "./value-formatters/index";
-import { AnyResource, CodeableConcept, Resource, Reference, Retrieved, WithRequired } from "@bonfhir/fhirtypes/<%= fhir.release %>";
 <% const domainResourcesThatCanBeDecorated = fhir.domainResources
     .filter(x => x.ownRootElementsWithChoices.some(x => x.name === "title" || (x.name === "code" && x.tsType.includes("CodeableConcept")) || (x.name === "name" && (x.tsType.includes("string") || x.tsType.includes("HumanName")))));
 -%>

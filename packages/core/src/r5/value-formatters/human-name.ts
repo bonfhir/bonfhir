@@ -1,6 +1,6 @@
+import { HumanName, NameUse } from "@bonfhir/fhirtypes/r5";
 import { FormattablePeriod, periodFormatter } from ".";
 import { formatWithTokens } from "..";
-import { HumanName, NameUse } from "@bonfhir/fhirtypes/r5";
 import {
   ValueFormatter,
   cleanUpCommonOptions,

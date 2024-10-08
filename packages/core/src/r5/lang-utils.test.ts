@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/no-null */
-import { build } from "./builders";
 import { AnyResourceType, Reference, Resource } from "@bonfhir/fhirtypes/r5";
+import { build } from "./builders";
 import {
   asArray,
   asResource,

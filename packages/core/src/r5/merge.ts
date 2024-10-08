@@ -1,5 +1,5 @@
-import { cloneResource } from "./extensions";
 import { Resource } from "@bonfhir/fhirtypes/r5";
+import { cloneResource } from "./extensions";
 import {
   MergeArgs,
   MergeResult,

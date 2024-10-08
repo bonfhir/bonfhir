@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable unicorn/no-useless-undefined */
-import { duration } from "./date-time-helpers";
 import { Organization, Retrieved } from "@bonfhir/fhirtypes/r5";
+import { duration } from "./date-time-helpers";
 import {
   FhirSearchBuilder,
   Prefix,
