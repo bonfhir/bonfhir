@@ -74,6 +74,7 @@ export default ["r4b", "r5"].flatMap((release) =>
           format: format === "esm" ? "m" : "c",
         },
       ],
+      external: ['@bonfhir/fhirtypes/r4b', '@bonfhir/fhirtypes/r5'],
       plugins: [
         dts(),
         {
