@@ -1,4 +1,4 @@
-import { Period } from "../fhir-types.codegen";
+import { Period } from "@bonfhir/fhirtypes/r4b";
 import { Formatter } from "../formatters";
 import { dateTimeFormatter } from "./date-time";
 import { PeriodFormatterOptions, periodFormatter } from "./period";

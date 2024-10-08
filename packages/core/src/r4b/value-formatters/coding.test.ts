@@ -1,4 +1,4 @@
-import { Coding } from "../fhir-types.codegen";
+import { Coding } from "@bonfhir/fhirtypes/r4b";
 import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import { CodingFormatterOptions, codingFormatter } from "./coding";

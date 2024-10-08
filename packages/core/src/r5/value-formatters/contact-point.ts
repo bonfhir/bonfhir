@@ -2,7 +2,7 @@ import {
   ContactPoint,
   ContactPointSystem,
   ContactPointUse,
-} from "../fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r5";
 import {
   ValueFormatter,
   cleanUpCommonOptions,

@@ -1,4 +1,4 @@
-import { Identifier, IdentifierUse } from "../fhir-types.codegen";
+import { Identifier, IdentifierUse } from "@bonfhir/fhirtypes/r5";
 import {
   ValueFormatter,
   cleanUpCommonOptions,

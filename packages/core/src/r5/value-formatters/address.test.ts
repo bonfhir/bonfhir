@@ -1,4 +1,4 @@
-import { Address, ValueSetExpansionContains } from "../fhir-types.codegen";
+import { Address, ValueSetExpansionContains } from "@bonfhir/fhirtypes/r5";
 import { Formatter } from "../formatters";
 import { AddressFormatterOptions, addressFormatter } from "./address";
 import { codeFormatter } from "./code";

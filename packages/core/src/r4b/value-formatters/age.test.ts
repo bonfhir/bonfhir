@@ -1,4 +1,4 @@
-import { Age, ValueSetExpansionContains } from "../fhir-types.codegen";
+import { Age, ValueSetExpansionContains } from "@bonfhir/fhirtypes/r4b";
 import { Formatter } from "../formatters";
 import { AgeFormatterOptions, ageFormatter } from "./age";
 import { codeFormatter } from "./code";
