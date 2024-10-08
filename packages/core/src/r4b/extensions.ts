@@ -69,71 +69,46 @@ export function extendResource<
     }
   }
 
-  const result = class {
-    static readonly resourceType = resourceType;
-    constructor(data?: any) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (this as any).resourceType = resourceType;
-      Object.assign(this, extensionsWithoutSpecialExtensions);
-      if (data) {
-        if (data.resourceType && data.resourceType !== resourceType) {
-          throw new Error(
-            `Unable to assign custom resource class for a ${resourceType} to a resource data for resource type ${data.resourceType}`,
-          );
-        }
-        const dataWithoutSpecialExtensions = Object.entries(data)
-          .filter(([key]) => !specialExtensions[key])
-          .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {} as any);
-        Object.assign(this, dataWithoutSpecialExtensions);
-        for (const [key, value] of Object.entries(data).filter(
-          ([key]) => specialExtensions[key],
-        )) {
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          specialExtensions[key]!.__set(this, value);
-        }
-      }
-
-      return new Proxy(this, {
-        ownKeys(target) {
-          return [
-            ...Reflect.ownKeys(target),
-            ...Object.keys(specialExtensions),
-          ];
-        },
-        getOwnPropertyDescriptor(target, prop) {
-          const specialExtension =
-            prop.toString() !== "constructor" &&
-            specialExtensions[prop.toString()];
-          return specialExtension
-            ? {
-                configurable: true,
-                enumerable: true,
-                writable: true,
-              }
-            : Reflect.getOwnPropertyDescriptor(target, prop);
-        },
-        get(target, prop, receiver) {
-          const specialExtension =
-            prop.toString() !== "constructor" &&
-            specialExtensions[prop.toString()];
-          return specialExtension
-            ? specialExtension.__get(target)
-            : Reflect.get(target, prop, receiver);
-        },
-        set(target, prop, value, receiver) {
-          const specialExtension =
-            prop.toString() !== "constructor" &&
-            specialExtensions[prop.toString()];
-          if (specialExtension) {
-            specialExtension.__set(target, value);
-            return true;
-          }
-          return Reflect.set(target, prop, value, receiver);
-        },
-      });
+  function ExtendedResource(this: any, data?: any) {
+    if (!(this instanceof ExtendedResource)) {
+      return new (ExtendedResource as any)(data);
     }
 
-    toFhirResource(): ExtractResource<TResourceType> {
+    Object.assign(this, {
+      resourceType,
+      ...extensionsWithoutSpecialExtensions,
+    });
+
+    if (data) {
+      if (data.resourceType && data.resourceType !== resourceType) {
+        throw new Error(
+          `Unable to assign custom resource class for a ${resourceType} to a resource data for resource type ${data.resourceType}`,
+        );
+      }
+      const dataWithoutSpecialExtensions = Object.entries(data)
+        .filter(([key]) => !specialExtensions[key])
+        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {} as any);
+      Object.assign(this, dataWithoutSpecialExtensions);
+      for (const [key, value] of Object.entries(data).filter(
+        ([key]) => specialExtensions[key],
+      )) {
+        specialExtensions[key]!.__set(this, value);
+      }
+    }
+
+    // Add getters and setters for special extensions
+    for (const [key, specialExtension] of Object.entries(specialExtensions)) {
+      Object.defineProperty(this, key, {
+        get: () => specialExtension.__get(this),
+        set: (value) => specialExtension.__set(this, value),
+        enumerable: true,
+        configurable: true,
+      });
+    }
+  }
+
+  ExtendedResource.prototype.toFhirResource =
+    function (): ExtractResource<TResourceType> {
       (this as any).text = narrative(this as any);
 
       if (options?.profile) {
@@ -155,14 +130,15 @@ export function extendResource<
       }
 
       return value;
-    }
+    };
 
-    toJSON() {
-      return this.toFhirResource();
-    }
-  } as any;
+  ExtendedResource.prototype.toJSON = function () {
+    return this.toFhirResource();
+  };
 
-  return result;
+  ExtendedResource.resourceType = resourceType;
+
+  return ExtendedResource as any;
 }
 
 export function extension<TExtensionType extends keyof AnyExtensionType>(
@@ -372,5 +348,9 @@ export function cloneResource<T>(value: T | null | undefined): T | undefined {
     return;
   }
 
-  return new (value as any).constructor(JSON.parse(JSON.stringify(value)));
+  // Create a new object with the same prototype
+  const clone = Object.create(Object.getPrototypeOf(value));
+
+  // Use Object.assign to do a deep copy properties
+  return Object.assign(clone, value);
 }
