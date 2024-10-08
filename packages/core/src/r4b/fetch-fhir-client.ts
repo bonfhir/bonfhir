@@ -1,4 +1,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import {
+  AnyResource,
+  AnyResourceType,
+  Bundle,
+  CapabilityStatement,
+  ExtractResource,
+  OperationOutcome,
+  Reference,
+  Retrieved,
+  TerminologyCapabilities,
+} from "@bonfhir/fhirtypes/r4b";
 import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
 import { print, type ExecutionResult as GraphQLExecutionResult } from "graphql";
 import { BundleExecutor } from "./bundle-executor";
@@ -33,17 +44,6 @@ import {
   searchAllPages,
   searchByPage,
 } from "./fhir-client";
-import {
-  AnyResource,
-  AnyResourceType,
-  Bundle,
-  CapabilityStatement,
-  ExtractResource,
-  OperationOutcome,
-  Reference,
-  Retrieved,
-  TerminologyCapabilities,
-} from "@bonfhir/fhirtypes/r4b";
 import { urlSafeConcat } from "./lang-utils";
 import { Merger } from "./mergers/index";
 

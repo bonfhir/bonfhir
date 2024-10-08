@@ -6,7 +6,6 @@
 import { AnyDomainResource, Narrative } from "@bonfhir/fhirtypes/r5";
 import { DefaultFormatter, Formatter } from "./formatters";
 import { startCase } from "./lang-utils";
-
 /** Attribute name, FHIR Type */
 export type NarrativeItemGenerator = [string, string];
 

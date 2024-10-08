@@ -1,3 +1,4 @@
+export * from "@bonfhir/fhirtypes/r4b";
 export * from "./builders";
 export * from "./bundle-executor";
 export * from "./bundle-navigator";
@@ -6,7 +7,6 @@ export * from "./dedup-search";
 export * from "./extensions";
 export * from "./fetch-fhir-client";
 export * from "./fhir-client";
-export * from "@bonfhir/fhirtypes/r4b";
 export * from "./formatters";
 export * from "./lang-utils";
 export * from "./merge";

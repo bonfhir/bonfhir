@@ -1,15 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
-import { ExecutionResult } from "graphql";
-import { BundleExecutor } from "./bundle-executor";
-import { BundleNavigator, WithResolvableReferences } from "./bundle-navigator";
-import {
-  AnyResourceTypeOrCustomResource,
-  CustomResourceClass,
-  ResourceOf,
-  ResourceTypeOf,
-  resourceTypeOf,
-} from "./extensions";
 import {
   AnyResource,
   AnyResourceType,
@@ -23,6 +12,17 @@ import {
   Retrieved,
   TerminologyCapabilities,
 } from "@bonfhir/fhirtypes/r4b";
+import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
+import { ExecutionResult } from "graphql";
+import { BundleExecutor } from "./bundle-executor";
+import { BundleNavigator, WithResolvableReferences } from "./bundle-navigator";
+import {
+  AnyResourceTypeOrCustomResource,
+  CustomResourceClass,
+  ResourceOf,
+  ResourceTypeOf,
+  resourceTypeOf,
+} from "./extensions";
 import { Formatter } from "./formatters";
 import { resourcesAreEqual } from "./lang-utils";
 import { merge } from "./merge";
