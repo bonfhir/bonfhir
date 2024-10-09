@@ -6,6 +6,8 @@ import typescript from "@rollup/plugin-typescript";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import dts from "rollup-plugin-dts";
 import filesize from "rollup-plugin-filesize";
+import path from "node:path";
+import process from "node:process";
 
 export default ["r4b", "r5"].flatMap((release) =>
   ["cjs", "esm"].flatMap((format) => [
@@ -32,6 +34,7 @@ export default ["r4b", "r5"].flatMap((release) =>
         }),
         nodeResolve({
           exportConditions: ["node"],
+          rootDir: path.join(process.cwd(), '..'), // Resolve imports from root of monorepo
         }),
         commonjs(),
         typescript({
@@ -74,7 +77,6 @@ export default ["r4b", "r5"].flatMap((release) =>
           format: format === "esm" ? "m" : "c",
         },
       ],
-      external: ['@bonfhir/fhirtypes/r4b', '@bonfhir/fhirtypes/r5'],
       plugins: [
         dts(),
         {

@@ -25,7 +25,8 @@
     "codegen": "pnpm --dir=\"${PWD}/../codegen\" dev generate --fhir r4b,r5 -t \"${PWD}/templates/**/*.ejs\" -b \"${PWD}/templates\" -p 'prettier --write %files%' -o \"${PWD}/src/<%= fhir.release %>\"",
     "dev": "nodemon --watch templates --watch src/r5 --ext ejs,ts --ignore '**/*.codegen.ts' --exec \"pnpm codegen && pnpm copyfiles\"",
     "format": "eslint --fix ./src && prettier --log-level warn --write ./src",
-    "test": "jest"
+    "test": "jest --testPathIgnorePatterns=export-fhirtypes.test.ts && pnpm test:fhirtypes",
+    "test:fhirtypes": "NODE_OPTIONS=--experimental-vm-modules jest test/export-fhirtypes.test.ts"
   },
   "type": "module",
   "exports": {
@@ -56,7 +57,7 @@
     "dist"
   ],
   "dependencies": {
-    "@bonfhir/fhirtypes": "workspace:*"
+    "@bonfhir/fhirtypes": "workspace:^1.1.0"
   },
   "devDependencies": {
     "@bonfhir/codegen": "workspace:*",
