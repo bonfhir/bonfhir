@@ -1,31 +1,40 @@
+import fs from 'node:fs';
 import path from 'node:path';
 
 const releases = ['r4b', 'r5'];
 const formats = ['cjs', 'esm'];
 
-describe('Fhir type exports', () => {
-      for (const release of releases) {
-            for (const format of formats) {
-                  const distPath = path.join(
-                        process.cwd(),
-                        'dist',
-                        release,
-                        format
-                  );
-                  
-                  test(`${release} ${format} JavaScript exports`, async () => {
-                        const indexPath = path.join(distPath, `index.${format === 'cjs' ? 'c' : 'm'}js`);
-                        const module = await import(indexPath);
+describe('FHIR type declarations', () => {
+  for (const release of releases) {
+    for (const format of formats) {
+      test(`${release} ${format} TypeScript declarations`, () => {
+        const declarationPath = path.join(
+          process.cwd(),
+          'dist',
+          release,
+          format,
+          'index.d.ts'
+        );
 
-                        // Debug: list all module keys
-                        console.log(`Module keys: ${Object.keys(module)}`);
-                        
-                        // Check for some expected FHIR types
-                        expect(module.Patient).toBeDefined();
-                        expect(module.Observation).toBeDefined();
-                  });
+        // Check if the file exists
+        expect(fs.existsSync(declarationPath)).toBe(true);
 
-                  // TODO: test typescript declaration exports fhir types
-            }
-      }
+        // Read the declaration file
+        const fileContents = fs.readFileSync(declarationPath, 'utf8');
+
+        // Function to check if a type is exported
+        function isTypeExported(typeName: string): boolean {
+          const regex = new RegExp(`export\\s*\\{[^}]*\\btype\\s+${typeName}\\b[^}]*\\}`);
+          return regex.test(fileContents);
+        }
+
+        console.log(`TypeScript declaration file contents: ${fileContents}`);
+
+        // Check for expected FHIR types
+        expect(isTypeExported('Patient')).toBe(true);
+        expect(isTypeExported('Observation')).toBe(true);
+        // Add more type checks as needed
+      });
+    }
+  }
 });
