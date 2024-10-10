@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.20.0
+
+### Minor Changes
+
+- [#304](https://github.com/bonfhir/bonfhir/pull/304) [`7abeb29`](https://github.com/bonfhir/bonfhir/commit/7abeb295a71aad48a77e8346d13c7025b54b90bc) Thanks [@ianatacn](https://github.com/ianatacn)! - Use types from @bonfhir/fhirtypes
+
 ## 2.19.4
 
 ### Patch Changes
