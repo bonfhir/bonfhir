@@ -13,7 +13,7 @@ Some packages are client-side only, some are server-side only, and some are both
 - Client and Server; these can be leveraged in all parts of the stack:
 
   - [`@bonfhir/core`](/packages/core)
-  - `@bonfhir/us-core`
+  - [`@bonfhir/us-core`](/packages/us-core)
   - `@bonfhir/next`
 
 - Client - they are reserved to client application:
