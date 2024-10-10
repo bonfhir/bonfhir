@@ -6,8 +6,6 @@ import typescript from "@rollup/plugin-typescript";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import dts from "rollup-plugin-dts";
 import filesize from "rollup-plugin-filesize";
-import path from "node:path";
-import process from "node:process";
 
 export default ["r4b", "r5"].flatMap((release) =>
   ["cjs", "esm"].flatMap((format) => [
