@@ -1,5 +1,5 @@
+import { Address, AddressType, AddressUse } from "@bonfhir/fhirtypes/r5";
 import { formatAddress } from "localized-address-format";
-import { Address, AddressType, AddressUse } from "../fhir-types.codegen";
 import {
   ValueFormatter,
   cleanUpCommonOptions,

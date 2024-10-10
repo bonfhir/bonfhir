@@ -6,7 +6,7 @@ import {
   ExtractDomainResource,
   ExtractResource,
   Reference,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r4b";
 import { asArray } from "./lang-utils";
 import { narrative } from "./narratives.codegen";
 

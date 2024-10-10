@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CustomResourceClass } from "./extensions";
 import {
   AnyResource,
   AnyResourceType,
@@ -14,7 +13,8 @@ import {
   Resource,
   Retrieved,
   WithRequired,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r5";
+import { CustomResourceClass } from "./extensions";
 import { asArray, uniqBy } from "./lang-utils";
 
 /**

@@ -1,4 +1,4 @@
-import { Reference } from "../fhir-types.codegen";
+import { Reference } from "@bonfhir/fhirtypes/r4b";
 import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import { codeableConceptFormatter } from "./codeable-concept";

@@ -1,6 +1,6 @@
+import { Parameters as FhirParameters } from "@bonfhir/fhirtypes/r4b";
 import { build } from "./builders";
 import { hasComplexParameters } from "./fhir-client";
-import { Parameters as FhirParameters } from "./fhir-types.codegen";
 
 describe("fhir-client", () => {
   describe("hasComplexParameters", () => {

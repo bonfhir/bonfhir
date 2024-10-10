@@ -1,5 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
+  AnyResource,
+  AnyResourceType,
+  Binary,
+  Bundle,
+  BundleEntry,
+  CapabilityStatement,
+  ExtractResource,
+  Reference,
+  Resource,
+  Retrieved,
+  WithRequired,
+  isResource,
+} from "@bonfhir/fhirtypes/r5";
+import {
   BundleNavigator,
   WithResolvableReferences,
   bundleNavigator,
@@ -18,20 +32,6 @@ import {
   normalizePatchBody,
   normalizeSearchParameters,
 } from "./fhir-client";
-import {
-  AnyResource,
-  AnyResourceType,
-  Binary,
-  Bundle,
-  BundleEntry,
-  CapabilityStatement,
-  ExtractResource,
-  Reference,
-  Resource,
-  Retrieved,
-  WithRequired,
-  isResource,
-} from "./fhir-types.codegen";
 import { uuid } from "./lang-utils";
 import { reference } from "./references.codegen";
 

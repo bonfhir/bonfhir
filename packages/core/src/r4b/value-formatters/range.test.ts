@@ -1,4 +1,4 @@
-import { Range } from "../fhir-types.codegen";
+import { Range } from "@bonfhir/fhirtypes/r4b";
 import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import { decimalFormatter } from "./decimal";

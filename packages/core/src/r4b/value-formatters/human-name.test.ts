@@ -1,5 +1,5 @@
+import { HumanName, ValueSetExpansionContains } from "@bonfhir/fhirtypes/r4b";
 import { periodFormatter } from ".";
-import { HumanName, ValueSetExpansionContains } from "../fhir-types.codegen";
 import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import { HumanNameFormatterOptions, humanNameFormatter } from "./human-name";

@@ -2,8 +2,6 @@
  * This module is used to provide a set of utility functions for typescript
  */
 
-import { ResolvableReference } from ".";
-import { isReferenceOf } from "./builders";
 import {
   AnyResourceType,
   DomainResource,
@@ -13,7 +11,9 @@ import {
   Reference,
   Resource,
   isResource,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r4b";
+import { ResolvableReference } from ".";
+import { isReferenceOf } from "./builders";
 
 /**
  * Returns the given `value` as is if it satisfies `Array.isArray` or otherwise

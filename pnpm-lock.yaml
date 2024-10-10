@@ -651,6 +651,10 @@ importers:
         version: 17.7.2
 
   packages/core:
+    dependencies:
+      '@bonfhir/fhirtypes':
+        specifier: workspace:*
+        version: link:../fhirtypes
     devDependencies:
       '@bonfhir/codegen':
         specifier: workspace:*

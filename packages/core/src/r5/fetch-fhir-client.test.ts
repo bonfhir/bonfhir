@@ -1,3 +1,11 @@
+import {
+  Bundle,
+  CapabilityStatement,
+  Claim,
+  Organization,
+  Patient,
+  Reference,
+} from "@bonfhir/fhirtypes/r5";
 import { TypedDocumentNode } from "@graphql-typed-document-node/core";
 import { http } from "msw";
 import { setupServer } from "msw/node";
@@ -11,14 +19,6 @@ import { BundleNavigator, bundleNavigator } from "./bundle-navigator";
 import { extendResource, extension } from "./extensions";
 import { FetchFhirClient } from "./fetch-fhir-client";
 import { FhirClient } from "./fhir-client";
-import {
-  Bundle,
-  CapabilityStatement,
-  Claim,
-  Organization,
-  Patient,
-  Reference,
-} from "./fhir-types.codegen";
 import { uuid } from "./lang-utils";
 
 // This is a quirk of msw: https://github.com/mswjs/msw/issues/1911

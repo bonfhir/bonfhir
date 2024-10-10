@@ -1,4 +1,4 @@
-import { Count, ValueSetExpansionContains } from "../fhir-types.codegen";
+import { Count, ValueSetExpansionContains } from "@bonfhir/fhirtypes/r4b";
 import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import { CountFormatterOptions, countFormatter } from "./count";

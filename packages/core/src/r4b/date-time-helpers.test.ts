@@ -1,3 +1,4 @@
+import { Duration } from "@bonfhir/fhirtypes/r4b";
 import {
   DurationUnit,
   duration,
@@ -9,7 +10,6 @@ import {
   parseFhirDateTime,
   today,
 } from "./date-time-helpers";
-import { Duration } from "./fhir-types.codegen";
 
 describe("date-time-helpers", () => {
   it("fhirDate", () => {

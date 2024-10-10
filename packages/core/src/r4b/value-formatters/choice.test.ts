@@ -1,4 +1,4 @@
-import { Condition } from "../fhir-types.codegen";
+import { Condition } from "@bonfhir/fhirtypes/r4b";
 import { Formatter } from "../formatters";
 import { ChoiceFormatterOptions, choiceFormatter } from "./choice";
 import { dateTimeFormatter } from "./date-time";

@@ -55,6 +55,9 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "@bonfhir/fhirtypes": "workspace:^1.1.0"
+  },
   "devDependencies": {
     "@bonfhir/codegen": "workspace:*",
     "@bonfhir/eslint-config": "workspace:*",

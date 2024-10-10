@@ -3,10 +3,10 @@
  */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AnyDomainResource, Narrative } from "./fhir-types.codegen";
+import { AnyDomainResource, Narrative } from "@bonfhir/fhirtypes/<%= fhir.release %>";
+import { <% for (domainResource of fhir.domainResources) { %> <%= domainResource.type %>, <% } %> } from "@bonfhir/fhirtypes/<%= fhir.release %>";
 import { DefaultFormatter, Formatter } from "./formatters";
 import { startCase } from "./lang-utils";
-import { <% for (domainResource of fhir.domainResources) { %> <%= domainResource.type %>, <% } %> } from "./fhir-types.codegen";
 
 /** Attribute name, FHIR Type */
 export type NarrativeItemGenerator = [string, string];

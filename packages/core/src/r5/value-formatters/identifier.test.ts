@@ -1,4 +1,4 @@
-import { Identifier, ValueSetExpansionContains } from "../fhir-types.codegen";
+import { Identifier, ValueSetExpansionContains } from "@bonfhir/fhirtypes/r5";
 import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import { codeableConceptFormatter } from "./codeable-concept";

@@ -1,4 +1,4 @@
-import { QuantityComparator } from "../fhir-types.codegen";
+import { QuantityComparator } from "@bonfhir/fhirtypes/r4b";
 import { ValueFormatter, withValueFormatter } from "../formatters";
 import { CodeFormatterOptions, codeFormatter } from "./code";
 import { DecimalFormatterOptions, decimalFormatter } from "./decimal";

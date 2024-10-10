@@ -1,4 +1,4 @@
-import { Currencies } from "../fhir-types.codegen";
+import { Currencies } from "@bonfhir/fhirtypes/r5";
 import { ValueFormatter } from "../formatters";
 
 /**

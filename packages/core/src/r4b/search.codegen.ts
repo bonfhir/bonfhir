@@ -2,7 +2,7 @@
  * Typed search builders for r4b/4.3.0
  */
 
-import { AnyResourceType } from "./fhir-types.codegen";
+import { AnyResourceType } from "@bonfhir/fhirtypes/r4b";
 import { DropFirst } from "./lang-utils";
 import { FhirSearchBuilder } from "./search";
 

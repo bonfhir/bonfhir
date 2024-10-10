@@ -1,4 +1,7 @@
-import { ContactPoint, ValueSetExpansionContains } from "../fhir-types.codegen";
+import {
+  ContactPoint,
+  ValueSetExpansionContains,
+} from "@bonfhir/fhirtypes/r4b";
 import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import {

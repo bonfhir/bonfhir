@@ -1,8 +1,8 @@
+import { Patient, Retrieved } from "@bonfhir/fhirtypes/r4b";
 import { mock, mockReset } from "jest-mock-extended";
 import { build } from "./builders";
 import { BundleExecutor } from "./bundle-executor";
 import { FhirClient } from "./fhir-client";
-import { Patient, Retrieved } from "./fhir-types.codegen";
 import { uuid } from "./lang-utils";
 
 describe("bundle-executor", () => {

@@ -7,7 +7,7 @@ import {
   ExtractResource,
   Meta,
   Resource,
-} from "./fhir-types.codegen";
+} from "@bonfhir/fhirtypes/r5";
 import { asArray } from "./lang-utils";
 import { narrative } from "./narratives.codegen";
 

@@ -1,4 +1,4 @@
-import { Money } from "../fhir-types.codegen";
+import { Money } from "@bonfhir/fhirtypes/r4b";
 import { Formatter } from "../formatters";
 import { MoneyFormatterOptions, moneyFormatter } from "./money";
 

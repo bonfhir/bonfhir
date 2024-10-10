@@ -1,4 +1,4 @@
-import { Ratio } from "../fhir-types.codegen";
+import { Ratio } from "@bonfhir/fhirtypes/r4b";
 import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import { decimalFormatter } from "./decimal";

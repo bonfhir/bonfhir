@@ -1,5 +1,5 @@
+import { Duration, ValueSetExpansionContains } from "@bonfhir/fhirtypes/r5";
 import { duration } from "../date-time-helpers";
-import { Duration, ValueSetExpansionContains } from "../fhir-types.codegen";
 import { Formatter } from "../formatters";
 import { codeFormatter } from "./code";
 import { decimalFormatter } from "./decimal";
