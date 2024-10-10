@@ -6,6 +6,7 @@ import {
 import DOMPurify from "dompurify";
 import { ReactElement } from "react";
 import { useFhirUIContext } from "../context";
+import { useFhirFormatter } from "../formatters";
 
 export type FhirValueProps<TRendererProps = any> =
   DefaultFormatterParametersProps & {
@@ -82,14 +83,11 @@ export type DefaultFormatterParametersProps =
 export function FhirValue<TRendererProps = any>(
   props: FhirValueProps<TRendererProps>,
 ): ReactElement<any, any> | null {
-  const { applyDefaultProps, formatter, render } = useFhirUIContext();
+  const { formatter } = useFhirFormatter();
+  const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirValue", props);
 
-  let formattedValue = formatter.format(
-    props.type,
-    props.value as never,
-    props.options,
-  );
+  let formattedValue = formatter.format(props.type, props.value, props.options);
 
   if (
     props.type === "markdown" &&

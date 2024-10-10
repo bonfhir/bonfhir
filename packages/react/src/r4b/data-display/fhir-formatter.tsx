@@ -1,6 +1,7 @@
 import { Formatter } from "@bonfhir/core/r4b";
 import { ReactElement, ReactNode } from "react";
 import { useFhirUIContext } from "../context";
+import { useFhirFormatter } from "../formatters";
 
 export interface FhirFormatterProps<TRendererProps = any> {
   format: (formatter: Formatter) => ReactNode;
@@ -10,7 +11,8 @@ export interface FhirFormatterProps<TRendererProps = any> {
 export function FhirFormatter<TRendererProps = any>(
   props: FhirFormatterProps<TRendererProps>,
 ): ReactElement | null {
-  const { applyDefaultProps, formatter, render } = useFhirUIContext();
+  const { formatter } = useFhirFormatter();
+  const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirFormatter", props);
 
   return render<FhirFormatterRendererProps>("FhirFormatter", {
