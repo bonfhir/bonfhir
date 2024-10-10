@@ -34,7 +34,6 @@ export default ["r4b", "r5"].flatMap((release) =>
         }),
         nodeResolve({
           exportConditions: ["node"],
-          rootDir: path.join(process.cwd(), '..'), // Resolve imports from root of monorepo
         }),
         commonjs(),
         typescript({
