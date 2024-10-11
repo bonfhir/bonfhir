@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.20.1
+
+### Patch Changes
+
+- [#305](https://github.com/bonfhir/bonfhir/pull/305) [`582273d`](https://github.com/bonfhir/bonfhir/commit/582273d0374a14474c7f14fd8c3d48a1be0c20a5) Thanks [@cadeljones](https://github.com/cadeljones)! - Remove use of Proxy from extensions
+
 ## 2.20.0
 
 ### Minor Changes
