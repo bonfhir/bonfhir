@@ -285,8 +285,26 @@ describe("extensions", () => {
     patient.birthSex = "OTH";
     const anotherPatient = cloneResource(patient);
     expect(anotherPatient).not.toBe(patient);
-    expect(anotherPatient.birthSex).toEqual("OTH");
     expect(anotherPatient).toBeInstanceOf(CustomPatient);
+    expect(anotherPatient).toEqual(
+      expect.objectContaining({
+        birthSex: "OTH",
+        resourceType: "Patient",
+        toFhirResource: expect.any(Function),
+        toJSON: expect.any(Function),
+        computedName: expect.any(Function),
+      }),
+    );
+  });
+
+  it("differentiation between extended resources types", () => {
+    const patient = new CustomPatient({});
+    const CustomPatientTwo = extendResource("Patient", {});
+    const patient2 = new CustomPatientTwo({});
+
+    expect(patient).toBeInstanceOf(CustomPatient);
+    expect(patient2).toBeInstanceOf(CustomPatientTwo);
+    expect(patient2).not.toBeInstanceOf(CustomPatient);
   });
 
   it("initialize with special extensions", () => {
