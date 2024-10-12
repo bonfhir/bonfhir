@@ -1,8 +1,16 @@
 import { Formatter } from "@bonfhir/core/r4b";
-import { PropsWithChildren, createElement } from "react";
-import { FhirUIContext, OnNavigateArgs } from "./context";
-import { FhirUIDefaultProps } from "./default-props";
-import { useFhirFormatter } from "./formatters/fhir-formatter-context";
+import {
+  createElement,
+  useContext,
+  useMemo,
+  type PropsWithChildren,
+} from "react";
+import { FhirUIContext, type OnNavigateArgs } from "./context";
+import type { FhirUIDefaultProps } from "./default-props";
+import {
+  FhirFormatterContext,
+  useFhirFormatter,
+} from "./formatters/fhir-formatter-context";
 import { FhirFormatterProvider } from "./formatters/provider";
 import { FhirUIRenderer } from "./renderer";
 
@@ -52,7 +60,9 @@ const FhirUIProviderWrapper: React.FC<DeprecationWrapperProps> = (props) => {
 
 export type FhirUIProviderProps = PropsWithChildren<{
   /**
-   * @deprecated formatter in UI context is deprecated: please @see FhirFormatterProvider and its hook @see useFhirFormatter
+   * {@link Formatter} to provide to all child components. If omitted, any
+   * formatter provided by a parent {@link FhirFormatterProvider} will be used.
+   * Failing that, a new default formatter will be created.
    */
   formatter?: Formatter | null | undefined;
   renderer: Partial<FhirUIRenderer>;
@@ -61,21 +71,25 @@ export type FhirUIProviderProps = PropsWithChildren<{
 }>;
 
 /**
- * Provide a context for ui components.
+ * Provide a context for UI components.
  * Should probably be placed near the top of your React app render tree.
  */
 export function FhirUIProvider(props: FhirUIProviderProps) {
   const { children, ...otherProps } = props;
 
-  if (props.formatter) {
-    // Logger?.warn(
-    //   "[FhirUIProvider] formatters in FhirUIProvider are deprecated, please use FhirFormatterProvider instead.",
-    // );
+  const parentProvidedFormatter = useContext(FhirFormatterContext)?.formatter;
+  const formatter = useMemo(
+    (): Formatter =>
+      props.formatter ?? parentProvidedFormatter ?? Formatter.build(),
+    [props.formatter, parentProvidedFormatter],
+  );
 
+  // If a `formatter` is explicitly given as a prop or none was given and the
+  // formatter is NOT a parent-provided one, we provide it to all child
+  // components.
+  if (formatter === props.formatter || formatter !== parentProvidedFormatter) {
     return (
-      <FhirFormatterProvider
-        formatter={props.formatter as Formatter | undefined}
-      >
+      <FhirFormatterProvider formatter={formatter}>
         <FhirUIProviderWrapper {...otherProps}>
           {children}
         </FhirUIProviderWrapper>
@@ -83,6 +97,9 @@ export function FhirUIProvider(props: FhirUIProviderProps) {
     );
   }
 
+  // Here, we know the memoized formatter is the parent-provided one so we
+  // don't have to provide it ourselves again to all child components as that
+  // risks omitting whatever additional options might also have been provided.
   return (
     <FhirUIProviderWrapper {...otherProps}>{children}</FhirUIProviderWrapper>
   );

@@ -3,9 +3,9 @@ import { createContext, useContext } from "react";
 
 export type FhirFormatterDefinition = { formatter: Formatter }; // redirecting in case we add strictly react-functionalities
 
-export const FhirFormatterContext = createContext<FhirFormatterDefinition>({
-  formatter: Formatter.default,
-} as FhirFormatterDefinition);
+export const FhirFormatterContext = createContext<
+  FhirFormatterDefinition | undefined
+>(undefined);
 
 /**
  * @returns the value formatters available for FHIR values
