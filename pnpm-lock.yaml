@@ -995,13 +995,13 @@ importers:
   packages/mantine:
     dependencies:
       '@bonfhir/core':
-        specifier: workspace:^2.19.3
+        specifier: workspace:^2.21.0
         version: link:../core
       '@bonfhir/query':
         specifier: workspace:^3.2.0
         version: link:../query
       '@bonfhir/react':
-        specifier: workspace:^3.2.1
+        specifier: workspace:^3.3.0
         version: link:../react
       '@tiptap/extension-link':
         specifier: '*'
@@ -1352,7 +1352,7 @@ importers:
   packages/react:
     dependencies:
       '@bonfhir/core':
-        specifier: workspace:^2.19.4
+        specifier: workspace:^2.21.0
         version: link:../core
       '@bonfhir/query':
         specifier: workspace:^3.2.0

@@ -1,5 +1,17 @@
 # @bonfhir/mantine
 
+## 3.5.0
+
+### Minor Changes
+
+- [#292](https://github.com/bonfhir/bonfhir/pull/292) [`20a6fb3`](https://github.com/bonfhir/bonfhir/commit/20a6fb38973fd4e40eb0fb7ee2b7681c50ef7380) Thanks [@mimi-acn](https://github.com/mimi-acn)! - creation of an independent Formatters Context Provider
+
+### Patch Changes
+
+- Updated dependencies [[`20a6fb3`](https://github.com/bonfhir/bonfhir/commit/20a6fb38973fd4e40eb0fb7ee2b7681c50ef7380)]:
+  - @bonfhir/react@3.3.0
+  - @bonfhir/core@2.21.0
+
 ## 3.4.2
 
 ### Patch Changes
