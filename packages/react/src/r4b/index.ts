@@ -1,6 +1,7 @@
 export * from "./context";
 export * from "./data-display";
 export * from "./feedback";
+export * from "./formatters";
 export * from "./hooks";
 export * from "./inputs";
 export * from "./navigation";

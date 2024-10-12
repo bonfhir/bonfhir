@@ -34,6 +34,7 @@ export * from "./ratio-range";
 export * from "./reference";
 export * from "./string";
 export * from "./time";
+export * from "./types";
 export * from "./unsigned-int";
 export * from "./uri";
 export * from "./url";

@@ -4,6 +4,9 @@ import { FhirUIDefaultProps } from "./default-props";
 import { FhirUIRenderer } from "./renderer";
 
 export interface FhirUIContext {
+  /**
+   * @deprecated formatter in UI context is deprecated: please @see FhirFormatterProvider and its hook @see useFhirFormatters
+   */
   formatter: DefaultFormatter;
   renderer: Partial<FhirUIRenderer>;
   defaultProps?: FhirUIDefaultProps | null | undefined;
@@ -21,9 +24,7 @@ export interface FhirUIContext {
 /**
  * The context used by FHIR UI Components.
  */
-export const FhirUIContext = createContext<FhirUIContext | undefined>(
-  undefined,
-);
+export const FhirUIContext = createContext<FhirUIContext>(undefined!);
 
 /**
  * Get the current {@link FhirUIContext}.

@@ -393,7 +393,7 @@ const APP_CONTENT = (fhirServer?: FhirServerType) =>
     ? `import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
     import { MantineRenderer } from "@bonfhir/mantine/r4b";
     import { FhirQueryProvider } from "@bonfhir/query/r4b";
-    import { FhirUIProvider } from "@bonfhir/react/r4b";
+    import { FhirFormatterProvider, FhirUIProvider } from "@bonfhir/react/r4b";
     import {
       Alert,
       AppShell,
@@ -427,22 +427,24 @@ const APP_CONTENT = (fhirServer?: FhirServerType) =>
             redirect_uri={document.location.origin}
           >
             <WithAuth>
-              <FhirUIProvider
-                renderer={MantineRenderer}
-                onNavigate={({ target, aux }) => {
-                  if (aux) {
-                    window.open(target, "_blank");
-                  } else {
-                    navigate(target);
-                  }
-                }}
-              >
-                <AppShell>
-                  <AppShell.Main>
-                    <Outlet />
-                  </AppShell.Main>
-                </AppShell>
-              </FhirUIProvider>
+              <FhirFormatterProvider>
+                <FhirUIProvider
+                  renderer={MantineRenderer}
+                  onNavigate={({ target, aux }) => {
+                    if (aux) {
+                      window.open(target, "_blank");
+                    } else {
+                      navigate(target);
+                    }
+                  }}
+                >
+                  <AppShell>
+                    <AppShell.Main>
+                      <Outlet />
+                    </AppShell.Main>
+                  </AppShell>
+                </FhirUIProvider>
+              </FhirFormatterProvider>
             </WithAuth>
           </AuthProvider>
         </MantineProvider>
@@ -520,7 +522,7 @@ import "@mantine/tiptap/styles.css";
 import { FetchFhirClient } from "@bonfhir/core/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
-import { FhirUIProvider } from "@bonfhir/react/r4b";
+import { FhirFormatterProvider, FhirUIProvider } from "@bonfhir/react/r4b";
 import { AppShell, MantineProvider, createTheme } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -543,23 +545,25 @@ export default function App() {
   return (
     <MantineProvider theme={theme}>
       <FhirQueryProvider fhirClient={client}>
-        <FhirUIProvider
-          renderer={MantineRenderer}
-          onNavigate={({ target, aux }) => {
-            if (aux) {
-              window.open(target, "_blank");
-            } else {
-              navigate(target);
-            }
-          }}
-        >
-          <AppShell>
-            <AppShell.Main>
-              <Outlet />
-            </AppShell.Main>
-          </AppShell>
-          <ReactQueryDevtools />
-        </FhirUIProvider>
+        <FhirFormatterProvider>
+          <FhirUIProvider
+            renderer={MantineRenderer}
+            onNavigate={({ target, aux }) => {
+              if (aux) {
+                window.open(target, "_blank");
+              } else {
+                navigate(target);
+              }
+            }}
+          >
+            <AppShell>
+              <AppShell.Main>
+                <Outlet />
+              </AppShell.Main>
+            </AppShell>
+            <ReactQueryDevtools />
+          </FhirUIProvider>
+        </FhirFormatterProvider>
       </FhirQueryProvider>
     </MantineProvider>
   );
