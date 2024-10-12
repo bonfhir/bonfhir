@@ -1,5 +1,11 @@
 # @bonfhir/cli
 
+## 2.13.0
+
+### Minor Changes
+
+- [#292](https://github.com/bonfhir/bonfhir/pull/292) [`20a6fb3`](https://github.com/bonfhir/bonfhir/commit/20a6fb38973fd4e40eb0fb7ee2b7681c50ef7380) Thanks [@mimi-acn](https://github.com/mimi-acn)! - creation of an independent Formatters Context Provider
+
 ## 2.12.2
 
 ### Patch Changes
