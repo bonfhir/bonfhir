@@ -10,6 +10,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   build:
+    if: github.event.pull_request.head.ref != 'changeset-release/main' # This should skip the build step for the Pull requests that are opened from the branch changeset-release/main.
     name: Build
     timeout-minutes: 30
     runs-on: ubuntu-latest
