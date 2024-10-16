@@ -7,9 +7,9 @@ on:
       - ci-approval-test-branch
 
 jobs:
-  build:
+  print_test:
     if: github.event.pull_request.head.ref != '310-example-case' # This should skip the build step for the Pull requests that are opened from the branch 310-example-case.
-    name: Print Test
+    name: PrintTest
     timeout-minutes: 30
     runs-on: ubuntu-latest
 
