@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Duration } from "@bonfhir/fhirtypes/r5";
-import "@formatjs/intl-datetimeformat/polyfill";
 import { Formatter } from "./formatters";
 
 /**

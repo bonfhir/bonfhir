@@ -1,4 +1,3 @@
-import "@formatjs/intl-listformat/polyfill";
 import {
   ContactPoint,
   ContactPointSystem,

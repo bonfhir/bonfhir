@@ -1,5 +1,4 @@
 import { Address, AddressType, AddressUse } from "@bonfhir/fhirtypes/r5";
-import "@formatjs/intl-listformat/polyfill";
 import { formatAddress } from "localized-address-format";
 import {
   ValueFormatter,

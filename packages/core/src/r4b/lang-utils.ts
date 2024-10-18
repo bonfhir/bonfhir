@@ -1,7 +1,6 @@
 /**
  * This module is used to provide a set of utility functions for typescript
  */
-import "@formatjs/intl-relativetimeformat/polyfill";
 import {
   AnyResourceType,
   DomainResource,

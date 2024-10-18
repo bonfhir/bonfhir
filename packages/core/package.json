@@ -88,14 +88,7 @@
   "peerDependencies": {
     "decimal.js": "^10.4.3",
     "remarkable": "^2.0.1",
-    "localized-address-format": "^1.3.1",
-    "@formatjs/intl-getcanonicallocales": "*",
-    "@formatjs/intl-locale": "*",
-    "@formatjs/intl-pluralrules": "*",
-    "@formatjs/intl-numberformat": "*",
-    "@formatjs/intl-datetimeformat": "*",
-    "@formatjs/intl-listformat": "*",
-    "@formatjs/intl-relativetimeformat": "*"
+    "localized-address-format": "^1.3.1"
   },
   "prettier": "@bonfhir/prettier-config",
   "eslintConfig": {

@@ -1,4 +1,3 @@
-import "@formatjs/intl-numberformat/polyfill";
 import { ValueFormatter } from "../formatters";
 
 /**

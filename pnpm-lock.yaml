@@ -655,27 +655,6 @@ importers:
       '@bonfhir/fhirtypes':
         specifier: workspace:^1.1.0
         version: link:../fhirtypes
-      '@formatjs/intl-datetimeformat':
-        specifier: '*'
-        version: 6.12.5
-      '@formatjs/intl-getcanonicallocales':
-        specifier: '*'
-        version: 2.3.0
-      '@formatjs/intl-listformat':
-        specifier: '*'
-        version: 7.5.7
-      '@formatjs/intl-locale':
-        specifier: '*'
-        version: 4.0.0
-      '@formatjs/intl-numberformat':
-        specifier: '*'
-        version: 8.10.3
-      '@formatjs/intl-pluralrules':
-        specifier: '*'
-        version: 5.2.14
-      '@formatjs/intl-relativetimeformat':
-        specifier: '*'
-        version: 11.2.14
       decimal.js:
         specifier: ^10.4.3
         version: 10.4.3
@@ -951,6 +930,27 @@ importers:
       '@bonfhir/react':
         specifier: workspace:^3.2.1
         version: link:../react
+      '@formatjs/intl-datetimeformat':
+        specifier: '*'
+        version: 6.12.5
+      '@formatjs/intl-getcanonicallocales':
+        specifier: '*'
+        version: 2.3.0
+      '@formatjs/intl-listformat':
+        specifier: '*'
+        version: 7.5.7
+      '@formatjs/intl-locale':
+        specifier: '*'
+        version: 4.0.0
+      '@formatjs/intl-numberformat':
+        specifier: '*'
+        version: 8.10.3
+      '@formatjs/intl-pluralrules':
+        specifier: '*'
+        version: 5.2.14
+      '@formatjs/intl-relativetimeformat':
+        specifier: '*'
+        version: 11.2.14
     devDependencies:
       '@bonfhir/eslint-config':
         specifier: workspace:*

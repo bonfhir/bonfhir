@@ -1,4 +1,3 @@
-import "@formatjs/intl-datetimeformat/polyfill";
 import { parseFhirDateTime } from "../date-time-helpers";
 import { ValueFormatter } from "../formatters";
 import { formatRelativeDateTime } from "../lang-utils";
