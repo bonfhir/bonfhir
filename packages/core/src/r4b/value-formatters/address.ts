@@ -99,6 +99,7 @@ export const addressFormatter: ValueFormatter<
         )
         .filter(Boolean);
 
+      // polyfilled for environments which don't support those yet https://formatjs.io/docs/polyfills
       return new Intl.ListFormat(
         formatterOptions.locale,
         options?.listFormatOptions,

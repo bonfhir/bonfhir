@@ -7,6 +7,29 @@ description: Display localized FHIR Data Types
 bonFHIR comes built-in with localized, configurable formatters for all [FHIR Data Types](https://hl7.org/fhir/datatypes.html).
 They can be used to present the information to users and saves a considerable amount of time when implementing FHIR solutions.
 
+## React Native & Intl
+
+Some formatters rely on the [Intl Api](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) to properly format values, which are not currently completely supported by React Native engines. Therefore, if you want to use these formatters within a React native apps, we suggest you also include the following necessary polyfills:
+
+```typescript
+import "@formatjs/intl-datetimeformat/polyfill";
+import "@formatjs/intl-listformat/polyfill";
+import "@formatjs/intl-numberformat/polyfill";
+import "@formatjs/intl-relativetimeformat/polyfill";
+```
+
+And the following packages in your package manager:
+
+```
+@formatjs/intl-getcanonicallocales
+@formatjs/intl-locale
+@formatjs/intl-pluralrules
+@formatjs/intl-numberformat
+@formatjs/intl-datetimeformat
+@formatjs/intl-listformat
+@formatjs/intl-relativetimeformat
+```
+
 ## Formatter usage
 
 ```typescript

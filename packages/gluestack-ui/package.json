@@ -85,7 +85,14 @@
   },
   "peerDependencies": {
     "@gluestack-ui/themed": "^1",
-    "react": "*"
+    "react": "*",
+    "@formatjs/intl-getcanonicallocales": "*",
+    "@formatjs/intl-locale": "*",
+    "@formatjs/intl-pluralrules": "*",
+    "@formatjs/intl-numberformat": "*",
+    "@formatjs/intl-datetimeformat": "*",
+    "@formatjs/intl-listformat": "*",
+    "@formatjs/intl-relativetimeformat": "*"
   },
   "prettier": "@bonfhir/prettier-config",
   "eslintConfig": {

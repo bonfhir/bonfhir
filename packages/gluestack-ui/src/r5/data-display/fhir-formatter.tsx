@@ -1,3 +1,8 @@
+import "@formatjs/intl-datetimeformat/polyfill";
+import "@formatjs/intl-listformat/polyfill";
+import "@formatjs/intl-numberformat/polyfill";
+import "@formatjs/intl-relativetimeformat/polyfill";
+
 import { FhirFormatterRendererProps } from "@bonfhir/react/r5";
 import { Text } from "@gluestack-ui/themed";
 import { ComponentProps, ReactElement } from "react";
