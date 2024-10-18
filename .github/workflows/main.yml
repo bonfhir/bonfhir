@@ -8,6 +8,10 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+env:
+  DO_NOT_TRACK: 1
+  TURBO_TELEMETRY_DISABLED: 1
+
 jobs:
   build:
     if: github.event.pull_request.head.ref != 'changeset-release/main' # This should skip the build step for the Pull requests that are opened from the branch changeset-release/main.
