@@ -80,7 +80,7 @@ export const dateTimeFormatter: ValueFormatter<
         break;
       }
     }
-
+    // polyfilled for environments which don't support those yet https://formatjs.io/docs/polyfills
     return new Intl.DateTimeFormat(formatterOptions.locale, intlOptions).format(
       fhirDateTime.date,
     );
