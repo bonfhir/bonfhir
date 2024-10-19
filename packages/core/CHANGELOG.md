@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.22.0
+
+### Minor Changes
+
+- [#300](https://github.com/bonfhir/bonfhir/pull/300) [`613a65e`](https://github.com/bonfhir/bonfhir/commit/613a65eced7d9b77a1013145772c102b8b1f4eca) Thanks [@mimi-acn](https://github.com/mimi-acn)! - intl polyfills in formatting
+
 ## 2.21.0
 
 ### Minor Changes
