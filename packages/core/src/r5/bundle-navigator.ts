@@ -453,7 +453,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
 
       for (const entry of (this.bundle.entry || []).filter(Boolean) || []) {
         if (entry.resource) {
-          const resolvableResource = withResolvableProxy(
+          const resolvableResource = withResolvableReference(
             entry.resource,
             this,
           ) as WithResolvableReferences<Resource>;
@@ -515,7 +515,7 @@ export class BundleNavigator<TResource extends Resource = Resource> {
               mappedByReference.set(reference.reference, []);
             }
 
-            const resolvableReference = withResolvableProxy(
+            const resolvableReference = withResolvableReference(
               entry.resource,
               this,
             );
@@ -530,99 +530,76 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   }
 }
 
-function withResolvableProxy<T extends Resource>(
+function withResolvableReference<T extends Resource>(
   resource: T,
   navigator: BundleNavigator<T>,
 ): WithResolvableReferences<T> {
   if (
     !resource ||
     typeof resource !== "object" ||
-    (resource as any)["__withResolvableProxy__"]
+    (resource as any)["__withResolvableReference__"]
   ) {
     return resource as any;
   }
 
-  return new Proxy(resource, {
-    ownKeys(target) {
-      return [
-        ...Reflect.ownKeys(target),
-        "included",
-        "revIncluded",
-        "__withResolvableProxy__",
-      ];
+  const resolvableResource = Object.assign(
+    {},
+    resource,
+  ) as WithResolvableReferences<T>;
+
+  Object.defineProperties(resolvableResource, {
+    included: {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: (customResourceClass: any) =>
+        navigator.reference(
+          (resource as Reference)?.reference,
+          customResourceClass,
+        ),
     },
-    getOwnPropertyDescriptor(target, prop) {
-      if (prop === "included") {
-        return {
-          configurable: true,
-          enumerable: true,
-          writable: true,
-          value: (customResourceClass: any) =>
-            navigator.reference(
-              (target as Reference)?.reference,
-              customResourceClass,
-            ),
-        };
-      }
-
-      if (prop === "revIncluded") {
-        return {
-          configurable: true,
-          enumerable: true,
-          writable: true,
-          value: (
-            select: (
-              resource: any,
-            ) => Reference | Reference[] | null | undefined,
-            customResourceClass?: any,
-          ) =>
-            navigator.revReference(select, target as any, customResourceClass),
-        };
-      }
-
-      if (prop === "__withResolvableProxy__") {
-        return {
-          configurable: true,
-          enumerable: true,
-          writable: true,
-          value: () => true,
-        };
-      }
-
-      return Reflect.getOwnPropertyDescriptor(target, prop);
+    revIncluded: {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: (
+        select: (resource: any) => Reference | Reference[] | null | undefined,
+        customResourceClass?: any,
+      ) => navigator.revReference(select, resource as any, customResourceClass),
     },
-    get: (target, prop, receiver) => {
-      if (prop === "included") {
-        return (customResourceClass: any) =>
-          navigator.reference(
-            (target as Reference)?.reference,
-            customResourceClass,
-          );
-      }
-
-      if (prop === "revIncluded") {
-        return (
-          select: (resource: any) => Reference | Reference[] | null | undefined,
-          customResourceClass?: any,
-        ) => navigator.revReference(select, target as any, customResourceClass);
-      }
-
-      if (prop === "__withResolvableProxy__") {
-        return () => true;
-      }
-
-      const targetValue = Reflect.get(target, prop, receiver) as any;
-      if (targetValue == undefined) {
-        return targetValue;
-      }
-
-      if (targetValue["__withResolvableProxy__"]) {
-        return targetValue;
-      }
-
-      return withResolvableProxy(targetValue, navigator);
+    __withResolvableReference__: {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: () => true,
     },
-  }) as unknown as WithResolvableReferences<T>;
+  });
+
+  // Create a getter that will recursively properties when retrieved
+  for (const prop in resolvableResource) {
+    if (
+      prop !== "included" &&
+      prop !== "revIncluded" &&
+      prop !== "__withResolvableReference__"
+    ) {
+      const originalValue = (resolvableResource as any)[prop];
+      Object.defineProperty(resolvableResource, prop, {
+        configurable: true,
+        enumerable: true,
+        get: function () {
+          const value = originalValue;
+          if (Array.isArray(value)) {
+            return value.map((item) =>
+              withResolvableReference(item, navigator),
+            );
+          }
+          return withResolvableReference(value, navigator);
+        },
+      });
+    }
+  }
+
+  return resolvableResource;
 }
 
 /**
