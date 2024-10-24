@@ -1,5 +1,11 @@
 # @bonfhir/core
 
+## 2.22.1
+
+### Patch Changes
+
+- [#319](https://github.com/bonfhir/bonfhir/pull/319) [`c372b0d`](https://github.com/bonfhir/bonfhir/commit/c372b0d2cb8b286cf12b94fcbbf025d91601cee8) Thanks [@cadeljones](https://github.com/cadeljones)! - Remove use of Proxy from bundle-navigator
+
 ## 2.22.0
 
 ### Minor Changes
