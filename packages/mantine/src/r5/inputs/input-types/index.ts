@@ -12,3 +12,4 @@ export * from "./fhir-input-resource";
 export * from "./fhir-input-string";
 export * from "./fhir-input-terminology";
 export * from "./fhir-input-time";
+export * from "./fhir-input-resource-type";

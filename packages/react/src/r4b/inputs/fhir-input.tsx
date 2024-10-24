@@ -24,6 +24,8 @@ import {
   FhirInputQuantityProps,
   FhirInputResource,
   FhirInputResourceProps,
+  FhirInputResourceType,
+  FhirInputResourceTypeProps,
   FhirInputString,
   FhirInputStringProps,
   FhirInputTerminology,
@@ -96,6 +98,9 @@ export function FhirInput<
     case "time": {
       return <FhirInputTime<TRendererProps> {...props} />;
     }
+    case "ResourceType": {
+      return <FhirInputResourceType<TRendererProps> {...props} />;
+    }
     default: {
       throw new Error(`Unknown FhirInput type: ${(props as any).type}`);
     }
@@ -119,4 +124,5 @@ export type FhirInputProps<
   | FhirInputResourceProps<TRendererProps, TResourceType>
   | FhirInputStringProps<TRendererProps>
   | FhirInputTerminologyProps<TRendererProps>
-  | FhirInputTimeProps<TRendererProps>;
+  | FhirInputTimeProps<TRendererProps>
+  | FhirInputResourceTypeProps<TRendererProps>;
