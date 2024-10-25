@@ -40,7 +40,9 @@ export interface FhirUIDefaultProps {
     | undefined;
   FhirInputResourceSelector?:
     | Partial<FhirInputResourceSelectorProps>
-    | ((props: FhirInputResourceSelectorProps) => FhirInputResourceSelectorProps)
+    | ((
+        props: FhirInputResourceSelectorProps,
+      ) => FhirInputResourceSelectorProps)
     | null
     | undefined;
   FhirPagination?:

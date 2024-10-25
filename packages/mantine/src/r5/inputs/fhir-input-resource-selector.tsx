@@ -1,18 +1,17 @@
 import { AnyResourceType } from "@bonfhir/core/r5";
-import { FhirInput, FhirInputResourceSelectorRendererProps } from "@bonfhir/react/r5";
 import {
-  Group,
-} from "@mantine/core";
+  FhirInput,
+  FhirInputResourceSelectorRendererProps,
+} from "@bonfhir/react/r5";
+import { Group } from "@mantine/core";
 import { ReactElement, useState } from "react";
 
 export function MantineFhirInputResourceSelector(
   props: FhirInputResourceSelectorRendererProps<MantineFhirInputResourceSelectorProps>,
 ): ReactElement | null {
-  const [resourceType, setResourceType] = useState<AnyResourceType | undefined | null>(
-    props.resourceTypes?.length === 1
-      ? props.resourceTypes[0]
-      : null
-  );
+  const [resourceType, setResourceType] = useState<
+    AnyResourceType | undefined | null
+  >(props.resourceTypes?.length === 1 ? props.resourceTypes[0] : null);
 
   const onChangeResourceType = (value: AnyResourceType | undefined) => {
     setResourceType(value);
@@ -20,11 +19,8 @@ export function MantineFhirInputResourceSelector(
   };
 
   return (
-    <Group
-      className={props.className}
-      style={props.style}
-    >
-      <FhirInput 
+    <Group className={props.className} style={props.style}>
+      <FhirInput
         type="ResourceType"
         value={resourceType}
         onChange={onChangeResourceType}
@@ -32,8 +28,8 @@ export function MantineFhirInputResourceSelector(
         required={props.required}
         {...props.rendererProps}
       />
-      {resourceType && (
-        props.type === "Resource" ? (
+      {resourceType &&
+        (props.type === "Resource" ? (
           <FhirInput
             type="Resource"
             resourceType={resourceType}
@@ -42,17 +38,18 @@ export function MantineFhirInputResourceSelector(
             required={props.required}
             {...props.rendererProps}
           />
-        ) : props.type === "Reference" && (
-          <FhirInput
-            type="Reference"
-            resourceType={resourceType}
-            value={props.value}
-            onChange={props.onChange}
-            required={props.required}
-            {...props.rendererProps}
-          />
-        )
-      )}
+        ) : (
+          props.type === "Reference" && (
+            <FhirInput
+              type="Reference"
+              resourceType={resourceType}
+              value={props.value}
+              onChange={props.onChange}
+              required={props.required}
+              {...props.rendererProps}
+            />
+          )
+        ))}
     </Group>
   );
 }

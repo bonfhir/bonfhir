@@ -1,6 +1,6 @@
+import { AnyResourceType, ExtractResource, Reference } from "@bonfhir/core/r5";
 import { ReactElement } from "react";
 import { useFhirUIContext } from "../context";
-import { AnyResourceType, ExtractResource, Reference } from "@bonfhir/core/r5";
 
 export type FhirInputResourceSelectorProps<TRendererProps = any> = {
   required?: boolean | null | undefined;
@@ -30,7 +30,9 @@ export function FhirInputResourceSelector<TRendererProps = any>(
   const { applyDefaultProps, render } = useFhirUIContext();
   props = applyDefaultProps("FhirInputResourceSelector", props);
 
-  return render<FhirInputResourceSelectorProps>("FhirInputResourceSelector", { ...props });
+  return render<FhirInputResourceSelectorProps>("FhirInputResourceSelector", {
+    ...props,
+  });
 }
 
 export type FhirInputResourceSelectorRendererProps<TRendererProps = any> =

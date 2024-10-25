@@ -1,10 +1,13 @@
 import { AnyResourceType } from "@bonfhir/core/r5";
-import { FhirError, FhirInputResourceTypeRendererProps } from "@bonfhir/react/r5";
+import {
+  FhirError,
+  FhirInputResourceTypeRendererProps,
+} from "@bonfhir/react/r5";
 import { Select, SelectProps } from "@mantine/core";
 import { ReactElement } from "react";
 
 export function MantineFhirInputResourceType(
-  props: FhirInputResourceTypeRendererProps<MantineFhirInputResourceTypeProps>
+  props: FhirInputResourceTypeRendererProps<MantineFhirInputResourceTypeProps>,
 ): ReactElement | null {
   const data = props.availableResourceTypes.map((resourceType) => ({
     label: resourceType,
@@ -30,7 +33,9 @@ export function MantineFhirInputResourceType(
       clearable={!props.required}
       data={data}
       value={props.value || null}
-      onChange={(value) => props.onChange?.(value as AnyResourceType | undefined)}
+      onChange={(value) =>
+        props.onChange?.(value as AnyResourceType | undefined)
+      }
       {...props.rendererProps}
     />
   );
