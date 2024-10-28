@@ -1,25 +1,48 @@
 import { AnyResourceType, ExtractResource, Reference } from "@bonfhir/core/r4b";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
+import { FhirInputResourceProps } from "..";
 import { useFhirUIContext } from "../context";
 
-export type FhirInputResourceSelectorProps<TRendererProps = any> = {
+export type ResourceSelectorConfig<
+  TAnyResourceType extends AnyResourceType = AnyResourceType,
+> = {
+  [TResourceType in TAnyResourceType]?: {
+    search?: FhirInputResourceProps<any, TResourceType>["search"];
+    display?: FhirInputResourceProps<any, TResourceType>["display"];
+  };
+};
+
+export type FhirInputResourceSelectorProps<
+  TRendererProps = any,
+  TResourceTypes extends AnyResourceType[] = AnyResourceType[],
+> = {
+  label?: ReactNode | null | undefined;
+  description?: ReactNode | null | undefined;
+  error?: ReactNode | null | undefined;
   required?: boolean | null | undefined;
-  resourceTypes?: AnyResourceType[] | null | undefined;
-  onChangeResourceType?: (value: AnyResourceType | undefined) => void;
+  resourceTypes?: TResourceTypes | null | undefined;
+  resourceTypeConfig?: ResourceSelectorConfig | null | undefined;
+  onChangeResourceType?: (value: TResourceTypes[number] | undefined) => void;
   className?: string | undefined;
   style?: Record<string, any> | undefined;
   rendererProps?: TRendererProps;
 } & (
   | {
       type: "Resource";
-      value?: ExtractResource<AnyResourceType> | string | null | undefined;
-      onChange?: (value: ExtractResource<AnyResourceType> | undefined) => void;
+      value?:
+        | ExtractResource<TResourceTypes[number]>
+        | string
+        | null
+        | undefined;
+      onChange?: (
+        value: ExtractResource<TResourceTypes[number]> | undefined,
+      ) => void;
     }
   | {
       type: "Reference";
       value?: Reference | null | undefined;
       onChange?: (
-        value: Reference<ExtractResource<AnyResourceType>> | undefined,
+        value: Reference<ExtractResource<TResourceTypes[number]>> | undefined,
       ) => void;
     }
 );

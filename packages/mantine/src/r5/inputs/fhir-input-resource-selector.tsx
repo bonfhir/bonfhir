@@ -1,9 +1,10 @@
 import { AnyResourceType } from "@bonfhir/core/r5";
 import {
   FhirInput,
+  FhirInputResourceProps,
   FhirInputResourceSelectorRendererProps,
 } from "@bonfhir/react/r5";
-import { Group } from "@mantine/core";
+import { Group, Input, InputWrapperProps } from "@mantine/core";
 import { ReactElement, useState } from "react";
 
 export function MantineFhirInputResourceSelector(
@@ -18,42 +19,67 @@ export function MantineFhirInputResourceSelector(
     props.onChangeResourceType?.(value);
   };
 
+  const resourceTypeConfig =
+    resourceType && props.resourceTypeConfig?.[resourceType];
+
   return (
-    <Group className={props.className} style={props.style}>
-      <FhirInput
-        type="ResourceType"
-        value={resourceType}
-        onChange={onChangeResourceType}
-        resourceTypes={props.resourceTypes}
-        required={props.required}
-        {...props.rendererProps}
-      />
-      {resourceType &&
-        (props.type === "Resource" ? (
-          <FhirInput
-            type="Resource"
-            resourceType={resourceType}
-            value={props.value}
-            onChange={props.onChange}
-            required={props.required}
-            {...props.rendererProps}
-          />
-        ) : (
-          props.type === "Reference" && (
+    <Input.Wrapper
+      className={props.className}
+      style={{ ...props.style, width: "100%" }}
+      label={props.label}
+      description={props.description}
+      error={props.error}
+      required={Boolean(props.required)}
+      {...props.rendererProps?.wrapper}
+    >
+      <Group>
+        <FhirInput
+          type="ResourceType"
+          value={resourceType}
+          onChange={onChangeResourceType}
+          resourceTypes={props.resourceTypes}
+          required={props.required}
+          {...props.rendererProps}
+        />
+        {resourceType &&
+          (props.type === "Resource" ? (
             <FhirInput
-              type="Reference"
+              type="Resource"
               resourceType={resourceType}
               value={props.value}
               onChange={props.onChange}
               required={props.required}
+              search={
+                resourceTypeConfig?.search as FhirInputResourceProps<AnyResourceType>["search"]
+              }
+              display={
+                resourceTypeConfig?.display as FhirInputResourceProps<AnyResourceType>["display"]
+              }
               {...props.rendererProps}
             />
-          )
-        ))}
-    </Group>
+          ) : (
+            props.type === "Reference" && (
+              <FhirInput
+                type="Reference"
+                resourceType={resourceType}
+                value={props.value}
+                onChange={props.onChange}
+                required={props.required}
+                search={
+                  resourceTypeConfig?.search as FhirInputResourceProps<AnyResourceType>["search"]
+                }
+                display={
+                  resourceTypeConfig?.display as FhirInputResourceProps<AnyResourceType>["display"]
+                }
+                {...props.rendererProps}
+              />
+            )
+          ))}
+      </Group>
+    </Input.Wrapper>
   );
 }
 
 export interface MantineFhirInputResourceSelectorProps {
-  // yay
+  wrapper?: InputWrapperProps | null | undefined;
 }
