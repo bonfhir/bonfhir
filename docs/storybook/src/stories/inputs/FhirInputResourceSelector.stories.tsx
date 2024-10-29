@@ -34,6 +34,11 @@ const meta = {
       control: "boolean",
       description: "Indicate that the input is required",
     },
+    type: {
+      control: "select",
+      description: "Render a Resource or Reference FhirInput",
+      options: ["Resource", "Reference"],
+    },
     resourceTypes: {
       control: "array",
       description: "Optional array of resource types to allow",
