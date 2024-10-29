@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "all": "pnpm build && pnpm check && pnpm test",
-    "build": "turbo run build",
+    "build": "turbo run build --affected",
     "check": "turbo run check",
     "codegen": "turbo run codegen",
     "dev": "turbo run dev",
@@ -25,7 +25,8 @@
     "packages:update": "pnpm update -r -L",
     "packages:version": "changeset version && pnpm install --lockfile-only",
     "preinstall": "npx only-allow pnpm",
-    "test": "turbo run test -- --passWithNoTests"
+    "test": "turbo run test -- --passWithNoTests",
+    "test-check": "turbo run test check -- --passWithNoTests"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
@@ -33,7 +34,7 @@
     "@graphql-codegen/cli": "^5.0.2",
     "graphql": "^16.8.1",
     "graphql-config": "^5.0.3",
-    "turbo": "^1.13.2"
+    "turbo": "^2.2.3"
   },
   "pnpm": {
     "overrides": {
@@ -74,5 +75,6 @@
   },
   "engines": {
     "node": ">=18.18.2"
-  }
+  },
+  "packageManager": "pnpm@9.12.2"
 }

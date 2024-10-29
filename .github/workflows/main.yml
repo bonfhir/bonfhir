@@ -47,7 +47,7 @@ jobs:
       - name: Check & Test
         env:
           NODE_OPTIONS: "--max_old_space_size=4096"
-        run: pnpm check && pnpm test
+        run: pnpm test-check
 
       - name: Prevent empty changesets
         run: pnpm changeset status --since=origin/main
