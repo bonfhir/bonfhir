@@ -617,7 +617,8 @@ export const ResourceType = {
   argTypes: {
     resourceTypes: {
       control: "array",
-      description: "Optional array of resource types to allow. If not provided, available resource types will be loaded from the server REST API capability statement.",
+      description:
+        "Optional array of resource types to allow. If not provided, available resource types will be loaded from the server REST API capability statement.",
     },
-  }
+  },
 };
