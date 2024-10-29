@@ -95,7 +95,32 @@ export const mockClient = {
         ],
         total: 2,
       });
-    }
+    } else if (type === "Patient") {
+      return bundleNavigator({
+        resourceType: "Bundle",
+        type: "searchset",
+        entry: [
+          {
+            fullUrl:
+              "http://localhost:8103/fhir/R4/Patient/d126c3d8-3d9a-4e75-8f39-5aed91560e3a",
+            resource: {
+              resourceType: "Patient",
+              id: "d126c3d8-3d9a-4e75-8f39-5aed91560e3a",
+              name: [
+                {
+                  given: ["John"],
+                  family: "Doe",
+                },
+              ],
+              birthDate: "2000-01-01",
+              meta: {
+                versionId: "1",
+                lastUpdated: "2023-06-16T19:42:57.847Z",
+              },
+            },
+          },
+        ]});
+      }
 
     return undefined;
   },
@@ -439,6 +464,42 @@ export const mockClient = {
           },
         };
       }
+    }
+  },
+  capabilities() {
+    return {
+      resourceType: "CapabilityStatement",
+      rest: [
+        {
+          resource: [
+            { type: "Patient" },
+            { type: "Practitioner" },
+            { type: "Organization" },
+            { type: "Condition" },
+            { type: "Observation" },
+            { type: "Encounter" },
+            { type: "Medication" },
+            { type: "MedicationRequest" },
+            { type: "AllergyIntolerance" },
+            { type: "Immunization" },
+            { type: "Procedure" },
+            { type: "DiagnosticReport" },
+            { type: "CarePlan" },
+            { type: "Goal" },
+            { type: "Appointment" },
+            { type: "Location" },
+            { type: "Device" },
+            { type: "FamilyMemberHistory" },
+            { type: "Claim" },
+            { type: "Coverage" },
+            { type: "Consent" },
+            { type: "Person" },
+            { type: "RelatedPerson" },
+            { type: "Group" },
+            { type: "Specimen" }
+          ],
+        },
+      ],
     }
   },
 } as unknown as FhirClient;
