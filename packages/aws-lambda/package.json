@@ -54,7 +54,7 @@
     "dist"
   ],
   "dependencies": {
-    "@bonfhir/core": "workspace:^2.19.3",
+    "@bonfhir/core": "workspace:^2.22.1",
     "@bonfhir/subscriptions": "workspace:^2.5.1"
   },
   "devDependencies": {

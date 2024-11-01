@@ -1,5 +1,11 @@
 # @bonfhir/eslint-config
 
+## 2.1.0
+
+### Minor Changes
+
+- [#326](https://github.com/bonfhir/bonfhir/pull/326) [`49477e1`](https://github.com/bonfhir/bonfhir/commit/49477e156170c38446af4a860b5c8f3dd6e9b367) Thanks [@2rueSid](https://github.com/2rueSid)! - Upgraded ES-Lint turbo plugin
+
 ## 2.0.6
 
 ### Patch Changes

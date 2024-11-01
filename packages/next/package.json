@@ -73,8 +73,8 @@
     "dist"
   ],
   "dependencies": {
-    "@bonfhir/core": "workspace:^2.19.3",
-    "@bonfhir/react": "workspace:^3.2.1",
+    "@bonfhir/core": "workspace:^2.22.1",
+    "@bonfhir/react": "workspace:^3.3.0",
     "@bonfhir/subscriptions": "workspace:^2.5.1"
   },
   "devDependencies": {
