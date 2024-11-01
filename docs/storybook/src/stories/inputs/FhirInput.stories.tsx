@@ -49,6 +49,7 @@ const meta = {
         "Coding",
         "CodeableConcept",
         "time",
+        "ResourceType",
       ],
     },
     label: {
@@ -601,6 +602,23 @@ export const Uuid = {
   argTypes: {
     placeholder: {
       control: "text",
+    },
+  },
+};
+
+/**
+ * Render FHIR [ResourceType](https://hl7.org/fhir/resourcelist.html) input.
+ */
+export const ResourceType = {
+  args: {
+    type: "ResourceType",
+    resourceTypes: ["Patient", "Practitioner", "Organization"],
+  },
+  argTypes: {
+    resourceTypes: {
+      control: "array",
+      description:
+        "Optional array of resource types to allow. If not provided, available resource types will be loaded from the server REST API capability statement.",
     },
   },
 };
