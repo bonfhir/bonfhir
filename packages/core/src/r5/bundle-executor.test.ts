@@ -33,7 +33,58 @@ describe("bundle-executor", () => {
 
     expect(futureOrg.entryIndex).toEqual(1);
 
-    client.batch.mockResolvedValueOnce({
+    client.transaction.mockRejectedValueOnce(
+      new Error("☠️ should not call me"),
+    );
+    client.batch
+      .mockResolvedValueOnce({
+        resourceType: "Bundle",
+        type: "batch-response",
+        entry: [
+          {
+            resource: {
+              resourceType: "Patient",
+              id: "123",
+            },
+          },
+          {
+            resource: {
+              resourceType: "Organization",
+              id: "456",
+            },
+          },
+        ],
+      })
+      .mockRejectedValueOnce(new Error("boom you should not call me twice"));
+
+    await executor.send();
+
+    expect(futurePatient.sent).toBeTruthy();
+    expect(futurePatient.resource.resourceType).toEqual("Patient");
+    expect(futureOrg.sent).toBeTruthy();
+    expect(futureOrg.resource.resourceType).toEqual("Organization");
+
+    expect(executor.response).toBeDefined();
+    expect(executor.futureRequests.length).toEqual(2);
+  });
+
+  it("returns FutureRequests for transactions", async () => {
+    const executor = new BundleExecutor(client, "transaction");
+
+    const futurePatient = executor.read("Patient", "123");
+    const futureOrg = executor.read("Organization", "456");
+
+    expect(futurePatient.requestEntry).toBeDefined();
+    expect(futurePatient.responseEntry).toBeUndefined();
+    expect(futurePatient.entryIndex).toEqual(0);
+    expect(futurePatient.executor).toBe(executor);
+    expect(futurePatient.sent).toBeFalsy();
+    expect(() => futurePatient.resource).toThrow();
+
+    expect(futureOrg.entryIndex).toEqual(1);
+
+    client.batch.mockRejectedValueOnce(new Error("☠️  should not call me"));
+    client.transaction.mockResolvedValueOnce({
       resourceType: "Bundle",
       type: "batch-response",
       entry: [
