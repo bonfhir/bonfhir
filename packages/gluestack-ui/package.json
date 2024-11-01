@@ -57,9 +57,9 @@
     "dist"
   ],
   "dependencies": {
-    "@bonfhir/core": "workspace:^2.19.3",
+    "@bonfhir/core": "workspace:^2.22.1",
     "@bonfhir/query": "workspace:^3.2.0",
-    "@bonfhir/react": "workspace:^3.2.1"
+    "@bonfhir/react": "workspace:^3.3.0"
   },
   "devDependencies": {
     "@bonfhir/eslint-config": "workspace:*",
