@@ -417,6 +417,7 @@ export class BundleExecutor {
     if (this.request.type === "transaction") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       this.response = await this.client.transaction(this.request as any);
+      return;
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this.response = await this.client.batch(this.request as any);
