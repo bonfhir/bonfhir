@@ -14,9 +14,11 @@ import {
 import {
   FhirInput,
   FhirInputProps,
+  FhirQuestionnaireItemRendererProps,
   FhirQuestionnaireRendererProps,
   FhirValue,
   FhirValueProps,
+  useFhirUIContext,
 } from "@bonfhir/react/r4b";
 import {
   Alert,
@@ -103,6 +105,7 @@ function QuestionnaireRenderer(
     "questionnaire"
   >,
 ): ReactElement | null {
+  const { render } = useFhirUIContext();
   const form = useFhirForm<object, (values: object) => QuestionnaireResponse>({
     transformValues(values) {
       return build("QuestionnaireResponse", {
@@ -178,15 +181,18 @@ function QuestionnaireRenderer(
             {props.questionnaire.title}
           </Title>
         )}
-        {(props.questionnaire.item || []).map((item, index) => (
-          <MantineQuestionnaireItemRenderer
-            key={index}
-            props={props}
-            item={item}
-            parentPath=""
-            form={form}
-          />
-        ))}
+        {(props.questionnaire.item || []).map((item, index) =>
+          render<MantineQuestionnaireItemRendererProps>(
+            "FhirQuestionnaireItem",
+            {
+              key: index,
+              props,
+              item,
+              parentPath: "",
+              form,
+            },
+          ),
+        )}
         <Group mt="md">
           <Button type="submit" {...props.rendererProps?.submit}>
             {props.rendererProps?.submitText || "Submit"}
@@ -206,7 +212,29 @@ function QuestionnaireRenderer(
   );
 }
 
-function MantineQuestionnaireItemRenderer({
+export function MantineFhirQuestionnaireItem({
+  props,
+  item,
+  parentPath,
+  form,
+}: MantineQuestionnaireItemRendererProps): ReactElement | null {
+  return (
+    <MantineQuestionnaireItemRenderer
+      props={props}
+      item={item}
+      parentPath={parentPath}
+      form={form}
+    />
+  );
+}
+
+export interface MantineQuestionnaireItemRendererProps
+  extends FhirQuestionnaireItemRendererProps {
+  key?: number;
+  form: UseFhirFormReturnType<any, any>;
+}
+
+export function MantineQuestionnaireItemRenderer({
   props,
   item,
   parentPath,

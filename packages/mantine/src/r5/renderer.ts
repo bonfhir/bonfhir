@@ -22,6 +22,7 @@ import {
   MantineFhirInputTerminology,
   MantineFhirInputTime,
   MantineFhirQuestionnaire,
+  MantineFhirQuestionnaireItem,
 } from "./inputs";
 import { MantineFhirInfiniteMarker, MantineFhirPagination } from "./navigation";
 
@@ -47,6 +48,7 @@ export const MantineRenderer: FhirUIRenderer = {
   FhirPagination: MantineFhirPagination,
   FhirQueryLoader: MantineFhirQueryLoader,
   FhirQuestionnaire: MantineFhirQuestionnaire,
+  FhirQuestionnaireItem: MantineFhirQuestionnaireItem,
   FhirTable: MantineFhirTable,
   FhirValue: MantineFhirValue,
 };
