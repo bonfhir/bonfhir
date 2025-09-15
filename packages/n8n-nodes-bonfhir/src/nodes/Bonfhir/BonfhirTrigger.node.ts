@@ -5,6 +5,7 @@ import type {
   IWebhookFunctions,
   IWebhookResponseData,
 } from "n8n-workflow";
+import { NodeOperationError } from "n8n-workflow";
 import { DomainResourceTypes } from "../../domain-resource-types.codegen";
 import {
   authenticationField,
@@ -195,6 +196,9 @@ export class BonfhirTrigger implements INodeType {
   webhookMethods = {
     default: {
       async checkExists(this: IHookFunctions) {
+        const staticData = this.getWorkflowStaticData("global");
+        const subscriptionId = staticData.subscriptionId as string;
+
         const allowUnauthorizedCerts = this.getNodeParameter(
           "allowUnauthorizedCerts",
           false,
@@ -203,28 +207,73 @@ export class BonfhirTrigger implements INodeType {
         if (baseUrl.endsWith("/")) {
           baseUrl = baseUrl.slice(0, -1);
         }
-        const webhookUrl = getWebhookUrl(this);
 
-        const response = await requestWithAuth(
-          this,
-          {
-            method: "GET",
-            headers: {
-              "content-type": `application/fhir+json`,
+        // If we have a stored subscription ID, use it for direct lookup
+        if (subscriptionId) {
+          try {
+            const response = await requestWithAuth(
+              this,
+              {
+                method: "GET",
+                headers: {
+                  "content-type": `application/fhir+json`,
+                },
+                uri: `${baseUrl}/Subscription/${subscriptionId}`,
+                json: true,
+                simple: false,
+                rejectUnauthorized: !allowUnauthorizedCerts,
+              },
+              await getAuthParameters(this),
+            );
+
+            // Check if the subscription exists and is active
+            return (
+              response &&
+              response.resourceType === "Subscription" &&
+              response.status === "active"
+            );
+          } catch {
+            // If the subscription doesn't exist (404) or any other error, return false
+            return false;
+          }
+        }
+
+        // Fallback: Search by URL for existing workflows that don't have stored subscription ID
+        // This provides backward compatibility during migration
+        const webhookUrl = getWebhookUrl(this);
+        try {
+          const response = await requestWithAuth(
+            this,
+            {
+              method: "GET",
+              headers: {
+                "content-type": `application/fhir+json`,
+              },
+              uri: `${baseUrl}/Subscription`,
+              qs: {
+                _count: 1,
+                status: "active",
+                url: webhookUrl,
+              },
+              json: true,
+              simple: false,
+              rejectUnauthorized: !allowUnauthorizedCerts,
             },
-            uri: `${baseUrl}/Subscription`,
-            qs: {
-              _count: 1,
-              status: "active",
-              url: webhookUrl,
-            },
-            json: true,
-            simple: false,
-            rejectUnauthorized: !allowUnauthorizedCerts,
-          },
-          await getAuthParameters(this),
-        );
-        return response.entry && response.entry.length > 0;
+            await getAuthParameters(this),
+          );
+
+          const subscription = response.entry?.[0]?.resource;
+          if (subscription?.id) {
+            // Store the found subscription ID for future use
+            staticData.subscriptionId = subscription.id;
+            staticData.baseUrl = baseUrl;
+            return true;
+          }
+
+          return false;
+        } catch {
+          return false;
+        }
       },
 
       async create(this: IHookFunctions) {
@@ -251,7 +300,7 @@ export class BonfhirTrigger implements INodeType {
           "searchCriteria",
         ) as string;
 
-        await requestWithAuth(
+        const response = await requestWithAuth(
           this,
           {
             method: "POST",
@@ -277,10 +326,32 @@ export class BonfhirTrigger implements INodeType {
           },
           await getAuthParameters(this),
         );
+
+        // Validate the response and extract subscription ID
+        if (!response || !response.id) {
+          throw new NodeOperationError(
+            this.getNode(),
+            `Failed to create FHIR subscription. Response: ${JSON.stringify(response)}`,
+          );
+        }
+
+        // Store the subscription ID in static data for reliable tracking
+        const staticData = this.getWorkflowStaticData("global");
+        staticData.subscriptionId = response.id;
+        staticData.baseUrl = baseUrl;
+
         return true;
       },
 
       async delete(this: IHookFunctions) {
+        const staticData = this.getWorkflowStaticData("global");
+        const subscriptionId = staticData.subscriptionId as string;
+
+        // If no subscription ID is stored, nothing to delete
+        if (!subscriptionId) {
+          return true;
+        }
+
         const allowUnauthorizedCerts = this.getNodeParameter(
           "allowUnauthorizedCerts",
           false,
@@ -289,29 +360,8 @@ export class BonfhirTrigger implements INodeType {
         if (baseUrl.endsWith("/")) {
           baseUrl = baseUrl.slice(0, -1);
         }
-        const webhookUrl = getWebhookUrl(this);
 
-        const response = await requestWithAuth(
-          this,
-          {
-            method: "GET",
-            headers: {
-              "content-type": `application/fhir+json`,
-            },
-            uri: `${baseUrl}/Subscription`,
-            qs: {
-              _count: 1,
-              status: "active",
-              url: webhookUrl,
-            },
-            json: true,
-            simple: false,
-            rejectUnauthorized: !allowUnauthorizedCerts,
-          },
-          await getAuthParameters(this),
-        );
-        const subscription = response.entry?.[0]?.resource;
-        if (subscription?.id) {
+        try {
           await requestWithAuth(
             this,
             {
@@ -319,13 +369,25 @@ export class BonfhirTrigger implements INodeType {
               headers: {
                 "content-type": `application/fhir+json`,
               },
-              uri: `${baseUrl}/Subscription/${subscription.id}`,
+              uri: `${baseUrl}/Subscription/${subscriptionId}`,
               simple: false,
               rejectUnauthorized: !allowUnauthorizedCerts,
             },
             await getAuthParameters(this),
           );
+        } catch (error) {
+          // Log the error but don't fail the deletion process
+          // The subscription might already be deleted or not exist
+          console.warn(
+            `Failed to delete FHIR subscription ${subscriptionId}:`,
+            error,
+          );
         }
+
+        // Clear the stored subscription ID from static data
+        delete staticData.subscriptionId;
+        delete staticData.baseUrl;
+
         return true;
       },
     },
