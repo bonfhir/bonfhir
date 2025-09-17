@@ -266,7 +266,6 @@ export class BonfhirTrigger implements INodeType {
           if (subscription?.id) {
             // Store the found subscription ID for future use
             staticData.subscriptionId = subscription.id;
-            staticData.baseUrl = baseUrl;
             return true;
           }
 
@@ -338,7 +337,6 @@ export class BonfhirTrigger implements INodeType {
         // Store the subscription ID in static data for reliable tracking
         const staticData = this.getWorkflowStaticData("node");
         staticData.subscriptionId = response.id;
-        staticData.baseUrl = baseUrl;
 
         return true;
       },
@@ -386,7 +384,6 @@ export class BonfhirTrigger implements INodeType {
 
         // Clear the stored subscription ID from static data
         delete staticData.subscriptionId;
-        delete staticData.baseUrl;
 
         return true;
       },
