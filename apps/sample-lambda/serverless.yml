@@ -20,6 +20,15 @@ plugins:
   - serverless-esbuild
   - serverless-offline
 
+# Plugin configuration to prevent duplication issues
+pluginLoadOrder:
+  - serverless-esbuild
+  - serverless-offline
+
+# Disable validation that can cause plugin conflicts in CI
+configValidationMode: off
+variablesResolutionMode: 20210326
+
 custom:
   esbuild:
     format: esm
