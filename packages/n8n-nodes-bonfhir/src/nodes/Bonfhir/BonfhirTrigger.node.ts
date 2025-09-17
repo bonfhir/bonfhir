@@ -196,7 +196,7 @@ export class BonfhirTrigger implements INodeType {
   webhookMethods = {
     default: {
       async checkExists(this: IHookFunctions) {
-        const staticData = this.getWorkflowStaticData("global");
+        const staticData = this.getWorkflowStaticData("node");
         const subscriptionId = staticData.subscriptionId as string;
 
         const allowUnauthorizedCerts = this.getNodeParameter(
@@ -336,7 +336,7 @@ export class BonfhirTrigger implements INodeType {
         }
 
         // Store the subscription ID in static data for reliable tracking
-        const staticData = this.getWorkflowStaticData("global");
+        const staticData = this.getWorkflowStaticData("node");
         staticData.subscriptionId = response.id;
         staticData.baseUrl = baseUrl;
 
@@ -344,7 +344,7 @@ export class BonfhirTrigger implements INodeType {
       },
 
       async delete(this: IHookFunctions) {
-        const staticData = this.getWorkflowStaticData("global");
+        const staticData = this.getWorkflowStaticData("node");
         const subscriptionId = staticData.subscriptionId as string;
 
         // If no subscription ID is stored, nothing to delete
