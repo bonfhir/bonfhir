@@ -1,5 +1,11 @@
 # @bonfhir/n8n-nodes-bonfhir
 
+## 1.5.0
+
+### Minor Changes
+
+- [#337](https://github.com/bonfhir/bonfhir/pull/337) [`b4e78d0`](https://github.com/bonfhir/bonfhir/commit/b4e78d0209a3b5f3e32dc90553daa1e0e02a0d36) Thanks [@lp](https://github.com/lp)! - N8N Subscription Trigger Persistence
+
 ## 1.4.2
 
 ### Patch Changes
