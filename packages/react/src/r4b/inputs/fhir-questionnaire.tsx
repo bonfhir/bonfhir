@@ -1,5 +1,6 @@
 import {
   Questionnaire,
+  QuestionnaireItem,
   QuestionnaireResponse,
   Retrieved,
   asError,
@@ -106,4 +107,27 @@ export type FhirQuestionnaireRendererProps<TRendererProps = any> =
 
 export type FhirQuestionnaireRenderer = (
   props: FhirQuestionnaireRendererProps,
+) => ReactElement | null;
+
+export interface FhirQuestionnaireItemProps {
+  props: FhirQuestionnaireRendererProps;
+  item: QuestionnaireItem;
+  parentPath: string;
+  form: any;
+}
+
+export function FhirQuestionnaireItem(
+  props: FhirQuestionnaireItemProps,
+): ReactElement | null {
+  const { render } = useFhirUIContext();
+
+  return render<FhirQuestionnaireItemRendererProps>("FhirQuestionnaireItem", {
+    ...props,
+  });
+}
+
+export type FhirQuestionnaireItemRendererProps = FhirQuestionnaireItemProps;
+
+export type FhirQuestionnaireItemRenderer = (
+  props: FhirQuestionnaireItemRendererProps,
 ) => ReactElement | null;

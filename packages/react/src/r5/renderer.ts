@@ -17,6 +17,7 @@ import type {
   FhirInputStringRenderer,
   FhirInputTerminologyRenderer,
   FhirInputTimeRenderer,
+  FhirQuestionnaireItemRenderer,
   FhirQuestionnaireRenderer,
 } from "./inputs";
 import type {
@@ -46,6 +47,7 @@ export interface FhirUIRenderer {
   FhirPagination: FhirPaginationRenderer;
   FhirQueryLoader: FhirQueryLoaderRenderer;
   FhirQuestionnaire: FhirQuestionnaireRenderer;
+  FhirQuestionnaireItem: FhirQuestionnaireItemRenderer;
   FhirTable: FhirTableRenderer;
   FhirValue: FhirValueRenderer;
 }
