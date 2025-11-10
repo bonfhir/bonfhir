@@ -14,6 +14,8 @@ import type {
   FhirInputNumberRenderer,
   FhirInputQuantityRenderer,
   FhirInputResourceRenderer,
+  FhirInputResourceSelectorRenderer,
+  FhirInputResourceTypeRenderer,
   FhirInputStringRenderer,
   FhirInputTerminologyRenderer,
   FhirInputTimeRenderer,
@@ -43,6 +45,8 @@ export interface FhirUIRenderer {
   FhirInputString: FhirInputStringRenderer;
   FhirInputTerminology: FhirInputTerminologyRenderer;
   FhirInputTime: FhirInputTimeRenderer;
+  FhirInputResourceType: FhirInputResourceTypeRenderer;
+  FhirInputResourceSelector: FhirInputResourceSelectorRenderer;
   FhirPagination: FhirPaginationRenderer;
   FhirQueryLoader: FhirQueryLoaderRenderer;
   FhirQuestionnaire: FhirQuestionnaireRenderer;

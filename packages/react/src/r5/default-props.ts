@@ -7,6 +7,7 @@ import { FhirErrorProps, FhirQueryLoaderProps } from "./feedback";
 import {
   FhirInputArrayProps,
   FhirInputProps,
+  FhirInputResourceSelectorProps,
   FhirQuestionnaireProps,
 } from "./inputs";
 import { FhirInfiniteMarkerProps, FhirPaginationProps } from "./navigation";
@@ -35,6 +36,13 @@ export interface FhirUIDefaultProps {
   FhirInputArray?:
     | Partial<FhirInputArrayProps<any, any>>
     | ((props: FhirInputArrayProps<any, any>) => FhirInputArrayProps<any, any>)
+    | null
+    | undefined;
+  FhirInputResourceSelector?:
+    | Partial<FhirInputResourceSelectorProps>
+    | ((
+        props: FhirInputResourceSelectorProps,
+      ) => FhirInputResourceSelectorProps)
     | null
     | undefined;
   FhirPagination?:
