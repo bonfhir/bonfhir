@@ -1,66 +1,19 @@
-name: BonFHIR CI
+name: Publish version
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    types: [opened, synchronize, reopened]
-
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+  release:
+    types: [published]
 
 env:
   DO_NOT_TRACK: 1
   TURBO_TELEMETRY_DISABLED: 1
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ vars.TURBO_TEAM }} # Enable turbo remote caching
 
 jobs:
-  build:
-    if: github.event.pull_request.head.ref != 'changeset-release/main' # This should skip the build step for the Pull requests that are opened from the branch changeset-release/main.
-    name: Build
-    timeout-minutes: 30
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "lts/*"
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Build
-        env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
-        run: pnpm build
-
-      - name: Check & Test
-        env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
-        run: pnpm test-check
-
-      - name: Prevent empty changesets
-        run: pnpm changeset status --since=origin/main
-
   deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: [build]
-
-    name: Deploy
-    timeout-minutes: 30
+    name: Publish Version
     runs-on: ubuntu-latest
-    env:
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -69,6 +22,8 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: latest
 
       - name: Setup node.js
         uses: actions/setup-node@v4
@@ -79,11 +34,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Publish to npm
         uses: changesets/action@v1
         with:
           publish: pnpm packages:publish
-          version: pnpm packages:version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
