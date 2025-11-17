@@ -48,7 +48,15 @@ jobs:
         run: pnpm test-check
 
       - name: Prevent empty changesets
+        id: prevent_empty_changesets
         run: pnpm changeset status --since=origin/main
+      
+      - name: Empty changeset failure
+        if: ${{ failure() && steps.prevent_empty_changesets.conclusion == 'failure' }}
+        run: |
+          echo "Changesets are not allowed to be empty. Please add a changeset to the commit."
+          echo "See https://bonfhir.dev/docs/contributing#changesets---versioning-packages for more information."
+          exit 1
 
   deploy:
     if: github.ref == 'refs/heads/main'
