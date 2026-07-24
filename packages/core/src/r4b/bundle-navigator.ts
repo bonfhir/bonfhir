@@ -406,8 +406,9 @@ export class BundleNavigator<TResource extends Resource = Resource> {
   /**
    * Return the url associated with a link, characterized by a relation.
    */
+  // FHIR R5 5.0.0 permits both `prev` and its synonym `previous`.
   public linkUrl(
-    relation: "self" | "first" | "next" | "previous" | "last",
+    relation: "self" | "first" | "next" | "prev" | "previous" | "last",
   ): string | undefined;
   public linkUrl(relation: string): string | undefined {
     if (Array.isArray(this._bundleOrNavigator)) {

@@ -354,6 +354,16 @@ describe("BundleNavigator", () => {
       expect(result).toBeDefined();
     });
 
+    it.each(["prev", "previous"] as const)("return the %s link", (relation) => {
+      const url = `https://example.com/Patient?page=${relation}`;
+      const navigator = bundleNavigator({
+        ...emptyBundle,
+        link: [{ relation, url }],
+      });
+
+      expect(navigator.linkUrl(relation)).toBe(url);
+    });
+
     it("return undefined if not found", () => {
       const navigator = bundleNavigator(patientsListBundle);
       const result = navigator.linkUrl("previous");
