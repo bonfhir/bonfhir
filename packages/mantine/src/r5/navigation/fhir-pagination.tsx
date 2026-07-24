@@ -27,7 +27,7 @@ export function MantineFhirPagination(
       }
       onPreviousPage={() =>
         props.onPageChange?.(
-          props.data?.linkUrl("previous"),
+          props.data?.linkUrl("prev") ?? props.data?.linkUrl("previous"),
           props.pageNumber - 1,
         )
       }
